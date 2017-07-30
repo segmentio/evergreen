@@ -22,8 +22,11 @@
     "url-loader": "^0.5.9"
   },
   "scripts": {
+    "dev": "npm run build:watch & npm run storybook",
     "create-package:component": "babel-node tools/create-package-component",
-    "lerna-bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna exec -- git clean -Xdf . && lerna bootstrap",
+    "clean": "lerna exec -- git clean -Xdf . && rm -rf node_modules",
+    "lint": "eslint --cache --ignore-pattern coverage --ignore-pattern node_modules --ignore-pattern lib .",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build:watch": "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w"
