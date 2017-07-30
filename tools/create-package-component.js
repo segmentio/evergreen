@@ -17,7 +17,7 @@ const componentName = process.argv[2]
 module.exports = task('create-package-component', () => {
   if (!componentName) {
     throw new Error(
-      'Missing argument, use: `npm run create-package-component ComponentName`',
+      'Missing argument, use: `npm run create-package:component ComponentName`',
     )
   }
 

@@ -22,7 +22,7 @@
     "url-loader": "^0.5.9"
   },
   "scripts": {
-    "create-package-component": "node --harmony tools/create-package-component",
+    "create-package:component": "babel-node tools/create-package-component",
     "lerna-bootstrap": "lerna bootstrap",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
