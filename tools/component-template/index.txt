@@ -1,0 +1,10 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import Box from 'ui-box'
+
+export default class $ComponentName extends React.Component {
+  render() {
+    const { ...props } = this.props
+    return <Box {...props} />
+  }
+}
