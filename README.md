@@ -132,10 +132,52 @@ Remember to use `yarn run bootstrap`, if you are not running `yarn run dev`.
 This will run react storybook, a React development environment that finds
 all files in your packages directory that match `*.stories.js`.
 
-### `yarn create-package:component`
+### `yarn create-package`
 
-This command scaffolds a package with a React component boilerplate.
-You should use it as such:
+This command scaffolds a package with no specific boilerplate.
+It should be useful for creating utilities.
+
+For the following command:
+
+```
+npm run create-package evergreen-utils
+```
+
+The following file tree will be generated:
+
+```
+/packages/evergreen-utils
+├── /src/
+│   └── index.js
+└── package.json
+```
+
+
+### `yarn create-package:components`
+
+This command scaffolds a package with React component(s) boilerplate.
+You can pass one or more components to this command.
+
+For the following command:
+
+```
+npm run create-package:component evergreen-typography Text Heading
+```
+
+The following file tree will be generated:
+
+```
+/packages/evergreen-typography
+├── /src/
+│   │-  /components/
+|   │   |── Text.js
+|   │   └── Heading.js
+│   └── index.js
+|
+├── /stories/
+│   └── index.stories.js
+└── package.json
+```
 
 ### `yarn lint`
 
@@ -145,20 +187,6 @@ Uses ESLint to lint the project by the configuration found in `.eslintrc.js`.
 
 Remove all untracked files and removes all node_modules (using `rm -rf`).
 
-```
-$ yarn run create-package:component ComponentName
-```
-
-This will create the following template
-
-```
-/packages/evergreen-{pacakage-name}
-├── /src/
-│   └── index.js
-├── /stories/
-│   └── ComponentName.stories.js
-└── package.json
-```
 
 ## Babel configuration
 
