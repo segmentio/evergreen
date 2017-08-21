@@ -17,8 +17,8 @@ before actually writing the component. That includes:
 The goal is to remove all friction in creating components.
 In the immediate term I hope to work on the following items:
 
-* [ ] Finish first pass of Sketch design and mention here
-* [ ] Finalize my color system generator
+* [x] Finish first pass of Sketch design and mention here
+* [x] Finalize my color system generator
 * [ ] Create a issue, and implement `evergreen-color`
 * [ ] Create a issue, and implement `evergreen-typography`
 
