@@ -43,7 +43,8 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 
 | Package                            | Status             | Exports                    |
 |------------------------------------|--------------------|----------------------------|
-| `evergreen-typography`             | Needs Planning     | typography components      |
+| `evergreen-colors`                 | [#1](https://github.com/segmentio/evergreen/issues/1)     | Color system object        |
+| `evergreen-typography`             | [#2](https://github.com/segmentio/evergreen/issues/2)     | typography components      |
 | `evergreen-icons`                  | Needs Planning     | icon components            |
 | `evergreen-card`                   | Needs Planning     | Card component             |
 | `evergreen-button`                 | Needs Planning     | Button component           |
@@ -69,7 +70,6 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 | `evergreen-dialog`                 | Needs Planning     | Dialog component           |
 | `evergreen-corner-dialog`          | Needs Planning     | CornerDialog component     |
 | `evergreen-code-block`             | Needs Planning     | CodeBlock component        |
-| `evergreen-colors`                 | Needs Planning     | Color system object        |
 | `evergreen-text-styles`            | Needs Planning     | Text styles object         |
 
 
