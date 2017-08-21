@@ -187,20 +187,6 @@ Uses ESLint to lint the project by the configuration found in `.eslintrc.js`.
 
 Remove all untracked files and removes all node_modules (using `rm -rf`).
 
-```
-$ yarn run create-package:component ComponentName
-```
-
-This will create the following template
-
-```
-/packages/evergreen-{pacakage-name}
-├── /src/
-│   └── index.js
-├── /stories/
-│   └── ComponentName.stories.js
-└── package.json
-```
 
 ## Babel configuration
 
