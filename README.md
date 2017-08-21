@@ -161,7 +161,7 @@ You can pass one or more components to this command.
 For the following command:
 
 ```
-npm run create-package:component evergreen-typography Text Heading
+npm run create-package:components evergreen-typography Text Heading
 ```
 
 The following file tree will be generated:
@@ -186,7 +186,6 @@ Uses ESLint to lint the project by the configuration found in `.eslintrc.js`.
 ### `yarn clean`
 
 Remove all untracked files and removes all node_modules (using `rm -rf`).
-
 
 ## Babel configuration
 
