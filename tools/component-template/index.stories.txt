@@ -1,9 +1,0 @@
-import { storiesOf } from '@kadira/storybook'
-import React from 'react'
-import ComponentName from '../src'
-
-storiesOf('ComponentName', module).add('ComponentName Readme', () =>
-  <div>
-    <ComponentName />
-  </div>,
-)

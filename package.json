@@ -23,7 +23,8 @@
   },
   "scripts": {
     "dev": "npm run build:watch & npm run storybook",
-    "create-package:component": "babel-node tools/create-package-component",
+    "create-package": "babel-node tools/create-package",
+    "create-package:components": "babel-node tools/create-package-components",
     "bootstrap": "lerna exec -- git clean -Xdf . && lerna bootstrap",
     "clean": "lerna exec -- git clean -Xdf . && rm -rf node_modules",
     "lint": "eslint --cache --ignore-pattern coverage --ignore-pattern node_modules --ignore-pattern lib .",
