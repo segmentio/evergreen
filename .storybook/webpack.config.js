@@ -1,20 +1,20 @@
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = function(storybookBaseConfig, configType) {
-  storybookBaseConfig.debug = true
   storybookBaseConfig.devtool = 'source-map'
   storybookBaseConfig.resolve.alias = {
     react: path.join(
       __dirname,
-      '../node_modules/react/dist/react-with-addons.js',
+      '../node_modules/react/dist/react-with-addons.js'
     ),
     'react-dom': path.join(
       __dirname,
-      '../node_modules/react-dom/dist/react-dom.js',
-    ),
+      '../node_modules/react-dom/dist/react-dom.js'
+    )
   }
 
-  storybookBaseConfig.module.loaders.splice(
+  storybookBaseConfig.module.rules.splice(
     -1,
     0,
     {
@@ -24,10 +24,14 @@ module.exports = function(storybookBaseConfig, configType) {
     {
       test: /\.(blob)/,
       loader: 'file-loader',
-    },
+    }
   )
 
-  storybookBaseConfig.resolve.fallback = [path.join(__dirname, '../packages')]
+  storybookBaseConfig.plugins.push(
+    new webpack.LoaderOptionsPlugin({
+      debug: true
+    })
+  )
 
   // Return the altered config
   return storybookBaseConfig
