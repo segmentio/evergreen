@@ -1,6 +1,6 @@
 export default function storiesTemplate({ packageName, componentNames = [] }) {
   const template = []
-  template.push(`import { storiesOf } from '@kadira/storybook'`)
+  template.push(`import { storiesOf } from '@storybook/react'`)
   template.push(`import React from 'react'`)
   template.push(`import { ${componentNames.join(', ')} } from '../src/'`)
   template.push('')
