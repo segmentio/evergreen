@@ -30,7 +30,8 @@
     "lint": "eslint --cache --ignore-pattern coverage --ignore-pattern node_modules --ignore-pattern lib .",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build:watch": "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w"
+    "build:watch": "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w",
+    "build": "lerna exec --parallel -- babel src -d lib --ignore *.test.js"
   },
   "dependencies": {
     "prop-types": "^15.5.10",
