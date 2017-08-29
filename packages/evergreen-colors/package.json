@@ -2,7 +2,7 @@
   "name": "evergreen-colors",
   "version": "1.0.0",
   "description": "Colors",
-  "main": "lib/colors.json",
+  "main": "src/colors.json",
   "keywords": [
     "evergreen",
     "segment",
@@ -13,6 +13,6 @@
   "author": "Segment",
   "license": "MIT",
   "devDependencies": {
-    "ui-box": "^0.3.2"
+    "ui-box": "^0.3.4"
   }
 }

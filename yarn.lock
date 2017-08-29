@@ -3175,7 +3175,7 @@ github-url-from-git@^1.4.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/github-url-from-git/-/github-url-from-git-1.5.0.tgz#f985fedcc0a9aa579dc88d7aff068d55cc6251a0"
 
-glamor@^2.20.40:
+glamor@^2.20.22, glamor@^2.20.40:
   version "2.20.40"
   resolved "https://registry.yarnpkg.com/glamor/-/glamor-2.20.40.tgz#f606660357b7cf18dface731ad1a2cfa93817f05"
   dependencies:
@@ -6015,6 +6015,13 @@ uglifyjs-webpack-plugin@^0.4.6:
     source-map "^0.5.6"
     uglify-js "^2.8.29"
     webpack-sources "^1.0.1"
+
+ui-box@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.3.4.tgz#2ae577b80430f94c4326a596fcfe5362166a10d5"
+  dependencies:
+    classnames "^2.2.5"
+    glamor "^2.20.22"
 
 uid-number@^0.0.6:
   version "0.0.6"

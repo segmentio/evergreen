@@ -18,6 +18,8 @@ module.exports = storybookBaseConfig => {
     },
   ]
 
+  console.log('storybookBaseConfig', storybookBaseConfig.resolve)
+
   // Return the altered config
   return {
     ...storybookBaseConfig,
@@ -39,6 +41,9 @@ module.exports = storybookBaseConfig => {
           '../node_modules/react-dom/dist/react-dom.js',
         ),
       },
+      // Unsure if this is the rigth way of doing it, but to make stories work
+      // with unpublished/local packages this checks in packages before node_modules
+      modules: [path.join(__dirname, '../packages'), 'node_modules'],
     },
     module: {
       ...storybookBaseConfig.module,

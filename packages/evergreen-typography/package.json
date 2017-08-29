@@ -1,0 +1,29 @@
+{
+  "name": "evergreen-typography",
+  "version": "1.0.0",
+  "description": "React components: Text, Paragraph, Heading, Code, Pre, Label, Small, Strong",
+  "main": "lib/index.js",
+  "keywords": [
+    "evergreen",
+    "segment",
+    "ui",
+    "react",
+    "Text",
+    "Paragraph",
+    "Heading",
+    "Code",
+    "Pre",
+    "Label",
+    "Small",
+    "Strong"
+  ],
+  "author": "Segment",
+  "license": "MIT",
+  "peerDependencies": {
+    "prop-types": "^15.0.0",
+    "react": "^0.14.0 || ^15.0.0"
+  },
+  "dependencies": {
+    "ui-box": "^0.3.4"
+  }
+}
