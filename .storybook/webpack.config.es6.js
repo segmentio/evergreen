@@ -1,10 +1,9 @@
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = storybookBaseConfig => {
-  const loaders = [...storybookBaseConfig.module.loaders]
-  loaders.splice(
-    -1,
-    0,
+  const rules = [
+    ...storybookBaseConfig.module.rules,
     {
       test: /\.(png\?.*|jpg\?.*|jpg|png)$/,
       loader: 'url-loader',
@@ -17,13 +16,17 @@ module.exports = storybookBaseConfig => {
       test: /\.(json)/,
       loader: 'json-loader',
     },
-  )
+  ]
 
   // Return the altered config
   return {
     ...storybookBaseConfig,
-    debug: true,
-    devtool: 'source-map',
+    plugins: [
+      ...storybookBaseConfig.plugins,
+      new webpack.LoaderOptionsPlugin({
+        debug: true,
+      }),
+    ],
     resolve: {
       ...storybookBaseConfig.resolve,
       alias: {
@@ -36,11 +39,10 @@ module.exports = storybookBaseConfig => {
           '../node_modules/react-dom/dist/react-dom.js',
         ),
       },
-      fallback: [path.join(__dirname, '../packages')],
     },
     module: {
       ...storybookBaseConfig.module,
-      loaders,
+      rules,
     },
   }
 }
