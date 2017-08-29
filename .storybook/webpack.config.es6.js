@@ -18,8 +18,6 @@ module.exports = storybookBaseConfig => {
     },
   ]
 
-  console.log('storybookBaseConfig', storybookBaseConfig.resolve)
-
   // Return the altered config
   return {
     ...storybookBaseConfig,
