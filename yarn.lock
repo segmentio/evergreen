@@ -6016,9 +6016,9 @@ uglifyjs-webpack-plugin@^0.4.6:
     uglify-js "^2.8.29"
     webpack-sources "^1.0.1"
 
-ui-box@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.3.4.tgz#2ae577b80430f94c4326a596fcfe5362166a10d5"
+ui-box@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.3.5.tgz#b8600e8e1806d4a8ff493e66ec1a0fd2e1294f8c"
   dependencies:
     classnames "^2.2.5"
     glamor "^2.20.22"

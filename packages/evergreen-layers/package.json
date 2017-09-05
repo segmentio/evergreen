@@ -1,21 +1,18 @@
 {
-  "name": "evergreen-typography",
+  "name": "evergreen-layers",
   "version": "1.0.0",
-  "description": "React components: Text, Paragraph, Heading, Code, Pre, Label, Small, Strong",
+  "description": "React components: Pane, Card, ElevationStyles, BorderColors, LayerAppearances",
   "main": "lib/index.js",
   "keywords": [
     "evergreen",
     "segment",
     "ui",
     "react",
-    "Text",
-    "Paragraph",
-    "Heading",
-    "Code",
-    "Pre",
-    "Label",
-    "Small",
-    "Strong"
+    "Pane",
+    "Card",
+    "ElevationStyles",
+    "BorderColors",
+    "LayerAppearances"
   ],
   "author": "Segment",
   "license": "MIT",
