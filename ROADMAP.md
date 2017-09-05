@@ -11,7 +11,7 @@ So I am leaving that for later.
 The following components to tackle are Pane and Card in `evergreen-layers`.
 I think that is better than `evergreen-pane` and `evergreen-card` separately.
 
-* [ ] Create a issue, and implement `evergreen-layers`
+* [x] Create a issue, and implement `evergreen-layers`
 
 ### July 30, 2017, Setting up project
 
