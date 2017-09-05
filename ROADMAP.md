@@ -2,6 +2,14 @@
 
 We'll try as much as possible to plan ahead, and label each update with a date.
 
+### September 4, 2017, Starting on Button
+
+`evergreen-layers` is implemented, documentation is missing besides Storybook.
+I haven't pushed it live yet with Lerna onto npm.
+Hoping to do this after I publish some Buttons first.
+
+* [ ] Create a issue outline, and implement `evergreen-buttons`
+
 ### August 30, 2017, Building out Layers
 
 Colors and Typography are implemented, there still needs to be more documentation.
@@ -11,7 +19,7 @@ So I am leaving that for later.
 The following components to tackle are Pane and Card in `evergreen-layers`.
 I think that is better than `evergreen-pane` and `evergreen-card` separately.
 
-* [x] Create a issue, and implement `evergreen-layers`
+* [x] Create a issue ([#8](https://github.com/segmentio/evergreen/issues/8)), and implement `evergreen-layers`
 
 ### July 30, 2017, Setting up project
 

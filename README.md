@@ -45,9 +45,9 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 |------------------------------------|--------------------|----------------------------|
 | `evergreen-colors`                 | [#1](https://github.com/segmentio/evergreen/issues/1)     | Color system object        |
 | `evergreen-typography`             | [#2](https://github.com/segmentio/evergreen/issues/2)     | typography components      |
-| `evergreen-icons`                  | Needs Planning     | icon components            |
-| `evergreen-card`                   | Needs Planning     | Card component             |
+| `evergreen-layers`                 | [#8](https://github.com/segmentio/evergreen/issues/8)      | Pane, Card and styling     |
 | `evergreen-button`                 | Needs Planning     | Button component           |
+| `evergreen-icons`                  | Needs Planning     | icon components            |
 | `evergreen-tabs`                   | Needs Planning     | Tabs component             |
 | `evergreen-menu`                   | Needs Planning     | Menu component             |
 | `evergreen-avatar`                 | Needs Planning     | Avatar component           |
