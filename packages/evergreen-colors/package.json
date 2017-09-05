@@ -13,6 +13,6 @@
   "author": "Segment",
   "license": "MIT",
   "devDependencies": {
-    "ui-box": "^0.3.4"
+    "ui-box": "^0.3.5"
   }
 }
