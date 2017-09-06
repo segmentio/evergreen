@@ -1,4 +1,8 @@
-# 🌲Evergreen ·[View Live Storybook](https://github.com/segmentio/evergreen)
+# 🌲Evergreen
+
+[View Live Storybook](https://segmentio.github.io/evergreen/)
+
+---
 
 > React UI Kit by [Segment](https://segment.com/)
 
