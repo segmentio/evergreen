@@ -21,13 +21,13 @@ only prepare for it.** Instead of creating fixed configurations that work today,
 ## Install and use components 🔓
 
 🌲Evergreen is a mono-repo, which means it is build out of multiple packages.
-Most packages represent React components, to start using them in your React projects
+Most packages will contain React components, to start using them in your React projects
 you have to install them one by one.
 
-For example getting the button:
+For example getting the button will require you to install `evergreen-buttons`:
 
 ```
-$ yarn install evergreen-button
+$ yarn install evergreen-buttons
 ```
 
 A working version assuming you are using something like [Create React App](https://github.com/facebookincubator/create-react-app)
@@ -36,7 +36,7 @@ might look like this:
 ```javascript
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Button from 'evergreen-button'
+import { Button } from 'evergreen-buttons'
 
 ReactDOM.render(
   <Button>I am using 🌲Evergreen!</Button>,
