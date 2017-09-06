@@ -7,3 +7,4 @@ yarn-error.log
 .vscode
 lib
 .eslintcache
+storybook-static

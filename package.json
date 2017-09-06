@@ -2,8 +2,10 @@
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.6",
     "@storybook/addon-links": "^3.2.6",
+    "@storybook/addon-options": "^3.2.6",
     "@storybook/addons": "^3.2.6",
     "@storybook/react": "^3.2.8",
+    "@storybook/storybook-deployer": "^2.0.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
@@ -34,7 +36,7 @@
     "clean": "lerna exec -- git clean -Xdf . && rm -rf node_modules",
     "lint": "eslint --cache --ignore-pattern coverage --ignore-pattern node_modules --ignore-pattern lib .",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages",
     "build:watch": "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w",
     "build": "lerna exec --parallel -- babel src -d lib --ignore *.test.js"
   },
