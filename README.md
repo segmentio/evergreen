@@ -1,11 +1,8 @@
 # 🌲Evergreen
 
-[View Live Storybook](https://segmentio.github.io/evergreen/)
-
----
-
 > React UI Kit by [Segment](https://segment.com/)
 
+* [View Live Storybook](https://segmentio.github.io/evergreen/)
 * Presentational React components
 * Powerful component API with [ui-box](https://github.com/segmentio/ui-box)
 * Dedicated UI Development Environment with [React storybook](https://storybook.js.org/)
