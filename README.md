@@ -145,6 +145,13 @@ Remember to use `yarn run bootstrap`, if you are not running `yarn run dev`.
 This will run react storybook, a React development environment that finds
 all files in your packages directory that match `*.stories.js`.
 
+### `yarn deploy-storybook`
+
+This will build a static version of the storybook and deploys it onto the `gh-pages`
+ (GitHub pages) branch. This will make it available on [https://segmentio.github.io/evergreen](https://segmentio.github.io/evergreen).
+
+There still needs to be some work done to make this happen with Circle CI (continuous integration).
+
 ### `yarn create-package`
 
 This command scaffolds a package with no specific boilerplate.
