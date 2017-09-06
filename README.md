@@ -8,6 +8,15 @@
 * Easy adoption because of CSS-in-JS
 * [Lerna](https://lernajs.io/) mono-repo
 
+## Core values of 🌲Evergreen
+
+**Evergreen is build on the belief that you can never predict all future requirements,
+only prepare for it.** Instead of creating fixed configurations that work today, Evergreen promotes building systems that anticipate new and changing design requirements.
+
+**Evergreen is build on the belief that things should work out of the box with smart defaults, but offer full control when needed.** That is why Evergreen uses CSS-in-JS and builds on top of the Box component in [ui-box](https://github.com/segmentio/ui-box).
+
+**Evergreen is build on the belief that using Evergreen and contributing to Evergreen should be a pleasant experience.** We prioritize documentation and all the tools for a  solid developer experience. We advocate respect and inclusivity in our writings and interactions.
+
 ## Install and use components 🔓
 
 🌲Evergreen is a mono-repo, which means it is build out of multiple packages.
@@ -46,7 +55,7 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 | `evergreen-colors`                 | [#1](https://github.com/segmentio/evergreen/issues/1)     | Color system object        |
 | `evergreen-typography`             | [#2](https://github.com/segmentio/evergreen/issues/2)     | typography components      |
 | `evergreen-layers`                 | [#8](https://github.com/segmentio/evergreen/issues/8)      | Pane, Card and styling     |
-| `evergreen-button`                 | Needs Planning     | Button component           |
+| `evergreen-buttons`                | [#10](https://github.com/segmentio/evergreen/issues/10)    | Button component           |
 | `evergreen-icons`                  | Needs Planning     | icon components            |
 | `evergreen-tabs`                   | Needs Planning     | Tabs component             |
 | `evergreen-menu`                   | Needs Planning     | Menu component             |
@@ -73,7 +82,7 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 | `evergreen-text-styles`            | Needs Planning     | Text styles object         |
 
 
-## Running the project 🏃🏻🏃🏾‍♀️
+## Running the project 🏃🏻🏃🏾‍
 
 ### Step 1. Configuring your editor ⚙
 
@@ -90,6 +99,10 @@ please file a issue if there is a problem.
 
 To actually start seeing the components you have to run React Storybook.
 To do that you have to bootstrap the Lerna project first, simply follow:
+
+```
+$ yarn install
+```
 
 ```
 $ yarn bootstrap

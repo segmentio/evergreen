@@ -26,7 +26,8 @@ Please consider the following items when filing a bug report:
 
 Please consider the following items when filing a feature request:
 
-* Example component API if applicable
+* **Usage**, component API if applicable
+* **Design Example**, screenshot of what the design should look like
 * Problem that feature/component addresses
 * Examples in other projects of feature/component
 * Screenshots if design changes

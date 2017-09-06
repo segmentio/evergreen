@@ -1,48 +1,28 @@
 # 🌲Evergreen Roadmap 🛣️
 
-We'll try as much as possible to plan ahead, and label each update with a date.
+We'll try as much as possible to plan ahead.
+The process for building something should try and follow:
 
-### September 4, 2017, Starting on Button
+* Add item to Roadmap
+* Create a issue outline
+* Create a PR, reference issue in PR
+* Merge into master
+* Move item from ROADMAP into CHANGELOG, and write any notes
 
-`evergreen-layers` is implemented, documentation is missing besides Storybook.
-I haven't pushed it live yet with Lerna onto npm.
-Hoping to do this after I publish some Buttons first.
+#### Low scope docs in Storybook
 
-* [ ] Create a issue outline, and implement `evergreen-buttons`
+The second part is to create the components that are required to build out documentation. A highlighted CodeBlock component, and maybe some useful helper components / utilities in a evergreen-docs package. I am thinking evergreen-docs will contain some Readme Markdown rendered of some sort.
 
-### August 30, 2017, Building out Layers
+#### Dedicated documentation website
 
-Colors and Typography are implemented, there still needs to be more documentation.
-There are more components needed to actually make it easy to create the documentation.
-So I am leaving that for later.
+The third part is to create documentation website, similar to how AtlasKit approaches this. This will require a bigger set of components and resources to be available.
 
-The following components to tackle are Pane and Card in `evergreen-layers`.
-I think that is better than `evergreen-pane` and `evergreen-card` separately.
+#### Design documentation (long term goal)
 
-* [x] Create a issue ([#8](https://github.com/segmentio/evergreen/issues/8)), and implement `evergreen-layers`
+The last part is to create design documentation. That will be primarily for designers, and is more focused around what is the right way to use a component or patter, instead of showing you how to implement it.
 
-### July 30, 2017, Setting up project
+#### Storybook with examples
 
-I, Jeroen Ransijn, started this project and tried to set up all the plumbing
-before actually writing the component. That includes:
+The first part is to have a Storybook live, which is what you are describing. This will contain simply the component use cases needed for developing, and is lacking as a form of documentation. It won't have code blocks containing usage examples, or property documentation.
 
-* Lernajs
-* Linting
-* Scaffolding
-* Storybook
-* Documentation
-* Guides and templates
-
-The goal is to remove all friction in creating components.
-In the immediate term I hope to work on the following items:
-
-* [x] Finish first pass of Sketch design and mention here
-* [x] Finalize my color system generator
-* [x] Create a issue ([#1](https://github.com/segmentio/evergreen/issues/1)), and implement `evergreen-color`
-* [x] Create a issue ([#2](https://github.com/segmentio/evergreen/issues/2)), and implement `evergreen-typography`
-
-Having a solid design reference and colors + typography defined should make it
-fairly straightforward to start copying over and creating components.
-
-Segment has internal UI libraries (React UI Library and Element)
-that will contains a lot of the foundation for 🌲Evergreen.
+This should be fairly straightforward to implement if the packages are actually published (they are no yet at the moment). If that is the case, we can build a static storybook and push that to the gh-pages branch. This might require something like Circle for CI, which I am not very familiar with.
