@@ -124,9 +124,9 @@ ua-parser-js@^0.7.9:
   version "0.7.14"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.14.tgz#110d53fa4c3f326c121292bbeac904d2e03387ca"
 
-ui-box@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.3.4.tgz#2ae577b80430f94c4326a596fcfe5362166a10d5"
+ui-box@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.3.5.tgz#b8600e8e1806d4a8ff493e66ec1a0fd2e1294f8c"
   dependencies:
     classnames "^2.2.5"
     glamor "^2.20.22"

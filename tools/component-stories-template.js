@@ -8,7 +8,7 @@ export default function storiesTemplate({ packageName, componentNames = [] }) {
   componentNames.forEach(componentName => {
     template.push(`  .add('${componentName}', () =>`)
     template.push(`    <div>`)
-    template.push(`      <${componentName} />`)
+    template.push(`      <${componentName}>${componentName}</${componentName}>`)
     template.push(`    </div>,`)
     template.push(`  )`)
   })

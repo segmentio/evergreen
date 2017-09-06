@@ -21,10 +21,12 @@
     "file-loader": "^0.11.2",
     "fs-extra": "^4.0.0",
     "lerna": "^2.0.0",
+    "linklocal": "^2.8.1",
     "prettier": "^1.5.3",
     "url-loader": "^0.5.9"
   },
   "scripts": {
+    "linklocal": "lerna exec linklocal",
     "dev": "npm run build:watch & npm run storybook",
     "create-package": "babel-node tools/create-package",
     "create-package:components": "babel-node tools/create-package-components",
