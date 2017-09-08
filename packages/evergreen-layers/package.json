@@ -21,7 +21,7 @@
     "react": "^0.14.0 || ^15.0.0"
   },
   "dependencies": {
-    "ui-box": "^0.3.5",
-    "evergreen-colors": "^1.0.0"
+    "evergreen-colors": "^1.0.0",
+    "ui-box": "^0.3.5"
   }
 }
