@@ -5,13 +5,13 @@ module.exports = {
 
   extends: [
     'airbnb',
-    'plugin:flowtype/recommended',
+    // 'plugin:flowtype/recommended',
     'prettier',
-    'prettier/flowtype',
+    // 'prettier/flowtype',
     'prettier/react',
   ],
 
-  plugins: ['flowtype', 'prettier'],
+  plugins: ['prettier'],
 
   globals: {
     __DEV__: true,
