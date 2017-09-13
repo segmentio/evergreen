@@ -1,17 +1,34 @@
-import colors from 'evergreen-colors'
-
 const baseStyle = {
   boxSizing: 'border-box',
-  // backgroundColor: colors.neutral['10A'],
-  backgroundColor: 'green',
-  'text-transform': 'uppercase',
+  textTransform: 'uppercase',
+  WebkitFontSmoothing: 'antialiased',
+  WebkitAppearance: 'none',
 }
 
 const BadgeAppearances = {
   neutral: {
     ...baseStyle,
-    backgroundColor: 'blue',
-    color: 'pink',
+  },
+  green: {
+    ...baseStyle,
+  },
+  blue: {
+    ...baseStyle,
+  },
+  red: {
+    ...baseStyle,
+  },
+  purple: {
+    ...baseStyle,
+  },
+  yellow: {
+    ...baseStyle,
+  },
+  teal: {
+    ...baseStyle,
+  },
+  pink: {
+    ...baseStyle,
   },
 }
 

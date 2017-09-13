@@ -1,7 +1,22 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Text, TextStyles } from 'evergreen-typography'
+import { Strong } from 'evergreen-typography'
+import colors from 'evergreen-colors'
 import BadgeAppearances from '../styles/badge-appearances'
+
+const getBadgeStyle = ({ appearance, isSolid }) => {
+  const colorGroup = colors[appearance]
+  if (isSolid) {
+    return {
+      backgroundColor: colorGroup['500'],
+      color: 'white',
+    }
+  }
+  return {
+    backgroundColor: colorGroup['15A'],
+    color: colorGroup['1000'],
+  }
+}
 
 export default class Badge extends PureComponent {
   static propTypes = {
@@ -21,22 +36,17 @@ export default class Badge extends PureComponent {
     fontSize: 16,
     textAlign: 'center',
     borderRadius: 2,
+    isSolid: false,
   }
 
   render() {
-    const {
-      appearance,
-      css,
-      // height,
-      // paddingRight,
-      // paddingLeft,
-      // paddingTop,
-      // paddingBottom,
-      ...props
-    } = this.props
+    const { appearance, css, isSolid, ...props } = this.props
     const appearanceStyle = BadgeAppearances[appearance]
+    const badgeStyle = getBadgeStyle({ appearance, isSolid })
+
     return (
-      <Text
+      <Strong
+        {...badgeStyle}
         css={{
           ...css,
           ...appearanceStyle,
