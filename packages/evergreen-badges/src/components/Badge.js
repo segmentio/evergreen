@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Strong } from 'evergreen-typography'
 import colors from 'evergreen-colors'
 
-const getBadgeStyle = ({ color, isSolid }) => {
-  const colorGroup = colors[color]
+const getBadgeStyle = ({ appearance, isSolid }) => {
+  const colorGroup = colors[appearance]
   if (isSolid) {
     return {
       backgroundColor: colorGroup['500'],
@@ -20,11 +20,11 @@ const getBadgeStyle = ({ color, isSolid }) => {
 export default class Badge extends PureComponent {
   static propTypes = {
     ...Text.propTypes,
-    color: PropTypes.oneOf(Object.keys(colors)).isRequired,
+    appearance: PropTypes.oneOf(Object.keys(colors)).isRequired,
   }
 
   static defaultProps = {
-    color: 'neutral',
+    appearance: 'neutral',
     paddingTop: 0,
     paddingRight: 4,
     paddingBottom: 0,
@@ -40,8 +40,8 @@ export default class Badge extends PureComponent {
   }
 
   render() {
-    const { color, isSolid, ...props } = this.props
-    const badgeStyle = getBadgeStyle({ color, isSolid })
+    const { appearance, isSolid, ...props } = this.props
+    const badgeStyle = getBadgeStyle({ appearance, isSolid })
 
     return <Strong {...badgeStyle} {...props} />
   }

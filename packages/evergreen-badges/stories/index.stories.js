@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import colors from 'evergreen-colors'
-import { Badge, Pill } from '../src/'
+import { Badge, Pill, BadgeAppearances } from '../src/'
 
 const wrapperStyles = {
   display: 'flex',
@@ -16,13 +16,13 @@ const baseStyles = {
 storiesOf('badges', module)
   .add('Badge', () =>
     <Box style={{ ...wrapperStyles }}>
-      {Object.keys(colors).map(color =>
+      {Object.keys(BadgeAppearances).map(appearance =>
         <Box>
-          <Badge color={color} {...baseStyles}>
-            {color}
+          <Badge appearance={appearance} {...baseStyles}>
+            {appearance}
           </Badge>
-          <Badge color={color} {...baseStyles} isSolid>
-            {color}
+          <Badge appearance={appearance} {...baseStyles} isSolid>
+            {appearance}
           </Badge>
         </Box>,
       )}
@@ -30,13 +30,13 @@ storiesOf('badges', module)
   )
   .add('Pill', () =>
     <Box style={{ ...wrapperStyles }}>
-      {Object.keys(colors).map(color =>
+      {Object.keys(BadgeAppearances).map(appearance =>
         <Box>
-          <Pill color={color} {...baseStyles}>
-            {color}
+          <Pill appearance={appearance} {...baseStyles}>
+            {appearance}
           </Pill>
-          <Pill color={color} {...baseStyles} isSolid="true">
-            {color}
+          <Pill appearance={appearance} {...baseStyles} isSolid="true">
+            {appearance}
           </Pill>
         </Box>,
       )}
