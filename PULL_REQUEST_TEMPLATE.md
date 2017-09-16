@@ -1,3 +1,5 @@
+<!--
+
 # 🎉 Thanks for taking the time to contribute to 🌲Evergreen! 🎉
 
 It is highly appreciated that you take the time to help improve Evergreen.
@@ -16,4 +18,4 @@ Please respect our [CODE_OF_CONDUCT](./CODE_OF_CONDUCT.md), in short:
 * Gracefully accepting constructive criticism
 * Focusing on what is best for the community
 * Showing empathy towards other community members
-* Examples of unacceptable behavior by participants include:
+-->

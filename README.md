@@ -11,26 +11,26 @@
 
 ## Core values of 🌲Evergreen
 
-**Evergreen is build on the belief that you can never predict all future requirements,
+**Evergreen is built on the belief that you can never predict all future requirements,
 only prepare for it.** Instead of creating fixed configurations that work today, Evergreen promotes building systems that anticipate new and changing design requirements.
 
-**Evergreen is build on the belief that things should work out of the box with smart defaults, but offer full control when needed.** That is why Evergreen uses CSS-in-JS and builds on top of the Box component in [ui-box](https://github.com/segmentio/ui-box).
+**Evergreen is built on the belief that things should work out of the box with smart defaults, but also offer full control when needed.** For example, Evergreen uses CSS-in-JS and builds on top of the Box component in [ui-box](https://github.com/segmentio/ui-box).
 
-**Evergreen is build on the belief that using Evergreen and contributing to Evergreen should be a pleasant experience.** We prioritize documentation and all the tools for a  solid developer experience. We advocate respect and inclusivity in our writings and interactions.
+**Evergreen is built on the belief that using Evergreen and contributing to Evergreen should be a pleasant experience.** We prioritize documentation and all the tools for a  solid developer experience. We advocate respect and inclusivity in our writings and interactions.
 
 ## Install and use components 🔓
 
-🌲Evergreen is a mono-repo, which means it is build out of multiple packages.
+🌲Evergreen is a mono-repo, which means it is built out of multiple packages.
 Most packages will contain React components, to start using them in your React projects
 you have to install them one by one.
 
-For example getting the button will require you to install `evergreen-buttons`:
+For example, getting the button component will require you to install `evergreen-buttons`:
 
 ```
 $ yarn install evergreen-buttons
 ```
 
-A working version assuming you are using something like [Create React App](https://github.com/facebookincubator/create-react-app)
+A working version, assuming you are using something like [Create React App](https://github.com/facebookincubator/create-react-app),
 might look like this:
 
 ```javascript
@@ -87,10 +87,10 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 
 ### Step 1. Configuring your editor ⚙
 
-If you are using Atom make sure to use the `prettier-atom` package,
+If you are using Atom make sure to use the [`prettier-atom`](https://atom.io/packages/prettier-atom) package,
 and enable the `ESLint integration` option.
 
-Also make sure to install the `linter-eslint` package in Atom.
+Also make sure to install the [`linter-eslint`](https://github.com/AtomLinter/linter-eslint) package in Atom.
 
 All the configuration for prettier and eslint is in the project.
 You shouldn't have to configure things separately,
@@ -103,13 +103,7 @@ To do that you have to bootstrap the Lerna project first, simply follow:
 
 ```
 $ yarn install
-```
-
-```
 $ yarn bootstrap
-```
-
-```
 $ yarn dev
 ```
 
