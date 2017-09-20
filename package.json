@@ -28,7 +28,7 @@
     "url-loader": "^0.5.9"
   },
   "scripts": {
-    "linklocal": "lerna exec linklocal",
+    "lerna-publish": "lerna publish",
     "dev": "npm run build:watch & npm run storybook",
     "create-package": "babel-node tools/create-package",
     "create-package:components": "babel-node tools/create-package-components",
