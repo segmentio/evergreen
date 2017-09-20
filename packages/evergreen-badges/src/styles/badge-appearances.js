@@ -1,21 +1,25 @@
 import colors from 'evergreen-colors'
 
-const baseStyle = {
-  boxSizing: 'border-box',
-  textDecoration: 'none',
-  textTransform: 'uppercase',
-  borderRadius: 2,
-}
+const colorsFiltered = Object.keys(colors).filter(c => c !== 'white')
+
+const getDefaultBadge = colorName => ({
+  backgroundColor: colors[colorName]['15A'],
+  color: colors[colorName]['1000'],
+})
+
+const getSolidBadge = colorName => ({
+  backgroundColor: colors[colorName]['500'],
+  color: 'white',
+})
 
 const BadgeAppearances = {
-  neutral: { ...baseStyle },
-  red: { ...baseStyle },
-  green: { ...baseStyle },
-  blue: { ...baseStyle },
-  purple: { ...baseStyle },
-  pink: { ...baseStyle },
-  yellow: { ...baseStyle },
-  turquoise: { ...baseStyle },
+  default: {},
+  solid: {},
 }
+
+colorsFiltered.forEach(c => {
+  BadgeAppearances.default[c] = getDefaultBadge(c)
+  BadgeAppearances.solid[c] = getSolidBadge(c)
+})
 
 export default BadgeAppearances

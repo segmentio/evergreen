@@ -1,30 +1,19 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Strong } from 'evergreen-typography'
-import colors from 'evergreen-colors'
 import BadgeAppearances from '../styles/badge-appearances'
-
-const getBadgeStyle = ({ appearance, isSolid }) => {
-  const colorGroup = colors[appearance]
-  if (isSolid) {
-    return {
-      backgroundColor: colorGroup['500'],
-      color: 'white',
-    }
-  }
-  return {
-    backgroundColor: colorGroup['15A'],
-    color: colorGroup['1000'],
-  }
-}
 
 export default class Badge extends PureComponent {
   static propTypes = {
     ...Text.propTypes,
-    appearance: PropTypes.oneOf(Object.keys(colors)).isRequired,
+    appearance: PropTypes.oneOf(Object.keys(BadgeAppearances.default)).isRequired,
   }
 
   static defaultProps = {
+    boxSizing: 'border-box',
+    textDecoration: 'none',
+    textTransform: 'uppercase',
+    borderRadius: 2,
     appearance: 'neutral',
     paddingTop: 0,
     paddingRight: 4,
@@ -34,14 +23,13 @@ export default class Badge extends PureComponent {
     height: 24,
     fontWeight: 200,
     textAlign: 'center',
-    borderRadius: 2,
     isSolid: false,
   }
 
   render() {
     const { appearance, isSolid, ...props } = this.props
-    const appearanceStyle = BadgeAppearances[appearance]
-    const badgeStyle = getBadgeStyle({ appearance, isSolid })
-    return <Strong {...badgeStyle} css={{ ...appearanceStyle }} {...props} />
+    const opacity = isSolid ? 'solid' : 'default'
+    const appearanceStyle = BadgeAppearances[opacity][appearance]
+    return <Strong {...appearanceStyle} {...props} />
   }
 }
