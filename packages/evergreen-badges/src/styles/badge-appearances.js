@@ -2,12 +2,12 @@ import colors from 'evergreen-colors'
 
 const colorsFiltered = Object.keys(colors).filter(c => c !== 'white')
 
-const getDefaultBadge = colorName => ({
+const getDefaultBadgeStyle = colorName => ({
   backgroundColor: colors[colorName]['15A'],
   color: colors[colorName]['1000'],
 })
 
-const getSolidBadge = colorName => ({
+const getSolidBadgeStyle = colorName => ({
   backgroundColor: colors[colorName]['500'],
   color: 'white',
 })
@@ -18,8 +18,8 @@ const BadgeAppearances = {
 }
 
 colorsFiltered.forEach(c => {
-  BadgeAppearances.default[c] = getDefaultBadge(c)
-  BadgeAppearances.solid[c] = getSolidBadge(c)
+  BadgeAppearances.default[c] = getDefaultBadgeStyle(c)
+  BadgeAppearances.solid[c] = getSolidBadgeStyle(c)
 })
 
 export default BadgeAppearances

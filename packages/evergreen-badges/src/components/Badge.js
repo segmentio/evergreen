@@ -10,20 +10,19 @@ export default class Badge extends PureComponent {
   }
 
   static defaultProps = {
+    display: 'inline-block',
     boxSizing: 'border-box',
-    textDecoration: 'none',
-    textTransform: 'uppercase',
-    borderRadius: 2,
-    appearance: 'neutral',
+    height: 24,
     paddingTop: 0,
     paddingRight: 4,
     paddingBottom: 0,
     paddingLeft: 4,
-    display: 'inline-block',
-    height: 24,
+    borderRadius: 2,
     fontWeight: 200,
     textAlign: 'center',
-    isSolid: false,
+    textDecoration: 'none',
+    textTransform: 'uppercase',
+    appearance: 'neutral',
   }
 
   render() {
