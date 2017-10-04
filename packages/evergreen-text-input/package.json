@@ -1,6 +1,6 @@
 {
   "name": "evergreen-text-input",
-  "version": "1.0.1-alpha.0",
+  "version": "1.0.1-alpha.1",
   "description": "React components: TextInput, TextInputAppearances",
   "main": "lib/index.js",
   "keywords": [
