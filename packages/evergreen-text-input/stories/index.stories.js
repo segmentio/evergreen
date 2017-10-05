@@ -4,16 +4,15 @@ import Box from 'ui-box'
 import { Text, Label, Heading } from 'evergreen-typography'
 import { TextInput, TextInputAppearances } from '../src/'
 
-const Description = props =>
+const Description = props => (
   <Text is="p" marginTop={0} size={300} color="extraMuted" {...props} />
+)
 
-storiesOf('text-input', module).add('TextInput', () =>
+storiesOf('text-input', module).add('TextInput', () => (
   <div>
-    {Object.keys(TextInputAppearances).map(appearance =>
+    {Object.keys(TextInputAppearances).map(appearance => (
       <Box>
-        <Heading marginBottom={24}>
-          Appearance: {appearance}
-        </Heading>
+        <Heading marginBottom={24}>Appearance: {appearance}</Heading>
         <Box marginBottom={24} width={360}>
           <Label htmlFor={32} size={400} display="block">
             Height 32 (default)
@@ -75,7 +74,7 @@ storiesOf('text-input', module).add('TextInput', () =>
           </Label>
           <TextInput appearance={appearance} height={40} name={40} id={40} />
         </Box>
-      </Box>,
-    )}
-  </div>,
-)
+      </Box>
+    ))}
+  </div>
+))
