@@ -26,11 +26,14 @@ const getBorderRadiusForSelect = ({ height }) => {
 export default class Select extends PureComponent {
   static propTypes = {
     ...Box.propTypes,
-    appearance: PropTypes.oneOf(Object.keys(SelectAppearances)),
+    id: PropTypes.string,
+    name: PropTypes.string,
     children: PropTypes.node,
     onChange: PropTypes.func,
-    name: PropTypes.string,
-    id: PropTypes.string,
+    appearance: PropTypes.oneOf(Object.keys(SelectAppearances)),
+    required: PropTypes.bool,
+    autofocus: PropTypes.bool,
+    isInvalid: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -44,12 +47,16 @@ export default class Select extends PureComponent {
 
   render() {
     const {
-      appearance,
-      name,
       id,
-      children,
+      name,
       height,
+      children,
+      disabled,
       onChange,
+      required,
+      autofocus,
+      isInvalid,
+      appearance,
       ...props
     } = this.props
     const appearanceStyle = SelectAppearances[appearance]
@@ -57,16 +64,21 @@ export default class Select extends PureComponent {
     const borderRadius = getBorderRadiusForSelect({ height })
 
     return (
-      <Box height={height} css={{ ...appearanceStyle }} {...props}>
+      <Box height={height} {...props}>
         <Text
           is="select"
           id={id}
           name={name}
           onChange={onChange}
-          paddingLeft={Math.round(height / 3.2)}
+          {...(required ? { required: true } : {})}
+          {...(autofocus ? { autofocus: true } : {})}
+          {...(disabled ? { disabled: true } : {})}
+          {...(isInvalid ? { 'aria-invalid': true } : {})}
+          css={{ ...appearanceStyle }}
           {...textStyle}
           borderRadius={borderRadius}
           textTransform="default"
+          paddingLeft={Math.round(height / 3.2)}
         >
           {children}
         </Text>
@@ -77,7 +89,7 @@ export default class Select extends PureComponent {
           boxSizing="border-box"
           position="absolute"
           right={height >= 36 ? 4 : 0}
-          color={colors.neutral['200A']}
+          color={disabled ? colors.neutral['50A'] : colors.neutral['200A']}
           css={{
             pointerEvents: 'none',
           }}
