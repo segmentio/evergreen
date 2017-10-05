@@ -24,7 +24,7 @@
     "fs-extra": "^4.0.0",
     "lerna": "^2.0.0",
     "linklocal": "^2.8.1",
-    "prettier": "^1.5.3",
+    "prettier": "^1.7.0",
     "url-loader": "^0.5.9"
   },
   "scripts": {
