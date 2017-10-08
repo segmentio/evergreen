@@ -1,6 +1,6 @@
 {
   "name": "evergreen-colors",
-  "version": "1.0.1-alpha.2",
+  "version": "2.0.0-0",
   "description": "Colors",
   "main": "src/colors.json",
   "keywords": [
@@ -15,7 +15,6 @@
   "devDependencies": {
     "ui-box": "^0.4.0"
   },
-  "dependencies": {},
   "peerDependencies": {
     "react": "^16.0.0"
   }

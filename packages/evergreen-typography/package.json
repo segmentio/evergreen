@@ -1,6 +1,6 @@
 {
   "name": "evergreen-typography",
-  "version": "1.0.1-alpha.2",
+  "version": "2.0.0-0",
   "description": "React components: Text, Paragraph, Heading, Code, Pre, Label, Small, Strong",
   "main": "lib/index.js",
   "keywords": [
@@ -24,7 +24,7 @@
     "react": "^16.0.0"
   },
   "dependencies": {
-    "evergreen-colors": "^1.0.1-alpha.2",
+    "evergreen-colors": "^2.0.0-0",
     "ui-box": "^0.4.0"
   }
 }
