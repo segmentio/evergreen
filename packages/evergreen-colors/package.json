@@ -13,6 +13,10 @@
   "author": "Segment",
   "license": "MIT",
   "devDependencies": {
-    "ui-box": "^0.3.5"
+    "ui-box": "^0.4.0"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^16.0.0"
   }
 }

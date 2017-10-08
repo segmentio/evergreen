@@ -1,10 +1,10 @@
 {
   "devDependencies": {
-    "@storybook/addon-actions": "^3.2.6",
-    "@storybook/addon-links": "^3.2.6",
-    "@storybook/addon-options": "^3.2.6",
-    "@storybook/addons": "^3.2.6",
-    "@storybook/react": "^3.2.8",
+    "@storybook/addon-actions": "^3.2.12",
+    "@storybook/addon-links": "^3.2.12",
+    "@storybook/addon-options": "^3.2.12",
+    "@storybook/addons": "^3.2.12",
+    "@storybook/react": "^3.2.12",
     "@storybook/storybook-deployer": "^2.0.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
@@ -42,8 +42,8 @@
   },
   "dependencies": {
     "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "ui-box": "^0.3.5"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "ui-box": "^0.4.0"
   }
 }
