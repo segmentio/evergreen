@@ -30,14 +30,8 @@ module.exports = storybookBaseConfig => {
     resolve: {
       ...storybookBaseConfig.resolve,
       alias: {
-        react: path.join(
-          __dirname,
-          '../node_modules/react/dist/react-with-addons.js',
-        ),
-        'react-dom': path.join(
-          __dirname,
-          '../node_modules/react-dom/dist/react-dom.js',
-        ),
+        react: path.join(__dirname, '../node_modules/react/index.js'),
+        'react-dom': path.join(__dirname, '../node_modules/react-dom/index.js'),
       },
       // Unsure if this is the rigth way of doing it, but to make stories work
       // with unpublished/local packages this checks in packages before node_modules
