@@ -1,6 +1,6 @@
 {
   "name": "evergreen-popover",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "React components: Popover",
   "main": "lib/index.js",
   "keywords": [
@@ -24,7 +24,7 @@
     "react": "^0.14.0 || ^15.0.0"
   },
   "devDependencies": {
-    "evergreen-buttons": "^2.0.0-0",
-    "evergreen-typography": "^2.0.0-0"
+    "evergreen-buttons": "^2.0.0",
+    "evergreen-typography": "^2.0.0"
   }
 }
