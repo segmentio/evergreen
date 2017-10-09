@@ -1,31 +1,33 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Text } from 'evergreen-typography'
+import Box from 'ui-box'
+import { TextStyles } from 'evergreen-typography'
 import {
-  getBorderRadiusForControlHeight,
-  getTextStyleForControlHeight,
+  InputAppearances,
+  getBorderRadiusForTextSize,
 } from 'evergreen-shared-styles'
-import TextInputAppearances from '../styles/text-input-appearances'
 
-export default class TextInput extends PureComponent {
+export default class Textarea extends PureComponent {
   static propTypes = {
-    ...Text.propTypes,
-    appearance: PropTypes.oneOf(Object.keys(TextInputAppearances)).isRequired,
+    ...Box.propTypes,
     disabled: PropTypes.bool.isRequired,
     isInvalid: PropTypes.bool.isRequired,
     spellcheck: PropTypes.bool.isRequired,
+    textSize: PropTypes.oneOf(Object.keys(TextStyles)),
   }
 
   static defaultProps = {
-    type: 'text',
-    is: 'input',
-    appearance: 'default',
+    is: 'textarea',
     boxSizing: 'border-box',
-    height: 32,
-    width: 280,
+    minHeight: 80,
+    minWidth: 280,
     disabled: false,
     isInvalid: false,
     spellcheck: true,
+    textSize: 300,
+    borderRadius: 5,
+    paddingX: 10,
+    paddingY: 8,
   }
 
   render() {
@@ -33,21 +35,21 @@ export default class TextInput extends PureComponent {
       css,
       height,
       disabled,
+      textSize,
       isInvalid,
       appearance,
       spellcheck,
       ...props
     } = this.props
-    const appearanceStyle = TextInputAppearances[appearance]
-    const textStyle = getTextStyleForControlHeight({ height })
-    const borderRadius = getBorderRadiusForControlHeight({ height })
+
+    const textStyle = TextStyles[textSize]
+    const appearanceStyle = InputAppearances.default
+    const borderRadius = getBorderRadiusForTextSize({ textSize })
 
     return (
-      <Text
+      <Box
         height={height}
         disabled={disabled}
-        paddingLeft={Math.round(height / 3.2)}
-        paddingRight={Math.round(height / 3.2)}
         borderRadius={borderRadius}
         spellcheck={spellcheck}
         {...(isInvalid ? { 'aria-invalid': true } : {})}

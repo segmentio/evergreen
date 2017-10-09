@@ -66,8 +66,8 @@ module.exports = task('create-package-components', async () => {
     },
 
     peerDependencies: {
-      react: '^0.14.0 || ^15.0.0',
       'prop-types': '^15.0.0',
+      react: '^16.0.0',
     },
   }
 
