@@ -7,10 +7,10 @@ import TextColors from '../styles/text-colors'
 
 export default class Text extends PureComponent {
   static propTypes = {
-    size: PropTypes.oneOf(Object.keys(TextStyles).map(Number)).isRequired,
+    size: PropTypes.oneOf(Object.keys(TextStyles).map(Number)),
     color: PropTypes.string,
-    fontFamily: PropTypes.oneOf(Object.keys(FontFamilies)).isRequired,
-    textStyleTransformation: PropTypes.func.isRequired,
+    fontFamily: PropTypes.oneOf(Object.keys(FontFamilies)),
+    textStyleTransformation: PropTypes.func,
   }
 
   static defaultProps = {

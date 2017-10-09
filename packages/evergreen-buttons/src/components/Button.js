@@ -19,6 +19,7 @@ export default class Button extends PureComponent {
   static propTypes = {
     ...Text.propTypes,
     appearance: PropTypes.oneOf(Object.keys(ButtonAppearances)).isRequired,
+    isActive: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -30,6 +31,7 @@ export default class Button extends PureComponent {
     height: 32,
     fontFamily: 'ui',
     fontWeight: 500,
+    isActive: false,
   }
 
   render() {
@@ -41,6 +43,7 @@ export default class Button extends PureComponent {
       paddingLeft,
       paddingTop,
       paddingBottom,
+      isActive,
       ...props
     } = this.props
     const appearanceStyle = ButtonAppearances[appearance]
@@ -59,6 +62,7 @@ export default class Button extends PureComponent {
         }}
         height={height}
         lineHeight={`${height}px`}
+        {...(isActive ? { 'data-active': true } : {})}
         {...props}
       />
     )
