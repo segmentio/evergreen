@@ -32,6 +32,11 @@ module.exports = {
       },
     ],
 
+    // Allow object props, useful for parent -> child configuration
+    // For example in Popover -> ContentCard
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-prop-types.md
+    'react/forbid-prop-types': 'off',
+
     // Not supporting nested package.json yet
     // https://github.com/benmosher/eslint-plugin-import/issues/458
     'import/no-extraneous-dependencies': 'off',

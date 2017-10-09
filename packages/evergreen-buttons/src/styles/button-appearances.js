@@ -20,6 +20,11 @@ const baseStyle = {
   },
 }
 
+const hoverState = '&:not([disabled]):not([data-disabled]):hover'
+const focusState = '&:not([disabled]):not([data-disabled]):focus'
+const activeState =
+  '&:not([disabled]):not([data-disabled]):active, &:not([disabled]):not([data-disabled])[data-popover-opened], &:not([disabled]):not([data-disabled])[data-active]'
+
 const ButtonAppearances = {
   default: {
     ...baseStyle,
@@ -28,7 +33,7 @@ const ButtonAppearances = {
     boxShadow: `inset 0 0 0 1px ${colors.neutral[
       '20A'
     ]}, inset 0 -1px 1px 0 ${colors.neutral['10A']}`,
-    '&:not([disabled]):not([data-disabled]):hover': {
+    [hoverState]: {
       backgroundImage: `linear-gradient(to top, ${colors.neutral[
         '7A'
       ]}, ${colors.neutral['3A']} )`,
@@ -36,11 +41,11 @@ const ButtonAppearances = {
         '40A'
       ]}, inset 0 -1px 1px 0 ${colors.neutral['15A']}`,
     },
-    '&:not([disabled]):not([data-disabled]):focus': {
+    [focusState]: {
       boxShadow: `0 0 0 2px ${colors.blue['20A']}, inset 0 0 0 1px ${colors
         .neutral['70A']}, inset 0 -1px 1px 0 ${colors.neutral['10A']}`,
     },
-    '&:not([disabled]):not([data-disabled]):active': {
+    [activeState]: {
       color: colors.blue['1000'],
       backgroundImage: 'none',
       backgroundColor: colors.blue['10A'],
@@ -56,15 +61,15 @@ const ButtonAppearances = {
     boxShadow: `inset 0 0 0 1px ${colors.neutral[
       '30A'
     ]}, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
-    '&:not([disabled]):not([data-disabled]):hover': {
+    [hoverState]: {
       backgroundImage: `linear-gradient(to top, ${colors.blue['700']}, ${colors
         .blue['500']})`,
     },
-    '&:not([disabled]):not([data-disabled]):focus': {
+    [focusState]: {
       boxShadow: `0 0 0 2px ${colors.blue['50A']}, inset 0 0 0 1px ${colors
         .neutral['30A']}, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
     },
-    '&:not([disabled]):not([data-disabled]):active': {
+    [activeState]: {
       boxShadow: `inset 0 0 0 1px ${colors.neutral[
         '30A'
       ]}, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
@@ -81,15 +86,15 @@ const ButtonAppearances = {
     boxShadow: `inset 0 0 0 1px ${colors.neutral[
       '30A'
     ]}, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
-    '&:not([disabled]):not([data-disabled]):hover': {
+    [hoverState]: {
       backgroundImage: `linear-gradient(to top, ${colors.green['700']}, ${colors
         .green['600']})`,
     },
-    '&:not([disabled]):not([data-disabled]):focus': {
+    [focusState]: {
       boxShadow: `0 0 0 2px ${colors.green['100A']}, inset 0 0 0 1px ${colors
         .neutral['30A']}, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
     },
-    '&:not([disabled]):not([data-disabled]):active': {
+    [activeState]: {
       boxShadow: `inset 0 0 0 1px ${colors.neutral[
         '30A'
       ]}, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
@@ -106,15 +111,15 @@ const ButtonAppearances = {
     boxShadow: `inset 0 0 0 1px ${colors.neutral[
       '30A'
     ]}, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
-    '&:not([disabled]):not([data-disabled]):hover': {
+    [hoverState]: {
       backgroundImage: `linear-gradient(to top, ${colors.red['700']}, ${colors
         .red['600']})`,
     },
-    '&:not([disabled]):not([data-disabled]):focus': {
+    [focusState]: {
       boxShadow: `0 0 0 2px ${colors.red['100A']}, inset 0 0 0 1px ${colors
         .neutral['30A']}, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
     },
-    '&:not([disabled]):not([data-disabled]):active': {
+    [activeState]: {
       boxShadow: `inset 0 0 0 1px ${colors.neutral[
         '30A'
       ]}, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
@@ -125,13 +130,13 @@ const ButtonAppearances = {
   ghost: {
     ...baseStyle,
     backgroundColor: 'white',
-    '&:not([disabled]):not([data-disabled]):hover': {
+    [hoverState]: {
       backgroundColor: colors.neutral['7A'],
     },
-    '&:not([disabled]):not([data-disabled]):focus': {
+    [focusState]: {
       boxShadow: `0 0 0 2px ${colors.blue['50A']}`,
     },
-    '&:not([disabled]):not([data-disabled]):active': {
+    [activeState]: {
       color: colors.blue['1000'],
       boxShadow: 'none',
       backgroundColor: colors.blue['10A'],
