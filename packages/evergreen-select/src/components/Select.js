@@ -30,6 +30,7 @@ export default class Select extends PureComponent {
     name: PropTypes.string,
     children: PropTypes.node,
     onChange: PropTypes.func,
+    value: PropTypes.any,
     appearance: PropTypes.oneOf(Object.keys(SelectAppearances)),
     required: PropTypes.bool,
     autofocus: PropTypes.bool,
@@ -53,6 +54,7 @@ export default class Select extends PureComponent {
       children,
       disabled,
       onChange,
+      value,
       required,
       autofocus,
       isInvalid,
@@ -70,6 +72,7 @@ export default class Select extends PureComponent {
           id={id}
           name={name}
           onChange={onChange}
+          value={value}
           {...(required ? { required: true } : {})}
           {...(autofocus ? { autofocus: true } : {})}
           {...(disabled ? { disabled: true } : {})}
