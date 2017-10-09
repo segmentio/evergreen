@@ -25,11 +25,14 @@ export default class Checkbox extends PureComponent {
     checked: PropTypes.bool,
     id: PropTypes.string,
     name: PropTypes.string,
+    onChange: PropTypes.func,
+    value: PropTypes.string,
   }
 
   static defaultProps = {
     appearance: 'default',
     marginY: 16,
+    onChange: () => {},
   }
 
   render() {
@@ -41,6 +44,8 @@ export default class Checkbox extends PureComponent {
       disabled,
       isInvalid,
       checked,
+      onChange,
+      value,
       ...props
     } = this.props
     const appearanceStyle = CheckboxAppearances[appearance]
@@ -54,11 +59,13 @@ export default class Checkbox extends PureComponent {
       >
         <Box
           is="input"
-          type="checkbox"
-          disabled={disabled}
-          checked={checked}
           id={id}
+          type="checkbox"
           name={name}
+          value={value}
+          checked={checked}
+          onChange={onChange}
+          disabled={disabled}
           {...(isInvalid ? { 'aria-invalid': true } : {})}
           css={appearanceStyle}
         />
