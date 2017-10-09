@@ -13,7 +13,7 @@ export default class TextInput extends PureComponent {
     appearance: PropTypes.oneOf(Object.keys(TextInputAppearances)).isRequired,
     disabled: PropTypes.bool.isRequired,
     isInvalid: PropTypes.bool.isRequired,
-    spellcheck: PropTypes.bool.isRequired,
+    spellCheck: PropTypes.bool.isRequired,
   }
 
   static defaultProps = {
@@ -25,7 +25,7 @@ export default class TextInput extends PureComponent {
     width: 280,
     disabled: false,
     isInvalid: false,
-    spellcheck: true,
+    spellCheck: true,
   }
 
   render() {
