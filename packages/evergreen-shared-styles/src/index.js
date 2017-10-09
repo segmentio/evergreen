@@ -1,6 +1,7 @@
 import { TextStyles } from 'evergreen-typography'
 
 export { default as InputAppearances } from './input-appearances'
+export { default as controlBaseStyle } from './control-base-style'
 
 const getTextSizeForControlHeight = ({ height }) => {
   if (height <= 28) return '300'
