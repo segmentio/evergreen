@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import canUseDom from 'dom-helpers/util/inDOM'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
@@ -7,6 +8,8 @@ let portalContainer
 export default class Portal extends Component {
   constructor() {
     super()
+
+    if (!canUseDom) return
 
     if (!portalContainer) {
       portalContainer = document.createElement('div')
@@ -17,7 +20,7 @@ export default class Portal extends Component {
     this.el = document.createElement('div')
   }
 
-  componentWillMount() {
+  componentDidMount() {
     portalContainer.appendChild(this.el)
   }
 
