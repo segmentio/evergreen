@@ -1,6 +1,6 @@
 {
   "name": "evergreen-textarea",
-  "version": "2.2.0",
+  "version": "2.2.5",
   "description": "React components: Textarea",
   "main": "lib/index.js",
   "keywords": [
@@ -13,7 +13,7 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-shared-styles": "^2.2.0",
+    "evergreen-shared-styles": "^2.2.5",
     "evergreen-typography": "^2.0.0",
     "ui-box": "^0.4.0"
   },
