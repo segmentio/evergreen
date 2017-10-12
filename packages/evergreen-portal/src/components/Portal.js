@@ -9,6 +9,7 @@ export default class Portal extends Component {
   constructor() {
     super()
 
+    // This fixes SSR
     if (!canUseDom) return
 
     if (!portalContainer) {
@@ -29,6 +30,8 @@ export default class Portal extends Component {
   }
 
   render() {
+    // This fixes SSR
+    if (!canUseDom) return null
     return ReactDOM.createPortal(this.props.children, this.el)
   }
 }
