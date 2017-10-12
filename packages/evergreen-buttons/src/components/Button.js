@@ -53,8 +53,12 @@ export default class Button extends PureComponent {
       <Text
         paddingTop={paddingTop}
         paddingBottom={paddingBottom}
-        paddingRight={paddingRight || Math.round(height / 2)}
-        paddingLeft={paddingLeft || Math.round(height / 2)}
+        paddingRight={
+          paddingRight !== undefined ? paddingRight : Math.round(height / 2)
+        }
+        paddingLeft={
+          paddingLeft !== undefined ? paddingLeft : Math.round(height / 2)
+        }
         {...textStyle}
         css={{
           ...css,
