@@ -23,6 +23,7 @@ export default class Badge extends PureComponent {
     textDecoration: 'none',
     textTransform: 'uppercase',
     appearance: 'neutral',
+    isSolid: false,
   }
 
   render() {
