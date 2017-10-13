@@ -19,7 +19,7 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "ui-box": "^0.4.0"
+    "ui-box": "^0.4.1"
   },
   "peerDependencies": {
     "prop-types": "^15.0.0",

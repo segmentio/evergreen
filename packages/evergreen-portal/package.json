@@ -18,6 +18,7 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
-    "dom-helpers": "^3.2.1"
+    "dom-helpers": "^3.2.1",
+    "ui-box": "^0.4.1"
   }
 }

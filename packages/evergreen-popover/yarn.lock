@@ -28,7 +28,7 @@ css-in-js-utils@^2.0.0:
   dependencies:
     hyphenate-style-name "^1.0.2"
 
-dom-helpers@^3.2.0:
+dom-helpers@^3.2.0, dom-helpers@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.2.1.tgz#3203e07fed217bd1f424b019735582fc37b2825a"
 
@@ -38,12 +38,12 @@ encoding@^0.1.11:
   dependencies:
     iconv-lite "~0.4.13"
 
-evergreen-buttons@^2.0.0-0:
-  version "2.0.0-0"
-  resolved "https://registry.yarnpkg.com/evergreen-buttons/-/evergreen-buttons-2.0.0-0.tgz#d942be645128fdeb0f8f0dc0b0dc5864c0fb8ad3"
+evergreen-buttons@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/evergreen-buttons/-/evergreen-buttons-2.2.4.tgz#b67b6511fa37491021f7b0f5e1f6495b8a6e4643"
   dependencies:
     evergreen-colors "^2.0.0-0"
-    evergreen-typography "^2.0.0-0"
+    evergreen-typography "^2.0.0"
     ui-box "^0.4.0"
 
 evergreen-colors@^2.0.0-0:
@@ -57,13 +57,15 @@ evergreen-layers@^2.0.0-0:
     evergreen-colors "^2.0.0-0"
     ui-box "^0.4.0"
 
-evergreen-portal@^2.0.0-0:
-  version "2.0.0-0"
-  resolved "https://registry.yarnpkg.com/evergreen-portal/-/evergreen-portal-2.0.0-0.tgz#da94145a3118635179e7163e758562f18e861329"
+evergreen-portal@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/evergreen-portal/-/evergreen-portal-2.2.3.tgz#e51c9c52792f13ca7dbb559d61d1599309a690f1"
+  dependencies:
+    dom-helpers "^3.2.1"
 
-evergreen-typography@^2.0.0-0:
-  version "2.0.0-0"
-  resolved "https://registry.yarnpkg.com/evergreen-typography/-/evergreen-typography-2.0.0-0.tgz#1f1b4b70a1f9a9a6ff7c350745b17c5e2caad533"
+evergreen-typography@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/evergreen-typography/-/evergreen-typography-2.0.0.tgz#561a1bef47e294c20361314c96342c9858b9b161"
   dependencies:
     evergreen-colors "^2.0.0-0"
     ui-box "^0.4.0"
@@ -181,6 +183,13 @@ ua-parser-js@^0.7.9:
 ui-box@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.4.0.tgz#ec49e2b1e70dfd84d555e6bf3391690155a550e7"
+  dependencies:
+    classnames "^2.2.5"
+    glamor "^2.20.22"
+
+ui-box@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.4.1.tgz#410f7b14ef9abdfac10973e21ba6fc1e1d0fa072"
   dependencies:
     classnames "^2.2.5"
     glamor "^2.20.22"

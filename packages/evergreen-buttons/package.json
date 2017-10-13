@@ -20,6 +20,6 @@
   "dependencies": {
     "evergreen-colors": "^2.0.0-0",
     "evergreen-typography": "^2.0.0",
-    "ui-box": "^0.4.0"
+    "ui-box": "^0.4.1"
   }
 }

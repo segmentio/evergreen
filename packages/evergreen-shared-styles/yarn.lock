@@ -143,6 +143,13 @@ ui-box@^0.4.0:
     classnames "^2.2.5"
     glamor "^2.20.22"
 
+ui-box@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.4.1.tgz#410f7b14ef9abdfac10973e21ba6fc1e1d0fa072"
+  dependencies:
+    classnames "^2.2.5"
+    glamor "^2.20.22"
+
 whatwg-fetch@>=0.10.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz#9c84ec2dcf68187ff00bc64e1274b442176e1c84"
