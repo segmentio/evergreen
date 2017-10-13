@@ -1,6 +1,6 @@
 {
   "name": "evergreen-buttons",
-  "version": "2.2.4",
+  "version": "2.2.6",
   "description": "React components: Button",
   "main": "lib/index.js",
   "keywords": [
@@ -18,8 +18,8 @@
     "react": "^16.0.0"
   },
   "dependencies": {
-    "evergreen-colors": "^2.0.0-0",
-    "evergreen-typography": "^2.0.0",
+    "evergreen-colors": "^2.2.6",
+    "evergreen-typography": "^2.2.6",
     "ui-box": "^0.4.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "evergreen-select",
-  "version": "2.2.0",
+  "version": "2.2.6",
   "description": "React components: Select",
   "main": "lib/index.js",
   "keywords": [
@@ -13,9 +13,9 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-colors": "^2.0.0-0",
-    "evergreen-icons": "^2.0.0-0",
-    "evergreen-typography": "^2.0.0",
+    "evergreen-colors": "^2.2.6",
+    "evergreen-icons": "^2.2.6",
+    "evergreen-typography": "^2.2.6",
     "ui-box": "^0.4.1"
   },
   "peerDependencies": {

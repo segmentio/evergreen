@@ -1,6 +1,6 @@
 {
   "name": "evergreen-portal",
-  "version": "2.2.3",
+  "version": "2.2.6",
   "description": "React components: Portal",
   "main": "lib/index.js",
   "keywords": [
