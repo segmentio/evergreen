@@ -3,7 +3,7 @@ import Icon from './Icon'
 
 export default class SearchIcon extends PureComponent {
   render() {
-    const { ...props } = this.props
+    const { iconWidth, iconHeight, ...props } = this.props
     return (
       <Icon {...props}>
         <svg
@@ -11,8 +11,8 @@ export default class SearchIcon extends PureComponent {
           y="0px"
           viewBox="0 0 16 16"
           xmlSpace="preserve"
-          width={16}
-          height={16}
+          width={iconWidth || 16}
+          height={iconHeight || 16}
           fill="currentColor"
         >
           <polygon points="13,11 8,5 3,11 " />
