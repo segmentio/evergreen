@@ -35,7 +35,7 @@ export default class TextInput extends PureComponent {
       disabled,
       isInvalid,
       appearance,
-      spellcheck,
+      spellCheck,
       ...props
     } = this.props
     const appearanceStyle = TextInputAppearances[appearance]
@@ -49,7 +49,7 @@ export default class TextInput extends PureComponent {
         paddingLeft={Math.round(height / 3.2)}
         paddingRight={Math.round(height / 3.2)}
         borderRadius={borderRadius}
-        spellcheck={spellcheck}
+        spellCheck={spellCheck}
         {...(isInvalid ? { 'aria-invalid': true } : {})}
         {...(disabled ? { color: 'extraMuted' } : {})}
         {...textStyle}
