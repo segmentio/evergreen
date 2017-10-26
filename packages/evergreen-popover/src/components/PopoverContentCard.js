@@ -51,16 +51,6 @@ export default class PopoverContentCard extends Component {
     children: PropTypes.node,
     side: PropTypes.oneOf(objectValues(PopoverSides)),
     isOpen: PropTypes.bool.isRequired,
-    anchors: PropTypes.shape({
-      top: PropTypes.shape({
-        x: PropTypes.number,
-        y: PropTypes.number,
-      }),
-      bottom: PropTypes.shape({
-        x: PropTypes.number,
-        y: PropTypes.number,
-      }),
-    }),
     useSmartPositioning: PropTypes.bool,
     zIndex: PropTypes.number,
     innerRef: PropTypes.func,
@@ -73,9 +63,25 @@ export default class PopoverContentCard extends Component {
     this.state = initialState()
   }
 
+  getAnchors = () => {
+    const { targetRect } = this.props
+    const bodyRect = document.body.getBoundingClientRect()
+    const x = targetRect.left + targetRect.width / 2
+    return {
+      top: {
+        x,
+        y: targetRect.top - bodyRect.top,
+      },
+      bottom: {
+        x,
+        y: targetRect.bottom - bodyRect.top,
+      },
+    }
+  }
+
   handleEnter = () => {
     const { useSmartPositioning, bodyOffset } = this.props
-    const { top, bottom } = this.props.anchors
+    const { top, bottom } = this.getAnchors()
     let side = this.props.side
 
     // Smartly position the popover when it overflows the body
@@ -134,6 +140,7 @@ export default class PopoverContentCard extends Component {
               role="dialog"
               elevation={3}
               backgroundColor="white"
+              overflow="hidden"
               data-state={state}
               css={{
                 ...styles({ targetOffset }),
