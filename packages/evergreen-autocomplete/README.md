@@ -1,5 +1,13 @@
 # Autocomplete
 
+This package implements a `Autocomplete` component. This component only deals with rendering the list, not the actual input element.
+
+## Example
+
+![autocomplete](https://user-images.githubusercontent.com/564463/32072424-5cbbc1d6-ba47-11e7-8e8a-c131afed0902.gif)
+
+## Key points
+
 * Uses [Downshift](https://github.com/paypal/downshift) for autocomplete
 * Uses [react-tiny-virtual-list](https://github.com/clauderic/react-tiny-virtual-list) for performant list rendering
 * Uses [fuzzaldrin-plus](https://www.npmjs.com/package/fuzzaldrin-plus) for fuzzy filtering
@@ -44,8 +52,7 @@ static defaultProps = {
 
 
 ## Complete Story
-
-```js
+```jsx
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
