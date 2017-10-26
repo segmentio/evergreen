@@ -8,6 +8,8 @@ export default class Popover extends Component {
   static propTypes = {
     side: PropTypes.oneOf(objectValues(PopoverSides)),
     onOpen: PropTypes.func.isRequired,
+    // Use isOpen to manually control the Popover
+    isOpen: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
     content: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
@@ -37,16 +39,17 @@ export default class Popover extends Component {
     super()
     this.state = {
       isOpen: false,
-      anchors: {
-        top: {
-          x: 0,
-          y: 0,
-        },
-        bottom: {
-          x: 0,
-          y: 0,
-        },
-      },
+      targetRect: {},
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (Object.prototype.hasOwnProperty.call(nextProps, 'isOpen')) {
+      if (nextProps.isOpen) {
+        this.setState({
+          targetRect: this.getTargetRect(),
+        })
+      }
     }
   }
 
@@ -87,21 +90,7 @@ export default class Popover extends Component {
     this.targetNode = ref
   }
 
-  getAnchors = () => {
-    const targetRect = this.targetNode.getBoundingClientRect()
-    const bodyRect = document.body.getBoundingClientRect()
-    const x = targetRect.left + targetRect.width / 2
-    return {
-      top: {
-        x,
-        y: targetRect.top - bodyRect.top,
-      },
-      bottom: {
-        x,
-        y: targetRect.bottom - bodyRect.top,
-      },
-    }
-  }
+  getTargetRect = () => this.targetNode.getBoundingClientRect()
 
   toggle = () => {
     const isOpen = !this.state.isOpen
@@ -120,7 +109,7 @@ export default class Popover extends Component {
       return
     }
 
-    this.setState({ isOpen: true, anchors: this.getAnchors() })
+    this.setState({ isOpen: true, targetRect: this.getTargetRect() })
     document.body.addEventListener('click', this.onBodyClick, false)
     document.body.addEventListener('keydown', this.onEsc, false)
     window.addEventListener('resize', this.onResize, false)
@@ -153,15 +142,19 @@ export default class Popover extends Component {
       zIndex,
       bodyOffset,
       targetOffset,
+      isOpen,
     } = this.props
-    const { isOpen, anchors } = this.state
+    const { isOpen: stateIsOpen, targetRect } = this.state
+
+    const open = isOpen || stateIsOpen
 
     return [
       typeof children === 'function'
         ? children({
+            targetRect,
             toggle: this.toggle,
             getRef: this.getRef,
-            isOpen,
+            isOpen: open,
             key: 'popover-child',
           })
         : React.cloneElement(children, {
@@ -169,7 +162,7 @@ export default class Popover extends Component {
             innerRef: ref => {
               this.getRef(ref)
             },
-            ...(isOpen ? { 'data-popover-opened': true } : {}),
+            ...(open ? { 'data-popover-opened': true } : {}),
             key: 'popover-child',
           }),
       <PopoverContentCard
@@ -177,8 +170,8 @@ export default class Popover extends Component {
         innerRef={ref => {
           this.popoverNode = ref
         }}
-        isOpen={isOpen}
-        anchors={anchors}
+        isOpen={open}
+        targetRect={targetRect}
         side={side}
         useSmartPositioning={useSmartPositioning}
         minWidth={minWidth}
@@ -189,7 +182,7 @@ export default class Popover extends Component {
         targetOffset={targetOffset}
       >
         {typeof content === 'function'
-          ? content({ close: this.close })
+          ? content({ targetRect, close: this.close })
           : content}
       </PopoverContentCard>,
     ]
