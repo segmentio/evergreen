@@ -1,6 +1,6 @@
 {
   "name": "evergreen-popover",
-  "version": "2.2.6",
+  "version": "2.3.0",
   "description": "React components: Popover",
   "main": "lib/index.js",
   "keywords": [
