@@ -35,6 +35,7 @@ export default class Autocomplete extends PureComponent {
     width,
     inputValue,
     highlightedIndex,
+    selectItemAtIndex,
     selectedItem,
     getItemProps,
   }) => {
@@ -69,6 +70,7 @@ export default class Autocomplete extends PureComponent {
                   key: item,
                   index,
                   style,
+                  onClick: () => selectItemAtIndex(index),
                   isHighlighted: highlightedIndex === index,
                   isEven: index % 2 === 1,
                   isSelected: selectedItem === item,
@@ -101,7 +103,8 @@ export default class Autocomplete extends PureComponent {
           getItemProps,
           selectedItem,
           highlightedIndex,
-          ...downshiftProps
+          selectItemAtIndex,
+          ...restDownshiftProps
         }) => (
           <div>
             <Popover
@@ -113,6 +116,7 @@ export default class Autocomplete extends PureComponent {
                   getItemProps,
                   selectedItem,
                   highlightedIndex,
+                  selectItemAtIndex,
                 })}
               display="inline-block"
               isOpen={isOpen}
@@ -126,7 +130,8 @@ export default class Autocomplete extends PureComponent {
                   inputValue,
                   selectedItem,
                   highlightedIndex,
-                  ...downshiftProps,
+                  selectItemAtIndex,
+                  ...restDownshiftProps,
                 })}
             </Popover>
           </div>
