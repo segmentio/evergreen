@@ -29,19 +29,42 @@ const handleChange = selectedItem => {
 }
 
 storiesOf('autocomplete', module).add('Autocomplete', () => (
-  <Box padding={40}>
-    {(() => {
-      document.body.style.margin = '0'
-      document.body.style.height = '100vh'
-    })()}
-    <Autocomplete onChange={handleChange} items={items}>
-      {({ key, getInputProps, getRef }) => (
-        <TextInput
-          key={key}
-          innerRef={ref => getRef(ref)}
-          {...getInputProps()}
-        />
-      )}
-    </Autocomplete>
+  <Box>
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Autocomplete onChange={handleChange} items={items}>
+        {({ key, getInputProps, getRef, inputValue }) => (
+          <TextInput
+            placeholder="Starwars names"
+            key={key}
+            value={inputValue}
+            innerRef={ref => getRef(ref)}
+            {...getInputProps()}
+          />
+        )}
+      </Autocomplete>
+    </Box>
+    <Box padding={40}>
+      <Autocomplete onChange={handleChange} items={items}>
+        {({
+          key,
+          getInputProps,
+          getButtonProps,
+          getRef,
+          inputValue,
+          toggleMenu,
+        }) => (
+          <Box innerRef={ref => getRef(ref)} display="inline-block" key={key}>
+            <TextInput value={inputValue} {...getInputProps()} />
+            <button onClick={toggleMenu} {...getButtonProps()}>
+              Trigger
+            </button>
+          </Box>
+        )}
+      </Autocomplete>
+    </Box>
   </Box>
 ))
