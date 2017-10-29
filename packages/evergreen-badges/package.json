@@ -17,6 +17,6 @@
     "react": "^0.14.0 || ^15.0.0"
   },
   "dependencies": {
-    "evergreen-colors": "^1.0.0"
+    "evergreen-colors": "^2.0.0"
   }
 }
