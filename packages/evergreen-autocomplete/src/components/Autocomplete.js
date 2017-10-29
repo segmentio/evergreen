@@ -14,14 +14,13 @@ const autocompleteItemRenderer = props => <AutocompleteItem {...props} />
 
 export default class Autocomplete extends PureComponent {
   static propTypes = {
-    items: PropTypes.array,
     children: PropTypes.func,
-    onChange: PropTypes.func,
     itemSize: PropTypes.number,
     renderItem: PropTypes.func,
     itemsFilter: PropTypes.func,
     popoverMaxHeight: PropTypes.number,
     useSmartPositioning: PropTypes.bool,
+    ...Downshift.propTypes,
   }
 
   static defaultProps = {
@@ -36,6 +35,7 @@ export default class Autocomplete extends PureComponent {
     width,
     inputValue,
     highlightedIndex,
+    selectItemAtIndex,
     selectedItem,
     getItemProps,
   }) => {
@@ -46,7 +46,10 @@ export default class Autocomplete extends PureComponent {
       popoverMaxHeight,
       renderItem,
     } = this.props
-    const items = itemsFilter(originalItems, inputValue)
+    const items =
+      inputValue.trim() === ''
+        ? originalItems
+        : itemsFilter(originalItems, inputValue)
 
     return (
       <Pane width={width}>
@@ -67,6 +70,7 @@ export default class Autocomplete extends PureComponent {
                   key: item,
                   index,
                   style,
+                  onClick: () => selectItemAtIndex(index),
                   isHighlighted: highlightedIndex === index,
                   isEven: index % 2 === 1,
                   isSelected: selectedItem === item,
@@ -81,17 +85,26 @@ export default class Autocomplete extends PureComponent {
   }
 
   render() {
-    const { onChange, useSmartPositioning, children } = this.props
+    const {
+      children,
+      itemSize,
+      renderItem,
+      itemsFilter,
+      popoverMaxHeight,
+      useSmartPositioning,
+      ...props
+    } = this.props
 
     return (
-      <Downshift onChange={onChange}>
+      <Downshift {...props}>
         {({
           isOpen,
           inputValue,
           getItemProps,
           selectedItem,
-          getInputProps,
           highlightedIndex,
+          selectItemAtIndex,
+          ...restDownshiftProps
         }) => (
           <div>
             <Popover
@@ -103,6 +116,7 @@ export default class Autocomplete extends PureComponent {
                   getItemProps,
                   selectedItem,
                   highlightedIndex,
+                  selectItemAtIndex,
                 })}
               display="inline-block"
               isOpen={isOpen}
@@ -115,8 +129,9 @@ export default class Autocomplete extends PureComponent {
                   getRef,
                   inputValue,
                   selectedItem,
-                  getInputProps,
                   highlightedIndex,
+                  selectItemAtIndex,
+                  ...restDownshiftProps,
                 })}
             </Popover>
           </div>
