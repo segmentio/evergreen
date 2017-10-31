@@ -13,6 +13,7 @@ export default class Combobox extends PureComponent {
     width: PropTypes.oneOf(PropTypes.string, PropTypes.number),
     height: PropTypes.number,
     onChange: PropTypes.func,
+    autocompleteProps: PropTypes.objectOf(Autocomplete.propTypes),
     inputProps: PropTypes.objectOf(TextInput.propTypes),
     buttonProps: PropTypes.objectOf(Button.propTypes),
   }
@@ -35,11 +36,12 @@ export default class Combobox extends PureComponent {
   render() {
     const {
       items,
-      onChange,
-      height,
       width,
+      height,
+      onChange,
       inputProps,
       buttonProps,
+      autocompleteProps,
       ...props
     } = this.props
 
@@ -49,6 +51,7 @@ export default class Combobox extends PureComponent {
         onChange={onChange}
         onStateChange={this.handleStateChange}
         isFilterDisabled={this.state.isOpenedByButton}
+        {...autocompleteProps}
       >
         {({
           key,
