@@ -6,7 +6,6 @@ import { Card } from 'evergreen-layers'
 import { Portal } from 'evergreen-portal'
 import PopoverSides from '../popover-sides'
 
-const ANIMATION_DURATION = 300
 const INITIAL_SCALE = 0.9
 
 const animationEasing = {
@@ -17,10 +16,10 @@ const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`,
 }
 
-const styles = ({ targetOffset }) => ({
+const styles = ({ targetOffset, animationDuration }) => ({
   position: 'absolute',
   opacity: 0,
-  transition: `all ${ANIMATION_DURATION}ms ${animationEasing.spring}`,
+  transition: `all ${animationDuration}ms ${animationEasing.spring}`,
   transform: `scale(${INITIAL_SCALE}) translateY(-4px)`,
   '&[data-state="entering"][data-position="bottom"], &[data-state="entered"][data-position="bottom"]': {
     opacity: 1,
@@ -48,14 +47,19 @@ const initialState = () => ({
 export default class PopoverContentCard extends Component {
   static propTypes = {
     ...Card.propTypes,
-    children: PropTypes.node,
     side: PropTypes.oneOf(objectValues(PopoverSides)),
     isOpen: PropTypes.bool.isRequired,
-    useSmartPositioning: PropTypes.bool,
     zIndex: PropTypes.number,
+    children: PropTypes.node,
     innerRef: PropTypes.func,
     bodyOffset: PropTypes.number,
     targetOffset: PropTypes.number,
+    animationDuration: PropTypes.number,
+    useSmartPositioning: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    animationDuration: 300,
   }
 
   constructor() {
@@ -117,7 +121,14 @@ export default class PopoverContentCard extends Component {
   }
 
   render() {
-    const { children, isOpen, zIndex, innerRef, targetOffset } = this.props
+    const {
+      children,
+      isOpen,
+      zIndex,
+      innerRef,
+      targetOffset,
+      animationDuration,
+    } = this.props
 
     const { left, top, side, transformOriginX } = this.state
 
@@ -130,7 +141,7 @@ export default class PopoverContentCard extends Component {
       <Portal>
         <Transition
           in={isOpen}
-          timeout={ANIMATION_DURATION}
+          timeout={animationDuration}
           onEnter={this.handleEnter}
           onExited={this.handleExited}
           unmountOnExit
@@ -143,7 +154,7 @@ export default class PopoverContentCard extends Component {
               overflow="hidden"
               data-state={state}
               css={{
-                ...styles({ targetOffset }),
+                ...styles({ targetOffset, animationDuration }),
               }}
               style={{
                 left,

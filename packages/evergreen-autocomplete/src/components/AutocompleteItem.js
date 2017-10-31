@@ -22,6 +22,7 @@ export default class AutocompleteItem extends PureComponent {
       children,
       ...props
     } = this.props
+
     return (
       <Pane
         style={style}
@@ -29,12 +30,17 @@ export default class AutocompleteItem extends PureComponent {
         paddingX={8}
         alignItems="center"
         cursor="pointer"
-        {...(isEven && !isHighlighted
+        {...(isEven && !isSelected
           ? {
               backgroundColor: colors.neutral['5'],
             }
           : {})}
         {...(isHighlighted
+          ? {
+              backgroundColor: colors.blue['15'],
+            }
+          : {})}
+        {...(isSelected
           ? {
               backgroundColor: colors.blue['300'],
             }
@@ -46,7 +52,11 @@ export default class AutocompleteItem extends PureComponent {
           : {})}
         {...props}
       >
-        <Text size={300} {...(isHighlighted ? { color: '#ffffff' } : {})}>
+        <Text
+          size={300}
+          {...(isHighlighted ? { color: colors.blue['500'] } : {})}
+          {...(isSelected ? { color: '#ffffff' } : {})}
+        >
           {children}
         </Text>
       </Pane>
