@@ -1,19 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Text, TextStyles } from 'evergreen-typography'
+import { Text } from 'evergreen-typography'
+import {
+  getBorderRadiusForControlHeight,
+  getTextStyleForControlHeight,
+} from 'evergreen-shared-styles'
 import ButtonAppearances from '../styles/button-appearances'
-
-const getTextStyleForButton = ({ height }) => {
-  // HACK: add padding top to visually align in center
-  if (height <= 24) return { ...TextStyles['200'], paddingTop: 1 }
-  if (height <= 28) return TextStyles['300']
-  if (height <= 32) return TextStyles['300']
-  if (height <= 36) return TextStyles['400']
-  if (height <= 40) return TextStyles['400']
-  if (height <= 48) return TextStyles['500']
-  if (height <= 56) return TextStyles['700']
-  return TextStyles['800']
-}
 
 export default class Button extends PureComponent {
   static propTypes = {
@@ -24,6 +16,7 @@ export default class Button extends PureComponent {
 
   static defaultProps = {
     is: 'button',
+    position: 'relative',
     appearance: 'default',
     paddingTop: 0,
     paddingBottom: 0,
@@ -47,10 +40,15 @@ export default class Button extends PureComponent {
       ...props
     } = this.props
     const appearanceStyle = ButtonAppearances[appearance]
-    const textStyle = getTextStyleForButton({ height })
+    const textStyle = getTextStyleForControlHeight({ height })
+    const borderRadius = getBorderRadiusForControlHeight({ height })
 
     return (
       <Text
+        borderTopRightRadius={borderRadius}
+        borderBottomRightRadius={borderRadius}
+        borderTopLeftRadius={borderRadius}
+        borderBottomLeftRadius={borderRadius}
         paddingTop={paddingTop}
         paddingBottom={paddingBottom}
         paddingRight={

@@ -17,6 +17,7 @@ export default class Icon extends PureComponent {
     ...Box.propTypes,
     aim: PropTypes.oneOf(Object.keys(IconAim)).isRequired,
     size: PropTypes.number,
+    iconSize: PropTypes.number,
   }
 
   static defaultProps = {
@@ -26,10 +27,11 @@ export default class Icon extends PureComponent {
     alignItems: 'center',
     justifyContent: 'center',
     size: 32,
+    iconSize: 16,
   }
 
   render() {
-    const { aim, transform, size, ...props } = this.props
+    const { aim, transform, size, iconSize, children, ...props } = this.props
 
     let totalTransform = transform || ''
     if (aim) {
@@ -37,7 +39,18 @@ export default class Icon extends PureComponent {
     }
 
     return (
-      <Box transform={totalTransform} height={size} width={size} {...props} />
+      <Box transform={totalTransform} height={size} width={size} {...props}>
+        <Box
+          is="span"
+          width={iconSize}
+          height={iconSize}
+          display="inline-flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          {children}
+        </Box>
+      </Box>
     )
   }
 }

@@ -16,6 +16,7 @@ const InputAppearances = {
       color: colors.neutral['100A'],
     },
     '&:focus': {
+      zIndex: 2,
       outline: 'none',
       boxShadow: `inset 0 0 2px ${colors.neutral[
         '40A'

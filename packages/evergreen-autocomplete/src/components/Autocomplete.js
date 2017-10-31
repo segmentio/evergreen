@@ -2,32 +2,34 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import Downshift from 'downshift'
+import { Pane } from 'evergreen-layers'
+import { Popover } from 'evergreen-popover'
 import VirtualList from 'react-tiny-virtual-list'
 import AutocompleteItem from './AutocompleteItem'
-import { Pane } from 'evergreen-layers'
-import { Text } from 'evergreen-typography'
-import { Popover } from 'evergreen-popover'
 
 const fuzzyFilter = (items, input) => fuzzaldrin.filter(items, input)
 
 const autocompleteItemRenderer = props => <AutocompleteItem {...props} />
 
+// https://github.com/paypal/downshift/issues/164
 export default class Autocomplete extends PureComponent {
   static propTypes = {
     children: PropTypes.func,
     itemSize: PropTypes.number,
     renderItem: PropTypes.func,
     itemsFilter: PropTypes.func,
+    isFilterDisabled: PropTypes.bool,
     popoverMaxHeight: PropTypes.number,
     useSmartPositioning: PropTypes.bool,
     ...Downshift.propTypes,
   }
 
   static defaultProps = {
-    itemsFilter: fuzzyFilter,
-    useSmartPositioning: false,
     itemSize: 32,
+    itemsFilter: fuzzyFilter,
+    isFilterDisabled: false,
     popoverMaxHeight: 240,
+    useSmartPositioning: false,
     renderItem: autocompleteItemRenderer,
   }
 
@@ -40,14 +42,16 @@ export default class Autocomplete extends PureComponent {
     getItemProps,
   }) => {
     const {
-      itemsFilter,
       itemSize,
+      itemsFilter,
       items: originalItems,
-      popoverMaxHeight,
       renderItem,
+      popoverMaxHeight,
+      isFilterDisabled,
     } = this.props
+
     const items =
-      inputValue.trim() === ''
+      isFilterDisabled || inputValue.trim() === ''
         ? originalItems
         : itemsFilter(originalItems, inputValue)
 
@@ -56,12 +60,12 @@ export default class Autocomplete extends PureComponent {
         {items.length > 0 && (
           <VirtualList
             width="100%"
-            scrollToIndex={highlightedIndex || 0}
-            scrollToAlignment="auto"
             height={Math.min(items.length * itemSize, popoverMaxHeight)}
-            itemCount={items.length}
             itemSize={itemSize}
+            itemCount={items.length}
+            scrollToIndex={highlightedIndex || 0}
             overscanCount={3}
+            scrollToAlignment="auto"
             renderItem={({ index, style }) => {
               const item = items[index]
               return renderItem(
@@ -70,11 +74,13 @@ export default class Autocomplete extends PureComponent {
                   key: item,
                   index,
                   style,
-                  onClick: () => selectItemAtIndex(index),
-                  isHighlighted: highlightedIndex === index,
                   isEven: index % 2 === 1,
-                  isSelected: selectedItem === item,
                   children: item,
+                  onMouseUp: () => {
+                    selectItemAtIndex(index)
+                  },
+                  isSelected: selectedItem === item,
+                  isHighlighted: highlightedIndex === index,
                 }),
               )
             }}
@@ -108,7 +114,8 @@ export default class Autocomplete extends PureComponent {
         }) => (
           <div>
             <Popover
-              useSmartPositioning={useSmartPositioning}
+              isOpen={isOpen}
+              display="inline-block"
               content={({ targetRect }) =>
                 this.renderResults({
                   width: targetRect.width,
@@ -118,8 +125,8 @@ export default class Autocomplete extends PureComponent {
                   highlightedIndex,
                   selectItemAtIndex,
                 })}
-              display="inline-block"
-              isOpen={isOpen}
+              animationDuration={0}
+              useSmartPositioning={useSmartPositioning}
             >
               {({ isOpen: isOpenPopover, toggle, getRef, key }) =>
                 children({
