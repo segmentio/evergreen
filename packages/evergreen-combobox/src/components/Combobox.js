@@ -8,13 +8,13 @@ import Box from 'ui-box'
 
 export default class Combobox extends PureComponent {
   static propTypes = {
+    ...Box.propTypes,
     items: PropTypes.array,
     width: PropTypes.oneOf(PropTypes.string, PropTypes.number),
     height: PropTypes.number,
     onChange: PropTypes.func,
     inputProps: PropTypes.objectOf(TextInput.propTypes),
     buttonProps: PropTypes.objectOf(Button.propTypes),
-    ...Box.propTypes,
   }
 
   constructor(props, context) {

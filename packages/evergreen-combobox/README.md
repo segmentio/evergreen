@@ -4,7 +4,7 @@ This package implements a `Combobox` component. This component combines a `Autoc
 
 ## Example
 
-TODO
+![combobox](https://user-images.githubusercontent.com/564463/32206959-e7722c36-bdb5-11e7-8ac6-7d0b695e7bcb.gif)
 
 ## Key points
 
@@ -22,13 +22,13 @@ TODO
 
 ```js
 static propTypes = {
+  ...Box.propTypes,
   items: PropTypes.array,
   width: PropTypes.oneOf(PropTypes.string, PropTypes.number),
   height: PropTypes.number,
   onChange: PropTypes.func,
   inputProps: PropTypes.objectOf(TextInput.propTypes),
   buttonProps: PropTypes.objectOf(Button.propTypes),
-  ...Box.propTypes,
 }
 ```
 
