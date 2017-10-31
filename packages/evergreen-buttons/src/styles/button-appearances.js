@@ -6,7 +6,6 @@ const baseStyle = {
   textDecoration: 'none',
   transition: 'box-shadow 80ms ease-in-out',
   WebkitAppearance: 'none',
-  borderRadius: 5,
   border: 'none',
   outline: 'none',
   cursor: 'pointer',
@@ -42,6 +41,7 @@ const ButtonAppearances = {
       ]}, inset 0 -1px 1px 0 ${colors.neutral['15A']}`,
     },
     [focusState]: {
+      zIndex: 2,
       boxShadow: `0 0 0 2px ${colors.blue['20A']}, inset 0 0 0 1px ${colors
         .neutral['70A']}, inset 0 -1px 1px 0 ${colors.neutral['10A']}`,
     },
@@ -66,6 +66,7 @@ const ButtonAppearances = {
         .blue['500']})`,
     },
     [focusState]: {
+      zIndex: 2,
       boxShadow: `0 0 0 2px ${colors.blue['50A']}, inset 0 0 0 1px ${colors
         .neutral['30A']}, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
     },
@@ -91,6 +92,7 @@ const ButtonAppearances = {
         .green['600']})`,
     },
     [focusState]: {
+      zIndex: 2,
       boxShadow: `0 0 0 2px ${colors.green['100A']}, inset 0 0 0 1px ${colors
         .neutral['30A']}, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
     },
@@ -116,6 +118,7 @@ const ButtonAppearances = {
         .red['600']})`,
     },
     [focusState]: {
+      zIndex: 2,
       boxShadow: `0 0 0 2px ${colors.red['100A']}, inset 0 0 0 1px ${colors
         .neutral['30A']}, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
     },
@@ -134,6 +137,7 @@ const ButtonAppearances = {
       backgroundColor: colors.neutral['7A'],
     },
     [focusState]: {
+      zIndex: 2,
       boxShadow: `0 0 0 2px ${colors.blue['50A']}`,
     },
     [activeState]: {

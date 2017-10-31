@@ -10,29 +10,31 @@ export default class Popover extends Component {
     onOpen: PropTypes.func.isRequired,
     // Use isOpen to manually control the Popover
     isOpen: PropTypes.bool,
+    zIndex: PropTypes.number,
     onClose: PropTypes.func.isRequired,
     content: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
       .isRequired,
-    useSmartPositioning: PropTypes.bool,
+    display: PropTypes.string,
     minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     minHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    zIndex: PropTypes.number,
-    display: PropTypes.string,
     bodyOffset: PropTypes.number,
     targetOffset: PropTypes.number,
+    animationDuration: PropTypes.number,
+    useSmartPositioning: PropTypes.bool,
   }
 
   static defaultProps = {
     side: PopoverSides.BOTTOM,
-    useSmartPositioning: true,
+    zIndex: 50,
     onOpen: () => {},
     onClose: () => {},
     minWidth: 200,
     minHeight: 40,
-    zIndex: 50,
     bodyOffset: 8,
     targetOffset: 4,
+    useSmartPositioning: true,
+    animationDuration: 300,
   }
 
   constructor() {
@@ -132,17 +134,18 @@ export default class Popover extends Component {
 
   render() {
     const {
-      children,
-      content,
       side,
-      useSmartPositioning,
+      zIndex,
+      isOpen,
+      content,
+      display,
+      children,
       minWidth,
       minHeight,
-      display,
-      zIndex,
       bodyOffset,
       targetOffset,
-      isOpen,
+      animationDuration,
+      useSmartPositioning,
     } = this.props
     const { isOpen: stateIsOpen, targetRect } = this.state
 
@@ -170,16 +173,17 @@ export default class Popover extends Component {
         innerRef={ref => {
           this.popoverNode = ref
         }}
-        isOpen={open}
-        targetRect={targetRect}
         side={side}
-        useSmartPositioning={useSmartPositioning}
+        isOpen={open}
+        zIndex={zIndex}
+        display={display}
         minWidth={minWidth}
         minHeight={minHeight}
-        display={display}
-        zIndex={zIndex}
+        targetRect={targetRect}
         bodyOffset={bodyOffset}
         targetOffset={targetOffset}
+        animationDuration={animationDuration}
+        useSmartPositioning={useSmartPositioning}
       >
         {typeof content === 'function'
           ? content({ targetRect, close: this.close })
