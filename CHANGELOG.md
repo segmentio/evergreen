@@ -2,6 +2,23 @@
 
 The Changelog contains items that are finished, and initially appear in the Roadmap.
 
+### October 31, 2017, Multiple packages have been implemented
+
+I haven't had enough time to properly maintain the ROADMAP and Changelog.
+Internally we have been implementing Evergreen at Segment for parts of our app.
+The packages that have been implemented since September 4 are:
+
+* `evergreen-badges` [#17](https://github.com/segmentio/evergreen/pull/17)
+* `evergreen-text-input` [#19](https://github.com/segmentio/evergreen/pull/19)
+* `evergreen-portal` [#25](https://github.com/segmentio/evergreen/pull/25)
+* `evergreen-popover` [#25](https://github.com/segmentio/evergreen/pull/25)
+* `evergreen-textarea` [#26](https://github.com/segmentio/evergreen/pull/26)
+* `evergreen-shared-styles` [#26](https://github.com/segmentio/evergreen/pull/26)
+* `evergreen-autocomplete`[#33](https://github.com/segmentio/evergreen/pull/33)
+* `evergreen-combobox` [#36](https://github.com/segmentio/evergreen/pull/36)
+* [x] Storybook with examples
+* [x] React 16
+
 ### September 4, 2017, Starting on Button
 
 `evergreen-layers` is implemented, documentation is missing besides Storybook.

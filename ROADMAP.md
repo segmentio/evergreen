@@ -20,9 +20,3 @@ The third part is to create documentation website, similar to how AtlasKit appro
 #### Design documentation (long term goal)
 
 The last part is to create design documentation. That will be primarily for designers, and is more focused around what is the right way to use a component or patter, instead of showing you how to implement it.
-
-#### Storybook with examples
-
-The first part is to have a Storybook live, which is what you are describing. This will contain simply the component use cases needed for developing, and is lacking as a form of documentation. It won't have code blocks containing usage examples, or property documentation.
-
-This should be fairly straightforward to implement if the packages are actually published (they are no yet at the moment). If that is the case, we can build a static storybook and push that to the gh-pages branch. This might require something like Circle for CI, which I am not very familiar with.

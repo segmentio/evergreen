@@ -2,6 +2,7 @@
 
 > React UI Kit by [Segment](https://segment.com/)
 
+* React 16
 * [View Live Storybook](https://segmentio.github.io/evergreen/)
 * Presentational React components
 * Powerful component API with [ui-box](https://github.com/segmentio/ui-box)
@@ -53,34 +54,36 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 
 | Package                            | Status             | Exports                    |
 |------------------------------------|--------------------|----------------------------|
-| `evergreen-colors`                 | [#1](https://github.com/segmentio/evergreen/issues/1)     | Color system object        |
-| `evergreen-typography`             | [#2](https://github.com/segmentio/evergreen/issues/2)     | typography components      |
-| `evergreen-layers`                 | [#8](https://github.com/segmentio/evergreen/issues/8)      | Pane, Card and styling     |
-| `evergreen-buttons`                | [#10](https://github.com/segmentio/evergreen/issues/10)    | Button component           |
-| `evergreen-icons`                  | Needs Planning     | icon components            |
+| `evergreen-colors`                 | ✅ Good            | Color system object        |
+| `evergreen-shared-styles`          | ✅ Lacking         | Shared styles utils        |
+| `evergreen-typography`             | ✅ OK              | typography components      |
+| `evergreen-layers`                 | ✅ Good            | Pane, Card and styling     |
+| `evergreen-buttons`                | ✅ Good            | Button components          |
+| `evergreen-icons`                  | ✅ Lacking         | Icon components            |
+| `evergreen-autocomplete`           | ✅ Good            | Autocomplete components    |
+| `evergreen-combobox`               | ✅ Good            | Combobox components        |
+| `evergreen-badges`                 | ✅ Improve design  | Badge components           |
+| `evergreen-select`                 | ✅ Good            | Select component           |
+| `evergreen-popover`                | ✅ Good            | Popover component          |
+| `evergreen-portal`                 | ✅ Good            | Portal component           |
+| `evergreen-text-input`             | ✅ Good            | TextInput component        |
+| `evergreen-textarea`               | ✅ Good            | Textarea component         |
+| `evergreen-checkbox`               | ✅ Good            | Checkbox component         |
 | `evergreen-tabs`                   | Needs Planning     | Tabs component             |
 | `evergreen-menu`                   | Needs Planning     | Menu component             |
 | `evergreen-avatar`                 | Needs Planning     | Avatar component           |
 | `evergreen-callout`                | Needs Planning     | Callout component          |
-| `evergreen-badge`                  | Needs Planning     | Badge component            |
-| `evergreen-select`                 | Needs Planning     | Select component           |
 | `evergreen-segmented-control`      | Needs Planning     | SegmentedControl component |
 | `evergreen-tooltip`                | Needs Planning     | Tooltip component          |
-| `evergreen-popover`                | Needs Planning     | Popover component          |
-| `evergreen-portal`                 | Needs Planning     | Portal component           |
 | `evergreen-table`                  | Needs Planning     | table component            |
 | `evergreen-side-sheet`             | Needs Planning     | SideSheet component        |
 | `evergreen-bottom-sheet`           | Needs Planning     | BottomSheet component      |
-| `evergreen-text-input`             | Needs Planning     | TextInput component        |
-| `evergreen-textarea`               | Needs Planning     | Textarea component         |
 | `evergreen-search-input`           | Needs Planning     | SearchInput component      |
 | `evergreen-radio`                  | Needs Planning     | Radio component            |
-| `evergreen-checkbox`               | Needs Planning     | Checkbox component         |
 | `evergreen-spinner`                | Needs Planning     | Loading Spinner component  |
 | `evergreen-dialog`                 | Needs Planning     | Dialog component           |
 | `evergreen-corner-dialog`          | Needs Planning     | CornerDialog component     |
 | `evergreen-code-block`             | Needs Planning     | CodeBlock component        |
-| `evergreen-text-styles`            | Needs Planning     | Text styles object         |
 
 
 ## Running the project 🏃🏻🏃🏾‍
