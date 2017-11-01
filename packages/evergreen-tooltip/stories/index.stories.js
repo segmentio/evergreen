@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import { Text } from 'evergreen-typography'
 import { Tooltip } from '../src/'
 
-storiesOf('evergreen-tooltip', module).add('Tooltip', () => (
+storiesOf('tooltip', module).add('Tooltip', () => (
   <Box padding={40}>
     {(() => {
       document.body.style.margin = '0'
