@@ -5,21 +5,20 @@ Tooltips display floating content in relation to a target.
 Tooltip appear either at the top, bottom of their target.
 The preferred and default side is the bottom.
 
-Tooltips use a similar implementation to Popovers,
+## Design example
+
+![tooltip](https://user-images.githubusercontent.com/564463/32260757-25a2fb58-be87-11e7-8759-b41ce4b09462.gif)
+
+## Implementation details
+
+* Uses `Positioner` from `evergreen-positioner`
+* Tooltips use `onMouseLeave` and `onMouseEnter` to show and hide the tooltip
+* Tooltips use a similar implementation to Popovers,
 
 When creating a popover, you must specify both:
 
 * its content, by setting the content prop, and
 * its target, as a single child element or a function
-
-## Example
-
-TODO
-
-## Key points
-
-* Uses `Positioner` from `evergreen-positioner`
-* Tooltips use `onMouseLeave` and `onMouseEnter` to show and hide the tooltip
 
 ## Usage
 
