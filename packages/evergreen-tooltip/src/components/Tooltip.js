@@ -1,13 +1,16 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import TooltipContent from './TooltipContent'
+import Positioner from 'evergreen-positioner'
+import TooltipStateless from './TooltipStateless'
 
 export default class Tooltip extends PureComponent {
   static propTypes = {
+    ...Positioner.propTypes,
     content: PropTypes.node,
     isShown: PropTypes.bool,
     children: PropTypes.node,
     tooltipProps: PropTypes.object,
+    statelessProps: PropTypes.objectOf(TooltipStateless.propTypes),
   }
 
   constructor(props, context) {
@@ -40,7 +43,7 @@ export default class Tooltip extends PureComponent {
   }
 
   render() {
-    const { isShown, content, children, tooltipProps, ...props } = this.props
+    const { isShown, content, children, statelessProps, ...props } = this.props
     const { isShown: stateIsShown, targetRect } = this.state
 
     const shown = isShown || stateIsShown
@@ -64,13 +67,24 @@ export default class Tooltip extends PureComponent {
             ...(shown ? { 'data-tooltip-opened': true } : {}),
             key: 'tooltip-child',
           }),
-      <TooltipContent
+      <Positioner
+        key="tooltip-positioner"
         targetRect={targetRect}
         isShown={shown}
-        tooltipProps={tooltipProps}
+        {...props}
       >
-        {content}
-      </TooltipContent>,
+        {({ css, style, state, getRef }) => (
+          <TooltipStateless
+            innerRef={ref => getRef(ref)}
+            data-state={state}
+            css={css}
+            style={style}
+            {...statelessProps}
+          >
+            {content}
+          </TooltipStateless>
+        )}
+      </Positioner>,
     ]
   }
 }

@@ -46,7 +46,7 @@ export default class Positioner extends PureComponent {
     side: PropTypes.oneOf(objectValues(PositionerSides)),
     zIndex: PropTypes.number,
     isShown: PropTypes.bool,
-    children: PropTypes.node,
+    children: PropTypes.func,
     innerRef: PropTypes.func,
     bodyOffset: PropTypes.number,
     targetRect: PropTypes.object,
