@@ -1,6 +1,6 @@
 {
   "name": "evergreen-tooltip",
-  "version": "1.0.0",
+  "version": "2.5.0",
   "description": "React components: Tooltip",
   "main": "lib/index.js",
   "keywords": [
@@ -15,7 +15,7 @@
   "dependencies": {
     "color": "^2.0.0",
     "evergreen-colors": "^2.2.6",
-    "evergreen-positioner": "^1.0.0",
+    "evergreen-positioner": "^2.5.0",
     "evergreen-typography": "^2.2.6",
     "prop-types": "^15.0.0",
     "ui-box": "^0.4.0"

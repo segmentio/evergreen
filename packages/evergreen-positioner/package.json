@@ -1,6 +1,6 @@
 {
   "name": "evergreen-positioner",
-  "version": "1.0.0",
+  "version": "2.5.0",
   "description": "React components: Positioner",
   "main": "lib/index.js",
   "keywords": [
