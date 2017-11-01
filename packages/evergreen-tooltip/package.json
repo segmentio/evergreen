@@ -1,0 +1,26 @@
+{
+  "name": "evergreen-tooltip",
+  "version": "1.0.0",
+  "description": "React components: Tooltip",
+  "main": "lib/index.js",
+  "keywords": [
+    "evergreen",
+    "segment",
+    "ui",
+    "react",
+    "Tooltip"
+  ],
+  "author": "Segment",
+  "license": "MIT",
+  "dependencies": {
+    "color": "^2.0.0",
+    "evergreen-colors": "^2.2.6",
+    "evergreen-positioner": "^1.0.0",
+    "evergreen-typography": "^2.2.6",
+    "prop-types": "^15.0.0",
+    "ui-box": "^0.4.0"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  }
+}
