@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import objectValues from 'object-values'
-import PopoverContentCard from './PopoverContentCard'
-import PopoverSides from '../popover-sides'
+import Positioner from 'evergreen-positioner'
+import PopoverStateless from './PopoverStateless'
 
 export default class Popover extends Component {
   static propTypes = {
-    side: PropTypes.oneOf(objectValues(PopoverSides)),
+    ...Positioner.propTypes,
     onOpen: PropTypes.func.isRequired,
     // Use isOpen to manually control the Popover
     isOpen: PropTypes.bool,
-    zIndex: PropTypes.number,
     onClose: PropTypes.func.isRequired,
     content: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
@@ -18,23 +16,15 @@ export default class Popover extends Component {
     display: PropTypes.string,
     minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     minHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    bodyOffset: PropTypes.number,
-    targetOffset: PropTypes.number,
-    animationDuration: PropTypes.number,
-    useSmartPositioning: PropTypes.bool,
+    statelessProps: PropTypes.objectOf(PopoverStateless.propTypes),
   }
 
   static defaultProps = {
-    side: PopoverSides.BOTTOM,
-    zIndex: 50,
+    side: 'bottom',
     onOpen: () => {},
     onClose: () => {},
     minWidth: 200,
     minHeight: 40,
-    bodyOffset: 8,
-    targetOffset: 4,
-    useSmartPositioning: true,
-    animationDuration: 300,
   }
 
   constructor() {
@@ -134,7 +124,6 @@ export default class Popover extends Component {
 
   render() {
     const {
-      side,
       zIndex,
       isOpen,
       content,
@@ -142,10 +131,8 @@ export default class Popover extends Component {
       children,
       minWidth,
       minHeight,
-      bodyOffset,
-      targetOffset,
-      animationDuration,
-      useSmartPositioning,
+      statelessProps,
+      ...props
     } = this.props
     const { isOpen: stateIsOpen, targetRect } = this.state
 
@@ -168,27 +155,34 @@ export default class Popover extends Component {
             ...(open ? { 'data-popover-opened': true } : {}),
             key: 'popover-child',
           }),
-      <PopoverContentCard
-        key="popover-card"
-        innerRef={ref => {
-          this.popoverNode = ref
-        }}
-        side={side}
-        isOpen={open}
-        zIndex={zIndex}
-        display={display}
-        minWidth={minWidth}
-        minHeight={minHeight}
+
+      <Positioner
+        key="popover-positioner"
         targetRect={targetRect}
-        bodyOffset={bodyOffset}
-        targetOffset={targetOffset}
-        animationDuration={animationDuration}
-        useSmartPositioning={useSmartPositioning}
+        zIndex={zIndex}
+        isShown={open}
+        {...props}
       >
-        {typeof content === 'function'
-          ? content({ targetRect, close: this.close })
-          : content}
-      </PopoverContentCard>,
+        {({ css, style, state, getRef }) => (
+          <PopoverStateless
+            innerRef={ref => {
+              this.popoverNode = ref
+              getRef(ref)
+            }}
+            data-state={state}
+            css={css}
+            style={style}
+            display={display}
+            minWidth={minWidth}
+            minHeight={minHeight}
+            {...statelessProps}
+          >
+            {typeof content === 'function'
+              ? content({ targetRect, close: this.close })
+              : content}
+          </PopoverStateless>
+        )}
+      </Positioner>,
     ]
   }
 }

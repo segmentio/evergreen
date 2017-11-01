@@ -1,26 +1,30 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import objectValues from 'object-values'
 import Transition from 'react-transition-group/Transition'
-import { Card } from 'evergreen-layers'
 import { Portal } from 'evergreen-portal'
-import PopoverSides from '../popover-sides'
 
-const INITIAL_SCALE = 0.9
+const PositionerSides = {
+  BOTTOM: 'bottom',
+  TOP: 'top',
+}
 
 const animationEasing = {
-  standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`,
-  sharp: `cubic-bezier(0.4, 0.0, 0.6, 1)`,
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`,
 }
 
-const styles = ({ targetOffset, animationDuration }) => ({
+const initialState = () => ({
+  top: null,
+  left: null,
+  side: null,
+  transformOriginX: null,
+})
+
+const getCSS = ({ targetOffset, initialScale, animationDuration }) => ({
   position: 'absolute',
   opacity: 0,
   transition: `all ${animationDuration}ms ${animationEasing.spring}`,
-  transform: `scale(${INITIAL_SCALE}) translateY(-4px)`,
+  transform: `scale(${initialScale}) translateY(-1px)`,
   '&[data-state="entering"][data-position="bottom"], &[data-state="entered"][data-position="bottom"]': {
     opacity: 1,
     visibility: 'visible',
@@ -37,33 +41,34 @@ const styles = ({ targetOffset, animationDuration }) => ({
   },
 })
 
-const initialState = () => ({
-  top: null,
-  left: null,
-  side: null,
-  transformOriginX: null,
-})
-
-export default class PopoverContentCard extends Component {
+export default class Positioner extends PureComponent {
   static propTypes = {
-    ...Card.propTypes,
-    side: PropTypes.oneOf(objectValues(PopoverSides)),
-    isOpen: PropTypes.bool.isRequired,
+    side: PropTypes.oneOf(objectValues(PositionerSides)),
     zIndex: PropTypes.number,
-    children: PropTypes.node,
+    isShown: PropTypes.bool,
+    children: PropTypes.func,
     innerRef: PropTypes.func,
     bodyOffset: PropTypes.number,
+    targetRect: PropTypes.object,
     targetOffset: PropTypes.number,
+    initialScale: PropTypes.number,
     animationDuration: PropTypes.number,
     useSmartPositioning: PropTypes.bool,
   }
 
   static defaultProps = {
+    innerRef: () => {},
+    side: PositionerSides.BOTTOM,
+    zIndex: 40,
+    bodyOffset: 4,
+    targetOffset: 8,
+    initialScale: 0.9,
     animationDuration: 300,
+    useSmartPositioning: true,
   }
 
-  constructor() {
-    super()
+  constructor(props, context) {
+    super(props, context)
     this.state = initialState()
   }
 
@@ -83,27 +88,35 @@ export default class PopoverContentCard extends Component {
     }
   }
 
+  getRef = ref => {
+    this.positionerRef = ref
+    this.props.innerRef(ref)
+  }
+
   handleEnter = () => {
-    const { useSmartPositioning, bodyOffset } = this.props
+    const { useSmartPositioning, bodyOffset, initialScale } = this.props
     const { top, bottom } = this.getAnchors()
     let side = this.props.side
 
-    // Smartly position the popover when it overflows the body
-    const popoverRect = this.popoverNode.getBoundingClientRect()
-    popoverRect.width *= 1 / INITIAL_SCALE
-    popoverRect.height *= 1 / INITIAL_SCALE
+    // Smartly position the positioner when it overflows the body
+    const positionerRect = this.positionerRef.getBoundingClientRect()
+    positionerRect.width *= 1 / initialScale
+    positionerRect.height *= 1 / initialScale
     const viewportHeight =
       document.documentElement.clientHeight + window.scrollY
     const viewportWidth = document.documentElement.clientWidth + window.scrollX
 
-    if (useSmartPositioning && popoverRect.height + bottom.y > viewportHeight) {
+    if (
+      useSmartPositioning &&
+      positionerRect.height + bottom.y > viewportHeight
+    ) {
       side = 'top'
     }
 
-    this.popoverNode.setAttribute('data-position', side)
+    this.positionerRef.setAttribute('data-position', side)
 
-    let left = Math.max(bottom.x - popoverRect.width / 2, bodyOffset)
-    left = Math.min(left, viewportWidth - popoverRect.width - bodyOffset)
+    let left = Math.max(bottom.x - positionerRect.width / 2, bodyOffset)
+    left = Math.min(left, viewportWidth - positionerRect.width - bodyOffset)
 
     let transformOriginX = bottom.x - left
     transformOriginX = Math.max(transformOriginX - bodyOffset, bottom.x - left)
@@ -112,7 +125,10 @@ export default class PopoverContentCard extends Component {
       left,
       side,
       transformOriginX,
-      top: side === PopoverSides.BOTTOM ? bottom.y : top.y - popoverRect.height,
+      top:
+        side === PositionerSides.BOTTOM
+          ? bottom.y
+          : top.y - positionerRect.height,
     })
   }
 
@@ -123,9 +139,10 @@ export default class PopoverContentCard extends Component {
   render() {
     const {
       children,
-      isOpen,
       zIndex,
-      innerRef,
+      isShown,
+      targetRect,
+      initialScale,
       targetOffset,
       animationDuration,
     } = this.props
@@ -133,44 +150,38 @@ export default class PopoverContentCard extends Component {
     const { left, top, side, transformOriginX } = this.state
 
     const transformOrigin = `${transformOriginX}px ${side ===
-    PopoverSides.BOTTOM
+    PositionerSides.BOTTOM
       ? 'top'
       : 'bottom'}`
 
     return (
       <Portal>
         <Transition
-          in={isOpen}
+          in={isShown}
           timeout={animationDuration}
           onEnter={this.handleEnter}
           onExited={this.handleExited}
           unmountOnExit
         >
-          {state => (
-            <Card
-              role="dialog"
-              elevation={3}
-              backgroundColor="white"
-              overflow="hidden"
-              data-state={state}
-              css={{
-                ...styles({ targetOffset, animationDuration }),
-              }}
-              style={{
+          {state =>
+            children({
+              top,
+              left,
+              side,
+              state,
+              zIndex,
+              css: getCSS({ targetOffset, initialScale, animationDuration }),
+              style: {
                 left,
                 top,
                 transformOrigin,
                 zIndex,
-              }}
-              innerRef={node => {
-                this.popoverNode = node
-                innerRef(node)
-              }}
-              minWidth={200}
-            >
-              {children}
-            </Card>
-          )}
+              },
+              getRef: this.getRef,
+              targetRect,
+              transformOrigin,
+              animationDuration,
+            })}
         </Transition>
       </Portal>
     )
