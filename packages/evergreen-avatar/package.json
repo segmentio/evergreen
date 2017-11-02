@@ -1,18 +1,24 @@
 {
   "name": "evergreen-avatar",
-  "version": "1.0.0",
+  "version": "2.6.0",
   "description": "React components: Avatar",
   "main": "lib/index.js",
-  "keywords": ["evergreen", "segment", "ui", "react", "Avatar"],
+  "keywords": [
+    "evergreen",
+    "segment",
+    "ui",
+    "react",
+    "Avatar"
+  ],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "ui-box": "^0.4.0",
-    "prop-types": "^15.0.0",
-    "evergreen-image": "^1.0.0",
+    "evergreen-color-utils": "^2.2.6",
     "evergreen-colors": "^2.2.6",
+    "evergreen-image": "^2.6.0",
     "evergreen-typography": "^2.2.6",
-    "evergreen-color-utils": "^2.2.6"
+    "prop-types": "^15.0.0",
+    "ui-box": "^0.4.0"
   },
   "peerDependencies": {
     "react": "^16.0.0"
