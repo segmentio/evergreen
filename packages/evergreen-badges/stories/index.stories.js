@@ -13,9 +13,9 @@ const baseStyles = {
 }
 
 storiesOf('badges', module)
-  .add('Badge', () =>
+  .add('Badge', () => (
     <Box style={{ ...wrapperStyles }}>
-      {Object.keys(BadgeAppearances.default).map(appearance =>
+      {Object.keys(BadgeAppearances.default).map(appearance => (
         <Box>
           <Badge appearance={appearance} {...baseStyles}>
             {appearance}
@@ -23,13 +23,13 @@ storiesOf('badges', module)
           <Badge appearance={appearance} {...baseStyles} isSolid>
             {appearance}
           </Badge>
-        </Box>,
-      )}
-    </Box>,
-  )
-  .add('Pill', () =>
+        </Box>
+      ))}
+    </Box>
+  ))
+  .add('Pill', () => (
     <Box style={{ ...wrapperStyles }}>
-      {Object.keys(BadgeAppearances.default).map(appearance =>
+      {Object.keys(BadgeAppearances.default).map(appearance => (
         <Box>
           <Pill appearance={appearance} {...baseStyles}>
             {appearance}
@@ -37,7 +37,7 @@ storiesOf('badges', module)
           <Pill appearance={appearance} {...baseStyles} isSolid>
             {appearance}
           </Pill>
-        </Box>,
-      )}
-    </Box>,
-  )
+        </Box>
+      ))}
+    </Box>
+  ))
