@@ -55,6 +55,7 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 | Package                            | Status             | Exports                    |
 |------------------------------------|--------------------|----------------------------|
 | `evergreen-colors`                 | ✅ Good            | Color system object        |
+| `evergreen-color-utils`            | ✅ Good            | Color utils                |
 | `evergreen-shared-styles`          | ✅ Lacking         | Shared styles utils        |
 | `evergreen-typography`             | ✅ OK              | typography components      |
 | `evergreen-layers`                 | ✅ Good            | Pane, Card and styling     |
@@ -62,19 +63,19 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 | `evergreen-icons`                  | ✅ Lacking         | Icon components            |
 | `evergreen-autocomplete`           | ✅ Good            | Autocomplete components    |
 | `evergreen-combobox`               | ✅ Good            | Combobox components        |
-| `evergreen-badges`                 | ✅ Improve design  | Badge components           |
+| `evergreen-badges`                 | ✅ Good            | Badge components           |
 | `evergreen-select`                 | ✅ Good            | Select component           |
 | `evergreen-popover`                | ✅ Good            | Popover component          |
 | `evergreen-portal`                 | ✅ Good            | Portal component           |
 | `evergreen-text-input`             | ✅ Good            | TextInput component        |
 | `evergreen-textarea`               | ✅ Good            | Textarea component         |
 | `evergreen-checkbox`               | ✅ Good            | Checkbox component         |
-| `evergreen-tabs`                   | Needs Planning     | Tabs component             |
-| `evergreen-menu`                   | Needs Planning     | Menu component             |
-| `evergreen-avatar`                 | Needs Planning     | Avatar component           |
+| `evergreen-tabs`                   | ✅ Good            | Tabs component             |
+| `evergreen-avatar`                 | ✅ Good            | Avatar component           |
+| `evergreen-tooltip`                | ✅ Good            | Tooltip component          |
+| `evergreen-image`                  | ✅ Good            | Image component            |
 | `evergreen-callout`                | Needs Planning     | Callout component          |
 | `evergreen-segmented-control`      | Needs Planning     | SegmentedControl component |
-| `evergreen-tooltip`                | Needs Planning     | Tooltip component          |
 | `evergreen-table`                  | Needs Planning     | table component            |
 | `evergreen-side-sheet`             | Needs Planning     | SideSheet component        |
 | `evergreen-bottom-sheet`           | Needs Planning     | BottomSheet component      |
