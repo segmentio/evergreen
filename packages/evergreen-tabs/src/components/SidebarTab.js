@@ -31,7 +31,6 @@ export default class Tablist extends PureComponent {
             height={height}
             width={height}
             iconSize={14}
-            justifySelf="flex-end"
             aim="right"
           />
         )}
