@@ -1,9 +1,16 @@
 {
   "name": "evergreen-badges",
-  "version": "2.4.0",
+  "version": "2.6.1",
   "description": "React Style Components: Pill, Badge",
   "main": "lib/index.js",
-  "keywords": ["evergreen", "segment", "ui", "react", "Pill", "Badge"],
+  "keywords": [
+    "evergreen",
+    "segment",
+    "ui",
+    "react",
+    "Pill",
+    "Badge"
+  ],
   "license": "MIT",
   "peerDependencies": {
     "prop-types": "^15.0.0",
