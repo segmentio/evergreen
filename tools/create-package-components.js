@@ -79,7 +79,7 @@ module.exports = task('create-package-components', async () => {
   )
 
   await fs.writeFile(
-    path.join(packageDir, 'READM.md'),
+    path.join(packageDir, 'README.md'),
     `# ${componentNames[0]}`,
   )
 
