@@ -1,6 +1,6 @@
 {
   "name": "evergreen-badges",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "description": "React Style Components: Pill, Badge",
   "main": "lib/index.js",
   "keywords": [
