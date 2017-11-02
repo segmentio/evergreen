@@ -78,6 +78,11 @@ module.exports = task('create-package-components', async () => {
     JSON.stringify(packageJson, null, 2),
   )
 
+  await fs.writeFile(
+    path.join(packageDir, 'READM.md'),
+    `# ${componentNames[0]}`,
+  )
+
   // Create `src` dir in package
   await fs.ensureDir(path.join(packageDir, 'src'))
   await fs.writeFile(
@@ -123,9 +128,18 @@ function getIndexFile(componentNames) {
 
   componentNames.forEach(componentName => {
     indexFile.push(
-      `export { default as ${componentName} } from './components/${componentName}'`,
+      `import ${componentName} from './components/${componentName}'`,
     )
   })
+
+  indexFile.push('')
+  // Export the first component as the default
+  indexFile.push(`export default ${componentNames[0]}`)
+  indexFile.push(`export {`)
+  componentNames.forEach(componentName => {
+    indexFile.push(`  ${componentName},`)
+  })
+  indexFile.push(`}`)
 
   return indexFile.join('\n')
 }
