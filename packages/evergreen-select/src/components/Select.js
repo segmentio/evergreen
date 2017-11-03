@@ -4,24 +4,12 @@ import Box from 'ui-box'
 import { Text, TextStyles } from 'evergreen-typography'
 import { TriangleIcon } from 'evergreen-icons'
 import colors from 'evergreen-colors'
-import SelectAppearances from '../styles/select-appearances'
-
-const getTextStyleForSelect = ({ height }) => {
-  if (height <= 24) return TextStyles['200']
-  if (height <= 28) return TextStyles['300']
-  if (height <= 32) return TextStyles['300']
-  if (height <= 36) return TextStyles['400']
-  if (height <= 40) return TextStyles['400']
-  if (height <= 48) return TextStyles['500']
-  if (height <= 56) return TextStyles['700']
-  return TextStyles['800']
-}
-
-const getBorderRadiusForSelect = ({ height }) => {
-  if (height <= 28) return 3
-  if (height <= 32) return 4
-  return 5
-}
+import {
+  getIconSizeForControlHeight,
+  getBorderRadiusForControlHeight,
+  getTextSizeForControlHeight,
+} from 'evergreen-shared-styles'
+import SelectAppearances from '../styles/SelectAppearances'
 
 export default class Select extends PureComponent {
   static propTypes = {
@@ -62,8 +50,9 @@ export default class Select extends PureComponent {
       ...props
     } = this.props
     const appearanceStyle = SelectAppearances[appearance]
-    const textStyle = getTextStyleForSelect({ height })
-    const borderRadius = getBorderRadiusForSelect({ height })
+    const textSize = getTextSizeForControlHeight({ height })
+    const borderRadius = getBorderRadiusForControlHeight({ height })
+    const iconSize = getIconSizeForControlHeight({ height })
 
     return (
       <Box height={height} {...props}>
@@ -77,8 +66,8 @@ export default class Select extends PureComponent {
           {...(autofocus ? { autofocus: true } : {})}
           {...(disabled ? { disabled: true } : {})}
           {...(isInvalid ? { 'aria-invalid': true } : {})}
-          css={{ ...appearanceStyle }}
-          {...textStyle}
+          css={appearanceStyle}
+          size={textSize}
           borderRadius={borderRadius}
           textTransform="default"
           paddingLeft={Math.round(height / 3.2)}
@@ -92,7 +81,8 @@ export default class Select extends PureComponent {
           boxSizing="border-box"
           position="absolute"
           right={height >= 36 ? 4 : 0}
-          color={disabled ? colors.neutral['50A'] : colors.neutral['200A']}
+          color={disabled ? 'disabled' : 'default'}
+          iconSize={iconSize}
           css={{
             pointerEvents: 'none',
           }}

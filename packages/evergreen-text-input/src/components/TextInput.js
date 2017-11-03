@@ -5,7 +5,7 @@ import {
   getBorderRadiusForControlHeight,
   getTextStyleForControlHeight,
 } from 'evergreen-shared-styles'
-import TextInputAppearances from '../styles/text-input-appearances'
+import TextInputAppearances from '../styles/TextInputAppearances'
 
 export default class TextInput extends PureComponent {
   static propTypes = {
@@ -41,6 +41,8 @@ export default class TextInput extends PureComponent {
     const appearanceStyle = TextInputAppearances[appearance]
     const textStyle = getTextStyleForControlHeight({ height })
     const borderRadius = getBorderRadiusForControlHeight({ height })
+
+    console.log('props', this.props)
 
     return (
       <Text

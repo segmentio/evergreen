@@ -17,6 +17,11 @@
     "react": "^16.0.0"
   },
   "dependencies": {
-    "evergreen-color-utils": "^2.6.0"
+    "evergreen-color-utils": "^2.6.0",
+    "ui-box": "^0.5.4"
+  },
+  "devDependencies": {
+    "evergreen-layers": "^2.2.6",
+    "evergreen-typography": "^2.2.6"
   }
 }

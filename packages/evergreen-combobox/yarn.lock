@@ -42,24 +42,25 @@ encoding@^0.1.11:
   dependencies:
     iconv-lite "~0.4.13"
 
-evergreen-autocomplete@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/evergreen-autocomplete/-/evergreen-autocomplete-2.4.0.tgz#26ce45c6be2096e6ccae263ff2a0953953944d14"
+evergreen-autocomplete@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/evergreen-autocomplete/-/evergreen-autocomplete-2.8.0.tgz#76f26ea90f566c48ce6db837a6dabba623bb2318"
   dependencies:
     downshift "^1.16.0"
     evergreen-layers "^2.2.6"
-    evergreen-popover "^2.3.0"
+    evergreen-popover "^2.8.0"
     evergreen-typography "^2.2.6"
     fuzzaldrin-plus "^0.5.0"
     prop-types "^15.0.0"
     react-tiny-virtual-list "^2.1.4"
     ui-box "^0.4.0"
 
-evergreen-buttons@^2.2.6:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/evergreen-buttons/-/evergreen-buttons-2.2.6.tgz#76fecde2633263c0554291b8735a9a064806545f"
+evergreen-buttons@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/evergreen-buttons/-/evergreen-buttons-2.8.0.tgz#e34bf9d317045d0ab79cce321adb979985f30787"
   dependencies:
     evergreen-colors "^2.2.6"
+    evergreen-shared-styles "^2.8.0"
     evergreen-typography "^2.2.6"
     ui-box "^0.4.1"
 
@@ -67,9 +68,9 @@ evergreen-colors@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/evergreen-colors/-/evergreen-colors-2.2.6.tgz#229277e934eab18de8ac67d4fedf565f59502497"
 
-evergreen-icons@^2.2.7:
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/evergreen-icons/-/evergreen-icons-2.2.7.tgz#1edd3c9c2140724da48ce86122758ecee2294237"
+evergreen-icons@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/evergreen-icons/-/evergreen-icons-2.4.0.tgz#ee6b4cba3a649f51e0cbed73f66672bb0deb52d3"
   dependencies:
     ui-box "^0.4.1"
 
@@ -80,14 +81,13 @@ evergreen-layers@^2.2.6:
     evergreen-colors "^2.2.6"
     ui-box "^0.4.1"
 
-evergreen-popover@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/evergreen-popover/-/evergreen-popover-2.3.0.tgz#26bf65dcee76a9d308b2a3c070c12d2e9b75ee4a"
+evergreen-popover@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/evergreen-popover/-/evergreen-popover-2.8.0.tgz#30f8363f90266d9f6f8393058fc7e6c12832811f"
   dependencies:
     evergreen-layers "^2.2.6"
-    evergreen-portal "^2.2.6"
-    object-values "^1.0.0"
-    react-transition-group "^2.2.1"
+    evergreen-positioner "^2.2.6"
+    prop-types "^15.0.0"
     ui-box "^0.4.1"
 
 evergreen-portal@^2.2.6:
@@ -97,20 +97,30 @@ evergreen-portal@^2.2.6:
     dom-helpers "^3.2.1"
     ui-box "^0.4.1"
 
-evergreen-shared-styles@^2.2.6:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/evergreen-shared-styles/-/evergreen-shared-styles-2.2.6.tgz#0acb2263c06f1ad648e975e95b42d96f13361e39"
+evergreen-positioner@^2.2.6:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/evergreen-positioner/-/evergreen-positioner-2.5.0.tgz#213eaf0205c76f7186a8b7e34a2590557d994549"
+  dependencies:
+    evergreen-portal "^2.2.6"
+    object-values "^1.0.0"
+    prop-types "^15.0.0"
+    react-transition-group "^2.2.1"
+    ui-box "^0.4.0"
+
+evergreen-shared-styles@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/evergreen-shared-styles/-/evergreen-shared-styles-2.8.0.tgz#06061e257568313baaaa0607fc236667fdfa17b0"
   dependencies:
     evergreen-colors "^2.2.6"
     evergreen-typography "^2.2.6"
     ui-box "^0.4.1"
 
-evergreen-text-input@^2.2.8:
-  version "2.2.8"
-  resolved "https://registry.yarnpkg.com/evergreen-text-input/-/evergreen-text-input-2.2.8.tgz#d895a686bd3628622d34ff884b97d3e072a92d35"
+evergreen-text-input@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/evergreen-text-input/-/evergreen-text-input-2.8.0.tgz#e7af89a7589af3beb5501cd2c0b3e93c8fcacc0e"
   dependencies:
     evergreen-colors "^2.2.6"
-    evergreen-shared-styles "^2.2.6"
+    evergreen-shared-styles "^2.8.0"
     evergreen-typography "^2.2.6"
     ui-box "^0.4.1"
 
@@ -250,6 +260,13 @@ ua-parser-js@^0.7.9:
 ui-box@^0.4.0, ui-box@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.4.1.tgz#410f7b14ef9abdfac10973e21ba6fc1e1d0fa072"
+  dependencies:
+    classnames "^2.2.5"
+    glamor "^2.20.22"
+
+ui-box@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.5.4.tgz#b8f0a4a638b541ef198d07872c785022f60b93a0"
   dependencies:
     classnames "^2.2.5"
     glamor "^2.20.22"

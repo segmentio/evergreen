@@ -15,11 +15,15 @@
   "dependencies": {
     "evergreen-colors": "^2.2.6",
     "evergreen-icons": "^2.4.0",
+    "evergreen-shared-styles": "^2.2.6",
     "evergreen-typography": "^2.2.6",
-    "ui-box": "^0.4.1"
+    "ui-box": "^0.5.4"
   },
   "peerDependencies": {
     "prop-types": "^15.0.0",
     "react": "^16.0.0"
+  },
+  "devDependencies": {
+    "evergreen-layers": "^2.2.6"
   }
 }

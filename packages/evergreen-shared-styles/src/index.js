@@ -5,6 +5,9 @@ export {
   default as getTextStyleForControlHeight,
 } from './utils/getTextStyleForControlHeight'
 export {
+  default as getIconSizeForControlHeight,
+} from './utils/getIconSizeForControlHeight'
+export {
   default as getBorderRadiusForTextSize,
 } from './utils/getBorderRadiusForTextSize'
 export {
