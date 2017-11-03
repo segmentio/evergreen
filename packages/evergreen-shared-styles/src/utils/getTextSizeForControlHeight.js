@@ -1,4 +1,5 @@
 const getTextSizeForControlHeight = ({ height }) => {
+  if (height <= 24) return '200'
   if (height <= 28) return '300'
   if (height <= 32) return '300'
   if (height <= 36) return '400'
