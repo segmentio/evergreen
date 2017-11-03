@@ -43,7 +43,7 @@ const SelectAppearances = {
       ]}, inset 0 -1px 1px 0 ${colors.neutral['15A']}`,
     },
     '&:not([disabled]):focus': {
-      boxShadow: `0 0 0 2px ${colors.blue['20A']}, inset 0 0 0 1px ${colors
+      boxShadow: `0 0 0 3px ${colors.blue['20A']}, inset 0 0 0 1px ${colors
         .neutral['70A']}, inset 0 -1px 1px 0 ${colors.neutral['10A']}`,
     },
     '&:not([disabled]):active': {

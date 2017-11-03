@@ -66,12 +66,29 @@ evergreen-colors@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/evergreen-colors/-/evergreen-colors-2.2.6.tgz#229277e934eab18de8ac67d4fedf565f59502497"
 
+evergreen-layers@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/evergreen-layers/-/evergreen-layers-2.2.6.tgz#d65e9056ae2fc4eb41e0a73577fb7d41d4a8d672"
+  dependencies:
+    evergreen-colors "^2.2.6"
+    ui-box "^0.4.1"
+
 evergreen-portal@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/evergreen-portal/-/evergreen-portal-2.2.6.tgz#2bb507bf01c95dd3ce428888fe533b4d9b94df14"
   dependencies:
     dom-helpers "^3.2.1"
     ui-box "^0.4.1"
+
+evergreen-positioner@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/evergreen-positioner/-/evergreen-positioner-2.5.0.tgz#213eaf0205c76f7186a8b7e34a2590557d994549"
+  dependencies:
+    evergreen-portal "^2.2.6"
+    object-values "^1.0.0"
+    prop-types "^15.0.0"
+    react-transition-group "^2.2.1"
+    ui-box "^0.4.0"
 
 evergreen-typography@^2.2.6:
   version "2.2.6"
@@ -203,6 +220,13 @@ ua-parser-js@^0.7.9:
 ui-box@^0.4.0, ui-box@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.4.1.tgz#410f7b14ef9abdfac10973e21ba6fc1e1d0fa072"
+  dependencies:
+    classnames "^2.2.5"
+    glamor "^2.20.22"
+
+ui-box@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.5.4.tgz#b8f0a4a638b541ef198d07872c785022f60b93a0"
   dependencies:
     classnames "^2.2.5"
     glamor "^2.20.22"

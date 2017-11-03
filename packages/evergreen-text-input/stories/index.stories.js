@@ -11,7 +11,7 @@ const Description = props => (
 storiesOf('text-input', module).add('TextInput', () => (
   <div>
     {Object.keys(TextInputAppearances).map(appearance => (
-      <Box>
+      <Box padding={40} float="left">
         <Heading marginBottom={24}>Appearance: {appearance}</Heading>
         <Box marginBottom={24} width={360}>
           <Label htmlFor={32} size={400} display="block">

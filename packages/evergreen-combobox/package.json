@@ -18,12 +18,14 @@
     "evergreen-icons": "^2.4.0",
     "evergreen-text-input": "^2.8.0",
     "prop-types": "^15.0.0",
-    "ui-box": "^0.4.0"
+    "ui-box": "^0.5.4"
   },
   "peerDependencies": {
     "react": "^16.0.0"
   },
   "devDependencies": {
+    "evergreen-layers": "^2.2.6",
+    "evergreen-typography": "^2.2.6",
     "starwars-names": "^1.6.0"
   }
 }

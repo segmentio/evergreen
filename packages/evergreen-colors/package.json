@@ -13,7 +13,9 @@
   "author": "Segment",
   "license": "MIT",
   "devDependencies": {
-    "ui-box": "^0.4.1"
+    "evergreen-layers": "^2.2.6",
+    "evergreen-typography": "^2.2.6",
+    "ui-box": "^0.5.4"
   },
   "peerDependencies": {
     "react": "^16.0.0"

@@ -62,7 +62,7 @@ module.exports = task('create-package-components', async () => {
 
     // Unsure if this should be peer or regular dependency
     dependencies: {
-      'ui-box': '^0.4.0',
+      'ui-box': '^0.5.3',
       'prop-types': '^15.0.0',
     },
 
