@@ -1,17 +1,23 @@
 {
   "name": "evergreen-segmented-control",
-  "version": "1.0.0",
+  "version": "2.8.0",
   "description": "React components: SegmentedControl",
   "main": "lib/index.js",
-  "keywords": ["evergreen", "segment", "ui", "react", "SegmentedControl"],
+  "keywords": [
+    "evergreen",
+    "segment",
+    "ui",
+    "react",
+    "SegmentedControl"
+  ],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "ui-box": "^0.4.0",
-    "prop-types": "^15.0.0",
-    "evergreen-shared-styles": "^2.0.0",
     "evergreen-colors": "^2.0.0",
-    "evergreen-typography": "^2.0.0"
+    "evergreen-shared-styles": "^2.8.0",
+    "evergreen-typography": "^2.0.0",
+    "prop-types": "^15.0.0",
+    "ui-box": "^0.4.0"
   },
   "peerDependencies": {
     "react": "^16.0.0"
