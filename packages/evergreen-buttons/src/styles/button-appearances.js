@@ -49,7 +49,10 @@ const ButtonAppearances = {
       color: colors.blue['1000'],
       backgroundImage: 'none',
       backgroundColor: colors.blue['10A'],
-      boxShadow: `inset 0 0 0 1px ${colors.blue['80A']}`,
+      boxShadow: `inset 0 0 0 1px ${colors.neutral[
+        '20A'
+      ]}, inset 0 -1px 1px 0 ${colors.neutral['10A']}`,
+      // boxShadow: `inset 0 0 0 1px ${colors.blue['80A']}`,
     },
   },
   blue: {
