@@ -1,6 +1,6 @@
 {
   "name": "evergreen-color-utils",
-  "version": "2.6.0",
+  "version": "2.9.0",
   "description": "JS package: evergreen-color-utils",
   "main": "lib/index.js",
   "keywords": [
@@ -12,11 +12,11 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-colors": "^2.2.6",
+    "evergreen-colors": "^2.9.0",
     "ui-box": "^0.5.4"
   },
   "devDependencies": {
-    "evergreen-layers": "^2.2.6",
-    "evergreen-typography": "^2.2.6"
+    "evergreen-layers": "^2.9.0",
+    "evergreen-typography": "^2.9.0"
   }
 }
