@@ -1,6 +1,15 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import colors from 'evergreen-colors'
 import Box from 'ui-box'
+
+const IconColors = {
+  default: colors.neutral['200A'],
+  disabled: colors.neutral['50A'],
+  muted: colors.neutral['60A'],
+  selected: colors.blue['500'],
+  white: colors.white['500'],
+}
 
 const IconAim = {
   none: null,
@@ -21,6 +30,7 @@ export default class Icon extends PureComponent {
   }
 
   static defaultProps = {
+    color: 'default',
     aim: 'none',
     is: 'span',
     display: 'inline-flex',
@@ -31,7 +41,20 @@ export default class Icon extends PureComponent {
   }
 
   render() {
-    const { aim, transform, size, iconSize, children, ...props } = this.props
+    const {
+      aim,
+      transform,
+      size,
+      iconSize,
+      children,
+      color: colorProp,
+      ...props
+    } = this.props
+
+    let color = colorProp
+    if (Object.prototype.hasOwnProperty.call(IconColors, color)) {
+      color = IconColors[color]
+    }
 
     let totalTransform = transform || ''
     if (aim) {
@@ -47,6 +70,7 @@ export default class Icon extends PureComponent {
           display="inline-flex"
           alignItems="center"
           justifyContent="center"
+          color={color}
         >
           {children}
         </Box>

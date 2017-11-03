@@ -34,9 +34,16 @@ evergreen-colors@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/evergreen-colors/-/evergreen-colors-2.2.6.tgz#229277e934eab18de8ac67d4fedf565f59502497"
 
-evergreen-shared-styles@^2.2.6:
+evergreen-layers@^2.2.6:
   version "2.2.6"
-  resolved "https://registry.yarnpkg.com/evergreen-shared-styles/-/evergreen-shared-styles-2.2.6.tgz#0acb2263c06f1ad648e975e95b42d96f13361e39"
+  resolved "https://registry.yarnpkg.com/evergreen-layers/-/evergreen-layers-2.2.6.tgz#d65e9056ae2fc4eb41e0a73577fb7d41d4a8d672"
+  dependencies:
+    evergreen-colors "^2.2.6"
+    ui-box "^0.4.1"
+
+evergreen-shared-styles@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/evergreen-shared-styles/-/evergreen-shared-styles-2.8.0.tgz#06061e257568313baaaa0607fc236667fdfa17b0"
   dependencies:
     evergreen-colors "^2.2.6"
     evergreen-typography "^2.2.6"
@@ -146,6 +153,13 @@ ua-parser-js@^0.7.9:
 ui-box@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.4.1.tgz#410f7b14ef9abdfac10973e21ba6fc1e1d0fa072"
+  dependencies:
+    classnames "^2.2.5"
+    glamor "^2.20.22"
+
+ui-box@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.5.4.tgz#b8f0a4a638b541ef198d07872c785022f60b93a0"
   dependencies:
     classnames "^2.2.5"
     glamor "^2.20.22"

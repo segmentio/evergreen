@@ -5,7 +5,7 @@ import {
   getBorderRadiusForControlHeight,
   getTextStyleForControlHeight,
 } from 'evergreen-shared-styles'
-import ButtonAppearances from '../styles/button-appearances'
+import ButtonAppearances from '../styles/ButtonAppearances'
 
 export default class Button extends PureComponent {
   static propTypes = {

@@ -9,7 +9,7 @@ const InputAppearances = {
       '40A'
     ]}, inset 0 1px 2px ${colors.neutral['20A']}`,
     '&[aria-invalid]': {
-      boxShadow: `inset 0 0 0 1px ${colors.red['500']}, inset 0 1px 2px ${colors
+      boxShadow: `inset 0 0 0 1px ${colors.red['500']}, inset 0 1px 1px ${colors
         .neutral['40A']}`,
     },
     '&::placeholder': {
@@ -20,7 +20,7 @@ const InputAppearances = {
       outline: 'none',
       boxShadow: `inset 0 0 2px ${colors.neutral[
         '40A'
-      ]}, inset 0 0 0 1px ${colors.blue['150A']}, 0 0 0 2px ${colors.blue[
+      ]}, inset 0 0 0 1px ${colors.blue['150A']}, 0 0 0 3px ${colors.blue[
         '15A'
       ]}`,
     },
@@ -38,7 +38,7 @@ const InputAppearances = {
       boxShadow: `inset 0 0 0 1px ${colors.red['500']}`,
     },
     '&::placeholder': {
-      color: colors.neutral['100A'],
+      color: colors.neutral['200A'],
     },
     '&:focus': {
       outline: 'none',
