@@ -94,29 +94,32 @@ export default class Positioner extends PureComponent {
   }
 
   handleEnter = () => {
-    const { useSmartPositioning, bodyOffset, initialScale } = this.props
+    const { useSmartPositioning, bodyOffset } = this.props
     const { top, bottom } = this.getAnchors()
     let side = this.props.side
 
     // Smartly position the positioner when it overflows the body
-    const positionerRect = this.positionerRef.getBoundingClientRect()
-    positionerRect.width *= 1 / initialScale
-    positionerRect.height *= 1 / initialScale
     const viewportHeight =
       document.documentElement.clientHeight + window.scrollY
     const viewportWidth = document.documentElement.clientWidth + window.scrollX
 
     if (
       useSmartPositioning &&
-      positionerRect.height + bottom.y > viewportHeight
+      this.positionerRef.offsetHeight + bottom.y > viewportHeight
     ) {
       side = 'top'
     }
 
     this.positionerRef.setAttribute('data-position', side)
 
-    let left = Math.max(bottom.x - positionerRect.width / 2, bodyOffset)
-    left = Math.min(left, viewportWidth - positionerRect.width - bodyOffset)
+    let left = Math.max(
+      bottom.x - this.positionerRef.offsetWidth / 2,
+      bodyOffset,
+    )
+    left = Math.min(
+      left,
+      viewportWidth - this.positionerRef.offsetWidth - bodyOffset,
+    )
 
     let transformOriginX = bottom.x - left
     transformOriginX = Math.max(transformOriginX - bodyOffset, bottom.x - left)
@@ -128,7 +131,7 @@ export default class Positioner extends PureComponent {
       top:
         side === PositionerSides.BOTTOM
           ? bottom.y
-          : top.y - positionerRect.height,
+          : top.y - this.positionerRef.offsetHeight,
     })
   }
 
