@@ -43,6 +43,7 @@ export default class Pane extends PureComponent {
       hoverElevation,
       activeElevation,
 
+      border,
       borderTop,
       borderRight,
       borderBottom,
@@ -100,8 +101,12 @@ export default class Pane extends PureComponent {
       ) {
         return `1px solid ${BorderColors[borderSideProperty]}`
       } else if (borderSideProperty === true) {
-        // Use default border color when explicitly a true boolean
-        return `1px solid ${BorderColors.default}`
+        // Use default, which is now muted, border color when explicitly a true boolean
+        return `1px solid ${BorderColors.muted}`
+      } else if (Object.prototype.hasOwnProperty.call(BorderColors, border)) {
+        return `1px solid ${BorderColors[border]}`
+      } else if (border === true) {
+        return `1px solid ${BorderColors.muted}`
       }
 
       return borderSideProperty
