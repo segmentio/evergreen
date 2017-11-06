@@ -14,5 +14,6 @@ export {
   default as getBorderRadiusForControlHeight,
 } from './utils/getBorderRadiusForControlHeight'
 export { default as InputAppearances } from './styles/InputAppearances'
+export { default as CheckboxAppearances } from './styles/CheckboxAppearances'
 export { default as controlBaseStyle } from './styles/controlBaseStyle'
 export { default as selectableStyle } from './styles/selectableStyle'

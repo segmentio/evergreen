@@ -1,4 +1,4 @@
-import { controlBaseStyle as baseStyle } from 'evergreen-shared-styles'
+import { controlBaseStyle as baseStyle } from './controlBaseStyle'
 import colors from 'evergreen-colors'
 
 const disabledState = '&[disabled] + div'
