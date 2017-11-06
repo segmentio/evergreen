@@ -1,16 +1,23 @@
 {
   "name": "evergreen-radio",
-  "version": "1.0.0",
+  "version": "2.11.0",
   "description": "React components: Radio, RadioGroup",
   "main": "lib/index.js",
-  "keywords": ["evergreen", "segment", "ui", "react", "Radio", "RadioGroup"],
+  "keywords": [
+    "evergreen",
+    "segment",
+    "ui",
+    "react",
+    "Radio",
+    "RadioGroup"
+  ],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "ui-box": "^0.5.3",
-    "prop-types": "^15.0.0",
+    "evergreen-shared-styles": "^2.11.0",
     "evergreen-typography": "^2.0.0",
-    "evergreen-shared-styles": "^2.0.0"
+    "prop-types": "^15.0.0",
+    "ui-box": "^0.5.3"
   },
   "peerDependencies": {
     "react": "^16.0.0"
