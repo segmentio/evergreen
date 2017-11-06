@@ -42,8 +42,6 @@ export default class TextInput extends PureComponent {
     const textStyle = getTextStyleForControlHeight({ height })
     const borderRadius = getBorderRadiusForControlHeight({ height })
 
-    console.log('props', this.props)
-
     return (
       <Text
         height={height}
