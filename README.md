@@ -77,8 +77,8 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 | `evergreen-segmented-control`      | ✅ Good            | SegmentedControl component |
 | `evergreen-spinner`                | ✅ Good            | Loading Spinner component  |
 | `evergreen-search-input`           | ✅ Good            | SearchInput component      |
+| `evergreen-table`                  | ✅ Good            | table component            |
 | `evergreen-callout`                | Needs Planning     | Callout component          |
-| `evergreen-table`                  | Needs Planning     | table component            |
 | `evergreen-side-sheet`             | Needs Planning     | SideSheet component        |
 | `evergreen-bottom-sheet`           | Needs Planning     | BottomSheet component      |
 | `evergreen-radio`                  | Needs Planning     | Radio component            |
