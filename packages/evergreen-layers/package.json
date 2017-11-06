@@ -1,8 +1,7 @@
 {
   "name": "evergreen-layers",
-  "version": "2.9.0",
-  "description":
-    "React components: Pane, Card, ElevationStyles, BorderColors, LayerAppearances",
+  "version": "2.10.0",
+  "description": "React components: Pane, Card, ElevationStyles, BorderColors, LayerAppearances",
   "main": "lib/index.js",
   "keywords": [
     "evergreen",
@@ -22,10 +21,10 @@
     "react": "^16.0.0"
   },
   "dependencies": {
-    "evergreen-colors": "^2.9.0",
+    "evergreen-colors": "^2.10.0",
     "ui-box": "^0.5.4"
   },
   "devDependencies": {
-    "evergreen-typography": "^2.9.0"
+    "evergreen-typography": "^2.10.0"
   }
 }
