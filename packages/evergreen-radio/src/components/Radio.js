@@ -5,21 +5,17 @@ import colors from 'evergreen-colors'
 import { Text } from 'evergreen-typography'
 import { CheckboxAppearances } from 'evergreen-shared-styles'
 
-const CheckIcon = ({ fill = 'currentColor', ...props }) => (
-  <svg width={10} height={7} viewBox="0 0 10 7" {...props}>
-    <path
-      fill={fill}
-      fillRule="evenodd"
-      d="M4 4.586L1.707 2.293A1 1 0 1 0 .293 3.707l3 3a.997.997 0 0 0 1.414 0l5-5A1 1 0 1 0 8.293.293L4 4.586z"
-    />
+const CircleIcon = ({ size, fill = 'currentColor', ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 10 10" {...props}>
+    <circle fill={fill} cx="5" cy="5" r="5" />
   </svg>
 )
 
-CheckIcon.propTypes = {
+CircleIcon.propTypes = {
   fill: PropTypes.string,
 }
 
-export default class Checkbox extends PureComponent {
+export default class Radio extends PureComponent {
   static propTypes = {
     ...Box.propTypes,
     appearance: PropTypes.oneOf(Object.keys(CheckboxAppearances)),
@@ -31,12 +27,14 @@ export default class Checkbox extends PureComponent {
     name: PropTypes.string,
     onChange: PropTypes.func,
     value: PropTypes.string,
+    size: PropTypes.oneOf([12, 16]),
   }
 
   static defaultProps = {
     appearance: 'default',
-    marginY: 16,
+    marginY: 12,
     onChange: () => {},
+    size: 12,
   }
 
   render() {
@@ -50,6 +48,7 @@ export default class Checkbox extends PureComponent {
       checked,
       onChange,
       value,
+      size,
       ...props
     } = this.props
     const appearanceStyle = CheckboxAppearances[appearance]
@@ -68,21 +67,22 @@ export default class Checkbox extends PureComponent {
           name={name}
           value={value}
           checked={checked}
-          onChange={onChange}
+          onChange={e => onChange(e.target.value)}
           disabled={disabled}
           {...(isInvalid ? { 'aria-invalid': true } : {})}
           css={appearanceStyle}
         />
         <Box
           boxSizing="border-box"
-          borderRadius={3}
+          borderRadius={9999}
           display="flex"
           alignItems="center"
           justifyContent="center"
-          width={16}
-          height={16}
+          marginTop={size === 12 ? 2 : 0}
+          width={size}
+          height={size}
         >
-          <CheckIcon />
+          <CircleIcon size={size === 12 ? 4 : 6} />
         </Box>
         {label && (
           <Text

@@ -1,1 +1,4 @@
-export { default as Checkbox } from './components/Checkbox'
+import Checkbox from './components/Checkbox'
+
+export default Checkbox
+export { Checkbox }
