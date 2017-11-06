@@ -1,6 +1,6 @@
 {
   "name": "evergreen-table",
-  "version": "2.10.0",
+  "version": "2.11.0",
   "description": "React components: TableCell, TextTableCell, TableRow, TableHeaderCell, TextTableHeaderCell, SearchTableHeaderCell, TableBody",
   "main": "lib/index.js",
   "keywords": [
@@ -22,7 +22,7 @@
     "evergreen-colors": "^2.10.0",
     "evergreen-icons": "^2.10.0",
     "evergreen-layers": "^2.10.0",
-    "evergreen-shared-styles": "^2.10.0",
+    "evergreen-shared-styles": "^2.11.0",
     "evergreen-typography": "^2.10.0",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.3"
