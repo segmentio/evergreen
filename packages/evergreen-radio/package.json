@@ -1,6 +1,6 @@
 {
   "name": "evergreen-radio",
-  "version": "2.11.0",
+  "version": "2.12.0",
   "description": "React components: Radio, RadioGroup",
   "main": "lib/index.js",
   "keywords": [
