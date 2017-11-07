@@ -1,6 +1,6 @@
 {
   "name": "evergreen-portal",
-  "version": "2.10.0",
+  "version": "2.13.0",
   "description": "React components: Portal",
   "main": "lib/index.js",
   "keywords": [
@@ -22,7 +22,7 @@
     "ui-box": "^0.5.4"
   },
   "devDependencies": {
-    "evergreen-layers": "^2.10.0",
-    "evergreen-typography": "^2.10.0"
+    "evergreen-layers": "^2.13.0",
+    "evergreen-typography": "^2.13.0"
   }
 }
