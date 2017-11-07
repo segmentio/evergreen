@@ -78,11 +78,10 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 | `evergreen-spinner`                | ✅ Good            | Loading Spinner component  |
 | `evergreen-search-input`           | ✅ Good            | SearchInput component      |
 | `evergreen-table`                  | ✅ Good            | table component            |
-| `evergreen-callout`                | Needs Planning     | Callout component          |
-| `evergreen-side-sheet`             | Needs Planning     | SideSheet component        |
-| `evergreen-bottom-sheet`           | Needs Planning     | BottomSheet component      |
-| `evergreen-radio`                  | Needs Planning     | Radio component            |
-| `evergreen-dialog`                 | Needs Planning     | Dialog component           |
+| `evergreen-side-sheet`             | ✅ Good            | SideSheet component        |
+| `evergreen-radio`                  | ✅ Good            | Radio component            |
+| `evergreen-dialog`                 | ✅ Good            | Dialog component           |
+| `evergreen-alert`                  | Needs Planning     | Callout component          |
 | `evergreen-corner-dialog`          | Needs Planning     | CornerDialog component     |
 | `evergreen-code-block`             | Needs Planning     | CodeBlock component        |
 
