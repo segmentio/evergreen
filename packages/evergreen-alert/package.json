@@ -1,18 +1,24 @@
 {
   "name": "evergreen-alert",
-  "version": "1.0.0",
+  "version": "2.17.0",
   "description": "React components: Alert",
   "main": "lib/index.js",
-  "keywords": ["evergreen", "segment", "ui", "react", "Alert"],
+  "keywords": [
+    "evergreen",
+    "segment",
+    "ui",
+    "react",
+    "Alert"
+  ],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "ui-box": "^0.5.4",
-    "evergreen-icons": "^2.13.0",
-    "evergreen-typography": "^2.13.0",
     "evergreen-colors": "^2.13.0",
+    "evergreen-icons": "^2.17.0",
     "evergreen-layers": "^2.13.0",
-    "prop-types": "^15.0.0"
+    "evergreen-typography": "^2.13.0",
+    "prop-types": "^15.0.0",
+    "ui-box": "^0.5.4"
   },
   "peerDependencies": {
     "react": "^16.0.0"

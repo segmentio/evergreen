@@ -1,6 +1,6 @@
 {
   "name": "evergreen-side-sheet",
-  "version": "2.16.0",
+  "version": "2.17.0",
   "description": "React components: SideSheet",
   "main": "lib/index.js",
   "keywords": [
@@ -13,7 +13,7 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-icons": "^2.0.0",
+    "evergreen-icons": "^2.17.0",
     "evergreen-layers": "^2.0.0",
     "evergreen-overlay": "^2.16.0",
     "prop-types": "^15.0.0",

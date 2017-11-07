@@ -1,6 +1,6 @@
 {
   "name": "evergreen-icons",
-  "version": "2.13.0",
+  "version": "2.17.0",
   "description": "React components: TriangleIcon, CloseIcon, CogIcon, ArrowIcon, SearchIcon, CheckCircleIcon, Icon",
   "main": "lib/index.js",
   "keywords": [

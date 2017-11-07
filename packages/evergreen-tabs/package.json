@@ -1,6 +1,6 @@
 {
   "name": "evergreen-tabs",
-  "version": "2.13.0",
+  "version": "2.17.0",
   "description": "React components: Tab",
   "main": "lib/index.js",
   "keywords": [
@@ -13,7 +13,7 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-icons": "^2.13.0",
+    "evergreen-icons": "^2.17.0",
     "evergreen-shared-styles": "^2.13.0",
     "evergreen-typography": "^2.13.0",
     "prop-types": "^15.0.0",
