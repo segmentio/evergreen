@@ -1,0 +1,20 @@
+{
+  "name": "evergreen-dialog",
+  "version": "1.0.0",
+  "description": "React components: Dialog",
+  "main": "lib/index.js",
+  "keywords": ["evergreen", "segment", "ui", "react", "Dialog"],
+  "author": "Segment",
+  "license": "MIT",
+  "dependencies": {
+    "ui-box": "^0.5.3",
+    "evergreen-dialog": "^2.0.0",
+    "evergreen-typography": "^2.0.0",
+    "evergreen-icons": "^2.0.0",
+    "evergreen-buttons": "^2.0.0",
+    "prop-types": "^15.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  }
+}
