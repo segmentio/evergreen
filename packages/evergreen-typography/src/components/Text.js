@@ -1,16 +1,17 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import FontFamilies from '../styles/font-families'
-import TextStyles from '../styles/text-styles'
-import TextColors from '../styles/text-colors'
+import FontFamilies from '../styles/FontFamilies'
+import TextStyles from '../styles/TextStyles'
+import TextColors from '../styles/TextColors'
 
 export default class Text extends PureComponent {
   static propTypes = {
+    ...Box.propTypes,
     size: PropTypes.oneOf(Object.keys(TextStyles).map(Number)),
     color: PropTypes.string,
     fontFamily: PropTypes.oneOf(Object.keys(FontFamilies)),
-    textStyleTransformation: PropTypes.func,
+    textStyles: PropTypes.object,
   }
 
   static defaultProps = {
@@ -18,22 +19,17 @@ export default class Text extends PureComponent {
     size: 500,
     color: 'default',
     fontFamily: 'ui',
-    textStyleTransformation: textStyle => textStyle,
+    textStyles: TextStyles,
   }
 
   render() {
-    const {
-      size,
-      color,
-      fontFamily,
-      textStyleTransformation,
-      ...props
-    } = this.props
+    const { size, color, textStyles, fontFamily, ...props } = this.props
+
     return (
       <Box
-        color={TextColors[color] || color}
+        {...(color !== null ? { color: TextColors[color] || color } : {})}
         fontFamily={FontFamilies[fontFamily] || fontFamily}
-        {...textStyleTransformation(TextStyles[size])}
+        {...textStyles[size]}
         {...props}
       />
     )
