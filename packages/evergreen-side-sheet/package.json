@@ -1,6 +1,6 @@
 {
   "name": "evergreen-side-sheet",
-  "version": "2.14.0",
+  "version": "2.16.0",
   "description": "React components: SideSheet",
   "main": "lib/index.js",
   "keywords": [
@@ -15,7 +15,7 @@
   "dependencies": {
     "evergreen-icons": "^2.0.0",
     "evergreen-layers": "^2.0.0",
-    "evergreen-overlay": "^2.14.0",
+    "evergreen-overlay": "^2.16.0",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.3"
   },

@@ -1,6 +1,6 @@
 {
   "name": "evergreen-overlay",
-  "version": "2.14.0",
+  "version": "2.16.0",
   "description": "React components: Overlay",
   "main": "lib/index.js",
   "keywords": [
@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "evergreen-colors": "^2.0.0",
-    "evergreen-portal": "^2.13.0",
+    "evergreen-portal": "^2.16.0",
     "prop-types": "^15.0.0",
     "react-transition-group": "^2.2.1",
     "ui-box": "^0.5.3"
