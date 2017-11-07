@@ -81,8 +81,8 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 | `evergreen-side-sheet`             | ✅ Good            | SideSheet component        |
 | `evergreen-radio`                  | ✅ Good            | Radio component            |
 | `evergreen-dialog`                 | ✅ Good            | Dialog component           |
+| `evergreen-corner-dialog`          | ✅ Good            | CornerDialog component     |
 | `evergreen-alert`                  | Needs Planning     | Callout component          |
-| `evergreen-corner-dialog`          | Needs Planning     | CornerDialog component     |
 | `evergreen-code-block`             | Needs Planning     | CodeBlock component        |
 
 
