@@ -1,1 +1,4 @@
-export { default as Portal } from './components/Portal'
+import Portal from './components/Portal'
+
+export default Portal
+export { Portal }
