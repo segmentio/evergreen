@@ -1,6 +1,6 @@
 {
   "name": "evergreen-autocomplete",
-  "version": "2.11.1",
+  "version": "2.13.0",
   "description": "React components: Autocomplete",
   "main": "lib/index.js",
   "keywords": [
@@ -14,9 +14,9 @@
   "license": "MIT",
   "dependencies": {
     "downshift": "^1.16.0",
-    "evergreen-layers": "^2.10.0",
-    "evergreen-popover": "^2.11.0",
-    "evergreen-typography": "^2.10.0",
+    "evergreen-layers": "^2.13.0",
+    "evergreen-popover": "^2.13.0",
+    "evergreen-typography": "^2.13.0",
     "fuzzaldrin-plus": "^0.5.0",
     "prop-types": "^15.0.0",
     "react-tiny-virtual-list": "^2.1.4",
@@ -26,7 +26,7 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "evergreen-text-input": "^2.11.1",
+    "evergreen-text-input": "^2.13.0",
     "starwars-names": "^1.6.0"
   }
 }
