@@ -1,6 +1,6 @@
 {
   "name": "evergreen-dialog",
-  "version": "2.15.0",
+  "version": "2.16.0",
   "description": "React components: Dialog",
   "main": "lib/index.js",
   "keywords": [
@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "evergreen-buttons": "^2.0.0",
-    "evergreen-dialog": "^2.0.0",
+    "evergreen-dialog": "^2.16.0",
     "evergreen-icons": "^2.0.0",
     "evergreen-typography": "^2.0.0",
     "prop-types": "^15.0.0",
