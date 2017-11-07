@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import { Heading } from 'evergreen-typography'
 import { Switch } from '../src/'
 
-storiesOf('evergreen-switch', module).add('Switch', () => (
+storiesOf('switch', module).add('Switch', () => (
   <Box padding={40}>
     {(() => {
       document.body.style.margin = '0'
