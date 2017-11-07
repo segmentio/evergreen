@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "evergreen-colors": "^2.10.0",
+    "lodash.mapvalues": "^4.6.0",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.4"
   },

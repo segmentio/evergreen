@@ -2,7 +2,12 @@ import React, { PureComponent } from 'react'
 import Text from './Text'
 
 export default class Pre extends PureComponent {
+  static propTypes = {
+    ...Text.propTypes,
+  }
+
   static defaultProps = {
+    ...Text.defaultProps,
     is: 'pre',
     fontFamily: 'mono',
     marginTop: 0,
