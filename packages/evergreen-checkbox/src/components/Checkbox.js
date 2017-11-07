@@ -22,15 +22,15 @@ CheckIcon.propTypes = {
 export default class Checkbox extends PureComponent {
   static propTypes = {
     ...Box.propTypes,
-    appearance: PropTypes.oneOf(Object.keys(CheckboxAppearances)),
-    label: PropTypes.node,
-    disabled: PropTypes.bool,
-    isInvalid: PropTypes.bool,
-    checked: PropTypes.bool,
     id: PropTypes.string,
     name: PropTypes.string,
-    onChange: PropTypes.func,
+    label: PropTypes.node,
     value: PropTypes.string,
+    checked: PropTypes.bool,
+    onChange: PropTypes.func,
+    disabled: PropTypes.bool,
+    isInvalid: PropTypes.bool,
+    appearance: PropTypes.oneOf(Object.keys(CheckboxAppearances)),
   }
 
   static defaultProps = {
