@@ -125,6 +125,7 @@ export default class Autocomplete extends PureComponent {
                   highlightedIndex,
                   selectItemAtIndex,
                 })}
+              minHeight={0}
               animationDuration={0}
               useSmartPositioning={useSmartPositioning}
             >
