@@ -1,6 +1,6 @@
 {
   "name": "evergreen-autocomplete",
-  "version": "2.18.0",
+  "version": "2.18.1",
   "description": "React components: Autocomplete",
   "main": "lib/index.js",
   "keywords": [
