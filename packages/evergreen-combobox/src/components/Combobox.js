@@ -4,18 +4,26 @@ import { TextInput } from 'evergreen-text-input'
 import { Button } from 'evergreen-buttons'
 import { TriangleIcon } from 'evergreen-icons'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { dimensions, spacing, position, layout } from 'ui-box'
 
 export default class Combobox extends PureComponent {
   static propTypes = {
-    ...Box.propTypes,
+    ...dimensions.propTypes,
+    ...spacing.propTypes,
+    ...position.propTypes,
+    ...layout.propTypes,
     items: PropTypes.array,
     width: PropTypes.oneOf(PropTypes.string, PropTypes.number),
     height: PropTypes.number,
     onChange: PropTypes.func,
-    autocompleteProps: PropTypes.objectOf(Autocomplete.propTypes),
     inputProps: PropTypes.objectOf(TextInput.propTypes),
     buttonProps: PropTypes.objectOf(Button.propTypes),
+    openOnFocus: PropTypes.bool.isRequired,
+    autocompleteProps: PropTypes.objectOf(Autocomplete.propTypes),
+  }
+
+  static defaultProps = {
+    openOnFocus: false,
   }
 
   constructor(props, context) {
@@ -41,6 +49,7 @@ export default class Combobox extends PureComponent {
       onChange,
       inputProps,
       buttonProps,
+      openOnFocus,
       autocompleteProps,
       ...props
     } = this.props
@@ -57,6 +66,7 @@ export default class Combobox extends PureComponent {
           key,
           getRef,
           isOpen,
+          openMenu,
           inputValue,
           getInputProps,
           getButtonProps,
@@ -73,7 +83,12 @@ export default class Combobox extends PureComponent {
               value={inputValue}
               borderTopRightRadius={0}
               borderBottomRightRadius={0}
-              {...getInputProps(inputProps)}
+              {...getInputProps({
+                ...inputProps,
+                onFocus: () => {
+                  if (openOnFocus) openMenu()
+                },
+              })}
             />
             <Button
               height={height}
