@@ -4,15 +4,14 @@ import { css } from 'ui-box'
 import { Pane } from 'evergreen-layers'
 import { Heading } from 'evergreen-typography'
 import Overlay from 'evergreen-overlay'
-import { Button } from 'evergreen-buttons'
-import { CloseIcon } from 'evergreen-icons'
+import { IconButton } from 'evergreen-buttons'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
   acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`,
 }
 
-const ANIMATION_DURATION = 240
+const ANIMATION_DURATION = 200
 
 const openAnimation = css.keyframes('openAnimation', {
   from: {
@@ -110,14 +109,7 @@ class Dialog extends React.Component {
                   {title}
                 </Heading>
                 {hasCloseIcon && (
-                  <Button appearance="ghost" paddingLeft={0} paddingRight={0}>
-                    <CloseIcon
-                      iconSize={14}
-                      color="inherit"
-                      cursor="pointer"
-                      onClick={close}
-                    />
-                  </Button>
+                  <IconButton appearance="ghost" icon="close" onClick={close} />
                 )}
               </Pane>
 

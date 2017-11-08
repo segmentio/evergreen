@@ -3,19 +3,12 @@
   "version": "2.17.0",
   "description": "React components: Dialog",
   "main": "lib/index.js",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "react",
-    "Dialog"
-  ],
+  "keywords": ["evergreen", "segment", "ui", "react", "Dialog"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
     "evergreen-buttons": "^2.0.0",
     "evergreen-dialog": "^2.17.0",
-    "evergreen-icons": "^2.17.0",
     "evergreen-typography": "^2.0.0",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.3"

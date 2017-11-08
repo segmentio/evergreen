@@ -3,21 +3,14 @@
   "version": "2.13.0",
   "description": "React Style Components: Pill, Badge",
   "main": "lib/index.js",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "react",
-    "Pill",
-    "Badge"
-  ],
+  "keywords": ["evergreen", "segment", "ui", "react", "Pill", "Badge"],
   "license": "MIT",
   "peerDependencies": {
     "prop-types": "^15.0.0",
     "react": "^16.0.0"
   },
   "dependencies": {
-    "evergreen-color-utils": "^2.13.0",
+    "evergreen-shared-styles": "^2.13.0",
     "ui-box": "^0.5.4"
   },
   "devDependencies": {

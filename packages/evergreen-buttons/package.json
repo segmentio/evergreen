@@ -21,6 +21,7 @@
     "evergreen-colors": "^2.13.0",
     "evergreen-shared-styles": "^2.13.0",
     "evergreen-typography": "^2.13.0",
+    "evergreen-icons": "^2.13.0",
     "ui-box": "^0.5.4"
   },
   "devDependencies": {
