@@ -135,7 +135,24 @@ const ButtonAppearances = {
   },
   ghost: {
     ...baseStyle,
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
+    [hoverState]: {
+      backgroundColor: colors.neutral['7A'],
+    },
+    [focusState]: {
+      zIndex: 2,
+      boxShadow: `0 0 0 3px ${colors.blue['50A']}`,
+    },
+    [activeState]: {
+      color: colors.blue['1000'],
+      boxShadow: 'none',
+      backgroundColor: colors.blue['10A'],
+    },
+  },
+  ghostBlue: {
+    ...baseStyle,
+    color: colors.blue['500'],
+    backgroundColor: 'transparent',
     [hoverState]: {
       backgroundColor: colors.neutral['7A'],
     },

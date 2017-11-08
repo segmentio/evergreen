@@ -5,8 +5,7 @@ import Transition from 'react-transition-group/Transition'
 import { Pane } from 'evergreen-layers'
 import Portal from 'evergreen-portal'
 import { Heading } from 'evergreen-typography'
-import { Button } from 'evergreen-buttons'
-import { CloseIcon } from 'evergreen-icons'
+import { IconButton } from 'evergreen-buttons'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -19,11 +18,9 @@ const ANIMATION_DURATION = 240
 const openAnimation = css.keyframes('openAnimation', {
   from: {
     transform: 'translateY(100%)',
-    // opacity: 0,
   },
   to: {
     transform: 'translateY(0)',
-    // opacity: 1,
   },
 })
 
@@ -160,20 +157,11 @@ export default class CornerDialog extends PureComponent {
                   {title}
                 </Heading>
                 {hasCloseIcon && (
-                  <Button
+                  <IconButton
                     height={24}
                     appearance="ghost"
-                    paddingLeft={0}
-                    paddingRight={0}
-                  >
-                    <CloseIcon
-                      size={24}
-                      iconSize={12}
-                      color="inherit"
-                      cursor="pointer"
-                      onClick={this.handleClose}
-                    />
-                  </Button>
+                    onClick={this.handleClose}
+                  />
                 )}
               </Pane>
 
