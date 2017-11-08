@@ -2,6 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import starWarsNames from 'starwars-names'
+import { Heading } from 'evergreen-typography'
 import { Combobox } from '../src/'
 
 // Generate a big list of items
@@ -33,6 +34,13 @@ storiesOf('combobox', module).add('Combobox', () => (
       document.body.style.margin = '0'
       document.body.style.height = '100vh'
     })()}
-    <Combobox items={items} onChange={handleChange} />
+    <Box marginBottom={16}>
+      <Heading>Default usage</Heading>
+      <Combobox items={items} onChange={handleChange} />
+    </Box>
+    <Box marginBottom={16}>
+      <Heading>Open on focus</Heading>
+      <Combobox openOnFocus items={items} onChange={handleChange} />
+    </Box>
   </Box>
 ))
