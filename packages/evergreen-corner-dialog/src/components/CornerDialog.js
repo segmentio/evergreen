@@ -159,6 +159,7 @@ export default class CornerDialog extends PureComponent {
                 {hasCloseIcon && (
                   <IconButton
                     height={24}
+                    icon="close"
                     appearance="ghost"
                     onClick={this.handleClose}
                   />
