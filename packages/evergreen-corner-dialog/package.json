@@ -1,6 +1,6 @@
 {
   "name": "evergreen-corner-dialog",
-  "version": "2.18.0",
+  "version": "2.18.2",
   "description": "React components: CornerDialog",
   "main": "lib/index.js",
   "keywords": [
