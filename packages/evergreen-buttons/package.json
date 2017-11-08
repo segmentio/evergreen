@@ -1,6 +1,6 @@
 {
   "name": "evergreen-buttons",
-  "version": "2.14.0",
+  "version": "2.18.0",
   "description": "React components: Button",
   "main": "lib/index.js",
   "keywords": [
@@ -19,9 +19,9 @@
   },
   "dependencies": {
     "evergreen-colors": "^2.13.0",
-    "evergreen-shared-styles": "^2.13.0",
+    "evergreen-icons": "^2.18.0",
+    "evergreen-shared-styles": "^2.18.0",
     "evergreen-typography": "^2.13.0",
-    "evergreen-icons": "^2.13.0",
     "ui-box": "^0.5.4"
   },
   "devDependencies": {
