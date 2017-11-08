@@ -1,6 +1,6 @@
 {
   "name": "evergreen-segmented-control",
-  "version": "2.18.0",
+  "version": "2.18.3",
   "description": "React components: SegmentedControl",
   "main": "lib/index.js",
   "keywords": [
