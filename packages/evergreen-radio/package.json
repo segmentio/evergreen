@@ -1,6 +1,6 @@
 {
   "name": "evergreen-radio",
-  "version": "2.18.0",
+  "version": "2.18.5",
   "description": "React components: Radio, RadioGroup",
   "main": "lib/index.js",
   "keywords": [
@@ -14,7 +14,7 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-shared-styles": "^2.18.0",
+    "evergreen-shared-styles": "^2.18.5",
     "evergreen-typography": "^2.13.0",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.3"
