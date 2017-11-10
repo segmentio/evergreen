@@ -70,6 +70,7 @@ export default class Combobox extends PureComponent {
           inputValue,
           getInputProps,
           getButtonProps,
+          clearSelection,
         }) => (
           <Box
             innerRef={ref => getRef(ref)}
@@ -87,6 +88,17 @@ export default class Combobox extends PureComponent {
                 ...inputProps,
                 onFocus: () => {
                   if (openOnFocus) openMenu()
+                },
+                onChange: e => {
+                  if (this.state.isOpenedByButton) {
+                    this.setState({
+                      isOpenedByButton: false,
+                    })
+                  }
+                  if (e.target.value.trim() === '') {
+                    // Prevent the selected item from sticking around
+                    clearSelection()
+                  }
                 },
               })}
             />

@@ -10,10 +10,12 @@ import TextInputAppearances from '../styles/TextInputAppearances'
 export default class TextInput extends PureComponent {
   static propTypes = {
     ...Text.propTypes,
-    appearance: PropTypes.oneOf(Object.keys(TextInputAppearances)).isRequired,
-    disabled: PropTypes.bool.isRequired,
-    isInvalid: PropTypes.bool.isRequired,
-    spellCheck: PropTypes.bool.isRequired,
+    required: PropTypes.bool,
+    disabled: PropTypes.bool,
+    isInvalid: PropTypes.bool,
+    spellCheck: PropTypes.bool,
+    placeholder: PropTypes.string,
+    appearance: PropTypes.oneOf(Object.keys(TextInputAppearances)),
   }
 
   static defaultProps = {
@@ -33,8 +35,10 @@ export default class TextInput extends PureComponent {
       css,
       height,
       disabled,
+      required,
       isInvalid,
       appearance,
+      placeholder,
       spellCheck,
       ...props
     } = this.props
@@ -45,7 +49,9 @@ export default class TextInput extends PureComponent {
     return (
       <Text
         height={height}
+        required={required}
         disabled={disabled}
+        placeholder={placeholder}
         paddingLeft={Math.round(height / 3.2)}
         paddingRight={Math.round(height / 3.2)}
         borderRadius={borderRadius}
