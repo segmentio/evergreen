@@ -1,6 +1,6 @@
 {
   "name": "evergreen-select",
-  "version": "2.18.0",
+  "version": "2.18.5",
   "description": "React components: Select",
   "main": "lib/index.js",
   "keywords": [
@@ -15,7 +15,7 @@
   "dependencies": {
     "evergreen-colors": "^2.13.0",
     "evergreen-icons": "^2.18.0",
-    "evergreen-shared-styles": "^2.18.0",
+    "evergreen-shared-styles": "^2.18.5",
     "evergreen-typography": "^2.13.0",
     "ui-box": "^0.5.4"
   },
