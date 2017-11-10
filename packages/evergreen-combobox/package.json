@@ -1,6 +1,6 @@
 {
   "name": "evergreen-combobox",
-  "version": "2.18.1",
+  "version": "2.18.4",
   "description": "React components: Combobox",
   "main": "lib/index.js",
   "keywords": [
@@ -13,8 +13,8 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-autocomplete": "^2.18.1",
-    "evergreen-buttons": "^2.18.0",
+    "evergreen-autocomplete": "^2.18.4",
+    "evergreen-buttons": "^2.18.4",
     "evergreen-icons": "^2.18.0",
     "evergreen-text-input": "^2.18.0",
     "prop-types": "^15.0.0",
