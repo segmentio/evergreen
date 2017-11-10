@@ -82,7 +82,7 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 | `evergreen-radio`                  | ✅ Good            | Radio component            |
 | `evergreen-dialog`                 | ✅ Good            | Dialog component           |
 | `evergreen-corner-dialog`          | ✅ Good            | CornerDialog component     |
-| `evergreen-alert`                  | Needs Planning     | Callout component          |
+| `evergreen-alert`                  | ✅ Good            | Alert component            |
 | `evergreen-code-block`             | Needs Planning     | CodeBlock component        |
 
 
