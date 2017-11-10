@@ -16,10 +16,10 @@ export default class Combobox extends PureComponent {
     width: PropTypes.oneOf(PropTypes.string, PropTypes.number),
     height: PropTypes.number,
     onChange: PropTypes.func,
-    inputProps: PropTypes.objectOf(TextInput.propTypes),
-    buttonProps: PropTypes.objectOf(Button.propTypes),
-    openOnFocus: PropTypes.bool.isRequired,
-    autocompleteProps: PropTypes.objectOf(Autocomplete.propTypes),
+    inputProps: PropTypes.shape({ ...TextInput.propTypes }),
+    buttonProps: PropTypes.shape({ ...Button.propTypes }),
+    openOnFocus: PropTypes.bool,
+    autocompleteProps: PropTypes.shape({ ...Autocomplete.propTypes }),
   }
 
   static defaultProps = {
@@ -70,6 +70,7 @@ export default class Combobox extends PureComponent {
           inputValue,
           getInputProps,
           getButtonProps,
+          clearSelection,
         }) => (
           <Box
             innerRef={ref => getRef(ref)}
@@ -87,6 +88,17 @@ export default class Combobox extends PureComponent {
                 ...inputProps,
                 onFocus: () => {
                   if (openOnFocus) openMenu()
+                },
+                onChange: e => {
+                  if (this.state.isOpenedByButton) {
+                    this.setState({
+                      isOpenedByButton: false,
+                    })
+                  }
+                  if (e.target.value.trim() === '') {
+                    // Prevent the selected item from sticking around
+                    clearSelection()
+                  }
                 },
               })}
             />

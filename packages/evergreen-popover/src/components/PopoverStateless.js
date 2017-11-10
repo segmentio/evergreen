@@ -9,7 +9,8 @@ export default class PopoverStateless extends PureComponent {
   }
 
   static defaultProps = {
-    oveflow: 'hidden',
+    overflow: 'hidden',
+    position: 'relative',
     minWidth: 200,
     elevation: 3,
     backgroundColor: 'white',
