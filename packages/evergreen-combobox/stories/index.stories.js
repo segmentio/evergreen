@@ -39,6 +39,10 @@ storiesOf('combobox', module).add('Combobox', () => (
       <Combobox items={items} onChange={handleChange} />
     </Box>
     <Box marginBottom={16}>
+      <Heading>Custom width</Heading>
+      <Combobox width={120} items={items} onChange={handleChange} />
+    </Box>
+    <Box marginBottom={16}>
       <Heading>Open on focus</Heading>
       <Combobox openOnFocus items={items} onChange={handleChange} />
     </Box>

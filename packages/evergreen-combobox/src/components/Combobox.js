@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Autocomplete } from 'evergreen-autocomplete'
 import { TextInput } from 'evergreen-text-input'
-import { Button } from 'evergreen-buttons'
-import { TriangleIcon } from 'evergreen-icons'
+import { IconButton, Button } from 'evergreen-buttons'
 import PropTypes from 'prop-types'
 import Box, { dimensions, spacing, position, layout } from 'ui-box'
 
@@ -80,6 +79,8 @@ export default class Combobox extends PureComponent {
             {...props}
           >
             <TextInput
+              width={null}
+              flex={1}
               height={height}
               value={inputValue}
               borderTopRightRadius={0}
@@ -102,7 +103,10 @@ export default class Combobox extends PureComponent {
                 },
               })}
             />
-            <Button
+            <IconButton
+              iconAim={isOpen ? 'up' : 'down'}
+              color="muted"
+              icon="triangle"
               height={height}
               marginLeft={-1}
               paddingLeft={0}
@@ -117,13 +121,7 @@ export default class Combobox extends PureComponent {
                   }
                 },
               })}
-            >
-              <TriangleIcon
-                aim={isOpen ? 'up' : 'down'}
-                marginTop={isOpen ? -1 : 0}
-                iconSize={14}
-              />
-            </Button>
+            />
           </Box>
         )}
       </Autocomplete>
