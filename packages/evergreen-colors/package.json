@@ -1,6 +1,6 @@
 {
   "name": "evergreen-colors",
-  "version": "2.13.0",
+  "version": "2.18.6",
   "description": "Colors",
   "main": "src/colors.json",
   "keywords": [
@@ -13,8 +13,8 @@
   "author": "Segment",
   "license": "MIT",
   "devDependencies": {
-    "evergreen-layers": "^2.13.0",
-    "evergreen-typography": "^2.13.0",
+    "evergreen-layers": "^2.18.6",
+    "evergreen-typography": "^2.18.6",
     "ui-box": "^0.5.4"
   },
   "peerDependencies": {
