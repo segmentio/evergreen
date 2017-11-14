@@ -23,6 +23,7 @@ export default class Combobox extends PureComponent {
 
   static defaultProps = {
     openOnFocus: false,
+    width: 224,
   }
 
   constructor(props, context) {
@@ -79,7 +80,7 @@ export default class Combobox extends PureComponent {
             {...props}
           >
             <TextInput
-              width={null}
+              width={0}
               flex={1}
               height={height}
               value={inputValue}
