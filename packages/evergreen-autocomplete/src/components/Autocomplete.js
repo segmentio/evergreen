@@ -19,6 +19,7 @@ export default class Autocomplete extends PureComponent {
     renderItem: PropTypes.func,
     itemsFilter: PropTypes.func,
     isFilterDisabled: PropTypes.bool,
+    popoverMinWidth: PropTypes.number,
     popoverMaxHeight: PropTypes.number,
     useSmartPositioning: PropTypes.bool,
     ...Downshift.propTypes,
@@ -28,6 +29,7 @@ export default class Autocomplete extends PureComponent {
     itemSize: 32,
     itemsFilter: fuzzyFilter,
     isFilterDisabled: false,
+    popoverMinWidth: 200,
     popoverMaxHeight: 240,
     useSmartPositioning: false,
     renderItem: autocompleteItemRenderer,
@@ -98,6 +100,7 @@ export default class Autocomplete extends PureComponent {
       itemsFilter,
       popoverMaxHeight,
       useSmartPositioning,
+      popoverMinWidth,
       ...props
     } = this.props
 
@@ -115,10 +118,10 @@ export default class Autocomplete extends PureComponent {
           <div>
             <Popover
               isOpen={isOpen}
-              display="inline-block"
+              minWidth={popoverMinWidth}
               content={({ targetRect }) =>
                 this.renderResults({
-                  width: targetRect.width,
+                  width: Math.max(targetRect.width, popoverMinWidth),
                   inputValue,
                   getItemProps,
                   selectedItem,

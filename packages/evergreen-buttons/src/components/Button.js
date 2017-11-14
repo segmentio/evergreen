@@ -22,6 +22,7 @@ export default class Button extends PureComponent {
     paddingBottom: 0,
     display: 'inline-block',
     height: 32,
+    color: null,
     fontFamily: 'ui',
     fontWeight: 500,
     isActive: false,
