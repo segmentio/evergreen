@@ -88,12 +88,8 @@ export default class Avatar extends PureComponent {
         keysFillAppearances[hashValue % keysFillAppearances.length]
     }
 
-    console.log('appearanceKey', appearanceKey)
-
     const appearance =
       FillAppearances[isSolid ? 'solid' : 'default'][appearanceKey]
-
-    console.log('appearance', appearance)
 
     return (
       <Box
