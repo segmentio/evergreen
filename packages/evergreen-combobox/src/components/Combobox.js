@@ -12,7 +12,7 @@ export default class Combobox extends PureComponent {
     ...position.propTypes,
     ...layout.propTypes,
     items: PropTypes.array,
-    width: PropTypes.oneOf(PropTypes.string, PropTypes.number),
+    width: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
     height: PropTypes.number,
     onChange: PropTypes.func,
     inputProps: PropTypes.shape({ ...TextInput.propTypes }),
