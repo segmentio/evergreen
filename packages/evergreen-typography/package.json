@@ -25,8 +25,7 @@
   "dependencies": {
     "evergreen-colors": "^2.13.0",
     "lodash.mapvalues": "^4.6.0",
-    "prop-types": "^15.0.0",
-    "ui-box": "^0.5.4"
+    "prop-types": "^15.0.0"
   },
   "devDependencies": {
     "evergreen-layers": "^2.13.0"
