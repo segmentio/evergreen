@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import Box from 'ui-box'
 import { TriangleIcon } from 'evergreen-icons'
-import { Text } from 'evergreen-typography'
 import Tab from './Tab'
 
 export default class Tablist extends PureComponent {
@@ -32,6 +31,7 @@ export default class Tablist extends PureComponent {
             width={height}
             iconSize={14}
             aim="right"
+            color="inherit"
           />
         )}
       </Tab>
