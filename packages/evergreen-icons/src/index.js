@@ -7,6 +7,7 @@ import CheckCircleIcon from './components/CheckCircleIcon'
 import WarningIcon from './components/WarningIcon'
 import DangerIcon from './components/DangerIcon'
 import QuestionIcon from './components/QuestionIcon'
+import AddIcon from './components/AddIcon'
 import Icon from './components/Icon'
 
 export { default as IconAim } from './styles/IconAim'
@@ -23,6 +24,7 @@ const IconMap = {
   warning: WarningIcon,
   danger: DangerIcon,
   question: QuestionIcon,
+  add: AddIcon,
 }
 
 export {
