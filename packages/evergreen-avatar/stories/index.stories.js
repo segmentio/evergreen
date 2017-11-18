@@ -40,6 +40,28 @@ storiesOf('avatar', module).add('Avatar', () => (
       {names.map(name => (
         <Avatar key={name} name={name} marginRight={12} size={40} />
       ))}
+      <Avatar
+        key="Chris Child"
+        src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAQXAAAAJDQyNDFiNDI0LTVjZWQtNGQ2NS05MmI0LTZhMmE4NDNmNDkzMw.jpg"
+        name="Chris Child"
+        marginRight={12}
+        size={40}
+      />
+      <Avatar
+        key="Cat"
+        src="http://lorempixel.com/output/cats-q-c-640-480-7.jpg"
+        name="Cat"
+        marginRight={12}
+        size={40}
+      />
+      <Avatar
+        key="transparent"
+        forceShowInitials
+        src="http://www.cityrider.com/fixed/43aspect.png"
+        name="transparent"
+        marginRight={12}
+        size={40}
+      />
     </Box>
     <Box marginBottom={40}>
       <StoryHeader>
@@ -76,7 +98,7 @@ storiesOf('avatar', module).add('Avatar', () => (
         </StoryDescription>
       </StoryHeader>
       <Avatar isSolid marginRight={16} name={names[0]} size={16} />
-      <Avatar isSolid marginRight={16} name={names[1]} />
+      <Avatar marginRight={16} name={names[1]} size={24} />
       <Avatar marginRight={16} name={names[2]} size={32} />
       <Avatar marginRight={16} name={names[3]} size={40} />
       <Avatar marginRight={16} name={names[4]} size={96} />
