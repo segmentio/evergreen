@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import Image from 'evergreen-image'
 import { Text } from 'evergreen-typography'
-import colors from 'evergreen-colors'
+import { FillAppearances } from 'evergreen-color-utils'
+import colors from 'evergreen-colors' // eslint-disable-line
 import globalGetInitials from '../utils/getInitials'
 import globalHash from '../utils/hash'
-import { FillAppearances } from 'evergreen-color-utils'
 
 const keysFillAppearances = Object.keys(FillAppearances.default)
 
@@ -19,8 +19,8 @@ const initialsProps = {
   lineHeight: 1,
 }
 
-const getInitialsFontSize = size => {
-  if (size <= 24) {
+const getInitialsFontSize = (size, heightLimitOneCharacter) => {
+  if (size <= heightLimitOneCharacter) {
     return Math.ceil(size / 2.2)
   }
   return Math.ceil(size / 2.6)
@@ -37,6 +37,10 @@ export default class Avatar extends PureComponent {
     isSolid: PropTypes.bool,
     appearance: PropTypes.oneOf(keysFillAppearances),
     getInitials: PropTypes.func,
+    // In some cases Gravatar returns transparent pngs
+    // we still want to see the initials
+    forceShowInitials: PropTypes.bool,
+    heightLimitOneCharacter: PropTypes.number,
   }
 
   static defaultProps = {
@@ -44,6 +48,8 @@ export default class Avatar extends PureComponent {
     hash: globalHash,
     isSolid: false,
     getInitials: globalGetInitials,
+    forceShowInitials: false,
+    heightLimitOneCharacter: 20,
   }
 
   constructor(props, context) {
@@ -70,14 +76,19 @@ export default class Avatar extends PureComponent {
       getInitials,
       useAutoColor,
       appearance: propsAppearance,
+      forceShowInitials,
+      heightLimitOneCharacter,
       ...props
     } = this.props
     const { imageHasFailedLoading } = this.state
     const imageUnavailable = src == null || imageHasFailedLoading
-    const initialsFontSize = `${getInitialsFontSize(size)}px`
+    const initialsFontSize = `${getInitialsFontSize(
+      size,
+      heightLimitOneCharacter,
+    )}px`
 
     let initials = getInitials(name)
-    if (size <= 24) {
+    if (size <= heightLimitOneCharacter) {
       initials = initials.substring(0, 1)
     }
 
@@ -98,12 +109,13 @@ export default class Avatar extends PureComponent {
         overflow="hidden"
         borderRadius={9999}
         position="relative"
-        display="inline-block"
+        display="inline-flex"
+        justifyContent="center"
         backgroundColor={colors.neutral['300']}
         {...appearance}
         {...props}
       >
-        {imageUnavailable ? (
+        {(imageUnavailable || forceShowInitials) && (
           <Text
             css={initialsProps}
             fontSize={initialsFontSize}
@@ -114,8 +126,15 @@ export default class Avatar extends PureComponent {
           >
             {initials}
           </Text>
-        ) : (
-          <Image title={name} src={src} onError={this.handleError} />
+        )}
+        {!imageUnavailable && (
+          <Image
+            width="auto"
+            height="100%"
+            title={name}
+            src={src}
+            onError={this.handleError}
+          />
         )}
       </Box>
     )
