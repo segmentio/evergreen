@@ -96,6 +96,9 @@ storiesOf('table', module)
         document.body.style.height = '100vh'
       })()}
       <SearchTableHeaderCell>SearchTableHeaderCell</SearchTableHeaderCell>
+      <SearchTableHeaderCell borderRight={null}>
+        SearchTableHeaderCell
+      </SearchTableHeaderCell>
     </Box>
   ))
   .add('TableBody', () => (
