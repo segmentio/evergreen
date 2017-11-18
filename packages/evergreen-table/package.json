@@ -1,6 +1,6 @@
 {
   "name": "evergreen-table",
-  "version": "2.18.10",
+  "version": "2.18.11",
   "description": "React components: TableCell, TextTableCell, TableRow, TableHeaderCell, TextTableHeaderCell, SearchTableHeaderCell, TableBody",
   "main": "lib/index.js",
   "keywords": [
