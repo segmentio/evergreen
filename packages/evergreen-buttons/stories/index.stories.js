@@ -3,7 +3,7 @@ import React from 'react'
 import Box from 'ui-box'
 import { Heading } from 'evergreen-typography'
 import { IconMap } from 'evergreen-icons'
-import { IconButton, Button, ButtonAppearances } from '../src/'
+import { IconButton, Button, BackButton, ButtonAppearances } from '../src/'
 
 const baseStyles = {
   margin: 16,
@@ -103,6 +103,44 @@ storiesOf('buttons', module)
               {appearance} 24
             </Button>
           </div>
+        </Box>
+      ))}
+    </Box>
+  ))
+  .add('Button presets', () => (
+    <Box padding={40}>
+      <BackButton marginRight={12} />
+      <BackButton>Overview</BackButton>
+    </Box>
+  ))
+  .add('Button + icons', () => (
+    <Box padding={40}>
+      <Heading>Button with icons</Heading>
+
+      {['default', 'ghost', 'ghostBlue'].map(appearance => (
+        <Box marginBottom={12}>
+          <Button
+            appearance={appearance}
+            iconBefore="arrow"
+            iconBeforeAim="left"
+            marginRight={12}
+          >
+            Back
+          </Button>
+          <Button appearance={appearance} iconBefore="cog" marginRight={12}>
+            Settings
+          </Button>
+          <Button
+            appearance={appearance}
+            iconAfter="triangle"
+            iconAfterAim="down"
+            marginRight={12}
+          >
+            Filter
+          </Button>
+          <Button appearance={appearance} iconBefore="search" marginRight={12}>
+            Search
+          </Button>
         </Box>
       ))}
     </Box>
