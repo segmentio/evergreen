@@ -3,6 +3,7 @@ import colors from 'evergreen-colors'
 const baseStyle = {
   WebkitFontSmoothing: 'antialiased',
   boxSizing: 'border-box',
+  verticalAlign: 'middle',
   textDecoration: 'none',
   transition: 'box-shadow 80ms ease-in-out',
   WebkitAppearance: 'none',
