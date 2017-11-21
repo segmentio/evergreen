@@ -1,6 +1,6 @@
 {
   "name": "evergreen-buttons",
-  "version": "2.18.12",
+  "version": "2.18.13",
   "description": "React components: Button",
   "main": "lib/index.js",
   "keywords": [
