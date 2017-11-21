@@ -1,6 +1,6 @@
 {
   "name": "evergreen-text-input",
-  "version": "2.18.10",
+  "version": "2.18.14",
   "description": "React components: TextInput, TextInputAppearances",
   "main": "lib/index.js",
   "keywords": [
@@ -14,9 +14,9 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-colors": "^2.18.6",
-    "evergreen-shared-styles": "^2.18.10",
-    "evergreen-typography": "^2.18.6",
+    "evergreen-colors": "^2.18.14",
+    "evergreen-shared-styles": "^2.18.14",
+    "evergreen-typography": "^2.18.14",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.4"
   },
@@ -24,6 +24,6 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "evergreen-layers": "^2.18.6"
+    "evergreen-layers": "^2.18.14"
   }
 }
