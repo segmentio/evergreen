@@ -115,16 +115,9 @@ export default class Button extends PureComponent {
         {...(isActive ? { 'data-active': true } : {})}
         {...props}
       >
-        <Box
-          is="span"
-          display="inline-flex"
-          alignItems="center"
-          flexWrap="nowrap"
-        >
-          {iconBefore || null}
-          <span>{children}</span>
-          {iconAfter || null}
-        </Box>
+        {iconBefore || null}
+        <span>{children}</span>
+        {iconAfter || null}
       </Text>
     )
   }
