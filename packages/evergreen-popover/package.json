@@ -1,6 +1,6 @@
 {
   "name": "evergreen-popover",
-  "version": "2.18.13",
+  "version": "2.18.14",
   "description": "React components: Popover",
   "main": "lib/index.js",
   "keywords": [
@@ -13,8 +13,8 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-layers": "^2.18.6",
-    "evergreen-positioner": "^2.18.6",
+    "evergreen-layers": "^2.18.14",
+    "evergreen-positioner": "^2.18.14",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.4"
   },
@@ -22,7 +22,7 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "evergreen-buttons": "^2.18.13",
-    "evergreen-typography": "^2.18.6"
+    "evergreen-buttons": "^2.18.14",
+    "evergreen-typography": "^2.18.14"
   }
 }
