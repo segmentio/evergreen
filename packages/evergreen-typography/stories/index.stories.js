@@ -18,12 +18,14 @@ import {
 const TextSizes = Object.keys(TextStyles).map(Number)
 const dummyText = 'A red flair silhouetted the jagged edge of a wing.'
 
-function previewTextComponent(Comp) {
+function previewTextComponent(Comp, sizes = TextSizes, props) {
   return (
     <Box>
-      {TextSizes.map(size => (
+      {sizes.map(size => (
         <Box>
-          <Comp size={size}>{dummyText}</Comp>
+          <Comp size={size} {...props}>
+            {dummyText}
+          </Comp>
         </Box>
       ))}
     </Box>
@@ -32,6 +34,15 @@ function previewTextComponent(Comp) {
 
 storiesOf('typography', module)
   .add('Text', () => <div>{previewTextComponent(Text)}</div>)
+  .add('Text isUppercase', () => (
+    <Box padding={40}>
+      <Heading>Only size 100 and 200 are supported for uppercase</Heading>
+      {previewTextComponent(Text, [100, 200], { isUppercase: true })}
+      <Text isUppercase size={300}>
+        Higher sizes should give a console.error in development
+      </Text>
+    </Box>
+  ))
   .add('Link', () => (
     <Box padding={40}>
       <Box marginBottom={24}>
