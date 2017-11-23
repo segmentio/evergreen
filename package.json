@@ -24,6 +24,7 @@
     "fs-extra": "^4.0.0",
     "lerna": "^2.0.0",
     "linklocal": "^2.8.1",
+    "next": "^4.1.4",
     "prettier": "^1.7.0",
     "ui-box": "^0.5.4",
     "url-loader": "^0.5.9"
@@ -35,11 +36,15 @@
     "create-package:components": "babel-node tools/create-package-components",
     "bootstrap": "lerna exec -- git clean -Xdf . && lerna bootstrap",
     "clean": "lerna exec -- git clean -Xdf . && rm -rf node_modules",
-    "lint": "eslint --cache --ignore-pattern coverage --ignore-pattern node_modules --ignore-pattern lib .",
+    "lint":
+      "eslint --cache --ignore-pattern coverage --ignore-pattern node_modules --ignore-pattern lib .",
     "storybook": "start-storybook -p 6006",
     "deploy-storybook": "storybook-to-ghpages",
-    "build:watch": "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w",
-    "build": "lerna exec --parallel -- babel src -d lib --ignore *.test.js"
+    "build:watch":
+      "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w",
+    "build": "lerna exec --parallel -- babel src -d lib --ignore *.test.js",
+    "docs:dev": "next docs",
+    "docs:build": "next build docs"
   },
   "dependencies": {
     "prop-types": "^15.5.10",
