@@ -8,3 +8,4 @@ yarn-error.log
 lib
 .eslintcache
 storybook-static
+.next
