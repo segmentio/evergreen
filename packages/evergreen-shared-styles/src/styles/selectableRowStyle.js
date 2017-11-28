@@ -1,11 +1,17 @@
 import colors from 'evergreen-colors'
 
-const selectableStyle = {
+const selectableRowStyle = {
   cursor: 'pointer',
   outline: 'none',
 
   '&:hover': {
     backgroundColor: colors.neutral['5A'],
+  },
+
+  '&:focus': {
+    // backgroundColor: colors.neutral['5A'],
+    backgroundColor: colors.blue['5A'],
+    // boxShadow: `inset 0 0 0 2px ${colors.blue['15A']}`,
   },
 
   '&[aria-current], &[aria-selected="true"], &:active': {
@@ -16,10 +22,6 @@ const selectableStyle = {
   '&[aria-current], &[aria-selected="true"]': {
     cursor: 'default',
   },
-
-  '&:focus': {
-    boxShadow: `0 0 0 2px ${colors.blue['50A']}`,
-  },
 }
 
-export default selectableStyle
+export default selectableRowStyle
