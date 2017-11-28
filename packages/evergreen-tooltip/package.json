@@ -13,7 +13,6 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "color": "^2.0.0",
     "evergreen-colors": "^2.18.14",
     "evergreen-positioner": "^2.18.14",
     "evergreen-typography": "^2.18.14",

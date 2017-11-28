@@ -71,6 +71,8 @@ export default class Tooltip extends PureComponent {
         key="tooltip-positioner"
         targetRect={targetRect}
         isShown={shown}
+        initialScale={0.95}
+        targetOffset={4}
         {...props}
       >
         {({ css, style, state, getRef }) => (

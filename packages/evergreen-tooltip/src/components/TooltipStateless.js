@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import Color from 'color'
 import colors from 'evergreen-colors'
 import { Text } from 'evergreen-typography'
 
@@ -11,7 +10,7 @@ export default class TooltipStateless extends PureComponent {
   }
 
   static defaultProps = {
-    backgroundColor: Color(colors.neutral['900']).alpha(0.9),
+    backgroundColor: colors.neutral['400A'],
     borderRadius: 3,
     paddingX: 8,
     paddingY: 4,
