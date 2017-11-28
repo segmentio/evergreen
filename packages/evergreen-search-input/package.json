@@ -1,6 +1,6 @@
 {
   "name": "evergreen-search-input",
-  "version": "2.18.14",
+  "version": "2.18.18",
   "description": "React components: SearchInput",
   "main": "lib/index.js",
   "keywords": [
@@ -13,7 +13,7 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-text-input": "^2.18.14",
+    "evergreen-text-input": "^2.18.18",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.4"
   },

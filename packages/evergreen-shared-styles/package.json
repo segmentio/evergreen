@@ -1,6 +1,6 @@
 {
   "name": "evergreen-shared-styles",
-  "version": "2.18.14",
+  "version": "2.18.18",
   "description": "JS package: evergreen-shared-styles",
   "main": "lib/index.js",
   "keywords": [
