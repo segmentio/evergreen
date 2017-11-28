@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Text } from 'evergreen-typography'
 import {
   getTextStyleForControlHeight,
-  selectableStyle,
+  selectableTabStyle,
 } from 'evergreen-shared-styles'
 
 export default class Tab extends PureComponent {
@@ -79,10 +79,10 @@ export default class Tab extends PureComponent {
         css={
           css
             ? {
-                ...selectableStyle,
+                ...selectableTabStyle,
                 ...css,
               }
-            : selectableStyle
+            : selectableTabStyle
         }
       />
     )
