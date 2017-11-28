@@ -1,6 +1,6 @@
 {
   "name": "evergreen-tooltip",
-  "version": "2.18.14",
+  "version": "2.18.16",
   "description": "React components: Tooltip",
   "main": "lib/index.js",
   "keywords": [
