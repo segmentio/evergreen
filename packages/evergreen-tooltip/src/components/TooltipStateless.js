@@ -22,7 +22,7 @@ export default class TooltipStateless extends PureComponent {
     let child
     if (typeof children === 'string') {
       child = (
-        <Text lineHeight="1.25em" color="white" size={400}>
+        <Text display="block" lineHeight="1.25em" color="white" size={400}>
           {children}
         </Text>
       )
