@@ -1,6 +1,6 @@
 {
   "name": "evergreen-checkbox",
-  "version": "2.18.14",
+  "version": "2.18.18",
   "description": "React components: Checkbox",
   "main": "lib/index.js",
   "keywords": [
@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "evergreen-colors": "^2.18.14",
-    "evergreen-shared-styles": "^2.18.14",
+    "evergreen-shared-styles": "^2.18.18",
     "ui-box": "^0.5.4"
   },
   "peerDependencies": {
