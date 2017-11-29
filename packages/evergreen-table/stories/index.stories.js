@@ -95,7 +95,8 @@ storiesOf('table', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <SearchTableHeaderCell>SearchTableHeaderCell</SearchTableHeaderCell>
+      <SearchTableHeaderCell />
+      <SearchTableHeaderCell autoFocus placeholder="autoFocus" />
       <SearchTableHeaderCell borderRight={null}>
         SearchTableHeaderCell
       </SearchTableHeaderCell>
