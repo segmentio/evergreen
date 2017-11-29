@@ -24,8 +24,9 @@ export default class SearchTableHeaderCell extends PureComponent {
   static propTypes = {
     ...TableHeaderCell.propTypes,
     value: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
-    spellCheck: PropTypes.bool.isRequired,
+    onChange: PropTypes.func,
+    autoFocus: PropTypes.bool,
+    spellCheck: PropTypes.bool,
     placeholder: PropTypes.string,
   }
 
@@ -36,22 +37,32 @@ export default class SearchTableHeaderCell extends PureComponent {
   }
 
   render() {
-    const { children, onChange, placeholder, value, ...props } = this.props
+    const {
+      value,
+      children,
+      onChange,
+      autoFocus,
+      spellCheck,
+      placeholder,
+      ...props
+    } = this.props
 
     return (
       <TableHeaderCell {...props}>
         <SearchIcon marginLeft={-8} marginTop={-0.5} iconSize={12} />
         <Text
-          paddingLeft={0}
           is="input"
-          fontWeight={500}
           size={300}
           flex="1"
           css={invisibleInput}
-          marginLeft={-2}
-          placeholder={placeholder}
-          onChange={e => onChange(e.target.value)}
           value={value}
+          onChange={e => onChange(e.target.value)}
+          autoFocus={autoFocus}
+          spellCheck={spellCheck}
+          fontWeight={500}
+          marginLeft={-2}
+          paddingLeft={0}
+          placeholder={placeholder}
         />
       </TableHeaderCell>
     )
