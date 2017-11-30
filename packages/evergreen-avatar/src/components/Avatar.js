@@ -112,6 +112,7 @@ export default class Avatar extends PureComponent {
         display="inline-flex"
         justifyContent="center"
         backgroundColor={colors.neutral['300']}
+        title={name}
         {...appearance}
         {...props}
       >
@@ -131,7 +132,6 @@ export default class Avatar extends PureComponent {
           <Image
             width="auto"
             height="100%"
-            title={name}
             src={src}
             onError={this.handleError}
           />
