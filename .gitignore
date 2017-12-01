@@ -9,3 +9,5 @@ lib
 .eslintcache
 storybook-static
 .next
+.cache
+/docs/public

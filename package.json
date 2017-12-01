@@ -22,6 +22,7 @@
     "eslint-plugin-react": "^7.1.0",
     "file-loader": "^0.11.2",
     "fs-extra": "^4.0.0",
+    "gatsby": "^1.9.127",
     "lerna": "^2.0.0",
     "linklocal": "^2.8.1",
     "next": "^4.1.4",
@@ -42,9 +43,7 @@
     "deploy-storybook": "storybook-to-ghpages",
     "build:watch":
       "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w",
-    "build": "lerna exec --parallel -- babel src -d lib --ignore *.test.js",
-    "docs:dev": "next docs",
-    "docs:build": "next build docs"
+    "build": "lerna exec --parallel -- babel src -d lib --ignore *.test.js"
   },
   "dependencies": {
     "prop-types": "^15.5.10",
