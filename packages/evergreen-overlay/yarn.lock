@@ -28,7 +28,7 @@ css-in-js-utils@^2.0.0:
   dependencies:
     hyphenate-style-name "^1.0.2"
 
-dom-helpers@^3.2.0, dom-helpers@^3.2.1:
+dom-helpers@^3.2.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.2.1.tgz#3203e07fed217bd1f424b019735582fc37b2825a"
 
@@ -37,13 +37,6 @@ encoding@^0.1.11:
   resolved "https://registry.yarnpkg.com/encoding/-/encoding-0.1.12.tgz#538b66f3ee62cd1ab51ec323829d1f9480c74beb"
   dependencies:
     iconv-lite "~0.4.13"
-
-evergreen-portal@^2.13.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/evergreen-portal/-/evergreen-portal-2.13.0.tgz#11427ffadf46539113d2c576d3743aa080e70782"
-  dependencies:
-    dom-helpers "^3.2.1"
-    ui-box "^0.5.4"
 
 fbjs@^0.8.12, fbjs@^0.8.16:
   version "0.8.16"
@@ -151,7 +144,7 @@ ua-parser-js@^0.7.9:
   version "0.7.17"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.17.tgz#e9ec5f9498b9ec910e7ae3ac626a805c4d09ecac"
 
-ui-box@^0.5.3, ui-box@^0.5.4:
+ui-box@^0.5.3:
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.5.4.tgz#b8f0a4a638b541ef198d07872c785022f60b93a0"
   dependencies:

@@ -30,24 +30,6 @@ encoding@^0.1.11:
   dependencies:
     iconv-lite "~0.4.13"
 
-evergreen-colors@^2.2.6:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/evergreen-colors/-/evergreen-colors-2.2.6.tgz#229277e934eab18de8ac67d4fedf565f59502497"
-
-evergreen-layers@^2.2.6:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/evergreen-layers/-/evergreen-layers-2.2.6.tgz#d65e9056ae2fc4eb41e0a73577fb7d41d4a8d672"
-  dependencies:
-    evergreen-colors "^2.2.6"
-    ui-box "^0.4.1"
-
-evergreen-typography@^2.2.6:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/evergreen-typography/-/evergreen-typography-2.2.6.tgz#9d7fa8a2892e353069c6f6d37eddf6843bd1f765"
-  dependencies:
-    evergreen-colors "^2.2.6"
-    ui-box "^0.4.1"
-
 fbjs@^0.8.12, fbjs@^0.8.9:
   version "0.8.14"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.14.tgz#d1dbe2be254c35a91e09f31f9cd50a40b2a0ed1c"
@@ -141,13 +123,6 @@ through@^2.3.8:
 ua-parser-js@^0.7.9:
   version "0.7.14"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.14.tgz#110d53fa4c3f326c121292bbeac904d2e03387ca"
-
-ui-box@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.4.1.tgz#410f7b14ef9abdfac10973e21ba6fc1e1d0fa072"
-  dependencies:
-    classnames "^2.2.5"
-    glamor "^2.20.22"
 
 ui-box@^0.5.4:
   version "0.5.4"
