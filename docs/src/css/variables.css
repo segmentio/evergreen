@@ -1,0 +1,23 @@
+:root {
+  --font-display: "SF UI Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-ui: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-mono: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace;
+}
+
+
+:root {
+  --color-border-default: var(--neutral-20A);
+  --color-border-muted: var(--neutral-10A);;
+}
+
+:root {
+  --color-border-shadow: var(--neutral-80A);
+  --color-blurry-shadow: var(--neutral-50A);
+
+  --elevation-0: 0 0 1px var(--color-border-shadow);
+  --elevation-1: 0 0 1px var(--color-border-shadow), 0 2px 4px -2px var(--color-blurry-shadow);
+  --elevation-2: 0 0 1px var(--color-border-shadow), 0 5px 8px -4px var(--color-blurry-shadow);
+  --elevation-3: 0 0 1px var(--color-border-shadow), 0 8px 10px -4px var(--color-blurry-shadow);
+  --elevation-4: 0 0 1px var(--color-border-shadow), 0 16px 24px -8px var(--color-blurry-shadow);
+  --elevation-5: 0 0 1px var(--color-border-shadow), 0 2px 4px -2px var(--color-blurry-shadow)
+}
