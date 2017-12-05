@@ -1,0 +1,36 @@
+.TopBar {
+  box-shadow: var(--elevation-1);
+  /*border-bottom: 1px solid var(--color-border-default);*/
+  z-index: 1;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+
+.TopBar-nav {
+  margin-left: 24px;
+  margin-top: -2px;
+  position: relative;
+
+  & a {
+    color: var(--neutral-500);
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 10px 12px;
+    margin-right: 2px;
+    letter-spacing: 0.4px;
+
+    &:hover {
+      background-color: var(--neutral-7A);
+      border-radius: 3px;
+    }
+
+    &:active {
+      background-color: var(--blue-7A);
+      color: var(--blue-500);
+    }
+  }
+}
