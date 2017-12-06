@@ -1,6 +1,6 @@
 {
   "name": "evergreen-select-menu",
-  "version": "1.0.0",
+  "version": "2.18.20",
   "description": "React components: SelectMenu",
   "main": "lib/index.js",
   "keywords": [
@@ -13,10 +13,10 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-buttons": "^2.18.18",
-    "evergreen-layers": "^2.18.14",
-    "evergreen-popover": "^2.18.18",
-    "evergreen-table": "^2.18.19",
+    "evergreen-buttons": "^2.18.20",
+    "evergreen-layers": "^2.18.20",
+    "evergreen-popover": "^2.18.20",
+    "evergreen-table": "^2.18.20",
     "fuzzaldrin-plus": "^0.6.0",
     "prop-types": "^15.0.0",
     "react-tiny-virtual-list": "^2.1.4",
