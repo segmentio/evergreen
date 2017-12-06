@@ -9,3 +9,4 @@ lib
 .eslintcache
 storybook-static
 .next
+.cache

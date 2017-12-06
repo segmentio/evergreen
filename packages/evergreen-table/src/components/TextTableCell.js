@@ -13,7 +13,7 @@ export default class TextTableCell extends PureComponent {
   static propTypes = {
     ...TableCell.propTypes,
     isNumber: PropTypes.bool.isRequired,
-    textProps: PropTypes.objectOf(Text.propTypes),
+    textProps: PropTypes.shape(Text.propTypes),
   }
 
   static defaultProps = {
