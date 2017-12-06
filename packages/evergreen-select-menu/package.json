@@ -1,0 +1,31 @@
+{
+  "name": "evergreen-select-menu",
+  "version": "1.0.0",
+  "description": "React components: SelectMenu",
+  "main": "lib/index.js",
+  "keywords": [
+    "evergreen",
+    "segment",
+    "ui",
+    "react",
+    "SelectMenu"
+  ],
+  "author": "Segment",
+  "license": "MIT",
+  "dependencies": {
+    "evergreen-buttons": "^2.18.18",
+    "evergreen-layers": "^2.18.14",
+    "evergreen-popover": "^2.18.18",
+    "evergreen-table": "^2.18.19",
+    "fuzzaldrin-plus": "^0.6.0",
+    "prop-types": "^15.0.0",
+    "react-tiny-virtual-list": "^2.1.4",
+    "ui-box": "^0.5.4"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
+  "devDependencies": {
+    "starwars-names": "^1.6.0"
+  }
+}
