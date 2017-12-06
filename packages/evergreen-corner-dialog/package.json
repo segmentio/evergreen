@@ -1,6 +1,6 @@
 {
   "name": "evergreen-corner-dialog",
-  "version": "2.18.18",
+  "version": "2.18.20",
   "description": "React components: CornerDialog",
   "main": "lib/index.js",
   "keywords": [
@@ -13,11 +13,11 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-buttons": "^2.18.18",
-    "evergreen-dialog": "^2.18.18",
-    "evergreen-icons": "^2.18.14",
-    "evergreen-portal": "^2.18.14",
-    "evergreen-typography": "^2.18.14",
+    "evergreen-buttons": "^2.18.20",
+    "evergreen-dialog": "^2.18.20",
+    "evergreen-icons": "^2.18.20",
+    "evergreen-portal": "^2.18.20",
+    "evergreen-typography": "^2.18.20",
     "prop-types": "^15.0.0",
     "react-transition-group": "^2.2.1",
     "ui-box": "^0.5.3"
