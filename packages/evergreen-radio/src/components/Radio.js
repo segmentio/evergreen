@@ -63,7 +63,7 @@ export default class Radio extends PureComponent {
         <Box
           is="input"
           id={id}
-          type="checkbox"
+          type="radio"
           name={name}
           value={value}
           checked={checked}
