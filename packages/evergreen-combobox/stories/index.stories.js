@@ -6,11 +6,7 @@ import { Heading } from 'evergreen-typography'
 import { Combobox } from '../src/'
 
 // Generate a big list of items
-const items = [
-  ...starWarsNames.all,
-  ...starWarsNames.all.map(x => `${x} 2`),
-  ...starWarsNames.all.map(x => `${x} 3`),
-].sort((a, b) => {
+const items = starWarsNames.all.sort((a, b) => {
   const nameA = a.toUpperCase()
   const nameB = b.toUpperCase()
   if (nameA < nameB) {
@@ -22,6 +18,8 @@ const items = [
 
   return 0
 })
+
+const customItems = items.map(i => ({ label: i }))
 
 const handleChange = selectedItem => {
   // eslint-disable-next-line no-console
@@ -59,6 +57,23 @@ storiesOf('combobox', module).add('Combobox', () => (
         inputProps={{
           placeholder: 'Filter names...',
         }}
+      />
+    </Box>
+    <Box marginBottom={16}>
+      <Heading>Default value</Heading>
+      <Combobox
+        defaultSelectedItem="Yoda"
+        items={items}
+        onChange={handleChange}
+      />
+    </Box>
+    <Box marginBottom={16}>
+      <Heading>Custom item objects</Heading>
+      <Combobox
+        defaultSelectedItem={customItems[0]}
+        items={customItems}
+        itemToString={i => i.label}
+        onChange={handleChange}
       />
     </Box>
   </Box>

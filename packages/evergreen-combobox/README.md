@@ -23,12 +23,22 @@ This package implements a `Combobox` component. This component combines a `Autoc
 ```js
 static propTypes = {
   ...Box.propTypes,
-  items: PropTypes.array,
-  width: PropTypes.oneOf(PropTypes.string, PropTypes.number),
+  items: PropTypes.array.isRequired,
+  selectedItem: PropTypes.any,
+  defaultSelectedItem: PropTypes.any,
+  itemToString: PropTypes.func,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   height: PropTypes.number,
   onChange: PropTypes.func,
-  inputProps: PropTypes.objectOf(TextInput.propTypes),
-  buttonProps: PropTypes.objectOf(Button.propTypes),
+  inputProps: PropTypes.shape({ ...TextInput.propTypes }),
+  buttonProps: PropTypes.shape({ ...Button.propTypes }),
+  openOnFocus: PropTypes.bool,
+  autocompleteProps: PropTypes.shape({ ...Autocomplete.propTypes }),
+}
+
+static defaultProps = {
+  openOnFocus: false,
+  width: 224
 }
 ```
 

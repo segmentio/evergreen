@@ -14,7 +14,11 @@ const autocompleteItemRenderer = props => <AutocompleteItem {...props} />
 // https://github.com/paypal/downshift/issues/164
 export default class Autocomplete extends PureComponent {
   static propTypes = {
-    children: PropTypes.func,
+    items: PropTypes.array.isRequired,
+    selectedItem: PropTypes.any,
+    defaultSelectedItem: PropTypes.any,
+    itemToString: PropTypes.func.isRequired,
+    children: PropTypes.func.isRequired,
     itemSize: PropTypes.number,
     renderItem: PropTypes.func,
     itemsFilter: PropTypes.func,
@@ -26,6 +30,7 @@ export default class Autocomplete extends PureComponent {
   }
 
   static defaultProps = {
+    itemToString: i => (i == null ? '' : String(i)),
     itemSize: 32,
     itemsFilter: fuzzyFilter,
     isFilterDisabled: false,
@@ -47,6 +52,7 @@ export default class Autocomplete extends PureComponent {
       itemSize,
       itemsFilter,
       items: originalItems,
+      itemToString,
       renderItem,
       popoverMaxHeight,
       isFilterDisabled,
@@ -70,14 +76,15 @@ export default class Autocomplete extends PureComponent {
             scrollToAlignment="auto"
             renderItem={({ index, style }) => {
               const item = items[index]
+              const itemString = itemToString(item)
               return renderItem(
                 getItemProps({
                   item,
-                  key: item,
+                  key: itemString,
                   index,
                   style,
                   isEven: index % 2 === 1,
-                  children: item,
+                  children: itemString,
                   onMouseUp: () => {
                     selectItemAtIndex(index)
                   },
