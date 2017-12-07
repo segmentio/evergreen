@@ -15,6 +15,7 @@ const autocompleteItemRenderer = props => <AutocompleteItem {...props} />
 export default class Autocomplete extends PureComponent {
   static propTypes = {
     items: PropTypes.array.isRequired,
+    selectedItem: PropTypes.any,
     defaultSelectedItem: PropTypes.any,
     itemToString: PropTypes.func.isRequired,
     children: PropTypes.func.isRequired,

@@ -12,6 +12,7 @@ export default class Combobox extends PureComponent {
     ...position.propTypes,
     ...layout.propTypes,
     items: PropTypes.array.isRequired,
+    selectedItem: PropTypes.any,
     defaultSelectedItem: PropTypes.any,
     itemToString: PropTypes.func,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -46,6 +47,7 @@ export default class Combobox extends PureComponent {
   render() {
     const {
       items,
+      selectedItem,
       defaultSelectedItem,
       itemToString,
       width,
@@ -61,6 +63,7 @@ export default class Combobox extends PureComponent {
     return (
       <Autocomplete
         items={items}
+        selectedItem={selectedItem}
         defaultSelectedItem={defaultSelectedItem}
         itemToString={itemToString}
         onChange={onChange}

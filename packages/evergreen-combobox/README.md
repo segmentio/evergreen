@@ -24,6 +24,7 @@ This package implements a `Combobox` component. This component combines a `Autoc
 static propTypes = {
   ...Box.propTypes,
   items: PropTypes.array.isRequired,
+  selectedItem: PropTypes.any,
   defaultSelectedItem: PropTypes.any,
   itemToString: PropTypes.func,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
