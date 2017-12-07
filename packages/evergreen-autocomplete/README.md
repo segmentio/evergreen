@@ -32,6 +32,7 @@ This package implements a `Autocomplete` component. This component only deals wi
 ```js
 static propTypes = {
   items: PropTypes.array.isRequired,
+  selectedItem: PropTypes.any,
   defaultSelectedItem: PropTypes.any,
   children: PropTypes.func.isRequired,
   itemSize: PropTypes.number,
