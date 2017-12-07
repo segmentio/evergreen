@@ -9,6 +9,7 @@
 * Dedicated UI Development Environment with [React storybook](https://storybook.js.org/)
 * Easy adoption because of CSS-in-JS
 * [Lerna](https://lernajs.io/) mono-repo
+* Interested in Evergreen? [Come work for Segment!](https://segment.com/jobs/)
 
 ## Core values of 🌲Evergreen
 
