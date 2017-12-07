@@ -31,21 +31,28 @@ This package implements a `Autocomplete` component. This component only deals wi
 
 ```js
 static propTypes = {
-  items: PropTypes.array,
-  children: PropTypes.func,
-  onChange: PropTypes.func,
+  items: PropTypes.array.isRequired,
+  selectedItem: PropTypes.any,
+  defaultSelectedItem: PropTypes.any,
+  children: PropTypes.func.isRequired,
   itemSize: PropTypes.number,
   renderItem: PropTypes.func,
   itemsFilter: PropTypes.func,
+  isFilterDisabled: PropTypes.bool,
+  popoverMinWidth: PropTypes.number,
   popoverMaxHeight: PropTypes.number,
   useSmartPositioning: PropTypes.bool,
+  ...Downshift.propTypes,
 }
 
 static defaultProps = {
-  itemsFilter: fuzzyFilter,
-  useSmartPositioning: false,
+  itemToString: i => (i == null ? '' : String(i)),
   itemSize: 32,
+  itemsFilter: fuzzyFilter,
+  isFilterDisabled: false,
+  popoverMinWidth: 200,
   popoverMaxHeight: 240,
+  useSmartPositioning: false,
   renderItem: autocompleteItemRenderer,
 }
 ```
