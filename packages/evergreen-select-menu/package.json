@@ -1,6 +1,6 @@
 {
   "name": "evergreen-select-menu",
-  "version": "2.19.0",
+  "version": "2.19.1",
   "description": "React components: SelectMenu",
   "main": "lib/index.js",
   "keywords": [
