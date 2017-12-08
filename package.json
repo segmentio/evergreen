@@ -12,6 +12,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "concurrently": "^3.5.1",
     "eslint": "^4.3.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-prettier": "^2.3.0",
@@ -32,7 +33,7 @@
   },
   "scripts": {
     "lerna-publish": "lerna publish",
-    "dev": "npm run build:watch & npm run storybook",
+    "dev": "concurrently \"npm run build:watch\" \"npm run storybook\"",
     "create-package": "babel-node tools/create-package",
     "create-package:components": "babel-node tools/create-package-components",
     "bootstrap": "lerna exec -- git clean -Xdf . && lerna bootstrap",

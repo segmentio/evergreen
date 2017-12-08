@@ -1,28 +1,31 @@
 {
-  "name": "evergreen-popover",
-  "version": "2.19.0",
-  "description": "React components: Popover",
+  "name": "evergreen-select-menu",
+  "version": "2.19.1",
+  "description": "React components: SelectMenu",
   "main": "lib/index.js",
   "keywords": [
     "evergreen",
     "segment",
     "ui",
     "react",
-    "Popover"
+    "SelectMenu"
   ],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
+    "evergreen-buttons": "^2.19.0",
     "evergreen-layers": "^2.19.0",
-    "evergreen-positioner": "^2.19.0",
+    "evergreen-popover": "^2.19.0",
+    "evergreen-table": "^2.19.0",
+    "fuzzaldrin-plus": "^0.6.0",
     "prop-types": "^15.0.0",
+    "react-tiny-virtual-list": "^2.1.4",
     "ui-box": "^0.5.4"
   },
   "peerDependencies": {
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "evergreen-buttons": "^2.19.0",
-    "evergreen-typography": "^2.19.0"
+    "starwars-names": "^1.6.0"
   }
 }

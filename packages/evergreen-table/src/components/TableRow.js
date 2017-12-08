@@ -46,7 +46,7 @@ export default class TableRow extends PureComponent {
         display="flex"
         {...(isSelected ? { 'aria-selected': true } : {})}
         {...(isSelectable
-          ? { css: { ...selectableRowStyle, ...css }, tabindex: 0 }
+          ? { css: { ...selectableRowStyle, ...css }, tabIndex: 0 }
           : { css })}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}

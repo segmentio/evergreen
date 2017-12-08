@@ -1,18 +1,24 @@
 export default {
-  '800': {
+  '900': {
     fontSize: '29px',
     fontWeight: 400,
     lineHeight: '32px',
     letterSpacing: '-0.2px',
   },
-  '700': {
-    fontSize: '28px',
+  '800': {
+    fontSize: '24px',
     fontWeight: 400,
     lineHeight: '28px',
     letterSpacing: '-0.2px',
   },
-  '600': {
+  '700': {
     fontSize: '20px',
+    fontWeight: 400,
+    lineHeight: '24px',
+    letterSpacing: '-0.05px',
+  },
+  '600': {
+    fontSize: '18px',
     fontWeight: 400,
     lineHeight: '24px',
     letterSpacing: '-0.05px',
@@ -20,7 +26,7 @@ export default {
   '500': {
     fontSize: '16px',
     fontWeight: 400,
-    lineHeight: '24px',
+    lineHeight: '22px',
     letterSpacing: '-0.05px',
   },
   '400': {
