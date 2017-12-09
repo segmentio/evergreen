@@ -7,7 +7,6 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-colors": "^2.19.0",
     "evergreen-shared-styles": "^2.19.0",
     "ui-box": "^0.5.4"
   },

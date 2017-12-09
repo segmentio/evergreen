@@ -82,7 +82,6 @@ const items = [
 })
 
 const handleChange = selectedItem => {
-  // eslint-disable-next-line no-console
   console.log(selectedItem)
 }
 

@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react'
+import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react'
 import Box from 'ui-box'
 import { Text, Label, Heading } from 'evergreen-typography'
@@ -11,7 +11,7 @@ const Description = props => (
 storiesOf('text-input', module).add('TextInput', () => (
   <div>
     {Object.keys(TextInputAppearances).map(appearance => (
-      <Box padding={40} float="left">
+      <Box key={appearance} padding={40} float="left">
         <Heading marginBottom={24}>Appearance: {appearance}</Heading>
         <Box marginBottom={24} width={360}>
           <Label htmlFor={32} size={400} display="block">

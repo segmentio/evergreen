@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react'
+import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react'
 import Box from 'ui-box'
 import starWarsNames from 'starwars-names'
@@ -24,7 +24,6 @@ const items = [
 })
 
 const handleChange = selectedItem => {
-  // eslint-disable-next-line no-console
   console.log(selectedItem)
 }
 

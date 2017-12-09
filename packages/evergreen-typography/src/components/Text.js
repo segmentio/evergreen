@@ -57,7 +57,7 @@ export default class Text extends PureComponent {
 
     return (
       <Box
-        {...(color !== null ? { color: TextColors[color] || color } : {})}
+        {...(color ? { color: TextColors[color] || color } : {})}
         fontFamily={FontFamilies[fontFamily] || fontFamily}
         {...textStyle}
         {...props}

@@ -39,7 +39,7 @@ const data = {
   }
 }
 
-export default stuff => {
+export default () => {
   const docs = getComponent('buttons')
   console.log('stuff', docs)
   return (

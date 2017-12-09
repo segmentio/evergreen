@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Text, TextStyles } from 'evergreen-typography'
+import { Text } from 'evergreen-typography'
 import { TriangleIcon } from 'evergreen-icons'
-import colors from 'evergreen-colors'
 import {
   getIconSizeForControlHeight,
   getBorderRadiusForControlHeight,

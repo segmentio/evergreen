@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from 'evergreen-typography'
-import Box from 'ui-box'
 import { IconMap, IconAim } from 'evergreen-icons'
 import {
   getBorderRadiusForControlHeight,
@@ -69,9 +68,8 @@ export default class Button extends PureComponent {
     const iconHeight = height - 4
     const iconSize = getIconSizeForControlHeight({ height: iconHeight })
 
-    const pr =
-      paddingRight !== undefined ? paddingRight : Math.round(height / 2)
-    const pl = paddingLeft !== undefined ? paddingLeft : Math.round(height / 2)
+    const pr = paddingRight ? paddingRight : Math.round(height / 2)
+    const pl = paddingLeft ? paddingLeft : Math.round(height / 2)
 
     let iconBefore
     if (iconBeforeKey) {

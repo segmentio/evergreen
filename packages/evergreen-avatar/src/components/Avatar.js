@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import Image from 'evergreen-image'
 import { Text } from 'evergreen-typography'
 import { FillAppearances } from 'evergreen-color-utils'
-import colors from 'evergreen-colors' // eslint-disable-line
+import colors from 'evergreen-colors'
 import globalGetInitials from '../utils/getInitials'
 import globalHash from '../utils/hash'
 
@@ -81,7 +81,7 @@ export default class Avatar extends PureComponent {
       ...props
     } = this.props
     const { imageHasFailedLoading } = this.state
-    const imageUnavailable = src == null || imageHasFailedLoading
+    const imageUnavailable = !src || imageHasFailedLoading
     const initialsFontSize = `${getInitialsFontSize(
       size,
       heightLimitOneCharacter

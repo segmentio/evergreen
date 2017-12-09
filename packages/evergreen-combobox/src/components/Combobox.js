@@ -82,9 +82,9 @@ export default class Combobox extends PureComponent {
           clearSelection
         }) => (
           <Box
+            key={key}
             innerRef={ref => getRef(ref)}
             display="inline-flex"
-            key={key}
             width={width}
             {...props}
           >
