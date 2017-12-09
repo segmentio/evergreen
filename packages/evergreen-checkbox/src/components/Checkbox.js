@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import colors from 'evergreen-colors'
 import { Text } from 'evergreen-typography'
 import { CheckboxAppearances } from 'evergreen-shared-styles'
 

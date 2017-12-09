@@ -8,6 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "downshift": "^1.16.0",
+    "evergreen-colors": "^2.19.0",
     "evergreen-layers": "^2.19.0",
     "evergreen-popover": "^2.19.0",
     "evergreen-typography": "^2.19.0",

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Text from './Text'
 import LinkAppearances from '../styles/LinkAppearances'
+import Text from './Text'
 
 export default class Link extends PureComponent {
   static propTypes = {

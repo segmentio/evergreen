@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { splitProps, spacing, position, layout } from 'ui-box'
-import colors from 'evergreen-colors'
+import Box, { spacing, position, layout } from 'ui-box'
 import SwitchAppearances from '../styles/SwitchAppearances'
 
 const animationEasing = {
@@ -47,7 +46,8 @@ const CheckIcon = ({ size, fill = 'currentColor', ...props }) => (
 )
 
 CheckIcon.propTypes = {
-  fill: PropTypes.string
+  fill: PropTypes.string,
+  size: PropTypes.number
 }
 
 export default class Switch extends PureComponent {

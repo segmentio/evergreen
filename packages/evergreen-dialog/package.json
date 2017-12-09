@@ -9,6 +9,7 @@
   "dependencies": {
     "evergreen-buttons": "^2.19.0",
     "evergreen-dialog": "^2.19.0",
+    "evergreen-layers": "^2.19.0",
     "evergreen-overlay": "^2.19.0",
     "evergreen-typography": "^2.19.0",
     "prop-types": "^15.0.0",

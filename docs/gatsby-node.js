@@ -3,7 +3,7 @@ const components = require('./src/components')
 
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
-exports.createPages = ({ boundActionCreators, graphql }) => {
+exports.createPages = ({ boundActionCreators }) => {
   const { createPage } = boundActionCreators
 
   const componentTemplate = Path.resolve(`src/templates/component.js`)

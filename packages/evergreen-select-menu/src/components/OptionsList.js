@@ -1,4 +1,3 @@
-/* eslint-disable no-return-assign */
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import fuzzaldrin from 'fuzzaldrin-plus'
@@ -117,6 +116,10 @@ export default class OptionsList extends PureComponent {
     this.props.onSelect(item)
   }
 
+  assignSearchRef = ref => {
+    this.searchRef = ref
+  }
+
   render() {
     const {
       options: originalOptions,
@@ -148,7 +151,7 @@ export default class OptionsList extends PureComponent {
           <TableRow>
             <SearchTableHeaderCell
               onChange={this.handleChange}
-              innerRef={ref => (this.searchRef = ref)}
+              innerRef={this.assignSearchRef}
               borderRight={null}
               height={32}
             />

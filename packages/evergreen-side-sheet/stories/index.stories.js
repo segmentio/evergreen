@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react'
+import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'evergreen-buttons'

@@ -33,6 +33,8 @@
       ],
       "react/require-default-props": ["off"],
       "react/default-props-match-prop-types": ["off"],
+      "react/forbid-component-props": ["off"],
+      "react/jsx-no-bind": ["off"],
       "unicorn/filename-case": ["off"]
     }
   },

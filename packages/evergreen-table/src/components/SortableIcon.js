@@ -19,7 +19,7 @@ export default class SortableIcon extends PureComponent {
         is="span"
         display="inline-block"
         paddingLeft={6}
-        {...(sortOrder !== 'disabled' ? { title: sortOrder } : {})}
+        {...(sortOrder === 'disabled' ? {} : { title: sortOrder })}
       >
         <TriangleIcon
           marginTop={-2}

@@ -1,5 +1,5 @@
-import { controlBaseStyle as baseStyle } from './controlBaseStyle'
 import colors from 'evergreen-colors'
+import baseStyle from './controlBaseStyle'
 
 const disabledState = '&[disabled] + div'
 const hoverState = '&:not([disabled]):hover + div'

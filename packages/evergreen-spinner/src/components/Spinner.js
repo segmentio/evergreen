@@ -32,7 +32,7 @@ const inner = {
   strokeMiterlimit: 10,
   strokeLinecap: 'round',
   animation: `${loadingCircleKeyframes} 2s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
-  stroke: colors.neutral['500'], // eslint-disable-line
+  stroke: colors.neutral['500'],
   fill: 'transparent'
 }
 

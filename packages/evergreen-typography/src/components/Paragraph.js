@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import mapValues from 'lodash.mapvalues'
-import Text from './Text'
 import TextStyles from '../styles/TextStyles'
+import Text from './Text'
 
 const textStyleTransformation = ({ lineHeight, ...textStyle }) => ({
   ...textStyle,
