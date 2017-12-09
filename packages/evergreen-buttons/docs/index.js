@@ -1,14 +1,14 @@
 import React from 'react'
-import PropTypes form 'prop-types'
+import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-layers'
-import { Text, Paragraph, Heading } from 'evergreen-typography'
+import { Paragraph } from 'evergreen-typography'
 import { Button } from '../src'
 
 class Example extends React.PureComponent {
   static propTypes = {
-    component: PropTyps.node,
-    children: PropTypes.node,
-    }
+    component: PropTypes.node,
+    children: PropTypes.node
+  }
 
   render() {
     return (

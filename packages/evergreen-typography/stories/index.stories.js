@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react'
+import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react'
 import Box from 'ui-box'
 import {
@@ -22,7 +22,7 @@ function previewTextComponent(Comp, sizes = TextSizes, props) {
   return (
     <Box>
       {sizes.map(size => (
-        <Box>
+        <Box key={size}>
           <Comp size={size} {...props}>
             {dummyText}
           </Comp>

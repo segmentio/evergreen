@@ -61,14 +61,6 @@ class SideSheet extends React.Component {
     width: 620
   }
 
-  constructor() {
-    super()
-
-    this.state = {
-      exiting: false
-    }
-  }
-
   render() {
     const { children, width, containerProps, ...props } = this.props
 

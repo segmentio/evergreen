@@ -1,6 +1,4 @@
-/* eslint-disable import/no-unresolved, no-unused-vars */
-
-// import colorsDocs from '../../packages/evergreen-colors/docs/'
+// Import colorsDocs from '../../packages/evergreen-colors/docs/'
 // import colorUtilsDocs from '../../packages/evergreen-color-utils/docs/'
 // import sharedStylesDocs from '../../packages/evergreen-shared-styles/docs/'
 // import typographyDocs from '../../packages/evergreen-typography/docs/'

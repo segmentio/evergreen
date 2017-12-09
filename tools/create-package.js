@@ -8,9 +8,9 @@
  * └── package.json
  *
  */
-const task = require('./task')
-const fs = require('fs-extra')
 const path = require('path')
+const fs = require('fs-extra')
+const task = require('./task')
 
 const packageName = process.argv[2]
 
@@ -40,7 +40,8 @@ module.exports = task('create-package-js', async () => {
     main: 'lib/index.js',
     keywords: ['evergreen', 'segment', 'ui', packageName],
     author: `Segment`,
-    license: 'MIT'
+    license: 'MIT',
+    xo: false
   }
 
   console.info('Package name will be: ', packageName)

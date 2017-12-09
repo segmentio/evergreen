@@ -64,14 +64,6 @@ class Dialog extends React.Component {
     hasCloseIcon: true
   }
 
-  constructor() {
-    super()
-
-    this.state = {
-      exiting: false
-    }
-  }
-
   render() {
     const {
       children,

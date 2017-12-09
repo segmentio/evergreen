@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react'
+import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react'
 import Box from 'ui-box'
 import { Heading } from 'evergreen-typography'
@@ -11,7 +11,7 @@ storiesOf('alert', module).add('Alert', () => (
       document.body.style.height = '100vh'
     })()}
     {['default', 'card'].map(appearance => (
-      <Box float="left" marginRight={40}>
+      <Box key={appearance} float="left" marginRight={40}>
         <Heading marginBottom={16}>{appearance}</Heading>
         <Alert
           appearance={appearance}

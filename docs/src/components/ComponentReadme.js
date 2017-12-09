@@ -15,8 +15,8 @@ export default class ComponentReadme extends PureComponent {
   }
 
   render() {
-    const { children, packageJSON, designGuidelines, ...props } = this.props
-    console.log(packageJSON)
+    const { packageJSON, designGuidelines, ...props } = this.props
+
     return (
       <article className="ComponentReadme" {...props}>
         <div className="ComponentReadme-inner">

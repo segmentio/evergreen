@@ -7,6 +7,8 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
+    "evergreen-icons": "^2.19.0",
+    "evergreen-shared-styles": "^2.19.0",
     "evergreen-text-input": "^2.19.0",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.4"

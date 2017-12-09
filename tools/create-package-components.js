@@ -20,9 +20,9 @@
  * └── package.json
  *
  */
-const task = require('./task')
-const fs = require('fs-extra')
 const path = require('path')
+const fs = require('fs-extra')
+const task = require('./task')
 
 const componentTemplate = require('./component-template').default
 const storiesTemplate = require('./component-stories-template').default
@@ -59,16 +59,15 @@ module.exports = task('create-package-components', async () => {
     keywords: ['evergreen', 'segment', 'ui', 'react', ...componentNames],
     author: `Segment`,
     license: 'MIT',
-
     // Unsure if this should be peer or regular dependency
     dependencies: {
       'ui-box': '^0.5.4',
       'prop-types': '^15.0.0'
     },
-
     peerDependencies: {
       react: '^16.0.0'
-    }
+    },
+    xo: false
   }
 
   console.info('Package name will be: ', packageName)

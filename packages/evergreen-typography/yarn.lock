@@ -30,17 +30,6 @@ encoding@^0.1.11:
   dependencies:
     iconv-lite "~0.4.13"
 
-evergreen-colors@^2.19.0:
-  version "2.19.0"
-  resolved "https://registry.yarnpkg.com/evergreen-colors/-/evergreen-colors-2.19.0.tgz#060978d71f9d701e56c2c82b126e4f59f3644d2b"
-
-evergreen-layers@^2.19.0:
-  version "2.19.0"
-  resolved "https://registry.yarnpkg.com/evergreen-layers/-/evergreen-layers-2.19.0.tgz#9d072fc284ca99135ea288ec195cf116c2f499df"
-  dependencies:
-    evergreen-colors "^2.19.0"
-    ui-box "^0.5.4"
-
 fbjs@^0.8.12, fbjs@^0.8.16:
   version "0.8.16"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
