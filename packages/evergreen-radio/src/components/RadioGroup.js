@@ -13,28 +13,28 @@ export default class RadioGroup extends PureComponent {
       PropTypes.shape({
         name: PropTypes.string,
         value: PropTypes.string,
-        label: PropTypes.element,
+        label: PropTypes.node,
         isDisabled: PropTypes.bool,
-        isDefaultSelected: PropTypes.bool,
-      }),
-    ).isRequired,
+        isDefaultSelected: PropTypes.bool
+      })
+    ).isRequired
   }
 
   static defaultProps = {
-    items: [],
+    items: []
   }
 
   constructor(props, context) {
     super(props, context)
 
     this.state = {
-      selected: (props.items.find(item => item.isDefaultSelected) || {}).value,
+      selected: (props.items.find(item => item.isDefaultSelected) || {}).value
     }
   }
 
   handleChange = value => {
     this.setState({
-      selected: value,
+      selected: value
     })
     this.props.onChange(value)
   }

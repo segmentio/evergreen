@@ -4,19 +4,19 @@ import Box from 'ui-box'
 import { Badge, Pill, BadgeAppearances } from '../src/'
 
 const wrapperStyles = {
-  display: 'flex',
+  display: 'flex'
 }
 
 const baseStyles = {
   margin: 8,
-  display: 'block',
+  display: 'block'
 }
 
 storiesOf('badges', module)
   .add('Badge', () => (
     <Box style={{ ...wrapperStyles }}>
       {Object.keys(BadgeAppearances.default).map(appearance => (
-        <Box>
+        <Box key={appearance}>
           <Badge appearance={appearance} {...baseStyles}>
             {appearance}
           </Badge>
@@ -30,7 +30,7 @@ storiesOf('badges', module)
   .add('Pill', () => (
     <Box style={{ ...wrapperStyles }}>
       {Object.keys(BadgeAppearances.default).map(appearance => (
-        <Box>
+        <Box key={appearance}>
           <Pill appearance={appearance} {...baseStyles}>
             {appearance}
           </Pill>

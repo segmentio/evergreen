@@ -16,7 +16,7 @@ const CheckIcon = ({ fill = 'currentColor', ...props }) => (
 )
 
 CheckIcon.propTypes = {
-  fill: PropTypes.string,
+  fill: PropTypes.string
 }
 
 export default class Checkbox extends PureComponent {
@@ -30,13 +30,13 @@ export default class Checkbox extends PureComponent {
     onChange: PropTypes.func,
     disabled: PropTypes.bool,
     isInvalid: PropTypes.bool,
-    appearance: PropTypes.oneOf(Object.keys(CheckboxAppearances)),
+    appearance: PropTypes.oneOf(Object.keys(CheckboxAppearances))
   }
 
   static defaultProps = {
     appearance: 'default',
     marginY: 16,
-    onChange: () => {},
+    onChange: () => {}
   }
 
   render() {

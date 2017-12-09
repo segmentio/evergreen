@@ -55,7 +55,7 @@ storiesOf('combobox', module).add('Combobox', () => (
         items={items}
         onChange={handleChange}
         inputProps={{
-          placeholder: 'Filter names...',
+          placeholder: 'Filter names...'
         }}
       />
     </Box>

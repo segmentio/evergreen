@@ -9,12 +9,12 @@ export default class SearchInput extends PureComponent {
   static propTypes = {
     ...Box.propTypes,
     ...TextInput.propTypes,
-    iconProps: PropTypes.object,
+    iconProps: PropTypes.object
   }
 
   static defaultProps = {
     height: 32,
-    appearance: 'default',
+    appearance: 'default'
   }
 
   render() {

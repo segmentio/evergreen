@@ -8,7 +8,7 @@ export default class IconButton extends PureComponent {
   static propTypes = {
     ...Button.propTypes,
     iconAim: PropTypes.oneOf(Object.keys(IconAim)).isRequired,
-    icon: PropTypes.oneOf(Object.keys(IconMap)),
+    icon: PropTypes.oneOf(Object.keys(IconMap))
   }
 
   static defaultProps = {
@@ -16,7 +16,7 @@ export default class IconButton extends PureComponent {
     height: 32,
     paddingLeft: 0,
     paddingRight: 0,
-    iconAim: 'none',
+    iconAim: 'none'
   }
 
   render() {
@@ -31,7 +31,7 @@ export default class IconButton extends PureComponent {
             aim: iconAim,
             iconSize,
             color: 'inherit',
-            size: height,
+            size: height
           })}
       </Button>
     )

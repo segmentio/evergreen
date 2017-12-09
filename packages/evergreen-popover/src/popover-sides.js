@@ -1,4 +1,4 @@
 export default {
   TOP: 'top',
-  BOTTOM: 'bottom',
+  BOTTOM: 'bottom'
 }

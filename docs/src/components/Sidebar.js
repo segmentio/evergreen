@@ -6,11 +6,11 @@ import components from '../components'
 export default class Sidebar extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
-    components: PropTypes.array,
+    components: PropTypes.array
   }
 
   static defaultProps = {
-    components,
+    components
   }
 
   constructor(props, context) {
@@ -26,7 +26,7 @@ export default class Sidebar extends PureComponent {
         <div className="NavGroup">
           <h3 className="NavGroup-title">Components</h3>
           <nav className="NavGroup-nav">
-            {components.map(({ name }) => <Link>{name}</Link>)}
+            {components.map(({ name }) => <Link key={name}>{name}</Link>)}
           </nav>
         </div>
       </aside>

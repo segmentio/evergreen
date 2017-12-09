@@ -6,18 +6,18 @@ import TableCell from './TableCell'
 const ellipsis = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
+  whiteSpace: 'nowrap'
 }
 
 export default class TextTableCell extends PureComponent {
   static propTypes = {
     ...TableCell.propTypes,
     isNumber: PropTypes.bool.isRequired,
-    textProps: PropTypes.shape(Text.propTypes),
+    textProps: PropTypes.shape(Text.propTypes)
   }
 
   static defaultProps = {
-    isNumber: false,
+    isNumber: false
   }
 
   render() {
@@ -31,7 +31,7 @@ export default class TextTableCell extends PureComponent {
           {...(isNumber
             ? {
                 textAlign: 'right',
-                fontFamily: 'mono',
+                fontFamily: 'mono'
               }
             : {})}
           {...textProps}

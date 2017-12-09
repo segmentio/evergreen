@@ -2,7 +2,6 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import { FillAppearances } from 'evergreen-color-utils'
-import colors from 'evergreen-colors'
 import { Heading, Paragraph } from 'evergreen-typography'
 import { Avatar } from '../src/'
 
@@ -14,7 +13,7 @@ const names = [
   'Jack Phillips',
   'Julia Williamson',
   'Jonathan Martin',
-  'Kevin Niparko',
+  'Kevin Niparko'
 ]
 
 const anonymousIds = [1591, 13184, 1055, 4199, 4824, 11394, 1965, 13023]
@@ -69,7 +68,7 @@ storiesOf('avatar', module).add('Avatar', () => (
         <StoryDescription>Colors are based on the name.</StoryDescription>
       </StoryHeader>
       {names.map(name => (
-        <Avatar isSolid key={name} name={name} marginRight={12} size={40} />
+        <Avatar key={name} isSolid name={name} marginRight={12} size={40} />
       ))}
     </Box>
     <Box marginBottom={40}>
@@ -115,8 +114,8 @@ storiesOf('avatar', module).add('Avatar', () => (
       </StoryHeader>
       {Object.keys(FillAppearances.default).map((appearance, index) => (
         <Avatar
-          appearance={appearance}
           key={appearance}
+          appearance={appearance}
           name={names[index]}
           marginRight={12}
           size={40}
@@ -135,9 +134,9 @@ storiesOf('avatar', module).add('Avatar', () => (
       </StoryHeader>
       {Object.keys(FillAppearances.default).map((appearance, index) => (
         <Avatar
+          key={appearance}
           isSolid
           appearance={appearance}
-          key={appearance}
           name={names[index]}
           marginRight={12}
           size={40}
@@ -152,9 +151,9 @@ storiesOf('avatar', module).add('Avatar', () => (
         </StoryDescription>
       </StoryHeader>
       <Avatar
+        key="manual"
         isSolid
         backgroundColor="orange"
-        key="manual"
         name={names[1]}
         marginRight={12}
         size={40}

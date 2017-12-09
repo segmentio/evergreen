@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import colors from 'evergreen-colors'
 import { Text } from 'evergreen-typography'
 import { CheckboxAppearances } from 'evergreen-shared-styles'
 
@@ -13,6 +12,7 @@ const CircleIcon = ({ size, fill = 'currentColor', ...props }) => (
 
 CircleIcon.propTypes = {
   fill: PropTypes.string,
+  size: PropTypes.number
 }
 
 export default class Radio extends PureComponent {
@@ -27,14 +27,14 @@ export default class Radio extends PureComponent {
     name: PropTypes.string,
     onChange: PropTypes.func,
     value: PropTypes.string,
-    size: PropTypes.oneOf([12, 16]),
+    size: PropTypes.oneOf([12, 16])
   }
 
   static defaultProps = {
     appearance: 'default',
     marginY: 12,
     onChange: () => {},
-    size: 12,
+    size: 12
   }
 
   render() {

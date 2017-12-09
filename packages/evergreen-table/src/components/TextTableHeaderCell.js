@@ -9,11 +9,11 @@ export default class TextTableHeaderCell extends PureComponent {
     ...TableHeaderCell.propTypes,
     ...SortableIcon.propTypes,
     textProps: PropTypes.objectOf(Text.propTypes),
-    isSortable: PropTypes.bool,
+    isSortable: PropTypes.bool
   }
 
   static defaultProps = {
-    ...SortableIcon.defaultProps,
+    ...SortableIcon.defaultProps
   }
 
   render() {

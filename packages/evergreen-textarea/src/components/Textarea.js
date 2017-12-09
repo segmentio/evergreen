@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import { TextStyles } from 'evergreen-typography'
 import {
   InputAppearances,
-  getBorderRadiusForTextSize,
+  getBorderRadiusForTextSize
 } from 'evergreen-shared-styles'
 
 export default class Textarea extends PureComponent {
@@ -13,7 +13,7 @@ export default class Textarea extends PureComponent {
     disabled: PropTypes.bool.isRequired,
     isInvalid: PropTypes.bool.isRequired,
     spellcheck: PropTypes.bool.isRequired,
-    textSize: PropTypes.oneOf(Object.keys(TextStyles)),
+    textSize: PropTypes.oneOf(Object.keys(TextStyles))
   }
 
   static defaultProps = {
@@ -27,7 +27,7 @@ export default class Textarea extends PureComponent {
     textSize: 300,
     borderRadius: 5,
     paddingX: 10,
-    paddingY: 8,
+    paddingY: 8
   }
 
   render() {

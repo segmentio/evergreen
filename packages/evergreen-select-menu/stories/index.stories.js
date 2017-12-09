@@ -9,12 +9,12 @@ import { SelectMenu } from '../src/'
 
 const options = starWarsNames.all.map(name => ({
   label: name,
-  value: name,
+  value: name
 }))
 
 class Manager extends React.Component {
   static propTypes = {
-    children: PropTypes.func,
+    children: PropTypes.func
   }
 
   state = {}
@@ -25,7 +25,7 @@ class Manager extends React.Component {
         console.log('setState', ...args)
         this.setState(...args)
       },
-      state: this.state,
+      state: this.state
     })
   }
 }

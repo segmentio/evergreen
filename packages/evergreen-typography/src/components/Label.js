@@ -3,12 +3,12 @@ import Text from './Text'
 
 export default class Label extends PureComponent {
   static propTypes = {
-    ...Text.propTypes,
+    ...Text.propTypes
   }
 
   static defaultProps = {
     ...Text.defaultProps,
-    is: 'label',
+    is: 'label'
   }
 
   render() {

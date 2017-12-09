@@ -5,12 +5,12 @@ import TextStyles from '../styles/TextStyles'
 
 const textStyleTransformation = ({ fontWeight, ...textStyle }) => ({
   ...textStyle,
-  fontWeight: fontWeight - 100,
+  fontWeight: fontWeight - 100
 })
 
 export default class SubHeading extends PureComponent {
   static propTypes = {
-    ...Text.propTypes,
+    ...Text.propTypes
   }
 
   static defaultProps = {
@@ -20,7 +20,7 @@ export default class SubHeading extends PureComponent {
     fontFamily: 'display',
     marginTop: 0,
     marginBottom: 0,
-    textStyles: mapValues(TextStyles, textStyleTransformation),
+    textStyles: mapValues(TextStyles, textStyleTransformation)
   }
 
   render() {

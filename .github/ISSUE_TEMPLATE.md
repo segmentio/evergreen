@@ -7,7 +7,7 @@ Sadly, if we don't receive enough information, or the issue/feature request does
 align well with our [ROADMAP.md](./ROADMAP.md), we might respectfully
 thank you for your time, and close the issue.
 
-*Bug fixes and documentation fixes are welcome.*
+_Bug fixes and documentation fixes are welcome._
 
 ## In the case of a bug report 🐞
 

@@ -6,7 +6,7 @@
 // import typographyDocs from '../../packages/evergreen-typography/docs/'
 // import layersDocs from '../../packages/evergreen-layers/docs/'
 import buttonsDocs from '../../../packages/evergreen-buttons/docs'
-// import iconsDocs from '../../packages/evergreen-icons/docs/'
+// Import iconsDocs from '../../packages/evergreen-icons/docs/'
 // import autocompleteDocs from '../../packages/evergreen-autocomplete/docs/'
 // import comboboxDocs from '../../packages/evergreen-combobox/docs/'
 // import badgesDocs from '../../packages/evergreen-badges/docs/'
@@ -31,7 +31,7 @@ import buttonsDocs from '../../../packages/evergreen-buttons/docs'
 // import alertDocs from '../../packages/evergreen-alert/docs/'
 
 const map = {
-  buttons: buttonsDocs,
+  buttons: buttonsDocs
 }
 
 export default function getComponent(name) {

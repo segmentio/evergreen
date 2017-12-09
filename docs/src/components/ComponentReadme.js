@@ -5,7 +5,7 @@ export default class ComponentReadme extends PureComponent {
   static propTypes = {
     packageJSON: PropTypes.object,
     name: PropTypes.string,
-    designGuidelines: PropTypes.node,
+    designGuidelines: PropTypes.node
   }
 
   constructor(props, context) {

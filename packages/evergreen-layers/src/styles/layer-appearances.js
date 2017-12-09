@@ -9,8 +9,8 @@ const LayerAppearances = {
 
   selected: {
     backgroundColor: colors.blue['10A'],
-    boxShadow: `inset 0 0 0 1px ${colors.blue['30A']}`,
-  },
+    boxShadow: `inset 0 0 0 1px ${colors.blue['30A']}`
+  }
 }
 
 export default LayerAppearances

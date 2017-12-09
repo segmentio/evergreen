@@ -3,14 +3,7 @@
   "version": "2.19.1",
   "description": "React components: Radio, RadioGroup",
   "main": "lib/index.js",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "react",
-    "Radio",
-    "RadioGroup"
-  ],
+  "keywords": ["evergreen", "segment", "ui", "react", "Radio", "RadioGroup"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
@@ -21,5 +14,6 @@
   },
   "peerDependencies": {
     "react": "^16.0.0"
-  }
+  },
+  "xo": false
 }

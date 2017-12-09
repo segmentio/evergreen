@@ -4,17 +4,17 @@ const colorsFiltered = Object.keys(colors).filter(c => c !== 'white')
 
 const getDefaultStyle = colorName => ({
   backgroundColor: colors[colorName]['15A'],
-  color: colors[colorName]['1000'],
+  color: colors[colorName]['1000']
 })
 
 const getSolidStyle = colorName => ({
   backgroundColor: colors[colorName]['500'],
-  color: 'white',
+  color: 'white'
 })
 
 const FillAppearances = {
   default: {},
-  solid: {},
+  solid: {}
 }
 
 colorsFiltered.forEach(c => {

@@ -25,7 +25,6 @@ When you pass a function to the content prop you will be able to close the popov
 * window resize
 * something in content that calls the close function
 
-
 ## Design Example
 
 The Card that is rendered is a `<Card elevation={3} />`.
@@ -99,7 +98,7 @@ const ClosablePopoverContent = ({ close }) => (
 )
 
 ClosablePopoverContent.propTypes = {
-  close: PropTypes.func,
+  close: PropTypes.func
 }
 
 // Using it with a function for complete control

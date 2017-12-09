@@ -5,7 +5,7 @@ const IconColors = {
   disabled: colors.neutral['50A'],
   muted: colors.neutral['60A'],
   selected: colors.blue['500'],
-  white: colors.white['500'],
+  white: colors.white['500']
 }
 
 export default IconColors

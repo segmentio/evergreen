@@ -7,24 +7,24 @@ import { SegmentedControl } from '../src/'
 const options = [
   { label: 'Hourly', value: 'hourly' },
   { label: 'Daily', value: 'daily' },
-  { label: 'Monthly', value: 'monthly' },
+  { label: 'Monthly', value: 'monthly' }
 ]
 
 const optionsOnOff = [
   { label: 'On', value: 'on' },
-  { label: 'Off', value: 'off' },
+  { label: 'Off', value: 'off' }
 ]
 
 class SegmentedControlManager extends React.PureComponent {
   static propTypes = {
     children: PropTypes.func,
-    options: PropTypes.array,
+    options: PropTypes.array
   }
 
   constructor(props) {
     super()
     this.state = {
-      value: props.options[0].value,
+      value: props.options[0].value
     }
   }
 
@@ -32,7 +32,7 @@ class SegmentedControlManager extends React.PureComponent {
     return this.props.children({
       value: this.state.value,
       options: this.props.options,
-      onChange: value => this.setState({ value }),
+      onChange: value => this.setState({ value })
     })
   }
 }

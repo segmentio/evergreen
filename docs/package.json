@@ -13,6 +13,9 @@
   "dependencies": {
     "gatsby": "^1.9.127",
     "gatsby-link": "^1.6.30",
-    "gatsby-plugin-react-helmet": "^2.0.2"
-  }
+    "gatsby-plugin-react-helmet": "^2.0.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0"
+  },
+  "xo": false
 }

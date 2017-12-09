@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Text } from 'evergreen-typography'
 import {
   getBorderRadiusForControlHeight,
-  getTextStyleForControlHeight,
+  getTextStyleForControlHeight
 } from 'evergreen-shared-styles'
 import TextInputAppearances from '../styles/TextInputAppearances'
 
@@ -15,7 +15,7 @@ export default class TextInput extends PureComponent {
     isInvalid: PropTypes.bool,
     spellCheck: PropTypes.bool,
     placeholder: PropTypes.string,
-    appearance: PropTypes.oneOf(Object.keys(TextInputAppearances)),
+    appearance: PropTypes.oneOf(Object.keys(TextInputAppearances))
   }
 
   static defaultProps = {
@@ -27,7 +27,7 @@ export default class TextInput extends PureComponent {
     width: 280,
     disabled: false,
     isInvalid: false,
-    spellCheck: true,
+    spellCheck: true
   }
 
   render() {

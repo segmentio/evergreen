@@ -27,8 +27,8 @@ module.exports = [
   'evergreen-radio',
   'evergreen-dialog',
   'evergreen-corner-dialog',
-  'evergreen-alert',
+  'evergreen-alert'
 ].map(x => ({
   name: x.substring('evergreen-'.length),
-  packageName: x,
+  packageName: x
 }))

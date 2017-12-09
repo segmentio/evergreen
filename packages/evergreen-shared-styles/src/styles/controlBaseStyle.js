@@ -15,6 +15,6 @@ export default {
     backgroundImage: 'none',
     backgroundColor: colors.neutral['10A'],
     boxShadow: 'none',
-    color: colors.neutral['300A'],
-  },
+    color: colors.neutral['300A']
+  }
 }
