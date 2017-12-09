@@ -7,7 +7,7 @@
     "create-package:components": "babel-node tools/create-package-components",
     "bootstrap": "yarn clean && lerna bootstrap",
     "clean": "git clean -Xdf packages",
-    "lint": "xo .",
+    "lint": "xo",
     "storybook": "start-storybook -p 6006",
     "deploy-storybook": "storybook-to-ghpages",
     "build:watch":
