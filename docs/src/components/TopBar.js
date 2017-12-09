@@ -5,7 +5,7 @@ import logo from '../images/evergreen-logo-wordmark.svg'
 
 export default class TopBar extends PureComponent {
   static propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node
   }
 
   static defaultProps = {}

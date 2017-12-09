@@ -3,13 +3,13 @@ import Text from './Text'
 
 export default class Code extends PureComponent {
   static propTypes = {
-    ...Text.propTypes,
+    ...Text.propTypes
   }
 
   static defaultProps = {
     ...Text.defaultProps,
     is: 'code',
-    fontFamily: 'mono',
+    fontFamily: 'mono'
   }
 
   render() {

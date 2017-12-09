@@ -42,8 +42,8 @@ static defaultProps = {
 }
 ```
 
-
 ## Complete Story
+
 ```jsx
 import { storiesOf } from '@storybook/react'
 import React from 'react'
@@ -55,7 +55,7 @@ import { Combobox } from '../src/'
 const items = [
   ...starWarsNames.all,
   ...starWarsNames.all.map(x => `${x} 2`),
-  ...starWarsNames.all.map(x => `${x} 3`),
+  ...starWarsNames.all.map(x => `${x} 3`)
 ].sort((a, b) => {
   const nameA = a.toUpperCase()
   const nameB = b.toUpperCase()

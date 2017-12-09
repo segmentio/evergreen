@@ -24,7 +24,7 @@ const IconMap = {
   warning: WarningIcon,
   danger: DangerIcon,
   question: QuestionIcon,
-  add: AddIcon,
+  add: AddIcon
 }
 
 export {
@@ -38,5 +38,5 @@ export {
   WarningIcon,
   DangerIcon,
   QuestionIcon,
-  Icon,
+  Icon
 }

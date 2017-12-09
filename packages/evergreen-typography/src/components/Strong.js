@@ -3,13 +3,13 @@ import Text from './Text'
 
 export default class Strong extends PureComponent {
   static propTypes = {
-    ...Text.propTypes,
+    ...Text.propTypes
   }
 
   static defaultProps = {
     ...Text.defaultProps,
     is: 'strong',
-    fontWeight: 600,
+    fontWeight: 600
   }
 
   render() {

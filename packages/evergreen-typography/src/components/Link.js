@@ -9,13 +9,13 @@ export default class Link extends PureComponent {
     rel: PropTypes.string,
     href: PropTypes.string,
     target: PropTypes.string,
-    appearance: PropTypes.oneOf(Object.keys(LinkAppearances)),
+    appearance: PropTypes.oneOf(Object.keys(LinkAppearances))
   }
 
   static defaultProps = {
     ...Text.defaultProps,
     is: 'a',
-    appearance: 'blue',
+    appearance: 'blue'
   }
 
   render() {

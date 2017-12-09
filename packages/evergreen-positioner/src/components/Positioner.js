@@ -6,18 +6,18 @@ import { Portal } from 'evergreen-portal'
 
 const PositionerSides = {
   BOTTOM: 'bottom',
-  TOP: 'top',
+  TOP: 'top'
 }
 
 const animationEasing = {
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`,
+  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
 }
 
 const initialState = () => ({
   top: null,
   left: null,
   side: null,
-  transformOriginX: null,
+  transformOriginX: null
 })
 
 const getCSS = ({ targetOffset, initialScale, animationDuration }) => ({
@@ -28,17 +28,17 @@ const getCSS = ({ targetOffset, initialScale, animationDuration }) => ({
   '&[data-state="entering"][data-position="bottom"], &[data-state="entered"][data-position="bottom"]': {
     opacity: 1,
     visibility: 'visible',
-    transform: `scale(1) translateY(${targetOffset}px)`,
+    transform: `scale(1) translateY(${targetOffset}px)`
   },
   '&[data-state="entering"][data-position="top"], &[data-state="entered"][data-position="top"]': {
     opacity: 1,
     visibility: 'visible',
-    transform: `scale(1) translateY(-${targetOffset}px)`,
+    transform: `scale(1) translateY(-${targetOffset}px)`
   },
   '&[data-state="exiting"]': {
     opacity: 0,
-    transform: 'scale(1) translateY(0)',
-  },
+    transform: 'scale(1) translateY(0)'
+  }
 })
 
 export default class Positioner extends PureComponent {
@@ -53,7 +53,7 @@ export default class Positioner extends PureComponent {
     targetOffset: PropTypes.number,
     initialScale: PropTypes.number,
     animationDuration: PropTypes.number,
-    useSmartPositioning: PropTypes.bool,
+    useSmartPositioning: PropTypes.bool
   }
 
   static defaultProps = {
@@ -64,7 +64,7 @@ export default class Positioner extends PureComponent {
     targetOffset: 8,
     initialScale: 0.9,
     animationDuration: 300,
-    useSmartPositioning: true,
+    useSmartPositioning: true
   }
 
   constructor(props, context) {
@@ -79,12 +79,12 @@ export default class Positioner extends PureComponent {
     return {
       top: {
         x,
-        y: targetRect.top - bodyRect.top,
+        y: targetRect.top - bodyRect.top
       },
       bottom: {
         x,
-        y: targetRect.bottom - bodyRect.top,
-      },
+        y: targetRect.bottom - bodyRect.top
+      }
     }
   }
 
@@ -114,11 +114,11 @@ export default class Positioner extends PureComponent {
 
     let left = Math.max(
       bottom.x - this.positionerRef.offsetWidth / 2,
-      bodyOffset,
+      bodyOffset
     )
     left = Math.min(
       left,
-      viewportWidth - this.positionerRef.offsetWidth - bodyOffset,
+      viewportWidth - this.positionerRef.offsetWidth - bodyOffset
     )
 
     let transformOriginX = bottom.x - left
@@ -131,7 +131,7 @@ export default class Positioner extends PureComponent {
       top:
         side === PositionerSides.BOTTOM
           ? bottom.y
-          : top.y - this.positionerRef.offsetHeight,
+          : top.y - this.positionerRef.offsetHeight
     })
   }
 
@@ -147,15 +147,14 @@ export default class Positioner extends PureComponent {
       targetRect,
       initialScale,
       targetOffset,
-      animationDuration,
+      animationDuration
     } = this.props
 
     const { left, top, side, transformOriginX } = this.state
 
-    const transformOrigin = `${transformOriginX}px ${side ===
-    PositionerSides.BOTTOM
-      ? 'top'
-      : 'bottom'}`
+    const transformOrigin = `${transformOriginX}px ${
+      side === PositionerSides.BOTTOM ? 'top' : 'bottom'
+    }`
 
     return (
       <Portal>
@@ -178,13 +177,14 @@ export default class Positioner extends PureComponent {
                 left,
                 top,
                 transformOrigin,
-                zIndex,
+                zIndex
               },
               getRef: this.getRef,
               targetRect,
               transformOrigin,
-              animationDuration,
-            })}
+              animationDuration
+            })
+          }
         </Transition>
       </Portal>
     )

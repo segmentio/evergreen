@@ -5,7 +5,7 @@ import Box from 'ui-box'
 export default class Image extends PureComponent {
   static propTypes = {
     ...Box.propTypes,
-    src: PropTypes.string,
+    src: PropTypes.string
   }
 
   render() {

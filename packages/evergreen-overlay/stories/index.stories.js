@@ -7,11 +7,11 @@ import { Overlay } from '../src/'
 
 class OverlayManager extends PureComponent {
   static propTypes = {
-    children: PropTypes.func,
+    children: PropTypes.func
   }
 
   state = {
-    isShown: false,
+    isShown: false
   }
 
   render() {
@@ -19,12 +19,12 @@ class OverlayManager extends PureComponent {
       isShown: this.state.isShown,
       show: () =>
         this.setState({
-          isShown: true,
+          isShown: true
         }),
       hide: () =>
         this.setState({
-          isShown: false,
-        }),
+          isShown: false
+        })
     })
   }
 }

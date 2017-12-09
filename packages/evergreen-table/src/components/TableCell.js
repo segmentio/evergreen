@@ -3,7 +3,7 @@ import { Pane } from 'evergreen-layers'
 
 export default class TableCell extends PureComponent {
   static propTypes = {
-    ...Pane.propTypes,
+    ...Pane.propTypes
   }
 
   static defaultProps = {
@@ -15,7 +15,7 @@ export default class TableCell extends PureComponent {
     alignItems: 'center',
     borderRight: 'extraMuted',
     borderBottom: 'extraMuted',
-    overflow: 'hidden',
+    overflow: 'hidden'
   }
 
   render() {

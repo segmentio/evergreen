@@ -12,12 +12,12 @@ const invisibleInput = {
   WebkitFontSmoothing: 'antialiased',
 
   '&:focus': {
-    outline: 'none',
+    outline: 'none'
   },
 
   '&::placeholder': {
-    color: colors.neutral['100A'],
-  },
+    color: colors.neutral['100A']
+  }
 }
 
 export default class SearchTableHeaderCell extends PureComponent {
@@ -27,13 +27,13 @@ export default class SearchTableHeaderCell extends PureComponent {
     onChange: PropTypes.func,
     autoFocus: PropTypes.bool,
     spellCheck: PropTypes.bool,
-    placeholder: PropTypes.string,
+    placeholder: PropTypes.string
   }
 
   static defaultProps = {
     onChange: () => {},
     spellCheck: true,
-    placeholder: 'Filter...',
+    placeholder: 'Filter...'
   }
 
   render() {

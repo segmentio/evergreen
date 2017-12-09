@@ -6,37 +6,37 @@ const LinkAppearances = {
     textDecoration: 'none',
     '&:hover': {
       color: colors.blue['300'],
-      textDecoration: 'underline',
+      textDecoration: 'underline'
     },
     '&:active': {
       color: colors.blue['900'],
-      textDecoration: 'none',
-    },
+      textDecoration: 'none'
+    }
   },
   green: {
     color: colors.green['500'],
     textDecoration: 'none',
     '&:hover': {
       color: colors.green['300'],
-      textDecoration: 'underline',
+      textDecoration: 'underline'
     },
     '&:active': {
       color: colors.green['900'],
-      textDecoration: 'none',
-    },
+      textDecoration: 'none'
+    }
   },
   neutral: {
     color: colors.neutral['500'],
     textDecoration: 'none',
     '&:hover': {
       color: colors.neutral['300'],
-      textDecoration: 'underline',
+      textDecoration: 'underline'
     },
     '&:active': {
       color: colors.neutral['900'],
-      textDecoration: 'none',
-    },
-  },
+      textDecoration: 'none'
+    }
+  }
 }
 
 export default LinkAppearances

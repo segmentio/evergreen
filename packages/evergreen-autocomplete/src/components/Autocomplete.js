@@ -26,18 +26,18 @@ export default class Autocomplete extends PureComponent {
     popoverMinWidth: PropTypes.number,
     popoverMaxHeight: PropTypes.number,
     useSmartPositioning: PropTypes.bool,
-    ...Downshift.propTypes,
+    ...Downshift.propTypes
   }
 
   static defaultProps = {
-    itemToString: i => (i == null ? '' : String(i)),
+    itemToString: i => (i ? String(i) : ''),
     itemSize: 32,
     itemsFilter: fuzzyFilter,
     isFilterDisabled: false,
     popoverMinWidth: 200,
     popoverMaxHeight: 240,
     useSmartPositioning: false,
-    renderItem: autocompleteItemRenderer,
+    renderItem: autocompleteItemRenderer
   }
 
   renderResults = ({
@@ -46,7 +46,7 @@ export default class Autocomplete extends PureComponent {
     highlightedIndex,
     selectItemAtIndex,
     selectedItem,
-    getItemProps,
+    getItemProps
   }) => {
     const {
       itemSize,
@@ -55,7 +55,7 @@ export default class Autocomplete extends PureComponent {
       itemToString,
       renderItem,
       popoverMaxHeight,
-      isFilterDisabled,
+      isFilterDisabled
     } = this.props
 
     const items =
@@ -89,8 +89,8 @@ export default class Autocomplete extends PureComponent {
                     selectItemAtIndex(index)
                   },
                   isSelected: selectedItem === item,
-                  isHighlighted: highlightedIndex === index,
-                }),
+                  isHighlighted: highlightedIndex === index
+                })
               )
             }}
           />
@@ -133,8 +133,9 @@ export default class Autocomplete extends PureComponent {
                   getItemProps,
                   selectedItem,
                   highlightedIndex,
-                  selectItemAtIndex,
-                })}
+                  selectItemAtIndex
+                })
+              }
               minHeight={0}
               animationDuration={0}
               useSmartPositioning={useSmartPositioning}
@@ -149,8 +150,9 @@ export default class Autocomplete extends PureComponent {
                   selectedItem,
                   highlightedIndex,
                   selectItemAtIndex,
-                  ...restDownshiftProps,
-                })}
+                  ...restDownshiftProps
+                })
+              }
             </Popover>
           </div>
         )}

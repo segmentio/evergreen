@@ -8,60 +8,64 @@ import SheetClose from './SheetClose'
 const paneProps = {
   height: '100vh',
   position: 'absolute',
-  right: 0,
+  right: 0
 }
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`,
+  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`
 }
 
 const ANIMATION_DURATION = 240
 
 const slideInAnimation = css.keyframes('slideInAnimation', {
   from: {
-    transform: `translateX(100%)`,
+    transform: `translateX(100%)`
   },
   to: {
-    transform: `translateX(0)`,
-  },
+    transform: `translateX(0)`
+  }
 })
 
 const slideOutAnimation = css.keyframes('slideOutAnimation', {
   from: {
-    transform: `translateX(0)`,
+    transform: `translateX(0)`
   },
   to: {
-    transform: `translateX(100%)`,
-  },
+    transform: `translateX(100%)`
+  }
 })
 
 const animationStyles = {
   transform: `translateX(100%)`,
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${slideInAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`,
+    animation: `${slideInAnimation} ${ANIMATION_DURATION}ms ${
+      animationEasing.deceleration
+    } both`
   },
   '&[data-state="exiting"]': {
-    animation: `${slideOutAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`,
-  },
+    animation: `${slideOutAnimation} ${ANIMATION_DURATION}ms ${
+      animationEasing.acceleration
+    } both`
+  }
 }
 
 class SideSheet extends React.Component {
   static propTypes = {
     ...Overlay.propTypes,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    containerProps: PropTypes.object,
+    containerProps: PropTypes.object
   }
 
   static defaultProps = {
-    width: 620,
+    width: 620
   }
 
   constructor() {
     super()
 
     this.state = {
-      exiting: false,
+      exiting: false
     }
   }
 

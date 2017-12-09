@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-// import { Positioner } from '../src/'
+// Import { Positioner } from '../src/'
 
 storiesOf('positioner', module).add('Positioner', () => (
   <Box padding={40}>

@@ -7,50 +7,43 @@ import {
   ArrowIcon,
   SearchIcon,
   CheckCircleIcon,
-  Icon,
+  Icon
 } from '../src/'
 
-const directionalShowcase = Comp =>
+const directionalShowcase = Comp => (
   <div>
     <Comp aim="up" />
     <Comp aim="right" />
     <Comp aim="down" />
     <Comp aim="left" />
   </div>
+)
 
 storiesOf('icons', module)
-  .add('TriangleIcon', () =>
-    <div>
-      {directionalShowcase(TriangleIcon)}
-    </div>,
-  )
-  .add('CloseIcon', () =>
+  .add('TriangleIcon', () => <div>{directionalShowcase(TriangleIcon)}</div>)
+  .add('CloseIcon', () => (
     <div>
       <CloseIcon />
-    </div>,
-  )
-  .add('CogIcon', () =>
+    </div>
+  ))
+  .add('CogIcon', () => (
     <div>
       <CogIcon />
-    </div>,
-  )
-  .add('ArrowIcon', () =>
-    <div>
-      {directionalShowcase(ArrowIcon)}
-    </div>,
-  )
-  .add('SearchIcon', () =>
+    </div>
+  ))
+  .add('ArrowIcon', () => <div>{directionalShowcase(ArrowIcon)}</div>)
+  .add('SearchIcon', () => (
     <div>
       <SearchIcon />
-    </div>,
-  )
-  .add('CheckCircleIcon', () =>
+    </div>
+  ))
+  .add('CheckCircleIcon', () => (
     <div>
       <CheckCircleIcon />
-    </div>,
-  )
-  .add('Icon', () =>
+    </div>
+  ))
+  .add('Icon', () => (
     <div>
       <Icon />
-    </div>,
-  )
+    </div>
+  ))
