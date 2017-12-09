@@ -5,12 +5,12 @@ import colors from 'evergreen-colors'
 import SwitchAppearances from '../styles/SwitchAppearances'
 
 const animationEasing = {
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`,
+  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
 }
 
 const handleStyle = {
   backgroundColor: '#fff',
-  borderRadius: 9999,
+  borderRadius: 9999
 }
 
 const iconContainerStyle = {
@@ -24,16 +24,16 @@ const iconContainerStyle = {
   paddingLeft: 2,
   '&[data-checked="true"]': {
     opacity: 1,
-    transform: 'scale(1)',
-  },
+    transform: 'scale(1)'
+  }
 }
 
 const handleContainerStyle = {
   transition: 'transform 200ms ease-in-out',
   transform: 'translateX(0%)',
   '&[data-checked="true"]': {
-    transform: 'translateX(50%)',
-  },
+    transform: 'translateX(50%)'
+  }
 }
 
 const CheckIcon = ({ size, fill = 'currentColor', ...props }) => (
@@ -47,7 +47,7 @@ const CheckIcon = ({ size, fill = 'currentColor', ...props }) => (
 )
 
 CheckIcon.propTypes = {
-  fill: PropTypes.string,
+  fill: PropTypes.string
 }
 
 export default class Switch extends PureComponent {
@@ -66,7 +66,7 @@ export default class Switch extends PureComponent {
     isInvalid: PropTypes.bool,
     appearance: PropTypes.oneOf(Object.keys(SwitchAppearances)),
     hasCheckIcon: PropTypes.bool,
-    defaultChecked: PropTypes.bool,
+    defaultChecked: PropTypes.bool
   }
 
   static defaultProps = {
@@ -74,13 +74,13 @@ export default class Switch extends PureComponent {
     display: 'block',
     onChange: () => {},
     appearance: 'default',
-    hasCheckIcon: true,
+    hasCheckIcon: true
   }
 
   constructor(props, context) {
     super(props, context)
     this.state = {
-      checked: props.checked || props.defaultChecked || false,
+      checked: props.checked || props.defaultChecked || false
     }
   }
 
@@ -89,7 +89,7 @@ export default class Switch extends PureComponent {
       this.props.onChange(value)
     } else {
       this.setState({
-        checked: !this.state.checked,
+        checked: !this.state.checked
       })
       this.props.onChange(value)
     }

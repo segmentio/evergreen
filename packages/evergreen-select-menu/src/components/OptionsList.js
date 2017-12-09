@@ -9,7 +9,7 @@ import OptionShapePropType from './OptionShapePropType'
 import Option from './Option'
 
 /**
- * fuzzaldrin-plus is the default filter, but you can use your own
+ * Fuzzaldrin-plus is the default filter, but you can use your own
  * as long as they follow the following signature:
  * @param options <Array[String]> - ['label', 'label2', ...]
  * @param input <String>
@@ -39,7 +39,7 @@ export default class OptionsList extends PureComponent {
     renderItem: PropTypes.func,
     placeholder: PropTypes.string,
     optionsFilter: PropTypes.func,
-    defaultSearchValue: PropTypes.string,
+    defaultSearchValue: PropTypes.string
   }
 
   static defaultProps = {
@@ -55,7 +55,7 @@ export default class OptionsList extends PureComponent {
     renderItem: itemRenderer,
     optionsFilter: fuzzyFilter,
     placeholder: 'Filter...',
-    defaultSearchValue: '',
+    defaultSearchValue: ''
   }
 
   constructor(props, context) {
@@ -63,7 +63,7 @@ export default class OptionsList extends PureComponent {
 
     this.state = {
       searchValue: props.defaultSearchValue,
-      selected: props.selected,
+      selected: props.selected
     }
   }
 
@@ -82,7 +82,7 @@ export default class OptionsList extends PureComponent {
   componentWillReceiveProps(nextProps) {
     if (nextProps.selected !== this.state.selected) {
       this.setState({
-        selected: nextProps.selected,
+        selected: nextProps.selected
       })
     }
   }
@@ -90,7 +90,7 @@ export default class OptionsList extends PureComponent {
   isSelected = item => {
     const { selected } = this.state
 
-    return !!selected.find(selectedItem => selectedItem === item.value)
+    return Boolean(selected.find(selectedItem => selectedItem === item.value))
   }
 
   search = options => {
@@ -98,20 +98,18 @@ export default class OptionsList extends PureComponent {
     const { searchValue } = this.state
 
     return searchValue.trim() === ''
-      ? options // return if no search query
+      ? options // Return if no search query
       : optionsFilter(
           options.map(item => item.labelInList || item.label),
-          searchValue,
+          searchValue
         ).map(name =>
-          options.find(
-            item => item.labelInList === name || item.label === name,
-          ),
+          options.find(item => item.labelInList === name || item.label === name)
         )
   }
 
   handleChange = searchValue => {
     this.setState({
-      searchValue,
+      searchValue
     })
   }
 
@@ -172,7 +170,7 @@ export default class OptionsList extends PureComponent {
                 style,
                 height: optionSize,
                 onSelect: () => this.handleSelect(item),
-                isSelected: this.isSelected(item),
+                isSelected: this.isSelected(item)
               })
             }}
           />

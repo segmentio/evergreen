@@ -12,7 +12,7 @@ import {
   Label,
   Small,
   Strong,
-  TextStyles,
+  TextStyles
 } from '../src/'
 
 const TextSizes = Object.keys(TextStyles).map(Number)

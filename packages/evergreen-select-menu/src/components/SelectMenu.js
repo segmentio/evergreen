@@ -15,13 +15,13 @@ export default class SelectMenu extends PureComponent {
     onSelect: PropTypes.func,
     selected: SelectedPropType,
     hasTitle: PropTypes.bool,
-    hasFilter: PropTypes.bool,
+    hasFilter: PropTypes.bool
   }
 
   static defaultProps = {
     onSelect: () => {},
     width: 240,
-    height: 248,
+    height: 248
   }
 
   constructor(props, context) {
@@ -70,7 +70,7 @@ export default class SelectMenu extends PureComponent {
               onSelect: item => {
                 this.props.onSelect(item)
               },
-              selected: arraySelected,
+              selected: arraySelected
             }}
             close={close}
           />

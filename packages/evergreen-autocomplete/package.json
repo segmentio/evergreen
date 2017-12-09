@@ -3,13 +3,7 @@
   "version": "2.19.1",
   "description": "React components: Autocomplete",
   "main": "lib/index.js",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "react",
-    "Autocomplete"
-  ],
+  "keywords": ["evergreen", "segment", "ui", "react", "Autocomplete"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
@@ -28,5 +22,6 @@
   "devDependencies": {
     "evergreen-text-input": "^2.19.0",
     "starwars-names": "^1.6.0"
-  }
+  },
+  "xo": false
 }

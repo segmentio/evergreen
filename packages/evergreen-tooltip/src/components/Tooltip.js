@@ -10,13 +10,13 @@ export default class Tooltip extends PureComponent {
     isShown: PropTypes.bool,
     children: PropTypes.node,
     tooltipProps: PropTypes.object,
-    statelessProps: PropTypes.objectOf(TooltipStateless.propTypes),
+    statelessProps: PropTypes.objectOf(TooltipStateless.propTypes)
   }
 
   constructor(props, context) {
     super(props, context)
     this.state = {
-      isShown: false,
+      isShown: false
     }
   }
 
@@ -30,7 +30,7 @@ export default class Tooltip extends PureComponent {
     if (this.state.isShown) return
     this.setState({
       isShown: true,
-      targetRect: this.getTargetRect(),
+      targetRect: this.getTargetRect()
     })
   }
 
@@ -38,7 +38,7 @@ export default class Tooltip extends PureComponent {
     if (!this.state.isShown) return
     this.setState({
       isShown: false,
-      targetRect: this.getTargetRect(),
+      targetRect: this.getTargetRect()
     })
   }
 
@@ -56,7 +56,7 @@ export default class Tooltip extends PureComponent {
             hide: this.hide,
             getRef: this.getRef,
             isShown: shown,
-            key: 'tooltip-child',
+            key: 'tooltip-child'
           })
         : React.cloneElement(children, {
             onMouseEnter: this.show,
@@ -65,7 +65,7 @@ export default class Tooltip extends PureComponent {
               this.getRef(ref)
             },
             ...(shown ? { 'data-tooltip-opened': true } : {}),
-            key: 'tooltip-child',
+            key: 'tooltip-child'
           }),
       <Positioner
         key="tooltip-positioner"
@@ -86,7 +86,7 @@ export default class Tooltip extends PureComponent {
             {content}
           </TooltipStateless>
         )}
-      </Positioner>,
+      </Positioner>
     ]
   }
 }

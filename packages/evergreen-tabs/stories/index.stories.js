@@ -16,20 +16,20 @@ const StoryDescription = props => (
 
 class TabManager extends React.PureComponent {
   static propTypes = {
-    children: PropTypes.func,
+    children: PropTypes.func
   }
 
   constructor(props, context) {
     super(props, context)
     this.state = {
-      selectedIndex: 0,
+      selectedIndex: 0
     }
   }
 
   render() {
     return this.props.children({
       selectedIndex: this.state.selectedIndex,
-      onSelect: index => this.setState({ selectedIndex: index }),
+      onSelect: index => this.setState({ selectedIndex: index })
     })
   }
 }
@@ -78,6 +78,7 @@ storiesOf('tabs', module)
               <Box padding={16} backgroundColor="#eee">
                 {tabs.map((tab, index) => (
                   <Box
+                    key={tab}
                     id={`panel-${tab}`}
                     role="tabpanel"
                     aria-labelledby={tab}
@@ -104,7 +105,7 @@ storiesOf('tabs', module)
         <Box>
           <TabNavigation marginX={-4} marginBottom={16}>
             {tabs.map((tab, index) => (
-              <Tab is="a" href="#" key={tab} id={tab} isSelected={index === 0}>
+              <Tab key={tab} is="a" href="#" id={tab} isSelected={index === 0}>
                 {tab}
               </Tab>
             ))}
@@ -154,6 +155,7 @@ storiesOf('tabs', module)
               <Box padding={16} backgroundColor="#eee" flex="1">
                 {tabs.map((tab, index) => (
                   <Box
+                    key={tab}
                     id={`panel-${tab}`}
                     role="tabpanel"
                     aria-labelledby={tab}
@@ -181,9 +183,9 @@ storiesOf('tabs', module)
           <TabNavigation marginX={-4} marginBottom={16} width={240}>
             {tabs.map((tab, index) => (
               <SidebarTab
+                key={tab}
                 is="a"
                 href="#"
-                key={tab}
                 id={tab}
                 isSelected={index === 0}
               >

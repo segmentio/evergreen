@@ -18,7 +18,7 @@ only prepare for it.** Instead of creating fixed configurations that work today,
 
 **Evergreen is built on the belief that things should work out of the box with smart defaults, but also offer full control when needed.** For example, Evergreen uses CSS-in-JS and builds on top of the Box component in [ui-box](https://github.com/segmentio/ui-box).
 
-**Evergreen is built on the belief that using Evergreen and contributing to Evergreen should be a pleasant experience.** We prioritize documentation and all the tools for a  solid developer experience. We advocate respect and inclusivity in our writings and interactions.
+**Evergreen is built on the belief that using Evergreen and contributing to Evergreen should be a pleasant experience.** We prioritize documentation and all the tools for a solid developer experience. We advocate respect and inclusivity in our writings and interactions.
 
 ## Install and use components 🔓
 
@@ -42,7 +42,8 @@ import { Button } from 'evergreen-buttons'
 
 ReactDOM.render(
   <Button>I am using 🌲Evergreen!</Button>,
-  document.getElementById('root'))
+  document.getElementById('root')
+)
 ```
 
 ## A list of all packages 📦
@@ -53,39 +54,38 @@ Some packages export just a Javascript object.
 
 Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 
-| Package                            | Status             | Exports                    |
-|------------------------------------|--------------------|----------------------------|
-| `evergreen-colors`                 | ✅ Good            | Color system object        |
-| `evergreen-color-utils`            | ✅ Good            | Color utils                |
-| `evergreen-shared-styles`          | ✅ Lacking         | Shared styles utils        |
-| `evergreen-typography`             | ✅ OK              | typography components      |
-| `evergreen-layers`                 | ✅ Good            | Pane, Card and styling     |
-| `evergreen-buttons`                | ✅ Good            | Button components          |
-| `evergreen-icons`                  | ✅ Lacking         | Icon components            |
-| `evergreen-autocomplete`           | ✅ Good            | Autocomplete components    |
-| `evergreen-combobox`               | ✅ Good            | Combobox components        |
-| `evergreen-badges`                 | ✅ Good            | Badge components           |
-| `evergreen-select`                 | ✅ Good            | Select component           |
-| `evergreen-popover`                | ✅ Good            | Popover component          |
-| `evergreen-portal`                 | ✅ Good            | Portal component           |
-| `evergreen-text-input`             | ✅ Good            | TextInput component        |
-| `evergreen-textarea`               | ✅ Good            | Textarea component         |
-| `evergreen-checkbox`               | ✅ Good            | Checkbox component         |
-| `evergreen-tabs`                   | ✅ Good            | Tabs component             |
-| `evergreen-avatar`                 | ✅ Good            | Avatar component           |
-| `evergreen-tooltip`                | ✅ Good            | Tooltip component          |
-| `evergreen-image`                  | ✅ Good            | Image component            |
-| `evergreen-segmented-control`      | ✅ Good            | SegmentedControl component |
-| `evergreen-spinner`                | ✅ Good            | Loading Spinner component  |
-| `evergreen-search-input`           | ✅ Good            | SearchInput component      |
-| `evergreen-table`                  | ✅ Good            | table component            |
-| `evergreen-side-sheet`             | ✅ Good            | SideSheet component        |
-| `evergreen-radio`                  | ✅ Good            | Radio component            |
-| `evergreen-dialog`                 | ✅ Good            | Dialog component           |
-| `evergreen-corner-dialog`          | ✅ Good            | CornerDialog component     |
-| `evergreen-alert`                  | ✅ Good            | Alert component            |
-| `evergreen-code-block`             | Needs Planning     | CodeBlock component        |
-
+| Package                       | Status         | Exports                    |
+| ----------------------------- | -------------- | -------------------------- |
+| `evergreen-colors`            | ✅ Good        | Color system object        |
+| `evergreen-color-utils`       | ✅ Good        | Color utils                |
+| `evergreen-shared-styles`     | ✅ Lacking     | Shared styles utils        |
+| `evergreen-typography`        | ✅ OK          | typography components      |
+| `evergreen-layers`            | ✅ Good        | Pane, Card and styling     |
+| `evergreen-buttons`           | ✅ Good        | Button components          |
+| `evergreen-icons`             | ✅ Lacking     | Icon components            |
+| `evergreen-autocomplete`      | ✅ Good        | Autocomplete components    |
+| `evergreen-combobox`          | ✅ Good        | Combobox components        |
+| `evergreen-badges`            | ✅ Good        | Badge components           |
+| `evergreen-select`            | ✅ Good        | Select component           |
+| `evergreen-popover`           | ✅ Good        | Popover component          |
+| `evergreen-portal`            | ✅ Good        | Portal component           |
+| `evergreen-text-input`        | ✅ Good        | TextInput component        |
+| `evergreen-textarea`          | ✅ Good        | Textarea component         |
+| `evergreen-checkbox`          | ✅ Good        | Checkbox component         |
+| `evergreen-tabs`              | ✅ Good        | Tabs component             |
+| `evergreen-avatar`            | ✅ Good        | Avatar component           |
+| `evergreen-tooltip`           | ✅ Good        | Tooltip component          |
+| `evergreen-image`             | ✅ Good        | Image component            |
+| `evergreen-segmented-control` | ✅ Good        | SegmentedControl component |
+| `evergreen-spinner`           | ✅ Good        | Loading Spinner component  |
+| `evergreen-search-input`      | ✅ Good        | SearchInput component      |
+| `evergreen-table`             | ✅ Good        | table component            |
+| `evergreen-side-sheet`        | ✅ Good        | SideSheet component        |
+| `evergreen-radio`             | ✅ Good        | Radio component            |
+| `evergreen-dialog`            | ✅ Good        | Dialog component           |
+| `evergreen-corner-dialog`     | ✅ Good        | CornerDialog component     |
+| `evergreen-alert`             | ✅ Good        | Alert component            |
+| `evergreen-code-block`        | Needs Planning | CodeBlock component        |
 
 ## Running the project 🏃🏻🏃🏾‍
 
@@ -147,7 +147,7 @@ all files in your packages directory that match `*.stories.js`.
 ### `yarn deploy-storybook`
 
 This will build a static version of the storybook and deploys it onto the `gh-pages`
- (GitHub pages) branch. This will make it available on [https://segmentio.github.io/evergreen](https://segmentio.github.io/evergreen).
+(GitHub pages) branch. This will make it available on [https://segmentio.github.io/evergreen](https://segmentio.github.io/evergreen).
 
 There still needs to be some work done to make this happen with Circle CI (continuous integration).
 
@@ -170,7 +170,6 @@ The following file tree will be generated:
 │   └── index.js
 └── package.json
 ```
-
 
 ### `yarn create-package:components`
 
@@ -210,9 +209,9 @@ Remove all untracked files and removes all node_modules (using `rm -rf`).
 
 This repo uses a central babel configuration in `.babelrc` with:
 
-- `babel-preset-es2015`
-- `babel-preset-react`
-- `babel-preset-stage-0`
+* `babel-preset-es2015`
+* `babel-preset-react`
+* `babel-preset-stage-0`
 
 ## Creating new scripts/tools
 
@@ -254,7 +253,7 @@ WWWWWW||WWWWWW
        (__|__|(__|__|
 ```
 
-Copyright (c) 2017 Segment.io, Inc. <friends@segment.com>
+Copyright (c) 2017 Segment.io, Inc. <mailto:friends@segment.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

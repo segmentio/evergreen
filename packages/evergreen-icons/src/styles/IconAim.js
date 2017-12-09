@@ -5,7 +5,7 @@ const IconAim = {
   right: '90deg',
   bottom: '180deg',
   down: '180deg',
-  left: '270deg',
+  left: '270deg'
 }
 
 export default IconAim

@@ -3,13 +3,7 @@
   "version": "2.19.0",
   "description": "React components: SearchInput",
   "main": "lib/index.js",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "react",
-    "SearchInput"
-  ],
+  "keywords": ["evergreen", "segment", "ui", "react", "SearchInput"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
@@ -23,5 +17,6 @@
   "devDependencies": {
     "evergreen-layers": "^2.19.0",
     "evergreen-typography": "^2.19.0"
-  }
+  },
+  "xo": false
 }

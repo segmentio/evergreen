@@ -9,7 +9,7 @@ import {
   TableHeaderCell,
   TextTableHeaderCell,
   SearchTableHeaderCell,
-  TableBody,
+  TableBody
 } from '../src/'
 import profiles from './profiles.json'
 

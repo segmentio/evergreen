@@ -13,5 +13,5 @@ export {
   TableHeaderCell,
   TextTableHeaderCell,
   SearchTableHeaderCell,
-  TableBody,
+  TableBody
 }

@@ -18,25 +18,25 @@ const data = {
       'ui',
       'react',
       'Button',
-      'ButtonAppearances',
+      'ButtonAppearances'
     ],
     author: 'Segment',
     license: 'MIT',
     peerDependencies: {
       'prop-types': '^15.0.0',
-      react: '^16.0.0',
+      react: '^16.0.0'
     },
     dependencies: {
       'evergreen-colors': '^2.18.14',
       'evergreen-icons': '^2.18.14',
       'evergreen-shared-styles': '^2.18.18',
       'evergreen-typography': '^2.18.14',
-      'ui-box': '^0.5.4',
+      'ui-box': '^0.5.4'
     },
     devDependencies: {
-      'evergreen-layers': '^2.18.14',
-    },
-  },
+      'evergreen-layers': '^2.18.14'
+    }
+  }
 }
 
 export default stuff => {

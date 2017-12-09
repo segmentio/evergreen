@@ -3,13 +3,7 @@
   "version": "2.19.0",
   "description": "React components: Dialog",
   "main": "lib/index.js",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "react",
-    "Dialog"
-  ],
+  "keywords": ["evergreen", "segment", "ui", "react", "Dialog"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
@@ -22,5 +16,6 @@
   },
   "peerDependencies": {
     "react": "^16.0.0"
-  }
+  },
+  "xo": false
 }

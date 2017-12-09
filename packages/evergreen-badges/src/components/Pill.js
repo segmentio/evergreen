@@ -3,11 +3,11 @@ import Badge from './Badge'
 
 export default class Pill extends PureComponent {
   static propTypes = {
-    ...Badge.propTypes,
+    ...Badge.propTypes
   }
 
   static defaultProps = {
-    borderRadius: 999,
+    borderRadius: 999
   }
 
   render() {

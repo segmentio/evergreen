@@ -7,11 +7,11 @@ import { SideSheet } from '../src/'
 
 class SideSheetManager extends PureComponent {
   static propTypes = {
-    children: PropTypes.func,
+    children: PropTypes.func
   }
 
   state = {
-    isShown: true,
+    isShown: true
   }
 
   render() {
@@ -19,12 +19,12 @@ class SideSheetManager extends PureComponent {
       isShown: this.state.isShown,
       show: () =>
         this.setState({
-          isShown: true,
+          isShown: true
         }),
       hide: () =>
         this.setState({
-          isShown: false,
-        }),
+          isShown: false
+        })
     })
   }
 }

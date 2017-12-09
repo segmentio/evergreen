@@ -9,7 +9,7 @@ import { Autocomplete } from '../src/'
 const items = [
   ...starWarsNames.all,
   ...starWarsNames.all.map(x => `${x} 2`),
-  ...starWarsNames.all.map(x => `${x} 3`),
+  ...starWarsNames.all.map(x => `${x} 3`)
 ].sort((a, b) => {
   const nameA = a.toUpperCase()
   const nameB = b.toUpperCase()
@@ -38,8 +38,8 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
       <Autocomplete onChange={handleChange} items={items}>
         {({ key, getInputProps, getRef, inputValue }) => (
           <TextInput
-            placeholder="Starwars names"
             key={key}
+            placeholder="Starwars names"
             value={inputValue}
             innerRef={ref => getRef(ref)}
             {...getInputProps()}
@@ -55,9 +55,9 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
           getButtonProps,
           getRef,
           inputValue,
-          toggleMenu,
+          toggleMenu
         }) => (
-          <Box innerRef={ref => getRef(ref)} display="inline-block" key={key}>
+          <Box key={key} innerRef={ref => getRef(ref)} display="inline-block">
             <TextInput value={inputValue} {...getInputProps()} />
             <button onClick={toggleMenu} {...getButtonProps()}>
               Trigger

@@ -3,12 +3,7 @@
   "version": "2.19.0",
   "description": "JS package: evergreen-shared-styles",
   "main": "lib/index.js",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "evergreen-shared-styles"
-  ],
+  "keywords": ["evergreen", "segment", "ui", "evergreen-shared-styles"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
@@ -18,5 +13,6 @@
   },
   "devDependencies": {
     "evergreen-layers": "^2.19.0"
-  }
+  },
+  "xo": false
 }

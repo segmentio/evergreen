@@ -5,14 +5,14 @@ import { Card } from 'evergreen-layers'
 export default class PopoverStateless extends PureComponent {
   static propTypes = {
     ...Card.propTypes,
-    children: PropTypes.node,
+    children: PropTypes.node
   }
 
   static defaultProps = {
     overflow: 'hidden',
     minWidth: 200,
     elevation: 3,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   }
 
   render() {

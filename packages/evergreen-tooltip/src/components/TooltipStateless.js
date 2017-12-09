@@ -6,7 +6,7 @@ import { Text } from 'evergreen-typography'
 
 export default class TooltipStateless extends PureComponent {
   static propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node
   }
 
   static defaultProps = {
@@ -14,7 +14,7 @@ export default class TooltipStateless extends PureComponent {
     borderRadius: 3,
     paddingX: 8,
     paddingY: 4,
-    maxWidth: 240,
+    maxWidth: 240
   }
 
   render() {

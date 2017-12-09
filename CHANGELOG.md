@@ -25,7 +25,7 @@ The packages that have been implemented since September 4 are:
 I haven't pushed it live yet with Lerna onto npm.
 Hoping to do this after I publish some Buttons first.
 
-* [x] Create a issue outline ([#8](https://github.com/segmentio/evergreen/issues/8))  , and implement `evergreen-buttons`
+* [x] Create a issue outline ([#8](https://github.com/segmentio/evergreen/issues/8)) , and implement `evergreen-buttons`
 
 ### August 30, 2017, Building out Layers
 
