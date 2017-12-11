@@ -1,6 +1,6 @@
 {
   "name": "evergreen-combobox",
-  "version": "2.19.3",
+  "version": "2.19.4",
   "description": "React components: Combobox",
   "main": "lib/index.js",
   "keywords": [
