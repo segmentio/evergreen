@@ -18,10 +18,10 @@ export default class Combobox extends PureComponent {
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.number,
     onChange: PropTypes.func,
-    inputProps: PropTypes.shape({ ...TextInput.propTypes }),
-    buttonProps: PropTypes.shape({ ...Button.propTypes }),
+    inputProps: PropTypes.object,
+    buttonProps: PropTypes.object,
     openOnFocus: PropTypes.bool,
-    autocompleteProps: PropTypes.shape({ ...Autocomplete.propTypes }),
+    autocompleteProps: PropTypes.object,
   }
 
   static defaultProps = {
