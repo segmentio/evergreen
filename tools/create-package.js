@@ -8,16 +8,16 @@
  * └── package.json
  *
  */
-const task = require('./task')
-const fs = require('fs-extra')
 const path = require('path')
+const fs = require('fs-extra')
+const task = require('./task')
 
 const packageName = process.argv[2]
 
 module.exports = task('create-package-js', async () => {
   if (!packageName) {
     throw new Error(
-      'Missing argument, use: `npm run create-package package-name`',
+      'Missing argument, use: `npm run create-package package-name`'
     )
   }
 
@@ -41,19 +41,20 @@ module.exports = task('create-package-js', async () => {
     keywords: ['evergreen', 'segment', 'ui', packageName],
     author: `Segment`,
     license: 'MIT',
+    xo: false
   }
 
   console.info('Package name will be: ', packageName)
 
   await fs.writeFile(
     path.join(packageDir, 'package.json'),
-    JSON.stringify(packageJson, null, 2),
+    JSON.stringify(packageJson, null, 2)
   )
 
   // Create `src` dir in package
   await fs.ensureDir(path.join(packageDir, 'src'))
   await fs.writeFile(
     path.join(packageDir, 'src', 'index.js'),
-    'export default {}',
+    'export default {}'
   )
 })

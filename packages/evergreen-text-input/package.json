@@ -25,5 +25,6 @@
   },
   "devDependencies": {
     "evergreen-layers": "^2.19.0"
-  }
+  },
+  "xo": false
 }

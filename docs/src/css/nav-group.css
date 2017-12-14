@@ -1,0 +1,26 @@
+.NavGroup {
+
+  & a {
+    display: block;
+    font-size: 14px;
+    padding: 8px;
+    margin: 2px -8px;
+    color: var(--neutral-300);
+    border-radius: 3px;
+
+    &:hover {
+      color: var(--neutral-500);
+      background-color: var(--neutral-5A);
+    }
+
+    &:active {
+      background-color: var(--blue-10A);
+      color: var(--blue-500);
+    }
+  }
+}
+
+
+.NavGroup-title {
+  margin-bottom: 8px;
+}

@@ -15,8 +15,8 @@ const baseStyle = {
     backgroundImage: 'none',
     backgroundColor: colors.neutral['10A'],
     boxShadow: 'none',
-    color: colors.neutral['300A'],
-  },
+    color: colors.neutral['300A']
+  }
 }
 
 const hoverState = '&:not([disabled]):not([data-disabled]):hover'
@@ -29,33 +29,34 @@ const SegmentedControlAppearances = {
     ...baseStyle,
     backgroundColor: 'white',
     backgroundImage: `linear-gradient(to top, ${colors.neutral['5A']}, white)`,
-    boxShadow: `inset 0 0 0 1px ${colors.neutral[
-      '20A'
-    ]}, inset 0 -1px 1px 0 ${colors.neutral['10A']}`,
+    boxShadow: `inset 0 0 0 1px ${colors.neutral['20A']}, inset 0 -1px 1px 0 ${
+      colors.neutral['10A']
+    }`,
     [hoverState]: {
-      backgroundImage: `linear-gradient(to top, ${colors.neutral[
-        '7A'
-      ]}, ${colors.neutral['3A']} )`,
-      boxShadow: `inset 0 0 0 1px ${colors.neutral[
-        '40A'
-      ]}, inset 0 -1px 1px 0 ${colors.neutral['15A']}`,
+      backgroundImage: `linear-gradient(to top, ${colors.neutral['7A']}, ${
+        colors.neutral['3A']
+      } )`,
+      boxShadow: `inset 0 0 0 1px ${
+        colors.neutral['40A']
+      }, inset 0 -1px 1px 0 ${colors.neutral['15A']}`
     },
     [focusState]: {
       zIndex: 2,
-      boxShadow: `0 0 0 2px ${colors.blue['20A']}, inset 0 0 0 1px ${colors
-        .neutral['70A']}, inset 0 -1px 1px 0 ${colors.neutral['10A']}`,
+      boxShadow: `0 0 0 2px ${colors.blue['20A']}, inset 0 0 0 1px ${
+        colors.neutral['70A']
+      }, inset 0 -1px 1px 0 ${colors.neutral['10A']}`
     },
     [activeState]: {
       zIndex: 2,
       color: colors.blue['500'],
       backgroundImage: 'none',
-      backgroundColor: colors.blue['10A'],
-      // boxShadow: `inset 0 0 0 1px ${colors.blue['80A']}`,
+      backgroundColor: colors.blue['10A']
+      // BoxShadow: `inset 0 0 0 1px ${colors.blue['80A']}`,
     },
     '&[data-active]': {
-      cursor: 'default',
-    },
-  },
+      cursor: 'default'
+    }
+  }
 }
 
 export default SegmentedControlAppearances

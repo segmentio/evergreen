@@ -3,13 +3,7 @@
   "version": "2.19.0",
   "description": "React components: Overlay",
   "main": "lib/index.js",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "react",
-    "Overlay"
-  ],
+  "keywords": ["evergreen", "segment", "ui", "react", "Overlay"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
@@ -24,5 +18,6 @@
   },
   "peerDependencies": {
     "react": "^16.0.0"
-  }
+  },
+  "xo": false
 }

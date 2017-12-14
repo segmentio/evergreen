@@ -3,7 +3,7 @@ import Box from 'ui-box'
 
 export default class Tablist extends PureComponent {
   static propTypes = {
-    ...Box.propTypes,
+    ...Box.propTypes
   }
 
   render() {

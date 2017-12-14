@@ -3,7 +3,7 @@ import Text from './Text'
 
 export default class Pre extends PureComponent {
   static propTypes = {
-    ...Text.propTypes,
+    ...Text.propTypes
   }
 
   static defaultProps = {
@@ -11,7 +11,7 @@ export default class Pre extends PureComponent {
     is: 'pre',
     fontFamily: 'mono',
     marginTop: 0,
-    marginBottom: 'standard',
+    marginBottom: 'standard'
   }
 
   render() {

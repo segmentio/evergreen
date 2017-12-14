@@ -1,0 +1,21 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "components.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "gatsby develop"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gatsby": "^1.9.127",
+    "gatsby-link": "^1.6.30",
+    "gatsby-plugin-react-helmet": "^2.0.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0"
+  },
+  "xo": false
+}

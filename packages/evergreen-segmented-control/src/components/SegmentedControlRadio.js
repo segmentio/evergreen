@@ -5,7 +5,7 @@ import colors from 'evergreen-colors'
 import { Text } from 'evergreen-typography'
 import {
   getTextSizeForControlHeight,
-  getBorderRadiusForControlHeight,
+  getBorderRadiusForControlHeight
 } from 'evergreen-shared-styles'
 import SegmentedControlAppearances from '../styles/SegmentedControlAppearances'
 
@@ -16,7 +16,7 @@ const labelClass = css({
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',
-  position: 'relative',
+  position: 'relative'
 })
 
 const wrapperClass = css({
@@ -27,12 +27,12 @@ const wrapperClass = css({
   marginLeft: '-1px',
   [`:first-child .${labelClass}`]: {
     borderTopLeftRadius: 3,
-    borderBottomLeftRadius: 3,
+    borderBottomLeftRadius: 3
   },
   [`:last-child .${labelClass}`]: {
     borderTopRightRadius: 3,
-    borderBottomRightRadius: 3,
-  },
+    borderBottomRightRadius: 3
+  }
 })
 
 const offscreenCss = css({
@@ -43,7 +43,7 @@ const offscreenCss = css({
   padding: 0,
   margin: '-1px',
   border: 0,
-  clip: 'rect(0 0 0 0)',
+  clip: 'rect(0 0 0 0)'
 })
 
 export default class SegmentedControlRadio extends PureComponent {
@@ -56,7 +56,7 @@ export default class SegmentedControlRadio extends PureComponent {
     onChange: PropTypes.func.isRequired,
     appearance: PropTypes.oneOf(keysSegmentedControlAppearances).isRequired,
     isFirstItem: PropTypes.bool,
-    isLastItem: PropTypes.bool,
+    isLastItem: PropTypes.bool
   }
 
   render() {
@@ -69,7 +69,7 @@ export default class SegmentedControlRadio extends PureComponent {
       onChange,
       appearance,
       isFirstItem,
-      isLastItem,
+      isLastItem
     } = this.props
 
     const textSize = getTextSizeForControlHeight({ height })
@@ -83,19 +83,19 @@ export default class SegmentedControlRadio extends PureComponent {
         css={styles}
         {...(checked
           ? {
-              'data-active': true,
+              'data-active': true
             }
           : {})}
         {...(isFirstItem
           ? {
               borderTopLeftRadius: borderRadius,
-              borderBottomLeftRadius: borderRadius,
+              borderBottomLeftRadius: borderRadius
             }
           : {})}
         {...(isLastItem
           ? {
               borderTopRightRadius: borderRadius,
-              borderBottomRightRadius: borderRadius,
+              borderBottomRightRadius: borderRadius
             }
           : {})}
       >

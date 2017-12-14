@@ -3,17 +3,12 @@
   "version": "2.19.2",
   "description": "React components: Autocomplete",
   "main": "lib/index.js",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "react",
-    "Autocomplete"
-  ],
+  "keywords": ["evergreen", "segment", "ui", "react", "Autocomplete"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
     "downshift": "^1.16.0",
+    "evergreen-colors": "^2.19.0",
     "evergreen-layers": "^2.19.0",
     "evergreen-popover": "^2.19.0",
     "evergreen-typography": "^2.19.0",
@@ -28,5 +23,6 @@
   "devDependencies": {
     "evergreen-text-input": "^2.19.0",
     "starwars-names": "^1.6.0"
-  }
+  },
+  "xo": false
 }

@@ -7,5 +7,5 @@ export default {
   extraMuted: colors.neutral['200A'],
   white: colors.white['500'],
   whiteMuted: colors.white['300A'],
-  whiteExtraMuted: colors.white['200A'],
+  whiteExtraMuted: colors.white['200A']
 }

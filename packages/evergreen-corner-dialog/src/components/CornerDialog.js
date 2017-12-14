@@ -10,38 +10,40 @@ import { IconButton } from 'evergreen-buttons'
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
   acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`,
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`,
+  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
 }
 
 const ANIMATION_DURATION = 240
 
 const openAnimation = css.keyframes('openAnimation', {
   from: {
-    transform: 'translateY(100%)',
+    transform: 'translateY(100%)'
   },
   to: {
-    transform: 'translateY(0)',
-  },
+    transform: 'translateY(0)'
+  }
 })
 
 const closeAnimation = css.keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
-    opacity: 1,
+    opacity: 1
   },
   to: {
     transform: 'scale(0.9)',
-    opacity: 0,
-  },
+    opacity: 0
+  }
 })
 
 const animationStyles = {
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`,
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
+      animationEasing.spring
+    } both`
   },
   '&[data-state="exiting"]': {
-    animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`,
-  },
+    animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
+  }
 }
 
 export default class CornerDialog extends PureComponent {
@@ -60,34 +62,26 @@ export default class CornerDialog extends PureComponent {
     onExited: PropTypes.func,
     onEnter: PropTypes.func,
     onEntering: PropTypes.func,
-    onEntered: PropTypes.func,
+    onEntered: PropTypes.func
   }
 
   static defaultProps = {
     onHide: () => {},
     width: 320,
     height: 176,
-    hasCloseIcon: true,
+    hasCloseIcon: true
   }
 
   constructor() {
     super()
 
     this.state = {
-      exiting: false,
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isShown) {
-      this.setState({ exited: false })
-    } else {
-      this.setState({ exited: true })
+      exiting: false
     }
   }
 
   handleHidden = (...args) => {
-    this.setState({ exited: true, exiting: false, initial: true })
+    this.setState({ exiting: false })
     this.props.onHide()
 
     if (this.props.onExited) {
@@ -113,7 +107,7 @@ export default class CornerDialog extends PureComponent {
       onExiting,
       onEnter,
       onEntering,
-      onEntered,
+      onEntered
     } = this.props
 
     const { exiting } = this.state
@@ -169,7 +163,7 @@ export default class CornerDialog extends PureComponent {
               <Pane overflowY="auto" data-state={state} padding={8}>
                 {typeof children === 'function'
                   ? children({
-                      close,
+                      close
                     })
                   : children}
               </Pane>

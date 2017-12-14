@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react'
+import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import colors from '../src/colors.json'
+import colors from '../src/colors'
 
 const fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`
 
@@ -11,7 +11,7 @@ class Swatch extends React.Component {
     color: PropTypes.string.isRequired,
     colorGroupName: PropTypes.string.isRequired,
     swatchKey: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
   }
 
   render() {
@@ -34,24 +34,25 @@ class Swatch extends React.Component {
   }
 }
 
-storiesOf('colors', module).add('overview', () =>
+storiesOf('colors', module).add('overview', () => (
   <Box fontFamily={fontFamily}>
     <Box marginBottom={24}>
       <Box>Colors</Box>
       <Box fontSize={12}>Colors ending in `A` have a alpha channel</Box>
     </Box>
-    {Object.keys(colors).map(key =>
-      <Box width={180} float="left" marginRight={8} marginBottom={20}>
+    {Object.keys(colors).map(key => (
+      <Box key={key} width={180} float="left" marginRight={8} marginBottom={20}>
         {key}
-        {Object.keys(colors[key]).map(swatchKey =>
+        {Object.keys(colors[key]).map(swatchKey => (
           <Swatch
+            key={swatchKey}
             color={colors[key][swatchKey]}
             name={`${key} ${swatchKey}`}
             colorGroupName={key}
             swatchKey={swatchKey}
-          />,
-        )}
-      </Box>,
-    )}
-  </Box>,
-)
+          />
+        ))}
+      </Box>
+    ))}
+  </Box>
+))

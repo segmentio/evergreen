@@ -8,7 +8,7 @@ const IconColors = {
   disabled: colors.neutral['50A'],
   muted: colors.neutral['60A'],
   selected: colors.blue['500'],
-  white: colors.white['500'],
+  white: colors.white['500']
 }
 
 const IconAim = {
@@ -18,7 +18,7 @@ const IconAim = {
   right: '90deg',
   bottom: '180deg',
   down: '180deg',
-  left: '270deg',
+  left: '270deg'
 }
 
 export default class Icon extends PureComponent {
@@ -26,7 +26,7 @@ export default class Icon extends PureComponent {
     ...Box.propTypes,
     aim: PropTypes.oneOf(Object.keys(IconAim)).isRequired,
     size: PropTypes.number,
-    iconSize: PropTypes.number,
+    iconSize: PropTypes.number
   }
 
   static defaultProps = {
@@ -37,7 +37,7 @@ export default class Icon extends PureComponent {
     alignItems: 'center',
     justifyContent: 'center',
     size: 32,
-    iconSize: 16,
+    iconSize: 16
   }
 
   render() {

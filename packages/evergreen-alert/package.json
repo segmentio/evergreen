@@ -3,13 +3,7 @@
   "version": "2.19.0",
   "description": "React components: Alert",
   "main": "lib/index.js",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "react",
-    "Alert"
-  ],
+  "keywords": ["evergreen", "segment", "ui", "react", "Alert"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
@@ -22,5 +16,6 @@
   },
   "peerDependencies": {
     "react": "^16.0.0"
-  }
+  },
+  "xo": false
 }

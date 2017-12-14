@@ -20,9 +20,9 @@
  * └── package.json
  *
  */
-const task = require('./task')
-const fs = require('fs-extra')
 const path = require('path')
+const fs = require('fs-extra')
+const task = require('./task')
 
 const componentTemplate = require('./component-template').default
 const storiesTemplate = require('./component-stories-template').default
@@ -35,7 +35,7 @@ module.exports = task('create-package-components', async () => {
 
   if (!packageName) {
     throw new Error(
-      'Missing argument, packageName: `npm run create-package:components package-name ComponentName`',
+      'Missing argument, packageName: `npm run create-package:components package-name ComponentName`'
     )
   }
 
@@ -59,67 +59,66 @@ module.exports = task('create-package-components', async () => {
     keywords: ['evergreen', 'segment', 'ui', 'react', ...componentNames],
     author: `Segment`,
     license: 'MIT',
-
     // Unsure if this should be peer or regular dependency
     dependencies: {
       'ui-box': '^0.5.4',
-      'prop-types': '^15.0.0',
+      'prop-types': '^15.0.0'
     },
-
     peerDependencies: {
-      react: '^16.0.0',
+      react: '^16.0.0'
     },
+    xo: false
   }
 
   console.info('Package name will be: ', packageName)
 
   await fs.writeFile(
     path.join(packageDir, 'package.json'),
-    JSON.stringify(packageJson, null, 2),
+    JSON.stringify(packageJson, null, 2)
   )
 
   await fs.writeFile(
     path.join(packageDir, 'README.md'),
-    `# ${componentNames[0]}`,
+    `# ${componentNames[0]}`
   )
 
   // Create `src` dir in package
   await fs.ensureDir(path.join(packageDir, 'src'))
   await fs.writeFile(
     path.join(packageDir, 'src', 'index.js'),
-    getIndexFile(componentNames),
+    getIndexFile(componentNames)
   )
 
   await fs.ensureDir(path.join(packageDir, 'src/components'))
 
   await componentNames.forEach(async componentName =>
-    createComponent({ componentName, packageDir }),
+    createComponent({ componentName, packageDir })
   )
 
   await fs.ensureDir(path.join(packageDir, 'stories'))
   await fs.writeFile(
     path.join(packageDir, 'stories', `index.stories.js`),
-    storiesTemplate({ packageName, componentNames }),
+    storiesTemplate({ packageName, componentNames })
   )
 })
 
 async function createComponent({ componentName, packageDir }) {
   if (!componentName) {
     throw new Error(
-      'Missing argument, use: `npm run create-package:component ComponentName`',
+      'Missing argument, use: `npm run create-package:component ComponentName`'
     )
   }
 
   if (!initialIsCapital(componentName)) {
     throw new Error(
-      `Wrong format for '${componentName}': use CamelCase for ComponentName`,
+      `Wrong format for '${componentName}': use CamelCase for ComponentName`
     )
   }
 
   await fs.ensureDir(path.join(packageDir, 'src/components'))
   await fs.writeFile(
     path.join(packageDir, 'src/components', `${componentName}.js`),
-    componentTemplate({ componentName }),
+    componentTemplate({ componentName })
   )
 }
 
@@ -128,7 +127,7 @@ function getIndexFile(componentNames) {
 
   componentNames.forEach(componentName => {
     indexFile.push(
-      `import ${componentName} from './components/${componentName}'`,
+      `import ${componentName} from './components/${componentName}'`
     )
   })
 

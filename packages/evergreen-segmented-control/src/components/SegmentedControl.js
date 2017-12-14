@@ -14,26 +14,26 @@ export default class SegmentedControl extends PureComponent {
     options: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.node.isRequired,
-        value: PropTypes.string.isRequired,
-      }),
+        value: PropTypes.string.isRequired
+      })
     ).isRequired,
     name: PropTypes.string,
     value: PropTypes.string,
     height: PropTypes.string,
     onChange: PropTypes.func,
-    defaultValue: PropTypes.string,
+    defaultValue: PropTypes.string
   }
 
   static defaultProps = {
     height: 32,
-    appearance: 'default',
+    appearance: 'default'
   }
 
   constructor(props, context) {
     super(props, context)
 
     this.state = {
-      value: props.defaultValue || props.options[0].value,
+      value: props.defaultValue || props.options[0].value
     }
 
     this.name = `SegmentedControl-${radioCount}`

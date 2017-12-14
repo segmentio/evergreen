@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react'
+import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react'
 import Box from 'ui-box'
 import { Heading } from 'evergreen-typography'
@@ -11,14 +11,14 @@ const items = [
   {
     name: 'fruit',
     value: 'custom',
-    label: <strong>Custom Label</strong>,
+    label: <strong>Custom Label</strong>
   },
   {
     name: 'fruit',
     value: 'disabled',
     label: 'Disabled Option',
-    isDisabled: true,
-  },
+    isDisabled: true
+  }
 ]
 
 storiesOf('radio', module)

@@ -15,13 +15,13 @@ export default class SelectMenuContent extends PureComponent {
     options: PropTypes.arrayOf(OptionShapePropType),
     hasTitle: PropTypes.bool,
     hasFilter: PropTypes.bool,
-    listProps: PropTypes.shape(OptionsList.propTypes),
+    listProps: PropTypes.shape(OptionsList.propTypes)
   }
 
   static defaultProps = {
     options: [],
     hasTitle: true,
-    hasFilter: true,
+    hasFilter: true
   }
 
   constructor(props, context) {
@@ -39,7 +39,7 @@ export default class SelectMenuContent extends PureComponent {
       hasFilter,
       close,
       title,
-      listProps,
+      listProps
     } = this.props
 
     const headerHeight = 40
