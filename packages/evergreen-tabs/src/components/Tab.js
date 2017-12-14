@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import { Text } from 'evergreen-typography'
 import {
   getTextStyleForControlHeight,
-  selectableTabStyle,
+  selectableTabStyle
 } from 'evergreen-shared-styles'
 
 export default class Tab extends PureComponent {
   static propTypes = {
     ...Text.propTypes,
     onSelect: PropTypes.func,
-    isSelected: PropTypes.bool,
+    isSelected: PropTypes.bool
   }
 
   static defaultProps = {
@@ -26,7 +26,7 @@ export default class Tab extends PureComponent {
     height: 28,
     lineHeight: '28px',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   }
 
   handleClick = e => {
@@ -52,7 +52,7 @@ export default class Tab extends PureComponent {
       // https://tink.uk/using-the-aria-current-attribute/
       elementBasedProps = isSelected
         ? {
-            'aria-current': 'page',
+            'aria-current': 'page'
           }
         : {}
     } else {
@@ -61,7 +61,7 @@ export default class Tab extends PureComponent {
       // https://www.stefanjudis.com/blog/aria-selected-and-when-to-use-it/
       elementBasedProps = {
         'aria-selected': isSelected,
-        role: 'tab',
+        role: 'tab'
       }
     }
 
@@ -80,7 +80,7 @@ export default class Tab extends PureComponent {
           css
             ? {
                 ...selectableTabStyle,
-                ...css,
+                ...css
               }
             : selectableTabStyle
         }

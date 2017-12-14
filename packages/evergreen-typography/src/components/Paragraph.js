@@ -1,17 +1,17 @@
 import React, { PureComponent } from 'react'
 import mapValues from 'lodash.mapvalues'
-import Text from './Text'
 import TextStyles from '../styles/TextStyles'
+import Text from './Text'
 
 const textStyleTransformation = ({ lineHeight, ...textStyle }) => ({
   ...textStyle,
   // Multiply line height by 1.1
-  lineHeight: `${Math.round(parseFloat(lineHeight, 10) * 1.08)}px`,
+  lineHeight: `${Math.round(parseFloat(lineHeight, 10) * 1.08)}px`
 })
 
 export default class Paragraph extends PureComponent {
   static propTypes = {
-    ...Text.propTypes,
+    ...Text.propTypes
   }
 
   static defaultProps = {
@@ -19,7 +19,7 @@ export default class Paragraph extends PureComponent {
     is: 'p',
     marginTop: 0,
     marginBottom: 0,
-    textStyles: mapValues(TextStyles, textStyleTransformation),
+    textStyles: mapValues(TextStyles, textStyleTransformation)
   }
 
   render() {

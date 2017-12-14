@@ -8,13 +8,13 @@ export default class TableRow extends PureComponent {
     ...Pane.propTypes,
     onSelect: PropTypes.func,
     isSelectable: PropTypes.bool,
-    isSelected: PropTypes.bool,
+    isSelected: PropTypes.bool
   }
 
   static defaultProps = {
     onClick: () => {},
     onSelect: () => {},
-    onKeyPress: () => {},
+    onKeyPress: () => {}
   }
 
   handleClick = e => {

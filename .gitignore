@@ -1,12 +1,6 @@
-lerna-debug.log
+*.log
 node_modules
-npm-debug.log
-npm-debug.log.*
-yarn-error.log
 .DS_Store
-.vscode
-lib
-.eslintcache
+/packages/*/lib
 storybook-static
-.next
-.cache
+/docs/public

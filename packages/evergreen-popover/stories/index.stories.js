@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/react'
+import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Popover } from '../src/'
 import { Pane } from 'evergreen-layers'
 import { Text } from 'evergreen-typography'
 import { Button } from 'evergreen-buttons'
+import { Popover } from '../src'
 
 const PopoverContent = () => (
   <Pane
@@ -35,7 +35,7 @@ const ClosablePopoverContent = ({ close }) => (
 )
 
 ClosablePopoverContent.propTypes = {
-  close: PropTypes.func,
+  close: PropTypes.func
 }
 
 // Using it with a function for complete control
@@ -46,18 +46,18 @@ const controlUsage = (
   >
     {({ isOpen, toggle, getRef, key }) => (
       <Button
+        // You need a key because this element is technically rendered
+        // in an array, this is an unavoidable implementation detail
+        key={key}
         // You can use `isOpen` to set a properties
         // Use with caution, calculations are based on the width
         // as soon as you toggle it
         isActive={isOpen}
         // Use toggle to show/hide the popover
         onClick={toggle}
-        // getRef is used to get the ref of the element we need to run
+        // GetRef is used to get the ref of the element we need to run
         // getBoundingClientRect() on
         innerRef={ref => getRef(ref)}
-        // You need a key because this element is technically rendered
-        // in an array, this is an unavoidable implementation detail
-        key={key}
         width={80}
       >
         {isOpen ? 'is open' : 'open'}

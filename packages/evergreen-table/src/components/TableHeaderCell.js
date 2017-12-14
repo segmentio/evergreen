@@ -3,13 +3,13 @@ import TableCell from './TableCell'
 
 export default class TableHeaderCell extends PureComponent {
   static propTypes = {
-    ...TableCell.propTypes,
+    ...TableCell.propTypes
   }
 
   static defaultProps = {
     height: 28,
     appearance: 'tint2',
-    overflow: 'visible',
+    overflow: 'visible'
   }
 
   render() {

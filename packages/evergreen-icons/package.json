@@ -1,7 +1,8 @@
 {
   "name": "evergreen-icons",
   "version": "2.19.0",
-  "description": "React components: TriangleIcon, CloseIcon, CogIcon, ArrowIcon, SearchIcon, CheckCircleIcon, Icon",
+  "description":
+    "React components: TriangleIcon, CloseIcon, CogIcon, ArrowIcon, SearchIcon, CheckCircleIcon, Icon",
   "main": "lib/index.js",
   "keywords": [
     "evergreen",
@@ -29,5 +30,6 @@
   "devDependencies": {
     "evergreen-layers": "^2.19.0",
     "evergreen-typography": "^2.19.0"
-  }
+  },
+  "xo": false
 }

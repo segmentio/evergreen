@@ -3,13 +3,7 @@
   "version": "2.19.0",
   "description": "React components: Select",
   "main": "lib/index.js",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "react",
-    "Select"
-  ],
+  "keywords": ["evergreen", "segment", "ui", "react", "Select"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
@@ -25,5 +19,6 @@
   },
   "devDependencies": {
     "evergreen-layers": "^2.19.0"
-  }
+  },
+  "xo": false
 }

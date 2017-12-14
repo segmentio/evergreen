@@ -1,0 +1,47 @@
+/* scratch */
+
+.MainLayout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.MainLayout-main {
+  flex: 1;
+  display: flex;
+  background-color: var(--neutral-3);
+}
+
+.MainLayout-content {
+  flex: 1;
+}
+
+.MainLayout-sidebar {
+  width: 240px;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: var(--neutral-5);
+
+  /* Let's get this party started */
+  &::-webkit-scrollbar {
+      width: 4px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: var(--neutral-5A);
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: var(--neutral-20A);
+  }
+
+  &::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255,0,0,0.4);
+  }
+}
+
+.MainLayout-main {
+  flex: 1;
+}

@@ -20,8 +20,8 @@ module.exports.pitch = function pitch() {
     JSON.stringify(
       storybookFiles.map(x => x.substr(x.indexOf('evergreen/packages'))),
       null,
-      2,
-    ),
+      2
+    )
   )
 
   console.log(`Loading ${storybookFiles.length} storybook files`)

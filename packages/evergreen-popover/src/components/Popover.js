@@ -16,7 +16,7 @@ export default class Popover extends Component {
     display: PropTypes.string,
     minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     minHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    statelessProps: PropTypes.objectOf(PopoverStateless.propTypes),
+    statelessProps: PropTypes.objectOf(PopoverStateless.propTypes)
   }
 
   static defaultProps = {
@@ -24,14 +24,14 @@ export default class Popover extends Component {
     onOpen: () => {},
     onClose: () => {},
     minWidth: 200,
-    minHeight: 40,
+    minHeight: 40
   }
 
   constructor() {
     super()
     this.state = {
       isOpen: false,
-      targetRect: {},
+      targetRect: {}
     }
   }
 
@@ -39,7 +39,7 @@ export default class Popover extends Component {
     if (Object.prototype.hasOwnProperty.call(nextProps, 'isOpen')) {
       if (nextProps.isOpen) {
         this.setState({
-          targetRect: this.getTargetRect(),
+          targetRect: this.getTargetRect()
         })
       }
     }
@@ -72,7 +72,7 @@ export default class Popover extends Component {
   }
 
   onEsc = e => {
-    // esc key
+    // Esc key
     if (e.keyCode === 27) {
       this.close()
     }
@@ -145,7 +145,7 @@ export default class Popover extends Component {
             toggle: this.toggle,
             getRef: this.getRef,
             isOpen: open,
-            key: 'popover-child',
+            key: 'popover-child'
           })
         : React.cloneElement(children, {
             onClick: () => this.toggle(),
@@ -153,7 +153,7 @@ export default class Popover extends Component {
               this.getRef(ref)
             },
             ...(open ? { 'data-popover-opened': true } : {}),
-            key: 'popover-child',
+            key: 'popover-child'
           }),
 
       <Positioner
@@ -182,7 +182,7 @@ export default class Popover extends Component {
               : content}
           </PopoverStateless>
         )}
-      </Positioner>,
+      </Positioner>
     ]
   }
 }

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Text from './Text'
 import LinkAppearances from '../styles/LinkAppearances'
+import Text from './Text'
 
 export default class Link extends PureComponent {
   static propTypes = {
@@ -9,13 +9,13 @@ export default class Link extends PureComponent {
     rel: PropTypes.string,
     href: PropTypes.string,
     target: PropTypes.string,
-    appearance: PropTypes.oneOf(Object.keys(LinkAppearances)),
+    appearance: PropTypes.oneOf(Object.keys(LinkAppearances))
   }
 
   static defaultProps = {
     ...Text.defaultProps,
     is: 'a',
-    appearance: 'blue',
+    appearance: 'blue'
   }
 
   render() {

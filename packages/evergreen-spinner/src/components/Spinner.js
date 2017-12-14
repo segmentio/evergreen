@@ -5,24 +5,24 @@ import colors from 'evergreen-colors'
 
 const loadingKeyframes = css.keyframes('loading', {
   '0%': {
-    transform: 'rotate(0)',
+    transform: 'rotate(0)'
   },
   '100%': {
-    transform: 'rotate(360deg)',
-  },
+    transform: 'rotate(360deg)'
+  }
 })
 
 const loadingCircleKeyframes = css.keyframes('loading-circle', {
   '0%': {
-    strokeDashoffset: 600,
+    strokeDashoffset: 600
   },
   '100%': {
-    strokeDashoffset: 0,
-  },
+    strokeDashoffset: 0
+  }
 })
 
 const outer = {
-  animation: `${loadingKeyframes} 3s linear infinite`,
+  animation: `${loadingKeyframes} 3s linear infinite`
 }
 
 const inner = {
@@ -32,18 +32,18 @@ const inner = {
   strokeMiterlimit: 10,
   strokeLinecap: 'round',
   animation: `${loadingCircleKeyframes} 2s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
-  stroke: colors.neutral['500'], // eslint-disable-line
-  fill: 'transparent',
+  stroke: colors.neutral['500'],
+  fill: 'transparent'
 }
 
 export default class Spinner extends PureComponent {
   static propTypes = {
     ...Box.propTypes,
-    size: PropTypes.number,
+    size: PropTypes.number
   }
 
   static defaultProps = {
-    size: 40,
+    size: 40
   }
 
   render() {

@@ -14,7 +14,7 @@ const CheckIcon = ({ fill = 'currentColor', ...props }) => (
 )
 
 CheckIcon.propTypes = {
-  fill: PropTypes.string,
+  fill: PropTypes.string
 }
 
 export default class Option extends PureComponent {
@@ -23,7 +23,7 @@ export default class Option extends PureComponent {
     style: PropTypes.any,
     height: PropTypes.number,
     onSelect: PropTypes.func,
-    isSelected: PropTypes.bool,
+    isSelected: PropTypes.bool
   }
 
   render() {
@@ -52,8 +52,8 @@ export default class Option extends PureComponent {
           {...(isSelected
             ? {
                 textProps: {
-                  color: 'inherit',
-                },
+                  color: 'inherit'
+                }
               }
             : {})}
           paddingLeft={0}

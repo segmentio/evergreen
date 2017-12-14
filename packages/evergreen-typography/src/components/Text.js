@@ -16,7 +16,7 @@ export default class Text extends PureComponent {
     fontFamily: PropTypes.oneOf(Object.keys(FontFamilies)),
     textStyles: PropTypes.object,
     textUppercaseStyles: PropTypes.object,
-    isUppercase: PropTypes.bool,
+    isUppercase: PropTypes.bool
   }
 
   static defaultProps = {
@@ -25,7 +25,7 @@ export default class Text extends PureComponent {
     color: 'default',
     fontFamily: 'ui',
     textStyles: TextStyles,
-    textUppercaseStyles: TextUppercaseStyles,
+    textUppercaseStyles: TextUppercaseStyles
   }
 
   render() {
@@ -49,15 +49,15 @@ export default class Text extends PureComponent {
       } else if (isDev) {
         console.error(
           `Uppercase ${size} not supported. <Text isUppercase> only supports the following sizes: ${JSON.stringify(
-            Object.keys(textUppercaseStyles).map(Number),
-          )}`,
+            Object.keys(textUppercaseStyles).map(Number)
+          )}`
         )
       }
     }
 
     return (
       <Box
-        {...(color !== null ? { color: TextColors[color] || color } : {})}
+        {...(color ? { color: TextColors[color] || color } : {})}
         fontFamily={FontFamilies[fontFamily] || fontFamily}
         {...textStyle}
         {...props}

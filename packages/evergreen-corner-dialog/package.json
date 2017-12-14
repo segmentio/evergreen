@@ -3,19 +3,14 @@
   "version": "2.19.0",
   "description": "React components: CornerDialog",
   "main": "lib/index.js",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "react",
-    "CornerDialog"
-  ],
+  "keywords": ["evergreen", "segment", "ui", "react", "CornerDialog"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
     "evergreen-buttons": "^2.19.0",
     "evergreen-dialog": "^2.19.0",
     "evergreen-icons": "^2.19.0",
+    "evergreen-layers": "^2.19.0",
     "evergreen-portal": "^2.19.0",
     "evergreen-typography": "^2.19.0",
     "prop-types": "^15.0.0",
@@ -24,5 +19,6 @@
   },
   "peerDependencies": {
     "react": "^16.0.0"
-  }
+  },
+  "xo": false
 }

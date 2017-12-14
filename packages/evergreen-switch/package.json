@@ -3,13 +3,7 @@
   "version": "2.19.0",
   "description": "React components: Switch",
   "main": "lib/index.js",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "react",
-    "Switch"
-  ],
+  "keywords": ["evergreen", "segment", "ui", "react", "Switch"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
@@ -22,5 +16,6 @@
   },
   "peerDependencies": {
     "react": "^16.0.0"
-  }
+  },
+  "xo": false
 }

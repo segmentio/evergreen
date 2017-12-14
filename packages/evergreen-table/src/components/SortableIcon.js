@@ -5,11 +5,11 @@ import { TriangleIcon } from 'evergreen-icons'
 
 export default class SortableIcon extends PureComponent {
   static propTypes = {
-    sortOrder: PropTypes.oneOf(['disabled', 'descending', 'ascending']),
+    sortOrder: PropTypes.oneOf(['disabled', 'descending', 'ascending'])
   }
 
   static defaultProps = {
-    sortOrder: 'disabled',
+    sortOrder: 'disabled'
   }
 
   render() {
@@ -19,7 +19,7 @@ export default class SortableIcon extends PureComponent {
         is="span"
         display="inline-block"
         paddingLeft={6}
-        {...(sortOrder !== 'disabled' ? { title: sortOrder } : {})}
+        {...(sortOrder === 'disabled' ? {} : { title: sortOrder })}
       >
         <TriangleIcon
           marginTop={-2}

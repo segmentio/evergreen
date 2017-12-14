@@ -5,7 +5,7 @@ import Tab from './Tab'
 
 export default class Tablist extends PureComponent {
   static propTypes = {
-    ...Tab.propTypes,
+    ...Tab.propTypes
   }
 
   static defaultProps = {
@@ -15,7 +15,7 @@ export default class Tablist extends PureComponent {
     paddingLeft: 8,
     marginX: 0,
     marginBottom: 4,
-    justifyContent: 'auto',
+    justifyContent: 'auto'
   }
 
   render() {

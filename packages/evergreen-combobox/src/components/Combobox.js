@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Autocomplete } from 'evergreen-autocomplete'
 import { TextInput } from 'evergreen-text-input'
-import { IconButton, Button } from 'evergreen-buttons'
+import { IconButton } from 'evergreen-buttons'
 import PropTypes from 'prop-types'
 import Box, { dimensions, spacing, position, layout } from 'ui-box'
 
@@ -21,18 +21,18 @@ export default class Combobox extends PureComponent {
     inputProps: PropTypes.object,
     buttonProps: PropTypes.object,
     openOnFocus: PropTypes.bool,
-    autocompleteProps: PropTypes.object,
+    autocompleteProps: PropTypes.object
   }
 
   static defaultProps = {
     openOnFocus: false,
-    width: 224,
+    width: 224
   }
 
   constructor(props, context) {
     super(props, context)
     this.state = {
-      isOpenedByButton: false,
+      isOpenedByButton: false
     }
   }
 
@@ -79,12 +79,12 @@ export default class Combobox extends PureComponent {
           inputValue,
           getInputProps,
           getButtonProps,
-          clearSelection,
+          clearSelection
         }) => (
           <Box
+            key={key}
             innerRef={ref => getRef(ref)}
             display="inline-flex"
-            key={key}
             width={width}
             {...props}
           >
@@ -103,14 +103,14 @@ export default class Combobox extends PureComponent {
                 onChange: e => {
                   if (this.state.isOpenedByButton) {
                     this.setState({
-                      isOpenedByButton: false,
+                      isOpenedByButton: false
                     })
                   }
                   if (e.target.value.trim() === '') {
                     // Prevent the selected item from sticking around
                     clearSelection()
                   }
-                },
+                }
               })}
             />
             <IconButton
@@ -129,7 +129,7 @@ export default class Combobox extends PureComponent {
                   if (!isOpen) {
                     this.setState({ isOpenedByButton: true })
                   }
-                },
+                }
               })}
             />
           </Box>

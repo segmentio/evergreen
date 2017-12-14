@@ -6,7 +6,7 @@ import {
   CheckCircleIcon,
   DangerIcon,
   QuestionIcon,
-  WarningIcon,
+  WarningIcon
 } from 'evergreen-icons'
 import colors from 'evergreen-colors'
 import { spacing, dimensions, position, layout } from 'ui-box'
@@ -29,7 +29,7 @@ const getIconForType = type => {
   const iconProps = {
     size: 22,
     iconSize: 14,
-    color: getColorForType(type),
+    color: getColorForType(type)
   }
 
   switch (type) {
@@ -53,18 +53,18 @@ const getStyle = ({ type }) => ({
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: getColorForType(type),
-  },
+    backgroundColor: getColorForType(type)
+  }
 })
 
 const AlertAppearances = {
   default: {
-    boxShadow: `inset 0 0 0 1px ${colors.neutral['20A']}`,
+    boxShadow: `inset 0 0 0 1px ${colors.neutral['20A']}`
   },
   card: {
     elevation: 1,
-    borderRadius: 3,
-  },
+    borderRadius: 3
+  }
 }
 
 export default class Alert extends PureComponent {
@@ -78,13 +78,13 @@ export default class Alert extends PureComponent {
       'success',
       'warning',
       'danger',
-      'question',
+      'question'
     ]),
     title: PropTypes.node,
     hasTrim: PropTypes.bool,
     hasIcon: PropTypes.bool,
     children: PropTypes.node,
-    appearance: PropTypes.oneOf(['default', 'card']),
+    appearance: PropTypes.oneOf(['default', 'card'])
   }
 
   static defaultProps = {
@@ -94,7 +94,7 @@ export default class Alert extends PureComponent {
     hasTrim: true,
     hasIcon: true,
     appearance: 'default',
-    maxWidth: 400,
+    maxWidth: 400
   }
 
   render() {

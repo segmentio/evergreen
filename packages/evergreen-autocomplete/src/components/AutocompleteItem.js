@@ -10,7 +10,7 @@ export default class AutocompleteItem extends PureComponent {
     style: PropTypes.object,
     isEven: PropTypes.bool,
     isSelected: PropTypes.bool,
-    isHighlighted: PropTypes.bool,
+    isHighlighted: PropTypes.bool
   }
 
   render() {
@@ -32,22 +32,22 @@ export default class AutocompleteItem extends PureComponent {
         cursor="pointer"
         {...(isEven && !isSelected
           ? {
-              backgroundColor: colors.neutral['5'],
+              backgroundColor: colors.neutral['5']
             }
           : {})}
         {...(isHighlighted
           ? {
-              backgroundColor: colors.blue['15'],
+              backgroundColor: colors.blue['15']
             }
           : {})}
         {...(isSelected
           ? {
-              backgroundColor: colors.blue['300'],
+              backgroundColor: colors.blue['300']
             }
           : {})}
         {...(isSelected
           ? {
-              fontWeight: 600,
+              fontWeight: 600
             }
           : {})}
         {...props}

@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/react'
+import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react'
 import {
   Pane,
   Card,
   ElevationStyles,
   LayerAppearances,
-  BorderColors,
+  BorderColors
 } from '../src/'
 
 const cardStyle = {
@@ -15,23 +15,23 @@ const cardStyle = {
   height: 104,
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'center'
 }
 
 storiesOf('layers', module)
-  .add('Pane', () =>
+  .add('Pane', () => (
     <div>
       <Pane overflow="auto">
-        {ElevationStyles.map((_, index) =>
-          <Pane {...cardStyle} elevation={index}>
+        {ElevationStyles.map((style, index) => (
+          <Pane key={style} {...cardStyle} elevation={index}>
             Elevation {index}
-          </Pane>,
-        )}
-        {Object.keys(LayerAppearances).map(appearance =>
-          <Pane {...cardStyle} appearance={appearance}>
+          </Pane>
+        ))}
+        {Object.keys(LayerAppearances).map(appearance => (
+          <Pane key={appearance} {...cardStyle} appearance={appearance}>
             Appearance: {appearance}
-          </Pane>,
-        )}
+          </Pane>
+        ))}
       </Pane>
 
       <Pane overflow="auto">
@@ -45,8 +45,8 @@ storiesOf('layers', module)
         </Pane>
       </Pane>
 
-      {Object.keys(BorderColors).map(borderColor =>
-        <Pane overflow="auto" key={borderColor}>
+      {Object.keys(BorderColors).map(borderColor => (
+        <Pane key={borderColor} overflow="auto">
           <Pane {...cardStyle} borderTop={borderColor}>
             borderTop: {borderColor}
           </Pane>
@@ -59,24 +59,24 @@ storiesOf('layers', module)
           <Pane {...cardStyle} borderLeft={borderColor}>
             borderLeft: {borderColor}
           </Pane>
-        </Pane>,
-      )}
-    </div>,
-  )
-  .add('Card', () =>
+        </Pane>
+      ))}
+    </div>
+  ))
+  .add('Card', () => (
     <div>
       <Pane overflow="auto">
-        {ElevationStyles.map((_, index) =>
-          <Card {...cardStyle} elevation={index}>
+        {ElevationStyles.map((style, index) => (
+          <Card key={style} {...cardStyle} elevation={index}>
             Elevation {index}
-          </Card>,
-        )}
+          </Card>
+        ))}
 
-        {Object.keys(LayerAppearances).map(appearance =>
-          <Card {...cardStyle} appearance={appearance}>
+        {Object.keys(LayerAppearances).map(appearance => (
+          <Card key={appearance} {...cardStyle} appearance={appearance}>
             Appearance: {appearance}
-          </Card>,
-        )}
+          </Card>
+        ))}
       </Pane>
 
       <Pane overflow="auto">
@@ -89,5 +89,5 @@ storiesOf('layers', module)
           Interactive
         </Card>
       </Pane>
-    </div>,
-  )
+    </div>
+  ))

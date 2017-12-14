@@ -5,23 +5,23 @@ const selectableRowStyle = {
   outline: 'none',
 
   '&:hover': {
-    backgroundColor: colors.neutral['5A'],
+    backgroundColor: colors.neutral['5A']
   },
 
   '&:focus': {
-    // backgroundColor: colors.neutral['5A'],
-    backgroundColor: colors.blue['5A'],
-    // boxShadow: `inset 0 0 0 2px ${colors.blue['15A']}`,
+    // BackgroundColor: colors.neutral['5A'],
+    backgroundColor: colors.blue['5A']
+    // BoxShadow: `inset 0 0 0 2px ${colors.blue['15A']}`,
   },
 
   '&[aria-current], &[aria-selected="true"], &:active': {
     backgroundColor: colors.blue['10A'],
-    color: colors.blue['500'],
+    color: colors.blue['500']
   },
 
   '&[aria-current], &[aria-selected="true"]': {
-    cursor: 'default',
-  },
+    cursor: 'default'
+  }
 }
 
 export default selectableRowStyle

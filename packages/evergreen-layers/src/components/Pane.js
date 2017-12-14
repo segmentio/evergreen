@@ -6,12 +6,12 @@ import BorderColors from '../styles/border-colors'
 import LayerAppearances from '../styles/layer-appearances'
 
 const ElevationPropType = PropTypes.oneOf(
-  ElevationStyles.map((_, index) => index),
+  ElevationStyles.map((_, index) => index)
 )
 
 const StringAndBoolPropType = PropTypes.oneOfType([
   PropTypes.string,
-  PropTypes.bool,
+  PropTypes.bool
 ])
 
 export default class Pane extends PureComponent {
@@ -28,11 +28,11 @@ export default class Pane extends PureComponent {
     borderTop: StringAndBoolPropType,
     borderRight: StringAndBoolPropType,
     borderBottom: StringAndBoolPropType,
-    borderLeft: StringAndBoolPropType,
+    borderLeft: StringAndBoolPropType
   }
 
   static defaultProps = {
-    elevation: undefined,
+    elevation: undefined
   }
 
   render() {
@@ -73,8 +73,8 @@ export default class Pane extends PureComponent {
         ':hover': {
           ...(css[':hover'] || {}),
           transform: 'translateY(-2px)',
-          boxShadow: ElevationStyles[hoverElevation],
-        },
+          boxShadow: ElevationStyles[hoverElevation]
+        }
       }
     }
 
@@ -85,8 +85,8 @@ export default class Pane extends PureComponent {
           ...(css[':active'] || {}),
           // TODO: figure out how to deal with transitions
           transform: 'translateY(-1px)',
-          boxShadow: ElevationStyles[activeElevation],
-        },
+          boxShadow: ElevationStyles[activeElevation]
+        }
       }
     }
 
@@ -94,7 +94,7 @@ export default class Pane extends PureComponent {
       borderTop,
       borderRight,
       borderBottom,
-      borderLeft,
+      borderLeft
     ].map(borderSideProperty => {
       if (
         Object.prototype.hasOwnProperty.call(BorderColors, borderSideProperty)
@@ -123,7 +123,7 @@ export default class Pane extends PureComponent {
         css={{
           ...css,
           ...hoverElevationStyle,
-          ...activeElevationStyle,
+          ...activeElevationStyle
         }}
         {...props}
       />

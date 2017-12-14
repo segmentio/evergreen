@@ -2,14 +2,8 @@
   "name": "evergreen-colors",
   "version": "2.19.0",
   "description": "Colors",
-  "main": "src/colors.json",
-  "keywords": [
-    "evergreen",
-    "segment",
-    "ui",
-    "colors",
-    "evergreen-colors"
-  ],
+  "main": "src/colors.js",
+  "keywords": ["evergreen", "segment", "ui", "colors", "evergreen-colors"],
   "author": "Segment",
   "license": "MIT",
   "devDependencies": {
@@ -18,6 +12,8 @@
     "ui-box": "^0.5.4"
   },
   "peerDependencies": {
+    "prop-types": "^15.0.0",
     "react": "^16.0.0"
-  }
+  },
+  "xo": false
 }

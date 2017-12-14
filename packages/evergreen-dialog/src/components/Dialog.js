@@ -8,7 +8,7 @@ import { IconButton } from 'evergreen-buttons'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`,
+  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`
 }
 
 const ANIMATION_DURATION = 200
@@ -16,32 +16,36 @@ const ANIMATION_DURATION = 200
 const openAnimation = css.keyframes('openAnimation', {
   from: {
     transform: 'scale(0.8)',
-    opacity: 0,
+    opacity: 0
   },
   to: {
     transform: 'scale(1)',
-    opacity: 1,
-  },
+    opacity: 1
+  }
 })
 
 const closeAnimation = css.keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
-    opacity: 1,
+    opacity: 1
   },
   to: {
     transform: 'scale(0.8)',
-    opacity: 0,
-  },
+    opacity: 0
+  }
 })
 
 const animationStyles = {
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`,
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
+      animationEasing.deceleration
+    } both`
   },
   '&[data-state="exiting"]': {
-    animation: `${closeAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`,
-  },
+    animation: `${closeAnimation} ${ANIMATION_DURATION}ms ${
+      animationEasing.acceleration
+    } both`
+  }
 }
 
 class Dialog extends React.Component {
@@ -51,21 +55,13 @@ class Dialog extends React.Component {
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     hasCloseIcon: PropTypes.bool,
-    containerProps: PropTypes.object,
+    containerProps: PropTypes.object
   }
 
   static defaultProps = {
     width: 567,
     height: 240,
-    hasCloseIcon: true,
-  }
-
-  constructor() {
-    super()
-
-    this.state = {
-      exiting: false,
-    }
+    hasCloseIcon: true
   }
 
   render() {
@@ -116,7 +112,7 @@ class Dialog extends React.Component {
               <Pane overflowY="auto" data-state={state} padding={16}>
                 {typeof children === 'function'
                   ? children({
-                      close,
+                      close
                     })
                   : children}
               </Pane>

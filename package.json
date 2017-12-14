@@ -1,53 +1,80 @@
 {
-  "devDependencies": {
-    "@storybook/addon-actions": "^3.2.12",
-    "@storybook/addon-links": "^3.2.12",
-    "@storybook/addon-options": "^3.2.12",
-    "@storybook/addons": "^3.2.12",
-    "@storybook/react": "^3.2.12",
-    "@storybook/storybook-deployer": "^2.0.0",
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.25.0",
-    "babel-eslint": "^7.2.3",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "concurrently": "^3.5.1",
-    "eslint": "^4.3.0",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-config-prettier": "^2.3.0",
-    "eslint-plugin-flowtype": "^2.35.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^5.0.1",
-    "eslint-plugin-prettier": "^2.1.2",
-    "eslint-plugin-react": "^7.1.0",
-    "file-loader": "^0.11.2",
-    "fs-extra": "^4.0.0",
-    "lerna": "^2.0.0",
-    "linklocal": "^2.8.1",
-    "next": "^4.1.4",
-    "prettier": "^1.7.0",
-    "ui-box": "^0.5.4",
-    "url-loader": "^0.5.9"
-  },
   "scripts": {
+    "precommit": "lint-staged",
     "lerna-publish": "lerna publish",
     "dev": "concurrently \"npm run build:watch\" \"npm run storybook\"",
     "create-package": "babel-node tools/create-package",
     "create-package:components": "babel-node tools/create-package-components",
-    "bootstrap": "lerna exec -- git clean -Xdf . && lerna bootstrap",
-    "clean": "lerna exec -- git clean -Xdf . && rm -rf node_modules",
-    "lint": "eslint --cache --ignore-pattern coverage --ignore-pattern node_modules --ignore-pattern lib .",
+    "bootstrap": "yarn clean && lerna bootstrap",
+    "clean": "git clean -Xdf packages",
+    "lint": "xo",
     "storybook": "start-storybook -p 6006",
     "deploy-storybook": "storybook-to-ghpages",
-    "build:watch": "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w",
-    "build": "lerna exec --parallel -- babel src -d lib --ignore *.test.js",
-    "docs:dev": "next docs",
-    "docs:build": "next build docs"
+    "build:watch":
+      "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w",
+    "build": "lerna exec --parallel -- babel src -d lib --ignore *.test.js"
+  },
+  "xo": {
+    "parser": "babel-eslint",
+    "extends": ["xo-react", "prettier", "prettier/react"],
+    "envs": ["browser"],
+    "space": true,
+    "semicolon": false,
+    "rules": {
+      "indent": ["off"],
+      "react/jsx-indent-props": ["off"],
+      "react/jsx-indent": ["off"],
+      "import/no-unresolved": [
+        "error",
+        {
+          "commonjs": true,
+          "ignore": ["^evergreen-"]
+        }
+      ],
+      "react/require-default-props": ["off"],
+      "react/default-props-match-prop-types": ["off"],
+      "react/forbid-component-props": ["off"],
+      "react/jsx-no-bind": ["off"],
+      "unicorn/filename-case": ["off"]
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "lint-staged": {
+    "*.js": ["prettier --write", "git add"],
+    "*.{json,md}": ["prettier --write", "git add"]
   },
   "dependencies": {
-    "prop-types": "^15.5.10",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.2.17",
+    "@storybook/addon-links": "^3.2.17",
+    "@storybook/addon-options": "^3.2.17",
+    "@storybook/addons": "^3.2.17",
+    "@storybook/react": "^3.2.17",
+    "@storybook/storybook-deployer": "^2.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "concurrently": "^3.5.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-xo-react": "^0.14.0",
+    "eslint-plugin-react": "^7.5.1",
+    "file-loader": "^1.1.5",
+    "fs-extra": "^4.0.3",
+    "husky": "^0.14.3",
+    "lerna": "^2.5.1",
+    "lint-staged": "^6.0.0",
+    "prettier": "^1.9.1",
+    "url-loader": "^0.6.2",
+    "xo": "^0.18.2"
   }
 }

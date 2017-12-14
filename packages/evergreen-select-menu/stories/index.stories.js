@@ -1,5 +1,4 @@
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
+import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
@@ -9,23 +8,21 @@ import { SelectMenu } from '../src/'
 
 const options = starWarsNames.all.map(name => ({
   label: name,
-  value: name,
+  value: name
 }))
 
 class Manager extends React.Component {
   static propTypes = {
-    children: PropTypes.func,
+    children: PropTypes.func
   }
 
   state = {}
   render() {
     return this.props.children({
       setState: (...args) => {
-        // eslint-disable-next-line no-console
-        console.log('setState', ...args)
         this.setState(...args)
       },
-      state: this.state,
+      state: this.state
     })
   }
 }

@@ -10,27 +10,27 @@ const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
   acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`,
   sharp: `cubic-bezier(0.4, 0.0, 0.6, 1)`,
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`,
+  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
 }
 
 const ANIMATION_DURATION = 240
 
 const fadeInAnimation = css.keyframes('fadeInAnimation', {
   from: {
-    opacity: 0,
+    opacity: 0
   },
   to: {
-    opacity: 1,
-  },
+    opacity: 1
+  }
 })
 
 const fadeOutAnimation = css.keyframes('fadeOutAnimation', {
   from: {
-    opacity: 1,
+    opacity: 1
   },
   to: {
-    opacity: 0,
-  },
+    opacity: 0
+  }
 })
 
 const animationStyles = {
@@ -42,19 +42,23 @@ const animationStyles = {
     display: 'block',
     width: '100%',
     height: '100%',
-    content: '" "',
+    content: '" "'
   },
   '&[data-state="entering"]::before, &[data-state="entered"]::before': {
-    animation: `${fadeInAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`,
+    animation: `${fadeInAnimation} ${ANIMATION_DURATION}ms ${
+      animationEasing.deceleration
+    } both`
   },
   '&[data-state="exiting"]::before, &[data-state="exited"]::before': {
-    animation: `${fadeOutAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`,
-  },
+    animation: `${fadeOutAnimation} ${ANIMATION_DURATION}ms ${
+      animationEasing.acceleration
+    } both`
+  }
 }
 
 class Overlay extends React.Component {
   static propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.node.isRequired,
     isShown: PropTypes.bool,
     hasBackdrop: PropTypes.bool,
     containerProps: PropTypes.object,
@@ -66,29 +70,19 @@ class Overlay extends React.Component {
     onEnter: PropTypes.func,
     onEntering: PropTypes.func,
     onEntered: PropTypes.func,
-    onBackdropClick: PropTypes.func,
+    onBackdropClick: PropTypes.func
   }
 
   static defaultProps = {
     onHide: () => {},
-    hasBackdrop: true,
+    hasBackdrop: true
   }
 
-  constructor(props) {
+  constructor() {
     super()
 
     this.state = {
-      exited: !props.isShown,
-      exiting: false,
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isShown) {
-      this.setState({ exited: false })
-    } else {
-      // Otherwise let handleHidden take care of marking exited.
-      this.setState({ exited: true })
+      exiting: false
     }
   }
 
@@ -105,7 +99,7 @@ class Overlay extends React.Component {
   }
 
   handleHidden = (...args) => {
-    this.setState({ exited: true, exiting: false, initial: true })
+    this.setState({ exiting: false })
     this.onHide()
 
     if (this.props.onExited) {
@@ -146,7 +140,7 @@ class Overlay extends React.Component {
       onExiting,
       onEnter,
       onEntering,
-      onEntered,
+      onEntered
     } = this.props
 
     const { exiting } = this.state
