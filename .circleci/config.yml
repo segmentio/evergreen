@@ -6,13 +6,13 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Setup npm auth
-        command: npm config set "//registry.npmjs.org/:_authToken" $NPM_AUTH
+          name: Setup npm auth
+          command: npm config set "//registry.npmjs.org/:_authToken" $NPM_AUTH
       - run:
-        name: Install dependencies
-        command: |
-          yarn install
-          yarn bootstrap
+          name: Install dependencies
+          command: |
+            yarn install
+            yarn bootstrap
       - run:
-        name: Lint
-        command: yarn lint
+          name: Lint
+          command: yarn lint
