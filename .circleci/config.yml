@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run:
+        name: Setup npm auth
+        command: npm config set "//registry.npmjs.org/:_authToken" $NPM_AUTH
+      - run:
+        name: Install dependencies
+        command: |
+          yarn install
+          yarn bootstrap
+      - run:
+        name: Lint
+        command: yarn lint
