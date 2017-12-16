@@ -49,7 +49,7 @@ jobs:
           name: Lint
           command: yarn lint
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: .
           paths:
             - .
 
