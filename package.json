@@ -1,7 +1,8 @@
 {
+  "private": true,
   "scripts": {
     "precommit": "lint-staged",
-    "lerna-publish": "lerna publish",
+    "lerna-publish": "lerna publish --skip-npm",
     "dev": "concurrently \"npm run build:watch\" \"npm run storybook\"",
     "create-package": "babel-node tools/create-package",
     "create-package:components": "babel-node tools/create-package-components",
@@ -68,6 +69,7 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-xo-react": "^0.14.0",
     "eslint-plugin-react": "^7.5.1",
+    "execa": "^0.8.0",
     "file-loader": "^1.1.5",
     "fs-extra": "^4.0.3",
     "husky": "^0.14.3",
