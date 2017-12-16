@@ -59,6 +59,9 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          name: Workaround unknown hosts for GitHub
+          command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run:
           name: Deploy docs
           command: yarn deploy-storybook
 
