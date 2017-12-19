@@ -1,0 +1,102 @@
+/* Based on Sublime Text's Monokai theme */
+
+.cm-s-evergreen.CodeMirror {
+  background: var(--neutral-900);
+  color: var(--white-500);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.4em;
+  height: 240px;
+}
+
+div.CodeMirror-selected {
+  background: var(--white-50A);
+}
+.cm-s-evergreen .CodeMirror-line::selection,
+.cm-s-evergreen .CodeMirror-line > span::selection,
+.cm-s-evergreen .CodeMirror-line > span > span::selection {
+  background: blue;
+}
+.cm-s-evergreen .CodeMirror-line::-moz-selection,
+.cm-s-evergreen .CodeMirror-line > span::-moz-selection,
+.cm-s-evergreen .CodeMirror-line > span > span::-moz-selection {
+  background: blue;
+}
+.cm-s-evergreen .CodeMirror-gutters {
+  background: #272822;
+  border-right: 0px;
+}
+.cm-s-evergreen .CodeMirror-guttermarker {
+  color: white;
+}
+.cm-s-evergreen .CodeMirror-guttermarker-subtle {
+  color: #d0d0d0;
+}
+.cm-s-evergreen .CodeMirror-linenumber {
+  color: #d0d0d0;
+}
+.cm-s-evergreen div.CodeMirror-cursor {
+  border-left: 1px solid var(--white-500);
+}
+
+.cm-s-evergreen span.cm-comment {
+  color: #75715e;
+}
+.cm-s-evergreen span.cm-atom {
+  color: #ae81ff;
+}
+.cm-s-evergreen span.cm-number {
+  color: var(--purple-150);
+}
+
+.cm-s-evergreen span.cm-property,
+.cm-s-evergreen span.cm-attribute {
+  color: var(--red-150); /* #a6e22e; */
+}
+.cm-s-evergreen span.cm-keyword {
+  color: #f92672;
+}
+.cm-s-evergreen span.cm-builtin {
+  color: #66d9ef;
+}
+.cm-s-evergreen span.cm-string {
+  color: var(--turquoise-150);
+}
+
+.cm-s-evergreen span.cm-variable {
+  color: #f8f8f2;
+}
+.cm-s-evergreen span.cm-variable-2 {
+  color: #9effff;
+}
+.cm-s-evergreen span.cm-variable-3,
+.cm-s-evergreen span.cm-type {
+  color: #66d9ef;
+}
+.cm-s-evergreen span.cm-def {
+  color: #fd971f;
+}
+.cm-s-evergreen span.cm-bracket {
+  color: var(--yellow-500);
+}
+.cm-s-evergreen span.cm-tag {
+  color: var(--yellow-150);
+}
+.cm-s-evergreen span.cm-header {
+  color: #ae81ff;
+}
+.cm-s-evergreen span.cm-link {
+  color: #ae81ff;
+}
+.cm-s-evergreen span.cm-error {
+  background: #f92672;
+  color: #f8f8f0;
+}
+
+.cm-s-evergreen .CodeMirror-activeline-background {
+  background: var(--white-50A);
+}
+.cm-s-evergreen .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: white !important;
+}

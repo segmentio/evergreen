@@ -14,6 +14,8 @@
 
 .MainLayout-content {
   flex: 1;
+  overflow-y: auto;
+  padding-bottom: 120px;
 }
 
 .MainLayout-sidebar {
@@ -24,7 +26,7 @@
 
   /* Let's get this party started */
   &::-webkit-scrollbar {
-      width: 4px;
+    width: 4px;
   }
 
   /* Track */
@@ -38,7 +40,7 @@
   }
 
   &::-webkit-scrollbar-thumb:window-inactive {
-    background: rgba(255,0,0,0.4);
+    background: rgba(255, 0, 0, 0.4);
   }
 }
 

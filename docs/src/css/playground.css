@@ -1,0 +1,85 @@
+.component-documentation {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.playground {
+  margin: 10px auto;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid var(--color-border-muted);
+}
+
+.playgroundCode .CodeMirror {
+}
+
+.playground.collapsableCode .playgroundCode {
+  height: 0;
+  overflow: hidden;
+}
+
+.playground.collapsableCode .playgroundCode.expandedCode {
+  height: 240px;
+}
+
+.playgroundToggleCodeLink {
+  cursor: pointer;
+  position: relative;
+  right: 0;
+  display: block;
+  padding: 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  /*border-bottom: 1px solid var(--color-border-muted);*/
+
+  &::after {
+    content: ' code';
+  }
+
+  &:hover {
+    background-color: var(--neutral-10);
+  }
+
+  &:active {
+    background-color: var(--blue-10);
+  }
+}
+
+.CodeMirror {
+  padding: 10px;
+}
+
+.playgroundPreview {
+  background: white;
+  padding: 10px;
+  overflow: auto;
+}
+
+.playgroundError {
+  padding: 10px;
+  font-size: 12px;
+  color: white;
+  background: #f2777a;
+  margin-bottom: 16px;
+}
+
+.playgroundDocs {
+  & li {
+    padding: 12px;
+
+    & b {
+      font-weight: 500;
+    }
+    & i {
+      font-weight: 400;
+      font-style: normal;
+      font-family: var(--font-mono);
+      background-color: var(--turquoise-15A);
+      color: var(--turquoise-1000);
+      font-size: 90%;
+      font-weight: 500;
+      padding: 2px 4px;
+    }
+  }
+}

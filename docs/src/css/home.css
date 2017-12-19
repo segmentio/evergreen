@@ -1,0 +1,33 @@
+.Home {
+  & h1 {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 48px;
+    letter-spacing: -0.2px;
+    margin-bottom: 4px;
+  }
+
+  & a {
+    color: var(--green-500);
+    border-bottom: 3px solid var(--green-50A);
+
+    &:hover {
+      border-bottom-color: var(--green-500);
+    }
+
+    &:active {
+      color: var(--green-700);
+      border-bottom-color: var(--green-700);
+    }
+  }
+}
+
+.Home-inner {
+  height: 60vh;
+  width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

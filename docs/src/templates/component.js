@@ -1,54 +1,70 @@
 import React from 'react'
 import getComponent from '../utils/getComponent'
 import TopBar from '../components/TopBar'
-import Sidebar from '../components/Sidebar'
+import ComponentsSidebar from '../components/ComponentsSidebar'
 import ComponentReadme from '../components/ComponentReadme'
-
-// Mock data for now
-const data = {
-  name: 'Buttons',
-  packageJSON: {
-    name: 'evergreen-buttons',
-    version: '2.18.18',
-    description: 'React components: Button',
-    main: 'lib/index.js',
-    keywords: [
-      'evergreen',
-      'segment',
-      'ui',
-      'react',
-      'Button',
-      'ButtonAppearances'
-    ],
-    author: 'Segment',
-    license: 'MIT',
-    peerDependencies: {
-      'prop-types': '^15.0.0',
-      react: '^16.0.0'
-    },
-    dependencies: {
-      'evergreen-colors': '^2.18.14',
-      'evergreen-icons': '^2.18.14',
-      'evergreen-shared-styles': '^2.18.18',
-      'evergreen-typography': '^2.18.14',
-      'ui-box': '^0.5.4'
-    },
-    devDependencies: {
-      'evergreen-layers': '^2.18.14'
-    }
-  }
-}
+import ComponentBlock from '../components/ComponentBlock'
 
 export default () => {
-  const docs = getComponent('buttons')
-  console.log('stuff', docs)
+  const {
+    designGuidelines,
+    appearanceOptions,
+    packageJSON,
+    components,
+    title,
+    subTitle
+  } = getComponent('buttons')
   return (
     <div className="MainLayout">
       <TopBar />
       <main className="MainLayout-main">
-        <Sidebar />
+        <ComponentsSidebar />
         <div className="MainLayout-content">
-          <ComponentReadme {...data} designGuidelines={docs} />
+          <ComponentReadme
+            title={title}
+            subTitle={subTitle}
+            packageJSON={packageJSON}
+          >
+            {designGuidelines && (
+              <div>
+                <h2>Design Guidelines</h2>
+                {designGuidelines}
+              </div>
+            )}
+            {appearanceOptions && (
+              <div>
+                <h2>Appearance Options</h2>
+                {appearanceOptions}
+              </div>
+            )}
+            {components && (
+              <div>
+                <h2>Code & Examples</h2>
+                <p>
+                  The <code>{packageJSON.name}</code> package exports the
+                  following documented components:
+                </p>
+                <ul>
+                  {components.map(component => {
+                    return (
+                      <li key={component.name}>
+                        <code>{component.name}</code>
+                      </li>
+                    )
+                  })}
+                </ul>
+
+                {components.map(component => (
+                  <ComponentBlock
+                    key={component.name}
+                    name={component.name}
+                    description={component.description}
+                    examples={component.examples}
+                  />
+                ))}
+              </div>
+            )}
+          </ComponentReadme>
         </div>
       </main>
     </div>

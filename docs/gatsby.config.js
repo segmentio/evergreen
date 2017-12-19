@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`
+    title: `Evergreen documentation`
   },
-  plugins: []
+  plugins: ['gatsby-plugin-react-next']
 }

@@ -9,7 +9,7 @@ exports.createPages = ({ boundActionCreators }) => {
   const componentTemplate = Path.resolve(`src/templates/component.js`)
 
   components.forEach(({ name }) => {
-    const path = name
+    const path = `/components/${name}`
 
     createPage({
       path,
@@ -23,4 +23,12 @@ exports.createPages = ({ boundActionCreators }) => {
       }
     })
   })
+}
+
+exports.modifyWebpackConfig = ({ config }) => {
+  config.loader('raw-loader', {
+    test: /\.example$/
+  })
+
+  return config
 }

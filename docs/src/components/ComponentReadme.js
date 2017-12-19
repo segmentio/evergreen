@@ -4,36 +4,50 @@ import PropTypes from 'prop-types'
 export default class ComponentReadme extends PureComponent {
   static propTypes = {
     packageJSON: PropTypes.object,
-    name: PropTypes.string,
-    designGuidelines: PropTypes.node
-  }
-
-  constructor(props, context) {
-    super(props, context)
-
-    this.state = {}
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    subTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    children: PropTypes.any
   }
 
   render() {
-    const { packageJSON, designGuidelines, ...props } = this.props
+    const { packageJSON, title, subTitle, children, ...props } = this.props
 
     return (
       <article className="ComponentReadme" {...props}>
-        <div className="ComponentReadme-inner">
+        <div className="Container ComponentReadme-inner">
           <header className="ComponentReadme-header">
-            <h1 className="ComponentReadme-title">Buttons</h1>
-            <p className="ComponentReadme-subtitle">
-              This package exports a <code>Button</code> and a{' '}
-              <code>IconButton</code> component
-            </p>
-            <nav className="ComponentReadme-nav">
-              <a href="#" aria-selected="true">
-                Design Guidelines
-              </a>
-              <a href="#">Code & Examples</a>
-            </nav>
+            <h1 className="ComponentReadme-title">{title}</h1>
+            <p className="ComponentReadme-subtitle">{subTitle}</p>
+            <dl>
+              <dt>Install</dt>
+              <dd>
+                <code className="">yarn add {packageJSON.name}</code>
+              </dd>
+              <dt>Version</dt>
+              <dd>
+                <code className="">{packageJSON.version}</code>
+              </dd>
+              <dt>Links</dt>
+              <dd>
+                <a
+                  href={`https://github.com/segmentio/evergreen/tree/master/packages/${
+                    packageJSON.name
+                  }`}
+                  target="_blank"
+                >
+                  GitHub
+                </a>
+                {` `}&middot;{` `}
+                <a
+                  href={`https://www.npmjs.com/package/${packageJSON.name}`}
+                  target="_blank"
+                >
+                  npm
+                </a>
+              </dd>
+            </dl>
           </header>
-          <div>{React.createElement(designGuidelines)}</div>
+          <div className="Content">{children}</div>
         </div>
       </article>
     )
