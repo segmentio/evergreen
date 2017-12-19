@@ -15,7 +15,7 @@ export default class PlaygroundExample extends React.PureComponent {
         className="PlaygroundExample"
         style={{ marginTop: 32, marginBottom: 32 }}
       >
-        <div ckassName="PlaygroundExample-header" style={{ marginBottom: 16 }}>
+        <div className="PlaygroundExample-header" style={{ marginBottom: 16 }}>
           <h4>{title}</h4>
           {description && description}
         </div>

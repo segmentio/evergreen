@@ -1,0 +1,6 @@
+<div>
+  <IconButton marginRight={12} icon="close" />
+  <IconButton marginRight={12} icon="cog" />
+  <IconButton marginRight={12} icon="search" />
+  <IconButton marginRight={12} icon="add" />
+</div>

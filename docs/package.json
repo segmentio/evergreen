@@ -6,19 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "gatsby develop"
+    "dev": "gatsby develop",
+    "build": "gatsby build"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "component-playground": "^3.0.0",
     "gatsby": "^1.9.127",
     "gatsby-link": "^1.6.30",
     "gatsby-plugin-react-helmet": "^2.0.2",
+    "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "react-live": "^1.7.1"
   },
   "xo": false,
   "devDependencies": {

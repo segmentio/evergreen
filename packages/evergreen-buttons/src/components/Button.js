@@ -68,8 +68,9 @@ export default class Button extends PureComponent {
     const iconHeight = height - 4
     const iconSize = getIconSizeForControlHeight({ height: iconHeight })
 
-    const pr = paddingRight ? paddingRight : Math.round(height / 2)
-    const pl = paddingLeft ? paddingLeft : Math.round(height / 2)
+    const pr =
+      paddingRight !== undefined ? paddingRight : Math.round(height / 2) // eslint-disable-line no-negated-condition
+    const pl = paddingLeft !== undefined ? paddingLeft : Math.round(height / 2) // eslint-disable-line no-negated-condition
 
     let iconBefore
     if (iconBeforeKey) {
