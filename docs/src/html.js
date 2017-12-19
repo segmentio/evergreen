@@ -7,8 +7,8 @@ let STYLES
 if (process.env.NODE_ENV === `production`) {
   try {
     STYLES = require(`!raw-loader!../public/styles.css`)
-  } catch (e) {
-    console.log(e)
+  } catch (err) {
+    console.log(err)
   }
 }
 
@@ -18,8 +18,8 @@ export default class HTML extends Component {
     if (process.env.NODE_ENV === `production`) {
       css = (
         <style
-          id="gatsby-inlined-css"
           dangerouslySetInnerHTML={{ __html: STYLES }}
+          id="gatsby-inlined-css"
         />
       )
     }
@@ -39,24 +39,12 @@ export default class HTML extends Component {
           <meta type="description" content={DESCRIPTION} />
           <meta type="keywords" content={DESCRIPTION} />
 
-          <link
-            rel="stylesheet"
-            href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/codemirror.min.css"
-          />
-          <script
-            type="text/javascript"
-            src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/codemirror.min.js"
-          />
-          <script
-            type="text/javascript"
-            src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/mode/javascript/javascript.min.js"
-          />
           {this.props.headComponents}
         </head>
         <body>
           <div
-            id="___gatsby"
             dangerouslySetInnerHTML={{ __html: this.props.body }}
+            id="___gatsby"
           />
           {this.props.postBodyComponents}
         </body>
