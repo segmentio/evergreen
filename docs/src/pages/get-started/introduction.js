@@ -17,7 +17,7 @@ export default () => {
               <h1>Introduction</h1>
               <p>
                 Evergreen is a pragmatic UI kit for building evolving products
-                on the web.<br /> It is build an maintained open-source by{' '}
+                on the web.<br /> It is build and maintained open-source by{' '}
                 <NativeLink href="https://segment.com/">Segment</NativeLink>.
               </p>
               <h2>Core beliefs of Evergreen</h2>
