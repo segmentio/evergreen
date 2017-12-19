@@ -91,6 +91,7 @@
   & pre:not(.prism-code) {
     background-color: var(--turquoise-15A);
     padding: 16px;
+    overflow-x: auto;
 
     & code {
       background-color: transparent;

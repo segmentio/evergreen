@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import logo from '../images/evergreen-logo-wordmark.svg'
+import logoStandalone from '../images/evergreen-logo-icon.svg'
 
 export default class TopBar extends PureComponent {
   static propTypes = {
@@ -15,7 +16,10 @@ export default class TopBar extends PureComponent {
     return (
       <div className="TopBar" {...props}>
         <Link to="/">
-          <img src={logo} alt="Evergreen" style={{ height: 24 }} />
+          <picture>
+            <source srcSet={logo} media="(min-width: 520px)" />
+            <img src={logoStandalone} alt="Evergreen" style={{ height: 24 }} />
+          </picture>
         </Link>
         <nav className="TopBar-nav">
           <Link
@@ -53,7 +57,7 @@ export default class TopBar extends PureComponent {
                 </g>
               </svg>
             </span>
-            <span>GitHub</span>
+            <span className="hide-on-mobile">GitHub</span>
           </a>
         </div>
       </div>

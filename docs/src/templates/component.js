@@ -18,7 +18,6 @@ export default () => {
     <div className="MainLayout">
       <TopBar />
       <main className="MainLayout-main">
-        <ComponentsSidebar />
         <div className="MainLayout-content">
           <ComponentReadme
             title={title}
@@ -66,6 +65,7 @@ export default () => {
             )}
           </ComponentReadme>
         </div>
+        <ComponentsSidebar />
       </main>
     </div>
   )

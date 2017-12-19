@@ -1,3 +1,9 @@
+*,
+*::after,
+&::before {
+  border-box: box-sizing;
+}
+
 html,
 body {
   color: var(--neutral-500);

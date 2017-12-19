@@ -22,4 +22,29 @@
 
 .NavGroup-title {
   margin-bottom: 8px;
+
+  @media (--range-palm) {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: -0.2px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+  }
+  @media (--range-hand) {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: -0.2px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+  }
+  @media (--range-lap) {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: -0.2px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+  }
 }

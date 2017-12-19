@@ -11,7 +11,6 @@ export default () => {
     <div className="MainLayout">
       <TopBar />
       <main className="MainLayout-main">
-        <GetStartedSidebar />
         <div className="MainLayout-content">
           <section className="Container">
             <div className="Content">
@@ -91,6 +90,7 @@ ReactDOM.render(
             </div>
           </section>
         </div>
+        <GetStartedSidebar />
       </main>
     </div>
   )
