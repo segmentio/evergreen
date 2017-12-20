@@ -1,18 +1,18 @@
 {
   "name": "evergreen-color-utils",
-  "version": "2.19.0",
+  "version": "2.19.1",
   "description": "JS package: evergreen-color-utils",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "evergreen-color-utils"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-colors": "^2.19.0",
+    "evergreen-colors": "^2.19.1",
     "ui-box": "^0.5.4"
   },
   "devDependencies": {
-    "evergreen-layers": "^2.19.0",
-    "evergreen-typography": "^2.19.0"
+    "evergreen-layers": "^2.19.1",
+    "evergreen-typography": "^2.19.1"
   },
   "xo": false
 }

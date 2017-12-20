@@ -1,13 +1,13 @@
 {
   "name": "evergreen-checkbox",
-  "version": "2.19.0",
+  "version": "2.19.1",
   "description": "React components: Checkbox",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Checkbox"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-shared-styles": "^2.19.0",
+    "evergreen-shared-styles": "^2.19.1",
     "ui-box": "^0.5.4"
   },
   "peerDependencies": {
@@ -15,8 +15,8 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "evergreen-layers": "^2.19.0",
-    "evergreen-typography": "^2.19.0"
+    "evergreen-layers": "^2.19.1",
+    "evergreen-typography": "^2.19.1"
   },
   "xo": false
 }

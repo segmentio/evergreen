@@ -1,6 +1,6 @@
 {
   "name": "evergreen-table",
-  "version": "2.19.0",
+  "version": "2.19.1",
   "description":
     "React components: TableCell, TextTableCell, TableRow, TableHeaderCell, TextTableHeaderCell, SearchTableHeaderCell, TableBody",
   "main": "lib/index.js",
@@ -20,11 +20,11 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-colors": "^2.19.0",
-    "evergreen-icons": "^2.19.0",
-    "evergreen-layers": "^2.19.0",
-    "evergreen-shared-styles": "^2.19.0",
-    "evergreen-typography": "^2.19.0",
+    "evergreen-colors": "^2.19.1",
+    "evergreen-icons": "^2.19.1",
+    "evergreen-layers": "^2.19.1",
+    "evergreen-shared-styles": "^2.19.1",
+    "evergreen-typography": "^2.19.1",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.3"
   },

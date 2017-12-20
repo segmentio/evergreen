@@ -1,6 +1,6 @@
 {
   "name": "evergreen-typography",
-  "version": "2.19.0",
+  "version": "2.19.1",
   "description":
     "React components: Text, Paragraph, Heading, Code, Pre, Label, Small, Strong",
   "main": "lib/index.js",
@@ -24,13 +24,13 @@
     "react": "^16.0.0"
   },
   "dependencies": {
-    "evergreen-colors": "^2.19.0",
+    "evergreen-colors": "^2.19.1",
     "lodash.mapvalues": "^4.6.0",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.4"
   },
   "devDependencies": {
-    "evergreen-layers": "^2.19.0"
+    "evergreen-layers": "^2.19.1"
   },
   "xo": false
 }
