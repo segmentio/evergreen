@@ -1,16 +1,16 @@
 {
   "name": "evergreen-select",
-  "version": "2.19.2",
+  "version": "2.19.3",
   "description": "React components: Select",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Select"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-colors": "^2.19.2",
-    "evergreen-icons": "^2.19.2",
-    "evergreen-shared-styles": "^2.19.2",
-    "evergreen-typography": "^2.19.2",
+    "evergreen-colors": "^2.19.3",
+    "evergreen-icons": "^2.19.3",
+    "evergreen-shared-styles": "^2.19.3",
+    "evergreen-typography": "^2.19.3",
     "ui-box": "^0.5.4"
   },
   "peerDependencies": {
@@ -18,7 +18,7 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "evergreen-layers": "^2.19.2"
+    "evergreen-layers": "^2.19.3"
   },
   "xo": false
 }
