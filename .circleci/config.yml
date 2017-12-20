@@ -13,7 +13,6 @@ workflows:
             tags:
               only: /.*/
             branches:
-              only: /.*/
               ignore: gh-pages
 
       - deploy_docs:
