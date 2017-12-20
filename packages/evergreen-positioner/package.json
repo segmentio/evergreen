@@ -1,13 +1,13 @@
 {
   "name": "evergreen-positioner",
-  "version": "2.19.1",
+  "version": "2.19.2",
   "description": "React components: Positioner",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Positioner"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-portal": "^2.19.1",
+    "evergreen-portal": "^2.19.2",
     "object-values": "^1.0.0",
     "prop-types": "^15.0.0",
     "react-transition-group": "^2.2.1",
@@ -17,8 +17,8 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "evergreen-layers": "^2.19.1",
-    "evergreen-typography": "^2.19.1"
+    "evergreen-layers": "^2.19.2",
+    "evergreen-typography": "^2.19.2"
   },
   "xo": false
 }

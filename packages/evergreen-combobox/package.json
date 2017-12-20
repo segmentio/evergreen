@@ -1,16 +1,16 @@
 {
   "name": "evergreen-combobox",
-  "version": "2.19.5",
+  "version": "2.19.6",
   "description": "React components: Combobox",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Combobox"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-autocomplete": "^2.19.3",
-    "evergreen-buttons": "^2.19.1",
-    "evergreen-icons": "^2.19.1",
-    "evergreen-text-input": "^2.19.1",
+    "evergreen-autocomplete": "^2.19.4",
+    "evergreen-buttons": "^2.19.2",
+    "evergreen-icons": "^2.19.2",
+    "evergreen-text-input": "^2.19.2",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.4"
   },
@@ -18,8 +18,8 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "evergreen-layers": "^2.19.1",
-    "evergreen-typography": "^2.19.1",
+    "evergreen-layers": "^2.19.2",
+    "evergreen-typography": "^2.19.2",
     "starwars-names": "^1.6.0"
   },
   "xo": false

@@ -1,6 +1,6 @@
 {
   "name": "evergreen-icons",
-  "version": "2.19.1",
+  "version": "2.19.2",
   "description":
     "React components: TriangleIcon, CloseIcon, CogIcon, ArrowIcon, SearchIcon, CheckCircleIcon, Icon",
   "main": "lib/index.js",
@@ -20,7 +20,7 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-colors": "^2.19.1",
+    "evergreen-colors": "^2.19.2",
     "ui-box": "^0.5.4"
   },
   "peerDependencies": {
@@ -28,8 +28,8 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "evergreen-layers": "^2.19.1",
-    "evergreen-typography": "^2.19.1"
+    "evergreen-layers": "^2.19.2",
+    "evergreen-typography": "^2.19.2"
   },
   "xo": false
 }
