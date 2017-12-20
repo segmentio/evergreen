@@ -1,6 +1,6 @@
 {
   "name": "evergreen-autocomplete",
-  "version": "2.19.3",
+  "version": "2.19.4",
   "description": "React components: Autocomplete",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Autocomplete"],
@@ -8,10 +8,10 @@
   "license": "MIT",
   "dependencies": {
     "downshift": "^1.16.0",
-    "evergreen-colors": "^2.19.1",
-    "evergreen-layers": "^2.19.1",
-    "evergreen-popover": "^2.19.1",
-    "evergreen-typography": "^2.19.1",
+    "evergreen-colors": "^2.19.2",
+    "evergreen-layers": "^2.19.2",
+    "evergreen-popover": "^2.19.2",
+    "evergreen-typography": "^2.19.2",
     "fuzzaldrin-plus": "^0.5.0",
     "prop-types": "^15.0.0",
     "react-tiny-virtual-list": "^2.1.4",
@@ -21,7 +21,7 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "evergreen-text-input": "^2.19.1",
+    "evergreen-text-input": "^2.19.2",
     "starwars-names": "^1.6.0"
   },
   "xo": false
