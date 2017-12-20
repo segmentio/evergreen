@@ -50,6 +50,10 @@ CheckIcon.propTypes = {
   size: PropTypes.number
 }
 
+const isControlled = component => {
+  return {}.hasOwnProperty.call(component.props, 'checked')
+}
+
 export default class Switch extends PureComponent {
   static propTypes = {
     ...position.propTypes,
@@ -85,7 +89,7 @@ export default class Switch extends PureComponent {
   }
 
   handleChange = value => {
-    if (Object.prototype.hasOwnProperty.call(this.props, 'checked')) {
+    if (isControlled(this)) {
       this.props.onChange(value)
     } else {
       this.setState({
@@ -108,7 +112,7 @@ export default class Switch extends PureComponent {
       defaultChecked,
       ...props
     } = this.props
-    const checked = checkedProps || this.state.checked
+    const checked = isControlled(this) ? checkedProps : this.state.checked
     const appearanceStyle = SwitchAppearances[appearance]
 
     return (
