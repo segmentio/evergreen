@@ -1,18 +1,18 @@
 {
   "name": "evergreen-switch",
-  "version": "2.19.0",
+  "version": "2.19.1",
   "description": "React components: Switch",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Switch"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-colors": "^2.19.0",
+    "evergreen-colors": "^2.19.1",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.3"
   },
   "devDependencies": {
-    "evergreen-typography": "^2.19.0"
+    "evergreen-typography": "^2.19.1"
   },
   "peerDependencies": {
     "react": "^16.0.0"

@@ -1,14 +1,14 @@
 {
   "name": "evergreen-colors",
-  "version": "2.19.0",
+  "version": "2.19.1",
   "description": "Colors",
   "main": "src/colors.js",
   "keywords": ["evergreen", "segment", "ui", "colors", "evergreen-colors"],
   "author": "Segment",
   "license": "MIT",
   "devDependencies": {
-    "evergreen-layers": "^2.19.0",
-    "evergreen-typography": "^2.19.0",
+    "evergreen-layers": "^2.19.1",
+    "evergreen-typography": "^2.19.1",
     "ui-box": "^0.5.4"
   },
   "peerDependencies": {

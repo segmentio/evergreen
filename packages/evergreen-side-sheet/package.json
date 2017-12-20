@@ -1,20 +1,20 @@
 {
   "name": "evergreen-side-sheet",
-  "version": "2.19.0",
+  "version": "2.19.1",
   "description": "React components: SideSheet",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "SideSheet"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-icons": "^2.19.0",
-    "evergreen-layers": "^2.19.0",
-    "evergreen-overlay": "^2.19.0",
+    "evergreen-icons": "^2.19.1",
+    "evergreen-layers": "^2.19.1",
+    "evergreen-overlay": "^2.19.1",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.3"
   },
   "devDependencies": {
-    "evergreen-buttons": "^2.19.0"
+    "evergreen-buttons": "^2.19.1"
   },
   "peerDependencies": {
     "react": "^16.0.0"

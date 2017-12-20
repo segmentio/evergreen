@@ -1,20 +1,20 @@
 {
   "name": "evergreen-overlay",
-  "version": "2.19.0",
+  "version": "2.19.1",
   "description": "React components: Overlay",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Overlay"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-colors": "^2.19.0",
-    "evergreen-portal": "^2.19.0",
+    "evergreen-colors": "^2.19.1",
+    "evergreen-portal": "^2.19.1",
     "prop-types": "^15.0.0",
     "react-transition-group": "^2.2.1",
     "ui-box": "^0.5.3"
   },
   "devDependencies": {
-    "evergreen-buttons": "^2.19.0"
+    "evergreen-buttons": "^2.19.1"
   },
   "peerDependencies": {
     "react": "^16.0.0"

@@ -1,17 +1,17 @@
 {
   "name": "evergreen-dialog",
-  "version": "2.19.0",
+  "version": "2.19.1",
   "description": "React components: Dialog",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Dialog"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-buttons": "^2.19.0",
-    "evergreen-dialog": "^2.19.0",
-    "evergreen-layers": "^2.19.0",
-    "evergreen-overlay": "^2.19.0",
-    "evergreen-typography": "^2.19.0",
+    "evergreen-buttons": "^2.19.1",
+    "evergreen-dialog": "^2.19.1",
+    "evergreen-layers": "^2.19.1",
+    "evergreen-overlay": "^2.19.1",
+    "evergreen-typography": "^2.19.1",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.3"
   },

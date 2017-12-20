@@ -1,6 +1,6 @@
 {
   "name": "evergreen-badges",
-  "version": "2.19.1",
+  "version": "2.19.2",
   "description": "React Style Components: Pill, Badge",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Pill", "Badge"],
@@ -10,12 +10,12 @@
     "react": "^16.0.0"
   },
   "dependencies": {
-    "evergreen-shared-styles": "^2.19.0",
+    "evergreen-shared-styles": "^2.19.1",
     "ui-box": "^0.5.4"
   },
   "devDependencies": {
-    "evergreen-layers": "^2.19.0",
-    "evergreen-typography": "^2.19.0"
+    "evergreen-layers": "^2.19.1",
+    "evergreen-typography": "^2.19.1"
   },
   "xo": false
 }
