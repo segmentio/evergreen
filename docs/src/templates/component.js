@@ -59,6 +59,7 @@ export default () => {
                     name={component.name}
                     description={component.description}
                     examples={component.examples}
+                    source={component.source}
                   />
                 ))}
               </div>

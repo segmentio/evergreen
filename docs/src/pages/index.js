@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import TopBar from '../components/TopBar'
 import { Button } from 'evergreen-buttons'
+import TopBar from '../components/TopBar'
 
 const NativeLink = ({ ...props }) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />

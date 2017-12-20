@@ -2,7 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-layers'
 import { Paragraph } from 'evergreen-typography'
-import { BackButton, Button, IconButton } from '../src'
+
+/* eslint-disable import/no-duplicates, import/no-webpack-loader-syntax */
+import BackButton from '../src/components/BackButton'
+import sourceBackButton from '!raw-loader!../src/components/BackButton' // eslint-disable-line import/no-unresolved
+import IconButton from '../src/components/BackButton'
+import sourceIconButton from '!raw-loader!../src/components/IconButton' // eslint-disable-line import/no-unresolved
+import Button from '../src/components/Button'
+import sourceButton from '!raw-loader!../src/components/Button' // eslint-disable-line import/no-unresolved
+/* eslint-enable import/no-duplicates, import/no-webpack-loader-syntax */
+
 import packageJSON from '../package.json' // eslint-disable-line import/extensions
 
 /**
@@ -121,6 +130,7 @@ const appearanceOptions = (
 const components = [
   {
     name: 'Button',
+    source: sourceButton,
     description: (
       <p>
         The base <code>Button</code> component can have multiple appearances.
@@ -144,6 +154,7 @@ const components = [
   },
   {
     name: 'BackButton',
+    source: sourceBackButton,
     description: (
       <p>
         The <code>BackButton</code> is a specialized component used for the back
@@ -165,6 +176,7 @@ const components = [
   },
   {
     name: 'IconButton',
+    source: sourceIconButton,
     description: (
       <p>
         The <code>IconButton</code> component has access to all icons available

@@ -4,11 +4,13 @@ import ComponentSection from './ComponentSection'
 import ComponentIntro from './ComponentIntro'
 import PlaygroundExampleGroup from './PlaygroundExampleGroup'
 import PlaygroundExample from './PlaygroundExample'
+import PropTypesTable from './prop-types-table'
 
 export default class ComponentBlock extends React.PureComponent {
   static propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.node,
+    source: PropTypes.string,
     examples: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
@@ -20,11 +22,15 @@ export default class ComponentBlock extends React.PureComponent {
   }
 
   render() {
-    const { name, description, examples } = this.props
+    const { name, description, examples, source } = this.props
+
+    console.log('source', source)
 
     return (
       <ComponentSection>
         <ComponentIntro name={name}>{description}</ComponentIntro>
+
+        <PropTypesTable componentSource={source} />
 
         <PlaygroundExampleGroup>
           {examples.map(example => {
