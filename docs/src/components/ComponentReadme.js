@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import ComponentBlock from './ComponentBlock'
+import AppearanceOption from './ApppearanceOption'
+
+let optionsKey = 0
 
 export default class ComponentReadme extends PureComponent {
   static propTypes = {
@@ -66,9 +69,23 @@ export default class ComponentReadme extends PureComponent {
               </div>
             )}
             {appearanceOptions && (
-              <div className="Content">
-                <h2 id="appearance-options">Appearance Options</h2>
-                {appearanceOptions}
+              <div>
+                <div className="Content">
+                  <h2 id="appearance-options">Appearance Options</h2>
+                </div>
+                <div>
+                  {appearanceOptions.map(option => {
+                    return (
+                      <AppearanceOption
+                        key={option.title}
+                        title={option.title}
+                        component={option.component}
+                      >
+                        {option.description}
+                      </AppearanceOption>
+                    )
+                  })}
+                </div>
               </div>
             )}
             {components && (

@@ -44,8 +44,8 @@ export default class Playground extends React.Component {
     return (
       <div
         className="Playground"
-        data-isPreviewEntered={isPreviewEntered}
-        data-isCodeCollapsed={isCodeCollapsed}
+        data-ispreviewentered={isPreviewEntered}
+        data-iscodecollapsed={isCodeCollapsed}
       >
         <LiveProvider
           theme="evergreen"

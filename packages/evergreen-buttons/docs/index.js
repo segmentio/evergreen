@@ -27,46 +27,6 @@ import iconButtonBasicExample from './examples/icon-button-basic.example'
 const title = 'Buttons'
 const subTitle = 'A package exporting multiple types of buttons.'
 
-/**
- * This is a appearance option, we might want to move this over at some point.
- */
-class AppearanceOption extends React.PureComponent {
-  static propTypes = {
-    component: PropTypes.node,
-    children: PropTypes.node
-  }
-
-  render() {
-    return (
-      <Pane
-        backgroundColor="white"
-        display="flex"
-        alignItems="center"
-        border="muted"
-        marginBottom={16}
-      >
-        <Pane
-          width={180}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          {this.props.component}
-        </Pane>
-        <Pane
-          flex="1"
-          borderLeft="muted"
-          paddingLeft={24}
-          marginY={24}
-          marginRight={24}
-        >
-          <Paragraph size={300}>{this.props.children}</Paragraph>
-        </Pane>
-      </Pane>
-    )
-  }
-}
-
 const designGuidelines = (
   <div>
     <p>
@@ -94,38 +54,70 @@ const designGuidelines = (
   </div>
 )
 
-const appearanceOptions = (
-  <Pane marginBottom={32}>
-    <AppearanceOption component={<Button>Default</Button>}>
-      Default buttons provide a light weight button style, while still
-      maintaining a high level of affordability. They are used to indicate
-      secondary actions and are used to reduce visual noise when there are many
-      actions on the page.
-    </AppearanceOption>
-    <AppearanceOption component={<Button appearance="green">Green</Button>}>
-      Green buttons stand out on purpose. They are used to indicate primary
-      actions that create a new entity or initiate a creation flow.
-    </AppearanceOption>
-    <AppearanceOption component={<Button appearance="blue">Blue</Button>}>
-      Blue buttons stand out on purpose. They are used to indicate primary
-      actions used within a setup flow or preview window.
-    </AppearanceOption>
-    <AppearanceOption component={<Button appearance="red">Red</Button>}>
-      Red buttons stand out on purpose. They are used to indicate primary
-      deletion actions in dialogs or settings.
-    </AppearanceOption>
-    <AppearanceOption
-      component={<Button appearance="ghostBlue">Ghost Blue</Button>}
-    >
-      Ghost blue text buttons are light weight. They are used to signify
-      secondary actions and work well next to solid buttons.
-    </AppearanceOption>
-    <AppearanceOption component={<Button appearance="ghost">Ghost</Button>}>
-      Ghost buttons are light weight. They are used to signify secondary actions
-      and work well for icons such as in a dialog close button.
-    </AppearanceOption>
-  </Pane>
-)
+const appearanceOptions = [
+  {
+    title: 'Default',
+    component: <Button>Default</Button>,
+    description: (
+      <p>
+        Default buttons provide a light weight button style, while still
+        maintaining a high level of affordability. They are used to indicate
+        secondary actions and are used to reduce visual noise when there are
+        many actions on the page.
+      </p>
+    )
+  },
+  {
+    title: 'Green',
+    component: <Button appearance="green">Green</Button>,
+    description: (
+      <p>
+        Green buttons stand out on purpose. They are used to indicate primary
+        actions that create a new entity or initiate a creation flow.
+      </p>
+    )
+  },
+  {
+    title: 'Blue',
+    component: <Button appearance="blue">Blue</Button>,
+    description: (
+      <p>
+        Blue buttons stand out on purpose. They are used to indicate primary
+        actions used within a setup flow or preview window.
+      </p>
+    )
+  },
+  {
+    title: 'Red',
+    component: <Button appearance="red">Red</Button>,
+    description: (
+      <p>
+        Red buttons stand out on purpose. They are used to indicate primary
+        deletion actions in dialogs or settings.
+      </p>
+    )
+  },
+  {
+    title: 'Ghost Blue',
+    component: <Button appearance="ghostBlue">Ghost Blue</Button>,
+    description: (
+      <p>
+        Ghost blue text buttons are light weight. They are used to signify
+        secondary actions and work well next to solid buttons.
+      </p>
+    )
+  },
+  {
+    title: 'Ghost',
+    component: <Button appearance="ghost">Ghost</Button>,
+    description: (
+      <p>
+        Ghost buttons are light weight. They are used to signify secondary
+        actions and work well for icons such as in a dialog close button.
+      </p>
+    )
+  }
+]
 
 const components = [
   {
