@@ -11,7 +11,7 @@ export default class ComponentIntro extends React.PureComponent {
     const { name, children } = this.props
 
     return (
-      <div className="ComponentIntro" style={{ marginBottom: 32 }}>
+      <div className="Content ComponentIntro" style={{ marginBottom: 32 }}>
         <h3 style={{ marginBottom: 16 }}>
           <code>{name}</code> component
         </h3>

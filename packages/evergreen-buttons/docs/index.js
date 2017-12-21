@@ -6,7 +6,7 @@ import { Paragraph } from 'evergreen-typography'
 /* eslint-disable import/no-duplicates, import/no-webpack-loader-syntax */
 import BackButton from '../src/components/BackButton'
 import sourceBackButton from '!raw-loader!../src/components/BackButton' // eslint-disable-line import/no-unresolved
-import IconButton from '../src/components/BackButton'
+import IconButton from '../src/components/IconButton'
 import sourceIconButton from '!raw-loader!../src/components/IconButton' // eslint-disable-line import/no-unresolved
 import Button from '../src/components/Button'
 import sourceButton from '!raw-loader!../src/components/Button' // eslint-disable-line import/no-unresolved

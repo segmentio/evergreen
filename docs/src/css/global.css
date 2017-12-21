@@ -25,6 +25,5 @@ code,
 kbd,
 samp {
   font-family: var(--font-mono);
-  font-size: 90%;
   font-weight: 500;
 }

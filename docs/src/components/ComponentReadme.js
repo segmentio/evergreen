@@ -1,16 +1,27 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import ComponentBlock from './ComponentBlock'
 
 export default class ComponentReadme extends PureComponent {
   static propTypes = {
     packageJSON: PropTypes.object,
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     subTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    children: PropTypes.any
+    designGuidelines: PropTypes.node,
+    appearanceOptions: PropTypes.array,
+    components: PropTypes.array
   }
 
   render() {
-    const { packageJSON, title, subTitle, children, ...props } = this.props
+    const {
+      packageJSON,
+      title,
+      subTitle,
+      designGuidelines,
+      appearanceOptions,
+      components,
+      ...props
+    } = this.props
 
     return (
       <article className="ComponentReadme" {...props}>
@@ -47,7 +58,50 @@ export default class ComponentReadme extends PureComponent {
               </dd>
             </dl>
           </header>
-          <div className="Content">{children}</div>
+          <div>
+            {designGuidelines && (
+              <div className="Content">
+                <h2 id="design-guidelines">Design Guidelines</h2>
+                {designGuidelines}
+              </div>
+            )}
+            {appearanceOptions && (
+              <div className="Content">
+                <h2 id="appearance-options">Appearance Options</h2>
+                {appearanceOptions}
+              </div>
+            )}
+            {components && (
+              <div>
+                <div className="Content">
+                  <h2 id="code-and-examples">Code & Examples</h2>
+                  <p>
+                    The <code>{packageJSON.name}</code> package exports the
+                    following documented components:
+                  </p>
+                  <ul>
+                    {components.map(component => {
+                      return (
+                        <li key={component.name}>
+                          <code>{component.name}</code>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
+
+                {components.map(component => (
+                  <ComponentBlock
+                    key={component.name}
+                    name={component.name}
+                    description={component.description}
+                    examples={component.examples}
+                    source={component.source}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </article>
     )

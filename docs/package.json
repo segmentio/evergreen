@@ -19,7 +19,7 @@
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
-    "react-docgen": "^2.20.0",
+    "react-docgen": "next",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
     "react-live": "^1.7.1"

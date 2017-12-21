@@ -24,13 +24,9 @@ export default class ComponentBlock extends React.PureComponent {
   render() {
     const { name, description, examples, source } = this.props
 
-    console.log('source', source)
-
     return (
       <ComponentSection>
         <ComponentIntro name={name}>{description}</ComponentIntro>
-
-        <PropTypesTable componentSource={source} />
 
         <PlaygroundExampleGroup>
           {examples.map(example => {
@@ -45,6 +41,8 @@ export default class ComponentBlock extends React.PureComponent {
             )
           })}
         </PlaygroundExampleGroup>
+
+        <PropTypesTable componentSource={source} />
       </ComponentSection>
     )
   }

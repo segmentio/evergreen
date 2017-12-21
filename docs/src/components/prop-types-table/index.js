@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import * as reactDocs from 'react-docgen'
+import PropTypeWrapper from './PropTypeWrapper'
+import PropTypeDescription from './PropTypeDescription'
+import PropTypeHeading from './PropTypeHeading'
 
 export default class PropTypesTable extends PureComponent {
   static propTypes = {
@@ -27,6 +30,44 @@ export default class PropTypesTable extends PureComponent {
 
   render() {
     const { componentDocs } = this.state
-    return <div>{JSON.stringify(componentDocs, null, 2)}</div>
+    const propTypes = Object.keys(componentDocs.props)
+    console.log('componentDocs', componentDocs)
+    return (
+      <div>
+        <div className="Content">
+          <h3>Props</h3>
+          {componentDocs.composes.length > 0 && (
+            <div className="PropTypesTable-composes">
+              <p>
+                <strong>This component composes </strong>
+                {componentDocs.composes.map(filePath => (
+                  <code key={filePath}>
+                    {filePath.substring(filePath.indexOf('/') + 1)}
+                  </code>
+                ))}
+              </p>
+            </div>
+          )}
+        </div>
+
+        {propTypes.map(propName => {
+          const prop = componentDocs.props[propName]
+          return (
+            <PropTypeWrapper key={propName}>
+              <PropTypeHeading
+                name={propName}
+                required={prop.required}
+                defaultValue={prop.defaultValue}
+                type={prop.type || {}}
+              />
+              {prop.description ? (
+                <PropTypeDescription>{prop.description}</PropTypeDescription>
+              ) : null}
+              <div className="PropType-value">{(prop.type || {}).value}</div>
+            </PropTypeWrapper>
+          )
+        })}
+      </div>
+    )
   }
 }
