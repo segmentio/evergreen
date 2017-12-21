@@ -12,7 +12,7 @@ import ButtonAppearances from '../styles/ButtonAppearances'
 export default class Button extends PureComponent {
   static propTypes = {
     /**
-     * Composes the Text component as the base
+     * Composes the Text component as the base.
      */
     ...Text.propTypes,
 
