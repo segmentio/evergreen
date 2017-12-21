@@ -1,0 +1,102 @@
+.Content {
+  & tt,
+  & code,
+  & kbd,
+  & samp {
+    font-family: var(--font-mono);
+    background-color: var(--turquoise-15A);
+    color: var(--turquoise-1000);
+    border-radius: 2px;
+    font-size: 90%;
+    font-weight: 500;
+    padding: 2px 4px;
+  }
+
+  & a {
+    color: var(--blue-500);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  & h1 {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: -0.2px;
+    margin-bottom: 4px;
+
+    & + p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: -0.05px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+  }
+
+  & h2 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: -0.2px;
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+
+  & h3 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+
+  & h4 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: -0.05px;
+    margin-bottom: 4px;
+    margin-top: 32px;
+
+    & + p {
+      margin-top: 0;
+    }
+  }
+
+  & p,
+  & li {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.05px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  & strong {
+    font-weight: 600;
+  }
+
+  & ul {
+    list-style-type: disc;
+    margin-left: 1.1em;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  & pre:not(.prism-code) {
+    background-color: var(--turquoise-15A);
+    padding: 16px;
+    overflow-x: auto;
+
+    & code {
+      background-color: transparent;
+      padding: 0;
+      line-height: 22px;
+    }
+  }
+}

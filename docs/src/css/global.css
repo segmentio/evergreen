@@ -1,18 +1,29 @@
-html, body {
+*,
+*::after,
+&::before {
+  border-box: box-sizing;
+}
+
+html,
+body {
   color: var(--neutral-500);
   font-family: var(--font-ui);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--neutral-800);
   font-family: var(--font-display);
 }
 
-tt, code, kbd, samp {
+tt,
+code,
+kbd,
+samp {
   font-family: var(--font-mono);
-  background-color: var(--turquoise-15A);
-  color: var(--turquoise-1000);
-  font-size: 90%;
   font-weight: 500;
-  padding: 2px 4px;
 }

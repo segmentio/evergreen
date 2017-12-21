@@ -1,4 +1,5 @@
 const Path = require('path')
+const webpack = require('webpack') // eslint-disable-line import/no-extraneous-dependencies
 const components = require('./src/components')
 
 // Implement the Gatsby API “createPages”. This is called once the
@@ -9,7 +10,7 @@ exports.createPages = ({ boundActionCreators }) => {
   const componentTemplate = Path.resolve(`src/templates/component.js`)
 
   components.forEach(({ name }) => {
-    const path = name
+    const path = `/components/${name}`
 
     createPage({
       path,
@@ -23,4 +24,15 @@ exports.createPages = ({ boundActionCreators }) => {
       }
     })
   })
+}
+
+exports.modifyWebpackConfig = ({ config }) => {
+  config.loader('raw-loader', {
+    test: /\.example$/
+  })
+
+  // See https://github.com/FormidableLabs/react-live/issues/5
+  config.plugin('ignore', () => new webpack.IgnorePlugin(/^(xor|props)$/))
+
+  return config
 }

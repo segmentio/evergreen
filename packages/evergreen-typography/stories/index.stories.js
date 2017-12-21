@@ -12,6 +12,9 @@ import {
   Label,
   Small,
   Strong,
+  UnorderedList,
+  OrderedList,
+  ListItem,
   TextStyles
 } from '../src/'
 
@@ -68,3 +71,35 @@ storiesOf('typography', module)
   .add('Label', () => <div>{previewTextComponent(Label)}</div>)
   .add('Small', () => <div>{previewTextComponent(Small)}</div>)
   .add('Strong', () => <div>{previewTextComponent(Strong)}</div>)
+  .add('UnorderedList', () => (
+    <Box padding={40}>
+      <Paragraph>
+        A paragraph before a list. You have to manually set the margins on a
+        list.
+      </Paragraph>
+      <UnorderedList marginY={16}>
+        <ListItem>Lorem ipsum dolar set amet</ListItem>
+        <ListItem>Lorem ipsum dolar set amet</ListItem>
+        <ListItem>Lorem ipsum dolar set amet</ListItem>
+        <ListItem>Lorem ipsum dolar set amet</ListItem>
+        <ListItem>Lorem ipsum dolar set amet</ListItem>
+      </UnorderedList>
+      <Paragraph>A paragraph after a list.</Paragraph>
+    </Box>
+  ))
+  .add('OrderedList', () => (
+    <Box padding={40}>
+      <Paragraph>
+        A paragraph before a list. You have to manually set the margins on a
+        list.
+      </Paragraph>
+      <OrderedList marginY={16}>
+        <ListItem>Lorem ipsum dolar set amet</ListItem>
+        <ListItem>Lorem ipsum dolar set amet</ListItem>
+        <ListItem>Lorem ipsum dolar set amet</ListItem>
+        <ListItem>Lorem ipsum dolar set amet</ListItem>
+        <ListItem>Lorem ipsum dolar set amet</ListItem>
+      </OrderedList>
+      <Paragraph>A paragraph after a list.</Paragraph>
+    </Box>
+  ))

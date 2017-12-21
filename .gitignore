@@ -4,3 +4,4 @@ node_modules
 /packages/*/lib
 storybook-static
 /docs/public
+.cache
