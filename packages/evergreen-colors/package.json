@@ -2,7 +2,7 @@
   "name": "evergreen-colors",
   "version": "2.19.3",
   "description": "Colors",
-  "main": "src/colors.js",
+  "main": "lib/colors.js",
   "keywords": ["evergreen", "segment", "ui", "colors", "evergreen-colors"],
   "author": "Segment",
   "license": "MIT",
