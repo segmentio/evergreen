@@ -28,7 +28,7 @@ export default class Button extends PureComponent {
     isActive: PropTypes.bool,
 
     /**
-     * Sets an icon before the text. Can be any icon from `evergreen-icons`
+     * Sets an icon before the text. Can be any icon from `evergreen-icons`.
      */
     iconBefore: PropTypes.oneOf(Object.keys(IconMap)),
 
