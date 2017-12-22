@@ -1,4 +1,6 @@
-# 🌲Evergreen
+# 🌲 Evergreen
+
+[![Build Status](https://circleci.com/gh/segmentio/evergreen/tree/master.svg?style=svg)](https://circleci.com/gh/segmentio/evergreen/tree/master)
 
 > React UI Kit by [Segment](https://segment.com/)
 
@@ -11,7 +13,7 @@
 * [Lerna](https://lernajs.io/) mono-repo
 * Interested in Evergreen? [Come work for Segment!](https://segment.com/jobs/)
 
-## Core values of 🌲Evergreen
+## Core values of 🌲 Evergreen
 
 **Evergreen is built on the belief that you can never predict all future requirements,
 only prepare for it.** Instead of creating fixed configurations that work today, Evergreen promotes building systems that anticipate new and changing design requirements.
@@ -22,7 +24,7 @@ only prepare for it.** Instead of creating fixed configurations that work today,
 
 ## Install and use components 🔓
 
-🌲Evergreen is a mono-repo, which means it is built out of multiple packages.
+🌲 Evergreen is a mono-repo, which means it is built out of multiple packages.
 Most packages will contain React components, to start using them in your React projects
 you have to install them one by one.
 
