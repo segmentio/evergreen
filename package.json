@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "precommit": "lint-staged",
+    "build-storybook": "build-storybook -s .storybook/static -o .out",
     "lerna-publish": "lerna publish --skip-npm",
     "dev": "concurrently \"npm run build:watch\" \"npm run storybook\"",
     "create-package": "babel-node tools/create-package",
@@ -10,7 +11,6 @@
     "clean": "git clean -Xdf",
     "lint": "xo",
     "storybook": "start-storybook -p 6006",
-    "deploy-storybook": "storybook-to-ghpages",
     "build:watch":
       "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w",
     "build": "lerna exec --parallel -- babel src -d lib --ignore *.test.js"
