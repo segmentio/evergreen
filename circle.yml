@@ -15,10 +15,13 @@ dependencies:
   cache_directories:
     - ~/.cache/yarn
 
+compile:
+  override:
+    - yarn build
+
 test:
   override:
     - yarn lint
-    - yarn build
 
 deployment:
   deploy_docs:
@@ -28,5 +31,4 @@ deployment:
   publish:
     tag: /[^@]+@[0-9]+(\.[0-9]+)*/
     commands:
-      - yarn build
       - ./tools/publish-tag.js $CIRCLE_TAG
