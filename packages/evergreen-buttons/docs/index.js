@@ -1,7 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Pane } from 'evergreen-layers'
-import { Paragraph } from 'evergreen-typography'
 
 /* eslint-disable import/no-duplicates, import/no-webpack-loader-syntax */
 import BackButton from '../src/components/BackButton'

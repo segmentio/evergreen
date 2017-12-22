@@ -8,7 +8,7 @@ const InputAppearances = {
     boxShadow: `inset 0 0 0 1px ${colors.neutral['30A']}, inset 0 1px 2px ${
       colors.neutral['20A']
     }`,
-    '&[aria-invalid]': {
+    '&[aria-invalid="true"]': {
       boxShadow: `inset 0 0 0 1px ${colors.red['500']}, inset 0 1px 1px ${
         colors.neutral['40A']
       }`
@@ -33,7 +33,7 @@ const InputAppearances = {
     WebkitAppearance: 'none',
     border: 'none',
     backgroundColor: colors.neutral['10A'],
-    '&[aria-invalid]': {
+    '&[aria-invalid="true"]': {
       boxShadow: `inset 0 0 0 1px ${colors.red['500']}`
     },
     '&::placeholder': {

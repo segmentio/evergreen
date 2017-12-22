@@ -1,31 +1,32 @@
 {
-  "name": "evergreen-text-input",
-  "version": "2.19.6",
-  "description": "React components: TextInput, TextInputAppearances",
+  "name": "evergreen-form-field",
+  "version": "2.19.0",
+  "description":
+    "React components: FormField, FormFieldDescription, FormFieldLabel, FormFieldValidationMessage",
   "main": "lib/index.js",
   "keywords": [
     "evergreen",
     "segment",
     "ui",
     "react",
-    "TextInput",
-    "TextInputAppearances"
+    "FormField",
+    "FormFieldDescription",
+    "FormFieldLabel",
+    "FormFieldValidationMessage"
   ],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
     "evergreen-colors": "^2.19.6",
-    "evergreen-shared-styles": "^2.19.6",
     "evergreen-typography": "^2.19.6",
-    "evergreen-form-field": "^2.19.0",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.4"
   },
   "peerDependencies": {
     "react": "^16.0.0"
   },
+  "xo": false,
   "devDependencies": {
-    "evergreen-layers": "^2.19.6"
-  },
-  "xo": false
+    "evergreen-buttons": "^2.19.6"
+  }
 }
