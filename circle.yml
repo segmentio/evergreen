@@ -2,6 +2,11 @@ machine:
   node:
     version: 8
 
+general:
+  branches:
+    ignore:
+      - gh-pages
+
 dependencies:
   pre:
     - npm config set "//registry.npmjs.org/:_authToken" $NPM_AUTH
