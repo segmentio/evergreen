@@ -2,11 +2,6 @@ machine:
   node:
     version: 8
 
-general:
-  branches:
-    ignore:
-      - gh-pages
-
 dependencies:
   pre:
     - npm config set "//registry.npmjs.org/:_authToken" $NPM_AUTH
@@ -27,7 +22,7 @@ deployment:
   deploy_docs:
     branch: master
     commands:
-      - yarn deploy-storybook
+      - npx storybook-to-ghpages
   publish:
     tag: /[^@]+@[0-9]+(\.[0-9]+)*/
     commands:
