@@ -2,12 +2,9 @@
 import React from 'react'
 import test from 'ava'
 import render from 'react-test-renderer'
-import { shallow, configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import { shallow } from 'enzyme'
 import { CheckCircleIcon } from 'evergreen-icons'
 import { Alert } from '../src'
-
-configure({ adapter: new Adapter() })
 
 test('alert: basic snapshot', t => {
   const component = <Alert title="A simple general message" />

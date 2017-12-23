@@ -50,7 +50,7 @@
   },
   "ava": {
     "files": ["packages/*/test/*.js"],
-    "require": ["babel-register"],
+    "require": ["babel-register", "./tools/test-setup"],
     "babel": "inherit"
   },
   "dependencies": {
