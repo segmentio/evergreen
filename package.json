@@ -10,6 +10,7 @@
     "bootstrap": "yarn && lerna bootstrap && cd docs && yarn",
     "clean": "git clean -Xdf",
     "lint": "xo",
+    "test": "ava",
     "storybook": "start-storybook -p 6006",
     "build:watch":
       "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w",
@@ -47,6 +48,11 @@
     "*.js": ["prettier --write", "git add"],
     "*.{json,md}": ["prettier --write", "git add"]
   },
+  "ava": {
+    "files": ["packages/*/test/*.js"],
+    "require": ["babel-register"],
+    "babel": "inherit"
+  },
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
@@ -59,6 +65,7 @@
     "@storybook/addons": "^3.2.17",
     "@storybook/react": "^3.2.17",
     "@storybook/storybook-deployer": "^2.0.0",
+    "ava": "^0.24.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.3",
@@ -66,6 +73,8 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "concurrently": "^3.5.1",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-xo-react": "^0.14.0",
     "eslint-plugin-react": "^7.5.1",
@@ -76,6 +85,7 @@
     "lerna": "^2.5.1",
     "lint-staged": "^6.0.0",
     "prettier": "^1.9.1",
+    "react-test-renderer": "^16.2.0",
     "url-loader": "^0.6.2",
     "xo": "^0.18.2"
   }
