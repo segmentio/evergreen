@@ -7,6 +7,7 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
+    "arrify": "^1.0.1",
     "evergreen-buttons": "^2.19.6",
     "evergreen-layers": "^2.19.6",
     "evergreen-popover": "^2.19.6",

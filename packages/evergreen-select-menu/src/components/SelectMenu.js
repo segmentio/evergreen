@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Popover from 'evergreen-popover'
+import arrify from 'arrify'
 import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
 import SelectedPropType from './SelectedPropType'
@@ -42,18 +43,6 @@ export default class SelectMenu extends PureComponent {
       ...props
     } = this.props
 
-    /**
-     * Normalize selected to an array
-     */
-    let arraySelected
-    if (typeof selected === 'string') {
-      arraySelected = [selected]
-    } else if (Array.isArray(selected)) {
-      arraySelected = selected
-    } else {
-      arraySelected = []
-    }
-
     return (
       <Popover
         minWidth={width}
@@ -70,7 +59,7 @@ export default class SelectMenu extends PureComponent {
               onSelect: item => {
                 this.props.onSelect(item)
               },
-              selected: arraySelected
+              selected: arrify(selected)
             }}
             close={close}
           />
