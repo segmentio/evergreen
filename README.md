@@ -93,14 +93,12 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 
 ### Step 1. Configuring your editor ⚙
 
-If you are using Atom make sure to use the [`prettier-atom`](https://atom.io/packages/prettier-atom) package,
-and enable the `ESLint integration` option.
+If you are using Atom make sure to use the [`prettier-atom`](https://atom.io/packages/prettier-atom) package.
 
-Also make sure to install the [`linter-eslint`](https://github.com/AtomLinter/linter-eslint) package in Atom.
+Also make sure to install the [`linter`](https://github.com/AtomLinter/linter) and [`linter-xo`](https://github.com/sindresorhus/atom-linter-xo) packages in Atom.
 
-All the configuration for prettier and eslint is in the project.
-You shouldn't have to configure things separately,
-please file a issue if there is a problem.
+All the configuration for prettier and xo is in the project.
+You shouldn't have to configure things separately, please file a issue if there is a problem.
 
 ### Step 2. Get storybook up and running 📖
 
@@ -138,7 +136,7 @@ It runs the following two commands `yarn build:watch & yarn storybook`.
 `lerna exec` is used to run babel (babel-cli) on all the packages.
 This makes the packages available within packages.
 Each package will get a `lib` directory, which contains the build.
-Remember to use `yarn run bootstrap`, if you are not running `yarn run dev`.
+Remember to use `yarn bootstrap`, if you are not running `yarn dev`.
 
 ### `yarn storybook`
 
@@ -160,7 +158,7 @@ It should be useful for creating utilities.
 For the following command:
 
 ```
-npm run create-package evergreen-utils
+yarn create-package evergreen-utils
 ```
 
 The following file tree will be generated:
@@ -180,7 +178,7 @@ You can pass one or more components to this command.
 For the following command:
 
 ```
-npm run create-package:components evergreen-typography Text Heading
+yarn create-package:components evergreen-typography Text Heading
 ```
 
 The following file tree will be generated:
