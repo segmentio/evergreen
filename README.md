@@ -31,7 +31,7 @@ you have to install them one by one.
 For example, getting the button component will require you to install `evergreen-buttons`:
 
 ```
-$ yarn install evergreen-buttons
+$ yarn add evergreen-buttons
 ```
 
 A working version, assuming you are using something like [Create React App](https://github.com/facebookincubator/create-react-app),
