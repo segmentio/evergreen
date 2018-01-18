@@ -26,22 +26,24 @@ test('sets accept', t => {
 
 test('sets required', t => {
   const component = shallow(<FilePicker required />)
-  t.is(component.find(`.${CLASS_PREFIX}-file-input`).prop('required'), true)
+  t.true(component.find(`.${CLASS_PREFIX}-file-input`).prop('required'))
 })
 
 test('sets multiple', t => {
   const component = shallow(<FilePicker multiple />)
-  t.is(component.find(`.${CLASS_PREFIX}-file-input`).prop('multiple'), true)
+  t.true(component.find(`.${CLASS_PREFIX}-file-input`).prop('multiple'))
 })
 
 test('sets disabled', t => {
   const component = shallow(<FilePicker disabled />)
-  t.is(component.find(`.${CLASS_PREFIX}-file-input`).prop('disabled'), true)
+  t.true(component.find(`.${CLASS_PREFIX}-file-input`).prop('disabled'))
+  t.true(component.find(`.${CLASS_PREFIX}-text-input`).prop('disabled'))
+  t.true(component.find(`.${CLASS_PREFIX}-button`).prop('disabled'))
 })
 
 test('sets capture', t => {
   const component = shallow(<FilePicker capture />)
-  t.is(component.find(`.${CLASS_PREFIX}-file-input`).prop('capture'), true)
+  t.true(component.find(`.${CLASS_PREFIX}-file-input`).prop('capture'))
 })
 
 test('passes through height', t => {
