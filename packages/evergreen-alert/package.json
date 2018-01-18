@@ -1,6 +1,6 @@
 {
   "name": "evergreen-alert",
-  "version": "2.19.8",
+  "version": "2.19.9",
   "description": "React components: Alert",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Alert"],

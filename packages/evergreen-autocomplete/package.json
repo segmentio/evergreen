@@ -1,6 +1,6 @@
 {
   "name": "evergreen-autocomplete",
-  "version": "2.19.8",
+  "version": "2.19.9",
   "description": "React components: Autocomplete",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Autocomplete"],
@@ -10,7 +10,7 @@
     "downshift": "^1.16.0",
     "evergreen-colors": "^2.19.6",
     "evergreen-layers": "^2.19.6",
-    "evergreen-popover": "^2.19.6",
+    "evergreen-popover": "^2.19.7",
     "evergreen-typography": "^2.19.6",
     "fuzzaldrin-plus": "^0.5.0",
     "prop-types": "^15.0.0",
