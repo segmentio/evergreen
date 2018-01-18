@@ -1,6 +1,8 @@
 export default function storiesTemplate({ packageName, componentNames = [] }) {
   const template = []
-  template.push(`import { storiesOf } from '@storybook/react'`)
+  template.push(
+    `import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies`
+  )
   template.push(`import React from 'react'`)
   template.push(`import Box from 'ui-box'`)
   template.push(`import { ${componentNames.join(', ')} } from '../src/'`)

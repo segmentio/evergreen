@@ -103,6 +103,7 @@ export default class Button extends PureComponent {
         paddingBottom={paddingBottom}
         paddingRight={pr}
         paddingLeft={pl}
+        margin={0} // Removes weird margins in Safari
         {...textStyle}
         css={{
           ...css,
