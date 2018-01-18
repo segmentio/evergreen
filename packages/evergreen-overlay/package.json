@@ -1,6 +1,6 @@
 {
   "name": "evergreen-overlay",
-  "version": "2.19.6",
+  "version": "2.19.7",
   "description": "React components: Overlay",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Overlay"],
@@ -14,7 +14,7 @@
     "ui-box": "^0.5.3"
   },
   "devDependencies": {
-    "evergreen-buttons": "^2.19.6"
+    "evergreen-buttons": "^2.19.7"
   },
   "peerDependencies": {
     "react": "^16.0.0"
