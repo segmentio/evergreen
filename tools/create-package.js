@@ -35,7 +35,7 @@ module.exports = task('create-package-js', async () => {
 
   const packageJson = {
     name: packageName,
-    version: '1.0.0',
+    version: '0.0.0',
     description: `JS package: ${packageName}`,
     main: 'lib/index.js',
     keywords: ['evergreen', 'segment', 'ui', packageName],

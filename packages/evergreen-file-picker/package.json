@@ -1,6 +1,6 @@
 {
   "name": "evergreen-file-picker",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "React components: FilePicker",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "FilePicker"],
