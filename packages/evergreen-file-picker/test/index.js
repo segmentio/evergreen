@@ -37,7 +37,6 @@ test('sets multiple', t => {
 test('sets disabled', t => {
   const component = shallow(<FilePicker disabled />)
   t.true(component.find(`.${CLASS_PREFIX}-file-input`).prop('disabled'))
-  t.true(component.find(`.${CLASS_PREFIX}-text-input`).prop('disabled'))
   t.true(component.find(`.${CLASS_PREFIX}-button`).prop('disabled'))
 })
 

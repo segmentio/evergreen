@@ -80,7 +80,6 @@ export default class FilePicker extends PureComponent {
         <TextInput
           className={`${CLASS_PREFIX}-text-input`}
           readOnly
-          disabled={disabled}
           value={inputValue}
           placeholder="Select a file to upload…"
           // There's a weird specifity issue when there's two differently sized inputs on the page
