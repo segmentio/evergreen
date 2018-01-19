@@ -38,6 +38,7 @@ export default class FilePicker extends PureComponent {
       disabled,
       capture,
       height,
+      onChange, // Remove onChange from props
       ...props
     } = this.props
     const { files } = this.state
@@ -111,10 +112,10 @@ export default class FilePicker extends PureComponent {
 
   handleFileChange = e => {
     const { onChange } = this.props
-    const files = e.target.files
-
     // Firefox returns the same array instance each time for some reason
-    this.setState({ files: [...files] })
+    const files = [...e.target.files]
+
+    this.setState({ files })
 
     if (onChange) {
       onChange(files)
