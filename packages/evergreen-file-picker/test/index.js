@@ -3,6 +3,7 @@ import React from 'react'
 import test from 'ava'
 import render from 'react-test-renderer'
 import { shallow } from 'enzyme'
+import sinon from 'sinon'
 import { FilePicker, CLASS_PREFIX } from '../src'
 
 test('snapshot', t => {
@@ -54,6 +55,19 @@ test('passes through height', t => {
 test('passes through props', t => {
   const component = shallow(<FilePicker width={20} />)
   t.is(component.find(`.${CLASS_PREFIX}-root`).prop('width'), 20)
+})
+
+test('calls onChange', t => {
+  const onChange = sinon.spy()
+  const component = shallow(<FilePicker onChange={onChange} />)
+  const e = {
+    target: {
+      files: [{ name: 'data.json' }]
+    }
+  }
+  component.find(`.${CLASS_PREFIX}-file-input`).simulate('change', e)
+  t.true(onChange.calledOnce)
+  t.deepEqual(onChange.firstCall.args[0], e.target.files)
 })
 
 test('handles 1 file selected', t => {
