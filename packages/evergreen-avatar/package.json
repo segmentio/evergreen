@@ -1,6 +1,6 @@
 {
   "name": "evergreen-avatar",
-  "version": "2.19.6",
+  "version": "2.19.7",
   "description": "React components: Avatar",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Avatar"],
