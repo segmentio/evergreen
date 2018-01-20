@@ -1,4 +1,6 @@
-# 🌲Evergreen
+# 🌲 Evergreen
+
+[![Build Status](https://circleci.com/gh/segmentio/evergreen/tree/master.svg?style=svg)](https://circleci.com/gh/segmentio/evergreen/tree/master)
 
 > React UI Kit by [Segment](https://segment.com/)
 
@@ -11,7 +13,7 @@
 * [Lerna](https://lernajs.io/) mono-repo
 * Interested in Evergreen? [Come work for Segment!](https://segment.com/jobs/)
 
-## Core values of 🌲Evergreen
+## Core values of 🌲 Evergreen
 
 **Evergreen is built on the belief that you can never predict all future requirements,
 only prepare for it.** Instead of creating fixed configurations that work today, Evergreen promotes building systems that anticipate new and changing design requirements.
@@ -22,14 +24,14 @@ only prepare for it.** Instead of creating fixed configurations that work today,
 
 ## Install and use components 🔓
 
-🌲Evergreen is a mono-repo, which means it is built out of multiple packages.
+🌲 Evergreen is a mono-repo, which means it is built out of multiple packages.
 Most packages will contain React components, to start using them in your React projects
 you have to install them one by one.
 
 For example, getting the button component will require you to install `evergreen-buttons`:
 
 ```
-$ yarn install evergreen-buttons
+$ yarn add evergreen-buttons
 ```
 
 A working version, assuming you are using something like [Create React App](https://github.com/facebookincubator/create-react-app),
@@ -91,14 +93,12 @@ Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 
 ### Step 1. Configuring your editor ⚙
 
-If you are using Atom make sure to use the [`prettier-atom`](https://atom.io/packages/prettier-atom) package,
-and enable the `ESLint integration` option.
+If you are using Atom make sure to use the [`prettier-atom`](https://atom.io/packages/prettier-atom) package.
 
-Also make sure to install the [`linter-eslint`](https://github.com/AtomLinter/linter-eslint) package in Atom.
+Also make sure to install the [`linter`](https://github.com/AtomLinter/linter) and [`linter-xo`](https://github.com/sindresorhus/atom-linter-xo) packages in Atom.
 
-All the configuration for prettier and eslint is in the project.
-You shouldn't have to configure things separately,
-please file a issue if there is a problem.
+All the configuration for prettier and xo is in the project.
+You shouldn't have to configure things separately, please file a issue if there is a problem.
 
 ### Step 2. Get storybook up and running 📖
 
@@ -136,7 +136,7 @@ It runs the following two commands `yarn build:watch & yarn storybook`.
 `lerna exec` is used to run babel (babel-cli) on all the packages.
 This makes the packages available within packages.
 Each package will get a `lib` directory, which contains the build.
-Remember to use `yarn run bootstrap`, if you are not running `yarn run dev`.
+Remember to use `yarn bootstrap`, if you are not running `yarn dev`.
 
 ### `yarn storybook`
 
@@ -158,7 +158,7 @@ It should be useful for creating utilities.
 For the following command:
 
 ```
-npm run create-package evergreen-utils
+yarn create-package evergreen-utils
 ```
 
 The following file tree will be generated:
@@ -178,7 +178,7 @@ You can pass one or more components to this command.
 For the following command:
 
 ```
-npm run create-package:components evergreen-typography Text Heading
+yarn create-package:components evergreen-typography Text Heading
 ```
 
 The following file tree will be generated:

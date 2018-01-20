@@ -53,7 +53,7 @@ module.exports = task('create-package-components', async () => {
 
   const packageJson = {
     name: packageName,
-    version: '1.0.0',
+    version: '0.0.0',
     description: `React components: ${componentNames.join(', ')}`,
     main: 'lib/index.js',
     keywords: ['evergreen', 'segment', 'ui', 'react', ...componentNames],
