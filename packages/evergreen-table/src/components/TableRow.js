@@ -19,22 +19,27 @@ export default class TableRow extends PureComponent {
 
   handleClick = e => {
     this.props.onClick(e)
-    this.props.onSelect()
+    if (this.props.isSelectable) {
+      this.props.onSelect()
+    }
   }
 
   handleKeyPress = e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      this.props.onSelect()
-      e.preventDefault()
+    if (this.props.isSelectable) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        this.props.onSelect()
+        e.preventDefault()
+      }
     }
+
     this.props.onKeyPress(e)
   }
 
   render() {
     const {
       children,
-      onClick,
-      onKeyPress,
+      onClick, // Filter out onClick
+      onKeyPress, // Filter out onKeyPress
       isSelectable,
       isSelected,
       css = {},
