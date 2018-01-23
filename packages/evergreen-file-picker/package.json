@@ -9,7 +9,6 @@
   "dependencies": {
     "evergreen-buttons": "^2.19.7",
     "evergreen-text-input": "^2.19.6",
-    "evergreen-buttons": "^2.19.7",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.4"
   },
