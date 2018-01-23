@@ -42,7 +42,7 @@ export default class Text extends PureComponent {
     let textStyle = textStyles[size]
 
     if (isUppercase) {
-      // TODO: Only 100 and 200 support uppercase styles atm
+      // Only 100 and 200 support uppercase styles atm
       // Fallback on non uppercase atm
       if (Object.prototype.hasOwnProperty.call(textUppercaseStyles, size)) {
         textStyle = textUppercaseStyles[size]

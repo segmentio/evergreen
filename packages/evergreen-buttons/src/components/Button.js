@@ -11,14 +11,40 @@ import ButtonAppearances from '../styles/ButtonAppearances'
 
 export default class Button extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the Text component as the base.
+     */
     ...Text.propTypes,
+
+    /**
+     * The appearance of the button.
+     */
     appearance: PropTypes.oneOf(Object.keys(ButtonAppearances)).isRequired,
+
+    /**
+     * Forcefully set the active state of a button.
+     * Useful in conjuction with a Popover.
+     */
     isActive: PropTypes.bool,
 
-    // Icon support
+    /**
+     * Sets an icon before the text. Can be any icon from `evergreen-icons`.
+     */
     iconBefore: PropTypes.oneOf(Object.keys(IconMap)),
+
+    /**
+     * The aim of the left icon. Not a big use case for this.
+     */
     iconBeforeAim: PropTypes.oneOf(Object.keys(IconAim)),
+
+    /**
+     * Sets an icon after the text. Can be any icon from `evergreen-icons`
+     */
     iconAfter: PropTypes.oneOf(Object.keys(IconMap)),
+
+    /**
+     * The aim of the right icon. Useful to aim a triangle down.
+     */
     iconAfterAim: PropTypes.oneOf(Object.keys(IconAim))
   }
 
@@ -68,8 +94,9 @@ export default class Button extends PureComponent {
     const iconHeight = height - 4
     const iconSize = getIconSizeForControlHeight({ height: iconHeight })
 
-    const pr = paddingRight ? paddingRight : Math.round(height / 2)
-    const pl = paddingLeft ? paddingLeft : Math.round(height / 2)
+    const pr =
+      paddingRight !== undefined ? paddingRight : Math.round(height / 2) // eslint-disable-line no-negated-condition
+    const pl = paddingLeft !== undefined ? paddingLeft : Math.round(height / 2) // eslint-disable-line no-negated-condition
 
     let iconBefore
     if (iconBeforeKey) {

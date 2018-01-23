@@ -1,0 +1,10 @@
+<div>
+  {['top', 'right', 'bottom', 'left'].map(aim => (
+    <IconButton
+      key={aim}
+      marginRight={12}
+      icon="triangle"
+      iconAim={aim}
+    />
+  ))}
+</div>
