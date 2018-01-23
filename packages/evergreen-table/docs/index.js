@@ -22,7 +22,7 @@ import sourceTableBody from '!raw-loader!../src/components/TableBody'
 
 import packageJSON from '../package.json' // eslint-disable-line import/extensions
 
-import profiles from '../stories/profiles.json'
+import profiles from '../stories/profiles'
 
 /**
  * Code examples

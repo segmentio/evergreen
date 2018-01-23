@@ -1,3 +1,4 @@
+/* eslint-disable capitalized-comments */
 // Import colorsDocs from '../../packages/evergreen-colors/docs/'
 // import colorUtilsDocs from '../../packages/evergreen-color-utils/docs/'
 // import sharedStylesDocs from '../../packages/evergreen-shared-styles/docs/'
