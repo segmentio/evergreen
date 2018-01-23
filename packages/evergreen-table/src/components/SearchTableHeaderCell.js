@@ -22,11 +22,34 @@ const invisibleInput = {
 
 export default class SearchTableHeaderCell extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the TableHeaderCell component as the base.
+     */
     ...TableHeaderCell.propTypes,
+
+    /**
+     * The value of the input.
+     */
     value: PropTypes.string,
+
+    /**
+     * Handler to be called when the input changes.
+     */
     onChange: PropTypes.func,
+
+    /**
+     * Sets whether the component should be automatically focused on component render.
+     */
     autoFocus: PropTypes.bool,
+
+    /**
+     * Sets whether to apply spell checking to the content.
+     */
     spellCheck: PropTypes.bool,
+
+    /**
+     * Text to display in the input if the input is empty.
+     */
     placeholder: PropTypes.string
   }
 

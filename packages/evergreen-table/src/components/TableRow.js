@@ -5,9 +5,24 @@ import { Pane } from 'evergreen-layers'
 
 export default class TableRow extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the Pane component as the base.
+     */
     ...Pane.propTypes,
+
+    /**
+     * Function that is called on click and enter/space keypress.
+     */
     onSelect: PropTypes.func,
+
+    /**
+     * Makes the TableRow selectable.
+     */
     isSelectable: PropTypes.bool,
+
+    /**
+     * Makes the TableRow selected.
+     */
     isSelected: PropTypes.bool
   }
 

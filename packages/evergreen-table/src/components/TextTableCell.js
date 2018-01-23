@@ -11,9 +11,20 @@ const ellipsis = {
 
 export default class TextTableCell extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the TableCell component as the base.
+     */
     ...TableCell.propTypes,
+
+    /**
+     * Adds textAlign: right and fontFamily: mono.
+     */
     isNumber: PropTypes.bool.isRequired,
-    textProps: PropTypes.shape(Text.propTypes)
+
+    /**
+     * Pass additional props to the Text component.
+     */
+    textProps: PropTypes.shape(PropTypes.object)
   }
 
   static defaultProps = {
