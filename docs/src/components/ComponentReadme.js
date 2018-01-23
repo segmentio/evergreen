@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import ComponentBlock from './ComponentBlock'
 import AppearanceOption from './ApppearanceOption'
 
-let optionsKey = 0
-
 export default class ComponentReadme extends PureComponent {
   static propTypes = {
     packageJSON: PropTypes.object,

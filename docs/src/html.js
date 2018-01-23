@@ -1,5 +1,6 @@
+/* eslint-disable react/no-danger */
 import React, { Component } from 'react'
-// import favicon from './images/favicon.ico'
+import PropTypes from 'prop-types'
 
 const DESCRIPTION = 'Evergreen Design System by Segment'
 
@@ -13,6 +14,12 @@ if (process.env.NODE_ENV === `production`) {
 }
 
 export default class HTML extends Component {
+  static propTypes = {
+    headComponents: PropTypes.node,
+    body: PropTypes.string,
+    postBodyComponents: PropTypes.node
+  }
+
   render() {
     let css
     if (process.env.NODE_ENV === `production`) {

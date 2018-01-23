@@ -27,6 +27,7 @@
   },
   "xo": false,
   "devDependencies": {
+    "@storybook/react": "^3.3.10",
     "evergreen-buttons": "^2.19.6"
   }
 }

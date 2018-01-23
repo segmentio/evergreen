@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-ex
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Link, Text, Label, Heading } from 'evergreen-typography'
+import { Text, Label, Heading } from 'evergreen-typography'
 import { Pane, Card } from 'evergreen-layers'
 import { Button } from 'evergreen-buttons'
 import { TextInputField, TextInput, TextInputAppearances } from '../src/'

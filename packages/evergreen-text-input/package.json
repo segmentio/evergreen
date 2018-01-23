@@ -25,6 +25,7 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
+    "evergreen-buttons": "^2.19.7",
     "evergreen-layers": "^2.19.6"
   },
   "xo": false

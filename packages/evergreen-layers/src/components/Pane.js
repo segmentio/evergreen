@@ -66,7 +66,6 @@ export default class Pane extends PureComponent {
     let hoverElevationStyle = {}
     if (Number.isInteger(hoverElevation)) {
       hoverElevationStyle = {
-        // TODO: figure out how to deal with transitions
         transitionDuration: '150ms',
         transitionProperty: 'box-shadow, transform',
         transitionTimingFunction: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -83,7 +82,6 @@ export default class Pane extends PureComponent {
       activeElevationStyle = {
         ':active': {
           ...(css[':active'] || {}),
-          // TODO: figure out how to deal with transitions
           transform: 'translateY(-1px)',
           boxShadow: ElevationStyles[activeElevation]
         }

@@ -30,6 +30,54 @@ encoding@^0.1.11:
   dependencies:
     iconv-lite "~0.4.13"
 
+evergreen-buttons@^2.19.7:
+  version "2.19.7"
+  resolved "https://registry.yarnpkg.com/evergreen-buttons/-/evergreen-buttons-2.19.7.tgz#a1f21b99a2715f210ae49d685e3d396899da5d07"
+  dependencies:
+    evergreen-colors "^2.19.6"
+    evergreen-icons "^2.19.6"
+    evergreen-shared-styles "^2.19.6"
+    evergreen-typography "^2.19.6"
+    ui-box "^0.5.4"
+
+evergreen-colors@^2.19.6:
+  version "2.19.6"
+  resolved "https://registry.yarnpkg.com/evergreen-colors/-/evergreen-colors-2.19.6.tgz#7d5a6eb08d6c20f0c8cb1ae40b3c97031daa1272"
+
+evergreen-icons@^2.19.6:
+  version "2.19.6"
+  resolved "https://registry.yarnpkg.com/evergreen-icons/-/evergreen-icons-2.19.6.tgz#fce2881d1a1e53639f976c1801a7785cf8ad30b5"
+  dependencies:
+    evergreen-colors "^2.19.6"
+    ui-box "^0.5.4"
+
+evergreen-shared-styles@^2.19.6:
+  version "2.19.6"
+  resolved "https://registry.yarnpkg.com/evergreen-shared-styles/-/evergreen-shared-styles-2.19.6.tgz#fc3f3222149c897c783c61a514870d72a193aaea"
+  dependencies:
+    evergreen-colors "^2.19.6"
+    evergreen-typography "^2.19.6"
+    ui-box "^0.5.4"
+
+evergreen-text-input@^2.19.6:
+  version "2.19.6"
+  resolved "https://registry.yarnpkg.com/evergreen-text-input/-/evergreen-text-input-2.19.6.tgz#137096bc0b9c7ea81fc22c7d11e9c3eb3412f781"
+  dependencies:
+    evergreen-colors "^2.19.6"
+    evergreen-shared-styles "^2.19.6"
+    evergreen-typography "^2.19.6"
+    prop-types "^15.0.0"
+    ui-box "^0.5.4"
+
+evergreen-typography@^2.19.6:
+  version "2.19.6"
+  resolved "https://registry.yarnpkg.com/evergreen-typography/-/evergreen-typography-2.19.6.tgz#ade3522d49dcec16afb5a0af731f72560cd834b2"
+  dependencies:
+    evergreen-colors "^2.19.6"
+    lodash.mapvalues "^4.6.0"
+    prop-types "^15.0.0"
+    ui-box "^0.5.4"
+
 fbjs@^0.8.12, fbjs@^0.8.16:
   version "0.8.16"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
@@ -81,6 +129,10 @@ isomorphic-fetch@^2.1.1:
 js-tokens@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
+
+lodash.mapvalues@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/lodash.mapvalues/-/lodash.mapvalues-4.6.0.tgz#1bafa5005de9dd6f4f26668c30ca37230cc9689c"
 
 loose-envify@^1.0.0, loose-envify@^1.3.1:
   version "1.3.1"
