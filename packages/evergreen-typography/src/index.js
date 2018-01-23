@@ -1,3 +1,7 @@
+import UnorderedList from './components/UnorderedList'
+import OrderedList from './components/OrderedList'
+import ListItem from './components/ListItem'
+
 export { default as Text } from './components/Text'
 export { default as Paragraph } from './components/Paragraph'
 export { default as Heading } from './components/Heading'
@@ -12,3 +16,8 @@ export { default as TextStyles } from './styles/TextStyles'
 export { default as FontFamilies } from './styles/FontFamilies'
 export { default as TextColors } from './styles/TextColors'
 export { default as LinkAppearances } from './styles/LinkAppearances'
+
+const Ul = UnorderedList
+const Ol = OrderedList
+const Li = ListItem
+export { UnorderedList, Ul, OrderedList, Ol, ListItem, Li }

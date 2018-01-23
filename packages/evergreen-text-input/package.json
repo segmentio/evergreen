@@ -17,6 +17,7 @@
     "evergreen-colors": "^2.19.6",
     "evergreen-shared-styles": "^2.19.6",
     "evergreen-typography": "^2.19.6",
+    "evergreen-form-field": "^2.19.0",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.4"
   },
@@ -24,6 +25,7 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
+    "evergreen-buttons": "^2.19.7",
     "evergreen-layers": "^2.19.6"
   },
   "xo": false

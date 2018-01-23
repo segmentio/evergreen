@@ -1,0 +1,9 @@
+<div>
+  <Button marginRight={12} appearance="ghost" iconBefore="cog">Settings</Button>
+  <Button marginRight={12} iconBefore="search">Search</Button>
+  <Button
+    marginRight={12}
+    iconAfter="triangle"
+    iconAfterAim="down"
+  >Filter</Button>
+</div>

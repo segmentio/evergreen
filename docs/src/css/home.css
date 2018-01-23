@@ -1,0 +1,104 @@
+.Home {
+  & h1 {
+    margin-bottom: 0.4em;
+
+    @media (--range-palm) {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.3em;
+      letter-spacing: -0.05px;
+    }
+    @media (--range-hand) {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.3em;
+      letter-spacing: -0.05px;
+    }
+    @media (--range-lap) {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 32px;
+      letter-spacing: -0.2px;
+    }
+    @media (--range-desk) {
+      font-size: 46px;
+      font-weight: 600;
+      line-height: 58px;
+      letter-spacing: -0.2px;
+    }
+  }
+
+  & p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+
+    @media (--range-palm) {
+      margin-bottom: 24px;
+    }
+    @media (--range-hand) {
+      margin-bottom: 24px;
+    }
+    @media (--range-lap) {
+      margin-bottom: 40px;
+    }
+    @media (--range-desk) {
+      margin-bottom: 40px;
+    }
+  }
+
+  & a.Link {
+    color: var(--green-500);
+    border-bottom: 2px solid var(--green-50A);
+
+    &:hover {
+      border-bottom-color: var(--green-500);
+    }
+
+    &:active {
+      color: var(--green-700);
+      border-bottom-color: var(--green-700);
+    }
+  }
+}
+
+.Home-inner {
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+
+  @media (--range-palm) {
+    padding: 0 5%;
+    margin-top: 24px;
+    justify-content: flex-start;
+    padding-bottom: 40px;
+  }
+  @media (--range-hand) {
+    padding: 0 6%;
+    margin-top: 40px;
+    justify-content: flex-start;
+    padding-bottom: 40px;
+  }
+  @media (--range-lap) {
+    padding: 0 8%;
+    max-width: 760px;
+    margin-top: 40px;
+    justify-content: center;
+    height: 60vh;
+    min-height: 400px;
+  }
+
+  @media (--range-desk) {
+    padding: 0 40px;
+    justify-content: center;
+    height: 60vh;
+    min-height: 400px;
+  }
+
+  @media (--range-desk-l) {
+    padding: 0;
+  }
+}

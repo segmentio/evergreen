@@ -1,0 +1,55 @@
+.Playground {
+  background-color: var(--neutral-5A);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.08s ease-in-out;
+}
+
+.Playground[data-isPreviewEntered='false'] {
+  &:hover {
+    background-color: var(--neutral-20);
+  }
+
+  &:active {
+    color: white;
+    background-color: var(--neutral-800);
+  }
+}
+
+.Playground[data-isCodeCollapsed='false'] {
+  background-color: var(--neutral-800);
+  color: white;
+}
+
+.Playground[data-isCodeCollapsed='false'][data-isPreviewEntered='false'] {
+  &:hover {
+    background-color: var(--neutral-700);
+  }
+
+  &:active {
+    background-color: var(--neutral-800);
+  }
+}
+
+.Playground-header {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  right: 0;
+  display: block;
+  padding: 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.Playground-header {
+}
+
+.Playground-preview {
+  background-color: #fff;
+  margin: 4px;
+  padding: 16px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px var(--neutral-20A);
+}

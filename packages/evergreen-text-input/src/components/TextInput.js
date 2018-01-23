@@ -9,12 +9,39 @@ import TextInputAppearances from '../styles/TextInputAppearances'
 
 export default class TextInput extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the Text component as the base.
+     */
     ...Text.propTypes,
+
+    /**
+     * Makes the input element required.
+     */
     required: PropTypes.bool,
+
+    /**
+     * Makes the input element disabled.
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * Sets visual styling to be invalid.
+     */
     isInvalid: PropTypes.bool,
+
+    /**
+     * Use the native spell check functionality of the browser.
+     */
     spellCheck: PropTypes.bool,
+
+    /**
+     * The placeholder text when there is no value present.
+     */
     placeholder: PropTypes.string,
+
+    /**
+     * The appearance of the TextInput.
+     */
     appearance: PropTypes.oneOf(Object.keys(TextInputAppearances))
   }
 
@@ -56,7 +83,7 @@ export default class TextInput extends PureComponent {
         paddingRight={Math.round(height / 3.2)}
         borderRadius={borderRadius}
         spellCheck={spellCheck}
-        {...(isInvalid ? { 'aria-invalid': true } : {})}
+        aria-invalid={isInvalid}
         {...(disabled ? { color: 'extraMuted' } : {})}
         {...textStyle}
         css={{ ...css, ...appearanceStyle }}

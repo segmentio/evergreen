@@ -6,9 +6,20 @@ import Button from './Button'
 
 export default class IconButton extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the Button component as the base.
+     */
     ...Button.propTypes,
-    iconAim: PropTypes.oneOf(Object.keys(IconAim)).isRequired,
-    icon: PropTypes.oneOf(Object.keys(IconMap))
+
+    /**
+     * The icon to be used. Can be any icon from `evergreen-icons`.
+     */
+    icon: PropTypes.oneOf(Object.keys(IconMap)),
+
+    /**
+     * The aim of the icon.
+     */
+    iconAim: PropTypes.oneOf(Object.keys(IconAim)).isRequired
   }
 
   static defaultProps = {

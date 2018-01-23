@@ -86,17 +86,10 @@ class Overlay extends React.Component {
     }
   }
 
-  onHide = () => {
-    // TODO: implement onHide
-    // this.props.manager.remove(this)
-    // this._onDocumentKeydownListener.remove()
-    // this._onDocumentKeyupListener.remove()
-    // this._onFocusinListener.remove()
-    //
-    // if (this.props.restoreFocus) {
-    //   this.restoreLastFocus()
-    // }
-  }
+  /**
+   * Need to figure out what to do here.
+   */
+  onHide = () => {}
 
   handleHidden = (...args) => {
     this.setState({ exiting: false })
