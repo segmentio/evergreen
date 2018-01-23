@@ -2354,44 +2354,6 @@ events@^1.0.0, events@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
 
-evergreen-buttons@^2.19.6:
-  version "2.19.6"
-  resolved "https://registry.yarnpkg.com/evergreen-buttons/-/evergreen-buttons-2.19.6.tgz#e93a3b58eaa7e0c9dba23c19d84822abe8f76759"
-  dependencies:
-    evergreen-colors "^2.19.6"
-    evergreen-icons "^2.19.6"
-    evergreen-shared-styles "^2.19.6"
-    evergreen-typography "^2.19.6"
-    ui-box "^0.5.4"
-
-evergreen-colors@^2.19.6:
-  version "2.19.6"
-  resolved "https://registry.yarnpkg.com/evergreen-colors/-/evergreen-colors-2.19.6.tgz#7d5a6eb08d6c20f0c8cb1ae40b3c97031daa1272"
-
-evergreen-icons@^2.19.6:
-  version "2.19.6"
-  resolved "https://registry.yarnpkg.com/evergreen-icons/-/evergreen-icons-2.19.6.tgz#fce2881d1a1e53639f976c1801a7785cf8ad30b5"
-  dependencies:
-    evergreen-colors "^2.19.6"
-    ui-box "^0.5.4"
-
-evergreen-shared-styles@^2.19.6:
-  version "2.19.6"
-  resolved "https://registry.yarnpkg.com/evergreen-shared-styles/-/evergreen-shared-styles-2.19.6.tgz#fc3f3222149c897c783c61a514870d72a193aaea"
-  dependencies:
-    evergreen-colors "^2.19.6"
-    evergreen-typography "^2.19.6"
-    ui-box "^0.5.4"
-
-evergreen-typography@^2.19.6:
-  version "2.19.6"
-  resolved "https://registry.yarnpkg.com/evergreen-typography/-/evergreen-typography-2.19.6.tgz#ade3522d49dcec16afb5a0af731f72560cd834b2"
-  dependencies:
-    evergreen-colors "^2.19.6"
-    lodash.mapvalues "^4.6.0"
-    prop-types "^15.0.0"
-    ui-box "^0.5.4"
-
 evp_bytestokey@^1.0.0, evp_bytestokey@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/evp_bytestokey/-/evp_bytestokey-1.0.3.tgz#7fcbdb198dc71959432efe13842684e0525acb02"
@@ -3389,10 +3351,6 @@ lodash.keys@^3.1.2:
     lodash._getnative "^3.0.0"
     lodash.isarguments "^3.0.0"
     lodash.isarray "^3.0.0"
-
-lodash.mapvalues@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/lodash.mapvalues/-/lodash.mapvalues-4.6.0.tgz#1bafa5005de9dd6f4f26668c30ca37230cc9689c"
 
 lodash.memoize@^4.1.2:
   version "4.1.2"
