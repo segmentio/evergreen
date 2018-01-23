@@ -6,9 +6,24 @@ import SortableIcon from './SortableIcon'
 
 export default class TextTableHeaderCell extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the TableHeaderCell component as the base.
+     */
     ...TableHeaderCell.propTypes,
+
+    /**
+     * Composes the SortableIcon component also.
+     */
     ...SortableIcon.propTypes,
-    textProps: PropTypes.objectOf(Text.propTypes),
+
+    /**
+     * Pass additional props to the Text component.
+     */
+    textProps: PropTypes.objectOf(PropTypes.object),
+
+    /**
+     * Shows the sortable icon.
+     */
     isSortable: PropTypes.bool
   }
 

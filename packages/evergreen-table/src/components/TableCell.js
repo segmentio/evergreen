@@ -3,6 +3,9 @@ import { Pane } from 'evergreen-layers'
 
 export default class TableCell extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the Pane component as the base.
+     */
     ...Pane.propTypes
   }
 
