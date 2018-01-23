@@ -1,0 +1,4 @@
+<TableRow>
+  <TableCell>This should only be used as a base.</TableCell>
+  <TableCell>It doesn't have any text styling.</TableCell>
+</TableRow>

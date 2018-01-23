@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import ComponentBlock from './ComponentBlock'
 import AppearanceOption from './ApppearanceOption'
+import PlaygroundExampleGroup from './PlaygroundExampleGroup'
+import PlaygroundExample from './PlaygroundExample'
 
 export default class ComponentReadme extends PureComponent {
   static propTypes = {
@@ -10,6 +12,7 @@ export default class ComponentReadme extends PureComponent {
     subTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     designGuidelines: PropTypes.node,
     appearanceOptions: PropTypes.array,
+    examples: PropTypes.array,
     components: PropTypes.array
   }
 
@@ -19,6 +22,7 @@ export default class ComponentReadme extends PureComponent {
       title,
       subTitle,
       designGuidelines,
+      examples,
       appearanceOptions,
       components,
       ...props
@@ -86,10 +90,31 @@ export default class ComponentReadme extends PureComponent {
                 </div>
               </div>
             )}
+            {examples && (
+              <div>
+                <div className="Content">
+                  <h2 id="examples">Examples</h2>
+                </div>
+
+                <PlaygroundExampleGroup>
+                  {examples.map(example => {
+                    return (
+                      <PlaygroundExample
+                        key={example.title}
+                        title={example.title}
+                        description={example.description}
+                        codeText={example.codeText}
+                        scope={example.scope}
+                      />
+                    )
+                  })}
+                </PlaygroundExampleGroup>
+              </div>
+            )}
             {components && (
               <div>
                 <div className="Content">
-                  <h2 id="code-and-examples">Code & Examples</h2>
+                  <h2 id="component-examples">Component Examples</h2>
                   <p>
                     The <code>{packageJSON.name}</code> package exports the
                     following documented components:

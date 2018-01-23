@@ -5,6 +5,9 @@ import { TriangleIcon } from 'evergreen-icons'
 
 export default class SortableIcon extends PureComponent {
   static propTypes = {
+    /**
+     * The sort order of the icon.
+     */
     sortOrder: PropTypes.oneOf(['disabled', 'descending', 'ascending'])
   }
 

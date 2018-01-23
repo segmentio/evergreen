@@ -1,3 +1,4 @@
+/* eslint-disable capitalized-comments */
 // Import colorsDocs from '../../packages/evergreen-colors/docs/'
 // import colorUtilsDocs from '../../packages/evergreen-color-utils/docs/'
 // import sharedStylesDocs from '../../packages/evergreen-shared-styles/docs/'
@@ -21,7 +22,7 @@ import buttonsDocs from '../../../packages/evergreen-buttons/docs'
 // import segmentedControlDocs from '../../packages/evergreen-segmented-control/docs/'
 // import spinnerDocs from '../../packages/evergreen-spinner/docs/'
 // import searchInputDocs from '../../packages/evergreen-search-input/docs/'
-// import tableDocs from '../../packages/evergreen-table/docs/'
+import tableDocs from '../../../packages/evergreen-table/docs/'
 // import sideSheetDocs from '../../packages/evergreen-side-sheet/docs/'
 // import radioDocs from '../../packages/evergreen-radio/docs/'
 // import dialogDocs from '../../packages/evergreen-dialog/docs/'
@@ -29,7 +30,8 @@ import buttonsDocs from '../../../packages/evergreen-buttons/docs'
 // import alertDocs from '../../packages/evergreen-alert/docs/'
 
 const map = {
-  buttons: buttonsDocs
+  buttons: buttonsDocs,
+  table: tableDocs
 }
 
 export default function getComponent(name) {

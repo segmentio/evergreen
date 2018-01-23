@@ -17,6 +17,10 @@ export default class ComponentsSidebar extends PureComponent {
           {
             label: 'Buttons',
             to: '/components/buttons'
+          },
+          {
+            label: 'Table',
+            to: '/components/table'
           }
         ]
       }
