@@ -1,14 +1,14 @@
 {
   "name": "evergreen-file-picker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React components: FilePicker",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "FilePicker"],
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-buttons": "^2.19.7",
-    "evergreen-text-input": "^2.19.6",
+    "evergreen-buttons": "^2.19.8",
+    "evergreen-text-input": "^2.19.7",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.4"
   },

@@ -1,6 +1,6 @@
 {
   "name": "evergreen-form-field",
-  "version": "2.19.0",
+  "version": "2.19.1",
   "description":
     "React components: FormField, FormFieldDescription, FormFieldLabel, FormFieldValidationMessage",
   "main": "lib/index.js",
@@ -17,8 +17,8 @@
   "author": "Segment",
   "license": "MIT",
   "dependencies": {
-    "evergreen-colors": "^2.19.6",
-    "evergreen-typography": "^2.19.6",
+    "evergreen-colors": "^2.19.7",
+    "evergreen-typography": "^2.19.7",
     "prop-types": "^15.0.0",
     "ui-box": "^0.5.4"
   },
@@ -28,6 +28,6 @@
   "xo": false,
   "devDependencies": {
     "@storybook/react": "^3.3.10",
-    "evergreen-buttons": "^2.19.6"
+    "evergreen-buttons": "^2.19.8"
   }
 }

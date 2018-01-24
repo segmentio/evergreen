@@ -1,6 +1,6 @@
 {
   "name": "evergreen-image",
-  "version": "2.19.6",
+  "version": "2.19.7",
   "description": "React components: Image",
   "main": "lib/index.js",
   "keywords": ["evergreen", "segment", "ui", "react", "Image"],
@@ -14,8 +14,8 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "evergreen-layers": "^2.19.6",
-    "evergreen-typography": "^2.19.6"
+    "evergreen-layers": "^2.19.7",
+    "evergreen-typography": "^2.19.7"
   },
   "xo": false
 }
