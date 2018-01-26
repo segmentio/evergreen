@@ -56,38 +56,39 @@ Some packages export just a Javascript object.
 
 Please see the [ROADMAP.md](./ROADMAP.md) to better understand priorities.
 
-| Package                       | Status         | Exports                    |
-| ----------------------------- | -------------- | -------------------------- |
-| `evergreen-colors`            | ✅ Good        | Color system object        |
-| `evergreen-color-utils`       | ✅ Good        | Color utils                |
-| `evergreen-shared-styles`     | ✅ Lacking     | Shared styles utils        |
-| `evergreen-typography`        | ✅ OK          | typography components      |
-| `evergreen-layers`            | ✅ Good        | Pane, Card and styling     |
-| `evergreen-buttons`           | ✅ Good        | Button components          |
-| `evergreen-icons`             | ✅ Lacking     | Icon components            |
-| `evergreen-autocomplete`      | ✅ Good        | Autocomplete components    |
-| `evergreen-combobox`          | ✅ Good        | Combobox components        |
-| `evergreen-badges`            | ✅ Good        | Badge components           |
-| `evergreen-select`            | ✅ Good        | Select component           |
-| `evergreen-popover`           | ✅ Good        | Popover component          |
-| `evergreen-portal`            | ✅ Good        | Portal component           |
-| `evergreen-text-input`        | ✅ Good        | TextInput component        |
-| `evergreen-textarea`          | ✅ Good        | Textarea component         |
-| `evergreen-checkbox`          | ✅ Good        | Checkbox component         |
-| `evergreen-tabs`              | ✅ Good        | Tabs component             |
-| `evergreen-avatar`            | ✅ Good        | Avatar component           |
-| `evergreen-tooltip`           | ✅ Good        | Tooltip component          |
-| `evergreen-image`             | ✅ Good        | Image component            |
-| `evergreen-segmented-control` | ✅ Good        | SegmentedControl component |
-| `evergreen-spinner`           | ✅ Good        | Loading Spinner component  |
-| `evergreen-search-input`      | ✅ Good        | SearchInput component      |
-| `evergreen-table`             | ✅ Good        | table component            |
-| `evergreen-side-sheet`        | ✅ Good        | SideSheet component        |
-| `evergreen-radio`             | ✅ Good        | Radio component            |
-| `evergreen-dialog`            | ✅ Good        | Dialog component           |
-| `evergreen-corner-dialog`     | ✅ Good        | CornerDialog component     |
-| `evergreen-alert`             | ✅ Good        | Alert component            |
-| `evergreen-code-block`        | Needs Planning | CodeBlock component        |
+| Package                       | Description                |
+| ----------------------------- | -------------------------- |
+| `evergreen-colors`            | Color system object        |
+| `evergreen-color-utils`       | Color utils                |
+| `evergreen-shared-styles`     | Shared styles utils        |
+| `evergreen-typography`        | typography components      |
+| `evergreen-layers`            | Pane, Card and styling     |
+| `evergreen-buttons`           | Button components          |
+| `evergreen-icons`             | Icon components            |
+| `evergreen-autocomplete`      | Autocomplete components    |
+| `evergreen-combobox`          | Combobox components        |
+| `evergreen-badges`            | Badge components           |
+| `evergreen-select`            | Select component           |
+| `evergreen-popover`           | Popover component          |
+| `evergreen-portal`            | Portal component           |
+| `evergreen-text-input`        | TextInput component        |
+| `evergreen-textarea`          | Textarea component         |
+| `evergreen-checkbox`          | Checkbox component         |
+| `evergreen-tabs`              | Tabs component             |
+| `evergreen-avatar`            | Avatar component           |
+| `evergreen-tooltip`           | Tooltip component          |
+| `evergreen-image`             | Image component            |
+| `evergreen-segmented-control` | SegmentedControl component |
+| `evergreen-spinner`           | Loading Spinner component  |
+| `evergreen-search-input`      | SearchInput component      |
+| `evergreen-table`             | Table building blocks      |
+| `evergreen-side-sheet`        | SideSheet component        |
+| `evergreen-radio`             | Radio component            |
+| `evergreen-dialog`            | Dialog component           |
+| `evergreen-corner-dialog`     | CornerDialog component     |
+| `evergreen-alert`             | Alert component            |
+| `evergreen-select-menu`       | SelectMenu component       |
+| `evergreen-file-picker`       | FilePicker component       |
 
 ## Running the project 🏃🏻🏃🏾‍
 
@@ -204,14 +205,6 @@ Uses ESLint to lint the project by the configuration found in `.eslintrc.js`.
 
 Remove all untracked files and removes all node_modules (using `rm -rf`).
 
-## Babel configuration
-
-This repo uses a central babel configuration in `.babelrc` with:
-
-* `babel-preset-es2015`
-* `babel-preset-react`
-* `babel-preset-stage-0`
-
 ## Creating new scripts/tools
 
 If you want to add a script to the `tools` directory, make sure to use `babel-node`
@@ -222,6 +215,7 @@ which comes with `babel-cli` — a dev dependency.
 We will add you to the list if you make any contribution!
 
 * Jeroen Ransijn
+* Roland Warmerdam
 
 This project is maintained by [Segment](https://segment.com/)
 
@@ -237,25 +231,8 @@ Please respect our [CODE_OF_CONDUCT](./CODE_OF_CONDUCT.md), in short:
 * Focusing on what is best for the community
 * Showing empathy towards other community members
 
-## License (MIT) 🎁
+## License
 
-```
-WWWWWW||WWWWWW
- W W W||W W W
-      ||
-    ( OO )__________
-     /  |           \
-    /o o|    MIT     \
-    \___/||_||__||_|| *
-         || ||  || ||
-        _||_|| _||_||
-       (__|__|(__|__|
-```
+Evergreen is released under the MIT license.
 
-Copyright (c) 2017 Segment.io, Inc. <mailto:friends@segment.com>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Copyright © 2017 Segment.io, Inc.
