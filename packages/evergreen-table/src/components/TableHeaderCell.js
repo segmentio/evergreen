@@ -10,9 +10,8 @@ export default class TableHeaderCell extends PureComponent {
   }
 
   static defaultProps = {
-    height: 28,
-    appearance: 'tint2',
-    overflow: 'visible'
+    overflow: 'visible',
+    borderBottom: null
   }
 
   render() {
