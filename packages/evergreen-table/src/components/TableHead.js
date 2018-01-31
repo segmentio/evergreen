@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-handler-names */
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-layers'
 import ScrollbarSize from './ScrollbarSize'
 
@@ -8,7 +9,17 @@ export default class TableHead extends PureComponent {
     /**
      * Composes the Pane component as the base.
      */
-    ...Pane.propTypes
+    ...Pane.propTypes,
+
+    /**
+     * This should always be true if you are using TableHead together with a TableBody.
+     * Because TableBody has `overflowY: scroll` by default.
+     */
+    accountForScrollbar: PropTypes.bool
+  }
+
+  static defaultProps = {
+    accountForScrollbar: true
   }
 
   state = {
@@ -29,13 +40,15 @@ export default class TableHead extends PureComponent {
   }
 
   render() {
-    const { children, ...props } = this.props
+    const { children, accountForScrollbar, ...props } = this.props
     const { scrollbarWidth } = this.state
 
     return (
       <Pane paddingRight={scrollbarWidth} {...props}>
         {children}{' '}
-        <ScrollbarSize handleScrollbarSize={this.handleScrollbarSize} />
+        {accountForScrollbar && (
+          <ScrollbarSize handleScrollbarSize={this.handleScrollbarSize} />
+        )}
       </Pane>
     )
   }
