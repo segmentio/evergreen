@@ -1,15 +1,16 @@
 import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react'
 import Box from 'ui-box'
-import { Pane } from 'evergreen-layers'
 import {
-  TableCell,
-  TextTableCell,
-  TableRow,
+  Table,
+  TableHead,
   TableHeaderCell,
   TextTableHeaderCell,
   SearchTableHeaderCell,
-  TableBody
+  TableBody,
+  TableRow,
+  TableCell,
+  TextTableCell
 } from '../src/'
 import profiles from './profiles'
 
@@ -20,8 +21,8 @@ storiesOf('table', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Pane border>
-        <TableRow>
+      <Table>
+        <TableHead>
           <SearchTableHeaderCell />
           <TextTableHeaderCell isSortable sortOrder="descending">
             Last Activity
@@ -29,7 +30,7 @@ storiesOf('table', module)
           <TextTableHeaderCell textAlign="right" borderRight={null}>
             ltv
           </TextTableHeaderCell>
-        </TableRow>
+        </TableHead>
         <TableBody height={640}>
           {profiles.map(profile => (
             <TableRow key={profile.id} isSelectable>
@@ -41,7 +42,7 @@ storiesOf('table', module)
             </TableRow>
           ))}
         </TableBody>
-      </Pane>
+      </Table>
     </Box>
   ))
   .add('TableCell', () => (
@@ -60,6 +61,23 @@ storiesOf('table', module)
         document.body.style.height = '100vh'
       })()}
       <TextTableCell>TextTableCell</TextTableCell>
+    </Box>
+  ))
+  .add('TableHead', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <TableHead>
+        <SearchTableHeaderCell />
+        <TextTableHeaderCell isSortable sortOrder="descending">
+          Last Activity
+        </TextTableHeaderCell>
+        <TextTableHeaderCell textAlign="right" borderRight={null}>
+          ltv
+        </TextTableHeaderCell>
+      </TableHead>
     </Box>
   ))
   .add('TableRow', () => (
