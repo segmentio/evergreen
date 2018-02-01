@@ -28,7 +28,9 @@ const SegmentedControlAppearances = {
   default: {
     ...baseStyle,
     backgroundColor: 'white',
-    backgroundImage: `linear-gradient(to top, ${colors.neutral['5A']}, white)`,
+    backgroundImage: `linear-gradient(to top, ${colors.neutral['5A']}, ${
+      colors.white['5A']
+    })`,
     boxShadow: `inset 0 0 0 1px ${colors.neutral['20A']}, inset 0 -1px 1px 0 ${
       colors.neutral['10A']
     }`,
