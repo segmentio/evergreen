@@ -26,6 +26,7 @@
     "evergreen-shared-styles": "^2.19.7",
     "evergreen-typography": "^2.19.7",
     "prop-types": "^15.0.0",
+    "react-scrollbar-size": "^2.0.2",
     "ui-box": "^0.5.3"
   },
   "peerDependencies": {

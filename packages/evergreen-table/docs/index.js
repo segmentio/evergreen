@@ -1,7 +1,7 @@
 import React from 'react'
-import { Pane } from 'evergreen-layers'
 
 /* eslint-disable import/no-duplicates, import/no-webpack-loader-syntax */
+import Table from '../src/components/Table'
 import TableCell from '../src/components/TableCell'
 import TextTableCell from '../src/components/TextTableCell'
 import TableRow from '../src/components/TableRow'
@@ -9,8 +9,10 @@ import TableHeaderCell from '../src/components/TableHeaderCell'
 import TextTableHeaderCell from '../src/components/TextTableHeaderCell'
 import SearchTableHeaderCell from '../src/components/SearchTableHeaderCell'
 import TableBody from '../src/components/TableBody'
+import TableHead from '../src/components/TableHead'
 
 /* eslint-disable import/no-unresolved */
+import sourceTable from '!raw-loader!../src/components/Table'
 import sourceTableCell from '!raw-loader!../src/components/TableCell'
 import sourceTextTableCell from '!raw-loader!../src/components/TextTableCell'
 import sourceTableRow from '!raw-loader!../src/components/TableRow'
@@ -18,16 +20,16 @@ import sourceTableHeaderCell from '!raw-loader!../src/components/TableHeaderCell
 import sourceTextTableHeaderCell from '!raw-loader!../src/components/TextTableHeaderCell'
 import sourceSearchTableHeaderCell from '!raw-loader!../src/components/SearchTableHeaderCell'
 import sourceTableBody from '!raw-loader!../src/components/TableBody'
+import sourceTableHead from '!raw-loader!../src/components/TableHead'
 /* eslint-enable import/no-duplicates, import/no-webpack-loader-syntax import/no-unresolved */
 
 import packageJSON from '../package.json' // eslint-disable-line import/extensions
-
-import profiles from '../stories/profiles'
+import profiles from '../stories/profiles.json' // eslint-disable-line import/extensions
 
 /**
  * Code examples
  */
-import profilesTable from './examples/profiles-table.example'
+import exampleTable from './examples/Table.example'
 import exampleTableCell from './examples/TableCell.example'
 import exampleTextTableCell from './examples/TextTableCell.example'
 import exampleTableRow from './examples/TableRow.example'
@@ -35,6 +37,7 @@ import exampleTableHeaderCell from './examples/TableHeaderCell.example'
 import exampleTextTableHeaderCell from './examples/TextTableHeaderCell.example'
 import exampleSearchTableHeaderCell from './examples/SearchTableHeaderCell.example'
 import exampleTableBody from './examples/TableBody.example'
+import exampleTableHead from './examples/TableHead.example'
 
 const title = 'Table'
 const subTitle = 'A package exporting the building blocks of a table.'
@@ -70,30 +73,71 @@ const designGuidelines = (
 
 const appearanceOptions = null
 
-const examples = [
+const components = [
   {
-    title: 'Complete table example',
+    name: 'Table',
+    source: sourceTable,
     description: (
       <p>
-        This is a complete example of using a table in Evergreen. You want to
-        make sure to use <code>borderRight={`{null}`}</code> on the last table
-        cell of each table row.
+        This component is the container of all your table components. It is
+        simply a Pane with a border and is not an actual <code>table</code>{' '}
+        element.
       </p>
     ),
-    codeText: profilesTable,
-    scope: {
-      Pane,
-      TableBody,
-      TableRow,
-      TextTableHeaderCell,
-      TextTableCell,
-      SearchTableHeaderCell,
-      profiles
-    }
-  }
-]
-
-const components = [
+    examples: [
+      {
+        title: 'Complete Table example',
+        description: (
+          <p>
+            This is a complete example of using a table in Evergreen. You want
+            to make sure to use <code>borderRight={`{null}`}</code> on the last
+            table cell of each table row.
+          </p>
+        ),
+        codeText: exampleTable,
+        scope: {
+          Table,
+          TableBody,
+          TableHead,
+          TableRow,
+          TextTableHeaderCell,
+          TextTableCell,
+          SearchTableHeaderCell,
+          profiles
+        }
+      }
+    ]
+  },
+  {
+    name: 'TableHead',
+    source: sourceTableHead,
+    description: (
+      <div>
+        <p>
+          This component is used to put your table header cells in. You
+          don&apos;t need to add a table row inside.
+        </p>
+        <p>
+          This component includes a utility that makes sure the scrollbar is
+          accounted for when enabled in the operating system. This is the case
+          for all Windows and Linux systems, as well as Mac&nbsp;OS systems that
+          have scrollbars enabled.
+        </p>
+      </div>
+    ),
+    examples: [
+      {
+        title: 'Basic TableHead example',
+        codeText: exampleTableHead,
+        scope: {
+          TableHead,
+          TextTableHeaderCell,
+          SearchTableHeaderCell,
+          profiles
+        }
+      }
+    ]
+  },
   {
     name: 'TableBody',
     source: sourceTableBody,
@@ -245,6 +289,5 @@ export default {
   subTitle,
   designGuidelines,
   appearanceOptions,
-  components,
-  examples
+  components
 }
