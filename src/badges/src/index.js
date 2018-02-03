@@ -1,3 +1,3 @@
-export { FillAppearances as BadgeAppearances } from 'evergreen-shared-styles'
-export { default as Badge } from './components/Badge'
-export { default as Pill } from './components/Pill'
+export Badge from './Badge'
+export { FillAppearances as BadgeAppearances } from '../../'
+export Pill from './Pill'

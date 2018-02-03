@@ -1,42 +1,41 @@
-import TriangleIcon from './components/TriangleIcon'
-import CloseIcon from './components/CloseIcon'
-import CogIcon from './components/CogIcon'
-import ArrowIcon from './components/ArrowIcon'
-import SearchIcon from './components/SearchIcon'
-import CheckCircleIcon from './components/CheckCircleIcon'
-import WarningIcon from './components/WarningIcon'
-import DangerIcon from './components/DangerIcon'
-import QuestionIcon from './components/QuestionIcon'
-import AddIcon from './components/AddIcon'
-import Icon from './components/Icon'
+import AddIcon from './AddIcon'
+import ArrowIcon from './ArrowIcon'
+import CheckCircleIcon from './CheckCircleIcon'
+import CloseIcon from './CloseIcon'
+import CogIcon from './CogIcon'
+import DangerIcon from './DangerIcon'
+import QuestionIcon from './QuestionIcon'
+import SearchIcon from './SearchIcon'
+import TriangleIcon from './TriangleIcon'
+import WarningIcon from './WarningIcon'
 
-export { default as IconAim } from './styles/IconAim'
-export { default as IconColors } from './styles/IconColors'
+export Icon from './Icon'
+export IconAim from './styles/IconAim'
+export IconColors from './styles/IconColors'
 
 // Icon map, useful for icon buttons
-const IconMap = {
-  triangle: TriangleIcon,
+export const IconMap = {
+  add: AddIcon,
+  arrow: ArrowIcon,
+  checkCircle: CheckCircleIcon,
   close: CloseIcon,
   cog: CogIcon,
-  arrow: ArrowIcon,
-  search: SearchIcon,
-  checkCircle: CheckCircleIcon,
-  warning: WarningIcon,
   danger: DangerIcon,
   question: QuestionIcon,
-  add: AddIcon
+  search: SearchIcon,
+  triangle: TriangleIcon,
+  warning: WarningIcon
 }
 
 export {
-  IconMap,
-  TriangleIcon,
+  AddIcon,
+  ArrowIcon,
+  CheckCircleIcon,
   CloseIcon,
   CogIcon,
-  ArrowIcon,
-  SearchIcon,
-  CheckCircleIcon,
-  WarningIcon,
   DangerIcon,
   QuestionIcon,
-  Icon
+  SearchIcon,
+  TriangleIcon,
+  WarningIcon
 }

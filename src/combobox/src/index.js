@@ -1,4 +1,1 @@
-import Combobox from './components/Combobox'
-
-export default Combobox
-export { Combobox }
+export Combobox from './Combobox'

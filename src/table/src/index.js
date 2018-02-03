@@ -1,29 +1,17 @@
-import Table from './components/Table'
+export Table from './Table'
 
 /**
  * Table head and contents
  */
-import TableHead from './components/TableHead'
-import TableHeaderCell from './components/TableHeaderCell'
-import TextTableHeaderCell from './components/TextTableHeaderCell'
-import SearchTableHeaderCell from './components/SearchTableHeaderCell'
+export TableHead from './TableHead'
+export TableHeaderCell from './TableHeaderCell'
+export TextTableHeaderCell from './TextTableHeaderCell'
+export SearchTableHeaderCell from './SearchTableHeaderCell'
 
 /**
  * Table body and contents
  */
-import TableBody from './components/TableBody'
-import TableRow from './components/TableRow'
-import TableCell from './components/TableCell'
-import TextTableCell from './components/TextTableCell'
-
-export {
-  Table,
-  TableHead,
-  TableHeaderCell,
-  TextTableHeaderCell,
-  SearchTableHeaderCell,
-  TableBody,
-  TableRow,
-  TableCell,
-  TextTableCell
-}
+export TableBody from './TableBody'
+export TableRow from './TableRow'
+export TableCell from './TableCell'
+export TextTableCell from './TextTableCell'
