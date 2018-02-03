@@ -1,5 +1,17 @@
 {
   "private": true,
+  "name": "evergreen-ui",
+  "version": "0.0.0",
+  "description": "🌲 React UI Kit by Segment 🌲",
+  "contributors": [
+    "Jeroen Ransijn (https://twitter.com/jeroen_ransijn)",
+    "Roland Warmerdam (https://roland.codes)"
+  ],
+  "keywords": ["evergreen", "segment", "ui", "react"],
+  "repository": "segmentio/evergreen-ui",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "files": ["lib"],
   "scripts": {
     "precommit": "lint-staged",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
@@ -15,6 +27,61 @@
     "build:watch":
       "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w",
     "build": "lerna exec --parallel -- babel src -d lib --ignore *.test.js"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "arrify": "^1.0.1",
+    "dom-helpers": "^3.2.1",
+    "downshift": "^1.16.0",
+    "fuzzaldrin-plus": "^0.6.0",
+    "lodash.mapvalues": "^4.6.0",
+    "object-values": "^1.0.0",
+    "prop-types": "^15.0.0",
+    "react-scrollbar-size": "^2.0.2",
+    "react-tiny-virtual-list": "^2.1.4",
+    "react-transition-group": "^2.2.1",
+    "ui-box": "^0.5.4"
+  },
+  "peerDependencies": {
+    "react-dom": "^16.0.0",
+    "react": "^16.0.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.2.17",
+    "@storybook/addon-links": "^3.2.17",
+    "@storybook/addon-options": "^3.2.17",
+    "@storybook/addons": "^3.2.17",
+    "@storybook/react": "^3.2.17",
+    "@storybook/storybook-deployer": "^2.0.0",
+    "ava": "^0.24.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "concurrently": "^3.5.1",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme": "^3.2.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-xo-react": "^0.14.0",
+    "eslint-plugin-react": "^7.5.1",
+    "execa": "^0.8.0",
+    "file-loader": "^1.1.5",
+    "fs-extra": "^4.0.3",
+    "husky": "^0.14.3",
+    "lerna": "^2.5.1",
+    "lint-staged": "^6.0.0",
+    "prettier": "^1.9.1",
+    "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
+    "react": "^16.2.0",
+    "sinon": "^4.1.6",
+    "starwars-names": "^1.6.0",
+    "url-loader": "^0.6.2",
+    "xo": "^0.18.2"
   },
   "xo": {
     "parser": "babel-eslint",
@@ -52,42 +119,5 @@
     "files": ["packages/*/test/*.js"],
     "require": ["babel-register", "./tools/test-setup"],
     "babel": "inherit"
-  },
-  "dependencies": {
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
-  },
-  "devDependencies": {
-    "@storybook/addon-actions": "^3.2.17",
-    "@storybook/addon-links": "^3.2.17",
-    "@storybook/addon-options": "^3.2.17",
-    "@storybook/addons": "^3.2.17",
-    "@storybook/react": "^3.2.17",
-    "@storybook/storybook-deployer": "^2.0.0",
-    "ava": "^0.24.0",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.3",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "concurrently": "^3.5.1",
-    "enzyme": "^3.2.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-config-xo-react": "^0.14.0",
-    "eslint-plugin-react": "^7.5.1",
-    "execa": "^0.8.0",
-    "file-loader": "^1.1.5",
-    "fs-extra": "^4.0.3",
-    "husky": "^0.14.3",
-    "lerna": "^2.5.1",
-    "lint-staged": "^6.0.0",
-    "prettier": "^1.9.1",
-    "react-test-renderer": "^16.2.0",
-    "sinon": "^4.1.6",
-    "url-loader": "^0.6.2",
-    "xo": "^0.18.2"
   }
 }
