@@ -4,7 +4,7 @@ It is highly appreciated that you take the time to help improve 🌲Evergreen.
 We appreciate it if you would take the time to write up a bug report or feature request.
 
 Sadly, if we don't receive enough information, or the issue/feature request doesn't
-align well with our [ROADMAP.md](./ROADMAP.md), we might respectfully
+align well with our ROADMAP, we might respectfully
 thank you for your time, and close the issue.
 
 _Bug fixes and documentation fixes are welcome._
@@ -34,7 +34,7 @@ Please consider the following items when filing a feature request:
 
 ## Respect earns Respect 👏
 
-Please respect our [CODE_OF_CONDUCT](./CODE_OF_CONDUCT.md), in short:
+Please respect our Code of Conduct, in short:
 
 * Using welcoming and inclusive language
 * Being respectful of differing viewpoints and experiences

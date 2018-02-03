@@ -1,7 +1,7 @@
 *.log
 node_modules
 .DS_Store
-/packages/*/lib
-storybook-static
-/docs/public
+/lib/
+/storybook-static/
+/docs/public/
 .cache
