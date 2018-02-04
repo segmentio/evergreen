@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { css } from 'ui-box'
-import colors from 'evergreen-colors'
+import { colors } from '../../colors'
 
 const loadingKeyframes = css.keyframes('loading', {
   '0%': {

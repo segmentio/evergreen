@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import {
@@ -16,7 +16,7 @@ import {
   OrderedList,
   ListItem,
   TextStyles
-} from '../src/'
+} from '../../typography'
 
 const TextSizes = Object.keys(TextStyles).map(Number)
 const dummyText = 'A red flair silhouetted the jagged edge of a wing.'

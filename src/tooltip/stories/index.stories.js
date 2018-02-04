@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Text } from 'evergreen-typography'
-import { Tooltip } from '../src/'
+import { Tooltip } from '../../tooltip'
+import { Text } from '../../typography'
 
 storiesOf('tooltip', module).add('Tooltip', () => (
   <Box padding={40}>

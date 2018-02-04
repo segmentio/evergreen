@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Text } from 'evergreen-typography'
-import { CheckboxAppearances } from 'evergreen-shared-styles'
+import { Text } from '../../typography'
+import { CheckboxAppearances } from '../../shared-styles'
 
 const CheckIcon = ({ fill = 'currentColor', ...props }) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...props}>

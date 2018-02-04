@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Text } from 'evergreen-typography'
+import { Text } from '../../typography'
 import TableCell from './TableCell'
 
 const ellipsis = {

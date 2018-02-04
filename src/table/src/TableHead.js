@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-handler-names */
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from 'evergreen-layers'
+import { Pane } from '../../layers'
 import ScrollbarSize from './ScrollbarSize'
 
 export default class TableHead extends PureComponent {

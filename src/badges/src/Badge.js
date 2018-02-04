@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Strong } from 'evergreen-typography'
-import { FillAppearances } from 'evergreen-shared-styles'
+import { Strong } from '../../typography'
+import { FillAppearances } from '../../shared-styles'
 
 export default class Badge extends PureComponent {
   static propTypes = {

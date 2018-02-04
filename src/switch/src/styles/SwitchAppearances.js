@@ -1,4 +1,4 @@
-import colors from 'evergreen-colors'
+import { colors } from '../../../colors'
 
 const disabledState = '&[disabled] + div'
 const hoverState = '&:not([disabled]):hover + div'

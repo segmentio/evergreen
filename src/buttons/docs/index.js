@@ -1,15 +1,10 @@
 import React from 'react'
-
-/* eslint-disable import/no-duplicates, import/no-webpack-loader-syntax */
-import BackButton from '../src/components/BackButton'
-import sourceBackButton from '!raw-loader!../src/components/BackButton' // eslint-disable-line import/no-unresolved
-import IconButton from '../src/components/IconButton'
-import sourceIconButton from '!raw-loader!../src/components/IconButton' // eslint-disable-line import/no-unresolved
-import Button from '../src/components/Button'
-import sourceButton from '!raw-loader!../src/components/Button' // eslint-disable-line import/no-unresolved
-/* eslint-enable import/no-duplicates, import/no-webpack-loader-syntax */
-
-import packageJSON from '../package.json' // eslint-disable-line import/extensions
+import { BackButton, IconButton, Button } from '..'
+/* eslint-disable import/no-unresolved, import/no-webpack-loader-syntax */
+import sourceBackButton from '!raw-loader!../src/BackButton'
+import sourceIconButton from '!raw-loader!../src/IconButton'
+import sourceButton from '!raw-loader!../src/Button'
+/* eslint-enable import/no-unresolved, import/no-webpack-loader-syntax */
 
 /**
  * Code examples
@@ -203,7 +198,6 @@ const components = [
 ]
 
 export default {
-  packageJSON,
   title,
   subTitle,
   designGuidelines,

@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import colors from 'evergreen-colors'
-import { Text } from 'evergreen-typography'
+import { colors } from '../../colors'
+import { Text } from '../../typography'
 
 export default class TooltipStateless extends PureComponent {
   static propTypes = {

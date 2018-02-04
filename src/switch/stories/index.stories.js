@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Heading } from 'evergreen-typography'
-import { Switch } from '../src/'
+import { Switch } from '../../switch'
+import { Heading } from '../../typography'
 
 storiesOf('switch', module).add('Switch', () => (
   <Box padding={40}>

@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Pane } from 'evergreen-layers'
-import { Text } from 'evergreen-typography'
-import { Button } from 'evergreen-buttons'
-import { Popover } from '../src'
+import { Popover } from '../../popover'
+import { Pane } from '../../layers'
+import { Text } from '../../typography'
+import { Button } from '../../buttons'
 
 const PopoverContent = () => (
   <Pane

@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import {
   Pane,
@@ -6,7 +6,7 @@ import {
   ElevationStyles,
   LayerAppearances,
   BorderColors
-} from '../src/'
+} from '../../layers'
 
 const cardStyle = {
   float: 'left',

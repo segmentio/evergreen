@@ -1,4 +1,4 @@
-import colors from 'evergreen-colors'
+import { colors } from '../../../colors'
 
 const colorsFiltered = Object.keys(colors).filter(c => c !== 'white')
 

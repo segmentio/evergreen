@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { splitWrapperProps } from 'ui-box'
-import FormField from 'evergreen-form-field'
+import { FormField } from '../../form-field'
 import TextInput from './TextInput'
 
 let idCounter = 0

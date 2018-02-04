@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Positioner from 'evergreen-positioner'
+import { Positioner } from '../../positioner'
 import PopoverStateless from './PopoverStateless'
 
 export default class Popover extends Component {

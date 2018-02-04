@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box, { css } from 'ui-box'
-import { CloseIcon } from 'evergreen-icons'
+import { CloseIcon } from '../../icons'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,

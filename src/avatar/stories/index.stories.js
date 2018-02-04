@@ -1,9 +1,9 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { FillAppearances } from 'evergreen-color-utils'
-import { Heading, Paragraph } from 'evergreen-typography'
-import { Avatar } from '../src/'
+import { Avatar } from '../../avatar'
+import { FillAppearances } from '../../shared-styles'
+import { Heading, Paragraph } from '../../typography'
 
 const names = [
   'Cheryl Carter',

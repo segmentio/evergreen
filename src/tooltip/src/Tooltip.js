@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Positioner from 'evergreen-positioner'
+import { Positioner } from '../../positioner'
 import TooltipStateless from './TooltipStateless'
 
 export default class Tooltip extends PureComponent {

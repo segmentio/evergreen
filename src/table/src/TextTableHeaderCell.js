@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Text } from 'evergreen-typography'
+import { Text } from '../../typography'
 import TableHeaderCell from './TableHeaderCell'
 import SortableIcon from './SortableIcon'
 

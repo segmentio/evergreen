@@ -1,11 +1,15 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Text, Label, Heading } from 'evergreen-typography'
-import { Pane, Card } from 'evergreen-layers'
-import { Button } from 'evergreen-buttons'
-import { TextInputField, TextInput, TextInputAppearances } from '../src/'
+import {
+  TextInputField,
+  TextInput,
+  TextInputAppearances
+} from '../../text-input'
+import { Text, Label, Heading } from '../../typography'
+import { Pane, Card } from '../../layers'
+import { Button } from '../../buttons'
 
 const Description = props => (
   <Text is="p" marginTop={0} size={300} color="extraMuted" {...props} />

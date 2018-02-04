@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Text } from 'evergreen-typography'
+import { Text } from '../../typography'
 import {
   getBorderRadiusForControlHeight,
-  getTextStyleForControlHeight
-} from 'evergreen-shared-styles'
-import TextInputAppearances from '../styles/TextInputAppearances'
+  getTextStyleForControlHeight,
+  InputAppearances
+} from '../../shared-styles'
 
 export default class TextInput extends PureComponent {
   static propTypes = {
@@ -42,7 +42,7 @@ export default class TextInput extends PureComponent {
     /**
      * The appearance of the TextInput.
      */
-    appearance: PropTypes.oneOf(Object.keys(TextInputAppearances))
+    appearance: PropTypes.oneOf(Object.keys(InputAppearances))
   }
 
   static defaultProps = {
@@ -69,7 +69,7 @@ export default class TextInput extends PureComponent {
       spellCheck,
       ...props
     } = this.props
-    const appearanceStyle = TextInputAppearances[appearance]
+    const appearanceStyle = InputAppearances[appearance]
     const textStyle = getTextStyleForControlHeight({ height })
     const borderRadius = getBorderRadiusForControlHeight({ height })
 

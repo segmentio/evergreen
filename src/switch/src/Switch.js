@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
-import SwitchAppearances from '../styles/SwitchAppearances'
+import SwitchAppearances from './styles/SwitchAppearances'
 
 const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`

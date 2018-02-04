@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Pane } from 'evergreen-layers'
+import { Pane } from '../../layers'
 
 export default class TableBody extends PureComponent {
   static propTypes = {

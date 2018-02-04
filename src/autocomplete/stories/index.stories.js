@@ -1,9 +1,9 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import starWarsNames from 'starwars-names'
-import { TextInput } from 'evergreen-text-input'
-import { Autocomplete } from '../src/'
+import { Autocomplete } from '../../autocomplete'
+import { TextInput } from '../../text-input'
 
 // Generate a big list of items
 const items = [

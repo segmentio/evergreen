@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { SegmentedControl } from '../src/'
+import { SegmentedControl } from '../../segmented-control'
 
 const options = [
   { label: 'Hourly', value: 'hourly' },

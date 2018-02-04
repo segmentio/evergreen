@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Label } from 'evergreen-typography'
+import { Label } from '../../typography'
 
 export default class FormFieldLabel extends PureComponent {
   static propTypes = {

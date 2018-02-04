@@ -1,9 +1,9 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Button } from 'evergreen-buttons'
-import { Dialog } from '../src/'
+import { Dialog } from '../../dialog'
+import { Button } from '../../buttons'
 
 class DialogManager extends PureComponent {
   static propTypes = {

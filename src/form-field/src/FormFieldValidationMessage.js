@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import { Paragraph } from 'evergreen-typography'
-import colors from 'evergreen-colors'
+import { Paragraph } from '../../typography'
+import { colors } from '../../colors'
 
 export default class FormFieldValidationMessage extends PureComponent {
   static propTypes = {

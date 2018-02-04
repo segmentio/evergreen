@@ -1,15 +1,15 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from 'evergreen-layers'
-import { Text } from 'evergreen-typography'
+import { spacing, dimensions, position, layout } from 'ui-box'
+import { colors } from '../../colors'
+import { Pane } from '../../layers'
+import { Text } from '../../typography'
 import {
   CheckCircleIcon,
   DangerIcon,
   QuestionIcon,
   WarningIcon
-} from 'evergreen-icons'
-import colors from 'evergreen-colors'
-import { spacing, dimensions, position, layout } from 'ui-box'
+} from '../../icons'
 
 const getColorForType = type => {
   switch (type) {

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from 'evergreen-layers'
-import { TableRow, TextTableCell } from 'evergreen-table'
+import { Pane } from '../../layers'
+import { TableRow, TextTableCell } from '../../table'
 
 const CheckIcon = ({ fill = 'currentColor', ...props }) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...props}>

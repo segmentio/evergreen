@@ -1,4 +1,4 @@
-import colors from 'evergreen-colors'
+import { colors } from '../../../colors'
 
 const BorderColors = {
   default: colors.neutral['30A'],

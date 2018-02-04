@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Text } from 'evergreen-typography'
-import { TriangleIcon } from 'evergreen-icons'
+import { Text } from '../../typography'
+import { TriangleIcon } from '../../icons'
 import {
   getIconSizeForControlHeight,
   getBorderRadiusForControlHeight,
   getTextSizeForControlHeight
-} from 'evergreen-shared-styles'
-import SelectAppearances from '../styles/SelectAppearances'
+} from '../../shared-styles'
+import SelectAppearances from './styles/SelectAppearances'
 
 export default class Select extends PureComponent {
   static propTypes = {

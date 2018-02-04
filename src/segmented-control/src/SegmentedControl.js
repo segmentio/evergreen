@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import SegmentedControlAppearances from '../styles/SegmentedControlAppearances'
+import SegmentedControlAppearances from './styles/SegmentedControlAppearances'
 import SegmentedControlRadio from './SegmentedControlRadio'
 
 const keysSegmentedControlAppearances = Object.keys(SegmentedControlAppearances)

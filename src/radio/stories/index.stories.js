@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Heading } from 'evergreen-typography'
-import { Radio, RadioGroup } from '../src/'
+import { Radio, RadioGroup } from '../../radio'
+import { Heading } from '../../typography'
 
 const items = [
   { name: 'fruit', value: 'apple', label: 'Red' },

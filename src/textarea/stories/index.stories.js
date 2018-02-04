@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Label, Text } from 'evergreen-typography'
-import { Textarea } from '../src/'
+import { Textarea } from '../../textarea'
+import { Label, Text } from '../../typography'
 
 const Description = props => (
   <Text is="p" marginTop={0} size={300} color="extraMuted" {...props} />

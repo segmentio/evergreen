@@ -1,30 +1,27 @@
 import React from 'react'
-
-/* eslint-disable import/no-duplicates, import/no-webpack-loader-syntax */
-import Table from '../src/components/Table'
-import TableCell from '../src/components/TableCell'
-import TextTableCell from '../src/components/TextTableCell'
-import TableRow from '../src/components/TableRow'
-import TableHeaderCell from '../src/components/TableHeaderCell'
-import TextTableHeaderCell from '../src/components/TextTableHeaderCell'
-import SearchTableHeaderCell from '../src/components/SearchTableHeaderCell'
-import TableBody from '../src/components/TableBody'
-import TableHead from '../src/components/TableHead'
-
-/* eslint-disable import/no-unresolved */
-import sourceTable from '!raw-loader!../src/components/Table'
-import sourceTableCell from '!raw-loader!../src/components/TableCell'
-import sourceTextTableCell from '!raw-loader!../src/components/TextTableCell'
-import sourceTableRow from '!raw-loader!../src/components/TableRow'
-import sourceTableHeaderCell from '!raw-loader!../src/components/TableHeaderCell'
-import sourceTextTableHeaderCell from '!raw-loader!../src/components/TextTableHeaderCell'
-import sourceSearchTableHeaderCell from '!raw-loader!../src/components/SearchTableHeaderCell'
-import sourceTableBody from '!raw-loader!../src/components/TableBody'
-import sourceTableHead from '!raw-loader!../src/components/TableHead'
-/* eslint-enable import/no-duplicates, import/no-webpack-loader-syntax import/no-unresolved */
-
-import packageJSON from '../package.json' // eslint-disable-line import/extensions
-import profiles from '../stories/profiles.json' // eslint-disable-line import/extensions
+import {
+  Table,
+  TableCell,
+  TextTableCell,
+  TableRow,
+  TableHeaderCell,
+  TextTableHeaderCell,
+  SearchTableHeaderCell,
+  TableBody,
+  TableHead
+} from '..'
+import profiles from '../stories/profiles'
+/* eslint-disable import/no-unresolved, import/no-webpack-loader-syntax */
+import sourceTable from '!raw-loader!../src/Table'
+import sourceTableCell from '!raw-loader!../src/TableCell'
+import sourceTextTableCell from '!raw-loader!../src/TextTableCell'
+import sourceTableRow from '!raw-loader!../src/TableRow'
+import sourceTableHeaderCell from '!raw-loader!../src/TableHeaderCell'
+import sourceTextTableHeaderCell from '!raw-loader!../src/TextTableHeaderCell'
+import sourceSearchTableHeaderCell from '!raw-loader!../src/SearchTableHeaderCell'
+import sourceTableBody from '!raw-loader!../src/TableBody'
+import sourceTableHead from '!raw-loader!../src/TableHead'
+/* eslint-enable import/no-unresolved, import/no-webpack-loader-syntax */
 
 /**
  * Code examples
@@ -284,7 +281,6 @@ const components = [
 ]
 
 export default {
-  packageJSON,
   title,
   subTitle,
   designGuidelines,

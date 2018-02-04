@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import Downshift from 'downshift'
-import { Pane } from 'evergreen-layers'
-import { Popover } from 'evergreen-popover'
 import VirtualList from 'react-tiny-virtual-list'
+import { Popover } from '../../popover'
+import { Pane } from '../../layers'
 import AutocompleteItem from './AutocompleteItem'
 
 const fuzzyFilter = (items, input) => fuzzaldrin.filter(items, input)

@@ -1,9 +1,9 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'evergreen-buttons'
 import Box from 'ui-box'
-import { SideSheet } from '../src/'
+import { SideSheet } from '../../side-sheet'
+import { Button } from '../../buttons'
 
 class SideSheetManager extends PureComponent {
   static propTypes = {

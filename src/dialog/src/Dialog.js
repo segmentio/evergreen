@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'ui-box'
-import { Pane } from 'evergreen-layers'
-import { Heading } from 'evergreen-typography'
-import Overlay from 'evergreen-overlay'
-import { IconButton } from 'evergreen-buttons'
+import { Pane } from '../../layers'
+import { Heading } from '../../typography'
+import { Overlay } from '../../overlay'
+import { IconButton } from '../../buttons'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,

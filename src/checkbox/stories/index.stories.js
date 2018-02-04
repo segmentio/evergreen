@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Checkbox } from '../src/'
+import { Checkbox } from '../../checkbox'
 
 storiesOf('checkbox', module).add('Checkbox', () => (
   <Box padding={40}>

@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import {
@@ -11,7 +11,7 @@ import {
   TableRow,
   TableCell,
   TextTableCell
-} from '../src/'
+} from '../../table'
 import profiles from './profiles'
 
 storiesOf('table', module)

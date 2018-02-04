@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { splitWrapperProps } from 'ui-box'
-import { SearchIcon } from 'evergreen-icons'
-import { getIconSizeForControlHeight } from 'evergreen-shared-styles'
-import TextInput from 'evergreen-text-input'
+import { SearchIcon } from '../../icons'
+import { getIconSizeForControlHeight } from '../../shared-styles'
+import { TextInput } from '../../text-input'
 
 export default class SearchInput extends PureComponent {
   static propTypes = {

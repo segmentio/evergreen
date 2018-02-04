@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { FilePicker } from '../src/'
+import { FilePicker } from '../../file-picker'
 
 storiesOf('file-picker', module).add('FilePicker', () => (
   <Box padding={40}>

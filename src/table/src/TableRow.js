@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { selectableRowStyle } from 'evergreen-shared-styles'
-import { Pane } from 'evergreen-layers'
+import { Pane } from '../../layers'
+import { selectableRowStyle } from '../../shared-styles'
 
 export default class TableRow extends PureComponent {
   static propTypes = {

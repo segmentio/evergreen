@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import Box from 'ui-box'
-import { TriangleIcon } from 'evergreen-icons'
+import { TriangleIcon } from '../../icons'
 import Tab from './Tab'
 
 export default class Tablist extends PureComponent {

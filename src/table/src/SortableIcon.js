@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from 'evergreen-layers'
-import { TriangleIcon } from 'evergreen-icons'
+import { Pane } from '../../layers'
+import { TriangleIcon } from '../../icons'
 
 export default class SortableIcon extends PureComponent {
   static propTypes = {

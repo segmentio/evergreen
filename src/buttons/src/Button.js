@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Text } from 'evergreen-typography'
-import { IconMap, IconAim } from 'evergreen-icons'
+import { Text } from '../../typography'
+import { IconMap, IconAim } from '../../icons'
 import {
   getBorderRadiusForControlHeight,
   getTextStyleForControlHeight,
   getIconSizeForControlHeight
-} from 'evergreen-shared-styles'
-import ButtonAppearances from '../styles/ButtonAppearances'
+} from '../../shared-styles'
+import ButtonAppearances from './styles/ButtonAppearances'
 
 export default class Button extends PureComponent {
   static propTypes = {

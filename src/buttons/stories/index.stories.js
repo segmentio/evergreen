@@ -1,10 +1,15 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Heading } from 'evergreen-typography'
-import { IconMap } from 'evergreen-icons'
-import { IconButton, Button, BackButton, ButtonAppearances } from '../src'
+import {
+  IconButton,
+  Button,
+  BackButton,
+  ButtonAppearances
+} from '../../buttons'
+import { Heading } from '../../typography'
+import { IconMap } from '../../icons'
 
 const baseStyles = {
   margin: 16

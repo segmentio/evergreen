@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import {
   TriangleIcon,
@@ -8,7 +8,7 @@ import {
   SearchIcon,
   CheckCircleIcon,
   Icon
-} from '../src/'
+} from '../../icons'
 
 const directionalShowcase = Comp => (
   <div>

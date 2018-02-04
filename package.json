@@ -116,7 +116,7 @@
     "*.{json,md}": ["prettier --write", "git add"]
   },
   "ava": {
-    "files": ["packages/*/test/*.js"],
+    "files": ["**/test/**/*.js"],
     "require": ["babel-register", "./tools/test-setup"],
     "babel": "inherit"
   }

@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import ElevationStyles from '../styles/elevation-styles'
-import BorderColors from '../styles/border-colors'
-import LayerAppearances from '../styles/layer-appearances'
+import ElevationStyles from './styles/elevation-styles'
+import BorderColors from './styles/border-colors'
+import LayerAppearances from './styles/layer-appearances'
 
 const ElevationPropType = PropTypes.oneOf(
   ElevationStyles.map((_, index) => index)

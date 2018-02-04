@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Popover from 'evergreen-popover'
 import arrify from 'arrify'
+import { Popover } from '../../popover'
 import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
 import SelectedPropType from './SelectedPropType'

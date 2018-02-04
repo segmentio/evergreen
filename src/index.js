@@ -1,25 +1,20 @@
-export { Alert } from './alert/src'
-export { Autocomplete, AutocompleteItem } from './autocomplete/src'
-export { Avatar } from './avatar/src'
-export { BadgeAppearances, Badge, Pill } from './badges/src'
-export {
-  BackButton,
-  Button,
-  ButtonAppearances,
-  IconButton
-} from './buttons/src'
-export { Checkbox } from './checkbox/src'
-export { colors } from './colors/src'
-export { Combobox } from './combobox/src'
-export { CornerDialog } from './corner-dialog/src'
-export { Dialog } from './dialog/src'
-export { FilePicker } from './file-picker/src'
+export { Alert } from './alert'
+export { Autocomplete, AutocompleteItem } from './autocomplete'
+export { Avatar } from './avatar'
+export { BadgeAppearances, Badge, Pill } from './badges'
+export { BackButton, Button, ButtonAppearances, IconButton } from './buttons'
+export { Checkbox } from './checkbox'
+export { colors } from './colors'
+export { Combobox } from './combobox'
+export { CornerDialog } from './corner-dialog'
+export { Dialog } from './dialog'
+export { FilePicker } from './file-picker'
 export {
   FormField,
   FormFieldDescription,
   FormFieldLabel,
   FormFieldValidationMessage
-} from './form-field/src'
+} from './form-field'
 export {
   Icon,
   IconAim,
@@ -35,33 +30,33 @@ export {
   SearchIcon,
   TriangleIcon,
   WarningIcon
-} from './icons/src'
-export { Image } from './image/src'
+} from './icons'
+export { Image } from './image'
 export {
   Pane,
   Card,
   ElevationStyles,
   BorderColors,
   LayerAppearances
-} from './layers/src'
-export { Overlay } from './overlay/src'
-export { Popover } from './popover/src'
-export { Portal } from './portal/src'
-export { Positioner } from './positioner/src'
-export { Radio, RadioGroup } from './radio/src'
-export { SearchInput } from './search-input/src'
+} from './layers'
+export { Overlay } from './overlay'
+export { Popover } from './popover'
+export { Portal } from './portal'
+export { Positioner } from './positioner'
+export { Radio, RadioGroup } from './radio'
+export { SearchInput } from './search-input'
 export {
   SegmentedControl,
   SegmentedControlAppearances
-} from './segmented-control/src'
-export { Select, SelectAppearances } from './select/src'
+} from './segmented-control'
+export { Select, SelectAppearances } from './select'
 export {
   OptionShapePropType,
   OptionsList,
   SelectedPropType,
   SelectMenu,
   SelectMenuContent
-} from './select-menu/src'
+} from './select-menu'
 export {
   CheckboxAppearances,
   controlBaseStyle,
@@ -74,10 +69,10 @@ export {
   getIconSizeForControlHeight,
   getTextSizeForControlHeight,
   getTextStyleForControlHeight
-} from './shared-styles/src'
-export { SideSheet } from './side-sheet/src'
-export { Spinner } from './spinner/src'
-export { Switch } from './switch/src'
+} from './shared-styles'
+export { SideSheet } from './side-sheet'
+export { Spinner } from './spinner'
+export { Switch } from './switch'
 export {
   Table,
   TableHead,
@@ -88,15 +83,11 @@ export {
   TableRow,
   TableCell,
   TextTableCell
-} from './table/src'
-export { SidebarTab, Tab, Tablist, TabNavigation } from './tabs/src'
-export {
-  TextInput,
-  TextInputField,
-  TextInputAppearances
-} from './text-input/src'
-export { Textarea } from './textarea/src'
-export { Tooltip } from './tooltip/src'
+} from './table'
+export { SidebarTab, Tab, Tablist, TabNavigation } from './tabs'
+export { TextInput, TextInputField, TextInputAppearances } from './text-input'
+export { Textarea } from './textarea'
+export { Tooltip } from './tooltip'
 export {
   UnorderedList,
   Ul,
@@ -118,4 +109,4 @@ export {
   FontFamilies,
   TextColors,
   LinkAppearances
-} from './typography/src'
+} from './typography'

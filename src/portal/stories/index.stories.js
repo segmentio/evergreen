@@ -1,6 +1,6 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
-import { Portal } from '../src/'
+import { Portal } from '../../portal'
 
 storiesOf('portal', module).add('Portal', () => (
   <div>

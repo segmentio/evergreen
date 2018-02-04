@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Button } from 'evergreen-buttons'
 import starWarsNames from 'starwars-names'
-import { SelectMenu } from '../src/'
+import { SelectMenu } from '../../select-menu'
+import { Button } from '../../buttons'
 
 const options = starWarsNames.all.map(name => ({
   label: name,

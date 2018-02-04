@@ -1,9 +1,9 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Heading, Paragraph } from 'evergreen-typography'
-import { Tab, SidebarTab, Tablist, TabNavigation } from '../src/'
+import { Tab, SidebarTab, Tablist, TabNavigation } from '../../tabs'
+import { Heading, Paragraph } from '../../typography'
 
 const StorySection = props => <Box marginBottom={40} {...props} />
 

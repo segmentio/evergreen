@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'ui-box'
 import Transition from 'react-transition-group/Transition'
-import { Pane } from 'evergreen-layers'
-import Portal from 'evergreen-portal'
-import { Heading } from 'evergreen-typography'
-import { IconButton } from 'evergreen-buttons'
+import { Pane } from '../../layers'
+import { Portal } from '../../portal'
+import { Heading } from '../../typography'
+import { IconButton } from '../../buttons'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,

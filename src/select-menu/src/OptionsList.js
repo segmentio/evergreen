@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import fuzzaldrin from 'fuzzaldrin-plus'
-import { Pane } from 'evergreen-layers'
 import VirtualList from 'react-tiny-virtual-list'
-import { TableRow, SearchTableHeaderCell } from 'evergreen-table'
+import { Pane } from '../../layers'
+import { TableRow, SearchTableHeaderCell } from '../../table'
 import OptionShapePropType from './OptionShapePropType'
 import Option from './Option'
 

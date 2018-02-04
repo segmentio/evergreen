@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { IconMap, IconAim } from 'evergreen-icons'
-import { getIconSizeForControlHeight } from 'evergreen-shared-styles'
+import { IconMap, IconAim } from '../../icons'
+import { getIconSizeForControlHeight } from '../../shared-styles'
 import Button from './Button'
 
 export default class IconButton extends PureComponent {

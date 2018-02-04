@@ -1,1 +1,0 @@
-export CornerDialog from './CornerDialog'

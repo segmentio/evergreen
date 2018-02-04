@@ -1,9 +1,9 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import starWarsNames from 'starwars-names'
-import { Heading } from 'evergreen-typography'
-import { Combobox } from '../src/'
+import { Combobox } from '../../combobox'
+import { Heading } from '../../typography'
 
 // Generate a big list of items
 const items = starWarsNames.all.sort((a, b) => {

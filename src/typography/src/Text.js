@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import FontFamilies from '../styles/FontFamilies'
-import TextStyles from '../styles/TextStyles'
-import TextUppercaseStyles from '../styles/TextUppercaseStyles'
-import TextColors from '../styles/TextColors'
+import FontFamilies from './styles/FontFamilies'
+import TextStyles from './styles/TextStyles'
+import TextUppercaseStyles from './styles/TextUppercaseStyles'
+import TextColors from './styles/TextColors'
 
 const isDev = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV
 

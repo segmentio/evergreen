@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Image } from '../src/'
+import { Image } from '../../image'
 
 storiesOf('image', module).add('Image', () => (
   <Box padding={40}>

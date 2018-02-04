@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Button } from 'evergreen-buttons'
-import { TextInput } from 'evergreen-text-input'
+import { Button } from '../../buttons'
+import { TextInput } from '../../text-input'
 
 export const CLASS_PREFIX = 'evergreen-file-picker'
 

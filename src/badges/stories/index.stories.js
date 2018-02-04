@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Badge, Pill, BadgeAppearances } from '../src/'
+import { Badge, Pill, BadgeAppearances } from '../../badges'
 
 const wrapperStyles = {
   display: 'flex'

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import objectValues from 'object-values'
 import Transition from 'react-transition-group/Transition'
-import { Portal } from 'evergreen-portal'
+import { Portal } from '../../portal'
 
 const PositionerSides = {
   BOTTOM: 'bottom',

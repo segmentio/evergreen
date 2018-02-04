@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Text } from 'evergreen-typography'
-import { SearchIcon } from 'evergreen-icons'
-import colors from 'evergreen-colors'
+import { Text } from '../../typography'
+import { SearchIcon } from '../../icons'
+import { colors } from '../../colors'
 import TableHeaderCell from './TableHeaderCell'
 
 const invisibleInput = {

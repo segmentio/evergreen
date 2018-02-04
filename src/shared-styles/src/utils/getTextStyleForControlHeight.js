@@ -1,4 +1,4 @@
-import { TextStyles } from 'evergreen-typography'
+import { TextStyles } from '../../../typography'
 import getTextSizeForControlHeight from './getTextSizeForControlHeight'
 
 const getTextStyleForControlHeight = ({ height }) =>

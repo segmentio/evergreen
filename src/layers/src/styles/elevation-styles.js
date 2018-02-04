@@ -1,4 +1,4 @@
-import colors from 'evergreen-colors'
+import { colors } from '../../../colors'
 
 const borderShadowColor = colors.neutral['80A']
 const blurryShadowColor = colors.neutral['50A']

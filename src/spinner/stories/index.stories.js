@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Spinner } from '../src/'
+import { Spinner } from '../../spinner'
 
 storiesOf('spinner', module).add('Spinner', () => (
   <Box padding={40}>

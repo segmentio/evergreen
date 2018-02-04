@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import colors from 'evergreen-colors'
-import { Pane } from 'evergreen-layers'
-import { Text } from 'evergreen-typography'
+import { colors } from '../../colors'
+import { Pane } from '../../layers'
+import { Text } from '../../typography'
 
 export default class AutocompleteItem extends PureComponent {
   static propTypes = {

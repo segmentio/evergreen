@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import colors from 'evergreen-colors'
 import Box from 'ui-box'
+import { colors } from '../../colors'
 
 const IconColors = {
   default: colors.neutral['200A'],

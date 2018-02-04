@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from 'evergreen-layers'
+import { Pane } from '../../layers'
 import Radio from './Radio'
 
 export default class RadioGroup extends PureComponent {

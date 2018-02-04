@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Text } from 'evergreen-typography'
+import { Text } from '../../typography'
 import {
   getTextStyleForControlHeight,
   selectableTabStyle
-} from 'evergreen-shared-styles'
+} from '../../shared-styles'
 
 export default class Tab extends PureComponent {
   static propTypes = {

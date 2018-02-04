@@ -1,10 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import test from 'ava'
 import render from 'react-test-renderer'
 import { shallow } from 'enzyme'
-import { CheckCircleIcon } from 'evergreen-icons'
-import { Alert } from '../src'
+import { CheckCircleIcon } from '../../icons'
+import Alert from '../src/Alert'
 
 test('basic snapshot', t => {
   const component = <Alert title="A simple general message" />

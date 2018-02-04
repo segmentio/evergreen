@@ -4,7 +4,7 @@ import test from 'ava'
 import render from 'react-test-renderer'
 import { shallow } from 'enzyme'
 import sinon from 'sinon'
-import { FilePicker, CLASS_PREFIX } from '../src'
+import FilePicker, { CLASS_PREFIX } from '../src/FilePicker'
 
 test('snapshot', t => {
   const component = <FilePicker />

@@ -1,4 +1,4 @@
-import colors from 'evergreen-colors'
+import { colors } from '../../../colors'
 
 const LayerAppearances = {
   tint1: { backgroundColor: colors.neutral['3A'] },

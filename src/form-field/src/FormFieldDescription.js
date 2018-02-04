@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Paragraph } from 'evergreen-typography'
+import { Paragraph } from '../../typography'
 
 export default class FormFieldDescription extends PureComponent {
   static propTypes = {

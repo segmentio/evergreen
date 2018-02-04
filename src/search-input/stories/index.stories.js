@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Heading, Paragraph } from 'evergreen-typography'
-import { SearchInput } from '../src/'
+import { SearchInput } from '../../search-input'
+import { Heading, Paragraph } from '../../typography'
 
 const StoryHeader = props => <Box marginBottom={16} {...props} />
 const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />

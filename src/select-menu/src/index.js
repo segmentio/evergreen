@@ -1,5 +1,0 @@
-export OptionShapePropType from './OptionShapePropType'
-export OptionsList from './OptionsList'
-export SelectedPropType from './SelectedPropType'
-export SelectMenu from './SelectMenu'
-export SelectMenuContent from './SelectMenuContent'

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Card } from 'evergreen-layers'
+import { Card } from '../../layers'
 
 export default class PopoverStateless extends PureComponent {
   static propTypes = {

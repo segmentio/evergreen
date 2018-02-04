@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
-import { Portal } from 'evergreen-portal'
-import colors from 'evergreen-colors'
 import Box, { css } from 'ui-box'
+import { Portal } from '../../portal'
+import { colors } from '../../colors'
 
 const animationEasing = {
   standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,

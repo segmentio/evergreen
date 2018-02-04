@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import Image from 'evergreen-image'
-import { Text } from 'evergreen-typography'
-import { FillAppearances } from 'evergreen-color-utils'
-import colors from 'evergreen-colors'
-import globalGetInitials from '../utils/getInitials'
-import globalHash from '../utils/hash'
+import { Image } from '../../image'
+import { Text } from '../../typography'
+import { FillAppearances } from '../../shared-styles'
+import { colors } from '../../colors'
+import globalGetInitials from './utils/getInitials'
+import globalHash from './utils/hash'
 
 const keysFillAppearances = Object.keys(FillAppearances.default)
 

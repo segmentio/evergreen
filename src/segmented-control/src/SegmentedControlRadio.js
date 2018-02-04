@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { css } from 'ui-box'
-import colors from 'evergreen-colors'
-import { Text } from 'evergreen-typography'
+import { colors } from '../../colors'
+import { Text } from '../../typography'
 import {
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight
-} from 'evergreen-shared-styles'
-import SegmentedControlAppearances from '../styles/SegmentedControlAppearances'
+} from '../../shared-styles'
+import SegmentedControlAppearances from './styles/SegmentedControlAppearances'
 
 const keysSegmentedControlAppearances = Object.keys(SegmentedControlAppearances)
 

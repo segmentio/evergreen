@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'ui-box'
-import { Pane } from 'evergreen-layers'
-import Overlay from 'evergreen-overlay'
+import { Pane } from '../../layers'
+import { Overlay } from '../../overlay'
 import SheetClose from './SheetClose'
 
 const paneProps = {

@@ -1,7 +1,6 @@
-import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-// Import { Positioner } from '../src/'
 
 storiesOf('positioner', module).add('Positioner', () => (
   <Box padding={40}>

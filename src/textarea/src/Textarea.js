@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { TextStyles } from 'evergreen-typography'
+import { TextStyles } from '../../typography'
 import {
   InputAppearances,
   getBorderRadiusForTextSize
-} from 'evergreen-shared-styles'
+} from '../../shared-styles'
 
 export default class Textarea extends PureComponent {
   static propTypes = {
