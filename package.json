@@ -88,13 +88,6 @@
       "indent": ["off"],
       "react/jsx-indent-props": ["off"],
       "react/jsx-indent": ["off"],
-      "import/no-unresolved": [
-        "error",
-        {
-          "commonjs": true,
-          "ignore": ["^evergreen-"]
-        }
-      ],
       "react/require-default-props": ["off"],
       "react/default-props-match-prop-types": ["off"],
       "react/forbid-component-props": ["off"],
