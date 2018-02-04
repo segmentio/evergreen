@@ -74,6 +74,7 @@
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "sinon": "^4.1.6",
+    "size-limit": "^0.14.0",
     "starwars-names": "^1.6.0",
     "url-loader": "^0.6.2",
     "xo": "^0.18.2"
@@ -107,5 +108,11 @@
     "files": ["**/test/**/*.js"],
     "require": ["babel-register", "./tools/test-setup"],
     "babel": "inherit"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "lib/index.js",
+      "limit": "55 KB"
+    }
+  ]
 }

@@ -23,6 +23,7 @@ compile:
 test:
   override:
     - yarn run test
+    - yarn run size-limit
 
 deployment:
   deploy_docs:
