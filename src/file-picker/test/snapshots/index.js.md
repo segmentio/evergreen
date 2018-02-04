@@ -1,4 +1,4 @@
-# Snapshot report for `packages/evergreen-file-picker/test/index.js`
+# Snapshot report for `src/file-picker/test/index.js`
 
 The actual snapshot is saved in `index.js.snap`.
 

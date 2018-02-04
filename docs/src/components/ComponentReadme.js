@@ -46,7 +46,7 @@ export default class ComponentReadme extends PureComponent {
               <dt>Links</dt>
               <dd>
                 <a
-                  href={`https://github.com/segmentio/evergreen/tree/master/packages/${
+                  href={`https://github.com/segmentio/evergreen/tree/master/src/${
                     packageJSON.name
                   }`}
                   target="_blank"

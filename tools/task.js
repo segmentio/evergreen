@@ -1,4 +1,5 @@
-/* eslint-env node */
+'use strict'
+
 // https://medium.com/@tarkus/build-automation-with-vanilla-javascript-74639ec98bad
 function run(task, action, ...args) {
   const command = process.argv[2]

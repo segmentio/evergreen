@@ -1,11 +1,17 @@
+#!/usr/bin/env node
+'use strict'
 /**
  * This script scaffolds a bare bones package.
+ *
+ * For the following command:
+ *
+ * `yarn run create-package package-name`
+ *
  * The following file tree will be generated:
  *
- * /packages/evergreen-{pacakage-name}
+ * /src/pacakage-name
  * ├── /src/
- * │   └── index.js
- * └── package.json
+ * └── index.js
  *
  */
 const path = require('path')
@@ -17,44 +23,28 @@ const packageName = process.argv[2]
 module.exports = task('create-package-js', async () => {
   if (!packageName) {
     throw new Error(
-      'Missing argument, use: `npm run create-package package-name`'
+      'Missing package name argument, use: `yarn run create-package [package-name]`'
     )
   }
 
-  const packageDir = path.join('packages', packageName)
+  const packageDir = path.join('src', packageName)
 
   // Check if directory already exist
   const packageDirExistsAlready = await fs.pathExists(packageDir)
 
   if (packageDirExistsAlready) {
-    throw new Error(`Directory already exists: /packages/${packageName}`)
+    throw new Error(`Directory already exists: ${packageDir}`)
   }
 
   // Create directory
   await fs.ensureDir(packageDir)
 
-  const packageJson = {
-    name: packageName,
-    version: '0.0.0',
-    description: `JS package: ${packageName}`,
-    main: 'lib/index.js',
-    keywords: ['evergreen', 'segment', 'ui', packageName],
-    author: `Segment`,
-    license: 'MIT',
-    xo: false
-  }
-
-  console.info('Package name will be: ', packageName)
-
-  await fs.writeFile(
-    path.join(packageDir, 'package.json'),
-    JSON.stringify(packageJson, null, 2)
-  )
+  console.info('Package name will be:', packageName)
 
   // Create `src` dir in package
   await fs.ensureDir(path.join(packageDir, 'src'))
   await fs.writeFile(
-    path.join(packageDir, 'src', 'index.js'),
-    'export default {}'
+    path.join(packageDir, 'index.js'),
+    `export derp from './src/derp'`
   )
 })

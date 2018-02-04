@@ -1,23 +1,27 @@
-export default function storiesTemplate({ packageName, componentNames = [] }) {
-  const template = []
-  template.push(
-    `import { storiesOf } from '@storybook/react' // eslint-disable-line import/no-extraneous-dependencies`
-  )
-  template.push(`import React from 'react'`)
-  template.push(`import Box from 'ui-box'`)
-  template.push(`import { ${componentNames.join(', ')} } from '../src/'`)
-  template.push('')
-  template.push(`storiesOf('${packageName}', module)`)
-  componentNames.forEach(componentName => {
-    template.push(`  .add('${componentName}', () =>`)
-    template.push(`    <Box padding={40}>`)
-    template.push(`      {(() => {`)
-    template.push(`        document.body.style.margin = '0'`)
-    template.push(`        document.body.style.height = '100vh'`)
-    template.push(`      })()}`)
-    template.push(`      <${componentName}>${componentName}</${componentName}>`)
-    template.push(`    </Box>,`)
-    template.push(`  )`)
-  })
-  return template.join('\n')
+'use strict'
+
+function storyTemplate(componentName) {
+  return `
+  .add('${componentName}', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <${componentName}>${componentName}</${componentName}>
+    </Box>
+  ))`
+}
+
+module.exports = ({ packageName, componentNames = [] }) => {
+  return `
+import { storiesOf } from '@storybook/react'
+import React from 'react'
+import Box from 'ui-box'
+import { ${componentNames.join(', ')} } from '../../${packageName}'
+
+storiesOf('${packageName}', module)${componentNames
+    .map(componentName => storyTemplate(componentName))
+    .join('')}
+`.trim()
 }

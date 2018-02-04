@@ -10,7 +10,6 @@
 * Powerful component API with [ui-box](https://github.com/segmentio/ui-box)
 * Dedicated UI Development Environment with [React storybook](https://storybook.js.org/)
 * Easy adoption because of CSS-in-JS
-* [Lerna](https://lernajs.io/) mono-repo
 * Interested in Evergreen? [Come work for Segment!](https://segment.com/jobs/)
 
 ## Core values of 🌲 Evergreen
@@ -103,11 +102,9 @@ You shouldn't have to configure things separately, please file a issue if there 
 
 ### Step 2. Get storybook up and running 📖
 
-To actually start seeing the components you have to run React Storybook.
-To do that you have to bootstrap the Lerna project first, simply follow:
+To actually start seeing the components you have to run React Storybook:
 
 ```
-$ yarn bootstrap
 $ yarn dev
 ```
 
@@ -122,34 +119,14 @@ to run the project in development, and to build the project.
 
 Below you can read a description of each script.
 
-### `yarn bootstrap`
-
-Cleans, installs and links dependencies. Uses `lerna bootstrap`.
-This is what you need to do to before running `yarn dev`
-
 ### `yarn dev`
 
-Starts watching the project source file and starts storybook.
-It runs the following two commands `yarn build:watch & yarn storybook`.
+Starts the development storybook.
 
-### `yarn build:watch`
-
-`lerna exec` is used to run babel (babel-cli) on all the packages.
-This makes the packages available within packages.
-Each package will get a `lib` directory, which contains the build.
-Remember to use `yarn bootstrap`, if you are not running `yarn dev`.
-
-### `yarn storybook`
-
-This will run react storybook, a React development environment that finds
-all files in your packages directory that match `*.stories.js`.
-
-### `yarn deploy-storybook`
+### `yarn storybook-to-ghpages`
 
 This will build a static version of the storybook and deploys it onto the `gh-pages`
 (GitHub pages) branch. This will make it available on [https://segmentio.github.io/evergreen](https://segmentio.github.io/evergreen).
-
-There still needs to be some work done to make this happen with Circle CI (continuous integration).
 
 ### `yarn create-package`
 
@@ -159,16 +136,15 @@ It should be useful for creating utilities.
 For the following command:
 
 ```
-yarn create-package evergreen-utils
+yarn create-package utils
 ```
 
 The following file tree will be generated:
 
 ```
-/packages/evergreen-utils
+/src/utils
 ├── /src/
-│   └── index.js
-└── package.json
+└── index.js
 ```
 
 ### `yarn create-package:components`
@@ -179,27 +155,24 @@ You can pass one or more components to this command.
 For the following command:
 
 ```
-yarn create-package:components evergreen-typography Text Heading
+yarn create-package:components typography Text Heading
 ```
 
 The following file tree will be generated:
 
 ```
-/packages/evergreen-typography
+/src/typography
 ├── /src/
-│   │-  /components/
-|   │   |── Text.js
-|   │   └── Heading.js
-│   └── index.js
-|
+|   │── Text.js
+|   └── Heading.js
 ├── /stories/
 │   └── index.stories.js
-└── package.json
+└── index.js
 ```
 
-### `yarn lint`
+### `yarn test`
 
-Uses ESLint to lint the project by the configuration found in `.eslintrc.js`.
+Lints the JavaScript files using XO and then runs the unit tests.
 
 ### `yarn clean`
 

@@ -1,4 +1,4 @@
-# Snapshot report for `packages/evergreen-alert/test/index.js`
+# Snapshot report for `src/alert/test/index.js`
 
 The actual snapshot is saved in `index.js.snap`.
 

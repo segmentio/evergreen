@@ -13,20 +13,15 @@
   "main": "lib/index.js",
   "files": ["lib"],
   "scripts": {
+    "test": "xo && ava",
     "precommit": "lint-staged",
+    "dev": "start-storybook -p 6006",
+    "create-package": "./tools/create-package.js",
+    "create-package:components": "./tools/create-package-components.js",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
-    "lerna-publish": "lerna publish --skip-npm",
-    "dev": "concurrently \"npm run build:watch\" \"npm run storybook\"",
-    "create-package": "babel-node tools/create-package",
-    "create-package:components": "babel-node tools/create-package-components",
-    "bootstrap": "yarn && lerna bootstrap && cd docs && yarn",
-    "clean": "git clean -Xdf",
-    "lint": "xo",
-    "test": "ava",
-    "storybook": "start-storybook -p 6006",
-    "build:watch":
-      "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w",
-    "build": "lerna exec --parallel -- babel src -d lib --ignore *.test.js"
+    "build":
+      "babel src --out-dir lib --ignore stories,test,docs --source-maps inline",
+    "clean": "git clean -Xdf"
   },
   "engines": {
     "node": ">=8"
@@ -45,8 +40,8 @@
     "ui-box": "^0.5.4"
   },
   "peerDependencies": {
-    "react-dom": "^16.0.0",
-    "react": "^16.0.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.17",
@@ -62,9 +57,10 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
     "concurrently": "^3.5.1",
-    "enzyme-adapter-react-16": "^1.1.1",
     "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-xo-react": "^0.14.0",
     "eslint-plugin-react": "^7.5.1",
@@ -72,12 +68,11 @@
     "file-loader": "^1.1.5",
     "fs-extra": "^4.0.3",
     "husky": "^0.14.3",
-    "lerna": "^2.5.1",
     "lint-staged": "^6.0.0",
     "prettier": "^1.9.1",
+    "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
-    "react": "^16.2.0",
     "sinon": "^4.1.6",
     "starwars-names": "^1.6.0",
     "url-loader": "^0.6.2",
@@ -112,7 +107,7 @@
     "singleQuote": true
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add"],
+    "*.js": ["xo --fix", "prettier --write", "git add"],
     "*.{json,md}": ["prettier --write", "git add"]
   },
   "ava": {
