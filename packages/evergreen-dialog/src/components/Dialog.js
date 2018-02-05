@@ -4,7 +4,7 @@ import { css } from 'ui-box'
 import { Pane } from 'evergreen-layers'
 import { Heading } from 'evergreen-typography'
 import Overlay from 'evergreen-overlay'
-import { IconButton } from 'evergreen-buttons'
+import { Button, IconButton } from 'evergreen-buttons'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -50,40 +50,77 @@ const animationStyles = {
 
 class Dialog extends React.Component {
   static propTypes = {
+    /**
+     * Composes the Overlay component as the base.
+     */
     ...Overlay.propTypes,
+
+    /**
+     * Children can be a node or a function accepting { close }.
+     */
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+
+    /**
+     * Props to be passed to the primary button.
+     * You should pass `children` and `onClick``
+     */
+    primaryButton: PropTypes.object,
+
+    /**
+     * Label of the cancel button, shown when primaryButton is passed.
+     */
+    cancelLabel: PropTypes.node,
+
+    /**
+     * Hide cancel button when you are presenting a primary button.
+     */
+    hideCancelButton: PropTypes.bool,
+
+    /**
+     * Title of the Dialog.
+     */
     title: PropTypes.node,
+
+    /**
+     * Width of the Dialog.
+     */
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    /**
+     * Show the close icon.
+     */
     hasCloseIcon: PropTypes.bool,
+
+    /**
+     * Props that are passed to the Dialog container.
+     */
     containerProps: PropTypes.object
   }
 
   static defaultProps = {
     width: 567,
-    height: 240,
-    hasCloseIcon: true
+    hasCloseIcon: true,
+    cancelLabel: 'Cancel'
   }
 
   render() {
     const {
       children,
+      title,
       width,
       height,
+      primaryButton,
+      cancelLabel,
       hasCloseIcon,
       containerProps,
-      title,
+      hideCancelButton,
       ...props
     } = this.props
 
     return (
       <Overlay {...props}>
         {({ state, close }) => (
-          <Pane
-            display="flex"
-            justifyContent="center"
-            height="100vh"
-            paddingTop={120}
-          >
+          <Pane display="flex" justifyContent="center" paddingTop={120}>
             <Pane
               role="dialog"
               backgroundColor="white"
@@ -115,6 +152,28 @@ class Dialog extends React.Component {
                       close
                     })
                   : children}
+
+                {primaryButton && (
+                  <Pane
+                    marginTop={16}
+                    display="flex"
+                    flexDirection="row-reverse"
+                  >
+                    <Button
+                      marginLeft={8}
+                      appearance="green"
+                      {...primaryButton}
+                      onClick={() =>
+                        typeof primaryButton.onClick === 'function'
+                          ? primaryButton.onClick(close)
+                          : close()
+                      }
+                    />
+                    {hideCancelButton ? null : (
+                      <Button onClick={close}>{cancelLabel}</Button>
+                    )}
+                  </Pane>
+                )}
               </Pane>
             </Pane>
           </Pane>
