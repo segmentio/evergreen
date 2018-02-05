@@ -30,6 +30,69 @@ export default class SelectMenuContent extends PureComponent {
     this.state = {}
   }
 
+  componentDidMount() {
+    window.addEventListener('keyup', this.handleKeyUp)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keyup', this.handleKeyUp)
+  }
+
+  handleKeyUp = e => {
+    if (e.keyCode === 38) {
+      this.handleArrowUp()
+    }
+
+    if (e.keyCode === 40) {
+      this.handleArrowDown()
+    }
+
+    if (e.keyCode === 13) {
+      this.handleEnter()
+    }
+  }
+
+  getCurrentIndex() {
+    const { options, listProps } = this.props
+    const { selected } = listProps
+
+    return options.findIndex(option => option.value === selected[0])
+  }
+
+  handleArrowUp() {
+    const { options, listProps } = this.props
+    const { onSelect } = listProps
+
+    let nextIndex = this.getCurrentIndex() - 1
+
+    if (nextIndex < 0) {
+      nextIndex = options.length - 1
+    }
+
+    onSelect(options[nextIndex])
+  }
+
+  handleArrowDown() {
+    const { options, listProps } = this.props
+    const { onSelect } = listProps
+
+    let nextIndex = this.getCurrentIndex() + 1
+
+    if (nextIndex === options.length) {
+      nextIndex = 0
+    }
+
+    onSelect(options[nextIndex])
+  }
+
+  handleEnter() {
+    const isSelected = this.getCurrentIndex() === -1
+
+    if (isSelected) {
+      this.props.close()
+    }
+  }
+
   render() {
     const {
       width,
