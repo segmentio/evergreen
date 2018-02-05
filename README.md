@@ -75,10 +75,21 @@ Below you can read a description of each script.
 
 Starts the development React Storybook.
 
-### `yarn storybook-to-ghpages`
+### `yarn test`
 
-Build a static version of the storybook and deploys it onto the `gh-pages`
-(GitHub pages) branch. This will make it available on [https://segmentio.github.io/evergreen](https://segmentio.github.io/evergreen).
+Lints the JavaScript files using XO and then runs the unit tests using AVA.
+
+### `yarn build`
+
+Builds all of the JavaScript files using Babel.
+
+### `yarn clean`
+
+Removes all untracked files (`git clean -Xdf`).
+
+### `yarn release`
+
+Releases new version of Evergreen, using `np` to prepare it and CircleCI to publish it.
 
 ### `yarn create-package`
 
@@ -120,22 +131,6 @@ The following file tree will be generated:
 │   └── index.stories.js
 └── index.js
 ```
-
-### `yarn test`
-
-Lints the JavaScript files using XO and then runs the unit tests using AVA.
-
-### `yarn build`
-
-Builds all of the JavaScript files using Babel.
-
-### `yarn clean`
-
-Removes all untracked files (`git clean -Xdf`).
-
-### `yarn release`
-
-Releases new version of Evergreen, using `np` to prepare it and CircleCI to publish it.
 
 ## Contributors 🎉
 
