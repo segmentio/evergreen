@@ -1,3 +1,10 @@
 {
-  "presets": ["env", "react", "stage-0"]
+  "env": {
+    "commonjs": {
+      "presets": ["env", "react", "stage-0"]
+    },
+    "esm": {
+      "presets": [["env", { "modules": false }], "react", "stage-0"]
+    }
+  }
 }

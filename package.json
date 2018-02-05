@@ -10,8 +10,10 @@
   "keywords": ["evergreen", "segment", "ui", "react"],
   "repository": "segmentio/evergreen-ui",
   "license": "MIT",
-  "main": "lib/index.js",
-  "files": ["lib"],
+  "main": "commonjs/index.js",
+  "module": "esm/index.js",
+  "files": ["commonjs", "esm"],
+  "sideEffects": false,
   "scripts": {
     "test": "xo && ava",
     "precommit": "lint-staged",
@@ -19,8 +21,11 @@
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
-    "build":
-      "babel src --out-dir lib --ignore stories,test,docs --source-maps inline",
+    "build-commonjs":
+      "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore stories,test,docs --source-maps inline",
+    "build-esm":
+      "BABEL_ENV=esm babel src --out-dir esm --ignore stories,test,docs --source-maps inline",
+    "build": "yarn build-commonjs && yarn build-esm",
     "clean": "git clean -Xdf",
     "release": "np --no-publish"
   },
@@ -112,7 +117,7 @@
   },
   "size-limit": [
     {
-      "path": "lib/index.js",
+      "path": "commonjs/index.js",
       "limit": "55 KB"
     }
   ]
