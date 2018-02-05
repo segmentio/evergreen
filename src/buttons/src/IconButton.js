@@ -12,7 +12,7 @@ export default class IconButton extends PureComponent {
     ...Button.propTypes,
 
     /**
-     * The icon to be used. Can be any icon from `evergreen-icons`.
+     * The icon to be used. Can be any icon from Evergreen.
      */
     icon: PropTypes.oneOf(Object.keys(IconMap)),
 

@@ -28,7 +28,7 @@ export default class Button extends PureComponent {
     isActive: PropTypes.bool,
 
     /**
-     * Sets an icon before the text. Can be any icon from `evergreen-icons`.
+     * Sets an icon before the text. Can be any icon from Evergreen.
      */
     iconBefore: PropTypes.oneOf(Object.keys(IconMap)),
 
@@ -38,7 +38,7 @@ export default class Button extends PureComponent {
     iconBeforeAim: PropTypes.oneOf(Object.keys(IconAim)),
 
     /**
-     * Sets an icon after the text. Can be any icon from `evergreen-icons`
+     * Sets an icon after the text. Can be any icon from Evergreen.
      */
     iconAfter: PropTypes.oneOf(Object.keys(IconMap)),
 
