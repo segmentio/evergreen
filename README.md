@@ -29,8 +29,7 @@ $ yarn add evergreen-ui
 $ npm install --save evergreen-ui
 ```
 
-A working version, assuming you are using something like [Create React App](https://github.com/facebookincubator/create-react-app),
-might look like this:
+A working version, assuming you are using something like [Create React App](https://github.com/facebookincubator/create-react-app), might look like this:
 
 ```js
 import React from 'react'

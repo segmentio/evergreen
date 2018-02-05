@@ -10,7 +10,7 @@ import {
   TableBody,
   TableHead
 } from '..'
-import profiles from '../stories/profiles'
+import profiles from '../stories/profiles.json' // eslint-disable-line import/extensions
 /* eslint-disable import/no-unresolved, import/no-webpack-loader-syntax */
 import sourceTable from '!raw-loader!../src/Table'
 import sourceTableCell from '!raw-loader!../src/TableCell'

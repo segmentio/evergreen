@@ -164,8 +164,8 @@ const components = [
     description: (
       <p>
         The <code>IconButton</code> component has access to all icons available
-        in <code>evergreen-icons</code>. You can use the <code>iconAim</code>{' '}
-        prop to determine where to aim the icon. This is only useful for the{' '}
+        in <code>evergreen-ui</code>. You can use the <code>iconAim</code> prop
+        to determine where to aim the icon. This is only useful for the{' '}
         <code>triangle</code> and <code>arrow</code> icon.
       </p>
     ),
