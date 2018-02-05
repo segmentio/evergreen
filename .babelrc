@@ -9,6 +9,9 @@
     "test": {
       "presets": ["env", "react", "stage-0"]
     },
+    "production": {
+      "presets": ["env", "react", "stage-0"]
+    },
     "commonjs": {
       "presets": ["env", "react", "stage-0"]
     },
