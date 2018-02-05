@@ -178,6 +178,10 @@ Lints the JavaScript files using XO and then runs the unit tests.
 
 Remove all untracked files and removes all node_modules (using `rm -rf`).
 
+### `yarn release`
+
+Releases new version of Evergreen using `np` to prepare it and CircleCI to publish it.
+
 ## Creating new scripts/tools
 
 If you want to add a script to the `tools` directory, make sure to use `babel-node`
