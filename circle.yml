@@ -12,6 +12,7 @@ dependencies:
     - npm config set "//registry.npmjs.org/:_authToken" $NPM_AUTH
   override:
     - yarn install --frozen-lockfile
+    - cd docs && yarn install --frozen-lockfile
   cache_directories:
     - ~/.cache/yarn
     - docs/node_modules
