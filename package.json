@@ -16,6 +16,7 @@
   "sideEffects": false,
   "scripts": {
     "test": "xo && ava",
+    "prepublishOnly": "yarn run build",
     "precommit": "lint-staged",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
@@ -25,7 +26,7 @@
       "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore stories,test,docs --source-maps inline",
     "build-esm":
       "BABEL_ENV=esm babel src --out-dir esm --ignore stories,test,docs --source-maps inline",
-    "build": "yarn build-commonjs && yarn build-esm",
+    "build": "yarn run build-commonjs && yarn run build-esm",
     "clean": "git clean -Xdf",
     "release": "np --no-publish"
   },
