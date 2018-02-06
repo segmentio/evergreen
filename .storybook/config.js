@@ -4,7 +4,7 @@ import { setOptions } from '@storybook/addon-options'
 // Option defaults:
 setOptions({
   /**
-   * name to display in the top left corner
+   * Name to display in the top left corner
    * @type {String}
    */
   name: '🌲 Evergreen',
@@ -14,37 +14,37 @@ setOptions({
    */
   url: 'https://github.com/segmentio/evergreen',
   /**
-   * show story component as full screen
+   * Show story component as full screen
    * @type {Boolean}
    */
   goFullScreen: false,
   /**
-   * display left panel that shows a list of stories
+   * Display left panel that shows a list of stories
    * @type {Boolean}
    */
   showLeftPanel: true,
   /**
-   * display horizontal panel that displays addon configurations
+   * Display horizontal panel that displays addon configurations
    * @type {Boolean}
    */
   showDownPanel: false,
   /**
-   * display floating search box to search through stories
+   * Display floating search box to search through stories
    * @type {Boolean}
    */
   showSearchBox: false,
   /**
-   * show horizontal addons panel as a vertical panel on the right
+   * Show horizontal addons panel as a vertical panel on the right
    * @type {Boolean}
    */
   downPanelInRight: false,
   /**
-   * sorts stories
+   * Sorts stories
    * @type {Boolean}
    */
   sortStoriesByKind: false,
   /**
-   * regex for finding the hierarchy separator
+   * Regex for finding the hierarchy separator
    * @example:
    *   null - turn off hierarchy
    *   /\// - split by `/`
@@ -55,13 +55,13 @@ setOptions({
   hierarchySeparator: null,
 
   /**
-   * sidebar tree animations
+   * Sidebar tree animations
    * @type {Boolean}
    */
   sidebarAnimations: true,
 
   /**
-   * id to select an addon panel
+   * ID to select an addon panel
    * @type {String}
    */
   selectedAddonPanel: undefined // The order of addons in the "Addons Panel" is the same as you import them in 'addons.js'. The first panel will be opened by default as you run Storybook

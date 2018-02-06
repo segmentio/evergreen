@@ -11,7 +11,8 @@ dependencies:
   pre:
     - npm config set "//registry.npmjs.org/:_authToken" $NPM_AUTH
   override:
-    - yarn run bootstrap
+    - yarn install --frozen-lockfile
+    - cd docs && yarn install --frozen-lockfile
   cache_directories:
     - ~/.cache/yarn
     - docs/node_modules
@@ -22,8 +23,8 @@ compile:
 
 test:
   override:
-    - yarn run lint
     - yarn run test
+    - yarn run size-limit
 
 deployment:
   deploy_docs:
@@ -31,6 +32,6 @@ deployment:
     commands:
       - yarn run storybook-to-ghpages
   publish:
-    tag: /[^@]+@[0-9]+(\.[0-9]+)*/
+    tag: /v[0-9]+(\.[0-9]+)*/
     commands:
-      - ./tools/publish-tag.js $CIRCLE_TAG
+      - npm publish

@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import { Button } from 'evergreen-buttons'
+import { Button } from '../../../src'
 import TopBar from '../components/TopBar'
 
 const NativeLink = ({ ...props }) => {

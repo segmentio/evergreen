@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-curly-brace-presence */
 import React from 'react'
 import TopBar from '../../components/TopBar'
 import GetStartedSidebar from '../../components/GetStartedSidebar'
@@ -55,37 +56,41 @@ export default () => {
               </p>
               <h2>Install and use components</h2>
               <p>
-                Evergreen is a mono-repo, which means it consists of multiple
-                packages. Most packages will contain React components, to start
-                using them in your React projects you have to install them one
-                by one.
-              </p>
-              <p>
-                For example, getting the button component will require you to
-                install <code>evergreen-buttons</code>.
+                Evergreen is made up of multiple components and tools which you
+                can import one by one. All you need to do is install the{' '}
+                <code>evergreen-ui</code> package:
               </p>
 
               <pre>
-                <code>$ yarn install evergreen-buttons</code>
+                <code>
+                  {`
+$ yarn add evergreen-ui
+# or
+$ npm install --save evergreen-ui
+                `.trim()}
+                </code>
               </pre>
 
               <p>
-                A working version might look like this, assuming you are using
-                something like{' '}
+                A working version, assuming you are using something like{' '}
                 <NativeLink href="https://github.com/facebookincubator/create-react-app">
                   Create React App
-                </NativeLink>:
+                </NativeLink>, might look like this:
               </p>
 
               <pre>
-                <code>{`import React from 'react'
+                <code>
+                  {`
+import React from 'react'
 import ReactDOM from 'react-dom'
-import { Button } from 'evergreen-buttons'
+import { Button } from 'evergreen-ui'
 
 ReactDOM.render(
-  <Button>I am using 🌲Evergreen!</Button>,
+  <Button>I am using 🌲 Evergreen!</Button>,
   document.getElementById('root')
-)`}</code>
+)
+                `.trim()}
+                </code>
               </pre>
             </div>
           </section>

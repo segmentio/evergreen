@@ -7,7 +7,7 @@ import PlaygroundExample from './PlaygroundExample'
 
 export default class ComponentReadme extends PureComponent {
   static propTypes = {
-    packageJSON: PropTypes.object,
+    name: PropTypes.string,
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     subTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     designGuidelines: PropTypes.node,
@@ -18,7 +18,7 @@ export default class ComponentReadme extends PureComponent {
 
   render() {
     const {
-      packageJSON,
+      name,
       title,
       subTitle,
       designGuidelines,
@@ -35,30 +35,13 @@ export default class ComponentReadme extends PureComponent {
             <h1 className="ComponentReadme-title">{title}</h1>
             <p className="ComponentReadme-subtitle">{subTitle}</p>
             <dl>
-              <dt>Install</dt>
-              <dd>
-                <code className="">yarn add {packageJSON.name}</code>
-              </dd>
-              <dt>Version</dt>
-              <dd>
-                <code className="">{packageJSON.version}</code>
-              </dd>
               <dt>Links</dt>
               <dd>
                 <a
-                  href={`https://github.com/segmentio/evergreen/tree/master/packages/${
-                    packageJSON.name
-                  }`}
+                  href={`https://github.com/segmentio/evergreen/tree/master/src/${name}`}
                   target="_blank"
                 >
                   GitHub
-                </a>
-                {` `}&middot;{` `}
-                <a
-                  href={`https://www.npmjs.com/package/${packageJSON.name}`}
-                  target="_blank"
-                >
-                  npm
                 </a>
               </dd>
             </dl>
@@ -116,8 +99,8 @@ export default class ComponentReadme extends PureComponent {
                 <div className="Content">
                   <h2 id="component-examples">Component Examples</h2>
                   <p>
-                    The <code>{packageJSON.name}</code> package exports the
-                    following documented components:
+                    The <code>{name}</code> package exports the following
+                    documented components:
                   </p>
                   <ul>
                     {components.map(component => {

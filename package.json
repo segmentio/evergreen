@@ -1,62 +1,53 @@
 {
-  "private": true,
+  "name": "evergreen-ui",
+  "version": "1.0.0-0",
+  "description": "🌲 React UI Kit by Segment 🌲",
+  "contributors": [
+    "Jeroen Ransijn (https://twitter.com/jeroen_ransijn)",
+    "Roland Warmerdam (https://roland.codes)"
+  ],
+  "keywords": ["evergreen", "segment", "ui", "react"],
+  "repository": "segmentio/evergreen-ui",
+  "license": "MIT",
+  "main": "commonjs/index.js",
+  "module": "esm/index.js",
+  "files": ["commonjs", "esm"],
+  "sideEffects": false,
   "scripts": {
+    "test": "xo && ava",
+    "prepublishOnly": "yarn run build",
     "precommit": "lint-staged",
+    "dev": "start-storybook -p 6006",
+    "create-package": "./tools/create-package.js",
+    "create-package:components": "./tools/create-package-components.js",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
-    "lerna-publish": "lerna publish --skip-npm",
-    "dev": "concurrently \"npm run build:watch\" \"npm run storybook\"",
-    "create-package": "babel-node tools/create-package",
-    "create-package:components": "babel-node tools/create-package-components",
-    "bootstrap": "yarn && lerna bootstrap && cd docs && yarn",
+    "build-commonjs":
+      "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore stories,test,docs --source-maps inline",
+    "build-esm":
+      "BABEL_ENV=esm babel src --out-dir esm --ignore stories,test,docs --source-maps inline",
+    "build": "yarn run build-commonjs && yarn run build-esm",
     "clean": "git clean -Xdf",
-    "lint": "xo",
-    "test": "ava",
-    "storybook": "start-storybook -p 6006",
-    "build:watch":
-      "lerna exec --parallel -- babel src -d lib --ignore *.test.js -w",
-    "build": "lerna exec --parallel -- babel src -d lib --ignore *.test.js"
+    "release": "np --no-publish"
   },
-  "xo": {
-    "parser": "babel-eslint",
-    "extends": ["xo-react", "prettier", "prettier/react"],
-    "envs": ["browser"],
-    "space": true,
-    "semicolon": false,
-    "rules": {
-      "indent": ["off"],
-      "react/jsx-indent-props": ["off"],
-      "react/jsx-indent": ["off"],
-      "import/no-unresolved": [
-        "error",
-        {
-          "commonjs": true,
-          "ignore": ["^evergreen-"]
-        }
-      ],
-      "react/require-default-props": ["off"],
-      "react/default-props-match-prop-types": ["off"],
-      "react/forbid-component-props": ["off"],
-      "react/jsx-no-bind": ["off"],
-      "unicorn/filename-case": ["off"]
-    }
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
-  },
-  "lint-staged": {
-    "*.js": ["prettier --write", "git add"],
-    "*.{json,md}": ["prettier --write", "git add"]
-  },
-  "ava": {
-    "files": ["packages/*/test/*.js"],
-    "require": ["babel-register", "./tools/test-setup"],
-    "babel": "inherit"
+  "engines": {
+    "node": ">=8"
   },
   "dependencies": {
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "arrify": "^1.0.1",
+    "dom-helpers": "^3.2.1",
+    "downshift": "^1.16.0",
+    "fuzzaldrin-plus": "^0.6.0",
+    "lodash.mapvalues": "^4.6.0",
+    "object-values": "^1.0.0",
+    "prop-types": "^15.0.0",
+    "react-scrollbar-size": "^2.0.2",
+    "react-tiny-virtual-list": "^2.1.4",
+    "react-transition-group": "^2.2.1",
+    "ui-box": "^0.5.4"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.17",
@@ -72,7 +63,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "concurrently": "^3.5.1",
+    "babel-register": "^6.26.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-prettier": "^2.9.0",
@@ -82,12 +73,52 @@
     "file-loader": "^1.1.5",
     "fs-extra": "^4.0.3",
     "husky": "^0.14.3",
-    "lerna": "^2.5.1",
     "lint-staged": "^6.0.0",
+    "np": "^2.19.0",
     "prettier": "^1.9.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "sinon": "^4.1.6",
+    "size-limit": "^0.14.0",
+    "starwars-names": "^1.6.0",
     "url-loader": "^0.6.2",
     "xo": "^0.18.2"
-  }
+  },
+  "xo": {
+    "parser": "babel-eslint",
+    "extends": ["xo-react", "prettier", "prettier/react"],
+    "envs": ["browser"],
+    "space": true,
+    "semicolon": false,
+    "rules": {
+      "indent": ["off"],
+      "react/jsx-indent-props": ["off"],
+      "react/jsx-indent": ["off"],
+      "react/require-default-props": ["off"],
+      "react/default-props-match-prop-types": ["off"],
+      "react/forbid-component-props": ["off"],
+      "react/jsx-no-bind": ["off"],
+      "unicorn/filename-case": ["off"]
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "lint-staged": {
+    "*.js": ["xo --fix", "prettier --write", "git add"],
+    "*.{json,md}": ["prettier --write", "git add"]
+  },
+  "ava": {
+    "files": ["**/test/**/*.js"],
+    "require": ["babel-register", "./tools/test-setup"],
+    "babel": "inherit"
+  },
+  "size-limit": [
+    {
+      "path": "commonjs/index.js",
+      "limit": "55 KB"
+    }
+  ]
 }
