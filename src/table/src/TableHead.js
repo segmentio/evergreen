@@ -18,15 +18,12 @@ export default class TableHead extends PureComponent {
     accountForScrollbar: PropTypes.bool
   }
 
-  static defaultProps = {
-    accountForScrollbar: true
-  }
-
   state = {
     scrollbarWidth: 0
   }
 
   static defaultProps = {
+    accountForScrollbar: true,
     boxSizing: 'border-box',
     display: 'flex',
     appearance: 'tint2',
