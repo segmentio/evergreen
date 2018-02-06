@@ -27,7 +27,7 @@
       "BABEL_ENV=esm babel src --out-dir esm --ignore stories,test,docs --source-maps inline",
     "build": "yarn run build-commonjs && yarn run build-esm",
     "clean": "git clean -Xdf",
-    "release": "np --no-publish"
+    "release": "np --no-publish --no-cleanup"
   },
   "engines": {
     "node": ">=8"
