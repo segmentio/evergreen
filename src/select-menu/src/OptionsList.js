@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import VirtualList from 'react-tiny-virtual-list'
 import { Pane } from '../../layers'
-import { TableRow, SearchTableHeaderCell } from '../../table'
+import { TableHead, SearchTableHeaderCell } from '../../table'
 import OptionShapePropType from './OptionShapePropType'
 import Option from './Option'
 
@@ -148,14 +148,14 @@ export default class OptionsList extends PureComponent {
         {...props}
       >
         {hasFilter && (
-          <TableRow>
+          <TableHead>
             <SearchTableHeaderCell
               onChange={this.handleChange}
               innerRef={this.assignSearchRef}
               borderRight={null}
               height={32}
             />
-          </TableRow>
+          </TableHead>
         )}
         <Pane flex={1}>
           <VirtualList
