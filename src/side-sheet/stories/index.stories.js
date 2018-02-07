@@ -21,29 +21,56 @@ class SideSheetManager extends PureComponent {
         this.setState({
           isShown: true
         }),
-      hide: () =>
+      hide: (...args) => {
+        console.log(...args)
         this.setState({
           isShown: false
         })
+      }
     })
   }
 }
 
-storiesOf('side-sheet', module).add('SideSheet', () => (
-  <Box padding={40}>
-    {(() => {
-      document.body.style.margin = '0'
-      document.body.style.height = '100vh'
-    })()}
-    <SideSheetManager>
-      {({ hide, show, isShown }) => (
-        <Box>
-          <SideSheet isShown={isShown} onExited={hide}>
-            SideSheet Content
-          </SideSheet>
-          <Button onClick={show}>Show Side Sheet</Button>
-        </Box>
-      )}
-    </SideSheetManager>
-  </Box>
-))
+storiesOf('side-sheet', module)
+  .add('SideSheet', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <SideSheetManager>
+        {({ hide, show, isShown }) => (
+          <Box>
+            <SideSheet isShown={isShown} onExited={hide}>
+              SideSheet Content
+            </SideSheet>
+            <Button onClick={show}>Show Side Sheet</Button>
+          </Box>
+        )}
+      </SideSheetManager>
+    </Box>
+  ))
+  .add('close from within', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <SideSheetManager>
+        {({ hide, show, isShown }) => (
+          <Box>
+            <SideSheet isShown={isShown} onExited={hide}>
+              {({ close }) => {
+                return (
+                  <Box padding={40}>
+                    <Button onClick={close}>Close From Within</Button>
+                  </Box>
+                )
+              }}
+            </SideSheet>
+            <Button onClick={show}>Show Side Sheet</Button>
+          </Box>
+        )}
+      </SideSheetManager>
+    </Box>
+  ))
