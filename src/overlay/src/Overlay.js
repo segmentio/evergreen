@@ -56,47 +56,103 @@ const animationStyles = {
   }
 }
 
+/**
+ * Overlay is essentially a wrapper around react-transition-group/Transition
+ * Learn more: https://reactcommunity.org/react-transition-group/
+ */
 class Overlay extends React.Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
+    /**
+     * Children can be a node or a function accepting `close: func`
+     * and `state: ENTERING | ENTERED | EXITING | EXITED`.
+     */
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+
+    /**
+     * Show the component; triggers the enter or exit states.
+     */
     isShown: PropTypes.bool,
-    hasBackdrop: PropTypes.bool,
+
+    /**
+     * Props to be passed through on the inner Box.
+     */
     containerProps: PropTypes.object,
 
+    /**
+     * Callback fired as soon as backdrop is clicked or close is called.
+     * Might get deprecated over time. Use `onExited` instead.
+     */
     onHide: PropTypes.func,
+
+    /**
+     * Callback fired before the "exiting" status is applied.
+     * type: `Function(node: HtmlElement) -> void`
+     */
     onExit: PropTypes.func,
+
+    /**
+     * Callback fired after the "exiting" status is applied.
+     * type: `Function(node: HtmlElement) -> void`
+     */
     onExiting: PropTypes.func,
+
+    /**
+     * Callback fired after the "exited" status is applied.
+     * type: `Function(exitState: Any?, node: HtmlElement) -> void`
+     */
     onExited: PropTypes.func,
+
+    /**
+     * Callback fired before the "entering" status is applied.
+     * An extra parameter isAppearing is supplied to indicate if the enter stage
+     * is occurring on the initial mount.
+     *
+     * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
+     */
     onEnter: PropTypes.func,
+
+    /**
+     * Callback fired after the "entering" status is applied.
+     * An extra parameter isAppearing is supplied to indicate if the enter stage
+     * is occurring on the initial mount.
+     *
+     * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
+     */
     onEntering: PropTypes.func,
-    onEntered: PropTypes.func,
-    onBackdropClick: PropTypes.func
+
+    /**
+     * Callback fired after the "entered" status is applied.
+     * An extra parameter isAppearing is supplied to indicate if the enter stage
+     * is occurring on the initial mount.
+     *
+     * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
+     */
+    onEntered: PropTypes.func
   }
 
   static defaultProps = {
     onHide: () => {},
-    hasBackdrop: true
+    onExit: () => {},
+    onExiting: () => {},
+    onExited: () => {},
+    onEnter: () => {},
+    onEntering: () => {},
+    onEntered: () => {}
   }
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       exiting: false
     }
   }
 
-  /**
-   * Need to figure out what to do here.
-   */
-  onHide = () => {}
-
-  handleHidden = (...args) => {
+  handleHidden = node => {
     this.setState({ exiting: false })
-    this.onHide()
 
     if (this.props.onExited) {
-      this.props.onExited(...args)
+      this.props.onExited(node)
     }
   }
 
@@ -106,22 +162,12 @@ class Overlay extends React.Component {
     }
 
     this.setState({ exiting: true })
-
-    if (this.props.onBackdropClick) {
-      this.props.onBackdropClick(e)
-    }
-
-    if (this.props.hasBackdrop === true) {
-      this.props.onHide()
-    }
+    this.props.onHide()
   }
 
   handleClose = () => {
     this.setState({ exiting: true })
-
-    if (this.props.hasBackdrop === true) {
-      this.props.onHide()
-    }
+    this.props.onHide()
   }
 
   render() {
@@ -166,7 +212,10 @@ class Overlay extends React.Component {
               {...containerProps}
             >
               {typeof children === 'function'
-                ? children({ state, close: this.handleClose })
+                ? children({
+                    state,
+                    close: this.handleClose
+                  })
                 : children}
             </Box>
           )}

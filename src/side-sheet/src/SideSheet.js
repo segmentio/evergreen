@@ -52,8 +52,19 @@ const animationStyles = {
 
 class SideSheet extends React.Component {
   static propTypes = {
+    /**
+     * Composes the Overlay components as the base.
+     */
     ...Overlay.propTypes,
+
+    /**
+     * Width of the SideSheet.
+     */
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    /**
+     * Properties to pass through the SideSheet container Pane.
+     */
     containerProps: PropTypes.object
   }
 
@@ -83,7 +94,9 @@ class SideSheet extends React.Component {
               {...paneProps}
               {...containerProps}
             >
-              {children}
+              {typeof children === 'function'
+                ? children({ state, close })
+                : children}
             </Pane>
           </Pane>
         )}
