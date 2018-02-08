@@ -27,7 +27,7 @@
       "BABEL_ENV=esm babel src --out-dir esm --ignore stories,test,docs --source-maps inline",
     "build": "yarn run build-commonjs && yarn run build-esm",
     "clean": "git clean -Xdf",
-    "release": "np --no-publish --no-cleanup"
+    "release": "np --no-publish"
   },
   "engines": {
     "node": ">=8"
@@ -74,7 +74,6 @@
     "fs-extra": "^4.0.3",
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
-    "np": "^2.19.0",
     "prettier": "^1.9.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
