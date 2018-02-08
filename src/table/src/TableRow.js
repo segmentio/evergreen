@@ -23,7 +23,12 @@ export default class TableRow extends PureComponent {
     /**
      * Makes the TableRow selected.
      */
-    isSelected: PropTypes.bool
+    isSelected: PropTypes.bool,
+
+    /**
+     * Manually set the TableRow to be highlighted.
+     */
+    isHighlighted: PropTypes.bool
   }
 
   static defaultProps = {
@@ -55,6 +60,7 @@ export default class TableRow extends PureComponent {
       children,
       onClick, // Filter out onClick
       onKeyPress, // Filter out onKeyPress
+      isHighlighted,
       isSelectable,
       isSelected,
       css = {},
@@ -64,9 +70,13 @@ export default class TableRow extends PureComponent {
     return (
       <Pane
         display="flex"
-        {...(isSelected ? { 'aria-selected': true } : {})}
         {...(isSelectable
-          ? { css: { ...selectableRowStyle, ...css }, tabIndex: 0 }
+          ? {
+              'aria-selected': isHighlighted,
+              'aria-current': isSelected,
+              css: { ...selectableRowStyle, ...css },
+              tabIndex: 0
+            }
           : { css })}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}
