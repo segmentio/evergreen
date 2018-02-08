@@ -88,7 +88,7 @@ Removes all untracked files (`git clean -Xdf`).
 
 ### `yarn release`
 
-Releases new version of Evergreen, using `np` to prepare it and CircleCI to publish it.
+Releases new version of Evergreen (requires `np` to be installed globally).
 
 ### `yarn create-package`
 
