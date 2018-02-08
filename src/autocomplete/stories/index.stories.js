@@ -4,6 +4,7 @@ import Box from 'ui-box'
 import starWarsNames from 'starwars-names'
 import { Autocomplete } from '../../autocomplete'
 import { TextInput } from '../../text-input'
+import { Button } from '../../buttons'
 
 // Generate a big list of items
 const items = [
@@ -34,7 +35,11 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Autocomplete onChange={handleChange} items={items}>
+      <Autocomplete
+        title="Starwars names"
+        onChange={handleChange}
+        items={items}
+      >
         {({ key, getInputProps, getRef, inputValue }) => (
           <TextInput
             key={key}
@@ -42,6 +47,62 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
             value={inputValue}
             innerRef={ref => getRef(ref)}
             {...getInputProps()}
+          />
+        )}
+      </Autocomplete>
+    </Box>
+    <Box padding={40}>
+      <Autocomplete onChange={handleChange} items={items}>
+        {({ key, getInputProps, getRef, openMenu, inputValue }) => (
+          <TextInput
+            key={key}
+            placeholder="Open on focus"
+            value={inputValue}
+            innerRef={ref => getRef(ref)}
+            {...getInputProps({
+              onFocus: () => {
+                openMenu()
+              }
+            })}
+          />
+        )}
+      </Autocomplete>
+    </Box>
+    <Box padding={40}>
+      <Autocomplete
+        isFilterDisabled
+        title="Disable filter"
+        onChange={handleChange}
+        items={items}
+      >
+        {({ key, getInputProps, openMenu, getRef, inputValue }) => (
+          <TextInput
+            key={key}
+            placeholder="Disable filter and open on focus"
+            value={inputValue}
+            innerRef={ref => getRef(ref)}
+            {...getInputProps({
+              onFocus: () => {
+                openMenu()
+              }
+            })}
+          />
+        )}
+      </Autocomplete>
+    </Box>
+    <Box padding={40}>
+      <Autocomplete title="Suggestions" onChange={handleChange} items={items}>
+        {({ key, getInputProps, getRef, openMenu, inputValue }) => (
+          <TextInput
+            key={key}
+            placeholder="Open on focus with title"
+            value={inputValue}
+            innerRef={ref => getRef(ref)}
+            {...getInputProps({
+              onFocus: () => {
+                openMenu()
+              }
+            })}
           />
         )}
       </Autocomplete>
@@ -57,10 +118,14 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
           toggleMenu
         }) => (
           <Box key={key} innerRef={ref => getRef(ref)} display="inline-block">
-            <TextInput value={inputValue} {...getInputProps()} />
-            <button onClick={toggleMenu} {...getButtonProps()}>
+            <TextInput
+              placeholder="Trigger with button"
+              value={inputValue}
+              {...getInputProps()}
+            />
+            <Button onClick={toggleMenu} {...getButtonProps()}>
               Trigger
-            </button>
+            </Button>
           </Box>
         )}
       </Autocomplete>

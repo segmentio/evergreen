@@ -1,65 +1,26 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { colors } from '../../colors'
-import { Pane } from '../../layers'
-import { Text } from '../../typography'
+import Option from '../../select-menu/src/Option'
 
 export default class AutocompleteItem extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     style: PropTypes.object,
-    isEven: PropTypes.bool,
     isSelected: PropTypes.bool,
     isHighlighted: PropTypes.bool
   }
 
   render() {
-    const {
-      isHighlighted,
-      isSelected,
-      style,
-      isEven,
-      children,
-      ...props
-    } = this.props
+    const { isHighlighted, isSelected, style, children, ...props } = this.props
 
     return (
-      <Pane
+      <Option
+        isHighlighted={isHighlighted}
+        isSelected={isSelected}
+        label={children}
         style={style}
-        display="flex"
-        paddingX={8}
-        alignItems="center"
-        cursor="pointer"
-        {...(isEven && !isSelected
-          ? {
-              backgroundColor: colors.neutral['5']
-            }
-          : {})}
-        {...(isHighlighted
-          ? {
-              backgroundColor: colors.blue['15']
-            }
-          : {})}
-        {...(isSelected
-          ? {
-              backgroundColor: colors.blue['300']
-            }
-          : {})}
-        {...(isSelected
-          ? {
-              fontWeight: 600
-            }
-          : {})}
         {...props}
-      >
-        <Text
-          size={300}
-          {...(isHighlighted ? { color: colors.blue['500'] } : {})}
-          {...(isSelected ? { color: '#ffffff' } : {})}
-        >
-          {children}
-        </Text>
-      </Pane>
+      />
     )
   }
 }

@@ -4,6 +4,7 @@ import fuzzaldrin from 'fuzzaldrin-plus'
 import Downshift from 'downshift'
 import VirtualList from 'react-tiny-virtual-list'
 import { Popover } from '../../popover'
+import { Text } from '../../typography'
 import { Pane } from '../../layers'
 import AutocompleteItem from './AutocompleteItem'
 
@@ -14,6 +15,7 @@ const autocompleteItemRenderer = props => <AutocompleteItem {...props} />
 // https://github.com/paypal/downshift/issues/164
 export default class Autocomplete extends PureComponent {
   static propTypes = {
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     items: PropTypes.array.isRequired,
     selectedItem: PropTypes.any,
     defaultSelectedItem: PropTypes.any,
@@ -49,6 +51,7 @@ export default class Autocomplete extends PureComponent {
     getItemProps
   }) => {
     const {
+      title,
       itemSize,
       itemsFilter,
       items: originalItems,
@@ -63,8 +66,17 @@ export default class Autocomplete extends PureComponent {
         ? originalItems
         : itemsFilter(originalItems, inputValue)
 
+    if (items.length === 0) return null
+
     return (
       <Pane width={width}>
+        {title && (
+          <Pane padding={8} borderBottom="extraMuted">
+            <Text size={200} color="muted" isUppercase>
+              {title}
+            </Text>
+          </Pane>
+        )}
         {items.length > 0 && (
           <VirtualList
             width="100%"
@@ -83,7 +95,6 @@ export default class Autocomplete extends PureComponent {
                   key: itemString,
                   index,
                   style,
-                  isEven: index % 2 === 1,
                   children: itemString,
                   onMouseUp: () => {
                     selectItemAtIndex(index)

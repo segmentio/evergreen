@@ -8,18 +8,16 @@ const selectableRowStyle = {
     backgroundColor: colors.neutral['5A']
   },
 
-  '&:focus': {
-    // BackgroundColor: colors.neutral['5A'],
+  '&:focus, &[aria-selected="true"]': {
     backgroundColor: colors.blue['5A']
-    // BoxShadow: `inset 0 0 0 2px ${colors.blue['15A']}`,
   },
 
-  '&[aria-current], &[aria-selected="true"], &:active': {
+  '&[aria-current="true"], &:active': {
     backgroundColor: colors.blue['10A'],
     color: colors.blue['500']
   },
 
-  '&[aria-current], &[aria-selected="true"]': {
+  '&[aria-current="true"], &[aria-selected="true"]': {
     cursor: 'default'
   }
 }
