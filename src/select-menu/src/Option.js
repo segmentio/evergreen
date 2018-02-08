@@ -23,20 +23,31 @@ export default class Option extends PureComponent {
     style: PropTypes.any,
     height: PropTypes.number,
     onSelect: PropTypes.func,
+    isHighlighted: PropTypes.bool,
     isSelected: PropTypes.bool
   }
 
   render() {
-    const { label, onSelect, isSelected, style, height } = this.props
+    const {
+      label,
+      onSelect,
+      isHighlighted,
+      isSelected,
+      style,
+      height,
+      ...props
+    } = this.props
 
     return (
       <TableRow
         isSelectable
+        isHighlighted={isHighlighted}
         onSelect={onSelect}
         isSelected={isSelected}
         style={style}
         display="flex"
         alignItems="center"
+        {...props}
       >
         <Pane
           paddingLeft={11}
