@@ -138,8 +138,8 @@ export default class Button extends PureComponent {
         margin={0} // Removes weird margins in Safari
         {...textStyle}
         css={{
-          ...appearanceStyle
-          ...css,
+          ...appearanceStyle,
+          ...css
         }}
         height={height}
         lineHeight={`${height}px`}
