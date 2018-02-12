@@ -45,7 +45,12 @@ export default class Button extends PureComponent {
     /**
      * The aim of the right icon. Useful to aim a triangle down.
      */
-    iconAfterAim: PropTypes.oneOf(Object.keys(IconAim))
+    iconAfterAim: PropTypes.oneOf(Object.keys(IconAim)),
+
+    /**
+     * A JavaScript object to override css styling
+     */
+    css: PropTypes.object
   }
 
   static defaultProps = {
@@ -133,8 +138,8 @@ export default class Button extends PureComponent {
         margin={0} // Removes weird margins in Safari
         {...textStyle}
         css={{
-          ...css,
-          ...appearanceStyle
+          ...appearanceStyle,
+          ...css
         }}
         height={height}
         lineHeight={`${height}px`}
