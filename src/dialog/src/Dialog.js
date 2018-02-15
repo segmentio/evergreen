@@ -106,9 +106,9 @@ class Dialog extends React.Component {
     confirmLabel: PropTypes.string,
 
     /**
-     * The intent of the message.
+     * The type of the message.
      */
-    intent: PropTypes.oneOf(['neutral', 'danger']),
+    type: PropTypes.oneOf(['default', 'danger']),
 
     /**
      * When true, the confirm button is set to loading.
@@ -168,7 +168,7 @@ class Dialog extends React.Component {
     hasHeader: true,
     hasFooter: true,
     hasCancel: true,
-    intent: 'neutral',
+    type: 'default',
     width: 560,
     topOffset: '12vh',
     minHeightContent: 80,
@@ -184,7 +184,7 @@ class Dialog extends React.Component {
     const {
       title,
       width,
-      intent,
+      type,
       isShown,
       children,
       topOffset,
@@ -212,9 +212,9 @@ class Dialog extends React.Component {
     }
 
     let buttonAppearance
-    if (intent === 'neutral') {
+    if (type === 'default') {
       buttonAppearance = 'green'
-    } else if (intent === 'danger') {
+    } else if (type === 'danger') {
       buttonAppearance = 'red'
     }
 
