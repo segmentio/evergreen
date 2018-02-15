@@ -121,11 +121,6 @@ class Dialog extends React.Component {
     isConfirmDisabled: PropTypes.bool,
 
     /**
-     * When true, the cancel button is shown.
-     */
-    showCancel: PropTypes.bool,
-
-    /**
      * Function that will be called when the cancel button is clicked.
      * This closes the Dialog by default.
      *
