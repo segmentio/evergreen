@@ -34,7 +34,7 @@ storiesOf('dialog', module).add('Dialog', () => (
             isShown={isShown}
             title="Dialog with Danger Intent"
             onCloseComplete={hide}
-            intent="danger"
+            type="danger"
             confirmLabel="Dangerous Action"
           >
             <Paragraph>Dialog content</Paragraph>
