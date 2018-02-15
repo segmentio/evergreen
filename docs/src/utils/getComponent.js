@@ -26,12 +26,13 @@ import tableDocs from '../../../src/table/docs/'
 // import radioDocs from '../../src/radio/docs/'
 import dialogDocs from '../../../src/dialog/docs/'
 // import cornerDialogDocs from '../../src/corner-dialog/docs/'
-// import alertDocs from '../../src/alert/docs/'
+import alertDocs from '../../../src/alert/docs/'
 
 const map = {
   buttons: buttonsDocs,
   table: tableDocs,
-  dialog: dialogDocs
+  dialog: dialogDocs,
+  alert: alertDocs
 }
 
 export default function getComponent(name) {

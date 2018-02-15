@@ -15,6 +15,10 @@ export default class ComponentsSidebar extends PureComponent {
         title: 'Components',
         links: [
           {
+            label: 'Alert',
+            to: '/components/alert'
+          },
+          {
             label: 'Buttons',
             to: '/components/buttons'
           },

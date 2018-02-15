@@ -69,10 +69,22 @@ const AlertAppearances = {
 
 export default class Alert extends PureComponent {
   static propTypes = {
+    /**
+     * Composes some Box APIs.
+     */
     ...spacing.propTypes,
     ...position.propTypes,
     ...layout.propTypes,
     ...dimensions.propTypes,
+
+    /**
+     * The content of the alert. When a string is passed it is wrapped in a `<Text size={400} />` component.
+     */
+    children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+
+    /**
+     * The type of the alert.
+     */
     type: PropTypes.oneOf([
       'default',
       'success',
@@ -80,10 +92,25 @@ export default class Alert extends PureComponent {
       'danger',
       'question'
     ]),
+
+    /**
+     * The title of the alert.
+     */
     title: PropTypes.node,
+
+    /**
+     * When true, show a border on the left matching the type.
+     */
     hasTrim: PropTypes.bool,
+
+    /**
+     * When true, show a icon on the left matching the type,
+     */
     hasIcon: PropTypes.bool,
-    children: PropTypes.node,
+
+    /**
+     * The appearance of the alert.
+     */
     appearance: PropTypes.oneOf(['default', 'card'])
   }
 
@@ -93,8 +120,7 @@ export default class Alert extends PureComponent {
     paddingX: 16,
     hasTrim: true,
     hasIcon: true,
-    appearance: 'default',
-    maxWidth: 400
+    appearance: 'default'
   }
 
   render() {
@@ -128,11 +154,19 @@ export default class Alert extends PureComponent {
             <Pane marginRight={8}>{getIconForType(type)}</Pane>
           )}
         <Pane>
-          <Text is="h4" size={400} marginTop={0} marginBottom={0}>
+          <Text
+            is="h4"
+            fontWeight={600}
+            size={400}
+            marginTop={0}
+            marginBottom={0}
+          >
             {title}
           </Text>
           {typeof children === 'string' ? (
-            <Text size={400}>{children}</Text>
+            <Text size={400} color="muted">
+              {children}
+            </Text>
           ) : (
             children
           )}

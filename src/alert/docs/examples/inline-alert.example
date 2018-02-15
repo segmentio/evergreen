@@ -1,0 +1,14 @@
+<Box>
+  <InlineAlert type="success" marginBottom={16}>
+    Hooray! You did it. Your Source is now sending data.
+  </InlineAlert>
+  <InlineAlert type="warning" marginBottom={16}>
+    Changes will affect all Warehouses.
+  </InlineAlert>
+  <InlineAlert type="danger" marginBottom={16}>
+    We weren’t able to save your changes.
+  </InlineAlert>
+  <InlineAlert type="question" marginBottom={16}>
+    There are over 200 integrations available.
+  </InlineAlert>
+</Box>
