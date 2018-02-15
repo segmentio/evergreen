@@ -18,17 +18,12 @@ storiesOf('dialog', module).add('Dialog', () => (
           <Dialog
             isShown={isShown}
             title="Dialog Title"
-            onExited={hide}
-            primaryButton={{
-              onClick: close => {
-                close()
-              },
-              children: 'Primary Button'
-            }}
+            onCloseComplete={hide}
+            confirmLabel="Custom Label"
           >
             <Paragraph>Dialog content</Paragraph>
           </Dialog>
-          <Button onClick={show}>Show Dialog with Primary Button</Button>
+          <Button onClick={show}>Show Dialog with Custom Button Label</Button>
         </Box>
       )}
     </DialogManager>
@@ -37,19 +32,14 @@ storiesOf('dialog', module).add('Dialog', () => (
         <Box marginBottom={16}>
           <Dialog
             isShown={isShown}
-            title="Dialog with Red Primary Button"
-            onExited={hide}
-            primaryButton={{
-              onClick: close => {
-                close()
-              },
-              appearance: 'red',
-              children: 'Primary Button'
-            }}
+            title="Dialog with Danger Intent"
+            onCloseComplete={hide}
+            intent="danger"
+            confirmLabel="Dangerous Action"
           >
             <Paragraph>Dialog content</Paragraph>
           </Dialog>
-          <Button onClick={show}>Show Dialog with Red Button</Button>
+          <Button onClick={show}>Show Dialog with Danger Intent</Button>
         </Box>
       )}
     </DialogManager>
@@ -58,14 +48,11 @@ storiesOf('dialog', module).add('Dialog', () => (
         <Box marginBottom={16}>
           <Dialog
             isShown={isShown}
-            title="Dialog with Primary Confirmation"
-            onExited={hide}
-            primaryButton={{
-              children: isLoading ? 'Loading...' : 'Confirm Loading',
-              onClick: confirmLoading,
-              isLoading
-            }}
-            hideCancelButton
+            title="Dialog with Loading Confirmation"
+            onConfirm={confirmLoading}
+            confirmLabel={isLoading ? 'Loading...' : 'Confirm Loading'}
+            isConfirmLoading={isLoading}
+            onCloseComplete={hide}
           >
             <Paragraph>
               This is useful when you need to process something before closing
@@ -81,12 +68,10 @@ storiesOf('dialog', module).add('Dialog', () => (
         <Box marginBottom={16}>
           <Dialog
             isShown={isShown}
-            title="Dialog with Primary Button Only"
-            onExited={hide}
-            primaryButton={{
-              children: 'Got It'
-            }}
-            hideCancelButton
+            title="Dialog with Confirmation Button Only"
+            onCloseComplete={hide}
+            hasCancel={false}
+            confirmLabel="Got It"
           >
             <Paragraph>
               This is useful for product updates and onboarding content.
@@ -102,7 +87,8 @@ storiesOf('dialog', module).add('Dialog', () => (
           <Dialog
             isShown={isShown}
             title="Dialog without Buttons"
-            onExited={hide}
+            onCloseComplete={hide}
+            hasFooter={false}
           >
             <Box>
               <Paragraph>Manage your own buttons and interactions.</Paragraph>
@@ -118,7 +104,8 @@ storiesOf('dialog', module).add('Dialog', () => (
           <Dialog
             isShown={isShown}
             title="Dialog with Self Managed Close"
-            onExited={hide}
+            onCloseComplete={hide}
+            hasFooter={false}
           >
             {({ close }) => (
               <Box>
@@ -136,7 +123,12 @@ storiesOf('dialog', module).add('Dialog', () => (
     <DialogManager>
       {({ isShown, show, hide }) => (
         <Box marginBottom={16}>
-          <Dialog isShown={isShown} hideHeader onExited={hide}>
+          <Dialog
+            isShown={isShown}
+            hasHeader={false}
+            hasFooter={false}
+            onCloseComplete={hide}
+          >
             {({ close }) => (
               <Box>
                 <Paragraph>
@@ -158,13 +150,7 @@ storiesOf('dialog', module).add('Dialog', () => (
           <Dialog
             isShown={isShown}
             title="Dialog with Internal Scrolling"
-            onExited={hide}
-            primaryButton={{
-              onClick: close => {
-                close()
-              },
-              children: 'Primary Button'
-            }}
+            onCloseComplete={hide}
           >
             <Box height={1200} width="100%" backgroundColor="#ddd" />
           </Dialog>

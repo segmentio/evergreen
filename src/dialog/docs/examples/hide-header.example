@@ -1,7 +1,12 @@
 <DialogManager>
   {({ isShown, show, hide }) => (
     <Box>
-      <Dialog isShown={isShown} hideHeader onExited={hide}>
+      <Dialog
+        isShown={isShown}
+        hasHeader={false}
+        hasFooter={false}
+        onCloseComplete={hide}
+      >
         {({ close }) => (
           <Box>
             <Paragraph>

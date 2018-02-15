@@ -4,7 +4,8 @@
       <Dialog
         isShown={isShown}
         title="Dialog with Self Managed Close"
-        onExited={hide}
+        onCloseComplete={hide}
+        hasFooter={false}
       >
         {({ close }) => (
           <Box>

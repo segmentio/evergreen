@@ -81,74 +81,65 @@ const components = [
     ),
     examples: [
       {
-        title: 'Primary button and cancel button',
+        title: 'Default Behavior',
         description: (
           <p>
-            By passing in the primary button, the cancel button also shows.
-            Primary button is an object which is passed through to the{' '}
-            <code>Button</code> component.
+            The default behavior of the dialog is to show a header with a title
+            and close button —  and a footer with a confirm and cancel button.
           </p>
         ),
         codeText: examplePrimaryButton,
         scope
       },
       {
-        title: 'Primary button with a custom appearance',
+        title: 'Dialog with a Danger Intent',
         description: (
           <p>
-            You can pass all properties through to the primary button. In this
-            example the red appearance is passed.
+            The intent prop determines the appearance of the confirm button.
+            <code>danger</code> is red. In the future, more intent types might
+            be added.
           </p>
         ),
         codeText: examplePrimaryButtonRed,
         scope
       },
       {
-        title: 'Primary button with loading confirmation',
+        title: 'Confirm Button with Loading Confirmation',
         description: (
           <p>
-            You can pass all properties through to the primary button. Including
-            the <code>isLoading</code> prop.
+            Pass the <code>isConfirmLoading</code> to set the loading state on
+            the confirm button.
           </p>
         ),
         codeText: examplePrimaryButtonConfirmation,
         scope
       },
       {
-        title: 'Primary button only',
+        title: 'Confirm Button Only',
         description: (
-          <p>Hide the cancel button, useful in onboarding dialogs.</p>
+          <p>
+            Sometimes you only need a confirm button and not a cancel button.
+            For example in onboarding use cases.
+          </p>
         ),
         codeText: examplePrimaryButtonOnly,
         scope
       },
       {
-        title: 'Internal scrolling',
+        title: 'Internal Scrolling',
         description: (
           <p>
-            When you pass in content that is greater than the available space,
-            the content area will become scrollable. It will add a symmetric
-            offset on the top and bottom — based on the <code>topOffset</code>{' '}
-            prop.
+            When content makes the dialog height greater than the available
+            space in the viewport, the content area will become scrollable. It
+            will add a symmetric offset on the top and bottom — based on the{' '}
+            <code>topOffset</code> prop.
           </p>
         ),
         codeText: exampleInternalScrolling,
         scope
       },
       {
-        title: 'Without buttons',
-        description: (
-          <p>
-            If you don’t pass the <code>primaryButton</code> prop — you wont’t
-            see any footer at all. Clicks on the overlay will still close your
-            dialog.
-          </p>
-        ),
-        codeText: exampleWithoutButtons,
-        scope
-      },
-      {
-        title: 'Self managed close',
+        title: 'Self Managed Close',
         description: (
           <p>
             Pass in a function as children to accept a <code>close</code>{' '}
@@ -159,10 +150,21 @@ const components = [
         scope
       },
       {
-        title: 'Hidden header',
+        title: 'Without Footer',
         description: (
           <p>
-            Hide the header by passing the <code>hideHeader</code> prop. This
+            Use the <code>hasFooter</code> props to show or hide the footer.
+            This will hide the confirm and cancel buttons.
+          </p>
+        ),
+        codeText: exampleWithoutButtons,
+        scope
+      },
+      {
+        title: 'Without Header',
+        description: (
+          <p>
+            Use the <code>hasHeader</code> props to show or hide the heaer. This
             will hide both the close icon button as the title.
           </p>
         ),

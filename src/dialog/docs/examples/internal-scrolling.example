@@ -4,13 +4,7 @@
       <Dialog
         isShown={isShown}
         title="Dialog with Internal Scrolling"
-        onExited={hide}
-        primaryButton={{
-          onClick: close => {
-            close()
-          },
-          children: 'Primary Button',
-        }}
+        onCloseComplete={hide}
       >
         <Box height={1200} width="100%" backgroundColor="#ddd" />
       </Dialog>

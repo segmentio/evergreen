@@ -3,19 +3,14 @@
     <Box>
       <Dialog
         isShown={isShown}
-        title="Dialog with Red Primary Button"
-        onExited={hide}
-        primaryButton={{
-          onClick: close => {
-            close()
-          },
-          appearance: 'red',
-          children: 'Primary Button',
-        }}
+        title="Dialog with Danger Intent"
+        onCloseComplete={hide}
+        intent="danger"
+        confirmLabel="Dangerous Action"
       >
         <Paragraph>Dialog content</Paragraph>
       </Dialog>
-      <Button onClick={show}>Show Dialog with Red Button</Button>
+      <Button onClick={show}>Show Dialog with Danger Intent</Button>
     </Box>
   )}
 </DialogManager>

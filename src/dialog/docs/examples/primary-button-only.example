@@ -3,12 +3,10 @@
     <Box>
       <Dialog
         isShown={isShown}
-        title="Dialog with Primary Button Only"
-        onExited={hide}
-        primaryButton={{
-          children: 'Got It',
-        }}
-        hideCancelButton
+        title="Dialog with Confirmation Button Only"
+        onCloseComplete={hide}
+        hasCancel={false}
+        confirmLabel='Got It'
       >
         <Paragraph>
           This is useful for product updates and onboarding content.

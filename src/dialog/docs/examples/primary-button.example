@@ -3,18 +3,13 @@
     <Box>
       <Dialog
         isShown={isShown}
-        title="Dialog with Primary Button"
-        onExited={hide}
-        primaryButton={{
-          onClick: close => {
-            close()
-          },
-          children: 'Primary Button',
-        }}
+        title="Dialog Title"
+        onCloseComplete={hide}
+        confirmLabel="Custom Label"
       >
-        <Paragraph>Dialog content.</Paragraph>
+        <Paragraph>Dialog content</Paragraph>
       </Dialog>
-      <Button onClick={show}>Show Dialog with Primary Button</Button>
+      <Button onClick={show}>Show Dialog with Custom Button Label</Button>
     </Box>
   )}
 </DialogManager>

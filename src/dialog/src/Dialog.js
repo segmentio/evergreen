@@ -51,15 +51,15 @@ const animationStyles = {
 class Dialog extends React.Component {
   static propTypes = {
     /**
-     * Composes the Overlay component as the base.
-     */
-    ...Overlay.propTypes,
-
-    /**
      * Children can be a node or a function accepting `({ close })`.
      * See an example to understand how this works.
      */
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+
+    /**
+     * When true, the dialog is shown.
+     */
+    isShown: PropTypes.bool,
 
     /**
      * Title of the Dialog. Titles should use Title Case.
@@ -67,22 +67,77 @@ class Dialog extends React.Component {
     title: PropTypes.node,
 
     /**
-     * Props passed through to the primary button.
-     * Passing this object will show the button and cancel button.
-     * You should pass `children` and `onClick`.
+     * When true, the header with the title and close icon button is shown.
      */
-    primaryButton: PropTypes.object,
+    hasHeader: PropTypes.bool,
+
+    /**
+     * When true, the footer with the cancel and confirm button is shown.
+     */
+    hasFooter: PropTypes.bool,
+
+    /**
+     * When true, the cancel button is shown.
+     */
+    hasCancel: PropTypes.bool,
+
+    /**
+     * Function that will be called when the exit transition is complete.
+     */
+    onCloseComplete: PropTypes.func,
+
+    /**
+     * Function that will be called when the enter transition is complete.
+     */
+    onOpenComplete: PropTypes.func,
+
+    /**
+     * Function that will be called when the confirm button is clicked.
+     * This does not close the Dialog. A close function will be passed
+     * as a paramater you can use to close the dialog.
+     *
+     * `onConfirm={(close) => close()}`
+     */
+    onConfirm: PropTypes.func,
+
+    /**
+     * Label that is used inside of the confirm button.
+     */
+    confirmLabel: PropTypes.string,
+
+    /**
+     * The intent of the message.
+     */
+    intent: PropTypes.oneOf(['neutral', 'danger']),
+
+    /**
+     * When true, the confirm button is set to loading.
+     */
+    isConfirmLoading: PropTypes.bool,
+
+    /**
+     * When true, the confirm button is set to disabled.
+     */
+    isConfirmDisabled: PropTypes.bool,
+
+    /**
+     * When true, the cancel button is shown.
+     */
+    showCancel: PropTypes.bool,
+
+    /**
+     * Function that will be called when the cancel button is clicked.
+     * This closes the Dialog by default.
+     *
+     * `onCancel={(close) => close()}`
+     */
+    onCancel: PropTypes.func,
 
     /**
      * Label of the cancel button, shown when primaryButton is passed.
      * You should not have to change this in most cases.
      */
     cancelLabel: PropTypes.node,
-
-    /**
-     * Only effective when when passing primaryButton.
-     */
-    hideCancelButton: PropTypes.bool,
 
     /**
      * Width of the Dialog.
@@ -103,49 +158,76 @@ class Dialog extends React.Component {
     minHeightContent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
-     * When true, hide the header containing the title and close button.
-     */
-    hideHeader: PropTypes.bool,
-
-    /**
      * Props that are passed to the Dialog container.
      */
     containerProps: PropTypes.object
   }
 
   static defaultProps = {
+    isShown: false,
+    hasHeader: true,
+    hasFooter: true,
+    hasCancel: true,
+    intent: 'neutral',
     width: 560,
     topOffset: '12vh',
     minHeightContent: 80,
-    cancelLabel: 'Cancel'
+    confirmLabel: 'Confirm',
+    isConfirmLoading: false,
+    isConfirmDisabled: false,
+    cancelLabel: 'Cancel',
+    onCancel: close => close(),
+    onConfirm: close => close()
   }
 
   render() {
     const {
       title,
       width,
+      intent,
+      isShown,
       children,
       topOffset,
-      hideHeader,
+      hasHeader,
+      hasFooter,
+      hasCancel,
+      onCloseComplete,
+      onOpenComplete,
+      onConfirm,
+      confirmLabel,
+      isConfirmLoading,
+      isConfirmDisabled,
+      onCancel,
       cancelLabel,
-      primaryButton,
-      minHeightContent,
-      hideCancelButton,
       containerProps,
+      minHeightContent,
       ...props
     } = this.props
 
     let maxHeight
     if (Number.isInteger(topOffset)) {
-      maxHeight = `calc(100% - ${topOffset}px - ${topOffset}px)`
+      maxHeight = `calc(100% - ${topOffset}px)`
     } else {
-      maxHeight = `calc(100% - ${topOffset} - ${topOffset})`
+      maxHeight = `calc(100% - ${topOffset})`
+    }
+
+    let buttonAppearance
+    if (intent === 'neutral') {
+      buttonAppearance = 'green'
+    } else if (intent === 'danger') {
+      buttonAppearance = 'red'
     }
 
     return (
-      <Overlay {...props}>
+      <Overlay
+        isShown={isShown}
+        onExited={onCloseComplete}
+        onEntered={onOpenComplete}
+        {...props}
+      >
         {({ state, close }) => (
           <Pane
+            boxSizing="border-box"
             display="flex"
             justifyContent="center"
             paddingTop={topOffset}
@@ -163,7 +245,7 @@ class Dialog extends React.Component {
               data-state={state}
               {...containerProps}
             >
-              {!hideHeader && (
+              {hasHeader && (
                 <Pane
                   padding={16}
                   flexShrink={0}
@@ -196,7 +278,7 @@ class Dialog extends React.Component {
                     : children}
                 </Pane>
 
-                {primaryButton && (
+                {hasFooter && (
                   <Pane
                     flexShrink={0}
                     padding={16}
@@ -206,15 +288,14 @@ class Dialog extends React.Component {
                   >
                     <Button
                       marginLeft={8}
-                      appearance="green"
-                      {...primaryButton}
-                      onClick={() =>
-                        typeof primaryButton.onClick === 'function'
-                          ? primaryButton.onClick(close)
-                          : close()
-                      }
-                    />
-                    {!hideCancelButton && (
+                      appearance={buttonAppearance}
+                      isLoading={isConfirmLoading}
+                      disabled={isConfirmDisabled}
+                      onClick={() => onConfirm(close)}
+                    >
+                      {confirmLabel}
+                    </Button>
+                    {hasCancel && (
                       <Button onClick={close}>{cancelLabel}</Button>
                     )}
                   </Pane>
