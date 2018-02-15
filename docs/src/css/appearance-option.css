@@ -1,6 +1,6 @@
 .AppearanceOption {
   background-color: white;
-  box-shadow: inset 0 0 0 1px var(--color-border-muted);
+  box-shadow: inset 0 0 0 1px var(--color-border-default);
   padding: 16px;
   margin-bottom: 16px;
 }

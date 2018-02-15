@@ -9,7 +9,6 @@
 .MainLayout-main {
   flex: 1;
   display: flex;
-  background-color: var(--neutral-3);
 
   @media (--range-palm), (--range-hand), (--range-lap) {
     flex-direction: column;

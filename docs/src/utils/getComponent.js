@@ -24,13 +24,14 @@ import buttonsDocs from '../../../src/buttons/docs'
 import tableDocs from '../../../src/table/docs/'
 // import sideSheetDocs from '../../src/side-sheet/docs/'
 // import radioDocs from '../../src/radio/docs/'
-// import dialogDocs from '../../src/dialog/docs/'
+import dialogDocs from '../../../src/dialog/docs/'
 // import cornerDialogDocs from '../../src/corner-dialog/docs/'
 // import alertDocs from '../../src/alert/docs/'
 
 const map = {
   buttons: buttonsDocs,
-  table: tableDocs
+  table: tableDocs,
+  dialog: dialogDocs
 }
 
 export default function getComponent(name) {

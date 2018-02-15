@@ -22,7 +22,7 @@ const loadingCircleKeyframes = css.keyframes('loading-circle', {
 })
 
 const outer = {
-  animation: `${loadingKeyframes} 3s linear infinite`
+  animation: `${loadingKeyframes} 2s linear infinite`
 }
 
 const inner = {
@@ -31,14 +31,21 @@ const inner = {
   strokeWidth: 12,
   strokeMiterlimit: 10,
   strokeLinecap: 'round',
-  animation: `${loadingCircleKeyframes} 2s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
+  animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
   stroke: colors.neutral['500'],
   fill: 'transparent'
 }
 
 export default class Spinner extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the Box component as the base.
+     */
     ...Box.propTypes,
+
+    /**
+     * The size of the spinner.
+     */
     size: PropTypes.number
   }
 
@@ -49,7 +56,7 @@ export default class Spinner extends PureComponent {
   render() {
     const { size, ...props } = this.props
     return (
-      <Box width={size} height={size} {...props}>
+      <Box width={size} height={size} lineHeight={0} {...props}>
         <Box is="svg" css={outer} x="0px" y="0px" viewBox="0 0 150 150">
           <Box is="circle" css={inner} cx="75" cy="75" r="60" />
         </Box>

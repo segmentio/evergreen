@@ -32,19 +32,17 @@ export default class ComponentReadme extends PureComponent {
       <article className="ComponentReadme" {...props}>
         <div className="Container ComponentReadme-inner">
           <header className="ComponentReadme-header">
-            <h1 className="ComponentReadme-title">{title}</h1>
-            <p className="ComponentReadme-subtitle">{subTitle}</p>
-            <dl>
-              <dt>Links</dt>
-              <dd>
-                <a
-                  href={`https://github.com/segmentio/evergreen/tree/master/src/${name}`}
-                  target="_blank"
-                >
-                  GitHub
-                </a>
-              </dd>
-            </dl>
+            <h1 className="ComponentReadme-title">{title} </h1>
+            <p className="ComponentReadme-subtitle">
+              {subTitle}{' '}
+              <a
+                className="ComponentReadme-githubLink"
+                href={`https://github.com/segmentio/evergreen/tree/master/src/${name}`}
+                target="_blank"
+              >
+                View on GitHub
+              </a>.
+            </p>
           </header>
           <div>
             {designGuidelines && (
@@ -99,8 +97,8 @@ export default class ComponentReadme extends PureComponent {
                 <div className="Content">
                   <h2 id="component-examples">Component Examples</h2>
                   <p>
-                    The <code>{name}</code> package exports the following
-                    documented components:
+                    The following components are exported by Evergreen for this
+                    UI pattern:
                   </p>
                   <ul>
                     {components.map(component => {

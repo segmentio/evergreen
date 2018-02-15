@@ -10,6 +10,7 @@ import {
 } from '../../buttons'
 import { Heading } from '../../typography'
 import { IconMap } from '../../icons'
+import LoadingManager from '../docs/LoadingManager'
 
 const baseStyles = {
   margin: 16
@@ -151,6 +152,29 @@ buttonsStory.add('Button + icons', () => (
         </Button>
       </Box>
     ))}
+  </Box>
+))
+
+buttonsStory.add('Button isLoading', () => (
+  <Box padding={80}>
+    {Object.keys(ButtonAppearances).map(appearance => {
+      return (
+        <LoadingManager key={appearance}>
+          {({ isLoading, setLoading }) => {
+            return (
+              <Button
+                marginRight={16}
+                appearance={appearance}
+                isLoading={isLoading}
+                onClick={setLoading}
+              >
+                {isLoading ? 'Loading...' : 'Click to Load'}
+              </Button>
+            )
+          }}
+        </LoadingManager>
+      )
+    })}
   </Box>
 ))
 
