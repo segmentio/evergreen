@@ -101,7 +101,7 @@ class Dialog extends React.Component {
     onConfirm: PropTypes.func,
 
     /**
-     * Label that is used inside of the confirm button.
+     * Label of the confirm button.
      */
     confirmLabel: PropTypes.string,
 
@@ -129,10 +129,9 @@ class Dialog extends React.Component {
     onCancel: PropTypes.func,
 
     /**
-     * Label of the cancel button, shown when primaryButton is passed.
-     * You should not have to change this in most cases.
+     * Label of the cancel button.
      */
-    cancelLabel: PropTypes.node,
+    cancelLabel: PropTypes.string,
 
     /**
      * Width of the Dialog.
@@ -140,9 +139,9 @@ class Dialog extends React.Component {
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
-     * The space above the Dialog.
+     * The space above the dialog.
      * This offset is also used at the bottom when there is not enough space
-     * available on screen — and the Dialog scrolls internally.
+     * available on screen — and the dialog scrolls internally.
      */
     topOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
@@ -153,7 +152,7 @@ class Dialog extends React.Component {
     minHeightContent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
-     * Props that are passed to the Dialog container.
+     * Props that are passed to the dialog container.
      */
     containerProps: PropTypes.object
   }
