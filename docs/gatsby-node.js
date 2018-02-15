@@ -1,18 +1,15 @@
 const path = require('path')
 const webpack = require('webpack') // eslint-disable-line import/no-extraneous-dependencies
-const globby = require('globby')
 
 const componentTemplate = path.resolve(`src/templates/component.js`)
-const componentNames = globby
-  .sync(`${__dirname}/../src/*/`, { nodir: false })
-  .map(pathname => path.basename(pathname))
+const componentNames = ['buttons', 'dialog', 'table']
 
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = ({ boundActionCreators }) => {
   const { createPage } = boundActionCreators
 
-  for (const componentName of componentNames) {
+  componentNames.forEach(componentName => {
     const componentPath = `/components/${componentName}`
 
     createPage({
@@ -27,7 +24,7 @@ exports.createPages = ({ boundActionCreators }) => {
         name: componentName
       }
     })
-  }
+  })
 }
 
 exports.modifyWebpackConfig = ({ config }) => {

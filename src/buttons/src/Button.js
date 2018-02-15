@@ -7,6 +7,7 @@ import {
   getTextStyleForControlHeight,
   getIconSizeForControlHeight
 } from '../../shared-styles'
+import { Spinner } from '../../spinner'
 import ButtonAppearances from './styles/ButtonAppearances'
 
 export default class Button extends PureComponent {
@@ -20,6 +21,12 @@ export default class Button extends PureComponent {
      * The appearance of the button.
      */
     appearance: PropTypes.oneOf(Object.keys(ButtonAppearances)).isRequired,
+
+    /**
+     * When true, show a loading spinner before the children.
+     * This also disables the button.
+     */
+    isLoading: PropTypes.bool,
 
     /**
      * Forcefully set the active state of a button.
@@ -46,6 +53,12 @@ export default class Button extends PureComponent {
      * The aim of the right icon. Useful to aim a triangle down.
      */
     iconAfterAim: PropTypes.oneOf(Object.keys(IconAim)),
+
+    /**
+     * When true, the button is disabled.
+     * isLoading also sets the button to disabled.
+     */
+    disabled: PropTypes.bool,
 
     /**
      * A JavaScript object to override css styling
@@ -77,7 +90,9 @@ export default class Button extends PureComponent {
       height,
       isActive,
       children,
+      disabled,
       appearance,
+      isLoading,
 
       // Paddings
       paddingRight,
@@ -145,7 +160,15 @@ export default class Button extends PureComponent {
         lineHeight={`${height}px`}
         {...(isActive ? { 'data-active': true } : {})}
         {...props}
+        disabled={disabled || isLoading}
       >
+        {isLoading && (
+          <Spinner
+            marginLeft={-Math.round(height / 8)}
+            marginRight={Math.round(height / 4)}
+            size={Math.round(height / 2)}
+          />
+        )}
         {iconBefore || null}
         <span>{children}</span>
         {iconAfter || null}

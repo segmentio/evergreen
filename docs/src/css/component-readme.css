@@ -23,32 +23,19 @@
 
 .ComponentReadme-header {
   border-bottom: 1px solid var(--neutral-20A);
-  /* padding-bottom: 16px; */
+  padding-bottom: 16px;
   margin-bottom: 24px;
+}
 
-  & dl {
-    font-size: 14px;
-    margin-top: 16px;
-    margin-bottom: px;
+.ComponentReadme-githubLink {
+  color: var(--blue-500);
 
-    & dt {
-      color: var(--neutral-200);
-      width: 72px;
-      display: inline-block;
-    }
+  &:hover {
+    text-decoration: underline;
+  }
 
-    & dd {
-      width: calc(100% - 72px);
-      margin-left: 0;
-      margin-bottom: 16px;
-      display: inline-block;
-
-      & a {
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
+  &:focus {
+    outline: 1px solid var(--blue-500);
   }
 }
 

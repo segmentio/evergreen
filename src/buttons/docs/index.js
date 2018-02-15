@@ -1,4 +1,5 @@
 import React from 'react'
+import LoadingManager from './LoadingManager'
 import { BackButton, IconButton, Button } from '..'
 /* eslint-disable import/no-unresolved, import/no-webpack-loader-syntax */
 import sourceBackButton from '!raw-loader!../src/BackButton'
@@ -10,6 +11,7 @@ import sourceButton from '!raw-loader!../src/Button'
  * Code examples
  */
 import basicExample from './examples/basic.example'
+import loadingExample from './examples/loading.example'
 import basicWithIconsExample from './examples/basic-with-icons.example'
 import backButtonExample from './examples/back-button.example'
 import triangleExample from './examples/triangle.example'
@@ -17,7 +19,7 @@ import arrowExample from './examples/arrow.example'
 import iconButtonBasicExample from './examples/icon-button-basic.example'
 
 const title = 'Buttons'
-const subTitle = 'A package exporting multiple types of buttons.'
+const subTitle = 'A set of buttons with multiple appearances.'
 
 const designGuidelines = (
   <div>
@@ -130,12 +132,18 @@ const components = [
         scope: { Button }
       },
       {
+        title: 'Loading button',
+        codeText: loadingExample,
+        scope: { Button, LoadingManager }
+      },
+      {
         title: 'Buttons with an icon',
         codeText: basicWithIconsExample,
         scope: { Button }
       }
     ]
   },
+
   {
     name: 'BackButton',
     source: sourceBackButton,

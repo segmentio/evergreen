@@ -1,0 +1,16 @@
+<DialogManager>
+  {({ isShown, show, hide }) => (
+    <Box>
+      <Dialog
+        isShown={isShown}
+        title="Dialog with Danger Intent"
+        onCloseComplete={hide}
+        type="danger"
+        confirmLabel="Dangerous Action"
+      >
+        <Paragraph>Dialog content</Paragraph>
+      </Dialog>
+      <Button onClick={show}>Show Dialog with Danger Intent</Button>
+    </Box>
+  )}
+</DialogManager>

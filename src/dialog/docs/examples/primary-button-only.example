@@ -1,0 +1,18 @@
+<DialogManager>
+  {({ isShown, show, hide }) => (
+    <Box>
+      <Dialog
+        isShown={isShown}
+        title="Dialog with Confirmation Button Only"
+        onCloseComplete={hide}
+        hasCancel={false}
+        confirmLabel='Got It'
+      >
+        <Paragraph>
+          This is useful for product updates and onboarding content.
+        </Paragraph>
+      </Dialog>
+      <Button onClick={show}>Show Dialog with Primary Button Only</Button>
+    </Box>
+  )}
+</DialogManager>
