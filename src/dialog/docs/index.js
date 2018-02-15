@@ -33,8 +33,8 @@ const designGuidelines = (
     </p>
     <h3>When To Use</h3>
     <p>
-      When you require your user to interact with you app, but don&rsquo;t want
-      your users to jump to a different page and break their workflow.
+      When you require your user to interact with you app, but don’t want your
+      users to jump to a different page and break their workflow.
     </p>
     <p>
       You should also use a dialog in cases where you need to ask for
@@ -46,17 +46,16 @@ const designGuidelines = (
       <a href="http://blueprintjs.com/docs/v2/#core/components/dialog">
         BlueprintJS
       </a>{' '}
-      pointed out in their documentation that &ldquo;modal&rdquo; is a misnomer
-      for &ldquo;dialog&rdquo;.
+      pointed out in their documentation that “modal” is a misnomer for
+      “dialog”.
     </p>
     <blockquote cite="http://blueprintjs.com/docs/v2/#core/components/dialog">
-      The term &ldquo;modal&rdquo; is sometimes used to mean
-      &ldquo;dialog&rdquo;, but this is a misnomer. Modal is an adjective that
-      describes parts of a UI. An element is considered modal if it{' '}
+      The term “modal” is sometimes used to mean “dialog”, but this is a
+      misnomer. Modal is an adjective that describes parts of a UI. An element
+      is considered modal if it{' '}
       <a href="https://en.wikipedia.org/wiki/Modal_window">
         blocks interaction with the rest of the application
-      </a>. We use the term &ldquo;dialog&rdquo; to avoid confusion with the
-      adjective.
+      </a>. We use the term “dialog” to avoid confusion with the adjective.
     </blockquote>
   </div>
 )
@@ -140,9 +139,9 @@ const components = [
         title: 'Without buttons',
         description: (
           <p>
-            If you don&rsquo;t pass the <code>primaryButton</code> prop — you
-            wont&rsquo;t see any footer at all. Clicks on the overlay will still
-            close your dialog.
+            If you don’t pass the <code>primaryButton</code> prop — you wont’t
+            see any footer at all. Clicks on the overlay will still close your
+            dialog.
           </p>
         ),
         codeText: exampleWithoutButtons,

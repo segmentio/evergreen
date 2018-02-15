@@ -14,8 +14,13 @@
 
   & a {
     color: var(--blue-500);
+
     &:hover {
       text-decoration: underline;
+    }
+
+    &:focus {
+      outline: 1px solid var(--blue-500);
     }
   }
 

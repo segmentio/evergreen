@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import ComponentBlock from './ComponentBlock'

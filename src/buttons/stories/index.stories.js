@@ -10,6 +10,7 @@ import {
 } from '../../buttons'
 import { Heading } from '../../typography'
 import { IconMap } from '../../icons'
+import LoadingManager from '../docs/LoadingManager'
 
 const baseStyles = {
   margin: 16
@@ -153,33 +154,6 @@ buttonsStory.add('Button + icons', () => (
     ))}
   </Box>
 ))
-
-class LoadingManager extends React.PureComponent {
-  static propTypes = {
-    children: PropTypes.func
-  }
-
-  state = {
-    isLoading: false
-  }
-
-  render() {
-    return this.props.children({
-      isLoading: this.state.isLoading,
-      setLoading: () => {
-        this.setState({
-          isLoading: true
-        })
-
-        window.setTimeout(() => {
-          this.setState({
-            isLoading: false
-          })
-        }, 2000)
-      }
-    })
-  }
-}
 
 buttonsStory.add('Button isLoading', () => (
   <Box padding={80}>

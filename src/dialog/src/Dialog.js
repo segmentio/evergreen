@@ -59,7 +59,7 @@ class Dialog extends React.Component {
      * Children can be a node or a function accepting `({ close })`.
      * See an example to understand how this works.
      */
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 
     /**
      * Title of the Dialog. Titles should use Title Case.
@@ -135,6 +135,13 @@ class Dialog extends React.Component {
       ...props
     } = this.props
 
+    let maxHeight
+    if (Number.isInteger(topOffset)) {
+      maxHeight = `calc(100% - ${topOffset}px - ${topOffset}px)`
+    } else {
+      maxHeight = `calc(100% - ${topOffset} - ${topOffset})`
+    }
+
     return (
       <Overlay {...props}>
         {({ state, close }) => (
@@ -142,7 +149,7 @@ class Dialog extends React.Component {
             display="flex"
             justifyContent="center"
             paddingTop={topOffset}
-            maxHeight={`calc(100% - ${topOffset} - ${topOffset})`}
+            maxHeight={maxHeight}
           >
             <Pane
               role="dialog"
@@ -207,7 +214,7 @@ class Dialog extends React.Component {
                           : close()
                       }
                     />
-                    {hideCancelButton ? null : (
+                    {!hideCancelButton && (
                       <Button onClick={close}>{cancelLabel}</Button>
                     )}
                   </Pane>

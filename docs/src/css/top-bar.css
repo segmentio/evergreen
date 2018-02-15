@@ -46,16 +46,20 @@
   display: inline-flex;
   align-items: center;
   letter-spacing: 0.4px;
+  border-radius: 3px;
 
   &:hover {
     background-color: var(--neutral-7A);
-    border-radius: 3px;
   }
 
   &:active,
   &.is-active {
     background-color: var(--blue-7A);
     color: var(--blue-500);
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px var(--blue-100A);
   }
 
   & .icon-holder {
