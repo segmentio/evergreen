@@ -37,33 +37,29 @@ import exampleTableBody from './examples/TableBody.example'
 import exampleTableHead from './examples/TableHead.example'
 
 const title = 'Table'
-const subTitle = 'A package exporting the building blocks of a table.'
+const subTitle = 'A set of components for building a table.'
 
 const designGuidelines = (
   <div>
     <p>
-      This package exports the building blocks for tables. This package is also
-      used in places such as the options list in the <code>SelectMenu</code>{' '}
-      component. Currently this package does not use real tables under the hood.
-      There is a{' '}
-      <a href="https://github.com/segmentio/evergreen/issues/105">
-        discussion on GitHub
-      </a>{' '}
-      going on to potentially change this in the future.
+      Evergreen exports a set of building blocks for building tables. This
+      package is also used in places such as the options list in the{' '}
+      <code>SelectMenu</code> component. Currently this package does not use
+      real tables under the hood.
     </p>
     <h3>Implementation details</h3>
     <ul>
       <li>
         None of these components implement HTML table elements such as:
         {` `}
-        <code>table</code>, <code>th</code> or <code>tr</code>
+        <code>table</code>, <code>th</code> or <code>tr</code>.
       </li>
       <li>
         Most components are basic <code>Pane</code> components combined with
         {` `}
-        <code>Text</code>
+        <code>Text</code>.
       </li>
-      <li>All components are presentational, no sorting build in</li>
+      <li>All components are presentational, no sorting build in.</li>
     </ul>
   </div>
 )

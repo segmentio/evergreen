@@ -1,0 +1,20 @@
+<DialogManager>
+  {({ isShown, show, hide }) => (
+    <Box>
+      <Dialog
+        isShown={isShown}
+        title="Dialog with Internal Scrolling"
+        onExited={hide}
+        primaryButton={{
+          onClick: close => {
+            close()
+          },
+          children: 'Primary Button',
+        }}
+      >
+        <Box height={1200} width="100%" backgroundColor="#ddd" />
+      </Dialog>
+      <Button onClick={show}>Show Dialog with Internal Scrolling</Button>
+    </Box>
+  )}
+</DialogManager>

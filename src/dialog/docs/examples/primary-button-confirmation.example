@@ -1,0 +1,23 @@
+<DialogManager>
+  {({ isShown, isLoading, confirmLoading, show, hide }) => (
+    <Box>
+      <Dialog
+        isShown={isShown}
+        title="Dialog with Primary Confirmation"
+        onExited={hide}
+        primaryButton={{
+          children: isLoading ? 'Loading...' : 'Confirm Loading',
+          onClick: confirmLoading,
+          isLoading,
+        }}
+        hideCancelButton
+      >
+        <Paragraph>
+          This is useful when you need to process something before closing
+          the dialog.
+        </Paragraph>
+      </Dialog>
+      <Button onClick={show}>Show Dialog with Loading Confirmation</Button>
+    </Box>
+  )}
+</DialogManager>

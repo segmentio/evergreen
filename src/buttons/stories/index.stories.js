@@ -154,6 +154,56 @@ buttonsStory.add('Button + icons', () => (
   </Box>
 ))
 
+class LoadingManager extends React.PureComponent {
+  static propTypes = {
+    children: PropTypes.func
+  }
+
+  state = {
+    isLoading: false
+  }
+
+  render() {
+    return this.props.children({
+      isLoading: this.state.isLoading,
+      setLoading: () => {
+        this.setState({
+          isLoading: true
+        })
+
+        window.setTimeout(() => {
+          this.setState({
+            isLoading: false
+          })
+        }, 2000)
+      }
+    })
+  }
+}
+
+buttonsStory.add('Button isLoading', () => (
+  <Box padding={80}>
+    {Object.keys(ButtonAppearances).map(appearance => {
+      return (
+        <LoadingManager key={appearance}>
+          {({ isLoading, setLoading }) => {
+            return (
+              <Button
+                marginRight={16}
+                appearance={appearance}
+                isLoading={isLoading}
+                onClick={setLoading}
+              >
+                {isLoading ? 'Loading...' : 'Click to Load'}
+              </Button>
+            )
+          }}
+        </LoadingManager>
+      )
+    })}
+  </Box>
+))
+
 function IconButtonIcon({ appearance, height, iconKey }) {
   const iconProps = {
     appearance,

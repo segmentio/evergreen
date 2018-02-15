@@ -1,0 +1,21 @@
+<DialogManager>
+  {({ isShown, show, hide }) => (
+    <Box>
+      <Dialog
+        isShown={isShown}
+        title="Dialog with Red Primary Button"
+        onExited={hide}
+        primaryButton={{
+          onClick: close => {
+            close()
+          },
+          appearance: 'red',
+          children: 'Primary Button',
+        }}
+      >
+        <Paragraph>Dialog content</Paragraph>
+      </Dialog>
+      <Button onClick={show}>Show Dialog with Red Button</Button>
+    </Box>
+  )}
+</DialogManager>

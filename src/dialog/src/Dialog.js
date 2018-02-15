@@ -4,7 +4,7 @@ import { css } from 'ui-box'
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
 import { Overlay } from '../../overlay'
-import { IconButton } from '../../buttons'
+import { Button, IconButton } from '../../buttons'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -50,28 +50,88 @@ const animationStyles = {
 
 class Dialog extends React.Component {
   static propTypes = {
+    /**
+     * Composes the Overlay component as the base.
+     */
     ...Overlay.propTypes,
+
+    /**
+     * Children can be a node or a function accepting `({ close })`.
+     * See an example to understand how this works.
+     */
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+
+    /**
+     * Title of the Dialog. Titles should use Title Case.
+     */
     title: PropTypes.node,
+
+    /**
+     * Props passed through to the primary button.
+     * Passing this object will show the button and cancel button.
+     * You should pass `children` and `onClick`.
+     */
+    primaryButton: PropTypes.object,
+
+    /**
+     * Label of the cancel button, shown when primaryButton is passed.
+     * You should not have to change this in most cases.
+     */
+    cancelLabel: PropTypes.node,
+
+    /**
+     * Only effective when when passing primaryButton.
+     */
+    hideCancelButton: PropTypes.bool,
+
+    /**
+     * Width of the Dialog.
+     */
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    hasCloseIcon: PropTypes.bool,
+
+    /**
+     * The space above the Dialog.
+     * This offset is also used at the bottom when there is not enough space
+     * available on screen — and the Dialog scrolls internally.
+     */
+    topOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    /**
+     * The min height of the body content.
+     * Makes it less weird when only showing little content.
+     */
+    minHeightContent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    /**
+     * When true, hide the header containing the title and close button.
+     */
+    hideHeader: PropTypes.bool,
+
+    /**
+     * Props that are passed to the Dialog container.
+     */
     containerProps: PropTypes.object
   }
 
   static defaultProps = {
-    width: 567,
-    height: 240,
-    hasCloseIcon: true
+    width: 560,
+    topOffset: '12vh',
+    minHeightContent: 80,
+    cancelLabel: 'Cancel'
   }
 
   render() {
     const {
-      children,
-      width,
-      height,
-      hasCloseIcon,
-      containerProps,
       title,
+      width,
+      children,
+      topOffset,
+      hideHeader,
+      cancelLabel,
+      primaryButton,
+      minHeightContent,
+      hideCancelButton,
+      containerProps,
       ...props
     } = this.props
 
@@ -81,8 +141,8 @@ class Dialog extends React.Component {
           <Pane
             display="flex"
             justifyContent="center"
-            height="100vh"
-            paddingTop={120}
+            paddingTop={topOffset}
+            maxHeight={`calc(100% - ${topOffset} - ${topOffset})`}
           >
             <Pane
               role="dialog"
@@ -90,31 +150,68 @@ class Dialog extends React.Component {
               elevation={4}
               borderRadius={8}
               width={width}
-              height={height}
+              display="flex"
+              flexDirection="column"
               css={animationStyles}
               data-state={state}
               {...containerProps}
             >
-              <Pane
-                padding={16}
-                borderBottom="extraMuted"
-                display="flex"
-                alignItems="center"
-              >
-                <Heading is="h4" size={600} flex="1">
-                  {title}
-                </Heading>
-                {hasCloseIcon && (
+              {!hideHeader && (
+                <Pane
+                  padding={16}
+                  flexShrink={0}
+                  borderBottom="extraMuted"
+                  display="flex"
+                  alignItems="center"
+                >
+                  <Heading is="h4" size={600} flex="1">
+                    {title}
+                  </Heading>
                   <IconButton appearance="ghost" icon="close" onClick={close} />
-                )}
-              </Pane>
+                </Pane>
+              )}
 
-              <Pane overflowY="auto" data-state={state} padding={16}>
-                {typeof children === 'function'
-                  ? children({
-                      close
-                    })
-                  : children}
+              <Pane
+                data-state={state}
+                flex={1}
+                display="flex"
+                flexDirection="column"
+              >
+                <Pane
+                  overflowY="auto"
+                  padding={16}
+                  minHeight={minHeightContent}
+                >
+                  {typeof children === 'function'
+                    ? children({
+                        close
+                      })
+                    : children}
+                </Pane>
+
+                {primaryButton && (
+                  <Pane
+                    flexShrink={0}
+                    padding={16}
+                    borderTop="extraMuted"
+                    display="flex"
+                    flexDirection="row-reverse"
+                  >
+                    <Button
+                      marginLeft={8}
+                      appearance="green"
+                      {...primaryButton}
+                      onClick={() =>
+                        typeof primaryButton.onClick === 'function'
+                          ? primaryButton.onClick(close)
+                          : close()
+                      }
+                    />
+                    {hideCancelButton ? null : (
+                      <Button onClick={close}>{cancelLabel}</Button>
+                    )}
+                  </Pane>
+                )}
               </Pane>
             </Pane>
           </Pane>

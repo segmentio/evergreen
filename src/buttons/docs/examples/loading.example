@@ -1,0 +1,13 @@
+<LoadingManager>
+  {({ isLoading, setLoading }) => {
+    return (
+      <Button
+        marginRight={16}
+        isLoading={isLoading}
+        onClick={setLoading}
+      >
+        {isLoading ? 'Loading...' : 'Click to Load'}
+      </Button>
+    )
+  }}
+</LoadingManager>

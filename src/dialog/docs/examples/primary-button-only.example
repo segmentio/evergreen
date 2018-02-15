@@ -1,0 +1,20 @@
+<DialogManager>
+  {({ isShown, show, hide }) => (
+    <Box>
+      <Dialog
+        isShown={isShown}
+        title="Dialog with Primary Button Only"
+        onExited={hide}
+        primaryButton={{
+          children: 'Got It',
+        }}
+        hideCancelButton
+      >
+        <Paragraph>
+          This is useful for product updates and onboarding content.
+        </Paragraph>
+      </Dialog>
+      <Button onClick={show}>Show Dialog with Primary Button Only</Button>
+    </Box>
+  )}
+</DialogManager>
