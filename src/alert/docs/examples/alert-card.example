@@ -1,0 +1,31 @@
+<Box>
+  <Alert
+    appearance="card"
+    marginBottom={32}
+    title="A simple general message"
+  />
+  <Alert
+    appearance="card"
+    marginBottom={32}
+    type="success"
+    title="Hooray! You did it. Your Source is now sending data."
+  />
+  <Alert
+    appearance="card"
+    marginBottom={32}
+    type="warning"
+    title="Changes will affect all Warehouses."
+  />
+  <Alert
+    appearance="card"
+    marginBottom={32}
+    type="danger"
+    title="We weren’t able to save your changes."
+  />
+  <Alert
+    appearance="card"
+    marginBottom={32}
+    type="question"
+    title="There are over 180 integrations available."
+  />
+</Box>

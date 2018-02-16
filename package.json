@@ -117,7 +117,7 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "55 KB"
+      "limit": "60 KB"
     }
   ]
 }
