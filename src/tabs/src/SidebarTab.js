@@ -9,8 +9,11 @@ export default class Tablist extends PureComponent {
   }
 
   static defaultProps = {
+    height: 32
+  }
+
+  static styles = {
     width: '100%',
-    height: 32,
     paddingX: 0,
     paddingLeft: 8,
     marginX: 0,
@@ -21,7 +24,12 @@ export default class Tablist extends PureComponent {
   render() {
     const { children, height, isSelected, ...props } = this.props
     return (
-      <Tab isSelected={isSelected} height={height} {...props}>
+      <Tab
+        isSelected={isSelected}
+        height={height}
+        {...Tablist.styles}
+        {...props}
+      >
         <Box is="span" flex="1">
           {children}
         </Box>

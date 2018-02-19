@@ -23,10 +23,7 @@ export default class IconButton extends PureComponent {
   }
 
   static defaultProps = {
-    appearance: 'default',
     height: 32,
-    paddingLeft: 0,
-    paddingRight: 0,
     iconAim: 'none'
   }
 
@@ -36,7 +33,7 @@ export default class IconButton extends PureComponent {
     const iconSize = getIconSizeForControlHeight({ height })
 
     return (
-      <Button height={height} {...props}>
+      <Button height={height} paddingLeft={0} paddingRight={0} {...props}>
         {icon &&
           React.createElement(icon, {
             aim: iconAim,

@@ -12,7 +12,6 @@ export default class Text extends PureComponent {
   static propTypes = {
     ...Box.propTypes,
     size: PropTypes.oneOf(Object.keys(TextStyles).map(Number)),
-    color: PropTypes.string,
     fontFamily: PropTypes.oneOf(Object.keys(FontFamilies)),
     textStyles: PropTypes.object,
     textUppercaseStyles: PropTypes.object,
@@ -20,7 +19,6 @@ export default class Text extends PureComponent {
   }
 
   static defaultProps = {
-    is: 'span',
     size: 500,
     color: 'default',
     fontFamily: 'ui',
@@ -57,6 +55,7 @@ export default class Text extends PureComponent {
 
     return (
       <Box
+        is="span"
         {...(color ? { color: TextColors[color] || color } : {})}
         fontFamily={FontFamilies[fontFamily] || fontFamily}
         {...textStyle}

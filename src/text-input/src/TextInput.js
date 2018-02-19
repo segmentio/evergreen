@@ -46,12 +46,8 @@ export default class TextInput extends PureComponent {
   }
 
   static defaultProps = {
-    type: 'text',
-    is: 'input',
     appearance: 'default',
-    boxSizing: 'border-box',
     height: 32,
-    width: 280,
     disabled: false,
     isInvalid: false,
     spellCheck: true
@@ -75,6 +71,9 @@ export default class TextInput extends PureComponent {
 
     return (
       <Text
+        is="input"
+        type="text"
+        width={280}
         height={height}
         required={required}
         disabled={disabled}

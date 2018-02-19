@@ -31,10 +31,6 @@ export default class Pane extends PureComponent {
     borderLeft: StringAndBoolPropType
   }
 
-  static defaultProps = {
-    elevation: undefined
-  }
-
   render() {
     const {
       appearance,
@@ -58,7 +54,7 @@ export default class Pane extends PureComponent {
       appearanceStyle = LayerAppearances[appearance]
     }
 
-    let elevationStyle = {}
+    let elevationStyle
     if (Number.isInteger(elevation)) {
       elevationStyle = ElevationStyles[elevation]
     }

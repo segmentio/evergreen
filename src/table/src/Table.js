@@ -9,12 +9,12 @@ export default class Table extends PureComponent {
     ...Pane.propTypes
   }
 
-  static defaultProps = {
-    border: true
-  }
-
   render() {
     const { children, ...props } = this.props
-    return <Pane {...props}>{children}</Pane>
+    return (
+      <Pane border {...props}>
+        {children}
+      </Pane>
+    )
   }
 }

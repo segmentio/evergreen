@@ -13,8 +13,6 @@ export default class Link extends PureComponent {
   }
 
   static defaultProps = {
-    ...Text.defaultProps,
-    is: 'a',
     appearance: 'blue'
   }
 
@@ -23,6 +21,6 @@ export default class Link extends PureComponent {
     const appearanceStyle = LinkAppearances[appearance]
 
     // Manage the color through the appearance
-    return <Text color={null} css={appearanceStyle} {...props} />
+    return <Text is="a" color={null} css={appearanceStyle} {...props} />
   }
 }

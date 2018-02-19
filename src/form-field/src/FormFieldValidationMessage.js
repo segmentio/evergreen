@@ -10,14 +10,15 @@ export default class FormFieldValidationMessage extends PureComponent {
     ...Paragraph.propTypes
   }
 
-  static defaultProps = {
-    marginTop: 0,
-    size: 300,
-    color: colors.red['700']
-  }
-
   render() {
-    const { ...props } = this.props
-    return <Paragraph {...props} role="alert" />
+    return (
+      <Paragraph
+        marginTop={0}
+        size={300}
+        color={colors.red['700']}
+        {...this.props}
+        role="alert"
+      />
+    )
   }
 }

@@ -10,8 +10,6 @@ export default class BackButton extends PureComponent {
   }
 
   static defaultProps = {
-    ...Button.defaultProps,
-
     /**
      * Sets the arrow icon before the text.
      */

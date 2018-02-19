@@ -9,13 +9,12 @@ export default class TableBody extends PureComponent {
     ...Pane.propTypes
   }
 
-  static defaultProps = {
-    overflowY: 'scroll',
-    flex: '1'
-  }
-
   render() {
     const { children, ...props } = this.props
-    return <Pane {...props}>{children}</Pane>
+    return (
+      <Pane flex="1" overflowY="scroll" {...props}>
+        {children}
+      </Pane>
+    )
   }
 }

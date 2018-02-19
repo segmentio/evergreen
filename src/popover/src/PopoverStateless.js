@@ -8,18 +8,18 @@ export default class PopoverStateless extends PureComponent {
     children: PropTypes.node
   }
 
-  static defaultProps = {
-    overflow: 'hidden',
-    minWidth: 200,
-    elevation: 3,
-    backgroundColor: 'white'
-  }
-
   render() {
     const { children, ...props } = this.props
 
     return (
-      <Card role="dialog" {...props}>
+      <Card
+        role="dialog"
+        elevation={3}
+        overflow="hidden"
+        minWidth={200}
+        backgroundColor="white"
+        {...props}
+      >
         {children}
       </Card>
     )

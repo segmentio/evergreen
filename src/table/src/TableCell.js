@@ -9,7 +9,7 @@ export default class TableCell extends PureComponent {
     ...Pane.propTypes
   }
 
-  static defaultProps = {
+  static styles = {
     paddingX: 8,
     boxSizing: 'border-box',
     height: 32,
@@ -24,6 +24,10 @@ export default class TableCell extends PureComponent {
   render() {
     const { children, ...props } = this.props
 
-    return <Pane {...props}>{children}</Pane>
+    return (
+      <Pane {...TableCell.styles} {...props}>
+        {children}
+      </Pane>
+    )
   }
 }

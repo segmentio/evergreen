@@ -2090,7 +2090,7 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-classnames@^2.2.5:
+classnames@^2.2.0, classnames@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -3792,7 +3792,7 @@ git-url-parse@^6.0.2:
   dependencies:
     git-up "^2.0.0"
 
-glamor@^2.20.22, glamor@^2.20.40:
+glamor@^2.20.0, glamor@^2.20.40:
   version "2.20.40"
   resolved "https://registry.yarnpkg.com/glamor/-/glamor-2.20.40.tgz#f606660357b7cf18dface731ad1a2cfa93817f05"
   dependencies:
@@ -4232,6 +4232,13 @@ inline-style-prefixer@^2.0.5:
 inline-style-prefixer@^3.0.6:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-3.0.8.tgz#8551b8e5b4d573244e66a34b04f7d32076a2b534"
+  dependencies:
+    bowser "^1.7.3"
+    css-in-js-utils "^2.0.0"
+
+inline-style-prefixer@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-4.0.0.tgz#30a03df1b346ba6b1fb8a812bc3c9dabef48022d"
   dependencies:
     bowser "^1.7.3"
     css-in-js-utils "^2.0.0"
@@ -7641,12 +7648,14 @@ uglifyjs-webpack-plugin@^1.1.6:
     webpack-sources "^1.1.0"
     worker-farm "^1.5.2"
 
-ui-box@^0.5.4:
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-0.5.4.tgz#b8f0a4a638b541ef198d07872c785022f60b93a0"
+ui-box@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-1.0.5.tgz#529c60a8f6f9055822ef915f39bbd92ff286b017"
   dependencies:
-    classnames "^2.2.5"
-    glamor "^2.20.22"
+    classnames "^2.2.0"
+    glamor "^2.20.0"
+    inline-style-prefixer "^4.0.0"
+    prop-types "^15.5.10"
 
 uid-number@^0.0.6:
   version "0.0.6"

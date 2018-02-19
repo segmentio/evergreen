@@ -17,15 +17,16 @@ export default class Textarea extends PureComponent {
   }
 
   static defaultProps = {
-    is: 'textarea',
-    boxSizing: 'border-box',
-    minHeight: 80,
-    minWidth: 280,
     disabled: false,
     isInvalid: false,
     spellcheck: true,
-    textSize: 300,
-    borderRadius: 5,
+    textSize: 300
+  }
+
+  static styles = {
+    boxSizing: 'border-box',
+    minHeight: 80,
+    minWidth: 280,
     paddingX: 10,
     paddingY: 8
   }
@@ -33,11 +34,9 @@ export default class Textarea extends PureComponent {
   render() {
     const {
       css,
-      height,
       disabled,
       textSize,
       isInvalid,
-      appearance,
       spellcheck,
       ...props
     } = this.props
@@ -48,7 +47,7 @@ export default class Textarea extends PureComponent {
 
     return (
       <Box
-        height={height}
+        is="textarea"
         disabled={disabled}
         borderRadius={borderRadius}
         spellcheck={spellcheck}
@@ -56,6 +55,7 @@ export default class Textarea extends PureComponent {
         {...(disabled ? { color: 'extraMuted' } : {})}
         {...textStyle}
         css={{ ...css, ...appearanceStyle }}
+        {...Textarea.styles}
         {...props}
       />
     )

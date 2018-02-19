@@ -6,13 +6,7 @@ export default class Paragraph extends PureComponent {
     ...Text.propTypes
   }
 
-  static defaultProps = {
-    ...Text.defaultProps,
-    is: 'li',
-    marginY: '0.5em'
-  }
-
   render() {
-    return <Text {...this.props} />
+    return <Text is="li" marginY="0.5em" {...this.props} />
   }
 }

@@ -26,11 +26,7 @@ export default class Select extends PureComponent {
 
   static defaultProps = {
     appearance: 'default',
-    width: 200,
-    height: 32,
-    display: 'inline-flex',
-    flex: 1,
-    position: 'relative'
+    height: 32
   }
 
   render() {
@@ -54,7 +50,14 @@ export default class Select extends PureComponent {
     const iconSize = getIconSizeForControlHeight({ height })
 
     return (
-      <Box height={height} {...props}>
+      <Box
+        display="inline-flex"
+        flex={1}
+        position="relative"
+        width={200}
+        height={height}
+        {...props}
+      >
         <Text
           is="select"
           id={id}
