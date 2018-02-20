@@ -165,7 +165,7 @@ class Dialog extends React.Component {
     type: 'default',
     width: 560,
     topOffset: '12vh',
-    minHeightContent: 80,
+    minHeightContent: 114,
     confirmLabel: 'Confirm',
     isConfirmLoading: false,
     isConfirmDisabled: false,

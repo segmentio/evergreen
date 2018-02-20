@@ -34,7 +34,6 @@ export default class Checkbox extends PureComponent {
 
   static defaultProps = {
     appearance: 'default',
-    marginY: 16,
     onChange: () => {}
   }
 
@@ -58,6 +57,7 @@ export default class Checkbox extends PureComponent {
         is="label"
         cursor={disabled ? 'not-allowed' : 'pointer'}
         display="flex"
+        marginY={16}
         {...props}
       >
         <Box

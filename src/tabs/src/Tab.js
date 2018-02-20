@@ -18,15 +18,20 @@ export default class Tab extends PureComponent {
     onSelect: () => {},
     onKeyPress: () => {},
     is: 'span',
+    height: 28
+  }
+
+  static styles = {
     display: 'inline-flex',
     fontWeight: 500,
     paddingX: 8,
     marginX: 4,
     borderRadius: 3,
-    height: 28,
     lineHeight: '28px',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    textDecoration: 'none',
+    tabIndex: 0
   }
 
   handleClick = e => {
@@ -68,10 +73,9 @@ export default class Tab extends PureComponent {
     return (
       <Text
         is={is}
-        textDecoration="none"
-        tabIndex={0}
         {...textStyle}
         height={height}
+        {...Tab.styles}
         {...props}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}

@@ -10,10 +10,14 @@ export default class Badge extends PureComponent {
   }
 
   static defaultProps = {
+    appearance: 'neutral',
+    isSolid: false
+  }
+
+  static styles = {
     display: 'inline-block',
     boxSizing: 'border-box',
     height: 16,
-    size: 300,
     paddingTop: 0,
     paddingRight: 6,
     paddingBottom: 0,
@@ -21,15 +25,15 @@ export default class Badge extends PureComponent {
     borderRadius: 2,
     textAlign: 'center',
     textDecoration: 'none',
-    textTransform: 'uppercase',
-    appearance: 'neutral',
-    isSolid: false
+    textTransform: 'uppercase'
   }
 
   render() {
     const { appearance, isSolid, ...props } = this.props
     const opacity = isSolid ? 'solid' : 'default'
     const appearanceStyle = FillAppearances[opacity][appearance]
-    return <Strong {...appearanceStyle} {...props} />
+    return (
+      <Strong size={300} {...Badge.styles} {...appearanceStyle} {...props} />
+    )
   }
 }

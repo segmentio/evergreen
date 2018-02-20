@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { splitWrapperProps } from 'ui-box'
+import Box, { splitBoxProps } from 'ui-box'
 import { SearchIcon } from '../../icons'
 import { getIconSizeForControlHeight } from '../../shared-styles'
 import { TextInput } from '../../text-input'
@@ -19,7 +19,7 @@ export default class SearchInput extends PureComponent {
 
   render() {
     const { appearance, iconProps, disabled, height, ...props } = this.props
-    const { matchedProps, restProps } = splitWrapperProps(props)
+    const { matchedProps, remainingProps } = splitBoxProps(props)
     const iconSize = getIconSizeForControlHeight({ height })
 
     return (
@@ -45,7 +45,7 @@ export default class SearchInput extends PureComponent {
           paddingLeft={height}
           appearance={appearance}
           disable={disabled}
-          {...restProps}
+          {...remainingProps}
         />
       </Box>
     )

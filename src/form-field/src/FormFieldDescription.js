@@ -9,14 +9,9 @@ export default class FormFieldDescription extends PureComponent {
     ...Paragraph.propTypes
   }
 
-  static defaultProps = {
-    marginTop: 0,
-    size: 300,
-    color: 'extraMuted'
-  }
-
   render() {
-    const { ...props } = this.props
-    return <Paragraph {...props} />
+    return (
+      <Paragraph marginTop={0} size={300} color="extraMuted" {...this.props} />
+    )
   }
 }

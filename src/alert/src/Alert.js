@@ -116,8 +116,6 @@ export default class Alert extends PureComponent {
 
   static defaultProps = {
     type: 'default',
-    paddingY: 12,
-    paddingX: 16,
     hasTrim: true,
     hasIcon: true,
     appearance: 'default'
@@ -145,6 +143,8 @@ export default class Alert extends PureComponent {
         overflow="hidden"
         position="relative"
         display="flex"
+        paddingY={12}
+        paddingX={16}
         css={style}
         {...appearanceProps}
         {...props}

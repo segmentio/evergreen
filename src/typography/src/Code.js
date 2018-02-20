@@ -6,13 +6,7 @@ export default class Code extends PureComponent {
     ...Text.propTypes
   }
 
-  static defaultProps = {
-    ...Text.defaultProps,
-    is: 'code',
-    fontFamily: 'mono'
-  }
-
   render() {
-    return <Text {...this.props} />
+    return <Text is="code" fontFamily="mono" {...this.props} />
   }
 }

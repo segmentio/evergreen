@@ -1,24 +1,21 @@
 import React, { PureComponent } from 'react'
 import Box from 'ui-box'
 
-const styles = {
-  listStylePosition: 'inside',
-  listStyle: 'number'
-}
-
 export default class OrderedList extends PureComponent {
   static propTypes = {
     ...Box.propTypes
   }
 
-  static defaultProps = {
+  static styles = {
     is: 'ol',
     margin: 0,
     marginLeft: '1.1em',
-    padding: 0
+    padding: 0,
+    listStylePosition: 'inside',
+    listStyle: 'number'
   }
 
   render() {
-    return <Box css={styles} {...this.props} />
+    return <Box {...OrderedList.styles} {...this.props} />
   }
 }
