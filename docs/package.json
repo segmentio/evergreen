@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "gatsby develop",
-    "build": "gatsby build"
+    "build": "gatsby build",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "gatsby": "^1.9.127",
@@ -17,10 +19,12 @@
     "react-docgen": "next",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
-    "react-live": "^1.7.1"
+    "react-live": "^1.7.1",
+    "snyk": "^1.69.7"
   },
   "devDependencies": {
     "prettier": "^1.10.2"
   },
-  "xo": false
+  "xo": false,
+  "snyk": true
 }
