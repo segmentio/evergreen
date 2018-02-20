@@ -32,7 +32,6 @@ export default class Radio extends PureComponent {
 
   static defaultProps = {
     appearance: 'default',
-    marginY: 12,
     onChange: () => {},
     size: 12
   }
@@ -58,6 +57,7 @@ export default class Radio extends PureComponent {
         is="label"
         cursor={disabled ? 'not-allowed' : 'pointer'}
         display="flex"
+        marginY={12}
         {...props}
       >
         <Box

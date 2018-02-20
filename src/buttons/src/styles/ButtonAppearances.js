@@ -1,4 +1,5 @@
 import { colors } from '../../../colors'
+import { TextColors } from '../../../typography'
 
 const baseStyle = {
   WebkitFontSmoothing: 'antialiased',
@@ -29,6 +30,7 @@ const ButtonAppearances = {
   default: {
     ...baseStyle,
     backgroundColor: 'white',
+    color: TextColors.default,
     backgroundImage: `linear-gradient(to top, ${colors.neutral['5A']}, ${
       colors.white['5A']
     })`,
@@ -152,6 +154,7 @@ const ButtonAppearances = {
   ghost: {
     ...baseStyle,
     backgroundColor: 'transparent',
+    color: TextColors.default,
     [hoverState]: {
       backgroundColor: colors.neutral['7A']
     },

@@ -8,18 +8,14 @@ const textStyleTransformation = ({ fontSize, ...textStyle }) => ({
   fontSize: `${Math.round(parseInt(fontSize, 10) * 0.8)}px`
 })
 
+const textStyles = mapValues(TextStyles, textStyleTransformation)
+
 export default class Small extends PureComponent {
   static propTypes = {
     ...Text.propTypes
   }
 
-  static defaultProps = {
-    ...Text.defaultProps,
-    is: 'small',
-    textStyles: mapValues(TextStyles, textStyleTransformation)
-  }
-
   render() {
-    return <Text {...this.props} />
+    return <Text is="small" textStyles={textStyles} {...this.props} />
   }
 }

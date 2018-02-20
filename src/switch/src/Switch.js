@@ -20,7 +20,7 @@ const iconContainerStyle = {
   position: 'absolute',
   alignItems: 'center',
   justifyContent: 'center',
-  paddingLeft: 2,
+  paddingLeft: 4,
   '&[data-checked="true"]': {
     opacity: 1,
     transform: 'scale(1)'
@@ -75,7 +75,6 @@ export default class Switch extends PureComponent {
 
   static defaultProps = {
     height: 16,
-    display: 'block',
     onChange: () => {},
     appearance: 'default',
     hasCheckIcon: true
@@ -116,7 +115,7 @@ export default class Switch extends PureComponent {
     const appearanceStyle = SwitchAppearances[appearance]
 
     return (
-      <Box is="label" width={height * 2} {...props}>
+      <Box is="label" display="block" width={height * 2} {...props}>
         <Box
           is="input"
           id={id}

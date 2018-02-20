@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { css } from 'ui-box'
 import { CloseIcon } from '../../icons'
@@ -51,23 +51,26 @@ const sheetCloseStyle = {
   }
 }
 
-const SheetClose = ({ isClosing, ...props }) => (
-  <Box css={sheetCloseStyle} {...props}>
-    <CloseIcon color="#fff" />
-  </Box>
-)
+export default class SheetClose extends PureComponent {
+  static propTypes = {
+    ...Box.propTypes,
+    isClosing: PropTypes.bool
+  }
 
-SheetClose.propTypes = {
-  ...Box.propTypes,
-  isClosing: PropTypes.bool
+  static styles = {
+    position: 'absolute',
+    marginLeft: -12,
+    marginTop: 12,
+    padding: 4,
+    borderRadius: 9999
+  }
+
+  render() {
+    const { isClosing, ...props } = this.props
+    return (
+      <Box css={sheetCloseStyle} {...SheetClose.styles} {...props}>
+        <CloseIcon color="#fff" />
+      </Box>
+    )
+  }
 }
-
-SheetClose.defaultProps = {
-  position: 'absolute',
-  marginLeft: -12,
-  marginTop: 12,
-  padding: 4,
-  borderRadius: 9999
-}
-
-export default SheetClose

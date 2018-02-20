@@ -9,13 +9,7 @@ export default class TableHeaderCell extends PureComponent {
     ...TableCell.propTypes
   }
 
-  static defaultProps = {
-    overflow: 'visible',
-    borderBottom: null
-  }
-
   render() {
-    const { ...props } = this.props
-    return <TableCell {...props} />
+    return <TableCell overflow="visible" borderBottom={null} {...this.props} />
   }
 }

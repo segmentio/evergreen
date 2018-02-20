@@ -8,22 +8,24 @@ const textStyleTransformation = ({ fontWeight, ...textStyle }) => ({
   fontWeight: fontWeight + 100
 })
 
+const textStyles = mapValues(TextStyles, textStyleTransformation)
+
 export default class Heading extends PureComponent {
   static propTypes = {
     ...Text.propTypes
   }
 
-  static defaultProps = {
-    ...Text.defaultProps,
-    is: 'h2',
-    color: 'dark',
-    fontFamily: 'display',
-    marginTop: 0,
-    marginBottom: 0,
-    textStyles: mapValues(TextStyles, textStyleTransformation)
-  }
-
   render() {
-    return <Text {...this.props} />
+    return (
+      <Text
+        is="h2"
+        color="dark"
+        fontFamily="display"
+        marginTop={0}
+        marginBottom={0}
+        textStyles={textStyles}
+        {...this.props}
+      />
+    )
   }
 }

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { splitWrapperProps } from 'ui-box'
+import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
 import TextInput from './TextInput'
 
@@ -35,8 +35,7 @@ export default class TextInputField extends PureComponent {
      * Increase the height somewhat from 32 because we are dealing mainly
      * with traditional long style forms.
      */
-    inputHeight: 36,
-    marginBottom: 24
+    inputHeight: 36
   }
 
   constructor(props) {
@@ -75,10 +74,11 @@ export default class TextInputField extends PureComponent {
     /**
      * Split the wrapper props from the input props.
      */
-    const { matchedProps, restProps } = splitWrapperProps(props)
+    const { matchedProps, remainingProps } = splitBoxProps(props)
 
     return (
       <FormField
+        marginBottom={24}
         label={label}
         isRequired={required}
         description={description}
@@ -96,7 +96,7 @@ export default class TextInputField extends PureComponent {
           appearance={appearance}
           placeholder={placeholder}
           spellCheck={spellCheck}
-          {...restProps}
+          {...remainingProps}
         />
       </FormField>
     )

@@ -58,30 +58,26 @@ export default class Button extends PureComponent {
      * When true, the button is disabled.
      * isLoading also sets the button to disabled.
      */
-    disabled: PropTypes.bool,
-
-    /**
-     * A JavaScript object to override css styling
-     */
-    css: PropTypes.object
+    disabled: PropTypes.bool
   }
 
   static defaultProps = {
-    is: 'button',
-    position: 'relative',
     appearance: 'default',
-    paddingTop: 0,
-    paddingBottom: 0,
+    isActive: false,
+    iconBeforeAim: 'none',
+    iconAfterAim: 'none',
     height: 32,
+    paddingTop: 0,
+    paddingBottom: 0
+  }
+
+  static styles = {
+    position: 'relative',
     fontFamily: 'ui',
     fontWeight: 500,
     display: 'inline-flex',
     alignItems: 'center',
-    flexWrap: 'nowrap',
-
-    isActive: false,
-    iconBeforeAim: 'none',
-    iconAfterAim: 'none'
+    flexWrap: 'nowrap'
   }
 
   render() {
@@ -142,6 +138,7 @@ export default class Button extends PureComponent {
 
     return (
       <Text
+        is="button"
         borderTopRightRadius={borderRadius}
         borderBottomRightRadius={borderRadius}
         borderTopLeftRadius={borderRadius}
@@ -152,6 +149,7 @@ export default class Button extends PureComponent {
         paddingLeft={pl}
         margin={0} // Removes weird margins in Safari
         {...textStyle}
+        color={null} // Prevent the Text color overriding the glamor appearanceStyle color
         css={{
           ...appearanceStyle,
           ...css
@@ -159,6 +157,7 @@ export default class Button extends PureComponent {
         height={height}
         lineHeight={`${height}px`}
         {...(isActive ? { 'data-active': true } : {})}
+        {...Button.styles}
         {...props}
         disabled={disabled || isLoading}
       >

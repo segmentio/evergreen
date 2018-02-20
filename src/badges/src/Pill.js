@@ -6,12 +6,7 @@ export default class Pill extends PureComponent {
     ...Badge.propTypes
   }
 
-  static defaultProps = {
-    borderRadius: 999
-  }
-
   render() {
-    const { ...props } = this.props
-    return <Badge {...props} />
+    return <Badge borderRadius={999} {...this.props} />
   }
 }

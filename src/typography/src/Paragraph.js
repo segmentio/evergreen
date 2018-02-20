@@ -9,20 +9,22 @@ const textStyleTransformation = ({ lineHeight, ...textStyle }) => ({
   lineHeight: `${Math.round(parseFloat(lineHeight, 10) * 1.08)}px`
 })
 
+const textStyles = mapValues(TextStyles, textStyleTransformation)
+
 export default class Paragraph extends PureComponent {
   static propTypes = {
     ...Text.propTypes
   }
 
-  static defaultProps = {
-    ...Text.defaultProps,
-    is: 'p',
-    marginTop: 0,
-    marginBottom: 0,
-    textStyles: mapValues(TextStyles, textStyleTransformation)
-  }
-
   render() {
-    return <Text {...this.props} />
+    return (
+      <Text
+        is="p"
+        marginTop={0}
+        marginBottom={0}
+        textStyles={textStyles}
+        {...this.props}
+      />
+    )
   }
 }

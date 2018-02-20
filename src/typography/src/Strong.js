@@ -7,7 +7,6 @@ export default class Strong extends PureComponent {
   }
 
   static defaultProps = {
-    ...Text.defaultProps,
     is: 'strong',
     fontWeight: 600
   }

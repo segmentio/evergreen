@@ -9,7 +9,7 @@ export default class TooltipStateless extends PureComponent {
     children: PropTypes.node
   }
 
-  static defaultProps = {
+  static styles = {
     backgroundColor: colors.neutral['400A'],
     borderRadius: 3,
     paddingX: 8,
@@ -29,6 +29,10 @@ export default class TooltipStateless extends PureComponent {
     } else {
       child = children
     }
-    return <Box {...props}>{child}</Box>
+    return (
+      <Box {...TooltipStateless.styles} {...props}>
+        {child}
+      </Box>
+    )
   }
 }

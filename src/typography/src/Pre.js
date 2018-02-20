@@ -6,15 +6,15 @@ export default class Pre extends PureComponent {
     ...Text.propTypes
   }
 
-  static defaultProps = {
-    ...Text.defaultProps,
-    is: 'pre',
-    fontFamily: 'mono',
-    marginTop: 0,
-    marginBottom: 'standard'
-  }
-
   render() {
-    return <Text {...this.props} />
+    return (
+      <Text
+        is="pre"
+        fontFamily="mono"
+        marginTop={0}
+        marginBottom={0}
+        {...this.props}
+      />
+    )
   }
 }

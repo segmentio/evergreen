@@ -6,12 +6,7 @@ export default class Card extends PureComponent {
     ...Pane.propTypes
   }
 
-  static defaultProps = {
-    borderRadius: 5
-  }
-
   render() {
-    const { ...props } = this.props
-    return <Pane {...props} />
+    return <Pane borderRadius={5} {...this.props} />
   }
 }

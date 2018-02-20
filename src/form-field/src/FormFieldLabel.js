@@ -15,14 +15,10 @@ export default class FormFieldLabel extends PureComponent {
     isAstrixShown: PropTypes.bool
   }
 
-  static defaultProps = {
-    display: 'block'
-  }
-
   render() {
     const { children, isAstrixShown, ...props } = this.props
     return (
-      <Label {...props}>
+      <Label display="block" {...props}>
         {children}{' '}
         {isAstrixShown && <span title="This field is required.">*</span>}
       </Label>

@@ -6,12 +6,7 @@ export default class Label extends PureComponent {
     ...Text.propTypes
   }
 
-  static defaultProps = {
-    ...Text.defaultProps,
-    is: 'label'
-  }
-
   render() {
-    return <Text {...this.props} />
+    return <Text is="label" {...this.props} />
   }
 }
