@@ -1,4 +1,4 @@
-export { Alert } from './alert'
+export { Alert, InlineAlert } from './alert'
 export { Autocomplete, AutocompleteItem } from './autocomplete'
 export { Avatar } from './avatar'
 export { BadgeAppearances, Badge, Pill } from './badges'
