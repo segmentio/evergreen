@@ -1,0 +1,314 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.10.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  'npm:braces:20180219':
+    - gatsby > chokidar > anymatch > micromatch > braces:
+        reason: None given
+        expires: '2018-03-22T22:19:43.933Z'
+    - gatsby > webpack > watchpack > chokidar > anymatch > micromatch > braces:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > postcss-import > pkg-resolve > jspm > sane > anymatch > micromatch > braces:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > webpack-dev-server > http-proxy-middleware > micromatch > braces:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > webpack-validator > find-node-modules > findup-sync > micromatch > braces:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+  'npm:content:20170908':
+    - gatsby > hapi > subtext > content:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > subtext > pez > content:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+  'npm:hapi:20151020':
+    - gatsby > hapi:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+  'npm:hapi:20151223':
+    - gatsby > hapi:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+  'npm:hapi:20151228':
+    - gatsby > hapi:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+  'npm:hoek:20180212':
+    - gatsby > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > accept > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > ammo > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > inert > ammo > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > catbox > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > catbox-memory > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > h2o2 > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > heavy > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > inert > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > iron > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > statehood > iron > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > joi > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > statehood > joi > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.934Z'
+    - gatsby > hapi > vision > joi > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > catbox > joi > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > h2o2 > joi > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > heavy > joi > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > inert > joi > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > kilt > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > mimos > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > shot > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > statehood > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > subtext > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > topo > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > joi > topo > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > statehood > joi > topo > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > vision > joi > topo > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > catbox > joi > topo > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > h2o2 > joi > topo > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > heavy > joi > topo > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > inert > joi > topo > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > call > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > accept > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > ammo > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > inert > ammo > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > catbox > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > cryptiles > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > iron > cryptiles > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > statehood > iron > cryptiles > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > hapi > statehood > cryptiles > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > chokidar > fsevents > node-pre-gyp > hawk > cryptiles > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.935Z'
+    - gatsby > webpack > watchpack > chokidar > fsevents > node-pre-gyp > hawk > cryptiles > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > chokidar > fsevents > node-pre-gyp > request > hawk > cryptiles > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > webpack > watchpack > chokidar > fsevents > node-pre-gyp > request > hawk > cryptiles > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > h2o2 > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > h2o2 > wreck > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > subtext > wreck > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > heavy > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > inert > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > iron > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > statehood > iron > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > statehood > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > subtext > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > subtext > content > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > subtext > pez > content > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > subtext > pez > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > call > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > vision > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > chokidar > fsevents > node-pre-gyp > hawk > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > webpack > watchpack > chokidar > fsevents > node-pre-gyp > hawk > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > chokidar > fsevents > node-pre-gyp > request > hawk > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > webpack > watchpack > chokidar > fsevents > node-pre-gyp > request > hawk > boom > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.936Z'
+    - gatsby > hapi > h2o2 > wreck > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > hapi > subtext > wreck > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > hapi > subtext > content > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > hapi > subtext > pez > content > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > hapi > subtext > pez > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > chokidar > fsevents > node-pre-gyp > hawk > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > webpack > watchpack > chokidar > fsevents > node-pre-gyp > hawk > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > hapi > subtext > pez > b64 > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > hapi > subtext > pez > nigel > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > chokidar > fsevents > node-pre-gyp > request > hawk > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > webpack > watchpack > chokidar > fsevents > node-pre-gyp > request > hawk > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > chokidar > fsevents > node-pre-gyp > hawk > sntp > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > webpack > watchpack > chokidar > fsevents > node-pre-gyp > hawk > sntp > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > chokidar > fsevents > node-pre-gyp > request > hawk > sntp > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > webpack > watchpack > chokidar > fsevents > node-pre-gyp > request > hawk > sntp > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > hapi > subtext > pez > nigel > vise > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > hapi > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > hapi > vision > hoek:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+  'npm:lodash:20180130':
+    - gatsby > webpack-configurator > lodash:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > webpack-validator > lodash:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+  'npm:mime:20170907':
+    - gatsby > url-loader > mime:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+  'npm:qs:20170213':
+    - gatsby > hapi > qs:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+    - gatsby > hapi > subtext > qs:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+  'npm:shelljs:20140723':
+    - gatsby > webpack-validator > shelljs:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+  'npm:ws:20171108':
+    - gatsby > remote-redux-devtools > socketcluster-client > ws:
+        reason: None given
+        expires: '2018-03-22T22:19:43.937Z'
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:call:20160705':
+    - gatsby > hapi > call:
+        patched: '2018-02-20T22:19:43.939Z'
