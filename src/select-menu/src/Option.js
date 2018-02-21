@@ -71,7 +71,6 @@ export default class Option extends PureComponent {
           borderRight={null}
           flex={1}
           alignSelf="stretch"
-          cursor="pointer"
         >
           {label}
         </TextTableCell>
