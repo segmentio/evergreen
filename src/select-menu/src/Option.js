@@ -70,6 +70,7 @@ export default class Option extends PureComponent {
           paddingLeft={0}
           borderRight={null}
           flex={1}
+          alignSelf="stretch"
         >
           {label}
         </TextTableCell>
