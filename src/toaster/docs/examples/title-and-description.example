@@ -10,7 +10,8 @@
       marginRight={8}
       onClick={() =>
         toaster.success(
-          'Hooray! You did it. Your Source is now sending data.'
+          'Hooray! You did it. Your Source is now sending data.',
+          { description }
         )
       }
     >
