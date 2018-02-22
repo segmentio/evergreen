@@ -8,6 +8,7 @@ import QuestionIcon from './src/QuestionIcon'
 import SearchIcon from './src/SearchIcon'
 import TriangleIcon from './src/TriangleIcon'
 import WarningIcon from './src/WarningIcon'
+import ClipboardIcon from './src/ClipboardIcon'
 
 export Icon from './src/Icon'
 export IconAim from './src/styles/IconAim'
@@ -24,7 +25,8 @@ export const IconMap = {
   question: QuestionIcon,
   search: SearchIcon,
   triangle: TriangleIcon,
-  warning: WarningIcon
+  warning: WarningIcon,
+  clipboard: ClipboardIcon
 }
 
 export {
@@ -37,5 +39,6 @@ export {
   QuestionIcon,
   SearchIcon,
   TriangleIcon,
-  WarningIcon
+  WarningIcon,
+  ClipboardIcon
 }
