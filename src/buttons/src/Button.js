@@ -169,7 +169,7 @@ export default class Button extends PureComponent {
           />
         )}
         {iconBefore || null}
-        <span>{children}</span>
+        {children}
         {iconAfter || null}
       </Text>
     )
