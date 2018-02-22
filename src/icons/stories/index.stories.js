@@ -7,7 +7,6 @@ import {
   ArrowIcon,
   SearchIcon,
   CheckCircleIcon,
-  ClipboardIcon,
   Icon
 } from '../../icons'
 
@@ -41,11 +40,6 @@ storiesOf('icons', module)
   .add('CheckCircleIcon', () => (
     <div>
       <CheckCircleIcon />
-    </div>
-  ))
-  .add('ClipboardIcon', () => (
-    <div>
-      <ClipboardIcon />
     </div>
   ))
   .add('Icon', () => (
