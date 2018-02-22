@@ -5,11 +5,6 @@ import toaster from '../src/'
 import { Button } from '../../buttons/'
 import { Heading, Paragraph, Ul, Li } from '../../typography/'
 
-const buttonProps = {
-  marginY: 12,
-  marginRight: 8
-}
-
 const loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 eiusmod tempor incididunt ut labore et dolore magna aliqua.`
 
@@ -37,13 +32,13 @@ storiesOf('toaster', module).add('examples', () => (
       </Box>
       <Box marginBottom={12}>
         <Button
-          {...buttonProps}
+          marginRight={8}
           onClick={() => toaster.notify('A simple general message')}
         >
           Notify
         </Button>
         <Button
-          {...buttonProps}
+          marginRight={8}
           onClick={() =>
             toaster.notify('A simple general message', {
               description: loremIpsum
@@ -55,7 +50,7 @@ storiesOf('toaster', module).add('examples', () => (
       </Box>
       <Box marginBottom={12}>
         <Button
-          {...buttonProps}
+          marginRight={8}
           onClick={() =>
             toaster.success(
               'Hooray! You did it. Your Source is now sending data.'
@@ -65,7 +60,7 @@ storiesOf('toaster', module).add('examples', () => (
           Success
         </Button>
         <Button
-          {...buttonProps}
+          marginRight={8}
           onClick={() =>
             toaster.success(
               'Hooray! You did it. Your Source is now sending data.',
@@ -80,14 +75,14 @@ storiesOf('toaster', module).add('examples', () => (
       </Box>
       <Box marginBottom={12}>
         <Button
-          {...buttonProps}
+          marginRight={8}
           onClick={() => toaster.warning('Changes will affect all Warehouses.')}
         >
           Warning
         </Button>
 
         <Button
-          {...buttonProps}
+          marginRight={8}
           onClick={() =>
             toaster.warning('Changes will affect all Warehouses.', {
               description: loremIpsum
@@ -99,14 +94,14 @@ storiesOf('toaster', module).add('examples', () => (
       </Box>
       <Box marginBottom={12}>
         <Button
-          {...buttonProps}
+          marginRight={8}
           onClick={() => toaster.danger('Changes will affect all Warehouses.')}
         >
           Danger
         </Button>
 
         <Button
-          {...buttonProps}
+          marginRight={8}
           onClick={() =>
             toaster.danger('Changes will affect all Warehouses.', {
               description: loremIpsum
@@ -118,7 +113,7 @@ storiesOf('toaster', module).add('examples', () => (
       </Box>
       <Box marginBottom={12}>
         <Button
-          {...buttonProps}
+          marginRight={8}
           onClick={() =>
             toaster.info('There are over 180 integrations available.')
           }
@@ -127,7 +122,7 @@ storiesOf('toaster', module).add('examples', () => (
         </Button>
 
         <Button
-          {...buttonProps}
+          marginRight={8}
           onClick={() =>
             toaster.info('There are over 180 integrations available.', {
               description: loremIpsum

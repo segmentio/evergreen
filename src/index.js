@@ -87,6 +87,7 @@ export {
 export { SidebarTab, Tab, Tablist, TabNavigation } from './tabs'
 export { TextInput, TextInputField, TextInputAppearances } from './text-input'
 export { Textarea } from './textarea'
+export { toaster } from './toaster'
 export { Tooltip } from './tooltip'
 export {
   UnorderedList,
