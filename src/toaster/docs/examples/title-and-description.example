@@ -1,0 +1,44 @@
+<Box display='flex'>
+  <Box flex={1}>
+    <Button
+      marginRight={8}
+      onClick={() => toaster.notify('A simple general message', { description })}
+    >
+      Notify
+    </Button>
+    <Button
+      marginRight={8}
+      onClick={() =>
+        toaster.success(
+          'Hooray! You did it. Your Source is now sending data.',
+          { description }
+        )
+      }
+    >
+      Success
+    </Button>
+    <Button
+      marginRight={8}
+      onClick={() => toaster.warning('Changes will affect all Warehouses.', { description })}
+    >
+      Warning
+    </Button>
+    <Button
+      marginRight={8}
+      onClick={() => toaster.danger('Changes will affect all Warehouses.', { description })}
+    >
+      Danger
+    </Button>
+    <Button
+      marginRight={8}
+      onClick={() =>
+        toaster.info('There are over 180 integrations available.', { description })
+      }
+    >
+      Info
+    </Button>
+  </Box>
+  <Box>
+    <Button onClick={() => toaster.closeAll()}>Close All</Button>
+  </Box>
+</Box>

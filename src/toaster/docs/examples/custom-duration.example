@@ -1,0 +1,19 @@
+<Box display='flex'>
+  <Box flex={1}>
+    <Button
+      marginRight={8}
+      onClick={() => toaster.success('Stick around for 10 seconds', { duration: 10 })}
+    >
+      10 Seconds
+    </Button>
+    <Button
+      marginRight={8}
+      onClick={() => toaster.success('Stick around for 20 seconds', { duration: 20 })}
+    >
+      20 Seconds
+    </Button>
+  </Box>
+  <Box>
+    <Button onClick={() => toaster.closeAll()}>Close All</Button>
+  </Box>
+</Box>

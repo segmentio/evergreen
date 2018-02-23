@@ -27,12 +27,14 @@ import tableDocs from '../../../src/table/docs/'
 import dialogDocs from '../../../src/dialog/docs/'
 // import cornerDialogDocs from '../../src/corner-dialog/docs/'
 import alertDocs from '../../../src/alert/docs/'
+import toasterDocs from '../../../src/toaster/docs/'
 
 const map = {
   buttons: buttonsDocs,
   table: tableDocs,
   dialog: dialogDocs,
-  alert: alertDocs
+  alert: alertDocs,
+  toaster: toasterDocs
 }
 
 export default function getComponent(name) {

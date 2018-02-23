@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack') // eslint-disable-line import/no-extraneous-dependencies
 
 const componentTemplate = path.resolve(`src/templates/component.js`)
-const componentNames = ['alert', 'buttons', 'dialog', 'table']
+const componentNames = ['alert', 'buttons', 'dialog', 'table', 'toaster']
 
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.

@@ -37,6 +37,7 @@
     "dom-helpers": "^3.2.1",
     "downshift": "^1.16.0",
     "fuzzaldrin-plus": "^0.6.0",
+    "glamor": "^2.20.40",
     "lodash.mapvalues": "^4.6.0",
     "object-values": "^1.0.0",
     "prop-types": "^15.0.0",
@@ -117,7 +118,7 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "60 KB"
+      "limit": "70 KB"
     }
   ]
 }

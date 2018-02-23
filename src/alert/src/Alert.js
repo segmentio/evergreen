@@ -4,6 +4,7 @@ import { spacing, dimensions, position, layout } from 'ui-box'
 import { colors } from '../../colors'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
+import { IconButton } from '../../buttons'
 import {
   CheckCircleIcon,
   DangerIcon,
@@ -109,6 +110,16 @@ export default class Alert extends PureComponent {
     hasIcon: PropTypes.bool,
 
     /**
+     * When true, show a remove icon button.
+     */
+    isRemoveable: PropTypes.bool,
+
+    /**
+     * Function called when the remove button is clicked.
+     */
+    onRemove: PropTypes.func,
+
+    /**
      * The appearance of the alert.
      */
     appearance: PropTypes.oneOf(['default', 'card'])
@@ -118,6 +129,7 @@ export default class Alert extends PureComponent {
     type: 'default',
     hasTrim: true,
     hasIcon: true,
+    isRemoveable: false,
     appearance: 'default'
   }
 
@@ -129,10 +141,15 @@ export default class Alert extends PureComponent {
       hasIcon,
       children,
       appearance,
+      isRemoveable,
+      onRemove,
       ...props
     } = this.props
 
-    const style = hasTrim && type === 'default' ? {} : getStyle({ type })
+    let style = {}
+    if (hasTrim && type !== 'default') {
+      style = getStyle({ type })
+    }
 
     const appearanceProps = AlertAppearances[appearance]
 
@@ -153,22 +170,34 @@ export default class Alert extends PureComponent {
           type !== 'default' && (
             <Pane marginRight={8}>{getIconForType(type)}</Pane>
           )}
-        <Pane>
-          <Text
-            is="h4"
-            fontWeight={600}
-            size={400}
-            marginTop={0}
-            marginBottom={0}
-          >
-            {title}
-          </Text>
-          {typeof children === 'string' ? (
-            <Text size={400} color="muted">
-              {children}
+        <Pane display="flex" width="100%">
+          <Pane flex={1}>
+            <Text
+              is="h4"
+              fontWeight={600}
+              size={400}
+              marginTop={0}
+              marginBottom={0}
+            >
+              {title}
             </Text>
-          ) : (
-            children
+            {typeof children === 'string' ? (
+              <Text size={400} color="muted">
+                {children}
+              </Text>
+            ) : (
+              children
+            )}
+          </Pane>
+          {isRemoveable && (
+            <Pane marginLeft={24} flexShrink={0}>
+              <IconButton
+                onClick={onRemove}
+                height={24}
+                appearance="ghost"
+                icon="close"
+              />
+            </Pane>
           )}
         </Pane>
       </Pane>
