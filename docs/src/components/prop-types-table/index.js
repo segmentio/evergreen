@@ -30,7 +30,11 @@ export default class PropTypesTable extends PureComponent {
 
   render() {
     const { componentDocs } = this.state
-    const propTypes = Object.keys(componentDocs.props)
+    let propTypes
+    if (Object.hasOwnProperty.call(componentDocs, 'props')) {
+      propTypes = Object.keys(componentDocs.props)
+    }
+
     return (
       <div>
         <div className="Content">
@@ -50,24 +54,25 @@ export default class PropTypesTable extends PureComponent {
             )}
         </div>
 
-        {propTypes.map(propName => {
-          const prop = componentDocs.props[propName]
-          // Figure out what makes sense here.
-          // const value = (prop.type || {}).value
-          return (
-            <PropTypeWrapper key={propName}>
-              <PropTypeHeading
-                name={propName}
-                required={prop.required}
-                defaultValue={prop.defaultValue}
-                type={prop.type || {}}
-              />
-              {prop.description ? (
-                <PropTypeDescription>{prop.description}</PropTypeDescription>
-              ) : null}
-            </PropTypeWrapper>
-          )
-        })}
+        {propTypes &&
+          propTypes.map(propName => {
+            const prop = componentDocs.props[propName]
+            // Figure out what makes sense here.
+            // const value = (prop.type || {}).value
+            return (
+              <PropTypeWrapper key={propName}>
+                <PropTypeHeading
+                  name={propName}
+                  required={prop.required}
+                  defaultValue={prop.defaultValue}
+                  type={prop.type || {}}
+                />
+                {prop.description ? (
+                  <PropTypeDescription>{prop.description}</PropTypeDescription>
+                ) : null}
+              </PropTypeWrapper>
+            )
+          })}
       </div>
     )
   }
