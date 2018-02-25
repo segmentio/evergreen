@@ -20,9 +20,8 @@ export default class SearchInput extends PureComponent {
   render() {
     const { appearance, iconProps, disabled, height, ...props } = this.props
     const { matchedProps, remainingProps } = splitBoxProps(props)
-    const { width } = matchedProps
+    const { width = TextInput.defaultProps.width } = matchedProps
     const iconSize = getIconSizeForControlHeight({ height })
-
     return (
       <Box
         position="relative"
@@ -46,8 +45,8 @@ export default class SearchInput extends PureComponent {
           paddingLeft={height}
           appearance={appearance}
           disable={disabled}
+          width={width}
           {...remainingProps}
-          {...{ width }}
         />
       </Box>
     )
