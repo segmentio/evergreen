@@ -79,7 +79,7 @@
     "lint-staged": "^6.0.0",
     "prettier": "^1.9.1",
     "react": "^16.2.0",
-    "react-chromatic": "^0.7.9",
+    "react-chromatic": "^0.7.10",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "sinon": "^4.1.6",
