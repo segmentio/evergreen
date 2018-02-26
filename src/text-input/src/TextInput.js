@@ -42,12 +42,18 @@ export default class TextInput extends PureComponent {
     /**
      * The appearance of the TextInput.
      */
-    appearance: PropTypes.oneOf(Object.keys(InputAppearances))
+    appearance: PropTypes.oneOf(Object.keys(InputAppearances)),
+
+    /**
+     * The width of the TextInput.
+     */
+    width: PropTypes.oneOf([PropTypes.string, PropTypes.number])
   }
 
   static defaultProps = {
     appearance: 'default',
     height: 32,
+    width: 280,
     disabled: false,
     isInvalid: false,
     spellCheck: true
@@ -56,6 +62,7 @@ export default class TextInput extends PureComponent {
   render() {
     const {
       css,
+      width,
       height,
       disabled,
       required,
@@ -73,7 +80,7 @@ export default class TextInput extends PureComponent {
       <Text
         is="input"
         type="text"
-        width={280}
+        width={width}
         height={height}
         required={required}
         disabled={disabled}

@@ -37,6 +37,12 @@ storiesOf('search-input', module).add('SearchInput', () => (
     </StorySection>
     <StorySection>
       <StoryHeader>
+        <StoryHeading>Height 32 and Width 100%</StoryHeading>
+      </StoryHeader>
+      <SearchInput height={32} width="100%" placeholder="Long Input" />
+    </StorySection>
+    <StorySection>
+      <StoryHeader>
         <StoryHeading>Appearance: neutral</StoryHeading>
         <StoryDescription>
           Use this on top of a white background
