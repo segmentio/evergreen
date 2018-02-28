@@ -47,7 +47,7 @@ export default class TextInput extends PureComponent {
     /**
      * The width of the TextInput.
      */
-    width: PropTypes.oneOf([PropTypes.string, PropTypes.number])
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   }
 
   static defaultProps = {
