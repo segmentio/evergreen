@@ -26,8 +26,6 @@
     "build-esm":
       "BABEL_ENV=esm babel src --out-dir esm --ignore stories,test,docs --source-maps inline",
     "build": "yarn run build-commonjs && yarn run build-esm",
-    "build-watch":
-      "yarn run build-commonjs --watch && yarn run build-esm --watch",
     "clean": "git clean -Xdf",
     "release": "np --no-publish"
   },

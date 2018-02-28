@@ -23,6 +23,7 @@ export default class IconButton extends PureComponent {
   }
 
   static defaultProps = {
+    appearance: 'default',
     height: 32,
     iconAim: 'none'
   }
