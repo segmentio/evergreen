@@ -51,6 +51,7 @@ export default class Combobox extends PureComponent {
       defaultSelectedItem,
       itemToString,
       width,
+      appearance,
       height,
       onChange,
       inputProps,
@@ -117,6 +118,7 @@ export default class Combobox extends PureComponent {
               iconAim={isOpen ? 'up' : 'down'}
               color="muted"
               icon="triangle"
+              appearance={appearance}
               height={height}
               marginLeft={-1}
               paddingLeft={0}
