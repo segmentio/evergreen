@@ -19,7 +19,7 @@ export default class SegmentedControl extends PureComponent {
     ).isRequired,
     name: PropTypes.string,
     value: PropTypes.string,
-    height: PropTypes.string,
+    height: PropTypes.number,
     onChange: PropTypes.func,
     defaultValue: PropTypes.string
   }
