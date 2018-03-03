@@ -53,3 +53,15 @@
   border-radius: 3px;
   box-shadow: 0 0 0 1px var(--neutral-20A);
 }
+
+.Playground-error {
+  border-radius: 5px;
+  background-color: var(--neutral-800);
+  color: white;
+  padding: 80px;
+  text-align: center;
+
+  & p {
+    line-height: 1.4;
+  }
+}
