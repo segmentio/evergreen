@@ -156,6 +156,8 @@ export default class MyDocument extends Document {
     //
     // `evergreenHydrateScript` is a script you should render on the server.
     // it will contain a stringified JSON of the cache of both glamor and ui-box.
+    // Evergreen will look for that script on the client and automatically hydrate
+    // both glamor and ui-box
     const { css, evergreenHydrateScript } = extractStyles()
     return {
       ...page,
