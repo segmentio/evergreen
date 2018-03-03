@@ -16,8 +16,14 @@ export default class Playground extends React.Component {
     this.state = {
       uniqueId: _.uniqueId(),
       isPreviewEntered: false,
-      isCodeCollapsed: true
+      isCodeCollapsed: true,
+      hasError: false
     }
+  }
+
+  componentDidCatch() {
+    // Display fallback UI
+    this.setState({ hasError: true })
   }
 
   handleToggle = () => {
@@ -38,9 +44,23 @@ export default class Playground extends React.Component {
     })
   }
 
+  renderError = () => {
+    return (
+      <div className="Playground-error">
+        <p>
+          Oops, something went wrong in with this live preview.<br /> Please
+          reload the page and try again.
+        </p>
+      </div>
+    )
+  }
+
   render() {
     const { codeText, scope } = this.props
-    const { isCodeCollapsed, uniqueId, isPreviewEntered } = this.state
+    const { hasError, isCodeCollapsed, uniqueId, isPreviewEntered } = this.state
+
+    if (hasError) return this.renderError()
+
     return (
       <div
         className="Playground"
