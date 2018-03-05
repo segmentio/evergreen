@@ -73,6 +73,7 @@ export {
 export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
 export { Switch } from './switch'
+export { extractStyles } from './ssr'
 export {
   Table,
   TableHead,

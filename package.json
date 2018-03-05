@@ -79,7 +79,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
-    "sinon": "^4.1.6",
+    "sinon": "^4.4.2",
     "size-limit": "^0.14.0",
     "starwars-names": "^1.6.0",
     "url-loader": "^0.6.2",

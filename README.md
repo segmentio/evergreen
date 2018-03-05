@@ -8,6 +8,7 @@
 * Powerful component API with [ui-box](https://github.com/segmentio/ui-box)
 * Dedicated UI Development Environment with [React storybook](https://storybook.js.org/)
 * Easy adoption because of CSS-in-JS
+* Easy Server Side Rendering (SSR) and automatic hydration
 * Interested in Evergreen? [Come work for Segment!](https://segment.com/jobs/)
 
 ## Core values of 🌲 Evergreen
@@ -129,6 +130,65 @@ The following file tree will be generated:
 ├── /stories/
 │   └── index.stories.js
 └── index.js
+```
+
+## Server Side Rendering
+
+Evergreen bundles 2 CSS-in-JS solutions, from glamor and ui-box. To make it super
+easy to do server side rendering and hydration, Evergreen exposes it's own function
+that will do SSR for both at once.
+
+### Next.js SSR example
+
+Install a new [Next.js](https://github.com/zeit/next.js) with [create-next-app](https://github.com/segmentio/create-next-app).
+Create a `_document.js` inside of the `./pages` folder with the following content:
+
+```javascript
+// ./pages/_document.js
+import Document, { Head, Main, NextScript } from 'next/document'
+import { extractStyles } from 'evergreen-ui'
+
+export default class MyDocument extends Document {
+  static getInitialProps({ renderPage }) {
+    const page = renderPage()
+    // `css` is a string with css from both glamor and ui-box
+    // no need to do glamor manually if you are using it elsewhere in your app
+    //
+    // `evergreenHydrateScript` is a script you should render on the server.
+    // it will contain a stringified JSON of the cache of both glamor and ui-box.
+    // Evergreen will look for that script on the client and automatically hydrate
+    // both glamor and ui-box
+    const { css, evergreenHydrateScript } = extractStyles()
+    return {
+      ...page,
+      css,
+      evergreenHydrateScript
+    }
+  }
+
+  constructor(props) {
+    super(props)
+    const { __NEXT_DATA__, ids, cache } = props
+    if (ids) {
+      __NEXT_DATA__.ids = this.props.ids
+    }
+  }
+
+  render() {
+    return (
+      <html>
+        <Head>
+          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
+          {this.props.evergreenHydrateScript}
+        </Head>
+        <body className="custom_class">
+          <Main />
+          <NextScript />
+        </body>
+      </html>
+    )
+  }
+}
 ```
 
 ## Contributors 🎉
