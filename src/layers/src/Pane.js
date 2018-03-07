@@ -25,7 +25,7 @@ export default class Pane extends PureComponent {
     activeElevation: ElevationPropType,
 
     // Enable to set a boolean for a default border
-    borderTop: StringAndBoolPropType,
+    border: StringAndBoolPropType,
     borderRight: StringAndBoolPropType,
     borderBottom: StringAndBoolPropType,
     borderLeft: StringAndBoolPropType
