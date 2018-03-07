@@ -12,7 +12,7 @@
  * /src/pacakage-name/docs
  * ├── index.js
  * └── /examples/
- *     └── default.example
+ *     └── {ComponentName}-basic.example
  *
  */
 
