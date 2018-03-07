@@ -151,26 +151,18 @@ import { extractStyles } from 'evergreen-ui'
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     const page = renderPage()
-    // `css` is a string with css from both glamor and ui-box
-    // no need to do glamor manually if you are using it elsewhere in your app
+    // `styles` is a string with css from both glamor and ui-box.
+    // No need to get the glamor css manually if you are using it elsewhere in your app.
     //
-    // `evergreenHydrateScript` is a script you should render on the server.
-    // it will contain a stringified JSON of the cache of both glamor and ui-box.
+    // `hydrationScript` is a script you should render on the server.
+    // It contains a stringified version of the glamor and ui-box caches.
     // Evergreen will look for that script on the client and automatically hydrate
-    // both glamor and ui-box
-    const { css, evergreenHydrateScript } = extractStyles()
+    // both glamor and ui-box.
+    const { styles, hydrationScript } = extractStyles()
     return {
       ...page,
-      css,
-      evergreenHydrateScript
-    }
-  }
-
-  constructor(props) {
-    super(props)
-    const { __NEXT_DATA__, ids, cache } = props
-    if (ids) {
-      __NEXT_DATA__.ids = this.props.ids
+      styles,
+      hydrationScript
     }
   }
 
@@ -178,8 +170,8 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
-          {this.props.evergreenHydrateScript}
+          <style dangerouslySetInnerHTML={{ __html: this.props.styles }} />
+          {this.props.hydrationScript}
         </Head>
         <body className="custom_class">
           <Main />
