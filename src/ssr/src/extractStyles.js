@@ -20,7 +20,7 @@ export default function extractStyles() {
   }
 
   return {
-    styles: styles + '\n' + css,
+    css: styles + '\n' + css,
     cache: evergreenCache,
     hydrationScript: <script {...scriptProps} />
   }

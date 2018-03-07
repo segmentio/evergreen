@@ -10,7 +10,7 @@ test.serial('returns styles for a Box', t => {
   render(<Box height={11} />)
   const result = extractStyles()
   t.snapshot(result)
-  t.truthy(result.styles)
+  t.truthy(result.css)
   t.truthy(result.cache.uiBoxCache)
   t.truthy(result.cache.glamorIds)
   t.truthy(result.hydrationScript)

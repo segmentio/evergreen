@@ -134,54 +134,7 @@ The following file tree will be generated:
 
 ## Server Side Rendering
 
-Evergreen bundles 2 CSS-in-JS solutions, from glamor and ui-box. To make it super
-easy to do server side rendering and hydration, Evergreen exposes it's own function
-that will do SSR for both at once.
-
-### Next.js SSR example
-
-Install a new [Next.js](https://github.com/zeit/next.js) with [create-next-app](https://github.com/segmentio/create-next-app).
-Create a `_document.js` inside of the `./pages` folder with the following content:
-
-```javascript
-// ./pages/_document.js
-import Document, { Head, Main, NextScript } from 'next/document'
-import { extractStyles } from 'evergreen-ui'
-
-export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
-    const page = renderPage()
-    // `styles` is a string with css from both glamor and ui-box.
-    // No need to get the glamor css manually if you are using it elsewhere in your app.
-    //
-    // `hydrationScript` is a script you should render on the server.
-    // It contains a stringified version of the glamor and ui-box caches.
-    // Evergreen will look for that script on the client and automatically hydrate
-    // both glamor and ui-box.
-    const { styles, hydrationScript } = extractStyles()
-    return {
-      ...page,
-      styles,
-      hydrationScript
-    }
-  }
-
-  render() {
-    return (
-      <html>
-        <Head>
-          <style dangerouslySetInnerHTML={{ __html: this.props.styles }} />
-          {this.props.hydrationScript}
-        </Head>
-        <body className="custom_class">
-          <Main />
-          <NextScript />
-        </body>
-      </html>
-    )
-  }
-}
-```
+Evergreen bundles 2 CSS-in-JS solutions, from glamor and ui-box. To make it super easy to do server side rendering and hydration, Evergreen exposes a `extractStyles()` function that will do SSR for both at once. You can see how to use it with Next.js in the [ssr-next example app](examples/ssr-next).
 
 ## Contributors 🎉
 
