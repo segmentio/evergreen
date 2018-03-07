@@ -26,6 +26,7 @@ export default class Pane extends PureComponent {
 
     // Enable to set a boolean for a default border
     border: StringAndBoolPropType,
+    borderTop: StringAndBoolPropType,
     borderRight: StringAndBoolPropType,
     borderBottom: StringAndBoolPropType,
     borderLeft: StringAndBoolPropType
