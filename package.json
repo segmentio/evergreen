@@ -20,6 +20,7 @@
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
+    "create-docs-template": "./tools/create-docs-template.js",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
     "build-commonjs":
       "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore stories,test,docs --source-maps inline",
