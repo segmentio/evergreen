@@ -24,12 +24,10 @@ export default function autoHydrate() {
         const hydrationObject = JSON.parse(hydration.innerHTML)
         hydrate(hydrationObject)
       } catch (err) {
-        if (process.env.NODE_ENV !== 'production') {
-          console.error(
-            'Evergreen automatic hydration object is invalid JSON',
-            err
-          )
-        }
+        console.error(
+          'Evergreen automatic hydration object is invalid JSON',
+          err
+        )
       }
     }
   }
