@@ -25,7 +25,7 @@ export default function autoHydrate() {
         hydrate(hydrationObject)
       } catch (err) {
         if (process.env.NODE_ENV !== 'production') {
-          console.log(
+          console.error(
             'Evergreen automatic hydration object is invalid JSON',
             err
           )
