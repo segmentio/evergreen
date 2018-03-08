@@ -16,19 +16,63 @@ const StringAndBoolPropType = PropTypes.oneOfType([
 
 export default class Pane extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the Box component as the base.
+     */
     ...Box.propTypes,
 
+    /**
+     * The appearance of the Pane.
+     * Values: tint1, tint2, tint3, selected, dark.
+     */
     appearance: PropTypes.oneOf(Object.keys(LayerAppearances)),
 
+    /**
+     * Elevation of the Pane.
+     * Values: 0, 1, 2, 3, 4.
+     */
     elevation: ElevationPropType,
+
+    /**
+     * Elevation of the Pane on hover. Might get deprecated.
+     * Values: 0, 1, 2, 3, 4.
+     */
     hoverElevation: ElevationPropType,
+
+    /**
+     * Elevation of the Pane on click. Might get deprecated.
+     * Values: 0, 1, 2, 3, 4.
+     */
     activeElevation: ElevationPropType,
 
-    // Enable to set a boolean for a default border
+    /**
+     * Can be a explicit border value or a boolean.
+     * Values: true, extraMuted, muted, default.
+     */
     border: StringAndBoolPropType,
+
+    /**
+     * Can be a explicit border value or a boolean.
+     * Values: true, extraMuted, muted, default.
+     */
     borderTop: StringAndBoolPropType,
+
+    /**
+     * Can be a explicit border value or a boolean.
+     * Values: true, extraMuted, muted, default.
+     */
     borderRight: StringAndBoolPropType,
+
+    /**
+     * Can be a explicit border value or a boolean.
+     * Values: true, extraMuted, muted, default.
+     */
     borderBottom: StringAndBoolPropType,
+
+    /**
+     * Can be a explicit border value or a boolean.
+     * Values: true, extraMuted, muted, default.
+     */
     borderLeft: StringAndBoolPropType
   }
 

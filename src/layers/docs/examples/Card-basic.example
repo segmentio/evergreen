@@ -1,0 +1,13 @@
+<Card
+  innerRef={(ref) => console.log(ref)}
+  elevation={2}
+  border='muted'
+  marginLeft={12}
+  marginY={24}
+  paddingTop={12}
+  paddingX={40}
+  width={120}
+  height={120}
+  cursor='pointer'
+  onClick={() => alert('Works just like expected')}
+/>

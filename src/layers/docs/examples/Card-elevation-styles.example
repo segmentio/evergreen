@@ -1,0 +1,73 @@
+<Card clearfix>
+  <Card
+    elevation={0}
+    float="left"
+    backgroundColor="white"
+    width={200}
+    height={120}
+    margin={24}
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    flexDirection="column"
+  >
+    <Text>Elevation 0</Text>
+    <Text size={300}>Flat Cards</Text>
+  </Card>
+  <Card
+    elevation={1}
+    float="left"
+    width={200}
+    height={120}
+    margin={24}
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    flexDirection="column"
+  >
+    <Text>Elevation 1</Text>
+    <Text size={300}>Floating Cards</Text>
+  </Card>
+  <Card
+    elevation={2}
+    float="left"
+    width={200}
+    height={120}
+    margin={24}
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    flexDirection="column"
+  >
+    <Text>Elevation 2</Text>
+    <Text size={300}>Popovers and Dropdowns</Text>
+  </Card>
+  <Card
+    elevation={3}
+    float="left"
+    width={200}
+    height={120}
+    margin={24}
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    flexDirection="column"
+  >
+    <Text>Elevation 3</Text>
+    <Text size={300}>Toasts</Text>
+  </Card>
+  <Card
+    elevation={4}
+    float="left"
+    width={200}
+    height={120}
+    margin={24}
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    flexDirection="column"
+  >
+    <Text>Elevation 4</Text>
+    <Text size={300}>Dialog</Text>
+  </Card>
+</Card>
