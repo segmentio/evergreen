@@ -7,7 +7,7 @@
     "Roland Warmerdam (https://roland.codes)"
   ],
   "keywords": ["evergreen", "segment", "ui", "react"],
-  "repository": "segmentio/evergreen-ui",
+  "repository": "segmentio/evergreen",
   "license": "MIT",
   "main": "commonjs/index.js",
   "module": "esm/index.js",
@@ -45,7 +45,7 @@
     "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.2.1",
-    "ui-box": "^1.0.5"
+    "ui-box": "^1.1.0"
   },
   "peerDependencies": {
     "react": "^16.0.0",
