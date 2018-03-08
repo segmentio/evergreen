@@ -42,7 +42,7 @@ function getComponents(componentNames) {
         scope,
       },
     ],
-  },
+  }
   `
   )
 }

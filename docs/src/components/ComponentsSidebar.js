@@ -16,7 +16,7 @@ export default class ComponentsSidebar extends PureComponent {
         title: 'Components',
         links: componentRoutes.map(route => {
           return {
-            label: route.name,
+            label: route.sidebarOverride || route.name,
             to: route.path
           }
         })

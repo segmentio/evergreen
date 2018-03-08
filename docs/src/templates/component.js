@@ -12,6 +12,7 @@ export default class ComponentTemplate extends React.PureComponent {
 
   render() {
     const {
+      introduction,
       designGuidelines,
       appearanceOptions,
       components,
@@ -29,6 +30,7 @@ export default class ComponentTemplate extends React.PureComponent {
               title={title}
               subTitle={subTitle}
               name={this.props.pathContext.name}
+              introduction={introduction}
               designGuidelines={designGuidelines}
               appearanceOptions={appearanceOptions}
               components={components}
