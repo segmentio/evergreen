@@ -1,3 +1,7 @@
+import { autoHydrate } from './ssr'
+
+autoHydrate()
+
 export { Alert, InlineAlert } from './alert'
 export { Autocomplete, AutocompleteItem } from './autocomplete'
 export { Avatar } from './avatar'

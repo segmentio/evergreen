@@ -26,7 +26,8 @@ export default class Combobox extends PureComponent {
 
   static defaultProps = {
     openOnFocus: false,
-    width: 224
+    width: 224,
+    appearance: 'default'
   }
 
   constructor(props, context) {
