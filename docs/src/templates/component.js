@@ -18,7 +18,7 @@ export default class ComponentTemplate extends React.PureComponent {
       title,
       subTitle,
       examples
-    } = getComponent(this.props.pathContext.name)
+    } = getComponent(this.props.pathContext.name.toLowerCase())
 
     return (
       <div className="MainLayout">

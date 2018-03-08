@@ -2,7 +2,7 @@
 // Import colorsDocs from '../../src/colors/docs/'
 // import sharedStylesDocs from '../../src/shared-styles/docs/'
 // import typographyDocs from '../../src/typography/docs/'
-// import layersDocs from '../../src/layers/docs/'
+import layersDocs from '../../../src/layers/docs/'
 import buttonsDocs from '../../../src/buttons/docs'
 // Import iconsDocs from '../../src/icons/docs/'
 // import autocompleteDocs from '../../src/autocomplete/docs/'
@@ -34,7 +34,8 @@ const map = {
   table: tableDocs,
   dialog: dialogDocs,
   alert: alertDocs,
-  toaster: toasterDocs
+  toaster: toasterDocs,
+  layers: layersDocs
 }
 
 export default function getComponent(name) {
