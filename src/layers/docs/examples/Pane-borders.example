@@ -1,0 +1,14 @@
+<div>
+  <Pane borderTop width={120} height={120} display='flex' justifyContent='center' alignItems='center'>
+    <Text>borderTop</Text>
+  </Pane>
+  <Pane borderRight width={120} height={120} display='flex' justifyContent='center' alignItems='center'>
+    <Text>borderRight</Text>
+  </Pane>
+  <Pane borderBottom width={120} height={120} display='flex' justifyContent='center' alignItems='center'>
+    <Text>borderBottom</Text>
+  </Pane>
+  <Pane borderLeft width={120} height={120} display='flex' justifyContent='center' alignItems='center'>
+    <Text>borderLeft</Text>
+  </Pane>
+</div>
