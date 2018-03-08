@@ -132,6 +132,32 @@ The following file tree will be generated:
 └── index.js
 ```
 
+## yarn run create-docs-template
+
+For the following command:
+
+```
+$ yarn run create-docs-template layers Pane Card
+```
+
+The following file tree will be generated:
+
+```
+/src/layers/docs
+├── index.js
+└── /examples/
+    ├── Pane-basic.example
+    └── Card-basic.example
+```
+
+### Manual steps for docs
+
+This `yarn run create-docs-template` script is far from perfect and still requires manual steps. This includes:
+
+* Making sure to use the right examples and write some docs.
+* Configure `docs/utils/getComponent.js`
+* Configure `docs/components/ComponentsSidebar.js`
+
 ## Server Side Rendering
 
 Evergreen bundles 2 CSS-in-JS solutions, from glamor and ui-box. To make it super easy to do server side rendering and hydration, Evergreen exposes a `extractStyles()` function that will do SSR for both at once. You can see how to use it with Next.js in the [ssr-next example app](examples/ssr-next).
