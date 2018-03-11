@@ -10,12 +10,41 @@ const isDev = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV
 
 export default class Text extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the Box component as the base.
+     */
     ...Box.propTypes,
+
+    /**
+     * Size of the text style.
+     * Can be: 100, 200, 300, 400, 500, 600, 700, 800, 900.
+     */
     size: PropTypes.oneOf(Object.keys(TextStyles).map(Number)),
+
+    /**
+     * Font family.
+     * Can be: ui, display or mono
+     */
     fontFamily: PropTypes.oneOf(Object.keys(FontFamilies)),
+
+    /**
+     * Sets the text to uppercase.
+     * Only sizes 100 and 200 support uppercase styles at the moment.
+     */
+    isUppercase: PropTypes.bool,
+
+    /**
+     * The text styles available.
+     * This is overridden by other text components that implement Text as the base.
+     * You should avoid setting this manually.
+     */
     textStyles: PropTypes.object,
-    textUppercaseStyles: PropTypes.object,
-    isUppercase: PropTypes.bool
+
+    /**
+     * The uppercase text styles.
+     * You should avoid setting this manually.
+     */
+    textUppercaseStyles: PropTypes.object
   }
 
   static defaultProps = {

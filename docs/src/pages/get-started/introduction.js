@@ -2,6 +2,7 @@
 import React from 'react'
 import TopBar from '../../components/TopBar'
 import GetStartedSidebar from '../../components/GetStartedSidebar'
+import SyntaxHighlighter from '../../components/SyntaxHighlighter'
 
 const NativeLink = ({ ...props }) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
@@ -78,9 +79,8 @@ $ npm install --save evergreen-ui
                 </NativeLink>, might look like this:
               </p>
 
-              <pre>
-                <code>
-                  {`
+              <SyntaxHighlighter>
+                {`
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Button } from 'evergreen-ui'
@@ -90,8 +90,7 @@ ReactDOM.render(
   document.getElementById('root')
 )
                 `.trim()}
-                </code>
-              </pre>
+              </SyntaxHighlighter>
             </div>
           </section>
         </div>

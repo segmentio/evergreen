@@ -17,7 +17,8 @@
     "react-docgen": "next",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
-    "react-live": "^1.7.1"
+    "react-live": "^1.7.1",
+    "react-syntax-highlighter": "^7.0.2"
   },
   "devDependencies": {
     "prettier": "^1.10.2"

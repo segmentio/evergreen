@@ -47,21 +47,23 @@ const designGuidelines = (
       <code>SelectMenu</code> component. Currently this package does not use
       real tables under the hood.
     </p>
-    <h3>Implementation details</h3>
-    <ul>
-      <li>
-        None of these components implement HTML table elements such as:
-        {` `}
-        <code>table</code>, <code>th</code> or <code>tr</code>.
-      </li>
-      <li>
-        Most components are basic <code>Pane</code> components combined with
-        {` `}
-        <code>Text</code>.
-      </li>
-      <li>All components are presentational, no sorting build in.</li>
-    </ul>
   </div>
+)
+
+const implementationDetails = (
+  <ul>
+    <li>
+      None of these components implement HTML table elements such as:
+      {` `}
+      <code>table</code>, <code>th</code> or <code>tr</code>.
+    </li>
+    <li>
+      Most components are basic <code>Pane</code> components combined with
+      {` `}
+      <code>Text</code>.
+    </li>
+    <li>All components are presentational, no sorting build in.</li>
+  </ul>
 )
 
 const appearanceOptions = null
@@ -280,6 +282,7 @@ export default {
   title,
   subTitle,
   designGuidelines,
+  implementationDetails,
   appearanceOptions,
   components
 }

@@ -58,7 +58,6 @@ export default class PropTypesTable extends PureComponent {
           propTypes.map(propName => {
             const prop = componentDocs.props[propName]
             // Figure out what makes sense here.
-            // const value = (prop.type || {}).value
             return (
               <PropTypeWrapper key={propName}>
                 <PropTypeHeading
@@ -67,6 +66,12 @@ export default class PropTypesTable extends PureComponent {
                   defaultValue={prop.defaultValue}
                   type={prop.type || {}}
                 />
+                {prop.type &&
+                  typeof prop.type.value === 'string' && (
+                    <div className="PropTypeTypeValue Content">
+                      Value type: <code>{prop.type.value}</code>
+                    </div>
+                  )}
                 {prop.description ? (
                   <PropTypeDescription>{prop.description}</PropTypeDescription>
                 ) : null}

@@ -1,0 +1,11 @@
+<Box>
+  <Label size={100} isUppercase>The quick brown fox jumps over the lazy dog</Label>
+  <Label size={200} isUppercase>The quick brown fox jumps over the lazy dog</Label>
+  <Label size={300}>The quick brown fox jumps over the lazy dog</Label>
+  <Label size={400}>The quick brown fox jumps over the lazy dog</Label>
+  <Label size={500}>The quick brown fox jumps over the lazy dog</Label>
+  <Label size={600}>The quick brown fox jumps over the lazy dog</Label>
+  <Label size={700}>The quick brown fox jumps over the lazy dog</Label>
+  <Label size={800}>The quick brown fox jumps over the lazy dog</Label>
+  <Label size={900}>The quick brown fox jumps over the lazy dog</Label>
+</Box>

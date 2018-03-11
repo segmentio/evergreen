@@ -25,12 +25,15 @@ const designGuidelines = (
       When you want to give feedback to your users about a action they take.
       Often this is in the form of creation or deletion.
     </p>
-    <h3>Types of Toasts</h3>
+  </div>
+)
+const implementationDetails = (
+  <div>
     <p>
       A toast is simply a wrapper around the <code>Alert</code> component and
-      has the same kind of types as an alert. The following methods are
-      available:
+      has the same kind of types as an alert. The following types are available:
     </p>
+    <h3>Types of Toasts</h3>
     <ul>
       <li>
         <code>toaster.notify()</code> &mdash; uses the default type
@@ -114,6 +117,7 @@ export default {
   title,
   subTitle,
   designGuidelines,
+  implementationDetails,
   appearanceOptions,
   examples
 }

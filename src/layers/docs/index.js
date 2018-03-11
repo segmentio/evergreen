@@ -30,10 +30,11 @@ const introduction = (
       the <code>div</code> element. They are used as primitives to construct
       layouts and compose components.
     </p>
+  </div>
+)
 
-    <h3>
-      The Relationship to <code>ui-box</code>
-    </h3>
+const implementationDetails = (
+  <div>
     <p>
       The <code>Pane</code> component maps almost directly to the{' '}
       <code>Box</code> from{' '}
@@ -149,7 +150,7 @@ const appearanceOptions = [
       </PaneExample>
     ),
     description: (
-      <p>This is rarely used. Might become depracted in the future.</p>
+      <p>This is rarely used. Might become deprecated in the future.</p>
     )
   },
   {
@@ -235,6 +236,7 @@ export default {
   title,
   subTitle,
   introduction,
+  implementationDetails,
   appearanceOptions,
   components
 }

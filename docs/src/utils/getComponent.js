@@ -1,7 +1,7 @@
 /* eslint-disable capitalized-comments */
 // Import colorsDocs from '../../src/colors/docs/'
 // import sharedStylesDocs from '../../src/shared-styles/docs/'
-// import typographyDocs from '../../src/typography/docs/'
+import typographyDocs from '../../../src/typography/docs/'
 import layersDocs from '../../../src/layers/docs/'
 import buttonsDocs from '../../../src/buttons/docs'
 // Import iconsDocs from '../../src/icons/docs/'
@@ -35,7 +35,8 @@ const map = {
   dialog: dialogDocs,
   alert: alertDocs,
   toaster: toasterDocs,
-  layers: layersDocs
+  layers: layersDocs,
+  typography: typographyDocs
 }
 
 export default function getComponent(name) {

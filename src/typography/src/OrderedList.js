@@ -12,7 +12,7 @@ export default class OrderedList extends PureComponent {
     marginLeft: '1.1em',
     padding: 0,
     listStylePosition: 'inside',
-    listStyle: 'number'
+    listStyle: 'decimal'
   }
 
   render() {

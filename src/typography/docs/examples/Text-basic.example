@@ -1,0 +1,11 @@
+<Box>
+  <Text size={100} isUppercase>The quick brown fox jumps over the lazy dog</Text>
+  <Text size={200} isUppercase>The quick brown fox jumps over the lazy dog</Text>
+  <Text size={300}>The quick brown fox jumps over the lazy dog</Text>
+  <Text size={400}>The quick brown fox jumps over the lazy dog</Text>
+  <Text size={500}>The quick brown fox jumps over the lazy dog</Text>
+  <Text size={600}>The quick brown fox jumps over the lazy dog</Text>
+  <Text size={700}>The quick brown fox jumps over the lazy dog</Text>
+  <Text size={800}>The quick brown fox jumps over the lazy dog</Text>
+  <Text size={900}>The quick brown fox jumps over the lazy dog</Text>
+</Box>
