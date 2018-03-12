@@ -1,7 +1,6 @@
 <Card
   innerRef={(ref) => console.log(ref)}
   elevation={2}
-  border='muted'
   marginLeft={12}
   marginY={24}
   paddingTop={12}

@@ -6,12 +6,7 @@ export default class Strong extends PureComponent {
     ...Text.propTypes
   }
 
-  static defaultProps = {
-    is: 'strong',
-    fontWeight: 600
-  }
-
   render() {
-    return <Text {...this.props} />
+    return <Text is="strong" fontWeight={600} {...this.props} />
   }
 }

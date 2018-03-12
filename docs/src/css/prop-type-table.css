@@ -55,3 +55,9 @@
 .PropTypeDescription {
   margin-bottom: 8px;
 }
+
+.PropTypeTypeValue {
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--neutral-5A);
+  margin-bottom: 4px;
+}
