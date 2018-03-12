@@ -7,14 +7,6 @@ export default class Pre extends PureComponent {
   }
 
   render() {
-    return (
-      <Text
-        is="pre"
-        fontFamily="mono"
-        marginTop={0}
-        marginBottom={0}
-        {...this.props}
-      />
-    )
+    return <Text is="pre" marginTop={0} marginBottom={0} {...this.props} />
   }
 }

@@ -114,7 +114,7 @@
   }
 
   & pre:not(.prism-code) {
-    background-color: var(--turquoise-15A);
+    background-color: var(--neutral-10A);
     padding: 16px;
     overflow-x: auto;
 
