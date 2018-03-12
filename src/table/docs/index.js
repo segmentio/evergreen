@@ -229,6 +229,7 @@ const components = [
         title: 'Basic TableHeaderCell example',
         codeText: exampleTableHeaderCell,
         scope: {
+          TableHead,
           TableHeaderCell,
           TableRow
         }
@@ -250,6 +251,7 @@ const components = [
         title: 'Basic TextTableHeaderCell example',
         codeText: exampleTextTableHeaderCell,
         scope: {
+          TableHead,
           TextTableHeaderCell,
           TableRow
         }
