@@ -27,6 +27,10 @@ module.exports = [
   {
     name: 'Typography',
     path: '/components/typography'
+  },
+  {
+    name: 'Colors',
+    path: '/components/colors'
   }
 ].sort((a, b) => {
   // Lazy way to sort this list so I don't have
