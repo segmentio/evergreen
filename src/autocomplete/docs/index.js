@@ -5,6 +5,7 @@ import AutoComplete from '../src/Autocomplete'
 /**
  * Code examples
  */
+import exampleDefaultBasic from './examples/default-basic.example'
 import exampleonFocusBasic from './examples/onFocus-basic.example'
 import examplefilterDisabledBasic from './examples/filterDisabled-basic.example'
 import examplewithTitleBasic from './examples/withTitle-basic.example'
@@ -49,17 +50,34 @@ const components = [
     ),
     examples: [
       {
+        title: 'Default Example',
+        description: <p>The default behavior of the Autocomplete.</p>,
+        codeText: exampleDefaultBasic,
+        scope
+      },
+      {
         title: 'Basic onFocus Example',
+        description: (
+          <p>
+            Autocomplete with an <code>onFocus</code> behaviour
+          </p>
+        ),
         codeText: exampleonFocusBasic,
         scope
       },
       {
         title: 'Basic onFilter Disabled',
+        description: (
+          <p>
+            Autocomplete without an <code>onFilter</code>
+          </p>
+        ),
         codeText: examplefilterDisabledBasic,
         scope
       },
       {
         title: 'Basic results with title',
+        description: <p>Autocomplete with a fixed title on the results</p>,
         codeText: examplewithTitleBasic,
         scope
       }
