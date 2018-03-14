@@ -15,6 +15,32 @@ export default class TextInputField extends PureComponent {
     ...FormField.propTypes,
 
     /**
+     * The label used above the input element.
+     */
+    label: PropTypes.node.isRequired,
+
+    /**
+     * Passed on the label as a htmlFor prop.
+     */
+    labelFor: PropTypes.string,
+
+    /**
+     * Wether or not show a asterix after the label.
+     */
+    isRequired: PropTypes.bool,
+
+    /**
+     * A optional description of the field under the input element.
+     */
+    description: PropTypes.node,
+
+    /**
+     * If a validation message is passed it is shown under the input element
+     * and above the description.
+     */
+    validationMessage: PropTypes.node,
+
+    /**
      * The height of the input element.
      */
     inputHeight: PropTypes.number,
