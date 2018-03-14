@@ -35,6 +35,10 @@ module.exports = [
   {
     name: 'Select Menu',
     path: '/components/select-menu'
+  },
+  {
+    name: 'Text Input',
+    path: '/components/text-input'
   }
 ].sort((a, b) => {
   // Lazy way to sort this list so I don't have

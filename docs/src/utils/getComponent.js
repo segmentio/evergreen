@@ -11,7 +11,7 @@ import buttonsDocs from '../../../src/buttons/docs'
 // import selectDocs from '../../src/select/docs/'
 // import popoverDocs from '../../src/popover/docs/'
 // import portalDocs from '../../src/portal/docs/'
-// import textInputDocs from '../../src/text-input/docs/'
+import textInputDocs from '../../../src/text-input/docs/'
 // import textareaDocs from '../../src/textarea/docs/'
 // import checkboxDocs from '../../src/checkbox/docs/'
 // import tabsDocs from '../../src/tabs/docs/'
@@ -39,7 +39,8 @@ const map = {
   layers: layersDocs,
   typography: typographyDocs,
   colors: colorsDocs,
-  'select menu': selectMenuDocs
+  'select menu': selectMenuDocs,
+  'text input': textInputDocs
 }
 
 export default function getComponent(name) {
