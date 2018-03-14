@@ -1,1 +1,15 @@
-<div>filterDisabled</div>
+<Autocomplete
+  title="Starwars names"
+  onChange={(selectedItem) => {
+    console.log(selectedItem)
+  }}
+  items={items}
+>
+  {({ key, getInputProps, getRef }) => (
+    <TextInput
+      key={key}
+      innerRef={ref => getRef(ref)}
+      {...getInputProps()}
+    />
+  )}
+</Autocomplete>

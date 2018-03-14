@@ -1,6 +1,8 @@
 import React from 'react'
 import Box from 'ui-box'
-import AutoComplete from '../src/Autocomplete'
+import items from 'starwars-names'
+import Autocomplete from '../src/Autocomplete'
+import TextInput from '../../text-input'
 
 /**
  * Code examples
@@ -10,16 +12,15 @@ import exampleonFocusBasic from './examples/onFocus-basic.example'
 import examplefilterDisabledBasic from './examples/filterDisabled-basic.example'
 import examplewithTitleBasic from './examples/withTitle-basic.example'
 
-const title = 'autocomplete'
-const subTitle = 'A component.'
+const title = 'Autocomplete'
+const subTitle = 'A component to filter trhough a dataset'
 
 const introduction = (
   <div>
     <p>
-      The <code>Pane</code> and <code>Card</code> components are one of the most
-      important components in Evergreen. They are essentially a replacement of
-      the <code>div</code> element. They are used as primitives to construct
-      layouts and compose components.
+      The <code>Autocomplete</code> components implements a{' '}
+      <code>VirtualList</code> inside a React Portal, list and to be enable
+      filtering and handling big sets of data.
     </p>
   </div>
 )
@@ -32,22 +33,33 @@ const designGuidelines = (
   </div>
 )
 
+const description = (
+  <p>
+    The <code>AutoComplete</code> component.
+  </p>
+)
 const appearanceOptions = null
 
 const scope = {
   Box,
-  AutoComplete
+  Autocomplete,
+  items,
+  TextInput
 }
+
+/* eslint-disable capitalized-comments */
+// introduction
+// designGuidelines
+// implementationDetails
+// appearanceOptions
+// examples
+// components
 
 const components = [
   {
     name: 'AutoComplete',
-    source: AutoComplete,
-    description: (
-      <p>
-        The <code>AutoComplete</code> component.
-      </p>
-    ),
+    source: Autocomplete,
+    description,
     examples: [
       {
         title: 'Default Example',
