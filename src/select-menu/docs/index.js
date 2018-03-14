@@ -16,7 +16,7 @@ import sourceSelectMenu from '!raw-loader!../src/SelectMenu'
 import exampleSelectMenuBasic from './examples/SelectMenu-basic.example'
 
 const title = 'Select Menu'
-const subTitle = 'Select multiple items from a dropdown list.'
+const subTitle = 'Select one or multiple items from a dropdown list.'
 
 const introduction = (
   <div>
