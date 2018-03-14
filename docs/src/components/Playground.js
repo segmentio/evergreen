@@ -15,9 +15,9 @@ export default class Playground extends React.Component {
 
     this.state = {
       uniqueId: _.uniqueId(),
-      isPreviewEntered: false,
       isCodeCollapsed: true,
-      hasError: false
+      hasError: false,
+      codeText: props.codeText
     }
   }
 
@@ -32,18 +32,6 @@ export default class Playground extends React.Component {
     })
   }
 
-  handleMouseEnter = () => {
-    this.setState({
-      isPreviewEntered: true
-    })
-  }
-
-  handleMouseLeave = () => {
-    this.setState({
-      isPreviewEntered: false
-    })
-  }
-
   renderError = () => {
     return (
       <div className="Playground-error">
@@ -55,24 +43,26 @@ export default class Playground extends React.Component {
     )
   }
 
+  handleChange = codeText => {
+    this.setState({
+      codeText
+    })
+  }
+
   render() {
-    const { codeText, scope } = this.props
-    const { hasError, isCodeCollapsed, uniqueId, isPreviewEntered } = this.state
+    const { scope } = this.props
+    const { codeText, hasError, isCodeCollapsed, uniqueId } = this.state
 
     if (hasError) return this.renderError()
 
     return (
-      <div
-        className="Playground"
-        data-ispreviewentered={isPreviewEntered}
-        data-iscodecollapsed={isCodeCollapsed}
+      <LiveProvider
+        theme="evergreen"
+        scope={{ ReactDOM, ...scope }}
+        code={codeText}
+        mountStylesheet={false}
       >
-        <LiveProvider
-          theme="evergreen"
-          scope={{ ReactDOM, ...scope }}
-          code={codeText}
-          mountStylesheet={false}
-        >
+        <div className="Playground" data-iscodecollapsed={isCodeCollapsed}>
           <div
             aria-expanded={!isCodeCollapsed}
             role="button"
@@ -82,11 +72,8 @@ export default class Playground extends React.Component {
           >
             {isCodeCollapsed ? 'Show code' : 'Hide code'}
           </div>
-          <div
-            onMouseEnter={this.handleMouseEnter}
-            onMouseLeave={this.handleMouseLeave}
-          >
-            {!isCodeCollapsed && <LiveEditor />}
+          <div>
+            {!isCodeCollapsed && <LiveEditor onChange={this.handleChange} />}
             <LiveError />
             <div
               id={`code-playground-${uniqueId}`}
@@ -95,8 +82,8 @@ export default class Playground extends React.Component {
               <LivePreview />
             </div>
           </div>
-        </LiveProvider>
-      </div>
+        </div>
+      </LiveProvider>
     )
   }
 }

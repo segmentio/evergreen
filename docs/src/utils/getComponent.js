@@ -28,6 +28,7 @@ import dialogDocs from '../../../src/dialog/docs/'
 // import cornerDialogDocs from '../../src/corner-dialog/docs/'
 import alertDocs from '../../../src/alert/docs/'
 import toasterDocs from '../../../src/toaster/docs/'
+import selectMenuDocs from '../../../src/select-menu/docs/'
 
 const map = {
   buttons: buttonsDocs,
@@ -37,7 +38,8 @@ const map = {
   toaster: toasterDocs,
   layers: layersDocs,
   typography: typographyDocs,
-  colors: colorsDocs
+  colors: colorsDocs,
+  'select menu': selectMenuDocs
 }
 
 export default function getComponent(name) {
