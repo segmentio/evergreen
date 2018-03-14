@@ -1,0 +1,33 @@
+<Box>
+  <TextInputField
+    label="Default text input field"
+    description="This is a description."
+    placeholder="Placeholder text"
+  />
+  <TextInputField
+    label="Default text disabled input"
+    description="This is a description."
+    placeholder="Placeholder text"
+    disabled
+  />
+  <TextInputField
+    id="ids-are-optional"
+    label="A required text input field"
+    required
+    description="This is a description."
+    placeholder="Placeholder text"
+  />
+  <Manager>
+    {({ state, setState }) => {
+      return (
+        <TextInputField
+          label="A controlled text input field"
+          required
+          description="This is a description."
+          value={state.value}
+          onChange={e => setState({ value: e.target.value })}
+        />
+      )
+    }}
+  </Manager>
+</Box>
