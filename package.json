@@ -90,18 +90,7 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": ["xo", "xo-react", "prettier"],
-    "env": {
-      "browser": true
-    },
-    "rules": {
-      "no-unused-vars": ["error"],
-      "require-await": ["error"],
-      "prefer-const": ["error"],
-      "react/jsx-indent": ["true", 2],
-      "react/jsx-indent-props": ["true", 2],
-      "no-debugger": ["off"]
-    }
+    "extends": ["xo", "xo-react", "prettier", "prettier/react"]
   },
   "xo": {
     "parser": "babel-eslint",
@@ -110,6 +99,10 @@
     "space": true,
     "semicolon": false,
     "rules": {
+      "no-unused-vars": ["error"],
+      "require-await": ["error"],
+      "prefer-const": ["error"],
+      "no-debugger": ["off"],
       "indent": ["off"],
       "react/jsx-indent-props": ["off"],
       "react/jsx-indent": ["off"],

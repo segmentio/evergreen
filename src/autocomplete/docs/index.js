@@ -45,7 +45,7 @@ const components = [
     source: AutoComplete,
     description: (
       <p>
-        The <code>onFocus</code> component.
+        The <code>AutoComplete</code> component.
       </p>
     ),
     examples: [
