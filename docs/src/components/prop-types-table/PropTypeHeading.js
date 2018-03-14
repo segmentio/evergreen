@@ -6,17 +6,21 @@ export default class PropTypeHeading extends PureComponent {
     defaultValue: PropTypes.any,
     name: PropTypes.string,
     required: PropTypes.bool,
-    type: PropTypes.any
+    type: PropTypes.any,
+    isArrayOf: PropTypes.string
   }
 
   render() {
-    const { defaultValue, name, required, type } = this.props
+    const { defaultValue, name, required, type, isArrayOf } = this.props
 
     return (
       <div className="PropTypeHeading">
         <code>
-          <span className="PropTypeHeading-propType">{type.name}</span>
           <span className="PropTypeHeading-name">{name}</span>
+          <span className="PropTypeHeading-propType">{type.name}</span>
+          {isArrayOf && (
+            <span className="PropTypeHeading-arrayOf">{isArrayOf}</span>
+          )}
         </code>
         {defaultValue ? (
           <code className="PropTypeHeading-defaultValue">

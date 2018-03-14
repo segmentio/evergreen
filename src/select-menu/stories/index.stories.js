@@ -1,31 +1,10 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import starWarsNames from 'starwars-names'
+import options from '../docs/starwars-options'
+import Manager from '../docs/Manager'
 import { SelectMenu } from '../../select-menu'
 import { Button } from '../../buttons'
-
-const options = starWarsNames.all.map(name => ({
-  label: name,
-  value: name
-}))
-
-class Manager extends React.Component {
-  static propTypes = {
-    children: PropTypes.func
-  }
-
-  state = {}
-  render() {
-    return this.props.children({
-      setState: (...args) => {
-        this.setState(...args)
-      },
-      state: this.state
-    })
-  }
-}
 
 storiesOf('select-menu', module).add('SelectMenu', () => (
   <Box padding={40}>

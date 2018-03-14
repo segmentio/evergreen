@@ -31,6 +31,10 @@ module.exports = [
   {
     name: 'Colors',
     path: '/components/colors'
+  },
+  {
+    name: 'Select Menu',
+    path: '/components/select-menu'
   }
 ].sort((a, b) => {
   // Lazy way to sort this list so I don't have
