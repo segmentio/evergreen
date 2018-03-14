@@ -4,7 +4,7 @@ import colorsDocs from '../../../src/colors/docs/'
 import typographyDocs from '../../../src/typography/docs/'
 import layersDocs from '../../../src/layers/docs/'
 import buttonsDocs from '../../../src/buttons/docs'
-// Import iconsDocs from '../../src/icons/docs/'
+import iconsDocs from '../../../src/icons/docs/'
 // import autocompleteDocs from '../../src/autocomplete/docs/'
 // import comboboxDocs from '../../src/combobox/docs/'
 // import badgesDocs from '../../src/badges/docs/'
@@ -40,7 +40,8 @@ const map = {
   typography: typographyDocs,
   colors: colorsDocs,
   'select menu': selectMenuDocs,
-  'text input': textInputDocs
+  'text input': textInputDocs,
+  icons: iconsDocs
 }
 
 export default function getComponent(name) {
