@@ -23,21 +23,40 @@ const IconAim = {
 
 export default class Icon extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the Box component as the base.
+     */
     ...Box.propTypes,
+
+    /**
+     * The aim of the icon.
+     * none | up | right | down | left.
+     */
     aim: PropTypes.oneOf(Object.keys(IconAim)).isRequired,
+
+    /**
+     * The size of the wrapping box of the icon (not the icon itself).
+     */
     size: PropTypes.number,
+
+    /**
+     * The size of the wrapping box around the icon.
+     */
     iconSize: PropTypes.number
   }
 
   static defaultProps = {
     color: 'default',
     aim: 'none',
+    size: 32,
+    iconSize: 16
+  }
+
+  static wrapperProps = {
     is: 'span',
     display: 'inline-flex',
     alignItems: 'center',
-    justifyContent: 'center',
-    size: 32,
-    iconSize: 16
+    justifyContent: 'center'
   }
 
   render() {
@@ -62,7 +81,13 @@ export default class Icon extends PureComponent {
     }
 
     return (
-      <Box transform={totalTransform} height={size} width={size} {...props}>
+      <Box
+        transform={totalTransform}
+        height={size}
+        width={size}
+        {...Icon.wrapperProps}
+        {...props}
+      >
         <Box
           is="span"
           width={iconSize}
