@@ -34,6 +34,27 @@ export default class PropTypesTable extends PureComponent {
     }
   }
 
+  getTypeInfo(prop) {
+    if (prop.type && typeof prop.type.value === 'string') {
+      return (
+        <div className="PropTypeTypeValue Content">
+          Value type: <code>{prop.type.value}</code>
+        </div>
+      )
+    }
+  }
+
+  isArrayOf = prop => {
+    if (
+      prop.type &&
+      prop.type.name === 'arrayOf' &&
+      typeof prop.type.value === 'object' &&
+      typeof prop.type.value.raw === 'string'
+    ) {
+      return prop.type.value.raw
+    }
+  }
+
   render() {
     const { componentDocs } = this.state
     let propTypes
@@ -64,6 +85,7 @@ export default class PropTypesTable extends PureComponent {
         {propTypes &&
           propTypes.map(propName => {
             const prop = componentDocs.props[propName]
+            const isArrayOf = this.isArrayOf(prop)
             // Figure out what makes sense here.
             return (
               <PropTypeWrapper key={propName}>
@@ -72,13 +94,9 @@ export default class PropTypesTable extends PureComponent {
                   required={prop.required}
                   defaultValue={prop.defaultValue}
                   type={prop.type || {}}
+                  isArrayOf={isArrayOf}
                 />
-                {prop.type &&
-                  typeof prop.type.value === 'string' && (
-                    <div className="PropTypeTypeValue Content">
-                      Value type: <code>{prop.type.value}</code>
-                    </div>
-                  )}
+                {this.getTypeInfo(prop)}
                 {prop.description ? (
                   <PropTypeDescription>{prop.description}</PropTypeDescription>
                 ) : null}
