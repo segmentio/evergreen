@@ -4,10 +4,17 @@ import starWarsNames from 'starwars-names'
 import Autocomplete from '../src/Autocomplete'
 import { TextInput } from '../../text-input'
 import { Button } from '../../buttons'
+
+// Import main component as 'raw' text to be parsed with an AST to get get propTypes information
+/* eslint-disable import/no-unresolved, import/no-webpack-loader-syntax */
+import autocompleteSource from '!raw-loader!../src/Autocomplete'
+/* eslint-enable import/no-unresolved, import/no-webpack-loader-syntax */
+
 /**
  * Code examples
  */
 import exampleDefaultBasic from './examples/default-basic.example'
+import exampleDefaultWithProp from './examples/default-with-children-prop.example'
 import exampleonFocusBasic from './examples/onFocus-basic.example'
 import examplefilterDisabledBasic from './examples/filterDisabled-basic.example'
 import examplewithTitleBasic from './examples/withTitle-basic.example'
@@ -30,6 +37,8 @@ const items = [
   }
   return 0
 })
+
+console.log(items)
 
 const title = 'Autocomplete'
 const subTitle = 'A component to filter trhough a dataset'
@@ -70,13 +79,23 @@ const scope = {
 const components = [
   {
     name: 'AutoComplete',
-    source: Autocomplete,
+    source: autocompleteSource,
     description,
     examples: [
       {
         title: 'Default Example',
         description: <p>The default behavior of the Autocomplete.</p>,
         codeText: exampleDefaultBasic,
+        scope
+      },
+      {
+        title: 'Default Example (Using children prop)',
+        description: (
+          <p>
+            The default behavior of the Autocomplete using a children as a prop.
+          </p>
+        ),
+        codeText: exampleDefaultWithProp,
         scope
       },
       {
