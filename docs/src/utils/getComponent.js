@@ -39,13 +39,10 @@ const map = {
   layers: layersDocs,
   typography: typographyDocs,
   colors: colorsDocs,
-<<<<<<< HEAD
   'select menu': selectMenuDocs,
   'text input': textInputDocs,
-  icons: iconsDocs
-=======
+  icons: iconsDocs,
   autocomplete: autocompleteDocs
->>>>>>> adding eslint for IDE && initial commit
 }
 
 export default function getComponent(name) {
