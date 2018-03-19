@@ -197,7 +197,6 @@ export default class Autocomplete extends PureComponent {
               {({ isOpen: isOpenPopover, toggle, getRef, key }) =>
                 children({
                   key,
-                  theChildren: 'THE CHILDREN',
                   isOpen: isOpenPopover,
                   toggle,
                   getRef,
