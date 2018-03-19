@@ -1,0 +1,32 @@
+<Autocomplete
+  title="Custom title"
+  onChange={(changedItem) => console.log(changedItem)}
+  items={items}
+>
+  {({
+    key,
+    getInputProps,
+    getButtonProps,
+    getRef,
+    inputValue,
+    openMenu,
+    toggleMenu
+  }) => (
+    <Box
+      key={key}
+      innerRef={ref => getRef(ref)}
+      display="flex"
+    >
+      <TextInput
+        flex="1"
+        placeholder="Many Options!"
+        value={inputValue}
+        onFocus={openMenu}
+        {...getInputProps()}
+      />
+      <Button onClick={toggleMenu} {...getButtonProps()}>
+        Trigger
+      </Button>
+    </Box>
+  )}
+</Autocomplete>
