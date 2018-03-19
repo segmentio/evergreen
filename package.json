@@ -88,10 +88,6 @@
     "url-loader": "^0.6.2",
     "xo": "^0.18.2"
   },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": ["xo", "xo-react", "prettier", "prettier/react"]
-  },
   "xo": {
     "parser": "babel-eslint",
     "extends": ["xo-react", "prettier", "prettier/react"],
