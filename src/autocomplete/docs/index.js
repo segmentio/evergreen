@@ -38,8 +38,6 @@ const items = [
   return 0
 })
 
-console.log(items)
-
 const title = 'Autocomplete'
 const subTitle = 'A component to filter trhough a dataset'
 

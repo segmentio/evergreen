@@ -4,7 +4,6 @@
   items={items}
 >
   {(props) => {
-    console.log(props)
     const { key, getInputProps, getRef, inputValue } = props
     return (
       <TextInput

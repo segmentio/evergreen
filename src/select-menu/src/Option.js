@@ -60,13 +60,13 @@ export default class Option extends PureComponent {
         </Pane>
         <TextTableCell
           height={height}
-          {...(isSelected
-            ? {
-                textProps: {
+          textProps={
+            isSelected
+              ? {
                   color: 'inherit'
                 }
-              }
-            : {})}
+              : {}
+          }
           paddingLeft={0}
           borderRight={null}
           flex={1}
