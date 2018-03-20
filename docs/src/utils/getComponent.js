@@ -42,7 +42,7 @@ const map = {
   'select menu': selectMenuDocs,
   'text input': textInputDocs,
   icons: iconsDocs,
-  autocomplete: autocompleteDocs
+  autocomplete: autocompleteDocs,
   'search input': searchInputDocs
 }
 
