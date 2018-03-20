@@ -20,7 +20,7 @@ import textInputDocs from '../../../src/text-input/docs/'
 // import imageDocs from '../../src/image/docs/'
 // import segmentedControlDocs from '../../src/segmented-control/docs/'
 // import spinnerDocs from '../../src/spinner/docs/'
-// import searchInputDocs from '../../src/search-input/docs/'
+import searchInputDocs from '../../../src/search-input/docs/'
 import tableDocs from '../../../src/table/docs/'
 // import sideSheetDocs from '../../src/side-sheet/docs/'
 // import radioDocs from '../../src/radio/docs/'
@@ -43,6 +43,7 @@ const map = {
   'text input': textInputDocs,
   icons: iconsDocs,
   autocomplete: autocompleteDocs
+  'search input': searchInputDocs
 }
 
 export default function getComponent(name) {
