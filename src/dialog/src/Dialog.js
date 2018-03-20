@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'ui-box'
 import { Pane } from '../../layers'
-import { Heading } from '../../typography'
+import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
 import { Button, IconButton } from '../../buttons'
 
@@ -51,8 +51,8 @@ const animationStyles = {
 class Dialog extends React.Component {
   static propTypes = {
     /**
-     * Children can be a node or a function accepting `({ close })`.
-     * See an example to understand how this works.
+     * Children can be a string, node or a function accepting `({ close })`.
+     * When passing a string, <Paragraph /> is used to wrap the string.
      */
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 
@@ -174,6 +174,17 @@ class Dialog extends React.Component {
     onConfirm: close => close()
   }
 
+  renderChildren = close => {
+    const { children } = this.props
+
+    if (typeof children === 'function') {
+      return children({ close })
+    } else if (typeof children === 'string') {
+      return <Paragraph>{children}</Paragraph>
+    }
+    return children
+  }
+
   render() {
     const {
       title,
@@ -265,11 +276,7 @@ class Dialog extends React.Component {
                   padding={16}
                   minHeight={minHeightContent}
                 >
-                  {typeof children === 'function'
-                    ? children({
-                        close
-                      })
-                    : children}
+                  {this.renderChildren(close)}
                 </Pane>
 
                 {hasFooter && (
