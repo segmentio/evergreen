@@ -1,59 +1,12 @@
 import { storiesOf } from '@storybook/react'
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import Box from 'ui-box'
 import { SideSheet } from '../../side-sheet'
 import { Heading, Paragraph } from '../../typography'
 import { Card, Pane } from '../../layers'
 import { Button } from '../../buttons'
 import { Tab } from '../../tabs'
-
-class SideSheetManager extends PureComponent {
-  static propTypes = {
-    children: PropTypes.func
-  }
-
-  state = {
-    isShown: true
-  }
-
-  render() {
-    return this.props.children({
-      isShown: this.state.isShown,
-      show: () =>
-        this.setState({
-          isShown: true
-        }),
-      hide: () => {
-        this.setState({
-          isShown: false
-        })
-      }
-    })
-  }
-}
-
-class Manager extends React.Component {
-  static propTypes = {
-    children: PropTypes.func
-  }
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      ...props
-    }
-  }
-
-  render() {
-    return this.props.children({
-      setState: (...args) => {
-        this.setState(...args)
-      },
-      state: this.state
-    })
-  }
-}
+import { Manager } from '../../manager'
 
 storiesOf('side-sheet', module)
   .add('title + sub title + tabs', () => (
@@ -62,12 +15,12 @@ storiesOf('side-sheet', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <SideSheetManager>
-        {({ hide, show, isShown }) => (
+      <Manager isShown>
+        {({ state, setState }) => (
           <Box>
             <SideSheet
-              isShown={isShown}
-              onExited={hide}
+              isShown={state.isShown}
+              onCloseComplete={() => setState({ isShown: false })}
               containerProps={{
                 display: 'flex',
                 flex: '1',
@@ -112,10 +65,12 @@ storiesOf('side-sheet', module)
                 </Card>
               </Pane>
             </SideSheet>
-            <Button onClick={show}>Show Side Sheet</Button>
+            <Button onClick={() => setState({ isShown: true })}>
+              Show Side Sheet
+            </Button>
           </Box>
         )}
-      </SideSheetManager>
+      </Manager>
     </Box>
   ))
   .add('title + sub title', () => (
@@ -124,12 +79,12 @@ storiesOf('side-sheet', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <SideSheetManager>
-        {({ hide, show, isShown }) => (
+      <Manager isShown>
+        {({ state, setState }) => (
           <Box>
             <SideSheet
-              isShown={isShown}
-              onExited={hide}
+              isShown={state.isShown}
+              onCloseComplete={() => setState({ isShown: false })}
               containerProps={{
                 display: 'flex',
                 flex: '1',
@@ -157,10 +112,12 @@ storiesOf('side-sheet', module)
                 </Card>
               </Pane>
             </SideSheet>
-            <Button onClick={show}>Show Side Sheet</Button>
+            <Button onClick={() => setState({ isShown: true })}>
+              Show Side Sheet
+            </Button>
           </Box>
         )}
-      </SideSheetManager>
+      </Manager>
     </Box>
   ))
   .add('title', () => (
@@ -169,12 +126,12 @@ storiesOf('side-sheet', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <SideSheetManager>
-        {({ hide, show, isShown }) => (
+      <Manager isShown>
+        {({ state, setState }) => (
           <Box>
             <SideSheet
-              isShown={isShown}
-              onExited={hide}
+              isShown={state.isShown}
+              onCloseComplete={() => setState({ isShown: false })}
               containerProps={{
                 display: 'flex',
                 flex: '1',
@@ -199,10 +156,12 @@ storiesOf('side-sheet', module)
                 </Card>
               </Pane>
             </SideSheet>
-            <Button onClick={show}>Show Side Sheet</Button>
+            <Button onClick={() => setState({ isShown: true })}>
+              Show Side Sheet
+            </Button>
           </Box>
         )}
-      </SideSheetManager>
+      </Manager>
     </Box>
   ))
   .add('close from within', () => (
@@ -211,10 +170,13 @@ storiesOf('side-sheet', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <SideSheetManager>
-        {({ hide, show, isShown }) => (
+      <Manager isShown>
+        {({ state, setState }) => (
           <Box>
-            <SideSheet isShown={isShown} onExited={hide}>
+            <SideSheet
+              isShown={state.isShown}
+              onCloseComplete={() => setState({ isShown: false })}
+            >
               {({ close }) => {
                 return (
                   <Box padding={40}>
@@ -223,9 +185,11 @@ storiesOf('side-sheet', module)
                 )
               }}
             </SideSheet>
-            <Button onClick={show}>Show Side Sheet</Button>
+            <Button onClick={() => setState({ isShown: true })}>
+              Show Side Sheet
+            </Button>
           </Box>
         )}
-      </SideSheetManager>
+      </Manager>
     </Box>
   ))
