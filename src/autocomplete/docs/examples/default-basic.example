@@ -1,0 +1,18 @@
+<Autocomplete
+  title="Starwars names"
+  onChange={(changedItem) => console.log(changedItem)}
+  items={items}
+>
+  {(props) => {
+    const { key, getInputProps, getRef, inputValue } = props
+    return (
+      <TextInput
+        key={key}
+        placeholder="Starwars names"
+        value={inputValue}
+        innerRef={getRef}
+        {...getInputProps()}
+      />
+    )
+  }}
+</Autocomplete>

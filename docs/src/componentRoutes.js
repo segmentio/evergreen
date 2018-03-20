@@ -47,6 +47,10 @@ module.exports = [
   {
     name: 'Icons',
     path: '/components/icons'
+  },
+  {
+    name: 'Autocomplete',
+    path: '/components/autocomplete'
   }
 ].sort((a, b) => {
   // Lazy way to sort this list so I don't have
