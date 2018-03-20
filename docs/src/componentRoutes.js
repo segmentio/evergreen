@@ -12,6 +12,10 @@ module.exports = [
     path: '/components/dialog'
   },
   {
+    name: 'Corner Dialog',
+    path: '/components/corner-dialog'
+  },
+  {
     name: 'Table',
     path: '/components/table'
   },
