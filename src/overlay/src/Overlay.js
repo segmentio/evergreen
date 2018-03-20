@@ -144,12 +144,21 @@ class Overlay extends React.Component {
     super(props)
 
     this.state = {
-      exiting: false
+      exiting: false,
+      exited: !props.isShown
     }
   }
 
-  handleHidden = node => {
-    this.setState({ exiting: false })
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isShown && !this.props.isShown) {
+      this.setState({
+        exited: false
+      })
+    }
+  }
+
+  handleExited = node => {
+    this.setState({ exiting: false, exited: true })
 
     if (this.props.onExited) {
       this.props.onExited(node)
@@ -166,6 +175,7 @@ class Overlay extends React.Component {
   }
 
   handleClose = () => {
+    console.log('handleClose')
     this.setState({ exiting: true })
     this.props.onHide()
   }
@@ -182,7 +192,9 @@ class Overlay extends React.Component {
       onEntered
     } = this.props
 
-    const { exiting } = this.state
+    const { exiting, exited } = this.state
+
+    if (exited) return null
 
     return (
       <Portal>
@@ -193,7 +205,7 @@ class Overlay extends React.Component {
           in={isShown && !exiting}
           onExit={onExit}
           onExiting={onExiting}
-          onExited={this.handleHidden}
+          onExited={this.handleExited}
           onEnter={onEnter}
           onEntering={onEntering}
           onEntered={onEntered}

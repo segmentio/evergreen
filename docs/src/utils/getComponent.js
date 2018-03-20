@@ -25,7 +25,7 @@ import tableDocs from '../../../src/table/docs/'
 // import sideSheetDocs from '../../src/side-sheet/docs/'
 // import radioDocs from '../../src/radio/docs/'
 import dialogDocs from '../../../src/dialog/docs/'
-// import cornerDialogDocs from '../../src/corner-dialog/docs/'
+import cornerDialogDocs from '../../../src/corner-dialog/docs/'
 import alertDocs from '../../../src/alert/docs/'
 import toasterDocs from '../../../src/toaster/docs/'
 import selectMenuDocs from '../../../src/select-menu/docs/'
@@ -41,9 +41,10 @@ const map = {
   colors: colorsDocs,
   'select menu': selectMenuDocs,
   'text input': textInputDocs,
-  icons: iconsDocs,
+  'search input': searchInputDocs,
   autocomplete: autocompleteDocs,
-  'search input': searchInputDocs
+  'corner dialog': cornerDialogDocs,
+  icons: iconsDocs,
 }
 
 export default function getComponent(name) {

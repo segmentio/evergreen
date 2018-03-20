@@ -1,33 +1,9 @@
 import { storiesOf } from '@storybook/react'
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import Box from 'ui-box'
 import { CornerDialog } from '../../corner-dialog'
 import { Button } from '../../buttons'
-
-class CornerDialogManager extends PureComponent {
-  static propTypes = {
-    children: PropTypes.func
-  }
-
-  state = {
-    isShown: false
-  }
-
-  render() {
-    return this.props.children({
-      isShown: this.state.isShown,
-      show: () =>
-        this.setState({
-          isShown: true
-        }),
-      hide: () =>
-        this.setState({
-          isShown: false
-        })
-    })
-  }
-}
+import { Manager } from '../../manager'
 
 storiesOf('corner-dialog', module).add('CornerDialog', () => (
   <Box padding={40}>
@@ -35,19 +11,60 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
       document.body.style.margin = '0'
       document.body.style.height = '100vh'
     })()}
-    <CornerDialogManager>
-      {({ isShown, show, hide }) => (
+    <Manager isShown={false}>
+      {({ state, setState }) => (
         <Box>
           <CornerDialog
-            isShown={isShown}
-            title="CornerDialog title"
-            onHide={hide}
+            title="Welcome to This New Feature"
+            isShown={state.isShown}
+            onCloseComplete={() => setState({ isShown: false })}
           >
-            CornerDialog content
+            The Corner Dialog component is used for new feature announcements
+            and feedback requests from the user.
           </CornerDialog>
-          <Button onClick={show}>Show CornerDialog</Button>
+          <Button onClick={() => setState({ isShown: true })}>
+            Show “Learn More” Corner Dialog
+          </Button>
         </Box>
       )}
-    </CornerDialogManager>
+    </Manager>
+    <Manager isShown={false}>
+      {({ state, setState }) => (
+        <Box marginTop={24}>
+          <CornerDialog
+            title="We’d Love to Hear from You!"
+            isShown={state.isShown}
+            confirmLabel="Get in Touch"
+            onCloseComplete={() => setState({ isShown: false })}
+          >
+            Help shape Segment’s data governance product roadmap. If you’re
+            willing to provide feedback, let’s chat.
+          </CornerDialog>
+          <Button onClick={() => setState({ isShown: true })}>
+            Show “Get in Touch” Corner Dialog
+          </Button>
+        </Box>
+      )}
+    </Manager>
+    <Manager isShown={false}>
+      {({ state, setState }) => (
+        <Box marginTop={24}>
+          <CornerDialog
+            title="GDPR Data Processing Agreement Available"
+            isShown={state.isShown}
+            width={492}
+            confirmLabel="View Agreement"
+            onCloseComplete={() => setState({ isShown: false })}
+          >
+            Segment now offers a Data Processing Agreement and EU&nbsp;Model
+            Contract Clauses as a means of meeting the adequacy and security
+            requirements of the GDPR.
+          </CornerDialog>
+          <Button onClick={() => setState({ isShown: true })}>
+            Show “GDPR” Corner Dialog
+          </Button>
+        </Box>
+      )}
+    </Manager>
   </Box>
 ))
