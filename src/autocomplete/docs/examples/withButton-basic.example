@@ -1,0 +1,24 @@
+<Autocomplete
+  onChange={(changedItem) => console.log(changedItem)}
+  items={items}
+>
+  {({
+    key,
+    getInputProps,
+    getButtonProps,
+    getRef,
+    inputValue,
+    toggleMenu
+  }) => (
+    <Box key={key} innerRef={ref => getRef(ref)} display="inline-block">
+      <TextInput
+        placeholder="Trigger with button"
+        value={inputValue}
+        {...getInputProps()}
+      />
+      <Button onClick={toggleMenu} {...getButtonProps()}>
+        Trigger
+      </Button>
+    </Box>
+  )}
+</Autocomplete>

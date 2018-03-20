@@ -5,7 +5,7 @@ import typographyDocs from '../../../src/typography/docs/'
 import layersDocs from '../../../src/layers/docs/'
 import buttonsDocs from '../../../src/buttons/docs'
 import iconsDocs from '../../../src/icons/docs/'
-// import autocompleteDocs from '../../src/autocomplete/docs/'
+import autocompleteDocs from '../../../src/autocomplete/docs/'
 // import comboboxDocs from '../../src/combobox/docs/'
 // import badgesDocs from '../../src/badges/docs/'
 // import selectDocs from '../../src/select/docs/'
@@ -41,8 +41,9 @@ const map = {
   colors: colorsDocs,
   'select menu': selectMenuDocs,
   'text input': textInputDocs,
-  'search input': searchInputDocs,
-  icons: iconsDocs
+  icons: iconsDocs,
+  autocomplete: autocompleteDocs,
+  'search input': searchInputDocs
 }
 
 export default function getComponent(name) {

@@ -24,7 +24,7 @@ export default class TextTableCell extends PureComponent {
     /**
      * Pass additional props to the Text component.
      */
-    textProps: PropTypes.shape(PropTypes.object)
+    textProps: PropTypes.shape(Text.propTypes)
   }
 
   static defaultProps = {
