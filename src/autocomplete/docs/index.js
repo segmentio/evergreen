@@ -45,7 +45,7 @@ const implementationDetails = (
   <div>
     <p>
       The <code>Autocomplete</code> components renders a filterable list of
-      options in a Popover — it does not render the text input - If you need a
+      options in a Popover — it does not render the text input — If you need a
       combination with a text input and trigger button, take a look at the
       Combobox component. This component is mainly used to create type aheads
     </p>
