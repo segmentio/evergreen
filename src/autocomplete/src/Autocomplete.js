@@ -41,16 +41,18 @@ export default class Autocomplete extends PureComponent {
      */
     children: PropTypes.func.isRequired,
     /**
-     * Proptype to set the lits items size beforehand for the virtual list to render properly.
+     * The height of each item in the list
+     * Because the list is virtualized this is required beforehand.
      */
     itemSize: PropTypes.number,
     /**
-     * Function that returns a component to render the iist item.
+     * Function that returns a component to render the item
      */
     renderItem: PropTypes.func,
     /**
-     * Function used to filter items it should just return a subset of the initial items.
-     * (Default filterint uses "fuzzaldrin-plus" package)
+     * A function that is used to filter the items.
+     * It should return a subset of the initial items.
+     * By default the "fuzzaldrin-plus" package is used.
      */
     itemsFilter: PropTypes.func,
     /**

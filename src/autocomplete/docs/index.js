@@ -39,29 +39,37 @@ const items = [
 })
 
 const title = 'Autocomplete'
-const subTitle = 'A component to filter trhough a dataset'
+const subTitle = 'A component to filter through a list of options'
 
-const introduction = (
+const implementationDetails = (
   <div>
     <p>
-      The <code>Autocomplete</code> components implements a{' '}
-      <code>VirtualList</code> inside a React Portal, list and to be enable
-      filtering and handling big sets of data.
+      The <code>Autocomplete</code> components renders a filterable list of
+      options in a Popover — it does not render the text input - If you need a
+      combination with a text input and trigger button, take a look at the
+      Combobox component. This component is mainly used to create type aheads
     </p>
-  </div>
-)
-
-const designGuidelines = (
-  <div>
     <p>
-      The <code>autocomplete</code> component.
+      <b>The Autocomplete component combines a set of external libraries</b>
+      <ul>
+        <li>
+          Uses <code>Downshift</code> for autocomplete
+        </li>
+        <li>
+          Uses <code>react-tiny-virtual-list</code> for performant list
+          rendering
+        </li>
+        <li>
+          Uses <code>fuzzaldrin-plus</code> for fuzzy filtering
+        </li>
+      </ul>
     </p>
   </div>
 )
 
 const description = (
   <p>
-    The <code>AutoComplete</code> component.
+    The <code>Autocomplete</code> component.
   </p>
 )
 const appearanceOptions = null
@@ -76,7 +84,7 @@ const scope = {
 
 const components = [
   {
-    name: 'AutoComplete',
+    name: 'Autocomplete',
     source: autocompleteSource,
     description,
     examples: [
@@ -135,9 +143,13 @@ const components = [
         scope
       },
       {
-        title:
-          'Full Width (w/ Flex) with options title, onFocus, filtering, and button trigger',
-        description: <p>An example of automplete with many options</p>,
+        title: 'Fully Featured Example',
+        description: (
+          <p>
+            Full Width (w/ Flex) example with options title, onFocus, filtering,
+            and button to trigger the autocomplete
+          </p>
+        ),
         codeText: exampleWithManyOptions,
         scope
       }
@@ -146,10 +158,9 @@ const components = [
 ]
 
 export default {
-  introduction,
   title,
   subTitle,
-  designGuidelines,
+  implementationDetails,
   appearanceOptions,
   components
 }
