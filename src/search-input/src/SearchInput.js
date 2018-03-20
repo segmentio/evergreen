@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import Box, { splitBoxProps } from 'ui-box'
 import { SearchIcon } from '../../icons'
 import { getIconSizeForControlHeight } from '../../shared-styles'
@@ -7,9 +6,10 @@ import { TextInput } from '../../text-input'
 
 export default class SearchInput extends PureComponent {
   static propTypes = {
-    ...Box.propTypes,
-    ...TextInput.propTypes,
-    iconProps: PropTypes.object
+    /**
+     * Composes the TextInput component as the base.
+     */
+    ...TextInput.propTypes
   }
 
   static defaultProps = {

@@ -41,6 +41,10 @@ module.exports = [
     path: '/components/text-input'
   },
   {
+    name: 'Search Input',
+    path: '/components/search-input'
+  },
+  {
     name: 'Icons',
     path: '/components/icons'
   }
