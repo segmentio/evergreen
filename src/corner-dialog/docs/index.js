@@ -26,14 +26,18 @@ const designGuidelines = (
     <p>
       Good examples of call to actions for Corner Dialog are:{' '}
       <strong>Learn More</strong>, <strong>Got It</strong> and{' '}
-      <strong>Get in Touch</strong>
+      <strong>Get in Touch</strong>.
     </p>
   </div>
 )
 
 const implementationDetails = (
   <div>
-    <p>Because the Corner Dialog component </p>
+    <p>
+      Be aware that only one Corner Dialog can be shown at a single time
+      — showing multiple Corner Dialogs will mean they will stack on top of each
+      other.
+    </p>
   </div>
 )
 
