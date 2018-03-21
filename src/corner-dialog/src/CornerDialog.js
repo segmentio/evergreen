@@ -208,14 +208,13 @@ export default class CornerDialog extends PureComponent {
               role="dialog"
               backgroundColor="white"
               elevation={4}
-              borderRadius={8}
               width={width}
               css={animationStyles}
               data-state={state}
               position="fixed"
               bottom={16}
               right={16}
-              padding={40}
+              padding={32}
               {...containerProps}
             >
               <Pane display="flex" alignItems="center" marginBottom={12}>
