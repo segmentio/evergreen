@@ -191,7 +191,6 @@ class Dialog extends React.Component {
       width,
       type,
       isShown,
-      children,
       topOffset,
       hasHeader,
       hasFooter,
@@ -202,11 +201,9 @@ class Dialog extends React.Component {
       confirmLabel,
       isConfirmLoading,
       isConfirmDisabled,
-      onCancel,
       cancelLabel,
       containerProps,
-      minHeightContent,
-      ...props
+      minHeightContent
     } = this.props
 
     let maxHeight
@@ -228,7 +225,6 @@ class Dialog extends React.Component {
         isShown={isShown}
         onExited={onCloseComplete}
         onEntered={onOpenComplete}
-        {...props}
       >
         {({ state, close }) => (
           <Pane
