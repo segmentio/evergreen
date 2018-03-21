@@ -24,7 +24,7 @@ const baseStyle = {
 const hoverState = '&:not([disabled]):not([data-disabled]):hover'
 const focusState = '&:not([disabled]):not([data-disabled]):focus'
 const activeState =
-  '&:not([disabled]):not([data-disabled]):active, &:not([disabled]):not([data-disabled])[data-popover-opened], &:not([disabled]):not([data-disabled])[data-active]'
+  '&:not([disabled]):not([data-disabled]):active, &:not([disabled]):not([data-disabled])[aria-expanded="true"], &:not([disabled]):not([data-disabled])[data-active]'
 
 const ButtonAppearances = {
   default: {

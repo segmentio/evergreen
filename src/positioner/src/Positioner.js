@@ -135,6 +135,14 @@ export default class Positioner extends PureComponent {
     })
   }
 
+  startAutoPositioning = () => {
+    const step = () => {
+      window.requestAnimationFrame(step)
+    }
+
+    window.requestAnimationFrame(step)
+  }
+
   handleExited = () => {
     this.setState(initialState())
   }
