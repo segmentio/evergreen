@@ -22,7 +22,7 @@ import textInputDocs from '../../../src/text-input/docs/'
 // import spinnerDocs from '../../src/spinner/docs/'
 import searchInputDocs from '../../../src/search-input/docs/'
 import tableDocs from '../../../src/table/docs/'
-// import sideSheetDocs from '../../src/side-sheet/docs/'
+import sideSheetDocs from '../../../src/side-sheet/docs/'
 // import radioDocs from '../../src/radio/docs/'
 import dialogDocs from '../../../src/dialog/docs/'
 import cornerDialogDocs from '../../../src/corner-dialog/docs/'
@@ -44,7 +44,12 @@ const map = {
   'search input': searchInputDocs,
   autocomplete: autocompleteDocs,
   'corner dialog': cornerDialogDocs,
+<<<<<<< HEAD
   icons: iconsDocs,
+=======
+  'side sheet': sideSheetDocs,
+  icons: iconsDocs
+>>>>>>> docs and bbreaking improvements (#167)
 }
 
 export default function getComponent(name) {

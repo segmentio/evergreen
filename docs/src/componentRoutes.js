@@ -41,6 +41,10 @@ module.exports = [
     path: '/components/select-menu'
   },
   {
+    name: 'Side Sheet',
+    path: '/components/side-sheet'
+  },
+  {
     name: 'Text Input',
     path: '/components/text-input'
   },
