@@ -26,7 +26,7 @@ export default class Combobox extends PureComponent {
 
   static defaultProps = {
     openOnFocus: false,
-    width: 224,
+    width: 240,
     appearance: 'default'
   }
 
@@ -74,7 +74,6 @@ export default class Combobox extends PureComponent {
         {...autocompleteProps}
       >
         {({
-          key,
           getRef,
           isOpen,
           openMenu,
@@ -84,7 +83,6 @@ export default class Combobox extends PureComponent {
           clearSelection
         }) => (
           <Box
-            key={key}
             innerRef={ref => getRef(ref)}
             display="inline-flex"
             width={width}

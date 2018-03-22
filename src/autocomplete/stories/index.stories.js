@@ -40,9 +40,8 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
         onChange={handleChange}
         items={items}
       >
-        {({ key, getInputProps, getRef, inputValue }) => (
+        {({ getInputProps, getRef, inputValue }) => (
           <TextInput
-            key={key}
             placeholder="Starwars names"
             value={inputValue}
             innerRef={ref => getRef(ref)}
@@ -52,10 +51,30 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
       </Autocomplete>
     </Box>
     <Box padding={40}>
-      <Autocomplete onChange={handleChange} items={items}>
-        {({ key, getInputProps, getRef, openMenu, inputValue }) => (
+      <Autocomplete
+        title="Starwars names"
+        onChange={handleChange}
+        items={items}
+      >
+        {({ getInputProps, getRef, inputValue, openMenu }) => (
           <TextInput
-            key={key}
+            width={160}
+            placeholder="Min width in effect"
+            value={inputValue}
+            innerRef={ref => getRef(ref)}
+            {...getInputProps({
+              onFocus: () => {
+                openMenu()
+              }
+            })}
+          />
+        )}
+      </Autocomplete>
+    </Box>
+    <Box padding={40}>
+      <Autocomplete onChange={handleChange} items={items}>
+        {({ getInputProps, getRef, openMenu, inputValue }) => (
+          <TextInput
             placeholder="Open on focus"
             value={inputValue}
             innerRef={ref => getRef(ref)}
@@ -75,9 +94,8 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
         onChange={handleChange}
         items={items}
       >
-        {({ key, getInputProps, openMenu, getRef, inputValue }) => (
+        {({ getInputProps, openMenu, getRef, inputValue }) => (
           <TextInput
-            key={key}
             placeholder="Disable filter and open on focus"
             value={inputValue}
             innerRef={ref => getRef(ref)}
@@ -92,9 +110,8 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
     </Box>
     <Box padding={40}>
       <Autocomplete title="Suggestions" onChange={handleChange} items={items}>
-        {({ key, getInputProps, getRef, openMenu, inputValue }) => (
+        {({ getInputProps, getRef, openMenu, inputValue }) => (
           <TextInput
-            key={key}
             placeholder="Open on focus with title"
             value={inputValue}
             innerRef={ref => getRef(ref)}
@@ -110,14 +127,13 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
     <Box padding={40}>
       <Autocomplete onChange={handleChange} items={items}>
         {({
-          key,
           getInputProps,
           getButtonProps,
           getRef,
           inputValue,
           toggleMenu
         }) => (
-          <Box key={key} innerRef={ref => getRef(ref)} display="inline-block">
+          <Box innerRef={ref => getRef(ref)} display="inline-block">
             <TextInput
               placeholder="Trigger with button"
               value={inputValue}

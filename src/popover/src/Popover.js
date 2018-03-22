@@ -75,7 +75,7 @@ export default class Popover extends Component {
   }
 
   static defaultProps = {
-    position: 'bottom',
+    position: Position.BOTTOM,
     onOpen: () => {},
     onClose: () => {},
     minWidth: 200,
@@ -197,15 +197,15 @@ export default class Popover extends Component {
     } = this.props
     const { isShown: stateIsShown } = this.state
 
-    const open = isShown || stateIsShown
+    const shown = isShown || stateIsShown
 
     return (
       <Positioner2
-        target={({ getRef, isShown }) => {
-          return this.renderTarget({ getRef, isShown })
+        target={({ getRef, isShown, targetWidth }) => {
+          return this.renderTarget({ getRef, isShown, targetWidth })
         }}
         zIndex={zIndex}
-        isShown={open}
+        isShown={shown}
         position={position}
         useSmartPositioning={useSmartPositioning}
         animationDuration={animationDuration}

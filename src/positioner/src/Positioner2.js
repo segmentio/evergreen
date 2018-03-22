@@ -54,8 +54,7 @@ export default class Positioner2 extends PureComponent {
     bodyOffset: 6,
     targetOffset: 6,
     initialScale: 0.9,
-    animationDuration: 300,
-    useSmartPositioning: true
+    animationDuration: 300
   }
 
   constructor(props, context) {
@@ -81,13 +80,14 @@ export default class Positioner2 extends PureComponent {
   update = () => {
     if (!this.props.isShown || !this.targetRef || !this.positionerRef) return
 
+    const targetRect = this.getTargetRect()
     const viewportHeight =
       document.documentElement.clientHeight + window.scrollY
     const viewportWidth = document.documentElement.clientWidth + window.scrollX
 
     const position = getPosition({
       position: this.props.position,
-      targetRect: this.getTargetRect(),
+      targetRect,
       targetOffset: this.props.targetOffset,
       dimensions: {
         height: this.positionerRef.offsetHeight,
@@ -115,7 +115,11 @@ export default class Positioner2 extends PureComponent {
   }
 
   handleExited = () => {
-    this.setState(initialState())
+    this.setState(() => {
+      return {
+        ...initialState()
+      }
+    })
   }
 
   render() {

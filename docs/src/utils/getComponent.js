@@ -44,12 +44,8 @@ const map = {
   'search input': searchInputDocs,
   autocomplete: autocompleteDocs,
   'corner dialog': cornerDialogDocs,
-<<<<<<< HEAD
   icons: iconsDocs,
-=======
-  'side sheet': sideSheetDocs,
-  icons: iconsDocs
->>>>>>> docs and bbreaking improvements (#167)
+  'side sheet': sideSheetDocs
 }
 
 export default function getComponent(name) {
