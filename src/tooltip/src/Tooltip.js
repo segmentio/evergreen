@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
-import { Position, Positioner2 } from '../../positioner'
+import { Position, Positioner } from '../../positioner'
 import TooltipStateless from './TooltipStateless'
 
 export default class Tooltip extends PureComponent {
@@ -108,7 +108,7 @@ export default class Tooltip extends PureComponent {
     const shown = isShown || stateIsShown || isShownByTarget
 
     return (
-      <Positioner2
+      <Positioner
         target={({ getRef }) => {
           return this.renderTarget({ getRef })
         }}
@@ -130,7 +130,7 @@ export default class Tooltip extends PureComponent {
             {content}
           </TooltipStateless>
         )}
-      </Positioner2>
+      </Positioner>
     )
   }
 }

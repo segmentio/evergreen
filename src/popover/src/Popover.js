@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Position, Positioner2 } from '../../positioner'
+import { Position, Positioner } from '../../positioner'
 import PopoverStateless from './PopoverStateless'
 
 export default class Popover extends Component {
@@ -200,7 +200,7 @@ export default class Popover extends Component {
     const shown = isShown || stateIsShown
 
     return (
-      <Positioner2
+      <Positioner
         target={({ getRef, isShown, targetWidth }) => {
           return this.renderTarget({ getRef, isShown, targetWidth })
         }}
@@ -229,7 +229,7 @@ export default class Popover extends Component {
               : content}
           </PopoverStateless>
         )}
-      </Positioner2>
+      </Positioner>
     )
   }
 }

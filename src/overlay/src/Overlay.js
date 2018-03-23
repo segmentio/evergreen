@@ -79,12 +79,6 @@ class Overlay extends React.Component {
     containerProps: PropTypes.object,
 
     /**
-     * Callback fired as soon as backdrop is clicked or close is called.
-     * Might get deprecated over time. Use `onExited` instead.
-     */
-    onHide: PropTypes.func,
-
-    /**
      * Callback fired before the "exiting" status is applied.
      * type: `Function(node: HtmlElement) -> void`
      */
@@ -157,6 +151,44 @@ class Overlay extends React.Component {
     }
   }
 
+  /**
+   * Methods borrowed from BlueprintJS
+   * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
+   */
+  bringFocusInsideOverlay = () => {
+    // Always delay focus manipulation to just before repaint to prevent scroll jumping
+    return requestAnimationFrame(() => {
+      // Container ref may be undefined between component mounting and Portal rendering
+      // activeElement may be undefined in some rare cases in IE
+
+      if (
+        this.containerElement == null || // eslint-disable-line eqeqeq, no-eq-null
+        document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
+        !this.props.isShown
+      ) {
+        return
+      }
+
+      const isFocusOutsideModal = !this.containerElement.contains(
+        document.activeElement
+      )
+      if (isFocusOutsideModal) {
+        // Element marked autofocus has higher priority than the other clowns
+        const autofocusElement = this.containerElement.querySelector(
+          '[autofocus]'
+        )
+        const wrapperElement = this.containerElement.querySelector('[tabindex]')
+        // eslint-disable-next-line eqeqeq, no-eq-null
+        if (autofocusElement != null) {
+          autofocusElement.focus()
+          // eslint-disable-next-line eqeqeq, no-eq-null
+        } else if (wrapperElement != null) {
+          wrapperElement.focus()
+        }
+      }
+    })
+  }
+
   handleExited = node => {
     this.setState({ exiting: false, exited: true })
 
@@ -171,13 +203,18 @@ class Overlay extends React.Component {
     }
 
     this.setState({ exiting: true })
-    this.props.onHide()
   }
 
   handleClose = () => {
-    console.log('handleClose')
     this.setState({ exiting: true })
-    this.props.onHide()
+  }
+
+  handleEntered = (...args) => {
+    this.props.onEntered(...args)
+  }
+
+  onContainerRef = ref => {
+    this.containerRef = ref
   }
 
   render() {
@@ -188,8 +225,7 @@ class Overlay extends React.Component {
       onExit,
       onExiting,
       onEnter,
-      onEntering,
-      onEntered
+      onEntering
     } = this.props
 
     const { exiting, exited } = this.state
@@ -208,11 +244,12 @@ class Overlay extends React.Component {
           onExited={this.handleExited}
           onEnter={onEnter}
           onEntering={onEntering}
-          onEntered={onEntered}
+          onEntered={this.handleEntered}
         >
           {state => (
             <Box
               onClick={this.handleBackdropClick}
+              innerRef={this.onContainerRef}
               position="fixed"
               top={0}
               left={0}
