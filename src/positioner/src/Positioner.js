@@ -35,26 +35,79 @@ const getCSS = ({ initialScale, animationDuration }) => ({
 
 export default class Positioner extends PureComponent {
   static propTypes = {
-    position: PropTypes.oneOf(Object.keys(Position)),
-    zIndex: PropTypes.number,
+    /**
+     * The position the element that is being positioned is on.
+     * Smart positioning might override this.
+     */
+    position: PropTypes.oneOf(Object.keys(Position)).isRequired,
+
+    /**
+     * When true, show the element being positioned.
+     */
     isShown: PropTypes.bool,
-    children: PropTypes.func,
-    innerRef: PropTypes.func,
-    bodyOffset: PropTypes.number,
-    targetOffset: PropTypes.number,
-    target: PropTypes.func,
-    initialScale: PropTypes.number,
-    animationDuration: PropTypes.number
+
+    /**
+     * Function that returns the element being positioned.
+     */
+    children: PropTypes.func.isRequired,
+
+    /**
+     * Function that returns the ref of the element being positioned.
+     */
+    innerRef: PropTypes.func.isRequired,
+
+    /**
+     * The minimum distance from the body to the element being positioned.
+     */
+    bodyOffset: PropTypes.number.isRequired,
+
+    /**
+     * The minimum distance from the target to the element being positioned.
+     */
+    targetOffset: PropTypes.number.isRequired,
+
+    /**
+     * Function that should return a node for the target.
+     * ({ getRef: () -> Ref, isShown: Bool }) -> React Node
+     */
+    target: PropTypes.func.isRequired,
+
+    /**
+     * The z-index of the element being positioned.
+     */
+    zIndex: PropTypes.number.isRequired,
+
+    /**
+     * Initial scale of the element being positioned.
+     */
+    initialScale: PropTypes.number.isRequired,
+
+    /**
+     * Duration of the animation.
+     */
+    animationDuration: PropTypes.number.isRequired,
+
+    /**
+     * Function that will be called when the exit transition is complete.
+     */
+    onCloseComplete: PropTypes.func.isRequired,
+
+    /**
+     * Function that will be called when the enter transition is complete.
+     */
+    onOpenComplete: PropTypes.func.isRequired
   }
 
   static defaultProps = {
-    innerRef: () => {},
     position: Position.BOTTOM,
     zIndex: 40,
     bodyOffset: 6,
     targetOffset: 6,
     initialScale: 0.9,
-    animationDuration: 300
+    animationDuration: 300,
+    innerRef: () => {},
+    onOpenComplete: () => {},
+    onCloseComplete: () => {}
   }
 
   constructor(props, context) {
@@ -115,11 +168,16 @@ export default class Positioner extends PureComponent {
   }
 
   handleExited = () => {
-    this.setState(() => {
-      return {
-        ...initialState()
+    this.setState(
+      () => {
+        return {
+          ...initialState()
+        }
+      },
+      () => {
+        this.props.onCloseComplete()
       }
-    })
+    )
   }
 
   render() {
@@ -143,6 +201,7 @@ export default class Positioner extends PureComponent {
             in={isShown}
             timeout={animationDuration}
             onEnter={this.handleEnter}
+            onEntered={this.props.onOpenComplete}
             onExited={this.handleExited}
             unmountOnExit
           >

@@ -151,6 +151,10 @@ class Overlay extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    document.body.removeEventListener('keydown', this.onEsc, false)
+  }
+
   /**
    * Methods borrowed from BlueprintJS
    * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
@@ -189,12 +193,60 @@ class Overlay extends React.Component {
     })
   }
 
+  bringFocusBackToTarget = () => {
+    return requestAnimationFrame(() => {
+      if (
+        this.containerElement == null || // eslint-disable-line eqeqeq, no-eq-null
+        document.activeElement == null // eslint-disable-line eqeqeq, no-eq-null
+      ) {
+        return
+      }
+
+      const isFocusInsideModal = this.containerElement.contains(
+        document.activeElement
+      )
+
+      // Bring back focus on the target.
+      if (
+        this.previousActiveElement &&
+        (document.activeElement === document.body || isFocusInsideModal)
+      ) {
+        this.previousActiveElement.focus()
+      }
+    })
+  }
+
+  onEsc = e => {
+    // Esc key
+    if (e.keyCode === 27) {
+      this.close()
+    }
+  }
+
+  close = () => {
+    this.setState({ exiting: true })
+  }
+
+  handleEntering = node => {
+    document.body.addEventListener('keydown', this.onEsc, false)
+    this.props.onEntering(node)
+  }
+
+  handleEntered = node => {
+    this.previousActiveElement = document.activeElement
+    this.bringFocusInsideOverlay()
+    this.props.onEntered(node)
+  }
+
+  handleExiting = node => {
+    document.body.removeEventListener('keydown', this.onEsc, false)
+    this.bringFocusBackToTarget()
+    this.props.onExiting(node)
+  }
+
   handleExited = node => {
     this.setState({ exiting: false, exited: true })
-
-    if (this.props.onExited) {
-      this.props.onExited(node)
-    }
+    this.props.onExited(node)
   }
 
   handleBackdropClick = e => {
@@ -202,19 +254,11 @@ class Overlay extends React.Component {
       return
     }
 
-    this.setState({ exiting: true })
-  }
-
-  handleClose = () => {
-    this.setState({ exiting: true })
-  }
-
-  handleEntered = (...args) => {
-    this.props.onEntered(...args)
+    this.close()
   }
 
   onContainerRef = ref => {
-    this.containerRef = ref
+    this.containerElement = ref
   }
 
   render() {
@@ -223,9 +267,7 @@ class Overlay extends React.Component {
       isShown,
       children,
       onExit,
-      onExiting,
-      onEnter,
-      onEntering
+      onEnter
     } = this.props
 
     const { exiting, exited } = this.state
@@ -240,10 +282,10 @@ class Overlay extends React.Component {
           timeout={ANIMATION_DURATION}
           in={isShown && !exiting}
           onExit={onExit}
-          onExiting={onExiting}
+          onExiting={this.handleExiting}
           onExited={this.handleExited}
           onEnter={onEnter}
-          onEntering={onEntering}
+          onEntering={this.handleEntering}
           onEntered={this.handleEntered}
         >
           {state => (
@@ -263,7 +305,7 @@ class Overlay extends React.Component {
               {typeof children === 'function'
                 ? children({
                     state,
-                    close: this.handleClose
+                    close: this.close
                   })
                 : children}
             </Box>

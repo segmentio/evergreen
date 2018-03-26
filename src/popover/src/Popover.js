@@ -6,24 +6,14 @@ import PopoverStateless from './PopoverStateless'
 export default class Popover extends Component {
   static propTypes = {
     /**
-     * The position the Popover is on.
+     * The position the Popover is on. Smart positioning might override this.
      */
     position: PropTypes.oneOf(Object.keys(Position)),
-
-    /**
-     * Function called when the Popover opens.
-     */
-    onOpen: PropTypes.func.isRequired,
 
     /**
      * When true, the Popover is manually shown.
      */
     isShown: PropTypes.bool,
-
-    /**
-     * Function fired when Popover closes.
-     */
-    onClose: PropTypes.func.isRequired,
 
     /**
      * The content of the Popover.
@@ -64,25 +54,42 @@ export default class Popover extends Component {
     animationDuration: PropTypes.number,
 
     /**
-     * When true, use smart positioning for the Popover.
-     */
-    useSmartPositioning: PropTypes.bool,
-
-    /**
      * The z-index of the Popover card.
      */
-    zIndex: PropTypes.number
+    zIndex: PropTypes.number,
+
+    /**
+     * Function called when the Popover opens.
+     */
+    onOpen: PropTypes.func.isRequired,
+
+    /**
+     * Function fired when Popover closes.
+     */
+    onClose: PropTypes.func.isRequired,
+
+    /**
+     * Function that will be called when the enter transition is complete.
+     */
+    onOpenComplete: PropTypes.func.isRequired,
+
+    /**
+     * Function that will be called when the exit transition is complete.
+     */
+    onCloseComplete: PropTypes.func.isRequired
   }
 
   static defaultProps = {
     position: Position.BOTTOM,
-    onOpen: () => {},
-    onClose: () => {},
+    isShown: false,
     minWidth: 200,
     minHeight: 40,
     animationDuration: 300,
-    useSmartPositioning: true,
-    zIndex: 40
+    zIndex: 40,
+    onOpen: () => {},
+    onClose: () => {},
+    onOpenComplete: () => {},
+    onCloseComplete: () => {}
   }
 
   constructor(props) {
@@ -95,6 +102,66 @@ export default class Popover extends Component {
   componentWillUnmount() {
     document.body.removeEventListener('click', this.onBodyClick, false)
     document.body.removeEventListener('keydown', this.onEsc, false)
+  }
+
+  /**
+   * Methods borrowed from BlueprintJS
+   * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
+   */
+  bringFocusInside = () => {
+    // Always delay focus manipulation to just before repaint to prevent scroll jumping
+    return requestAnimationFrame(() => {
+      // Container ref may be undefined between component mounting and Portal rendering
+      // activeElement may be undefined in some rare cases in IE
+
+      if (
+        this.popoverNode == null || // eslint-disable-line eqeqeq, no-eq-null
+        document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
+        !this.props.isShown
+      ) {
+        return
+      }
+
+      const isFocusOutsideModal = !this.popoverNode.contains(
+        document.activeElement
+      )
+      if (isFocusOutsideModal) {
+        // Element marked autofocus has higher priority than the other clowns
+        const autofocusElement = this.popoverNode.querySelector('[autofocus]')
+        const wrapperElement = this.popoverNode.querySelector('[tabindex]')
+
+        // eslint-disable-next-line eqeqeq, no-eq-null
+        if (autofocusElement != null) {
+          autofocusElement.focus()
+          // eslint-disable-next-line eqeqeq, no-eq-null
+        } else if (wrapperElement != null) {
+          wrapperElement.focus()
+        }
+      }
+    })
+  }
+
+  bringFocusBackToTarget = () => {
+    return requestAnimationFrame(() => {
+      if (
+        this.popoverNode == null || // eslint-disable-line eqeqeq, no-eq-null
+        document.activeElement == null // eslint-disable-line eqeqeq, no-eq-null
+      ) {
+        return
+      }
+
+      const isFocusInsideModal = this.popoverNode.contains(
+        document.activeElement
+      )
+
+      // Bring back focus on the target.
+      if (
+        this.targetRef &&
+        (document.activeElement === document.body || isFocusInsideModal)
+      ) {
+        this.targetRef.focus()
+      }
+    })
   }
 
   onBodyClick = e => {
@@ -113,10 +180,6 @@ export default class Popover extends Component {
     this.close()
   }
 
-  onResize = () => {
-    this.close()
-  }
-
   onEsc = e => {
     // Esc key
     if (e.keyCode === 27) {
@@ -125,15 +188,11 @@ export default class Popover extends Component {
   }
 
   toggle = () => {
-    const isShown = !this.state.isShown
-
-    if (isShown) {
-      this.open()
-    } else {
+    if (this.state.isShown) {
       this.close()
+    } else {
+      this.open()
     }
-
-    this.setState({ isShown })
   }
 
   open = () => {
@@ -157,25 +216,39 @@ export default class Popover extends Component {
     document.body.removeEventListener('click', this.onBodyClick, false)
     document.body.removeEventListener('keydown', this.onEsc, false)
 
+    this.bringFocusBackToTarget()
+
     this.props.onClose()
+  }
+
+  handleOpenComplete = () => {
+    this.bringFocusInside()
+    this.props.onOpenComplete()
+  }
+
+  handleCloseComplete = () => {
+    this.props.onCloseComplete()
   }
 
   renderTarget = ({ getRef, isShown }) => {
     const { children } = this.props
 
+    const getTargetRef = ref => {
+      this.targetRef = ref
+      getRef(ref)
+    }
+
     if (typeof children === 'function') {
       return children({
         toggle: this.toggle,
-        getRef,
+        getRef: getTargetRef,
         isShown
       })
     }
 
     return React.cloneElement(children, {
-      onClick: () => this.toggle(),
-      innerRef: ref => {
-        getRef(ref)
-      },
+      onClick: this.toggle,
+      innerRef: getTargetRef,
       role: 'button',
       'aria-expanded': isShown,
       'aria-haspopup': true
@@ -192,8 +265,8 @@ export default class Popover extends Component {
       position,
       minHeight,
       statelessProps,
-      useSmartPositioning,
-      animationDuration
+      animationDuration,
+      onCloseComplete
     } = this.props
     const { isShown: stateIsShown } = this.state
 
@@ -207,8 +280,9 @@ export default class Popover extends Component {
         zIndex={zIndex}
         isShown={shown}
         position={position}
-        useSmartPositioning={useSmartPositioning}
         animationDuration={animationDuration}
+        onOpenComplete={this.handleOpenComplete}
+        onCloseComplete={onCloseComplete}
       >
         {({ css, style, state, getRef }) => (
           <PopoverStateless

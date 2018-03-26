@@ -59,6 +59,10 @@ module.exports = [
   {
     name: 'Autocomplete',
     path: '/components/autocomplete'
+  },
+  {
+    name: 'Popover',
+    path: '/components/popover'
   }
 ].sort((a, b) => {
   // Lazy way to sort this list so I don't have

@@ -1,0 +1,24 @@
+<Box>
+  <Box display="flex" justifyContent="space-between">
+    <Popover content={<PopoverContent />} position={Position.TOP_LEFT}>
+      <Button>TOP_LEFT</Button>
+    </Popover>
+    <Popover content={<PopoverContent />} position={Position.TOP}>
+      <Button>TOP</Button>
+    </Popover>
+    <Popover content={<PopoverContent />} position={Position.TOP_RIGHT}>
+      <Button>TOP_RIGHT</Button>
+    </Popover>
+  </Box>
+  <Box display="flex" justifyContent="space-between" marginTop={40}>
+    <Popover content={<PopoverContent />} position={Position.BOTTOM_LEFT}>
+      <Button>BOTTOM_LEFT</Button>
+    </Popover>
+    <Popover content={<PopoverContent />} position={Position.BOTTOM}>
+      <Button>BOTTOM</Button>
+    </Popover>
+    <Popover content={<PopoverContent />} position={Position.BOTTOM_RIGHT}>
+      <Button>BOTTOM_RIGHT</Button>
+    </Popover>
+  </Box>
+</Box>
