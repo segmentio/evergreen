@@ -208,7 +208,6 @@ export default class CornerDialog extends PureComponent {
               role="dialog"
               backgroundColor="white"
               elevation={4}
-              borderRadius={8}
               width={width}
               css={animationStyles}
               data-state={state}
