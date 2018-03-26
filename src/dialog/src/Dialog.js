@@ -257,7 +257,12 @@ class Dialog extends React.Component {
                   <Heading is="h4" size={600} flex="1">
                     {title}
                   </Heading>
-                  <IconButton appearance="ghost" icon="close" onClick={close} />
+                  <IconButton
+                    tabindex={3}
+                    appearance="ghost"
+                    icon="close"
+                    onClick={close}
+                  />
                 </Pane>
               )}
 
@@ -284,6 +289,7 @@ class Dialog extends React.Component {
                     flexDirection="row-reverse"
                   >
                     <Button
+                      tabIndex={2}
                       marginLeft={8}
                       appearance={buttonAppearance}
                       isLoading={isConfirmLoading}
@@ -293,7 +299,9 @@ class Dialog extends React.Component {
                       {confirmLabel}
                     </Button>
                     {hasCancel && (
-                      <Button onClick={close}>{cancelLabel}</Button>
+                      <Button tabIndex={1} onClick={close}>
+                        {cancelLabel}
+                      </Button>
                     )}
                   </Pane>
                 )}
