@@ -5,11 +5,11 @@ import typographyDocs from '../../../src/typography/docs/'
 import layersDocs from '../../../src/layers/docs/'
 import buttonsDocs from '../../../src/buttons/docs'
 import iconsDocs from '../../../src/icons/docs/'
-// import autocompleteDocs from '../../src/autocomplete/docs/'
+import autocompleteDocs from '../../../src/autocomplete/docs/'
 // import comboboxDocs from '../../src/combobox/docs/'
 // import badgesDocs from '../../src/badges/docs/'
 // import selectDocs from '../../src/select/docs/'
-// import popoverDocs from '../../src/popover/docs/'
+import popoverDocs from '../../../src/popover/docs/'
 // import portalDocs from '../../src/portal/docs/'
 import textInputDocs from '../../../src/text-input/docs/'
 // import textareaDocs from '../../src/textarea/docs/'
@@ -42,9 +42,11 @@ const map = {
   'select menu': selectMenuDocs,
   'text input': textInputDocs,
   'search input': searchInputDocs,
+  autocomplete: autocompleteDocs,
   'corner dialog': cornerDialogDocs,
+  icons: iconsDocs,
   'side sheet': sideSheetDocs,
-  icons: iconsDocs
+  popover: popoverDocs
 }
 
 export default function getComponent(name) {

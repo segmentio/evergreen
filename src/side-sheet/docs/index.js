@@ -57,6 +57,26 @@ const implementationDetails = (
       of the Side Sheet is consistent. It is recommended to compose more
       opinionated Side Sheets in the consuming application.
     </p>
+
+    <h3>Side Sheets Close On</h3>
+    <ul>
+      <li>Backdrop click</li>
+      <li>Close icon button click</li>
+      <li>Escape key</li>
+      <li>The close function being called</li>
+    </ul>
+
+    <h3>Focus Management</h3>
+    <p>
+      When opening the Side Sheet, focus will be brought inside the Side Sheet
+      by looking for elements with <code>[autofocus]</code> first and{' '}
+      <code>[tabindex]</code> second.
+    </p>
+    <p>
+      When closing the Side Sheet, focus will be brought back to the element
+      that was focused before opening the Side Sheet. This is normally the
+      button that triggered the Side Sheet.
+    </p>
   </div>
 )
 

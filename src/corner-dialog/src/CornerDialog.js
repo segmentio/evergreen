@@ -215,7 +215,7 @@ export default class CornerDialog extends PureComponent {
               position="fixed"
               bottom={16}
               right={16}
-              padding={40}
+              padding={32}
               {...containerProps}
             >
               <Pane display="flex" alignItems="center" marginBottom={12}>

@@ -1,0 +1,18 @@
+<Autocomplete
+  isFilterDisabled
+  onChange={(changedItem) => console.log(changedItem)}
+  items={items}
+>
+  {({ getInputProps, openMenu, getRef, inputValue }) => (
+    <TextInput
+      placeholder="Disable filter and open on focus"
+      value={inputValue}
+      innerRef={ref => getRef(ref)}
+      {...getInputProps({
+        onFocus: () => {
+          openMenu()
+        }
+      })}
+    />
+  )}
+</Autocomplete>
