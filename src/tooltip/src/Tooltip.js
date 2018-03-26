@@ -4,6 +4,8 @@ import debounce from 'lodash.debounce'
 import { Position, Positioner } from '../../positioner'
 import TooltipStateless from './TooltipStateless'
 
+let idCounter = 0
+
 export default class Tooltip extends PureComponent {
   static propTypes = {
     /**
@@ -19,7 +21,7 @@ export default class Tooltip extends PureComponent {
     /**
      * Time in ms before hiding the Tooltip.
      */
-    hideDelay: PropTypes.number,
+    hideDelay: PropTypes.number.isRequired,
 
     /**
      * When True, manually show the Tooltip.
@@ -29,7 +31,7 @@ export default class Tooltip extends PureComponent {
     /**
      * The target button of the Tooltip.
      */
-    children: PropTypes.node,
+    children: PropTypes.node.isRequried,
 
     /**
      * Properties passed through to the Tooltip.
@@ -39,7 +41,7 @@ export default class Tooltip extends PureComponent {
     /**
      * The z-index of the Tooltip.
      */
-    zIndex: PropTypes.number
+    zIndex: PropTypes.number.isRequired
   }
 
   static defaultProps = {
@@ -51,6 +53,7 @@ export default class Tooltip extends PureComponent {
     super(props, context)
 
     this.state = {
+      id: `evergreen-tooltip-${++idCounter}`,
       isShown: props.isShown,
       isShownByTarget: false
     }
@@ -83,6 +86,7 @@ export default class Tooltip extends PureComponent {
     return React.cloneElement(children, {
       onMouseEnter: this.show,
       onMouseLeave: this.hide,
+      'aria-describedby': this.state.id,
       innerRef: ref => {
         getRef(ref)
       }
@@ -119,6 +123,7 @@ export default class Tooltip extends PureComponent {
       >
         {({ css, style, state, getRef }) => (
           <TooltipStateless
+            id={this.state.id}
             innerRef={ref => getRef(ref)}
             data-state={state}
             css={css}

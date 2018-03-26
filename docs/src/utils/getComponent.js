@@ -16,7 +16,7 @@ import textInputDocs from '../../../src/text-input/docs/'
 // import checkboxDocs from '../../src/checkbox/docs/'
 // import tabsDocs from '../../src/tabs/docs/'
 // import avatarDocs from '../../src/avatar/docs/'
-// import tooltipDocs from '../../src/tooltip/docs/'
+import tooltipDocs from '../../../src/tooltip/docs/'
 // import imageDocs from '../../src/image/docs/'
 // import segmentedControlDocs from '../../src/segmented-control/docs/'
 // import spinnerDocs from '../../src/spinner/docs/'
@@ -46,7 +46,8 @@ const map = {
   'corner dialog': cornerDialogDocs,
   icons: iconsDocs,
   'side sheet': sideSheetDocs,
-  popover: popoverDocs
+  popover: popoverDocs,
+  tooltip: tooltipDocs
 }
 
 export default function getComponent(name) {

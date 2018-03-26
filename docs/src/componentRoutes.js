@@ -49,6 +49,10 @@ module.exports = [
     path: '/components/text-input'
   },
   {
+    name: 'Tooltip',
+    path: '/components/tooltip'
+  },
+  {
     name: 'Search Input',
     path: '/components/search-input'
   },
