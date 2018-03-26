@@ -6,7 +6,7 @@ import layersDocs from '../../../src/layers/docs/'
 import buttonsDocs from '../../../src/buttons/docs'
 import iconsDocs from '../../../src/icons/docs/'
 import autocompleteDocs from '../../../src/autocomplete/docs/'
-// import comboboxDocs from '../../src/combobox/docs/'
+import comboboxDocs from '../../../src/combobox/docs/'
 // import badgesDocs from '../../src/badges/docs/'
 // import selectDocs from '../../src/select/docs/'
 import popoverDocs from '../../../src/popover/docs/'
@@ -47,7 +47,8 @@ const map = {
   icons: iconsDocs,
   'side sheet': sideSheetDocs,
   popover: popoverDocs,
-  tooltip: tooltipDocs
+  tooltip: tooltipDocs,
+  combobox: comboboxDocs
 }
 
 export default function getComponent(name) {

@@ -8,6 +8,10 @@ module.exports = [
     path: '/components/buttons'
   },
   {
+    name: 'Combobox',
+    path: '/components/combobox'
+  },
+  {
     name: 'Dialog',
     path: '/components/dialog'
   },

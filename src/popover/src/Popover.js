@@ -76,7 +76,12 @@ export default class Popover extends Component {
     /**
      * Function that will be called when the exit transition is complete.
      */
-    onCloseComplete: PropTypes.func.isRequired
+    onCloseComplete: PropTypes.func.isRequired,
+
+    /**
+     * When true, bring focus inside of the Popover on open.
+     */
+    bringFocusInside: PropTypes.bool
   }
 
   static defaultProps = {
@@ -89,7 +94,8 @@ export default class Popover extends Component {
     onOpen: () => {},
     onClose: () => {},
     onOpenComplete: () => {},
-    onCloseComplete: () => {}
+    onCloseComplete: () => {},
+    bringFocusInside: true
   }
 
   constructor(props) {
@@ -109,6 +115,8 @@ export default class Popover extends Component {
    * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
    */
   bringFocusInside = () => {
+    if (!this.props.bringFocusInside) return
+
     // Always delay focus manipulation to just before repaint to prevent scroll jumping
     return requestAnimationFrame(() => {
       // Container ref may be undefined between component mounting and Portal rendering
@@ -188,6 +196,7 @@ export default class Popover extends Component {
   }
 
   toggle = () => {
+    console.log('toggle', this.state.isShown)
     if (this.state.isShown) {
       this.close()
     } else {
