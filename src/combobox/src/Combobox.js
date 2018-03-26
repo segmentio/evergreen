@@ -7,26 +7,69 @@ import { IconButton } from '../../buttons'
 
 export default class Combobox extends PureComponent {
   static propTypes = {
+    /**
+     * Implements some APIs from ui-box.
+     */
     ...dimensions.propTypes,
     ...spacing.propTypes,
     ...position.propTypes,
     ...layout.propTypes,
+
+    /**
+     * The options to show in the menu.
+     */
     items: PropTypes.array.isRequired,
+
+    /**
+     * The selected item when controlled.
+     */
     selectedItem: PropTypes.any,
-    defaultSelectedItem: PropTypes.any,
-    itemToString: PropTypes.func,
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    height: PropTypes.number,
+
+    /**
+     * Function called when value changes.
+     */
     onChange: PropTypes.func,
-    inputProps: PropTypes.object,
-    buttonProps: PropTypes.object,
+
+    /**
+     * When true, open the autocomplete on focus.
+     */
     openOnFocus: PropTypes.bool,
+
+    /**
+     * Default selected item when uncontrolled.
+     */
+    defaultSelectedItem: PropTypes.any,
+
+    /**
+     * The placeholder text when there is no value present.
+     */
+    placeholder: PropTypes.string,
+
+    /**
+     * In case the array of items is not an array of strings,
+     * this function is used on each item to return the string that will be shown on the filter
+     */
+    itemToString: PropTypes.func,
+
+    /**
+     * Properties forwarded to the input. Use with caution.
+     */
+    inputProps: PropTypes.object,
+
+    /**
+     * Properties forwarded to the button. Use with caution.
+     */
+    buttonProps: PropTypes.object,
+
+    /**
+     * Properties forwarded to the autocomplete component. Use with caution.
+     */
     autocompleteProps: PropTypes.object
   }
 
   static defaultProps = {
-    openOnFocus: false,
     width: 240,
+    openOnFocus: false,
     appearance: 'default'
   }
 
@@ -55,6 +98,7 @@ export default class Combobox extends PureComponent {
       appearance,
       height,
       onChange,
+      placeholder,
       inputProps,
       buttonProps,
       openOnFocus,
@@ -75,7 +119,7 @@ export default class Combobox extends PureComponent {
       >
         {({
           getRef,
-          isOpen,
+          isShown,
           openMenu,
           inputValue,
           getInputProps,
@@ -97,6 +141,7 @@ export default class Combobox extends PureComponent {
               borderBottomRightRadius={0}
               {...getInputProps({
                 ...inputProps,
+                placeholder,
                 onFocus: () => {
                   if (openOnFocus) openMenu()
                 },
@@ -114,7 +159,7 @@ export default class Combobox extends PureComponent {
               })}
             />
             <IconButton
-              iconAim={isOpen ? 'up' : 'down'}
+              iconAim="down"
               color="muted"
               icon="triangle"
               appearance={appearance}
@@ -127,7 +172,7 @@ export default class Combobox extends PureComponent {
               {...getButtonProps({
                 ...buttonProps,
                 onClick: () => {
-                  if (!isOpen) {
+                  if (!isShown) {
                     this.setState({ isOpenedByButton: true })
                   }
                 }

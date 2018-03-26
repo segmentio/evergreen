@@ -38,7 +38,8 @@ export default class Autocomplete extends PureComponent {
     defaultSelectedItem: PropTypes.any,
 
     /**
-     * In case the array of items is not an array of strings, this function is used on each item to return the string that will be shown on the filter
+     * In case the array of items is not an array of strings,
+     * this function is used on each item to return the string that will be shown on the filter
      */
     itemToString: PropTypes.func.isRequired,
 
@@ -173,7 +174,7 @@ export default class Autocomplete extends PureComponent {
                   onMouseUp: () => {
                     selectItemAtIndex(index)
                   },
-                  isSelected: selectedItem === item,
+                  isSelected: itemToString(selectedItem) === itemString,
                   isHighlighted: highlightedIndex === index
                 })
               )
@@ -193,11 +194,12 @@ export default class Autocomplete extends PureComponent {
       itemsFilter,
       popoverMaxHeight,
       popoverMinWidth,
+      defaultSelectedItem,
       ...props
     } = this.props
 
     return (
-      <Downshift {...props}>
+      <Downshift defaultSelectedItem={defaultSelectedItem} {...props}>
         {({
           isOpen: isShown,
           inputValue,
@@ -209,6 +211,7 @@ export default class Autocomplete extends PureComponent {
         }) => (
           <div>
             <Popover
+              bringFocusInside={false}
               isShown={isShown}
               minWidth={popoverMinWidth}
               position={
