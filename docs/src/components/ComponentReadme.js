@@ -8,9 +8,11 @@ import PlaygroundExample from './PlaygroundExample'
 export default class ComponentReadme extends PureComponent {
   static propTypes = {
     name: PropTypes.string,
+    introduction: PropTypes.node,
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     subTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     designGuidelines: PropTypes.node,
+    implementationDetails: PropTypes.node,
     appearanceOptions: PropTypes.array,
     examples: PropTypes.array,
     components: PropTypes.array
@@ -23,6 +25,8 @@ export default class ComponentReadme extends PureComponent {
       subTitle,
       designGuidelines,
       examples,
+      introduction,
+      implementationDetails,
       appearanceOptions,
       components,
       ...props
@@ -45,10 +49,22 @@ export default class ComponentReadme extends PureComponent {
             </p>
           </header>
           <div>
+            {introduction && (
+              <div className="Content">
+                <h2 id="introduction">Introduction</h2>
+                {introduction}
+              </div>
+            )}
             {designGuidelines && (
               <div className="Content">
                 <h2 id="design-guidelines">Design Guidelines</h2>
                 {designGuidelines}
+              </div>
+            )}
+            {implementationDetails && (
+              <div className="Content">
+                <h2 id="implementation-details">Implementation Details</h2>
+                {implementationDetails}
               </div>
             )}
             {appearanceOptions && (

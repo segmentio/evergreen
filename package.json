@@ -1,13 +1,13 @@
 {
   "name": "evergreen-ui",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://twitter.com/jeroen_ransijn)",
     "Roland Warmerdam (https://roland.codes)"
   ],
   "keywords": ["evergreen", "segment", "ui", "react"],
-  "repository": "segmentio/evergreen-ui",
+  "repository": "segmentio/evergreen",
   "license": "MIT",
   "main": "commonjs/index.js",
   "module": "esm/index.js",
@@ -20,6 +20,7 @@
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
+    "create-docs-template": "./tools/create-docs-template.js",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
     "build-commonjs":
       "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore stories,test,docs --source-maps inline",
@@ -46,7 +47,7 @@
     "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.2.1",
-    "ui-box": "^1.0.5"
+    "ui-box": "^1.1.0"
   },
   "peerDependencies": {
     "react": "^16.0.0",
@@ -82,7 +83,7 @@
     "react-chromatic": "^0.7.10",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
-    "sinon": "^4.1.6",
+    "sinon": "^4.4.2",
     "size-limit": "^0.14.0",
     "starwars-names": "^1.6.0",
     "url-loader": "^0.6.2",

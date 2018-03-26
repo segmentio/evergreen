@@ -1,0 +1,18 @@
+<Autocomplete
+  onChange={(changedItem) => console.log(changedItem)}
+  items={items}
+>
+  {({ key, getInputProps, getRef, openMenu, inputValue }) => (
+    <TextInput
+      key={key}
+      placeholder="Open on focus"
+      value={inputValue}
+      innerRef={ref => getRef(ref)}
+      {...getInputProps({
+        onFocus: () => {
+          openMenu()
+        }
+      })}
+    />
+  )}
+</Autocomplete>

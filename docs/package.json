@@ -7,17 +7,18 @@
     "build": "gatsby build"
   },
   "dependencies": {
-    "gatsby": "^1.9.127",
+    "gatsby": "1.9.166",
     "gatsby-link": "^1.6.30",
     "gatsby-plugin-react-helmet": "^2.0.2",
     "gatsby-plugin-react-next": "^1.0.6",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
-    "react-docgen": "next",
+    "react-docgen": "^3.0.0-beta11",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
-    "react-live": "^1.7.1"
+    "react-live": "v1.10.1",
+    "react-syntax-highlighter": "^7.0.2"
   },
   "devDependencies": {
     "prettier": "^1.10.2"

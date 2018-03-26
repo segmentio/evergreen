@@ -1,0 +1,19 @@
+<Autocomplete
+  title="Starwars Characters"
+  onChange={(changedItem) => console.log(changedItem)}
+  items={items}
+>
+  {({ key, getInputProps, getRef, openMenu, inputValue }) => (
+    <TextInput
+      key={key}
+      placeholder="Open on focus with title"
+      value={inputValue}
+      innerRef={ref => getRef(ref)}
+      {...getInputProps({
+        onFocus: () => {
+          openMenu()
+        }
+      })}
+    />
+  )}
+</Autocomplete>

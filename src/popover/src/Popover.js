@@ -6,7 +6,12 @@ import PopoverStateless from './PopoverStateless'
 export default class Popover extends Component {
   static propTypes = {
     ...Positioner.propTypes,
+
+    /**
+     * Function called when the Popover opens.
+     */
     onOpen: PropTypes.func.isRequired,
+
     // Use isOpen to manually control the Popover
     isOpen: PropTypes.bool,
     onClose: PropTypes.func.isRequired,

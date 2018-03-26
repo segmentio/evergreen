@@ -1,3 +1,7 @@
+import { autoHydrate } from './ssr'
+
+autoHydrate()
+
 export { Alert, InlineAlert } from './alert'
 export { Autocomplete, AutocompleteItem } from './autocomplete'
 export { Avatar } from './avatar'
@@ -73,6 +77,7 @@ export {
 export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
 export { Switch } from './switch'
+export { extractStyles } from './ssr'
 export {
   Table,
   TableHead,

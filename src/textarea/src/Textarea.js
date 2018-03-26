@@ -12,14 +12,14 @@ export default class Textarea extends PureComponent {
     ...Box.propTypes,
     disabled: PropTypes.bool.isRequired,
     isInvalid: PropTypes.bool.isRequired,
-    spellcheck: PropTypes.bool.isRequired,
+    spellCheck: PropTypes.bool.isRequired,
     textSize: PropTypes.oneOf(Object.keys(TextStyles))
   }
 
   static defaultProps = {
     disabled: false,
     isInvalid: false,
-    spellcheck: true,
+    spellCheck: true,
     textSize: 300
   }
 
@@ -37,7 +37,7 @@ export default class Textarea extends PureComponent {
       disabled,
       textSize,
       isInvalid,
-      spellcheck,
+      spellCheck,
       ...props
     } = this.props
 
@@ -50,7 +50,7 @@ export default class Textarea extends PureComponent {
         is="textarea"
         disabled={disabled}
         borderRadius={borderRadius}
-        spellcheck={spellcheck}
+        spellCheck={spellCheck}
         {...(isInvalid ? { 'aria-invalid': true } : {})}
         {...(disabled ? { color: 'extraMuted' } : {})}
         {...textStyle}

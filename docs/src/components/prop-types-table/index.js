@@ -17,7 +17,13 @@ export default class PropTypesTable extends PureComponent {
     // Parsing the componentSrc is expensive, so we cache it in state rather than
     // computing it every time the component is rendered. Note the
     // componentWillReceiveProps method below where it is re-parsed as required.
-    const componentDocs = reactDocs.parse(props.componentSource)
+    let componentDocs
+    try {
+      componentDocs = reactDocs.parse(props.componentSource)
+    } catch (err) {
+      // Gatsby build is having some issues atm.
+      console.log('Error in react-docgen parse', err)
+    }
     this.state = { componentDocs }
   }
 
@@ -28,10 +34,31 @@ export default class PropTypesTable extends PureComponent {
     }
   }
 
+  getTypeInfo(prop) {
+    if (prop.type && typeof prop.type.value === 'string') {
+      return (
+        <div className="PropTypeTypeValue Content">
+          Value type: <code>{prop.type.value}</code>
+        </div>
+      )
+    }
+  }
+
+  isArrayOf = prop => {
+    if (
+      prop.type &&
+      prop.type.name === 'arrayOf' &&
+      typeof prop.type.value === 'object' &&
+      typeof prop.type.value.raw === 'string'
+    ) {
+      return prop.type.value.raw
+    }
+  }
+
   render() {
     const { componentDocs } = this.state
     let propTypes
-    if (Object.hasOwnProperty.call(componentDocs, 'props')) {
+    if (Object.hasOwnProperty.call(componentDocs || {}, 'props')) {
       propTypes = Object.keys(componentDocs.props)
     }
 
@@ -39,7 +66,8 @@ export default class PropTypesTable extends PureComponent {
       <div>
         <div className="Content">
           <h3>Props</h3>
-          {componentDocs.composes &&
+          {componentDocs &&
+            componentDocs.composes &&
             componentDocs.composes.length > 0 && (
               <div className="PropTypesTable-composes">
                 <p>
@@ -57,8 +85,8 @@ export default class PropTypesTable extends PureComponent {
         {propTypes &&
           propTypes.map(propName => {
             const prop = componentDocs.props[propName]
+            const isArrayOf = this.isArrayOf(prop)
             // Figure out what makes sense here.
-            // const value = (prop.type || {}).value
             return (
               <PropTypeWrapper key={propName}>
                 <PropTypeHeading
@@ -66,7 +94,9 @@ export default class PropTypesTable extends PureComponent {
                   required={prop.required}
                   defaultValue={prop.defaultValue}
                   type={prop.type || {}}
+                  isArrayOf={isArrayOf}
                 />
+                {this.getTypeInfo(prop)}
                 {prop.description ? (
                   <PropTypeDescription>{prop.description}</PropTypeDescription>
                 ) : null}
