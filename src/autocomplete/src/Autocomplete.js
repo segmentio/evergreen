@@ -88,11 +88,6 @@ export default class Autocomplete extends PureComponent {
      */
     popoverMaxHeight: PropTypes.number,
 
-    /**
-     * To use or not use smart positioning (See "Positioner" for more information)
-     */
-    useSmartPositioning: PropTypes.bool,
-
     ...Downshift.propTypes
   }
 
@@ -107,7 +102,6 @@ export default class Autocomplete extends PureComponent {
     isFilterDisabled: false,
     popoverMinWidth: 240,
     popoverMaxHeight: 240,
-    useSmartPositioning: false,
     renderItem: autocompleteItemRenderer
   }
 
