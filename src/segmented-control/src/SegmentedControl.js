@@ -1,32 +1,58 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
-import SegmentedControlAppearances from './styles/SegmentedControlAppearances'
+import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import SegmentedControlRadio from './SegmentedControlRadio'
 
-const keysSegmentedControlAppearances = Object.keys(SegmentedControlAppearances)
 let radioCount = 1 // Used for generating unique input names
 
 export default class SegmentedControl extends PureComponent {
   static propTypes = {
-    ...Box.propTypes,
-    appearance: PropTypes.oneOf(keysSegmentedControlAppearances),
+    /**
+     * Composes some Box APIs.
+     */
+    ...spacing.propTypes,
+    ...position.propTypes,
+    ...layout.propTypes,
+    ...dimensions.propTypes,
+
+    /**
+     * The options for the radios of the Segmented Control.
+     */
     options: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.node.isRequired,
         value: PropTypes.string.isRequired
       })
     ).isRequired,
-    name: PropTypes.string,
+
+    /**
+     * The current value of the Segmented Control when controlled.
+     */
     value: PropTypes.string,
-    height: PropTypes.number,
+
+    /**
+     * The default value of the Segmented Contorl when uncontrolled.
+     */
+    defaultValue: PropTypes.string,
+
+    /**
+     * Function called when the value changes.
+     */
     onChange: PropTypes.func,
-    defaultValue: PropTypes.string
+
+    /**
+     * The name of the radio group.
+     */
+    name: PropTypes.string,
+
+    /**
+     * The height of the Segmented Control.
+     */
+    height: PropTypes.number
   }
 
   static defaultProps = {
-    height: 32,
-    appearance: 'default'
+    height: 32
   }
 
   constructor(props, context) {
@@ -57,7 +83,6 @@ export default class SegmentedControl extends PureComponent {
       height,
       options,
       onChange,
-      appearance,
       defaultValue,
       ...props
     } = this.props
@@ -75,7 +100,7 @@ export default class SegmentedControl extends PureComponent {
             height={height}
             checked={value === option.value}
             onChange={this.handleChange}
-            appearance={appearance}
+            appearance="default"
             isFirstItem={index === 0}
             isLastItem={index === options.length - 1}
           />
