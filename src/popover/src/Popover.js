@@ -137,6 +137,7 @@ export default class Popover extends Component {
         // Element marked autofocus has higher priority than the other clowns
         const autofocusElement = this.popoverNode.querySelector('[autofocus]')
         const wrapperElement = this.popoverNode.querySelector('[tabindex]')
+        const buttonElement = this.popoverNode.querySelector('button')
 
         // eslint-disable-next-line eqeqeq, no-eq-null
         if (autofocusElement != null) {
@@ -144,6 +145,9 @@ export default class Popover extends Component {
           // eslint-disable-next-line eqeqeq, no-eq-null
         } else if (wrapperElement != null) {
           wrapperElement.focus()
+          // eslint-disable-next-line eqeqeq, no-eq-null
+        } else if (buttonElement != null) {
+          buttonElement.focus()
         }
       }
     })

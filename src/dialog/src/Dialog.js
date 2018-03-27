@@ -257,12 +257,7 @@ class Dialog extends React.Component {
                   <Heading is="h4" size={600} flex="1">
                     {title}
                   </Heading>
-                  <IconButton
-                    tabindex={3}
-                    appearance="ghost"
-                    icon="close"
-                    onClick={close}
-                  />
+                  <IconButton appearance="ghost" icon="close" onClick={close} />
                 </Pane>
               )}
 
@@ -281,28 +276,26 @@ class Dialog extends React.Component {
                 </Pane>
 
                 {hasFooter && (
-                  <Pane
-                    flexShrink={0}
-                    padding={16}
-                    borderTop="extraMuted"
-                    display="flex"
-                    flexDirection="row-reverse"
-                  >
-                    <Button
-                      tabIndex={2}
-                      marginLeft={8}
-                      appearance={buttonAppearance}
-                      isLoading={isConfirmLoading}
-                      disabled={isConfirmDisabled}
-                      onClick={() => onConfirm(close)}
-                    >
-                      {confirmLabel}
-                    </Button>
-                    {hasCancel && (
-                      <Button tabIndex={1} onClick={close}>
-                        {cancelLabel}
+                  <Pane borderTop="extraMuted" clearfix>
+                    <Pane padding={16} float="right">
+                      {/* Cancel should be first to make sure focus gets on it first. */}
+                      {hasCancel && (
+                        <Button tabIndex={0} onClick={close}>
+                          {cancelLabel}
+                        </Button>
+                      )}
+
+                      <Button
+                        tabIndex={0}
+                        marginLeft={8}
+                        appearance={buttonAppearance}
+                        isLoading={isConfirmLoading}
+                        disabled={isConfirmDisabled}
+                        onClick={() => onConfirm(close)}
+                      >
+                        {confirmLabel}
                       </Button>
-                    )}
+                    </Pane>
                   </Pane>
                 )}
               </Pane>
