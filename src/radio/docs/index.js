@@ -23,7 +23,7 @@ const introduction = (
     <p>
       The radio and radio group are used for selecting a single option from a
       list. If you need to have an unselected state, just add a radio button
-      with a None option.
+      with a None option. Begin labels with a capital letter.
     </p>
   </div>
 )
