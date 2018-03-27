@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'ui-box'
 import { Pane } from '../../layers'
-import { Heading } from '../../typography'
+import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
 import { Button, IconButton } from '../../buttons'
 
@@ -51,8 +51,8 @@ const animationStyles = {
 class Dialog extends React.Component {
   static propTypes = {
     /**
-     * Children can be a node or a function accepting `({ close })`.
-     * See an example to understand how this works.
+     * Children can be a string, node or a function accepting `({ close })`.
+     * When passing a string, <Paragraph /> is used to wrap the string.
      */
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 
@@ -174,13 +174,23 @@ class Dialog extends React.Component {
     onConfirm: close => close()
   }
 
+  renderChildren = close => {
+    const { children } = this.props
+
+    if (typeof children === 'function') {
+      return children({ close })
+    } else if (typeof children === 'string') {
+      return <Paragraph>{children}</Paragraph>
+    }
+    return children
+  }
+
   render() {
     const {
       title,
       width,
       type,
       isShown,
-      children,
       topOffset,
       hasHeader,
       hasFooter,
@@ -191,11 +201,9 @@ class Dialog extends React.Component {
       confirmLabel,
       isConfirmLoading,
       isConfirmDisabled,
-      onCancel,
       cancelLabel,
       containerProps,
-      minHeightContent,
-      ...props
+      minHeightContent
     } = this.props
 
     let maxHeight
@@ -217,7 +225,6 @@ class Dialog extends React.Component {
         isShown={isShown}
         onExited={onCloseComplete}
         onEntered={onOpenComplete}
-        {...props}
       >
         {({ state, close }) => (
           <Pane
@@ -250,7 +257,12 @@ class Dialog extends React.Component {
                   <Heading is="h4" size={600} flex="1">
                     {title}
                   </Heading>
-                  <IconButton appearance="ghost" icon="close" onClick={close} />
+                  <IconButton
+                    tabindex={3}
+                    appearance="ghost"
+                    icon="close"
+                    onClick={close}
+                  />
                 </Pane>
               )}
 
@@ -265,11 +277,7 @@ class Dialog extends React.Component {
                   padding={16}
                   minHeight={minHeightContent}
                 >
-                  {typeof children === 'function'
-                    ? children({
-                        close
-                      })
-                    : children}
+                  {this.renderChildren(close)}
                 </Pane>
 
                 {hasFooter && (
@@ -281,6 +289,7 @@ class Dialog extends React.Component {
                     flexDirection="row-reverse"
                   >
                     <Button
+                      tabIndex={2}
                       marginLeft={8}
                       appearance={buttonAppearance}
                       isLoading={isConfirmLoading}
@@ -290,7 +299,9 @@ class Dialog extends React.Component {
                       {confirmLabel}
                     </Button>
                     {hasCancel && (
-                      <Button onClick={close}>{cancelLabel}</Button>
+                      <Button tabIndex={1} onClick={close}>
+                        {cancelLabel}
+                      </Button>
                     )}
                   </Pane>
                 )}

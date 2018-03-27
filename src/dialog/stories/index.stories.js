@@ -21,7 +21,8 @@ storiesOf('dialog', module).add('Dialog', () => (
             onCloseComplete={hide}
             confirmLabel="Custom Label"
           >
-            <Paragraph>Dialog content</Paragraph>
+            Passing a string as the content will wrap the string in a
+            “Paragraph”
           </Dialog>
           <Button onClick={show}>Show Dialog with Custom Button Label</Button>
         </Box>
@@ -37,7 +38,8 @@ storiesOf('dialog', module).add('Dialog', () => (
             type="danger"
             confirmLabel="Dangerous Action"
           >
-            <Paragraph>Dialog content</Paragraph>
+            Passing a string as the content will wrap the string in a
+            “Paragraph”
           </Dialog>
           <Button onClick={show}>Show Dialog with Danger Intent</Button>
         </Box>
@@ -54,10 +56,8 @@ storiesOf('dialog', module).add('Dialog', () => (
             isConfirmLoading={isLoading}
             onCloseComplete={hide}
           >
-            <Paragraph>
-              This is useful when you need to process something before closing
-              the dialog.
-            </Paragraph>
+            This is useful when you need to process something before closing the
+            dialog.
           </Dialog>
           <Button onClick={show}>Show Dialog with Loading Confirmation</Button>
         </Box>
@@ -73,9 +73,7 @@ storiesOf('dialog', module).add('Dialog', () => (
             hasCancel={false}
             confirmLabel="Got It"
           >
-            <Paragraph>
-              This is useful for product updates and onboarding content.
-            </Paragraph>
+            This is useful for product updates and onboarding content.
           </Dialog>
           <Button onClick={show}>Show Dialog with Primary Button Only</Button>
         </Box>

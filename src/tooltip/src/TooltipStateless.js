@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { colors } from '../../colors'
-import { Text } from '../../typography'
+import { Paragraph } from '../../typography'
 
 export default class TooltipStateless extends PureComponent {
   static propTypes = {
@@ -22,9 +22,9 @@ export default class TooltipStateless extends PureComponent {
     let child
     if (typeof children === 'string') {
       child = (
-        <Text display="block" lineHeight="1.25em" color="white" size={400}>
+        <Paragraph lineHeight={1.4} color="white" size={400}>
           {children}
-        </Text>
+        </Paragraph>
       )
     } else {
       child = children

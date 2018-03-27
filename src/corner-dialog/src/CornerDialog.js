@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'ui-box'
 import Transition from 'react-transition-group/Transition'
-import { Pane } from '../../layers'
+import { Pane, Card } from '../../layers'
 import { Portal } from '../../portal'
-import { Heading } from '../../typography'
-import { IconButton } from '../../buttons'
+import { Paragraph, Heading } from '../../typography'
+import { Button, IconButton } from '../../buttons'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -48,69 +48,150 @@ const animationStyles = {
 
 export default class CornerDialog extends PureComponent {
   static propTypes = {
-    title: PropTypes.node,
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    isShown: PropTypes.bool,
-    children: PropTypes.node,
-    hasCloseIcon: PropTypes.bool,
-    containerProps: PropTypes.object,
+    /**
+     * Children can be a string, node or a function accepting `({ close })`.
+     * When passing a string, <Paragraph size={400} color="muted" /> is used to wrap the string.
+     */
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 
-    onHide: PropTypes.func,
-    onExit: PropTypes.func,
-    onExiting: PropTypes.func,
-    onExited: PropTypes.func,
-    onEnter: PropTypes.func,
-    onEntering: PropTypes.func,
-    onEntered: PropTypes.func
+    /**
+     * When true, the dialog is shown.
+     */
+    isShown: PropTypes.bool,
+
+    /**
+     * Title of the Dialog. Titles should use Title Case.
+     */
+    title: PropTypes.node,
+
+    /**
+     * Function that will be called when the exit transition is complete.
+     */
+    onCloseComplete: PropTypes.func,
+
+    /**
+     * Function that will be called when the enter transition is complete.
+     */
+    onOpenComplete: PropTypes.func,
+
+    /**
+     * When true, the footer with the cancel and confirm button is shown.
+     */
+    hasFooter: PropTypes.bool,
+
+    /**
+     * Function that will be called when the confirm button is clicked.
+     * This does not close the Dialog. A close function will be passed
+     * as a paramater you can use to close the dialog.
+     *
+     * `onConfirm={(close) => close()}`
+     */
+    onConfirm: PropTypes.func,
+
+    /**
+     * Label of the confirm button.
+     */
+    confirmLabel: PropTypes.string,
+
+    /**
+     * When true, the cancel button is shown.
+     */
+    hasCancel: PropTypes.bool,
+
+    /**
+     * Function that will be called when the cancel button is clicked.
+     * This closes the Dialog by default.
+     *
+     * `onCancel={(close) => close()}`
+     */
+    onCancel: PropTypes.func,
+
+    /**
+     * Label of the cancel button.
+     */
+    cancelLabel: PropTypes.string,
+
+    /**
+     * Width of the Dialog.
+     */
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    /**
+     * Props that are passed to the dialog container.
+     */
+    containerProps: PropTypes.object
   }
 
   static defaultProps = {
-    onHide: () => {},
-    width: 320,
-    height: 176,
-    hasCloseIcon: true
+    width: 392,
+    hasFooter: true,
+    confirmLabel: 'Learn More',
+    hasCancel: true,
+    cancelLabel: 'Close',
+    onCancel: close => close(),
+    onConfirm: close => close()
   }
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
-      exiting: false
+      exiting: false,
+      exited: !props.isShown
     }
   }
 
-  handleHidden = (...args) => {
-    this.setState({ exiting: false })
-    this.props.onHide()
-
-    if (this.props.onExited) {
-      this.props.onExited(...args)
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isShown && !this.props.isShown) {
+      this.setState({
+        exited: false
+      })
     }
+  }
+
+  handleExited = () => {
+    this.setState({ exiting: false, exited: true })
+    this.props.onCloseComplete()
   }
 
   handleClose = () => {
     this.setState({ exiting: true })
-    this.props.onHide()
+  }
+
+  handleConfirm = () => {
+    this.props.onConfirm(this.handleClose)
+  }
+
+  renderChildren = () => {
+    const { children } = this.props
+    if (typeof children === 'function') {
+      return children({ close: this.handleClose })
+    } else if (typeof children === 'string') {
+      return (
+        <Paragraph size={400} color="muted">
+          {children}
+        </Paragraph>
+      )
+    }
+    return children
   }
 
   render() {
     const {
-      children,
-      width,
-      height,
-      hasCloseIcon,
-      containerProps,
-      isShown,
       title,
-      onExit,
-      onExiting,
-      onEnter,
-      onEntering,
-      onEntered
+      width,
+      isShown,
+      hasFooter,
+      hasCancel,
+      cancelLabel,
+      confirmLabel,
+      onOpenComplete,
+      containerProps
     } = this.props
 
-    const { exiting } = this.state
+    const { exiting, exited } = this.state
+
+    if (exited) return null
 
     return (
       <Portal>
@@ -119,55 +200,59 @@ export default class CornerDialog extends PureComponent {
           unmountOnExit
           timeout={ANIMATION_DURATION}
           in={isShown && !exiting}
-          onExit={onExit}
-          onExiting={onExiting}
-          onExited={this.handleHidden}
-          onEnter={onEnter}
-          onEntering={onEntering}
-          onEntered={onEntered}
+          onExited={this.handleExited}
+          onEntered={onOpenComplete}
         >
           {state => (
-            <Pane
+            <Card
               role="dialog"
               backgroundColor="white"
               elevation={4}
-              borderRadius={8}
               width={width}
-              height={height}
               css={animationStyles}
               data-state={state}
               position="fixed"
-              bottom={8}
-              right={8}
+              bottom={16}
+              right={16}
+              padding={32}
               {...containerProps}
             >
-              <Pane
-                padding={8}
-                borderBottom="extraMuted"
-                display="flex"
-                alignItems="center"
-              >
-                <Heading is="h4" size={500} flex="1">
+              <Pane display="flex" alignItems="center" marginBottom={12}>
+                <Heading is="h4" size={600} flex="1">
                   {title}
                 </Heading>
-                {hasCloseIcon && (
-                  <IconButton
-                    height={24}
-                    icon="close"
-                    appearance="ghost"
-                    onClick={this.handleClose}
-                  />
-                )}
+                <IconButton
+                  height={32}
+                  icon="close"
+                  appearance="ghost"
+                  onClick={this.handleClose}
+                />
               </Pane>
 
-              <Pane overflowY="auto" data-state={state} padding={8}>
-                {typeof children === 'function'
-                  ? children({
-                      close
-                    })
-                  : children}
+              <Pane overflowY="auto" data-state={state}>
+                {this.renderChildren()}
               </Pane>
-            </Pane>
+
+              {hasFooter && (
+                <Pane
+                  marginTop={24}
+                  flexShrink={0}
+                  display="flex"
+                  flexDirection="row-reverse"
+                >
+                  <Button
+                    appearance="green"
+                    marginLeft={8}
+                    onClick={this.handleConfirm}
+                  >
+                    {confirmLabel}
+                  </Button>
+                  {hasCancel && (
+                    <Button onClick={this.handleClose}>{cancelLabel}</Button>
+                  )}
+                </Pane>
+              )}
+            </Card>
           )}
         </Transition>
       </Portal>

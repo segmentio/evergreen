@@ -1,13 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import objectValues from 'object-values'
 import Transition from 'react-transition-group/Transition'
 import { Portal } from '../../portal'
-
-const PositionerSides = {
-  BOTTOM: 'bottom',
-  TOP: 'top'
-}
+import getPosition from './getPosition'
+import Position from './Position'
 
 const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
@@ -16,55 +12,102 @@ const animationEasing = {
 const initialState = () => ({
   top: null,
   left: null,
-  side: null,
-  transformOriginX: null
+  transformOrigin: null
 })
 
-const getCSS = ({ targetOffset, initialScale, animationDuration }) => ({
+const getCSS = ({ initialScale, animationDuration }) => ({
   position: 'absolute',
   opacity: 0,
-  transition: `all ${animationDuration}ms ${animationEasing.spring}`,
+  transitionTimingFunction: animationEasing.spring,
+  transitionDuration: `${animationDuration}ms`,
+  transitionProperty: 'opacity, transform',
   transform: `scale(${initialScale}) translateY(-1px)`,
-  '&[data-state="entering"][data-position="bottom"], &[data-state="entered"][data-position="bottom"]': {
+  '&[data-state="entering"], &[data-state="entered"]': {
     opacity: 1,
     visibility: 'visible',
-    transform: `scale(1) translateY(${targetOffset}px)`
-  },
-  '&[data-state="entering"][data-position="top"], &[data-state="entered"][data-position="top"]': {
-    opacity: 1,
-    visibility: 'visible',
-    transform: `scale(1) translateY(-${targetOffset}px)`
+    transform: `scale(1)`
   },
   '&[data-state="exiting"]': {
     opacity: 0,
-    transform: 'scale(1) translateY(0)'
+    transform: 'scale(1)'
   }
 })
 
 export default class Positioner extends PureComponent {
   static propTypes = {
-    side: PropTypes.oneOf(objectValues(PositionerSides)),
-    zIndex: PropTypes.number,
+    /**
+     * The position the element that is being positioned is on.
+     * Smart positioning might override this.
+     */
+    position: PropTypes.oneOf(Object.keys(Position)).isRequired,
+
+    /**
+     * When true, show the element being positioned.
+     */
     isShown: PropTypes.bool,
-    children: PropTypes.func,
-    innerRef: PropTypes.func,
-    bodyOffset: PropTypes.number,
-    targetRect: PropTypes.object,
-    targetOffset: PropTypes.number,
-    initialScale: PropTypes.number,
-    animationDuration: PropTypes.number,
-    useSmartPositioning: PropTypes.bool
+
+    /**
+     * Function that returns the element being positioned.
+     */
+    children: PropTypes.func.isRequired,
+
+    /**
+     * Function that returns the ref of the element being positioned.
+     */
+    innerRef: PropTypes.func.isRequired,
+
+    /**
+     * The minimum distance from the body to the element being positioned.
+     */
+    bodyOffset: PropTypes.number.isRequired,
+
+    /**
+     * The minimum distance from the target to the element being positioned.
+     */
+    targetOffset: PropTypes.number.isRequired,
+
+    /**
+     * Function that should return a node for the target.
+     * ({ getRef: () -> Ref, isShown: Bool }) -> React Node
+     */
+    target: PropTypes.func.isRequired,
+
+    /**
+     * The z-index of the element being positioned.
+     */
+    zIndex: PropTypes.number.isRequired,
+
+    /**
+     * Initial scale of the element being positioned.
+     */
+    initialScale: PropTypes.number.isRequired,
+
+    /**
+     * Duration of the animation.
+     */
+    animationDuration: PropTypes.number.isRequired,
+
+    /**
+     * Function that will be called when the exit transition is complete.
+     */
+    onCloseComplete: PropTypes.func.isRequired,
+
+    /**
+     * Function that will be called when the enter transition is complete.
+     */
+    onOpenComplete: PropTypes.func.isRequired
   }
 
   static defaultProps = {
-    innerRef: () => {},
-    side: PositionerSides.BOTTOM,
+    position: Position.BOTTOM,
     zIndex: 40,
-    bodyOffset: 4,
-    targetOffset: 8,
+    bodyOffset: 6,
+    targetOffset: 6,
     initialScale: 0.9,
     animationDuration: 300,
-    useSmartPositioning: true
+    innerRef: () => {},
+    onOpenComplete: () => {},
+    onCloseComplete: () => {}
   }
 
   constructor(props, context) {
@@ -72,20 +115,8 @@ export default class Positioner extends PureComponent {
     this.state = initialState()
   }
 
-  getAnchors = () => {
-    const { targetRect } = this.props
-    const bodyRect = document.body.getBoundingClientRect()
-    const x = targetRect.left + targetRect.width / 2
-    return {
-      top: {
-        x,
-        y: targetRect.top - bodyRect.top
-      },
-      bottom: {
-        x,
-        y: targetRect.bottom - bodyRect.top
-      }
-    }
+  getTargetRef = ref => {
+    this.targetRef = ref
   }
 
   getRef = ref => {
@@ -94,99 +125,106 @@ export default class Positioner extends PureComponent {
   }
 
   handleEnter = () => {
-    const { useSmartPositioning, bodyOffset } = this.props
-    const { top, bottom } = this.getAnchors()
-    let side = this.props.side
+    this.update()
+  }
 
-    // Smartly position the positioner when it overflows the body
+  getTargetRect = () => this.targetRef.getBoundingClientRect()
+
+  update = () => {
+    if (!this.props.isShown || !this.targetRef || !this.positionerRef) return
+
+    const targetRect = this.getTargetRect()
     const viewportHeight =
       document.documentElement.clientHeight + window.scrollY
     const viewportWidth = document.documentElement.clientWidth + window.scrollX
 
-    if (
-      useSmartPositioning &&
-      this.positionerRef.offsetHeight + bottom.y > viewportHeight
-    ) {
-      side = 'top'
-    }
-
-    this.positionerRef.setAttribute('data-position', side)
-
-    let left = Math.max(
-      bottom.x - this.positionerRef.offsetWidth / 2,
-      bodyOffset
-    )
-    left = Math.min(
-      left,
-      viewportWidth - this.positionerRef.offsetWidth - bodyOffset
-    )
-
-    let transformOriginX = bottom.x - left
-    transformOriginX = Math.max(transformOriginX - bodyOffset, bottom.x - left)
-
-    this.setState({
-      left,
-      side,
-      transformOriginX,
-      top:
-        side === PositionerSides.BOTTOM
-          ? bottom.y
-          : top.y - this.positionerRef.offsetHeight
+    const position = getPosition({
+      position: this.props.position,
+      targetRect,
+      targetOffset: this.props.targetOffset,
+      dimensions: {
+        height: this.positionerRef.offsetHeight,
+        width: this.positionerRef.offsetWidth
+      },
+      viewport: {
+        width: viewportWidth,
+        height: viewportHeight
+      },
+      viewportOffset: this.props.bodyOffset
     })
+
+    this.setState(
+      {
+        left: position.left,
+        top: position.top,
+        transformOrigin: position.transformOrigin
+      },
+      () => {
+        window.requestAnimationFrame(() => {
+          this.update()
+        })
+      }
+    )
   }
 
   handleExited = () => {
-    this.setState(initialState())
+    this.setState(
+      () => {
+        return {
+          ...initialState()
+        }
+      },
+      () => {
+        this.props.onCloseComplete()
+      }
+    )
   }
 
   render() {
     const {
-      children,
       zIndex,
+      target,
       isShown,
-      targetRect,
+      children,
       initialScale,
       targetOffset,
       animationDuration
     } = this.props
 
-    const { left, top, side, transformOriginX } = this.state
-
-    const transformOrigin = `${transformOriginX}px ${
-      side === PositionerSides.BOTTOM ? 'top' : 'bottom'
-    }`
+    const { left, top, transformOrigin } = this.state
 
     return (
-      <Portal>
-        <Transition
-          in={isShown}
-          timeout={animationDuration}
-          onEnter={this.handleEnter}
-          onExited={this.handleExited}
-          unmountOnExit
-        >
-          {state =>
-            children({
-              top,
-              left,
-              side,
-              state,
-              zIndex,
-              css: getCSS({ targetOffset, initialScale, animationDuration }),
-              style: {
-                left,
+      <React.Fragment>
+        {target({ getRef: this.getTargetRef, isShown })}
+        <Portal>
+          <Transition
+            in={isShown}
+            timeout={animationDuration}
+            onEnter={this.handleEnter}
+            onEntered={this.props.onOpenComplete}
+            onExited={this.handleExited}
+            unmountOnExit
+          >
+            {state =>
+              children({
                 top,
-                transformOrigin,
-                zIndex
-              },
-              getRef: this.getRef,
-              targetRect,
-              transformOrigin,
-              animationDuration
-            })
-          }
-        </Transition>
-      </Portal>
+                left,
+                state,
+                zIndex,
+                css: getCSS({ targetOffset, initialScale, animationDuration }),
+                style: {
+                  transformOrigin,
+                  left,
+                  top,
+                  zIndex
+                },
+                getRef: this.getRef,
+                animationDuration
+              })
+            }
+          </Transition>
+        </Portal>
+      </React.Fragment>
     )
   }
 }
