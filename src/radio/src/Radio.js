@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
 import { CheckboxAppearances } from '../../shared-styles'
 
@@ -17,21 +17,56 @@ CircleIcon.propTypes = {
 
 export default class Radio extends PureComponent {
   static propTypes = {
-    ...Box.propTypes,
-    appearance: PropTypes.oneOf(Object.keys(CheckboxAppearances)),
-    label: PropTypes.node,
-    disabled: PropTypes.bool,
-    isInvalid: PropTypes.bool,
-    checked: PropTypes.bool,
+    /**
+     * Composes some Box APIs.
+     */
+    ...spacing.propTypes,
+    ...position.propTypes,
+    ...layout.propTypes,
+    ...dimensions.propTypes,
+
+    /**
+     * The id attribute of the radio.
+     */
     id: PropTypes.string,
+
+    /**
+     * The name attribute of the radio.
+     */
     name: PropTypes.string,
-    onChange: PropTypes.func,
+
+    /**
+     * Label of the radio.
+     */
+    label: PropTypes.node,
+
+    /**
+     * The value attribute of the radio.
+     */
     value: PropTypes.string,
+
+    /**
+     * Function called when state changes.
+     */
+    onChange: PropTypes.func,
+
+    /**
+     * When true, the radio is disabled.
+     */
+    disabled: PropTypes.bool,
+
+    /**
+     * When true, the radio is checked.
+     */
+    checked: PropTypes.bool,
+
+    /**
+     * The size of the radio circle. This also informs the text size and spacing.
+     */
     size: PropTypes.oneOf([12, 16])
   }
 
   static defaultProps = {
-    appearance: 'default',
     onChange: () => {},
     size: 12
   }
@@ -41,7 +76,6 @@ export default class Radio extends PureComponent {
       id,
       name,
       label,
-      appearance,
       disabled,
       isInvalid,
       checked,
@@ -50,14 +84,14 @@ export default class Radio extends PureComponent {
       size,
       ...props
     } = this.props
-    const appearanceStyle = CheckboxAppearances[appearance]
+    const appearanceStyle = CheckboxAppearances.default
 
     return (
       <Box
         is="label"
         cursor={disabled ? 'not-allowed' : 'pointer'}
         display="flex"
-        marginY={12}
+        marginY={size === 12 ? 8 : 12}
         {...props}
       >
         <Box
@@ -69,7 +103,7 @@ export default class Radio extends PureComponent {
           checked={checked}
           onChange={e => onChange(e.target.value)}
           disabled={disabled}
-          {...(isInvalid ? { 'aria-invalid': true } : {})}
+          aria-invalid={isInvalid}
           css={appearanceStyle}
         />
         <Box
@@ -78,16 +112,16 @@ export default class Radio extends PureComponent {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          marginTop={size === 12 ? 2 : 0}
+          marginTop={size === 12 ? 2 : 3}
           width={size}
           height={size}
         >
-          <CircleIcon size={size === 12 ? 4 : 6} />
+          <CircleIcon size={size === 12 ? 4 : 4} />
         </Box>
         {label && (
           <Text
-            marginLeft={8}
-            size={300}
+            marginLeft={size === 12 ? 8 : 10}
+            size={size === 12 ? 300 : 400}
             color={disabled ? 'extraMuted' : 'default'}
           >
             {label}

@@ -23,7 +23,7 @@ import segmentedControlDocs from '../../../src/segmented-control/docs/'
 import searchInputDocs from '../../../src/search-input/docs/'
 import tableDocs from '../../../src/table/docs/'
 // import sideSheetDocs from '../../src/side-sheet/docs/'
-// import radioDocs from '../../src/radio/docs/'
+import radioDocs from '../../../src/radio/docs/'
 import dialogDocs from '../../../src/dialog/docs/'
 // import cornerDialogDocs from '../../src/corner-dialog/docs/'
 import alertDocs from '../../../src/alert/docs/'
@@ -31,6 +31,7 @@ import toasterDocs from '../../../src/toaster/docs/'
 import selectMenuDocs from '../../../src/select-menu/docs/'
 
 const map = {
+  radio: radioDocs,
   'segmented control': segmentedControlDocs,
   buttons: buttonsDocs,
   table: tableDocs,
