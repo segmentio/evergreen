@@ -1,5 +1,9 @@
 module.exports = [
   {
+    name: 'Segmented Control',
+    path: '/components/segmented-control'
+  },
+  {
     name: 'Alert',
     path: '/components/alert'
   },

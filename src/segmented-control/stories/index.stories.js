@@ -1,41 +1,8 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import Component from '@reactions/component'
 import { SegmentedControl } from '../../segmented-control'
-
-const options = [
-  { label: 'Hourly', value: 'hourly' },
-  { label: 'Daily', value: 'daily' },
-  { label: 'Monthly', value: 'monthly' }
-]
-
-const optionsOnOff = [
-  { label: 'On', value: 'on' },
-  { label: 'Off', value: 'off' }
-]
-
-class SegmentedControlManager extends React.PureComponent {
-  static propTypes = {
-    children: PropTypes.func,
-    options: PropTypes.array
-  }
-
-  constructor(props) {
-    super()
-    this.state = {
-      value: props.options[0].value
-    }
-  }
-
-  render() {
-    return this.props.children({
-      value: this.state.value,
-      options: this.props.options,
-      onChange: value => this.setState({ value })
-    })
-  }
-}
 
 storiesOf('segmented-control', module).add('SegmentedControl', () => (
   <Box padding={40}>
@@ -43,27 +10,41 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
       document.body.style.margin = '0'
       document.body.style.height = '100vh'
     })()}
-    <SegmentedControlManager options={options}>
-      {({ options: _options, value, onChange }) => (
+    <Component
+      initialState={{
+        options: [
+          { label: 'Hourly', value: 'hourly' },
+          { label: 'Daily', value: 'daily' },
+          { label: 'Monthly', value: 'monthly' }
+        ],
+        value: 'hourly'
+      }}
+    >
+      {({ state, setState }) => (
         <SegmentedControl
           width={240}
-          options={_options}
-          value={value}
-          onChange={onChange}
+          options={state.options}
+          value={state.value}
+          onChange={value => setState({ value })}
         />
       )}
-    </SegmentedControlManager>
-    <SegmentedControlManager options={optionsOnOff}>
-      {({ options: _options, value, onChange }) => (
+    </Component>
+    <Component
+      initialState={{
+        options: [{ label: 'On', value: 'on' }, { label: 'Off', value: 'off' }],
+        value: 'on'
+      }}
+    >
+      {({ state, setState }) => (
         <SegmentedControl
           marginTop={24}
           width={80}
           height={24}
-          options={_options}
-          value={value}
-          onChange={onChange}
+          options={state.options}
+          value={state.value}
+          onChange={value => setState({ value })}
         />
       )}
-    </SegmentedControlManager>
+    </Component>
   </Box>
 ))
