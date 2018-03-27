@@ -63,12 +63,18 @@ export default class Radio extends PureComponent {
     /**
      * The size of the radio circle. This also informs the text size and spacing.
      */
-    size: PropTypes.oneOf([12, 16])
+    size: PropTypes.oneOf([12, 16]),
+
+    /**
+     * When true, the radio get the required attribute.
+     */
+    isRequired: PropTypes.bool.isRequired
   }
 
   static defaultProps = {
     onChange: () => {},
-    size: 12
+    size: 12,
+    isRequired: false
   }
 
   render() {
@@ -82,6 +88,7 @@ export default class Radio extends PureComponent {
       onChange,
       value,
       size,
+      isRequired,
       ...props
     } = this.props
     const appearanceStyle = CheckboxAppearances.default
@@ -104,6 +111,7 @@ export default class Radio extends PureComponent {
           onChange={e => onChange(e.target.value)}
           disabled={disabled}
           aria-invalid={isInvalid}
+          required={isRequired}
           css={appearanceStyle}
         />
         <Box

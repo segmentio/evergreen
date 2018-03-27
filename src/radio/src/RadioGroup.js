@@ -51,13 +51,19 @@ export default class RadioGroup extends PureComponent {
     /**
      * The size of the radio circle. This also informs the text size and spacing.
      */
-    size: PropTypes.oneOf([12, 16]).isRequired
+    size: PropTypes.oneOf([12, 16]).isRequired,
+
+    /**
+     * When true, the radio get the required attribute.
+     */
+    isRequired: PropTypes.bool.isRequired
   }
 
   static defaultProps = {
     options: [],
     onChange: () => {},
-    size: 12
+    size: 12,
+    isRequired: false
   }
 
   constructor(props, context) {
@@ -90,6 +96,7 @@ export default class RadioGroup extends PureComponent {
       value,
       options,
       onChange,
+      isRequired,
       ...props
     } = this.props
 
@@ -117,6 +124,7 @@ export default class RadioGroup extends PureComponent {
             checked={selected === item.value}
             disabled={item.isDisabled}
             onChange={() => this.handleChange(item.value)}
+            isRequired={isRequired}
           />
         ))}
       </Pane>

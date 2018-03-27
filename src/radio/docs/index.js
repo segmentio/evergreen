@@ -37,23 +37,23 @@ const scope = {
 
 const components = [
   {
-    name: 'Radio',
-    source: sourceRadio,
-    examples: [
-      {
-        title: 'Basic Radio Example',
-        codeText: exampleRadioBasic,
-        scope
-      }
-    ]
-  },
-  {
     name: 'RadioGroup',
     source: sourceRadioGroup,
     examples: [
       {
         title: 'Basic Radio Group Example',
         codeText: exampleRadioGroupBasic,
+        scope
+      }
+    ]
+  },
+  {
+    name: 'Radio',
+    source: sourceRadio,
+    examples: [
+      {
+        title: 'Basic Radio Example',
+        codeText: exampleRadioBasic,
         scope
       }
     ]
