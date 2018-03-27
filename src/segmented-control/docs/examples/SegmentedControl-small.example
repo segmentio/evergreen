@@ -1,0 +1,16 @@
+<Component
+  initialState={{
+    options: [{ label: 'On', value: 'on' }, { label: 'Off', value: 'off' }],
+    value: 'on',
+  }}
+>
+  {({ state, setState }) => (
+    <SegmentedControl
+      width={80}
+      height={24}
+      options={state.options}
+      value={state.value}
+      onChange={value => setState({ value })}
+    />
+  )}
+</Component>
