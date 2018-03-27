@@ -51,6 +51,7 @@ module.exports = ({ packageName, componentNames }) => {
   return `
 import React from 'react'
 import Box from 'ui-box'
+import Component from '@reactions/component'
 ${getImports(componentNames)}
 
 /* eslint-disable import/no-unresolved, import/no-webpack-loader-syntax */
@@ -65,7 +66,7 @@ ${getCodeExamples(componentNames)}
 const title = '${packageName}'
 const subTitle = 'A component.'
 
-const designGuidelines = (
+const introduction = (
   <div>
     <p>
       The <code>${packageName}</code> component.
@@ -73,10 +74,18 @@ const designGuidelines = (
   </div>
 )
 
-const appearanceOptions = null
+const implementationDetails = (
+  <div>
+    <p>
+      The <code>${packageName}</code> component.
+    </p>
+  </div>
+)
+
 
 const scope = {
   Box,
+  Component,
   ${componentNames.join(',\n  ')}
 }
 
@@ -87,8 +96,8 @@ const components = [
 export default {
   title,
   subTitle,
-  designGuidelines,
-  appearanceOptions,
+  introduction,
+  implementationDetails,
   components,
 }
 

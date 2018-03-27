@@ -48,14 +48,49 @@ const offscreenCss = css({
 
 export default class SegmentedControlRadio extends PureComponent {
   static propTypes = {
+    /**
+     * The name attribute of the radio input.
+     */
     name: PropTypes.string.isRequired,
+
+    /**
+     * The label used for the radio.
+     */
     label: PropTypes.node.isRequired,
+
+    /**
+     * The value attribute of the radio input.
+     */
     value: PropTypes.string.isRequired,
+
+    /**
+     * The height of the control.
+     */
     height: PropTypes.number.isRequired,
+
+    /**
+     * When true, the radio input is checked.
+     */
     checked: PropTypes.bool.isRequired,
+
+    /**
+     * Function called when the state changes.
+     */
     onChange: PropTypes.func.isRequired,
+
+    /**
+     * The appearance of the control. Currently only `default` is possible.
+     */
     appearance: PropTypes.oneOf(keysSegmentedControlAppearances).isRequired,
+
+    /**
+     * When true, this item is the first item.
+     */
     isFirstItem: PropTypes.bool,
+
+    /**
+     * When true, this item is the last item.
+     */
     isLastItem: PropTypes.bool
   }
 
