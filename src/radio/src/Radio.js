@@ -68,13 +68,20 @@ export default class Radio extends PureComponent {
     /**
      * When true, the radio get the required attribute.
      */
-    isRequired: PropTypes.bool.isRequired
+    isRequired: PropTypes.bool.isRequired,
+
+    /**
+     * When true, the aria-invalid attribute is true.
+     * Used for accessibility.
+     */
+    isInvalid: PropTypes.bool.isRequired
   }
 
   static defaultProps = {
     onChange: () => {},
     size: 12,
-    isRequired: false
+    isRequired: false,
+    isInvalid: false
   }
 
   render() {
