@@ -45,6 +45,7 @@ export default class Tooltip extends PureComponent {
   }
 
   static defaultProps = {
+    position: Position.BOTTOM,
     zIndex: 40,
     hideDelay: 120
   }
