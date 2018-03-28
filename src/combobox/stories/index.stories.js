@@ -48,17 +48,6 @@ storiesOf('combobox', module).add('Combobox', () => (
       <Combobox openOnFocus items={items} onChange={handleChange} />
     </Box>
     <Box marginBottom={16}>
-      <Heading>With input props</Heading>
-      <Combobox
-        openOnFocus
-        items={items}
-        onChange={handleChange}
-        inputProps={{
-          placeholder: 'Filter names...'
-        }}
-      />
-    </Box>
-    <Box marginBottom={16}>
       <Heading>Default value</Heading>
       <Combobox
         defaultSelectedItem="Yoda"

@@ -1,9 +1,9 @@
 {
   "name": "evergreen-ui",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
-    "Jeroen Ransijn (https://twitter.com/jeroen_ransijn)",
+    "Jeroen Ransijn (https://jssr.design/)",
     "Roland Warmerdam (https://roland.codes)"
   ],
   "keywords": ["evergreen", "segment", "ui", "react"],
@@ -39,6 +39,7 @@
     "downshift": "^1.16.0",
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
+    "lodash.debounce": "^4.0.8",
     "lodash.mapvalues": "^4.6.0",
     "object-values": "^1.0.0",
     "prop-types": "^15.0.0",

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import arrify from 'arrify'
 import { Popover } from '../../popover'
+import { Position } from '../../positioner'
 import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
 import SelectedPropType from './SelectedPropType'
@@ -47,13 +48,19 @@ export default class SelectMenu extends PureComponent {
     /**
      * When true, show the filter.
      */
-    hasFilter: PropTypes.bool
+    hasFilter: PropTypes.bool,
+
+    /**
+     * The position of the Select Menu.
+     */
+    position: PropTypes.oneOf(Object.keys(Position))
   }
 
   static defaultProps = {
     onSelect: () => {},
     width: 240,
-    height: 248
+    height: 248,
+    position: Position.BOTTOM_LEFT
   }
 
   constructor(props, context) {
@@ -69,6 +76,7 @@ export default class SelectMenu extends PureComponent {
       height,
       options,
       selected,
+      position,
       hasTitle,
       hasFilter,
       ...props
@@ -77,6 +85,7 @@ export default class SelectMenu extends PureComponent {
     return (
       <Popover
         minWidth={width}
+        position={position}
         minHeight={height}
         content={({ close }) => (
           <SelectMenuContent

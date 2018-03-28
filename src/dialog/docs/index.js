@@ -60,7 +60,21 @@ const designGuidelines = (
   </div>
 )
 
-const appearanceOptions = null
+const implementationDetails = (
+  <div>
+    <h3>Focus Management</h3>
+    <p>
+      When opening theDialog, focus will be brought inside the Dialog. When
+      using both the cancel and confirm button, the cancel button will get focus
+      first.
+    </p>
+    <p>
+      When closing the Dialog, focus will be brought back to the element that
+      was focused before opening the Dialog. This is normally the button that
+      triggered the Dialog.
+    </p>
+  </div>
+)
 
 const scope = {
   Box,
@@ -179,6 +193,6 @@ export default {
   title,
   subTitle,
   designGuidelines,
-  appearanceOptions,
+  implementationDetails,
   components
 }

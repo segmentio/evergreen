@@ -1,0 +1,15 @@
+<Manager isShown={false}>
+  {({ state, setState }) => (
+    <Box>
+      <SideSheet
+        isShown={state.isShown}
+        onCloseComplete={() => setState({ isShown: false })}
+      >
+        <Paragraph margin={40}>Basic Example</Paragraph>
+      </SideSheet>
+      <Button onClick={() => setState({ isShown: true })}>
+        Show Basic Side Sheet
+      </Button>
+    </Box>
+  )}
+</Manager>

@@ -1,0 +1,6 @@
+<Combobox
+  defaultSelectedItem={{ label: 'Banana' }}
+  items={[{ label: 'Banana' }, { label: 'Pear' }, { label: 'Kiwi' }]}
+  itemToString={item => item.label}
+  onChange={selected => console.log(selected)}
+/>

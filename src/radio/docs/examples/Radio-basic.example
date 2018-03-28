@@ -1,0 +1,20 @@
+<Box>
+  <Box aria-label="Radio Group Label" role="group">
+    <Radio name="group" label="Radio default" />
+    <Radio name="group" checked label="Radio checked" />
+    <Radio name="group" disabled label="Radio disabled" />
+    <Radio name="group" disabled checked label="Radio checked disabled" />
+  </Box>
+
+  <Box aria-label="Radio Group Label 16" role="group" marginTop={32}>
+    <Radio checked size={16} name="group2" label="Radio default" />
+    <Radio size={16} name="group2" checked label="Radio checked" />
+    <Radio size={16} name="group2" disabled label="Radio disabled" />
+    <Radio
+      size={16}
+      name="group2"
+      disabled
+      label="Radio checked disabled"
+    />
+  </Box>
+</Box>
