@@ -181,28 +181,15 @@ class Overlay extends React.Component {
         const autofocusElement = this.containerElement.querySelector(
           '[autofocus]'
         )
+        const wrapperElement = this.containerElement.querySelector('[tabindex]')
+        const buttonElement = this.containerElement.querySelector('button')
 
         if (autofocusElement) {
           autofocusElement.focus()
-        } else {
-          const tabIndexElements = this.containerElement.querySelectorAll(
-            '[tabindex]'
-          )
-
-          // eslint-disable-next-line eqeqeq, no-eq-null
-          if (tabIndexElements == null) return
-
-          // Make sure to honor tab index specificity.
-          const sortedList = Array.from(tabIndexElements).sort((a, b) => {
-            return (
-              Number(a.getAttribute('tabindex')) -
-              Number(b.getAttribute('tabindex'))
-            )
-          })
-
-          if (sortedList.length > 0) {
-            sortedList[0].focus()
-          }
+        } else if (wrapperElement) {
+          wrapperElement.focus()
+        } else if (buttonElement) {
+          buttonElement.focus()
         }
       }
     })
