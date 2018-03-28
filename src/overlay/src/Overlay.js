@@ -182,8 +182,7 @@ class Overlay extends React.Component {
           '[autofocus]'
         )
 
-        // eslint-disable-next-line eqeqeq, no-eq-null, no-negated-condition
-        if (autofocusElement != null) {
+        if (autofocusElement) {
           autofocusElement.focus()
         } else {
           const tabIndexElements = this.containerElement.querySelectorAll(

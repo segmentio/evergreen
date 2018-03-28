@@ -138,11 +138,9 @@ export default class Popover extends Component {
         const autofocusElement = this.popoverNode.querySelector('[autofocus]')
         const wrapperElement = this.popoverNode.querySelector('[tabindex]')
 
-        // eslint-disable-next-line eqeqeq, no-eq-null
-        if (autofocusElement != null) {
+        if (autofocusElement) {
           autofocusElement.focus()
-          // eslint-disable-next-line eqeqeq, no-eq-null
-        } else if (wrapperElement != null) {
+        } else if (wrapperElement) {
           wrapperElement.focus()
         }
       }
@@ -196,7 +194,6 @@ export default class Popover extends Component {
   }
 
   toggle = () => {
-    console.log('toggle', this.state.isShown)
     if (this.state.isShown) {
       this.close()
     } else {
