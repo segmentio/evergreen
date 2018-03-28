@@ -1,0 +1,8 @@
+<Combobox
+  items={['Banana', 'Orange', 'Apple', 'Mango']}
+  onChange={selected => console.log(selected)}
+  placeholder="Starwars names"
+  autocompleteProps={{
+    title: 'Starwars names'
+  }}
+/>

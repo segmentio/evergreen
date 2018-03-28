@@ -4,6 +4,7 @@ import fuzzaldrin from 'fuzzaldrin-plus'
 import Downshift from 'downshift'
 import VirtualList from 'react-tiny-virtual-list'
 import { Popover } from '../../popover'
+import { Position } from '../../positioner'
 import { Text } from '../../typography'
 import { Pane } from '../../layers'
 import AutocompleteItem from './AutocompleteItem'
@@ -20,60 +21,78 @@ export default class Autocomplete extends PureComponent {
      * It will provide a title for the items
      */
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+
     /**
      * An array of items to be used as options for the select
      */
     items: PropTypes.array.isRequired,
+
     /**
      * The selected Item to be shown on the autocomplete
      */
     selectedItem: PropTypes.any,
+
     /**
      * The selected item to be selected & shown by default on the autocomplete
      */
     defaultSelectedItem: PropTypes.any,
+
     /**
-     * In case the array of items is not an array of strings, this function is used on each item to return the string that will be shown on the filter
+     * In case the array of items is not an array of strings,
+     * this function is used on each item to return the string that will be shown on the filter
      */
     itemToString: PropTypes.func.isRequired,
+
     /**
      * Function that will render the 'filter' component.
      */
     children: PropTypes.func.isRequired,
+
     /**
      * The height of each item in the list
      * Because the list is virtualized this is required beforehand.
      */
     itemSize: PropTypes.number,
+
     /**
      * Function that returns a component to render the item
      */
     renderItem: PropTypes.func,
+
+    /**
+     * The position of the Popover the Autocomplete is rendered in.
+     */
+    position: PropTypes.oneOf(Object.keys(Position)),
+
     /**
      * A function that is used to filter the items.
      * It should return a subset of the initial items.
      * By default the "fuzzaldrin-plus" package is used.
      */
     itemsFilter: PropTypes.func,
+
     /**
      * Prop that enables and disables filtering
      * True: Enables Filtering
      * False: Disables Filtering
      */
     isFilterDisabled: PropTypes.bool,
+
     /**
      * Defines the minimum height the results container will be
      */
     popoverMinWidth: PropTypes.number,
+
     /**
      * Defines the maximum height the results container will be
      */
     popoverMaxHeight: PropTypes.number,
-    /**
-     * To use or not use smart positioning (See "Positioner" for more information)
-     */
-    useSmartPositioning: PropTypes.bool,
+
     ...Downshift.propTypes
+  }
+
+  state = {
+    targetWidth: 0
   }
 
   static defaultProps = {
@@ -81,10 +100,15 @@ export default class Autocomplete extends PureComponent {
     itemSize: 32,
     itemsFilter: fuzzyFilter,
     isFilterDisabled: false,
-    popoverMinWidth: 200,
+    popoverMinWidth: 240,
     popoverMaxHeight: 240,
-    useSmartPositioning: false,
     renderItem: autocompleteItemRenderer
+  }
+
+  componentDidMount() {
+    this.setState({
+      targetWidth: this.targetRef.getBoundingClientRect().width
+    })
   }
 
   renderResults = ({
@@ -144,7 +168,7 @@ export default class Autocomplete extends PureComponent {
                   onMouseUp: () => {
                     selectItemAtIndex(index)
                   },
-                  isSelected: selectedItem === item,
+                  isSelected: itemToString(selectedItem) === itemString,
                   isHighlighted: highlightedIndex === index
                 })
               )
@@ -159,18 +183,19 @@ export default class Autocomplete extends PureComponent {
     const {
       children,
       itemSize,
+      position,
       renderItem,
       itemsFilter,
       popoverMaxHeight,
-      useSmartPositioning,
       popoverMinWidth,
+      defaultSelectedItem,
       ...props
     } = this.props
 
     return (
-      <Downshift {...props}>
+      <Downshift defaultSelectedItem={defaultSelectedItem} {...props}>
         {({
-          isOpen,
+          isOpen: isShown,
           inputValue,
           getItemProps,
           selectedItem,
@@ -180,28 +205,37 @@ export default class Autocomplete extends PureComponent {
         }) => (
           <div>
             <Popover
-              isOpen={isOpen}
+              bringFocusInside={false}
+              isShown={isShown}
               minWidth={popoverMinWidth}
-              content={({ targetRect }) =>
-                this.renderResults({
-                  width: Math.max(targetRect.width, popoverMinWidth),
+              position={
+                position ||
+                (this.state.targetWidth < popoverMinWidth
+                  ? Position.BOTTOM_LEFT
+                  : Position.BOTTOM)
+              }
+              content={() => {
+                return this.renderResults({
+                  width: Math.max(this.state.targetWidth, popoverMinWidth),
                   inputValue,
                   getItemProps,
                   selectedItem,
                   highlightedIndex,
                   selectItemAtIndex
                 })
-              }
+              }}
               minHeight={0}
               animationDuration={0}
-              useSmartPositioning={useSmartPositioning}
             >
-              {({ isOpen: isOpenPopover, toggle, getRef, key }) =>
+              {({ isShown: isShownPopover, toggle, getRef }) =>
                 children({
-                  key,
-                  isOpen: isOpenPopover,
+                  isShown: isShownPopover,
                   toggle,
-                  getRef,
+                  getRef: ref => {
+                    // Use the ref internally to determine the width
+                    this.targetRef = ref
+                    getRef(ref)
+                  },
                   inputValue,
                   selectedItem,
                   highlightedIndex,

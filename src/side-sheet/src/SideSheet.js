@@ -53,14 +53,29 @@ const animationStyles = {
 class SideSheet extends React.Component {
   static propTypes = {
     /**
-     * Composes the Overlay components as the base.
+     * Children can be a string, node or a function accepting `({ close })`.
      */
-    ...Overlay.propTypes,
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+
+    /**
+     * When true, the Side Sheet is shown.
+     */
+    isShown: PropTypes.bool,
+
+    /**
+     * Function that will be called when the exit transition is complete.
+     */
+    onCloseComplete: PropTypes.func,
+
+    /**
+     * Function that will be called when the enter transition is complete.
+     */
+    onOpenComplete: PropTypes.func,
 
     /**
      * Width of the SideSheet.
      */
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 
     /**
      * Properties to pass through the SideSheet container Pane.
@@ -69,14 +84,27 @@ class SideSheet extends React.Component {
   }
 
   static defaultProps = {
-    width: 620
+    width: 620,
+    onCloseComplete: () => {},
+    onOpenComplete: () => {}
   }
 
   render() {
-    const { children, width, containerProps, ...props } = this.props
+    const {
+      width,
+      isShown,
+      children,
+      containerProps,
+      onOpenComplete,
+      onCloseComplete
+    } = this.props
 
     return (
-      <Overlay {...props}>
+      <Overlay
+        isShown={isShown}
+        onExited={onCloseComplete}
+        onEntered={onOpenComplete}
+      >
         {({ state, close }) => (
           <Pane
             width={width}
@@ -94,9 +122,7 @@ class SideSheet extends React.Component {
               {...paneProps}
               {...containerProps}
             >
-              {typeof children === 'function'
-                ? children({ state, close })
-                : children}
+              {typeof children === 'function' ? children({ close }) : children}
             </Pane>
           </Pane>
         )}

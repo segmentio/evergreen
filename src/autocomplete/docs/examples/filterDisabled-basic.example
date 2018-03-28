@@ -3,9 +3,8 @@
   onChange={(changedItem) => console.log(changedItem)}
   items={items}
 >
-  {({ key, getInputProps, openMenu, getRef, inputValue }) => (
+  {({ getInputProps, openMenu, getRef, inputValue }) => (
     <TextInput
-      key={key}
       placeholder="Disable filter and open on focus"
       value={inputValue}
       innerRef={ref => getRef(ref)}

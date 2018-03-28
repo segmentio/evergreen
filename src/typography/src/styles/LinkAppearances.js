@@ -11,6 +11,9 @@ const LinkAppearances = {
     '&:active': {
       color: colors.blue['900'],
       textDecoration: 'none'
+    },
+    '&:focus': {
+      boxShadow: `0 0 0 2px ${colors.blue['100A']}`
     }
   },
   green: {
@@ -23,6 +26,9 @@ const LinkAppearances = {
     '&:active': {
       color: colors.green['900'],
       textDecoration: 'none'
+    },
+    '&:focus': {
+      boxShadow: `0 0 0 2px ${colors.green['100A']}`
     }
   },
   neutral: {
@@ -35,6 +41,9 @@ const LinkAppearances = {
     '&:active': {
       color: colors.neutral['900'],
       textDecoration: 'none'
+    },
+    '&:focus': {
+      boxShadow: `0 0 0 2px ${colors.neutral['100A']}`
     }
   }
 }

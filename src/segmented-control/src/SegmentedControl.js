@@ -31,7 +31,7 @@ export default class SegmentedControl extends PureComponent {
     value: PropTypes.string,
 
     /**
-     * The default value of the Segmented Contorl when uncontrolled.
+     * The default value of the Segmented Control when uncontrolled.
      */
     defaultValue: PropTypes.string,
 

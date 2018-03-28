@@ -4,6 +4,10 @@ module.exports = [
     path: '/components/segmented-control'
   },
   {
+    name: 'Radio',
+    path: '/components/radio'
+  },
+  {
     name: 'Alert',
     path: '/components/alert'
   },
@@ -12,8 +16,16 @@ module.exports = [
     path: '/components/buttons'
   },
   {
+    name: 'Combobox',
+    path: '/components/combobox'
+  },
+  {
     name: 'Dialog',
     path: '/components/dialog'
+  },
+  {
+    name: 'Corner Dialog',
+    path: '/components/corner-dialog'
   },
   {
     name: 'Table',
@@ -41,8 +53,16 @@ module.exports = [
     path: '/components/select-menu'
   },
   {
+    name: 'Side Sheet',
+    path: '/components/side-sheet'
+  },
+  {
     name: 'Text Input',
     path: '/components/text-input'
+  },
+  {
+    name: 'Tooltip',
+    path: '/components/tooltip'
   },
   {
     name: 'Search Input',
@@ -55,6 +75,10 @@ module.exports = [
   {
     name: 'Autocomplete',
     path: '/components/autocomplete'
+  },
+  {
+    name: 'Popover',
+    path: '/components/popover'
   }
 ].sort((a, b) => {
   // Lazy way to sort this list so I don't have

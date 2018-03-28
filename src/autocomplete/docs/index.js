@@ -22,11 +22,7 @@ import exampleWithButtonBasic from './examples/withButton-basic.example'
 import exampleWithManyOptions from './examples/allOptions.example'
 
 // Generate a big list of items
-const items = [
-  ...starWarsNames.all,
-  ...starWarsNames.all.map(x => `${x} 2`),
-  ...starWarsNames.all.map(x => `${x} 3`)
-].sort((a, b) => {
+const items = starWarsNames.all.sort((a, b) => {
   const nameA = a.toUpperCase()
   const nameB = b.toUpperCase()
   if (nameA < nameB) {
@@ -49,21 +45,19 @@ const implementationDetails = (
       combination with a text input and trigger button, take a look at the
       Combobox component. This component is mainly used to create type aheads
     </p>
-    <p>
-      <b>The Autocomplete component combines a set of external libraries</b>
-      <ul>
-        <li>
-          Uses <code>Downshift</code> for autocomplete
-        </li>
-        <li>
-          Uses <code>react-tiny-virtual-list</code> for performant list
-          rendering
-        </li>
-        <li>
-          Uses <code>fuzzaldrin-plus</code> for fuzzy filtering
-        </li>
-      </ul>
-    </p>
+
+    <h3>The Autocomplete Component Combines a Set of External Libraries</h3>
+    <ul>
+      <li>
+        Uses <code>Downshift</code> for autocomplete
+      </li>
+      <li>
+        Uses <code>react-tiny-virtual-list</code> for performant list rendering
+      </li>
+      <li>
+        Uses <code>fuzzaldrin-plus</code> for fuzzy filtering
+      </li>
+    </ul>
   </div>
 )
 
