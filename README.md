@@ -1,8 +1,9 @@
 # 🌲 Evergreen [![Build Status](https://circleci.com/gh/segmentio/evergreen/tree/master.svg?style=svg)](https://circleci.com/gh/segmentio/evergreen/tree/master)
 
-> React UI Kit by [Segment](https://segment.com/)
+> React UI Framework by [Segment](https://segment.com/)
 
 * React 16
+* [Documentation (WIP)](http://evergreen.surge.sh/)
 * [View Live Storybook](https://segmentio.github.io/evergreen/)
 * Presentational React components
 * Powerful component API with [ui-box](https://github.com/segmentio/ui-box)
@@ -43,7 +44,26 @@ ReactDOM.render(
 )
 ```
 
-## Contributing to Evergreen 👀
+## FAQ
+
+### Does Evergreen support theming?
+
+Evergreen currently does not support theming.
+
+### Is theming support on the roadmap?
+
+This project is originally build to support the development of product at Segment. This is also the reason theming is not our short term priority. It is on our longer term priority list and hopefully will be supported later in 2018. Expect a clearer roadmap available before that.
+
+[Learn more about the theming roadmap](https://github.com/segmentio/evergreen/issues/179)
+
+### How does Server Side Rendering work?
+
+Evergreen bundles 2 CSS-in-JS solutions, from glamor and ui-box. To make it super easy to do server side rendering and hydration, Evergreen exposes a `extractStyles()` function that will do SSR for both at once.
+
+* How to use it with Next.js in the [ssr-next example app](examples/ssr-next).
+* [How to use it with GatsbyJS](https://github.com/segmentio/evergreen/issues/154)
+
+## Contributing to Evergreen
 
 ### Step 1. Configuring your editor ⚙
 
@@ -157,10 +177,6 @@ This `yarn run create-docs-template` script is far from perfect and still requir
 * Making sure to use the right examples and write some docs.
 * Configure `docs/utils/getComponent.js`
 * Configure `docs/components/ComponentsSidebar.js`
-
-## Server Side Rendering
-
-Evergreen bundles 2 CSS-in-JS solutions, from glamor and ui-box. To make it super easy to do server side rendering and hydration, Evergreen exposes a `extractStyles()` function that will do SSR for both at once. You can see how to use it with Next.js in the [ssr-next example app](examples/ssr-next).
 
 ## Contributors 🎉
 
