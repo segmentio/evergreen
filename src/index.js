@@ -46,7 +46,7 @@ export {
 export { Overlay } from './overlay'
 export { Popover } from './popover'
 export { Portal } from './portal'
-export { Positioner } from './positioner'
+export { Positioner, Position } from './positioner'
 export { Radio, RadioGroup } from './radio'
 export { SearchInput } from './search-input'
 export {

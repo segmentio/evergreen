@@ -3,14 +3,13 @@
   items={items}
 >
   {({
-    key,
     getInputProps,
     getButtonProps,
     getRef,
     inputValue,
     toggleMenu
   }) => (
-    <Box key={key} innerRef={ref => getRef(ref)} display="inline-block">
+    <Box innerRef={ref => getRef(ref)} display="inline-block">
       <TextInput
         placeholder="Trigger with button"
         value={inputValue}

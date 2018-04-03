@@ -3,10 +3,9 @@
   onChange={(changedItem) => console.log(changedItem)}
   items={items}
   children={(props) => {
-    const { key, getInputProps, getRef, inputValue } = props
+    const { getInputProps, getRef, inputValue } = props
     return (
       <TextInput
-        key={key}
         placeholder="Starwars names"
         value={inputValue}
         innerRef={getRef}
