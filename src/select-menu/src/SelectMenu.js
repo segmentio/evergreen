@@ -56,8 +56,9 @@ export default class SelectMenu extends PureComponent {
     position: PropTypes.oneOf(Object.keys(Position)),
 
     /**
-     * Function that returns a node that is rendered on the right side
-     * of the Select Menu. ({ close }) => ReactNode.
+     * Can be a function that returns a node, or a node itself, that is
+     * rendered on the right side of the Select Menu to give additional
+     * information when an option is selected.
      */
     detailView: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
   }
