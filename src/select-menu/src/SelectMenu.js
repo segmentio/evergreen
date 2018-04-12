@@ -59,7 +59,7 @@ export default class SelectMenu extends PureComponent {
      * Function that returns a node that is rendered on the right side
      * of the Select Menu. ({ close }) => ReactNode.
      */
-    renderDetailView: PropTypes.func
+    detailView: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
   }
 
   static defaultProps = {
@@ -67,6 +67,20 @@ export default class SelectMenu extends PureComponent {
     width: 240,
     height: 248,
     position: Position.BOTTOM_LEFT
+  }
+
+  getDetailView = (close, detailView) => {
+    if (typeof detailView === 'function') {
+      return {
+        detailView: detailView({ close })
+      }
+    }
+
+    if (detailView) {
+      return { detailView }
+    }
+
+    return {}
   }
 
   render() {
@@ -79,7 +93,7 @@ export default class SelectMenu extends PureComponent {
       position,
       hasTitle,
       hasFilter,
-      renderDetailView,
+      detailView,
       ...props
     } = this.props
 
@@ -103,11 +117,7 @@ export default class SelectMenu extends PureComponent {
               selected: arrify(selected)
             }}
             close={close}
-            {...(typeof renderDetailView === 'function'
-              ? {
-                  detailView: renderDetailView({ close })
-                }
-              : {})}
+            {...this.getDetailView(close, detailView)}
           />
         )}
         {...props}
