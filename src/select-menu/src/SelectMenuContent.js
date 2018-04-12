@@ -15,19 +15,18 @@ export default class SelectMenuContent extends PureComponent {
     options: PropTypes.arrayOf(OptionShapePropType),
     hasTitle: PropTypes.bool,
     hasFilter: PropTypes.bool,
-    listProps: PropTypes.shape(OptionsList.propTypes)
+    listProps: PropTypes.shape(OptionsList.propTypes),
+
+    /**
+     * Node that is placed right next to the options.
+     */
+    detailView: PropTypes.node
   }
 
   static defaultProps = {
     options: [],
     hasTitle: true,
     hasFilter: true
-  }
-
-  constructor(props, context) {
-    super(props, context)
-
-    this.state = {}
   }
 
   componentDidMount() {
@@ -102,40 +101,55 @@ export default class SelectMenuContent extends PureComponent {
       hasFilter,
       close,
       title,
-      listProps
+      listProps,
+      detailView
     } = this.props
 
     const headerHeight = 40
     const optionsListHeight = hasTitle ? height - headerHeight : height
+    const hasDetailView = Boolean(detailView)
 
     return (
-      <Pane width={width} height={height} display="flex" flexDirection="column">
-        {hasTitle && (
-          <Pane
-            display="flex"
-            alignItems="center"
-            borderBottom="muted"
-            padding={8}
-            height={headerHeight}
-            boxSizing="border-box"
-          >
-            <Pane flex="1">
-              <Heading size={400}>{title}</Heading>
+      <Pane display="flex" height={height}>
+        <Pane
+          width={width}
+          height={height}
+          display="flex"
+          flexDirection="column"
+          {...(hasDetailView
+            ? {
+                borderRight: 'muted'
+              }
+            : {})}
+        >
+          {hasTitle && (
+            <Pane
+              display="flex"
+              alignItems="center"
+              borderBottom="muted"
+              padding={8}
+              height={headerHeight}
+              boxSizing="border-box"
+            >
+              <Pane flex="1">
+                <Heading size={400}>{title}</Heading>
+              </Pane>
+              <IconButton
+                icon="close"
+                appearance="ghost"
+                height={24}
+                onClick={close}
+              />
             </Pane>
-            <IconButton
-              icon="close"
-              appearance="ghost"
-              height={24}
-              onClick={close}
-            />
-          </Pane>
-        )}
-        <OptionsList
-          height={optionsListHeight}
-          hasFilter={hasFilter}
-          options={options}
-          {...listProps}
-        />
+          )}
+          <OptionsList
+            height={optionsListHeight}
+            hasFilter={hasFilter}
+            options={options}
+            {...listProps}
+          />
+        </Pane>
+        {hasDetailView && detailView}
       </Pane>
     )
   }
