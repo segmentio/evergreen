@@ -16,7 +16,7 @@ const initialState = () => ({
 })
 
 const getCSS = ({ initialScale, animationDuration }) => ({
-  position: 'absolute',
+  position: 'fixed',
   opacity: 0,
   transitionTimingFunction: animationEasing.spring,
   transitionDuration: `${animationDuration}ms`,

@@ -25,7 +25,6 @@ export default class PopoverStateless extends PureComponent {
         overflow="hidden"
         minWidth={200}
         backgroundColor="white"
-        position="fixed"
         {...props}
       >
         {children}
