@@ -28,7 +28,9 @@
       "BABEL_ENV=esm babel src --out-dir esm --ignore stories,test,docs --source-maps inline",
     "build": "yarn run build-commonjs && yarn run build-esm",
     "clean": "git clean -Xdf",
-    "release": "np --no-publish"
+    "release": "np --no-publish",
+    "chromatic":
+      "chromatic test --storybook-addon --script-name dev --app-code=alj8xoz1ujt"
   },
   "engines": {
     "node": ">=8"
@@ -80,6 +82,7 @@
     "lint-staged": "^6.0.0",
     "prettier": "^1.9.1",
     "react": "^16.2.0",
+    "react-chromatic": "^0.7.10",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "sinon": "^4.4.2",
