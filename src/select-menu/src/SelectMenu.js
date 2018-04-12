@@ -53,7 +53,13 @@ export default class SelectMenu extends PureComponent {
     /**
      * The position of the Select Menu.
      */
-    position: PropTypes.oneOf(Object.keys(Position))
+    position: PropTypes.oneOf(Object.keys(Position)),
+
+    /**
+     * Function that returns a node that is rendered on the right side
+     * of the Select Menu. ({ close }) => ReactNode.
+     */
+    renderDetailView: PropTypes.func
   }
 
   static defaultProps = {
@@ -61,12 +67,6 @@ export default class SelectMenu extends PureComponent {
     width: 240,
     height: 248,
     position: Position.BOTTOM_LEFT
-  }
-
-  constructor(props, context) {
-    super(props, context)
-
-    this.state = {}
   }
 
   render() {
@@ -79,6 +79,7 @@ export default class SelectMenu extends PureComponent {
       position,
       hasTitle,
       hasFilter,
+      renderDetailView,
       ...props
     } = this.props
 
@@ -102,6 +103,11 @@ export default class SelectMenu extends PureComponent {
               selected: arrify(selected)
             }}
             close={close}
+            {...(typeof renderDetailView === 'function'
+              ? {
+                  detailView: renderDetailView({ close })
+                }
+              : {})}
           />
         )}
         {...props}
