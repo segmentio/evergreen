@@ -4,7 +4,14 @@ import { Card } from '../../layers'
 
 export default class PopoverStateless extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the Card as the base.
+     */
     ...Card.propTypes,
+
+    /**
+     * The content of the Popover.
+     */
     children: PropTypes.node
   }
 
