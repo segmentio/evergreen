@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import { Portal } from '../../portal'
+import { StackingContext } from '../../stack/'
 import getPosition from './getPosition'
 import Position from './Position'
 
@@ -73,11 +74,6 @@ export default class Positioner extends PureComponent {
     target: PropTypes.func.isRequired,
 
     /**
-     * The z-index of the element being positioned.
-     */
-    zIndex: PropTypes.number.isRequired,
-
-    /**
      * Initial scale of the element being positioned.
      */
     initialScale: PropTypes.number.isRequired,
@@ -100,7 +96,6 @@ export default class Positioner extends PureComponent {
 
   static defaultProps = {
     position: Position.BOTTOM,
-    zIndex: 40,
     bodyOffset: 6,
     targetOffset: 6,
     initialScale: 0.9,
@@ -182,7 +177,6 @@ export default class Positioner extends PureComponent {
 
   render() {
     const {
-      zIndex,
       target,
       isShown,
       children,
@@ -194,37 +188,48 @@ export default class Positioner extends PureComponent {
     const { left, top, transformOrigin } = this.state
 
     return (
-      <React.Fragment>
-        {target({ getRef: this.getTargetRef, isShown })}
-        <Portal>
-          <Transition
-            in={isShown}
-            timeout={animationDuration}
-            onEnter={this.handleEnter}
-            onEntered={this.props.onOpenComplete}
-            onExited={this.handleExited}
-            unmountOnExit
-          >
-            {state =>
-              children({
-                top,
-                left,
-                state,
-                zIndex,
-                css: getCSS({ targetOffset, initialScale, animationDuration }),
-                style: {
-                  transformOrigin,
-                  left,
-                  top,
-                  zIndex
-                },
-                getRef: this.getRef,
-                animationDuration
-              })
-            }
-          </Transition>
-        </Portal>
-      </React.Fragment>
+      <StackingContext.Consumer>
+        {zIndex => {
+          console.log(zIndex)
+          return (
+            <React.Fragment>
+              {target({ getRef: this.getTargetRef, isShown })}
+              <Portal>
+                <Transition
+                  in={isShown}
+                  timeout={animationDuration}
+                  onEnter={this.handleEnter}
+                  onEntered={this.props.onOpenComplete}
+                  onExited={this.handleExited}
+                  unmountOnExit
+                >
+                  {state =>
+                    children({
+                      top,
+                      left,
+                      state,
+                      zIndex,
+                      css: getCSS({
+                        targetOffset,
+                        initialScale,
+                        animationDuration
+                      }),
+                      style: {
+                        transformOrigin,
+                        left,
+                        top,
+                        zIndex
+                      },
+                      getRef: this.getRef,
+                      animationDuration
+                    })
+                  }
+                </Transition>
+              </Portal>
+            </React.Fragment>
+          )
+        }}
+      </StackingContext.Consumer>
     )
   }
 }
