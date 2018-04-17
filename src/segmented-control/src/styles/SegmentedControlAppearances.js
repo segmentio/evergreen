@@ -1,4 +1,5 @@
 import { colors } from '../../../colors'
+import { StackingOrder } from '../../../constants'
 
 const baseStyle = {
   WebkitFontSmoothing: 'antialiased',
@@ -43,13 +44,13 @@ const SegmentedControlAppearances = {
       }, inset 0 -1px 1px 0 ${colors.neutral['15A']}`
     },
     [focusState]: {
-      zIndex: 2,
+      zIndex: StackingOrder.FOCUSED,
       boxShadow: `0 0 0 2px ${colors.blue['20A']}, inset 0 0 0 1px ${
         colors.neutral['70A']
       }, inset 0 -1px 1px 0 ${colors.neutral['10A']}`
     },
     [activeState]: {
-      zIndex: 2,
+      zIndex: StackingOrder.FOCUSED,
       color: colors.blue['500'],
       backgroundImage: 'none',
       backgroundColor: colors.blue['10A']

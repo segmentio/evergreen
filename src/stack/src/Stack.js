@@ -22,18 +22,10 @@ export default class Stack extends PureComponent {
       <StackingContext.Consumer>
         {previousValue => {
           const currentValue = Math.max(value, previousValue)
+          const nextValue = currentValue + 1
           return (
-            <StackingContext.Provider value={currentValue}>
-              <StackingContext.Consumer>
-                {consumerValue => {
-                  const nextValue = currentValue + 1
-                  return (
-                    <StackingContext.Provider value={nextValue}>
-                      {children(consumerValue)}
-                    </StackingContext.Provider>
-                  )
-                }}
-              </StackingContext.Consumer>
+            <StackingContext.Provider value={nextValue}>
+              {children(currentValue)}
             </StackingContext.Provider>
           )
         }}

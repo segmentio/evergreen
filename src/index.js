@@ -10,6 +10,7 @@ export { BackButton, Button, ButtonAppearances, IconButton } from './buttons'
 export { Checkbox } from './checkbox'
 export { colors } from './colors'
 export { Combobox } from './combobox'
+export { StackingOrder } from './constants'
 export { CornerDialog } from './corner-dialog'
 export { Dialog } from './dialog'
 export { FilePicker } from './file-picker'
@@ -78,6 +79,7 @@ export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
 export { Switch } from './switch'
 export { extractStyles } from './ssr'
+export { Stack, StackingContext } from './stack'
 export {
   Table,
   TableHead,

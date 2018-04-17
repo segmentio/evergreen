@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import { Portal } from '../../portal'
-import { StackingContext } from '../../stack/'
+import { Stack } from '../../stack/'
+import { StackingOrder } from '../../constants'
 import getPosition from './getPosition'
 import Position from './Position'
 
@@ -188,9 +189,8 @@ export default class Positioner extends PureComponent {
     const { left, top, transformOrigin } = this.state
 
     return (
-      <StackingContext.Consumer>
+      <Stack value={StackingOrder.POSITIONER}>
         {zIndex => {
-          console.log(zIndex)
           return (
             <React.Fragment>
               {target({ getRef: this.getTargetRef, isShown })}
@@ -229,7 +229,7 @@ export default class Positioner extends PureComponent {
             </React.Fragment>
           )
         }}
-      </StackingContext.Consumer>
+      </Stack>
     )
   }
 }

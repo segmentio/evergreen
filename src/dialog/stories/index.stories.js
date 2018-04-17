@@ -9,6 +9,7 @@ import { Dialog } from '../../dialog'
 import { Button } from '../../buttons'
 import { Combobox } from '../../combobox'
 import { SideSheet } from '../../side-sheet'
+import { Popover } from '../../popover'
 
 // Generate a big list of items
 const comboboxItems = starWarsNames.all.sort((a, b) => {
@@ -228,6 +229,42 @@ storiesOf('dialog', module)
                       {({ state: innerState, setState: innerSetState }) => {
                         return (
                           <React.Fragment>
+                            <Popover
+                              isShown={innerState.isShown}
+                              onCloseComplete={() =>
+                                innerSetState({ isShown: false })
+                              }
+                              content={
+                                <Box
+                                  height={240}
+                                  display="flex"
+                                  alignItems="center"
+                                  justifyContent="center"
+                                  padding={12}
+                                >
+                                  <Combobox openOnFocus items={comboboxItems} />
+                                </Box>
+                              }
+                            >
+                              <Button
+                                margin={16}
+                                onClick={() => innerSetState({ isShown: true })}
+                              >
+                                Show Inner Popover
+                              </Button>
+                            </Popover>
+                          </React.Fragment>
+                        )
+                      }}
+                    </Component>
+                    <Component
+                      initialState={{
+                        isShown: false
+                      }}
+                    >
+                      {({ state: innerState, setState: innerSetState }) => {
+                        return (
+                          <React.Fragment>
                             <Button
                               margin={16}
                               onClick={() => innerSetState({ isShown: true })}
@@ -241,6 +278,9 @@ storiesOf('dialog', module)
                             />
                             <Dialog
                               isShown={innerState.isShown}
+                              onCloseComplete={() =>
+                                innerSetState({ isShown: false })
+                              }
                               title="Stackity Hackity"
                             >
                               <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" />
