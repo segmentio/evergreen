@@ -17,7 +17,7 @@ const selectableRowStyle = {
     color: colors.blue['500']
   },
 
-  '&[aria-current="true"], &[aria-selected="true"]': {
+  '&[aria-current="true"]': {
     cursor: 'default'
   }
 }
