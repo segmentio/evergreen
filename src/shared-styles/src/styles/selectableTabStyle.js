@@ -8,12 +8,12 @@ const selectableTabStyle = {
     backgroundColor: colors.neutral['5A']
   },
 
-  '&[aria-current], &[aria-selected="true"], &:active': {
+  '&[aria-current="page"], &[aria-selected="true"], &:active': {
     backgroundColor: colors.blue['10A'],
     color: colors.blue['500']
   },
 
-  '&[aria-current], &[aria-selected="true"]': {
+  '&[aria-current="page"], &[aria-selected="true"]': {
     cursor: 'default'
   },
 
