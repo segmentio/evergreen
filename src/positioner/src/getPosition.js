@@ -54,6 +54,14 @@ const isAlignedOnBottom = position => {
   }
 }
 
+const getFitsOnBottom = (rect, viewport, viewportOffset) => {
+  return rect.bottom < viewport.height - viewportOffset
+}
+
+const getFitsOnTop = (rect, viewportOffset) => {
+  return rect.top > viewportOffset
+}
+
 /**
  * Function that takes in numbers and position and gives the final coords.
  * @param {Position} position — the position the positioner should be on.
@@ -70,7 +78,8 @@ export default function getPosition({
   targetRect,
   targetOffset,
   viewport,
-  viewportOffset = 8
+  viewportOffset = 8,
+  tries = 1
 }) {
   const targetCenter =
     targetRect.left + targetRect.width / 2 - dimensions.width / 2
@@ -91,28 +100,50 @@ export default function getPosition({
       fittedRect.right = viewport.width - viewportOffset
     }
 
-    if (
-      isAlignedOnBottom(position) &&
-      fittedRect.bottom > viewport.height + viewportOffset
-    ) {
+    const fitsOnBottom = getFitsOnBottom(fittedRect, viewport, viewportOffset)
+    const fitsOnTop = getFitsOnTop(fittedRect, viewportOffset)
+
+    if (tries === 3) return fittedRect
+
+    if (tries === 2) {
+      const topDelta = targetRect.top - viewportOffset
+      const bottomDelta = viewport.height - viewportOffset - targetRect.bottom
+
+      const shouldBeOnBottom = topDelta < bottomDelta
+      if (isAlignedOnBottom(position) && shouldBeOnBottom) return fittedRect
+
       return getPosition({
         position: flipHorizontal(position),
         dimensions,
         targetRect,
         targetOffset,
         viewport,
-        viewportOffset
+        viewportOffset,
+        tries: tries + 1
       })
     }
 
-    if (isAlignedOnTop(position) && fittedRect.top < viewportOffset) {
+    if (isAlignedOnBottom(position) && !fitsOnBottom) {
       return getPosition({
         position: flipHorizontal(position),
         dimensions,
         targetRect,
         targetOffset,
         viewport,
-        viewportOffset
+        viewportOffset,
+        tries: tries + 1
+      })
+    }
+
+    if (isAlignedOnTop(position) && !fitsOnTop) {
+      return getPosition({
+        position: flipHorizontal(position),
+        dimensions,
+        targetRect,
+        targetOffset,
+        viewport,
+        viewportOffset,
+        tries: tries + 1
       })
     }
 
