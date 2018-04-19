@@ -5,6 +5,7 @@ import { Popover } from '../../popover'
 import { Position } from '../../positioner'
 import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
+import OptionGroupShapePropType from './OptionGroupShapePropType'
 import SelectedPropType from './SelectedPropType'
 
 export default class SelectMenu extends PureComponent {
@@ -25,10 +26,18 @@ export default class SelectMenu extends PureComponent {
     height: PropTypes.number,
 
     /**
-     * The options to show in the menu.
+     * The options to show in the menu. Can be grouped.
+     *
+     * Simple usage (OptionShapePropType):
      * [{ label: String, value: String | Number, labelInList?: String }]
+     *
+     * Grouped Usage (OptionGroupShapePropType):
+     * [{ heading: String|Object<{ label: String, elemRight: ReactNode }>, options: [OptionShapePropType] }]
      */
-    options: PropTypes.arrayOf(OptionShapePropType),
+    options: PropTypes.oneOfType([
+      PropTypes.arrayOf(OptionShapePropType),
+      PropTypes.arrayOf(OptionGroupShapePropType)
+    ]),
 
     /**
      * Function that is called when an option is selected.

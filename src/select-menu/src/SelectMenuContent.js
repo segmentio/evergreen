@@ -5,6 +5,7 @@ import { Pane } from '../../layers'
 import { Heading } from '../../typography'
 import OptionsList from './OptionsList'
 import OptionShapePropType from './OptionShapePropType'
+import OptionGroupShapePropType from './OptionGroupShapePropType'
 
 export default class SelectMenuContent extends PureComponent {
   static propTypes = {
@@ -12,7 +13,10 @@ export default class SelectMenuContent extends PureComponent {
     title: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
-    options: PropTypes.arrayOf(OptionShapePropType),
+    options: PropTypes.oneOfType([
+      PropTypes.arrayOf(OptionShapePropType),
+      PropTypes.arrayOf(OptionGroupShapePropType)
+    ]),
     hasTitle: PropTypes.bool,
     hasFilter: PropTypes.bool,
     listProps: PropTypes.shape(OptionsList.propTypes),
