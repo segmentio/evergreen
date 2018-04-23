@@ -5,44 +5,8 @@ import options from '../docs/starwars-options'
 import Manager from '../docs/Manager'
 import { SelectMenu } from '../../select-menu'
 import { Button } from '../../buttons'
-
-const groupedOptions = [
-  {
-    heading: 'User Properties',
-    options
-  },
-  {
-    heading: 'Context Properties',
-    options: options.map(option => {
-      return {
-        ...option,
-        value: `context-${option.value}`
-      }
-    })
-  }
-]
-
-const collapsibleGroupedOptions = [
-  {
-    heading: {
-      label: 'User Properties',
-      isCollapsible: true
-    },
-    options
-  },
-  {
-    heading: {
-      label: 'Context Properties',
-      isCollapsible: true
-    },
-    options: options.map(option => {
-      return {
-        ...option,
-        value: `context-${option.value}`
-      }
-    })
-  }
-]
+import collapsibleGroupedOptions from '../docs/collapsible-grouped-options'
+import groupedOptions from '../docs/grouped-options'
 
 storiesOf('select-menu', module)
   .add('options', () => (
@@ -85,6 +49,14 @@ storiesOf('select-menu', module)
           </SelectMenu>
         )}
       </Manager>
+    </Box>
+  ))
+  .add('collapsible grouped options', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
       <Manager>
         {({ setState, state }) => (
           <SelectMenu

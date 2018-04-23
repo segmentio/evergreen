@@ -142,9 +142,6 @@ export default class OptionsList extends PureComponent {
     const collapsedGroups = getCollapsedGroups(props.options)
 
     this.state = {
-      // This state is used, linter doesn't catch when setState
-      // is called with a callback.
-      // eslint-disable-next-line react/no-unused-state
       collapsedGroups,
       items: processOptions(props.options, collapsedGroups),
       searchValue: props.defaultSearchValue,
@@ -155,6 +152,7 @@ export default class OptionsList extends PureComponent {
   componentDidMount() {
     const { hasFilter } = this.props
     if (!hasFilter) return
+
     /**
      * Hacky solution for broken autoFocus
      * https://github.com/segmentio/evergreen/issues/90
@@ -172,20 +170,21 @@ export default class OptionsList extends PureComponent {
     }
 
     if (nextProps.options !== this.state.options) {
-      const collapsedGroups = getCollapsedGroups(nextProps.options)
+      const newCollapsedGroups = getCollapsedGroups(nextProps.options)
+      const collapsedGroups = [
+        ...this.state.collapsedGroups,
+        ...newCollapsedGroups
+      ].reduce((acc, groupLabel) => {
+        if (acc.includes(groupLabel)) return acc
+        return [...acc, groupLabel]
+      }, [])
+
       const items = processOptions(nextProps.options, collapsedGroups)
 
-      this.setState(state => ({
-        // eslint-disable-next-line react/no-unused-state
-        collapsedGroups: [...state.collapsedGroups, ...collapsedGroups].reduce(
-          (acc, groupLabel) => {
-            if (acc.includes(groupLabel)) return acc
-            return [...acc, groupLabel]
-          },
-          []
-        ),
+      this.setState({
+        collapsedGroups,
         items
-      }))
+      })
     }
   }
 
@@ -267,7 +266,6 @@ export default class OptionsList extends PureComponent {
       ...props
     } = this.props
     const items = this.search(this.state.items)
-    console.log('items', items)
     const listHeight = height - (hasFilter ? 32 : 0)
 
     return (
@@ -288,7 +286,7 @@ export default class OptionsList extends PureComponent {
             />
           </TableHead>
         )}
-        <Pane flex={1}>
+        <Pane flex={1} position="relative">
           <VirtualList
             height={listHeight}
             width="100%"

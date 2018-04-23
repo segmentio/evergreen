@@ -4,6 +4,7 @@ import SelectMenu from '../src/SelectMenu'
 import { Button } from '../../buttons/'
 import SyntaxHighlighter from '../../../docs/src/components/SyntaxHighlighter'
 import options from './starwars-options'
+import collapsibleGroupedOptions from './collapsible-grouped-options'
 import Manager from './Manager'
 
 /* eslint-disable import/no-unresolved, import/no-webpack-loader-syntax */
@@ -48,7 +49,7 @@ const implementationDetails = (
       in the list. Pass an array to the <code>selected</code> prop to select
       more items.
     </p>
-    <h3>Options Structure</h3>
+    <h3>Ungrouped Options Structure</h3>
     <SyntaxHighlighter>
       {`const options = [
   {
@@ -57,6 +58,40 @@ const implementationDetails = (
     value: 'String or Number'
   }
 ]`}
+    </SyntaxHighlighter>
+    <h3>Grouped Options Structure</h3>
+    <SyntaxHighlighter>
+      {`const groupedOptions = [
+        {
+          heading: {
+            label: 'Group 1',
+            isCollapsible: true,
+            isCollapsedByDefault: false,
+            elemRight: <span>Elem Right</span>
+          },
+          options: [
+            {
+              label: 'Item 1',
+              label: 'value_1'
+            }
+          ],
+        },
+        {
+          heading: {
+            label: 'Group 2',
+            isCollapsible: true,
+            isCollapsedByDefault: false,
+            elemRight: <span>Elem Right</span>
+          },
+          options: [
+            {
+              label: 'Item 2',
+              label: 'value_2'
+            }
+          ],
+        },
+      ]
+`}
     </SyntaxHighlighter>
   </div>
 )
@@ -90,6 +125,19 @@ const components = [
         ),
         codeText: exampleSelectMenuBasic,
         scope
+      },
+      {
+        title: 'Grouped Options Example',
+        description: (
+          <div>
+            <p>This example shows advanced usage with a grouped option list.</p>
+          </div>
+        ),
+        codeText: exampleSelectMenuBasic,
+        scope: {
+          ...scope,
+          options: collapsibleGroupedOptions
+        }
       }
     ]
   }

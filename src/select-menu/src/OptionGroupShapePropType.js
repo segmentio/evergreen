@@ -8,7 +8,9 @@ const OptionGroupShapePropType = PropTypes.shape({
   heading: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.shape({
-      label: PropTypes.string,
+      label: PropTypes.string.isRequired,
+      isCollapsed: PropTypes.bool,
+      isCollapsedByDefault: PropTypes.bool,
       elemRight: PropTypes.node
     })
   ]).isRequired,

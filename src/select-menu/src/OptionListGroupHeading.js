@@ -71,7 +71,6 @@ export default class OptionListGroupHeading extends PureComponent {
         height={OptionListGroupHeading.height}
         borderBottom="extraMuted"
         paddingX={8}
-        paddingTop={4}
         appearance="tint1"
         style={style}
       >
