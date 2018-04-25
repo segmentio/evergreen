@@ -22,6 +22,15 @@ const hiddenCheckboxStyle = {
   opacity: '0'
 }
 
+const baseStyle = {
+  WebkitFontSmoothing: 'antialiased',
+  textDecoration: 'none',
+  WebkitAppearance: 'none',
+  border: 'none',
+  outline: 'none',
+  cursor: 'pointer'
+}
+
 const checkedStyles = {
   '& > svg': {
     display: 'block'
@@ -58,7 +67,10 @@ const createCheckboxAppearance = (items = {}) => {
     '& + div > svg': {
       display: 'none'
     },
-    [defaultState]: createAppearance(items.base),
+    [defaultState]: {
+      ...baseStyle,
+      ...createAppearance(items.base)
+    },
     [hoverState]: createAppearance(items.hover),
     [focusState]: createAppearance(items.focus),
     [activeState]: createAppearance(items.active),

@@ -12,7 +12,9 @@ const whitelist = [
   'color',
   'textShadow',
 
-  'outline'
+  'outline',
+  // Not sure if cursor should be configurable
+  'cursor'
 ]
 
 /**
@@ -24,7 +26,7 @@ function createAppearance(obj = {}) {
 
   Object.keys(obj).forEach(key => {
     if (whitelist.includes(key)) {
-      if (typeof obj[key] === 'string') {
+      if (typeof obj[key] === 'string' || typeof obj[key] === 'number') {
         result[key] = obj[key]
       } else if (isDev) {
         console.error(
@@ -35,7 +37,8 @@ function createAppearance(obj = {}) {
       }
     } else if (isDev) {
       console.error(
-        `createAppearance() only accepts whitelisted properties, key '${key}' is not whitelisted`
+        `createAppearance() only accepts whitelisted properties, key '${key}' is not whitelisted in whitelist: `,
+        whitelist
       )
     }
   })

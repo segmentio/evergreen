@@ -1,12 +1,10 @@
 import { Themer } from '../../../themer'
 import { colors } from '../../../colors'
-import baseStyle from './controlBaseStyle'
 
 const CheckboxAppearances = {}
 
 CheckboxAppearances.default = Themer.createCheckboxAppearance({
   base: {
-    ...baseStyle,
     color: 'white',
     backgroundColor: 'white',
     backgroundImage: `linear-gradient(to top, ${colors.neutral['5A']}, white)`,
