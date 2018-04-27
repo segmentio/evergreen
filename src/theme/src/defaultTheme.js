@@ -24,7 +24,7 @@ theme.colors = {
   },
 
   /**
-   * Available on Pane as `<Pane background(Color)="tint1" />`
+   * Available on Pane as `<Pane background="tint1" />`
    * @property {string} background.tint1 - Lightest tinted background color. Required property.
    * @property {string} background.tint2 - Slightly darker tinted background color. Required property.
    * @property {string} background.tint3 - Even slightly more darker tinted background color. Required property.
@@ -48,23 +48,17 @@ theme.colors = {
   },
 
   /**
-   * Text colors available on Text as `<Text color="muted" />`
-   * @property {string} text.default - Required property.
+   * Text colors available on Text as `<Text color="muted" />`.
+   * @property {string} text.dark - Required property. Default for headings.
+   * @property {string} text.default - Required property. Default for text.
    * @property {string} text.muted - Required property.
    * @property {string} text.extraMuted - Required property.
    */
   text: {
+    dark: colors.neutral['800'],
     default: colors.neutral['500'],
     muted: colors.neutral['300A'],
     extraMuted: colors.neutral['200A']
-  },
-
-  /**
-   * Heading colors available on Heading as `<Heading color="default" />`
-   * @property {string} heading.default - Required property.
-   */
-  heading: {
-    default: colors.neutral['800']
   },
 
   /**
@@ -84,6 +78,21 @@ theme.colors = {
    */
   overlay: colors.neutral['200A']
 }
+
+const borderShadowColor = colors.neutral['80A']
+const blurryShadowColor = colors.neutral['50A']
+
+/**
+ * Elevation styles are applied as box shadows.
+ * Available levels: 0, 1, 2, 3, 4.
+ */
+theme.elevations = [
+  `0 0 1px ${borderShadowColor}`,
+  `0 0 1px ${borderShadowColor}, 0 2px 4px -2px ${blurryShadowColor}`,
+  `0 0 1px ${borderShadowColor}, 0 5px 8px -4px ${blurryShadowColor}`,
+  `0 0 1px ${borderShadowColor}, 0 8px 10px -4px ${blurryShadowColor}`,
+  `0 0 1px ${borderShadowColor}, 0 16px 24px -8px ${blurryShadowColor}`
+]
 
 theme.fontFamilies = {
   /**

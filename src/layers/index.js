@@ -1,5 +1,3 @@
 export Pane from './src/Pane'
 export Card from './src/Card'
-export ElevationStyles from './src/styles/elevation-styles'
 export BorderColors from './src/styles/border-colors'
-export LayerAppearances from './src/styles/layer-appearances'

@@ -1,12 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import {
-  Pane,
-  Card,
-  ElevationStyles,
-  LayerAppearances,
-  BorderColors
-} from '../../layers'
+import { Pane, Card, BorderColors } from '../../layers'
+import { defaultTheme } from '../../theme'
 
 const cardStyle = {
   float: 'left',
@@ -22,14 +17,14 @@ storiesOf('layers', module)
   .add('Pane', () => (
     <div>
       <Pane overflow="auto">
-        {ElevationStyles.map((style, index) => (
+        {defaultTheme.elevations.map((style, index) => (
           <Pane key={style} {...cardStyle} elevation={index}>
             Elevation {index}
           </Pane>
         ))}
-        {Object.keys(LayerAppearances).map(appearance => (
-          <Pane key={appearance} {...cardStyle} appearance={appearance}>
-            Appearance: {appearance}
+        {Object.keys(defaultTheme.colors.background).map(background => (
+          <Pane key={background} {...cardStyle} background={background}>
+            Background: {background}
           </Pane>
         ))}
       </Pane>
@@ -66,15 +61,15 @@ storiesOf('layers', module)
   .add('Card', () => (
     <div>
       <Pane overflow="auto">
-        {ElevationStyles.map((style, index) => (
+        {defaultTheme.elevations.map((style, index) => (
           <Card key={style} {...cardStyle} elevation={index}>
             Elevation {index}
           </Card>
         ))}
 
-        {Object.keys(LayerAppearances).map(appearance => (
-          <Card key={appearance} {...cardStyle} appearance={appearance}>
-            Appearance: {appearance}
+        {Object.keys(defaultTheme.colors.background).map(background => (
+          <Card key={background} {...cardStyle} background={background}>
+            Background: {background}
           </Card>
         ))}
       </Pane>

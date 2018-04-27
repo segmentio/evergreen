@@ -37,13 +37,7 @@ export {
   WarningIcon
 } from './icons'
 export { Image } from './image'
-export {
-  Pane,
-  Card,
-  ElevationStyles,
-  BorderColors,
-  LayerAppearances
-} from './layers'
+export { Pane, Card, BorderColors } from './layers'
 export { Overlay } from './overlay'
 export { Popover } from './popover'
 export { Portal } from './portal'
@@ -114,7 +108,6 @@ export {
   Small,
   Strong,
   TextStyles,
-  FontFamilies,
   TextColors,
   LinkAppearances
 } from './typography'

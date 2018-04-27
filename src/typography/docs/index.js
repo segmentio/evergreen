@@ -13,8 +13,7 @@ import Pre from '../src/Pre'
 import UnorderedList from '../src/UnorderedList'
 import OrderedList from '../src/OrderedList'
 import ListItem from '../src/ListItem'
-
-import FontFamilies from '../src/styles/FontFamilies'
+import { defaultTheme } from '../../theme'
 
 /* eslint-disable import/no-unresolved, import/no-webpack-loader-syntax */
 import sourceText from '!raw-loader!../src/Text'
@@ -67,11 +66,11 @@ const designGuidelines = (
       <code>Code</code> components will use mono.
     </p>
     <br />
-    {Object.keys(FontFamilies).map(key => {
+    {Object.keys(defaultTheme.fontFamilies).map(key => {
       return (
         <div key={key}>
           <code>{key}</code>
-          <br /> <br /> <pre>{FontFamilies[key]}</pre>
+          <br /> <br /> <pre>{defaultTheme.fontFamilies[key]}</pre>
           <br /> <br />
         </div>
       )
