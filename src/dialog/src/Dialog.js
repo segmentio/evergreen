@@ -241,7 +241,6 @@ class Dialog extends React.Component {
               borderRadius={8}
               width={width}
               display="flex"
-              justifyContent="space-between"
               flexDirection="column"
               css={animationStyles}
               data-state={state}
