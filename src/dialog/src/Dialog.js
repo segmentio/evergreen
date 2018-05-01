@@ -171,7 +171,7 @@ class Dialog extends React.Component {
     width: 560,
     topOffset: '12vh',
     minHeightContent: 114,
-    minHeight: 300,
+    minHeight: 320,
     confirmLabel: 'Confirm',
     isConfirmLoading: false,
     isConfirmDisabled: false,
@@ -257,6 +257,7 @@ class Dialog extends React.Component {
               {hasHeader && (
                 <Pane
                   padding={16}
+                  flexShrink={0}
                   borderBottom="extraMuted"
                   display="flex"
                   alignItems="center"
@@ -280,26 +281,30 @@ class Dialog extends React.Component {
               </Pane>
 
               {hasFooter && (
-                <Pane borderTop="extraMuted" clearfix>
-                  <Pane padding={16} float="right">
-                    {/* Cancel should be first to make sure focus gets on it first. */}
-                    {hasCancel && (
-                      <Button tabIndex={0} onClick={close}>
-                        {cancelLabel}
-                      </Button>
-                    )}
-
-                    <Button
-                      tabIndex={0}
-                      marginLeft={8}
-                      appearance={buttonAppearance}
-                      isLoading={isConfirmLoading}
-                      disabled={isConfirmDisabled}
-                      onClick={() => onConfirm(close)}
-                    >
-                      {confirmLabel}
+                <Pane
+                  borderTop="extraMuted"
+                  flexShrink={0}
+                  padding={16}
+                  display="flex"
+                  justifyContent="flex-end"
+                >
+                  {/* Cancel should be first to make sure focus gets on it first. */}
+                  {hasCancel && (
+                    <Button tabIndex={0} onClick={close}>
+                      {cancelLabel}
                     </Button>
-                  </Pane>
+                  )}
+
+                  <Button
+                    tabIndex={0}
+                    marginLeft={8}
+                    appearance={buttonAppearance}
+                    isLoading={isConfirmLoading}
+                    disabled={isConfirmDisabled}
+                    onClick={() => onConfirm(close)}
+                  >
+                    {confirmLabel}
+                  </Button>
                 </Pane>
               )}
             </Pane>
