@@ -152,11 +152,6 @@ class Dialog extends React.Component {
     minHeightContent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
-     * The min height of the dialog container.
-     */
-    minHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
      * Props that are passed to the dialog container.
      */
     containerProps: PropTypes.object
@@ -171,7 +166,6 @@ class Dialog extends React.Component {
     width: 560,
     topOffset: '12vh',
     minHeightContent: 114,
-    minHeight: 320,
     confirmLabel: 'Confirm',
     isConfirmLoading: false,
     isConfirmDisabled: false,
@@ -209,8 +203,7 @@ class Dialog extends React.Component {
       isConfirmDisabled,
       cancelLabel,
       containerProps,
-      minHeightContent,
-      minHeight
+      minHeightContent
     } = this.props
 
     let maxHeight
@@ -240,7 +233,6 @@ class Dialog extends React.Component {
             justifyContent="center"
             paddingTop={topOffset}
             maxHeight={maxHeight}
-            minHeight={minHeight}
           >
             <Pane
               role="dialog"
