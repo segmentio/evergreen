@@ -273,7 +273,8 @@ class Dialog extends React.Component {
                 data-state={state}
                 display="flex"
                 overflowY="auto"
-                margin={16}
+                marginY={16}
+                paddingX={16}
                 flexDirection="column"
                 minHeight={minHeightContent}
               >
