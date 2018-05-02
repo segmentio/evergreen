@@ -152,6 +152,11 @@ class Dialog extends React.Component {
     minHeightContent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
+     * The min height of the dialog container.
+     */
+    minHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    /**
      * Props that are passed to the dialog container.
      */
     containerProps: PropTypes.object
@@ -166,6 +171,7 @@ class Dialog extends React.Component {
     width: 560,
     topOffset: '12vh',
     minHeightContent: 114,
+    minHeight: 320,
     confirmLabel: 'Confirm',
     isConfirmLoading: false,
     isConfirmDisabled: false,
@@ -203,7 +209,8 @@ class Dialog extends React.Component {
       isConfirmDisabled,
       cancelLabel,
       containerProps,
-      minHeightContent
+      minHeightContent,
+      minHeight
     } = this.props
 
     let maxHeight
@@ -233,6 +240,7 @@ class Dialog extends React.Component {
             justifyContent="center"
             paddingTop={topOffset}
             maxHeight={maxHeight}
+            minHeight={minHeight}
           >
             <Pane
               role="dialog"
@@ -263,42 +271,43 @@ class Dialog extends React.Component {
 
               <Pane
                 data-state={state}
-                flex={1}
                 display="flex"
+                overflowY="auto"
+                marginY={16}
+                paddingX={16}
                 flexDirection="column"
+                minHeight={minHeightContent}
               >
-                <Pane
-                  overflowY="auto"
-                  padding={16}
-                  minHeight={minHeightContent}
-                >
-                  {this.renderChildren(close)}
-                </Pane>
-
-                {hasFooter && (
-                  <Pane borderTop="extraMuted" clearfix>
-                    <Pane padding={16} float="right">
-                      {/* Cancel should be first to make sure focus gets on it first. */}
-                      {hasCancel && (
-                        <Button tabIndex={0} onClick={close}>
-                          {cancelLabel}
-                        </Button>
-                      )}
-
-                      <Button
-                        tabIndex={0}
-                        marginLeft={8}
-                        appearance={buttonAppearance}
-                        isLoading={isConfirmLoading}
-                        disabled={isConfirmDisabled}
-                        onClick={() => onConfirm(close)}
-                      >
-                        {confirmLabel}
-                      </Button>
-                    </Pane>
-                  </Pane>
-                )}
+                <Pane>{this.renderChildren(close)}</Pane>
               </Pane>
+
+              {hasFooter && (
+                <Pane
+                  borderTop="extraMuted"
+                  flexShrink={0}
+                  padding={16}
+                  display="flex"
+                  justifyContent="flex-end"
+                >
+                  {/* Cancel should be first to make sure focus gets on it first. */}
+                  {hasCancel && (
+                    <Button tabIndex={0} onClick={close}>
+                      {cancelLabel}
+                    </Button>
+                  )}
+
+                  <Button
+                    tabIndex={0}
+                    marginLeft={8}
+                    appearance={buttonAppearance}
+                    isLoading={isConfirmLoading}
+                    disabled={isConfirmDisabled}
+                    onClick={() => onConfirm(close)}
+                  >
+                    {confirmLabel}
+                  </Button>
+                </Pane>
+              )}
             </Pane>
           </Pane>
         )}
