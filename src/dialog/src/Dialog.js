@@ -146,12 +146,6 @@ class Dialog extends React.Component {
     topOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
-     * The min height of the body content.
-     * Makes it less weird when only showing little content.
-     */
-    minHeightContent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
      * Props that are passed to the dialog container.
      */
     containerProps: PropTypes.object
@@ -165,7 +159,6 @@ class Dialog extends React.Component {
     type: 'default',
     width: 560,
     topOffset: '12vh',
-    minHeightContent: 114,
     confirmLabel: 'Confirm',
     isConfirmLoading: false,
     isConfirmDisabled: false,
@@ -202,15 +195,14 @@ class Dialog extends React.Component {
       isConfirmLoading,
       isConfirmDisabled,
       cancelLabel,
-      containerProps,
-      minHeightContent
+      containerProps
     } = this.props
 
     let maxHeight
     if (Number.isInteger(topOffset)) {
-      maxHeight = `calc(100% - ${topOffset}px)`
+      maxHeight = `calc(100vh - ${topOffset}px)`
     } else {
-      maxHeight = `calc(100% - ${topOffset})`
+      maxHeight = `calc(100vh - ${topOffset})`
     }
 
     let buttonAppearance
@@ -265,10 +257,8 @@ class Dialog extends React.Component {
                 data-state={state}
                 display="flex"
                 overflowY="auto"
-                marginY={16}
-                paddingX={16}
+                padding={16}
                 flexDirection="column"
-                minHeight={minHeightContent}
               >
                 <Pane>{this.renderChildren(close)}</Pane>
               </Pane>
