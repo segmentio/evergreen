@@ -138,7 +138,7 @@ export default class Positioner extends PureComponent {
       document.documentElement.clientHeight + window.scrollY
     const viewportWidth = document.documentElement.clientWidth + window.scrollX
 
-    const position = getPosition({
+    const { rect, transformOrigin } = getPosition({
       position: this.props.position,
       targetRect,
       targetOffset: this.props.targetOffset,
@@ -155,9 +155,9 @@ export default class Positioner extends PureComponent {
 
     this.setState(
       {
-        left: position.left,
-        top: position.top,
-        transformOrigin: position.transformOrigin
+        left: rect.left,
+        top: rect.top,
+        transformOrigin
       },
       () => {
         window.requestAnimationFrame(() => {
