@@ -125,6 +125,11 @@ storiesOf('popover', module)
         document.body.style.height = '100vh'
       })()}
       <Popover content={<PopoverContent />}>
+        <Button position="absolute" right={16} top={40} marginRight={20}>
+          Trigger Popover
+        </Button>
+      </Popover>
+      <Popover content={<PopoverContent />}>
         <Button marginRight={20}>Trigger Popover</Button>
       </Popover>
       <Popover
