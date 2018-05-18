@@ -23,6 +23,7 @@ export default class Option extends PureComponent {
     style: PropTypes.any,
     height: PropTypes.number,
     onSelect: PropTypes.func,
+    onDeSelect: PropTypes.func,
     isHighlighted: PropTypes.bool,
     isSelected: PropTypes.bool
   }
@@ -31,6 +32,7 @@ export default class Option extends PureComponent {
     const {
       label,
       onSelect,
+      onDeSelect,
       isHighlighted,
       isSelected,
       style,
@@ -43,6 +45,7 @@ export default class Option extends PureComponent {
         isSelectable
         isHighlighted={isHighlighted}
         onSelect={onSelect}
+        onDeSelect={onDeSelect}
         isSelected={isSelected}
         style={style}
         display="flex"

@@ -14,6 +14,10 @@ export default class TableRow extends PureComponent {
      * Function that is called on click and enter/space keypress.
      */
     onSelect: PropTypes.func,
+    /**
+     * Function that is called on click and enter/space keypress.
+     */
+    onDeSelect: PropTypes.func,
 
     /**
      * Makes the TableRow selectable.
@@ -34,13 +38,18 @@ export default class TableRow extends PureComponent {
   static defaultProps = {
     onClick: () => {},
     onSelect: () => {},
+    onDeSelect: () => {},
     onKeyPress: () => {}
   }
 
   handleClick = e => {
     this.props.onClick(e)
     if (this.props.isSelectable) {
-      this.props.onSelect()
+      if (this.props.isSelected) {
+        this.props.onDeSelect()
+      } else {
+        this.props.onSelect()
+      }
     }
   }
 

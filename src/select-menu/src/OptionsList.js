@@ -33,6 +33,7 @@ export default class OptionsList extends PureComponent {
      */
     selected: PropTypes.arrayOf(PropTypes.string),
     onSelect: PropTypes.func,
+    onDeSelect: PropTypes.func,
     hasFilter: PropTypes.bool,
     optionSize: PropTypes.number,
     renderItem: PropTypes.func,
@@ -50,6 +51,7 @@ export default class OptionsList extends PureComponent {
      */
     optionSize: 33,
     onSelect: () => {},
+    onDeSelect: () => {},
     selected: [],
     renderItem: itemRenderer,
     optionsFilter: fuzzyFilter,
@@ -115,6 +117,9 @@ export default class OptionsList extends PureComponent {
   handleSelect = item => {
     this.props.onSelect(item)
   }
+  handleDeSelect = item => {
+    this.props.onDeSelect(item)
+  }
 
   assignSearchRef = ref => {
     this.searchRef = ref
@@ -127,6 +132,7 @@ export default class OptionsList extends PureComponent {
       width,
       height,
       onSelect,
+      onDeSelect,
       selected,
       hasFilter,
       optionSize,
@@ -173,6 +179,7 @@ export default class OptionsList extends PureComponent {
                 style,
                 height: optionSize,
                 onSelect: () => this.handleSelect(item),
+                onDeSelect: () => this.handleDeSelect(item),
                 isSelected: this.isSelected(item)
               })
             }}

@@ -19,6 +19,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
           options={options}
           selected={state.selected}
           onSelect={item => setState({ selected: item.value })}
+          onDeSelect={item => console.log(item)}
         >
           <Button>{state.selected || 'Select name...'}</Button>
         </SelectMenu>
