@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import {
   getBorderRadiusForControlHeight,
-  getTextStyleForControlHeight,
+  getTextSizeForControlHeight,
   InputAppearances
 } from '../../shared-styles'
 
@@ -73,13 +73,14 @@ export default class TextInput extends PureComponent {
       ...props
     } = this.props
     const appearanceStyle = InputAppearances[appearance]
-    const textStyle = getTextStyleForControlHeight({ height })
+    const textSize = getTextSizeForControlHeight({ height })
     const borderRadius = getBorderRadiusForControlHeight({ height })
 
     return (
       <Text
         is="input"
         type="text"
+        size={textSize}
         width={width}
         height={height}
         required={required}
@@ -90,8 +91,7 @@ export default class TextInput extends PureComponent {
         borderRadius={borderRadius}
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
-        {...(disabled ? { color: 'extraMuted' } : {})}
-        {...textStyle}
+        {...(disabled ? { color: 'muted' } : {})}
         css={{ ...css, ...appearanceStyle }}
         {...props}
       />

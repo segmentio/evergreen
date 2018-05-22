@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import { Pane, Card, BorderColors } from '../../layers'
+import { Pane, Card } from '../../layers'
 import { defaultTheme } from '../../theme'
 
 const cardStyle = {
@@ -40,7 +40,7 @@ storiesOf('layers', module)
         </Pane>
       </Pane>
 
-      {Object.keys(BorderColors).map(borderColor => (
+      {Object.keys(defaultTheme.colors.border).map(borderColor => (
         <Pane key={borderColor} overflow="auto">
           <Pane {...cardStyle} borderTop={borderColor}>
             borderTop: {borderColor}

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import Text from './Text'
 
-export default class Paragraph extends PureComponent {
+export default class ListItem extends PureComponent {
   static propTypes = {
     ...Text.propTypes
   }

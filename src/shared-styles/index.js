@@ -8,4 +8,3 @@ export getBorderRadiusForControlHeight from './src/utils/getBorderRadiusForContr
 export getBorderRadiusForTextSize from './src/utils/getBorderRadiusForTextSize'
 export getIconSizeForControlHeight from './src/utils/getIconSizeForControlHeight'
 export getTextSizeForControlHeight from './src/utils/getTextSizeForControlHeight'
-export getTextStyleForControlHeight from './src/utils/getTextStyleForControlHeight'

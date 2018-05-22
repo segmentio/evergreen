@@ -5,7 +5,6 @@ import {
   Text,
   Paragraph,
   Heading,
-  SubHeading,
   Link,
   Code,
   Pre,
@@ -14,11 +13,11 @@ import {
   Strong,
   UnorderedList,
   OrderedList,
-  ListItem,
-  TextStyles
+  ListItem
 } from '../../typography'
 
-const TextSizes = Object.keys(TextStyles).map(Number)
+const TextSizes = [300, 400, 500]
+const HeadingSizes = [100, 200, 300, 400, 500, 600, 700, 800, 900]
 const dummyText = 'A red flair silhouetted the jagged edge of a wing.'
 
 function previewTextComponent(Comp, sizes = TextSizes, props) {
@@ -27,7 +26,7 @@ function previewTextComponent(Comp, sizes = TextSizes, props) {
       {sizes.map(size => (
         <Box key={size}>
           <Comp size={size} {...props}>
-            {dummyText}
+            {size}: {dummyText}
           </Comp>
         </Box>
       ))}
@@ -37,15 +36,6 @@ function previewTextComponent(Comp, sizes = TextSizes, props) {
 
 storiesOf('typography', module)
   .add('Text', () => <div>{previewTextComponent(Text)}</div>)
-  .add('Text isUppercase', () => (
-    <Box padding={40}>
-      <Heading>Only size 100 and 200 are supported for uppercase</Heading>
-      {previewTextComponent(Text, [100, 200], { isUppercase: true })}
-      <Text isUppercase size={300}>
-        Higher sizes should give a console.error in development
-      </Text>
-    </Box>
-  ))
   .add('Link', () => (
     <Box padding={40}>
       <Box marginBottom={24}>
@@ -63,13 +53,27 @@ storiesOf('typography', module)
       </Box>
     </Box>
   ))
-  .add('Paragraph', () => <div>{previewTextComponent(Paragraph)}</div>)
-  .add('Heading', () => <div>{previewTextComponent(Heading)}</div>)
-  .add('SubHeading', () => <div>{previewTextComponent(SubHeading)}</div>)
+  .add('Paragraph', () => (
+    <div>
+      {previewTextComponent(Paragraph, TextSizes, { marginTop: 'default' })}
+    </div>
+  ))
+  .add('Heading', () => (
+    <div>
+      {previewTextComponent(Heading, HeadingSizes, { marginTop: 'default' })}
+    </div>
+  ))
   .add('Code', () => <div>{previewTextComponent(Code)}</div>)
   .add('Pre', () => <div>{previewTextComponent(Pre)}</div>)
   .add('Label', () => <div>{previewTextComponent(Label)}</div>)
-  .add('Small', () => <div>{previewTextComponent(Small)}</div>)
+  .add('Small', () => (
+    <div>
+      <Paragraph>
+        Small can only be used inside of a paragraph or other text component{' '}
+        <Small>like this</Small>
+      </Paragraph>
+    </div>
+  ))
   .add('Strong', () => <div>{previewTextComponent(Strong)}</div>)
   .add('UnorderedList', () => (
     <Box padding={40}>

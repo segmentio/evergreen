@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import {
-  getTextStyleForControlHeight,
+  getTextSizeForControlHeight,
   selectableTabStyle
 } from '../../shared-styles'
 
@@ -49,7 +49,7 @@ export default class Tab extends PureComponent {
 
   render() {
     const { is, height, css, onSelect, isSelected, ...props } = this.props
-    const textStyle = getTextStyleForControlHeight({ height })
+    const textSize = getTextSizeForControlHeight({ height })
 
     let elementBasedProps
     if (is === 'a') {
@@ -73,7 +73,7 @@ export default class Tab extends PureComponent {
     return (
       <Text
         is={is}
-        {...textStyle}
+        size={textSize}
         height={height}
         {...Tab.styles}
         {...props}

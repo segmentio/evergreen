@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { TextStyles } from '../../typography'
 import {
   InputAppearances,
   getBorderRadiusForTextSize
 } from '../../shared-styles'
+import { Text } from '../../typography'
 
 export default class Textarea extends PureComponent {
   static propTypes = {
@@ -13,7 +13,7 @@ export default class Textarea extends PureComponent {
     disabled: PropTypes.bool.isRequired,
     isInvalid: PropTypes.bool.isRequired,
     spellCheck: PropTypes.bool.isRequired,
-    textSize: PropTypes.oneOf(Object.keys(TextStyles))
+    textSize: PropTypes.oneOf([300, 400, 500])
   }
 
   static defaultProps = {
@@ -41,19 +41,18 @@ export default class Textarea extends PureComponent {
       ...props
     } = this.props
 
-    const textStyle = TextStyles[textSize]
     const appearanceStyle = InputAppearances.default
     const borderRadius = getBorderRadiusForTextSize({ textSize })
 
     return (
-      <Box
+      <Text
         is="textarea"
         disabled={disabled}
         borderRadius={borderRadius}
         spellCheck={spellCheck}
+        size={textSize}
         {...(isInvalid ? { 'aria-invalid': true } : {})}
-        {...(disabled ? { color: 'extraMuted' } : {})}
-        {...textStyle}
+        {...(disabled ? { color: 'muted' } : {})}
         css={{ ...css, ...appearanceStyle }}
         {...Textarea.styles}
         {...props}

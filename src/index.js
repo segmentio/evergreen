@@ -66,8 +66,7 @@ export {
   getBorderRadiusForControlHeight,
   getBorderRadiusForTextSize,
   getIconSizeForControlHeight,
-  getTextSizeForControlHeight,
-  getTextStyleForControlHeight
+  getTextSizeForControlHeight
 } from './shared-styles'
 export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
@@ -100,14 +99,10 @@ export {
   Text,
   Paragraph,
   Heading,
-  SubHeading,
   Code,
   Pre,
   Label,
   Link,
   Small,
-  Strong,
-  TextStyles,
-  TextColors,
-  LinkAppearances
+  Strong
 } from './typography'

@@ -1,6 +1,5 @@
 import { Themer } from '../../../themer'
 import { colors } from '../../../colors'
-import { TextColors } from '../../../typography'
 
 /**
  * Disabled styles are all the same for all buttons.
@@ -20,7 +19,7 @@ ButtonAppearances.default = Themer.createButtonAppearance({
   disabled,
   base: {
     backgroundColor: 'white',
-    color: TextColors.default,
+    // Color: TextColors.default,
     backgroundImage: `linear-gradient(to top, ${colors.neutral['5A']}, ${
       colors.white['5A']
     })`,
@@ -150,8 +149,8 @@ ButtonAppearances.red = Themer.createButtonAppearance({
 ButtonAppearances.ghost = Themer.createButtonAppearance({
   disabled,
   base: {
-    backgroundColor: 'transparent',
-    color: TextColors.default
+    backgroundColor: 'transparent'
+    // Color: TextColors.default,
   },
   hover: {
     backgroundColor: colors.neutral['7A']

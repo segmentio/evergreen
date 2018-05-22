@@ -18,7 +18,7 @@ export default withTheme(
 
       /**
        * Background property.
-       * `tint1`, `tint2`, `tint3` from `theme.colors.background` are available.
+       * `tint1`, `tint2` etc. from `theme.colors.background` are available.
        */
       background: PropTypes.string,
 
@@ -117,8 +117,6 @@ export default withTheme(
         }
       }
     }
-
-    getBorderColor = () => {}
 
     getBorderSideProperty = ({ borderSideProperty, border }) => {
       const { theme } = this.props

@@ -17,6 +17,52 @@ const baseStyles = {
 }
 const buttonsStory = storiesOf('buttons', module)
 
+buttonsStory.add('Button Types', () => (
+  <Box padding={40}>
+    <Heading>Default Appearance</Heading>
+    <Box marginTop={12}>
+      <Button marginRight={16}>Default</Button>
+      <Button marginRight={16} intent="success">
+        Success
+      </Button>
+      <Button marginRight={16} intent="warning">
+        Warning
+      </Button>
+      <Button intent="danger">Danger</Button>
+    </Box>
+    <Heading marginTop="default">Primary Appearance</Heading>
+    <Box marginTop={12}>
+      <Button appearance="primary" marginRight={16}>
+        Default
+      </Button>
+      <Button appearance="primary" marginRight={16} intent="success">
+        Success
+      </Button>
+      <Button appearance="primary" marginRight={16} intent="warning">
+        Warning
+      </Button>
+      <Button appearance="primary" intent="danger">
+        Danger
+      </Button>
+    </Box>
+    <Heading marginTop="default">Minimal Appearance</Heading>
+    <Box marginTop={12}>
+      <Button appearance="minimal" marginRight={16}>
+        Default
+      </Button>
+      <Button appearance="minimal" marginRight={16} intent="success">
+        Success
+      </Button>
+      <Button appearance="minimal" marginRight={16} intent="warning">
+        Warning
+      </Button>
+      <Button appearance="minimal" intent="danger">
+        Danger
+      </Button>
+    </Box>
+  </Box>
+))
+
 buttonsStory.add('Button', () => (
   <Box padding={40}>
     <Heading>Button based</Heading>
