@@ -5,6 +5,7 @@ import { Pane } from '../../layers'
 import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
 import { Button, IconButton } from '../../buttons'
+import { withTheme } from '../../theme'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -55,6 +56,12 @@ class Dialog extends React.Component {
      * When passing a string, <Paragraph /> is used to wrap the string.
      */
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+
+    /**
+     * The intent of the Dialog. Used for the button.
+     */
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info'])
+      .isRequired,
 
     /**
      * When true, the dialog is shown.
@@ -189,7 +196,7 @@ class Dialog extends React.Component {
     const {
       title,
       width,
-      type,
+      intent,
       isShown,
       topOffset,
       hasHeader,
@@ -211,13 +218,6 @@ class Dialog extends React.Component {
       maxHeight = `calc(100% - ${topOffset}px)`
     } else {
       maxHeight = `calc(100% - ${topOffset})`
-    }
-
-    let buttonAppearance
-    if (type === 'default') {
-      buttonAppearance = 'green'
-    } else if (type === 'danger') {
-      buttonAppearance = 'red'
     }
 
     return (
@@ -257,7 +257,11 @@ class Dialog extends React.Component {
                   <Heading is="h4" size={600} flex="1">
                     {title}
                   </Heading>
-                  <IconButton appearance="ghost" icon="close" onClick={close} />
+                  <IconButton
+                    appearance="minimal"
+                    icon="cross"
+                    onClick={close}
+                  />
                 </Pane>
               )}
 
@@ -288,10 +292,11 @@ class Dialog extends React.Component {
                       <Button
                         tabIndex={0}
                         marginLeft={8}
-                        appearance={buttonAppearance}
+                        appearance="primary"
                         isLoading={isConfirmLoading}
                         disabled={isConfirmDisabled}
                         onClick={() => onConfirm(close)}
+                        intent={intent}
                       >
                         {confirmLabel}
                       </Button>
@@ -307,4 +312,4 @@ class Dialog extends React.Component {
   }
 }
 
-export default Dialog
+export default withTheme(Dialog)

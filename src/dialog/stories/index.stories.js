@@ -55,7 +55,7 @@ storiesOf('dialog', module)
               isShown={isShown}
               title="Dialog with Danger Intent"
               onCloseComplete={hide}
-              type="danger"
+              intent="danger"
               confirmLabel="Dangerous Action"
             >
               Passing a string as the content will wrap the string in a
