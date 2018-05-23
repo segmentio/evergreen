@@ -72,7 +72,7 @@ const palette = {
   red: {
     lightest: '#fef6f6',
     light: '#fae2e2',
-    base: '##ec4c47',
+    base: '#ec4c47',
     dark: '#bf0e08'
   },
 
@@ -206,6 +206,13 @@ theme.colors = {
   overlay: scales.neutral.N8A
 }
 
+theme.getBackground = background => {
+  /**
+   * Return one of theme presets or the original value.
+   */
+  return theme.colors.background[background] || background
+}
+
 const borderShadowColor = scales.neutral.N5A // Used to be colors.neutral['80A'] in v3 and down.
 const blurryShadowColor = scales.neutral.N6A // Used to be colors.neutral['50A'] in v3 and down.
 
@@ -220,6 +227,185 @@ theme.elevations = [
   `0 0 1px ${borderShadowColor}, 0 8px 10px -4px ${blurryShadowColor}`,
   `0 0 1px ${borderShadowColor}, 0 16px 24px -8px ${blurryShadowColor}`
 ]
+
+const Helpers = {
+  linearGradient: (top, bottom) => {
+    return `linear-gradient(to bottom, ${top}, ${bottom})`
+  },
+  getTextColorForIntent: intent => {
+    switch (intent) {
+      case 'success':
+        return theme.colors.text.success
+      case 'danger':
+        return theme.colors.text.danger
+      case 'warning':
+        return theme.colors.text.warning
+      default:
+        return theme.colors.text.default
+    }
+  },
+
+  /**
+   * @param {String} startColor
+   * @param {String} endColor
+   * @param {Number} intensityMultiplier - Some colors need more darkening.
+   */
+  getLinearGradientWithStates: (
+    startColor,
+    endColor,
+    intensityMultiplier = 1
+  ) => {
+    return {
+      base: Helpers.linearGradient(startColor, endColor),
+      hover: Helpers.linearGradient(
+        tinycolor(startColor)
+          .darken(5 * intensityMultiplier)
+          .toString(),
+        tinycolor(endColor)
+          .darken(5 * intensityMultiplier)
+          .toString()
+      ),
+      active: Helpers.linearGradient(
+        tinycolor(endColor)
+          .darken(5 * intensityMultiplier)
+          .toString(),
+        tinycolor(endColor)
+          .darken(5 * intensityMultiplier)
+          .toString()
+      )
+    }
+  },
+
+  /**
+   * Gradients in the default theme have a intentional hue shift.
+   * @param {Intent} intent - intent of the gradient.
+   * @return {Object} { base, hover, active }
+   */
+  getPrimaryButtonStylesForIntent: intent => {
+    switch (intent) {
+      case 'success': {
+        const startColor = '#23C277'
+        const endColor = '#399D6C'
+        return {
+          linearGradient: Helpers.getLinearGradientWithStates(
+            startColor,
+            endColor
+          ),
+          focusColor: tinycolor(startColor)
+            .setAlpha(0.4)
+            .toString()
+        }
+      }
+      case 'warning': {
+        const startColor = '#EE9913'
+        const endColor = '#D9822B'
+        return {
+          linearGradient: Helpers.getLinearGradientWithStates(
+            startColor,
+            endColor
+          ),
+          focusColor: tinycolor(startColor)
+            .setAlpha(0.4)
+            .toString()
+        }
+      }
+      case 'danger': {
+        const startColor = '#EC4C47'
+        const endColor = '#D64540'
+        return {
+          linearGradient: Helpers.getLinearGradientWithStates(
+            startColor,
+            endColor
+          ),
+          focusColor: tinycolor(startColor)
+            .setAlpha(0.4)
+            .toString()
+        }
+      }
+      default: {
+        const startColor = '#0788DE'
+        const endColor = '#116AB8'
+        return {
+          linearGradient: Helpers.getLinearGradientWithStates(
+            startColor,
+            endColor
+          ),
+          focusColor: tinycolor(startColor)
+            .setAlpha(0.4)
+            .toString()
+        }
+      }
+    }
+  }
+}
+
+theme.getElevation = level => {
+  /**
+   * There is no fallback, undefined will be returned.
+   */
+  return theme.elevations[level]
+}
+
+/**
+ * Controls include:
+ * - Button
+ * - IconButton
+ * - TextInput
+ */
+theme.getBorderRadiusForControlHeight = height => {
+  if (height <= 40) return 3
+  return 4
+}
+
+theme.getTextSizeForControlHeight = height => {
+  if (height <= 24) return 300
+  if (height <= 28) return 300
+  if (height <= 32) return 300
+  if (height <= 36) return 400
+  if (height <= 40) return 400
+  if (height <= 48) return 500
+  if (height <= 56) return 700
+  return 800
+}
+
+theme.getIconColor = color => {
+  if (Object.prototype.hasOwnProperty.call(theme.colors.icon, color)) {
+    return theme.colors.icon[color]
+  }
+  return color
+}
+
+theme.getIconSizeForButton = height => {
+  if (height <= 28) return 12
+  if (height <= 32) return 12
+  if (height <= 40) return 16
+  if (height <= 48) return 18
+  return 20
+}
+
+theme.getIconSizeForIconButton = height => {
+  if (height <= 28) return 12
+  if (height <= 32) return 14
+  if (height <= 40) return 16
+  if (height <= 48) return 18
+  return 20
+}
+
+theme.getIconForIntent = intent => {
+  switch (intent) {
+    case 'success':
+      return { icon: 'tick-circle', color: 'success' }
+    case 'info':
+    default:
+      return { icon: 'info-sign', color: 'info' }
+    case 'danger':
+      return { icon: 'error', color: 'danger' }
+    case 'warning':
+      return { icon: 'warning-sign', color: 'warning' }
+  }
+}
+
+theme.getIconSizeForInput = theme.getIconSizeForButton
 
 theme.fontFamilies = {
   /**
@@ -394,6 +580,31 @@ theme.typography.paragraph = {
   }
 }
 
+theme.getHeadingStyle = size => {
+  /**
+   * Typography.headings is a required API.
+   */
+  return theme.typography.headings[String(size)]
+}
+
+theme.getFontFamily = fontFamily => {
+  /**
+   * Allow for passing in a custom fontFamily not in the theme.
+   */
+  return theme.fontFamilies[fontFamily] || fontFamily
+}
+
+theme.getTextColor = color => {
+  /**
+   * Allow for passing in a custom fontFamily not in the theme.
+   */
+  return theme.colors.text[color] || color
+}
+
+theme.getTextStyle = size => {
+  return theme.typography.text[String(size)]
+}
+
 /**
  * Appearances.
  */
@@ -484,117 +695,6 @@ const disabled = {
   backgroundColor: scales.neutral.N2,
   boxShadow: 'none',
   color: scales.neutral.N7A
-}
-
-const Helpers = {
-  linearGradient: (top, bottom) => {
-    return `linear-gradient(to bottom, ${top}, ${bottom})`
-  },
-  getTextColorForIntent: intent => {
-    switch (intent) {
-      case 'success':
-        return theme.colors.text.success
-      case 'danger':
-        return theme.colors.text.danger
-      case 'warning':
-        return theme.colors.text.warning
-      default:
-        return theme.colors.text.default
-    }
-  },
-
-  /**
-   * @param {String} startColor
-   * @param {String} endColor
-   * @param {Number} intensityMultiplier - Some colors need more darkening.
-   */
-  getLinearGradientWithStates: (
-    startColor,
-    endColor,
-    intensityMultiplier = 1
-  ) => {
-    return {
-      base: Helpers.linearGradient(startColor, endColor),
-      hover: Helpers.linearGradient(
-        tinycolor(startColor)
-          .darken(5 * intensityMultiplier)
-          .toString(),
-        tinycolor(endColor)
-          .darken(5 * intensityMultiplier)
-          .toString()
-      ),
-      active: Helpers.linearGradient(
-        tinycolor(endColor)
-          .darken(5 * intensityMultiplier)
-          .toString(),
-        tinycolor(endColor)
-          .darken(5 * intensityMultiplier)
-          .toString()
-      )
-    }
-  },
-
-  /**
-   * Gradients in the default theme have a intentional hue shift.
-   * @param {Intent} intent - intent of the gradient.
-   * @return {Object} { base, hover, active }
-   */
-  getPrimaryButtonStylesForIntent: intent => {
-    switch (intent) {
-      case 'success': {
-        const startColor = '#23C277'
-        const endColor = '#399D6C'
-        return {
-          linearGradient: Helpers.getLinearGradientWithStates(
-            startColor,
-            endColor
-          ),
-          focusColor: tinycolor(startColor)
-            .setAlpha(0.4)
-            .toString()
-        }
-      }
-      case 'warning': {
-        const startColor = '#EE9913'
-        const endColor = '#D9822B'
-        return {
-          linearGradient: Helpers.getLinearGradientWithStates(
-            startColor,
-            endColor
-          ),
-          focusColor: tinycolor(startColor)
-            .setAlpha(0.4)
-            .toString()
-        }
-      }
-      case 'danger': {
-        const startColor = '#EC4C47'
-        const endColor = '#D64540'
-        return {
-          linearGradient: Helpers.getLinearGradientWithStates(
-            startColor,
-            endColor
-          ),
-          focusColor: tinycolor(startColor)
-            .setAlpha(0.4)
-            .toString()
-        }
-      }
-      default: {
-        const startColor = '#0788DE'
-        const endColor = '#116AB8'
-        return {
-          linearGradient: Helpers.getLinearGradientWithStates(
-            startColor,
-            endColor
-          ),
-          focusColor: tinycolor(startColor)
-            .setAlpha(0.4)
-            .toString()
-        }
-      }
-    }
-  }
 }
 
 /**
@@ -698,7 +798,7 @@ const getButtonAppearance = (appearance, intent) => {
         focus: {
           boxShadow: `0 0 0 3px ${scales.blue.B4A}, inset 0 0 0 1px ${
             scales.neutral.N5A
-          }, inset 0 -1px 1px 0 ${scales.neutral.N5A}`
+          }, inset 0 -1px 1px 0 ${scales.neutral.N4A}`
         },
         active: {
           backgroundImage: 'none',
@@ -720,174 +820,12 @@ const getButtonAppearance = (appearance, intent) => {
  */
 theme.getButtonClassName = memoizeClassName(getButtonAppearance)
 
-//
-// theme.appearances.button.default = Themer.createButtonAppearance({
-//   disabled,
-//   base: {
-//     backgroundColor: 'white',
-//     // color: TextColors.default,
-//     backgroundImage: `linear-gradient(to top, ${colors.neutral['5A']}, ${
-//       colors.white['5A']
-//     })`,
-//     boxShadow: `inset 0 0 0 1px ${colors.neutral['20A']}, inset 0 -1px 1px 0 ${
-//       colors.neutral['10A']
-//     }`,
-//   },
-//   hover: {
-//     backgroundImage: `linear-gradient(to top, ${colors.neutral['7A']}, ${
-//       colors.neutral['3A']
-//     } )`,
-//     boxShadow: `inset 0 0 0 1px ${colors.neutral['40A']}, inset 0 -1px 1px 0 ${
-//       colors.neutral['15A']
-//     }`,
-//   },
-//   focus: {
-//     boxShadow: `0 0 0 3px ${colors.blue['20A']}, inset 0 0 0 1px ${
-//       colors.neutral['70A']
-//     }, inset 0 -1px 1px 0 ${colors.neutral['10A']}`,
-//   },
-//   active: {
-//     color: colors.blue['1000'],
-//     backgroundImage: 'none',
-//     backgroundColor: colors.blue['10A'],
-//     boxShadow: `inset 0 0 0 1px ${colors.neutral['20A']}, inset 0 -1px 1px 0 ${
-//       colors.neutral['10A']
-//     }`,
-//   },
-// })
-//
-// theme.appearances.button.blue = Themer.createButtonAppearance({
-//   disabled,
-//   base: {
-//     backgroundColor: colors.blue['500'],
-//     color: 'white',
-//     backgroundImage: `linear-gradient(to top, ${colors.blue['600']}, ${
-//       colors.blue['400']
-//     })`,
-//     boxShadow: `inset 0 0 0 1px ${colors.neutral['30A']}, inset 0 -1px 1px 0 ${
-//       colors.neutral['30A']
-//     }`,
-//   },
-//   hover: {
-//     backgroundImage: `linear-gradient(to top, ${colors.blue['700']}, ${
-//       colors.blue['500']
-//     })`,
-//   },
-//   focus: {
-//     boxShadow: `0 0 0 3px ${colors.blue['50A']}, inset 0 0 0 1px ${
-//       colors.neutral['30A']
-//     }, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
-//   },
-//   active: {
-//     boxShadow: `inset 0 0 0 1px ${colors.neutral['30A']}, inset 0 -1px 1px 0 ${
-//       colors.neutral['30A']
-//     }`,
-//     backgroundImage: `linear-gradient(to top, ${colors.blue['800']}, ${
-//       colors.blue['900']
-//     })`,
-//   },
-// })
-//
-// theme.appearances.button.green = Themer.createButtonAppearance({
-//   disabled,
-//   base: {
-//     backgroundColor: colors.green['500'],
-//     color: 'white',
-//     backgroundImage: `linear-gradient(to top, ${colors.green['600']}, ${
-//       colors.green['500']
-//     })`,
-//     boxShadow: `inset 0 0 0 1px ${colors.neutral['30A']}, inset 0 -1px 1px 0 ${
-//       colors.neutral['30A']
-//     }`,
-//   },
-//   hover: {
-//     backgroundImage: `linear-gradient(to top, ${colors.green['700']}, ${
-//       colors.green['600']
-//     })`,
-//   },
-//   focus: {
-//     boxShadow: `0 0 0 3px ${colors.green['100A']}, inset 0 0 0 1px ${
-//       colors.neutral['30A']
-//     }, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
-//   },
-//   active: {
-//     boxShadow: `inset 0 0 0 1px ${colors.neutral['30A']}, inset 0 -1px 1px 0 ${
-//       colors.neutral['30A']
-//     }`,
-//     backgroundImage: `linear-gradient(to top, ${colors.green['800']}, ${
-//       colors.green['900']
-//     })`,
-//   },
-// })
-//
-// theme.appearances.button.red = Themer.createButtonAppearance({
-//   disabled,
-//   base: {
-//     backgroundColor: colors.green['500'],
-//     color: 'white',
-//     backgroundImage: `linear-gradient(to top, ${colors.red['600']}, ${
-//       colors.red['500']
-//     })`,
-//     boxShadow: `inset 0 0 0 1px ${colors.neutral['30A']}, inset 0 -1px 1px 0 ${
-//       colors.neutral['30A']
-//     }`,
-//   },
-//   hover: {
-//     backgroundImage: `linear-gradient(to top, ${colors.red['700']}, ${
-//       colors.red['600']
-//     })`,
-//   },
-//   focus: {
-//     boxShadow: `0 0 0 3px ${colors.red['100A']}, inset 0 0 0 1px ${
-//       colors.neutral['30A']
-//     }, inset 0 -1px 1px 0 ${colors.neutral['30A']}`,
-//   },
-//   active: {
-//     boxShadow: `inset 0 0 0 1px ${colors.neutral['30A']}, inset 0 -1px 1px 0 ${
-//       colors.neutral['30A']
-//     }`,
-//     backgroundImage: `linear-gradient(to top, ${colors.red['800']}, ${
-//       colors.red['900']
-//     })`,
-//   },
-// })
-//
-// theme.appearances.button.ghost = Themer.createButtonAppearance({
-//   disabled,
-//   base: {
-//     backgroundColor: 'transparent',
-//     // color: TextColors.default,
-//   },
-//   hover: {
-//     backgroundColor: colors.neutral['7A'],
-//   },
-//   focus: {
-//     boxShadow: `0 0 0 3px ${colors.blue['50A']}`,
-//   },
-//   active: {
-//     color: colors.blue['1000'],
-//     boxShadow: 'none',
-//     backgroundColor: colors.blue['10A'],
-//   },
-// })
-//
-// theme.appearances.button.ghostBlue = Themer.createButtonAppearance({
-//   disabled,
-//   base: {
-//     color: colors.blue['500'],
-//     backgroundColor: 'transparent',
-//   },
-//   hover: {
-//     backgroundColor: colors.neutral['7A'],
-//   },
-//   focus: {
-//     boxShadow: `0 0 0 3px ${colors.blue['50A']}`,
-//   },
-//   active: {
-//     color: colors.blue['1000'],
-//     boxShadow: 'none',
-//     backgroundColor: colors.blue['10A'],
-//   },
-// })
+theme.getTooltipProps = () => {
+  return {
+    backgroundColor: tinycolor(palette.neutral.base)
+      .setAlpha(0.95)
+      .toString()
+  }
+}
 
 export default theme

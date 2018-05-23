@@ -56,22 +56,22 @@ export default class Toaster {
   }
 
   notify = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, type: 'default' })
+    return this.notifyHandler(title, { ...settings, intent: 'none' })
   }
 
   success = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, type: 'success' })
+    return this.notifyHandler(title, { ...settings, intent: 'success' })
   }
 
   warning = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, type: 'warning' })
+    return this.notifyHandler(title, { ...settings, intent: 'warning' })
   }
 
   danger = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, type: 'danger' })
+    return this.notifyHandler(title, { ...settings, intent: 'danger' })
   }
 
   info = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, type: 'info' })
+    return this.notifyHandler(title, { ...settings, intent: 'info' })
   }
 }

@@ -36,6 +36,7 @@
     "node": ">=8"
   },
   "dependencies": {
+    "@blueprintjs/icons": "^2.2.1",
     "arrify": "^1.0.1",
     "classnames": "^2.2.5",
     "dom-helpers": "^3.2.1",

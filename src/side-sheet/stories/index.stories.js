@@ -28,9 +28,9 @@ storiesOf('side-sheet', module)
               }}
             >
               <Pane flexShrink={0} elevation={0} backgroundColor="white">
-                <Pane padding={16} borderBottom="extraMuted">
+                <Pane padding={16} borderBottom="muted">
                   <Heading size={600}>Title</Heading>
-                  <Paragraph size={400} color="extraMuted">
+                  <Paragraph size={400} color="muted">
                     Optional description or sub title
                   </Paragraph>
                 </Pane>
@@ -52,7 +52,7 @@ storiesOf('side-sheet', module)
                   </Manager>
                 </Pane>
               </Pane>
-              <Pane flex="1" overflowY="scroll" appearance="tint1" padding={16}>
+              <Pane flex="1" overflowY="scroll" background="tint1" padding={16}>
                 <Card
                   backgroundColor="white"
                   elevation={0}
@@ -94,12 +94,12 @@ storiesOf('side-sheet', module)
               <Pane flexShrink={0} elevation={0} backgroundColor="white">
                 <Pane padding={16}>
                   <Heading size={600}>Title</Heading>
-                  <Paragraph size={400} color="extraMuted">
+                  <Paragraph size={400} color="muted">
                     Optional description or sub title
                   </Paragraph>
                 </Pane>
               </Pane>
-              <Pane flex="1" overflowY="scroll" appearance="tint1" padding={16}>
+              <Pane flex="1" overflowY="scroll" background="tint1" padding={16}>
                 <Card
                   backgroundColor="white"
                   elevation={0}
@@ -143,7 +143,7 @@ storiesOf('side-sheet', module)
                   <Heading size={600}>Title</Heading>
                 </Pane>
               </Pane>
-              <Pane flex="1" overflowY="scroll" appearance="tint1" padding={16}>
+              <Pane flex="1" overflowY="scroll" background="tint1" padding={16}>
                 <Card
                   backgroundColor="white"
                   elevation={0}

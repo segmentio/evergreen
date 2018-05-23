@@ -137,7 +137,7 @@ export default class Radio extends PureComponent {
           <Text
             marginLeft={size === 12 ? 8 : 10}
             size={size === 12 ? 300 : 400}
-            color={disabled ? 'extraMuted' : 'default'}
+            color={disabled ? 'muted' : 'default'}
           >
             {label}
           </Text>

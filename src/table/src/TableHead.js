@@ -23,11 +23,7 @@ export default class TableHead extends PureComponent {
   }
 
   static defaultProps = {
-    accountForScrollbar: true,
-    boxSizing: 'border-box',
-    display: 'flex',
-    appearance: 'tint2',
-    borderBottom: 'extraMuted'
+    accountForScrollbar: true
   }
 
   handleScrollbarSize = width => {
@@ -41,7 +37,13 @@ export default class TableHead extends PureComponent {
     const { scrollbarWidth } = this.state
 
     return (
-      <Pane paddingRight={scrollbarWidth} {...props}>
+      <Pane
+        display="flex"
+        paddingRight={scrollbarWidth}
+        borderBottom="default"
+        background="tint2"
+        {...props}
+      >
         {children}{' '}
         {accountForScrollbar && (
           <ScrollbarSize handleScrollbarSize={this.handleScrollbarSize} />

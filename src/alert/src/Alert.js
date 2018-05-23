@@ -6,12 +6,7 @@ import { colors } from '../../colors'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
 import { IconButton } from '../../buttons'
-import {
-  CheckCircleIcon,
-  DangerIcon,
-  QuestionIcon,
-  WarningIcon
-} from '../../icons'
+import { Icon } from '../../icon'
 
 const AlertAppearances = {
   default: {
@@ -42,7 +37,8 @@ export default withTheme(
       /**
        * The intent of the alert.
        */
-      intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info']),
+      intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info'])
+        .isRequired,
 
       /**
        * The title of the alert.
@@ -88,7 +84,7 @@ export default withTheme(
       appearance: 'default'
     }
 
-    getStyle = type => ({
+    getStyle = intent => ({
       '&:before': {
         content: '""',
         width: 3,
@@ -96,34 +92,20 @@ export default withTheme(
         position: 'absolute',
         top: 0,
         left: 0,
-        backgroundColor: this.getColorForType(type)
+        backgroundColor: this.getColorForIntent(intent)
       }
     })
-
-    getIconForIntent = intent => {
-      const iconProps = {
-        size: 22,
-        iconSize: 14,
-        color: this.getColorForIntent(intent)
-      }
-
-      switch (intent) {
-        case 'success':
-          return <CheckCircleIcon {...iconProps} />
-        case 'question':
-        default:
-          return <QuestionIcon {...iconProps} />
-        case 'danger':
-          return <DangerIcon {...iconProps} />
-        case 'warning':
-          return <WarningIcon {...iconProps} />
-      }
-    }
 
     getColorForIntent = intent => {
       const { theme } = this.props
 
       return theme.colors.intent[intent]
+    }
+
+    getIconForIntent = intent => {
+      const { theme } = this.props
+
+      return <Icon size={14} {...theme.getIconForIntent(intent)} />
     }
 
     render() {
@@ -163,7 +145,15 @@ export default withTheme(
         >
           {hasIcon &&
             intent !== 'none' && (
-              <Pane marginRight={8}>{this.getIconForIntent(intent)}</Pane>
+              <Pane
+                marginRight={10}
+                marginLeft={2}
+                height={14}
+                display="block"
+                marginTop={3}
+              >
+                {this.getIconForIntent(intent)}
+              </Pane>
             )}
           <Pane display="flex" width="100%">
             <Pane flex={1}>
@@ -189,8 +179,8 @@ export default withTheme(
                 <IconButton
                   onClick={onRemove}
                   height={24}
-                  appearance="ghost"
-                  icon="close"
+                  appearance="minimal"
+                  icon="cross"
                 />
               </Pane>
             )}

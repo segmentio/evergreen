@@ -5,7 +5,7 @@ import { Select } from '../../select'
 import { Text, Label } from '../../typography'
 
 const Description = props => (
-  <Text is="p" marginTop={0} size={300} color="extraMuted" {...props} />
+  <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 )
 
 const appearance = 'default'

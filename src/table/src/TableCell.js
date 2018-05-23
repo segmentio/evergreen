@@ -16,8 +16,8 @@ export default class TableCell extends PureComponent {
     flex: 1,
     display: 'flex',
     alignItems: 'center',
-    borderRight: 'extraMuted',
-    borderBottom: 'extraMuted',
+    borderRight: 'muted',
+    borderBottom: 'muted',
     overflow: 'hidden'
   }
 

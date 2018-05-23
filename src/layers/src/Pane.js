@@ -42,7 +42,7 @@ export default withTheme(
 
       /**
        * Can be a explicit border value or a boolean.
-       * Values: true, extraMuted, muted, default.
+       * Values: true, muted, default.
        */
       border: StringAndBoolPropType,
 
@@ -76,23 +76,8 @@ export default withTheme(
       theme: PropTypes.object.isRequired
     }
 
-    getBackground = background => {
-      const { theme } = this.props
-      /**
-       * Return one of theme presets or the original value.
-       */
-      return theme.colors.background[background] || background
-    }
-
-    getElevation = level => {
-      const { theme } = this.props
-      /**
-       * There is no fallback, undefined will be returned.
-       */
-      return theme.elevations[level]
-    }
-
     getHoverElevationStyle = (hoverElevation, css) => {
+      const { theme } = this.props
       if (!Number.isInteger(hoverElevation)) return {}
 
       return {
@@ -102,18 +87,20 @@ export default withTheme(
         ':hover': {
           ...(css[':hover'] || {}),
           transform: 'translateY(-2px)',
-          boxShadow: this.getElevation(hoverElevation)
+          boxShadow: theme.getElevation(hoverElevation)
         }
       }
     }
 
     getActiveElevationStyle = (activeElevation, css) => {
-      if (Number.isInteger(activeElevation)) return {}
+      const { theme } = this.props
+      if (!Number.isInteger(activeElevation)) return {}
+
       return {
         ':active': {
           ...(css[':active'] || {}),
           transform: 'translateY(-1px)',
-          boxShadow: this.getElevation(activeElevation)
+          boxShadow: theme.getElevation(activeElevation)
         }
       }
     }
@@ -160,7 +147,7 @@ export default withTheme(
         ...props
       } = this.props
 
-      const elevationStyle = this.getElevation(elevation)
+      const elevationStyle = theme.getElevation(elevation)
       const hoverElevationStyle = this.getHoverElevationStyle(
         hoverElevation,
         css
@@ -186,7 +173,7 @@ export default withTheme(
           borderBottom={_borderBottom}
           borderLeft={_borderLeft}
           boxShadow={elevationStyle}
-          background={this.getBackground(background)}
+          background={theme.getBackground(background)}
           css={{
             ...css,
             ...hoverElevationStyle,

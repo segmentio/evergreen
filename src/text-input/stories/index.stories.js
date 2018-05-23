@@ -12,7 +12,7 @@ import { Pane, Card } from '../../layers'
 import { Button } from '../../buttons'
 
 const Description = props => (
-  <Text is="p" marginTop={0} size={300} color="extraMuted" {...props} />
+  <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 )
 
 class Manager extends React.Component {
@@ -135,7 +135,7 @@ storiesOf('text-input', module)
   .add('Settings example', () => {
     return (
       <Pane
-        appearance="tint1"
+        background="tint1"
         padding={40}
         height="100vh"
         boxSizing="border-box"

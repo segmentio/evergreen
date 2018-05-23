@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
-import { SearchIcon } from '../../icons'
+import { Icon } from '../../icon'
 import { colors } from '../../colors'
 import TableHeaderCell from './TableHeaderCell'
 
@@ -72,7 +72,13 @@ export default class SearchTableHeaderCell extends PureComponent {
 
     return (
       <TableHeaderCell {...props}>
-        <SearchIcon marginLeft={-8} marginTop={-0.5} iconSize={12} />
+        <Icon
+          icon="search"
+          color="muted"
+          marginLeft={2}
+          marginRight={10}
+          size={12}
+        />
         <Text
           is="input"
           size={300}

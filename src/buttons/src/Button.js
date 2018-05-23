@@ -1,13 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
+import { dimensions, spacing, position, layout } from 'ui-box'
 import { Text } from '../../typography'
-import { IconMap, IconAim } from '../../icons'
-import {
-  getBorderRadiusForControlHeight,
-  getTextSizeForControlHeight,
-  getIconSizeForControlHeight
-} from '../../shared-styles'
+import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
 import { withTheme } from '../../theme'
 
@@ -15,9 +11,24 @@ export default withTheme(
   class Button extends PureComponent {
     static propTypes = {
       /**
-       * Composes the Text component as the base.
+       * Composes the dimensions spec from the Box primitivie.
        */
-      ...Text.propTypes,
+      ...dimensions.propTypes,
+
+      /**
+       * Composes the spacing spec from the Box primitivie.
+       */
+      ...spacing.propTypes,
+
+      /**
+       * Composes the position spec from the Box primitivie.
+       */
+      ...position.propTypes,
+
+      /**
+       * Composes the layout spec from the Box primitivie.
+       */
+      ...layout.propTypes,
 
       /**
        * The appearance of the button.
@@ -39,22 +50,12 @@ export default withTheme(
       /**
        * Sets an icon before the text. Can be any icon from Evergreen.
        */
-      iconBefore: PropTypes.oneOf(Object.keys(IconMap)),
-
-      /**
-       * The aim of the left icon. Not a big use case for this.
-       */
-      iconBeforeAim: PropTypes.oneOf(Object.keys(IconAim)),
+      iconBefore: PropTypes.string,
 
       /**
        * Sets an icon after the text. Can be any icon from Evergreen.
        */
-      iconAfter: PropTypes.oneOf(Object.keys(IconMap)),
-
-      /**
-       * The aim of the right icon. Useful to aim a triangle down.
-       */
-      iconAfterAim: PropTypes.oneOf(Object.keys(IconAim)),
+      iconAfter: PropTypes.string,
 
       /**
        * When true, the button is disabled.
@@ -77,8 +78,6 @@ export default withTheme(
     static defaultProps = {
       appearance: 'default',
       isActive: false,
-      iconBeforeAim: 'none',
-      iconAfterAim: 'none',
       height: 32,
       paddingTop: 0,
       paddingBottom: 0
@@ -114,18 +113,15 @@ export default withTheme(
 
         // Icons
         iconBefore: iconBeforeKey,
-        iconBeforeAim,
         iconAfter: iconAfterKey,
-        iconAfterAim,
 
         ...props
       } = this.props
       const themedClassName = theme.getButtonClassName(appearance, intent)
-      const textSize = getTextSizeForControlHeight({ height })
+      const textSize = theme.getTextSizeForControlHeight(height)
 
-      const borderRadius = getBorderRadiusForControlHeight({ height })
-      const iconHeight = height - 4
-      const iconSize = getIconSizeForControlHeight({ height: iconHeight })
+      const borderRadius = theme.getBorderRadiusForControlHeight(height)
+      const iconSize = theme.getIconSizeForButton(height)
 
       const pr =
         paddingRight !== undefined ? paddingRight : Math.round(height / 2) // eslint-disable-line no-negated-condition
@@ -134,24 +130,26 @@ export default withTheme(
 
       let iconBefore
       if (iconBeforeKey) {
-        iconBefore = React.createElement(IconMap[iconBeforeKey], {
-          aim: iconBeforeAim,
-          iconSize,
-          color: 'inherit',
-          size: iconHeight,
-          marginLeft: -Math.round(pl * 0.6)
-        })
+        iconBefore = (
+          <Icon
+            icon={iconBeforeKey}
+            size={iconSize}
+            marginLeft={-Math.round(pl * 0.2)}
+            marginRight={Math.round(iconSize * 0.7)}
+          />
+        )
       }
 
       let iconAfter
       if (iconAfterKey) {
-        iconAfter = React.createElement(IconMap[iconAfterKey], {
-          aim: iconAfterAim,
-          iconSize,
-          color: 'inherit',
-          size: iconHeight,
-          marginRight: -Math.round(pl * 0.6)
-        })
+        iconAfter = (
+          <Icon
+            icon={iconAfterKey}
+            size={iconSize}
+            marginRight={-Math.round(pl * 0.2)}
+            marginLeft={Math.round(iconSize * 0.7)}
+          />
+        )
       }
 
       return (

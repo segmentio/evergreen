@@ -1,55 +1,63 @@
 import React, { PureComponent } from 'react'
 import Box, { splitBoxProps } from 'ui-box'
-import { SearchIcon } from '../../icons'
-import { getIconSizeForControlHeight } from '../../shared-styles'
+import { Icon } from '../../icon'
 import { TextInput } from '../../text-input'
+import { withTheme } from '../../theme'
 import { StackingOrder } from '../../constants'
 
-export default class SearchInput extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the TextInput component as the base.
-     */
-    ...TextInput.propTypes
-  }
+export default withTheme(
+  class SearchInput extends PureComponent {
+    static propTypes = {
+      /**
+       * Composes the TextInput component as the base.
+       */
+      ...TextInput.propTypes
+    }
 
-  static defaultProps = {
-    height: 32,
-    appearance: 'default'
-  }
+    static defaultProps = {
+      height: 32,
+      appearance: 'default'
+    }
 
-  render() {
-    const { appearance, iconProps, disabled, height, ...props } = this.props
-    const { matchedProps, remainingProps } = splitBoxProps(props)
-    const { width = TextInput.defaultProps.width } = matchedProps
-    const iconSize = getIconSizeForControlHeight({ height })
-    return (
-      <Box
-        position="relative"
-        display="inline-flex"
-        height={height}
-        {...matchedProps}
-      >
-        <SearchIcon
-          pointerEvents="none"
-          position="absolute"
-          top="50%"
-          zIndex={StackingOrder.FOCUSED + 1}
-          marginTop={-0.5 * height}
-          iconSize={iconSize}
-          size={height}
-          disabled={disabled ? 'disabled' : 'default'}
-          {...iconProps}
-        />
-        <TextInput
+    render() {
+      const { theme, appearance, disabled, height, ...props } = this.props
+      const { matchedProps, remainingProps } = splitBoxProps(props)
+      const { width = TextInput.defaultProps.width } = matchedProps
+      const iconSize = theme.getIconSizeForInput(height)
+
+      return (
+        <Box
+          position="relative"
+          display="inline-flex"
           height={height}
-          paddingLeft={height}
-          appearance={appearance}
-          disable={disabled}
-          width={width}
-          {...remainingProps}
-        />
-      </Box>
-    )
+          {...matchedProps}
+        >
+          <Box
+            height={height}
+            width={height}
+            pointerEvents="none"
+            position="absolute"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Icon
+              icon="search"
+              color="default"
+              zIndex={StackingOrder.FOCUSED + 1}
+              size={iconSize}
+            />
+          </Box>
+          <TextInput
+            height={height}
+            paddingLeft={height}
+            appearance={appearance}
+            disable={disabled}
+            width={width}
+            {...remainingProps}
+          />
+        </Box>
+      )
+    }
   }
-}
+)

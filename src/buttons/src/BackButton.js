@@ -11,22 +11,12 @@ export default class BackButton extends PureComponent {
 
   static defaultProps = {
     /**
-     * Sets the arrow icon before the text.
+     * Composes the Button component as the base.
      */
-    iconBefore: 'arrow',
-
-    /**
-     * Aims the arrow to the left.
-     */
-    iconBeforeAim: 'left',
-
-    /**
-     * Default text is `Back`. Overwrite to something more specific if possible.
-     */
-    children: 'Back'
+    ...Button.defaultProps
   }
 
   render() {
-    return <Button {...this.props} />
+    return <Button iconBefore="arrow-left" {...this.props} />
   }
 }

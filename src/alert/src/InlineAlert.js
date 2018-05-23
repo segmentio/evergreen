@@ -30,13 +30,8 @@ export default withTheme(
       /**
        * The intent of the alert. This should always be set explicitly.
        */
-      intent: PropTypes.oneOf([
-        'none',
-        'success',
-        'warning',
-        'danger',
-        'question'
-      ]),
+      intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info'])
+        .isRequired,
 
       /**
        * When true, show a icon on the left matching the type.

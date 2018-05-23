@@ -37,7 +37,7 @@
   <Alert
     appearance="card"
     marginBottom={32}
-    type="question"
+    type="info"
     title="There are over 180 integrations available."
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

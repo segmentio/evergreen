@@ -250,7 +250,7 @@ class Dialog extends React.Component {
                 <Pane
                   padding={16}
                   flexShrink={0}
-                  borderBottom="extraMuted"
+                  borderBottom="muted"
                   display="flex"
                   alignItems="center"
                 >
@@ -276,7 +276,7 @@ class Dialog extends React.Component {
                 </Pane>
 
                 {hasFooter && (
-                  <Pane borderTop="extraMuted" clearfix>
+                  <Pane borderTop="muted" clearfix>
                     <Pane padding={16} float="right">
                       {/* Cancel should be first to make sure focus gets on it first. */}
                       {hasCancel && (

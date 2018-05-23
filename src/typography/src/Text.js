@@ -35,32 +35,10 @@ export default withTheme(
       fontFamily: 'ui'
     }
 
-    getFontFamily = fontFamily => {
-      const { theme } = this.props
-      /**
-       * Allow for passing in a custom fontFamily not in the theme.
-       */
-      return theme.fontFamilies[fontFamily] || fontFamily
-    }
-
-    getTextColor = color => {
-      const { theme } = this.props
-      /**
-       * Allow for passing in a custom fontFamily not in the theme.
-       */
-      return theme.colors.text[color] || color
-    }
-
-    getTextStyle = size => {
-      const { theme } = this.props
-
-      return theme.typography.text[String(size)]
-    }
-
     render() {
       const { theme, size, color, fontFamily, marginTop, ...props } = this.props
 
-      const { marginTop: defaultMarginTop, ...textStyle } = this.getTextStyle(
+      const { marginTop: defaultMarginTop, ...textStyle } = theme.getTextStyle(
         size
       )
 
@@ -70,8 +48,8 @@ export default withTheme(
       return (
         <Box
           is="span"
-          color={this.getTextColor(color)}
-          fontFamily={this.getFontFamily(fontFamily)}
+          color={theme.getTextColor(color)}
+          fontFamily={theme.getFontFamily(fontFamily)}
           marginTop={finalMarginTop}
           {...textStyle}
           {...props}

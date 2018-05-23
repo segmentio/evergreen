@@ -5,7 +5,7 @@ import { Textarea } from '../../textarea'
 import { Label, Text } from '../../typography'
 
 const Description = props => (
-  <Text is="p" marginTop={0} size={300} color="extraMuted" {...props} />
+  <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 )
 
 storiesOf('textarea', module).add('Textarea', () => (

@@ -87,7 +87,7 @@ export default class Checkbox extends PureComponent {
           <Text
             marginLeft={8}
             size={300}
-            color={disabled ? 'extraMuted' : 'default'}
+            color={disabled ? 'muted' : 'default'}
           >
             {label}
           </Text>

@@ -126,7 +126,7 @@ export default class SelectMenuContent extends PureComponent {
             <Pane
               display="flex"
               alignItems="center"
-              borderBottom="muted"
+              borderBottom="default"
               padding={8}
               height={headerHeight}
               boxSizing="border-box"
@@ -135,8 +135,8 @@ export default class SelectMenuContent extends PureComponent {
                 <Heading size={400}>{title}</Heading>
               </Pane>
               <IconButton
-                icon="close"
-                appearance="ghost"
+                icon="cross"
+                appearance="minimal"
                 height={24}
                 onClick={close}
               />

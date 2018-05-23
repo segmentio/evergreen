@@ -117,7 +117,7 @@ PaneExample.propTypes = {
 const appearanceOptions = [
   {
     title: 'Tint 1',
-    component: <PaneExample appearance="tint1">tint1</PaneExample>,
+    component: <PaneExample background="tint1">tint1</PaneExample>,
     description: (
       <p>
         This is the lightest tint and should be used before moving up to{' '}
@@ -129,7 +129,7 @@ const appearanceOptions = [
   },
   {
     title: 'Tint 2',
-    component: <PaneExample appearance="tint2">tint2</PaneExample>,
+    component: <PaneExample background="tint2">tint2</PaneExample>,
     description: <p>Often useful for backgrounds.</p>
   },
   {

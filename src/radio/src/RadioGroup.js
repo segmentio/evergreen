@@ -106,11 +106,7 @@ export default class RadioGroup extends PureComponent {
     return (
       <Pane role="group" aria-label={label} {...props}>
         {label && (
-          <Text
-            size={size === 12 ? 200 : 300}
-            color="extraMuted"
-            fontWeight={500}
-          >
+          <Text size={size === 12 ? 200 : 300} color="muted" fontWeight={500}>
             {label}
           </Text>
         )}

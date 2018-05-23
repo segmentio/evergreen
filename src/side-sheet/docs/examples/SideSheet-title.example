@@ -15,7 +15,7 @@
             <Heading size={600}>Title</Heading>
           </Pane>
         </Pane>
-        <Pane flex="1" overflowY="scroll" appearance="tint1" padding={16}>
+        <Pane flex="1" overflowY="scroll" background="tint1" padding={16}>
           <Card
             backgroundColor="white"
             elevation={0}

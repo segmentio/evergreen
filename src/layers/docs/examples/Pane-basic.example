@@ -1,7 +1,7 @@
 <Pane
   is="section"
   innerRef={(ref) => console.log(ref)}
-  appearance="tint2"
+  background="tint2"
   border="muted"
   marginLeft={12}
   marginY={24}

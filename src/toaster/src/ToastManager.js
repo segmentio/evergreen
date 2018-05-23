@@ -77,7 +77,7 @@ export default class ToastManager extends React.PureComponent {
       hasCloseButton: settings.hasCloseButton || true,
       duration: settings.duration || 5,
       close: () => this.closeToast(id),
-      type: settings.type
+      intent: settings.intent
     }
   }
 

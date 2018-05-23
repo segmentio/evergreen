@@ -1,6 +1,6 @@
 <Pane clearfix>
   <Pane
-    appearance="tint1"
+    background="tint1"
     float="left"
     width={120}
     height={120}
@@ -12,7 +12,7 @@
     <Text color="inherit">tint1</Text>
   </Pane>
   <Pane
-    appearance="tint2"
+    background="tint2"
     float="left"
     width={120}
     height={120}

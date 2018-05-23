@@ -20,7 +20,7 @@
   />
   <Alert
     marginBottom={32}
-    type="question"
+    type="info"
     title="There are over 180 integrations available."
   />
 </Box>

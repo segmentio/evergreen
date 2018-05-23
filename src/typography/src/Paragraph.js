@@ -72,7 +72,8 @@ export default withTheme(
           is="p"
           color={this.getTextColor(color)}
           fontFamily={this.getFontFamily(fontFamily)}
-          marginTop={finalMarginTop}
+          marginTop={finalMarginTop || 0}
+          marginBottom={0}
           {...textStyle}
           {...props}
         />

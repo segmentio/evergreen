@@ -36,33 +36,22 @@ export default withTheme(
       size: 500
     }
 
-    getHeadingStyle = () => {
-      const { theme, size } = this.props
-
-      /**
-       * Typography.headings is a required API.
-       */
-      return theme.typography.headings[String(size)]
-    }
-
     render() {
       const { theme, marginTop, size, ...props } = this.props
       const {
         marginTop: defaultMarginTop,
         ...headingStyle
-      } = this.getHeadingStyle()
+      } = theme.getHeadingStyle(size)
 
       let finalMarginTop = marginTop
       if (marginTop === 'default') {
         finalMarginTop = defaultMarginTop
       }
 
-      console.log('finalMarginTop', finalMarginTop)
-
       return (
         <Box
           is="h2"
-          marginTop={finalMarginTop}
+          marginTop={finalMarginTop || 0}
           marginBottom={0}
           {...headingStyle}
           {...props}

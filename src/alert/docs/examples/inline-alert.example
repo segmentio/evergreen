@@ -8,7 +8,7 @@
   <InlineAlert type="danger" marginBottom={16}>
     We weren’t able to save your changes.
   </InlineAlert>
-  <InlineAlert type="question" marginBottom={16}>
+  <InlineAlert type="info" marginBottom={16}>
     There are over 200 integrations available.
   </InlineAlert>
 </Box>
