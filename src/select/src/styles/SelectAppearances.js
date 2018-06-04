@@ -56,6 +56,18 @@ const SelectAppearances = {
       backgroundColor: colors.blue['10A'],
       boxShadow: `inset 0 0 0 1px ${colors.blue['80A']}`
     }
+  },
+
+  minimal: {
+    ...baseStyle,
+    '[disabled]': {
+      cursor: 'not-allowed',
+      opacity: 0.8,
+      backgroundImage: 'none',
+      backgroundColor: 'transparent',
+      boxShadow: 'none',
+      color: colors.neutral['300A']
+    }
   }
 }
 
