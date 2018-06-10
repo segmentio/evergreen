@@ -16,26 +16,29 @@
               selectedNames: selected.toString().substr(0, 25) + '...'
             })
           }}
-                onDeselect={item => {
-            let DeselectedItemIndex = state.selected.indexOf(item.value);
-            let selectedItems = state.selected.filter((_item, i) => i !== DeselectedItemIndex);
-          
-            let selectedItemsLength = selectedItems.length;
-            let selectedNames = "";
+          onDeselect={item => {
+            const DeselectedItemIndex = state.selected.indexOf(item.value)
+            const selectedItems = state.selected.filter(
+              (_item, i) => i !== DeselectedItemIndex
+            )
+
+            const selectedItemsLength = selectedItems.length
+            let selectedNames = ''
             switch (true) {
-              case (selectedItemsLength == 0):
-                selectedNames = "";
-                break;
-              case (selectedItemsLength == 1):
-                selectedNames = selectedItems.toString();
-                break;
-              case (selectedItemsLength > 1):
-                selectedNames = selectedItems.toString().substr(0, 25) + '...';
-                break;
+              case selectedItemsLength === 0:
+                selectedNames = ''
+                break
+              case selectedItemsLength === 1:
+                selectedNames = selectedItems.toString()
+                break
+              case selectedItemsLength > 1:
+                selectedNames = selectedItems.toString().substr(0, 25) + '...'
+                break
+              default:
+                break
             }
-            setState({ selected: selectedItems, selectedNames: selectedNames })
-          }
-               }
+            setState({ selected: selectedItems, selectedNames })
+          }}
               >
              <Button>{state.selectedNames || 'Select multiple...'}</Button>
      </SelectMenu>
