@@ -1,0 +1,40 @@
+<Manager>
+       {({ setState, state }) => (
+              <SelectMenu
+                title="Select name"
+                options={options}
+                selected={state.selected}
+                onSelect={item => {
+                  let selected;
+                  if (!Array.isArray(state.selected)) {
+                    selected = arrify(item.value);
+                  } else {
+                    selected = [...state.selected, item.value];
+                  }
+                  setState({ selected: selected, selectedNames: selected.toString().substr(0,25) + '...' });
+                }}
+                onDeselect={item => {
+            let DeselectedItemIndex = state.selected.indexOf(item.value);
+            let selectedItems = state.selected.filter((_item, i) => i !== DeselectedItemIndex);
+          
+            let selectedItemsLength = selectedItems.length;
+            let selectedNames = "";
+            switch (true) {
+              case (selectedItemsLength == 0):
+                selectedNames = "";
+                break;
+              case (selectedItemsLength == 1):
+                selectedNames = selectedItems.toString();
+                break;
+              case (selectedItemsLength > 1):
+                selectedNames = selectedItems.toString().substr(0, 25) + '...';
+                break;
+            }
+            setState({ selected: selectedItems, selectedNames: selectedNames })
+          }
+               }
+              >
+             <Button>{state.selectedNames || 'Select multiple...'}</Button>
+     </SelectMenu>
+  )}
+</Manager>

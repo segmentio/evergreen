@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react'
+import arrify from 'arrify'
 import React from 'react'
 import Box from 'ui-box'
 import options from '../docs/starwars-options'
@@ -19,9 +20,54 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
           options={options}
           selected={state.selected}
           onSelect={item => setState({ selected: item.value })}
-          onDeSelect={item => console.log(item)}
         >
           <Button>{state.selected || 'Select name...'}</Button>
+        </SelectMenu>
+      )}
+    </Manager>
+    <Manager>
+      {({ setState, state }) => (
+        <SelectMenu
+          title="Select name"
+          options={options}
+          selected={state.selected}
+          onSelect={item => {
+            let selected
+            if (Array.isArray(state.selected)) {
+              selected = [...state.selected, item.value]
+            } else {
+              selected = arrify(item.value)
+            }
+            setState({
+              selected,
+              selectedNames: selected.toString().substr(0, 25) + '...'
+            })
+          }}
+          onDeselect={item => {
+            const DeselectedItemIndex = state.selected.indexOf(item.value)
+            const selectedItems = state.selected.filter(
+              (_item, i) => i !== DeselectedItemIndex
+            )
+
+            const selectedItemsLength = selectedItems.length
+            let selectedNames = ''
+            switch (true) {
+              case selectedItemsLength === 0:
+                selectedNames = ''
+                break
+              case selectedItemsLength === 1:
+                selectedNames = selectedItems.toString()
+                break
+              case selectedItemsLength > 1:
+                selectedNames = selectedItems.toString().substr(0, 25) + '...'
+                break
+              default:
+                break
+            }
+            setState({ selected: selectedItems, selectedNames })
+          }}
+        >
+          <Button>{state.selectedNames || 'Select multiple...'}</Button>
         </SelectMenu>
       )}
     </Manager>
