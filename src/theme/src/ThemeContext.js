@@ -1,5 +1,5 @@
 import React from 'react'
-import defaultTheme from './defaultTheme'
+import defaultTheme from './default-theme/'
 
 /**
  * Use React 16.3+ createContext API.

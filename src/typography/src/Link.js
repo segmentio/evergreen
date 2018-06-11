@@ -24,9 +24,9 @@ class Link extends PureComponent {
     target: PropTypes.string,
 
     /**
-     * The appearance of the Link. Can be blue, green or neutral.
+     * The color (and styling) of the Link. Can be default, blue, green or neutral.
      */
-    appearance: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
 
     /**
      * Theme provided by ThemeProvider.
@@ -35,18 +35,12 @@ class Link extends PureComponent {
   }
 
   static defaultProps = {
-    appearance: 'default'
-  }
-
-  getLinkAppearance = appearance => {
-    const { theme } = this.props
-
-    return theme.appearances.link[appearance]
+    color: 'default'
   }
 
   render() {
-    const { appearance, theme, ...props } = this.props
-    const css = this.getLinkAppearance(appearance)
+    const { color, theme, ...props } = this.props
+    const css = theme.getLinkClassName(color)
 
     return (
       <Text

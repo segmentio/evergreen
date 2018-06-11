@@ -113,11 +113,6 @@ class Dialog extends React.Component {
     confirmLabel: PropTypes.string,
 
     /**
-     * The type of the message.
-     */
-    type: PropTypes.oneOf(['default', 'danger']),
-
-    /**
      * When true, the confirm button is set to loading.
      */
     isConfirmLoading: PropTypes.bool,
@@ -169,7 +164,7 @@ class Dialog extends React.Component {
     hasHeader: true,
     hasFooter: true,
     hasCancel: true,
-    type: 'default',
+    intent: 'none',
     width: 560,
     topOffset: '12vh',
     minHeightContent: 114,
