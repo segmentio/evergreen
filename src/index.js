@@ -57,12 +57,8 @@ export {
   SelectMenuContent
 } from './select-menu'
 export {
-  CheckboxAppearances,
   controlBaseStyle,
   FillAppearances,
-  InputAppearances,
-  selectableRowStyle,
-  selectableTabStyle,
   getBorderRadiusForControlHeight,
   getBorderRadiusForTextSize,
   getIconSizeForControlHeight,
@@ -85,7 +81,7 @@ export {
   TextTableCell
 } from './table'
 export { SidebarTab, Tab, Tablist, TabNavigation } from './tabs'
-export { TextInput, TextInputField, TextInputAppearances } from './text-input'
+export { TextInput, TextInputField } from './text-input'
 export { Textarea } from './textarea'
 export { toaster } from './toaster'
 export { Tooltip } from './tooltip'

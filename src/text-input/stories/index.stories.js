@@ -2,11 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import {
-  TextInputField,
-  TextInput,
-  TextInputAppearances
-} from '../../text-input'
+import { TextInputField, TextInput } from '../../text-input'
 import { Text, Label, Heading } from '../../typography'
 import { Pane, Card } from '../../layers'
 import { Button } from '../../buttons'
@@ -34,7 +30,7 @@ class Manager extends React.Component {
 storiesOf('text-input', module)
   .add('TextInput', () => (
     <div>
-      {Object.keys(TextInputAppearances).map(appearance => (
+      {['default', 'neutral'].map(appearance => (
         <Box key={appearance} padding={40} float="left">
           <Heading marginBottom={24}>Appearance: {appearance}</Heading>
           <Box marginBottom={24} width={360}>

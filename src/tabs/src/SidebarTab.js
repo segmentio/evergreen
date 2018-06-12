@@ -3,7 +3,7 @@ import Box from 'ui-box'
 import { TriangleIcon } from '../../icons'
 import Tab from './Tab'
 
-export default class Tablist extends PureComponent {
+export default class SidebarTab extends PureComponent {
   static propTypes = {
     ...Tab.propTypes
   }
@@ -27,7 +27,7 @@ export default class Tablist extends PureComponent {
       <Tab
         isSelected={isSelected}
         height={height}
-        {...Tablist.styles}
+        {...SidebarTab.styles}
         {...props}
       >
         <Box is="span" flex="1">

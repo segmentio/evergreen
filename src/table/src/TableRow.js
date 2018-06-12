@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 import { Pane } from '../../layers'
-import { selectableRowStyle } from '../../shared-styles'
+import { withTheme } from '../../theme'
 
-export default class TableRow extends PureComponent {
+class TableRow extends PureComponent {
   static propTypes = {
     /**
      * Composes the Pane component as the base.
@@ -28,10 +29,27 @@ export default class TableRow extends PureComponent {
     /**
      * Manually set the TableRow to be highlighted.
      */
-    isHighlighted: PropTypes.bool
+    isHighlighted: PropTypes.bool,
+
+    /**
+     * The appearance of the table row. Default theme only support default.
+     */
+    appearance: PropTypes.string.isRequired,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired,
+
+    /**
+     * Class name passed to the button.
+     * Only use if you know what you are doing.
+     */
+    className: PropTypes.string
   }
 
   static defaultProps = {
+    appearance: 'default',
     onClick: () => {},
     onSelect: () => {},
     onKeyPress: () => {}
@@ -57,27 +75,33 @@ export default class TableRow extends PureComponent {
 
   render() {
     const {
+      theme,
+      className,
+
       children,
-      onClick, // Filter out onClick
-      onKeyPress, // Filter out onKeyPress
+      appearance,
+      // Filter out onClick + onKeyPress
+      onClick,
+      onKeyPress,
       isHighlighted,
       isSelectable,
       isSelected,
-      css = {},
       ...props
     } = this.props
 
+    const themedClassName = theme.getRowClassName(appearance)
+
     return (
       <Pane
+        className={cx(themedClassName, className)}
         display="flex"
+        aria-selected={isHighlighted}
+        aria-current={isSelected}
         {...(isSelectable
           ? {
-              'aria-selected': isHighlighted,
-              'aria-current': isSelected,
-              css: { ...selectableRowStyle, ...css },
               tabIndex: 0
             }
-          : { css })}
+          : {})}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}
         {...props}
@@ -87,3 +111,5 @@ export default class TableRow extends PureComponent {
     )
   }
 }
+
+export default withTheme(TableRow)

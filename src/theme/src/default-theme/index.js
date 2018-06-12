@@ -21,6 +21,8 @@ import getButtonAppearance from './getButtonAppearance'
 import getLinkAppearance from './getLinkAppearance'
 import getCheckboxAppearance from './getCheckboxAppearance'
 import getTextInputAppearance from './getTextInputAppearance'
+import getTabAppearance from './getTabAppearance'
+import getRowAppearance from './getRowAppearance'
 
 /**
  * Helper function for theming.
@@ -303,6 +305,20 @@ theme.getTextInputClassName = memoizeClassName(getTextInputAppearance)
  * @return {Object} the appearance class name.
  */
 theme.getTextareaClassName = theme.getTextInputClassName
+
+/**
+ * Get the className of a Tab.
+ * @param {String} appearance
+ * @return {Object} the appearance class name.
+ */
+theme.getTabClassName = memoizeClassName(getTabAppearance)
+
+/**
+ * Get the className of a Row.
+ * @param {String} appearance
+ * @return {Object} the appearance class name.
+ */
+theme.getRowClassName = memoizeClassName(getRowAppearance)
 
 theme.getTooltipProps = () => {
   return {
