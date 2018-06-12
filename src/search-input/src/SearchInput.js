@@ -21,7 +21,7 @@ class SearchInput extends PureComponent {
   render() {
     const { theme, appearance, disabled, height, ...props } = this.props
     const { matchedProps, remainingProps } = splitBoxProps(props)
-    const { width = TextInput.defaultProps.width } = matchedProps
+    const { width } = matchedProps
     const iconSize = theme.getIconSizeForInput(height)
 
     return (

@@ -52,9 +52,10 @@ const theme = {}
 
 /**
  * The property `theme.colors` is not a required property by Evergreen.
- * It's expoed for convenience and documentation.
+ * It's exposed for convenience and documentation.
  */
 theme.colors = colors
+theme.elevations = elevations
 
 /**
  * Controls include:
