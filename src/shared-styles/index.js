@@ -1,4 +1,3 @@
-export controlBaseStyle from './src/styles/controlBaseStyle'
 export FillAppearances from './src/styles/FillAppearances'
 export getBorderRadiusForControlHeight from './src/utils/getBorderRadiusForControlHeight'
 export getBorderRadiusForTextSize from './src/utils/getBorderRadiusForTextSize'

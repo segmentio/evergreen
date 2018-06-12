@@ -23,6 +23,7 @@ import getCheckboxAppearance from './getCheckboxAppearance'
 import getTextInputAppearance from './getTextInputAppearance'
 import getTabAppearance from './getTabAppearance'
 import getRowAppearance from './getRowAppearance'
+import getSelectAppearance from './getSelectAppearance'
 
 /**
  * Helper function for theming.
@@ -97,6 +98,7 @@ theme.getIconSizeForButton = height => {
 
 // Use the same for input components.
 theme.getIconSizeForInput = theme.getIconSizeForButton
+theme.getIconSizeForSelect = theme.getIconSizeForButton
 
 /**
  * Get the size for a icon in a IconButton with a certain height.
@@ -305,6 +307,13 @@ theme.getTextInputClassName = memoizeClassName(getTextInputAppearance)
  * @return {Object} the appearance class name.
  */
 theme.getTextareaClassName = theme.getTextInputClassName
+
+/**
+ * Get the className of a TextInput.
+ * @param {String} appearance
+ * @return {Object} the appearance class name.
+ */
+theme.getSelectClassName = memoizeClassName(getSelectAppearance)
 
 /**
  * Get the className of a Tab.

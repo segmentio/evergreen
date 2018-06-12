@@ -48,7 +48,7 @@ export {
   SegmentedControl,
   SegmentedControlAppearances
 } from './segmented-control'
-export { Select, SelectAppearances } from './select'
+export { Select } from './select'
 export {
   OptionShapePropType,
   OptionsList,
@@ -57,7 +57,6 @@ export {
   SelectMenuContent
 } from './select-menu'
 export {
-  controlBaseStyle,
   FillAppearances,
   getBorderRadiusForControlHeight,
   getBorderRadiusForTextSize,

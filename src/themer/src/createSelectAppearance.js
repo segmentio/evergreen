@@ -38,7 +38,10 @@ const createSelectAppearance = (items = {}) => {
   return {
     ...baseStyle,
     ...createAppearance(items.base),
-    [disabledState]: createAppearance(items.disabled),
+    [disabledState]: {
+      cursor: 'not-allowed',
+      ...createAppearance(items.disabled)
+    },
     [invalidState]: createAppearance(items.invalid),
     [hoverState]: createAppearance(items.hover),
     [focusState]: createAppearance(items.focus),

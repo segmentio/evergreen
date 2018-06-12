@@ -1,27 +1,81 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { dimensions, spacing, position, layout } from 'ui-box'
 import { Text } from '../../typography'
-import { TriangleIcon } from '../../icons'
-import {
-  getIconSizeForControlHeight,
-  getBorderRadiusForControlHeight,
-  getTextSizeForControlHeight
-} from '../../shared-styles'
-import SelectAppearances from './styles/SelectAppearances'
+import { Icon } from '../../icon'
+import { withTheme } from '../../theme'
 
-export default class Select extends PureComponent {
+class Select extends PureComponent {
   static propTypes = {
-    ...Box.propTypes,
+    /**
+     * Composes the dimensions spec from the Box primitivie.
+     */
+    ...dimensions.propTypes,
+
+    /**
+     * Composes the spacing spec from the Box primitivie.
+     */
+    ...spacing.propTypes,
+
+    /**
+     * Composes the position spec from the Box primitivie.
+     */
+    ...position.propTypes,
+
+    /**
+     * Composes the layout spec from the Box primitivie.
+     */
+    ...layout.propTypes,
+
+    /**
+     * The id attribute for the select.
+     */
     id: PropTypes.string,
+
+    /**
+     * The name attribute for the select.
+     */
     name: PropTypes.string,
+
+    /**
+     * The options that are passed to the select.
+     */
     children: PropTypes.node,
+
+    /**
+     * Function called when value changes.
+     */
     onChange: PropTypes.func,
+
+    /**
+     * The value of the select.
+     */
     value: PropTypes.any,
-    appearance: PropTypes.oneOf(Object.keys(SelectAppearances)),
+
+    /**
+     * When true, the select is required.
+     */
     required: PropTypes.bool,
+
+    /**
+     * When true, the select should auto focus.
+     */
     autofocus: PropTypes.bool,
-    isInvalid: PropTypes.bool
+
+    /**
+     * When true, the select is invalid.
+     */
+    isInvalid: PropTypes.bool,
+
+    /**
+     * The appearance of the select. The default theme only supports default.
+     */
+    appearance: PropTypes.string.required,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
@@ -31,6 +85,8 @@ export default class Select extends PureComponent {
 
   render() {
     const {
+      theme,
+
       id,
       name,
       height,
@@ -44,10 +100,11 @@ export default class Select extends PureComponent {
       appearance,
       ...props
     } = this.props
-    const appearanceStyle = SelectAppearances[appearance]
-    const textSize = getTextSizeForControlHeight({ height })
-    const borderRadius = getBorderRadiusForControlHeight({ height })
-    const iconSize = getIconSizeForControlHeight({ height })
+
+    const themedClassName = theme.getSelectClassName(appearance)
+    const textSize = theme.getTextSizeForControlHeight(height)
+    const borderRadius = theme.getBorderRadiusForControlHeight(height)
+    const iconSize = theme.getIconSizeForSelect(height)
 
     return (
       <Box
@@ -60,15 +117,15 @@ export default class Select extends PureComponent {
       >
         <Text
           is="select"
+          className={themedClassName}
           id={id}
           name={name}
           onChange={onChange}
           value={value}
-          {...(required ? { required: true } : {})}
-          {...(autofocus ? { autofocus: true } : {})}
-          {...(disabled ? { disabled: true } : {})}
-          {...(isInvalid ? { 'aria-invalid': true } : {})}
-          css={appearanceStyle}
+          required={required}
+          autofocus={autofocus}
+          disabled={disabled}
+          aria-invalid={isInvalid}
           size={textSize}
           borderRadius={borderRadius}
           textTransform="default"
@@ -76,20 +133,20 @@ export default class Select extends PureComponent {
         >
           {children}
         </Text>
-        <TriangleIcon
-          height={height}
-          aim="down"
-          padding={10}
+        <Icon
+          icon="caret-down"
+          color="default"
+          size={iconSize}
           boxSizing="border-box"
           position="absolute"
-          right={height >= 36 ? 4 : 0}
-          color={disabled ? 'disabled' : 'default'}
-          iconSize={iconSize}
-          css={{
-            pointerEvents: 'none'
-          }}
+          top="50%"
+          marginTop={-iconSize / 2}
+          right={height >= 36 ? 12 : 8}
+          css={{ pointerEvents: 'none' }}
         />
       </Box>
     )
   }
 }
+
+export default withTheme(Select)
