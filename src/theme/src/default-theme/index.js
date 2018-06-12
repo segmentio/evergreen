@@ -19,6 +19,8 @@ import paragraph from './paragraph'
 // --- appearances.
 import getButtonAppearance from './getButtonAppearance'
 import getLinkAppearance from './getLinkAppearance'
+import getCheckboxAppearance from './getCheckboxAppearance'
+import getTextInputAppearance from './getTextInputAppearance'
 
 /**
  * Helper function for theming.
@@ -263,16 +265,37 @@ const memoizeClassName = fn => {
  * Get the className of a Button|IconButton.
  * @param {String} appearance - default, primary, minimal.
  * @param {Intent} intent - none, success, warning, danger.
- * @return {Object} the appearance class name of the button.
+ * @return {Object} the appearance class name.
  */
 theme.getButtonClassName = memoizeClassName(getButtonAppearance)
 
 /**
  * Get the className of a Link.
  * @param {String} color
- * @return {Object} the appearance class name of the button.
+ * @return {Object} the appearance class name.
  */
 theme.getLinkClassName = memoizeClassName(getLinkAppearance)
+
+/**
+ * Get the className of a Checkbox.
+ * @param {String} appearance
+ * @return {Object} the appearance class name.
+ */
+theme.getCheckboxClassName = memoizeClassName(getCheckboxAppearance)
+
+/**
+ * Get the className of a Radio button.
+ * @param {String} appearance
+ * @return {Object} the appearance class name.
+ */
+theme.getRadioClassName = theme.getCheckboxClassName
+
+/**
+ * Get the className of a TextInput.
+ * @param {String} appearance
+ * @return {Object} the appearance class name.
+ */
+theme.getTextInputClassName = memoizeClassName(getTextInputAppearance)
 
 theme.getTooltipProps = () => {
   return {

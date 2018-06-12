@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
-import { CheckboxAppearances } from '../../shared-styles'
+import { withTheme } from '../../theme'
 
 const CircleIcon = ({ size, fill = 'currentColor', ...props }) => (
   <svg width={size} height={size} viewBox="0 0 10 10" {...props}>
@@ -15,7 +15,7 @@ CircleIcon.propTypes = {
   size: PropTypes.number
 }
 
-export default class Radio extends PureComponent {
+class Radio extends PureComponent {
   static propTypes = {
     /**
      * Composes some Box APIs.
@@ -74,10 +74,22 @@ export default class Radio extends PureComponent {
      * When true, the aria-invalid attribute is true.
      * Used for accessibility.
      */
-    isInvalid: PropTypes.bool.isRequired
+    isInvalid: PropTypes.bool.isRequired,
+
+    /**
+     * The appearance of the checkbox.
+     * The default theme only comes with a default style.
+     */
+    appearance: PropTypes.string,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
+    appearance: 'default',
     onChange: () => {},
     size: 12,
     isRequired: false,
@@ -86,6 +98,8 @@ export default class Radio extends PureComponent {
 
   render() {
     const {
+      theme,
+
       id,
       name,
       label,
@@ -96,9 +110,10 @@ export default class Radio extends PureComponent {
       value,
       size,
       isRequired,
+      appearance,
       ...props
     } = this.props
-    const appearanceStyle = CheckboxAppearances.default
+    const themedClassName = theme.getRadioClassName(appearance)
 
     return (
       <Box
@@ -110,6 +125,7 @@ export default class Radio extends PureComponent {
       >
         <Box
           is="input"
+          className={themedClassName}
           id={id}
           type="radio"
           name={name}
@@ -119,7 +135,6 @@ export default class Radio extends PureComponent {
           disabled={disabled}
           aria-invalid={isInvalid}
           required={isRequired}
-          css={appearanceStyle}
         />
         <Box
           boxSizing="border-box"
@@ -146,3 +161,5 @@ export default class Radio extends PureComponent {
     )
   }
 }
+
+export default withTheme(Radio)

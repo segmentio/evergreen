@@ -1,13 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 import { Text } from '../../typography'
-import {
-  getBorderRadiusForControlHeight,
-  getTextSizeForControlHeight,
-  InputAppearances
-} from '../../shared-styles'
+import { withTheme } from '../../theme'
 
-export default class TextInput extends PureComponent {
+class TextInput extends PureComponent {
   static propTypes = {
     /**
      * Composes the Text component as the base.
@@ -42,12 +39,23 @@ export default class TextInput extends PureComponent {
     /**
      * The appearance of the TextInput.
      */
-    appearance: PropTypes.oneOf(Object.keys(InputAppearances)),
+    appearance: PropTypes.string,
 
     /**
      * The width of the TextInput.
      */
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired,
+
+    /**
+     * Class name passed to the button.
+     * Only use if you know what you are doing.
+     */
+    className: PropTypes.string
   }
 
   static defaultProps = {
@@ -61,6 +69,9 @@ export default class TextInput extends PureComponent {
 
   render() {
     const {
+      theme,
+      className,
+
       css,
       width,
       height,
@@ -72,13 +83,14 @@ export default class TextInput extends PureComponent {
       spellCheck,
       ...props
     } = this.props
-    const appearanceStyle = InputAppearances[appearance]
-    const textSize = getTextSizeForControlHeight({ height })
-    const borderRadius = getBorderRadiusForControlHeight({ height })
+    const themedClassName = theme.getTextInputClassName(appearance)
+    const textSize = theme.getTextSizeForControlHeight(height)
+    const borderRadius = theme.getBorderRadiusForControlHeight(height)
 
     return (
       <Text
         is="input"
+        className={cx(themedClassName, className)}
         type="text"
         size={textSize}
         width={width}
@@ -92,9 +104,11 @@ export default class TextInput extends PureComponent {
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         {...(disabled ? { color: 'muted' } : {})}
-        css={{ ...css, ...appearanceStyle }}
+        css={css}
         {...props}
       />
     )
   }
 }
+
+export default withTheme(TextInput)

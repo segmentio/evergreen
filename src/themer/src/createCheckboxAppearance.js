@@ -7,6 +7,7 @@ const hoverState = '&:not([disabled]):hover + div'
 const focusState = '&:not([disabled]):focus + div'
 const activeState = '&:not([disabled]):active + div'
 const checkedState = '&:checked + div'
+const checkedHoverState = '&:not([disabled]):checked:hover + div'
 const checkedActiveState = '&:not([disabled]):checked:active + div'
 const checkedDisabledState = '&[disabled]:checked + div'
 
@@ -52,6 +53,7 @@ const createCheckboxAppearance = (items = {}) => {
       'disabled',
       'checked',
       'checkedDisabled',
+      'checkedHover',
       'checkedActive'
     ],
     cb: prop => {
@@ -64,20 +66,16 @@ const createCheckboxAppearance = (items = {}) => {
 
   return {
     ...hiddenCheckboxStyle,
-    '& + div > svg': {
-      display: 'none'
-    },
-    [defaultState]: {
-      ...baseStyle,
-      ...createAppearance(items.base)
-    },
+    '& + div > svg': { display: 'none' },
+    [defaultState]: { ...baseStyle, ...createAppearance(items.base) },
     [hoverState]: createAppearance(items.hover),
     [focusState]: createAppearance(items.focus),
     [activeState]: createAppearance(items.active),
     [disabledState]: createAppearance(items.disabled),
-    [checkedState]: {
+    [checkedState]: { ...checkedStyles, ...createAppearance(items.checked) },
+    [checkedHoverState]: {
       ...checkedStyles,
-      ...createAppearance(items.checked)
+      ...createAppearance(items.checkedHover)
     },
     [checkedDisabledState]: {
       ...checkedStyles,

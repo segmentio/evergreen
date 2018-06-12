@@ -37,7 +37,10 @@ const createInputAppearance = (items = {}) => {
       zIndex: StackingOrder.FOCUSED,
       ...createAppearance(items.focus)
     },
-    [disabledState]: createAppearance(items.disabled)
+    [disabledState]: {
+      cursor: 'not-allowed',
+      ...createAppearance(items.disabled)
+    }
   }
 }
 
