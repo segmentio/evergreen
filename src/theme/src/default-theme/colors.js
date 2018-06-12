@@ -7,20 +7,6 @@ import scales from './scales'
  */
 export default {
   /**
-   * Used for Alerts and other (future) componentes that express intent.
-   * @property {string} intent.info - Required property.
-   * @property {string} intent.success - Required property.
-   * @property {string} intent.danger - Required property.
-   * @property {string} intent.warning - Required property.
-   */
-  intent: {
-    info: palette.blue.base,
-    success: palette.green.base,
-    danger: palette.red.base,
-    warning: palette.orange.base
-  },
-
-  /**
    * Available on Pane as `<Pane background="tint1" />`
    * @property {string} background.tint1 - Lightest tinted background color. Required property.
    * @property {string} background.tint2 - Slightly darker tinted background color. Required property.
@@ -87,7 +73,16 @@ export default {
   },
 
   /**
-   * @property {string} overlay - Overlay background color.
+   * Used for Alerts and other (future) componentes that express intent.
+   * @property {string} intent.info - Required property.
+   * @property {string} intent.success - Required property.
+   * @property {string} intent.danger - Required property.
+   * @property {string} intent.warning - Required property.
    */
-  overlay: scales.neutral.N8A
+  intent: {
+    info: palette.blue.base,
+    success: palette.green.base,
+    danger: palette.red.base,
+    warning: palette.orange.base
+  }
 }

@@ -11,7 +11,7 @@ const Description = props => (
 const appearance = 'default'
 
 storiesOf('select', module).add('Select', () => (
-  <div>
+  <Box padding={48}>
     <Box marginBottom={24} width={360}>
       <Label htmlFor={32} size={400} display="block">
         Height 32 (default)
@@ -98,5 +98,5 @@ storiesOf('select', module).add('Select', () => (
         <option>Kiwi</option>
       </Select>
     </Box>
-  </div>
+  </Box>
 ))

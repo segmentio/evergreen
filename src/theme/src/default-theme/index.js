@@ -29,6 +29,7 @@ import getSelectAppearance from './getSelectAppearance'
 import getSegmentedControlRadioAppearance from './getSegmentedControlRadioAppearance'
 import getSwitchAppearance from './getSwitchAppearance'
 import getAlertAppearance from './getAlertAppearance'
+import getCodeAppearance from './getCodeAppearance'
 
 /**
  * Helper function for theming.
@@ -65,7 +66,7 @@ theme.elevations = elevations
 /**
  * Required properties.
  */
-theme.overlayBackgroundColor = colors.overlay
+theme.overlayBackgroundColor = scales.neutral.N7A
 theme.spinnerColor = scales.neutral.N7A
 
 /**
@@ -266,7 +267,7 @@ const memoizeClassName = fn => {
   // Return the wrapped function.
   return (...args) => {
     // Creat a key by joining all args.
-    const key = args.join('_')
+    const key = args.join('_') || '__no_args__'
 
     // Check if is already memoized, if so return the result.
     if (memo[key]) return memo[key]
@@ -280,80 +281,87 @@ const memoizeClassName = fn => {
 }
 
 /**
- * Get the className of a Button|IconButton.
+ * Get the className of a `Code` text component.
+ * @param {String} appearance - default, minimal.
+ * @return {String} the appearance class name.
+ */
+theme.getCodeClassName = memoizeClassName(getCodeAppearance)
+
+/**
+ * Get the className of a `Button`|`IconButton`.
  * @param {String} appearance - default, primary, minimal.
  * @param {Intent} intent - none, success, warning, danger.
- * @return {Object} the appearance class name.
+ * @return {String} the appearance class name.
  */
 theme.getButtonClassName = memoizeClassName(getButtonAppearance)
 
 /**
- * Get the className of a Link.
+ * Get the className of a `Link`.
  * @param {String} color
- * @return {Object} the appearance class name.
+ * @return {String} the appearance class name.
  */
 theme.getLinkClassName = memoizeClassName(getLinkAppearance)
 
 /**
- * Get the className of a Checkbox.
+ * Get the className of a `Checkbox`.
  * @param {String} appearance
  * @return {Object} the appearance class name.
  */
 theme.getCheckboxClassName = memoizeClassName(getCheckboxAppearance)
 
 /**
- * Get the className of a Radio button.
+ * Get the className of a `Radio` button.
  * @param {String} appearance
- * @return {Object} the appearance class name.
+ * @return {String} the appearance class name.
  */
 theme.getRadioClassName = theme.getCheckboxClassName
 
 /**
- * Get the className of a Switch.
+ * Get the className of a `Switch`.
  * @param {String} appearance
- * @return {Object} the appearance class name.
+ * @return {String} the appearance class name.
  */
 theme.getSwitchClassName = memoizeClassName(getSwitchAppearance)
 
 /**
- * Get the className of a TextInput.
+ * Get the className of a `TextInput`.
  * @param {String} appearance
- * @return {Object} the appearance class name.
+ * @return {String} the appearance class name.
  */
 theme.getTextInputClassName = memoizeClassName(getTextInputAppearance)
 
 /**
- * Get the className of a Textarea.
+ * Get the className of a `Textarea`.
  * @param {String} appearance
- * @return {Object} the appearance class name.
+ * @return {String} the appearance class name.
  */
 theme.getTextareaClassName = theme.getTextInputClassName
 
 /**
- * Get the className of a TextInput.
+ * Get the className of a `TextInput`.
  * @param {String} appearance
- * @return {Object} the appearance class name.
+ * @return {String} the appearance class name.
  */
 theme.getSelectClassName = memoizeClassName(getSelectAppearance)
 
 /**
- * Get the className of a Tab.
+ * Get the className of a `Tab`.
  * @param {String} appearance
- * @return {Object} the appearance class name.
+ * @return {String} the appearance class name.
  */
 theme.getTabClassName = memoizeClassName(getTabAppearance)
 
 /**
- * Get the className of a Row.
+ * Get the className of a `Row`.
  * @param {String} appearance
- * @return {Object} the appearance class name.
+ * @return {String} the appearance class name.
  */
 theme.getRowClassName = memoizeClassName(getRowAppearance)
 
 /**
- * Get the className of a SegmentedControlRadio.
+ * Get the className of a `SegmentedControlRadio`.
  * @param {String} appearance
- * @return {Object} the appearance class name.
+ * @return {String} the appearance class name.
  */
 theme.getSegmentedControlRadioClassName = memoizeClassName(
   getSegmentedControlRadioAppearance
