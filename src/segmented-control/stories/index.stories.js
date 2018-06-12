@@ -22,6 +22,7 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
     >
       {({ state, setState }) => (
         <SegmentedControl
+          name="time"
           width={240}
           options={state.options}
           value={state.value}
@@ -37,6 +38,7 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
     >
       {({ state, setState }) => (
         <SegmentedControl
+          name="switch"
           marginTop={24}
           width={80}
           height={24}

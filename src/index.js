@@ -44,10 +44,7 @@ export { Portal } from './portal'
 export { Positioner, Position } from './positioner'
 export { Radio, RadioGroup } from './radio'
 export { SearchInput } from './search-input'
-export {
-  SegmentedControl,
-  SegmentedControlAppearances
-} from './segmented-control'
+export { SegmentedControl } from './segmented-control'
 export { Select } from './select'
 export {
   OptionShapePropType,

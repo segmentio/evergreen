@@ -24,6 +24,7 @@ import getTextInputAppearance from './getTextInputAppearance'
 import getTabAppearance from './getTabAppearance'
 import getRowAppearance from './getRowAppearance'
 import getSelectAppearance from './getSelectAppearance'
+import getSegmentedControlRadioAppearance from './getSegmentedControlRadioAppearance'
 
 /**
  * Helper function for theming.
@@ -328,6 +329,15 @@ theme.getTabClassName = memoizeClassName(getTabAppearance)
  * @return {Object} the appearance class name.
  */
 theme.getRowClassName = memoizeClassName(getRowAppearance)
+
+/**
+ * Get the className of a SegmentedControlRadio.
+ * @param {String} appearance
+ * @return {Object} the appearance class name.
+ */
+theme.getSegmentedControlRadioClassName = memoizeClassName(
+  getSegmentedControlRadioAppearance
+)
 
 theme.getTooltipProps = () => {
   return {

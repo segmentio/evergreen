@@ -1,15 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { css } from 'ui-box'
-import { colors } from '../../colors'
+import Box from 'ui-box'
+import { css } from 'glamor'
+import cx from 'classnames'
 import { Text } from '../../typography'
-import {
-  getTextSizeForControlHeight,
-  getBorderRadiusForControlHeight
-} from '../../shared-styles'
-import SegmentedControlAppearances from './styles/SegmentedControlAppearances'
-
-const keysSegmentedControlAppearances = Object.keys(SegmentedControlAppearances)
+import { withTheme } from '../../theme'
 
 const labelClass = css({
   display: 'flex',
@@ -46,7 +41,7 @@ const offscreenCss = css({
   clip: 'rect(0 0 0 0)'
 })
 
-export default class SegmentedControlRadio extends PureComponent {
+class SegmentedControlRadio extends PureComponent {
   static propTypes = {
     /**
      * The name attribute of the radio input.
@@ -81,7 +76,7 @@ export default class SegmentedControlRadio extends PureComponent {
     /**
      * The appearance of the control. Currently only `default` is possible.
      */
-    appearance: PropTypes.oneOf(keysSegmentedControlAppearances).isRequired,
+    appearance: PropTypes.string.isRequired,
 
     /**
      * When true, this item is the first item.
@@ -91,11 +86,18 @@ export default class SegmentedControlRadio extends PureComponent {
     /**
      * When true, this item is the last item.
      */
-    isLastItem: PropTypes.bool
+    isLastItem: PropTypes.bool,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   render() {
     const {
+      theme,
+
       name,
       label,
       value,
@@ -107,20 +109,15 @@ export default class SegmentedControlRadio extends PureComponent {
       isLastItem
     } = this.props
 
-    const textSize = getTextSizeForControlHeight({ height })
-    const borderRadius = getBorderRadiusForControlHeight({ height })
-    const styles = SegmentedControlAppearances[appearance]
+    const themedClassName = theme.getSegmentedControlRadioClassName(appearance)
+    const textSize = theme.getTextSizeForControlHeight(height)
+    const borderRadius = theme.getBorderRadiusForControlHeight(height)
 
     return (
       <Box
         is="label"
-        className={`${wrapperClass}`}
-        css={styles}
-        {...(checked
-          ? {
-              'data-active': true
-            }
-          : {})}
+        className={cx(wrapperClass.toString(), themedClassName)}
+        data-active={checked}
         {...(isFirstItem
           ? {
               borderTopLeftRadius: borderRadius,
@@ -142,15 +139,12 @@ export default class SegmentedControlRadio extends PureComponent {
           checked={checked}
           onChange={e => onChange(e.target.value)}
         />
-        <Text
-          fontWeight={500}
-          size={textSize}
-          className={`${labelClass}`}
-          {...(checked ? { color: colors.blue['500'] } : {})}
-        >
+        <Text fontWeight={500} size={textSize} className={`${labelClass}`}>
           {label}
         </Text>
       </Box>
     )
   }
 }
+
+export default withTheme(SegmentedControlRadio)
