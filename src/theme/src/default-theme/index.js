@@ -341,6 +341,9 @@ theme.getSegmentedControlRadioClassName = memoizeClassName(
   getSegmentedControlRadioAppearance
 )
 
+theme.avatarColors = Object.keys(FillAppearances.solid)
+theme.badgeColors = theme.avatarColors
+
 /**
  * @param {Bool} isSolid
  * @param {String} color — automatic or actual color
@@ -358,6 +361,8 @@ theme.getAvatarProps = ({ isSolid, color, hashValue }) => {
 
   return appearances[color]
 }
+
+theme.getBadgeProps = theme.getAvatarProps
 
 /**
  * @param {Number} size

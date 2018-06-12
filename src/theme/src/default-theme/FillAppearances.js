@@ -44,31 +44,31 @@ FillAppearances.subtle = {
     backgroundColor: palette.neutral.light
   },
   blue: {
-    color: colors.text.default,
+    color: palette.blue.dark,
     backgroundColor: palette.blue.light
   },
   red: {
-    color: colors.text.default,
+    color: palette.red.dark,
     backgroundColor: palette.red.light
   },
   orange: {
-    color: colors.text.default,
+    color: palette.orange.dark,
     backgroundColor: palette.orange.light
   },
   yellow: {
-    color: colors.text.default,
+    color: palette.yellow.dark,
     backgroundColor: palette.yellow.light
   },
   green: {
-    color: colors.text.default,
+    color: palette.green.dark,
     backgroundColor: palette.green.light
   },
   teal: {
-    color: colors.text.default,
+    color: palette.teal.dark,
     backgroundColor: palette.teal.light
   },
   purple: {
-    color: colors.text.default,
+    color: palette.purple.dark,
     backgroundColor: palette.purple.light
   }
 }

@@ -53,7 +53,6 @@ export {
   SelectMenu,
   SelectMenuContent
 } from './select-menu'
-export { FillAppearances } from './shared-styles'
 export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
 export { Switch } from './switch'

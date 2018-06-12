@@ -105,7 +105,7 @@ class Avatar extends PureComponent {
       const hashValue = globalHash(propsHashValue || name)
       return theme.getAvatarProps({ isSolid, color, hashValue })
     }
-    console.log(color)
+
     return theme.getAvatarProps({ isSolid, color })
   }
 
