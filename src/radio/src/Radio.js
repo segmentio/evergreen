@@ -80,7 +80,7 @@ class Radio extends PureComponent {
      * The appearance of the checkbox.
      * The default theme only comes with a default style.
      */
-    appearance: PropTypes.string,
+    appearance: PropTypes.string.isRequired,
 
     /**
      * Theme provided by ThemeProvider.

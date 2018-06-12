@@ -5,6 +5,8 @@ const whitelist = [
   'backgroundColor',
   'backgroundImage',
 
+  'borderRadius',
+
   'transition',
   'boxShadow',
   'opacity',

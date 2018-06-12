@@ -6,6 +6,7 @@ import createLinkAppearance from './createLinkAppearance'
 import createTabAppearance from './createTabAppearance'
 import createRowAppearance from './createRowAppearance'
 import createSegmentedControlRadioAppearance from './createSegmentedControlRadioAppearance'
+import createSwitchAppearance from './createSwitchAppearance'
 
 /**
  * Themer is an object with a set of functions for creating custom themes.
@@ -18,5 +19,6 @@ export default {
   createLinkAppearance,
   createTabAppearance,
   createRowAppearance,
-  createSegmentedControlRadioAppearance
+  createSegmentedControlRadioAppearance,
+  createSwitchAppearance
 }

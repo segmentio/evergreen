@@ -26,6 +26,7 @@ import getTabAppearance from './getTabAppearance'
 import getRowAppearance from './getRowAppearance'
 import getSelectAppearance from './getSelectAppearance'
 import getSegmentedControlRadioAppearance from './getSegmentedControlRadioAppearance'
+import getSwitchAppearance from './getSwitchAppearance'
 
 /**
  * Helper function for theming.
@@ -296,6 +297,13 @@ theme.getCheckboxClassName = memoizeClassName(getCheckboxAppearance)
  * @return {Object} the appearance class name.
  */
 theme.getRadioClassName = theme.getCheckboxClassName
+
+/**
+ * Get the className of a Switch.
+ * @param {String} appearance
+ * @return {Object} the appearance class name.
+ */
+theme.getSwitchClassName = memoizeClassName(getSwitchAppearance)
 
 /**
  * Get the className of a TextInput.
