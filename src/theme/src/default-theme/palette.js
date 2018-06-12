@@ -53,7 +53,7 @@ export default {
   purple: {
     lightest: '#f8f7fc',
     light: '#eae7f8',
-    base: '#735dd0;',
+    base: '#735dd0',
     dark: '#37248f'
   }
 }

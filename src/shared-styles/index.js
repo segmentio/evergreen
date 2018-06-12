@@ -1,5 +1,1 @@
 export FillAppearances from './src/styles/FillAppearances'
-export getBorderRadiusForControlHeight from './src/utils/getBorderRadiusForControlHeight'
-export getBorderRadiusForTextSize from './src/utils/getBorderRadiusForTextSize'
-export getIconSizeForControlHeight from './src/utils/getIconSizeForControlHeight'
-export getTextSizeForControlHeight from './src/utils/getTextSizeForControlHeight'

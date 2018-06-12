@@ -53,13 +53,7 @@ export {
   SelectMenu,
   SelectMenuContent
 } from './select-menu'
-export {
-  FillAppearances,
-  getBorderRadiusForControlHeight,
-  getBorderRadiusForTextSize,
-  getIconSizeForControlHeight,
-  getTextSizeForControlHeight
-} from './shared-styles'
+export { FillAppearances } from './shared-styles'
 export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
 export { Switch } from './switch'

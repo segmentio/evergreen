@@ -17,6 +17,7 @@ import text from './text'
 import paragraph from './paragraph'
 
 // --- appearances.
+import FillAppearances from './FillAppearances'
 import getButtonAppearance from './getButtonAppearance'
 import getLinkAppearance from './getLinkAppearance'
 import getCheckboxAppearance from './getCheckboxAppearance'
@@ -338,6 +339,36 @@ theme.getRowClassName = memoizeClassName(getRowAppearance)
 theme.getSegmentedControlRadioClassName = memoizeClassName(
   getSegmentedControlRadioAppearance
 )
+
+/**
+ * @param {Bool} isSolid
+ * @param {String} color — automatic or actual color
+ * @param {Number} hashValue
+ * @return {Object} { color, backgroundColor }
+ */
+theme.getAvatarProps = ({ isSolid, color, hashValue }) => {
+  const appearances = FillAppearances[isSolid ? 'solid' : 'subtle']
+
+  if (color === 'automatic') {
+    const keys = Object.keys(appearances)
+    const key = keys[hashValue % keys.length]
+    return appearances[key]
+  }
+
+  return appearances[color]
+}
+
+/**
+ * @param {Number} size
+ * @param {Number} sizeLimitOneCharacter
+ * @return {Number} font size
+ */
+theme.getAvatarInitialsFontSize = (size, sizeLimitOneCharacter) => {
+  if (size <= sizeLimitOneCharacter) {
+    return Math.ceil(size / 2.2)
+  }
+  return Math.ceil(size / 2.6)
+}
 
 theme.getTooltipProps = () => {
   return {
