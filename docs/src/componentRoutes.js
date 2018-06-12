@@ -69,10 +69,6 @@ module.exports = [
     path: '/components/search-input'
   },
   {
-    name: 'Icons',
-    path: '/components/icons'
-  },
-  {
     name: 'Autocomplete',
     path: '/components/autocomplete'
   },

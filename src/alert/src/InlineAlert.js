@@ -4,12 +4,7 @@ import { spacing, dimensions, position, layout } from 'ui-box'
 import { withTheme } from '../../theme'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import {
-  CheckCircleIcon,
-  DangerIcon,
-  QuestionIcon,
-  WarningIcon
-} from '../../icons'
+import { Icon } from '../../icon'
 
 class InlineAlert extends PureComponent {
   static propTypes = {
@@ -56,29 +51,9 @@ class InlineAlert extends PureComponent {
   }
 
   getIconForIntent = intent => {
-    const iconProps = {
-      size: 22,
-      iconSize: 14,
-      color: this.getColorForType(intent)
-    }
-
-    switch (intent) {
-      case 'success':
-        return <CheckCircleIcon {...iconProps} />
-      case 'question':
-      default:
-        return <QuestionIcon {...iconProps} />
-      case 'danger':
-        return <DangerIcon {...iconProps} />
-      case 'warning':
-        return <WarningIcon {...iconProps} />
-    }
-  }
-
-  getColorForType = intent => {
     const { theme } = this.props
 
-    return theme.colors.intent[intent]
+    return <Icon size={14} marginTop={2} {...theme.getIconForIntent(intent)} />
   }
 
   render() {

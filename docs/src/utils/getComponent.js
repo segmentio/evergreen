@@ -4,7 +4,6 @@ import colorsDocs from '../../../src/colors/docs/'
 import typographyDocs from '../../../src/typography/docs/'
 import layersDocs from '../../../src/layers/docs/'
 import buttonsDocs from '../../../src/buttons/docs'
-import iconsDocs from '../../../src/icons/docs/'
 import autocompleteDocs from '../../../src/autocomplete/docs/'
 import comboboxDocs from '../../../src/combobox/docs/'
 // import badgesDocs from '../../src/badges/docs/'
@@ -46,7 +45,6 @@ const map = {
   'search input': searchInputDocs,
   autocomplete: autocompleteDocs,
   'corner dialog': cornerDialogDocs,
-  icons: iconsDocs,
   'side sheet': sideSheetDocs,
   popover: popoverDocs,
   tooltip: tooltipDocs,

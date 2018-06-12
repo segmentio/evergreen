@@ -68,7 +68,7 @@ FillAppearances.subtle = {
     backgroundColor: palette.teal.light
   },
   purple: {
-    color: palette.purple.dark,
+    color: palette.orange.dark,
     backgroundColor: palette.purple.light
   }
 }

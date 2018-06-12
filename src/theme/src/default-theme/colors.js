@@ -76,6 +76,7 @@ export default {
   icon: {
     default: scales.neutral.N8,
     muted: scales.neutral.N7,
+    disabled: scales.neutral.N5A,
     selected: palette.blue.base,
 
     // Intent.

@@ -5,7 +5,7 @@ autoHydrate()
 export { Alert, InlineAlert } from './alert'
 export { Autocomplete, AutocompleteItem } from './autocomplete'
 export { Avatar } from './avatar'
-export { BadgeAppearances, Badge, Pill } from './badges'
+export { Badge, Pill } from './badges'
 export { BackButton, Button, IconButton } from './buttons'
 export { Checkbox } from './checkbox'
 export { colors } from './colors'
@@ -20,22 +20,6 @@ export {
   FormFieldLabel,
   FormFieldValidationMessage
 } from './form-field'
-export {
-  Icon,
-  IconAim,
-  IconColors,
-  IconMap,
-  AddIcon,
-  ArrowIcon,
-  CheckCircleIcon,
-  CloseIcon,
-  CogIcon,
-  DangerIcon,
-  QuestionIcon,
-  SearchIcon,
-  TriangleIcon,
-  WarningIcon
-} from './icons'
 export { Image } from './image'
 export { Pane, Card, BorderColors } from './layers'
 export { Overlay } from './overlay'

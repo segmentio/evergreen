@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { css } from 'ui-box'
-import { CloseIcon } from '../../icons'
+import Box from 'ui-box'
+import { css } from 'glamor'
+import { Icon } from '../../icon'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -28,7 +29,7 @@ const rotate360OutAnimation = css.keyframes('rotate360OutAnimation', {
   }
 })
 
-const sheetCloseStyle = {
+const sheetCloseClassName = css({
   cursor: 'pointer',
   transform: `translateX(-100%)`,
   backgroundColor: `rgba(255, 255, 255, 0.4)`,
@@ -49,7 +50,7 @@ const sheetCloseStyle = {
       animationEasing.acceleration
     } both`
   }
-}
+})
 
 export default class SheetClose extends PureComponent {
   static propTypes = {
@@ -68,8 +69,17 @@ export default class SheetClose extends PureComponent {
   render() {
     const { isClosing, ...props } = this.props
     return (
-      <Box css={sheetCloseStyle} {...SheetClose.styles} {...props}>
-        <CloseIcon color="#fff" />
+      <Box
+        width={32}
+        height={32}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        className={sheetCloseClassName.toString()}
+        {...SheetClose.styles}
+        {...props}
+      >
+        <Icon icon="cross" color="#fff" />
       </Box>
     )
   }

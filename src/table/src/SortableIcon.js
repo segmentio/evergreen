@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
-import { TriangleIcon } from '../../icons'
+import { Icon } from '../../icon'
 
 export default class SortableIcon extends PureComponent {
   static propTypes = {
@@ -24,20 +24,18 @@ export default class SortableIcon extends PureComponent {
         paddingLeft={6}
         {...(sortOrder === 'disabled' ? {} : { title: sortOrder })}
       >
-        <TriangleIcon
-          marginTop={-2}
+        <Icon
+          icon="caret-up"
           display="block"
-          size={10}
-          iconSize={10}
-          color={sortOrder === 'ascending' ? 'default' : 'muted'}
+          size={12}
+          color={sortOrder === 'ascending' ? 'default' : 'disabled'}
         />
-        <TriangleIcon
-          marginTop={-2}
+        <Icon
+          icon="caret-down"
+          marginTop={-6}
           display="block"
-          size={10}
-          iconSize={10}
-          aim="bottom"
-          color={sortOrder === 'descending' ? 'default' : 'muted'}
+          size={12}
+          color={sortOrder === 'descending' ? 'default' : 'disabled'}
         />
       </Pane>
     )
