@@ -41,19 +41,6 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             const selectedItems = selected
             const selectedItemsLength = selectedItems.length
             let selectedNames = ''
-            // Switch (true) {
-            //   case selectedItemsLength === 0:
-            //     selectedNames = ''
-            //     break
-            //   case selectedItemsLength === 1:
-            //     selectedNames = selectedItems.toString()
-            //     break
-            //   case selectedItemsLength > 1:
-            //     selectedNames = selectedItems.toString().substr(0, 25) + '...'
-            //     break
-            //   default:
-            //     break
-            // }
             if (selectedItemsLength === 0) {
               selectedNames = ''
             } else if (selectedItemsLength === 1) {
@@ -71,22 +58,8 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             const selectedItems = state.selected.filter(
               (_item, i) => i !== deselectedItemIndex
             )
-
             const selectedItemsLength = selectedItems.length
             let selectedNames = ''
-            // Switch (true) {
-            //   case selectedItemsLength === 0:
-            //     selectedNames = ''
-            //     break
-            //   case selectedItemsLength === 1:
-            //     selectedNames = selectedItems.toString()
-            //     break
-            //   case selectedItemsLength > 1:
-            //     selectedNames = selectedItems.toString().substr(0, 25) + '...'
-            //     break
-            //   default:
-            //     break
-            // }
             if (selectedItemsLength === 0) {
               selectedNames = ''
             } else if (selectedItemsLength === 1) {
