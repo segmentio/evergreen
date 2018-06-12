@@ -2,21 +2,10 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { spacing, dimensions, position, layout } from 'ui-box'
 import { withTheme } from '../../theme'
-import { colors } from '../../colors'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
 import { IconButton } from '../../buttons'
 import { Icon } from '../../icon'
-
-const AlertAppearances = {
-  default: {
-    boxShadow: `inset 0 0 0 1px ${colors.neutral['20A']}`
-  },
-  card: {
-    elevation: 1,
-    borderRadius: 3
-  }
-}
 
 class Alert extends PureComponent {
   static propTypes = {
@@ -127,7 +116,7 @@ class Alert extends PureComponent {
       style = this.getStyle(intent)
     }
 
-    const appearanceProps = AlertAppearances[appearance]
+    const appearanceProps = theme.getAlertAppearance(appearance)
 
     return (
       <Pane

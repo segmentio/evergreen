@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
-import { colors } from '../../colors'
 import TableHeaderCell from './TableHeaderCell'
 
 const invisibleInput = {
@@ -16,7 +15,7 @@ const invisibleInput = {
   },
 
   '&::placeholder': {
-    color: colors.neutral['100A']
+    color: `rgba(67, 90, 111, 0.7)`
   }
 }
 

@@ -21,7 +21,7 @@ export {
   FormFieldValidationMessage
 } from './form-field'
 export { Image } from './image'
-export { Pane, Card, BorderColors } from './layers'
+export { Pane, Card } from './layers'
 export { Overlay } from './overlay'
 export { Popover } from './popover'
 export { Portal } from './portal'

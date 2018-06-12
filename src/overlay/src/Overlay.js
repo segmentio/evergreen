@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import Box, { css } from 'ui-box'
 import { Portal } from '../../portal'
-import { colors } from '../../colors'
 import { Stack } from '../../stack'
 import { StackingOrder } from '../../constants'
+import { withTheme } from '../../theme'
 
 const animationEasing = {
   standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
@@ -35,9 +35,9 @@ const fadeOutAnimation = css.keyframes('fadeOutAnimation', {
   }
 })
 
-const animationStyles = {
+const animationStyles = backgroundColor => ({
   '&::before': {
-    backgroundColor: colors.neutral['200A'],
+    backgroundColor,
     left: 0,
     top: 0,
     position: 'fixed',
@@ -56,7 +56,7 @@ const animationStyles = {
       animationEasing.acceleration
     } both`
   }
-}
+})
 
 /**
  * Overlay is essentially a wrapper around react-transition-group/Transition
@@ -123,7 +123,12 @@ class Overlay extends React.Component {
      *
      * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
      */
-    onEntered: PropTypes.func
+    onEntered: PropTypes.func,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
@@ -267,6 +272,8 @@ class Overlay extends React.Component {
 
   render() {
     const {
+      theme,
+
       containerProps = {},
       isShown,
       children,
@@ -304,7 +311,7 @@ class Overlay extends React.Component {
                   right={0}
                   bottom={0}
                   zIndex={zIndex}
-                  css={animationStyles}
+                  css={animationStyles(theme.overlayBackgroundColor)}
                   data-state={state}
                   {...containerProps}
                 >
@@ -324,4 +331,4 @@ class Overlay extends React.Component {
   }
 }
 
-export default Overlay
+export default withTheme(Overlay)

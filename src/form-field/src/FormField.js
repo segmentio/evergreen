@@ -84,7 +84,7 @@ export default class FormField extends PureComponent {
         </FormFieldLabel>
         {children}
         {validationMessage && (
-          <FormFieldValidationMessage>
+          <FormFieldValidationMessage marginTop={8}>
             {validationMessage}
           </FormFieldValidationMessage>
         )}

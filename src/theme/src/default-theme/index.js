@@ -7,6 +7,7 @@ import { Intent } from '../../../constants'
 // Theme Related
 // --- styles.
 import colors from './colors'
+import scales from './scales'
 import palette from './palette'
 import elevations from './elevations'
 import fontFamilies from './fontFamilies'
@@ -27,6 +28,7 @@ import getRowAppearance from './getRowAppearance'
 import getSelectAppearance from './getSelectAppearance'
 import getSegmentedControlRadioAppearance from './getSegmentedControlRadioAppearance'
 import getSwitchAppearance from './getSwitchAppearance'
+import getAlertAppearance from './getAlertAppearance'
 
 /**
  * Helper function for theming.
@@ -52,11 +54,19 @@ const themedProperty = (object, keyOrValue) => {
 const theme = {}
 
 /**
- * The property `theme.colors` is not a required property by Evergreen.
+ * The following properties are NOT required by Evergreen.
  * It's exposed for convenience and documentation.
  */
 theme.colors = colors
+theme.palette = palette
+theme.scales = scales
 theme.elevations = elevations
+
+/**
+ * Required properties.
+ */
+theme.overlayBackgroundColor = colors.overlay
+theme.spinnerColor = scales.neutral.N7A
 
 /**
  * Controls include:
@@ -351,6 +361,8 @@ theme.getSegmentedControlRadioClassName = memoizeClassName(
 
 theme.avatarColors = Object.keys(FillAppearances.solid)
 theme.badgeColors = theme.avatarColors
+
+theme.getAlertAppearance = getAlertAppearance
 
 /**
  * @param {Bool} isSolid

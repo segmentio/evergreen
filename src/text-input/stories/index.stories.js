@@ -100,7 +100,9 @@ storiesOf('text-input', module)
   ))
   .add('TextInputField', () => (
     <Box padding={40}>
-      <Heading size={700}>TextInputField component</Heading>
+      <Heading size={700} marginBottom={40}>
+        TextInputField component
+      </Heading>
       <TextInputField
         label="Default text input field"
         description="This is a description."
@@ -112,6 +114,13 @@ storiesOf('text-input', module)
         required
         description="This is a description."
         placeholder="Placeholder text"
+      />
+      <TextInputField
+        isInvalid
+        required
+        label="A required text input field"
+        description="This is a description."
+        validationMessage="This field is required"
       />
       <Manager>
         {({ state, setState }) => {

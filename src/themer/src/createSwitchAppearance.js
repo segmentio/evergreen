@@ -7,7 +7,7 @@ const focusState = '&:not([disabled]):focus + div'
 const activeState = '&:not([disabled]):active + div'
 const checkedState = '&:checked + div'
 const checkedHoverState = '&:checked:hover + div'
-const checkedActiveState = '&:not([disabled):checked:active + div'
+const checkedActiveState = '&:not([disabled]):checked:active + div'
 const checkedDisabledState = '&[disabled]:checked + div'
 
 const hiddenCheckboxStyle = {
