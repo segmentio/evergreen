@@ -28,7 +28,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
     <Manager>
       {({ setState, state }) => (
         <SelectMenu
-          title="Select name"
+          title="Select multiple names"
           options={options}
           selected={state.selected}
           onSelect={item => {
@@ -38,31 +38,61 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             } else {
               selected = arrify(item.value)
             }
+            const selectedItems = selected
+            const selectedItemsLength = selectedItems.length
+            let selectedNames = ''
+            // Switch (true) {
+            //   case selectedItemsLength === 0:
+            //     selectedNames = ''
+            //     break
+            //   case selectedItemsLength === 1:
+            //     selectedNames = selectedItems.toString()
+            //     break
+            //   case selectedItemsLength > 1:
+            //     selectedNames = selectedItems.toString().substr(0, 25) + '...'
+            //     break
+            //   default:
+            //     break
+            // }
+            if (selectedItemsLength === 0) {
+              selectedNames = ''
+            } else if (selectedItemsLength === 1) {
+              selectedNames = selectedItems.toString()
+            } else if (selectedItemsLength > 1) {
+              selectedNames = selectedItemsLength.toString() + ' selected...'
+            }
             setState({
               selected,
-              selectedNames: selected.toString().substr(0, 25) + '...'
+              selectedNames
             })
           }}
           onDeselect={item => {
-            const DeselectedItemIndex = state.selected.indexOf(item.value)
+            const deselectedItemIndex = state.selected.indexOf(item.value)
             const selectedItems = state.selected.filter(
-              (_item, i) => i !== DeselectedItemIndex
+              (_item, i) => i !== deselectedItemIndex
             )
 
             const selectedItemsLength = selectedItems.length
             let selectedNames = ''
-            switch (true) {
-              case selectedItemsLength === 0:
-                selectedNames = ''
-                break
-              case selectedItemsLength === 1:
-                selectedNames = selectedItems.toString()
-                break
-              case selectedItemsLength > 1:
-                selectedNames = selectedItems.toString().substr(0, 25) + '...'
-                break
-              default:
-                break
+            // Switch (true) {
+            //   case selectedItemsLength === 0:
+            //     selectedNames = ''
+            //     break
+            //   case selectedItemsLength === 1:
+            //     selectedNames = selectedItems.toString()
+            //     break
+            //   case selectedItemsLength > 1:
+            //     selectedNames = selectedItems.toString().substr(0, 25) + '...'
+            //     break
+            //   default:
+            //     break
+            // }
+            if (selectedItemsLength === 0) {
+              selectedNames = ''
+            } else if (selectedItemsLength === 1) {
+              selectedNames = selectedItems.toString()
+            } else if (selectedItemsLength > 1) {
+              selectedNames = selectedItemsLength.toString() + ' selected...'
             }
             setState({ selected: selectedItems, selectedNames })
           }}
