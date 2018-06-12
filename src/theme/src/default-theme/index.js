@@ -297,6 +297,13 @@ theme.getRadioClassName = theme.getCheckboxClassName
  */
 theme.getTextInputClassName = memoizeClassName(getTextInputAppearance)
 
+/**
+ * Get the className of a Textarea.
+ * @param {String} appearance
+ * @return {Object} the appearance class name.
+ */
+theme.getTextareaClassName = theme.getTextInputClassName
+
 theme.getTooltipProps = () => {
   return {
     backgroundColor: tinycolor(palette.neutral.base)
