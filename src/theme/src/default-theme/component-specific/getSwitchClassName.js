@@ -1,5 +1,6 @@
-import { Themer } from '../../../themer'
-import scales from './scales'
+import { Themer } from '../../../../themer'
+import memoizeClassName from '../utils/memoizeClassName'
+import scales from '../foundational-styles/scales'
 
 const defaultAppearance = Themer.createSwitchAppearance({
   base: {
@@ -37,8 +38,18 @@ const defaultAppearance = Themer.createSwitchAppearance({
   checkedDisabled: {}
 })
 
+/**
+ * Get the className of a `Switch`.
+ * @param {string} appearance
+ * @return {Object} the appearance object.
+ */
 const getSwitchAppearance = () => {
   return defaultAppearance
 }
 
-export default getSwitchAppearance
+/**
+ * Get the className of a `Switch`.
+ * @param {string} appearance
+ * @return {string} the appearance class name.
+ */
+export default memoizeClassName(getSwitchAppearance)

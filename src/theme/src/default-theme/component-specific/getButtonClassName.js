@@ -1,10 +1,11 @@
-import { Themer } from '../../../themer/'
-import scales from './scales'
+import { Themer } from '../../../../themer/'
+import memoizeClassName from '../utils/memoizeClassName'
+import scales from '../foundational-styles/scales'
 import {
   getTextColorForIntent,
   getPrimaryButtonStylesForIntent
-} from './helpers'
-import { defaultControlStyles } from './shared'
+} from '../helpers'
+import { defaultControlStyles } from '../shared'
 
 /**
  * Disabled styles are all the same for all buttons.
@@ -86,4 +87,10 @@ const getButtonAppearance = (appearance, intent) => {
   }
 }
 
-export default getButtonAppearance
+/**
+ * Get the className of a `Button`|`IconButton`.
+ * @param {string} appearance - default, primary, minimal.
+ * @param {Intent} intent - none, success, warning, danger.
+ * @return {string} the appearance class name.
+ */
+export default memoizeClassName(getButtonAppearance)

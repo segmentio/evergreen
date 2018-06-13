@@ -1,11 +1,13 @@
 import tinycolor from 'tinycolor2'
-import { Themer } from '../../../themer/'
-import palette from './palette'
+import { Themer } from '../../../../themer/'
+import memoizeClassName from '../utils/memoizeClassName'
+import palette from '../foundational-styles/palette'
 
 /**
  * The link appearance unlike the Button is based on the color property.
  * Currently the Link does not support the Intent or the appearance interface.
- * @param {String} color
+ * @param {string} color
+ * @return {Object} appearance of the link.
  */
 const getLinkAppearance = color => {
   switch (color) {
@@ -77,4 +79,9 @@ const getLinkAppearance = color => {
   }
 }
 
-export default getLinkAppearance
+/**
+ * Get the className of a `Link` component.
+ * @param {string} color
+ * @return {string} the appearance class name.
+ */
+export default memoizeClassName(getLinkAppearance)

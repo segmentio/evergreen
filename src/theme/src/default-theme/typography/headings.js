@@ -1,17 +1,17 @@
+import colors from '../foundational-styles/colors'
 import fontFamilies from './fontFamilies'
-import colors from './colors'
 
 /**
  * Heading styles.
- * @property {Object} headings.900 - Required property.
- * @property {Object} headings.800 - Required property.
- * @property {Object} headings.700 - Required property.
- * @property {Object} headings.600 - Required property.
- * @property {Object} headings.500 - Required property. Default.
- * @property {Object} headings.400 - Required property.
- * @property {Object} headings.300 - Required property.
- * @property {Object} headings.200 - Required property.
- * @property {Object} headings.100 - Required property.
+ * @property {Object} headings.900
+ * @property {Object} headings.800
+ * @property {Object} headings.700
+ * @property {Object} headings.600
+ * @property {Object} headings.500 - Default.
+ * @property {Object} headings.400
+ * @property {Object} headings.300
+ * @property {Object} headings.200
+ * @property {Object} headings.100
  */
 export default {
   '900': {

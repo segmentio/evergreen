@@ -42,12 +42,12 @@ storiesOf('typography', module)
         <Link href="#">Default Link</Link>
       </Box>
       <Box marginBottom={24}>
-        <Link href="#" appearance="neutral">
+        <Link href="#" color="neutral">
           Neutral Link
         </Link>
       </Box>
       <Box marginBottom={24}>
-        <Link href="#" appearance="green">
+        <Link href="#" color="green">
           Green Link
         </Link>
       </Box>

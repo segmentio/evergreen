@@ -14,6 +14,7 @@ export default {
   background: {
     tint1: scales.neutral.N1,
     tint2: scales.neutral.N2,
+    overlay: scales.neutral.N7A,
 
     // Non required.
     yellowTint: palette.yellow.lightest,

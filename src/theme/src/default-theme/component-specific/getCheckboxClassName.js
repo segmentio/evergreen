@@ -1,6 +1,7 @@
-import { Themer } from '../../../themer'
-import scales from './scales'
-import { getPrimaryButtonStylesForIntent } from './helpers'
+import { Themer } from '../../../../themer'
+import memoizeClassName from '../utils/memoizeClassName'
+import scales from '../foundational-styles/scales'
+import { getPrimaryButtonStylesForIntent } from '../helpers'
 
 const primaryStyle = getPrimaryButtonStylesForIntent()
 
@@ -78,4 +79,9 @@ const getCheckboxAppearance = () => {
   return defaultAppearance
 }
 
-export default getCheckboxAppearance
+/**
+ * Get the className of a `Checkbox`.
+ * @param {string} appearance
+ * @return {string} the appearance class name.
+ */
+export default memoizeClassName(getCheckboxAppearance)

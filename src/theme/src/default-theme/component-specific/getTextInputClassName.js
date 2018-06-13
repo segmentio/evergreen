@@ -1,6 +1,7 @@
-import { Themer } from '../../../themer'
-import scales from './scales'
-import palette from './palette'
+import { Themer } from '../../../../themer'
+import memoizeClassName from '../utils/memoizeClassName'
+import scales from '../foundational-styles/scales'
+import palette from '../foundational-styles/palette'
 
 const InputAppearances = {}
 
@@ -52,7 +53,12 @@ InputAppearances.neutral = Themer.createInputAppearance({
   }
 })
 
-const getInputAppearance = appearance => {
+/**
+ * Get the appearance of a `TextInput`.
+ * @param {string} appearance
+ * @return {Object} the appearance object.
+ */
+const getTextInputAppearance = appearance => {
   switch (appearance) {
     case 'neutral':
       return InputAppearances.neutral
@@ -61,4 +67,9 @@ const getInputAppearance = appearance => {
   }
 }
 
-export default getInputAppearance
+/**
+ * Get the className of a `TextInput`.
+ * @param {string} appearance
+ * @return {string} the appearance class name.
+ */
+export default memoizeClassName(getTextInputAppearance)

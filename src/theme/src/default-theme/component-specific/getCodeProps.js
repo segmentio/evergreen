@@ -1,6 +1,11 @@
-import scales from './scales'
+import scales from '../foundational-styles/scales'
 
-const getCodeAppearance = appearance => {
+/**
+ * Get the themed properties for a `Code` text component.
+ * @param {string} appearance - default, minimal.
+ * @return {string} the themd properties.
+ */
+const getCodeProps = appearance => {
   switch (appearance) {
     case 'minimal':
       return {}
@@ -19,4 +24,4 @@ const getCodeAppearance = appearance => {
   }
 }
 
-export default getCodeAppearance
+export default getCodeProps

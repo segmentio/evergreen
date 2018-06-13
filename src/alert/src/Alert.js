@@ -72,24 +72,6 @@ class Alert extends PureComponent {
     appearance: 'default'
   }
 
-  getStyle = intent => ({
-    '&:before': {
-      content: '""',
-      width: 3,
-      height: '100%',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      backgroundColor: this.getColorForIntent(intent)
-    }
-  })
-
-  getColorForIntent = intent => {
-    const { theme } = this.props
-
-    return theme.colors.intent[intent]
-  }
-
   getIconForIntent = intent => {
     const { theme } = this.props
 
@@ -111,15 +93,18 @@ class Alert extends PureComponent {
       ...props
     } = this.props
 
-    let style = {}
-    if (hasTrim && intent !== 'none') {
-      style = this.getStyle(intent)
-    }
-
-    const appearanceProps = theme.getAlertAppearance(appearance)
+    /**
+     * Note that Alert return a className and additional properties.
+     */
+    const { className, ...themeProps } = theme.getAlertProps({
+      appearance,
+      intent,
+      hasTrim
+    })
 
     return (
       <Pane
+        className={className}
         role="alert"
         backgroundColor="white"
         overflow="hidden"
@@ -127,8 +112,7 @@ class Alert extends PureComponent {
         display="flex"
         paddingY={12}
         paddingX={16}
-        css={style}
-        {...appearanceProps}
+        {...themeProps}
         {...props}
       >
         {hasIcon &&
@@ -165,10 +149,10 @@ class Alert extends PureComponent {
           {isRemoveable && (
             <Pane marginLeft={24} flexShrink={0}>
               <IconButton
-                onClick={onRemove}
-                height={24}
-                appearance="minimal"
                 icon="cross"
+                appearance="minimal"
+                height={24}
+                onClick={onRemove}
               />
             </Pane>
           )}

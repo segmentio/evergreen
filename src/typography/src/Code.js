@@ -32,13 +32,17 @@ class Code extends PureComponent {
   render() {
     const { theme, className, appearance, ...props } = this.props
 
-    const themedClassName = theme.getCodeClassName(appearance)
+    const {
+      className: themedClassName = '',
+      ...themeProps
+    } = theme.getCodeProps(appearance)
 
     return (
       <Text
         is="code"
         className={cx(className, themedClassName)}
         fontFamily="mono"
+        {...themeProps}
         {...props}
       />
     )

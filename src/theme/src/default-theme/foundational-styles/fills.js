@@ -1,9 +1,12 @@
 import palette from './palette'
 import colors from './colors'
 
-const FillAppearances = {}
+/**
+ * Fills are used in Avatars and Badges.
+ */
+const fills = {}
 
-FillAppearances.solid = {
+fills.solid = {
   neutral: {
     color: 'white',
     backgroundColor: palette.neutral.base
@@ -38,7 +41,7 @@ FillAppearances.solid = {
   }
 }
 
-FillAppearances.subtle = {
+fills.subtle = {
   neutral: {
     color: colors.text.default,
     backgroundColor: palette.neutral.light
@@ -73,4 +76,6 @@ FillAppearances.subtle = {
   }
 }
 
-export default FillAppearances
+fills.options = Object.keys(fills.solid)
+
+export default fills

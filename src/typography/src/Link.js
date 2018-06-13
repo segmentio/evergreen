@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 import { withTheme } from '../../theme'
 import Text from './Text'
 
@@ -31,7 +32,13 @@ class Link extends PureComponent {
     /**
      * Theme provided by ThemeProvider.
      */
-    theme: PropTypes.object.isRequired
+    theme: PropTypes.object.isRequired,
+
+    /**
+     * Class name passed to the link.
+     * Only use if you know what you are doing.
+     */
+    className: PropTypes.string
   }
 
   static defaultProps = {
@@ -39,15 +46,16 @@ class Link extends PureComponent {
   }
 
   render() {
-    const { color, theme, ...props } = this.props
-    const css = theme.getLinkClassName(color)
+    const { theme, className, color, ...props } = this.props
+
+    const themedClassName = theme.getLinkClassName(color)
 
     return (
       <Text
         is="a"
+        className={cx(className, themedClassName)}
         textDecoration="underline"
         color={null}
-        css={css}
         {...props}
       />
     )

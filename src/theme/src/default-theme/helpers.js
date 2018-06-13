@@ -1,6 +1,6 @@
 import tinycolor from 'tinycolor2'
 import { Intent } from '../../../constants'
-import colors from './colors'
+import colors from './foundational-styles/colors'
 
 /**
  * @param {String} top - color.
