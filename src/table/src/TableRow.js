@@ -14,6 +14,7 @@ export default class TableRow extends PureComponent {
      * Function that is called on click and enter/space keypress.
      */
     onSelect: PropTypes.func,
+
     /**
      * Function that is called on click and enter/space keypress.
      */
@@ -67,8 +68,12 @@ export default class TableRow extends PureComponent {
   render() {
     const {
       children,
-      onClick, // Filter out onClick
-      onKeyPress, // Filter out onKeyPress
+      // Filter out
+      onClick,
+      onKeyPress,
+      onSelect,
+      onDeselect,
+
       isHighlighted,
       isSelectable,
       isSelected,
