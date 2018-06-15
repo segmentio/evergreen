@@ -14,6 +14,7 @@ import sourceSelectMenu from '!raw-loader!../src/SelectMenu'
  * Code examples
  */
 import exampleSelectMenuBasic from './examples/SelectMenu-basic.example'
+import exampleSelectMenuMulti from './examples/SelectMenu-multi.example'
 
 const title = 'Select Menu'
 const subTitle = 'Select one or multiple items from a dropdown list.'
@@ -89,6 +90,26 @@ const components = [
           </div>
         ),
         codeText: exampleSelectMenuBasic,
+        scope
+      },
+      {
+        title: 'Multi SelectMenu Example',
+        description: (
+          <div>
+            <p>This example shows basic usage with multiple selected items.</p>
+            <p>
+              This pattern is only an example. Selected values and the
+              formatting of their names should be managed wherever you choose to
+              manage state. The onDeselect method is provided to assist with
+              this.
+            </p>
+            <p>
+              As users click on selected values to remove them, you can update
+              state.
+            </p>
+          </div>
+        ),
+        codeText: exampleSelectMenuMulti,
         scope
       }
     ]
