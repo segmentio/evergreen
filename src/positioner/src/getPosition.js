@@ -11,13 +11,15 @@ import Position from './Position'
  * @return {Object} Rect { width, height, left, top, right, bottom }
  */
 const makeRect = ({ width, height }, { left, top }) => {
+  const ceiledLeft = Math.ceil(left)
+  const ceiledTop = Math.ceil(top)
   return {
     width,
     height,
-    left,
-    top,
-    right: left + width,
-    bottom: top + height
+    left: ceiledLeft,
+    top: ceiledTop,
+    right: ceiledLeft + width,
+    bottom: ceiledTop + height
   }
 }
 
