@@ -1,6 +1,7 @@
 import { colors } from '../../../colors'
 
 const baseStyle = {
+  MozAppearance: 'none',
   WebkitAppearance: 'none',
   border: 'none',
   flex: 1,
@@ -12,6 +13,10 @@ const baseStyle = {
   transition: 'box-shadow 80ms ease-in-out',
   outline: 'none',
   cursor: 'pointer',
+  ':-moz-focusring': {
+    color: 'transparent',
+    textShadow: '0 0 0 #000'
+  },
   '[disabled]': {
     cursor: 'not-allowed',
     opacity: 0.8,
