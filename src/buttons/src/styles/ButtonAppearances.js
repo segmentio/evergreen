@@ -11,6 +11,9 @@ const baseStyle = {
   border: 'none',
   outline: 'none',
   cursor: 'pointer',
+  '&::-moz-focus-inner ': {
+    border: 0
+  },
   '[disabled], [data-disabled]': {
     cursor: 'not-allowed',
     opacity: 0.8,
