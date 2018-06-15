@@ -34,6 +34,10 @@ export default class SelectMenu extends PureComponent {
      * Function that is called when an option is selected.
      */
     onSelect: PropTypes.func,
+    /**
+     * Function that is called when an option is Deselected.
+     */
+    onDeselect: PropTypes.func,
 
     /**
      *
@@ -65,6 +69,7 @@ export default class SelectMenu extends PureComponent {
 
   static defaultProps = {
     onSelect: () => {},
+    onDeselect: () => {},
     width: 240,
     height: 248,
     position: Position.BOTTOM_LEFT
@@ -114,6 +119,9 @@ export default class SelectMenu extends PureComponent {
             listProps={{
               onSelect: item => {
                 this.props.onSelect(item)
+              },
+              onDeselect: item => {
+                this.props.onDeselect(item)
               },
               selected: arrify(selected)
             }}
