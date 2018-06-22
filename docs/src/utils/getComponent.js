@@ -17,6 +17,7 @@ import textInputDocs from '../../../src/text-input/docs/'
 // import avatarDocs from '../../src/avatar/docs/'
 import tooltipDocs from '../../../src/tooltip/docs/'
 // import imageDocs from '../../src/image/docs/'
+import iconDocs from '../../../src/icon/docs/'
 import segmentedControlDocs from '../../../src/segmented-control/docs/'
 // import spinnerDocs from '../../src/spinner/docs/'
 import searchInputDocs from '../../../src/search-input/docs/'
@@ -48,7 +49,8 @@ const map = {
   'side sheet': sideSheetDocs,
   popover: popoverDocs,
   tooltip: tooltipDocs,
-  combobox: comboboxDocs
+  combobox: comboboxDocs,
+  icon: iconDocs
 }
 
 export default function getComponent(name) {

@@ -75,6 +75,10 @@ module.exports = [
   {
     name: 'Popover',
     path: '/components/popover'
+  },
+  {
+    name: 'Icon',
+    path: '/components/icon'
   }
 ].sort((a, b) => {
   // Lazy way to sort this list so I don't have
