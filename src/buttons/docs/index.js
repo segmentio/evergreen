@@ -1,6 +1,12 @@
 import React from 'react'
+import Box from 'ui-box'
+import Component from '@reactions/component'
+import { SegmentedControl } from '../../segmented-control'
+import { Pane } from '../../layers'
+import { Heading } from '../../typography'
+import { BackButton, IconButton, Button } from '../../buttons'
 import LoadingManager from './LoadingManager'
-import { BackButton, IconButton, Button } from '..'
+
 /* eslint-disable import/no-unresolved, import/no-webpack-loader-syntax */
 import sourceBackButton from '!raw-loader!../src/BackButton'
 import sourceIconButton from '!raw-loader!../src/IconButton'
@@ -14,8 +20,6 @@ import basicExample from './examples/basic.example'
 import loadingExample from './examples/loading.example'
 import basicWithIconsExample from './examples/basic-with-icons.example'
 import backButtonExample from './examples/back-button.example'
-import triangleExample from './examples/triangle.example'
-import arrowExample from './examples/arrow.example'
 import iconButtonBasicExample from './examples/icon-button-basic.example'
 
 const title = 'Buttons'
@@ -26,8 +30,8 @@ const designGuidelines = (
     <p>
       By default buttons and controls have a height of <code>32px</code>. It is
       possible to change this to any height and the text style and spacing will
-      adjust. You should however keep things on the <code>8px</code> or in some
-      cases the <code>4px</code> grid. You should only need the following
+      adjust. You should however keep the height on the <code>8px</code> or in
+      some cases the <code>4px</code> grid. You should only need the following
       recommended heights.
     </p>
     <h3>Recommended heights</h3>
@@ -48,70 +52,7 @@ const designGuidelines = (
   </div>
 )
 
-const appearanceOptions = [
-  {
-    title: 'Default',
-    component: <Button>Default</Button>,
-    description: (
-      <p>
-        Default buttons provide a light weight button style, while still
-        maintaining a high level of affordability. They are used to indicate
-        secondary actions and are used to reduce visual noise when there are
-        many actions on the page.
-      </p>
-    )
-  },
-  {
-    title: 'Green',
-    component: <Button appearance="green">Green</Button>,
-    description: (
-      <p>
-        Green buttons stand out on purpose. They are used to indicate primary
-        actions that create a new entity or initiate a creation flow.
-      </p>
-    )
-  },
-  {
-    title: 'Blue',
-    component: <Button appearance="blue">Blue</Button>,
-    description: (
-      <p>
-        Blue buttons stand out on purpose. They are used to indicate primary
-        actions used within a setup flow or preview window.
-      </p>
-    )
-  },
-  {
-    title: 'Red',
-    component: <Button appearance="red">Red</Button>,
-    description: (
-      <p>
-        Red buttons stand out on purpose. They are used to indicate primary
-        deletion actions in dialogs or settings.
-      </p>
-    )
-  },
-  {
-    title: 'Ghost Blue',
-    component: <Button appearance="ghostBlue">Ghost Blue</Button>,
-    description: (
-      <p>
-        Ghost blue text buttons are light weight. They are used to signify
-        secondary actions and work well next to solid buttons.
-      </p>
-    )
-  },
-  {
-    title: 'Ghost',
-    component: <Button appearance="ghost">Ghost</Button>,
-    description: (
-      <p>
-        Ghost buttons are light weight. They are used to signify secondary
-        actions and work well for icons such as in a dialog close button.
-      </p>
-    )
-  }
-]
+const appearanceOptions = null
 
 const components = [
   {
@@ -119,27 +60,34 @@ const components = [
     source: sourceButton,
     description: (
       <p>
-        The base <code>Button</code> component can have multiple appearances.
-        See the design guidelines above to understand when to use each
-        appearance. Buttons can also hold a icon before or after the text. Avoid
+        The base <code>Button</code> component can have multiple appearances and
+        intents. Buttons can also hold a icon before or after the text. Avoid
         using an icon after the text except for a triangle down.
       </p>
     ),
     examples: [
       {
-        title: 'All button appearances',
+        title: 'All Button Appearances',
         codeText: basicExample,
-        scope: { Button }
+        scope: { Button, Component, SegmentedControl, Heading, Box }
       },
       {
-        title: 'Loading button',
-        codeText: loadingExample,
-        scope: { Button, LoadingManager }
-      },
-      {
-        title: 'Buttons with an icon',
+        title: 'Buttons With an Icon',
+        description: (
+          <div>
+            <p>
+              Buttons support an icon on either before or after the label. Avoid
+              using two icons in a button.
+            </p>
+          </div>
+        ),
         codeText: basicWithIconsExample,
         scope: { Button }
+      },
+      {
+        title: 'Loading Button',
+        codeText: loadingExample,
+        scope: { Button, LoadingManager }
       }
     ]
   },
@@ -172,34 +120,19 @@ const components = [
     description: (
       <p>
         The <code>IconButton</code> component has access to all icons available
-        in <code>evergreen-ui</code>. You can use the <code>iconAim</code> prop
-        to determine where to aim the icon. This is only useful for the{' '}
-        <code>triangle</code> and <code>arrow</code> icon.
+        in <code>evergreen-ui</code>.
       </p>
     ),
     examples: [
       {
-        title: 'Functional icons',
+        title: 'Common Examples',
         description: (
           <p>
-            Although <code>IconButton</code> supports all icons, you should only
-            ever use the following.
+            Below are some common examples for using an <code>IconButton</code>.
           </p>
         ),
         codeText: iconButtonBasicExample,
-        scope: { IconButton }
-      },
-      {
-        title: 'Triangle icon buttons',
-        description: <p>Currently there is not a clear use case for this.</p>,
-        codeText: triangleExample,
-        scope: { IconButton }
-      },
-      {
-        title: 'Arrow icon buttons',
-        description: <p>Currently there is not a clear use case for this.</p>,
-        codeText: arrowExample,
-        scope: { IconButton }
+        scope: { IconButton, Box, Pane, Heading }
       }
     ]
   }

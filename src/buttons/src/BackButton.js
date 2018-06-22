@@ -13,7 +13,9 @@ export default class BackButton extends PureComponent {
     /**
      * Composes the Button component as the base.
      */
-    ...Button.defaultProps
+    ...Button.defaultProps,
+
+    children: 'Back'
   }
 
   render() {
