@@ -3,7 +3,6 @@ import Box from 'ui-box'
 import Text from '../src/Text'
 import Paragraph from '../src/Paragraph'
 import Heading from '../src/Heading'
-import SubHeading from '../src/SubHeading'
 import Link from '../src/Link'
 import Strong from '../src/Strong'
 import Small from '../src/Small'
@@ -13,13 +12,11 @@ import Pre from '../src/Pre'
 import UnorderedList from '../src/UnorderedList'
 import OrderedList from '../src/OrderedList'
 import ListItem from '../src/ListItem'
-import { defaultTheme } from '../../theme'
 
 /* eslint-disable import/no-unresolved, import/no-webpack-loader-syntax */
 import sourceText from '!raw-loader!../src/Text'
 import sourceParagraph from '!raw-loader!../src/Paragraph'
 import sourceHeading from '!raw-loader!../src/Heading'
-import sourceSubHeading from '!raw-loader!../src/SubHeading'
 import sourceLink from '!raw-loader!../src/Link'
 import sourceStrong from '!raw-loader!../src/Strong'
 import sourceSmall from '!raw-loader!../src/Small'
@@ -37,7 +34,6 @@ import sourceListItem from '!raw-loader!../src/ListItem'
 import exampleTextBasic from './examples/Text-basic.example'
 import exampleParagraphBasic from './examples/Paragraph-basic.example'
 import exampleHeadingBasic from './examples/Heading-basic.example'
-import exampleSubHeadingBasic from './examples/SubHeading-basic.example'
 import exampleLinkBasic from './examples/Link-basic.example'
 import exampleStrongBasic from './examples/Strong-basic.example'
 import exampleSmallBasic from './examples/Small-basic.example'
@@ -65,16 +61,6 @@ const designGuidelines = (
       example, <code>Heading</code> components will use display and{' '}
       <code>Code</code> components will use mono.
     </p>
-    <br />
-    {Object.keys(defaultTheme.fontFamilies).map(key => {
-      return (
-        <div key={key}>
-          <code>{key}</code>
-          <br /> <br /> <pre>{defaultTheme.fontFamilies[key]}</pre>
-          <br /> <br />
-        </div>
-      )
-    })}
   </div>
 )
 
@@ -117,7 +103,6 @@ const scope = {
   Text,
   Paragraph,
   Heading,
-  SubHeading,
   Link,
   Strong,
   Small,
@@ -178,24 +163,6 @@ const components = [
       {
         title: 'Basic Heading Example',
         codeText: exampleHeadingBasic,
-        scope
-      }
-    ]
-  },
-  {
-    name: 'SubHeading',
-    source: sourceSubHeading,
-    description: (
-      <p>
-        The <code>SubHeading</code> component is currently rarely used and might
-        get deprecated in the future. Make sure to use <code>isUppercase</code>{' '}
-        when using sizes 100 and 200.
-      </p>
-    ),
-    examples: [
-      {
-        title: 'Basic SubHeading Example',
-        codeText: exampleSubHeadingBasic,
         scope
       }
     ]

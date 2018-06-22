@@ -1,13 +1,15 @@
 const path = require('path')
 const webpack = require('webpack') // eslint-disable-line import/no-extraneous-dependencies
+const postcssCssnext = require('postcss-cssnext')
+const poscssImport = require('postcss-import')
 const componentRoutes = require('./src/componentRoutes')
 
 const componentTemplate = path.resolve(`src/templates/component.js`)
 
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
-exports.createPages = ({ boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ actions }) => {
+  const { createPage } = actions
 
   componentRoutes.forEach(({ name, path }) => {
     createPage({
@@ -25,13 +27,56 @@ exports.createPages = ({ boundActionCreators }) => {
   })
 }
 
-exports.modifyWebpackConfig = ({ config }) => {
-  config.loader('raw-loader', {
-    test: /\.example$/
+exports.onCreateBabelConfig = ({ actions }) => {
+  actions.setBabelPlugin({
+    name: '@babel/plugin-proposal-export-default-from'
+  })
+}
+
+exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
+  actions.setWebpackConfig({
+    module: {
+      rules: [
+        {
+          test: /\.example/,
+          use: [{ loader: 'raw-loader' }]
+        },
+        {
+          test: /\.css$/,
+          use: [
+            loaders.miniCssExtract(),
+            // // 0 => no loaders (default); 1 => postcss-loader; 2 => postcss-loader, sass-loader
+            loaders.css({ importLoaders: 1 }),
+
+            loaders.postcss({
+              ident: 'postcss',
+              plugins: () => [poscssImport(), postcssCssnext()]
+            })
+          ]
+        }
+      ]
+    },
+    // See https://github.com/FormidableLabs/react-live/issues/5
+    plugins: [new webpack.IgnorePlugin(/^(xor|props)$/)],
+    resolve: {
+      // Force Gatsby to look for dependencies within the local node_modules from docs.
+      modules: [path.join(__dirname, 'node_modules')]
+    }
   })
 
-  // See https://github.com/FormidableLabs/react-live/issues/5
-  config.plugin('ignore', () => new webpack.IgnorePlugin(/^(xor|props)$/))
+  const configAfterSettings = getConfig()
 
-  return config
+  // https://github.com/gatsbyjs/gatsby/issues/5778x
+  // Losing my mind here. The default CSS rules need to be undone.
+  const finalRules = configAfterSettings.module.rules.filter(rule => {
+    if (Object.prototype.hasOwnProperty.call(rule, 'oneOf')) {
+      // Nuke this rule.
+      return JSON.stringify(rule).indexOf('style-loader') === -1
+    }
+    return true
+  })
+
+  // So much for immutability.
+  configAfterSettings.module.rules = finalRules
+  actions.replaceWebpackConfig(configAfterSettings)
 }

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 import logo from '../images/evergreen-logo-wordmark.svg'
 import logoStandalone from '../images/evergreen-logo-icon.svg'
 
@@ -32,7 +32,7 @@ export default class TopBar extends PureComponent {
           <Link
             className="TopBar-link"
             activeClassName="is-active"
-            to="/components/buttons"
+            to="/components/"
           >
             Components
           </Link>

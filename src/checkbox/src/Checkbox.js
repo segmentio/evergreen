@@ -91,6 +91,7 @@ class Checkbox extends PureComponent {
       theme,
 
       id,
+      name,
       label,
       appearance,
       disabled,

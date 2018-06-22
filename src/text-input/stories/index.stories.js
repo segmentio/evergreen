@@ -185,11 +185,18 @@ storiesOf('text-input', module)
             disabled
             description="This is your workspace's auto-generated unique identifier."
           />
-          <Button appearance="green" height={36} marginTop={32} display="flex">
+          <Button
+            intent="success"
+            appearance="primary"
+            marginTop={32}
+            display="flex"
+          >
             Save Changes
           </Button>
           <Pane paddingTop={32} marginTop={32} marginBottom={-8} borderTop>
-            <Button>Delete Your Workspace...</Button>
+            <Button intent="danger" iconBefore="error">
+              Delete Your Workspace...
+            </Button>
           </Pane>
         </Card>
       </Pane>

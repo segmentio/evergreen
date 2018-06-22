@@ -71,7 +71,7 @@ fills.subtle = {
     backgroundColor: palette.teal.light
   },
   purple: {
-    color: palette.orange.dark,
+    color: palette.purple.dark,
     backgroundColor: palette.purple.light
   }
 }

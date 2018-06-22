@@ -7,12 +7,12 @@ import './../css/index.css' // eslint-disable-line import/no-unassigned-import
  */
 const TemplateWrapper = ({ children }) => (
   <div>
-    <div>{children()}</div>
+    <div>{children}</div>
   </div>
 )
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func
+  children: PropTypes.node
 }
 
 export default TemplateWrapper

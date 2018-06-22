@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 
 export default class Sidebar extends PureComponent {
   static propTypes = {
@@ -8,6 +8,7 @@ export default class Sidebar extends PureComponent {
     groups: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string,
+        exact: PropTypes.bool,
         links: PropTypes.arrayOf(
           PropTypes.shape({
             to: PropTypes.string,
@@ -29,11 +30,21 @@ export default class Sidebar extends PureComponent {
         <div className="Sidebar-inner">
           {groups.map(group => {
             return (
-              <div key={group.title} className="NavGroup">
-                <h3 className="NavGroup-title">{group.title}</h3>
+              <div
+                key={group.title || group.links[0].label}
+                className="NavGroup"
+              >
+                {group.title && (
+                  <h3 className="NavGroup-title">{group.title}</h3>
+                )}
                 <nav className="NavGroup-nav">
-                  {group.links.map(({ label, to }) => (
-                    <Link key={to} activeClassName="is-active" to={to}>
+                  {group.links.map(({ label, to, exact }) => (
+                    <Link
+                      key={to}
+                      activeClassName="is-active"
+                      to={to}
+                      exact={exact}
+                    >
                       {label}
                     </Link>
                   ))}

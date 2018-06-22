@@ -13,6 +13,15 @@ export default class ComponentsSidebar extends PureComponent {
      */
     groups: [
       {
+        links: [
+          {
+            label: 'Component Status',
+            exact: true,
+            to: '/components/'
+          }
+        ]
+      },
+      {
         title: 'Components',
         links: componentRoutes.map(route => {
           return {

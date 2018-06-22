@@ -7,10 +7,11 @@ import ComponentReadme from '../components/ComponentReadme'
 
 export default class ComponentTemplate extends React.PureComponent {
   static propTypes = {
-    pathContext: PropTypes.object
+    pageContext: PropTypes.object
   }
 
   render() {
+    console.log(this.props.pageContext)
     const {
       introduction,
       designGuidelines,
@@ -20,7 +21,7 @@ export default class ComponentTemplate extends React.PureComponent {
       title,
       subTitle,
       examples
-    } = getComponent(this.props.pathContext.name.toLowerCase())
+    } = getComponent(this.props.pageContext.name.toLowerCase())
 
     return (
       <div className="MainLayout">
@@ -30,7 +31,7 @@ export default class ComponentTemplate extends React.PureComponent {
             <ComponentReadme
               title={title}
               subTitle={subTitle}
-              name={this.props.pathContext.name}
+              name={this.props.pageContext.name}
               introduction={introduction}
               implementationDetails={implementationDetails}
               designGuidelines={designGuidelines}

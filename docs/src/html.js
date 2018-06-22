@@ -17,7 +17,9 @@ export default class HTML extends Component {
   static propTypes = {
     headComponents: PropTypes.node,
     body: PropTypes.string,
-    postBodyComponents: PropTypes.node
+    postBodyComponents: PropTypes.node,
+    htmlAttributes: PropTypes.object,
+    bodyAttributes: PropTypes.object
   }
 
   render() {
@@ -32,7 +34,7 @@ export default class HTML extends Component {
     }
 
     return (
-      <html lang="en">
+      <html lang="en" {...this.props.htmlAttributes}>
         <head>
           {/* <link rel="icon" href={favicon} /> */}
           <meta charSet="utf-8" />
@@ -48,7 +50,7 @@ export default class HTML extends Component {
 
           {this.props.headComponents}
         </head>
-        <body>
+        <body {...this.props.bodyAttributes}>
           <div
             dangerouslySetInnerHTML={{ __html: this.props.body }}
             id="___gatsby"
