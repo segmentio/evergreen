@@ -17,18 +17,18 @@ class Heading extends PureComponent {
       .isRequired,
 
     /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
-
-    /**
-     * When passing margin top as a bool, use the default margin top for that size.
+     * Pass `default` to use the default margin top for that size.
      */
     marginTop: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.number,
       PropTypes.string
-    ])
+    ]),
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {

@@ -18,6 +18,6 @@ export default {
   },
   '300': {
     ...text['300'],
-    lineHeight: '16px'
+    lineHeight: '18px'
   }
 }

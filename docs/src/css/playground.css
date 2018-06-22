@@ -3,6 +3,16 @@
   border-radius: 5px;
   overflow: hidden;
   transition: all 0.08s ease-in-out;
+
+  @media (--range-desk-m) {
+    margin-left: -80px;
+    margin-right: -80px;
+  }
+
+  @media (--range-desk-l), (--range-desk-xl) {
+    margin-left: -180px;
+    margin-right: -180px;
+  }
 }
 
 .Playground[data-isPreviewEntered='false'] {

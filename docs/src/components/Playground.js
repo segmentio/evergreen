@@ -15,7 +15,7 @@ export default class Playground extends React.Component {
 
     this.state = {
       uniqueId: _.uniqueId(),
-      isCodeCollapsed: true,
+      isCodeCollapsed: false,
       hasError: false,
       codeText: props.codeText
     }
@@ -63,6 +63,16 @@ export default class Playground extends React.Component {
         mountStylesheet={false}
       >
         <div className="Playground" data-iscodecollapsed={isCodeCollapsed}>
+          <div>
+            <LiveError />
+            <div
+              id={`code-playground-${uniqueId}`}
+              className="Playground-preview"
+            >
+              <LivePreview />
+            </div>
+            {!isCodeCollapsed && <LiveEditor onChange={this.handleChange} />}
+          </div>
           <div
             aria-expanded={!isCodeCollapsed}
             role="button"
@@ -71,16 +81,6 @@ export default class Playground extends React.Component {
             onClick={this.handleToggle}
           >
             {isCodeCollapsed ? 'Show code' : 'Hide code'}
-          </div>
-          <div>
-            {!isCodeCollapsed && <LiveEditor onChange={this.handleChange} />}
-            <LiveError />
-            <div
-              id={`code-playground-${uniqueId}`}
-              className="Playground-preview"
-            >
-              <LivePreview />
-            </div>
           </div>
         </div>
       </LiveProvider>
