@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Text } from '../../typography/'
+import { ThemeConsumer } from '../../theme'
 import Pane from '../src/Pane'
 import Card from '../src/Card'
 
@@ -15,7 +16,8 @@ import sourceCard from '!raw-loader!../src/Card'
  */
 import examplePaneBasic from './examples/Pane-basic.example'
 import examplePaneElevationStyles from './examples/Pane-elevation-styles.example'
-import examplePaneAppearances from './examples/Pane-appearances.example'
+import examplePaneBackgrounds from './examples/Pane-backgrounds.example'
+import examplePaneBorders from './examples/Pane-borders.example'
 import exampleCardBasic from './examples/Card-basic.example'
 import exampleCardElevationStyles from './examples/Card-elevation-styles.example'
 
@@ -114,53 +116,10 @@ PaneExample.propTypes = {
   children: PropTypes.node
 }
 
-const appearanceOptions = [
-  {
-    title: 'Tint 1',
-    component: <PaneExample background="tint1">tint1</PaneExample>,
-    description: (
-      <p>
-        This is the lightest tint and should be used before moving up to{' '}
-        <code>tint2</code>. Evergreen promotes a light user experience as much
-        as possible. When background colors are lighter it increase the dynamic
-        range of the whole experience.
-      </p>
-    )
-  },
-  {
-    title: 'Tint 2',
-    component: <PaneExample background="tint2">tint2</PaneExample>,
-    description: <p>Often useful for backgrounds.</p>
-  },
-  {
-    title: 'Tint 3',
-    component: <PaneExample appearance="tint3">tint3</PaneExample>,
-    description: (
-      <p>
-        Useful when you are have a Pane or Card layered on top that is using{' '}
-        <code>tint2</code>. Use sparingly.
-      </p>
-    )
-  },
-  {
-    title: 'Dark',
-    component: (
-      <PaneExample appearance="dark" color="white">
-        dark
-      </PaneExample>
-    ),
-    description: (
-      <p>This is rarely used. Might become deprecated in the future.</p>
-    )
-  },
-  {
-    title: 'Selected',
-    component: <PaneExample appearance="selected">selected</PaneExample>,
-    description: <p>This is to create a big selected Card. Rarely used.</p>
-  }
-]
+const appearanceOptions = null
 
 const scope = {
+  ThemeConsumer,
   Box,
   Pane,
   Text,
@@ -201,8 +160,13 @@ const components = [
         scope
       },
       {
-        title: 'Pane Appearances',
-        codeText: examplePaneAppearances,
+        title: 'Pane Backgrounds',
+        codeText: examplePaneBackgrounds,
+        scope
+      },
+      {
+        title: 'Pane Borders',
+        codeText: examplePaneBorders,
         scope
       }
     ]
