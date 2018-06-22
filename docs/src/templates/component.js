@@ -20,7 +20,8 @@ export default class ComponentTemplate extends React.PureComponent {
       components,
       title,
       subTitle,
-      examples
+      examples,
+      customExample
     } = getComponent(this.props.pageContext.name.toLowerCase())
 
     return (
@@ -38,6 +39,7 @@ export default class ComponentTemplate extends React.PureComponent {
               appearanceOptions={appearanceOptions}
               components={components}
               examples={examples}
+              customExample={customExample}
             />
           </div>
           <ComponentsSidebar />

@@ -1,4 +1,5 @@
 import React from 'react'
+import ColorExamples from './ColorExamples'
 
 const title = 'Colors'
 const subTitle = 'The Evergreen default theme color system.'
@@ -36,12 +37,14 @@ const implementationDetails = (
       The color system in Evergreen is located in the theme and is used
       throughout the theme. There is no real dependency on any of the colors
       directly within components. Components always access a theme color or
-      property through a get function. For example,
+      property through a get function. For example,{` `}
       <code>theme.getTextColor</code> is a required function in the Evergreen
       theme, <code>theme.colors</code> is not a required property.
     </p>
   </div>
 )
+
+const customExample = <ColorExamples marginTop={40} />
 
 const appearanceOptions = null
 
@@ -53,5 +56,6 @@ export default {
   designGuidelines,
   implementationDetails,
   appearanceOptions,
-  components
+  components,
+  customExample
 }

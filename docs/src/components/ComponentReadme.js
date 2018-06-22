@@ -15,7 +15,8 @@ export default class ComponentReadme extends PureComponent {
     implementationDetails: PropTypes.node,
     appearanceOptions: PropTypes.array,
     examples: PropTypes.array,
-    components: PropTypes.array
+    components: PropTypes.array,
+    customExample: PropTypes.node
   }
 
   render() {
@@ -29,6 +30,7 @@ export default class ComponentReadme extends PureComponent {
       implementationDetails,
       appearanceOptions,
       components,
+      customExample,
       ...props
     } = this.props
 
@@ -67,6 +69,7 @@ export default class ComponentReadme extends PureComponent {
                 {implementationDetails}
               </div>
             )}
+            {customExample && customExample}
             {appearanceOptions && (
               <div>
                 <div className="Content">

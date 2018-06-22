@@ -45,11 +45,13 @@ exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
           test: /\.css$/,
           use: [
             loaders.miniCssExtract(),
-            // // 0 => no loaders (default); 1 => postcss-loader; 2 => postcss-loader, sass-loader
+
+            // 0 => no loaders (default); 1 => postcss-loader; 2 => postcss-loader, sass-loader
             loaders.css({ importLoaders: 1 }),
 
             loaders.postcss({
               ident: 'postcss',
+              // Use CSSNext Here which came bundled
               plugins: () => [poscssImport(), postcssCssnext()]
             })
           ]
@@ -66,9 +68,10 @@ exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
 
   const configAfterSettings = getConfig()
 
-  // https://github.com/gatsbyjs/gatsby/issues/5778x
+  // https://github.com/gatsbyjs/gatsby/issues/5778
   // Losing my mind here. The default CSS rules need to be undone.
   const finalRules = configAfterSettings.module.rules.filter(rule => {
+    // There is a rule which has a `oneOf`
     if (Object.prototype.hasOwnProperty.call(rule, 'oneOf')) {
       // Nuke this rule.
       return JSON.stringify(rule).indexOf('style-loader') === -1
