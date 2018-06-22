@@ -14,6 +14,7 @@ import sourceInlineAlert from '!raw-loader!../src/InlineAlert'
  * Code examples
  */
 import exampleAlertDefault from './examples/alert-default.example'
+import exampleAlertDefaultWithChildren from './examples/alert-default-with-children.example'
 import exampleAlertCard from './examples/alert-card.example'
 import exampleInlineAlert from './examples/inline-alert.example'
 
@@ -70,6 +71,17 @@ const components = [
         scope
       },
       {
+        title: 'Default Alert With Children',
+        description: (
+          <p>
+            The Alert allows text directly as children to the component. Inside
+            of the Alert this will be wrapped in a Paragraph.
+          </p>
+        ),
+        codeText: exampleAlertDefaultWithChildren,
+        scope
+      },
+      {
         title: 'Alert Card Appearance',
         description: (
           <p>
@@ -97,7 +109,7 @@ const components = [
         title: 'Inline Alert',
         description: (
           <p>
-            Always pass a <code>type</code> property.
+            Always pass a <code>intent</code> property.
           </p>
         ),
         codeText: exampleInlineAlert,

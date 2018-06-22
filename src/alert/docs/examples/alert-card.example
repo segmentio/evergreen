@@ -2,30 +2,25 @@
   <Alert
     appearance="card"
     marginBottom={32}
-    title="A simple general message"
-  />
-  <Alert
-    appearance="card"
-    marginBottom={32}
-    type="success"
+    intent="success"
     title="Hooray! You did it. Your Source is now sending data."
   />
   <Alert
     appearance="card"
     marginBottom={32}
-    type="warning"
+    intent="warning"
     title="Changes will affect all Warehouses."
   />
   <Alert
     appearance="card"
     marginBottom={32}
-    type="danger"
+    intent="danger"
     title="We weren’t able to save your changes."
   />
   <Alert
     appearance="card"
     marginBottom={32}
-    type="info"
+    intent="info"
     title="There are over 180 integrations available."
   />
 </Box>
