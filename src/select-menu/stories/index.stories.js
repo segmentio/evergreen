@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react'
-import arrify from 'arrify'
+import Component from '@reactions/component'
 import React from 'react'
 import Box from 'ui-box'
 import options from '../docs/starwars-options'
@@ -25,19 +25,19 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
         </SelectMenu>
       )}
     </Manager>
-    <Manager>
-      {({ setState, state }) => (
+    <Component
+      initialState={{
+        options,
+        selected: []
+      }}
+    >
+      {({ state, setState }) => (
         <SelectMenu
           title="Select multiple names"
-          options={options}
+          options={state.options}
           selected={state.selected}
           onSelect={item => {
-            let selected
-            if (Array.isArray(state.selected)) {
-              selected = [...state.selected, item.value]
-            } else {
-              selected = arrify(item.value)
-            }
+            const selected = [...state.selected, item.value]
             const selectedItems = selected
             const selectedItemsLength = selectedItems.length
             let selectedNames = ''
@@ -73,6 +73,6 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
           <Button>{state.selectedNames || 'Select multiple...'}</Button>
         </SelectMenu>
       )}
-    </Manager>
+    </Component>
   </Box>
 ))

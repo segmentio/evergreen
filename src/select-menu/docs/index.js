@@ -1,5 +1,6 @@
 import React from 'react'
 import Box from 'ui-box'
+import Component from '@reactions/component'
 import SelectMenu from '../src/SelectMenu'
 import { Button } from '../../buttons/'
 import SyntaxHighlighter from '../../../docs/src/components/SyntaxHighlighter'
@@ -67,6 +68,7 @@ const appearanceOptions = null
 const scope = {
   Box,
   SelectMenu,
+  Component,
   Button,
   Manager,
   options
@@ -93,10 +95,10 @@ const components = [
         scope
       },
       {
-        title: 'Multi SelectMenu Example',
+        title: 'SelectMenu Multiselect with Deselect Example',
         description: (
           <div>
-            <p>This example shows basic usage with multiple selected items.</p>
+            <p>This example shows usage with multiple selected items.</p>
             <p>
               This pattern is only an example. Selected values and the
               formatting of their names should be managed wherever you choose to
