@@ -10,7 +10,7 @@
       options={state.options}
       selected={state.selected}
       onSelect={item => {
-        let  selected = [...state.selected, item.value]
+        const selected = [...state.selected, item.value]
         const selectedItems = selected
         const selectedItemsLength = selectedItems.length
         let selectedNames = ''
