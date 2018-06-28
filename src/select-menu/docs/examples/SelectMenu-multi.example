@@ -1,51 +1,49 @@
-    <Manager>
-      {({ setState, state }) => (
-        <SelectMenu
-          title="Select multiple names"
-          options={options}
-          selected={state.selected}
-          onSelect={item => {
-            let selected
-            if (Array.isArray(state.selected)) {
-              selected = [...state.selected, item.value]
-            } else {
-              selected = arrify(item.value)
-            }
-            const selectedItems = selected
-            const selectedItemsLength = selectedItems.length
-            let selectedNames = ''
-            if (selectedItemsLength === 0) {
-              selectedNames = ''
-            }
-            else if (selectedItemsLength === 1) {
-              selectedNames = selectedItems.toString()
-            } else if (selectedItemsLength > 1 ) {
-              selectedNames = selectedItemsLength.toString() + " selected..."
-            }
-            setState({
-              selected,
-              selectedNames
-            })
-          }}
-          onDeselect={item => {
-            const deselectedItemIndex = state.selected.indexOf(item.value)
-            const selectedItems = state.selected.filter(
-              (_item, i) => i !== deselectedItemIndex
-            )
-            const selectedItemsLength = selectedItems.length
-            let selectedNames = ''
-            if (selectedItemsLength === 0) {
-              selectedNames = ''
-            }
-            else if (selectedItemsLength === 1) {
-              selectedNames = selectedItems.toString()
-            } else if (selectedItemsLength > 1 ) {
-              selectedNames = selectedItemsLength.toString() + " selected..."
-            }
-            setState({ selected: selectedItems, selectedNames })
-          }}
-        >
-          <Button>{state.selectedNames || 'Select multiple...'}</Button>
-        </SelectMenu>
-      )}
-    </Manager>
+<Component
+  initialState={{
+    options: options,
+    selected: [] 
+  }}
+>
+  {({ state, setState }) => (
+    <SelectMenu
+      title="Select multiple names"
+      options={state.options}
+      selected={state.selected}
+      onSelect={item => {
+        const selected = [...state.selected, item.value]
+        const selectedItems = selected
+        const selectedItemsLength = selectedItems.length
+        let selectedNames = ''
+        if (selectedItemsLength === 0) {
+          selectedNames = ''
+        } else if (selectedItemsLength === 1) {
+          selectedNames = selectedItems.toString()
+        } else if (selectedItemsLength > 1) {
+          selectedNames = selectedItemsLength.toString() + ' selected...'
+        }
+        setState({
+          selected,
+          selectedNames
+        })
+      }}
+      onDeselect={item => {
+        const deselectedItemIndex = state.selected.indexOf(item.value)
+        const selectedItems = state.selected.filter(
+          (_item, i) => i !== deselectedItemIndex
+        )
+        const selectedItemsLength = selectedItems.length
+        let selectedNames = ''
+        if (selectedItemsLength === 0) {
+          selectedNames = ''
+        } else if (selectedItemsLength === 1) {
+          selectedNames = selectedItems.toString()
+        } else if (selectedItemsLength > 1) {
+          selectedNames = selectedItemsLength.toString() + ' selected...'
+        }
+        setState({ selected: selectedItems, selectedNames })
+      }}
+    >
+      <Button>{state.selectedNames || 'Select multiple...'}</Button>
+    </SelectMenu>
+  )}
+</Component>
