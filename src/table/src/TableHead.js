@@ -12,6 +12,11 @@ export default class TableHead extends PureComponent {
     ...Pane.propTypes,
 
     /**
+     * The height of the table head.
+     */
+    height: PropTypes.number.isRequired,
+
+    /**
      * This should always be true if you are using TableHead together with a TableBody.
      * Because TableBody has `overflowY: scroll` by default.
      */
@@ -23,6 +28,7 @@ export default class TableHead extends PureComponent {
   }
 
   static defaultProps = {
+    height: 32,
     accountForScrollbar: true
   }
 
@@ -33,7 +39,7 @@ export default class TableHead extends PureComponent {
   }
 
   render() {
-    const { children, accountForScrollbar, ...props } = this.props
+    const { children, height, accountForScrollbar, ...props } = this.props
     const { scrollbarWidth } = this.state
 
     return (
@@ -42,6 +48,7 @@ export default class TableHead extends PureComponent {
         paddingRight={scrollbarWidth}
         borderBottom="default"
         background="tint2"
+        height={height}
         {...props}
       >
         {children}{' '}

@@ -14,8 +14,8 @@ const disabled = defaultControlStyles.disabled
 
 /**
  * Get button appearance.
- * @param {String} appearance - default, primary, minimal.
- * @param {String} intent - none, success, warning, danger.
+ * @param {string} appearance - default, primary, minimal.
+ * @param {string} intent - none, success, warning, danger.
  * @return {Object} the appearance of the button.
  */
 const getButtonAppearance = (appearance, intent) => {

@@ -272,6 +272,7 @@ const components = [
         title: 'Basic SearchTableHeaderCell example',
         codeText: exampleSearchTableHeaderCell,
         scope: {
+          TableHead,
           SearchTableHeaderCell,
           TableRow
         }

@@ -21,6 +21,7 @@ export {
 } from './form-field'
 export { Image } from './image'
 export { Pane, Card } from './layers'
+export { Menu } from './menu'
 export { Overlay } from './overlay'
 export { Popover } from './popover'
 export { Portal } from './portal'

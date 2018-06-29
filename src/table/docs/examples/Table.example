@@ -4,7 +4,7 @@
     <TextTableHeaderCell isSortable sortOrder="descending">
       Last Activity
     </TextTableHeaderCell>
-    <TextTableHeaderCell textAlign="right" borderRight={null}>
+    <TextTableHeaderCell>
       ltv
     </TextTableHeaderCell>
   </TableHead>
@@ -13,7 +13,7 @@
       <TableRow key={profile.id} isSelectable>
         <TextTableCell>{profile.name}</TextTableCell>
         <TextTableCell>{profile.lastActivity}</TextTableCell>
-        <TextTableCell isNumber borderRight={null}>
+        <TextTableCell isNumber>
           {profile.ltv}
         </TextTableCell>
       </TableRow>

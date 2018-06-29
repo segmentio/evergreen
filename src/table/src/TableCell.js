@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Pane } from '../../layers'
+import { TableRowConsumer } from './TableRowContext'
 
 export default class TableCell extends PureComponent {
   static propTypes = {
@@ -10,14 +11,11 @@ export default class TableCell extends PureComponent {
   }
 
   static styles = {
-    paddingX: 8,
+    paddingX: 12,
     boxSizing: 'border-box',
-    height: 32,
     flex: 1,
     display: 'flex',
     alignItems: 'center',
-    borderRight: 'muted',
-    borderBottom: 'muted',
     overflow: 'hidden'
   }
 
@@ -25,9 +23,15 @@ export default class TableCell extends PureComponent {
     const { children, ...props } = this.props
 
     return (
-      <Pane {...TableCell.styles} {...props}>
-        {children}
-      </Pane>
+      <TableRowConsumer>
+        {height => {
+          return (
+            <Pane height={height} {...TableCell.styles} {...props}>
+              {children}
+            </Pane>
+          )
+        }}
+      </TableRowConsumer>
     )
   }
 }

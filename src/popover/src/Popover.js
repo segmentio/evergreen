@@ -115,11 +115,10 @@ export default class Popover extends Component {
     return requestAnimationFrame(() => {
       // Container ref may be undefined between component mounting and Portal rendering
       // activeElement may be undefined in some rare cases in IE
-
       if (
         this.popoverNode == null || // eslint-disable-line eqeqeq, no-eq-null
         document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
-        !this.props.isShown
+        !this.state.isShown
       ) {
         return
       }

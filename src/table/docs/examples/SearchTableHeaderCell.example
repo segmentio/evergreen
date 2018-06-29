@@ -1,4 +1,3 @@
 <TableHead>
-  <SearchTableHeaderCell borderRight={null} onChange={(e) => console.log(e)} placeholder='Search by email...' />
-  <SearchTableHeaderCell autoFocus borderRight={null} onChange={(e) => console.log(e)} placeholder='Autofocus...' />
+  <SearchTableHeaderCell onChange={(e) => console.log(e)} placeholder='Search by email...' />
 </TableHead>

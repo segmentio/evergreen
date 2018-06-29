@@ -58,6 +58,7 @@
 
 .Playground-preview {
   background-color: #fff;
+  color: var(--neutral-500);
   margin: 4px;
   padding: 16px;
   border-radius: 3px;

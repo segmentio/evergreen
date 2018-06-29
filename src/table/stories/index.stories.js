@@ -1,17 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import {
-  Table,
-  TableHead,
-  TableHeaderCell,
-  TextTableHeaderCell,
-  SearchTableHeaderCell,
-  TableBody,
-  TableRow,
-  TableCell,
-  TextTableCell
-} from '../../table'
+import { Table } from '../../table'
 import profiles from './profiles'
 
 storiesOf('table', module)
@@ -22,110 +12,113 @@ storiesOf('table', module)
         document.body.style.height = '100vh'
       })()}
       <Table>
-        <TableHead>
-          <SearchTableHeaderCell />
-          <TextTableHeaderCell isSortable sortOrder="descending">
+        <Table.Head>
+          <Table.SearchHeaderCell />
+          <Table.TextHeaderCell isSortable sortOrder="descending">
             Last Activity
-          </TextTableHeaderCell>
-          <TextTableHeaderCell textAlign="right" borderRight={null}>
-            ltv
-          </TextTableHeaderCell>
-        </TableHead>
-        <TableBody height={640}>
+          </Table.TextHeaderCell>
+          <Table.TextHeaderCell textAlign="right">ltv</Table.TextHeaderCell>
+        </Table.Head>
+        <Table.Body height={640}>
           {profiles.map(profile => (
-            <TableRow key={profile.id} isSelectable>
-              <TextTableCell>{profile.name}</TextTableCell>
-              <TextTableCell>{profile.lastActivity}</TextTableCell>
-              <TextTableCell isNumber borderRight={null}>
-                {profile.ltv}
-              </TextTableCell>
-            </TableRow>
+            <Table.Row key={profile.id} isSelectable>
+              <Table.TextCell>{profile.name}</Table.TextCell>
+              <Table.TextCell>{profile.lastActivity}</Table.TextCell>
+              <Table.TextCell isNumber>{profile.ltv}</Table.TextCell>
+            </Table.Row>
           ))}
-        </TableBody>
+        </Table.Body>
       </Table>
     </Box>
   ))
-  .add('TableCell', () => (
+  .add('Table.Cell', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <TableCell>TableCell</TableCell>
+      <Table.Cell>Table.Cell</Table.Cell>
     </Box>
   ))
-  .add('TextTableCell', () => (
+  .add('Table.TextCell', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <TextTableCell>TextTableCell</TextTableCell>
+      <Table.TextCell>Table.TextCell</Table.TextCell>
     </Box>
   ))
-  .add('TableHead', () => (
+  .add('Table.Head', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <TableHead>
-        <SearchTableHeaderCell />
-        <TextTableHeaderCell isSortable sortOrder="descending">
+      <Table.Head>
+        <Table.SearchHeaderCell />
+        <Table.TextHeaderCell isSortable sortOrder="descending">
           Last Activity
-        </TextTableHeaderCell>
-        <TextTableHeaderCell textAlign="right" borderRight={null}>
-          ltv
-        </TextTableHeaderCell>
-      </TableHead>
+        </Table.TextHeaderCell>
+        <Table.TextHeaderCell textAlign="right">ltv</Table.TextHeaderCell>
+      </Table.Head>
     </Box>
   ))
-  .add('TableRow', () => (
+  .add('Table.Row', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <TableRow>TableRow</TableRow>
+      {['none', 'danger', 'warning', 'info', 'success'].map(intent => {
+        return (
+          <Table.Row key={intent} isSelectable intent={intent}>
+            <Table.TextCell>{intent}</Table.TextCell>
+          </Table.Row>
+        )
+      })}
+      <Table.Row height={32}>
+        <Table.TextCell>Height 32</Table.TextCell>
+      </Table.Row>
+      <Table.Row height={40}>
+        <Table.TextCell>Height 40</Table.TextCell>
+      </Table.Row>
     </Box>
   ))
-  .add('TableHeaderCell', () => (
+  .add('Table.HeaderCell', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <TableHeaderCell>TableHeaderCell</TableHeaderCell>
+      <Table.HeaderCell>Table.HeaderCell</Table.HeaderCell>
     </Box>
   ))
-  .add('TextTableHeaderCell', () => (
+  .add('Table.TextHeaderCell', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <TextTableHeaderCell>TextTableHeaderCell</TextTableHeaderCell>
+      <Table.TextHeaderCell>Table.TextHeaderCell</Table.TextHeaderCell>
     </Box>
   ))
-  .add('SearchTableHeaderCell', () => (
+  .add('Table.SearchHeaderCell', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <SearchTableHeaderCell />
-      <SearchTableHeaderCell autoFocus placeholder="autoFocus" />
-      <SearchTableHeaderCell borderRight={null}>
-        SearchTableHeaderCell
-      </SearchTableHeaderCell>
+      <Table.SearchHeaderCell />
+      <Table.SearchHeaderCell autoFocus placeholder="autoFocus" />
     </Box>
   ))
-  .add('TableBody', () => (
+  .add('Table.Body', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <TableBody>TableBody</TableBody>
+      <Table.Body>Table.Body</Table.Body>
     </Box>
   ))

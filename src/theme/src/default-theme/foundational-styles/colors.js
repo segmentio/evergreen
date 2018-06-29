@@ -46,6 +46,7 @@ export default {
     muted: scales.neutral.N8,
     default: scales.neutral.N9,
     dark: scales.neutral.N10,
+    selected: palette.blue.base,
 
     // Intent.
     success: palette.green.dark,

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { Pane } from '../../layers'
 import { withTheme } from '../../theme'
+import { TableRowProvider } from './TableRowContext'
 
 class TableRow extends PureComponent {
   static propTypes = {
@@ -10,6 +11,11 @@ class TableRow extends PureComponent {
      * Composes the Pane component as the base.
      */
     ...Pane.propTypes,
+
+    /**
+     * The height of the row.
+     */
+    height: PropTypes.number,
 
     /**
      * Function that is called on click and enter/space keypress.
@@ -32,6 +38,12 @@ class TableRow extends PureComponent {
     isHighlighted: PropTypes.bool,
 
     /**
+     * The intent of the alert.
+     */
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info'])
+      .isRequired,
+
+    /**
      * The appearance of the table row. Default theme only support default.
      */
     appearance: PropTypes.string.isRequired,
@@ -49,7 +61,9 @@ class TableRow extends PureComponent {
   }
 
   static defaultProps = {
+    intent: 'none',
     appearance: 'default',
+    height: 48,
     onClick: () => {},
     onSelect: () => {},
     onKeyPress: () => {}
@@ -77,9 +91,11 @@ class TableRow extends PureComponent {
     const {
       theme,
       className,
-
+      height,
       children,
+      intent,
       appearance,
+
       // Filter out onClick + onKeyPress
       onClick,
       onKeyPress,
@@ -89,25 +105,30 @@ class TableRow extends PureComponent {
       ...props
     } = this.props
 
-    const themedClassName = theme.getRowClassName(appearance)
+    const themedClassName = theme.getRowClassName(appearance, intent)
 
     return (
-      <Pane
-        className={cx(themedClassName, className)}
-        display="flex"
-        aria-selected={isHighlighted}
-        aria-current={isSelected}
-        {...(isSelectable
-          ? {
-              tabIndex: 0
-            }
-          : {})}
-        onClick={this.handleClick}
-        onKeyPress={this.handleKeyPress}
-        {...props}
-      >
-        {children}
-      </Pane>
+      <TableRowProvider height={height}>
+        <Pane
+          className={cx(themedClassName, className)}
+          display="flex"
+          aria-selected={isHighlighted}
+          aria-current={isSelected}
+          data-isselecteable={isSelectable}
+          {...(isSelectable
+            ? {
+                tabIndex: 0
+              }
+            : {})}
+          onClick={this.handleClick}
+          onKeyPress={this.handleKeyPress}
+          height={height}
+          borderBottom="muted"
+          {...props}
+        >
+          {children}
+        </Pane>
+      </TableRowProvider>
     )
   }
 }
