@@ -35,7 +35,7 @@ export default class SelectMenu extends PureComponent {
      */
     onSelect: PropTypes.func,
     /**
-     * Function that is called when an option is Deselected.
+     * Function that is called when an option is deselected.
      */
     onDeselect: PropTypes.func,
 
