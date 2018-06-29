@@ -2,33 +2,16 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import { Table } from '../../table'
-import profiles from './profiles'
+import AdvancedTable from './AdvancedTable'
 
 storiesOf('table', module)
-  .add('Basic example', () => (
+  .add('advanced example', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Table>
-        <Table.Head>
-          <Table.SearchHeaderCell />
-          <Table.TextHeaderCell isSortable sortOrder="descending">
-            Last Activity
-          </Table.TextHeaderCell>
-          <Table.TextHeaderCell textAlign="right">ltv</Table.TextHeaderCell>
-        </Table.Head>
-        <Table.Body height={640}>
-          {profiles.map(profile => (
-            <Table.Row key={profile.id} isSelectable>
-              <Table.TextCell>{profile.name}</Table.TextCell>
-              <Table.TextCell>{profile.lastActivity}</Table.TextCell>
-              <Table.TextCell isNumber>{profile.ltv}</Table.TextCell>
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
+      <AdvancedTable />
     </Box>
   ))
   .add('Table.Cell', () => (

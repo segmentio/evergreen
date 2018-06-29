@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import TableHeaderCell from './TableHeaderCell'
-import SortableIcon from './SortableIcon'
 
 export default class TextTableHeaderCell extends PureComponent {
   static propTypes = {
@@ -12,36 +11,18 @@ export default class TextTableHeaderCell extends PureComponent {
     ...TableHeaderCell.propTypes,
 
     /**
-     * Composes the SortableIcon component also.
-     */
-    ...SortableIcon.propTypes,
-
-    /**
      * Pass additional props to the Text component.
      */
-    textProps: PropTypes.objectOf(PropTypes.object),
-
-    /**
-     * Shows the sortable icon.
-     */
-    isSortable: PropTypes.bool
-  }
-
-  static defaultProps = {
-    ...SortableIcon.defaultProps
+    textProps: PropTypes.objectOf(PropTypes.object)
   }
 
   render() {
     const { children, textProps, isSortable, sortOrder, ...props } = this.props
     return (
-      <TableHeaderCell
-        {...(isSortable ? { cursor: 'pointer' } : {})}
-        {...props}
-      >
+      <TableHeaderCell {...props}>
         <Text fontWeight={500} size={300} flex="1" {...textProps}>
           {children}{' '}
         </Text>
-        {isSortable && <SortableIcon sortOrder={sortOrder} />}
       </TableHeaderCell>
     )
   }

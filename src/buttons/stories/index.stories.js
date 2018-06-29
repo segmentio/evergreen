@@ -2,7 +2,12 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import Component from '@reactions/component'
-import { IconButton, Button, BackButton } from '../../buttons'
+import {
+  IconButton,
+  Button,
+  BackButton,
+  TextDropdownButton
+} from '../../buttons'
 import { Heading } from '../../typography'
 import { Pane } from '../../layers'
 import { SegmentedControl } from '../../segmented-control'
@@ -273,6 +278,12 @@ buttonsStory.add('Button types', () => (
         </React.Fragment>
       )}
     </Component>
+  </Box>
+))
+
+buttonsStory.add('TextDropdownButton', () => (
+  <Box padding={40}>
+    <TextDropdownButton>Table Header</TextDropdownButton>
   </Box>
 ))
 

@@ -45,6 +45,7 @@ class MenuItem extends React.PureComponent {
   }
 
   static defaultProps = {
+    intent: 'none',
     appearance: 'default',
     onClick: () => {},
     onSelect: () => {},
@@ -88,7 +89,7 @@ class MenuItem extends React.PureComponent {
       >
         {icon && (
           <Icon
-            color={intent || 'default'}
+            color={intent === 'none' ? 'default' : intent}
             icon={icon}
             marginLeft={16}
             marginRight={-4}
