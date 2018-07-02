@@ -1,16 +1,8 @@
 import React from 'react'
-import {
-  Table,
-  TableCell,
-  TextTableCell,
-  TableRow,
-  TableHeaderCell,
-  TextTableHeaderCell,
-  SearchTableHeaderCell,
-  TableBody,
-  TableHead
-} from '..'
+import { Table } from '..'
+import AdvancedTable from '../stories/AdvancedTable'
 import profiles from '../stories/profiles.json' // eslint-disable-line import/extensions
+
 /* eslint-disable import/no-unresolved, import/no-webpack-loader-syntax */
 import sourceTable from '!raw-loader!../src/Table'
 import sourceTableCell from '!raw-loader!../src/TableCell'
@@ -27,6 +19,7 @@ import sourceTableHead from '!raw-loader!../src/TableHead'
  * Code examples
  */
 import exampleTable from './examples/Table.example'
+import sourceAdvancedTable from './examples/AdvancedTable.example'
 import exampleTableCell from './examples/TableCell.example'
 import exampleTextTableCell from './examples/TextTableCell.example'
 import exampleTableRow from './examples/TableRow.example'
@@ -81,36 +74,48 @@ const components = [
     ),
     examples: [
       {
-        title: 'Complete Table example',
+        title: 'Advanced Table Example',
+        description: (
+          <div>
+            <p>
+              This is a advanced table example that composes multiple components
+              and adds functionality to the table. By default all table
+              components are presentational, this is just an example.{' '}
+              <a href="https://github.com/segmentio/evergreen/blob/v4/src/table/stories/AdvancedTable.js">
+                Take a look at the code here
+              </a>.
+            </p>
+          </div>
+        ),
+        codeText: sourceAdvancedTable,
+        scope: {
+          AdvancedTable
+        }
+      },
+      {
+        title: 'Complete Table Example',
         description: (
           <p>
-            This is a complete example of using a table in Evergreen. You want
-            to make sure to use <code>borderRight={`{null}`}</code> on the last
-            table cell of each table row.
+            This is a complete example of using a table in Evergreen without any
+            functionality added.
           </p>
         ),
         codeText: exampleTable,
         scope: {
           Table,
-          TableBody,
-          TableHead,
-          TableRow,
-          TextTableHeaderCell,
-          TextTableCell,
-          SearchTableHeaderCell,
           profiles
         }
       }
     ]
   },
   {
-    name: 'TableHead',
+    name: 'Table.Head',
     source: sourceTableHead,
     description: (
       <div>
         <p>
-          This component is used to put your table header cells in. You
-          don&apos;t need to add a table row inside.
+          This component is used to put your table header cells in. You don’t
+          need to add a table row inside.
         </p>
         <p>
           This component includes a utility that makes sure the scrollbar is
@@ -122,19 +127,16 @@ const components = [
     ),
     examples: [
       {
-        title: 'Basic TableHead example',
+        title: 'Basic Table.Head example',
         codeText: exampleTableHead,
         scope: {
-          TableHead,
-          TextTableHeaderCell,
-          SearchTableHeaderCell,
-          profiles
+          Table
         }
       }
     ]
   },
   {
-    name: 'TableBody',
+    name: 'Table.Body',
     source: sourceTableBody,
     description: (
       <p>
@@ -144,122 +146,112 @@ const components = [
     ),
     examples: [
       {
-        title: 'Basic TableBody example',
+        title: 'Basic Table.Body example',
         codeText: exampleTableBody,
         scope: {
-          TableBody,
-          TableRow,
-          TextTableCell,
+          Table,
           profiles
         }
       }
     ]
   },
   {
-    name: 'TableRow',
+    name: 'Table.Row',
     source: sourceTableRow,
     description: (
       <p>
         This component is used for table rows in your table and can be
-        selecteable and selected. This is currently also used to wrap{' '}
-        <code>TableHeaderCell</code> components in.
+        selectable and selected. Table rows can have a <code>intent</code> as
+        well.
       </p>
     ),
     examples: [
       {
-        title: 'Basic selecteable TableRow example',
+        title: 'Basic selectable Table.Row example',
         codeText: exampleTableRow,
         scope: {
-          TableRow,
-          TextTableCell
+          Table
         }
       }
     ]
   },
   {
-    name: 'TableCell',
+    name: 'Table.Cell',
     source: sourceTableCell,
     description: (
       <p>
         This component is for table cells in your table. Consider using{' '}
-        <code>TextTableCell</code> when you want to display text in your table
+        <code>Table.TextCell</code> when you want to display text in your table
         cell. This can be used as a base to build more complex table cells.
       </p>
     ),
     examples: [
       {
-        title: 'Basic TableCell example',
+        title: 'Basic Table.Cell example',
         codeText: exampleTableCell,
         scope: {
-          TableRow,
-          TableCell
+          Table
         }
       }
     ]
   },
   {
-    name: 'TextTableCell',
+    name: 'Table.TextCell',
     source: sourceTextTableCell,
     description: (
       <p>This component is for table cells in your table that contain text.</p>
     ),
     examples: [
       {
-        title: 'Basic TextTableCell example',
+        title: 'Basic Table.TextCell example',
         codeText: exampleTextTableCell,
         scope: {
-          TextTableCell,
-          TableRow
+          Table
         }
       }
     ]
   },
   {
-    name: 'TableHeaderCell',
+    name: 'Table.HeaderCell',
     source: sourceTableHeaderCell,
     description: (
       <p>
         This component is for table headers cells in your table. Consider using{' '}
-        <code>TextTableHeaderCell</code> when you want to display text in your
-        table header cell. This looks different than
+        <code>Table.TextHeaderCell</code> when you want to display text in your
+        table header cell.
       </p>
     ),
     examples: [
       {
-        title: 'Basic TableHeaderCell example',
+        title: 'Basic Table.HeaderCell example',
         codeText: exampleTableHeaderCell,
         scope: {
-          TableHead,
-          TableHeaderCell,
-          TableRow
+          Table
         }
       }
     ]
   },
   {
-    name: 'TextTableHeaderCell',
+    name: 'Table.TextHeaderCell',
     source: sourceTextTableHeaderCell,
     description: (
       <p>
         This component is for table headers cells in your table that contain
-        text. This component can also be sortable. This functionality is not
-        completely locked down yet.
+        text. This functionality is not completely locked down yet.
       </p>
     ),
     examples: [
       {
-        title: 'Basic TextTableHeaderCell example',
+        title: 'Basic Table.TextHeaderCell example',
         codeText: exampleTextTableHeaderCell,
         scope: {
-          TableHead,
-          TextTableHeaderCell,
-          TableRow
+          Table
         }
       }
     ]
   },
   {
-    name: 'SearchTableHeaderCell',
+    name: 'Table.SearchHeaderCell',
     source: sourceSearchTableHeaderCell,
     description: (
       <p>
@@ -269,12 +261,10 @@ const components = [
     ),
     examples: [
       {
-        title: 'Basic SearchTableHeaderCell example',
+        title: 'Basic Table.SearchHeaderCell example',
         codeText: exampleSearchTableHeaderCell,
         scope: {
-          TableHead,
-          SearchTableHeaderCell,
-          TableRow
+          Table
         }
       }
     ]

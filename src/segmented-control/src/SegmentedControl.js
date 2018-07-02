@@ -21,14 +21,15 @@ export default class SegmentedControl extends PureComponent {
     options: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.node.isRequired,
-        value: PropTypes.string.isRequired
+        value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+          .isRequired
       })
     ).isRequired,
 
     /**
      * The current value of the Segmented Control when controlled.
      */
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * The default value of the Segmented Control when uncontrolled.
@@ -59,7 +60,7 @@ export default class SegmentedControl extends PureComponent {
     super(props, context)
 
     this.state = {
-      value: props.defaultValue || props.options[0].value
+      value: String(props.defaultValue || props.options[0].value)
     }
 
     this.name = `SegmentedControl-${radioCount}`
@@ -96,7 +97,7 @@ export default class SegmentedControl extends PureComponent {
             key={option.value}
             name={name}
             label={option.label}
-            value={option.value}
+            value={String(option.value)}
             height={height}
             checked={value === option.value}
             onChange={this.handleChange}

@@ -1,9 +1,9 @@
-<TableHead>
-  <SearchTableHeaderCell />
-  <TextTableHeaderCell isSortable sortOrder="descending">
+<Table.Head>
+  <Table.SearchHeaderCell />
+  <Table.TextHeaderCell >
     Last Activity
-  </TextTableHeaderCell>
-  <TextTableHeaderCell textAlign="right" borderRight={null}>
+  </Table.TextHeaderCell>
+  <Table.TextHeaderCell>
     ltv
-  </TextTableHeaderCell>
-</TableHead>
+  </Table.TextHeaderCell>
+</Table.Head>

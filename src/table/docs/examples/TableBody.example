@@ -1,11 +1,11 @@
-<TableBody height={320}>
+<Table.Body height={320}>
   {profiles.map(profile => (
-    <TableRow key={profile.id} isSelectable>
-      <TextTableCell>{profile.name}</TextTableCell>
-      <TextTableCell>{profile.lastActivity}</TextTableCell>
-      <TextTableCell isNumber borderRight={null}>
+    <Table.Row key={profile.id} isSelectable>
+      <Table.TextCell>{profile.name}</Table.TextCell>
+      <Table.TextCell>{profile.lastActivity}</Table.TextCell>
+      <Table.TextCell isNumber>
         {profile.ltv}
-      </TextTableCell>
-    </TableRow>
+      </Table.TextCell>
+    </Table.Row>
   ))}
-</TableBody>
+</Table.Body>

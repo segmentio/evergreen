@@ -10,6 +10,7 @@
 >
   {({ state, setState }) => (
     <SegmentedControl
+      name="interval"
       width={240}
       options={state.options}
       value={state.value}

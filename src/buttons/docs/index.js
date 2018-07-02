@@ -4,13 +4,19 @@ import Component from '@reactions/component'
 import { SegmentedControl } from '../../segmented-control'
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
-import { BackButton, IconButton, Button } from '../../buttons'
+import {
+  BackButton,
+  IconButton,
+  Button,
+  TextDropdownButton
+} from '../../buttons'
 import LoadingManager from './LoadingManager'
 
 /* eslint-disable import/no-unresolved, import/no-webpack-loader-syntax */
 import sourceBackButton from '!raw-loader!../src/BackButton'
 import sourceIconButton from '!raw-loader!../src/IconButton'
 import sourceButton from '!raw-loader!../src/Button'
+import sourceTextDropdownButton from '!raw-loader!../src/TextDropdownButton'
 /* eslint-enable import/no-unresolved, import/no-webpack-loader-syntax */
 
 /**
@@ -21,6 +27,7 @@ import loadingExample from './examples/loading.example'
 import basicWithIconsExample from './examples/basic-with-icons.example'
 import backButtonExample from './examples/back-button.example'
 import iconButtonBasicExample from './examples/icon-button-basic.example'
+import textDropdownButtonExample from './examples/TextDropdownButton.example'
 
 const title = 'Buttons'
 const subTitle = 'A set of buttons with multiple appearances.'
@@ -133,6 +140,24 @@ const components = [
         ),
         codeText: iconButtonBasicExample,
         scope: { IconButton, Box, Pane, Heading }
+      }
+    ]
+  },
+  {
+    name: 'TextDropdownButton',
+    source: sourceTextDropdownButton,
+    description: (
+      <p>
+        The TextDropdownButton is different from the other types of buttons. It
+        doesn’t work with a height, instead the dimensions are based on the text
+        size. This component is used inside of table header cells.
+      </p>
+    ),
+    examples: [
+      {
+        title: 'TextDropdownButton example',
+        codeText: textDropdownButtonExample,
+        scope: { TextDropdownButton }
       }
     ]
   }

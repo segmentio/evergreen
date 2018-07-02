@@ -10,7 +10,7 @@
           flexDirection: 'column',
         }}
       >
-        <Pane flexShrink={0} elevation={0} backgroundColor="white">
+        <Pane zIndex={1} flexShrink={0} elevation={0} backgroundColor="white">
           <Pane padding={16}>
             <Heading size={600}>Title</Heading>
           </Pane>

@@ -1,11 +1,14 @@
 <div>
-  <TableRow onSelect={() => console.log('select Banana')} isSelectable>
-    <TextTableCell borderRight={null}>Banana</TextTableCell>
-  </TableRow>
-  <TableRow onSelect={() => console.log('select Pear')} isSelectable>
-    <TextTableCell borderRight={null}>Pear</TextTableCell>
-  </TableRow>
-  <TableRow onSelect={() => console.log('select Kiwi')} isSelectable>
-    <TextTableCell borderRight={null}>Kiwi</TextTableCell>
-  </TableRow>
+  {['none', 'danger', 'warning', 'info', 'success'].map(intent => {
+    return (
+      <Table.Row
+        key={intent}
+        isSelectable
+        onSelect={() => alert(intent)}
+        intent={intent}
+      >
+        <Table.TextCell>{intent}</Table.TextCell>
+      </Table.Row>
+    )
+  })}
 </div>

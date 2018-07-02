@@ -1,4 +1,4 @@
-<TableHead>
-  <TextTableHeaderCell isSortable>Age</TextTableHeaderCell>
-  <TextTableHeaderCell borderRight={null}>Email</TextTableHeaderCell>
-</TableHead>
+<Table.Head>
+  <Table.TextHeaderCell>Age</Table.TextHeaderCell>
+  <Table.TextHeaderCell>Email</Table.TextHeaderCell>
+</Table.Head>

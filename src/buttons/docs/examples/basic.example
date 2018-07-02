@@ -12,6 +12,7 @@
   {({ state, setState }) => (
     <React.Fragment>
       <SegmentedControl
+        name="button-size"
         width={280}
         options={state.options}
         value={state.value}

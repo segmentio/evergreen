@@ -11,7 +11,6 @@ export default class ComponentTemplate extends React.PureComponent {
   }
 
   render() {
-    console.log(this.props.pageContext)
     const {
       introduction,
       designGuidelines,
