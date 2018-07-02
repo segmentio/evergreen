@@ -17,7 +17,7 @@ export default () => {
           <div className="MainLayout-content">
             <section className="Home">
               <div className="Home-inner">
-                <h1>React Based UI Design System</h1>
+                <h1>React Based UI Framework</h1>
                 <p>
                   It is build and maintained open&#8209;source&nbsp;by&nbsp;
                   <NativeLink className="Link" href="https://segment.com/">

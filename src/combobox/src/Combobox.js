@@ -160,7 +160,7 @@ export default class Combobox extends PureComponent {
               iconAim="down"
               color="muted"
               icon="caret-down"
-              appearance="regular"
+              appearance="default"
               height={height}
               marginLeft={-1}
               paddingLeft={0}

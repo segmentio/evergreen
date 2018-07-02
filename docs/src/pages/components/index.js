@@ -1,14 +1,6 @@
 import React from 'react'
 import { push } from 'gatsby'
-import {
-  Table,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-  TextTableHeaderCell,
-  TextTableCell
-} from '../../../../src'
+import { Table, Icon } from '../../../../src'
 import TopBar from '../../components/TopBar'
 import componentRoutes from '../../componentRoutes'
 import ComponentsSidebar from '../../components/ComponentsSidebar'
@@ -25,51 +17,35 @@ export default () => {
             </div>
 
             <Table marginTop={40} border={false}>
-              <TableHead>
-                <TextTableHeaderCell borderRight={false} flex={2}>
-                  Component
-                </TextTableHeaderCell>
-                <TextTableHeaderCell borderRight={false}>
-                  Available
-                </TextTableHeaderCell>
-                <TextTableHeaderCell borderRight={false}>
-                  Docs
-                </TextTableHeaderCell>
-              </TableHead>
-              <TableBody>
+              <Table.Head>
+                <Table.TextHeaderCell flex={2}>Component</Table.TextHeaderCell>
+                <Table.TextHeaderCell>Available</Table.TextHeaderCell>
+                <Table.TextHeaderCell>Docs</Table.TextHeaderCell>
+              </Table.Head>
+              <Table.Body>
                 {componentRoutes.map(component => {
                   return (
-                    <TableRow
+                    <Table.Row
                       key={component.name}
                       isSelectable
                       onSelect={() => push(component.path)}
                     >
-                      <TextTableCell
-                        height={40}
+                      <Table.TextCell
                         flex={2}
-                        borderRight={false}
                         textProps={{ size: 400, fontWeight: 500 }}
                       >
                         {component.sidebarOverride || component.name}
-                      </TextTableCell>
-                      <TableCell height={40} borderRight={false}>
-                        {/* <CheckCircleIcon
-                          size={12}
-                          iconSize={12}
-                          color={colors.green['500']}
-                        /> */}
-                      </TableCell>
-                      <TableCell height={40} borderRight={false}>
-                        {/* <CheckCircleIcon
-                          size={12}
-                          iconSize={12}
-                          color={colors.green['500']}
-                        /> */}
-                      </TableCell>
-                    </TableRow>
+                      </Table.TextCell>
+                      <Table.Cell>
+                        <Icon icon="tick-circle" color="success" size={14} />
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Icon icon="tick-circle" color="success" size={14} />
+                      </Table.Cell>
+                    </Table.Row>
                   )
                 })}
-              </TableBody>
+              </Table.Body>
             </Table>
           </section>
         </div>
