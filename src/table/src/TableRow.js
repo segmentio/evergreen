@@ -23,6 +23,11 @@ class TableRow extends PureComponent {
     onSelect: PropTypes.func,
 
     /**
+     * Function that is called on click and enter/space keypress.
+     */
+    onDeselect: PropTypes.func,
+
+    /**
      * Makes the TableRow selectable.
      */
     isSelectable: PropTypes.bool,
@@ -66,13 +71,18 @@ class TableRow extends PureComponent {
     height: 48,
     onClick: () => {},
     onSelect: () => {},
+    onDeselect: () => {},
     onKeyPress: () => {}
   }
 
   handleClick = e => {
     this.props.onClick(e)
     if (this.props.isSelectable) {
-      this.props.onSelect()
+      if (this.props.isSelected) {
+        this.props.onDeselect()
+      } else {
+        this.props.onSelect()
+      }
     }
   }
 
@@ -96,9 +106,12 @@ class TableRow extends PureComponent {
       intent,
       appearance,
 
-      // Filter out onClick + onKeyPress
+      // Filter out
       onClick,
       onKeyPress,
+      onSelect,
+      onDeselect,
+
       isHighlighted,
       isSelectable,
       isSelected,

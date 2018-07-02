@@ -29,10 +29,16 @@ export default class OptionsList extends PureComponent {
     width: PropTypes.number,
 
     /**
+     * When true, multi select is accounted for.
+     */
+    isMultiSelect: PropTypes.bool,
+
+    /**
      * This holds the values of the options
      */
     selected: PropTypes.arrayOf(PropTypes.string),
     onSelect: PropTypes.func,
+    onDeselect: PropTypes.func,
     hasFilter: PropTypes.bool,
     optionSize: PropTypes.number,
     renderItem: PropTypes.func,
@@ -50,6 +56,7 @@ export default class OptionsList extends PureComponent {
      */
     optionSize: 33,
     onSelect: () => {},
+    onDeselect: () => {},
     selected: [],
     renderItem: itemRenderer,
     optionsFilter: fuzzyFilter,
@@ -115,6 +122,9 @@ export default class OptionsList extends PureComponent {
   handleSelect = item => {
     this.props.onSelect(item)
   }
+  handleDeselect = item => {
+    this.props.onDeselect(item)
+  }
 
   assignSearchRef = ref => {
     this.searchRef = ref
@@ -127,12 +137,14 @@ export default class OptionsList extends PureComponent {
       width,
       height,
       onSelect,
+      onDeselect,
       selected,
       hasFilter,
       optionSize,
       renderItem,
       placeholder,
       optionsFilter,
+      isMultiSelect,
       defaultSearchValue,
       ...props
     } = this.props
@@ -167,13 +179,16 @@ export default class OptionsList extends PureComponent {
             scrollToAlignment="auto"
             renderItem={({ index, style }) => {
               const item = options[index]
+              const isSelected = this.isSelected(item)
               return renderItem({
                 key: item.value,
                 label: item.label,
                 style,
                 height: optionSize,
                 onSelect: () => this.handleSelect(item),
-                isSelected: this.isSelected(item)
+                onDeselect: () => this.handleDeselect(item),
+                isSelectable: !isSelected || isMultiSelect,
+                isSelected
               })
             }}
           />

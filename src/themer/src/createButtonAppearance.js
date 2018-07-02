@@ -9,7 +9,10 @@ const baseStyle = {
   textDecoration: 'none',
   border: 'none',
   outline: 'none',
-  cursor: 'pointer'
+  cursor: 'pointer',
+  '&::-moz-focus-inner ': {
+    border: 0
+  }
 }
 
 const disabledState = `[disabled], [data-disabled]`

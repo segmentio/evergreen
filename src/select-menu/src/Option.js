@@ -10,16 +10,20 @@ export default class Option extends PureComponent {
     style: PropTypes.any,
     height: PropTypes.number,
     onSelect: PropTypes.func,
+    onDeselect: PropTypes.func,
     isHighlighted: PropTypes.bool,
-    isSelected: PropTypes.bool
+    isSelected: PropTypes.bool,
+    isSelectable: PropTypes.bool
   }
 
   render() {
     const {
       label,
       onSelect,
+      onDeselect,
       isHighlighted,
       isSelected,
+      isSelectable,
       style,
       height,
       ...props
@@ -27,9 +31,10 @@ export default class Option extends PureComponent {
 
     return (
       <TableRow
-        isSelectable
+        isSelectable={isSelectable}
         isHighlighted={isHighlighted}
         onSelect={onSelect}
+        onDeselect={onDeselect}
         isSelected={isSelected}
         style={style}
         display="flex"
@@ -49,13 +54,7 @@ export default class Option extends PureComponent {
         <TextTableCell
           height={height}
           borderBottom="muted"
-          textProps={
-            isSelected
-              ? {
-                  color: 'selected'
-                }
-              : {}
-          }
+          textProps={isSelected ? { color: 'selected' } : {}}
           paddingLeft={0}
           borderRight={null}
           flex={1}

@@ -36,9 +36,19 @@ export default class SelectMenu extends PureComponent {
     onSelect: PropTypes.func,
 
     /**
-     *
+     * Function that is called when an option is deselected.
+     */
+    onDeselect: PropTypes.func,
+
+    /**
+     * The selected value/values.
      */
     selected: SelectedPropType,
+
+    /**
+     * When true, multi select is accounted for.
+     */
+    isMultiSelect: PropTypes.bool,
 
     /**
      * When true, show the title.
@@ -65,9 +75,11 @@ export default class SelectMenu extends PureComponent {
 
   static defaultProps = {
     onSelect: () => {},
+    onDeselect: () => {},
     width: 240,
     height: 248,
-    position: Position.BOTTOM_LEFT
+    position: Position.BOTTOM_LEFT,
+    isMultiSelect: false
   }
 
   getDetailView = (close, detailView) => {
@@ -95,6 +107,7 @@ export default class SelectMenu extends PureComponent {
       hasTitle,
       hasFilter,
       detailView,
+      isMultiSelect,
       ...props
     } = this.props
 
@@ -111,9 +124,13 @@ export default class SelectMenu extends PureComponent {
             title={title}
             hasFilter={hasFilter}
             hasTitle={hasTitle}
+            isMultiSelect={isMultiSelect}
             listProps={{
               onSelect: item => {
                 this.props.onSelect(item)
+              },
+              onDeselect: item => {
+                this.props.onDeselect(item)
               },
               selected: arrify(selected)
             }}

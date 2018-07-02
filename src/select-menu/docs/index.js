@@ -1,5 +1,6 @@
 import React from 'react'
 import Box from 'ui-box'
+import Component from '@reactions/component'
 import SelectMenu from '../src/SelectMenu'
 import { Button } from '../../buttons/'
 import SyntaxHighlighter from '../../../docs/src/components/SyntaxHighlighter'
@@ -14,6 +15,7 @@ import sourceSelectMenu from '!raw-loader!../src/SelectMenu'
  * Code examples
  */
 import exampleSelectMenuBasic from './examples/SelectMenu-basic.example'
+import exampleSelectMenuMulti from './examples/SelectMenu-multi.example'
 
 const title = 'Select Menu'
 const subTitle = 'Select one or multiple items from a dropdown list.'
@@ -66,6 +68,7 @@ const appearanceOptions = null
 const scope = {
   Box,
   SelectMenu,
+  Component,
   Button,
   Manager,
   options
@@ -89,6 +92,26 @@ const components = [
           </div>
         ),
         codeText: exampleSelectMenuBasic,
+        scope
+      },
+      {
+        title: 'SelectMenu Multiselect with Deselect Example',
+        description: (
+          <div>
+            <p>This example shows usage with multiple selected items.</p>
+            <p>
+              This pattern is only an example. Selected values and the
+              formatting of their names should be managed wherever you choose to
+              manage state. The onDeselect method is provided to assist with
+              this.
+            </p>
+            <p>
+              As users click on selected values to remove them, you can update
+              state.
+            </p>
+          </div>
+        ),
+        codeText: exampleSelectMenuMulti,
         scope
       }
     ]

@@ -18,6 +18,11 @@ export default class SelectMenuContent extends PureComponent {
     listProps: PropTypes.shape(OptionsList.propTypes),
 
     /**
+     * When true, multi select is accounted for.
+     */
+    isMultiSelect: PropTypes.bool,
+
+    /**
      * Node that is placed right next to the options.
      */
     detailView: PropTypes.node
@@ -102,7 +107,8 @@ export default class SelectMenuContent extends PureComponent {
       close,
       title,
       listProps,
-      detailView
+      detailView,
+      isMultiSelect
     } = this.props
 
     const headerHeight = 40
@@ -116,11 +122,7 @@ export default class SelectMenuContent extends PureComponent {
           height={height}
           display="flex"
           flexDirection="column"
-          {...(hasDetailView
-            ? {
-                borderRight: 'muted'
-              }
-            : {})}
+          {...(hasDetailView ? { borderRight: 'muted' } : {})}
         >
           {hasTitle && (
             <Pane
@@ -146,6 +148,7 @@ export default class SelectMenuContent extends PureComponent {
             height={optionsListHeight}
             hasFilter={hasFilter}
             options={options}
+            isMultiSelect={isMultiSelect}
             {...listProps}
           />
         </Pane>

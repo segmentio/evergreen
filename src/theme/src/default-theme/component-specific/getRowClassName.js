@@ -21,9 +21,7 @@ Appearances.default = Themer.createRowAppearance({
     backgroundColor: scales.blue.B2A
   },
 
-  current: {
-    cursor: 'default'
-  }
+  current: {}
 })
 
 Appearances.danger = Themer.createRowAppearance({
@@ -49,9 +47,7 @@ Appearances.danger = Themer.createRowAppearance({
       .toString()
   },
 
-  current: {
-    cursor: 'default'
-  }
+  current: {}
 })
 
 Appearances.warning = Themer.createRowAppearance({
@@ -77,9 +73,7 @@ Appearances.warning = Themer.createRowAppearance({
       .toString()
   },
 
-  current: {
-    cursor: 'default'
-  }
+  current: {}
 })
 
 Appearances.info = Themer.createRowAppearance({
@@ -105,9 +99,7 @@ Appearances.info = Themer.createRowAppearance({
       .toString()
   },
 
-  current: {
-    cursor: 'default'
-  }
+  current: {}
 })
 
 Appearances.success = Themer.createRowAppearance({
@@ -133,9 +125,7 @@ Appearances.success = Themer.createRowAppearance({
       .toString()
   },
 
-  current: {
-    cursor: 'default'
-  }
+  current: {}
 })
 
 /**

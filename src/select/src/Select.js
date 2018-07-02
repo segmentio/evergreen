@@ -137,12 +137,11 @@ class Select extends PureComponent {
           icon="caret-down"
           color="default"
           size={iconSize}
-          boxSizing="border-box"
           position="absolute"
           top="50%"
           marginTop={-iconSize / 2}
           right={height >= 36 ? 12 : 8}
-          css={{ pointerEvents: 'none' }}
+          pointerEvents="none"
         />
       </Box>
     )
