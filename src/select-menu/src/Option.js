@@ -34,6 +34,7 @@ export default class Option extends PureComponent {
         style={style}
         display="flex"
         alignItems="center"
+        borderBottom={false}
         {...props}
       >
         <Pane
@@ -47,6 +48,7 @@ export default class Option extends PureComponent {
         </Pane>
         <TextTableCell
           height={height}
+          borderBottom="muted"
           textProps={
             isSelected
               ? {

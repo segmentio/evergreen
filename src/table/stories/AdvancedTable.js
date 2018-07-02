@@ -1,5 +1,6 @@
 import React from 'react'
 import { filter } from 'fuzzaldrin-plus'
+import VirtualList from 'react-tiny-virtual-list'
 import { Table } from '../../table'
 import { Popover } from '../../popover'
 import { Position } from '../../positioner'
@@ -33,16 +34,22 @@ export default class AdvancedTable extends React.Component {
 
   sort = profiles => {
     const { ordering, orderedColumn } = this.state
+    // Return if there's no ordering.
     if (ordering === Order.NONE) return profiles
 
+    // Get the property to sort each profile on.
+    // By default use the `name` property.
     let propKey = 'name'
+    // The second column is dynamic.
     if (orderedColumn === 2) propKey = this.state.column2Show
+    // The third column is fixed to the `ltv` property.
     if (orderedColumn === 3) propKey = 'ltv'
 
     return profiles.sort((a, b) => {
       let aValue = a[propKey]
       let bValue = b[propKey]
 
+      // Parse money as a number.
       const isMoney = aValue.indexOf('$') === 0
 
       if (isMoney) {
@@ -50,31 +57,43 @@ export default class AdvancedTable extends React.Component {
         bValue = Number(bValue.substr(1))
       }
 
+      // Order ascending (Order.ASC)
       if (this.state.ordering === Order.ASC) {
         return aValue - bValue
       }
 
-      // Order.DESC
+      // Order descending (Order.DESC)
       return bValue - aValue
     })
   }
 
+  // Filter the profiles based on the name property.
   filter = profiles => {
     const searchQuery = this.state.searchQuery.trim()
 
+    // If the searchQuery is empty, return the profiles as is.
     if (searchQuery.length < 1) return profiles
 
     return profiles.filter(profile => {
+      // Use the filter from fuzzaldrin-plus to filter by name.
       const result = filter([profile.name], searchQuery)
       return result.length === 1
     })
   }
 
-  setColumnOrdering = ({ column, order }) => {
-    this.setState({
-      orderedColumn: column,
-      ordering: order
-    })
+  getIconForOrder = order => {
+    switch (order) {
+      case Order.ASC:
+        return 'arrow-up'
+      case Order.DESC:
+        return 'arrow-down'
+      default:
+        return 'caret-down'
+    }
+  }
+
+  handleFilterChange = value => {
+    this.setState({ searchQuery: value })
   }
 
   renderValueTableHeaderCell = () => {
@@ -98,6 +117,7 @@ export default class AdvancedTable extends React.Component {
                     orderedColumn: 2,
                     ordering: value
                   })
+                  // Close the popover when you select a value.
                   close()
                 }}
               />
@@ -119,6 +139,7 @@ export default class AdvancedTable extends React.Component {
                   this.setState({
                     column2Show: value
                   })
+                  // Close the popover when you select a value.
                   close()
                 }}
               />
@@ -139,17 +160,6 @@ export default class AdvancedTable extends React.Component {
     )
   }
 
-  getIconForOrder = order => {
-    switch (order) {
-      case Order.ASC:
-        return 'arrow-up'
-      case Order.DESC:
-        return 'arrow-down'
-      default:
-        return 'caret-down'
-    }
-  }
-
   renderLTVTableHeaderCell = () => {
     return (
       <Table.TextHeaderCell>
@@ -167,7 +177,11 @@ export default class AdvancedTable extends React.Component {
                   this.state.orderedColumn === 3 ? this.state.ordering : null
                 }
                 onChange={value => {
-                  this.setState({ orderedColumn: 3, ordering: value })
+                  this.setState({
+                    orderedColumn: 3,
+                    ordering: value
+                  })
+                  // Close the popover when you select a value.
                   close()
                 }}
               />
@@ -204,14 +218,36 @@ export default class AdvancedTable extends React.Component {
     )
   }
 
+  renderRow = ({ profile, style }) => {
+    return (
+      <Table.Row key={profile.id} style={style}>
+        <Table.Cell display="flex" alignItems="center">
+          <Avatar name={profile.name} flexShrink={0} />
+          <Text marginLeft={8} size={300} fontWeight={500}>
+            {profile.name}
+          </Text>
+        </Table.Cell>
+        <Table.TextCell>{profile[this.state.column2Show]}</Table.TextCell>
+        <Table.TextCell isNumber>{profile.ltv}</Table.TextCell>
+        <Table.Cell width={48} flex="none">
+          <Popover
+            content={this.renderRowMenu}
+            position={Position.BOTTOM_RIGHT}
+          >
+            <IconButton icon="more" height={24} appearance="minimal" />
+          </Popover>
+        </Table.Cell>
+      </Table.Row>
+    )
+  }
+
   render() {
+    const items = this.filter(this.sort(profiles))
     return (
       <Table>
         <Table.Head>
           <Table.SearchHeaderCell
-            onChange={value => {
-              this.setState({ searchQuery: value })
-            }}
+            onChange={this.handleFilterChange}
             value={this.state.searchQuery}
           />
           {this.renderValueTableHeaderCell()}
@@ -219,26 +255,16 @@ export default class AdvancedTable extends React.Component {
           <Table.HeaderCell width={48} flex="none" />
         </Table.Head>
         <Table.Body height={640}>
-          {this.filter(this.sort(profiles)).map(profile => (
-            <Table.Row key={profile.id}>
-              <Table.Cell display="flex" alignItems="center">
-                <Avatar name={profile.name} flexShrink={0} />
-                <Text marginLeft={8} size={300} fontWeight={500}>
-                  {profile.name}
-                </Text>
-              </Table.Cell>
-              <Table.TextCell>{profile[this.state.column2Show]}</Table.TextCell>
-              <Table.TextCell isNumber>{profile.ltv}</Table.TextCell>
-              <Table.Cell width={48} flex="none">
-                <Popover
-                  content={this.renderRowMenu}
-                  position={Position.BOTTOM_RIGHT}
-                >
-                  <IconButton icon="more" height={24} appearance="minimal" />
-                </Popover>
-              </Table.Cell>
-            </Table.Row>
-          ))}
+          <VirtualList
+            height={640}
+            width="100%"
+            itemSize={48}
+            overscanCount={3}
+            itemCount={items.length}
+            renderItem={({ index, style }) => {
+              return this.renderRow({ profile: items[index], style })
+            }}
+          />
         </Table.Body>
       </Table>
     )

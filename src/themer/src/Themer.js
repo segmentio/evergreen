@@ -4,6 +4,7 @@ import createInputAppearance from './createInputAppearance'
 import createSelectAppearance from './createSelectAppearance'
 import createLinkAppearance from './createLinkAppearance'
 import createTabAppearance from './createTabAppearance'
+import createTextDropdownButtonAppearance from './createTextDropdownButtonAppearance'
 import createRowAppearance from './createRowAppearance'
 import createSegmentedControlRadioAppearance from './createSegmentedControlRadioAppearance'
 import createSwitchAppearance from './createSwitchAppearance'
@@ -18,6 +19,7 @@ export default {
   createSelectAppearance,
   createLinkAppearance,
   createTabAppearance,
+  createTextDropdownButtonAppearance,
   createRowAppearance,
   createSegmentedControlRadioAppearance,
   createSwitchAppearance
