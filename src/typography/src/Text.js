@@ -12,9 +12,9 @@ class Text extends PureComponent {
 
     /**
      * Size of the text style.
-     * Can be: 300, 400, 500.
+     * Can be: 300, 400, 500, 600.
      */
-    size: PropTypes.oneOf([300, 400, 500]).isRequired,
+    size: PropTypes.oneOf([300, 400, 500, 600]).isRequired,
 
     /**
      * Font family.
