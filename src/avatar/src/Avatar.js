@@ -137,14 +137,6 @@ class Avatar extends PureComponent {
       initials = initials.substring(0, 1)
     }
     const colorProps = this.getColorProps()
-    console.log(
-      'colorProps',
-      colorProps,
-      'color',
-      propsColor,
-      'isSolid',
-      isSolid
-    )
 
     return (
       <Box

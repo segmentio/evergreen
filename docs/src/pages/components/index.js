@@ -1,9 +1,11 @@
 import React from 'react'
 import { push } from 'gatsby'
-import { Table, Icon } from '../../../../src'
+import * as components from '../../../../src'
 import TopBar from '../../components/TopBar'
 import componentRoutes from '../../componentRoutes'
 import ComponentsSidebar from '../../components/ComponentsSidebar'
+
+const { Table, Icon } = components
 
 export default () => {
   return (

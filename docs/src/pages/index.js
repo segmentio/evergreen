@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Button } from '../../../src'
+import * as components from '../../../src'
 import TopBar from '../components/TopBar'
 import Layout from '../components/Layout'
+
+const { Button } = components
 
 const NativeLink = ({ ...props }) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />

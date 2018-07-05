@@ -10,6 +10,7 @@ export default {
    * Available on Pane as `<Pane background="tint1" />`
    * @property {string} background.tint1 - Lightest tinted background color. Required property.
    * @property {string} background.tint2 - Slightly darker tinted background color. Required property.
+   * @property {string} background.overlay - color used for the overlay
    */
   background: {
     tint1: scales.neutral.N1,

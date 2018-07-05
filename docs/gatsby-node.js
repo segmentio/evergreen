@@ -20,7 +20,7 @@ exports.createPages = ({ actions }) => {
       // In your blog post template's graphql query, you can use path
       // as a GraphQL variable to query for data from the markdown file.
       context: {
-        path,
+        // Path,
         name
       }
     })
@@ -33,28 +33,60 @@ exports.onCreateBabelConfig = ({ actions }) => {
   })
 }
 
-exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
+const CSS_PATTERN = /\.css$/
+const MODULE_CSS_PATTERN = /\.module\.css$/
+
+const isBuiltInCssRule = rule =>
+  rule.test &&
+  (rule.test.toString() === CSS_PATTERN.toString() ||
+    rule.test.toString() === MODULE_CSS_PATTERN.toString())
+
+const removeBuiltInCssLoaders = config => {
+  config.module.rules = config.module.rules.filter(
+    rule =>
+      Array.isArray(rule.oneOf)
+        ? rule.oneOf.every(x => !isBuiltInCssRule(x))
+        : true
+  )
+
+  return config
+}
+
+exports.onCreateWebpackConfig = ({ actions, stage, loaders, getConfig }) => {
+  const isSSR = stage.includes(`html`)
+
+  // https://github.com/gatsbyjs/gatsby/pull/6217/files
+  actions.replaceWebpackConfig(removeBuiltInCssLoaders(getConfig()))
+
   actions.setWebpackConfig({
     module: {
       rules: [
         {
           test: /\.example/,
-          use: [{ loader: 'raw-loader' }]
+          use: [
+            {
+              loader: 'raw-loader'
+            }
+          ]
         },
         {
-          test: /\.css$/,
-          use: [
-            loaders.miniCssExtract(),
+          test: CSS_PATTERN,
+          use: isSSR
+            ? [loaders.null()]
+            : [
+                loaders.miniCssExtract(),
 
-            // 0 => no loaders (default); 1 => postcss-loader; 2 => postcss-loader, sass-loader
-            loaders.css({ importLoaders: 1 }),
+                // 0 => no loaders (default); 1 => postcss-loader; 2 => postcss-loader, sass-loader
+                loaders.css({
+                  importLoaders: 1
+                }),
 
-            loaders.postcss({
-              ident: 'postcss',
-              // Use CSSNext Here which came bundled
-              plugins: () => [poscssImport(), postcssCssnext()]
-            })
-          ]
+                loaders.postcss({
+                  ident: 'postcss',
+                  // Use CSSNext Here which came bundled
+                  plugins: () => [poscssImport(), postcssCssnext()]
+                })
+              ]
         }
       ]
     },
@@ -65,21 +97,4 @@ exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
       modules: [path.join(__dirname, 'node_modules')]
     }
   })
-
-  const configAfterSettings = getConfig()
-
-  // https://github.com/gatsbyjs/gatsby/issues/5778
-  // Losing my mind here. The default CSS rules need to be undone.
-  const finalRules = configAfterSettings.module.rules.filter(rule => {
-    // There is a rule which has a `oneOf`
-    if (Object.prototype.hasOwnProperty.call(rule, 'oneOf')) {
-      // Nuke this rule.
-      return JSON.stringify(rule).indexOf('style-loader') === -1
-    }
-    return true
-  })
-
-  // So much for immutability.
-  configAfterSettings.module.rules = finalRules
-  actions.replaceWebpackConfig(configAfterSettings)
 }
