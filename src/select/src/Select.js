@@ -60,7 +60,7 @@ class Select extends PureComponent {
     /**
      * When true, the select should auto focus.
      */
-    autofocus: PropTypes.bool,
+    autoFocus: PropTypes.bool,
 
     /**
      * When true, the select is invalid.
@@ -95,7 +95,7 @@ class Select extends PureComponent {
       onChange,
       value,
       required,
-      autofocus,
+      autoFocus,
       isInvalid,
       appearance,
       ...props
@@ -123,7 +123,7 @@ class Select extends PureComponent {
           onChange={onChange}
           value={value}
           required={required}
-          autofocus={autofocus}
+          autoFocus={autoFocus}
           disabled={disabled}
           aria-invalid={isInvalid}
           size={textSize}
