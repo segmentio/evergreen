@@ -70,7 +70,7 @@ class Select extends PureComponent {
     /**
      * The appearance of the select. The default theme only supports default.
      */
-    appearance: PropTypes.string.required,
+    appearance: PropTypes.string.isRequired,
 
     /**
      * Theme provided by ThemeProvider.
