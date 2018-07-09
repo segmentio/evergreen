@@ -18,6 +18,7 @@ export { default as getTabClassName } from './getTabClassName'
 export { default as getRowClassName } from './getRowClassName'
 export { default as getMenuItemClassName } from './getMenuItemClassName'
 export { default as getSelectClassName } from './getSelectClassName'
+export { default as getTooltipProps } from './getTooltipProps'
 export {
   default as getSegmentedControlRadioClassName
 } from './getSegmentedControlRadioClassName'
