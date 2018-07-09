@@ -78,6 +78,7 @@ export default class OptionsList extends PureComponent {
     window.setTimeout(() => {
       this.searchRef.querySelector('input').focus()
     }, 1)
+    window.addEventListener('keyup', this.handleKeyUp)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -86,6 +87,10 @@ export default class OptionsList extends PureComponent {
         selected: nextProps.selected
       })
     }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keyup', this.handleKeyUp)
   }
 
   isSelected = item => {
@@ -108,6 +113,69 @@ export default class OptionsList extends PureComponent {
         )
   }
 
+  getCurrentIndex() {
+    const { selected } = this.props
+    const options = this.getFilteredOptions()
+
+    return options.findIndex(
+      option => option.value === selected[selected.length - 1]
+    )
+  }
+
+  getFilteredOptions() {
+    const { options } = this.props
+
+    return this.search(options)
+  }
+
+  handleKeyUp = e => {
+    if (e.keyCode === 38) {
+      this.handleArrowUp()
+    }
+
+    if (e.keyCode === 40) {
+      this.handleArrowDown()
+    }
+
+    if (e.keyCode === 13) {
+      this.handleEnter()
+    }
+  }
+
+  handleArrowUp() {
+    const { onSelect } = this.props
+    const options = this.getFilteredOptions()
+
+    let nextIndex = this.getCurrentIndex() - 1
+
+    if (nextIndex < 0) {
+      nextIndex = options.length - 1
+    }
+
+    onSelect(options[nextIndex])
+  }
+
+  handleArrowDown() {
+    const { onSelect } = this.props
+    const options = this.getFilteredOptions()
+
+    let nextIndex = this.getCurrentIndex() + 1
+
+    if (nextIndex === options.length) {
+      nextIndex = 0
+    }
+
+    onSelect(options[nextIndex])
+  }
+
+  handleEnter() {
+    const isSelected = this.getCurrentIndex() !== -1
+
+    if (isSelected) {
+      this.props.close()
+    }
+  }
+
   handleChange = searchValue => {
     this.setState({
       searchValue
@@ -127,7 +195,6 @@ export default class OptionsList extends PureComponent {
 
   render() {
     const {
-      options: originalOptions,
       close,
       width,
       height,
@@ -142,7 +209,7 @@ export default class OptionsList extends PureComponent {
       defaultSearchValue,
       ...props
     } = this.props
-    const options = this.search(originalOptions)
+    const options = this.getFilteredOptions()
     const listHeight = height - (hasFilter ? 32 : 0)
 
     return (
