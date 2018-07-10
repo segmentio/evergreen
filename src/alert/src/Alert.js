@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { spacing, dimensions, position, layout } from 'ui-box'
 import { withTheme } from '../../theme'
 import { Pane } from '../../layers'
-import { Text } from '../../typography'
+import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
 import { Icon } from '../../icon'
 
@@ -122,14 +122,14 @@ class Alert extends PureComponent {
               marginLeft={2}
               height={14}
               display="block"
-              marginTop={3}
+              marginTop={2}
             >
               {this.getIconForIntent(intent)}
             </Pane>
           )}
         <Pane display="flex" width="100%">
           <Pane flex={1}>
-            <Text
+            <Heading
               is="h4"
               fontWeight={600}
               size={400}
@@ -137,17 +137,23 @@ class Alert extends PureComponent {
               marginBottom={0}
             >
               {title}
-            </Text>
+            </Heading>
             {typeof children === 'string' ? (
-              <Text size={400} color="muted">
+              <Paragraph size={400} color="muted">
                 {children}
-              </Text>
+              </Paragraph>
             ) : (
               children
             )}
           </Pane>
           {isRemoveable && (
-            <Pane marginLeft={24} flexShrink={0}>
+            <Pane
+              marginLeft={24}
+              flexShrink={0}
+              marginBottom={-2}
+              marginTop={-2}
+              marginRight={-2}
+            >
               <IconButton
                 icon="cross"
                 appearance="minimal"
