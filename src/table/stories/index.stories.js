@@ -66,6 +66,11 @@ storiesOf('table', module)
       <Table.Row height={40}>
         <Table.TextCell>Height 40</Table.TextCell>
       </Table.Row>
+      <Table.Row height="auto" paddingY={12}>
+        <Table.TextCell>
+          Auto height <br />based on <br />the content
+        </Table.TextCell>
+      </Table.Row>
     </Box>
   ))
   .add('Table.HeaderCell', () => (

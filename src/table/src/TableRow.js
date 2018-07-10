@@ -13,9 +13,10 @@ class TableRow extends PureComponent {
     ...Pane.propTypes,
 
     /**
-     * The height of the row.
+     * The height of the row. Remember to add paddings when using "auto".
      */
-    height: PropTypes.number,
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+      .isRequired,
 
     /**
      * Function that is called on click and enter/space keypress.
