@@ -3,6 +3,7 @@ import Box, { splitBoxProps } from 'ui-box'
 import { SearchIcon } from '../../icons'
 import { getIconSizeForControlHeight } from '../../shared-styles'
 import { TextInput } from '../../text-input'
+import { StackingOrder } from '../../constants'
 
 export default class SearchInput extends PureComponent {
   static propTypes = {
@@ -33,7 +34,7 @@ export default class SearchInput extends PureComponent {
           pointerEvents="none"
           position="absolute"
           top="50%"
-          zIndex={3}
+          zIndex={StackingOrder.FOCUSED + 1}
           marginTop={-0.5 * height}
           iconSize={iconSize}
           size={height}

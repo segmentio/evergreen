@@ -54,11 +54,6 @@ export default class Popover extends Component {
     animationDuration: PropTypes.number,
 
     /**
-     * The z-index of the Popover card.
-     */
-    zIndex: PropTypes.number,
-
-    /**
      * Function called when the Popover opens.
      */
     onOpen: PropTypes.func.isRequired,
@@ -90,7 +85,6 @@ export default class Popover extends Component {
     minWidth: 200,
     minHeight: 40,
     animationDuration: 300,
-    zIndex: 40,
     onOpen: () => {},
     onClose: () => {},
     onOpenComplete: () => {},
@@ -266,7 +260,6 @@ export default class Popover extends Component {
 
   render() {
     const {
-      zIndex,
       isShown,
       content,
       display,
@@ -286,7 +279,6 @@ export default class Popover extends Component {
         target={({ getRef, isShown, targetWidth }) => {
           return this.renderTarget({ getRef, isShown, targetWidth })
         }}
-        zIndex={zIndex}
         isShown={shown}
         position={position}
         animationDuration={animationDuration}

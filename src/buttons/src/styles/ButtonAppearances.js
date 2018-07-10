@@ -1,5 +1,6 @@
 import { colors } from '../../../colors'
 import { TextColors } from '../../../typography'
+import { StackingOrder } from '../../../constants'
 
 const baseStyle = {
   WebkitFontSmoothing: 'antialiased',
@@ -49,7 +50,7 @@ const ButtonAppearances = {
       }, inset 0 -1px 1px 0 ${colors.neutral['15A']}`
     },
     [focusState]: {
-      zIndex: 2,
+      zIndex: StackingOrder.FOCUSED,
       boxShadow: `0 0 0 3px ${colors.blue['20A']}, inset 0 0 0 1px ${
         colors.neutral['70A']
       }, inset 0 -1px 1px 0 ${colors.neutral['10A']}`
@@ -80,7 +81,7 @@ const ButtonAppearances = {
       })`
     },
     [focusState]: {
-      zIndex: 2,
+      zIndex: StackingOrder.FOCUSED,
       boxShadow: `0 0 0 3px ${colors.blue['50A']}, inset 0 0 0 1px ${
         colors.neutral['30A']
       }, inset 0 -1px 1px 0 ${colors.neutral['30A']}`
@@ -110,7 +111,7 @@ const ButtonAppearances = {
       })`
     },
     [focusState]: {
-      zIndex: 2,
+      zIndex: StackingOrder.FOCUSED,
       boxShadow: `0 0 0 3px ${colors.green['100A']}, inset 0 0 0 1px ${
         colors.neutral['30A']
       }, inset 0 -1px 1px 0 ${colors.neutral['30A']}`
@@ -140,7 +141,7 @@ const ButtonAppearances = {
       })`
     },
     [focusState]: {
-      zIndex: 2,
+      zIndex: StackingOrder.FOCUSED,
       boxShadow: `0 0 0 3px ${colors.red['100A']}, inset 0 0 0 1px ${
         colors.neutral['30A']
       }, inset 0 -1px 1px 0 ${colors.neutral['30A']}`
@@ -162,7 +163,7 @@ const ButtonAppearances = {
       backgroundColor: colors.neutral['7A']
     },
     [focusState]: {
-      zIndex: 2,
+      zIndex: StackingOrder.FOCUSED,
       boxShadow: `0 0 0 3px ${colors.blue['50A']}`
     },
     [activeState]: {
@@ -179,7 +180,7 @@ const ButtonAppearances = {
       backgroundColor: colors.neutral['7A']
     },
     [focusState]: {
-      zIndex: 2,
+      zIndex: StackingOrder.FOCUSED,
       boxShadow: `0 0 0 3px ${colors.blue['50A']}`
     },
     [activeState]: {

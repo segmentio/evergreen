@@ -4,6 +4,8 @@ import Transition from 'react-transition-group/Transition'
 import Box, { css } from 'ui-box'
 import { Portal } from '../../portal'
 import { colors } from '../../colors'
+import { Stack } from '../../stack'
+import { StackingOrder } from '../../constants'
 
 const animationEasing = {
   standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
@@ -277,43 +279,47 @@ class Overlay extends React.Component {
     if (exited) return null
 
     return (
-      <Portal>
-        <Transition
-          appear
-          unmountOnExit
-          timeout={ANIMATION_DURATION}
-          in={isShown && !exiting}
-          onExit={onExit}
-          onExiting={this.handleExiting}
-          onExited={this.handleExited}
-          onEnter={onEnter}
-          onEntering={this.handleEntering}
-          onEntered={this.handleEntered}
-        >
-          {state => (
-            <Box
-              onClick={this.handleBackdropClick}
-              innerRef={this.onContainerRef}
-              position="fixed"
-              top={0}
-              left={0}
-              right={0}
-              bottom={0}
-              zIndex={40}
-              css={animationStyles}
-              data-state={state}
-              {...containerProps}
+      <Stack value={StackingOrder.OVERLAY}>
+        {zIndex => (
+          <Portal>
+            <Transition
+              appear
+              unmountOnExit
+              timeout={ANIMATION_DURATION}
+              in={isShown && !exiting}
+              onExit={onExit}
+              onExiting={this.handleExiting}
+              onExited={this.handleExited}
+              onEnter={onEnter}
+              onEntering={this.handleEntering}
+              onEntered={this.handleEntered}
             >
-              {typeof children === 'function'
-                ? children({
-                    state,
-                    close: this.close
-                  })
-                : children}
-            </Box>
-          )}
-        </Transition>
-      </Portal>
+              {state => (
+                <Box
+                  onClick={this.handleBackdropClick}
+                  innerRef={this.onContainerRef}
+                  position="fixed"
+                  top={0}
+                  left={0}
+                  right={0}
+                  bottom={0}
+                  zIndex={zIndex}
+                  css={animationStyles}
+                  data-state={state}
+                  {...containerProps}
+                >
+                  {typeof children === 'function'
+                    ? children({
+                        state,
+                        close: this.close
+                      })
+                    : children}
+                </Box>
+              )}
+            </Transition>
+          </Portal>
+        )}
+      </Stack>
     )
   }
 }

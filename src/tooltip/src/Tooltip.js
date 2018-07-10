@@ -36,17 +36,11 @@ export default class Tooltip extends PureComponent {
     /**
      * Properties passed through to the Tooltip.
      */
-    statelessProps: PropTypes.object,
-
-    /**
-     * The z-index of the Tooltip.
-     */
-    zIndex: PropTypes.number.isRequired
+    statelessProps: PropTypes.object
   }
 
   static defaultProps = {
     position: Position.BOTTOM,
-    zIndex: 40,
     hideDelay: 120
   }
 
@@ -107,7 +101,7 @@ export default class Tooltip extends PureComponent {
   }
 
   render() {
-    const { isShown, zIndex, content, position, statelessProps } = this.props
+    const { isShown, content, position, statelessProps } = this.props
     const { isShown: stateIsShown, isShownByTarget } = this.state
 
     const shown = isShown || stateIsShown || isShownByTarget
@@ -117,7 +111,6 @@ export default class Tooltip extends PureComponent {
         target={({ getRef }) => {
           return this.renderTarget({ getRef })
         }}
-        zIndex={zIndex}
         isShown={shown}
         position={position}
         animationDuration={160}
