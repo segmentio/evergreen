@@ -35,7 +35,7 @@ class MenuItem extends React.PureComponent {
     /**
      * The intent of the menu item.
      */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info'])
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
       .isRequired,
 
     /**

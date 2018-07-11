@@ -46,7 +46,7 @@ class TableRow extends PureComponent {
     /**
      * The intent of the alert.
      */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info'])
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
       .isRequired,
 
     /**

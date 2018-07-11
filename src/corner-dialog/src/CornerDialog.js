@@ -57,7 +57,7 @@ export default class CornerDialog extends PureComponent {
     /**
      * The intent of the CornerDialog. Used for the button.
      */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info'])
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
       .isRequired,
 
     /**

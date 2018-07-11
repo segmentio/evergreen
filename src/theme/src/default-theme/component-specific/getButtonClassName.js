@@ -51,7 +51,7 @@ const getButtonAppearance = (appearance, intent) => {
       })
     }
     case 'minimal': {
-      const intentTextColor = getTextColorForIntent(intent)
+      const intentTextColor = getTextColorForIntent(intent, scales.blue.B9)
       return Themer.createButtonAppearance({
         disabled,
         base: {

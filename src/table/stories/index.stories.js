@@ -53,7 +53,7 @@ storiesOf('table', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      {['none', 'danger', 'warning', 'info', 'success'].map(intent => {
+      {['none', 'danger', 'warning', 'success'].map(intent => {
         return (
           <Table.Row key={intent} isSelectable intent={intent}>
             <Table.TextCell>{intent}</Table.TextCell>

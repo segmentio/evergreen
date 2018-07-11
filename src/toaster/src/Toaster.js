@@ -70,8 +70,4 @@ export default class Toaster {
   danger = (title, settings = {}) => {
     return this.notifyHandler(title, { ...settings, intent: 'danger' })
   }
-
-  info = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, intent: 'info' })
-  }
 }

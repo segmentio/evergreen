@@ -30,6 +30,12 @@ class Button extends PureComponent {
     ...layout.propTypes,
 
     /**
+     * The intent of the button.
+     */
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
+      .isRequired,
+
+    /**
      * The appearance of the button.
      */
     appearance: PropTypes.oneOf(['default', 'minimal', 'primary']).isRequired,

@@ -24,7 +24,7 @@ class InlineAlert extends PureComponent {
     /**
      * The intent of the alert. This should always be set explicitly.
      */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info'])
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
       .isRequired,
 
     /**
@@ -61,12 +61,11 @@ class InlineAlert extends PureComponent {
 
     return (
       <Pane alignItems="center" display="flex" {...props}>
-        {hasIcon &&
-          intent !== 'none' && (
-            <Pane display="inline" marginRight={8}>
-              {this.getIconForIntent(intent)}
-            </Pane>
-          )}
+        {hasIcon && (
+          <Pane display="inline" marginRight={8}>
+            {this.getIconForIntent(intent)}
+          </Pane>
+        )}
         <Text size={size} fontWeight={500}>
           {children}
         </Text>

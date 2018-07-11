@@ -76,32 +76,6 @@ Appearances.warning = Themer.createRowAppearance({
   current: {}
 })
 
-Appearances.info = Themer.createRowAppearance({
-  base: {
-    backgroundColor: palette.blue.lightest
-  },
-
-  hover: {
-    backgroundColor: tinycolor(palette.blue.lightest)
-      .darken(1)
-      .toString()
-  },
-
-  focus: {
-    backgroundColor: tinycolor(palette.blue.lightest)
-      .darken(1.5)
-      .toString()
-  },
-
-  active: {
-    backgroundColor: tinycolor(palette.blue.lightest)
-      .darken(2.5)
-      .toString()
-  },
-
-  current: {}
-})
-
 Appearances.success = Themer.createRowAppearance({
   base: {
     backgroundColor: palette.green.lightest
@@ -140,8 +114,6 @@ const getRowAppearance = (appearance, intent) => {
       return Appearances.danger
     case 'warning':
       return Appearances.warning
-    case 'info':
-      return Appearances.info
     case 'success':
       return Appearances.success
     case 'none':

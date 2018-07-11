@@ -38,12 +38,6 @@ storiesOf('alert', module)
               intent="danger"
               title="We weren’t able to save your changes."
             />
-            <Alert
-              appearance={appearance}
-              marginBottom={32}
-              intent="info"
-              title="There are over 180 integrations available."
-            />
           </Box>
         ))}
       </Box>
@@ -86,15 +80,6 @@ storiesOf('alert', module)
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Alert>
-            <Alert
-              appearance={appearance}
-              marginBottom={32}
-              intent="info"
-              title="There are over 180 integrations available."
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Alert>
           </Box>
         ))}
       </Box>
@@ -120,7 +105,7 @@ storiesOf('alert', module)
         <InlineAlert intent="danger" marginBottom={16}>
           We weren’t able to save your changes.
         </InlineAlert>
-        <InlineAlert intent="info" marginBottom={16}>
+        <InlineAlert intent="none" marginBottom={16}>
           There are over 200 integrations available.
         </InlineAlert>
       </Box>

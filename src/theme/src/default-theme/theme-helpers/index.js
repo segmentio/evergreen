@@ -111,7 +111,7 @@ const getIconForIntent = intent => {
       return { icon: 'error', color: 'danger' }
     case Intent.WARNING:
       return { icon: 'warning-sign', color: 'warning' }
-    case Intent.INFO:
+    case Intent.NONE:
     default:
       return { icon: 'info-sign', color: 'info' }
   }

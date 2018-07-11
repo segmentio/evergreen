@@ -25,7 +25,7 @@ class Alert extends PureComponent {
     /**
      * The intent of the alert.
      */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info'])
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
       .isRequired,
 
     /**
@@ -115,18 +115,17 @@ class Alert extends PureComponent {
         {...themeProps}
         {...props}
       >
-        {hasIcon &&
-          intent !== 'none' && (
-            <Pane
-              marginRight={10}
-              marginLeft={2}
-              height={14}
-              display="block"
-              marginTop={2}
-            >
-              {this.getIconForIntent(intent)}
-            </Pane>
-          )}
+        {hasIcon && (
+          <Pane
+            marginRight={10}
+            marginLeft={2}
+            height={14}
+            display="block"
+            marginTop={2}
+          >
+            {this.getIconForIntent(intent)}
+          </Pane>
+        )}
         <Pane display="flex" width="100%">
           <Pane flex={1}>
             <Heading

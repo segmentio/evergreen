@@ -60,7 +60,7 @@ class Dialog extends React.Component {
     /**
      * The intent of the Dialog. Used for the button.
      */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info'])
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
       .isRequired,
 
     /**

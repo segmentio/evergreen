@@ -15,7 +15,7 @@ const linearGradient = (top, bottom) => {
  * @param {Intent} intent
  * @return {String} color
  */
-const getTextColorForIntent = intent => {
+const getTextColorForIntent = (intent, defaultColor) => {
   switch (intent) {
     case Intent.SUCCESS:
       return colors.text.success
@@ -24,7 +24,7 @@ const getTextColorForIntent = intent => {
     case Intent.WARNING:
       return colors.text.warning
     default:
-      return colors.text.default
+      return defaultColor || colors.text.default
   }
 }
 

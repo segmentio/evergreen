@@ -77,13 +77,13 @@ export default {
 
   /**
    * Used for Alerts and other (future) componentes that express intent.
-   * @property {string} intent.info - Required property.
+   * @property {string} intent.none - Required property.
    * @property {string} intent.success - Required property.
    * @property {string} intent.danger - Required property.
    * @property {string} intent.warning - Required property.
    */
   intent: {
-    info: palette.blue.base,
+    none: palette.blue.base,
     success: palette.green.base,
     danger: palette.red.base,
     warning: palette.orange.base
