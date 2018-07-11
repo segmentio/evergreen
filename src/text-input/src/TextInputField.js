@@ -61,12 +61,7 @@ export default class TextInputField extends PureComponent {
      * The input width should be as wide as the form field.
      */
     inputWidth: '100%',
-
-    /**
-     * Increase the height somewhat from 32 because we are dealing mainly
-     * with traditional long style forms.
-     */
-    inputHeight: 36
+    inputHeight: 32
   }
 
   constructor(props) {
