@@ -168,14 +168,11 @@ export default class Popover extends Component {
 
   onBodyClick = e => {
     // Ignore clicks on the popover or button
-    if (this.targetRef === e.target) {
+    if (this.targetRef && this.targetRef.contains(e.target)) {
       return
     }
 
-    if (
-      this.popoverNode &&
-      (this.popoverNode === e.target || this.popoverNode.contains(e.target))
-    ) {
+    if (this.popoverNode && this.popoverNode.contains(e.target)) {
       return
     }
 

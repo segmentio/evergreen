@@ -12,12 +12,12 @@ test('basic snapshot', t => {
 
 test('outputs title', t => {
   const component = shallow(<Alert title="Test title" />)
-  t.true(component.contains('Test title'))
+  t.true(component.html().includes('Test title'))
 })
 
 test('outputs children', t => {
   const component = shallow(<Alert title="Test title">Test content</Alert>)
-  t.true(component.contains('Test content'))
+  t.true(component.html().includes('Test content'))
 })
 
 test('type snapshot', t => {
