@@ -7,6 +7,6 @@ export default class Label extends PureComponent {
   }
 
   render() {
-    return <Text is="label" {...this.props} />
+    return <Text is="label" fontWeight={500} {...this.props} />
   }
 }

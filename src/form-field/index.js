@@ -1,4 +1,5 @@
 export FormField from './src/FormField'
 export FormFieldDescription from './src/FormFieldDescription'
+export FormFieldHint from './src/FormFieldHint'
 export FormFieldLabel from './src/FormFieldLabel'
 export FormFieldValidationMessage from './src/FormFieldValidationMessage'

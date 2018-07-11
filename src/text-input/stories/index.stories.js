@@ -184,6 +184,7 @@ storiesOf('text-input', module)
             value="lgJ4AFjLN5"
             disabled
             description="This is your workspace's auto-generated unique identifier."
+            hint="You are not able to change this."
           />
           <Button
             intent="success"

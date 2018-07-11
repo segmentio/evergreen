@@ -30,13 +30,18 @@ export default class TextInputField extends PureComponent {
     isRequired: PropTypes.bool,
 
     /**
-     * A optional description of the field under the input element.
+     * A optional description of the field under the label, above the input element.
      */
     description: PropTypes.node,
 
     /**
+     * A optional hint under the input element.
+     */
+    hint: PropTypes.node,
+
+    /**
      * If a validation message is passed it is shown under the input element
-     * and above the description.
+     * and above the hint.
      */
     validationMessage: PropTypes.node,
 
@@ -77,6 +82,7 @@ export default class TextInputField extends PureComponent {
       id: unusedId,
 
       // FormField props
+      hint,
       label,
       description,
       validationMessage,
@@ -107,6 +113,7 @@ export default class TextInputField extends PureComponent {
         marginBottom={24}
         label={label}
         isRequired={required}
+        hint={hint}
         description={description}
         validationMessage={validationMessage}
         labelFor={id}

@@ -28,7 +28,13 @@ class FormFieldValidationMessage extends PureComponent {
     const { theme, children, ...props } = this.props
     return (
       <Pane display="flex" {...props}>
-        <Icon size={14} marginRight={8} icon="error" color="danger" />
+        <Icon
+          icon="error"
+          color="danger"
+          marginTop={1}
+          size={14}
+          marginRight={8}
+        />
         <Paragraph marginTop={0} size={300} color="danger" role="alert">
           {children}
         </Paragraph>

@@ -16,6 +16,7 @@ export { FilePicker } from './file-picker'
 export {
   FormField,
   FormFieldDescription,
+  FormFieldHint,
   FormFieldLabel,
   FormFieldValidationMessage
 } from './form-field'

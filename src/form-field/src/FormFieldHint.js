@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Paragraph } from '../../typography'
 
-export default class FormFieldDescription extends PureComponent {
+export default class FormFieldHint extends PureComponent {
   static propTypes = {
     /**
      * Composes the Paragraph component as the base.
@@ -10,6 +10,6 @@ export default class FormFieldDescription extends PureComponent {
   }
 
   render() {
-    return <Paragraph marginTop={0} size={400} color="muted" {...this.props} />
+    return <Paragraph marginTop={0} size={300} color="muted" {...this.props} />
   }
 }
