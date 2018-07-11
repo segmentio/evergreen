@@ -42,6 +42,12 @@ class IconButton extends PureComponent {
     icon: PropTypes.string,
 
     /**
+     * The intent of the button.
+     */
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
+      .isRequired,
+
+    /**
      * The appearance of the button.
      */
     appearance: PropTypes.oneOf(['default', 'minimal', 'primary']).isRequired,
@@ -71,16 +77,18 @@ class IconButton extends PureComponent {
   }
 
   static defaultProps = {
+    intent: 'none',
     appearance: 'default',
     height: 32
   }
 
   render() {
-    const { theme, iconAim, icon, height, ...props } = this.props
+    const { theme, iconAim, icon, height, intent, ...props } = this.props
     const iconSize = theme.getIconSizeForIconButton(height)
 
     return (
       <Button
+        intent={intent}
         height={height}
         width={height}
         paddingLeft={0}
@@ -89,7 +97,11 @@ class IconButton extends PureComponent {
         justifyContent="center"
         {...props}
       >
-        <Icon icon={icon} size={iconSize} />
+        <Icon
+          icon={icon}
+          size={iconSize}
+          color={intent === 'none' ? 'default' : 'currentColor'}
+        />
       </Button>
     )
   }
