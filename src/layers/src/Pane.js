@@ -115,6 +115,8 @@ class Pane extends PureComponent {
       return `1px solid ${theme.colors.border[borderSideProperty]}`
     } else if (borderSideProperty === true) {
       return `1px solid ${theme.colors.border.default}`
+    } else if (borderSideProperty === false) {
+      return null
     } else if (
       Object.prototype.hasOwnProperty.call(theme.colors.border, border)
     ) {
