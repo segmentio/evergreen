@@ -8,6 +8,7 @@ import { Pane } from '../../layers'
 import { Text } from '../../typography'
 import { Button } from '../../buttons'
 import { Position } from '../../positioner'
+import { Icon, IconNames } from '../../icon'
 
 const PopoverContent = () => (
   <Pane
@@ -169,6 +170,19 @@ storiesOf('popover', module)
       })()}
       <Popover content={<PopoverContentWithTextInput />}>
         <Button marginRight={20}>Trigger Popover</Button>
+      </Popover>
+    </Box>
+  ))
+  .add('toggle button with children', () => (
+    <Box padding={120}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Popover content={<PopoverContentWithTextInput />}>
+        <Button marginRight={20}>
+          <Icon icon={IconNames.CIRCLE_ARROW_DOWN} />
+        </Button>
       </Popover>
     </Box>
   ))
