@@ -16,7 +16,7 @@
   />
   <Alert
     marginBottom={32}
-    intent="info"
+    intent="none"
     title="There are over 180 integrations available."
   />
 </Box>

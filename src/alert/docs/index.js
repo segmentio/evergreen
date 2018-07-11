@@ -31,7 +31,6 @@ const designGuidelines = (
     <ul>
       <li>default</li>
       <li>success</li>
-      <li>info</li>
       <li>danger</li>
       <li>warning</li>
     </ul>

@@ -8,7 +8,7 @@
   <InlineAlert intent="danger" marginBottom={16}>
     We weren’t able to save your changes.
   </InlineAlert>
-  <InlineAlert intent="info" marginBottom={16}>
+  <InlineAlert intent="none" marginBottom={16}>
     There are over 200 integrations available.
   </InlineAlert>
 </Box>
