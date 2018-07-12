@@ -40,7 +40,10 @@ const createButtonAppearance = (items = {}) => {
   return {
     ...baseStyle,
     ...createAppearance(items.base),
-    [disabledState]: createAppearance(items.disabled),
+    [disabledState]: {
+      cursor: 'not-allowed',
+      ...createAppearance(items.disabled)
+    },
     [hoverState]: createAppearance(items.hover),
     [focusState]: {
       zIndex: StackingOrder.FOCUSED,
