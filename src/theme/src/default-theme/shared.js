@@ -5,7 +5,7 @@ const defaultControlStyles = {
   disabled: {
     opacity: 0.8,
     backgroundImage: 'none',
-    backgroundColor: scales.neutral.N2,
+    backgroundColor: scales.neutral.N2A,
     boxShadow: 'none',
     color: scales.neutral.N7A
   },
