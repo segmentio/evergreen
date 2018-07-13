@@ -89,7 +89,7 @@ export default class Popover extends Component {
     onClose: () => {},
     onOpenComplete: () => {},
     onCloseComplete: () => {},
-    bringFocusInside: true
+    bringFocusInside: false
   }
 
   constructor(props) {
@@ -109,8 +109,6 @@ export default class Popover extends Component {
    * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
    */
   bringFocusInside = () => {
-    if (!this.props.bringFocusInside) return
-
     // Always delay focus manipulation to just before repaint to prevent scroll jumping
     return requestAnimationFrame(() => {
       // Container ref may be undefined between component mounting and Portal rendering
@@ -130,14 +128,16 @@ export default class Popover extends Component {
         // Element marked autofocus has higher priority than the other clowns
         const autofocusElement = this.popoverNode.querySelector('[autofocus]')
         const wrapperElement = this.popoverNode.querySelector('[tabindex]')
-        const buttonElement = this.popoverNode.querySelector('button')
+        const buttonElements = this.popoverNode.querySelectorAll(
+          'button, a, [role="menuitem"], [role="menuitemradio"]'
+        )
 
         if (autofocusElement) {
           autofocusElement.focus()
         } else if (wrapperElement) {
           wrapperElement.focus()
-        } else if (buttonElement) {
-          buttonElement.focus()
+        } else if (buttonElements.length > 0) {
+          buttonElements[0].focus()
         }
       }
     })
@@ -221,12 +221,18 @@ export default class Popover extends Component {
   }
 
   handleOpenComplete = () => {
-    this.bringFocusInside()
+    if (this.props.bringFocusInside) this.bringFocusInside()
     this.props.onOpenComplete()
   }
 
   handleCloseComplete = () => {
     this.props.onCloseComplete()
+  }
+
+  handleKeyDown = e => {
+    if (e.key === 'ArrowDown') {
+      this.bringFocusInside()
+    }
   }
 
   renderTarget = ({ getRef, isShown }) => {
@@ -247,6 +253,7 @@ export default class Popover extends Component {
 
     return React.cloneElement(children, {
       onClick: this.toggle,
+      onKeyDown: this.handleKeyDown,
       innerRef: getTargetRef,
       role: 'button',
       'aria-expanded': isShown,

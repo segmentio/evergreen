@@ -30,6 +30,11 @@ const defaultControlStyles = {
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 1px 1px 0 ${
       scales.neutral.N2A
     }`
+  },
+  focusAndActive: {
+    boxShadow: `0 0 0 3px ${scales.blue.B4A}, inset 0 0 0 1px ${
+      scales.neutral.N5A
+    }, inset 0 1px 1px 0 ${scales.neutral.N2A}`
   }
 }
 

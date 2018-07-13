@@ -81,6 +81,7 @@ class Button extends PureComponent {
   }
 
   static defaultProps = {
+    intent: 'none',
     appearance: 'default',
     isActive: false,
     height: 32,

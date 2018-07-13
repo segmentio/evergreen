@@ -4,6 +4,7 @@ import Component from '@reactions/component'
 import Box from 'ui-box'
 import Menu from '../src/Menu'
 import { Button } from '../../buttons'
+import { UnorderedList, ListItem } from '../../typography'
 import { Popover } from '../../popover'
 import { Position } from '../../positioner'
 
@@ -123,8 +124,51 @@ storiesOf('menu', module)
           </Menu>
         }
       >
-        <Button>Option Group</Button>
+        <Button marginRight={16}>Option Group</Button>
       </Popover>
+      <Popover
+        position={Position.BOTTOM_LEFT}
+        content={
+          <Menu>
+            <ul>
+              <li>
+                <a href="..." role="menuitem">
+                  Hey Evergreen,
+                </a>
+              </li>
+              <li>
+                <a href="..." role="menuitem">
+                  I want custom items
+                </a>
+              </li>
+              <hr />
+              <li>
+                <a href="..." role="menuitem">
+                  Oh sweet
+                </a>
+              </li>
+            </ul>
+          </Menu>
+        }
+      >
+        <Button>Custom Menu Items</Button>
+      </Popover>
+
+      <UnorderedList marginTop={24}>
+        <ListItem>
+          Arrow down on a button will bring focus inside the popover.
+        </ListItem>
+        <ListItem>
+          Arrow keys within the menu will cycle through all of the menu items
+          and skip disabled items.
+        </ListItem>
+        <ListItem>
+          The Home key (fn + arrow left) will go to the first item.
+        </ListItem>
+        <ListItem>
+          The End key (fn + arrow right) will go to the last item.
+        </ListItem>
+      </UnorderedList>
     </Box>
   ))
   .add('Menu', () => (
