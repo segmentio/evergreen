@@ -32,8 +32,7 @@ class Button extends PureComponent {
     /**
      * The intent of the button.
      */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
 
     /**
      * The appearance of the button.
@@ -85,7 +84,8 @@ class Button extends PureComponent {
     isActive: false,
     height: 32,
     paddingTop: 0,
-    paddingBottom: 0
+    paddingBottom: 0,
+    intent: 'none'
   }
 
   static styles = {
