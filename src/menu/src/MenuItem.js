@@ -8,6 +8,12 @@ import { withTheme } from '../../theme'
 class MenuItem extends React.PureComponent {
   static propTypes = {
     /**
+     * Element type to use for the menu item.
+     * For example: `<MenuItem is={ReactRouterLink}>...</MenuItem>`
+     */
+    is: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
+
+    /**
      * Function that is called on click and enter/space keypress.
      */
     onSelect: PropTypes.func,
@@ -45,6 +51,7 @@ class MenuItem extends React.PureComponent {
   }
 
   static defaultProps = {
+    is: 'div',
     intent: 'none',
     appearance: 'default',
     onClick: () => {},
@@ -65,6 +72,7 @@ class MenuItem extends React.PureComponent {
 
   render() {
     const {
+      is,
       children,
       theme,
       appearance,
@@ -77,6 +85,7 @@ class MenuItem extends React.PureComponent {
 
     return (
       <Pane
+        is={is}
         role="menuitem"
         className={themedClassName}
         onClick={this.handleClick}
