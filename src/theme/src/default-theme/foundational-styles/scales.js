@@ -27,7 +27,7 @@ export default {
   },
 
   blue: {
-    B1: '#f7fafd',
+    B1: '#f7f9fd',
     B2: '#f1f7fc',
     B3: '#e9f2fa',
     B4: '#ddebf7',
