@@ -4,7 +4,7 @@
  */
 export default {
   neutral: {
-    N1: '#FAFAFA',
+    N1: '#F9F9FB',
     N2: '#F5F6F7',
     N3: '#EDF0F2',
     N4: '#E4E7EB',
@@ -16,7 +16,7 @@ export default {
     N10: '#234361', // Normal Text AAA
 
     // Transparent variants.
-    N1A: 'rgba(67, 90, 111, 0.03)',
+    N1A: 'rgba(67, 90, 111, 0.04)',
     N2A: 'rgba(67, 90, 111, 0.06)',
     N3A: 'rgba(67, 90, 111, 0.09)',
     N4A: 'rgba(67, 90, 111, 0.14)',
@@ -27,7 +27,7 @@ export default {
   },
 
   blue: {
-    B1: '#f7fafd',
+    B1: '#f7f9fd',
     B2: '#f1f7fc',
     B3: '#e9f2fa',
     B4: '#ddebf7',
@@ -39,7 +39,7 @@ export default {
     B10: '#084b8a', // Normal Text AAA
 
     // Transparent variants.
-    B1A: 'rgba(16, 112, 202, 0.03)',
+    B1A: 'rgba(16, 112, 202, 0.04)',
     B2A: 'rgba(16, 112, 202, 0.06)',
     B3A: 'rgba(16, 112, 202, 0.09)',
     B4A: 'rgba(16, 112, 202, 0.14)',
