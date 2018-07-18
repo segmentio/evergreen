@@ -128,7 +128,7 @@ class TableRow extends PureComponent {
           display="flex"
           aria-selected={isHighlighted}
           aria-current={isSelected}
-          data-isselecteable={isSelectable}
+          data-isselectable={isSelectable}
           {...(isSelectable
             ? {
                 tabIndex: 0

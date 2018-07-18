@@ -103,7 +103,7 @@ class MenuItem extends React.PureComponent {
         onKeyPress={this.handleKeyPress}
         height={icon ? 40 : 32}
         tabIndex={0}
-        data-isselecteable="true"
+        data-isselectable="true"
         display="flex"
         alignItems="center"
         {...passthroughProps}
