@@ -20,7 +20,7 @@ const baseStyle = {
 }
 
 const hoverState = '&:not([disabled]):not([data-disabled]):hover'
-const focusState = '&:not([disabled]):not([data-disabled]):focus'
+const focusState = '& input:focus + label'
 const activeState =
   '&:not([disabled]):not([data-disabled]):active, &:not([disabled]):not([data-disabled])[data-popover-opened], &:not([disabled]):not([data-disabled])[data-active]'
 
