@@ -77,33 +77,93 @@ storiesOf('typography', module)
   .add('Strong', () => <div>{previewTextComponent(Strong)}</div>)
   .add('UnorderedList', () => (
     <Box padding={40}>
-      <Paragraph>
-        A paragraph before a list. You have to manually set the margins on a
-        list.
-      </Paragraph>
-      <UnorderedList marginY={16}>
-        <ListItem>Lorem ipsum dolar set amet</ListItem>
-        <ListItem>Lorem ipsum dolar set amet</ListItem>
-        <ListItem>Lorem ipsum dolar set amet</ListItem>
-        <ListItem>Lorem ipsum dolar set amet</ListItem>
-        <ListItem>Lorem ipsum dolar set amet</ListItem>
-      </UnorderedList>
-      <Paragraph>A paragraph after a list.</Paragraph>
+      {[300, 400, 500].map(size => (
+        <Box key={size}>
+          <Heading size={700} marginTop="default">
+            Size {size}
+          </Heading>
+          <Paragraph size={size} marginTop="default">
+            A paragraph before a list. You have to manually set the margins on a
+            list.
+          </Paragraph>
+          <OrderedList size={size} marginY={16}>
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+          </OrderedList>
+          <Paragraph size={size} marginTop="default">
+            A paragraph after a list.
+          </Paragraph>
+        </Box>
+      ))}
+    </Box>
+  ))
+  .add('UnorderedList with icons', () => (
+    <Box padding={40}>
+      {[300, 400, 500].map(size => (
+        <Box key={size}>
+          <Heading size={700} marginTop="default">
+            Size {size}
+          </Heading>
+          <Paragraph size={size} marginTop="default">
+            You can add icons to list items individually.
+          </Paragraph>
+          <UnorderedList size={size} marginY={16}>
+            <ListItem icon="tick-circle" iconColor="success">
+              Lorem ipsum dolar set amet
+            </ListItem>
+            <ListItem icon="tick-circle" iconColor="success">
+              Lorem ipsum dolar set amet
+            </ListItem>
+            <ListItem icon="ban-circle" iconColor="danger">
+              Lorem ipsum dolar set amet
+            </ListItem>
+            <ListItem icon="ban-circle" iconColor="danger">
+              Lorem ipsum dolar set amet
+            </ListItem>
+          </UnorderedList>
+          <Paragraph size={size}>
+            Or you can set the icon on the list.
+          </Paragraph>
+          <UnorderedList
+            size={size}
+            marginY={16}
+            icon="tick"
+            iconColor="success"
+          >
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+          </UnorderedList>
+        </Box>
+      ))}
     </Box>
   ))
   .add('OrderedList', () => (
     <Box padding={40}>
-      <Paragraph>
-        A paragraph before a list. You have to manually set the margins on a
-        list.
-      </Paragraph>
-      <OrderedList marginY={16}>
-        <ListItem>Lorem ipsum dolar set amet</ListItem>
-        <ListItem>Lorem ipsum dolar set amet</ListItem>
-        <ListItem>Lorem ipsum dolar set amet</ListItem>
-        <ListItem>Lorem ipsum dolar set amet</ListItem>
-        <ListItem>Lorem ipsum dolar set amet</ListItem>
-      </OrderedList>
-      <Paragraph>A paragraph after a list.</Paragraph>
+      {[300, 400, 500].map(size => (
+        <Box key={size}>
+          <Heading size={700} marginTop="default">
+            Size {size}
+          </Heading>
+          <Paragraph size={size} marginTop="default">
+            A paragraph before a list. You have to manually set the margins on a
+            list.
+          </Paragraph>
+          <UnorderedList size={size} marginY={16}>
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>Lorem ipsum dolar set amet</ListItem>
+          </UnorderedList>
+          <Paragraph size={size} marginTop="default">
+            A paragraph after a list.
+          </Paragraph>
+        </Box>
+      ))}
     </Box>
   ))
