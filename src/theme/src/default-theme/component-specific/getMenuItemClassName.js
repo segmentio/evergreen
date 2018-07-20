@@ -1,1 +1,1 @@
-export default from './getRowClassName'
+export { default } from './getRowClassName'

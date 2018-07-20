@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
+import uniqueId from 'lodash/uniqueId'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 
 export default class Playground extends React.Component {
@@ -14,7 +14,7 @@ export default class Playground extends React.Component {
     super(props)
 
     this.state = {
-      uniqueId: _.uniqueId(),
+      uniqueId: uniqueId(),
       isCodeCollapsed: false,
       hasError: false,
       codeText: props.codeText
