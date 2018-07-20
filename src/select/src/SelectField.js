@@ -2,16 +2,16 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
-import TextInput from './TextInput'
+import Select from './Select'
 
 let idCounter = 0
 
 export default class TextInputField extends PureComponent {
   static propTypes = {
     /**
-     * Composes the TextInput component as the base.
+     * Composes the Select component as the base.
      */
-    ...TextInput.propTypes,
+    ...Select.propTypes,
     ...FormField.propTypes,
 
     /**
@@ -86,14 +86,12 @@ export default class TextInputField extends PureComponent {
       required,
       isInvalid,
       appearance,
-      placeholder,
-      spellCheck,
 
       // Rest props are spread on the FormField
       ...props
     } = this.props
 
-    const id = `TextInputField-${this.state.id}`
+    const id = `SelectField-${this.state.id}`
 
     /**
      * Split the wrapper props from the input props.
@@ -111,7 +109,7 @@ export default class TextInputField extends PureComponent {
         labelFor={id}
         {...matchedProps}
       >
-        <TextInput
+        <Select
           id={id}
           width={inputWidth}
           height={inputHeight}
@@ -119,8 +117,6 @@ export default class TextInputField extends PureComponent {
           required={required}
           isInvalid={isInvalid}
           appearance={appearance}
-          placeholder={placeholder}
-          spellCheck={spellCheck}
           {...remainingProps}
         />
       </FormField>
