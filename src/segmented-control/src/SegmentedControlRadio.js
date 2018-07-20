@@ -91,7 +91,12 @@ export default class SegmentedControlRadio extends PureComponent {
     /**
      * When true, this item is the last item.
      */
-    isLastItem: PropTypes.bool
+    isLastItem: PropTypes.bool,
+
+    /**
+     * The unique id of the radio option.
+     */
+    id: PropTypes.string
   }
 
   render() {
@@ -100,6 +105,7 @@ export default class SegmentedControlRadio extends PureComponent {
       label,
       value,
       height,
+      id,
       checked,
       onChange,
       appearance,
@@ -113,7 +119,6 @@ export default class SegmentedControlRadio extends PureComponent {
 
     return (
       <Box
-        is="label"
         className={`${wrapperClass}`}
         css={styles}
         {...(checked
@@ -139,10 +144,13 @@ export default class SegmentedControlRadio extends PureComponent {
           className={`${offscreenCss}`}
           name={name}
           value={value}
+          id={id}
           checked={checked}
           onChange={e => onChange(e.target.value)}
         />
         <Text
+          is="label"
+          htmlFor={id}
           fontWeight={500}
           size={textSize}
           className={`${labelClass}`}
