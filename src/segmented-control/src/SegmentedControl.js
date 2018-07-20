@@ -80,6 +80,7 @@ export default class SegmentedControl extends PureComponent {
 
   render() {
     const {
+      value: filterOutValue, // Filter out.
       name,
       height,
       options,
@@ -95,7 +96,8 @@ export default class SegmentedControl extends PureComponent {
         {options.map((option, index) => (
           <SegmentedControlRadio
             key={option.value}
-            name={name}
+            id={this.name + index}
+            name={name || this.name}
             label={option.label}
             value={String(option.value)}
             height={height}
