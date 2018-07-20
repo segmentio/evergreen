@@ -169,7 +169,10 @@ class Button extends PureComponent {
         paddingBottom={paddingBottom}
         paddingRight={pr}
         paddingLeft={pl}
-        margin={0} // Removes weird margins in Safari
+        marginLeft={0} // Removes weird margins in Safari
+        marginRight={0} // Removes weird margins in Safari
+        marginTop={0} // Removes weird margins in Safari
+        marginBottom={0} // Removes weird margins in Safari
         size={textSize}
         color={null} // Prevent the Text color overriding the glamor appearanceStyle color
         height={height}
