@@ -32,7 +32,7 @@ export { Radio, RadioGroup } from './radio'
 export { minorScale, majorScale } from './scales'
 export { SearchInput } from './search-input'
 export { SegmentedControl } from './segmented-control'
-export { Select } from './select'
+export { Select, SelectField } from './select'
 export {
   OptionShapePropType,
   OptionsList,
