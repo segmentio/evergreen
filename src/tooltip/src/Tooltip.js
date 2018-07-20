@@ -41,13 +41,7 @@ export default class Tooltip extends PureComponent {
     /**
      * Properties passed through to the Tooltip.
      */
-    statelessProps: PropTypes.object,
-
-    /**
-     * This is an implementation detail. Please ignore.
-     * This is passed when a Tooltip is inside a Popover.
-     */
-    popoverProps: PropTypes.object
+    statelessProps: PropTypes.object
   }
 
   static defaultProps = {
@@ -101,9 +95,12 @@ export default class Tooltip extends PureComponent {
      * When a Tooltip is used within a Popover, the Popover passes
      * its props to the Tooltip in a `popoverProps` object.
      */
+    // eslint-disable-next-line react/prop-types
     if (this.props.popoverProps) {
       const {
+        // eslint-disable-next-line react/prop-types
         getTargetRef,
+        // eslint-disable-next-line react/prop-types
         isShown,
         ...popoverTargetProps
       } = this.props.popoverProps
