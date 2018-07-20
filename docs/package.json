@@ -7,28 +7,24 @@
     "build": "gatsby build"
   },
   "dependencies": {
-    "@babel/plugin-proposal-export-default-from": "^7.0.0-beta.51",
     "gatsby": "next",
+    "gatsby-plugin-postcss": "^1.0.0",
     "gatsby-plugin-react-helmet": "next",
     "lodash": "^4.17.4",
-    "postcss-preset-env": "^5.1.0",
+    "postcss-browser-reporter": "^0.5.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^11.1.0",
+    "postcss-reporter": "^5.0.0",
     "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-docgen": "^3.0.0-beta11",
-    "react-dom": "^16.2.0",
+    "react": "^16.4.0",
+    "react-docgen": "^3.0.0-rc.0",
+    "react-dom": "^16.4.0",
     "react-helmet": "^5.2.0",
-    "react-hot-loader": "^4.3.3",
-    "react-live": "v1.10.1",
+    "react-live": "1.10.1",
     "react-syntax-highlighter": "^7.0.2"
   },
   "devDependencies": {
-    "postcss-cssnext": "^3.1.0",
-    "postcss-import": "^11.1.0",
-    "prettier": "^1.10.2",
-    "webpack-merge": "^4.1.3"
-  },
-  "resolutions": {
-    "graphql": "^0.13.2"
+    "prettier": "^1.10.2"
   },
   "xo": false
 }

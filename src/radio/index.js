@@ -1,2 +1,2 @@
-export Radio from './src/Radio'
-export RadioGroup from './src/RadioGroup'
+export { default as Radio } from './src/Radio'
+export { default as RadioGroup } from './src/RadioGroup'

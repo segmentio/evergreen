@@ -1,1 +1,1 @@
-export Spinner from './src/Spinner'
+export { default as Spinner } from './src/Spinner' // eslint-disable-line import/prefer-default-export

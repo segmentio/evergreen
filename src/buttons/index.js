@@ -1,4 +1,4 @@
-export BackButton from './src/BackButton'
-export Button from './src/Button'
-export IconButton from './src/IconButton'
-export TextDropdownButton from './src/TextDropdownButton'
+export { default as BackButton } from './src/BackButton'
+export { default as Button } from './src/Button'
+export { default as IconButton } from './src/IconButton'
+export { default as TextDropdownButton } from './src/TextDropdownButton'

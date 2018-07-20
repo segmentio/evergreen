@@ -1,2 +1,2 @@
-export TextInput from './src/TextInput'
-export TextInputField from './src/TextInputField'
+export { default as TextInput } from './src/TextInput'
+export { default as TextInputField } from './src/TextInputField'
