@@ -431,3 +431,9 @@ buttonsStory.add('Button isLoading', () => (
     </Component>
   </Box>
 ))
+
+buttonsStory.add('Button margin top', () => (
+  <Box padding={40}>
+    <Button marginTop={400}>Debug margin top</Button>
+  </Box>
+))
