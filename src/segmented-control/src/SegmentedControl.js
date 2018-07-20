@@ -94,7 +94,8 @@ export default class SegmentedControl extends PureComponent {
         {options.map((option, index) => (
           <SegmentedControlRadio
             key={option.value}
-            name={name}
+            name={name || this.name}
+            id={this.name + index}
             label={option.label}
             value={option.value}
             height={height}
