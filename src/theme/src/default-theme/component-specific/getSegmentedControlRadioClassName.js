@@ -6,7 +6,8 @@ const defaultAppearance = Themer.createSegmentedControlRadioAppearance({
   base: defaultControlStyles.base,
   disabled: defaultControlStyles.disabled,
   hover: defaultControlStyles.hover,
-  active: defaultControlStyles.active
+  active: defaultControlStyles.active,
+  focus: defaultControlStyles.focus
 })
 
 /**

@@ -89,6 +89,11 @@ class SegmentedControlRadio extends PureComponent {
     isLastItem: PropTypes.bool,
 
     /**
+     * The unique id of the radio option.
+     */
+    id: PropTypes.string,
+
+    /**
      * Theme provided by ThemeProvider.
      */
     theme: PropTypes.object.isRequired
@@ -98,6 +103,7 @@ class SegmentedControlRadio extends PureComponent {
     const {
       theme,
 
+      id,
       name,
       label,
       value,
@@ -115,7 +121,6 @@ class SegmentedControlRadio extends PureComponent {
 
     return (
       <Box
-        is="label"
         className={cx(wrapperClass.toString(), themedClassName)}
         data-active={checked}
         {...(isFirstItem
@@ -133,13 +138,21 @@ class SegmentedControlRadio extends PureComponent {
       >
         <input
           type="radio"
+          id={id}
           className={`${offscreenCss}`}
           name={name}
           value={value}
           checked={checked}
           onChange={e => onChange(e.target.value)}
         />
-        <Text fontWeight={500} size={textSize} className={`${labelClass}`}>
+        <Text
+          is="label"
+          cursor="pointer"
+          htmlFor={id}
+          fontWeight={500}
+          size={textSize}
+          className={`${labelClass}`}
+        >
           {label}
         </Text>
       </Box>

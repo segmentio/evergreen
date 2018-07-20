@@ -17,6 +17,7 @@ const disabledState = '[disabled="true"], [data-disabled="true"]'
 const hoverState = '&:not([disabled="true"]):not([data-disabled="true"]):hover'
 const activeState =
   '&:not([disabled="true"]):not([data-disabled="true"]):active, &:not([disabled="true"]):not([data-disabled="true"])[data-popover-opened="true"], &:not([disabled="true"]):not([data-disabled="true"])[data-active="true"]'
+const focusState = '& input:focus + label'
 
 /**
  * @param {object} items - object with a set of states.
@@ -25,7 +26,7 @@ const activeState =
 const createSegmentedControlRadioAppearance = (items = {}) => {
   missingStateWarning({
     items,
-    props: ['base', 'hover', 'disabled', 'active'],
+    props: ['base', 'hover', 'disabled', 'active', 'focus'],
     cb: prop => {
       console.error(
         `Themer.createSegmentedControlRadioAppearance() is missing a ${prop} item `,
@@ -42,10 +43,11 @@ const createSegmentedControlRadioAppearance = (items = {}) => {
       ...createAppearance(items.disabled)
     },
     [hoverState]: createAppearance(items.hover),
-    [activeState]: {
+    [focusState]: {
       zIndex: StackingOrder.FOCUSED,
-      ...createAppearance(items.active)
+      ...createAppearance(items.focus)
     },
+    [activeState]: createAppearance(items.active),
     '&[data-active="true"]': {
       cursor: 'default'
     }
