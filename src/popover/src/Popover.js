@@ -238,7 +238,7 @@ export default class Popover extends Component {
 
   renderTarget = ({ getRef, isShown }) => {
     const { children } = this.props
-    const isTooltipInside = children.type === Tooltip
+    const isTooltipInside = children && children.type === Tooltip
 
     const getTargetRef = ref => {
       this.targetRef = ref
