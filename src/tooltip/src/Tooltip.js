@@ -9,6 +9,11 @@ let idCounter = 0
 export default class Tooltip extends PureComponent {
   static propTypes = {
     /**
+     * The appearance of the tooltip.
+     */
+    appearance: PropTypes.oneOf(['default', 'card']).isRequired,
+
+    /**
      * The position the Popover is on.
      */
     position: PropTypes.oneOf(Object.keys(Position)),
@@ -31,7 +36,7 @@ export default class Tooltip extends PureComponent {
     /**
      * The target button of the Tooltip.
      */
-    children: PropTypes.node.isRequried,
+    children: PropTypes.node.isRequired,
 
     /**
      * Properties passed through to the Tooltip.
@@ -40,6 +45,7 @@ export default class Tooltip extends PureComponent {
   }
 
   static defaultProps = {
+    appearance: 'default',
     position: Position.BOTTOM,
     hideDelay: 120
   }
@@ -78,15 +84,55 @@ export default class Tooltip extends PureComponent {
   renderTarget = ({ getRef }) => {
     const { children } = this.props
 
-    return React.cloneElement(children, {
+    const tooltipTargetProps = {
       onMouseEnter: this.show,
       onMouseLeave: this.hide,
-      'aria-describedby': this.state.id,
+      'aria-describedby': this.state.id
+    }
+
+    /**
+     * Tooltips can be used within a Popover (not the other way around)
+     * When a Tooltip is used within a Popover, the Popover passes
+     * its props to the Tooltip in a `popoverProps` object.
+     */
+    // eslint-disable-next-line react/prop-types
+    if (this.props.popoverProps) {
+      const {
+        // eslint-disable-next-line react/prop-types
+        getTargetRef,
+        // eslint-disable-next-line react/prop-types
+        isShown,
+        ...popoverTargetProps
+      } = this.props.popoverProps
+
+      return React.cloneElement(children, {
+        // Add the Popover props to the target.
+        ...popoverTargetProps,
+        // Add the Tooltip props to the target.
+        ...tooltipTargetProps,
+
+        innerRef: ref => {
+          // Get the ref for the Tooltip.
+          getRef(ref)
+          // Pass the ref to the Popover.
+          getTargetRef(ref)
+        }
+      })
+    }
+
+    /**
+     * With normal usage only the props for a Tooltip are passed to the target.
+     */
+    return React.cloneElement(children, {
+      ...tooltipTargetProps,
       innerRef: ref => {
         getRef(ref)
       }
     })
   }
+
+  isPopoverShown = () =>
+    this.props.popoverProps && this.props.popoverProps.isShown
 
   handleMouseEnterTarget = () => {
     this.setState({
@@ -101,10 +147,17 @@ export default class Tooltip extends PureComponent {
   }
 
   render() {
-    const { isShown, content, position, statelessProps } = this.props
+    const {
+      appearance,
+      isShown,
+      content,
+      position,
+      statelessProps
+    } = this.props
     const { isShown: stateIsShown, isShownByTarget } = this.state
 
-    const shown = isShown || stateIsShown || isShownByTarget
+    const shown =
+      (isShown || stateIsShown || isShownByTarget) && !this.isPopoverShown()
 
     return (
       <Positioner
@@ -118,6 +171,7 @@ export default class Tooltip extends PureComponent {
         {({ css, style, state, getRef }) => (
           <TooltipStateless
             id={this.state.id}
+            appearance={appearance}
             innerRef={ref => getRef(ref)}
             data-state={state}
             css={css}

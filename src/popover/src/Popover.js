@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Position, Positioner } from '../../positioner'
+import { Tooltip } from '../../tooltip'
 import PopoverStateless from './PopoverStateless'
 
 export default class Popover extends Component {
@@ -237,12 +238,16 @@ export default class Popover extends Component {
 
   renderTarget = ({ getRef, isShown }) => {
     const { children } = this.props
+    const isTooltipInside = children && children.type === Tooltip
 
     const getTargetRef = ref => {
       this.targetRef = ref
       getRef(ref)
     }
 
+    /**
+     * When a function is passed, you can control the Popover manually.
+     */
     if (typeof children === 'function') {
       return children({
         toggle: this.toggle,
@@ -251,13 +256,39 @@ export default class Popover extends Component {
       })
     }
 
-    return React.cloneElement(children, {
+    const popoverTargetProps = {
       onClick: this.toggle,
       onKeyDown: this.handleKeyDown,
-      innerRef: getTargetRef,
       role: 'button',
       'aria-expanded': isShown,
       'aria-haspopup': true
+    }
+
+    /**
+     * Tooltips can be used within a Popover (not the other way around)
+     * In this case the children is the Tooltip instead of a button.
+     * Pass the properties to the Tooltip and let the Tooltip
+     * add the properties to the target.
+     */
+    if (isTooltipInside) {
+      return React.cloneElement(children, {
+        popoverProps: {
+          getTargetRef,
+          isShown,
+
+          // These propeties will be spread as `popoverTargetProps`
+          // in the Tooltip component.
+          ...popoverTargetProps
+        }
+      })
+    }
+
+    /**
+     * With normal usage only popover props end up on the target.
+     */
+    return React.cloneElement(children, {
+      innerRef: getTargetRef,
+      ...popoverTargetProps
     })
   }
 

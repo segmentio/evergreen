@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import { Pane } from '../../layers'
 import { Paragraph } from '../../typography'
 import { withTheme } from '../../theme'
 
@@ -9,17 +9,24 @@ class TooltipStateless extends PureComponent {
     children: PropTypes.node,
 
     /**
+     * The appearance of the tooltip.
+     */
+    appearance: PropTypes.oneOf(['default', 'card']).isRequired,
+
+    /**
      * Theme provided by ThemeProvider.
      */
     theme: PropTypes.object.isRequired
   }
 
   render() {
-    const { theme, children, ...props } = this.props
+    const { theme, children, appearance, ...props } = this.props
+    const { color, ...themedProps } = theme.getTooltipProps(appearance)
+
     let child
     if (typeof children === 'string') {
       child = (
-        <Paragraph color="white" size={400}>
+        <Paragraph color={color} size={400}>
           {children}
         </Paragraph>
       )
@@ -28,16 +35,16 @@ class TooltipStateless extends PureComponent {
     }
 
     return (
-      <Box
-        {...theme.getTooltipProps()}
+      <Pane
         borderRadius={3}
         paddingX={8}
         paddingY={4}
         maxWidth={240}
+        {...themedProps}
         {...props}
       >
         {child}
-      </Box>
+      </Pane>
     )
   }
 }
