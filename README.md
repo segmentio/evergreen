@@ -10,7 +10,10 @@
 </div>
 
 
-* [Evergreen v4 coming soon](https://github.com/segmentio/evergreen/pull/200) (prerelease available)
+* **Evergreen v4 coming soon**
+  * Prerelease: `yarn add evergreen-ui@next`
+  * [View PR](https://github.com/segmentio/evergreen/pull/200)
+  * [View v4 Documentation (WIP)](http://evergreen-v4.surge.sh/components/)
 * React 16
 * [Documentation (WIP)](http://evergreen.surge.sh/)
 * [View Live Storybook](https://segmentio.github.io/evergreen/)
