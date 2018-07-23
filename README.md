@@ -1,6 +1,11 @@
-# 🌲 Evergreen [![Build Status](https://circleci.com/gh/segmentio/evergreen/tree/master.svg?style=svg)](https://circleci.com/gh/segmentio/evergreen/tree/master)
-
-> React UI Framework by [Segment](https://segment.com/)
+<div align="center">
+  <img src="https://raw.githubusercontent.com/segmentio/evergreen/master/evergreen-github-hero.png" alt="Evergreen, A Design System for the Web. Evergreen is a React UI Framework for building ambitious products on the web. Brought to you by Segment.">
+	<br>
+  <a href="https://circleci.com/gh/segmentio/evergreen/tree/master">
+    <img src="https://circleci.com/gh/segmentio/ui-box/tree/master.svg?style=svg" alt="Build Status">
+  </a>
+	<br>
+</div>
 
 * [Evergreen v4 coming soon](https://github.com/segmentio/evergreen/pull/200) (prerelease available)
 * React 16
@@ -12,6 +17,7 @@
 * Easy adoption because of CSS-in-JS
 * Easy Server Side Rendering (SSR) and automatic hydration
 * Interested in Evergreen? [Come work for Segment!](https://segment.com/jobs/)
+* Brought to you by [Segment](https://segment.com/)
 
 ## Core values of 🌲 Evergreen
 
