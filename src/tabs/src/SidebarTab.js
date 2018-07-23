@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import Box from 'ui-box'
-import { Icon } from '../../icon'
 import Tab from './Tab'
 
 export default class SidebarTab extends PureComponent {
@@ -33,7 +32,6 @@ export default class SidebarTab extends PureComponent {
         <Box is="span" flex="1">
           {children}
         </Box>
-        {isSelected && <Icon icon="caret-right" size={14} marginRight={10} />}
       </Tab>
     )
   }
