@@ -43,6 +43,11 @@ class Select extends PureComponent {
     children: PropTypes.node,
 
     /**
+     * The initial value of an uncontrolled select
+     */
+    defaultValue: PropTypes.any,
+
+    /**
      * Function called when value changes.
      */
     onChange: PropTypes.func,
@@ -91,6 +96,7 @@ class Select extends PureComponent {
       name,
       height,
       children,
+      defaultValue,
       disabled,
       onChange,
       value,
@@ -122,6 +128,7 @@ class Select extends PureComponent {
           id={id}
           name={name}
           onChange={onChange}
+          defaultValue={defaultValue}
           value={value}
           required={required}
           autoFocus={autoFocus}
