@@ -84,18 +84,22 @@ const getFitsOnTop = (rect, viewportOffset) => {
 }
 
 /**
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin
  * Function that returns the CSS `tranform-origin` property.
  * @param {Rect} rect
  * @param {Position} position
+ * @param {Object} dimensions — the dimensions of the positioner.
  * @param {Number} targetCenter - center of the target.
  * @return {String} transform origin
  */
-const getTransformOrigin = ({ rect, position, targetCenter }) => {
+const getTransformOrigin = ({ rect, position, dimensions, targetCenter }) => {
   const center = Math.round(targetCenter - rect.left)
   if (isAlignedOnTop(position)) {
-    return `bottom ${center}px`
+    /* Syntax: x-offset | y-offset */
+    return `${center}px ${dimensions.height}px `
   }
-  return `top ${center}px`
+  /* Syntax: x-offset | y-offset */
+  return `${center}px 0px `
 }
 
 /**
@@ -143,6 +147,7 @@ export default function getFittedPosition({
   const transformOrigin = getTransformOrigin({
     rect,
     position: finalPosition,
+    dimensions,
     targetCenter
   })
 
