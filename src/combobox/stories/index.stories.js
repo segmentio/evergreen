@@ -36,6 +36,10 @@ storiesOf('combobox', module).add('Combobox', () => (
       <Combobox items={items} onChange={handleChange} />
     </Box>
     <Box marginBottom={16}>
+      <Heading>Default usage with isClearable</Heading>
+      <Combobox items={items} onChange={handleChange} isClearable />
+    </Box>
+    <Box marginBottom={16}>
       <Heading>Custom width</Heading>
       <Combobox width={120} items={items} onChange={handleChange} />
     </Box>

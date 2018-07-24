@@ -97,6 +97,7 @@ export default class Combobox extends PureComponent {
       height,
       onChange,
       placeholder,
+      isClearable,
       inputProps,
       buttonProps,
       openOnFocus,
@@ -156,6 +157,27 @@ export default class Combobox extends PureComponent {
                 }
               })}
             />
+            {isClearable &&
+              isShown && (
+                <IconButton
+                  iconAim="up"
+                  color="muted"
+                  icon="cross"
+                  appearance="default"
+                  height={height}
+                  marginLeft={-1}
+                  paddingLeft={0}
+                  paddingRight={0}
+                  borderTopLeftRadius={0}
+                  borderBottomLeftRadius={0}
+                  {...getButtonProps({
+                    ...buttonProps,
+                    onClick: () => {
+                      clearSelection()
+                    }
+                  })}
+                />
+              )}
             <IconButton
               iconAim="down"
               color="muted"
