@@ -124,24 +124,28 @@ export default class Positioner extends PureComponent {
     this.update()
   }
 
-  getTargetRect = () => this.targetRef.getBoundingClientRect()
-
   update = () => {
     if (!this.props.isShown || !this.targetRef || !this.positionerRef) return
 
-    const targetRect = this.getTargetRect()
+    const targetRect = this.targetRef.getBoundingClientRect()
+    const positionerRect = this.positionerRef.getBoundingClientRect()
     const viewportHeight =
       document.documentElement.clientHeight + window.scrollY
     const viewportWidth = document.documentElement.clientWidth + window.scrollX
+
+    // https://github.com/segmentio/evergreen/issues/255
+    // We need to ceil the width and height to prevent jitter when
+    // the window is zoomed (when `window.devicePixelRatio` is not an integer)
+    const dimensions = {
+      height: Math.ceil(positionerRect.height),
+      width: Math.ceil(positionerRect.width)
+    }
 
     const { rect, transformOrigin } = getPosition({
       position: this.props.position,
       targetRect,
       targetOffset: this.props.targetOffset,
-      dimensions: {
-        height: this.positionerRef.offsetHeight,
-        width: this.positionerRef.offsetWidth
-      },
+      dimensions,
       viewport: {
         width: viewportWidth,
         height: viewportHeight
