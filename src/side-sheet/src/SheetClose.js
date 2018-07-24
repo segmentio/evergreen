@@ -11,27 +11,11 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const rotate360InAnimation = css.keyframes('rotate360InAnimation', {
-  from: {
-    transform: `translateX(100%) rotate(0deg)`
-  },
-  to: {
-    transform: `translateX(-100%) rotate(-360deg)`
-  }
-})
-
-const rotate360OutAnimation = css.keyframes('rotate360OutAnimation', {
-  from: {
-    transform: `translateX(-100%) rotate(0deg)`
-  },
-  to: {
-    transform: `translateX(100%) rotate(360deg)`
-  }
-})
-
-const sheetCloseClassName = css({
+const sharedStyles = {
+  padding: 4,
+  borderRadius: 9999,
+  position: 'absolute',
   cursor: 'pointer',
-  transform: `translateX(-100%)`,
   backgroundColor: `rgba(255, 255, 255, 0.4)`,
   transition: `background-color 120ms`,
   '&:hover': {
@@ -39,35 +23,108 @@ const sheetCloseClassName = css({
   },
   '&:active': {
     backgroundColor: `rgba(255, 255, 255, 0.4)`
-  },
-  '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${rotate360InAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.deceleration
-    } both`
-  },
-  '&[data-state="exiting"]': {
-    animation: `${rotate360OutAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.acceleration
-    } both`
   }
-})
+}
+
+const withAnimations = (animateIn, animateOut) => {
+  return {
+    '&[data-state="entering"], &[data-state="entered"]': {
+      animation: `${animateIn} ${ANIMATION_DURATION}ms ${
+        animationEasing.deceleration
+      } both`
+    },
+    '&[data-state="exiting"]': {
+      animation: `${animateOut} ${ANIMATION_DURATION}ms ${
+        animationEasing.acceleration
+      } both`
+    }
+  }
+}
+
+const sheetCloseStyles = {
+  right: {
+    left: 0,
+    marginLeft: -12,
+    marginTop: 12,
+    transform: `translateX(-100%)`,
+    ...withAnimations(
+      css.keyframes('rotate360InAnimation', {
+        from: { transform: `translateX(100%) rotate(0deg)` },
+        to: { transform: `translateX(-100%) rotate(-360deg)` }
+      }),
+      css.keyframes('rotate360OutAnimation', {
+        from: { transform: `translateX(-100%) rotate(0deg)` },
+        to: { transform: `translateX(100%) rotate(360deg)` }
+      })
+    )
+  },
+  left: {
+    marginRight: -12,
+    right: 0,
+    marginTop: 12,
+    transform: `translateX(100%)`,
+    ...withAnimations(
+      css.keyframes('leftRotate360InAnimation', {
+        from: { transform: `translateX(-100%) rotate(0deg)` },
+        to: { transform: `translateX(100%), rotate(360deg)` }
+      }),
+      css.keyframes('leftRotate360OutAnimation', {
+        from: { transform: `translateX(100%) rotate(0deg)` },
+        to: { transform: `translateX(-100%), rotate(360deg)` }
+      })
+    )
+  },
+  top: {
+    right: 0,
+    marginRight: 12,
+    top: '100%',
+    marginTop: 12,
+    transform: `translateY(0)`,
+    ...withAnimations(
+      css.keyframes('topRotate360InAnimation', {
+        from: { transform: `translateY(-200%) rotate(0deg)` },
+        to: { transform: `translateY(0%), rotate(360deg)` }
+      }),
+      css.keyframes('topRotate360OutAnimation', {
+        from: { transform: `translateY(0%) rotate(0deg)` },
+        to: { transform: `translateY(-200%), rotate(360deg)` }
+      })
+    )
+  },
+  bottom: {
+    right: 0,
+    marginRight: 12,
+    bottom: '100%',
+    marginBottom: 12,
+    transform: `translateY(0)`,
+    ...withAnimations(
+      css.keyframes('topRotate360InAnimation', {
+        from: { transform: `translateY(200%) rotate(0deg)` },
+        to: { transform: `translateY(0%), rotate(360deg)` }
+      }),
+      css.keyframes('topRotate360OutAnimation', {
+        from: { transform: `translateY(0%) rotate(0deg)` },
+        to: { transform: `translateY(200%), rotate(360deg)` }
+      })
+    )
+  }
+}
+
+const sheetCloseClassName = anchor =>
+  css({
+    ...sheetCloseStyles[anchor],
+    ...sharedStyles
+  })
 
 export default class SheetClose extends PureComponent {
   static propTypes = {
     ...Box.propTypes,
-    isClosing: PropTypes.bool
-  }
-
-  static styles = {
-    position: 'absolute',
-    marginLeft: -12,
-    marginTop: 12,
-    padding: 4,
-    borderRadius: 9999
+    isClosing: PropTypes.bool,
+    anchor: PropTypes.oneOf(['left', 'right', 'top', 'bottom'])
   }
 
   render() {
-    const { isClosing, ...props } = this.props
+    const { isClosing, anchor, ...props } = this.props
     return (
       <Box
         width={32}
@@ -75,8 +132,7 @@ export default class SheetClose extends PureComponent {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        className={sheetCloseClassName.toString()}
-        {...SheetClose.styles}
+        className={sheetCloseClassName(anchor).toString()}
         {...props}
       >
         <Icon icon="cross" color="#fff" />
