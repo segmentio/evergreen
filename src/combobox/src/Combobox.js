@@ -85,6 +85,10 @@ export default class Combobox extends PureComponent {
         this.setState({ isOpenedByButton: false })
       }
     }
+    // Here we can see an '_autocomplete_unknown_' type in the console
+    // coming from Downshift when clicking a selected item from list --
+    // this seems to be at the center of issues in that solution
+    console.log(changes)
   }
 
   render() {
@@ -115,6 +119,7 @@ export default class Combobox extends PureComponent {
         onStateChange={this.handleStateChange}
         isFilterDisabled={this.state.isOpenedByButton}
         {...autocompleteProps}
+        isClearable={isClearable}
       >
         {({
           getRef,
@@ -122,6 +127,7 @@ export default class Combobox extends PureComponent {
           openMenu,
           inputValue,
           getInputProps,
+          selectedItem,
           getButtonProps,
           clearSelection
         }) => (
@@ -157,47 +163,47 @@ export default class Combobox extends PureComponent {
                 }
               })}
             />
-            {isClearable &&
-              isShown && (
-                <IconButton
-                  iconAim="up"
-                  color="muted"
-                  icon="cross"
-                  appearance="default"
-                  height={height}
-                  marginLeft={-1}
-                  paddingLeft={0}
-                  paddingRight={0}
-                  borderTopLeftRadius={0}
-                  borderBottomLeftRadius={0}
-                  {...getButtonProps({
-                    ...buttonProps,
-                    onClick: () => {
-                      clearSelection()
-                    }
-                  })}
-                />
-              )}
-            <IconButton
-              iconAim="down"
-              color="muted"
-              icon="caret-down"
-              appearance="default"
-              height={height}
-              marginLeft={-1}
-              paddingLeft={0}
-              paddingRight={0}
-              borderTopLeftRadius={0}
-              borderBottomLeftRadius={0}
-              {...getButtonProps({
-                ...buttonProps,
-                onClick: () => {
-                  if (!isShown) {
-                    this.setState({ isOpenedByButton: true })
+            {selectedItem && isClearable ? (
+              <IconButton
+                iconAim="up"
+                color="muted"
+                icon="cross"
+                appearance="default"
+                height={height}
+                marginLeft={-1}
+                paddingLeft={0}
+                paddingRight={0}
+                borderTopLeftRadius={0}
+                borderBottomLeftRadius={0}
+                {...getButtonProps({
+                  ...buttonProps,
+                  onClick: () => {
+                    clearSelection()
                   }
-                }
-              })}
-            />
+                })}
+              />
+            ) : (
+              <IconButton
+                iconAim="down"
+                color="muted"
+                icon="caret-down"
+                appearance="default"
+                height={height}
+                marginLeft={-1}
+                paddingLeft={0}
+                paddingRight={0}
+                borderTopLeftRadius={0}
+                borderBottomLeftRadius={0}
+                {...getButtonProps({
+                  ...buttonProps,
+                  onClick: () => {
+                    if (!isShown) {
+                      this.setState({ isOpenedByButton: true })
+                    }
+                  }
+                })}
+              />
+            )}
           </Box>
         )}
       </Autocomplete>
