@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { css } from 'glamor'
 import { Icon } from '../../icon'
+import { Position } from '../../positioner'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -42,7 +43,7 @@ const withAnimations = (animateIn, animateOut) => {
 }
 
 const sheetCloseStyles = {
-  right: {
+  [Position.RIGHT]: {
     left: 0,
     marginLeft: -12,
     marginTop: 12,
@@ -58,7 +59,7 @@ const sheetCloseStyles = {
       })
     )
   },
-  left: {
+  [Position.LEFT]: {
     marginRight: -12,
     right: 0,
     marginTop: 12,
@@ -74,7 +75,7 @@ const sheetCloseStyles = {
       })
     )
   },
-  top: {
+  [Position.TOP]: {
     right: 0,
     marginRight: 12,
     top: '100%',
@@ -91,7 +92,7 @@ const sheetCloseStyles = {
       })
     )
   },
-  bottom: {
+  [Position.BOTTOM]: {
     right: 0,
     marginRight: 12,
     bottom: '100%',
@@ -110,21 +111,32 @@ const sheetCloseStyles = {
   }
 }
 
-const sheetCloseClassName = anchor =>
-  css({
-    ...sheetCloseStyles[anchor],
-    ...sharedStyles
-  })
+const sheetCloseClassNameCache = {}
+
+const getSheetCloseClassName = position => {
+  if (!sheetCloseClassNameCache[position]) {
+    sheetCloseClassNameCache[position] = css({
+      ...sheetCloseStyles[position],
+      ...sharedStyles
+    }).toString()
+  }
+  return sheetCloseClassNameCache[position]
+}
 
 export default class SheetClose extends PureComponent {
   static propTypes = {
     ...Box.propTypes,
     isClosing: PropTypes.bool,
-    anchor: PropTypes.oneOf(['left', 'right', 'top', 'bottom'])
+    position: PropTypes.oneOf([
+      Position.LEFT,
+      Position.RIGHT,
+      Position.TOP,
+      Position.BOTTOM
+    ])
   }
 
   render() {
-    const { isClosing, anchor, ...props } = this.props
+    const { isClosing, position, ...props } = this.props
     return (
       <Box
         width={32}
@@ -132,7 +144,7 @@ export default class SheetClose extends PureComponent {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        className={sheetCloseClassName(anchor).toString()}
+        className={getSheetCloseClassName(position)}
         {...props}
       >
         <Icon icon="cross" color="#fff" />

@@ -11,7 +11,14 @@ export default class Tooltip extends PureComponent {
     /**
      * The position the Popover is on.
      */
-    position: PropTypes.oneOf(Object.keys(Position)),
+    position: PropTypes.oneOf([
+      Position.TOP,
+      Position.TOP_LEFT,
+      Position.TOP_RIGHT,
+      Position.BOTTOM,
+      Position.BOTTOM_LEFT,
+      Position.BOTTOM_RIGHT
+    ]),
 
     /**
      * The content of the Popover.

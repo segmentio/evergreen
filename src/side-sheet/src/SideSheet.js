@@ -3,31 +3,32 @@ import PropTypes from 'prop-types'
 import { css } from 'ui-box'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
+import { Position } from '../../positioner'
 import SheetClose from './SheetClose'
 
 const paneProps = {
-  left: {
+  [Position.LEFT]: {
     height: '100vh',
     maxWidth: '100vw',
     position: 'absolute',
     left: 0,
     right: 'auto'
   },
-  right: {
+  [Position.RIGHT]: {
     height: '100vh',
     maxWidth: '100vw',
     position: 'absolute',
     right: 0,
     left: 'auto'
   },
-  top: {
+  [Position.TOP]: {
     width: '100vw',
     position: 'absolute',
     maxHeight: '100vh',
     top: 0,
     bottom: 'auto'
   },
-  bottom: {
+  [Position.BOTTOM]: {
     width: '100vw',
     maxHeight: '100vh',
     position: 'absolute',
@@ -37,16 +38,16 @@ const paneProps = {
 }
 
 const subpaneProps = {
-  left: {
+  [Position.LEFT]: {
     height: '100vh'
   },
-  right: {
+  [Position.RIGHT]: {
     height: '100vh'
   },
-  top: {
+  [Position.TOP]: {
     width: '100vw'
   },
-  bottom: {
+  [Position.BOTTOM]: {
     width: '100vw'
   }
 }
@@ -74,7 +75,7 @@ const withAnimations = (animateIn, animateOut) => {
 }
 
 const animationStyles = {
-  left: {
+  [Position.LEFT]: {
     transform: `translateX(-100%)`,
     ...withAnimations(
       css.keyframes('anchoredLeftSlideInAnimation', {
@@ -87,7 +88,7 @@ const animationStyles = {
       })
     )
   },
-  right: {
+  [Position.RIGHT]: {
     transform: `translateX(100%)`,
     ...withAnimations(
       css.keyframes('anchoredRightSlideInAnimation', {
@@ -100,7 +101,7 @@ const animationStyles = {
       })
     )
   },
-  top: {
+  [Position.TOP]: {
     transform: `translateY(-100%)`,
     ...withAnimations(
       css.keyframes('anchoredTopSlideInAnimation', {
@@ -113,7 +114,7 @@ const animationStyles = {
       })
     )
   },
-  bottom: {
+  [Position.BOTTOM]: {
     transform: `translateY(100%)`,
     ...withAnimations(
       css.keyframes('anchoredBottomSlideInAnimation', {
@@ -161,16 +162,21 @@ class SideSheet extends React.Component {
     containerProps: PropTypes.object,
 
     /**
-     * Anchors the sheet to the top, left, right, or bottom of the screen.
+     * Positions the sheet to the top, left, right, or bottom of the screen.
      */
-    anchor: PropTypes.oneOf(['left', 'right', 'top', 'bottom'])
+    position: PropTypes.oneOf([
+      Position.TOP,
+      Position.BOTTOM,
+      Position.LEFT,
+      Position.RIGHT
+    ]).isRequired
   }
 
   static defaultProps = {
     width: 620,
     onCloseComplete: () => {},
     onOpenComplete: () => {},
-    anchor: 'right'
+    position: Position.RIGHT
   }
 
   render() {
@@ -181,7 +187,7 @@ class SideSheet extends React.Component {
       containerProps,
       onOpenComplete,
       onCloseComplete,
-      anchor
+      position
     } = this.props
 
     return (
@@ -193,12 +199,12 @@ class SideSheet extends React.Component {
         {({ state, close }) => (
           <Pane
             width={width}
-            {...paneProps[anchor]}
-            css={animationStyles[anchor]}
+            {...paneProps[position]}
+            css={animationStyles[position]}
             data-state={state}
           >
             <SheetClose
-              anchor={anchor}
+              position={position}
               data-state={state}
               isClosing={false}
               onClick={close}
@@ -210,7 +216,7 @@ class SideSheet extends React.Component {
               maxHeight="100vh"
               data-state={state}
               width={width}
-              {...subpaneProps[anchor]}
+              {...subpaneProps[position]}
               {...containerProps}
             >
               {typeof children === 'function' ? children({ close }) : children}

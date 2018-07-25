@@ -194,17 +194,17 @@ storiesOf('side-sheet', module)
       </Manager>
     </Box>
   ))
-  .add('anchored', () => (
+  .add('positions', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Manager isShown anchor="left">
+      <Manager isShown position="left">
         {({ state, setState }) => (
           <Box>
             <SideSheet
-              anchor={state.anchor}
+              position={state.position}
               width={250}
               isShown={state.isShown}
               onCloseComplete={() => setState({ isShown: false })}
@@ -239,13 +239,13 @@ storiesOf('side-sheet', module)
                 )
               }}
             </SideSheet>
-            {['left', 'right', 'top', 'bottom'].map(anchor => (
+            {['left', 'right', 'top', 'bottom'].map(position => (
               <Button
-                key={anchor}
+                key={position}
                 margin="10px"
-                onClick={() => setState({ anchor, isShown: true })}
+                onClick={() => setState({ position, isShown: true })}
               >
-                Show {anchor}
+                Show {position}
               </Button>
             ))}
           </Box>
