@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Pane } from '../../layers'
 import TableBody from './TableBody'
+import TableVirtualBody from './TableVirtualBody'
 import TableCell from './TableCell'
 import TableHead from './TableHead'
 import TableHeaderCell from './TableHeaderCell'
@@ -11,6 +12,7 @@ import SearchTableHeaderCell from './SearchTableHeaderCell'
 
 export default class Table extends PureComponent {
   static Body = TableBody
+  static VirtualBody = TableVirtualBody
   static Head = TableHead
   static HeaderCell = TableHeaderCell
   static TextHeaderCell = TextTableHeaderCell
