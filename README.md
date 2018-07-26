@@ -3,7 +3,7 @@
 	<br>
   <br>
   <a href="https://circleci.com/gh/segmentio/evergreen/tree/master">
-    <img src="https://circleci.com/gh/segmentio/ui-box/tree/master.svg?style=svg" alt="Build Status">
+    <img src="https://circleci.com/gh/segmentio/evergreen.svg?style=svg" alt="Build Status">
   </a>
 	<br>
   <br>
