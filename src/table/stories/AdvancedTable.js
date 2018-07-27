@@ -254,9 +254,7 @@ export default class AdvancedTable extends React.Component {
           <Table.HeaderCell width={48} flex="none" />
         </Table.Head>
         <Table.VirtualBody height={640}>
-          {items.map(({ item, index }) =>
-            this.renderRow({ profile: item[index] })
-          )}
+          {items.map(item => this.renderRow({ profile: item }))}
         </Table.VirtualBody>
       </Table>
     )

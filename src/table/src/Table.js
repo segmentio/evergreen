@@ -30,10 +30,6 @@ export default class Table extends PureComponent {
 
   render() {
     const { children, ...props } = this.props
-    return (
-      <Pane border {...props}>
-        {children}
-      </Pane>
-    )
+    return <Pane {...props}>{children}</Pane>
   }
 }
