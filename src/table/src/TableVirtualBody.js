@@ -181,7 +181,7 @@ export default class TableVirtualBody extends PureComponent {
     } = this.props
 
     // VirtualList needs a fixed height.
-    const { calculatedHeight } = this.state
+    const { calculatedHeight, isIntegerHeight } = this.state
 
     return (
       <Pane
@@ -192,7 +192,7 @@ export default class TableVirtualBody extends PureComponent {
         {...props}
       >
         <VirtualList
-          height={calculatedHeight}
+          height={isIntegerHeight ? paneHeight : calculatedHeight}
           width="100%"
           estimatedItemSize={
             allowAutoHeight && useAverageAutoHeightEstimation
