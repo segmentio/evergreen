@@ -5,6 +5,12 @@ import { Table } from '../../table'
 import AdvancedTable from './AdvancedTable'
 import VirtualTable from './VirtualTable'
 
+const range = N => Array.from({ length: N }, (v, k) => k + 1)
+
+const dynamicHeights = range(500).map(() => {
+  return Math.max(Math.ceil(Math.random() * 100), 32)
+})
+
 storiesOf('table', module)
   .add('advanced example', () => (
     <Box padding={40}>
@@ -118,5 +124,36 @@ storiesOf('table', module)
         document.body.style.height = '100vh'
       })()}
       <Table.Body>Table.Body</Table.Body>
+    </Box>
+  ))
+  .add('Table.VirtualBody tests', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Table.VirtualBody height={120}>
+        <Table.Row />
+      </Table.VirtualBody>
+      <Table.VirtualBody height={120}>String</Table.VirtualBody>
+      <Table.VirtualBody height={120} />
+    </Box>
+  ))
+  .add('Table.VirtualBody dynamic but known heights', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Table.VirtualBody height={600}>
+        {dynamicHeights.map((height, index) => {
+          return (
+            // eslint-disable-next-line react/no-array-index-key
+            <Table.Row key={`${height}-${index}`} height={height}>
+              <Table.TextCell>{height}</Table.TextCell>
+            </Table.Row>
+          )
+        })}
+      </Table.VirtualBody>
     </Box>
   ))

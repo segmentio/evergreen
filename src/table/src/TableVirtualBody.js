@@ -14,7 +14,10 @@ export default class TableVirtualBody extends PureComponent {
     /**
      * Children needs to be an array of a single node.
      */
-    children: PropTypes.arrayOf(PropTypes.node),
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ]),
 
     /**
      * Default height of each row.
@@ -27,6 +30,11 @@ export default class TableVirtualBody extends PureComponent {
      * This is somewhat of an expirmental feature.
      */
     allowAutoHeight: PropTypes.bool,
+
+    /**
+     * The overscanCount property passed to react-tiny-virtual-list.
+     */
+    overscanCount: PropTypes.number.isRequired,
 
     /**
      * When passed, this is used as the `estimatedItemSize` in react-tiny-virtual-list.
@@ -44,6 +52,7 @@ export default class TableVirtualBody extends PureComponent {
   static defaultProps = {
     defaultHeight: 48,
     allowAutoHeight: false,
+    overscanCount: 5,
     useAverageAutoHeightEstimation: true
   }
 
@@ -169,16 +178,71 @@ export default class TableVirtualBody extends PureComponent {
     })
   }
 
+  getItemSize = children => {
+    const {
+      allowAutoHeight,
+      useAverageAutoHeightEstimation,
+      defaultHeight
+    } = this.props
+
+    // Prefer to return a array of all heights.
+    if (!allowAutoHeight) {
+      return children.map(child => {
+        if (!React.isValidElement(child)) return defaultHeight
+        const { height } = child.props
+
+        if (Number.isInteger(height)) {
+          return height
+        }
+
+        return defaultHeight
+      })
+    }
+
+    // If allowAutoHeight is true, return a function instead.
+    const itemSizeFn = index => {
+      if (!React.isValidElement(children[index])) return defaultHeight
+      const { height } = children[index].props
+
+      // When the height is number simply, simply return it.
+      if (Number.isInteger(height)) {
+        return height
+      }
+
+      // When allowAutoHeight is set and  the height is set to "auto"...
+      if (allowAutoHeight && children[index].props.height === 'auto') {
+        // ... and the height is calculated, return the calculated height.
+        if (this.autoHeights[index]) return this.autoHeights[index]
+
+        // ... if the height is not yet calculated, return the averge
+        if (useAverageAutoHeightEstimation) return this.averageAutoHeight
+      }
+
+      // Return the default height.
+      return defaultHeight
+    }
+
+    return itemSizeFn
+  }
+
   render() {
     const {
-      children = [],
+      children: inputChildren,
       height: paneHeight,
       defaultHeight,
       allowAutoHeight,
+      overscanCount,
       estimatedItemSize,
       useAverageAutoHeightEstimation,
       ...props
     } = this.props
+
+    // Children always needs to be an array.
+    const children = Array.isArray(inputChildren)
+      ? inputChildren
+      : React.Children.toArray(inputChildren)
+
+    const itemSize = this.getItemSize(children)
 
     // VirtualList needs a fixed height.
     const { calculatedHeight, isIntegerHeight } = this.state
@@ -199,33 +263,23 @@ export default class TableVirtualBody extends PureComponent {
               ? this.averageAutoHeight
               : estimatedItemSize || null
           }
-          itemSize={index => {
-            const { height } = children[index].props
-
-            // When the height is number simply, simply return it.
-            if (Number.isInteger(height)) {
-              return height
-            }
-
-            // When allowAutoHeight is set and  the height is set to "auto"...
-            if (allowAutoHeight && children[index].props.height === 'auto') {
-              // ... and the height is calculated, return the calculated height.
-              if (this.autoHeights[index]) return this.autoHeights[index]
-
-              // ... if the height is not yet calculated, return the averge
-              if (useAverageAutoHeightEstimation) return this.averageAutoHeight
-            }
-
-            // Return the default height.
-            return defaultHeight
-          }}
-          overscanCount={5}
+          itemSize={itemSize}
+          overscanCount={overscanCount}
           itemCount={React.Children.count(children)}
           renderItem={({ index, style }) => {
+            // If some children are strings by accident, support this gracefully.
+            if (!React.isValidElement(children[index])) {
+              if (typeof children[index] === 'string') {
+                return <div style={style}>{children[index]}</div>
+              }
+              return <div style={style}>&nbsp;</div>
+            }
+
             // When allowing height="auto" for rows, and a auto height item is
             // rendered for the first time...
             if (
               allowAutoHeight &&
+              React.isValidElement(children[index]) &&
               children[index].props.height === 'auto' &&
               // ... and only when the height is not already been calculated.
               !this.autoHeights[index]
