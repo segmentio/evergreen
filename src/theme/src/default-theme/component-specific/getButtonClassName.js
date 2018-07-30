@@ -72,7 +72,8 @@ const getButtonAppearance = (appearance, intent) => {
         active: {
           backgroundImage: 'none',
           backgroundColor: scales.blue.B3A
-        }
+        },
+        focusAndActive: {}
       })
     }
     case 'default':
