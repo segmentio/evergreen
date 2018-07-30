@@ -3,6 +3,7 @@ import React from 'react'
 import Box from 'ui-box'
 import { Table } from '../../table'
 import AdvancedTable from './AdvancedTable'
+import VirtualTable from './VirtualTable'
 
 storiesOf('table', module)
   .add('advanced example', () => (
@@ -12,6 +13,15 @@ storiesOf('table', module)
         document.body.style.height = '100vh'
       })()}
       <AdvancedTable />
+    </Box>
+  ))
+  .add('virtual table', () => (
+    <Box padding={24} height="100vh">
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <VirtualTable />
     </Box>
   ))
   .add('Table.Cell', () => (

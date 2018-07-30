@@ -45,6 +45,7 @@ export default class TableHead extends PureComponent {
     return (
       <Pane
         display="flex"
+        flexShrink={0}
         paddingRight={scrollbarWidth}
         borderBottom="default"
         background="tint2"
