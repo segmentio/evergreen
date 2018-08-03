@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Textarea } from '../../../src'
+import { Textarea } from '../../textarea'
 
 export default class EditableCellField extends React.PureComponent {
   static propTypes = {

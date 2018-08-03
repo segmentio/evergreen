@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
-import { withTheme, SelectMenu } from '../../../src'
+import { withTheme } from '../../theme'
+import { SelectMenu } from '../../select-menu'
 import TextTableCell from './TextTableCell'
 import TableCell from './TableCell'
 

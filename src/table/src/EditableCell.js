@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Portal, withTheme } from '../../../src'
+import { withTheme } from '../../theme'
+import { Portal } from '../../portal'
 import TextTableCell from './TextTableCell'
 import TableCell from './TableCell'
 import EditableCellField from './EditableCellField'
