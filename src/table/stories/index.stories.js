@@ -158,4 +158,8 @@ storiesOf('table', module)
       </Table.VirtualBody>
     </Box>
   ))
-  .add('Editable Table ', () => <EditableTable />)
+  .add('Editable Table ', () => (
+    <Box padding={40}>
+      <EditableTable />
+    </Box>
+  ))

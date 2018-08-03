@@ -20,7 +20,6 @@ const users = range(1000).map(index => {
     id: index,
     name: faker.name.findName(),
     email: faker.internet.email(),
-    content: 'This is a editable cell on double click',
     options,
     selected: options[0].value
   }
@@ -72,29 +71,29 @@ export default class EditableTable extends React.PureComponent {
       <Pane border height="80vh" display="flex" flexGrow={0}>
         <Table flex={1} display="flex" flexDirection="column">
           <Table.Head>
-            <Table.TextHeaderCell>Name</Table.TextHeaderCell>
-            <Table.TextHeaderCell>Email</Table.TextHeaderCell>
-            <Table.TextHeaderCell>Description</Table.TextHeaderCell>
+            <Table.TextHeaderCell borderRight="default">
+              Name
+            </Table.TextHeaderCell>
+            <Table.TextHeaderCell borderRight="default">
+              Email
+            </Table.TextHeaderCell>
             <Table.TextHeaderCell>Product</Table.TextHeaderCell>
           </Table.Head>
-          <Table.VirtualBody flex={1} allowAutoHeight>
+          <Table.VirtualBody flex={1} overscanCount={15}>
             {this.state.users.map(user => {
               return (
                 <Table.Row key={user.email}>
                   <Table.EditableCell
+                    borderRight="muted"
                     onChange={this.handleChange.bind(null, user.id, 'name')}
                   >
                     {user.name}
                   </Table.EditableCell>
                   <Table.EditableCell
+                    borderRight="muted"
                     onChange={this.handleChange.bind(null, user.id, 'email')}
                   >
                     {user.email}
-                  </Table.EditableCell>
-                  <Table.EditableCell
-                    onChange={this.handleChange.bind(null, user.id, 'content')}
-                  >
-                    {user.content}
                   </Table.EditableCell>
                   <Table.SelectMenuCell
                     selectMenuProps={{

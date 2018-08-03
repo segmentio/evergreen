@@ -75,6 +75,8 @@ class EditableCell extends React.PureComponent {
       value
     })
 
+    if (this.mainRef) this.mainRef.focus()
+
     if (currentValue !== value && typeof onChange === 'function') {
       onChange(value)
     }
