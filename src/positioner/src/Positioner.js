@@ -111,6 +111,12 @@ export default class Positioner extends PureComponent {
     this.state = initialState()
   }
 
+  componentWillUnmount() {
+    if (this.latestAnimationFrame) {
+      cancelAnimationFrame(this.latestAnimationFrame)
+    }
+  }
+
   getTargetRef = ref => {
     this.targetRef = ref
   }
@@ -177,7 +183,7 @@ export default class Positioner extends PureComponent {
         transformOrigin
       },
       () => {
-        window.requestAnimationFrame(() => {
+        this.latestAnimationFrame = requestAnimationFrame(() => {
           this.update(height, width)
         })
       }

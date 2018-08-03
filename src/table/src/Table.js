@@ -9,6 +9,8 @@ import TableRow from './TableRow'
 import TextTableCell from './TextTableCell'
 import TextTableHeaderCell from './TextTableHeaderCell'
 import SearchTableHeaderCell from './SearchTableHeaderCell'
+import EditableCell from './EditableCell'
+import SelectMenuCell from './SelectMenuCell'
 
 export default class Table extends PureComponent {
   static Body = TableBody
@@ -20,6 +22,8 @@ export default class Table extends PureComponent {
   static Row = TableRow
   static Cell = TableCell
   static TextCell = TextTableCell
+  static EditableCell = EditableCell
+  static SelectMenuCell = SelectMenuCell
 
   static propTypes = {
     /**

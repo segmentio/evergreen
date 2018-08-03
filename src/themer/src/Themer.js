@@ -8,6 +8,7 @@ import createTextDropdownButtonAppearance from './createTextDropdownButtonAppear
 import createRowAppearance from './createRowAppearance'
 import createSegmentedControlRadioAppearance from './createSegmentedControlRadioAppearance'
 import createSwitchAppearance from './createSwitchAppearance'
+import createTableCellAppearance from './createTableCellAppearance'
 
 /**
  * Themer is an object with a set of functions for creating custom themes.
@@ -22,5 +23,6 @@ export default {
   createTextDropdownButtonAppearance,
   createRowAppearance,
   createSegmentedControlRadioAppearance,
-  createSwitchAppearance
+  createSwitchAppearance,
+  createTableCellAppearance
 }

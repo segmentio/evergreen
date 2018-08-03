@@ -60,7 +60,7 @@ class TableRow extends PureComponent {
     theme: PropTypes.object.isRequired,
 
     /**
-     * Class name passed to the button.
+     * Class name passed to the table row.
      * Only use if you know what you are doing.
      */
     className: PropTypes.string
@@ -106,6 +106,7 @@ class TableRow extends PureComponent {
       children,
       intent,
       appearance,
+      tabIndex = -1,
 
       // Filter out
       onClick,
@@ -129,11 +130,7 @@ class TableRow extends PureComponent {
           aria-selected={isHighlighted}
           aria-current={isSelected}
           data-isselectable={isSelectable}
-          {...(isSelectable
-            ? {
-                tabIndex: 0
-              }
-            : {})}
+          tabIndex={isSelectable ? tabIndex : undefined}
           onClick={this.handleClick}
           onKeyPress={this.handleKeyPress}
           height={height}

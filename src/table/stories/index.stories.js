@@ -4,6 +4,7 @@ import Box from 'ui-box'
 import { Table } from '../../table'
 import AdvancedTable from './AdvancedTable'
 import VirtualTable from './VirtualTable'
+import EditableTable from './EditableTable'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
@@ -157,3 +158,4 @@ storiesOf('table', module)
       </Table.VirtualBody>
     </Box>
   ))
+  .add('Editable Table ', () => <EditableTable />)
