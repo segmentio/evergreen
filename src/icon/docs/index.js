@@ -21,7 +21,7 @@ const introduction = (
     <p>
       Evergreen uses the amazing{' '}
       <a
-        href="http://blueprintjs.com/docs/v2/#icons"
+        href="http://blueprintjs.com/docs/versions/2/#icons"
         target="_blank"
         rel="noopener noreferrer"
       >
