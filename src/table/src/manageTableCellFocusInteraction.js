@@ -1,5 +1,5 @@
 /**
- * Function to help with focus management for grid cells.
+ * Function to help with focus management for selectable table cells.
  * @param {Object} key - React `event.key`.
  * @param {Element} ref - the cell to manage focus interaction for.
  */

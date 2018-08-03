@@ -243,7 +243,7 @@ export default class AdvancedTable extends React.Component {
   render() {
     const items = this.filter(this.sort(profiles))
     return (
-      <Table>
+      <Table border>
         <Table.Head>
           <Table.SearchHeaderCell
             onChange={this.handleFilterChange}

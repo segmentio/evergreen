@@ -4,6 +4,7 @@ import cx from 'classnames'
 import { Pane } from '../../layers'
 import { withTheme } from '../../theme'
 import { TableRowProvider } from './TableRowContext'
+import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 
 class TableRow extends PureComponent {
   static propTypes = {
@@ -87,19 +88,34 @@ class TableRow extends PureComponent {
     }
   }
 
-  handleKeyPress = e => {
+  handleKeyDown = e => {
     if (this.props.isSelectable) {
-      if (e.key === 'Enter' || e.key === ' ') {
+      const { key } = e
+      if (key === 'Enter' || key === ' ') {
         this.props.onSelect()
         e.preventDefault()
+      } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+        try {
+          manageTableRowFocusInteraction(key, this.mainRef)
+        } catch (err) {}
+      } else if (key === 'Escape') {
+        this.mainRef.blur()
       }
     }
 
     this.props.onKeyPress(e)
   }
 
+  onRef = ref => {
+    this.mainRef = ref
+    if (typeof this.props.innerRef === 'function') {
+      this.props.innerRef(ref)
+    }
+  }
+
   render() {
     const {
+      innerRef,
       theme,
       className,
       height,
@@ -125,6 +141,7 @@ class TableRow extends PureComponent {
     return (
       <TableRowProvider height={height}>
         <Pane
+          innerRef={this.onRef}
           className={cx(themedClassName, className)}
           display="flex"
           aria-selected={isHighlighted}
@@ -132,7 +149,7 @@ class TableRow extends PureComponent {
           data-isselectable={isSelectable}
           tabIndex={isSelectable ? tabIndex : undefined}
           onClick={this.handleClick}
-          onKeyPress={this.handleKeyPress}
+          onKeyDown={this.handleKeyDown}
           height={height}
           borderBottom="muted"
           {...props}
