@@ -80,9 +80,15 @@ export default class OptionsList extends PureComponent {
      * Hacky solution for broken autoFocus
      * https://github.com/segmentio/evergreen/issues/90
      */
-    window.setTimeout(() => {
+    requestAnimationFrame(() => {
       this.searchRef.querySelector('input').focus()
-    }, 1)
+    })
+
+    window.addEventListener('keydown', this.handleKeyDown)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -113,6 +119,69 @@ export default class OptionsList extends PureComponent {
         )
   }
 
+  getCurrentIndex = () => {
+    const { selected } = this.props
+    const options = this.getFilteredOptions()
+
+    return options.findIndex(
+      option => option.value === selected[selected.length - 1]
+    )
+  }
+
+  getFilteredOptions() {
+    const { options } = this.props
+
+    return this.search(options)
+  }
+
+  handleKeyDown = e => {
+    if (e.keyCode === 38) {
+      this.handleArrowUp()
+    }
+
+    if (e.keyCode === 40) {
+      this.handleArrowDown()
+    }
+
+    if (e.keyCode === 13) {
+      this.handleEnter()
+    }
+  }
+
+  handleArrowUp = () => {
+    const { onSelect } = this.props
+    const options = this.getFilteredOptions()
+
+    let nextIndex = this.getCurrentIndex() - 1
+
+    if (nextIndex < 0) {
+      nextIndex = options.length - 1
+    }
+
+    onSelect(options[nextIndex])
+  }
+
+  handleArrowDown = () => {
+    const { onSelect } = this.props
+    const options = this.getFilteredOptions()
+
+    let nextIndex = this.getCurrentIndex() + 1
+
+    if (nextIndex === options.length) {
+      nextIndex = 0
+    }
+
+    onSelect(options[nextIndex])
+  }
+
+  handleEnter = () => {
+    const isSelected = this.getCurrentIndex() !== -1
+
+    if (isSelected) {
+      this.props.close()
+    }
+  }
+
   handleChange = searchValue => {
     this.setState({
       searchValue
@@ -122,6 +191,7 @@ export default class OptionsList extends PureComponent {
   handleSelect = item => {
     this.props.onSelect(item)
   }
+
   handleDeselect = item => {
     this.props.onDeselect(item)
   }
@@ -177,6 +247,7 @@ export default class OptionsList extends PureComponent {
             itemCount={options.length}
             overscanCount={3}
             scrollToAlignment="auto"
+            scrollToIndex={this.getCurrentIndex()}
             renderItem={({ index, style }) => {
               const item = options[index]
               const isSelected = this.isSelected(item)

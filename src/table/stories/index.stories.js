@@ -4,6 +4,7 @@ import Box from 'ui-box'
 import { Table } from '../../table'
 import AdvancedTable from './AdvancedTable'
 import VirtualTable from './VirtualTable'
+import EditableTable from './EditableTable'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
@@ -12,8 +13,8 @@ const dynamicHeights = range(500).map(() => {
 })
 
 storiesOf('table', module)
-  .add('advanced example', () => (
-    <Box padding={40}>
+  .add('Advanced Sortable Table', () => (
+    <Box padding={24}>
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
@@ -21,13 +22,22 @@ storiesOf('table', module)
       <AdvancedTable />
     </Box>
   ))
-  .add('virtual table', () => (
+  .add('Virtual Table + Automatic Heights', () => (
     <Box padding={24} height="100vh">
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
       <VirtualTable />
+    </Box>
+  ))
+  .add('Editable Table ', () => (
+    <Box padding={24} height="100vh">
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <EditableTable />
     </Box>
   ))
   .add('Table.Cell', () => (
@@ -87,6 +97,23 @@ storiesOf('table', module)
           Auto height <br />based on <br />the content
         </Table.TextCell>
       </Table.Row>
+    </Box>
+  ))
+  .add('Table.Row isSelectable', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Table.Body>
+        {range(10).map(item => {
+          return (
+            <Table.Row key={item} isSelectable>
+              <Table.TextCell>{item}</Table.TextCell>
+            </Table.Row>
+          )
+        })}
+      </Table.Body>
     </Box>
   ))
   .add('Table.HeaderCell', () => (

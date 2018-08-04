@@ -23,6 +23,7 @@ export {
   default as getSegmentedControlRadioClassName
 } from './getSegmentedControlRadioClassName'
 export { default as getSwitchClassName } from './getSwitchClassName'
+export { default as getTableCellClassName } from './getTableCellClassName'
 
 // Props Getters.
 export { default as getAlertProps } from './getAlertProps'
