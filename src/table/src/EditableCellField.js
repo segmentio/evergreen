@@ -10,6 +10,11 @@ export default class EditableCellField extends React.PureComponent {
     value: PropTypes.string.isRequired,
 
     /**
+     * The z-index placed on the element.
+     */
+    zIndex: PropTypes.number.isRequired,
+
+    /**
      * Function to get the target ref of the parent.
      * Used to mirror the position.
      */
@@ -121,7 +126,7 @@ export default class EditableCellField extends React.PureComponent {
   }
 
   render() {
-    const { size, value, minWidth, minHeight } = this.props
+    const { size, value, minWidth, minHeight, zIndex } = this.props
     const { left, top, height, width } = this.state
 
     return (
@@ -137,7 +142,8 @@ export default class EditableCellField extends React.PureComponent {
           height,
           minHeight: Math.max(height, minHeight),
           width,
-          minWidth: Math.max(width, minWidth)
+          minWidth: Math.max(width, minWidth),
+          zIndex
         }}
         height={null}
         width={null}

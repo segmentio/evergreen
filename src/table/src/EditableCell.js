@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withTheme } from '../../theme'
 import { Portal } from '../../portal'
+import { Stack } from '../../stack'
 import TextTableCell from './TextTableCell'
 import TableCell from './TableCell'
 import EditableCellField from './EditableCellField'
@@ -12,6 +13,11 @@ class EditableCell extends React.PureComponent {
      * Composes the TableCell component as the base.
      */
     ...TableCell.propTypes,
+
+    /**
+     * When true, the cell can't be edited.
+     */
+    disabled: PropTypes.bool,
 
     /**
      * The size used for the TextTableCell and Textarea.
@@ -47,12 +53,14 @@ class EditableCell extends React.PureComponent {
   }
 
   handleDoubleClick = () => {
+    if (this.props.disabled) return
     this.setState({
       isEditing: true
     })
   }
 
   handleKeyDown = e => {
+    if (this.props.disabled) return
     const { key } = e
     if (key.match(/^[a-z]{0,10}$/) && !e.metaKey && !e.ctrlKey && !e.altKey) {
       this.setState({
@@ -92,7 +100,7 @@ class EditableCell extends React.PureComponent {
   }
 
   render() {
-    const { children, theme, size, ...props } = this.props
+    const { children, theme, size, disabled, ...props } = this.props
     const { isEditing } = this.state
 
     return (
@@ -106,7 +114,8 @@ class EditableCell extends React.PureComponent {
           size={size}
           cursor="default"
           textProps={{
-            size
+            size,
+            opacity: disabled ? 0.7 : 1
           }}
           {...props}
         >
@@ -114,14 +123,19 @@ class EditableCell extends React.PureComponent {
         </TextTableCell>
         {isEditing && (
           <Portal>
-            <EditableCellField
-              getTargetRef={() => this.mainRef}
-              value={children}
-              onEscape={this.handleFieldEscape}
-              onBlur={this.handleFieldBlur}
-              onCancel={this.handleFieldCancel}
-              size={size}
-            />
+            <Stack>
+              {zIndex => (
+                <EditableCellField
+                  zIndex={zIndex}
+                  getTargetRef={() => this.mainRef}
+                  value={children}
+                  onEscape={this.handleFieldEscape}
+                  onBlur={this.handleFieldBlur}
+                  onCancel={this.handleFieldCancel}
+                  size={size}
+                />
+              )}
+            </Stack>
           </Portal>
         )}
       </React.Fragment>

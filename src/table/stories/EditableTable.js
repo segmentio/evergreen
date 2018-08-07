@@ -1,6 +1,7 @@
 import React from 'react'
 import faker from 'faker'
 import { Table } from '../'
+import { Stack } from '../../stack'
 import { Pane } from '../../layers'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
@@ -68,49 +69,72 @@ export default class EditableTable extends React.PureComponent {
 
   render() {
     return (
-      <Pane border height="80vh" display="flex" flexGrow={0}>
-        <Table flex={1} display="flex" flexDirection="column">
-          <Table.Head>
-            <Table.TextHeaderCell borderRight="default">
-              Name
-            </Table.TextHeaderCell>
-            <Table.TextHeaderCell borderRight="default">
-              Email
-            </Table.TextHeaderCell>
-            <Table.TextHeaderCell>Product</Table.TextHeaderCell>
-          </Table.Head>
-          <Table.VirtualBody flex={1} overscanCount={15}>
-            {this.state.users.map(user => {
-              return (
-                <Table.Row key={user.email}>
-                  <Table.EditableCell
-                    borderRight="muted"
-                    onChange={this.handleChange.bind(null, user.id, 'name')}
-                  >
-                    {user.name}
-                  </Table.EditableCell>
-                  <Table.EditableCell
-                    borderRight="muted"
-                    onChange={this.handleChange.bind(null, user.id, 'email')}
-                  >
-                    {user.email}
-                  </Table.EditableCell>
-                  <Table.SelectMenuCell
-                    selectMenuProps={{
-                      title: 'Product',
-                      options: user.options,
-                      onSelect: this.handleSelect.bind(null, user.id),
-                      selected: user.selected
-                    }}
-                  >
-                    {user.selected}
-                  </Table.SelectMenuCell>
-                </Table.Row>
-              )
-            })}
-          </Table.VirtualBody>
-        </Table>
-      </Pane>
+      <Stack>
+        {zIndex => {
+          // Stack used for testing only. Not neccesary for functionality.
+          console.log(zIndex)
+          return (
+            <Pane
+              border
+              height="80vh"
+              display="flex"
+              flexGrow={0}
+              position="relative"
+              zIndex={zIndex}
+            >
+              <Table flex={1} display="flex" flexDirection="column">
+                <Table.Head>
+                  <Table.TextHeaderCell borderRight="default">
+                    Name
+                  </Table.TextHeaderCell>
+                  <Table.TextHeaderCell borderRight="default">
+                    Email
+                  </Table.TextHeaderCell>
+                  <Table.TextHeaderCell>Product</Table.TextHeaderCell>
+                </Table.Head>
+                <Table.VirtualBody flex={1} overscanCount={15}>
+                  {this.state.users.map(user => {
+                    return (
+                      <Table.Row key={user.email}>
+                        <Table.EditableCell
+                          borderRight="muted"
+                          onChange={this.handleChange.bind(
+                            null,
+                            user.id,
+                            'name'
+                          )}
+                        >
+                          {user.name}
+                        </Table.EditableCell>
+                        <Table.EditableCell
+                          borderRight="muted"
+                          onChange={this.handleChange.bind(
+                            null,
+                            user.id,
+                            'email'
+                          )}
+                        >
+                          {user.email}
+                        </Table.EditableCell>
+                        <Table.SelectMenuCell
+                          selectMenuProps={{
+                            title: 'Product',
+                            options: user.options,
+                            onSelect: this.handleSelect.bind(null, user.id),
+                            selected: user.selected
+                          }}
+                        >
+                          {user.selected}
+                        </Table.SelectMenuCell>
+                      </Table.Row>
+                    )
+                  })}
+                </Table.VirtualBody>
+              </Table>
+            </Pane>
+          )
+        }}
+      </Stack>
     )
   }
 }
