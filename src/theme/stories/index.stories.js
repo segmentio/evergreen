@@ -9,9 +9,17 @@ const theme = createTheme({})
 storiesOf('createTheme', module).add('example', () => (
   <ThemeProvider value={theme}>
     <Box>
-      <Button>Default</Button>
-      <Button appearance="primary" intent="danger">
+      <Button marginRight={12} appearance="primary">
         Default
+      </Button>
+      <Button marginRight={12} appearance="primary" intent="success">
+        Success
+      </Button>
+      <Button marginRight={12} appearance="primary" intent="warning">
+        Warning
+      </Button>
+      <Button marginRight={12} appearance="primary" intent="danger">
+        Warning
       </Button>
     </Box>
   </ThemeProvider>
