@@ -805,6 +805,18 @@ export default function createStyles(config = {}) {
     }
   }
 
+  /**
+   * @param {number} size
+   * @param {number} sizeLimitOneCharacter
+   * @return {number} font size
+   */
+  const getAvatarInitialsFontSize = (size, sizeLimitOneCharacter) => {
+    if (size <= sizeLimitOneCharacter) {
+      return Math.ceil(size / 2.2)
+    }
+    return Math.ceil(size / 2.6)
+  }
+
   return {
     // Colors.
     scales,
@@ -843,6 +855,7 @@ export default function createStyles(config = {}) {
     getTextStyle,
     getParagraphStyle,
     getFontFamily,
-    getTextColor
+    getTextColor,
+    getAvatarInitialsFontSize
   }
 }
