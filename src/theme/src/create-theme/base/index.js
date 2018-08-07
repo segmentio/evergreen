@@ -1,2 +1,2 @@
-export { default as Button } from './Button'
-export { default as Switch } from './Switch'
+export { default as getButtonClassName } from './getButtonClassName'
+export { default as getSwitchClassName } from './getSwitchClassName'
