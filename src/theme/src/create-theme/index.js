@@ -1,7 +1,7 @@
 import createStyles from './createStyles'
-// Enable this: import * as defaultBase from './component-specific/'
+import * as defaultBase from './base/'
 
-export default function createTheme(styleConfig = {}, base = {}) {
+export default function createTheme(styleConfig = {}, base = defaultBase) {
   const styles = createStyles(styleConfig)
 
   for (const key in base) {
