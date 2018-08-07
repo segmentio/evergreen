@@ -1,7 +1,7 @@
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 
-export default function Switch({ scales }) {
+export default function getSwitchClassName({ scales }) {
   const defaultAppearance = Themer.createSwitchAppearance({
     base: {
       transition: 'all 120ms ease-in-out',

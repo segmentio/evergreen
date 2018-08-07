@@ -1,7 +1,7 @@
 import { Themer } from '../../../../themer/'
 import memoizeClassName from '../utils/memoizeClassName'
 
-export default function Button({
+export default function getButtonClassName({
   scales,
   defaultControlStyles,
   getPrimaryButtonStylesForIntent,
