@@ -4,11 +4,13 @@ import * as defaultBase from './base/'
 export default function createTheme(styleConfig = {}, base = defaultBase) {
   const styles = createStyles(styleConfig)
 
+  const theme = {}
+
   for (const key in base) {
     if (Object.prototype.hasOwnProperty.call(base, key)) {
-      base[key] = base[key](styles)
+      theme[key] = base[key](styles)
     }
   }
 
-  return base
+  return theme
 }
