@@ -18,7 +18,7 @@ storiesOf('badges', module)
     <ThemeConsumer>
       {theme => (
         <Box style={{ ...wrapperStyles }}>
-          {theme.badgeColors.map(color => (
+          {theme.fills.options.map(color => (
             <Box key={color}>
               <Badge color={color} {...baseStyles}>
                 {color}
@@ -36,7 +36,7 @@ storiesOf('badges', module)
     <ThemeConsumer>
       {theme => (
         <Box style={{ ...wrapperStyles }}>
-          {theme.badgeColors.map(color => (
+          {theme.fill.options.map(color => (
             <Box key={color}>
               <Pill color={color} {...baseStyles}>
                 {color}

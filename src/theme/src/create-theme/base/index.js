@@ -1,8 +1,6 @@
 // Simple Properties.
-export {
-  default as getOverlayBackgroundColor
-} from './getOverlayBackgroundColor'
-export { default as getSpinnerColor } from './getSpinnerColor'
+export { default as overlayBackgroundColor } from './overlayBackgroundColor'
+export { default as spinnerColor } from './spinnerColor'
 
 // Class Name Getters.
 export { default as getButtonClassName } from './getButtonClassName'

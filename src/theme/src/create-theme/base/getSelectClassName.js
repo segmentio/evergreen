@@ -1,11 +1,7 @@
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
-import { getDefaultControlStyles } from '../shared'
 
-export default styles => {
-  const { scales, palette } = styles
-  const defaultControlStyles = getDefaultControlStyles(styles)
-
+export default ({ scales, palette, defaultControlStyles }) => {
   const SelectAppearances = {}
 
   SelectAppearances.default = Themer.createSelectAppearance({

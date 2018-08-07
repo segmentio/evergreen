@@ -311,7 +311,7 @@ class Overlay extends React.Component {
                   right={0}
                   bottom={0}
                   zIndex={zIndex}
-                  css={animationStyles(theme.overlayBackgroundColor)}
+                  css={animationStyles(theme.getOverlayBackgroundColor())}
                   data-state={state}
                   {...containerProps}
                 >

@@ -1,10 +1,7 @@
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
-import { getDefaultControlStyles } from '../shared'
 
-export default styles => {
-  const defaultControlStyles = getDefaultControlStyles(styles)
-
+export default ({ defaultControlStyles }) => {
   const defaultAppearance = Themer.createSegmentedControlRadioAppearance({
     base: defaultControlStyles.base,
     disabled: defaultControlStyles.disabled,
