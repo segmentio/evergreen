@@ -2,11 +2,17 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import { createTheme, ThemeProvider } from '../'
+import { Button } from '../../buttons'
 
-const theme = createTheme()
+const theme = createTheme({})
 
 storiesOf('createTheme', module).add('example', () => (
-  <ThemeProvider theme={theme}>
-    <Box>createTheme</Box>
+  <ThemeProvider value={theme}>
+    <Box>
+      <Button>Default</Button>
+      <Button appearance="primary" intent="danger">
+        Default
+      </Button>
+    </Box>
   </ThemeProvider>
 ))
