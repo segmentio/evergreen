@@ -4,5 +4,11 @@ import createStyles from './createStyles'
 export default function createTheme(styleConfig = {}, base = {}) {
   const styles = createStyles(styleConfig)
 
-  return Object.keys(base).map(key => base[key](styles))
+  for (const key in base) {
+    if (Object.prototype.hasOwnProperty.call(base, key)) {
+      base[key] = base[key](styles)
+    }
+  }
+
+  return base
 }
