@@ -21,18 +21,18 @@ const defaultAppearance = Themer.createSwitchAppearance({
     backgroundColor: scales.neutral.N6A
   },
   focus: {
-    boxShadow: `0 0 0 3px ${scales.blue.B6A}`
+    boxShadow: `0 0 0 3px ${scales.primary.P6A}`
   },
   checked: {
-    backgroundColor: scales.blue.B8,
+    backgroundColor: scales.primary.P8,
     color: 'white'
   },
   checkedHover: {
-    backgroundColor: scales.blue.B8,
+    backgroundColor: scales.primary.P8,
     color: 'white'
   },
   checkedActive: {
-    backgroundColor: scales.blue.B9,
+    backgroundColor: scales.primary.P9,
     color: 'white'
   },
   checkedDisabled: {}

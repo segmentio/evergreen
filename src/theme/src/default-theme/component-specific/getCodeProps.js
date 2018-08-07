@@ -13,8 +13,8 @@ const getCodeProps = appearance => {
     default:
       // Passing padding and border radius is non-ideal here.
       return {
-        backgroundColor: scales.blue.B2A,
-        boxShadow: `inset 0 0 0 1px ${scales.blue.B4A}`,
+        backgroundColor: scales.primary.P2A,
+        boxShadow: `inset 0 0 0 1px ${scales.primary.P4A}`,
         paddingLeft: 6,
         paddingRight: 6,
         paddingTop: 3,

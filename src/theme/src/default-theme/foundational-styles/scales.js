@@ -26,26 +26,26 @@ export default {
     N8A: 'rgba(67, 90, 111, 0.81)'
   },
 
-  blue: {
-    B1: '#f7f9fd',
-    B2: '#f1f7fc',
-    B3: '#e9f2fa',
-    B4: '#ddebf7',
-    B5: '#b7d4ef',
-    B6: '#8fbce6',
-    B7: '#579ad9', // Large Text AA
-    B8: '#3d8bd4', // Normal Text AA
-    B9: '#1070ca', // Normal Text AAA
-    B10: '#084b8a', // Normal Text AAA
+  primary: {
+    P1: '#f7f9fd',
+    P2: '#f1f7fc',
+    P3: '#e9f2fa',
+    P4: '#ddebf7',
+    P5: '#b7d4ef',
+    P6: '#8fbce6',
+    P7: '#579ad9', // Large Text AA
+    P8: '#3d8bd4', // Normal Text AA
+    P9: '#1070ca', // Normal Text AAA
+    P10: '#084b8a', // Normal Text AAA
 
     // Transparent variants.
-    B1A: 'rgba(16, 112, 202, 0.04)',
-    B2A: 'rgba(16, 112, 202, 0.06)',
-    B3A: 'rgba(16, 112, 202, 0.09)',
-    B4A: 'rgba(16, 112, 202, 0.14)',
-    B5A: 'rgba(16, 112, 202, 0.3)',
-    B6A: 'rgba(16, 112, 202, 0.47)',
-    B7A: 'rgba(16, 112, 202, 0.7)',
-    B8A: 'rgba(16, 112, 202, 0.81)'
+    P1A: 'rgba(16, 112, 202, 0.04)',
+    P2A: 'rgba(16, 112, 202, 0.06)',
+    P3A: 'rgba(16, 112, 202, 0.09)',
+    P4A: 'rgba(16, 112, 202, 0.14)',
+    P5A: 'rgba(16, 112, 202, 0.3)',
+    P6A: 'rgba(16, 112, 202, 0.47)',
+    P7A: 'rgba(16, 112, 202, 0.7)',
+    P8A: 'rgba(16, 112, 202, 0.81)'
   }
 }

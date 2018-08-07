@@ -8,11 +8,11 @@ export default ({ scales }) => {
       backgroundColor: scales.neutral.N2A
     },
     focus: {
-      boxShadow: `0 0 0 2px ${scales.blue.B5A}`
+      boxShadow: `0 0 0 2px ${scales.primary.P5A}`
     },
     active: {
-      backgroundColor: scales.blue.B3A,
-      color: scales.blue.B9
+      backgroundColor: scales.primary.P3A,
+      color: scales.primary.P9
     },
     current: {}
   })

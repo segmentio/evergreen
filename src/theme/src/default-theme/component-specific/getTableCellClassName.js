@@ -7,8 +7,8 @@ const Appearances = {}
 Appearances.default = Themer.createTableCellAppearance({
   focus: {
     outline: 'none',
-    backgroundColor: scales.blue.B2A,
-    boxShadow: `inset 0 0 0 1px ${scales.blue.B7A}`
+    backgroundColor: scales.primary.P2A,
+    boxShadow: `inset 0 0 0 1px ${scales.primary.P7A}`
   }
 })
 

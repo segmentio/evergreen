@@ -9,10 +9,10 @@ export default {
   },
 
   blue: {
-    lightest: scales.blue.B1,
-    light: scales.blue.B4,
-    base: scales.blue.B9,
-    dark: scales.blue.B10
+    lightest: scales.primary.P1,
+    light: scales.primary.P4,
+    base: scales.primary.P9,
+    dark: scales.primary.P10
   },
 
   red: {

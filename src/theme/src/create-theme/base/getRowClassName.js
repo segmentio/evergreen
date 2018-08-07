@@ -13,11 +13,11 @@ export default function getRowClassName({ scales, palette }) {
     },
 
     focus: {
-      backgroundColor: scales.blue.B1A
+      backgroundColor: scales.primary.P1A
     },
 
     active: {
-      backgroundColor: scales.blue.B2A
+      backgroundColor: scales.primary.P2A
     },
 
     current: {}

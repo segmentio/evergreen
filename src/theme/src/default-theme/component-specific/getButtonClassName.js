@@ -56,7 +56,7 @@ const getButtonAppearance = (appearance, intent) => {
       })
     }
     case 'minimal': {
-      const intentTextColor = getTextColorForIntent(intent, scales.blue.B9)
+      const intentTextColor = getTextColorForIntent(intent, scales.primary.P9)
       return Themer.createButtonAppearance({
         disabled,
         base: {
@@ -67,11 +67,11 @@ const getButtonAppearance = (appearance, intent) => {
           backgroundColor: scales.neutral.N2A
         },
         focus: {
-          boxShadow: `0 0 0 3px ${scales.blue.B5A}`
+          boxShadow: `0 0 0 3px ${scales.primary.P5A}`
         },
         active: {
           backgroundImage: 'none',
-          backgroundColor: scales.blue.B3A
+          backgroundColor: scales.primary.P3A
         },
         focusAndActive: {}
       })

@@ -31,14 +31,14 @@ export default function getCheckboxClassName({
       }`
     },
     focus: {
-      boxShadow: `0 0 0 2px ${scales.blue.B4A}, inset 0 0 0 1px ${
+      boxShadow: `0 0 0 2px ${scales.primary.P4A}, inset 0 0 0 1px ${
         scales.neutral.N5A
       }, inset 0 -1px 1px 0 ${scales.neutral.N3A}`
     },
     active: {
       backgroundImage: 'none',
-      backgroundColor: scales.blue.B3A,
-      boxShadow: `inset 0 0 0 1px ${scales.blue.B5A}`
+      backgroundColor: scales.primary.P3A,
+      boxShadow: `inset 0 0 0 1px ${scales.primary.P5A}`
     },
     checked: {
       color: 'white',

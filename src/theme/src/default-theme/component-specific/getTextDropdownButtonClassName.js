@@ -8,7 +8,7 @@ const defaultAppearance = Themer.createTextDropdownButtonAppearance({
   },
   hover: {},
   focus: {
-    boxShadow: `0 0 0 3px ${scales.blue.B5A}`
+    boxShadow: `0 0 0 3px ${scales.primary.P5A}`
   },
   active: {},
   disabled: {

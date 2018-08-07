@@ -2,9 +2,56 @@ import tinycolor from 'tinycolor2'
 import { Intent } from '../../../constants'
 import themedProperty from './utils/themedProperty'
 
+// Const primaryButtonGradients = {
+//   none: {
+//     startColor: '#0788DE',
+//     endColor: '#116AB8'
+//   },
+//   success: {
+//     startColor: '#23C277',
+//     endColor: '#399D6C'
+//   },
+//   warning: {
+//     startColor: '#EE9913',
+//     endColor: '#D9822B'
+//   },
+//   danger: {
+//     startColor: '#EC4C47',
+//     endColor: '#D64540'
+//   }
+// }
+
+function generateScale(primaryColor, prefix = 'P') {
+  const scale = {}
+  const tinyPrimaryColor = tinycolor(primaryColor)
+
+  const opacities = [0.04, 0.06, 0.09, 0.14, 0.3, 0.47, 0.7, 0.81]
+
+  for (const [index, opacity] of opacities.entries()) {
+    const opaqueColor = tinycolor
+      .mix('white', primaryColor, opacity * 100)
+      .toString()
+    const opacityColor = tinyPrimaryColor.setAlpha(opacity).toString()
+    scale[`${prefix}${index + 1}`] = opaqueColor
+    scale[`${prefix}${index + 1}A`] = opacityColor
+  }
+
+  scale[`${prefix}9`] = primaryColor
+  scale[`${prefix}10`] = tinyPrimaryColor.darken(2).toString()
+
+  return scale
+}
+
 export default function createStyles(config = {}) {
+  let primaryScale
+  if (typeof config.primaryColor === 'string') {
+    primaryScale = generateScale(config.primaryColor)
+  }
+
+  console.log('primaryScale', primaryScale)
+
   /**
-   * Neutrals and Blue are special.
+   * Neutrals and primary are special.
    * They need more variations to properly express all of our UI.
    */
   const scales = {
@@ -32,31 +79,33 @@ export default function createStyles(config = {}) {
         N8A: 'rgba(67, 90, 111, 0.81)'
       },
 
-      blue: {
-        B1: '#f7f9fd',
-        B2: '#f1f7fc',
-        B3: '#e9f2fa',
-        B4: '#ddebf7',
-        B5: '#b7d4ef',
-        B6: '#8fbce6',
-        B7: '#579ad9', // Large Text AA
-        B8: '#3d8bd4', // Normal Text AA
-        B9: '#1070ca', // Normal Text AAA
-        B10: '#084b8a', // Normal Text AAA
+      primary: primaryScale || {
+        P1: '#f7f9fd',
+        P2: '#f1f7fc',
+        P3: '#e9f2fa',
+        P4: '#ddebf7',
+        P5: '#b7d4ef',
+        P6: '#8fbce6',
+        P7: '#579ad9', // Large Text AA
+        P8: '#3d8bd4', // Normal Text AA
+        P9: '#1070ca', // Normal Text AAA
+        P10: '#084b8a', // Normal Text AAA
 
         // Transparent variants.
-        B1A: 'rgba(16, 112, 202, 0.04)',
-        B2A: 'rgba(16, 112, 202, 0.06)',
-        B3A: 'rgba(16, 112, 202, 0.09)',
-        B4A: 'rgba(16, 112, 202, 0.14)',
-        B5A: 'rgba(16, 112, 202, 0.3)',
-        B6A: 'rgba(16, 112, 202, 0.47)',
-        B7A: 'rgba(16, 112, 202, 0.7)',
-        B8A: 'rgba(16, 112, 202, 0.81)'
+        P1A: 'rgba(16, 112, 202, 0.04)',
+        P2A: 'rgba(16, 112, 202, 0.06)',
+        P3A: 'rgba(16, 112, 202, 0.09)',
+        P4A: 'rgba(16, 112, 202, 0.14)',
+        P5A: 'rgba(16, 112, 202, 0.3)',
+        P6A: 'rgba(16, 112, 202, 0.47)',
+        P7A: 'rgba(16, 112, 202, 0.7)',
+        P8A: 'rgba(16, 112, 202, 0.81)'
       }
     },
     ...(config.scales || {})
   }
+
+  console.log('scales', scales)
 
   const palette = {
     ...{
@@ -67,11 +116,11 @@ export default function createStyles(config = {}) {
         dark: scales.neutral.N10
       },
 
-      blue: {
-        lightest: scales.blue.B1,
-        light: scales.blue.B4,
-        base: scales.blue.B9,
-        dark: scales.blue.B10
+      primary: {
+        lightest: scales.primary.P1,
+        light: scales.primary.P4,
+        base: scales.primary.P9,
+        dark: scales.primary.P10
       },
 
       red: {
@@ -140,7 +189,7 @@ export default function createStyles(config = {}) {
       greenTint: palette.green.lightest,
       orangeTint: palette.orange.lightest,
       redTint: palette.red.lightest,
-      blueTint: palette.blue.lightest,
+      primaryTint: palette.primary.lightest,
       purpleTint: palette.purple.lightest,
       tealTint: palette.teal.lightest
     },
@@ -165,11 +214,11 @@ export default function createStyles(config = {}) {
       muted: scales.neutral.N8,
       default: scales.neutral.N9,
       dark: scales.neutral.N10,
-      selected: palette.blue.base,
+      selected: palette.primary.base,
 
       // Intent.
       success: palette.green.dark,
-      info: palette.blue.dark,
+      info: palette.primary.dark,
       danger: palette.red.dark,
       warning: palette.orange.dark
     },
@@ -184,11 +233,11 @@ export default function createStyles(config = {}) {
       default: scales.neutral.N8,
       muted: scales.neutral.N7,
       disabled: scales.neutral.N5A,
-      selected: palette.blue.base,
+      selected: palette.primary.base,
 
       // Intent.
       success: palette.green.base,
-      info: palette.blue.base,
+      info: palette.primary.base,
       danger: palette.red.base,
       warning: palette.orange.base
     },
@@ -201,7 +250,7 @@ export default function createStyles(config = {}) {
      * @property {string} intent.warning - Required property.
      */
     intent: {
-      none: palette.blue.base,
+      none: palette.primary.base,
       success: palette.green.base,
       danger: palette.red.base,
       warning: palette.orange.base
@@ -218,9 +267,9 @@ export default function createStyles(config = {}) {
       color: 'white',
       backgroundColor: palette.neutral.base
     },
-    blue: {
+    primary: {
       color: 'white',
-      backgroundColor: palette.blue.base
+      backgroundColor: palette.primary.base
     },
     red: {
       color: 'white',
@@ -253,9 +302,9 @@ export default function createStyles(config = {}) {
       color: colors.text.default,
       backgroundColor: palette.neutral.light
     },
-    blue: {
-      color: palette.blue.dark,
-      backgroundColor: palette.blue.light
+    primary: {
+      color: palette.primary.dark,
+      backgroundColor: palette.primary.light
     },
     red: {
       color: palette.red.dark,
@@ -718,6 +767,48 @@ export default function createStyles(config = {}) {
     }
   }
 
+  const primaryButtonGradients = {
+    ...{
+      none: {
+        startColor: tinycolor(palette.primary.base)
+          .saturate(10)
+          .lighten(4)
+          .toString(),
+        endColor: tinycolor(palette.primary.base)
+          .darken(5)
+          .toString()
+      },
+      success: {
+        startColor: tinycolor(palette.green.base)
+          .saturate(10)
+          .lighten(4)
+          .toString(),
+        endColor: tinycolor(palette.green.base)
+          .darken(5)
+          .toString()
+      },
+      warning: {
+        startColor: tinycolor(palette.orange.base)
+          .saturate(10)
+          .lighten(4)
+          .toString(),
+        endColor: tinycolor(palette.orange.base)
+          .darken(5)
+          .toString()
+      },
+      danger: {
+        startColor: tinycolor(palette.red.base)
+          .saturate(10)
+          .lighten(4)
+          .toString(),
+        endColor: tinycolor(palette.red.base)
+          .darken(10)
+          .toString()
+      }
+    },
+    ...(config.primaryButtonGradients || {})
+  }
+
   /**
    * Gradients in the default theme have a intentional hue shift.
    * @param {Intent} intent - intent of the gradient.
@@ -726,8 +817,7 @@ export default function createStyles(config = {}) {
   const getPrimaryButtonStylesForIntent = intent => {
     switch (intent) {
       case Intent.SUCCESS: {
-        const startColor = '#23C277'
-        const endColor = '#399D6C'
+        const { startColor, endColor } = primaryButtonGradients.success
         return {
           linearGradient: getLinearGradientWithStates(startColor, endColor),
           focusColor: tinycolor(startColor)
@@ -736,8 +826,7 @@ export default function createStyles(config = {}) {
         }
       }
       case Intent.WARNING: {
-        const startColor = '#EE9913'
-        const endColor = '#D9822B'
+        const { startColor, endColor } = primaryButtonGradients.warning
         return {
           linearGradient: getLinearGradientWithStates(startColor, endColor),
           focusColor: tinycolor(startColor)
@@ -746,8 +835,7 @@ export default function createStyles(config = {}) {
         }
       }
       case Intent.DANGER: {
-        const startColor = '#EC4C47'
-        const endColor = '#D64540'
+        const { startColor, endColor } = primaryButtonGradients.danger
         return {
           linearGradient: getLinearGradientWithStates(startColor, endColor),
           focusColor: tinycolor(startColor)
@@ -756,8 +844,7 @@ export default function createStyles(config = {}) {
         }
       }
       default: {
-        const startColor = '#0788DE'
-        const endColor = '#116AB8'
+        const { startColor, endColor } = primaryButtonGradients.none
         return {
           linearGradient: getLinearGradientWithStates(startColor, endColor),
           focusColor: tinycolor(startColor)
@@ -787,19 +874,19 @@ export default function createStyles(config = {}) {
       backgroundImage: linearGradient('#FAFBFB', '#EAECEE')
     },
     focus: {
-      boxShadow: `0 0 0 3px ${scales.blue.B4A}, inset 0 0 0 1px ${
+      boxShadow: `0 0 0 3px ${scales.primary.P4A}, inset 0 0 0 1px ${
         scales.neutral.N5A
       }, inset 0 -1px 1px 0 ${scales.neutral.N4A}`
     },
     active: {
       backgroundImage: 'none',
-      backgroundColor: scales.blue.B3A,
+      backgroundColor: scales.primary.P3A,
       boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 1px 1px 0 ${
         scales.neutral.N2A
       }`
     },
     focusAndActive: {
-      boxShadow: `0 0 0 3px ${scales.blue.B4A}, inset 0 0 0 1px ${
+      boxShadow: `0 0 0 3px ${scales.primary.P4A}, inset 0 0 0 1px ${
         scales.neutral.N5A
       }, inset 0 1px 1px 0 ${scales.neutral.N2A}`
     }

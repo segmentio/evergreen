@@ -23,8 +23,8 @@ Appearances.default = Themer.createInputAppearance({
   focus: {
     outline: 'none',
     boxShadow: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${
-      scales.blue.B7
-    }, 0 0 0 3px ${scales.blue.B4A}`
+      scales.primary.P7
+    }, 0 0 0 3px ${scales.primary.P4A}`
   },
   disabled: {
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
@@ -45,7 +45,7 @@ Appearances.neutral = Themer.createInputAppearance({
   focus: {
     outline: 'none',
     backgroundColor: 'white',
-    boxShadow: `0 0 0 2px ${scales.blue.B6A}`
+    boxShadow: `0 0 0 2px ${scales.primary.P6A}`
   },
   disabled: {
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
@@ -66,7 +66,7 @@ Appearances.editableCell = Themer.createInputAppearance({
   focus: {
     outline: 'none',
     backgroundColor: 'white',
-    boxShadow: `0 0 0 2px ${scales.blue.B7}`
+    boxShadow: `0 0 0 2px ${scales.primary.P7}`
   },
   disabled: {
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
