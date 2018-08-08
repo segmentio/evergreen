@@ -7,9 +7,38 @@ import ButtonSection from './sections/ButtonSection'
 import AlertSection from './sections/AlertSection'
 import FormSection from './sections/FormSection'
 
+function addThemeSeachQuery(object) {
+  const url = new URL(window.location.href)
+  url.searchParams.set('theme', JSON.stringify(object))
+
+  // Avoid a refresh on a HTML5/modern browser
+  if (history.pushState) {
+    const newurl =
+      window.location.protocol +
+      '//' +
+      window.location.host +
+      window.location.pathname +
+      '?' +
+      url.searchParams
+    window.history.pushState({ path: newurl }, '', newurl)
+  } else {
+    // Otherwise force a refresh :(
+    window.location.search = url.searchParams
+  }
+}
+
 export default class ThemeBuilder extends React.Component {
-  state = {
-    primary: '#1070ca'
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      primary: '#1070ca'
+    }
+
+    const url = new URL(window.location.href)
+    if (url.searchParams.get('theme')) {
+      this.state = JSON.parse(url.searchParams.get('theme'))
+    }
   }
 
   componentDidMount() {
@@ -22,6 +51,12 @@ export default class ThemeBuilder extends React.Component {
     document.body.style.height = ''
   }
 
+  onHandleSidebarState = object => {
+    addThemeSeachQuery(object)
+
+    this.setState(object)
+  }
+
   render() {
     const { state } = this
     const theme = createTheme(state)
@@ -32,7 +67,7 @@ export default class ThemeBuilder extends React.Component {
             state={{
               ...this.state
             }}
-            setState={object => this.setState(object)}
+            setState={this.onHandleSidebarState}
           />
           <Pane padding={40} overflowY="auto" flex={1}>
             <CodeSnippet value={this.state} />
