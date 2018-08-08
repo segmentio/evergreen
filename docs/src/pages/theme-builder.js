@@ -1,14 +1,20 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ThemeBuilder from '../theme-builder/'
 import TopBar from '../components/TopBar'
 import Layout from '../components/Layout'
 
 export default class Root extends React.Component {
+  static propTypes = {
+    location: PropTypes.object.isRequired
+  }
+
   componentDidCatch(error, errorInfo) {
     console.error(error, errorInfo)
   }
 
   render() {
+    const { location } = this.props
     return (
       <Layout>
         <div
@@ -21,7 +27,7 @@ export default class Root extends React.Component {
           }}
         >
           <TopBar />
-          <ThemeBuilder />
+          <ThemeBuilder location={location} />
         </div>
       </Layout>
     )
