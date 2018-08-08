@@ -1,8 +1,8 @@
 import React from 'react'
-import { Pane } from '../../../src/layers'
-import { Button } from '../../../src/buttons'
-import { Heading } from '../../../src/typography'
-import { SegmentedControl } from '../../../src/segmented-control'
+import { Pane } from '../../../../src/layers'
+import { Button } from '../../../../src/buttons'
+import { Heading } from '../../../../src/typography'
+import { SegmentedControl } from '../../../../src/segmented-control'
 import Section from './Section'
 
 export default class ButtonSection extends React.Component {
