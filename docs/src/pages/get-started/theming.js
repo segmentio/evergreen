@@ -2,6 +2,7 @@ import React from 'react'
 import TopBar from '../../components/TopBar'
 import GetStartedSidebar from '../../components/GetStartedSidebar'
 import Layout from '../../components/Layout'
+import SyntaxHighlighter from '../../components/SyntaxHighlighter'
 
 export default () => {
   return (
@@ -13,22 +14,68 @@ export default () => {
             <section className="Container">
               <div className="Content">
                 <h1>Theming</h1>
-                <p>Evergreen currently does not support theming.</p>
-                <h2>Is theming support on the roadmap?</h2>
                 <p>
-                  This project is originally build to support the development of
-                  product at{' '}
-                  <a
-                    href="https://segment.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Segment
-                  </a>. This is also the reason theming is not our short term
-                  priority. It is on our longer term priority list and hopefully
-                  will be supported later in 2018. Expect a clearer roadmap
-                  available before that.
+                  {"Support for theming is currrently in it's early stages."}
                 </p>
+
+                <h2>Two types of themes</h2>
+
+                <p>
+                  {'Themes are composed of two parts: a "style" and a "base".'}
+                </p>
+
+                <p>
+                  A <b>style</b> contains colors and fonts that you can use to
+                  easily insert your own branding into Evergreen.
+                </p>
+
+                <SyntaxHighlighter>
+                  {`// Example styles
+
+const style = {
+  primaryColor: "#016cd1",
+  ...
+}
+`}
+                </SyntaxHighlighter>
+
+                <p>
+                  A <b>base</b> is an optional piece that allows you to override
+                  several utility functions within evergreen.
+                  {
+                    "It's not recommended to use a base for something a style can acomplish."
+                  }
+                </p>
+
+                <SyntaxHighlighter>
+                  {`// Example Base
+
+const base = {
+  getCodeProps: myGetCodePropsFunction,
+  getSelectClassName: myGetSelectClassNameFunction,
+  ...
+}
+`}
+                </SyntaxHighlighter>
+
+                <h3>Usage</h3>
+                <p>
+                  Combined, these two pieces let you change small details or
+                  rewrite some of the more opinionated pieces of Evergreen.
+                </p>
+
+                <SyntaxHighlighter>
+                  {`import { createTheme, ThemeProvider } from 'evergreen-ui'
+
+const theme = createTheme(style, base)
+
+export default (
+    <ThemeProvider theme={theme}>
+      <MyApp />
+    </ThemeProvider>
+)
+`}
+                </SyntaxHighlighter>
               </div>
             </section>
           </div>
