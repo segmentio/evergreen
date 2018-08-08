@@ -1,8 +1,10 @@
 import React from 'react'
+import Component from '@reactions/component'
 import { Checkbox } from '../../../../src/checkbox'
 import { Pane } from '../../../../src/layers'
 import { Radio } from '../../../../src/radio'
 import { Heading } from '../../../../src/typography'
+import { SegmentedControl } from '../../../../src/segmented-control'
 import Section from './Section'
 
 const noop = e => {
@@ -46,6 +48,34 @@ export default class FormSection extends React.Component {
               checked
               label="Checkbox checked disabled"
             />
+          </Pane>
+
+          <Heading size={200} marginTop="default">
+            Segmented Controls
+          </Heading>
+
+          <Pane>
+            <Component
+              initialState={{
+                options: [
+                  { label: 'On', value: 'on' },
+                  { label: 'Off', value: 'off' }
+                ],
+                value: 'on'
+              }}
+            >
+              {({ state, setState }) => (
+                <SegmentedControl
+                  name="switch"
+                  marginTop={24}
+                  width={80}
+                  height={24}
+                  options={state.options}
+                  value={state.value}
+                  onChange={value => setState({ value })}
+                />
+              )}
+            </Component>
           </Pane>
         </Pane>
       </Section>
