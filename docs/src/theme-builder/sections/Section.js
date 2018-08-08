@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from '../../../src/layers'
-import { Heading } from '../../../src/typography'
+import { Pane } from '../../../../src/layers'
+import { Heading } from '../../../../src/typography'
 
 export default class Section extends React.Component {
   static propTypes = {
