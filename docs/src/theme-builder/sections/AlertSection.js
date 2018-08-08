@@ -4,7 +4,7 @@ import { Alert } from '../../../../src/alert'
 import { Checkbox } from '../../../../src/checkbox'
 import Section from './Section'
 
-export default class AlertSections extends React.Component {
+export default class AlertSection extends React.Component {
   state = {
     hasContent: false
   }

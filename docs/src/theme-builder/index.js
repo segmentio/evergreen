@@ -5,6 +5,7 @@ import Sidebar from './Sidebar'
 import CodeSnippet from './sections/CodeSnippet'
 import ButtonSection from './sections/ButtonSection'
 import AlertSection from './sections/AlertSection'
+import FormSection from './sections/FormSection'
 
 export default class ThemeBuilder extends React.Component {
   state = {
@@ -37,6 +38,7 @@ export default class ThemeBuilder extends React.Component {
             <CodeSnippet value={this.state} />
             <ButtonSection />
             <AlertSection />
+            <FormSection />
           </Pane>
         </Pane>
       </ThemeProvider>
