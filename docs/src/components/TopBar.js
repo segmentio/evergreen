@@ -36,6 +36,13 @@ export default class TopBar extends PureComponent {
           >
             Components
           </Link>
+          <Link
+            className="TopBar-link"
+            activeClassName="is-active"
+            to="/theme-builder/"
+          >
+            Theme Builder
+          </Link>
         </nav>
         <div className="TopBar-navRight">
           <a

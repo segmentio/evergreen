@@ -9,6 +9,7 @@ import { Popover } from '../../popover'
 import { Button } from '../../buttons'
 import { Alert } from '../../alert'
 import { Text } from '../../typography'
+import SyntaxHighlighter from '../../../docs/src/components/SyntaxHighlighter'
 
 class ColorPicker extends React.Component {
   static propTypes = {
@@ -53,7 +54,7 @@ class ColorPicker extends React.Component {
 storiesOf('createTheme', module).add('example', () => (
   <Component
     initialState={{
-      primaryColor: '#1e8e3e'
+      primary: '#1e8e3e'
     }}
   >
     {({ state, setState }) => {
@@ -72,7 +73,12 @@ storiesOf('createTheme', module).add('example', () => (
                 onChangeComplete={color => setState({ primaryColor: color })}
               />
             </Pane>
-            <Pane padding={40}>
+            <Pane padding={40} overflowY="auto" flex={1}>
+              <Pane style={{ fontSize: 12 }}>
+                <SyntaxHighlighter>
+                  {`createTheme(${JSON.stringify(state, null, 2)})`}
+                </SyntaxHighlighter>
+              </Pane>
               <Pane marginY={40}>
                 <Button marginRight={12} appearance="primary">
                   Default

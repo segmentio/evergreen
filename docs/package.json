@@ -17,6 +17,7 @@
     "postcss-reporter": "^5.0.0",
     "prop-types": "^15.6.0",
     "react": "^16.4.0",
+    "react-color": "^2.14.1",
     "react-docgen": "^3.0.0-rc.0",
     "react-dom": "^16.4.0",
     "react-helmet": "^5.2.0",

@@ -35,8 +35,6 @@ import { headings, text, fontFamilies, paragraph } from './typography/'
  * These ARE REQUIRED for Evergreen to work.
  */
 import {
-  avatarColors,
-  badgeColors,
   spinnerColor,
   overlayBackgroundColor,
   getButtonClassName,
@@ -93,8 +91,6 @@ export default {
   scales,
 
   // Component Specific.
-  avatarColors,
-  badgeColors,
   spinnerColor,
   overlayBackgroundColor,
   getButtonClassName,

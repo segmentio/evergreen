@@ -44,11 +44,9 @@ function generateScale(primaryColor, prefix = 'P') {
 
 export default function createStyles(config = {}) {
   let primaryScale
-  if (typeof config.primaryColor === 'string') {
-    primaryScale = generateScale(config.primaryColor)
+  if (typeof config.primary === 'string') {
+    primaryScale = generateScale(config.primary)
   }
-
-  console.log('primaryScale', primaryScale)
 
   /**
    * Neutrals and primary are special.

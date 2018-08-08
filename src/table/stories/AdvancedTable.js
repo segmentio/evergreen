@@ -253,7 +253,7 @@ export default class AdvancedTable extends React.Component {
           {this.renderLTVTableHeaderCell()}
           <Table.HeaderCell width={48} flex="none" />
         </Table.Head>
-        <Table.VirtualBody height={640}>
+        <Table.VirtualBody height={640} overscanAmount={20}>
           {items.map(item => this.renderRow({ profile: item }))}
         </Table.VirtualBody>
       </Table>
