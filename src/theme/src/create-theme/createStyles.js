@@ -21,87 +21,71 @@ import themedProperty from './utils/themedProperty'
 //   }
 // }
 
-function generateScale(primaryColor, prefix = 'P') {
+function generateScale(color, prefix = 'P') {
   const scale = {}
-  const tinyPrimaryColor = tinycolor(primaryColor)
+  const tinyPrimaryColor = tinycolor(color)
 
   const opacities = [0.04, 0.06, 0.09, 0.14, 0.3, 0.47, 0.7, 0.81]
 
+  // Add opaque colors first.
   for (const [index, opacity] of opacities.entries()) {
     const opaqueColor = tinycolor
-      .mix('white', primaryColor, opacity * 100)
-      .toString()
-    const opacityColor = tinyPrimaryColor.setAlpha(opacity).toString()
+      .mix('white', color, opacity * 100)
+      .toHexString()
     scale[`${prefix}${index + 1}`] = opaqueColor
-    scale[`${prefix}${index + 1}A`] = opacityColor
   }
 
-  scale[`${prefix}9`] = primaryColor
-  scale[`${prefix}10`] = tinyPrimaryColor.darken(2).toString()
+  scale[`${prefix}9`] = color
+  scale[`${prefix}10`] = tinyPrimaryColor.darken(15).toHexString()
+
+  // Add opacity colors second.
+  for (const [index, opacity] of opacities.entries()) {
+    const opacityColor = tinyPrimaryColor.setAlpha(opacity).toString()
+    scale[`${prefix}${index + 1}A`] = opacityColor
+  }
 
   return scale
 }
 
-export default function createStyles(config = {}) {
-  let primaryScale
-  if (typeof config.primary === 'string') {
-    primaryScale = generateScale(config.primary)
-  }
+const DefaultStyles = {}
 
-  /**
-   * Neutrals and primary are special.
-   * They need more variations to properly express all of our UI.
-   */
+DefaultStyles.palette = {
+  neutral: '#425A70',
+  primary: '#1070ca',
+  red: '#ec4c47',
+  orange: '#d9822b',
+  yellow: '#f7d154',
+  green: '#47b881',
+  teal: '#14b5d0',
+  purple: '#735dd0'
+}
+
+function createColorScales(inputPalette = {}) {
   const scales = {
-    ...{
-      neutral: {
-        N1: '#F9F9FB',
-        N2: '#F5F6F7',
-        N3: '#EDF0F2',
-        N4: '#E4E7EB',
-        N5: '#C7CED4',
-        N6: '#A6B1BB',
-        N7: '#7B8B9A', // Large Text AA
-        N8: '#66788A', // Normal Text AA
-        N9: '#425A70', // Normal Text AAA
-        N10: '#234361', // Normal Text AAA
-
-        // Transparent variants.
-        N1A: 'rgba(67, 90, 111, 0.04)',
-        N2A: 'rgba(67, 90, 111, 0.06)',
-        N3A: 'rgba(67, 90, 111, 0.09)',
-        N4A: 'rgba(67, 90, 111, 0.14)',
-        N5A: 'rgba(67, 90, 111, 0.3)',
-        N6A: 'rgba(67, 90, 111, 0.47)',
-        N7A: 'rgba(67, 90, 111, 0.7)',
-        N8A: 'rgba(67, 90, 111, 0.81)'
-      },
-
-      primary: primaryScale || {
-        P1: '#f7f9fd',
-        P2: '#f1f7fc',
-        P3: '#e9f2fa',
-        P4: '#ddebf7',
-        P5: '#b7d4ef',
-        P6: '#8fbce6',
-        P7: '#579ad9', // Large Text AA
-        P8: '#3d8bd4', // Normal Text AA
-        P9: '#1070ca', // Normal Text AAA
-        P10: '#084b8a', // Normal Text AAA
-
-        // Transparent variants.
-        P1A: 'rgba(16, 112, 202, 0.04)',
-        P2A: 'rgba(16, 112, 202, 0.06)',
-        P3A: 'rgba(16, 112, 202, 0.09)',
-        P4A: 'rgba(16, 112, 202, 0.14)',
-        P5A: 'rgba(16, 112, 202, 0.3)',
-        P6A: 'rgba(16, 112, 202, 0.47)',
-        P7A: 'rgba(16, 112, 202, 0.7)',
-        P8A: 'rgba(16, 112, 202, 0.81)'
-      }
-    },
-    ...(config.scales || {})
+    ...DefaultStyles.palette,
+    ...inputPalette
   }
+
+  // Delete colors for which the color is null or undefined.
+  for (const key in scales) {
+    if (key !== 'primary' && key !== 'neutral') {
+      if (scales[key] === null || scales[key] === undefined) {
+        delete scales[key]
+      }
+    }
+  }
+
+  for (const key in scales) {
+    if (Object.prototype.hasOwnProperty.call(scales, key)) {
+      scales[key] = generateScale(scales[key], key[0].toUpperCase())
+    }
+  }
+
+  return scales
+}
+
+export default function createStyles(config = {}) {
+  const scales = createColorScales(config.palette)
 
   console.log('scales', scales)
 
