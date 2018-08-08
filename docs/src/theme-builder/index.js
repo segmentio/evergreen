@@ -1,4 +1,5 @@
 import React from 'react'
+import 'url-polyfill' // eslint-disable-line import/no-unassigned-import
 import { createTheme, ThemeProvider } from '../../../src/theme'
 import { Pane } from '../../../src/layers'
 import Sidebar from './Sidebar'
