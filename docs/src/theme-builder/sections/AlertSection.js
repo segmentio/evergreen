@@ -13,6 +13,11 @@ export default class AlertSection extends React.Component {
     this.setState({
       hasContent: e.target.checked
     })
+
+    // Hack to prevent scrolling.
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0)
+    })
   }
 
   render() {
