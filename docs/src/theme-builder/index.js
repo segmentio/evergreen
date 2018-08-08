@@ -8,18 +8,51 @@ import ButtonSection from './sections/ButtonSection'
 import AlertSection from './sections/AlertSection'
 import FormSection from './sections/FormSection'
 
+function addThemeSeachQuery(object) {
+  const url = new URL(window.location.href)
+  url.searchParams.set('theme', JSON.stringify(object))
+
+  // Avoid a refresh on a HTML5/modern browser
+  if (history.pushState) {
+    const newurl =
+      window.location.protocol +
+      '//' +
+      window.location.host +
+      window.location.pathname +
+      '?' +
+      url.searchParams
+    window.history.pushState({ path: newurl }, '', newurl)
+  } else {
+    // Otherwise force a refresh :(
+    window.location.search = url.searchParams
+  }
+}
+
 export default class ThemeBuilder extends React.Component {
-  state = {
-    controlStyle: 'gradients',
-    palette: {
-      neutral: '#425A70',
-      primary: '#1070ca',
-      red: '#ec4c47',
-      orange: '#d9822b',
-      yellow: '#f7d154',
-      green: '#47b881',
-      teal: '#14b5d0',
-      purple: '#735dd0'
+  constructor(props) {
+    super(props)
+
+    // This should really be coming from the theme or something.
+    this.state = {
+      controlStyle: 'gradients',
+      palette: {
+        primary: '#1070ca',
+        neutral: '#425A70',
+        red: '#ec4c47',
+        orange: '#d9822b',
+        yellow: '#f7d154',
+        green: '#47b881',
+        teal: '#14b5d0',
+        purple: '#735dd0'
+      }
+    }
+
+    const url = new URL(window.location.href)
+    if (url.searchParams.get('theme')) {
+      this.state = {
+        ...this.state,
+        ...(JSON.parse(url.searchParams.get('theme')) || {})
+      }
     }
   }
 
@@ -35,6 +68,12 @@ export default class ThemeBuilder extends React.Component {
     document.documentElement.style.height = ''
   }
 
+  onHandleSidebarState = object => {
+    addThemeSeachQuery(object)
+
+    this.setState(object)
+  }
+
   render() {
     const { state } = this
     const theme = createTheme({
@@ -47,7 +86,7 @@ export default class ThemeBuilder extends React.Component {
             state={{
               ...state
             }}
-            setState={object => this.setState(object)}
+            setState={this.onHandleSidebarState}
           />
           <Pane
             padding={40}
