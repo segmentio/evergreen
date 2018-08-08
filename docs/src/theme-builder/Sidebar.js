@@ -10,8 +10,17 @@ export default class Sidebar extends React.Component {
     setState: PropTypes.func
   }
 
+  updatePalette = (scaleKey, color) => {
+    this.props.setState({
+      palette: {
+        ...this.props.state.palette,
+        [scaleKey]: color
+      }
+    })
+  }
+
   render() {
-    const { state, setState } = this.props
+    const { state } = this.props
     return (
       <Pane
         borderRight
@@ -21,13 +30,20 @@ export default class Sidebar extends React.Component {
         flexGrow={0}
       >
         <Pane borderBottom padding={12}>
-          <Heading size={300}>Colors</Heading>
+          <Heading size={300}>Palette</Heading>
         </Pane>
-        <ColorPicker
-          color={state.primary}
-          label="primary"
-          onChangeComplete={color => setState({ primary: color })}
-        />
+        <Pane>
+          {Object.keys(state.palette).map(scaleKey => {
+            return (
+              <ColorPicker
+                key={scaleKey}
+                color={state.palette[scaleKey]}
+                label={scaleKey}
+                onChangeComplete={color => this.updatePalette(scaleKey, color)}
+              />
+            )
+          })}
+        </Pane>
       </Pane>
     )
   }

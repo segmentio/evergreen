@@ -89,65 +89,16 @@ export default function createStyles(config = {}) {
 
   console.log('scales', scales)
 
-  const palette = {
-    ...{
-      neutral: {
-        lightest: scales.neutral.N1,
-        light: scales.neutral.N4,
-        base: scales.neutral.N9,
-        dark: scales.neutral.N10
-      },
-
-      primary: {
-        lightest: scales.primary.P1,
-        light: scales.primary.P4,
-        base: scales.primary.P9,
-        dark: scales.primary.P10
-      },
-
-      red: {
-        lightest: '#fef6f6',
-        light: '#fae2e2',
-        base: '#ec4c47',
-        dark: '#bf0e08'
-      },
-
-      orange: {
-        lightest: '#fdf8f3',
-        light: '#fae3cd',
-        base: '#d9822b',
-        dark: '#95591e'
-      },
-
-      yellow: {
-        lightest: '#fef8e7',
-        light: '#fbe6a2',
-        base: '#f7d154',
-        dark: '#7e6514'
-      },
-
-      green: {
-        lightest: '#f1faf5',
-        light: '#d4eee2',
-        base: '#47b881',
-        dark: '#00783e'
-      },
-
-      teal: {
-        lightest: '#f1fbfc',
-        light: '#d2eef3',
-        base: '#14b5d0',
-        dark: '#007489'
-      },
-
-      purple: {
-        lightest: '#f8f7fc',
-        light: '#eae7f8',
-        base: '#735dd0',
-        dark: '#37248f'
+  const palette = {}
+  for (const key in scales) {
+    if (Object.prototype.hasOwnProperty.call(scales, key)) {
+      palette[key] = {
+        lightest: scales[key][`${key[0].toUpperCase()}1`],
+        light: scales[key][`${key[0].toUpperCase()}4`],
+        base: scales[key][`${key[0].toUpperCase()}9`],
+        dark: scales[key][`${key[0].toUpperCase()}10`]
       }
-    },
-    ...(config.palette || {})
+    }
   }
 
   /**

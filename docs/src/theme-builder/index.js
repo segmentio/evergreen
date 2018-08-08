@@ -10,17 +10,28 @@ import FormSection from './sections/FormSection'
 
 export default class ThemeBuilder extends React.Component {
   state = {
-    primary: '#1070ca'
+    palette: {
+      neutral: '#425A70',
+      primary: '#1070ca',
+      red: '#ec4c47',
+      orange: '#d9822b',
+      yellow: '#f7d154',
+      green: '#47b881',
+      teal: '#14b5d0',
+      purple: '#735dd0'
+    }
   }
 
   componentDidMount() {
     document.body.style.overflow = 'hidden'
     document.body.style.height = '100%'
+    document.documentElement.style.height = '100%'
   }
 
   componentWillUnmount() {
     document.body.style.overflow = ''
     document.body.style.height = ''
+    document.documentElement.style.height = ''
   }
 
   render() {
@@ -37,12 +48,20 @@ export default class ThemeBuilder extends React.Component {
             }}
             setState={object => this.setState(object)}
           />
-          <Pane padding={40} overflowY="auto" flex={1}>
-            <CodeSnippet value={this.state} />
-            <ScalesSection />
-            <ButtonSection />
-            <AlertSection />
-            <FormSection />
+          <Pane
+            padding={40}
+            overflowY="auto"
+            flex={1}
+            display="flex"
+            flexDirection="column"
+          >
+            <Pane>
+              <CodeSnippet value={this.state} />
+              <ScalesSection />
+              <ButtonSection />
+              <AlertSection />
+              <FormSection />
+            </Pane>
           </Pane>
         </Pane>
       </ThemeProvider>
