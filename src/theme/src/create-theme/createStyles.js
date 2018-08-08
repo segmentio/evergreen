@@ -1,54 +1,7 @@
-import tinycolor from 'tinycolor2'
 import { Intent } from '../../../constants'
 import themedProperty from './utils/themedProperty'
-
-// Const primaryButtonGradients = {
-//   none: {
-//     startColor: '#0788DE',
-//     endColor: '#116AB8'
-//   },
-//   success: {
-//     startColor: '#23C277',
-//     endColor: '#399D6C'
-//   },
-//   warning: {
-//     startColor: '#EE9913',
-//     endColor: '#D9822B'
-//   },
-//   danger: {
-//     startColor: '#EC4C47',
-//     endColor: '#D64540'
-//   }
-// }
-
-function generateScale(color, prefix = 'P') {
-  const scale = {}
-
-  const opacities = [0.04, 0.06, 0.09, 0.14, 0.3, 0.47, 0.7, 0.81]
-
-  // Add opaque colors first.
-  for (const [index, opacity] of opacities.entries()) {
-    const opaqueColor = tinycolor
-      .mix('white', color, opacity * 100)
-      .toHexString()
-    scale[`${prefix}${index + 1}`] = opaqueColor
-  }
-
-  scale[`${prefix}9`] = color
-  scale[`${prefix}10`] = tinycolor(color)
-    .darken(15)
-    .toHexString()
-
-  // Add opacity colors second.
-  for (const [index, opacity] of opacities.entries()) {
-    const opacityColor = tinycolor(color)
-      .setAlpha(opacity)
-      .toString()
-    scale[`${prefix}${index + 1}A`] = opacityColor
-  }
-
-  return scale
-}
+import createColorScales from './utils/createColorScales'
+import linearGradient from './utils/linearGradient'
 
 const DefaultStyles = {}
 
@@ -63,34 +16,11 @@ DefaultStyles.palette = {
   purple: '#735dd0'
 }
 
-function createColorScales(inputPalette = {}) {
-  const scales = {
-    ...DefaultStyles.palette,
-    ...inputPalette
-  }
-
-  // Delete colors for which the color is null or undefined.
-  for (const key in scales) {
-    if (key !== 'primary' && key !== 'neutral') {
-      if (scales[key] === null || scales[key] === undefined) {
-        delete scales[key]
-      }
-    }
-  }
-
-  for (const key in scales) {
-    if (Object.prototype.hasOwnProperty.call(scales, key)) {
-      scales[key] = generateScale(scales[key], key[0].toUpperCase())
-    }
-  }
-
-  return scales
-}
+DefaultStyles.controlStyle = 'gradients'
 
 export default function createStyles(config = {}) {
-  const scales = createColorScales(config.palette)
-
-  console.log('scales', scales)
+  const scales = createColorScales(config.palette, DefaultStyles.palette)
+  const controlStyle = config.controlStyle || DefaultStyles.controlStyle
 
   const palette = {}
   for (const key in scales) {
@@ -647,15 +577,6 @@ export default function createStyles(config = {}) {
   }
 
   /**
-   * @param {String} top - color.
-   * @param {String} bottom - color.
-   * @return {String} CSS background propery.
-   */
-  const linearGradient = (top, bottom) => {
-    return `linear-gradient(to bottom, ${top}, ${bottom})`
-  }
-
-  /**
    * @param {Intent} intent
    * @return {String} color
    */
@@ -673,162 +594,6 @@ export default function createStyles(config = {}) {
   }
 
   /**
-   * @param {String} startColor
-   * @param {String} endColor
-   * @param {Number} intensityMultiplier - Some colors need more darkening.
-   */
-  const getLinearGradientWithStates = (
-    startColor,
-    endColor,
-    intensityMultiplier = 1
-  ) => {
-    return {
-      base: linearGradient(startColor, endColor),
-      hover: linearGradient(
-        tinycolor(startColor)
-          .darken(5 * intensityMultiplier)
-          .toString(),
-        tinycolor(endColor)
-          .darken(5 * intensityMultiplier)
-          .toString()
-      ),
-      active: linearGradient(
-        tinycolor(endColor)
-          .darken(5 * intensityMultiplier)
-          .toString(),
-        tinycolor(endColor)
-          .darken(5 * intensityMultiplier)
-          .toString()
-      )
-    }
-  }
-
-  const primaryButtonGradients = {
-    ...{
-      none: {
-        startColor: tinycolor(palette.primary.base)
-          .saturate(10)
-          .lighten(4)
-          .toString(),
-        endColor: tinycolor(palette.primary.base)
-          .darken(5)
-          .toString()
-      },
-      success: {
-        startColor: tinycolor(palette.green.base)
-          .saturate(10)
-          .lighten(4)
-          .toString(),
-        endColor: tinycolor(palette.green.base)
-          .darken(5)
-          .toString()
-      },
-      warning: {
-        startColor: tinycolor(palette.orange.base)
-          .saturate(10)
-          .lighten(4)
-          .toString(),
-        endColor: tinycolor(palette.orange.base)
-          .darken(5)
-          .toString()
-      },
-      danger: {
-        startColor: tinycolor(palette.red.base)
-          .saturate(10)
-          .lighten(4)
-          .toString(),
-        endColor: tinycolor(palette.red.base)
-          .darken(10)
-          .toString()
-      }
-    },
-    ...(config.primaryButtonGradients || {})
-  }
-
-  /**
-   * Gradients in the default theme have a intentional hue shift.
-   * @param {Intent} intent - intent of the gradient.
-   * @return {Object} { base, hover, active }
-   */
-  const getPrimaryButtonStylesForIntent = intent => {
-    switch (intent) {
-      case Intent.SUCCESS: {
-        const { startColor, endColor } = primaryButtonGradients.success
-        return {
-          linearGradient: getLinearGradientWithStates(startColor, endColor),
-          focusColor: tinycolor(startColor)
-            .setAlpha(0.4)
-            .toString()
-        }
-      }
-      case Intent.WARNING: {
-        const { startColor, endColor } = primaryButtonGradients.warning
-        return {
-          linearGradient: getLinearGradientWithStates(startColor, endColor),
-          focusColor: tinycolor(startColor)
-            .setAlpha(0.4)
-            .toString()
-        }
-      }
-      case Intent.DANGER: {
-        const { startColor, endColor } = primaryButtonGradients.danger
-        return {
-          linearGradient: getLinearGradientWithStates(startColor, endColor),
-          focusColor: tinycolor(startColor)
-            .setAlpha(0.4)
-            .toString()
-        }
-      }
-      default: {
-        const { startColor, endColor } = primaryButtonGradients.none
-        return {
-          linearGradient: getLinearGradientWithStates(startColor, endColor),
-          focusColor: tinycolor(startColor)
-            .setAlpha(0.4)
-            .toString()
-        }
-      }
-    }
-  }
-
-  const defaultControlStyles = {
-    disabled: {
-      opacity: 0.8,
-      backgroundImage: 'none',
-      backgroundColor: scales.neutral.N2A,
-      boxShadow: 'none',
-      color: scales.neutral.N7A
-    },
-    base: {
-      backgroundColor: 'white',
-      backgroundImage: linearGradient('#FFFFFF', '#F4F5F7'),
-      boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${
-        scales.neutral.N2A
-      }`
-    },
-    hover: {
-      backgroundImage: linearGradient('#FAFBFB', '#EAECEE')
-    },
-    focus: {
-      boxShadow: `0 0 0 3px ${scales.primary.P4A}, inset 0 0 0 1px ${
-        scales.neutral.N5A
-      }, inset 0 -1px 1px 0 ${scales.neutral.N4A}`
-    },
-    active: {
-      backgroundImage: 'none',
-      backgroundColor: scales.primary.P3A,
-      boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 1px 1px 0 ${
-        scales.neutral.N2A
-      }`
-    },
-    focusAndActive: {
-      boxShadow: `0 0 0 3px ${scales.primary.P4A}, inset 0 0 0 1px ${
-        scales.neutral.N5A
-      }, inset 0 1px 1px 0 ${scales.neutral.N2A}`
-    }
-  }
-
-  /**
    * @param {number} size
    * @param {number} sizeLimitOneCharacter
    * @return {number} font size
@@ -841,6 +606,8 @@ export default function createStyles(config = {}) {
   }
 
   return {
+    controlStyle,
+
     // Colors.
     scales,
     palette,
@@ -859,9 +626,6 @@ export default function createStyles(config = {}) {
     // Private Theme Helpers.
     linearGradient,
     getTextColorForIntent,
-    getLinearGradientWithStates,
-    getPrimaryButtonStylesForIntent,
-    defaultControlStyles,
 
     // Public Theme Helpers.
     getBorderRadiusForControlHeight,

@@ -10,6 +10,7 @@ import FormSection from './sections/FormSection'
 
 export default class ThemeBuilder extends React.Component {
   state = {
+    controlStyle: 'gradients',
     palette: {
       neutral: '#425A70',
       primary: '#1070ca',
@@ -44,7 +45,7 @@ export default class ThemeBuilder extends React.Component {
         <Pane display="flex" flex={1}>
           <Sidebar
             state={{
-              ...this.state
+              ...state
             }}
             setState={object => this.setState(object)}
           />
