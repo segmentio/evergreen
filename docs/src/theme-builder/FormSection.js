@@ -2,6 +2,8 @@ import React from 'react'
 import { Pane } from '../../../src/layers'
 import { Radio } from '../../../src/radio'
 import { Heading } from '../../../src/typography'
+import { Checkbox } from '../../../src/checkbox'
+
 import Section from './Section'
 
 const noop = e => {
@@ -17,7 +19,7 @@ export default class AlertSections extends React.Component {
 
           <Pane aria-label="Radio Group Label 12" role="group">
             <Radio
-              onClick={noop}
+              onClick={noop} // Stops a weird page issue
               onChange={noop}
               name="group"
               checked
@@ -31,7 +33,21 @@ export default class AlertSections extends React.Component {
             />
           </Pane>
 
-          <Heading size={200}>Radios</Heading>
+          <Heading size={200} marginTop="default">
+            Checkbox
+          </Heading>
+
+          <Pane>
+            <Checkbox onClick={noop} label="Checkbox default" />
+            <Checkbox onClick={noop} checked label="Checkbox checked" />
+            <Checkbox onClick={noop} disabled label="Checkbox disabled" />
+            <Checkbox
+              onClick={noop}
+              disabled
+              checked
+              label="Checkbox checked disabled"
+            />
+          </Pane>
         </Pane>
       </Section>
     )
