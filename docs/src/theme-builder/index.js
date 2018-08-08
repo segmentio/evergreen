@@ -33,7 +33,9 @@ export default class ThemeBuilder extends React.Component {
   constructor(props) {
     super(props)
 
+    // This should really be coming from the theme or something.
     this.state = {
+      controlStyle: 'gradients',
       palette: {
         primary: '#1070ca',
         neutral: '#425A70',
@@ -83,7 +85,7 @@ export default class ThemeBuilder extends React.Component {
         <Pane display="flex" flex={1}>
           <Sidebar
             state={{
-              ...this.state
+              ...state
             }}
             setState={this.onHandleSidebarState}
           />
