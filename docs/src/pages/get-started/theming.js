@@ -4,7 +4,8 @@ import GetStartedSidebar from '../../components/GetStartedSidebar'
 import Layout from '../../components/Layout'
 import SyntaxHighlighter from '../../components/SyntaxHighlighter'
 
-export default () => {
+export default props => {
+  console.log(props)
   return (
     <Layout>
       <div className="MainLayout">

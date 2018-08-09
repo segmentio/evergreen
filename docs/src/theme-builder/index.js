@@ -1,4 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import 'url-polyfill' // eslint-disable-line import/no-unassigned-import
+import queryString from 'query-string'
 import { createTheme, ThemeProvider } from '../../../src/theme'
 import { Pane } from '../../../src/layers'
 import Sidebar from './Sidebar'
@@ -28,7 +31,19 @@ function addThemeSeachQuery(object) {
   }
 }
 
+/**
+ * A catch all for the all the potential weird states
+ * location can be in from SSR or window.location
+ */
+function getThemeFromParams(location) {
+  return (queryString.parse(location.search) || {}).theme
+}
+
 export default class ThemeBuilder extends React.Component {
+  static propTypes = {
+    location: PropTypes.object.isRequired
+  }
+
   constructor(props) {
     super(props)
 
@@ -47,11 +62,11 @@ export default class ThemeBuilder extends React.Component {
       }
     }
 
-    const url = new URL(window.location.href)
-    if (url.searchParams.get('theme')) {
+    const theme = getThemeFromParams(props.location)
+    if (theme) {
       this.state = {
         ...this.state,
-        ...(JSON.parse(url.searchParams.get('theme')) || {})
+        ...(JSON.parse(theme) || {})
       }
     }
   }
@@ -69,7 +84,7 @@ export default class ThemeBuilder extends React.Component {
   }
 
   onHandleSidebarState = object => {
-    addThemeSeachQuery(object)
+    addThemeSeachQuery({ ...this.state, ...object })
 
     this.setState(object)
   }
