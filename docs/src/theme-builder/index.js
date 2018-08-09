@@ -11,6 +11,7 @@ import ButtonSection from './sections/ButtonSection'
 import AlertSection from './sections/AlertSection'
 import FormSection from './sections/FormSection'
 import PaneSection from './sections/PaneSection'
+import AvatarSection from './sections/AvatarSection'
 
 function addThemeSeachQuery(object) {
   const url = new URL(window.location.href)
@@ -114,6 +115,7 @@ export default class ThemeBuilder extends React.Component {
             <Pane>
               <CodeSnippet value={this.state} />
               <ButtonSection />
+              <AvatarSection />
               <AlertSection />
               <FormSection />
               <ScalesSection />

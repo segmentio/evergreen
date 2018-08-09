@@ -1,9 +1,11 @@
 import React from 'react'
 import Component from '@reactions/component'
+import starWarsNames from 'starwars-names'
 import { Checkbox } from '../../../../src/checkbox'
 import { Pane } from '../../../../src/layers'
 import { Radio } from '../../../../src/radio'
 import { TextInputField } from '../../../../src/text-input'
+import { Combobox } from '../../../../src/combobox'
 import { Switch } from '../../../../src/switch'
 import { Select } from '../../../../src/select'
 import { Heading } from '../../../../src/typography'
@@ -16,6 +18,20 @@ const noop = e => {
     window.scrollTo(0, 0)
   })
 }
+
+// Generate a big list of items
+const items = starWarsNames.all.sort((a, b) => {
+  const nameA = a.toUpperCase()
+  const nameB = b.toUpperCase()
+  if (nameA < nameB) {
+    return -1
+  }
+  if (nameA > nameB) {
+    return 1
+  }
+
+  return 0
+})
 
 export default class FormSection extends React.Component {
   render() {
@@ -51,6 +67,12 @@ export default class FormSection extends React.Component {
             <option>Banana</option>
             <option>Kiwi and some long title</option>
           </Select>
+
+          <Heading size={200} marginTop={32}>
+            Combobox
+          </Heading>
+
+          <Combobox items={items} onChange={() => {}} marginTop={12} />
 
           <Heading size={200} marginTop={32}>
             Segmented Controls
@@ -122,7 +144,7 @@ export default class FormSection extends React.Component {
             />
           </Pane>
 
-          <Heading size={200} marginTop="default">
+          <Heading size={200} marginTop={24}>
             Checkbox
           </Heading>
 
@@ -138,11 +160,11 @@ export default class FormSection extends React.Component {
             />
           </Pane>
 
-          <Heading size={200} marginTop="default">
+          <Heading size={200} marginTop={24}>
             Switch
           </Heading>
 
-          <Pane marginTop={16}>
+          <Pane marginTop={12} display="flex">
             <Switch
               checked={false}
               height={20}
@@ -150,11 +172,9 @@ export default class FormSection extends React.Component {
               onChange={noop}
             />
 
-            <Switch checked height={20} marginBottom={12} onChange={noop} />
-
             <Switch
+              marginLeft={12}
               checked
-              hasCheckIcon={false}
               height={20}
               marginBottom={12}
               onChange={noop}
