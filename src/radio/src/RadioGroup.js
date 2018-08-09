@@ -70,10 +70,10 @@ export default class RadioGroup extends PureComponent {
     super(props, context)
 
     this.state = {
-      value: props.defaultValue || props.options[0].value
+      value: props.defaultValue || props.options[0].value,
+      name: `RadioGroup-${radioCount}`
     }
 
-    this.name = `RadioGroup-${radioCount}`
     radioCount += 1
   }
 
@@ -114,7 +114,7 @@ export default class RadioGroup extends PureComponent {
           <Radio
             key={item.value}
             size={size}
-            name={this.name}
+            name={this.state.name}
             value={item.value}
             label={item.label}
             checked={selected === item.value}

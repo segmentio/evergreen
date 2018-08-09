@@ -3,15 +3,24 @@ import memoizeClassName from '../utils/memoizeClassName'
 
 export default function getCheckboxClassName({
   getPrimaryButtonStylesForIntent,
-  scales
+  scales,
+  controlStyle
 }) {
-  const primaryStyle = getPrimaryButtonStylesForIntent()
+  const { styles } = getPrimaryButtonStylesForIntent()
+
+  const isGradients = controlStyle === 'gradients'
 
   const defaultAppearance = Themer.createCheckboxAppearance({
     base: {
       color: 'white',
       backgroundColor: 'white',
-      backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, white)`,
+      ...(isGradients
+        ? {
+            backgroundImage: `linear-gradient(to top, ${
+              scales.neutral.N2A
+            }, white)`
+          }
+        : {}),
       boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${
         scales.neutral.N3A
       }`
@@ -23,9 +32,13 @@ export default function getCheckboxClassName({
       backgroundImage: 'none'
     },
     hover: {
-      backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, ${
-        scales.neutral.N1A
-      })`,
+      ...(isGradients
+        ? {
+            backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, ${
+              scales.neutral.N1A
+            })`
+          }
+        : {}),
       boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${
         scales.neutral.N2A
       }`
@@ -42,30 +55,34 @@ export default function getCheckboxClassName({
     },
     checked: {
       color: 'white',
-      backgroundImage: primaryStyle.linearGradient.base,
+      ...styles.base,
       boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 -1px 1px 0 ${
         scales.neutral.N2A
       }`
     },
     checkedHover: {
       color: 'white',
-      backgroundImage: primaryStyle.linearGradient.hover,
+      ...styles.hover,
       boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 -1px 1px 0 ${
         scales.neutral.N2A
       }`
     },
     checkedDisabled: {
       color: scales.neutral.N6A,
-      backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, ${
-        scales.neutral.N1A
-      })`,
+      ...(isGradients
+        ? {
+            backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, ${
+              scales.neutral.N1A
+            })`
+          }
+        : {}),
       boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${
         scales.neutral.N2A
       }`
     },
     checkedActive: {
       color: 'white',
-      backgroundImage: primaryStyle.linearGradient.active,
+      ...styles.active,
       boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${
         scales.neutral.N2A
       }`

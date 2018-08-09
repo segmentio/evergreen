@@ -11,11 +11,18 @@ export default class CodeSnippet extends React.Component {
 
   render = () => {
     return (
-      <Section title="Theme Snippet" contentPadding={0}>
+      <Section
+        title="Theme Snippet"
+        fileName="CodeSnippet.js"
+        contentPadding={0}
+      >
         <Pane>
           <Pane
+            background="tint1"
             style={{ fontSize: 12 }}
-            css={{ '& pre': { margin: '0 !important' } }}
+            css={{
+              '& pre': { margin: '0 !important', background: 'none !important' }
+            }}
           >
             <SyntaxHighlighter>
               {`import React from 'react'

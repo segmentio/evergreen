@@ -51,7 +51,7 @@ class Scale extends React.PureComponent {
 export default class ScalesSection extends React.PureComponent {
   render() {
     return (
-      <Section title="Color Scales">
+      <Section title="Color Scales" fileName="ScalesSection.js">
         <ThemeConsumer>
           {theme => {
             return Object.keys(theme.scales).map(scaleKey => {

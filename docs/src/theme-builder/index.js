@@ -97,10 +97,10 @@ export default class ThemeBuilder extends React.Component {
           >
             <Pane>
               <CodeSnippet value={this.state} />
-              <ScalesSection />
               <ButtonSection />
               <AlertSection />
               <FormSection />
+              <ScalesSection />
             </Pane>
           </Pane>
         </Pane>

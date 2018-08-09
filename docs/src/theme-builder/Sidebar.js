@@ -51,6 +51,7 @@ export default class Sidebar extends React.Component {
 
   render() {
     const { state } = this.props
+
     return (
       <Pane
         borderRight
@@ -60,7 +61,7 @@ export default class Sidebar extends React.Component {
         flexGrow={0}
       >
         <Pane borderBottom padding={12}>
-          <Heading size={300}>Control styles</Heading>
+          <Heading size={300}>Style</Heading>
         </Pane>
         <Pane background="white" clearfix borderBottom>
           <RadioGroup

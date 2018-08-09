@@ -14,7 +14,7 @@ const noop = e => {
 export default class FormSection extends React.Component {
   render() {
     return (
-      <Section title="Form Controls">
+      <Section title="Form Controls" fileName="FormSection.js">
         <Pane float="left" marginRight={16}>
           <Heading size={200}>Radios</Heading>
 

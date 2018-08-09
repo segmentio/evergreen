@@ -2,7 +2,15 @@ import tinycolor from 'tinycolor2'
 import { Intent } from '../../../../constants'
 import linearGradient from '../utils/linearGradient'
 
-export default function createGetPrimaryButtonStylesForIntent({ palette }) {
+export default function createGetPrimaryButtonStylesForIntent({
+  palette,
+  controlStyle
+}) {
+  if (controlStyle === 'gradients') return gradientStyle({ palette })
+  if (controlStyle === 'flat') return flatStyle({ palette })
+}
+
+function gradientStyle({ palette }) {
   /**
    * @param {String} startColor
    * @param {String} endColor
@@ -82,7 +90,20 @@ export default function createGetPrimaryButtonStylesForIntent({ palette }) {
     switch (intent) {
       case Intent.SUCCESS: {
         const { startColor, endColor } = primaryButtonGradients.success
+        const gradients = getLinearGradientWithStates(startColor, endColor)
+
         return {
+          styles: {
+            base: {
+              backgroundImage: gradients.base
+            },
+            hover: {
+              backgroundImage: gradients.hover
+            },
+            active: {
+              backgroundImage: gradients.active
+            }
+          },
           linearGradient: getLinearGradientWithStates(startColor, endColor),
           focusColor: tinycolor(startColor)
             .setAlpha(0.4)
@@ -91,8 +112,21 @@ export default function createGetPrimaryButtonStylesForIntent({ palette }) {
       }
       case Intent.WARNING: {
         const { startColor, endColor } = primaryButtonGradients.warning
+        const gradients = getLinearGradientWithStates(startColor, endColor)
+
         return {
-          linearGradient: getLinearGradientWithStates(startColor, endColor),
+          styles: {
+            base: {
+              backgroundImage: gradients.base
+            },
+            hover: {
+              backgroundImage: gradients.hover
+            },
+            active: {
+              backgroundImage: gradients.active
+            }
+          },
+          linearGradient: gradients,
           focusColor: tinycolor(startColor)
             .setAlpha(0.4)
             .toString()
@@ -100,8 +134,21 @@ export default function createGetPrimaryButtonStylesForIntent({ palette }) {
       }
       case Intent.DANGER: {
         const { startColor, endColor } = primaryButtonGradients.danger
+        const gradients = getLinearGradientWithStates(startColor, endColor)
+
         return {
-          linearGradient: getLinearGradientWithStates(startColor, endColor),
+          styles: {
+            base: {
+              backgroundImage: gradients.base
+            },
+            hover: {
+              backgroundImage: gradients.hover
+            },
+            active: {
+              backgroundImage: gradients.active
+            }
+          },
+          linearGradient: gradients,
           focusColor: tinycolor(startColor)
             .setAlpha(0.4)
             .toString()
@@ -109,12 +156,74 @@ export default function createGetPrimaryButtonStylesForIntent({ palette }) {
       }
       default: {
         const { startColor, endColor } = primaryButtonGradients.none
+        const gradients = getLinearGradientWithStates(startColor, endColor)
+
         return {
-          linearGradient: getLinearGradientWithStates(startColor, endColor),
+          styles: {
+            base: {
+              backgroundImage: gradients.base
+            },
+            hover: {
+              backgroundImage: gradients.hover
+            },
+            active: {
+              backgroundImage: gradients.active
+            }
+          },
+          linearGradient: gradients,
           focusColor: tinycolor(startColor)
             .setAlpha(0.4)
             .toString()
         }
+      }
+    }
+  }
+
+  return getPrimaryButtonStylesForIntent
+}
+
+const createFlatStyles = color => {
+  return {
+    styles: {
+      base: {
+        backgroundColor: color
+      },
+      hover: {
+        backgroundColor: tinycolor(color)
+          .darken(2)
+          .toString()
+      },
+      active: {
+        backgroundColor: tinycolor(color)
+          .darken(4)
+          .toString()
+      }
+    },
+    focusColor: tinycolor(color)
+      .setAlpha(0.4)
+      .toString()
+  }
+}
+
+function flatStyle({ palette }) {
+  /**
+   * Gradients in the default theme have a intentional hue shift.
+   * @param {Intent} intent - intent of the gradient.
+   * @return {Object} { base, hover, active }
+   */
+  const getPrimaryButtonStylesForIntent = intent => {
+    switch (intent) {
+      case Intent.SUCCESS: {
+        return createFlatStyles(palette.green.base)
+      }
+      case Intent.WARNING: {
+        return createFlatStyles(palette.orange.base)
+      }
+      case Intent.DANGER: {
+        return createFlatStyles(palette.red.base)
+      }
+      default: {
+        return createFlatStyles(palette.primary.base)
       }
     }
   }

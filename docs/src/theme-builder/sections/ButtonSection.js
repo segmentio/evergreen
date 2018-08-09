@@ -19,6 +19,7 @@ export default class ButtonSection extends React.Component {
     return (
       <Section
         title="Buttons"
+        fileName="ButtonSection.js"
         controls={
           <SegmentedControl
             width={280}
