@@ -20,11 +20,11 @@ const names = [
 export default class AvatarSection extends React.Component {
   state = {
     options: [
-      { label: 'Height 24', value: 24 },
-      { label: 'Height 32', value: 32 },
-      { label: 'Height 40', value: 40 }
+      { label: 'Size 32', value: 32 },
+      { label: 'Size 40', value: 40 },
+      { label: 'Size 56', value: 56 }
     ],
-    value: 32
+    value: 40
   }
   render() {
     const { state } = this
@@ -56,7 +56,7 @@ export default class AvatarSection extends React.Component {
                       color={color}
                       name={names[index]}
                       marginRight={12}
-                      size={40}
+                      size={state.value}
                     />
                   ))}
                 </Pane>
@@ -72,7 +72,7 @@ export default class AvatarSection extends React.Component {
                         color={color}
                         name={names[index]}
                         marginRight={12}
-                        size={40}
+                        size={state.value}
                       />
                     ))}
                   </Pane>
