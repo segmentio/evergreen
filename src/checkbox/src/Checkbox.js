@@ -110,6 +110,7 @@ class Checkbox extends PureComponent {
         cursor={disabled ? 'not-allowed' : 'pointer'}
         display="flex"
         marginY={16}
+        position="relative"
         {...props}
       >
         <Box
