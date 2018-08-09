@@ -49,6 +49,20 @@ export default class Sidebar extends React.Component {
     }, 2000)
   }
 
+  handleReset = () => {
+    if (history.pushState) {
+      const newurl =
+        window.location.protocol +
+        '//' +
+        window.location.host +
+        window.location.pathname
+
+      window.history.pushState({ path: newurl }, '', newurl)
+    } else {
+      window.location.search = ''
+    }
+  }
+
   render() {
     const { state } = this.props
 
@@ -98,6 +112,15 @@ export default class Sidebar extends React.Component {
             Copy theme URL
           </Button>
           {this.state.isCopied && <Text marginLeft={12}>Copied!</Text>}
+        </Pane>
+
+        <Pane borderBottom padding={12}>
+          <Heading size={300}>Reset theme</Heading>
+        </Pane>
+        <Pane background="white" padding={12} borderBottom>
+          <Button iconBefore="refresh" onClick={this.handleReset}>
+            Reset to default theme
+          </Button>
         </Pane>
       </Pane>
     )
