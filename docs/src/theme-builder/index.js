@@ -10,6 +10,7 @@ import ScalesSection from './sections/ScalesSection'
 import ButtonSection from './sections/ButtonSection'
 import AlertSection from './sections/AlertSection'
 import FormSection from './sections/FormSection'
+import PaneSection from './sections/PaneSection'
 
 function addThemeSeachQuery(object) {
   const url = new URL(window.location.href)
@@ -116,6 +117,7 @@ export default class ThemeBuilder extends React.Component {
               <AlertSection />
               <FormSection />
               <ScalesSection />
+              <PaneSection />
             </Pane>
           </Pane>
         </Pane>

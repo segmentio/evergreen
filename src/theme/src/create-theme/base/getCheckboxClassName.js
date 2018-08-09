@@ -75,7 +75,9 @@ export default function getCheckboxClassName({
               scales.neutral.N1A
             })`
           }
-        : {}),
+        : {
+            backgroundColor: scales.neutral.N2A
+          }),
       boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${
         scales.neutral.N2A
       }`

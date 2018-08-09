@@ -189,7 +189,12 @@ class Switch extends PureComponent {
           defaultChecked={defaultChecked}
           onChange={this.handleChange}
         />
-        <Box onClick={this.handleClick} height={height} width={height * 2}>
+        <Box
+          onClick={this.handleClick}
+          height={height}
+          width={height * 2}
+          position="relative"
+        >
           <Box
             height={height}
             width={height}
