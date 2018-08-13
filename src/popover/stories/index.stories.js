@@ -3,9 +3,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Popover } from '../../popover'
+import { Tooltip } from '../../tooltip'
 import { TextInputField } from '../../text-input'
 import { Pane } from '../../layers'
-import { Text } from '../../typography'
+import { Heading, Paragraph, Text } from '../../typography'
 import { Button } from '../../buttons'
 import { Position } from '../../positioner'
 import { Icon, IconNames } from '../../icon'
@@ -173,6 +174,28 @@ storiesOf('popover', module)
       </Popover>
     </Box>
   ))
+  .add('test jitter', () => (
+    <Box padding={120}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Popover
+        position={Position.BOTTOM_RIGHT}
+        content={
+          <Pane padding={12.3}>
+            <Text>
+              Lorem ipsum dolar set amet. Some content that keeps on going.
+            </Text>
+          </Pane>
+        }
+      >
+        <Button right={40} position="absolute">
+          Trigger Popover
+        </Button>
+      </Popover>
+    </Box>
+  ))
   .add('toggle button with children', () => (
     <Box padding={120}>
       {(() => {
@@ -183,6 +206,40 @@ storiesOf('popover', module)
         <Button marginRight={20}>
           <Icon icon={IconNames.CIRCLE_ARROW_DOWN} />
         </Button>
+      </Popover>
+    </Box>
+  ))
+  .add('Popover with tooltip', () => (
+    <Box padding={120}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Popover content={<PopoverContentWithTextInput />}>
+        <Tooltip content="Click me">
+          <Button marginRight={20}>Tooltip Card + Popover</Button>
+        </Tooltip>
+      </Popover>
+      <Popover content={<PopoverContentWithTextInput />}>
+        <Tooltip
+          appearance="card"
+          content={
+            <React.Fragment>
+              <Heading>Heading</Heading>
+              <Paragraph color="muted" marginTop={4}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </Paragraph>
+            </React.Fragment>
+          }
+          statelessProps={{
+            paddingY: 24,
+            paddingX: 24,
+            maxWidth: 280
+          }}
+        >
+          <Button>Tooltip + Popover</Button>
+        </Tooltip>
       </Popover>
     </Box>
   ))

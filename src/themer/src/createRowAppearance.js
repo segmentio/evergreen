@@ -1,14 +1,13 @@
 import createAppearance from './createAppearance'
 import missingStateWarning from './missingStateWarning'
 
-const hoverState = '&[data-isselecteable="true"]:hover'
-const focusState = '&[data-isselecteable="true"]:focus, &[aria-selected="true"]'
-const activeState =
-  '&[aria-current="true"], &[data-isselecteable="true"]:active'
+const hoverState = '&[data-isselectable="true"]:hover'
+const focusState = '&[data-isselectable="true"]:focus, &[aria-selected="true"]'
+const activeState = '&[aria-current="true"], &[data-isselectable="true"]:active'
 const currentState = '&[aria-current="true"]'
 
 const baseStyle = {
-  '&[data-isselecteable="true"]': {
+  '&[data-isselectable="true"]': {
     cursor: 'pointer'
   },
   outline: 'none'

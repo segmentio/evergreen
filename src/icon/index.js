@@ -1,3 +1,1 @@
-import Icon, { IconNames } from './src/Icon'
-
-export { Icon, IconNames }
+export { default as Icon, IconNames } from './src/Icon'

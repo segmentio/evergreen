@@ -90,7 +90,7 @@ class MenuOption extends React.PureComponent {
         className={themedClassName}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}
-        data-isselecteable="true"
+        data-isselectable="true"
         aria-checked={isSelected}
         height={40}
         display="flex"

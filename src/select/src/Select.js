@@ -43,6 +43,11 @@ class Select extends PureComponent {
     children: PropTypes.node,
 
     /**
+     * The initial value of an uncontrolled select
+     */
+    defaultValue: PropTypes.any,
+
+    /**
      * Function called when value changes.
      */
     onChange: PropTypes.func,
@@ -91,6 +96,7 @@ class Select extends PureComponent {
       name,
       height,
       children,
+      defaultValue,
       disabled,
       onChange,
       value,
@@ -105,13 +111,14 @@ class Select extends PureComponent {
     const textSize = theme.getTextSizeForControlHeight(height)
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
     const iconSize = theme.getIconSizeForSelect(height)
+    const iconMargin = height >= 36 ? 12 : 8
 
     return (
       <Box
         display="inline-flex"
         flex={1}
         position="relative"
-        width={200}
+        width="auto"
         height={height}
         {...props}
       >
@@ -121,6 +128,7 @@ class Select extends PureComponent {
           id={id}
           name={name}
           onChange={onChange}
+          defaultValue={defaultValue}
           value={value}
           required={required}
           autoFocus={autoFocus}
@@ -130,6 +138,8 @@ class Select extends PureComponent {
           borderRadius={borderRadius}
           textTransform="default"
           paddingLeft={Math.round(height / 3.2)}
+          // Provide enough space for auto-sizing select including the icon
+          paddingRight={iconMargin * 2 + iconSize}
         >
           {children}
         </Text>
@@ -140,7 +150,7 @@ class Select extends PureComponent {
           position="absolute"
           top="50%"
           marginTop={-iconSize / 2}
-          right={height >= 36 ? 12 : 8}
+          right={iconMargin}
           pointerEvents="none"
         />
       </Box>

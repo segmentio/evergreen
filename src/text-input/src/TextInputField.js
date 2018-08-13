@@ -64,11 +64,8 @@ export default class TextInputField extends PureComponent {
     inputHeight: 32
   }
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      id: (props.id || idCounter++).toString()
-    }
+  state = {
+    id: (this.props.id || idCounter++).toString()
   }
 
   render() {
@@ -96,7 +93,7 @@ export default class TextInputField extends PureComponent {
       ...props
     } = this.props
 
-    const { id } = this.state
+    const id = `TextInputField-${this.state.id}`
 
     /**
      * Split the wrapper props from the input props.

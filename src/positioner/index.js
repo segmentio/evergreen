@@ -1,2 +1,2 @@
-export Positioner from './src/Positioner'
-export Position from './src/Position'
+export { default as Positioner } from './src/Positioner'
+export { default as Position } from './src/Position'

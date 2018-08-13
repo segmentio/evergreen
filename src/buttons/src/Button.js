@@ -80,13 +80,12 @@ class Button extends PureComponent {
   }
 
   static defaultProps = {
-    intent: 'none',
     appearance: 'default',
-    isActive: false,
     height: 32,
-    paddingTop: 0,
+    intent: 'none',
+    isActive: false,
     paddingBottom: 0,
-    intent: 'none'
+    paddingTop: 0
   }
 
   static styles = {
@@ -170,7 +169,10 @@ class Button extends PureComponent {
         paddingBottom={paddingBottom}
         paddingRight={pr}
         paddingLeft={pl}
-        margin={0} // Removes weird margins in Safari
+        marginLeft={0} // Removes weird margins in Safari
+        marginRight={0} // Removes weird margins in Safari
+        marginTop={0} // Removes weird margins in Safari
+        marginBottom={0} // Removes weird margins in Safari
         size={textSize}
         color={null} // Prevent the Text color overriding the glamor appearanceStyle color
         height={height}

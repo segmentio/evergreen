@@ -49,6 +49,10 @@ module.exports = [
     path: '/components/colors'
   },
   {
+    name: 'Select',
+    path: '/components/select'
+  },
+  {
     name: 'Select Menu',
     path: '/components/select-menu'
   },

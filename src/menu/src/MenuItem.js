@@ -54,20 +54,30 @@ class MenuItem extends React.PureComponent {
     is: 'div',
     intent: 'none',
     appearance: 'default',
-    onClick: () => {},
-    onSelect: () => {},
-    onKeyPress: () => {}
+    onSelect: () => {}
   }
 
-  handleClick = () => {
-    this.props.onSelect()
-  }
+  handleClick = event => {
+    this.props.onSelect(event)
 
-  handleKeyPress = e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      this.props.onSelect()
-      e.preventDefault()
+    /* eslint-disable react/prop-types */
+    if (typeof this.props.onClick === 'function') {
+      this.props.onClick(event)
     }
+    /* eslint-enable react/prop-types */
+  }
+
+  handleKeyPress = event => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this.props.onSelect(event)
+      event.preventDefault()
+    }
+
+    /* eslint-disable react/prop-types */
+    if (typeof this.props.onKeyPress === 'function') {
+      this.props.onKeyPress(event)
+    }
+    /* eslint-enable react/prop-types */
   }
 
   render() {
@@ -78,7 +88,8 @@ class MenuItem extends React.PureComponent {
       appearance,
       secondaryText,
       intent,
-      icon
+      icon,
+      ...passthroughProps
     } = this.props
 
     const themedClassName = theme.getMenuItemClassName(appearance, 'none')
@@ -92,9 +103,10 @@ class MenuItem extends React.PureComponent {
         onKeyPress={this.handleKeyPress}
         height={icon ? 40 : 32}
         tabIndex={0}
-        data-isselecteable="true"
+        data-isselectable="true"
         display="flex"
         alignItems="center"
+        {...passthroughProps}
       >
         {icon && (
           <Icon

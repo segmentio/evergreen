@@ -1,2 +1,2 @@
-export Autocomplete from './src/Autocomplete'
-export AutocompleteItem from './src/AutocompleteItem'
+export { default as Autocomplete } from './src/Autocomplete'
+export { default as AutocompleteItem } from './src/AutocompleteItem'

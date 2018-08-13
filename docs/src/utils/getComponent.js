@@ -7,7 +7,6 @@ import buttonsDocs from '../../../src/buttons/docs'
 import autocompleteDocs from '../../../src/autocomplete/docs/'
 import comboboxDocs from '../../../src/combobox/docs/'
 // import badgesDocs from '../../src/badges/docs/'
-// import selectDocs from '../../src/select/docs/'
 import popoverDocs from '../../../src/popover/docs/'
 // import portalDocs from '../../src/portal/docs/'
 import textInputDocs from '../../../src/text-input/docs/'
@@ -29,6 +28,7 @@ import cornerDialogDocs from '../../../src/corner-dialog/docs/'
 import alertDocs from '../../../src/alert/docs/'
 import toasterDocs from '../../../src/toaster/docs/'
 import selectMenuDocs from '../../../src/select-menu/docs/'
+import selectDocs from '../../../src/select/docs/'
 
 const map = {
   radio: radioDocs,
@@ -41,6 +41,7 @@ const map = {
   layers: layersDocs,
   typography: typographyDocs,
   colors: colorsDocs,
+  select: selectDocs,
   'select menu': selectMenuDocs,
   'text input': textInputDocs,
   'search input': searchInputDocs,
