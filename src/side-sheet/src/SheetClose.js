@@ -99,11 +99,11 @@ const sheetCloseStyles = {
     marginBottom: 12,
     transform: `translateY(0)`,
     ...withAnimations(
-      css.keyframes('topRotate360InAnimation', {
+      css.keyframes('bottomRotate360InAnimation', {
         from: { transform: `translateY(200%) rotate(0deg)` },
         to: { transform: `translateY(0%), rotate(360deg)` }
       }),
-      css.keyframes('topRotate360OutAnimation', {
+      css.keyframes('bottomRotate360OutAnimation', {
         from: { transform: `translateY(0%) rotate(0deg)` },
         to: { transform: `translateY(200%), rotate(360deg)` }
       })
@@ -132,7 +132,7 @@ export default class SheetClose extends PureComponent {
       Position.RIGHT,
       Position.TOP,
       Position.BOTTOM
-    ])
+    ]).isRequired
   }
 
   render() {
