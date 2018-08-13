@@ -17,18 +17,26 @@ export default class Root extends React.Component {
     const { location } = this.props
     return (
       <Layout>
-        <div
-          style={{
-            height: '100vh',
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            flexGrow: 0
-          }}
-        >
-          <TopBar />
-          <ThemeBuilder location={location} />
-        </div>
+        {({ updateTheme, themeStyles }) => {
+          return (
+            <div
+              style={{
+                height: '100vh',
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%',
+                flexGrow: 0
+              }}
+            >
+              <TopBar />
+              <ThemeBuilder
+                location={location}
+                onUpdate={updateTheme}
+                themeStyles={themeStyles}
+              />
+            </div>
+          )
+        }}
       </Layout>
     )
   }

@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import logo from '../images/evergreen-logo-wordmark.svg'
+import { ThemeConsumer } from '../../../src/theme'
+import { Button } from '../../../src/buttons'
 import logoStandalone from '../images/evergreen-logo-icon.svg'
 
 export default class TopBar extends PureComponent {
@@ -9,7 +11,22 @@ export default class TopBar extends PureComponent {
     children: PropTypes.node
   }
 
-  static defaultProps = {}
+  handleRefresh = () => {
+    localStorage.removeItem('custom_theme_styles')
+    location.search = ''
+  }
+
+  renderCustomThemeControl = () => {
+    return (
+      <Button
+        iconBefore="refresh"
+        marginRight={12}
+        onClick={this.handleRefresh}
+      >
+        Reset to default theme
+      </Button>
+    )
+  }
 
   render() {
     const { children, ...props } = this.props
@@ -45,6 +62,13 @@ export default class TopBar extends PureComponent {
           </Link>
         </nav>
         <div className="TopBar-navRight">
+          <ThemeConsumer>
+            {theme => {
+              console.log(theme, theme.isCustomTheme)
+              if (theme.isCustomTheme) return this.renderCustomThemeControl()
+              return null
+            }}
+          </ThemeConsumer>
           <a
             className="TopBar-link TopBar-link--icon"
             href="https://github.com/segmentio/evergreen"

@@ -34,6 +34,8 @@
 }
 
 .TopBar-navRight {
+  display: flex;
+  align-items: center;
 }
 
 .TopBar-link {

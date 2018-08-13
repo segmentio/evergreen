@@ -50,17 +50,8 @@ export default class Sidebar extends React.Component {
   }
 
   handleReset = () => {
-    if (history.pushState) {
-      const newurl =
-        window.location.protocol +
-        '//' +
-        window.location.host +
-        window.location.pathname
-
-      window.history.pushState({ path: newurl }, '', newurl)
-    } else {
-      window.location.search = ''
-    }
+    localStorage.removeItem('custom_theme_styles')
+    location.search = ''
   }
 
   render() {

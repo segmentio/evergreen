@@ -1,6 +1,6 @@
 import createStyles from './createStyles'
-import * as defaultBase from './base/'
-import * as defaultHelpers from './helpers/'
+import * as defaultBase from './base'
+import * as defaultHelpers from './helpers'
 
 export default function createTheme(
   styleConfig = {},
