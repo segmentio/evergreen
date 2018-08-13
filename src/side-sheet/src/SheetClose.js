@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { css } from 'glamor'
 import { Icon } from '../../icon'
-import { Position } from '../../positioner'
+import { Position } from '../../constants'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,

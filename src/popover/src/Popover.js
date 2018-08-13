@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Position, Positioner } from '../../positioner'
+import { Positioner } from '../../positioner'
 import { Tooltip } from '../../tooltip'
+import { Position } from '../../constants'
 import PopoverStateless from './PopoverStateless'
 
 export default class Popover extends Component {

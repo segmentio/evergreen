@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
-import { Position, Positioner } from '../../positioner'
+import { Positioner } from '../../positioner'
+import { Position } from '../../constants'
 import TooltipStateless from './TooltipStateless'
 
 let idCounter = 0

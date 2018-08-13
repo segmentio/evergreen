@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from 'ui-box'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
-import { Position } from '../../positioner'
+import { Position } from '../../constants'
 import SheetClose from './SheetClose'
 
 const paneProps = {
