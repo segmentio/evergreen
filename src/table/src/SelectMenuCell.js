@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
 import { withTheme } from '../../theme'
 import { SelectMenu } from '../../select-menu'
+import { Icon } from '../../icon'
 import TextTableCell from './TextTableCell'
 import TableCell from './TableCell'
 
@@ -94,6 +95,7 @@ class SelectMenuCell extends React.PureComponent {
             <TextTableCell
               innerRef={this.onMainRef.bind(null, getRef)}
               isSelectable
+              rightView={<Icon icon="caret-down" color="muted" />}
               aria-haspopup
               aria-expanded={isShown}
               size={size}

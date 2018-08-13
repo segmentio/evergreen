@@ -3,11 +3,12 @@ import faker from 'faker'
 import { Table } from '../'
 import { Stack } from '../../stack'
 import { Pane } from '../../layers'
+import { IconButton } from '../../buttons'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
 // Generate a bunch of users.
-const users = range(1000).map(index => {
+const users = range(100).map(index => {
   const options = range(20).map(i => {
     const item = faker.commerce.productName()
     return {
@@ -19,9 +20,11 @@ const users = range(1000).map(index => {
 
   return {
     id: index,
+    isEditingName: false,
     name: faker.name.findName(),
     email: faker.internet.email(),
     options,
+    notes: '',
     selected: options[0].value
   }
 })
@@ -39,7 +42,9 @@ export default class EditableTable extends React.PureComponent {
           if (user.id === id) {
             return {
               ...user,
-              [key]: value
+              [key]: value,
+              // Always disable this.
+              isEditingName: false
             }
           }
 
@@ -67,12 +72,29 @@ export default class EditableTable extends React.PureComponent {
     })
   }
 
+  handleEditNameToggle = id => {
+    // Select a different product.
+    this.setState(state => {
+      return {
+        users: state.users.map(user => {
+          if (user.id === id) {
+            return {
+              ...user,
+              isEditingName: !user.isEditingName
+            }
+          }
+
+          return user
+        })
+      }
+    })
+  }
+
   render() {
     return (
       <Stack>
         {zIndex => {
           // Stack used for testing only. Not neccesary for functionality.
-          console.log(zIndex)
           return (
             <Pane
               border
@@ -84,6 +106,13 @@ export default class EditableTable extends React.PureComponent {
             >
               <Table flex={1} display="flex" flexDirection="column">
                 <Table.Head>
+                  <Table.TextHeaderCell
+                    borderRight="default"
+                    flex={0}
+                    flexBasis={80}
+                  >
+                    Id
+                  </Table.TextHeaderCell>
                   <Table.TextHeaderCell borderRight="default">
                     Name
                   </Table.TextHeaderCell>
@@ -91,12 +120,37 @@ export default class EditableTable extends React.PureComponent {
                     Email
                   </Table.TextHeaderCell>
                   <Table.TextHeaderCell>Product</Table.TextHeaderCell>
+                  <Table.TextHeaderCell>Notes</Table.TextHeaderCell>
                 </Table.Head>
                 <Table.VirtualBody flex={1} overscanCount={15}>
                   {this.state.users.map(user => {
                     return (
-                      <Table.Row key={user.email}>
+                      <Table.Row key={user.id}>
                         <Table.EditableCell
+                          borderRight="muted"
+                          disabled
+                          flex={0}
+                          flexBasis={80}
+                        >
+                          {user.id}
+                        </Table.EditableCell>
+                        <Table.EditableCell
+                          isSelectable={false}
+                          isEditing={user.isEditingName}
+                          onEditComplete={this.handleEditNameToggle.bind(
+                            null,
+                            user.id
+                          )}
+                          rightView={
+                            <IconButton
+                              icon="edit"
+                              height={24}
+                              onClick={this.handleEditNameToggle.bind(
+                                null,
+                                user.id
+                              )}
+                            />
+                          }
                           borderRight="muted"
                           onChange={this.handleChange.bind(
                             null,
@@ -117,6 +171,7 @@ export default class EditableTable extends React.PureComponent {
                           {user.email}
                         </Table.EditableCell>
                         <Table.SelectMenuCell
+                          borderRight="muted"
                           selectMenuProps={{
                             title: 'Product',
                             options: user.options,
@@ -126,6 +181,17 @@ export default class EditableTable extends React.PureComponent {
                         >
                           {user.selected}
                         </Table.SelectMenuCell>
+                        <Table.EditableCell
+                          borderRight="muted"
+                          placeholder="Notes..."
+                          onChange={this.handleChange.bind(
+                            null,
+                            user.id,
+                            'notes'
+                          )}
+                        >
+                          {user.notes}
+                        </Table.EditableCell>
                       </Table.Row>
                     )
                   })}

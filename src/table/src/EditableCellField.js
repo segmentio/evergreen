@@ -76,7 +76,11 @@ export default class EditableCellField extends React.PureComponent {
       if (isTableBody) {
         return ref
       }
-      ref = ref.parentElement
+      if (ref.parentElement) {
+        ref = ref.parentElement
+      } else {
+        return null
+      }
     }
 
     this.tableBodyRef = ref
@@ -89,15 +93,26 @@ export default class EditableCellField extends React.PureComponent {
     if (!targetRef) return
     const tableBodyRef = this.getTableBodyRef(targetRef)
 
-    const bounds = tableBodyRef.getBoundingClientRect()
+    const {
+      left,
+      top: targetTop,
+      height,
+      width
+    } = targetRef.getBoundingClientRect()
 
-    const { left, top, height, width } = targetRef.getBoundingClientRect()
+    let top
+    if (tableBodyRef) {
+      const bounds = tableBodyRef.getBoundingClientRect()
+      top = Math.min(Math.max(targetTop, bounds.top), bounds.bottom - height)
+    } else {
+      top = targetTop
+    }
 
     this.setState(
       () => {
         return {
           left,
-          top: Math.min(Math.max(top, bounds.top), bounds.bottom - height),
+          top,
           height,
           width
         }
@@ -122,6 +137,7 @@ export default class EditableCellField extends React.PureComponent {
     const { key } = e
     if (key === 'Escape' || key === 'Enter') {
       this.textareaRef.blur()
+      e.preventDefault()
     }
   }
 
