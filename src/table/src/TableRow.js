@@ -54,11 +54,21 @@ export default class TableRow extends PureComponent {
     }
   }
 
+  onRef = node => {
+    this.node = node
+  }
+
   handleKeyPress = e => {
     if (this.props.isSelectable) {
       if (e.key === 'Enter' || e.key === ' ') {
         this.props.onSelect()
-        e.preventDefault()
+
+        // NOTE: In scenarios where the target for key press is our
+        // tabIndex <Pane> below, prevent the default event action
+        // so that browser scroll will not occur.
+        if (e.target === this.node) {
+          e.preventDefault()
+        }
       }
     }
 
@@ -83,6 +93,7 @@ export default class TableRow extends PureComponent {
 
     return (
       <Pane
+        innerRef={this.onRef}
         display="flex"
         {...(isSelectable
           ? {

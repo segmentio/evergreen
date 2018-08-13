@@ -89,6 +89,17 @@ storiesOf('table', module)
       <TableRow>TableRow</TableRow>
     </Box>
   ))
+  .add('TableRow isSelectable with nested UI', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <TableRow isSelectable>
+        <input type="text" placeholder="type a space" />
+      </TableRow>
+    </Box>
+  ))
   .add('TableHeaderCell', () => (
     <Box padding={40}>
       {(() => {
