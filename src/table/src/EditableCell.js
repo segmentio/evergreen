@@ -18,7 +18,7 @@ class EditableCell extends React.PureComponent {
     * Makes the TableCell focusable.
     * Will add tabIndex={-1 || this.props.tabIndex}.
     */
-    isSelectable: PropTypes.bool,
+    isSelectable: PropTypes.bool.isRequired,
 
     /**
      * When true, the cell can't be edited.
@@ -147,7 +147,6 @@ class EditableCell extends React.PureComponent {
           onClick={this.handleClick}
           onDoubleClick={this.handleDoubleClick}
           onKeyDown={this.handleKeyDown}
-          size={size}
           cursor={disabled ? 'not-allowed' : isSelectable ? 'default' : 'text'}
           textProps={{
             size,

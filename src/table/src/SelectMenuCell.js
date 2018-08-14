@@ -20,7 +20,7 @@ class SelectMenuCell extends React.PureComponent {
     * Makes the TableCell focusable.
     * Will add tabIndex={-1 || this.props.tabIndex}.
     */
-    isSelectable: PropTypes.bool,
+    isSelectable: PropTypes.bool.isRequired,
 
     /**
      * When true, the cell can't be edited.
@@ -41,7 +41,8 @@ class SelectMenuCell extends React.PureComponent {
   }
 
   static defaultProps = {
-    size: 300
+    size: 300,
+    isSelectable: true
   }
 
   state = {
@@ -135,7 +136,6 @@ class SelectMenuCell extends React.PureComponent {
               }
               aria-haspopup
               aria-expanded={isShown}
-              size={size}
               cursor={
                 disabled ? 'not-allowed' : isSelectable ? 'default' : 'text'
               }
