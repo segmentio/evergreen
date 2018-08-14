@@ -147,7 +147,6 @@ class EditableCell extends React.PureComponent {
           onClick={this.handleClick}
           onDoubleClick={this.handleDoubleClick}
           onKeyDown={this.handleKeyDown}
-          size={size}
           cursor={disabled ? 'not-allowed' : isSelectable ? 'default' : 'text'}
           textProps={{
             size,
