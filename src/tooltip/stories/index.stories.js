@@ -20,5 +20,10 @@ storiesOf('tooltip', module).add('Tooltip', () => (
         Hover to trigger
       </Text>
     </Tooltip>
+    <Tooltip isShown={false} content="Should never see it">
+      <Text marginLeft={40} display="inline-block" cursor="help">
+        Disabled tooltip
+      </Text>
+    </Tooltip>
   </Box>
 ))

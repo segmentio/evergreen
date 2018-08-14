@@ -111,6 +111,12 @@ export default class Positioner extends PureComponent {
     this.state = initialState()
   }
 
+  componentWillUnmount() {
+    if (this.latestAnimationFrame) {
+      cancelAnimationFrame(this.latestAnimationFrame)
+    }
+  }
+
   getTargetRef = ref => {
     this.targetRef = ref
   }
@@ -124,23 +130,44 @@ export default class Positioner extends PureComponent {
     this.update()
   }
 
-  getTargetRect = () => this.targetRef.getBoundingClientRect()
-
-  update = () => {
+  update = (prevHeight = 0, prevWidth = 0) => {
     if (!this.props.isShown || !this.targetRef || !this.positionerRef) return
 
-    const targetRect = this.getTargetRect()
+    const targetRect = this.targetRef.getBoundingClientRect()
+    const hasEntered =
+      this.positionerRef.getAttribute('data-state') === 'entered'
+
     const viewportHeight =
       document.documentElement.clientHeight + window.scrollY
     const viewportWidth = document.documentElement.clientWidth + window.scrollX
+
+    let height
+    let width
+    if (hasEntered) {
+      // Only when the animation is done should we opt-in to `getBoundingClientRect`
+      const positionerRect = this.positionerRef.getBoundingClientRect()
+
+      // https://github.com/segmentio/evergreen/issues/255
+      // We need to ceil the width and height to prevent jitter when
+      // the window is zoomed (when `window.devicePixelRatio` is not an integer)
+      height = Math.ceil(positionerRect.height)
+      width = Math.ceil(positionerRect.width)
+    } else {
+      // When the animation is in flight use `offsetWidth/Height` which
+      // does not calculate the `transform` property as part of its result.
+      // There is still change on jitter during the animation (although unoticable)
+      // When the browser is zoomed in — we fix this with `Math.max`.
+      height = Math.max(this.positionerRef.offsetHeight, prevHeight)
+      width = Math.max(this.positionerRef.offsetWidth, prevWidth)
+    }
 
     const { rect, transformOrigin } = getPosition({
       position: this.props.position,
       targetRect,
       targetOffset: this.props.targetOffset,
       dimensions: {
-        height: this.positionerRef.offsetHeight,
-        width: this.positionerRef.offsetWidth
+        height,
+        width
       },
       viewport: {
         width: viewportWidth,
@@ -156,8 +183,8 @@ export default class Positioner extends PureComponent {
         transformOrigin
       },
       () => {
-        window.requestAnimationFrame(() => {
-          this.update()
+        this.latestAnimationFrame = requestAnimationFrame(() => {
+          this.update(height, width)
         })
       }
     )

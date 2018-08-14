@@ -174,6 +174,28 @@ storiesOf('popover', module)
       </Popover>
     </Box>
   ))
+  .add('test jitter', () => (
+    <Box padding={120}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Popover
+        position={Position.BOTTOM_RIGHT}
+        content={
+          <Pane padding={12.3}>
+            <Text>
+              Lorem ipsum dolar set amet. Some content that keeps on going.
+            </Text>
+          </Pane>
+        }
+      >
+        <Button right={40} position="absolute">
+          Trigger Popover
+        </Button>
+      </Popover>
+    </Box>
+  ))
   .add('toggle button with children', () => (
     <Box padding={120}>
       {(() => {

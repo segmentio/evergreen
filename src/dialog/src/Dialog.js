@@ -199,6 +199,7 @@ class Dialog extends React.Component {
       hasCancel,
       onCloseComplete,
       onOpenComplete,
+      onCancel,
       onConfirm,
       confirmLabel,
       isConfirmLoading,
@@ -276,7 +277,7 @@ class Dialog extends React.Component {
                   <Pane padding={16} float="right">
                     {/* Cancel should be first to make sure focus gets on it first. */}
                     {hasCancel && (
-                      <Button tabIndex={0} onClick={close}>
+                      <Button tabIndex={0} onClick={() => onCancel(close)}>
                         {cancelLabel}
                       </Button>
                     )}

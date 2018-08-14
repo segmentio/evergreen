@@ -161,6 +161,10 @@ export default class CornerDialog extends PureComponent {
     this.props.onCloseComplete()
   }
 
+  handleCancel = () => {
+    this.props.onCancel(this.handleClose)
+  }
+
   handleClose = () => {
     this.setState({ exiting: true })
   }
@@ -257,7 +261,7 @@ export default class CornerDialog extends PureComponent {
                     {confirmLabel}
                   </Button>
                   {hasCancel && (
-                    <Button onClick={this.handleClose}>{cancelLabel}</Button>
+                    <Button onClick={this.handleCancel}>{cancelLabel}</Button>
                   )}
                 </Pane>
               )}

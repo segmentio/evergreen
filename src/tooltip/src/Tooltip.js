@@ -156,8 +156,13 @@ export default class Tooltip extends PureComponent {
     } = this.props
     const { isShown: stateIsShown, isShownByTarget } = this.state
 
-    const shown =
+    let shown =
       (isShown || stateIsShown || isShownByTarget) && !this.isPopoverShown()
+
+    // Tooltip was explicitly set to not be shown
+    if (isShown === false) {
+      shown = false
+    }
 
     return (
       <Positioner

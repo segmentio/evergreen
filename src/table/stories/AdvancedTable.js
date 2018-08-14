@@ -1,6 +1,5 @@
 import React from 'react'
 import { filter } from 'fuzzaldrin-plus'
-import VirtualList from 'react-tiny-virtual-list'
 import { Table } from '../../table'
 import { Popover } from '../../popover'
 import { Position } from '../../positioner'
@@ -218,9 +217,9 @@ export default class AdvancedTable extends React.Component {
     )
   }
 
-  renderRow = ({ profile, style }) => {
+  renderRow = ({ profile }) => {
     return (
-      <Table.Row key={profile.id} style={style}>
+      <Table.Row key={profile.id}>
         <Table.Cell display="flex" alignItems="center">
           <Avatar name={profile.name} flexShrink={0} />
           <Text marginLeft={8} size={300} fontWeight={500}>
@@ -244,7 +243,7 @@ export default class AdvancedTable extends React.Component {
   render() {
     const items = this.filter(this.sort(profiles))
     return (
-      <Table>
+      <Table border>
         <Table.Head>
           <Table.SearchHeaderCell
             onChange={this.handleFilterChange}
@@ -254,18 +253,9 @@ export default class AdvancedTable extends React.Component {
           {this.renderLTVTableHeaderCell()}
           <Table.HeaderCell width={48} flex="none" />
         </Table.Head>
-        <Table.Body height={640}>
-          <VirtualList
-            height={640}
-            width="100%"
-            itemSize={48}
-            overscanCount={3}
-            itemCount={items.length}
-            renderItem={({ index, style }) => {
-              return this.renderRow({ profile: items[index], style })
-            }}
-          />
-        </Table.Body>
+        <Table.VirtualBody height={640}>
+          {items.map(item => this.renderRow({ profile: item }))}
+        </Table.VirtualBody>
       </Table>
     )
   }

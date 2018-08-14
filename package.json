@@ -1,6 +1,6 @@
 {
   "name": "evergreen-ui",
-  "version": "4.0.0-19",
+  "version": "4.0.0-26",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
@@ -79,6 +79,7 @@
     "eslint-config-xo-react": "^0.14.0",
     "eslint-plugin-react": "^7.5.1",
     "execa": "^0.8.0",
+    "faker": "^4.1.0",
     "file-loader": "^1.1.5",
     "fs-extra": "^4.0.3",
     "husky": "^0.14.3",
@@ -127,7 +128,7 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "180 KB"
+      "limit": "200 KB"
     }
   ]
 }
