@@ -20,7 +20,7 @@ class SelectMenuCell extends React.PureComponent {
     * Makes the TableCell focusable.
     * Will add tabIndex={-1 || this.props.tabIndex}.
     */
-    isSelectable: PropTypes.bool,
+    isSelectable: PropTypes.bool.isRequired,
 
     /**
      * When true, the cell can't be edited.
