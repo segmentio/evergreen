@@ -164,7 +164,6 @@ export default class EditableTable extends React.PureComponent {
                           </Table.SelectMenuCell>
                           <Table.EditableCell
                             isSelectable={this.state.isSelectable}
-                            borderRight="muted"
                             placeholder="Notes..."
                             onChange={this.handleChange.bind(
                               null,
