@@ -40,6 +40,15 @@ storiesOf('table', module)
       <EditableTable />
     </Box>
   ))
+  .add('Editable Table offset test ', () => (
+    <Box padding={24} paddingTop={800} height="100vh">
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <EditableTable />
+    </Box>
+  ))
   .add('Table.Cell', () => (
     <Box padding={40}>
       {(() => {

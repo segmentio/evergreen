@@ -164,7 +164,7 @@ export default class EditableCellField extends React.PureComponent {
         height={null}
         width={null}
         minHeight={null}
-        position="absolute"
+        position="fixed"
         defaultValue={value}
       />
     )
