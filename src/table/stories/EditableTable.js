@@ -3,7 +3,6 @@ import faker from 'faker'
 import { Table } from '../'
 import { Stack } from '../../stack'
 import { Pane } from '../../layers'
-import { IconButton } from '../../buttons'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
@@ -20,7 +19,6 @@ const users = range(100).map(index => {
 
   return {
     id: index,
-    isEditingName: false,
     name: faker.name.findName(),
     email: faker.internet.email(),
     options,
@@ -42,9 +40,7 @@ export default class EditableTable extends React.PureComponent {
           if (user.id === id) {
             return {
               ...user,
-              [key]: value,
-              // Always disable this.
-              isEditingName: false
+              [key]: value
             }
           }
 
@@ -63,24 +59,6 @@ export default class EditableTable extends React.PureComponent {
             return {
               ...user,
               selected: item.value
-            }
-          }
-
-          return user
-        })
-      }
-    })
-  }
-
-  handleEditNameToggle = id => {
-    // Select a different product.
-    this.setState(state => {
-      return {
-        users: state.users.map(user => {
-          if (user.id === id) {
-            return {
-              ...user,
-              isEditingName: !user.isEditingName
             }
           }
 
@@ -135,22 +113,6 @@ export default class EditableTable extends React.PureComponent {
                           {user.id}
                         </Table.EditableCell>
                         <Table.EditableCell
-                          isSelectable={false}
-                          isEditing={user.isEditingName}
-                          onEditComplete={this.handleEditNameToggle.bind(
-                            null,
-                            user.id
-                          )}
-                          rightView={
-                            <IconButton
-                              icon="edit"
-                              height={24}
-                              onClick={this.handleEditNameToggle.bind(
-                                null,
-                                user.id
-                              )}
-                            />
-                          }
                           borderRight="muted"
                           onChange={this.handleChange.bind(
                             null,

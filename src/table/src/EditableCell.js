@@ -43,22 +43,7 @@ class EditableCell extends React.PureComponent {
     /**
      * Function called when value changes. (value: string) => void.
      */
-    onChange: PropTypes.func,
-
-    /**
-     * When a value is passed, this component will be controlled.
-     */
-    isEditing: PropTypes.bool,
-
-    /**
-     * Only called when component is controlled and isSelectable={true}.
-     */
-    onEditStart: PropTypes.func,
-
-    /**
-     * Only called when component is controlled.
-     */
-    onEditComplete: PropTypes.func
+    onChange: PropTypes.func
   }
 
   static defaultProps = {
@@ -76,22 +61,7 @@ class EditableCell extends React.PureComponent {
   }
 
   state = {
-    isEditing: false,
     value: this.props.children
-  }
-
-  componentWillUnmount() {
-    if (this.isControlled() && this.props.isEditing) {
-      this.props.onEditComplete()
-    }
-  }
-
-  /**
-   * Return true when component is controlled.
-   */
-  isControlled = () => {
-    const { isEditing } = this.props
-    return isEditing !== null && isEditing !== undefined
   }
 
   onMainRef = ref => {
@@ -104,13 +74,10 @@ class EditableCell extends React.PureComponent {
 
   handleDoubleClick = () => {
     if (this.props.disabled || !this.props.isSelectable) return
-    if (this.isControlled()) {
-      this.props.onEditStart()
-    } else {
-      this.setState({
-        isEditing: true
-      })
-    }
+
+    this.setState({
+      isEditing: true
+    })
   }
 
   handleKeyDown = e => {
@@ -122,56 +89,32 @@ class EditableCell extends React.PureComponent {
      * as the value in the text field.
      */
     if (key.match(/^[a-z]{0,10}$/) && !e.metaKey && !e.ctrlKey && !e.altKey) {
-      if (this.isControlled()) {
-        this.props.onEditStart()
-        this.setState({
-          value: key
-        })
-      } else {
-        this.setState({
-          isEditing: true,
-          value: key
-        })
-      }
+      this.setState({
+        isEditing: true,
+        value: key
+      })
     } else if (key === 'Enter') {
-      if (this.isControlled()) {
-        this.props.onEditStart()
-      } else {
-        this.setState({
-          isEditing: true
-        })
-      }
+      this.setState({
+        isEditing: true
+      })
     }
   }
 
   handleFieldBlur = value => {
-    const { onChange, onEditComplete, isSelectable } = this.props
+    const { onChange, isSelectable } = this.props
     const currentValue = this.state.value
 
-    if (this.isControlled() && typeof onEditComplete === 'function') {
-      this.props.onEditComplete(value)
-
-      this.setState({
-        value
-      })
-    } else {
-      this.setState({
-        isEditing: false,
-        value
-      })
-    }
+    this.setState({
+      isEditing: false,
+      value
+    })
 
     if (currentValue !== value && typeof onChange === 'function') {
       onChange(value)
     }
 
-    if (this.mainRef) {
-      if (isSelectable) {
-        this.mainRef.focus()
-      } else {
-        const element = this.mainRef.querySelector('button')
-        if (element) element.focus()
-      }
+    if (this.mainRef && isSelectable) {
+      this.mainRef.focus()
     }
   }
 
@@ -191,19 +134,9 @@ class EditableCell extends React.PureComponent {
       disabled,
       placeholder,
       isSelectable,
-      isEditing: propsIsEditing,
-      onEditComplete,
       ...props
     } = this.props
-    const { isEditing: stateIsEditing, value } = this.state
-
-    let isEditing
-    if (this.isControlled()) {
-      // Controlled usage.
-      isEditing = propsIsEditing
-    } else {
-      isEditing = stateIsEditing
-    }
+    const { isEditing, value } = this.state
 
     return (
       <React.Fragment>
