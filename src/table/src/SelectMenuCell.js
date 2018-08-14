@@ -16,6 +16,22 @@ class SelectMenuCell extends React.PureComponent {
      */
     ...TableCell.propTypes,
 
+    /*
+    * Makes the TableCell focusable.
+    * Will add tabIndex={-1 || this.props.tabIndex}.
+    */
+    isSelectable: PropTypes.bool,
+
+    /**
+     * When true, the cell can't be edited.
+     */
+    disabled: PropTypes.bool,
+
+    /**
+     * Optional placeholder when children is falsy.
+     */
+    placeholder: PropTypes.node,
+
     /**
      * The size used for the TextTableCell and Textarea.
      */
@@ -68,10 +84,19 @@ class SelectMenuCell extends React.PureComponent {
     this.overlayRef = ref
   }
 
-  handleKeyDown = (toggle, e) => {
+  handleKeyDown = (toggle, isShown, e) => {
     if (e.key === 'Enter') {
       e.preventDefault()
       e.stopPropagation()
+
+      if (!isShown && this.props.isSelectable && !this.props.disabled) {
+        toggle()
+      }
+    }
+  }
+
+  handleDoubleClick = (toggle, isShown) => {
+    if (!isShown && this.props.isSelectable && !this.props.disabled) {
       toggle()
     }
   }
@@ -81,7 +106,17 @@ class SelectMenuCell extends React.PureComponent {
   }
 
   render() {
-    const { children, theme, size, selectMenuProps, ...props } = this.props
+    const {
+      children,
+      theme,
+      size,
+      selectMenuProps,
+      disabled,
+      placeholder,
+      isSelectable,
+      textProps = {},
+      ...props
+    } = this.props
     const { targetWidth } = this.state
 
     return (
@@ -94,22 +129,26 @@ class SelectMenuCell extends React.PureComponent {
           return (
             <TextTableCell
               innerRef={this.onMainRef.bind(null, getRef)}
-              isSelectable
-              rightView={<Icon icon="caret-down" color="muted" />}
+              isSelectable={isSelectable && !disabled}
+              rightView={
+                isSelectable ? <Icon icon="caret-down" color="muted" /> : null
+              }
               aria-haspopup
               aria-expanded={isShown}
               size={size}
-              cursor="default"
+              cursor={
+                disabled ? 'not-allowed' : isSelectable ? 'default' : 'text'
+              }
               textProps={{
-                size
+                size,
+                opacity: disabled || (!children && placeholder) ? 0.5 : 1,
+                ...textProps
               }}
-              onKeyDown={this.handleKeyDown.bind(null, toggle)}
-              onDoubleClick={() => {
-                if (!isShown) toggle()
-              }}
+              onKeyDown={this.handleKeyDown.bind(null, toggle, isShown)}
+              onDoubleClick={this.handleDoubleClick.bind(null, toggle, isShown)}
               {...props}
             >
-              {children}
+              {children ? children : placeholder}
             </TextTableCell>
           )
         }}

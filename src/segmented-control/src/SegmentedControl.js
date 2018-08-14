@@ -21,20 +21,31 @@ export default class SegmentedControl extends PureComponent {
     options: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.node.isRequired,
-        value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-          .isRequired
+        value: PropTypes.oneOfType([
+          PropTypes.number,
+          PropTypes.string,
+          PropTypes.bool
+        ]).isRequired
       })
     ).isRequired,
 
     /**
      * The current value of the Segmented Control when controlled.
      */
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    value: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.bool
+    ]),
 
     /**
      * The default value of the Segmented Control when uncontrolled.
      */
-    defaultValue: PropTypes.string,
+    defaultValue: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.bool
+    ]),
 
     /**
      * Function called when the value changes.
@@ -59,21 +70,30 @@ export default class SegmentedControl extends PureComponent {
   constructor(props, context) {
     super(props, context)
 
+    let value = props.defaultValue
+    if (typeof value === 'undefined' || value === null) {
+      value = props.options[0].value
+    }
+
     this.state = {
-      value: String(props.defaultValue || props.options[0].value)
+      value
     }
 
     this.name = `SegmentedControl-${radioCount}`
     radioCount += 1
   }
 
+  isControlled = () => {
+    return typeof this.props.value !== 'undefined' && this.props.value !== null
+  }
+
   handleChange = value => {
     // Save a render cycle when it's a controlled input
-    if (!this.props.value) {
+    if (!this.isControlled()) {
       this.setState({ value })
     }
 
-    if (this.props.onChange) {
+    if (typeof this.props.onChange === 'function') {
       this.props.onChange(value)
     }
   }
@@ -90,24 +110,30 @@ export default class SegmentedControl extends PureComponent {
     } = this.props
 
     // Allows it to behave like a controlled input
-    const value = this.props.value || this.state.value
+    let value = this.state.value
+    if (this.isControlled()) {
+      value = this.props.value
+    }
+
     return (
       <Box display="flex" marginRight={-1} height={height} {...props}>
-        {options.map((option, index) => (
-          <SegmentedControlRadio
-            key={option.value}
-            id={this.name + index}
-            name={name || this.name}
-            label={option.label}
-            value={String(option.value)}
-            height={height}
-            checked={value === option.value}
-            onChange={this.handleChange}
-            appearance="default"
-            isFirstItem={index === 0}
-            isLastItem={index === options.length - 1}
-          />
-        ))}
+        {options.map((option, index) => {
+          return (
+            <SegmentedControlRadio
+              key={option.value}
+              id={this.name + index}
+              name={name || this.name}
+              label={option.label}
+              value={String(option.value)}
+              height={height}
+              checked={value === option.value}
+              onChange={this.handleChange.bind(null, option.value)}
+              appearance="default"
+              isFirstItem={index === 0}
+              isLastItem={index === options.length - 1}
+            />
+          )
+        })}
       </Box>
     )
   }
