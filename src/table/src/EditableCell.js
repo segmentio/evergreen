@@ -134,6 +134,7 @@ class EditableCell extends React.PureComponent {
       disabled,
       placeholder,
       isSelectable,
+      textProps = {},
       ...props
     } = this.props
     const { isEditing, value } = this.state
@@ -141,16 +142,17 @@ class EditableCell extends React.PureComponent {
     return (
       <React.Fragment>
         <TextTableCell
-          isSelectable={isSelectable && !disabled}
           innerRef={this.onMainRef}
+          isSelectable={isSelectable && !disabled}
           onClick={this.handleClick}
           onDoubleClick={this.handleDoubleClick}
           onKeyDown={this.handleKeyDown}
           size={size}
-          cursor={disabled ? 'not-allowed' : 'default'}
+          cursor={disabled ? 'not-allowed' : isSelectable ? 'default' : 'text'}
           textProps={{
             size,
-            opacity: disabled || (!children && placeholder) ? 0.5 : 1
+            opacity: disabled || (!children && placeholder) ? 0.5 : 1,
+            ...textProps
           }}
           {...props}
         >
