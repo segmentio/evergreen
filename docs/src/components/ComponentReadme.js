@@ -41,7 +41,9 @@ export default class ComponentReadme extends PureComponent {
               {subTitle}{' '}
               <a
                 className="ComponentReadme-githubLink"
-                href={`https://github.com/segmentio/evergreen/tree/master/src/${name}`}
+                href={`https://github.com/segmentio/evergreen/tree/master/src/${name
+                  .toLowerCase()
+                  .replace(/\s+/g, '-')}`}
                 target="_blank"
               >
                 View on GitHub
