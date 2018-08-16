@@ -170,11 +170,23 @@ export default class TableVirtualBody extends PureComponent {
     if (this.state.isIntegerHeight) return
 
     // Return if we are in a weird edge case in which the ref is no longer valid.
-    if (!this.paneRef) return
+    if (this.paneRef) {
+      const calculatedHeight = this.paneRef.offsetHeight
 
-    // Save the calculated height which is needed for the VirtualList.
-    this.setState({
-      calculatedHeight: this.paneRef.offsetHeight
+      if (calculatedHeight > 0) {
+        // Save the calculated height which is needed for the VirtualList.
+        this.setState({
+          calculatedHeight
+        })
+
+        // Prevent updateOnResize being called recursively when there is a valid height.
+        return
+      }
+    }
+
+    // When height is still 0 (or paneRef is not valid) try recursively until success.
+    requestAnimationFrame(() => {
+      this.updateOnResize()
     })
   }
 
