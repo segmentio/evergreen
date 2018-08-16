@@ -84,7 +84,7 @@ export default {
         items: [
           {
             name: 'Button',
-            tags: ['icon button', 'button'],
+            tags: ['icon button', 'button', 'action'],
             image: Button
           },
           {
