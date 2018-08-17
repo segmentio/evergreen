@@ -45,10 +45,8 @@ class TableCell extends PureComponent {
 
   static defaultProps = {
     appearance: 'default',
-    onClick: () => {},
     onSelect: () => {},
-    onDeselect: () => {},
-    onKeyPress: () => {}
+    onDeselect: () => {}
   }
 
   static styles = {
@@ -91,6 +89,12 @@ class TableCell extends PureComponent {
 
     if (typeof this.props.innerRef === 'function') {
       this.props.innerRef(ref)
+    }
+  }
+
+  handleClick = e => {
+    if (typeof this.props.onClick === 'function') {
+      this.props.onClick(e)
     }
   }
 

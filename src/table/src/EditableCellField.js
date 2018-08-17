@@ -35,7 +35,12 @@ export default class EditableCellField extends React.PureComponent {
     /**
      * Called when the textarea is blurred, pass the value back to the cell.
      */
-    onBlur: PropTypes.func.isRequired,
+    onChangeComplete: PropTypes.func.isRequired,
+
+    /**
+     * Called when Escape is hit or componentWillUnmount.
+     */
+    onCancel: PropTypes.func.isRequired,
 
     /**
      * Text size of the textarea.
@@ -65,6 +70,7 @@ export default class EditableCellField extends React.PureComponent {
 
   componentWillUnmount() {
     cancelAnimationFrame(this.latestAnimationFrame)
+    this.props.onCancel()
   }
 
   getTableBodyRef = targetRef => {
@@ -130,12 +136,14 @@ export default class EditableCellField extends React.PureComponent {
   }
 
   handleBlur = () => {
-    if (this.textareaRef) this.props.onBlur(this.textareaRef.value)
+    if (this.textareaRef) this.props.onChangeComplete(this.textareaRef.value)
   }
 
   handleKeyDown = e => {
     const { key } = e
-    if (key === 'Escape' || key === 'Enter') {
+    if (key === 'Escape') {
+      this.props.onCancel()
+    } else if (key === 'Enter') {
       this.textareaRef.blur()
       e.preventDefault()
     }

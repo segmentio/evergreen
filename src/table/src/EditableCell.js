@@ -100,7 +100,7 @@ class EditableCell extends React.PureComponent {
     }
   }
 
-  handleFieldBlur = value => {
+  handleFieldChangeComplete = value => {
     const { onChange, isSelectable } = this.props
     const currentValue = this.state.value
 
@@ -166,7 +166,7 @@ class EditableCell extends React.PureComponent {
                   getTargetRef={() => this.mainRef}
                   value={value}
                   onEscape={this.handleFieldEscape}
-                  onBlur={this.handleFieldBlur}
+                  onChangeComplete={this.handleFieldChangeComplete}
                   onCancel={this.handleFieldCancel}
                   size={size}
                 />
