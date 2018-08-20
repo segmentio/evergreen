@@ -142,7 +142,7 @@ class Radio extends PureComponent {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          marginTop={size === 12 ? 2 : 3}
+          marginTop={2}
           width={size}
           height={size}
         >

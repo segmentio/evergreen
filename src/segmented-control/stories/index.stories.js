@@ -32,8 +32,8 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
     </Component>
     <Component
       initialState={{
-        options: [{ label: 'On', value: 'on' }, { label: 'Off', value: 'off' }],
-        value: 'on'
+        options: [{ label: 'On', value: true }, { label: 'Off', value: false }],
+        value: true
       }}
     >
       {({ state, setState }) => (
@@ -44,9 +44,18 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
           height={24}
           options={state.options}
           value={state.value}
-          onChange={value => setState({ value })}
+          onChange={value => {
+            setState({ value })
+          }}
         />
       )}
     </Component>
+    <SegmentedControl
+      marginTop={24}
+      width={80}
+      height={24}
+      options={[{ label: 'On', value: true }, { label: 'Off', value: false }]}
+      defaultValue={false}
+    />
   </Box>
 ))
