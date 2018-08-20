@@ -100,7 +100,7 @@ const examples = [
     scope
   },
   {
-    title: 'Toasts with Custom Description',
+    title: 'Toasts with Custom Duration',
     description: (
       <p>
         It is possible to add a custom duration when showing a toast. The
