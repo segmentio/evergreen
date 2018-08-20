@@ -87,7 +87,7 @@ class TextInput extends PureComponent {
   }
   handleValueCase() {
     if ('value' in this.props) {
-      console.log('Input has controlled value prop')
+      // Console.log('Input has controlled value prop')
       return this.props.value
     }
     return this.state.value
