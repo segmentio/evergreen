@@ -51,6 +51,28 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
       </Autocomplete>
     </Box>
     <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Autocomplete
+        title="Starwars names with isClearable"
+        onChange={handleChange}
+        items={items}
+      >
+        {({ getInputProps, getRef, inputValue, clearSelection }) => (
+          <TextInput
+            placeholder="Starwars names and isClearable"
+            value={inputValue}
+            innerRef={ref => getRef(ref)}
+            {...getInputProps()}
+            onClear={clearSelection}
+            isClearable
+          />
+        )}
+      </Autocomplete>
+    </Box>
+    <Box padding={40}>
       <Autocomplete
         title="Starwars names"
         onChange={handleChange}

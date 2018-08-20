@@ -2,6 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import Component from '@reactions/component'
 import { TextInputField, TextInput } from '../../text-input'
 import { Text, Label, Heading } from '../../typography'
 import { Pane, Card } from '../../layers'
@@ -74,13 +75,34 @@ storiesOf('text-input', module)
             <Label htmlFor={24} size={300} display="block" marginBottom={4}>
               Height 24
             </Label>
-            <TextInput appearance={appearance} height={24} name={24} id={24} />
+            <TextInput
+              appearance={appearance}
+              height={24}
+              name={24}
+              id={24}
+              placeholder="An isClearable, uncontrolled input"
+              isClearable
+            />
           </Box>
           <Box marginBottom={24}>
             <Label htmlFor={28} size={300} display="block" marginBottom={4}>
               Height 28
             </Label>
-            <TextInput appearance={appearance} height={28} name={28} id={28} />
+            <Component initialState={{ inputValue: '' }}>
+              {({ setState, state }) => (
+                <TextInput
+                  appearance={appearance}
+                  height={28}
+                  name={28}
+                  id={28}
+                  value={state.inputValue}
+                  placeholder="An isClearable, controlled input"
+                  onClear={() => setState({ inputValue: '' })}
+                  onChange={e => setState({ inputValue: e.target.value })}
+                  isClearable
+                />
+              )}
+            </Component>
           </Box>
           <Box marginBottom={24}>
             <Label htmlFor={36} size={400} display="block" marginBottom={4}>
@@ -107,6 +129,7 @@ storiesOf('text-input', module)
         label="Default text input field"
         description="This is a description."
         placeholder="Placeholder text"
+        isClearable
       />
       <TextInputField
         id="ids-are-optional"
@@ -131,6 +154,8 @@ storiesOf('text-input', module)
               description="This is a description."
               value={state.value}
               onChange={e => setState({ value: e.target.value })}
+              onClear={() => setState({ value: '' })}
+              isClearable
             />
           )
         }}
