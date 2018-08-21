@@ -1,4 +1,4 @@
-import Position from './Position'
+import { Position } from '../../constants'
 
 /**
  * Function to create a Rect.

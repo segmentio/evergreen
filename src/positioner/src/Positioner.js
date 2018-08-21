@@ -3,9 +3,8 @@ import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack/'
-import { StackingOrder } from '../../constants'
+import { StackingOrder, Position } from '../../constants'
 import getPosition from './getPosition'
-import Position from './Position'
 
 const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
@@ -41,7 +40,14 @@ export default class Positioner extends PureComponent {
      * The position the element that is being positioned is on.
      * Smart positioning might override this.
      */
-    position: PropTypes.oneOf(Object.keys(Position)).isRequired,
+    position: PropTypes.oneOf([
+      Position.TOP,
+      Position.TOP_LEFT,
+      Position.TOP_RIGHT,
+      Position.BOTTOM,
+      Position.BOTTOM_LEFT,
+      Position.BOTTOM_RIGHT
+    ]).isRequired,
 
     /**
      * When true, show the element being positioned.

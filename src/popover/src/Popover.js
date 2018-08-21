@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Position, Positioner } from '../../positioner'
+import { Positioner } from '../../positioner'
 import { Tooltip } from '../../tooltip'
+import { Position } from '../../constants'
 import PopoverStateless from './PopoverStateless'
 
 export default class Popover extends Component {
@@ -9,7 +10,14 @@ export default class Popover extends Component {
     /**
      * The position the Popover is on. Smart positioning might override this.
      */
-    position: PropTypes.oneOf(Object.keys(Position)),
+    position: PropTypes.oneOf([
+      Position.TOP,
+      Position.TOP_LEFT,
+      Position.TOP_RIGHT,
+      Position.BOTTOM,
+      Position.BOTTOM_LEFT,
+      Position.BOTTOM_RIGHT
+    ]),
 
     /**
      * When true, the Popover is manually shown.

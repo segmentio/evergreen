@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import arrify from 'arrify'
 import { Popover } from '../../popover'
-import { Position } from '../../positioner'
+import { Position } from '../../constants'
 import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
 import SelectedPropType from './SelectedPropType'
@@ -63,7 +63,14 @@ export default class SelectMenu extends PureComponent {
     /**
      * The position of the Select Menu.
      */
-    position: PropTypes.oneOf(Object.keys(Position)),
+    position: PropTypes.oneOf([
+      Position.TOP,
+      Position.TOP_LEFT,
+      Position.TOP_RIGHT,
+      Position.BOTTOM,
+      Position.BOTTOM_LEFT,
+      Position.BOTTOM_RIGHT
+    ]),
 
     /**
      * Can be a function that returns a node, or a node itself, that is
