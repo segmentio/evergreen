@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import uniqueId from 'lodash/uniqueId'
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import * as components from 'evergreen-ui'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 
 export default class Playground extends React.Component {
@@ -58,7 +60,7 @@ export default class Playground extends React.Component {
     return (
       <LiveProvider
         theme="evergreen"
-        scope={{ ReactDOM, ...scope }}
+        scope={{ ReactDOM, ...components, ...scope }}
         code={codeText}
         mountStylesheet={false}
       >

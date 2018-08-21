@@ -1,8 +1,8 @@
 .Content {
-  & tt,
-  & code,
-  & kbd,
-  & samp {
+  & > tt,
+  & > code,
+  & > kbd,
+  & > samp {
     font-family: var(--font-mono);
     background-color: var(--turquoise-15A);
     color: var(--turquoise-1000);
@@ -113,7 +113,7 @@
     margin-bottom: 16px;
   }
 
-  & pre:not(.prism-code) {
+  /* & pre:not(.prism-code) {
     background-color: var(--neutral-10A);
     padding: 16px;
     overflow-x: auto;
@@ -123,5 +123,5 @@
       padding: 0;
       line-height: 22px;
     }
-  }
+  } */
 }

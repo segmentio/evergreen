@@ -15,6 +15,11 @@
   }
 }
 
+.MDXPage .Playground {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
 .Playground[data-isPreviewEntered='false'] {
   &:hover {
     background-color: var(--neutral-20);
