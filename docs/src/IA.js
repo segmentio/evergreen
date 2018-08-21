@@ -36,6 +36,8 @@ import Typography from './images/illustrations/Typography.png'
  * Information Architecture.
  * - Foundation
  * - Components
+ *
+ * The `id` property is used for routing and also maps to the filename.
  */
 
 export default {
@@ -44,11 +46,13 @@ export default {
     description: 'Styles and primitive components. Start here.',
     items: [
       {
+        id: 'layout-primitives',
         name: 'Layout Primitives',
         tags: ['pane', 'card', 'box', 'layout'],
         image: LayoutPrimitive
       },
       {
+        id: 'typography',
         name: 'Typography',
         tags: [
           'heading',
@@ -64,11 +68,13 @@ export default {
         image: Typography
       },
       {
+        id: 'colors',
         name: 'Colors',
         tags: ['color'],
         image: Colors
       },
       {
+        id: 'icons',
         name: 'Icons',
         tags: ['icon'],
         image: Icons
@@ -83,23 +89,27 @@ export default {
         title: 'Buttons & Atomic Elements',
         items: [
           {
+            id: 'button',
             name: 'Button',
             tags: ['icon button', 'button', 'action'],
             image: Button
           },
           {
+            id: 'tab',
             name: 'Tab',
-            tags: ['tab'],
+            tags: ['tab', 'tab list', 'tab navigation', 'navigation'],
             image: Tab
           },
           {
+            id: 'badge-and-pill',
             name: 'Badge & Pill',
-            tags: ['badge', 'pills'],
+            tags: ['badge', 'pills', 'tag'],
             image: BadgePill
           },
           {
+            id: 'avatar',
             name: 'Avatar',
-            tags: ['avatar'],
+            tags: ['avatar', 'image', 'user'],
             image: Avatar
           }
         ]
@@ -108,63 +118,88 @@ export default {
       {
         title: 'Text Inputs & File Uploading',
         items: [
-          { name: 'Text Input', image: TextInput },
-          { name: 'Search Input', image: SearchInput },
-          { name: 'Textarea', image: Textarea },
-          { name: 'Autocomplete', image: Autocomplete },
-          { name: 'Filepicker', image: Filepicker }
+          { id: 'text-input', name: 'Text Input', image: TextInput },
+          { id: 'search-input', name: 'Search Input', image: SearchInput },
+          { id: 'textarea', name: 'Textarea', image: Textarea },
+          { id: 'autocomplete', name: 'Autocomplete', image: Autocomplete },
+          { id: 'filepicker', name: 'Filepicker', image: Filepicker }
         ]
       },
       {
         title: 'Selects & Dropdown Menus',
         items: [
-          { name: 'Select', image: Select },
-          { name: 'Combobox', tags: ['dropdown', 'menu'], image: Combobox },
+          { id: 'select', name: 'Select', image: Select },
           {
+            id: 'combobox',
+            name: 'Combobox',
+            tags: ['dropdown', 'menu'],
+            image: Combobox
+          },
+          {
+            id: 'select-menu',
             name: 'Select Menu',
             tags: ['dropdown', 'menu'],
             image: SelectMenu
           },
-          { name: 'Popover', tags: ['dropdown'], image: Popover },
-          { name: 'Menu', tags: ['dropdown'], image: Menu }
+          {
+            id: 'popover',
+            name: 'Popover',
+            tags: ['dropdown'],
+            image: Popover
+          },
+          { id: 'menu', name: 'Menu', tags: ['dropdown'], image: Menu }
         ]
       },
       {
         title: 'Toggles',
         items: [
-          { name: 'Checkbox', image: Checkbox },
-          { name: 'Radio', image: Radio },
+          { id: 'checkbox', name: 'Checkbox', image: Checkbox },
+          { id: 'radio', name: 'Radio', image: Radio },
           {
+            id: 'segmented-control',
             name: 'Segmented Control',
             tags: ['button group'],
             image: SegmentedControl
           },
-          { name: 'Switch', image: Switch }
+          { id: 'switch', name: 'Switch', image: Switch }
         ]
       },
       {
         title: 'Feedback Indicators',
         items: [
           {
+            id: 'toaster',
             name: 'Toaster',
             tags: ['notifications', 'messages'],
             image: Toaster
           },
           {
+            id: 'alert',
             name: 'Alert',
             tags: ['banners', 'notification', 'messages', 'inline alert'],
             image: Alert
           },
-          { name: 'Spinner', tags: ['loading', 'indicator'], image: Spinner }
+          {
+            id: 'spinner',
+            name: 'Spinner',
+            tags: ['loading', 'indicator'],
+            image: Spinner
+          }
         ]
       },
       {
         title: 'Overlays',
         items: [
-          { name: 'Dialog', tags: ['modal'], image: Dialog },
-          { name: 'Side Sheet', tags: ['drawer', 'sheet'], image: SideSheet },
-          { name: 'Tooltip', image: Tooltip },
+          { id: 'dialog', name: 'Dialog', tags: ['modal'], image: Dialog },
           {
+            id: 'side-sheet',
+            name: 'Side Sheet',
+            tags: ['drawer', 'sheet'],
+            image: SideSheet
+          },
+          { id: 'tooltip', name: 'Tooltip', image: Tooltip },
+          {
+            id: 'corner-dialog',
             name: 'Corner Dialog',
             tags: ['notification', 'message'],
             image: CornerDialog
@@ -173,17 +208,39 @@ export default {
       },
       {
         title: 'Lists & Tables',
-        items: [{ name: 'Table', image: Table }]
+        items: [
+          {
+            id: 'table',
+            name: 'Table',
+            image: Table,
+            tags: [
+              'list',
+              'row',
+              'cell',
+              'TH',
+              'TR',
+              'THEAD',
+              'TBODY',
+              'table body'
+            ]
+          }
+        ]
       },
       {
         title: 'Utilities & Helpers',
         items: [
           {
+            id: 'portal',
             name: 'Portal',
             image: Portal
           },
-          { name: 'Positioner', image: Positioner },
-          { name: 'Form Field', image: FormField }
+          { id: 'positioner', name: 'Positioner', image: Positioner },
+          {
+            id: 'form-field',
+            name: 'Form Field',
+            image: FormField,
+            tags: ['validation message', 'label']
+          }
         ]
       }
     ]

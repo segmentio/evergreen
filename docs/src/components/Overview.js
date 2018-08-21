@@ -2,23 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { filter } from 'fuzzaldrin-plus'
 import { SearchInput } from '../../../src'
-
-class OverviewItem extends React.PureComponent {
-  static propTypes = {
-    children: PropTypes.node,
-    image: PropTypes.string
-  }
-
-  render() {
-    const { children, image } = this.props
-    return (
-      <a href="" className="OverviewItem">
-        <img className="OverviewItem-image" src={image} alt={children} />
-        <span className="OverviewItem-label">{children}</span>
-      </a>
-    )
-  }
-}
+import OverviewItem from './OverviewItem'
 
 export default class Overview extends React.PureComponent {
   static propTypes = {
@@ -88,7 +72,7 @@ export default class Overview extends React.PureComponent {
             <div className="Overview-groupItems">
               {ia.foundation.items.map(item => {
                 return (
-                  <OverviewItem key={item.name} image={item.image}>
+                  <OverviewItem key={item.name} id={item.id} image={item.image}>
                     {item.name}
                   </OverviewItem>
                 )
@@ -110,7 +94,11 @@ export default class Overview extends React.PureComponent {
                     <div className="Overview-groupItems">
                       {group.items.map(item => {
                         return (
-                          <OverviewItem key={item.name} image={item.image}>
+                          <OverviewItem
+                            key={item.name}
+                            id={item.id}
+                            image={item.image}
+                          >
                             {item.name}
                           </OverviewItem>
                         )
