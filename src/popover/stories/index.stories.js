@@ -117,6 +117,14 @@ storiesOf('popover', module)
             <Button marginRight={20}>TOP_RIGHT</Button>
           </Popover>
         </Box>
+        <Box marginTop={40} display="flex" justifyContent="space-between">
+          <Popover content={<PopoverContent />} position={Position.LEFT}>
+            <Button marginRight={20}>LEFT</Button>
+          </Popover>
+          <Popover content={<PopoverContent />} position={Position.RIGHT}>
+            <Button marginRight={20}>RIGHT</Button>
+          </Popover>
+        </Box>
       </Box>
     </Box>
   ))
