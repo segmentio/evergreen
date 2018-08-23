@@ -22,6 +22,7 @@
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^11.1.0",
     "postcss-reporter": "^5.0.0",
+    "prism-react-renderer": "^0.1.2",
     "prop-types": "^15.6.0",
     "react": "^16.4.0",
     "react-docgen": "^3.0.0-rc.0",
