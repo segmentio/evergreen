@@ -191,6 +191,19 @@ export default function getFittedPosition({
     rect.right -= delta
   }
 
+  // Push rect down if overflowing on the top side of the viewport.
+  if (rect.top < viewportOffset) {
+    rect.top += Math.ceil(Math.abs(rect.top - viewportOffset))
+    rect.bottom = Math.ceil(viewportOffset)
+  }
+
+  // Push rect up if overflowing on the bottom side of the viewport.
+  if (rect.bottom > viewport.height - viewportOffset) {
+    const delta = Math.ceil(rect.bottom - (viewport.height - viewportOffset))
+    rect.top -= delta
+    rect.right -= delta
+  }
+
   const targetCenter = isAlignedHorizontal(position)
     ? targetRect.top + targetRect.height / 2
     : targetRect.left + targetRect.width / 2
@@ -328,16 +341,24 @@ function getPosition({
   }
 
   const topRectFitsOnTop = getFitsOnTop(topRect, viewportOffset)
+
   const bottomRectFitsOnBottom = getFitsOnBottom(
     bottomRect,
     viewport,
     viewportOffset
   )
 
-  if (positionIsAlignedOnTop && topRectFitsOnTop) {
-    return {
-      position,
-      rect: topRect
+  if (positionIsAlignedOnTop) {
+    if (topRectFitsOnTop) {
+      return {
+        position,
+        rect: topRect
+      }
+    } else if (bottomRectFitsOnBottom) {
+      return {
+        position: flipHorizontal(position),
+        rect: bottomRect
+      }
     }
   }
 
@@ -359,6 +380,7 @@ function getPosition({
   const spaceBottom = Math.abs(
     viewport.height - viewportOffset - bottomRect.bottom
   )
+
   const spaceTop = Math.abs(topRect.top - viewportOffset)
 
   if (spaceBottom < spaceTop) {
