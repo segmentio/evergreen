@@ -25,6 +25,10 @@
 * Interested in Evergreen? [Come work for Segment!](https://segment.com/jobs/)
 * Brought to you by [Segment](https://segment.com/)
 
+
+## Spend the day with us at [Synapse](https://synapse.segment.com/?sgmt_ref=evergreen)
+All Evergreen developers get in free. Register with `SEGMENTDIGSDEVS`.
+
 ## Core values of 🌲 Evergreen
 
 **Evergreen is built on the belief that you can never predict all future requirements,
