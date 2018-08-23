@@ -142,10 +142,16 @@ class Dialog extends React.Component {
 
     /**
      * The space above the dialog.
-     * This offset is also used at the bottom when there is not enough space
-     * available on screen — and the dialog scrolls internally.
+     * This offset is also used at the bottom when there is not enough vertical
+     * space available on screen — and the dialog scrolls internally.
      */
     topOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    /**
+     * The space on the left/right sides of the dialog when there isn't enough
+     * horizontal space available on screen.
+     */
+    sideOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
      * The min height of the body content.
@@ -167,6 +173,7 @@ class Dialog extends React.Component {
     intent: 'none',
     width: 560,
     topOffset: '12vmin',
+    sideOffset: '16px',
     minHeightContent: 80,
     confirmLabel: 'Confirm',
     isConfirmLoading: false,
@@ -194,6 +201,7 @@ class Dialog extends React.Component {
       intent,
       isShown,
       topOffset,
+      sideOffset,
       hasHeader,
       hasFooter,
       hasCancel,
@@ -209,8 +217,13 @@ class Dialog extends React.Component {
       minHeightContent
     } = this.props
 
-    const offset = Number.isInteger(topOffset) ? `${topOffset}px` : topOffset
-    const maxHeight = `calc(100% - ${offset} * 2)`
+    const topOffsetWithUnit = Number.isInteger(topOffset)
+      ? `${topOffset}px`
+      : topOffset
+    const sideOffsetWithUnit = Number.isInteger(sideOffset)
+      ? `${sideOffset}px`
+      : sideOffset
+    const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
 
     return (
       <Overlay
@@ -231,7 +244,8 @@ class Dialog extends React.Component {
             borderRadius={8}
             width={width}
             maxHeight={maxHeight}
-            margin={offset}
+            marginX={sideOffsetWithUnit}
+            marginY={topOffsetWithUnit}
             display="flex"
             flexDirection="column"
             css={animationStyles}
