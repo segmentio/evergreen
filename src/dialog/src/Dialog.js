@@ -220,9 +220,6 @@ class Dialog extends React.Component {
     const topOffsetWithUnit = Number.isInteger(topOffset)
       ? `${topOffset}px`
       : topOffset
-    const sideOffsetWithUnit = Number.isInteger(sideOffset)
-      ? `${sideOffset}px`
-      : sideOffset
     const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
 
     return (
@@ -244,7 +241,7 @@ class Dialog extends React.Component {
             borderRadius={8}
             width={width}
             maxHeight={maxHeight}
-            marginX={sideOffsetWithUnit}
+            marginX={sideOffset}
             marginY={topOffsetWithUnit}
             display="flex"
             flexDirection="column"
