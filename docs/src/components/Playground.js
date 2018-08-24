@@ -4,12 +4,14 @@ import PropTypes from 'prop-types'
 import uniqueId from 'lodash/uniqueId'
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import * as components from 'evergreen-ui'
+import Component from '@reactions/component'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 
 export default class Playground extends React.Component {
   static propTypes = {
     codeText: PropTypes.string.isRequired,
-    scope: PropTypes.object
+    scope: PropTypes.object,
+    isOpenByDefault: PropTypes.bool
   }
 
   constructor(props) {
@@ -17,7 +19,7 @@ export default class Playground extends React.Component {
 
     this.state = {
       uniqueId: uniqueId(),
-      isCodeCollapsed: false,
+      isCodeCollapsed: !props.isOpenByDefault,
       hasError: false,
       codeText: props.codeText
     }
@@ -60,7 +62,7 @@ export default class Playground extends React.Component {
     return (
       <LiveProvider
         theme="evergreen"
-        scope={{ ReactDOM, ...components, ...scope }}
+        scope={{ ReactDOM, Component, ...components, ...scope }}
         code={codeText}
         mountStylesheet={false}
       >

@@ -55,6 +55,7 @@ export default class PropsTable extends PureComponent {
               edges {
                 node {
                   displayName
+                  composes
                   description {
                     id
                   }
@@ -82,7 +83,10 @@ export default class PropsTable extends PureComponent {
           return (
             <>
               <div className="Content">
-                <h3>Props</h3>
+                <h2>
+                  <code className="code">{componentDocs.displayName}</code>{' '}
+                  Props
+                </h2>
                 {componentDocs &&
                   componentDocs.composes &&
                   componentDocs.composes.length > 0 && (

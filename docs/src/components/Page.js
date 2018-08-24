@@ -3,17 +3,15 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import { Location } from '@reach/router'
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Button } from 'evergreen-ui'
-import { MDXProvider } from '@mdx-js/tag'
+import { Button, Tab } from 'evergreen-ui'
 import IA from '../IA'
-import MDXPlayground from './MDXPlayground'
+import DocsMDXProvider from './DocsMDXProvider'
 import TopBar from './TopBar'
 import Layout from './Layout'
 import OverviewItem from './OverviewItem'
 
 const flatItems = [
   ...IA.foundation.items.map(item => {
-    console.log(item.id)
     return {
       ...item,
       related: [
@@ -47,6 +45,10 @@ class Page extends React.Component {
     location: PropTypes.object.isRequired
   }
 
+  state = {
+    currentTab: 'guide'
+  }
+
   componentDidCatch(error, errorInfo) {
     console.error(error, errorInfo)
   }
@@ -62,6 +64,12 @@ class Page extends React.Component {
     })
   }
 
+  handleSelect = tab => {
+    this.setState({
+      currentTab: tab
+    })
+  }
+
   render() {
     const metaInfo = this.getMetaInfo()
     const relatedItems = this.getRelatedItems(metaInfo)
@@ -71,35 +79,56 @@ class Page extends React.Component {
           <TopBar />
           <main className="MainLayout-main">
             <div className="MainLayout-content">
-              <Button
-                is={Link}
-                to="/components/overview"
-                appearance="minimal"
-                iconBefore="arrow-left"
-                marginTop={16}
-                marginLeft={16}
-              >
-                Back to Overview
-              </Button>
-              <article
-                className="Container Content MDXPage"
-                style={{ marginTop: 80 }}
-              >
+              <article className="MDXPage">
                 <header className="MDXPage-header">
-                  <h1>{metaInfo.name} </h1>
-                  <p>
-                    <a
-                      href={`https://github.com/segmentio/evergreen/tree/master/src/${metaInfo.name.toLowerCase()}`}
-                      target="_blank"
+                  <div className="bg-tint1">
+                    <Button
+                      is={Link}
+                      to="/components/overview"
+                      position="absolute"
+                      appearance="minimal"
+                      iconBefore="arrow-left"
+                      height={40}
+                      marginTop={16}
+                      marginLeft={16}
                     >
-                      View on GitHub
-                    </a>.
-                  </p>
+                      Back to Overview
+                    </Button>
+                    <div className="MDXPage-headerContent Container-noMargins">
+                      <h1>{metaInfo.name} </h1>
+                      <Button
+                        is="a"
+                        height={40}
+                        href={`https://github.com/segmentio/evergreen/tree/master/src/${metaInfo.name.toLowerCase()}`}
+                        target="_blank"
+                      >
+                        View on GitHub
+                      </Button>
+                    </div>
+                  </div>
+                  <div
+                    className="MDXPage-headerTabs Container-noMargins border-bottom-default"
+                    style={{ paddingBottom: 12 }}
+                  >
+                    <Tab
+                      isSelected={this.state.currentTab === 'guide'}
+                      onSelect={this.handleSelect.bind(null, 'guide')}
+                      marginLeft={0}
+                      height={36}
+                    >
+                      Guide
+                    </Tab>
+                    <Tab
+                      isSelected={this.state.currentTab === 'guide'}
+                      onSelect={this.handleSelect.bind(null, 'api')}
+                      height={36}
+                    >
+                      Props API
+                    </Tab>
+                  </div>
                 </header>
-                <div>
-                  <MDXProvider components={{ code: MDXPlayground }}>
-                    {this.props.children}
-                  </MDXProvider>
+                <div className="Content Container">
+                  <DocsMDXProvider>{this.props.children}</DocsMDXProvider>
                 </div>
               </article>
 

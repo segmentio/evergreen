@@ -1,0 +1,26 @@
+.MDXPage-header {
+  /* background-color: var(--N1); */
+  border-bottom: var(--color-border-default);
+}
+
+.MDXPage-headerContent {
+  display: flex;
+  align-items: center;
+  padding: 32px 0;
+
+  & h1 {
+    flex: 1;
+    font-size: 35px;
+  }
+}
+
+.MDXPage {
+  & .Playground {
+    margin-bottom: 48px;
+  }
+}
+
+.MDXPage-headerTabs {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}

@@ -24,8 +24,12 @@
   overflow-y: auto;
 
   @media (--range-desk) {
+    & .Container,
+    & .Container-noMargins {
+      width: 832px;
+    }
+
     & .Container {
-      width: 620px;
       padding-bottom: 120px;
     }
   }

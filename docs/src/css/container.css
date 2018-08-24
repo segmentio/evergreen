@@ -21,3 +21,19 @@
     margin-top: 40px;
   }
 }
+
+.Container-noMargins {
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (--range-palm) {
+    padding: 0 5%;
+  }
+  @media (--range-hand) {
+    padding: 0 6%;
+  }
+  @media (--range-lap) {
+    padding: 0 8%;
+    max-width: 760px;
+  }
+}
