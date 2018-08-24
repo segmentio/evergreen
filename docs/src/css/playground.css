@@ -1,18 +1,8 @@
 .Playground {
-  background-color: var(--neutral-5A);
+  background-color: var(--N1);
   border-radius: 5px;
   overflow: hidden;
   transition: all 0.08s ease-in-out;
-
-  @media (--range-desk-m) {
-    margin-left: -80px;
-    margin-right: -80px;
-  }
-
-  @media (--range-desk-l), (--range-desk-xl) {
-    margin-left: -180px;
-    margin-right: -180px;
-  }
 }
 
 .MDXPage .Playground {
