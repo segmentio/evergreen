@@ -15,7 +15,7 @@
   "sideEffects": false,
   "scripts": {
     "test": "xo && ava",
-    "prepublishOnly": "yarn run build",
+    "prepublishOnly": "rm -r esm commonjs && yarn run build",
     "precommit": "lint-staged",
     "dev":
       "(export EG_PORT=6006 ; if [ $PORT ] ; then start-storybook -p $PORT ; else start-storybook -p $EG_PORT ; fi)",
