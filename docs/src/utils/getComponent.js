@@ -5,8 +5,8 @@ import typographyDocs from '../../../src/typography/docs/'
 import layersDocs from '../../../src/layers/docs/'
 import buttonsDocs from '../../../src/buttons/docs'
 import autocompleteDocs from '../../../src/autocomplete/docs/'
+import badgesDocs from '../../../src/badges/docs/'
 import comboboxDocs from '../../../src/combobox/docs/'
-// import badgesDocs from '../../src/badges/docs/'
 import popoverDocs from '../../../src/popover/docs/'
 // import portalDocs from '../../src/portal/docs/'
 import textInputDocs from '../../../src/text-input/docs/'
@@ -33,6 +33,7 @@ import selectDocs from '../../../src/select/docs/'
 const map = {
   radio: radioDocs,
   'segmented control': segmentedControlDocs,
+  badges: badgesDocs,
   buttons: buttonsDocs,
   table: tableDocs,
   dialog: dialogDocs,

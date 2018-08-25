@@ -1,0 +1,4 @@
+<div>
+  <Pill display="inline-flex" margin="8px">Pill</Pill>
+  <Pill display="inline-flex" margin="8px" color="red" isSolid>24</Pill>
+</div>

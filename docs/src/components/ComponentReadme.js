@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import ComponentBlock from './ComponentBlock'
-import AppearanceOption from './ApppearanceOption'
+import AppearanceOption from './AppearanceOption'
 import PlaygroundExampleGroup from './PlaygroundExampleGroup'
 import PlaygroundExample from './PlaygroundExample'
 

@@ -8,7 +8,7 @@ class Badge extends PureComponent {
     ...Strong.propTypes,
 
     /**
-     * The color used for the avatar.
+     * The color used for the badge.
      * When the value is `automatic`, use the hash function to determine the color.
      */
     color: PropTypes.string.isRequired,
