@@ -15,7 +15,7 @@
   "sideEffects": false,
   "scripts": {
     "test": "xo && ava",
-    "prepublishOnly": "yarn run build",
+    "prepublishOnly": "rm -r esm commonjs && yarn run build",
     "precommit": "lint-staged",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
