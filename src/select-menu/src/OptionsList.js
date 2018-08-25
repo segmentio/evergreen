@@ -220,6 +220,8 @@ export default class OptionsList extends PureComponent {
     } = this.props
     const options = this.search(originalOptions)
     const listHeight = height - (hasFilter ? 32 : 0)
+    const currentIndex = this.getCurrentIndex()
+    const scrollToIndex = currentIndex === -1 ? 0 : currentIndex
 
     return (
       <Pane
@@ -245,9 +247,13 @@ export default class OptionsList extends PureComponent {
             width="100%"
             itemSize={optionSize}
             itemCount={options.length}
-            overscanCount={3}
+            overscanCount={20}
             scrollToAlignment="auto"
-            scrollToIndex={this.getCurrentIndex()}
+            {...(scrollToIndex
+              ? {
+                  scrollToIndex
+                }
+              : {})}
             renderItem={({ index, style }) => {
               const item = options[index]
               const isSelected = this.isSelected(item)
