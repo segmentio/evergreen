@@ -2,6 +2,18 @@
 version: 2
 jobs:
   noop:
-    branches:
-      ignore:
-        - gh-pages
+    working_directory: ~/evergreen
+    docker:
+      - image: circleci/node:8.11
+    steps:
+      - echo 'noop'
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - noop:
+          filters:
+            branches:
+              ignore:
+                - /.*?/
