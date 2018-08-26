@@ -26,7 +26,8 @@
       "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore stories,test,docs --source-maps inline",
     "build-esm":
       "BABEL_ENV=esm babel src --out-dir esm --ignore stories,test,docs --source-maps inline",
-    "build": "yarn run build-commonjs && yarn run build-esm",
+    "build":
+      "concurrently --names 'commonjs,esm' 'yarn run build-commonjs' 'yarn run build-esm'",
     "clean": "git clean -Xdf",
     "release": "np --no-publish",
     "chromatic":
@@ -73,6 +74,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
+    "concurrently": "^4.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-prettier": "^2.9.0",
@@ -83,7 +85,7 @@
     "file-loader": "^1.1.5",
     "fs-extra": "^4.0.3",
     "husky": "^0.14.3",
-    "lint-staged": "^6.0.0",
+    "lint-staged": "^7.2.2",
     "prettier": "^1.9.1",
     "react": "^16.3.0",
     "react-chromatic": "^0.7.10",
