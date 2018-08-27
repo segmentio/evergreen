@@ -1,0 +1,54 @@
+version: 2
+jobs:
+  test:
+    working_directory: ~/evergreen
+    docker:
+      - image: circleci/node:8.11
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: main-dependency-cache-{{ checksum "yarn.lock" }}
+      - run: yarn install --frozen-lockfile
+      - save_cache:
+          key: main-dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+
+      - restore_cache:
+          key: docs-dependency-cache-{{ checksum "docs/yarn.lock" }}
+      - run: yarn install --frozen-lockfile --cwd docs
+      - save_cache:
+          key: docs-dependency-cache-{{ checksum "docs/yarn.lock" }}
+          paths:
+            - ./docs/node_modules
+
+      - run: yarn run build
+      - run: yarn run test
+      - run: yarn run size-limit
+
+  deploy_storybook:
+    working_directory: ~/evergreen
+    docker:
+      - image: circleci/node:8.11
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: main-dependency-cache-{{ checksum "yarn.lock" }}
+      - run: yarn install --frozen-lockfile
+
+      - run: yarn run storybook-to-ghpages
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - test
+      - deploy_storybook:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
