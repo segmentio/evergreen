@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import kebabCase from '../utils/kebabCase'
 import ComponentBlock from './ComponentBlock'
 import AppearanceOption from './ApppearanceOption'
 import PlaygroundExampleGroup from './PlaygroundExampleGroup'
@@ -41,7 +42,9 @@ export default class ComponentReadme extends PureComponent {
               {subTitle}{' '}
               <a
                 className="ComponentReadme-githubLink"
-                href={`https://github.com/segmentio/evergreen/tree/master/src/${name}`}
+                href={`https://github.com/segmentio/evergreen/tree/master/src/${kebabCase(
+                  name
+                )}`}
                 target="_blank"
               >
                 View on GitHub
