@@ -26,6 +26,12 @@ class TableCell extends PureComponent {
     appearance: PropTypes.string.isRequired,
 
     /**
+     * Optional node to be placed on the right side of the table cell.
+     * Useful for icons and icon buttons.
+     */
+    rightView: PropTypes.node,
+
+    /**
      * Theme provided by ThemeProvider.
      */
     theme: PropTypes.object.isRequired,
@@ -39,10 +45,8 @@ class TableCell extends PureComponent {
 
   static defaultProps = {
     appearance: 'default',
-    onClick: () => {},
     onSelect: () => {},
-    onDeselect: () => {},
-    onKeyPress: () => {}
+    onDeselect: () => {}
   }
 
   static styles = {
@@ -51,6 +55,7 @@ class TableCell extends PureComponent {
     flex: 1,
     display: 'flex',
     alignItems: 'center',
+    flexShrink: 0,
     overflow: 'hidden'
   }
 
@@ -87,6 +92,12 @@ class TableCell extends PureComponent {
     }
   }
 
+  handleClick = e => {
+    if (typeof this.props.onClick === 'function') {
+      this.props.onClick(e)
+    }
+  }
+
   render() {
     const {
       innerRef,
@@ -101,6 +112,7 @@ class TableCell extends PureComponent {
       isSelectable,
       tabIndex = -1,
       className,
+      rightView,
       ...props
     } = this.props
 
@@ -122,6 +134,7 @@ class TableCell extends PureComponent {
               {...props}
             >
               {children}
+              {rightView ? rightView : null}
             </Pane>
           )
         }}

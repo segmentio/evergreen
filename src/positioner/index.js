@@ -1,2 +1,1 @@
-export { default as Positioner } from './src/Positioner'
-export { default as Position } from './src/Position'
+export { default as Positioner } from './src/Positioner' // eslint-disable-line import/prefer-default-export

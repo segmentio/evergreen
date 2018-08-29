@@ -1,0 +1,6 @@
+<div>
+  <Badge margin="8px" color="green">Badge</Badge>
+  <Badge margin="8px" color="red">Badge</Badge>
+  <Badge margin="8px" color="purple" isSolid>Solid Badge</Badge>
+  <Badge margin="8px" isSolid>Solid Badge</Badge>
+</div>

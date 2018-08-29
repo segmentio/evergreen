@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from 'ui-box'
 import Popover from '../src/Popover'
-import { Position } from '../../positioner'
+import { Position } from '../../constants'
 import { Button } from '../../buttons'
 import { Text } from '../../typography'
 import { Pane } from '../../layers'

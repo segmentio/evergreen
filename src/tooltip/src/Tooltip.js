@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
-import { Position, Positioner } from '../../positioner'
+import { Positioner } from '../../positioner'
+import { Position } from '../../constants'
 import TooltipStateless from './TooltipStateless'
 
 let idCounter = 0
@@ -16,7 +17,14 @@ export default class Tooltip extends PureComponent {
     /**
      * The position the Popover is on.
      */
-    position: PropTypes.oneOf(Object.keys(Position)),
+    position: PropTypes.oneOf([
+      Position.TOP,
+      Position.TOP_LEFT,
+      Position.TOP_RIGHT,
+      Position.BOTTOM,
+      Position.BOTTOM_LEFT,
+      Position.BOTTOM_RIGHT
+    ]),
 
     /**
      * The content of the Popover.

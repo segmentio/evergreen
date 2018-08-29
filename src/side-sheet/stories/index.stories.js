@@ -7,6 +7,7 @@ import { Card, Pane } from '../../layers'
 import { Button } from '../../buttons'
 import { Tab } from '../../tabs'
 import { Manager } from '../../manager'
+import Menu from '../../menu/src/Menu'
 
 storiesOf('side-sheet', module)
   .add('title + sub title + tabs', () => (
@@ -188,6 +189,65 @@ storiesOf('side-sheet', module)
             <Button onClick={() => setState({ isShown: true })}>
               Show Side Sheet
             </Button>
+          </Box>
+        )}
+      </Manager>
+    </Box>
+  ))
+  .add('positions', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Manager isShown position="left">
+        {({ state, setState }) => (
+          <Box>
+            <SideSheet
+              position={state.position}
+              width={250}
+              isShown={state.isShown}
+              onCloseComplete={() => setState({ isShown: false })}
+            >
+              {() => {
+                return (
+                  <Box>
+                    <Pane padding={16} borderBottom="muted">
+                      <Heading size={600}>Title</Heading>
+                      <Paragraph size={400} color="muted">
+                        Optional description or sub title
+                      </Paragraph>
+                    </Pane>
+                    <Menu>
+                      <Menu.Group title="Actions">
+                        <Menu.Item icon="people">Collaborators</Menu.Item>
+                        <Menu.Item icon="circle-arrow-right">
+                          Discover
+                        </Menu.Item>
+                        <Menu.Item icon="edit" secondaryText="⌘N">
+                          Compose
+                        </Menu.Item>
+                      </Menu.Group>
+                      <Menu.Divider />
+                      <Menu.Group title="destructive">
+                        <Menu.Item icon="trash" intent="danger">
+                          Delete
+                        </Menu.Item>
+                      </Menu.Group>
+                    </Menu>
+                  </Box>
+                )
+              }}
+            </SideSheet>
+            {['left', 'right', 'top', 'bottom'].map(position => (
+              <Button
+                key={position}
+                margin="10px"
+                onClick={() => setState({ position, isShown: true })}
+              >
+                Show {position}
+              </Button>
+            ))}
           </Box>
         )}
       </Manager>

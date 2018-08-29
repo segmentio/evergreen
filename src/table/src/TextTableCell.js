@@ -32,7 +32,7 @@ export default class TextTableCell extends PureComponent {
   }
 
   render() {
-    const { children, textProps, isNumber, ...props } = this.props
+    const { children, textProps, isNumber, placeholder, ...props } = this.props
 
     return (
       <TableCell {...props}>

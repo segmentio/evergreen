@@ -10,6 +10,11 @@ export default class EditableCellField extends React.PureComponent {
     value: PropTypes.string.isRequired,
 
     /**
+     * The z-index placed on the element.
+     */
+    zIndex: PropTypes.number.isRequired,
+
+    /**
      * Function to get the target ref of the parent.
      * Used to mirror the position.
      */
@@ -30,7 +35,12 @@ export default class EditableCellField extends React.PureComponent {
     /**
      * Called when the textarea is blurred, pass the value back to the cell.
      */
-    onBlur: PropTypes.func.isRequired,
+    onChangeComplete: PropTypes.func.isRequired,
+
+    /**
+     * Called when Escape is hit or componentWillUnmount.
+     */
+    onCancel: PropTypes.func.isRequired,
 
     /**
      * Text size of the textarea.
@@ -60,6 +70,7 @@ export default class EditableCellField extends React.PureComponent {
 
   componentWillUnmount() {
     cancelAnimationFrame(this.latestAnimationFrame)
+    this.props.onCancel()
   }
 
   getTableBodyRef = targetRef => {
@@ -71,7 +82,11 @@ export default class EditableCellField extends React.PureComponent {
       if (isTableBody) {
         return ref
       }
-      ref = ref.parentElement
+      if (ref.parentElement) {
+        ref = ref.parentElement
+      } else {
+        return null
+      }
     }
 
     this.tableBodyRef = ref
@@ -84,15 +99,26 @@ export default class EditableCellField extends React.PureComponent {
     if (!targetRef) return
     const tableBodyRef = this.getTableBodyRef(targetRef)
 
-    const bounds = tableBodyRef.getBoundingClientRect()
+    const {
+      left,
+      top: targetTop,
+      height,
+      width
+    } = targetRef.getBoundingClientRect()
 
-    const { left, top, height, width } = targetRef.getBoundingClientRect()
+    let top
+    if (tableBodyRef) {
+      const bounds = tableBodyRef.getBoundingClientRect()
+      top = Math.min(Math.max(targetTop, bounds.top), bounds.bottom - height)
+    } else {
+      top = targetTop
+    }
 
     this.setState(
       () => {
         return {
           left,
-          top: Math.min(Math.max(top, bounds.top), bounds.bottom - height),
+          top,
           height,
           width
         }
@@ -110,18 +136,21 @@ export default class EditableCellField extends React.PureComponent {
   }
 
   handleBlur = () => {
-    if (this.textareaRef) this.props.onBlur(this.textareaRef.value)
+    if (this.textareaRef) this.props.onChangeComplete(this.textareaRef.value)
   }
 
   handleKeyDown = e => {
     const { key } = e
-    if (key === 'Escape' || key === 'Enter') {
+    if (key === 'Escape') {
+      this.props.onCancel()
+    } else if (key === 'Enter') {
       this.textareaRef.blur()
+      e.preventDefault()
     }
   }
 
   render() {
-    const { size, value, minWidth, minHeight } = this.props
+    const { size, value, minWidth, minHeight, zIndex } = this.props
     const { left, top, height, width } = this.state
 
     return (
@@ -137,12 +166,13 @@ export default class EditableCellField extends React.PureComponent {
           height,
           minHeight: Math.max(height, minHeight),
           width,
-          minWidth: Math.max(width, minWidth)
+          minWidth: Math.max(width, minWidth),
+          zIndex
         }}
         height={null}
         width={null}
         minHeight={null}
-        position="absolute"
+        position="fixed"
         defaultValue={value}
       />
     )

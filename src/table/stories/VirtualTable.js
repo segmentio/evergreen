@@ -14,7 +14,8 @@ const randomLengthContent = [
 
 // Generate a bunch of users.
 const users = range(1000)
-  .map(() => ({
+  .map((user, index) => ({
+    id: index,
     name: faker.name.findName(),
     email: faker.internet.email(),
     height: faker.random.arrayElement([32, 40, 56, 'auto'])
@@ -44,7 +45,7 @@ export default class VirtualTable extends React.PureComponent {
           <Table.VirtualBody flex={1} allowAutoHeight>
             {users.map((user, index) => {
               return (
-                <Table.Row key={user.email} height={user.height}>
+                <Table.Row key={user.id} height={user.height}>
                   <Table.TextCell>{index}</Table.TextCell>
                   <Table.TextCell>{user.height}</Table.TextCell>
                   <Table.TextCell>{user.name}</Table.TextCell>
