@@ -11,7 +11,6 @@ storiesOf('checkbox', module).add('Checkbox', () => (
       indeterminate: [true, false]
     }).map(p => {
       const label =
-        '' +
         'Checkbox' +
         ` ${(p.checked && 'checked') || ''}` +
         ` ${(p.disabled && 'disabled') || ''}` +
