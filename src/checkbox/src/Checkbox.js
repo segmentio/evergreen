@@ -18,6 +18,20 @@ CheckIcon.propTypes = {
   fill: PropTypes.string
 }
 
+const MinusIcon = ({ fill = 'currentColor', ...props }) => (
+  <svg width={16} height={16} viewBox="0 0 16 16" {...props}>
+    <path
+      fill={fill}
+      fillRule="evenodd"
+      d="M11 7H5c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1z"
+    />
+  </svg>
+)
+
+MinusIcon.propTypes = {
+  fill: PropTypes.string
+}
+
 class Checkbox extends PureComponent {
   static propTypes = {
     /**
@@ -76,6 +90,12 @@ class Checkbox extends PureComponent {
     appearance: PropTypes.string,
 
     /**
+     * State in addition to "checked" and "unchecked".
+     * When true, the radio displays a "minus" icon.
+     */
+    indeterminate: PropTypes.bool,
+
+    /**
      * Theme provided by ThemeProvider.
      */
     theme: PropTypes.object.isRequired
@@ -99,6 +119,7 @@ class Checkbox extends PureComponent {
       checked,
       onChange,
       value,
+      indeterminate,
       ...props
     } = this.props
 
@@ -133,7 +154,7 @@ class Checkbox extends PureComponent {
           width={16}
           height={16}
         >
-          <CheckIcon />
+          {indeterminate ? <MinusIcon /> : <CheckIcon />}
         </Box>
         {label && (
           <Text
