@@ -8,7 +8,7 @@ const primaryStyle = getPrimaryButtonStylesForIntent()
 const defaultAppearance = Themer.createCheckboxAppearance({
   base: {
     color: 'white',
-    // BackgroundColor: 'white',
+    backgroundColor: 'white',
     backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, white)`,
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${
       scales.neutral.N3A
@@ -17,7 +17,7 @@ const defaultAppearance = Themer.createCheckboxAppearance({
   disabled: {
     cursor: 'not-allowed',
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
-    // BackgroundColor: scales.neutral.N2A,
+    backgroundColor: scales.neutral.N2A,
     backgroundImage: 'none'
   },
   hover: {
@@ -35,7 +35,7 @@ const defaultAppearance = Themer.createCheckboxAppearance({
   },
   active: {
     backgroundImage: 'none',
-    // BackgroundColor: scales.blue.B3A,
+    backgroundColor: scales.blue.B3A,
     boxShadow: `inset 0 0 0 1px ${scales.blue.B5A}`
   },
   checked: {
