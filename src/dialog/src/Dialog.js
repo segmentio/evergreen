@@ -217,6 +217,11 @@ class Dialog extends React.Component {
       minHeightContent
     } = this.props
 
+    const sideOffsetWithUnit = Number.isInteger(sideOffset)
+      ? `${sideOffset}px`
+      : sideOffset
+    const maxWidth = `calc(100% - ${sideOffsetWithUnit} * 2)`
+
     const topOffsetWithUnit = Number.isInteger(topOffset)
       ? `${topOffset}px`
       : topOffset
@@ -240,8 +245,9 @@ class Dialog extends React.Component {
             elevation={4}
             borderRadius={8}
             width={width}
+            maxWidth={maxWidth}
             maxHeight={maxHeight}
-            marginX={sideOffset}
+            marginX={sideOffsetWithUnit}
             marginY={topOffsetWithUnit}
             display="flex"
             flexDirection="column"
@@ -267,7 +273,7 @@ class Dialog extends React.Component {
             <Pane
               data-state={state}
               display="flex"
-              overflowY="auto"
+              overflow="auto"
               padding={16}
               flexDirection="column"
               minHeight={minHeightContent}
