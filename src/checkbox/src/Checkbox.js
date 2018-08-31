@@ -68,6 +68,12 @@ class Checkbox extends PureComponent {
     checked: PropTypes.bool,
 
     /**
+     * State in addition to "checked" and "unchecked".
+     * When true, the radio displays a "minus" icon.
+     */
+    indeterminate: PropTypes.bool,
+
+    /**
      * Function called when state changes.
      */
     onChange: PropTypes.func,
@@ -90,22 +96,16 @@ class Checkbox extends PureComponent {
     appearance: PropTypes.string,
 
     /**
-     * State in addition to "checked" and "unchecked".
-     * When true, the radio displays a "minus" icon.
-     */
-    indeterminate: PropTypes.bool,
-
-    /**
      * Theme provided by ThemeProvider.
      */
     theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
-    appearance: 'default',
-    onChange: () => {},
+    checked: false,
     indeterminate: false,
-    checked: false
+    onChange: () => {},
+    appearance: 'default'
   }
 
   setIndeterminate = el => {
