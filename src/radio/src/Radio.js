@@ -119,6 +119,7 @@ class Radio extends PureComponent {
       <Box
         is="label"
         cursor={disabled ? 'not-allowed' : 'pointer'}
+        position="relative"
         display="flex"
         marginY={size === 12 ? 8 : 12}
         {...props}
