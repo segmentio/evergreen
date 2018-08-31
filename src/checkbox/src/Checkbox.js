@@ -136,6 +136,7 @@ class Checkbox extends PureComponent {
       <Box
         is="label"
         cursor={disabled ? 'not-allowed' : 'pointer'}
+        position="relative"
         display="flex"
         marginY={16}
         {...props}
@@ -150,7 +151,7 @@ class Checkbox extends PureComponent {
           checked={checked || indeterminate}
           onChange={onChange}
           disabled={disabled}
-          {...(isInvalid ? { 'aria-invalid': true } : {})}
+          aria-invalid={isInvalid}
           innerRef={this.setIndeterminate}
         />
         <Box
