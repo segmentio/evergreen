@@ -24,6 +24,10 @@ export default class UnorderedList extends PureComponent {
     iconColor: PropTypes.string
   }
 
+  static defaultProps = {
+    size: 400
+  }
+
   static styles = {
     is: 'ul',
     margin: 0,
@@ -34,7 +38,10 @@ export default class UnorderedList extends PureComponent {
   }
 
   render() {
-    const { children, ...props } = this.props
+    const { children, size, icon, iconColor, ...props } = this.props
+
+    // Only pass down icon-related props if specified
+    const inheritedProps = icon ? { size, icon, iconColor } : { size }
 
     const finalChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {
@@ -42,10 +49,9 @@ export default class UnorderedList extends PureComponent {
       }
 
       return React.cloneElement(child, {
+        ...inheritedProps,
         // Prefer more granularly defined icon if present
-        size: child.props.size || this.props.size,
-        icon: child.props.icon || this.props.icon,
-        iconColor: child.props.iconColor || this.props.iconColor
+        ...child.props
       })
     })
 
