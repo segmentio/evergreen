@@ -97,7 +97,7 @@ class IconButton extends PureComponent {
       intent,
       ...props
     } = this.props
-    const size = iconSize || this.props.theme.getIconSizeForIconButton(height)
+    const size = iconSize || theme.getIconSizeForIconButton(height)
 
     return (
       <Button
