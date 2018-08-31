@@ -105,11 +105,12 @@ class Checkbox extends PureComponent {
     appearance: 'default',
     onChange: () => {},
     indeterminate: false,
-    value: ''
+    checked: false
   }
 
   setIndeterminate = el => {
     if (!el) return
+    console.log(el, this.props.indeterminate)
     el.indeterminate = this.props.indeterminate
   }
 
@@ -151,7 +152,7 @@ class Checkbox extends PureComponent {
           onChange={onChange}
           disabled={disabled}
           {...(isInvalid ? { 'aria-invalid': true } : {})}
-          ref={this.setIndeterminate}
+          innerRef={this.setIndeterminate}
         />
         <Box
           boxSizing="border-box"

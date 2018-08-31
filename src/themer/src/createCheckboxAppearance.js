@@ -10,6 +10,10 @@ const checkedState = '&:checked + div'
 const checkedHoverState = '&:not([disabled]):checked:hover + div'
 const checkedActiveState = '&:not([disabled]):checked:active + div'
 const checkedDisabledState = '&[disabled]:checked + div'
+const indeterminateState = '&:indeterminate + div'
+const indeterminateHoverState = '&:not([disabled]):indeterminate:hover + div'
+const indeterminateActiveState = '&:not([disabled]):indeterminate:active + div'
+const indeterminateDisabledState = '&[disabled]:indeterminate + div'
 
 const hiddenCheckboxStyle = {
   border: '0',
@@ -54,7 +58,11 @@ const createCheckboxAppearance = (items = {}) => {
       'checked',
       'checkedDisabled',
       'checkedHover',
-      'checkedActive'
+      'checkedActive',
+      'indeterminate',
+      'indeterminateDisabled',
+      'indeterminateHover',
+      'indeterminateActive'
     ],
     cb: prop => {
       console.error(
@@ -82,6 +90,22 @@ const createCheckboxAppearance = (items = {}) => {
       ...createAppearance(items.checkedDisabled)
     },
     [checkedActiveState]: {
+      ...checkedStyles,
+      ...createAppearance(items.checkedActive)
+    },
+    [indeterminateState]: {
+      ...checkedStyles,
+      ...createAppearance(items.checked)
+    },
+    [indeterminateHoverState]: {
+      ...checkedStyles,
+      ...createAppearance(items.checkedHover)
+    },
+    [indeterminateDisabledState]: {
+      ...checkedStyles,
+      ...createAppearance(items.checkedDisabled)
+    },
+    [indeterminateActiveState]: {
       ...checkedStyles,
       ...createAppearance(items.checkedActive)
     }
