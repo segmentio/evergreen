@@ -13,6 +13,10 @@ export default class OrderedList extends PureComponent {
     size: PropTypes.oneOf([300, 400, 500, 600]).isRequired
   }
 
+  static defaultProps = {
+    size: 400
+  }
+
   static styles = {
     is: 'ol',
     margin: 0,
@@ -23,7 +27,7 @@ export default class OrderedList extends PureComponent {
   }
 
   render() {
-    const { children, ...props } = this.props
+    const { children, size, ...props } = this.props
 
     const finalChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {
@@ -32,7 +36,7 @@ export default class OrderedList extends PureComponent {
 
       return React.cloneElement(child, {
         // Prefer more granularly defined icon if present
-        size: child.props.size || this.props.size
+        size: child.props.size || size
       })
     })
 
