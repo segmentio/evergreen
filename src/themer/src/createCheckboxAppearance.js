@@ -6,14 +6,13 @@ const disabledState = '&[disabled] + div'
 const hoverState = '&:not([disabled]):hover + div'
 const focusState = '&:not([disabled]):focus + div'
 const activeState = '&:not([disabled]):active + div'
-const checkedState = '&:checked + div'
-const checkedHoverState = '&:not([disabled]):checked:hover + div'
-const checkedActiveState = '&:not([disabled]):checked:active + div'
-const checkedDisabledState = '&[disabled]:checked + div'
-const indeterminateState = '&:indeterminate + div'
-const indeterminateHoverState = '&:not([disabled]):indeterminate:hover + div'
-const indeterminateActiveState = '&:not([disabled]):indeterminate:active + div'
-const indeterminateDisabledState = '&[disabled]:indeterminate + div'
+const checkedState = '&:checked + div, &:indeterminate + div'
+const checkedHoverState =
+  '&:not([disabled]):checked:hover + div, &:not([disabled]):indeterminate:hover + div'
+const checkedActiveState =
+  '&:not([disabled]):checked:active + div, &:not([disabled]):indeterminate:active + div'
+const checkedDisabledState =
+  '&[disabled]:checked + div, &[disabled]:indeterminate + div'
 
 const hiddenCheckboxStyle = {
   border: '0',
@@ -58,11 +57,7 @@ const createCheckboxAppearance = (items = {}) => {
       'checked',
       'checkedDisabled',
       'checkedHover',
-      'checkedActive',
-      'indeterminate',
-      'indeterminateDisabled',
-      'indeterminateHover',
-      'indeterminateActive'
+      'checkedActive'
     ],
     cb: prop => {
       console.error(
@@ -90,22 +85,6 @@ const createCheckboxAppearance = (items = {}) => {
       ...createAppearance(items.checkedDisabled)
     },
     [checkedActiveState]: {
-      ...checkedStyles,
-      ...createAppearance(items.checkedActive)
-    },
-    [indeterminateState]: {
-      ...checkedStyles,
-      ...createAppearance(items.checked)
-    },
-    [indeterminateHoverState]: {
-      ...checkedStyles,
-      ...createAppearance(items.checkedHover)
-    },
-    [indeterminateDisabledState]: {
-      ...checkedStyles,
-      ...createAppearance(items.checkedDisabled)
-    },
-    [indeterminateActiveState]: {
       ...checkedStyles,
       ...createAppearance(items.checkedActive)
     }
