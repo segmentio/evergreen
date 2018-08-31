@@ -42,6 +42,11 @@ class IconButton extends PureComponent {
     icon: PropTypes.string,
 
     /**
+     * Specifies an explicit icon size instead of the default value
+     */
+    iconSize: PropTypes.number,
+
+    /**
      * The intent of the button.
      */
     intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
@@ -83,8 +88,16 @@ class IconButton extends PureComponent {
   }
 
   render() {
-    const { theme, iconAim, icon, height, intent, ...props } = this.props
-    const iconSize = theme.getIconSizeForIconButton(height)
+    const {
+      theme,
+      iconAim,
+      icon,
+      iconSize,
+      height,
+      intent,
+      ...props
+    } = this.props
+    const size = iconSize || theme.getIconSizeForIconButton(height)
 
     return (
       <Button
@@ -99,7 +112,7 @@ class IconButton extends PureComponent {
       >
         <Icon
           icon={icon}
-          size={iconSize}
+          size={size}
           color={intent === 'none' ? 'default' : 'currentColor'}
         />
       </Button>
