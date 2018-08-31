@@ -110,7 +110,6 @@ class Checkbox extends PureComponent {
 
   setIndeterminate = el => {
     if (!el) return
-    console.log(el, this.props.indeterminate)
     el.indeterminate = this.props.indeterminate
   }
 
