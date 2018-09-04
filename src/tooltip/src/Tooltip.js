@@ -31,7 +31,7 @@ export default class Tooltip extends PureComponent {
     /**
      * The target button of the Tooltip.
      */
-    children: PropTypes.node.isRequried,
+    children: PropTypes.node.isRequired,
 
     /**
      * Properties passed through to the Tooltip.
