@@ -92,6 +92,7 @@ class Textarea extends PureComponent {
       appearance,
       placeholder,
       spellCheck,
+      grammarly,
       ...props
     } = this.props
     const themedClassName = theme.getTextareaClassName(appearance)
