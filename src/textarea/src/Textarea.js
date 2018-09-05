@@ -32,6 +32,11 @@ class Textarea extends PureComponent {
     spellCheck: PropTypes.bool,
 
     /**
+     * Allow the Grammarly browser extension to attach to the backing textarea.
+     */
+    grammarly: PropTypes.bool,
+
+    /**
      * The placeholder text when there is no value present.
      */
     placeholder: PropTypes.string,
@@ -63,7 +68,8 @@ class Textarea extends PureComponent {
     width: '100%',
     disabled: false,
     isInvalid: false,
-    spellCheck: true
+    spellCheck: true,
+    grammarly: false
   }
 
   static styles = {
@@ -86,6 +92,7 @@ class Textarea extends PureComponent {
       appearance,
       placeholder,
       spellCheck,
+      grammarly,
       ...props
     } = this.props
     const themedClassName = theme.getTextareaClassName(appearance)
@@ -105,6 +112,7 @@ class Textarea extends PureComponent {
         borderRadius={3}
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
+        data-gramm_editor={grammarly}
         {...(disabled ? { color: 'muted' } : {})}
         css={css}
         {...Textarea.styles}
