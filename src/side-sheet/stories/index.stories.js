@@ -253,3 +253,26 @@ storiesOf('side-sheet', module)
       </Manager>
     </Box>
   ))
+  .add('escape + overlay click disabled', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Manager isShown>
+        {({ state, setState }) => (
+          <Box>
+            <SideSheet
+              isShown={state.isShown}
+              shouldCloseOnOverlayClick={false}
+              shouldCloseOnEscapePress={false}
+              onCloseComplete={() => setState({ isShown: false })}
+            />
+            <Button onClick={() => setState({ isShown: true })}>
+              Show Side Sheet
+            </Button>
+          </Box>
+        )}
+      </Manager>
+    </Box>
+  ))
