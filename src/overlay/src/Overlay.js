@@ -81,6 +81,16 @@ class Overlay extends React.Component {
     containerProps: PropTypes.object,
 
     /**
+     * Boolean indicating if clicking the overlay should close the overlay.
+     */
+    shouldCloseOnClick: PropTypes.bool,
+
+    /**
+     * Boolean indicating if pressing the esc key should close the overlay.
+     */
+    shouldCloseOnEscapePress: PropTypes.bool,
+
+    /**
      * Callback fired before the "exiting" status is applied.
      * type: `Function(node: HtmlElement) -> void`
      */
@@ -133,6 +143,8 @@ class Overlay extends React.Component {
 
   static defaultProps = {
     onHide: () => {},
+    shouldCloseOnClick: true,
+    shouldCloseOnEscapePress: true,
     onExit: () => {},
     onExiting: () => {},
     onExited: () => {},
@@ -227,7 +239,7 @@ class Overlay extends React.Component {
 
   onEsc = e => {
     // Esc key
-    if (e.keyCode === 27) {
+    if (e.keyCode === 27 && this.props.shouldCloseOnEscapePress) {
       this.close()
     }
   }
@@ -259,7 +271,7 @@ class Overlay extends React.Component {
   }
 
   handleBackdropClick = e => {
-    if (e.target !== e.currentTarget) {
+    if (e.target !== e.currentTarget || !this.props.shouldCloseOnClick) {
       return
     }
 
