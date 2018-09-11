@@ -23,7 +23,9 @@ export default class Tooltip extends PureComponent {
       Position.TOP_RIGHT,
       Position.BOTTOM,
       Position.BOTTOM_LEFT,
-      Position.BOTTOM_RIGHT
+      Position.BOTTOM_RIGHT,
+      Position.LEFT,
+      Position.RIGHT
     ]),
 
     /**
