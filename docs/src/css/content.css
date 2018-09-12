@@ -1,7 +1,7 @@
 .code {
   font-family: var(--font-mono);
   background-color: var(--teal-lightest);
-  box-shadow: 0 0 0 1px var(--teal-light), var(--elevation-1);
+  box-shadow: 0 0 0 1px var(--teal-light);
   color: var(--teal-dark);
   border-radius: 2px;
   font-size: 90%;
@@ -46,16 +46,16 @@
 }
 
 .h2 {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 500;
   line-height: 28px;
   letter-spacing: -0.2px;
   margin-bottom: 16px;
-  margin-top: 32px;
+  margin-top: 42px;
 }
 
 .h3 {
-  font-size: 18px;
+  font-size: 21px;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.05px;
@@ -64,7 +64,8 @@
 }
 
 .h4 {
-  font-size: 16px;
+  font-size: 18px;
+  font-family: var(--font-ui);
   font-weight: 500;
   line-height: 22px;
   letter-spacing: -0.05px;

@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
-import { Location } from '@reach/router'
+import { Location, navigate } from '@reach/router'
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Button, Tab } from 'evergreen-ui'
+import { Button, IconButton, Tooltip } from 'evergreen-ui'
 import IA from '../IA'
 import DocsMDXProvider from './DocsMDXProvider'
 import TopBar from './TopBar'
@@ -45,10 +44,6 @@ class Page extends React.Component {
     location: PropTypes.object.isRequired
   }
 
-  state = {
-    currentTab: 'guide'
-  }
-
   componentDidCatch(error, errorInfo) {
     console.error(error, errorInfo)
   }
@@ -64,12 +59,6 @@ class Page extends React.Component {
     })
   }
 
-  handleSelect = tab => {
-    this.setState({
-      currentTab: tab
-    })
-  }
-
   render() {
     const metaInfo = this.getMetaInfo()
     const relatedItems = this.getRelatedItems(metaInfo)
@@ -82,20 +71,24 @@ class Page extends React.Component {
               <article className="MDXPage">
                 <header className="MDXPage-header">
                   <div className="bg-tint1">
-                    <Button
-                      is={Link}
-                      to="/components/overview"
-                      position="absolute"
-                      appearance="minimal"
-                      iconBefore="arrow-left"
-                      height={40}
-                      marginTop={16}
-                      marginLeft={16}
-                    >
-                      Back to Overview
-                    </Button>
                     <div className="MDXPage-headerContent Container-noMargins">
-                      <h1>{metaInfo.name} </h1>
+                      <div className="MDXPage-headerContentLeft">
+                        <Tooltip content="Back to Overview">
+                          <IconButton
+                            onClick={() => {
+                              // Non-ideal, but Tooltip doesn't play nice when using is={Link}
+                              navigate('/components/overview')
+                            }}
+                            marginLeft={-48}
+                            marginRight={16}
+                            display="inline-flex"
+                            icon="arrow-left"
+                            height={40}
+                          />
+                        </Tooltip>
+
+                        <h1>{metaInfo.name}</h1>
+                      </div>
                       <Button
                         is="a"
                         height={40}
@@ -105,26 +98,6 @@ class Page extends React.Component {
                         View on GitHub
                       </Button>
                     </div>
-                  </div>
-                  <div
-                    className="MDXPage-headerTabs Container-noMargins border-bottom-default"
-                    style={{ paddingBottom: 12 }}
-                  >
-                    <Tab
-                      isSelected={this.state.currentTab === 'guide'}
-                      onSelect={this.handleSelect.bind(null, 'guide')}
-                      marginLeft={0}
-                      height={36}
-                    >
-                      Guide
-                    </Tab>
-                    <Tab
-                      isSelected={this.state.currentTab === 'guide'}
-                      onSelect={this.handleSelect.bind(null, 'api')}
-                      height={36}
-                    >
-                      Props API
-                    </Tab>
                   </div>
                 </header>
                 <div className="Content Container">

@@ -1,3 +1,7 @@
+body {
+  min-width: 1024px;
+}
+
 .MainLayout {
   @media (--range-desk) {
     height: 100vh;

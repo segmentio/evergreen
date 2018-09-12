@@ -83,7 +83,7 @@ export default class PropsTable extends PureComponent {
           return (
             <>
               <div className="Content">
-                <h2>
+                <h2 className="h2">
                   <code className="code">{componentDocs.displayName}</code>{' '}
                   Props
                 </h2>
