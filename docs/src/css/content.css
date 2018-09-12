@@ -71,6 +71,24 @@
   letter-spacing: -0.05px;
   margin-bottom: 4px;
   margin-top: 32px;
+}
+
+.h3 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.05px;
+  margin-bottom: 16px;
+  margin-top: 32px;
+}
+
+.h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.05px;
+  margin-bottom: 4px;
+  margin-top: 32px;
 
   & + .paragraph {
     margin-top: 0;

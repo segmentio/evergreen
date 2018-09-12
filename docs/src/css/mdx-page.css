@@ -14,12 +14,6 @@
   }
 }
 
-.MDXPage-headerContentLeft {
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
-
 .MDXPage {
   & .Playground {
     margin-bottom: 48px;

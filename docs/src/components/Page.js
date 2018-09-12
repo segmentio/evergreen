@@ -89,6 +89,7 @@ class Page extends React.Component {
 
                         <h1>{metaInfo.name}</h1>
                       </div>
+
                       <Button
                         is="a"
                         height={40}
