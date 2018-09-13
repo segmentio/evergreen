@@ -77,7 +77,8 @@ export default {
         id: 'icons',
         name: 'Icons',
         tags: ['icon'],
-        image: Icons
+        image: Icons,
+        related: ['button']
       }
     ]
   },

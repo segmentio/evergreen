@@ -44,7 +44,7 @@
     color: var(--blue-500);
   }
 
-  &:focus {
+  &:focus-visible {
     margin: -4px;
     padding: 4px;
     box-shadow: 0 0 0 2px var(--blue-200A);
