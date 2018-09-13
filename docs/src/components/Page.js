@@ -79,7 +79,7 @@ class Page extends React.Component {
                               // Non-ideal, but Tooltip doesn't play nice when using is={Link}
                               navigate('/components/overview')
                             }}
-                            marginLeft={-48}
+                            marginLeft={-54}
                             marginRight={16}
                             display="inline-flex"
                             icon="arrow-left"
