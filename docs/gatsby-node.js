@@ -47,7 +47,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
       // Force Gatsby to look for dependencies within the local node_modules from docs.
       modules: [path.join(__dirname, 'node_modules')],
       alias: {
-        'evergreen-ui': path.resolve(__dirname, '../esm/index.js'),
+        'evergreen-ui': path.resolve(__dirname, '../src/index.js'),
         components: path.resolve(__dirname, './src/components')
       }
     }

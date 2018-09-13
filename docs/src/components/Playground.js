@@ -53,12 +53,27 @@ export default class Playground extends React.Component {
     })
   }
 
+  renderComponentNotice = () => {
+    return (
+      <div className="Playground-notice">
+        The `Component` component is not part of Evergreen. It is only used in
+        examples to create state.{' '}
+        <a
+          href="https://github.com/reactions/component"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn more
+        </a>.
+      </div>
+    )
+  }
+
   render() {
     const { scope } = this.props
     const { codeText, hasError, isCodeCollapsed, uniqueId } = this.state
 
     if (hasError) return this.renderError()
-
     return (
       <LiveProvider
         theme="evergreen"
@@ -75,7 +90,13 @@ export default class Playground extends React.Component {
             >
               <LivePreview />
             </div>
-            {!isCodeCollapsed && <LiveEditor onChange={this.handleChange} />}
+            {!isCodeCollapsed && (
+              <div>
+                {codeText.includes('<Component') &&
+                  this.renderComponentNotice()}
+                <LiveEditor onChange={this.handleChange} />
+              </div>
+            )}
           </div>
           <div
             aria-expanded={!isCodeCollapsed}
@@ -84,6 +105,7 @@ export default class Playground extends React.Component {
             className="Playground-header"
             onClick={this.handleToggle}
           >
+            <components.Icon icon="code" marginRight={8} />{' '}
             {isCodeCollapsed ? 'Show code' : 'Hide code'}
           </div>
         </div>
