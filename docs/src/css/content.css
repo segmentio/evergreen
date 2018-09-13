@@ -29,20 +29,20 @@
 
 .h1 {
   font-size: 35px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 40px;
   letter-spacing: -0.2px;
   margin-top: 48px;
   margin-bottom: 4px;
 
-  & + .paragraph {
+  /* & + .paragraph {
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
     letter-spacing: -0.05px;
     margin-top: 8px;
     margin-bottom: 8px;
-  }
+  } */
 }
 
 .h2 {
