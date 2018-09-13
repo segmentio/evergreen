@@ -1,16 +1,25 @@
 import PropsTable from 'components/PropsTable'
 
-Evergreen exports multiple button components.
+## Evergreen exports multiple button components
 
-* `Button`, most commonly used, can have a icon on the left or right side.
-* `IconButton`, a button that holds a single icon.
-* `BackButton`, a preset of the `Button` component.
-* `TextDropdownButton`, a bare-bones button that is used primarily in table headers.
+* **Button**: most commonly used, can have a icon on the left or right side.
+* **IconButton**: a button that holds a single icon.
+* **BackButton**: a preset of the `Button` component.
+* **TextDropdownButton**: a bare-bones button that is used primarily in table headers.
 
 `Button`, `IconButton` and `BackButton` all share a very similar API and look.
-`TextDropdownButton` is a bit more different.
+`TextDropdownButton` is a bit different.
 
 # Button
+
+The `Button` component is the most common button component.
+It contains a label and optional icons before or after the label.
+
+```jsx
+<Button appearance="primary">Hi Evergreen!</Button>
+```
+
+## All button variations
 
 ```js
 <Component
@@ -233,6 +242,40 @@ Buttons support an icon on either before or after the label. Avoid using two ico
 
 # IconButton
 
+For the use case of creating a button with a single icon Evergreen exports the `IconButton` component.
+
+## Simple IconButton example
+
+```jsx
+<IconButton icon="trash" intent="danger" />
+```
+
+## Use the height property to resize the icon button
+
+Use the `height` property on the `IconButton` component to resize the component.
+The icon will automatically resize for the given height.
+
+```jsx
+<IconButton icon="cross" height={40} />
+```
+
+```jsx
+<IconButton icon="cross" height={24} />
+```
+
+## Specifically override the icon size
+
+In some rare cases you might need to override the icon size.
+Use the `iconSize` property to do this.
+
+This is not a required property, the icon will automatically resize based on the given height.
+
+```jsx
+<IconButton appearance="minimal" icon="notifications" iconSize={18} />
+```
+
+## Common icon buttons
+
 ```js
 <Pane clearfix>
   <Pane borderRight paddingRight={24} marginRight={24} float="left">
@@ -342,3 +385,31 @@ Buttons support an icon on either before or after the label. Avoid using two ico
   </Pane>
 </Pane>
 ```
+
+<PropsTable of="IconButton" />
+
+# BackButton component
+
+The `BackButton` component is a preset based on the `Button` component.
+
+```jsx
+<BackButton />
+```
+
+<PropsTable of="BackButton" />
+
+# TextDropdownButton component
+
+The `TextDropdownButton` is different from the other types of buttons.
+It doesn’t work with a height, instead the dimensions are based on the text size.
+This component is used inside of table header cells.
+
+```jsx
+<Pane>
+  <TextDropdownButton marginRight={16}>Table Header</TextDropdownButton>
+  <TextDropdownButton marginRight={16} icon="arrow-up">Ascending</TextDropdownButton>
+  <TextDropdownButton icon="arrow-down">Descending</TextDropdownButton>
+</Pane>
+```
+
+<PropsTable of="TextDropdownButton" />
