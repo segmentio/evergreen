@@ -79,7 +79,6 @@ This example shows basic usage with a single selected item.
 
 ## Change the height and width
 
-
 ```jsx
 <Component initialState={{ selected: null }}>
   {({ setState, state }) => (
@@ -88,6 +87,36 @@ This example shows basic usage with a single selected item.
       width={180}
       hasTitle={false}
       hasFilter={false}
+      title="Select name"
+      options={
+        ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']
+          .map(label => ({ label, value: label }))
+      }
+      selected={state.selected}
+      onSelect={item => setState({ selected: item.value })}
+    >
+      <Button>{state.selected || 'Select name...'}</Button>
+    </SelectMenu>
+  )}
+</Component>
+```
+
+## Change the position of the popover
+
+Available positions:
+
+* `Position.TOP`
+* `Position.TOP_LEFT`
+* `Position.TOP_RIGHT`
+* `Position.BOTTOM`
+* `Position.BOTTOM_LEFT`
+* `Position.BOTTOM_RIGHT`
+
+```jsx
+<Component initialState={{ selected: null }}>
+  {({ setState, state }) => (
+    <SelectMenu
+      position={Position.TOP}
       title="Select name"
       options={
         ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']
