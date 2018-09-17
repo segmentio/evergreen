@@ -2,6 +2,13 @@ import PropsTable from 'components/PropsTable'
 
 ## Introduction
 
+Evergreen exports two components to create text inputs:
+
+* **Select**: base text input component. Directly maps to a `select` element.
+* **SelectField**: combines a label, select and validation message in one. Used for traditional forms.
+
+# Select
+
 The `Select` component is a styled wrapper around a native select element,
 which allows selection of one item from a dropdown list.
 Anytime you would reach for a native select, use this.
@@ -64,5 +71,83 @@ Anytime you would reach for a native select, use this.
 </Select>
 ```
 
-
 <PropsTable of="Select" />
+
+
+# SelectField
+
+## Label and description
+
+```jsx
+<SelectField
+  label="Default text input field"
+  description="This is a description."
+>
+  <option value="foo" checked>Foo</option>
+  <option value="bar">Bar</option>
+</SelectField>
+```
+
+## A hint is under the text input
+
+```jsx
+<SelectField
+  label="Default text input field"
+  hint="This is a hint."
+>
+  <option value="foo" checked>Foo</option>
+  <option value="bar">Bar</option>
+</SelectField>
+```
+
+## Required text input field
+
+```jsx
+<SelectField
+  id="ids-are-optional"
+  label="A required text input field"
+  required
+  description="This is a description."
+>
+  <option value="foo" checked>Foo</option>
+  <option value="bar">Bar</option>
+</SelectField>
+```
+
+## Invalid field
+
+```jsx
+<SelectField
+  isInvalid
+  required
+  label="A required text input field"
+  description="This is a description."
+  validationMessage="This field is required"
+>
+  <option value="foo" checked>Foo</option>
+  <option value="bar">Bar</option>
+</SelectField>
+```
+
+## Controlled usage
+
+The `SelectField` component works the same as using `input` directly.
+Use `e.target.value` to get the value of the component on change. 
+
+```jsx
+<Component initialState={{ value: 'foo' }}>
+  {({ state, setState }) => (
+    <SelectField
+      label="A controlled text input field"
+      required
+      description="This is a description."
+      value={state.value}
+      onChange={e => setState({ value: e.target.value })}
+    >
+      <option value="foo" checked>Foo</option>
+      <option value="bar">Bar</option>
+    </SelectField>
+  )}
+</Component>
+```
+
