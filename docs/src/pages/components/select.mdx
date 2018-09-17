@@ -1,0 +1,68 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `Select` component is a styled wrapper around a native select element,
+which allows selection of one item from a dropdown list.
+Anytime you would reach for a native select, use this.
+
+## Uncontrolled usage
+
+```jsx
+<Select onChange={event => alert(event.target.value)}>
+  <option value="foo" checked>Foo</option>
+  <option value="bar">Bar</option>
+</Select>
+```
+
+## Controlled usage
+
+```jsx
+<Component initialState={{ value: 'foo' }}>
+  {({ state, setState }) => (
+    <Select value={state.value} onChange={event => setState({ value: event.target.value })}>
+      <option value="foo" checked>Foo</option>
+      <option value="bar">Bar</option>
+    </Select>
+  )}
+</Component>
+```
+
+## Full width
+
+```jsx
+<Select width="100%">
+  <option value="foo" checked>Foo</option>
+  <option value="bar">Bar</option>
+</Select>
+```
+
+## Custom width
+
+```jsx
+<Select width={240}>
+  <option value="foo" checked>Foo</option>
+  <option value="bar">Bar</option>
+</Select>
+```
+
+## Change height
+
+```jsx
+<Select width={240} height={40}>
+  <option value="foo" checked>Foo</option>
+  <option value="bar">Bar</option>
+</Select>
+```
+
+## Add margins
+
+```jsx
+<Select width={240} height={40} marginBottom={40}>
+  <option value="foo" checked>Foo</option>
+  <option value="bar">Bar</option>
+</Select>
+```
+
+
+<PropsTable of="Select" />
