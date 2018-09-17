@@ -1,0 +1,265 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `Popover` component displays floating content in relation to a target.
+`Popovers` appear either at the top, bottom, left or right of their target.
+The preferred and default side is the bottom.
+`Popovers` use smart positioning if there is not enough space.
+
+### Implementation details
+
+The `Popover` uses the `Positioner` from Evergreen to handle the positioning logic.
+Internally the `Popover` will make sure the `Popover` is positioned within the viewport.
+This means that sometimes the `Popover` flips — or the `Popover` might move slightly to the left or right.
+
+### When creating a Popover, you must specify both:
+
+* Its `content`, by setting the content prop, and
+* Its `target`, as a single child element or a function
+
+When you pass a function to the `content` prop you will be able to close the popover inside of the content.
+
+### Popovers Close On
+
+* Outside click
+* Escape key
+* The close function being called (advanced)
+
+
+
+
+## Basic usage
+
+```jsx
+<Popover
+  content={
+    <Pane
+      width={240}
+      height={240}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      flexDirection="column"
+    >
+      <Text>PopoverContent</Text>
+    </Pane>
+  }
+>
+  <Button>Trigger Popover</Button>
+</Popover>
+```
+
+## Focus management with `bringFocusInside`
+
+When opening the `Popover` when `bringFocusInside` is true, focus will be brought inside the `Popover` by looking
+for elements with `[autofocus]` first, `[tabindex]` second and `button` last.
+
+When passing a node as the `Popover` children, the `Popover` will handle focus management automatically when closing the `Popover`.
+When closing, it will return back focus on the target if nothing else has focus.
+
+```jsx
+<Popover
+  bringFocusInside
+  content={
+    <Pane
+      width={320}
+      height={320}
+      paddingX={40}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      flexDirection="column"
+    >
+      <TextInput autoFocus width="100%" />
+    </Pane>
+  }
+>
+  <Button>Trigger Popover</Button>
+</Popover>
+```
+
+## Close from within content
+
+```jsx
+<Popover
+  content={({ close }) => (
+    <Pane
+      width={320}
+      height={320}
+      paddingX={40}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      flexDirection="column"
+    >
+      <Button onClick={close}>Close</Button>
+    </Pane>
+  )}
+>
+  <Button>Trigger Popover</Button>
+</Popover>
+```
+
+## Positioning the Popover
+
+The Popover can be positioned on the following positions using the `position` prop:
+
+* `Position.TOP`
+* `Position.TOP_LEFT`
+* `Position.TOP_RIGHT`
+* `Position.BOTTOM`
+* `Position.BOTTOM_LEFT`
+* `Position.BOTTOM_RIGHT`
+* `Position.LEFT`
+* `Position.RIGHT`
+
+```js
+<Pane>
+  <Pane display="flex" justifyContent="space-between">
+    <Popover
+      content={
+        <Pane
+          width={240}
+          height={240}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+        >
+          <Text>TOP_LEFT</Text>
+        </Pane>    
+      }
+      position={Position.TOP_LEFT}
+    >
+      <Button>TOP_LEFT</Button>
+    </Popover>
+   <Popover
+      content={
+        <Pane
+          width={240}
+          height={240}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+        >
+          <Text>TOP</Text>
+        </Pane>    
+      }
+      position={Position.TOP}
+    >
+      <Button>TOP</Button>
+    </Popover>
+    <Popover
+      content={
+        <Pane
+          width={240}
+          height={240}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+        >
+          <Text>TOP_RIGHT</Text>
+        </Pane>    
+      }
+      position={Position.TOP_RIGHT}
+    >
+      <Button>TOP_RIGHT</Button>
+    </Popover>
+  </Pane>
+  <Pane display="flex" justifyContent="space-between" marginTop={40}>
+     <Popover
+      content={
+        <Pane
+          width={240}
+          height={240}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+        >
+          <Text>LEFT</Text>
+        </Pane>    
+      }
+      position={Position.LEFT}
+    >
+      <Button>LEFT</Button>
+    </Popover>
+    <Popover
+      content={
+        <Pane
+          width={240}
+          height={240}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+        >
+          <Text>RIGHT</Text>
+        </Pane>    
+      }
+      position={Position.RIGHT}
+    >
+      <Button>RIGHT</Button>
+    </Popover>
+  </Pane>
+  <Pane display="flex" justifyContent="space-between" marginTop={40}>
+    <Popover
+      content={
+        <Pane
+          width={240}
+          height={240}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+        >
+          <Text>BOTTOM_LEFT</Text>
+        </Pane>    
+      }
+      position={Position.BOTTOM_LEFT}
+    >
+      <Button>BOTTOM_LEFT</Button>
+    </Popover>
+     <Popover
+      content={
+        <Pane
+          width={240}
+          height={240}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+        >
+          <Text>BOTTOM</Text>
+        </Pane>    
+      }
+      position={Position.BOTTOM}
+    >
+      <Button>BOTTOM</Button>
+    </Popover>
+    <Popover
+      content={
+        <Pane
+          width={240}
+          height={240}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+        >
+          <Text>BOTTOM_RIGHT</Text>
+        </Pane>    
+      }
+      position={Position.BOTTOM_RIGHT}
+    >
+      <Button>BOTTOM_RIGHT</Button>
+    </Popover>
+  </Pane>
+</Pane>
+```
+
+
+<PropsTable of="Popover" />
