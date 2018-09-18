@@ -12,7 +12,7 @@ export default class MDXPlayground extends React.Component {
     // We are abusing the className for now to differentiate wether the Playground should be open or collapsed.
     // This is because passing properties is not yet supported in MDX.
     const isOpenByDefault = this.props.className.includes('jsx')
-    console.log(isOpenByDefault)
+
     return (
       <Playground
         codeText={this.props.children}
