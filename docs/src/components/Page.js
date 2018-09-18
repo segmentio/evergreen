@@ -78,7 +78,7 @@ class Page extends React.Component {
                           <IconButton
                             onClick={() => {
                               // Non-ideal, but Tooltip doesn't play nice when using is={Link}
-                              navigate('/components/overview')
+                              navigate('/components')
                             }}
                             marginLeft={-54}
                             marginRight={16}
@@ -129,7 +129,7 @@ class Page extends React.Component {
               <div className="Container">
                 <Button
                   is={Link}
-                  to="/components/overview"
+                  to="/components"
                   display="inline-flex"
                   iconBefore="arrow-left"
                   height={40}

@@ -6,18 +6,7 @@
   padding-left: 16px;
   padding-right: 16px;
   position: relative;
-
-  @media (--range-palm) {
-    height: 52px;
-  }
-
-  @media (--range-palm), (--range-hand), (--range-lap) {
-    box-shadow: var(--elevation-0);
-  }
-
-  @media (--range-desk) {
-    box-shadow: var(--elevation-1);
-  }
+  box-shadow: var(--elevation-1);
 }
 
 .TopBar-nav {
@@ -58,8 +47,8 @@
     color: var(--blue-500);
   }
 
-  &:focus {
-    box-shadow: inset 0 0 0 1px var(--blue-100A);
+  &:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--blue-100A);
   }
 
   & .icon-holder {

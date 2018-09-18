@@ -3,6 +3,7 @@ import React from 'react'
 import TopBar from '../../components/TopBar'
 import GetStartedSidebar from '../../components/GetStartedSidebar'
 import SyntaxHighlighter from '../../components/SyntaxHighlighter'
+import DocsMDXProvider from '../../components/DocsMDXProvider'
 import Layout from '../../components/Layout'
 
 const NativeLink = ({ ...props }) => {
@@ -18,14 +19,17 @@ export default () => {
           <div className="MainLayout-content">
             <section className="Container">
               <div className="Content">
-                <h1>Introduction</h1>
-                <p>
+                <DocsMDXProvider>{`
+                    # Introduction
+                  `}</DocsMDXProvider>
+                <h1 className="h1">Introduction</h1>
+                <p className="p">
                   Evergreen is a pragmatic UI kit for building evolving products
                   on the web.<br /> It is build and maintained open-source by{' '}
                   <NativeLink href="https://segment.com/">Segment</NativeLink>.
                 </p>
                 <h2>Core beliefs of Evergreen</h2>
-                <p>
+                <p className="p">
                   <strong>
                     Evergreen is built on the belief that you can never predict
                     all future requirements, only prepare for it.
@@ -35,7 +39,7 @@ export default () => {
                   Evergreen promotes building systems that anticipate new and
                   changing design requirements.
                 </p>
-                <p>
+                <p className="p">
                   <strong>
                     Evergreen is built on the belief that things should work out
                     of the box with smart defaults and offer full control when

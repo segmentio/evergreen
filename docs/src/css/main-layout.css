@@ -3,39 +3,28 @@ body {
 }
 
 .MainLayout {
-  @media (--range-desk) {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .MainLayout-main {
   flex: 1;
   display: flex;
-
-  @media (--range-palm), (--range-hand), (--range-lap) {
-    flex-direction: column;
-  }
-
-  @media (--range-desk) {
-    flex-direction: row-reverse;
-  }
+  flex-direction: row-reverse;
 }
 
 .MainLayout-content {
   flex: 1;
   overflow-y: auto;
 
-  @media (--range-desk) {
-    & .Container,
-    & .Container-noMargins {
-      width: 832px;
-    }
+  & .Container,
+  & .Container-noMargins {
+    width: 832px;
+  }
 
-    & .Container {
-      padding-bottom: 120px;
-    }
+  & .Container {
+    padding-bottom: 120px;
   }
 }
 
@@ -58,41 +47,10 @@ body {
     background: rgba(255, 0, 0, 0.4);
   }
 
-  @media (--range-palm), (--range-hand), (--range-lap) {
-    margin-top: 24px;
-    border-top: 1px solid var(--neutral-20A);
-  }
-
-  @media (--range-palm) {
-    padding: 0 5%;
-    width: 100%;
-    margin-bottom: 120px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  @media (--range-hand) {
-    padding: 0 6%;
-    width: 100%;
-    margin-bottom: 120px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  @media (--range-lap) {
-    padding: 0 8%;
-    width: 100%;
-    max-width: 760px;
-    margin-top: 40px;
-    margin-bottom: 120px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  @media (--range-desk) {
-    width: 240px;
-    padding: 24px;
-    overflow-y: auto;
-    background-color: var(--neutral-5);
-  }
+  width: 240px;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: var(--neutral-5);
 }
 
 .Sidebar-inner {
