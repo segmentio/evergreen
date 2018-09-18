@@ -36,9 +36,12 @@ export default class PropsTable extends PureComponent {
    * We find the docs for just the component we are looking for.
    */
   getDocsForComponent = data => {
-    return data.allComponentMetadata.edges.find(({ node }) => {
+    const result = data.allComponentMetadata.edges.find(({ node }) => {
       return node.displayName === this.props.of
-    }).node
+    })
+
+    if (result) return result.node
+    return null
   }
 
   render() {
@@ -80,6 +83,15 @@ export default class PropsTable extends PureComponent {
         `}
         render={data => {
           const componentDocs = this.getDocsForComponent(data)
+          if (!componentDocs)
+            return (
+              <div>
+                <p>
+                  The properties table for this component can’t be rendered at
+                  the moment, due to a bug.
+                </p>
+              </div>
+            )
           return (
             <>
               <div className="Content">

@@ -1,0 +1,56 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `Switch` component is used as an alternative for the `Checkbox` component.
+Except `indeterminate` and `label` are not supported.
+
+## Switch states
+
+```jsx
+<Pane>
+  <Switch marginBottom={16} />
+  <Switch marginBottom={16} checked />
+  <Switch marginBottom={16} disabled />
+  <Switch marginBottom={16} disabled checked />
+</Pane>
+```
+
+## Sizes
+
+The `Switch` will work with any `height` you pass it. Although it’s only every used with: `16`, `20` and `24`.
+
+```jsx
+<Switch height={20} checked />
+```
+
+```jsx
+<Switch height={24} checked />
+```
+
+## Controlled usage
+
+The `Switch` component passes on the orginal event through the `onChange` handler.
+Use `e.target.checked` to get the latest value and update state accordingly.
+
+```jsx
+<Component initialState={{ checked: true }}>
+  {({ state, setState }) => (
+    <Switch
+      checked={state.checked}
+      onChange={e => setState({ checked: e.target.checked })}
+    />
+  )}
+</Component>
+```
+
+## Add margins
+
+```jsx
+<Switch
+  checked
+  marginBottom={40}
+/>
+```
+
+<PropsTable of="SwitchControl" />
