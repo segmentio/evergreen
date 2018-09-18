@@ -11,6 +11,7 @@
     "@mdx-js/tag": "^0.15.0",
     "@reach/router": "^1.1.1",
     "@reactions/component": "^2.0.2",
+    "faker": "^4.1.0",
     "fuzzaldrin-plus": "^0.6.0",
     "gatsby": "^2.0.0-beta.111",
     "gatsby-mdx": "^0.1.3",

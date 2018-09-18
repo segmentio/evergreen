@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'gatsby'
 import { Location, navigate } from '@reach/router'
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Button, IconButton, Tooltip } from 'evergreen-ui'
@@ -106,21 +107,35 @@ class Page extends React.Component {
                 </div>
               </article>
 
-              <div className="Overview-group Container">
-                <h3 className="Overview-groupTitle">Related</h3>
-                <div className="Overview-groupItems">
-                  {relatedItems.map(item => {
-                    return (
-                      <OverviewItem
-                        key={item.name}
-                        id={item.id}
-                        image={item.image}
-                      >
-                        {item.name}
-                      </OverviewItem>
-                    )
-                  })}
+              {relatedItems.length > 0 && (
+                <div className="Overview-group Container">
+                  <h3 className="Overview-groupTitle">Related</h3>
+                  <div className="Overview-groupItems">
+                    {relatedItems.map(item => {
+                      return (
+                        <OverviewItem
+                          key={item.name}
+                          id={item.id}
+                          image={item.image}
+                        >
+                          {item.name}
+                        </OverviewItem>
+                      )
+                    })}
+                  </div>
                 </div>
+              )}
+
+              <div className="Container">
+                <Button
+                  is={Link}
+                  to="/components/overview"
+                  display="inline-flex"
+                  iconBefore="arrow-left"
+                  height={40}
+                >
+                  Back to Overview
+                </Button>
               </div>
             </div>
           </main>

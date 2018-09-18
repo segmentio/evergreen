@@ -6,6 +6,7 @@ import uniqueId from 'lodash/uniqueId'
 import * as components from 'evergreen-ui'
 import Component from '@reactions/component'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
+import profiles from './examples/profiles.json' // eslint-disable-line import/extensions
 
 export default class Playground extends React.Component {
   static propTypes = {
@@ -69,6 +70,15 @@ export default class Playground extends React.Component {
     )
   }
 
+  renderProfilesNotice = () => {
+    return (
+      <div className="Playground-notice">
+        The `profiles` variable is not part of Evergreen. It’s example data
+        existing out of an array of user profiles.
+      </div>
+    )
+  }
+
   render() {
     const { scope } = this.props
     const { codeText, hasError, isCodeCollapsed, uniqueId } = this.state
@@ -77,7 +87,7 @@ export default class Playground extends React.Component {
     return (
       <LiveProvider
         theme="evergreen"
-        scope={{ ReactDOM, Component, ...components, ...scope }}
+        scope={{ ReactDOM, Component, profiles, ...components, ...scope }}
         code={codeText}
         mountStylesheet={false}
       >
@@ -94,6 +104,7 @@ export default class Playground extends React.Component {
               <div>
                 {codeText.includes('<Component') &&
                   this.renderComponentNotice()}
+                {codeText.includes('profiles') && this.renderProfilesNotice()}
                 <LiveEditor onChange={this.handleChange} />
               </div>
             )}

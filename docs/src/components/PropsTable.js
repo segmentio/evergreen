@@ -7,7 +7,8 @@ import PropTypeHeading from './prop-types-table/PropTypeHeading'
 
 export default class PropsTable extends PureComponent {
   static propTypes = {
-    of: PropTypes.string.isRequired
+    of: PropTypes.string.isRequired,
+    rename: PropTypes.string
   }
 
   getTypeInfo(prop) {
@@ -96,7 +97,9 @@ export default class PropsTable extends PureComponent {
             <>
               <div className="Content">
                 <h2 className="h2">
-                  <code className="code">{componentDocs.displayName}</code>{' '}
+                  <code className="code">
+                    {this.props.rename || componentDocs.displayName}
+                  </code>{' '}
                   Props
                 </h2>
                 {componentDocs &&
