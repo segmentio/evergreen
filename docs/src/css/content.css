@@ -73,28 +73,6 @@
   margin-top: 32px;
 }
 
-.h3 {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: -0.05px;
-  margin-bottom: 16px;
-  margin-top: 32px;
-}
-
-.h4 {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 22px;
-  letter-spacing: -0.05px;
-  margin-bottom: 4px;
-  margin-top: 32px;
-
-  & + .paragraph {
-    margin-top: 0;
-  }
-}
-
 .link {
   color: var(--blue-base);
 
@@ -114,9 +92,13 @@
   letter-spacing: -0.05px;
   margin-top: 1em;
   margin-bottom: 1em;
-  border-left: 2px solid var(--green-100A);
+  border-left: 2px solid var(--green-base);
   padding: 12px;
-  background-color: var(--green-7A);
+  background-color: var(--green-lightest);
+
+  & p {
+    margin: 0.5em;
+  }
 }
 
 .strong {

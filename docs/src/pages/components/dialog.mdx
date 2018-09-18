@@ -1,0 +1,236 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `Dialog` component is used to show content on top of an overlay.
+It blocks any interaction with the page — until the overlay is clicked, or a close action is triggered.
+
+### When to use
+
+When you require your user to interact with you app and
+don’t want your users to jump toa different page and break their workflow.
+
+You should also use a dialog in cases where you need to ask for confirmation
+from the user before doing a lengthy or dangerous action.
+This could be a deletion of some sorts or initiating a lengthy download.
+
+### Terminology
+
+[BlueprintJS](https://blueprintjs.com/docs/versions/2/#core/components/dialog) pointed out in their documentation that “modal” is a misnomer for “dialog”.
+
+> The term “modal” is sometimes used to mean “dialog”, but this is a misnomer.
+> Modal is an adjective that describes parts of a UI.
+> An element is considered modal if it [blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
+> We use the term “dialog” to avoid confusion with the adjective.
+
+
+### Focus Management
+
+When opening a `Dialog`, focus will be brought inside the `Dialog`
+When using both the cancel and confirm button, the cancel button will get focus first.
+
+When closing the Dialog, focus will be brought back to the element that was focused before opening the `Dialog`.
+This is normally the button that triggered the `Dialog`.
+
+## Default dialog example
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <Pane>
+      <Dialog
+        isShown={state.isShown}
+        title="Dialog title"
+        onCloseComplete={() => setState({ isShown: false })}
+        confirmLabel="Custom Label"
+      >
+        Dialog content
+      </Dialog>
+
+      <Button onClick={() => setState({ isShown: true })}>Show Dialog</Button>
+    </Pane>
+  )}
+</Component>
+```
+
+## Default with a danger intent
+
+The `intent` prop determines the appearance of the confirm button, `danger` is red. 
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <Pane>
+      <Dialog
+        isShown={state.isShown}
+        title="Danger intent"
+        onCloseComplete={() => setState({ isShown: false })}
+        confirmLabel="Delete Something"
+      >
+        Dialog content
+      </Dialog>
+
+      <Button onClick={() => setState({ isShown: true })}>Show Dialog</Button>
+    </Pane>
+  )}
+</Component>
+```
+
+## Confirm button with loading confirmation
+
+```jsx
+<Component
+  initialState={{ isShown: false, isLoading: false }}
+  didUpdate={({ state, setState }) => {
+    if (state.isLoading === true) {
+      window.setTimeout(() => {
+        setState({
+          isShown: false
+        })
+      }, 2000)
+    }
+  }}
+>
+  {({ state, setState }) => (
+    <Pane>
+      <Dialog
+        isShown={state.isShown}
+        title="Loading confirmation"
+        onCloseComplete={() => setState({ isShown: false, isLoading: false })}
+        isConfirmLoading={state.isLoading}
+        onConfirm={() => setState({ isLoading: true })}
+        confirmLabel={state.isLoading ? 'Loading...' : 'Confirm Loading'}
+      >
+        Dialog content
+      </Dialog>
+
+      <Button onClick={() => setState({ isShown: true })}>Show Dialog</Button>
+    </Pane>
+  )}
+</Component>
+```
+
+## Internal scrolling
+
+When content makes the dialog height greater than the available space in the viewport,
+the content area will become scrollable
+It will add a symmetric offset on the top and bottom — based on the topOffset prop.
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <Pane>
+      <Dialog
+        isShown={state.isShown}
+        title="Internal scrolling"
+        onCloseComplete={() => setState({ isShown: false })}
+      >
+        <Pane height={1800} width="100%" backgroundColor="#ddd" />
+      </Dialog>
+
+      <Button onClick={() => setState({ isShown: true })}>Show Dialog</Button>
+    </Pane>
+  )}
+</Component>
+```
+
+## Self managed close
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <Pane>
+      <Dialog
+        isShown={state.isShown}
+        title="Self managed close"
+        onCloseComplete={() => setState({ isShown: false })}
+      >
+        {({ close }) => (
+          <Pane>
+            <Paragraph>Manage your own buttons and close interaction</Paragraph>
+            <Button marginTop={16} onClick={close}>
+              Self Managed Close
+            </Button>
+          </Pane>
+        )}
+      </Dialog>
+
+      <Button onClick={() => setState({ isShown: true })}>Show Dialog</Button>
+    </Pane>
+  )}
+</Component>
+```
+
+## Remove default footer
+
+Use the `hasFooter` prop to show or hide the footer.
+This will hide the confirm and cancel buttons.
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <Pane>
+      <Dialog
+        isShown={state.isShown}
+        title="No footer"
+        onCloseComplete={() => setState({ isShown: false })}
+        hasFooter={false}
+      >
+        No footer
+      </Dialog>
+
+      <Button onClick={() => setState({ isShown: true })}>Show Dialog</Button>
+    </Pane>
+  )}
+</Component>
+```
+
+## Remove default haeder
+
+Use the `hasHeader` prop to show or hide the header.
+This will hide both the close icon button as the title.
+
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <Pane>
+      <Dialog
+        isShown={state.isShown}
+        onCloseComplete={() => setState({ isShown: false })}
+        hasHeader={false}
+      >
+        No header
+      </Dialog>
+
+      <Button onClick={() => setState({ isShown: true })}>Show Dialog</Button>
+    </Pane>
+  )}
+</Component>
+```
+
+## Remove default footer and header
+
+Use the `hasFooter`, `hasHeader` props to show or hide the footer and header.
+
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <Pane>
+      <Dialog
+        isShown={state.isShown}      
+        onCloseComplete={() => setState({ isShown: false })}
+        hasFooter={false}
+        hasHeader={false}
+      >
+        Completely custom dialog
+      </Dialog>
+
+      <Button onClick={() => setState({ isShown: true })}>Show Dialog</Button>
+    </Pane>
+  )}
+</Component>
+```
+
+<PropsTable of="Dialog" />
