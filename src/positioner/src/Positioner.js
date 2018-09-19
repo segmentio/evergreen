@@ -158,8 +158,8 @@ export default class Positioner extends PureComponent {
       // https://github.com/segmentio/evergreen/issues/255
       // We need to ceil the width and height to prevent jitter when
       // the window is zoomed (when `window.devicePixelRatio` is not an integer)
-      height = Math.ceil(positionerRect.height)
-      width = Math.ceil(positionerRect.width)
+      height = Math.round(positionerRect.height)
+      width = Math.round(positionerRect.width)
     } else {
       // When the animation is in flight use `offsetWidth/Height` which
       // does not calculate the `transform` property as part of its result.
@@ -229,17 +229,18 @@ export default class Positioner extends PureComponent {
           return (
             <React.Fragment>
               {target({ getRef: this.getTargetRef, isShown })}
-              <Portal>
-                <Transition
-                  in={isShown}
-                  timeout={animationDuration}
-                  onEnter={this.handleEnter}
-                  onEntered={this.props.onOpenComplete}
-                  onExited={this.handleExited}
-                  unmountOnExit
-                >
-                  {state =>
-                    children({
+
+              <Transition
+                in={isShown}
+                timeout={animationDuration}
+                onEnter={this.handleEnter}
+                onEntered={this.props.onOpenComplete}
+                onExited={this.handleExited}
+                unmountOnExit
+              >
+                {state => (
+                  <Portal>
+                    {children({
                       top,
                       left,
                       state,
@@ -257,10 +258,10 @@ export default class Positioner extends PureComponent {
                       },
                       getRef: this.getRef,
                       animationDuration
-                    })
-                  }
-                </Transition>
-              </Portal>
+                    })}
+                  </Portal>
+                )}
+              </Transition>
             </React.Fragment>
           )
         }}
