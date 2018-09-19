@@ -59,10 +59,10 @@
  * Palette.
  */
 :root {
-  --neutral--lightest: var(--N1);
-  --neutral--light: var(--N4);
-  --neutral--base: var(--N9);
-  --neutral--dark: var(--N10);
+  --neutral-lightest: var(--N1);
+  --neutral-light: var(--N4);
+  --neutral-base: var(--N9);
+  --neutral-dark: var(--N10);
 
   --blue-lightest: var(--B1);
   --blue-light: var(--B4);

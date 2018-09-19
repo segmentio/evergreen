@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-import logo from '../images/evergreen-logo-wordmark.svg'
-import logoStandalone from '../images/evergreen-logo-icon.svg'
+import LogoWordmark from './LogoWordmark'
 
 export default class TopBar extends PureComponent {
   static propTypes = {
@@ -16,10 +15,7 @@ export default class TopBar extends PureComponent {
     return (
       <div className="TopBar" {...props}>
         <Link to="/">
-          <picture>
-            <source srcSet={logo} media="(min-width: 520px)" />
-            <img src={logoStandalone} alt="Evergreen" style={{ height: 24 }} />
-          </picture>
+          <LogoWordmark width={115} />
         </Link>
         <nav className="TopBar-nav">
           <Link

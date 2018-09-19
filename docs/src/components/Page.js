@@ -102,7 +102,7 @@ class Page extends React.Component {
                     </div>
                   </div>
                 </header>
-                <div className="Content Container">
+                <div className="Container">
                   <DocsMDXProvider>{this.props.children}</DocsMDXProvider>
                 </div>
               </article>

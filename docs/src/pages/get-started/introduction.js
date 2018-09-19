@@ -2,8 +2,7 @@
 import React from 'react'
 import TopBar from '../../components/TopBar'
 import GetStartedSidebar from '../../components/GetStartedSidebar'
-import SyntaxHighlighter from '../../components/SyntaxHighlighter'
-import DocsMDXProvider from '../../components/DocsMDXProvider'
+import SyntaxHighlighter from '../../components/SyntaxHighlighter2'
 import Layout from '../../components/Layout'
 
 const NativeLink = ({ ...props }) => {
@@ -19,19 +18,16 @@ export default () => {
           <div className="MainLayout-content">
             <section className="Container">
               <div className="Content">
-                <DocsMDXProvider>{`
-                    # Introduction
-                  `}</DocsMDXProvider>
-                <h1 className="h1">Introduction</h1>
+                <h1>Introduction</h1>
                 <p className="p">
                   Evergreen is a pragmatic UI kit for building evolving products
                   on the web.<br /> It is build and maintained open-source by{' '}
                   <NativeLink href="https://segment.com/">Segment</NativeLink>.
                 </p>
                 <h2>Core beliefs of Evergreen</h2>
-                <p className="p">
+                <p>
                   <strong>
-                    Evergreen is built on the belief that you can never predict
+                    Evergreen is build on the belief that you can never predict
                     all future requirements, only prepare for it.
                   </strong>
                   {` `}
@@ -39,9 +35,9 @@ export default () => {
                   Evergreen promotes building systems that anticipate new and
                   changing design requirements.
                 </p>
-                <p className="p">
+                <p>
                   <strong>
-                    Evergreen is built on the belief that things should work out
+                    Evergreen is build on the belief that things should work out
                     of the box with smart defaults and offer full control when
                     needed.
                   </strong>
@@ -67,26 +63,25 @@ export default () => {
                   you can import one by one. All you need to do is install the{' '}
                   <code>evergreen-ui</code> package:
                 </p>
-
-                <pre>
-                  <code>
-                    {`
+              </div>
+              <SyntaxHighlighter>
+                {`
 $ yarn add evergreen-ui
 # or
 $ npm install --save evergreen-ui
                 `.trim()}
-                  </code>
-                </pre>
-
+              </SyntaxHighlighter>
+              <div className="Content">
                 <p>
                   A working version, assuming you are using something like{' '}
                   <NativeLink href="https://github.com/facebookincubator/create-react-app">
                     Create React App
                   </NativeLink>, might look like this:
                 </p>
+              </div>
 
-                <SyntaxHighlighter>
-                  {`
+              <SyntaxHighlighter>
+                {`
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Button } from 'evergreen-ui'
@@ -94,10 +89,8 @@ import { Button } from 'evergreen-ui'
 ReactDOM.render(
   <Button>I am using 🌲 Evergreen!</Button>,
   document.getElementById('root')
-)
-                `.trim()}
-                </SyntaxHighlighter>
-              </div>
+)`}
+              </SyntaxHighlighter>
             </section>
           </div>
           <GetStartedSidebar />

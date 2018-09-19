@@ -16,6 +16,7 @@ export default class SyntaxHighlighter2 extends React.PureComponent {
         {...defaultProps}
         code={this.props.children.trim()}
         language="jsx"
+        theme={undefined}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>

@@ -1,3 +1,4 @@
+.Content code,
 .code {
   font-family: var(--font-mono);
   background-color: var(--teal-lightest);
@@ -9,6 +10,8 @@
   padding: 2px 4px;
 }
 
+.Content p,
+.Content li,
 .paragraph,
 .li {
   font-size: 16px;
@@ -17,16 +20,19 @@
   letter-spacing: -0.05px;
 }
 
+.Content p,
 .paragraph {
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
+.Content li,
 .li {
   margin-top: 0.2em;
   margin-bottom: 0.2em;
 }
 
+.Content h1,
 .h1 {
   font-size: 35px;
   font-weight: 500;
@@ -34,17 +40,9 @@
   letter-spacing: -0.2px;
   margin-top: 54px;
   margin-bottom: 4px;
-
-  /* & + .paragraph {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: -0.05px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-  } */
 }
 
+.Content h2,
 .h2 {
   font-size: 28px;
   font-weight: 500;
@@ -54,6 +52,7 @@
   margin-top: 42px;
 }
 
+.Content h3,
 .h3 {
   font-size: 21px;
   font-weight: 500;
@@ -63,6 +62,7 @@
   margin-top: 32px;
 }
 
+.Content h4,
 .h4 {
   font-size: 18px;
   font-family: var(--font-ui);
@@ -73,6 +73,7 @@
   margin-top: 32px;
 }
 
+.Content a,
 .link {
   color: var(--blue-base);
 
@@ -85,6 +86,7 @@
   }
 }
 
+.Content blockquote,
 .blockquote {
   font-size: 14px;
   font-weight: 400;
@@ -101,10 +103,12 @@
   }
 }
 
+.Content strong,
 .strong {
   font-weight: 600;
 }
 
+.Content ul,
 .ul {
   list-style-type: disc;
   margin-left: 1.1em;

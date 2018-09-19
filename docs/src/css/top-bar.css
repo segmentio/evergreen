@@ -26,7 +26,7 @@
 }
 
 .TopBar-link {
-  color: var(--neutral-500);
+  color: var(--neutral-base);
   text-transform: uppercase;
   font-size: 12px;
   padding: 10px 12px;
@@ -38,17 +38,17 @@
   border-radius: 3px;
 
   &:hover {
-    background-color: var(--neutral-7A);
+    background-color: var(--N2A);
   }
 
   &:active,
   &.is-active {
-    background-color: var(--blue-7A);
-    color: var(--blue-500);
+    background-color: var(--B3A);
+    color: var(--blue-base);
   }
 
   &:focus-visible {
-    box-shadow: inset 0 0 0 2px var(--blue-100A);
+    box-shadow: inset 0 0 0 2px var(--B3A);
   }
 
   & .icon-holder {
