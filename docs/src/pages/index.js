@@ -1,12 +1,9 @@
 import React from 'react'
-import { Link } from 'gatsby'
-import { Button } from '../../../src'
 import TopBar from '../components/TopBar'
 import Layout from '../components/Layout'
-
-const NativeLink = ({ ...props }) => {
-  return <a target="_blank" rel="noopener noreferrer" {...props} />
-}
+import PageFooter from '../components/PageFooter'
+import Features from '../components/Features'
+import HomeHero from '../components/HomeHero'
 
 export default class Root extends React.Component {
   componentDidCatch(error, errorInfo) {
@@ -16,43 +13,14 @@ export default class Root extends React.Component {
   render() {
     return (
       <Layout>
-        <div className="MainLayout">
+        <div>
           <TopBar />
-          <main className="MainLayout-main">
-            <div className="MainLayout-content">
-              <section className="Home">
-                <div className="Home-inner">
-                  <h1>React Based UI Framework</h1>
-                  <p>
-                    It is build and maintained open&#8209;source&nbsp;by&nbsp;
-                    <NativeLink className="Link" href="https://segment.com/">
-                      Segment
-                    </NativeLink>.
-                  </p>
-                  <div>
-                    <Button
-                      is={Link}
-                      to="/components/"
-                      appearance="primary"
-                      height={40}
-                      marginRight={12}
-                    >
-                      Components
-                    </Button>
-                    <NativeLink
-                      href="https://github.com/segmentio/evergreen"
-                      style={{
-                        width: 136
-                      }}
-                    >
-                      GitHub
-                    </NativeLink>
-                  </div>
-                </div>
-              </section>
-            </div>
+          <main>
+            <HomeHero />
+            <Features />
           </main>
         </div>
+        <PageFooter />
       </Layout>
     )
   }

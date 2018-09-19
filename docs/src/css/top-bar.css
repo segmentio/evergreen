@@ -5,7 +5,10 @@
   align-items: center;
   padding-left: 16px;
   padding-right: 16px;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  background: white;
   box-shadow: var(--elevation-1);
 }
 

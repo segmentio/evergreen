@@ -72,7 +72,7 @@ class Page extends React.Component {
               <article className="MDXPage">
                 <header className="MDXPage-header">
                   <div className="bg-tint1">
-                    <div className="MDXPage-headerContent Container-noMargins">
+                    <div className="MDXPage-headerContent Container Container--narrow">
                       <div className="MDXPage-headerContentLeft">
                         <Tooltip content="Back to Overview">
                           <IconButton
@@ -102,13 +102,19 @@ class Page extends React.Component {
                     </div>
                   </div>
                 </header>
-                <div className="Container">
+                <div
+                  className="Container Container--narrow"
+                  style={{ marginBottom: 120 }}
+                >
                   <DocsMDXProvider>{this.props.children}</DocsMDXProvider>
                 </div>
               </article>
 
               {relatedItems.length > 0 && (
-                <div className="Overview-group Container">
+                <div
+                  className="Overview-group Container Container--narrow"
+                  style={{ marginBottom: 120 }}
+                >
                   <h3 className="Overview-groupTitle">Related</h3>
                   <div className="Overview-groupItems">
                     {relatedItems.map(item => {
@@ -126,7 +132,10 @@ class Page extends React.Component {
                 </div>
               )}
 
-              <div className="Container">
+              <div
+                className="Container Container--narrow"
+                style={{ marginBottom: 120 }}
+              >
                 <Button
                   is={Link}
                   to="/components"

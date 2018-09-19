@@ -3,6 +3,27 @@
   background: var(--N1);
 }
 
+.bg-tint2 {
+  background: var(--N2);
+}
+
+.bg-green {
+  background: var(--green-base);
+}
+
+.clearfix {
+  &::after,
+  &::before {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}
+
+.bg-dark {
+  background: var(--N9);
+}
+
 .border-bottom-default {
   border-bottom: 1px solid var(--color-border-default);
 }

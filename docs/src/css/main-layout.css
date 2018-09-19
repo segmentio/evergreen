@@ -17,15 +17,13 @@ body {
 .MainLayout-content {
   flex: 1;
   overflow-y: auto;
+}
 
-  & .Container,
-  & .Container-noMargins {
-    width: 832px;
-  }
-
-  & .Container {
-    padding-bottom: 120px;
-  }
+.MainLayout-contentRight {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .MainLayout-sidebar {
@@ -50,21 +48,11 @@ body {
   width: 240px;
   padding: 24px;
   overflow-y: auto;
-  background-color: var(--neutral-5);
+  background-color: var(--N2);
 }
 
 .Sidebar-inner {
   max-width: 260px;
-
-  @media (--range-palm) {
-    margin-top: 40px;
-  }
-  @media (--range-hand) {
-    margin-top: 40px;
-  }
-  @media (--range-lap) {
-    margin-top: 40px;
-  }
 }
 
 .MainLayout-main {

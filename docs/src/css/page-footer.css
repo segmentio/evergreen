@@ -1,0 +1,23 @@
+.PageFooter {
+}
+
+.PageFooter-inner {
+  align-items: center;
+  display: flex;
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+
+.PageFooter-left {
+  flex: 1;
+}
+
+.PageFooter-right {
+  flex: 3;
+  text-align: right;
+
+  & p {
+    font-size: 14px;
+    color: white;
+  }
+}
