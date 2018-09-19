@@ -229,17 +229,17 @@ export default class Positioner extends PureComponent {
           return (
             <React.Fragment>
               {target({ getRef: this.getTargetRef, isShown })}
-              <Portal>
-                <Transition
-                  in={isShown}
-                  timeout={animationDuration}
-                  onEnter={this.handleEnter}
-                  onEntered={this.props.onOpenComplete}
-                  onExited={this.handleExited}
-                  unmountOnExit
-                >
-                  {state =>
-                    children({
+              <Transition
+                in={isShown}
+                timeout={animationDuration}
+                onEnter={this.handleEnter}
+                onEntered={this.props.onOpenComplete}
+                onExited={this.handleExited}
+                unmountOnExit
+              >
+                {state => (
+                  <Portal>
+                    {children({
                       top,
                       left,
                       state,
@@ -257,10 +257,10 @@ export default class Positioner extends PureComponent {
                       },
                       getRef: this.getRef,
                       animationDuration
-                    })
-                  }
-                </Transition>
-              </Portal>
+                    })}
+                  </Portal>
+                )}
+              </Transition>
             </React.Fragment>
           )
         }}

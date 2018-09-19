@@ -18,13 +18,6 @@ module.exports = {
         name: 'evergreen'
       }
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/pages/get-started/`,
-        name: 'getStarted'
-      }
-    },
     'gatsby-transformer-react-docgen',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-postcss'
