@@ -26,6 +26,12 @@
 }
 
 .TopBar-navRight {
+  display: flex;
+  align-items: center;
+
+  & > span {
+    margin-right: 16px;
+  }
 }
 
 .TopBar-link {
@@ -33,12 +39,16 @@
   text-transform: uppercase;
   font-size: 12px;
   padding: 10px 12px;
-  margin-right: 2px;
+  margin-right: 8px;
   height: 36px;
   display: inline-flex;
   align-items: center;
   letter-spacing: 0.4px;
   border-radius: 3px;
+
+  &:last-child {
+    margin-right: 0;
+  }
 
   &:hover {
     background-color: var(--N2A);

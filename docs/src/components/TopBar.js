@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
+import GitHubButton from 'react-github-button'
 import GitHubIcon from './GitHubIcon'
 import SpectrumIcon from './SpectrumIcon'
 import LogoWordmark from './LogoWordmark'
+// eslint-disable-next-line import/no-unassigned-import
+import 'react-github-button/assets/style.css'
 
 export default class TopBar extends PureComponent {
   static propTypes = {
@@ -19,6 +22,7 @@ export default class TopBar extends PureComponent {
         <Link to="/" className="focus-ring-link">
           <LogoWordmark width={115} />
         </Link>
+
         <nav className="TopBar-nav">
           <Link
             to="/get-started/introduction"
@@ -36,6 +40,12 @@ export default class TopBar extends PureComponent {
           </Link>
         </nav>
         <div className="TopBar-navRight">
+          <GitHubButton
+            type="stargazers"
+            size="default"
+            namespace="segmentio"
+            repo="evergreen"
+          />
           <a
             className="TopBar-link TopBar-link--icon"
             href="https://spectrum.chat/evergreen"

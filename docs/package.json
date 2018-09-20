@@ -29,6 +29,7 @@
     "react": "^16.4.0",
     "react-docgen": "^3.0.0-rc.0",
     "react-dom": "^16.4.0",
+    "react-github-button": "^0.1.11",
     "react-helmet": "^5.2.0",
     "react-live": "1.10.1",
     "react-syntax-highlighter": "^7.0.2"
