@@ -56,7 +56,11 @@ export default class Features extends React.PureComponent {
             </div>
           </div>
           <div className="HomeHero-right">
-            <img src={spotIllustration} alt="Evergreen spot illustration" />
+            <img
+              src={spotIllustration}
+              alt="Evergreen spot illustration"
+              height="396"
+            />
           </div>
         </div>
       </section>

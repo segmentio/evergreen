@@ -12,7 +12,7 @@ export default () => {
   return (
     <Layout>
       <Helmet>
-        <title>Theming &middot; Evergreen</title>
+        <title>Theming · Evergreen</title>
       </Helmet>
       <div className="MainLayout">
         <TopBar />

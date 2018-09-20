@@ -66,16 +66,13 @@ class Page extends React.Component {
     if (!metaInfo) return null
     const relatedItems = this.getRelatedItems(metaInfo)
     return (
-      <Layout>
+      <React.Fragment>
         <Helmet>
-          <title>{metaInfo.name} &middot; Evergreen</title>
-          <meta
-            property="og:title"
-            content={`${metaInfo.name} &middot; Evergreen`}
-          />
+          <title>{metaInfo.name} · Evergreen</title>
+          <meta property="og:title" content={`${metaInfo.name} · Evergreen`} />
           <meta
             property="twitter:title"
-            content={`${metaInfo.name} &middot; Evergreen`}
+            content={`${metaInfo.name} · Evergreen`}
           />
         </Helmet>
         <div>
@@ -161,7 +158,7 @@ class Page extends React.Component {
             </div>
           </main>
         </div>
-      </Layout>
+      </React.Fragment>
     )
   }
 }
@@ -169,11 +166,13 @@ class Page extends React.Component {
 export default class PageContainer extends React.Component {
   render() {
     return (
-      <Location>
-        {({ location }) => {
-          return <Page location={location} {...this.props} />
-        }}
-      </Location>
+      <Layout>
+        <Location>
+          {({ location }) => {
+            return <Page location={location} {...this.props} />
+          }}
+        </Location>
+      </Layout>
     )
   }
 }

@@ -7,8 +7,7 @@ module.exports = {
       resolve: `gatsby-mdx`,
       options: {
         defaultLayouts: {
-          default: require.resolve('./src/components/Page.js'),
-          getStarted: require.resolve('./src/components/PageGettingStarted.js')
+          default: require.resolve('./src/components/Page.js')
         }
       }
     },

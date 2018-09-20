@@ -14,7 +14,7 @@ export default () => {
   return (
     <Layout>
       <Helmet>
-        <title>Introduction &middot; Evergreen</title>
+        <title>Introduction · Evergreen</title>
       </Helmet>
       <div className="MainLayout">
         <TopBar />
