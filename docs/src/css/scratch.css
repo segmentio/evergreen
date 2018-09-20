@@ -8,7 +8,20 @@
 }
 
 .bg-green {
-  background: var(--green-base);
+  background: #43af79;
+}
+
+.color-white {
+  color: white;
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6,
+  & p {
+    color: white;
+  }
 }
 
 .clearfix {
@@ -30,4 +43,40 @@
 
 .border-bottom-muted {
   border-bottom: 1px solid var(--color-border-muted);
+}
+
+.focus-ring-link {
+  position: relative;
+
+  &:focus-visible::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -4px;
+    left: -6px;
+    right: -6px;
+    bottom: -4px;
+    box-shadow: 0 0 0 2px var(--B6A);
+    border-radius: 3px;
+  }
+}
+
+.focus-ring-link-white {
+  position: relative;
+
+  &:focus-visible {
+    border-bottom: none;
+  }
+
+  &:focus-visible::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -4px;
+    left: -6px;
+    right: -6px;
+    bottom: -4px;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+  }
 }

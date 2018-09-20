@@ -94,7 +94,7 @@ class Page extends React.Component {
                       <Button
                         is="a"
                         height={40}
-                        href={`https://github.com/segmentio/evergreen/tree/master/src/${metaInfo.name.toLowerCase()}`}
+                        href={metaInfo.github}
                         target="_blank"
                       >
                         View on GitHub

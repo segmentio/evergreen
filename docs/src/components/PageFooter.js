@@ -16,7 +16,10 @@ export default class PageFooter extends React.PureComponent {
           <div className="PageFooter-right">
             <p>
               Evergreen is an open source project developed at Segment.{' '}
-              <NativeLink href="https://segment.com/jobs/">
+              <NativeLink
+                href="https://segment.com/jobs/"
+                className="focus-ring-link-white"
+              >
                 We’re hiring designers and engineers!
               </NativeLink>
             </p>

@@ -56,6 +56,7 @@ export default class Overview extends React.PureComponent {
     return (
       <section className="Overview">
         <SearchInput
+          autoFocus
           height={40}
           width="100%"
           marginTop={40}

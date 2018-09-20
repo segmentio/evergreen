@@ -20,7 +20,7 @@ class Feature extends React.PureComponent {
 export default class Features extends React.PureComponent {
   render() {
     return (
-      <section className="Features bg-tint2 clearfix">
+      <section className="Features bg-green color-white clearfix">
         <div className="Container Features-grid">
           <Feature title="Works out of the box">
             Evergreen contains a set of polished React components that work out

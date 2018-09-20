@@ -32,6 +32,10 @@ import Toaster from './images/illustrations/Toaster.png'
 import Tooltip from './images/illustrations/Tooltip.png'
 import Typography from './images/illustrations/Typography.png'
 
+const githubLink = str => {
+  return `https://github.com/segmentio/evergreen/tree/master/src/${str}`
+}
+
 /**
  * Information Architecture.
  * - Foundation
@@ -47,12 +51,14 @@ export default {
     items: [
       {
         id: 'layout-primitives',
+        github: githubLink('layers'),
         name: 'Layout Primitives',
         tags: ['pane', 'card', 'box', 'layout'],
         image: LayoutPrimitive
       },
       {
         id: 'typography',
+        github: githubLink('typography'),
         name: 'Typography',
         tags: [
           'heading',
@@ -69,12 +75,14 @@ export default {
       },
       {
         id: 'colors',
+        github: githubLink('theme/src/default-theme'),
         name: 'Colors',
         tags: ['color'],
         image: Colors
       },
       {
         id: 'icons',
+        github: githubLink('icon'),
         name: 'Icons',
         tags: ['icon'],
         image: Icons,
@@ -91,24 +99,28 @@ export default {
         items: [
           {
             id: 'button',
+            github: githubLink('buttons'),
             name: 'Button',
             tags: ['icon button', 'button', 'action'],
             image: Button
           },
           {
             id: 'tab',
+            github: githubLink('tabs'),
             name: 'Tab',
             tags: ['tab', 'tab list', 'tab navigation', 'navigation'],
             image: Tab
           },
           {
             id: 'badge-and-pill',
+            github: githubLink('badges'),
             name: 'Badge & Pill',
             tags: ['badge', 'pills', 'tag'],
             image: BadgePill
           },
           {
             id: 'avatar',
+            github: githubLink('avatar'),
             name: 'Avatar',
             tags: ['avatar', 'image', 'user'],
             image: Avatar
@@ -119,11 +131,36 @@ export default {
       {
         title: 'Text Inputs & File Uploading',
         items: [
-          { id: 'text-input', name: 'Text Input', image: TextInput },
-          { id: 'search-input', name: 'Search Input', image: SearchInput },
-          { id: 'textarea', name: 'Textarea', image: Textarea },
-          { id: 'autocomplete', name: 'Autocomplete', image: Autocomplete },
-          { id: 'filepicker', name: 'Filepicker', image: Filepicker }
+          {
+            id: 'text-input',
+            github: githubLink('text-input'),
+            name: 'Text Input',
+            image: TextInput
+          },
+          {
+            id: 'search-input',
+            github: githubLink('search-input'),
+            name: 'Search Input',
+            image: SearchInput
+          },
+          {
+            id: 'textarea',
+            github: githubLink('textarea'),
+            name: 'Textarea',
+            image: Textarea
+          },
+          {
+            id: 'autocomplete',
+            github: githubLink('autocomplete'),
+            name: 'Autocomplete',
+            image: Autocomplete
+          },
+          {
+            id: 'filepicker',
+            github: githubLink('file-picker'),
+            name: 'Filepicker',
+            image: Filepicker
+          }
         ]
       },
       {
@@ -132,37 +169,62 @@ export default {
           { id: 'select', name: 'Select', image: Select },
           {
             id: 'combobox',
+            github: githubLink('combobox'),
             name: 'Combobox',
             tags: ['dropdown', 'menu'],
             image: Combobox
           },
           {
             id: 'select-menu',
+            github: githubLink('select-menu'),
             name: 'Select Menu',
             tags: ['dropdown', 'menu'],
             image: SelectMenu
           },
           {
             id: 'popover',
+            github: githubLink('popover'),
             name: 'Popover',
             tags: ['dropdown'],
             image: Popover
           },
-          { id: 'menu', name: 'Menu', tags: ['dropdown'], image: Menu }
+          {
+            id: 'menu',
+            github: githubLink('menu'),
+            name: 'Menu',
+            tags: ['dropdown'],
+            image: Menu
+          }
         ]
       },
       {
         title: 'Toggles',
         items: [
-          { id: 'checkbox', name: 'Checkbox', image: Checkbox },
-          { id: 'radio', name: 'Radio', image: Radio },
+          {
+            id: 'checkbox',
+            github: githubLink('checkbox'),
+            name: 'Checkbox',
+            image: Checkbox
+          },
+          {
+            id: 'radio',
+            github: githubLink('radio'),
+            name: 'Radio',
+            image: Radio
+          },
           {
             id: 'segmented-control',
+            github: githubLink('segmented-control'),
             name: 'Segmented Control',
             tags: ['button group'],
             image: SegmentedControl
           },
-          { id: 'switch', name: 'Switch', image: Switch }
+          {
+            id: 'switch',
+            github: githubLink('switch'),
+            name: 'Switch',
+            image: Switch
+          }
         ]
       },
       {
@@ -170,18 +232,21 @@ export default {
         items: [
           {
             id: 'toaster',
+            github: githubLink('toaster'),
             name: 'Toaster',
             tags: ['notifications', 'messages'],
             image: Toaster
           },
           {
             id: 'alert',
+            github: githubLink('alert'),
             name: 'Alert',
             tags: ['banners', 'notification', 'messages', 'inline alert'],
             image: Alert
           },
           {
             id: 'spinner',
+            github: githubLink('spinner'),
             name: 'Spinner',
             tags: ['loading', 'indicator'],
             image: Spinner
@@ -191,16 +256,29 @@ export default {
       {
         title: 'Overlays',
         items: [
-          { id: 'dialog', name: 'Dialog', tags: ['modal'], image: Dialog },
+          {
+            id: 'dialog',
+            github: githubLink('dialog'),
+            name: 'Dialog',
+            tags: ['modal'],
+            image: Dialog
+          },
           {
             id: 'side-sheet',
+            github: githubLink('side-sheet'),
             name: 'Side Sheet',
             tags: ['drawer', 'sheet'],
             image: SideSheet
           },
-          { id: 'tooltip', name: 'Tooltip', image: Tooltip },
+          {
+            id: 'tooltip',
+            github: githubLink('tooltip'),
+            name: 'Tooltip',
+            image: Tooltip
+          },
           {
             id: 'corner-dialog',
+            github: githubLink('corner-dialog'),
             name: 'Corner Dialog',
             tags: ['notification', 'message'],
             image: CornerDialog
@@ -212,6 +290,7 @@ export default {
         items: [
           {
             id: 'table',
+            github: githubLink('table'),
             name: 'Table',
             image: Table,
             tags: [
@@ -232,12 +311,19 @@ export default {
         items: [
           {
             id: 'portal',
+            github: githubLink('portal'),
             name: 'Portal',
             image: Portal
           },
-          { id: 'positioner', name: 'Positioner', image: Positioner },
+          {
+            id: 'positioner',
+            github: githubLink('positioner'),
+            name: 'Positioner',
+            image: Positioner
+          },
           {
             id: 'form-field',
+            github: githubLink('form-field'),
             name: 'Form Field',
             image: FormField,
             tags: ['validation message', 'label']

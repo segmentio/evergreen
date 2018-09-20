@@ -14,7 +14,7 @@ export default class TopBar extends PureComponent {
     const { children, ...props } = this.props
     return (
       <div className="TopBar" {...props}>
-        <Link to="/">
+        <Link to="/" className="focus-ring-link">
           <LogoWordmark width={115} />
         </Link>
         <nav className="TopBar-nav">

@@ -18,6 +18,16 @@
 
   & p {
     font-size: 14px;
-    color: white;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  & a {
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+      border-bottom: 2px solid rgba(255, 255, 255, 1);
+    }
   }
 }

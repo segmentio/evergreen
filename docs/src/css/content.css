@@ -76,13 +76,27 @@
 .Content a,
 .link {
   color: var(--blue-base);
+  position: relative;
 
   &:hover {
     text-decoration: underline;
   }
 
-  &:focus {
+  /* &:focus {
     outline: 1px solid var(--blue-base);
+  } */
+
+  &:focus-visible::after {
+    text-decoration: none;
+    content: '';
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: -4px;
+    right: -4px;
+    bottom: -2px;
+    box-shadow: 0 0 0 2px var(--B6A);
+    border-radius: 3px;
   }
 }
 

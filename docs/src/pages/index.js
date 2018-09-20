@@ -4,6 +4,7 @@ import Layout from '../components/Layout'
 import PageFooter from '../components/PageFooter'
 import Features from '../components/Features'
 import HomeHero from '../components/HomeHero'
+import HomeMedia from '../components/HomeMedia'
 
 export default class Root extends React.Component {
   componentDidCatch(error, errorInfo) {
@@ -18,6 +19,7 @@ export default class Root extends React.Component {
           <main>
             <HomeHero />
             <Features />
+            <HomeMedia />
           </main>
         </div>
         <PageFooter />
