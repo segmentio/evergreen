@@ -1,3 +1,3 @@
 export default path => {
-  return `https://evergreen.now.sh${path}`
+  return `https://evergreen.now.sh${path || ''}`
 }
