@@ -2,6 +2,7 @@ const Path = require('path')
 
 module.exports = {
   plugins: [
+    `gatsby-plugin-favicon`,
     {
       resolve: `gatsby-mdx`,
       options: {

@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import TopBar from '../../components/TopBar'
 import GetStartedSidebar from '../../components/GetStartedSidebar'
 import Layout from '../../components/Layout'
@@ -10,12 +11,18 @@ const NativeLink = ({ ...props }) => {
 export default () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Theming &middot; Evergreen</title>
+      </Helmet>
       <div className="MainLayout">
         <TopBar />
         <main className="MainLayout-main">
           <div className="MainLayout-content">
             <section className="MainLayout-contentRight">
-              <div className="Container-nextToSidebar">
+              <div
+                className="Container-nextToSidebar"
+                style={{ marginBottom: 160 }}
+              >
                 <div className="Content">
                   <h1>Theming</h1>
                   <p>

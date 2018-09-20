@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import { Location, navigate } from '@reach/router'
@@ -62,90 +63,101 @@ class Page extends React.Component {
 
   render() {
     const metaInfo = this.getMetaInfo()
+    if (!metaInfo) return null
     const relatedItems = this.getRelatedItems(metaInfo)
     return (
       <Layout>
-        <div className="MainLayout">
+        <Helmet>
+          <title>{metaInfo.name} &middot; Evergreen</title>
+          <meta
+            property="og:title"
+            content={`${metaInfo.name} &middot; Evergreen`}
+          />
+          <meta
+            property="twitter:title"
+            content={`${metaInfo.name} &middot; Evergreen`}
+          />
+        </Helmet>
+        <div>
           <TopBar />
-          <main className="MainLayout-main">
-            <div className="MainLayout-content">
-              <article className="MDXPage">
-                <header className="MDXPage-header">
-                  <div className="bg-tint1">
-                    <div className="MDXPage-headerContent Container Container--narrow">
-                      <div className="MDXPage-headerContentLeft">
-                        <Tooltip content="Back to Overview">
-                          <IconButton
-                            onClick={() => {
-                              // Non-ideal, but Tooltip doesn't play nice when using is={Link}
-                              navigate('/components')
-                            }}
-                            marginLeft={-54}
-                            marginRight={16}
-                            display="inline-flex"
-                            icon="arrow-left"
-                            height={40}
-                          />
-                        </Tooltip>
+          <main>
+            <article className="MDXPage">
+              <header className="MDXPage-header">
+                <div className="bg-tint1">
+                  <div className="MDXPage-headerContent Container Container--narrow">
+                    <div className="MDXPage-headerContentLeft">
+                      <Tooltip content="Back to Overview">
+                        <IconButton
+                          autoFocus
+                          onClick={() => {
+                            // Non-ideal, but Tooltip doesn't play nice when using is={Link}
+                            navigate('/components')
+                          }}
+                          marginLeft={-54}
+                          marginRight={16}
+                          display="inline-flex"
+                          icon="arrow-left"
+                          height={40}
+                        />
+                      </Tooltip>
 
-                        <h1>{metaInfo.name}</h1>
-                      </div>
-
-                      <Button
-                        is="a"
-                        height={40}
-                        href={metaInfo.github}
-                        target="_blank"
-                      >
-                        View on GitHub
-                      </Button>
+                      <h1>{metaInfo.name}</h1>
                     </div>
-                  </div>
-                </header>
-                <div
-                  className="Container Container--narrow"
-                  style={{ marginBottom: 120 }}
-                >
-                  <DocsMDXProvider>{this.props.children}</DocsMDXProvider>
-                </div>
-              </article>
 
-              {relatedItems.length > 0 && (
-                <div
-                  className="Overview-group Container Container--narrow"
-                  style={{ marginBottom: 120 }}
-                >
-                  <h3 className="Overview-groupTitle">Related</h3>
-                  <div className="Overview-groupItems">
-                    {relatedItems.map(item => {
-                      return (
-                        <OverviewItem
-                          key={item.name}
-                          id={item.id}
-                          image={item.image}
-                        >
-                          {item.name}
-                        </OverviewItem>
-                      )
-                    })}
+                    <Button
+                      is="a"
+                      height={40}
+                      href={metaInfo.github}
+                      target="_blank"
+                    >
+                      View on GitHub
+                    </Button>
                   </div>
                 </div>
-              )}
-
+              </header>
               <div
                 className="Container Container--narrow"
                 style={{ marginBottom: 120 }}
               >
-                <Button
-                  is={Link}
-                  to="/components"
-                  display="inline-flex"
-                  iconBefore="arrow-left"
-                  height={40}
-                >
-                  Back to Overview
-                </Button>
+                <DocsMDXProvider>{this.props.children}</DocsMDXProvider>
               </div>
+            </article>
+
+            {relatedItems.length > 0 && (
+              <div
+                className="Overview-group Container Container--narrow"
+                style={{ marginBottom: 120 }}
+              >
+                <h3 className="Overview-groupTitle">Related</h3>
+                <div className="Overview-groupItems">
+                  {relatedItems.map(item => {
+                    return (
+                      <OverviewItem
+                        key={item.name}
+                        id={item.id}
+                        image={item.image}
+                      >
+                        {item.name}
+                      </OverviewItem>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+
+            <div
+              className="Container Container--narrow"
+              style={{ marginBottom: 120 }}
+            >
+              <Button
+                is={Link}
+                to="/components"
+                display="inline-flex"
+                iconBefore="arrow-left"
+                height={40}
+              >
+                Back to Overview
+              </Button>
             </div>
           </main>
         </div>

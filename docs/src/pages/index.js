@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import TopBar from '../components/TopBar'
 import Layout from '../components/Layout'
 import PageFooter from '../components/PageFooter'
@@ -14,6 +15,9 @@ export default class Root extends React.Component {
   render() {
     return (
       <Layout>
+        <Helmet>
+          <title>Evergreen</title>
+        </Helmet>
         <div>
           <TopBar />
           <main>

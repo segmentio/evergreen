@@ -1,6 +1,6 @@
 .Overview {
-  max-width: 920px;
-  margin: 0 auto 400px;
+  /* max-width: 920px; */
+  margin: 0 auto 160px;
 
   & header {
     margin-top: 40px;

@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-curly-brace-presence */
 import React from 'react'
+import Helmet from 'react-helmet'
 import TopBar from '../../components/TopBar'
 import GetStartedSidebar from '../../components/GetStartedSidebar'
 import SyntaxHighlighter from '../../components/SyntaxHighlighter2'
@@ -12,12 +13,18 @@ const NativeLink = ({ ...props }) => {
 export default () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Introduction &middot; Evergreen</title>
+      </Helmet>
       <div className="MainLayout">
         <TopBar />
         <main className="MainLayout-main">
           <div className="MainLayout-content">
             <section className="MainLayout-contentRight">
-              <div className="Container-nextToSidebar">
+              <div
+                className="Container-nextToSidebar"
+                style={{ marginBottom: 160 }}
+              >
                 <div className="Content">
                   <h1>Introduction</h1>
                   <p className="p">

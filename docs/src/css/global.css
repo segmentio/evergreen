@@ -6,6 +6,7 @@
 
 html,
 body {
+  -webkit-text-size-adjust: 100%;
   color: var(--neutral-500);
   font-family: var(--font-ui);
 }
