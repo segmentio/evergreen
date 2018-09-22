@@ -21,6 +21,7 @@
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
     "create-docs-template": "./tools/create-docs-template.js",
+    "generate-icons": "./tools/generate-icons.js",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
     "build-commonjs":
       "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore stories,test,docs --source-maps inline",
@@ -37,7 +38,7 @@
     "node": ">=8"
   },
   "dependencies": {
-    "@blueprintjs/icons": "^2.2.1",
+    "@blueprintjs/icons": "^3.1.0",
     "arrify": "^1.0.1",
     "classnames": "^2.2.5",
     "dom-helpers": "^3.2.1",
@@ -74,6 +75,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
+    "camelcase": "^5.0.0",
     "concurrently": "^4.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
