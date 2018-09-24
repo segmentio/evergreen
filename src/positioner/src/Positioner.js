@@ -229,6 +229,7 @@ export default class Positioner extends PureComponent {
           return (
             <React.Fragment>
               {target({ getRef: this.getTargetRef, isShown })}
+
               <Transition
                 in={isShown}
                 timeout={animationDuration}
