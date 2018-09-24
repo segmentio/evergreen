@@ -73,7 +73,7 @@ class TextInput extends PureComponent {
     super(props)
     // Create a state for 'uncontrolled' inputs, locally controlled
     this.state = {
-      value: ''
+      value: this.props.defaultValue || ''
     }
   }
 
@@ -85,7 +85,7 @@ class TextInput extends PureComponent {
     isInvalid: false,
     spellCheck: true
   }
-  handleValueCase() {
+  getValue() {
     if ('value' in this.props) {
       // Console.log('Input has controlled value prop')
       return this.props.value
@@ -96,7 +96,6 @@ class TextInput extends PureComponent {
     const {
       theme,
       className,
-
       css,
       onClear,
       width,
@@ -141,7 +140,7 @@ class TextInput extends PureComponent {
           {...(disabled ? { color: 'muted' } : {})}
           css={css}
           {...props}
-          value={this.handleValueCase()}
+          value={this.getValue()}
           {...(onChange
             ? { onChange }
             : { onChange: e => this.setState({ value: e.target.value }) })}
@@ -159,7 +158,9 @@ class TextInput extends PureComponent {
             />
           )}
         {isClearable &&
-          (!this.props.value && this.state.value.length > 0) && (
+          (!this.props.value &&
+            this.state.value.length > 0 &&
+            !this.props.onChange) && (
             <Icon
               color="muted"
               icon="cross"
