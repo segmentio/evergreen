@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "name": "docs",
+  "description": null,
+  "icons": {
+    "60": "/icons-9dd427cc47b66d75f644924d820213fc/firefox_app_60x60.png",
+    "128": "/icons-9dd427cc47b66d75f644924d820213fc/firefox_app_128x128.png",
+    "512": "/icons-9dd427cc47b66d75f644924d820213fc/firefox_app_512x512.png"
+  },
+  "developer": {
+    "name": null,
+    "url": null
+  }
+}
