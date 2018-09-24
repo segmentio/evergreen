@@ -1,0 +1,19 @@
+# Stops CircleCI from running on the gh-pages branch when the docs deploy
+version: 2
+jobs:
+  noop:
+    working_directory: ~/evergreen
+    docker:
+      - image: circleci/node:8.11
+    steps:
+      - echo 'noop'
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - noop:
+          filters:
+            branches:
+              ignore:
+                - /.*?/
