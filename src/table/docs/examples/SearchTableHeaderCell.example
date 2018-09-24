@@ -1,3 +1,0 @@
-<Table.Head>
-  <Table.SearchHeaderCell onChange={(e) => console.log(e)} placeholder='Search by email...' />
-</Table.Head>

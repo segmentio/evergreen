@@ -9,6 +9,6 @@ storiesOf('spinner', module).add('Spinner', () => (
       document.body.style.margin = '0'
       document.body.style.height = '100vh'
     })()}
-    <Spinner>Spinner</Spinner>
+    <Spinner />
   </Box>
 ))

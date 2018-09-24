@@ -1,0 +1,83 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The Combobox component is used for selecting an option from a predefined list of options.
+It is similar to a `Select` or `SelectMenu` component.
+Clicking the button will show all items.
+Typing in the text input will filter the list.
+
+## Basic Combobox Example
+
+```jsx
+<Combobox
+  items={['Banana', 'Orange', 'Apple', 'Mango']}
+  onChange={selected => console.log(selected)}
+  placeholder="Fruit"
+  autocompleteProps={{
+    // Used for the title in the autocomplete.
+    title: 'Fruit'
+  }}
+/>
+```
+
+## Open on focus
+
+```jsx
+<Combobox
+  openOnFocus
+  items={['Banana', 'Orange', 'Apple', 'Mango']}
+  onChange={selected => console.log(selected)}
+  placeholder="Fruit"
+/>
+```
+
+## Full width
+
+```jsx
+<Combobox
+  openOnFocus
+  width="100%"
+  items={['Banana', 'Orange', 'Apple', 'Mango']}
+  onChange={selected => console.log(selected)}
+  placeholder="Fruit"
+/>
+```
+
+## Custom width
+
+```jsx
+<Combobox
+  openOnFocus
+  width={400}
+  items={['Banana', 'Orange', 'Apple', 'Mango']}
+  onChange={selected => console.log(selected)}
+  placeholder="Fruit"
+/>
+```
+
+## Change height
+
+```jsx
+<Combobox
+  openOnFocus
+  height={40}
+  items={['Banana', 'Orange', 'Apple', 'Mango']}
+  onChange={selected => console.log(selected)}
+  placeholder="Fruit"
+/>
+```
+
+## Custom items and default selected item
+
+```jsx
+<Combobox
+  defaultSelectedItem={{ label: 'Banana' }}
+  items={[{ label: 'Banana' }, { label: 'Pear' }, { label: 'Kiwi' }]}
+  itemToString={item => item.label}
+  onChange={selected => console.log(selected)}
+/>
+```
+
+
+<PropsTable of="Combobox" />

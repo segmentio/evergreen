@@ -1,0 +1,69 @@
+import PropsTable from 'components/PropsTable'
+
+
+The `Avatar` component is used to represent users.
+And should only be used for users.
+
+## Basic subtle avatar
+
+Use the `size` property to set the width and height of a avatar.
+The initials will size automatically.
+
+```jsx
+<Avatar name="Jeroen Ransijn" size={40} />
+```
+
+## Solid avatar
+
+Use the `isSolid` property to create a solid avatar
+
+```jsx
+<Avatar isSolid name="Jeroen Ransijn" size={40} />
+```
+
+## Avatar with image
+
+Use the `src` property to create a avatar with a image.
+
+```jsx
+<Avatar
+  src="https://pbs.twimg.com/profile_images/756196362576723968/6GUgJG4L_400x400.jpg"
+  name="Jeroen Ransijn"
+  size={40}
+/>
+```
+
+## Colors explained
+
+The color of an avatar is automatically generated based on the name provided.
+
+```jsx
+<Pane>
+  <Avatar name="Steve Jobs" size={40} marginRight={16} />
+  <Avatar name="Bill Gates" size={40} marginRight={16} />
+  <Avatar name="Elon Musk" size={40} marginRight={16} />
+</Pane>
+```
+
+## Manually override the color
+
+```jsx
+<Avatar isSolid color="green" name="Jeroen Ransijn" size={40} />
+```
+
+## Rendering anonymous users with different colors
+
+In some cases user avatars are displayed without knowing the name of the user.
+It's possible in those cases to use a id as the `hasValue` property
+to automatically determine the color.
+
+```jsx
+<Pane>
+  <Avatar hashValue="id_124" name="Anonymous User" size={40} marginRight={16} />
+  <Avatar hashValue="id_249" name="Anonymous User" size={40} marginRight={16} />
+  <Avatar hashValue="id_299" name="Anonymous User" size={40} marginRight={16} />
+</Pane>
+```
+
+
+<PropsTable of="Avatar" />

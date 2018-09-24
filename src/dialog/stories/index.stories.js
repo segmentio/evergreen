@@ -3,13 +3,13 @@ import React from 'react'
 import Box from 'ui-box'
 import Component from '@reactions/component'
 import starWarsNames from 'starwars-names'
-import DialogManager from '../docs/DialogManager'
 import { Strong, Paragraph } from '../../typography'
 import { Dialog } from '../../dialog'
 import { Button } from '../../buttons'
 import { Combobox } from '../../combobox'
 import { SideSheet } from '../../side-sheet'
 import { Popover } from '../../popover'
+import DialogManager from './DialogManager'
 
 // Generate a big list of items
 const comboboxItems = starWarsNames.all.sort((a, b) => {

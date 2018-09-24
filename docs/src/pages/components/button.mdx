@@ -1,0 +1,415 @@
+import PropsTable from 'components/PropsTable'
+
+## Evergreen exports multiple button components
+
+* **Button**: most commonly used, can have a icon on the left or right side.
+* **IconButton**: a button that holds a single icon.
+* **BackButton**: a preset of the `Button` component.
+* **TextDropdownButton**: a bare-bones button that is used primarily in table headers.
+
+`Button`, `IconButton` and `BackButton` all share a very similar API and look.
+`TextDropdownButton` is a bit different.
+
+# Button
+
+The `Button` component is the most common button component.
+It contains a label and optional icons before or after the label.
+
+```jsx
+<Button appearance="primary">Hi Evergreen!</Button>
+```
+
+## All button variations
+
+```js
+<Component
+  initialState={{
+    options: [
+      { label: 'Height 24', value: 24 },
+      { label: 'Height 32', value: 32 },
+      { label: 'Height 40', value: 40 }
+    ],
+    value: 32
+  }}
+>
+  {({ state, setState }) => (
+    <React.Fragment>
+      <SegmentedControl
+        name="button-size"
+        width={280}
+        options={state.options}
+        value={state.value}
+        onChange={value => setState({ value: Number(value) })}
+      />
+      <Heading marginTop="default">Default Appearance</Heading>
+      <Pane marginTop={12}>
+        <Button height={state.value} marginRight={16}>
+          Default
+        </Button>
+        <Button height={state.value} marginRight={16} intent="success">
+          Success
+        </Button>
+        <Button height={state.value} marginRight={16} intent="warning">
+          Warning
+        </Button>
+        <Button height={state.value} marginRight={16} intent="danger">
+          Danger
+        </Button>
+        <Button height={state.value} marginRight={16} iconBefore="edit">
+          Icon Before
+        </Button>
+        <Button height={state.value} iconAfter="arrow-right">
+          Icon After
+        </Button>
+      </Pane>
+      <Heading marginTop="default">Primary Appearance</Heading>
+      <Pane marginTop={12}>
+        <Button height={state.value} appearance="primary" marginRight={16}>
+          Default
+        </Button>
+        <Button
+          height={state.value}
+          appearance="primary"
+          marginRight={16}
+          intent="success"
+        >
+          Success
+        </Button>
+        <Button
+          height={state.value}
+          appearance="primary"
+          marginRight={16}
+          intent="warning"
+        >
+          Warning
+        </Button>
+        <Button height={state.value} marginRight={16} appearance="primary" intent="danger">
+          Danger
+        </Button>
+        <Button height={state.value} marginRight={16} appearance="primary" intent="success" iconBefore="add">
+          Icon Before
+        </Button>
+        <Button height={state.value} appearance="primary" iconAfter="arrow-right">
+          Icon After
+        </Button>
+      </Pane>
+      <Heading marginTop="default">Minimal Appearance</Heading>
+      <Pane marginTop={12}>
+        <Button height={state.value} appearance="minimal" marginRight={16}>
+          Default
+        </Button>
+        <Button
+          height={state.value}
+          appearance="minimal"
+          marginRight={16}
+          intent="success"
+        >
+          Success
+        </Button>
+        <Button
+          height={state.value}
+          appearance="minimal"
+          marginRight={16}
+          intent="warning"
+        >
+          Warning
+        </Button>
+        <Button height={state.value} marginRight={16} appearance="minimal" intent="danger">
+          Danger
+        </Button>
+        <Button height={state.value} marginRight={16} appearance="minimal" iconBefore="edit">
+          Icon Before
+        </Button>
+        <Button height={state.value} appearance="minimal" iconAfter="caret-down">
+          Icon After
+        </Button>
+      </Pane>
+    </React.Fragment>
+  )}
+</Component>
+```
+
+## Button Appearances
+
+The `Button` component has a `appearance` property with 3 available values:
+
+### Appearances
+
+* `default` — this is the default.
+* `primary`
+* `minimal`
+
+```jsx
+<>
+  <Button marginRight={16}>Default</Button>
+  <Button marginRight={16} appearance="primary">Primary</Button>
+  <Button marginRight={16} appearance="minimal">Minimal</Button>
+</>
+```
+
+## Button Intent
+
+In addition to the `appearance` — a `Button` can also have a `intent` property.
+The `intent` property is a slightly abstract API that maps to the following values:
+
+### Intent
+
+* `none` — this is the default.
+* `success`
+* `warning`
+* `danger`
+
+```jsx
+<>
+  <Button marginRight={16} intent="none">None</Button>
+  <Button marginRight={16} intent="success">Success</Button>
+  <Button marginRight={16} intent="warning">Warning</Button>
+  <Button marginRight={16} intent="danger">Danger</Button>
+</>
+```
+
+## Mixing appearance and intent
+
+The `intent` property works with any `appearance`.
+
+### Primary with Intent
+
+```jsx
+<>
+  <Button marginRight={16} appearance="primary" intent="none">None</Button>
+  <Button marginRight={16} appearance="primary" intent="success">Success</Button>
+  <Button marginRight={16} appearance="primary" intent="warning">Warning</Button>
+  <Button marginRight={16} appearance="primary" intent="danger">Danger</Button>
+</>
+```
+
+### Minimal with Intent
+
+```jsx
+<>
+  <Button marginRight={16} appearance="minimal" intent="none">None</Button>
+  <Button marginRight={16} appearance="minimal" intent="success">Success</Button>
+  <Button marginRight={16} appearance="minimal" intent="warning">Warning</Button>
+  <Button marginRight={16} appearance="minimal" intent="danger">Danger</Button>
+</>
+```
+
+## Button Sizes
+
+By default buttons and controls have a height of `32px`.
+It is possible to change this to any height and the text style and spacing will adjust.
+You should however keep the height on the `8px` or in some cases the `4px` grid.
+You should only need the following recommended heights.
+
+### Recommended heights
+
+* `24`
+* `32` — default height
+* `40`
+
+```jsx
+<>
+  <Button marginRight={12} height={20}>Height 20</Button>
+  <Button marginRight={12} height={24}>Height 24</Button>
+  <Button marginRight={12} height={32}>Height 32</Button>
+  <Button marginRight={12} height={40}>Height 40</Button>
+  <Button marginRight={12} height={48}>Height 48</Button>
+  <Button marginRight={12} height={56}>Height 56</Button>
+</>
+```
+
+
+## Buttons with an Icon
+
+Buttons support an icon on either before or after the label. Avoid using two icons in a button.
+
+```jsx
+<>
+  <Button marginRight={12} iconBefore="cog">Settings</Button>
+  <Button marginRight={12} iconBefore="edit">Edit</Button>
+  <Button marginRight={12} iconBefore="manual">Docs</Button>
+  <Button marginRight={12} iconBefore="arrow-left">Back</Button>
+  <Button marginRight={12} iconBefore="download">Download...</Button>
+  <Button marginRight={12} iconBefore="trash" intent="danger">Delete...</Button>
+  <Button marginRight={12} iconBefore="search">Search</Button>
+  <Button marginRight={12} iconAfter="caret-down">Filter</Button>
+</>
+```
+
+<div id="api">
+  <PropsTable of="Button" />
+</div>
+
+# IconButton
+
+For the use case of creating a button with a single icon Evergreen exports the `IconButton` component.
+
+## Simple IconButton example
+
+```jsx
+<IconButton icon="trash" intent="danger" />
+```
+
+## Use the height property to resize the icon button
+
+Use the `height` property on the `IconButton` component to resize the component.
+The icon will automatically resize for the given height.
+
+```jsx
+<IconButton icon="cross" height={40} />
+```
+
+```jsx
+<IconButton icon="cross" height={24} />
+```
+
+## Specifically override the icon size
+
+In some rare cases you might need to override the icon size.
+Use the `iconSize` property to do this.
+
+This is not a required property, the icon will automatically resize based on the given height.
+
+```jsx
+<IconButton appearance="minimal" icon="notifications" iconSize={18} />
+```
+
+## Common icon buttons
+
+```js
+<Pane clearfix>
+  <Pane borderRight paddingRight={24} marginRight={24} float="left">
+    <Heading marginBottom={16}>Height 32</Heading>
+    <Pane float="left" marginRight={16}>
+      <IconButton marginBottom={16} icon="cog" />
+      <IconButton marginBottom={16} icon="plus" />
+      <IconButton marginBottom={16} icon="filter" />
+      <IconButton marginBottom={16} icon="edit" />
+      <IconButton marginBottom={16} icon="refresh" />
+    </Pane>
+    <Pane float="left">
+      <IconButton marginBottom={16} appearance="minimal" icon="cross" />
+      <IconButton marginBottom={16} appearance="minimal" icon="more" />
+      <IconButton marginBottom={16} appearance="minimal" icon="plus" />
+      <IconButton marginBottom={16} appearance="minimal" icon="edit" />
+      <IconButton marginBottom={16} appearance="minimal" icon="search" />
+    </Pane>
+  </Pane>
+  <Pane float="left">
+    <Heading marginBottom={16}>Height 24</Heading>
+    <Pane float="left" marginRight={16}>
+      <IconButton marginBottom={16} height={24} icon="cog" />
+      <IconButton marginBottom={16} height={24} icon="plus" />
+      <IconButton marginBottom={16} height={24} icon="filter" />
+      <IconButton marginBottom={16} height={24} icon="edit" />
+      <IconButton marginBottom={16} height={24} icon="chevron-left" />
+      <IconButton marginBottom={16} height={24} icon="chevron-right" />
+    </Pane>
+    <Pane float="left" marginRight={16}>
+      <IconButton
+        marginBottom={16}
+        appearance="minimal"
+        height={24}
+        icon="cross"
+      />
+      <IconButton
+        marginBottom={16}
+        appearance="minimal"
+        height={24}
+        icon="more"
+      />
+      <IconButton
+        marginBottom={16}
+        appearance="minimal"
+        height={24}
+        icon="plus"
+      />
+      <IconButton
+        marginBottom={16}
+        appearance="minimal"
+        height={24}
+        icon="trash"
+        intent="danger"
+      />
+      <IconButton
+        marginBottom={16}
+        appearance="minimal"
+        height={24}
+        icon="filter"
+      />
+      <IconButton
+        marginBottom={16}
+        appearance="minimal"
+        height={24}
+        icon="edit"
+      />
+    </Pane>
+    <Pane float="left">
+      <IconButton
+        marginBottom={16}
+        appearance="minimal"
+        height={24}
+        icon="clipboard"
+      />
+      <IconButton
+        marginBottom={16}
+        appearance="minimal"
+        height={24}
+        icon="calendar"
+      />
+      <IconButton
+        marginBottom={16}
+        appearance="minimal"
+        height={24}
+        icon="lock"
+      />
+      <IconButton
+        marginBottom={16}
+        appearance="minimal"
+        height={24}
+        icon="unlock"
+      />
+      <IconButton
+        marginBottom={16}
+        appearance="minimal"
+        height={24}
+        icon="notifications"
+      />
+      <IconButton
+        marginBottom={16}
+        appearance="minimal"
+        height={24}
+        icon="manual"
+      />
+    </Pane>
+  </Pane>
+</Pane>
+```
+
+<PropsTable of="IconButton" />
+
+# BackButton component
+
+The `BackButton` component is a preset based on the `Button` component.
+
+```jsx
+<BackButton />
+```
+
+<PropsTable of="BackButton" />
+
+# TextDropdownButton component
+
+The `TextDropdownButton` is different from the other types of buttons.
+It doesn’t work with a height, instead the dimensions are based on the text size.
+This component is used inside of table header cells.
+
+```jsx
+<Pane>
+  <TextDropdownButton marginRight={16}>Table Header</TextDropdownButton>
+  <TextDropdownButton marginRight={16} icon="arrow-up">Ascending</TextDropdownButton>
+  <TextDropdownButton icon="arrow-down">Descending</TextDropdownButton>
+</Pane>
+```
+
+<PropsTable of="TextDropdownButton" />

@@ -6,6 +6,7 @@
 
 html,
 body {
+  -webkit-text-size-adjust: 100%;
   color: var(--neutral-500);
   font-family: var(--font-ui);
 }
@@ -26,4 +27,10 @@ kbd,
 samp {
   font-family: var(--font-mono);
   font-weight: 500;
+}
+
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
 }

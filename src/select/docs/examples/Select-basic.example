@@ -1,4 +1,0 @@
-<Select onChange={(event) => alert(event.target.value)}>
-  <option value="foo" checked>Foo</option>
-  <option value="bar">Bar</option>
-</Select>

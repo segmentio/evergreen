@@ -1,4 +1,0 @@
-<Table.Row>
-  <Table.Cell>This should only be used as a base.</Table.Cell>
-  <Table.Cell>It doesn't have any text styling.</Table.Cell>
-</Table.Row>

@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import ColorExamples from '../docs/ColorExamples'
+import ColorExamples from './ColorExamples'
 import ColorMapping from './ColorMapping'
 
 storiesOf('colors', module)

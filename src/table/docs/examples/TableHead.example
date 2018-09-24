@@ -1,9 +1,0 @@
-<Table.Head>
-  <Table.SearchHeaderCell />
-  <Table.TextHeaderCell >
-    Last Activity
-  </Table.TextHeaderCell>
-  <Table.TextHeaderCell>
-    ltv
-  </Table.TextHeaderCell>
-</Table.Head>

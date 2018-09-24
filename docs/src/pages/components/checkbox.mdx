@@ -1,0 +1,47 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `Checkbox` component maps to a checkbox input and a label.
+
+## Checkbox states
+
+```jsx
+<Pane>
+  <Checkbox label="Checkbox default" />
+  <Checkbox checked label="Checkbox checked" />
+  <Checkbox disabled label="Checkbox disabled" />
+  <Checkbox disabled checked label="Checkbox checked disabled" />
+  <Checkbox indeterminate label="Checkbox indeterminate" />
+  <Checkbox checked indeterminate label="Checkbox checked indeterminate" />
+</Pane>
+```
+
+## Controlled usage
+
+The `Checkbox` component passes on the orginal event through the `onChange` handler.
+Use `e.target.checked` to get the latest value and update state accordingly.
+
+```jsx
+<Component initialState={{ checked: true }}>
+  {({ state, setState }) => (
+    <Checkbox
+      label="Controlled usage"
+      checked={state.checked}
+      onChange={e => setState({ checked: e.target.checked })}
+    />
+  )}
+</Component>
+```
+
+## Add margins
+
+```jsx
+<Checkbox
+  label="Add margins"
+  checked
+  marginBottom={40}
+/>
+```
+
+<PropsTable of="Checkbox" />
