@@ -6,33 +6,36 @@
     "Jeroen Ransijn (https://jssr.design/)",
     "Roland Warmerdam (https://roland.codes)"
   ],
-  "keywords": ["evergreen", "segment", "ui", "react"],
+  "keywords": [
+    "evergreen",
+    "segment",
+    "ui",
+    "react"
+  ],
   "repository": "segmentio/evergreen",
   "license": "MIT",
   "main": "commonjs/index.js",
   "module": "esm/index.js",
-  "files": ["commonjs", "esm"],
+  "files": [
+    "commonjs",
+    "esm"
+  ],
   "sideEffects": false,
   "scripts": {
     "test": "xo && ava",
     "prepublishOnly": "rm -rf esm commonjs && yarn run build",
     "precommit": "lint-staged",
-    "dev":
-      "(export EG_PORT=6006 ; if [ $PORT ] ; then start-storybook -p $PORT ; else start-storybook -p $EG_PORT ; fi)",
+    "dev": "(export EG_PORT=6006 ; if [ $PORT ] ; then start-storybook -p $PORT ; else start-storybook -p $EG_PORT ; fi)",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
     "create-docs-template": "./tools/create-docs-template.js",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
-    "build-commonjs":
-      "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore stories,test,docs --source-maps inline",
-    "build-esm":
-      "BABEL_ENV=esm babel src --out-dir esm --ignore stories,test,docs --source-maps inline",
-    "build":
-      "concurrently --names 'commonjs,esm' 'yarn run build-commonjs' 'yarn run build-esm'",
+    "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore stories,test,docs --source-maps inline",
+    "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore stories,test,docs --source-maps inline",
+    "build": "concurrently --names 'commonjs,esm' 'yarn run build-commonjs' 'yarn run build-esm'",
     "clean": "git clean -Xdf",
     "release": "np --no-publish",
-    "chromatic":
-      "chromatic test --storybook-addon --script-name dev --app-code=alj8xoz1ujt"
+    "chromatic": "chromatic test --storybook-addon --script-name dev --app-code=alj8xoz1ujt"
   },
   "engines": {
     "node": ">=8"
@@ -63,7 +66,6 @@
     "@storybook/addon-options": "^3.2.17",
     "@storybook/addons": "^3.2.17",
     "@storybook/react": "^3.2.17",
-    "@storybook/storybook-deployer": "^2.0.0",
     "ava": "^0.24.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -96,19 +98,41 @@
   },
   "xo": {
     "parser": "babel-eslint",
-    "extends": ["xo-react", "prettier", "prettier/react"],
-    "envs": ["browser"],
+    "extends": [
+      "xo-react",
+      "prettier",
+      "prettier/react"
+    ],
+    "envs": [
+      "browser"
+    ],
     "space": true,
     "semicolon": false,
     "rules": {
-      "indent": ["off"],
-      "react/jsx-indent-props": ["off"],
-      "react/jsx-indent": ["off"],
-      "react/require-default-props": ["off"],
-      "react/default-props-match-prop-types": ["off"],
-      "react/forbid-component-props": ["off"],
-      "react/jsx-no-bind": ["off"],
-      "unicorn/filename-case": ["off"]
+      "indent": [
+        "off"
+      ],
+      "react/jsx-indent-props": [
+        "off"
+      ],
+      "react/jsx-indent": [
+        "off"
+      ],
+      "react/require-default-props": [
+        "off"
+      ],
+      "react/default-props-match-prop-types": [
+        "off"
+      ],
+      "react/forbid-component-props": [
+        "off"
+      ],
+      "react/jsx-no-bind": [
+        "off"
+      ],
+      "unicorn/filename-case": [
+        "off"
+      ]
     }
   },
   "prettier": {
@@ -116,12 +140,24 @@
     "singleQuote": true
   },
   "lint-staged": {
-    "*.js": ["xo --fix", "prettier --write", "git add"],
-    "*.{json,md}": ["prettier --write", "git add"]
+    "*.js": [
+      "xo --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "ava": {
-    "files": ["**/test/**/*.js"],
-    "require": ["babel-register", "./tools/test-setup"],
+    "files": [
+      "**/test/**/*.js"
+    ],
+    "require": [
+      "babel-register",
+      "./tools/test-setup"
+    ],
     "babel": "inherit"
   },
   "size-limit": [
