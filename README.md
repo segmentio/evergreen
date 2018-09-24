@@ -16,14 +16,10 @@
 
 * **Enterprise-grade.** Evergreen features a UI design language for enterprise-grade web applications.
 
-## Core values of 🌲 Evergreen
+## Documentation & Community
 
-* **Evergreen is build on the belief that you can never predict all future requirements,
-  only prepare for it.** Instead of creating fixed configurations that work today, Evergreen promotes building systems that anticipate new and changing design requirements.
-
-* **Evergreen is build on the belief that things should work out of the box with smart defaults, but also offer full control when needed.** For example, Evergreen uses CSS-in-JS and builds on top of the Box component in [ui-box](https://github.com/segmentio/ui-box).
-
-* **Evergreen is build on the belief that using Evergreen and contributing to Evergreen should be a pleasant experience.** We prioritize documentation and all the tools for a solid developer experience. We advocate respect and inclusivity in our writings and interactions.
+* [Documentation](https://evergreen.segment.com/)
+* [Spectrum Chat](https://spectrum.chat/evergreen)
 
 ## Evergreen v3 to v4 Migration guide
 
@@ -51,6 +47,15 @@ ReactDOM.render(
   document.getElementById('root')
 )
 ```
+
+## Core values of 🌲 Evergreen
+
+* **Evergreen is build on the belief that you can never predict all future requirements,
+  only prepare for it.** Instead of creating fixed configurations that work today, Evergreen promotes building systems that anticipate new and changing design requirements.
+
+* **Evergreen is build on the belief that things should work out of the box with smart defaults, but also offer full control when needed.** For example, Evergreen uses CSS-in-JS and builds on top of the Box component in [ui-box](https://github.com/segmentio/ui-box).
+
+* **Evergreen is build on the belief that using Evergreen and contributing to Evergreen should be a pleasant experience.** We prioritize documentation and all the tools for a solid developer experience. We advocate respect and inclusivity in our writings and interactions.
 
 ## FAQ
 
