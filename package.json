@@ -42,20 +42,19 @@
   "dependencies": {
     "@blueprintjs/icons": "^2.2.1",
     "arrify": "^1.0.1",
-    "classnames": "^2.2.5",
+    "classnames": "^2.2.6",
     "dom-helpers": "^3.2.1",
-    "downshift": "^1.16.0",
+    "downshift": "^1.31.16",
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
     "lodash.debounce": "^4.0.8",
     "lodash.mapvalues": "^4.6.0",
-    "object-values": "^1.0.0",
-    "prop-types": "^15.0.0",
+    "prop-types": "^15.6.2",
     "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.2.1",
     "tinycolor2": "^1.4.1",
-    "ui-box": "^1.1.0"
+    "ui-box": "^1.4.0"
   },
   "peerDependencies": {
     "react": "^16.3.0",
