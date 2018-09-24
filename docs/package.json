@@ -19,7 +19,7 @@
     "gatsby-plugin-postcss": "^1.0.0",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-source-filesystem": "^1.5.39",
-    "gatsby-transformer-react-docgen": "^1.0.17",
+    "gatsby-transformer-react-docgen": "^2.1.1",
     "lodash": "^4.17.4",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-cssnext": "^3.1.0",

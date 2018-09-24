@@ -1,4 +1,4 @@
-import SyntaxHighlighter from 'components/SyntaxHighlighter2'
+import SyntaxHighlighter from 'components/SyntaxHighlighter'
 import PropsTable from 'components/PropsTable'
 
 ## Introduction
@@ -52,7 +52,7 @@ This example shows basic usage with a single selected item.
 </Component>
 ```
 
-## Remove title and filter 
+## Remove title and filter
 
 * `hasFilter={false}`:  to remove the search input filter.
 * `hasTitle={false}`:  to remove the title from the popover.
@@ -148,7 +148,7 @@ As users click on selected values to remove them, you can update state.
   initialState={{
     options: ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']
           .map(label => ({ label, value: label })),
-    selected: [] 
+    selected: []
   }}
 >
   {({ state, setState }) => (

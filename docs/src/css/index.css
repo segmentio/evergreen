@@ -12,7 +12,6 @@
 /* components */
 @import './top-bar.css';
 @import './nav-group.css';
-@import './component-readme.css';
 @import './playground.css';
 @import './prism-theme.css';
 @import './content.css';
@@ -20,7 +19,6 @@
 @import './home-hero.css';
 @import './main-layout.css';
 @import './prop-type-table.css';
-@import './appearance-option.css';
 @import './overview.css';
 @import './mdx-page.css';
 @import './features.css';

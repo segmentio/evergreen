@@ -1,6 +1,5 @@
 .Overview {
-  /* max-width: 920px; */
-  margin: 0 auto 160px;
+  =margin: 0 auto 160px;
 
   & header {
     margin-top: 40px;
@@ -34,9 +33,6 @@
 }
 
 .OverviewItem {
-  /* float: left; */
-  /* width: 120px; */
-  /* margin-right: 12px; */
   &:hover {
     margin: -4px;
     padding: 4px;
