@@ -5,6 +5,7 @@ import TopBar from '../../components/TopBar'
 import GetStartedSidebar from '../../components/GetStartedSidebar'
 import SyntaxHighlighter from '../../components/SyntaxHighlighter'
 import Layout from '../../components/Layout'
+import PageFooter from '../../components/PageFooter'
 
 const NativeLink = ({ ...props }) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
@@ -107,6 +108,7 @@ ReactDOM.render(
           <GetStartedSidebar />
         </main>
       </div>
+      <PageFooter />
     </Layout>
   )
 }

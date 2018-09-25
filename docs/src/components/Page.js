@@ -10,6 +10,7 @@ import DocsMDXProvider from './DocsMDXProvider'
 import TopBar from './TopBar'
 import Layout from './Layout'
 import OverviewItem from './OverviewItem'
+import PageFooter from './PageFooter'
 
 const flatItems = [
   ...IA.foundation.items.map(item => {
@@ -158,6 +159,7 @@ class Page extends React.Component {
             </div>
           </main>
         </div>
+        <PageFooter />
       </React.Fragment>
     )
   }
