@@ -25,7 +25,11 @@ const getSnippet = ({ writeKey }) => {
     `
   }
 
-  return createSnippet({ apiKey: writeKey, page: false })
+  return createSnippet({
+    apiKey: writeKey,
+    page: false,
+    load: false
+  })
 }
 
 exports.onRenderBody = ({ setHeadComponents }) => {
