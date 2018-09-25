@@ -32,7 +32,11 @@ exports.onRenderBody = ({ setHeadComponents }) => {
   // Get the css and hydration script from Evergreen.
   const { css, hydrationScript } = extractStyles()
 
-  const snippet = getSnippet({ writeKey: segmentWriteKey })
+  const snippet = getSnippet({
+    writeKey: segmentWriteKey,
+    page: false,
+    load: false
+  })
 
   // Takes an array of components as its first argument which are added to
   // the headComponents array which is passed to the html.js component.
