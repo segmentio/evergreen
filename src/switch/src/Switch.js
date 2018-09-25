@@ -177,7 +177,13 @@ class Switch extends PureComponent {
     const themedClassName = theme.getSwitchClassName(appearance)
 
     return (
-      <Box is="label" display="block" width={height * 2} {...props}>
+      <Box
+        is="label"
+        display="block"
+        width={height * 2}
+        position="relative"
+        {...props}
+      >
         <Box
           is="input"
           className={themedClassName}

@@ -1,0 +1,143 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+Evergreen exports two components to create text inputs:
+
+* **TextInput**: base text input component. Directly maps to a `input` element.
+* **TextInputField**: combines a label, text input and validation message in one. Used for traditional forms.
+
+# TextInput
+
+The `TextInput` component is a basic text input component. 
+It directly maps to a `input` element.
+
+```jsx
+<TextInput
+  name="text-input-name"
+  placeholder="Text input placeholder..."
+/>
+```
+
+## Controlled usage
+
+The `TextInput` component works the same as using `input` directly.
+Use `e.target.value` to get the value of the component on change. 
+
+```jsx
+<Component initialState={{ value: ''}}>
+  {({ state, setState }) => (
+    <TextInput
+      onChange={e => setState({ value: e.target.value })}
+      value={state.value}
+    />
+  )}
+</Component>
+```
+
+## Disabled
+
+```jsx
+<TextInput disabled />
+```
+
+
+## Invalid
+
+```jsx
+<TextInput isInvalid />
+```
+
+## Change height
+
+The `TextIput` uses the `height` property to resize itself.
+
+```jsx
+<Pane>
+  <TextInput height={24} marginRight={16} />
+  <TextInput height={40} />
+</Pane>
+```
+
+## Change width
+
+
+```jsx
+<Pane>
+  <TextInput width="100%" marginBottom={16} />
+  <TextInput width={320} />
+</Pane>
+```
+
+<PropsTable of="TextInput" />
+
+# TextInputField
+
+The `TextInputField` component combines a `TextInput` with a label and optional
+`description`, `validationMessage` and `hint`.
+
+
+## Label and description
+
+```jsx
+<TextInputField
+  label="Default text input field"
+  description="This is a description."
+  placeholder="Placeholder text"
+/>
+```
+
+## A hint is under the text input
+
+```jsx
+<TextInputField
+  label="Default text input field"
+  hint="This is a hint."
+  placeholder="Placeholder text"
+/>
+```
+
+## Required text input field
+
+```jsx
+<TextInputField
+  id="ids-are-optional"
+  label="A required text input field"
+  required
+  description="This is a description."
+  placeholder="Placeholder text"
+/>
+```
+
+## Invalid field
+
+```jsx
+<TextInputField
+  isInvalid
+  required
+  label="A required text input field"
+  description="This is a description."
+  validationMessage="This field is required"
+/>
+```
+
+## Controlled usage
+
+The `TextInputField` component works the same as using `input` directly.
+Use `e.target.value` to get the value of the component on change. 
+
+```jsx
+<Component initialState={{ value: '' }}>
+  {({ state, setState }) => (
+    <TextInputField
+      label="A controlled text input field"
+      required
+      description="This is a description."
+      value={state.value}
+      onChange={e => setState({ value: e.target.value })}
+    />
+  )}
+</Component>
+```
+
+<PropsTable of="TextInputField" />

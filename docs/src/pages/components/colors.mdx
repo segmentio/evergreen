@@ -1,0 +1,21 @@
+import ColorExamples from 'components/ColorExamples'
+
+## Introduction
+
+The color system for a product has many requirements and constraints.
+There is a need to be intentional and functional with color use. Although the Evergreen color system has a bit of overlap with the Segment brand.
+There are also many other colors not found in the Segment brand.
+
+## Design Values
+
+* **Intentional:** use colors in a functional way to show intent when needed.
+* **Accessible:** use colors with as much contrast as possible while still being beautiful. Break this rule for the green brand color. Prevent muddy neutral colors.
+* **High Dynamic Range:** use very light neutral colors for background colors. Allow for a wide range of the color spectrum.
+
+## Implementation Details
+
+The color system in Evergreen is located in the theme and is used throughout the theme.
+There is no real dependency on any of the colors directly within components.
+Components always access a theme color or property through a get function. For example, `theme.getTextColor` is a required function in the Evergreen theme, theme.colors is not a required property.
+
+<ColorExamples marginTop={40} />

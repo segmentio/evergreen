@@ -28,6 +28,7 @@ export default class SidebarTab extends PureComponent {
         height={height}
         {...SidebarTab.styles}
         {...props}
+        display="flex"
       >
         <Box is="span" flex="1">
           {children}

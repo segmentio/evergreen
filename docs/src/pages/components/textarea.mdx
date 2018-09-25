@@ -1,0 +1,49 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `Textarea` components maps directly to a `textarea` element.
+
+
+```jsx
+<Textarea
+  name="textarea-1"
+  placeholder="Textarea placeholder..."
+/>
+```
+
+## Textarea with a label
+
+```jsx
+<Pane>
+  <Label
+    htmlFor="textarea-2"
+    marginBottom={4}
+    display="block"
+  >
+    Label
+  </Label>
+  <Textarea
+    id="textarea-2"
+    placeholder="Textarea placeholder..."
+  />
+</Pane>
+```
+
+## Controlled usage
+
+The `Textarea` component works the same as using `textarea` directly.
+Use `e.target.value` to get the value of the component on change. 
+
+```jsx
+<Component initialState={{ value: 'Hello'}}>
+  {({ state, setState }) => (
+    <Textarea
+      onChange={e => setState({ value: e.target.value })}
+      value={state.value}
+    />
+  )}
+</Component>
+```
+
+<PropsTable of="Textarea" />

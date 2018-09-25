@@ -27,28 +27,8 @@ jobs:
       - run: yarn run test
       - run: yarn run size-limit
 
-  deploy_storybook:
-    working_directory: ~/evergreen
-    docker:
-      - image: circleci/node:8.11
-    steps:
-      - checkout
-
-      - restore_cache:
-          key: main-dependency-cache-{{ checksum "yarn.lock" }}
-      - run: yarn install --frozen-lockfile
-
-      - run: yarn run storybook-to-ghpages
-
 workflows:
   version: 2
   default:
     jobs:
       - test
-      - deploy_storybook:
-          requires:
-            - test
-          filters:
-            branches:
-              only:
-                - master

@@ -1,5 +1,0 @@
-<div>
-    <TextDropdownButton marginRight={16}>Table Header</TextDropdownButton>
-    <TextDropdownButton marginRight={16} icon="arrow-up">Ascending</TextDropdownButton>
-    <TextDropdownButton icon="arrow-down">Descending</TextDropdownButton>
-</div>

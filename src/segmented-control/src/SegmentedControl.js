@@ -117,23 +117,21 @@ export default class SegmentedControl extends PureComponent {
 
     return (
       <Box display="flex" marginRight={-1} height={height} {...props}>
-        {options.map((option, index) => {
-          return (
-            <SegmentedControlRadio
-              key={option.value}
-              id={this.name + index}
-              name={name || this.name}
-              label={option.label}
-              value={String(option.value)}
-              height={height}
-              checked={value === option.value}
-              onChange={this.handleChange.bind(null, option.value)}
-              appearance="default"
-              isFirstItem={index === 0}
-              isLastItem={index === options.length - 1}
-            />
-          )
-        })}
+        {options.map((option, index) => (
+          <SegmentedControlRadio
+            key={option.value}
+            id={this.name + index}
+            name={name || this.name}
+            label={option.label}
+            value={String(option.value)}
+            height={height}
+            checked={value === option.value}
+            onChange={this.handleChange.bind(null, option.value)}
+            appearance="default"
+            isFirstItem={index === 0}
+            isLastItem={index === options.length - 1}
+          />
+        ))}
       </Box>
     )
   }

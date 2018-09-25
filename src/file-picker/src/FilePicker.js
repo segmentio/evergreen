@@ -8,16 +8,47 @@ export const CLASS_PREFIX = 'evergreen-file-picker'
 
 export default class FilePicker extends PureComponent {
   static propTypes = {
+    /**
+     * Name attribute of the input.
+     */
     name: PropTypes.string,
+
+    /**
+     * The accept attribute of the input.
+     */
     accept: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string)
     ]),
+
+    /**
+     * When true, the file picker is required.
+     */
     required: PropTypes.bool,
+
+    /**
+     * When true, accept multiple files.
+     */
     multiple: PropTypes.bool,
+
+    /**
+     * When true, the filepicker is disabled.
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * The capture attribute of the input.
+     */
     capture: PropTypes.bool,
+
+    /**
+     * The height of the file picker.
+     */
     height: PropTypes.number,
+
+    /**
+     * Function called when onChange is fired
+     */
     onChange: PropTypes.func
   }
 
