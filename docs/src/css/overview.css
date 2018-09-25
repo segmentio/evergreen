@@ -1,5 +1,6 @@
 .Overview {
-  =margin: 0 auto 160px;
+  margin: 0 auto 160px;
+  min-height: 100vh;
 
   & header {
     margin-top: 40px;

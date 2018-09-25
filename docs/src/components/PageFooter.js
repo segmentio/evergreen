@@ -1,5 +1,6 @@
 import React from 'react'
 import SegmentLogoWordmark from './SegmentLogoWordmark'
+import ConsentManager from './ConsentManager'
 
 const NativeLink = props => (
   <a target="_blank" rel="noopener noreferrer" {...props} />
@@ -24,6 +25,9 @@ export default class PageFooter extends React.PureComponent {
               </NativeLink>
             </p>
           </div>
+        </div>
+        <div className="Container PageFooter-inner">
+          <ConsentManager />
         </div>
       </footer>
     )
