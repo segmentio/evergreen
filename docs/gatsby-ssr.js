@@ -25,7 +25,11 @@ const getSnippet = ({ writeKey }) => {
     `
   }
 
-  return createSnippet({ apiKey: writeKey, page: false })
+  return createSnippet({
+    apiKey: writeKey,
+    page: false,
+    load: false
+  })
 }
 
 exports.onRenderBody = ({ setHeadComponents }) => {
@@ -33,9 +37,7 @@ exports.onRenderBody = ({ setHeadComponents }) => {
   const { css, hydrationScript } = extractStyles()
 
   const snippet = getSnippet({
-    writeKey: segmentWriteKey,
-    page: false,
-    load: false
+    writeKey: segmentWriteKey
   })
 
   // Takes an array of components as its first argument which are added to
