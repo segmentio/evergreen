@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { dimensions, spacing, position, layout } from 'ui-box'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
 import { withTheme } from '../../theme'
 
@@ -54,12 +53,12 @@ class Button extends PureComponent {
     /**
      * Sets an icon before the text. Can be any icon from Evergreen.
      */
-    iconBefore: PropTypes.string,
+    iconBefore: PropTypes.func,
 
     /**
      * Sets an icon after the text. Can be any icon from Evergreen.
      */
-    iconAfter: PropTypes.string,
+    iconAfter: PropTypes.func,
 
     /**
      * When true, the button is disabled.
@@ -117,8 +116,8 @@ class Button extends PureComponent {
       paddingBottom,
 
       // Icons
-      iconBefore: iconBeforeKey,
-      iconAfter: iconAfterKey,
+      iconBefore: IconBefore,
+      iconAfter: IconAfter,
 
       ...props
     } = this.props
@@ -134,10 +133,9 @@ class Button extends PureComponent {
     const pl = paddingLeft !== undefined ? paddingLeft : Math.round(height / 2) // eslint-disable-line no-negated-condition
 
     let iconBefore
-    if (iconBeforeKey) {
+    if (IconBefore) {
       iconBefore = (
-        <Icon
-          icon={iconBeforeKey}
+        <IconBefore
           size={iconSize}
           marginLeft={-Math.round(pl * 0.2)}
           marginRight={Math.round(iconSize * 0.7)}
@@ -146,10 +144,9 @@ class Button extends PureComponent {
     }
 
     let iconAfter
-    if (iconAfterKey) {
+    if (IconAfter) {
       iconAfter = (
-        <Icon
-          icon={iconAfterKey}
+        <IconAfter
           size={iconSize}
           marginRight={-Math.round(pl * 0.2)}
           marginLeft={Math.round(iconSize * 0.7)}
