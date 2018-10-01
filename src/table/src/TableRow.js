@@ -47,9 +47,9 @@ export default class TableRow extends PureComponent {
     this.props.onClick(e)
     if (this.props.isSelectable) {
       if (this.props.isSelected) {
-        this.props.onDeselect()
+        this.props.onDeselect(e)
       } else {
-        this.props.onSelect()
+        this.props.onSelect(e)
       }
     }
   }
@@ -61,7 +61,7 @@ export default class TableRow extends PureComponent {
   handleKeyPress = e => {
     if (this.props.isSelectable) {
       if (e.key === 'Enter' || e.key === ' ') {
-        this.props.onSelect()
+        this.props.onSelect(e)
 
         // NOTE: In scenarios where the target for key press is our
         // tabIndex <Pane> below, prevent the default event action
