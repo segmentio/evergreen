@@ -3,6 +3,7 @@ import React from 'react'
 import Box from 'ui-box'
 import { Table } from '../../table'
 import { Portal } from '../../portal'
+import Checkbox from '../../checkbox/src/Checkbox'
 import AdvancedTable from './AdvancedTable'
 import VirtualTable from './VirtualTable'
 import EditableTable from './EditableTable'
@@ -14,6 +15,28 @@ const dynamicHeights = range(500).map(() => {
 })
 
 storiesOf('table', module)
+  .add('Story with checkbox', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Table.Row
+        height={32}
+        isSelectable
+        onSelect={() => console.log('triggered table row select')}
+      >
+        <Table.Cell>
+          <Checkbox
+            checked
+            onChange={() => {
+              console.log('Checkbox clicked')
+            }}
+          />
+        </Table.Cell>
+      </Table.Row>
+    </Box>
+  ))
   .add('Advanced Sortable Table', () => (
     <Box padding={24}>
       {(() => {
