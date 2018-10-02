@@ -44,9 +44,7 @@ class TableCell extends PureComponent {
   }
 
   static defaultProps = {
-    appearance: 'default',
-    onSelect: () => {},
-    onDeselect: () => {}
+    appearance: 'default'
   }
 
   static styles = {
@@ -104,8 +102,6 @@ class TableCell extends PureComponent {
       theme,
       children,
       appearance,
-      onSelect,
-      onDeselect,
       onClick,
       onKeyPress,
       onKeyDown,
