@@ -151,6 +151,15 @@ class Overlay extends React.Component {
     }
   }
 
+  static getDerivedStateFromProps(props) {
+    if (!props.isShown) {
+      return {
+        exited: false
+      }
+    }
+    return null
+  }
+
   componentWillUnmount() {
     document.body.removeEventListener('keydown', this.onEsc, false)
   }
