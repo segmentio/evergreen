@@ -53,11 +53,11 @@
     "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.2.1",
-    "ui-box": "^1.1.0"
+    "ui-box": "^1.4.0"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
   },
   "devDependencies": {
     "@reactions/component": "^2.0.2",
