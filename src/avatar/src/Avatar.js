@@ -3,12 +3,9 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Image } from '../../image'
 import { Text } from '../../typography'
-import { FillAppearances } from '../../shared-styles'
-import { colors } from '../../colors'
+import { withTheme } from '../../theme'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
-
-const keysFillAppearances = Object.keys(FillAppearances.default)
 
 const initialsProps = {
   top: 0,
@@ -19,88 +16,127 @@ const initialsProps = {
   lineHeight: 1
 }
 
-const getInitialsFontSize = (size, heightLimitOneCharacter) => {
-  if (size <= heightLimitOneCharacter) {
-    return Math.ceil(size / 2.2)
-  }
-  return Math.ceil(size / 2.6)
-}
-
-export default class Avatar extends PureComponent {
+class Avatar extends PureComponent {
   static propTypes = {
-    ...Image.propTypes,
+    /**
+     * The src attribute of the image.
+     * When it's not available, render initials instead.
+     */
+    src: PropTypes.string,
+
+    /**
+     * The size of the avatar.
+     */
     size: PropTypes.number,
+
+    /**
+     * The name used for the initials and title attribute.
+     */
     name: PropTypes.string,
-    // Hash value defaults to name
+
+    /**
+     * The value used for the hash function.
+     * The name is used as the hashValue by default.
+     * When dealing with anonymous users you should use the id instead.
+     */
     hashValue: PropTypes.string,
-    hash: PropTypes.func,
+
+    /**
+     * When true, render a solid avatar.
+     */
     isSolid: PropTypes.bool,
-    appearance: PropTypes.oneOf(keysFillAppearances),
+
+    /**
+     * The color used for the avatar.
+     * When the value is `automatic`, use the hash function to determine the color.
+     */
+    color: PropTypes.string.isRequired,
+
+    /**
+     * Function to get the initials based on the name.
+     */
     getInitials: PropTypes.func,
-    // In some cases Gravatar returns transparent pngs
-    // we still want to see the initials
+
+    /**
+     * When true, force show the initials.
+     * This is useful in some cases when using Gravatar and transparent pngs.
+     */
     forceShowInitials: PropTypes.bool,
-    heightLimitOneCharacter: PropTypes.number
+
+    /**
+     * When the size is smaller than this number, use a single initial for the avatar.
+     */
+    sizeLimitOneCharacter: PropTypes.number,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
+    color: 'automatic',
     size: 24,
-    hash: globalHash,
     isSolid: false,
     getInitials: globalGetInitials,
     forceShowInitials: false,
-    heightLimitOneCharacter: 20
+    sizeLimitOneCharacter: 20
   }
 
   constructor(props, context) {
     super(props, context)
-    this.state = {
-      imageHasFailedLoading: false
-    }
+    this.state = { imageHasFailedLoading: false }
   }
 
   handleError = () => {
-    this.setState({
-      imageHasFailedLoading: true
-    })
+    this.setState({ imageHasFailedLoading: true })
+  }
+
+  getColorProps = () => {
+    const {
+      isSolid,
+      theme,
+      color,
+      hashValue: propsHashValue,
+      name
+    } = this.props
+
+    if (color === 'automatic') {
+      const hashValue = globalHash(propsHashValue || name)
+      return theme.getAvatarProps({ isSolid, color, hashValue })
+    }
+
+    return theme.getAvatarProps({ isSolid, color })
   }
 
   render() {
     const {
+      theme,
+
       src,
       size,
       name,
-      hash,
       isSolid,
       hashValue: propsHashValue,
       getInitials,
-      useAutoColor,
-      appearance: propsAppearance,
+      color: propsColor,
       forceShowInitials,
-      heightLimitOneCharacter,
+      sizeLimitOneCharacter,
       ...props
     } = this.props
+
     const { imageHasFailedLoading } = this.state
     const imageUnavailable = !src || imageHasFailedLoading
-    const initialsFontSize = `${getInitialsFontSize(
+    const initialsFontSize = `${theme.getAvatarInitialsFontSize(
       size,
-      heightLimitOneCharacter
+      sizeLimitOneCharacter
     )}px`
 
     let initials = getInitials(name)
-    if (size <= heightLimitOneCharacter) {
+    if (size <= sizeLimitOneCharacter) {
       initials = initials.substring(0, 1)
     }
-
-    const hashValue = hash(propsHashValue || name)
-    let appearanceKey = propsAppearance
-    if (appearanceKey === undefined) {
-      appearanceKey =
-        keysFillAppearances[hashValue % keysFillAppearances.length]
-    }
-
-    const appearance =
-      FillAppearances[isSolid ? 'solid' : 'default'][appearanceKey]
+    const colorProps = this.getColorProps()
 
     return (
       <Box
@@ -111,9 +147,8 @@ export default class Avatar extends PureComponent {
         position="relative"
         display="inline-flex"
         justifyContent="center"
-        backgroundColor={colors.neutral['300']}
+        backgroundColor={colorProps.backgroundColor}
         title={name}
-        {...appearance}
         {...props}
       >
         {(imageUnavailable || forceShowInitials) && (
@@ -123,7 +158,7 @@ export default class Avatar extends PureComponent {
             lineHeight={initialsFontSize}
             width={size}
             height={size}
-            color={appearance.color}
+            color={colorProps.color}
           >
             {initials}
           </Text>
@@ -140,3 +175,5 @@ export default class Avatar extends PureComponent {
     )
   }
 }
+
+export default withTheme(Avatar)

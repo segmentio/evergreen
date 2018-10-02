@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ToastManager from './ToastManager'
 
-const ID = 'evergreen-toaster'
 const isBrowser =
   typeof window !== 'undefined' && typeof window.document !== 'undefined'
 
@@ -13,17 +12,10 @@ const isBrowser =
 export default class Toaster {
   constructor() {
     if (!isBrowser) return
-    let container
 
-    const element = document.getElementById(ID)
-    if (element) {
-      container = element
-    } else {
-      // Create container if not exists yet.
-      container = document.createElement('div')
-      container.id = ID
-      document.body.appendChild(container)
-    }
+    const container = document.createElement('div')
+    container.setAttribute('data-evergreen-toaster-container', '')
+    document.body.appendChild(container)
 
     ReactDOM.render(
       <ToastManager
@@ -56,22 +48,18 @@ export default class Toaster {
   }
 
   notify = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, type: 'default' })
+    return this.notifyHandler(title, { ...settings, intent: 'none' })
   }
 
   success = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, type: 'success' })
+    return this.notifyHandler(title, { ...settings, intent: 'success' })
   }
 
   warning = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, type: 'warning' })
+    return this.notifyHandler(title, { ...settings, intent: 'warning' })
   }
 
   danger = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, type: 'danger' })
-  }
-
-  info = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, type: 'info' })
+    return this.notifyHandler(title, { ...settings, intent: 'danger' })
   }
 }

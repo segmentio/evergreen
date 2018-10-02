@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import arrify from 'arrify'
 import { Popover } from '../../popover'
-import { Position } from '../../positioner'
+import { Position } from '../../constants'
 import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
 import SelectedPropType from './SelectedPropType'
@@ -34,15 +34,21 @@ export default class SelectMenu extends PureComponent {
      * Function that is called when an option is selected.
      */
     onSelect: PropTypes.func,
+
     /**
      * Function that is called when an option is deselected.
      */
     onDeselect: PropTypes.func,
 
     /**
-     *
+     * The selected value/values.
      */
     selected: SelectedPropType,
+
+    /**
+     * When true, multi select is accounted for.
+     */
+    isMultiSelect: PropTypes.bool,
 
     /**
      * When true, show the title.
@@ -57,7 +63,14 @@ export default class SelectMenu extends PureComponent {
     /**
      * The position of the Select Menu.
      */
-    position: PropTypes.oneOf(Object.keys(Position)),
+    position: PropTypes.oneOf([
+      Position.TOP,
+      Position.TOP_LEFT,
+      Position.TOP_RIGHT,
+      Position.BOTTOM,
+      Position.BOTTOM_LEFT,
+      Position.BOTTOM_RIGHT
+    ]),
 
     /**
      * Can be a function that returns a node, or a node itself, that is
@@ -72,7 +85,8 @@ export default class SelectMenu extends PureComponent {
     onDeselect: () => {},
     width: 240,
     height: 248,
-    position: Position.BOTTOM_LEFT
+    position: Position.BOTTOM_LEFT,
+    isMultiSelect: false
   }
 
   getDetailView = (close, detailView) => {
@@ -100,6 +114,7 @@ export default class SelectMenu extends PureComponent {
       hasTitle,
       hasFilter,
       detailView,
+      isMultiSelect,
       ...props
     } = this.props
 
@@ -116,6 +131,7 @@ export default class SelectMenu extends PureComponent {
             title={title}
             hasFilter={hasFilter}
             hasTitle={hasTitle}
+            isMultiSelect={isMultiSelect}
             listProps={{
               onSelect: item => {
                 this.props.onSelect(item)

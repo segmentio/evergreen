@@ -2,7 +2,6 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import { Avatar } from '../../avatar'
-import { FillAppearances } from '../../shared-styles'
 import { Heading, Paragraph } from '../../typography'
 
 const names = [
@@ -17,6 +16,16 @@ const names = [
 ]
 
 const anonymousIds = [1591, 13184, 1055, 4199, 4824, 11394, 1965, 13023]
+const colors = [
+  'neutral',
+  'blue',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'teal',
+  'purple'
+]
 
 const StoryHeader = props => <Box marginBottom={16} {...props} />
 
@@ -105,17 +114,13 @@ storiesOf('avatar', module).add('Avatar', () => (
     </Box>
     <Box marginBottom={40}>
       <StoryHeader>
-        <StoryHeading>Manual default appearances</StoryHeading>
-        <StoryDescription>
-          {Object.keys(FillAppearances.default)
-            .map(a => a)
-            .join(', ')}
-        </StoryDescription>
+        <StoryHeading>Manual default colors</StoryHeading>
+        <StoryDescription>{colors.join(', ')}</StoryDescription>
       </StoryHeader>
-      {Object.keys(FillAppearances.default).map((appearance, index) => (
+      {colors.map((color, index) => (
         <Avatar
-          key={appearance}
-          appearance={appearance}
+          key={color}
+          color={color}
           name={names[index]}
           marginRight={12}
           size={40}
@@ -124,40 +129,22 @@ storiesOf('avatar', module).add('Avatar', () => (
     </Box>
     <Box marginBottom={40}>
       <StoryHeader>
-        <StoryHeading>Manual Solid appearances</StoryHeading>
+        <StoryHeading>Manual Solid Colors</StoryHeading>
         <StoryDescription>
           Pass the isSolid prop.<br />
-          {Object.keys(FillAppearances.default)
-            .map(a => a)
-            .join(', ')}
+          {colors.join(', ')}
         </StoryDescription>
       </StoryHeader>
-      {Object.keys(FillAppearances.default).map((appearance, index) => (
+      {colors.map((color, index) => (
         <Avatar
-          key={appearance}
+          key={color}
           isSolid
-          appearance={appearance}
+          color={color}
           name={names[index]}
           marginRight={12}
           size={40}
         />
       ))}
-    </Box>
-    <Box marginBottom={40}>
-      <StoryHeader>
-        <StoryHeading>Manually set colors</StoryHeading>
-        <StoryDescription>
-          Use color and backgroundColor to manually style your avatar.
-        </StoryDescription>
-      </StoryHeader>
-      <Avatar
-        key="manual"
-        isSolid
-        backgroundColor="orange"
-        name={names[1]}
-        marginRight={12}
-        size={40}
-      />
     </Box>
   </Box>
 ))

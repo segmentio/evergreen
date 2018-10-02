@@ -1,0 +1,73 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+A segmented control is a set of two or more button segments.
+Within the control, all segments are equal in width.
+A segmented control is often used to switch between views of some data.
+Use a segmented control only when the options are predefined and are at most 4 options.
+
+## Design guidelines
+
+By default the segmented control has a height of `32px` (the same as a button).
+It is possible to change this to any height and the text style and spacing will adjust.
+You should however keep things on the `8px` grid or in some cases the `4px` grid.
+You should only need the following recommended heights.
+
+### Recommended heights
+
+* 24px
+* 32px — default height
+* 36px
+* 40px
+
+## Basic
+
+```jsx
+<Component
+  initialState={{
+    options: [
+      { label: 'Hourly', value: 'hourly' },
+      { label: 'Daily', value: 'daily' },
+      { label: 'Monthly', value: 'monthly' },
+    ],
+    value: 'hourly',
+  }}
+>
+  {({ state, setState }) => (
+    <SegmentedControl
+      width={240}
+      options={state.options}
+      value={state.value}
+      onChange={value => setState({ value })}
+    />
+  )}
+</Component>
+```
+
+
+## Small SegmentedControl example
+
+The `SegmentedControl` will automatically chose the text style to match whatever height is passed.
+
+```jsx
+<Component
+  initialState={{
+    options: [{ label: 'On', value: 'on' }, { label: 'Off', value: 'off' }],
+    value: 'on',
+  }}
+>
+  {({ state, setState }) => (
+    <SegmentedControl
+      name="switch"
+      width={80}
+      height={24}
+      options={state.options}
+      value={state.value}
+      onChange={value => setState({ value })}
+    />
+  )}
+</Component>
+```
+
+<PropsTable of="SegmentedControl" />

@@ -1,0 +1,100 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The radio and radio group are used for selecting a single option from a list.
+If you need to have an unselected state, just add a radio button with a None option.
+Begin labels with a capital letter.
+
+Evergreen exports two components to create radios and radio groups:
+
+* **Radio**: Directly maps to a `input` element.
+* **RadioGroup**: Helps manage a group of radios. Try this first.
+
+# RadioGroup
+
+The `RadioGroup` is the preferred way to create radio groups in most use cases.
+
+## Default size
+
+```jsx
+<Component
+  initialState={{
+    options: [
+      { label: 'Read-only', value: 'read-only' },
+      { label: 'Write', value: 'write' },
+      { label: 'Restricted', value: 'restricted' }
+    ],
+    value: 'restricted'
+  }}
+>
+  {({ state, setState }) => (
+    <RadioGroup
+      label="Permissions"
+      value={state.value}
+      options={state.options}
+      onChange={value => setState({ value })}
+    />
+  )}
+</Component>
+```
+
+## Bigger size
+
+```jsx
+<Component
+  initialState={{
+    options: [
+      { label: 'Read-only', value: 'read-only' },
+      { label: 'Write', value: 'write' },
+      { label: 'Restricted', value: 'restricted' }
+    ],
+    value: 'restricted'
+  }}
+>
+  {({ state, setState }) => (
+    <RadioGroup
+      marginTop={40}
+      size={16}
+      label="Permissions"
+      value={state.value}
+      options={state.options}
+      onChange={value => setState({ value })}
+    />
+  )}
+</Component>
+```
+
+<PropsTable of="RadioGroup" />
+
+
+# Radio
+
+## Radio states
+
+```jsx
+<Pane aria-label="Radio Group Label 12" role="group">
+  <Radio checked name="group" label="Radio default" />
+  <Radio name="group" checked label="Radio checked" />
+  <Radio name="group" disabled label="Radio disabled" />
+  <Radio name="group" disabled label="Radio checked disabled" />
+</Pane>
+```
+
+## Radio states (bigger)
+
+```jsx
+<Pane aria-label="Radio Group Label 16" role="group">
+  <Radio checked size={16} name="group2" label="Radio default" />
+  <Radio size={16} name="group2" checked label="Radio checked" />
+  <Radio size={16} name="group2" disabled label="Radio disabled" />
+  <Radio
+    size={16}
+    name="group2"
+    disabled
+    label="Radio checked disabled"
+  />
+</Pane>
+```
+
+<PropsTable of="Radio" />

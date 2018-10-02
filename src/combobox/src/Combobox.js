@@ -69,8 +69,7 @@ export default class Combobox extends PureComponent {
 
   static defaultProps = {
     width: 240,
-    openOnFocus: false,
-    appearance: 'default'
+    openOnFocus: false
   }
 
   constructor(props, context) {
@@ -95,7 +94,6 @@ export default class Combobox extends PureComponent {
       defaultSelectedItem,
       itemToString,
       width,
-      appearance,
       height,
       onChange,
       placeholder,
@@ -161,8 +159,8 @@ export default class Combobox extends PureComponent {
             <IconButton
               iconAim="down"
               color="muted"
-              icon="triangle"
-              appearance={appearance}
+              icon="caret-down"
+              appearance="default"
               height={height}
               marginLeft={-1}
               paddingLeft={0}

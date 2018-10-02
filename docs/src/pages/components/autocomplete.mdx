@@ -1,0 +1,162 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `Autocomplete` components renders a filterable list of options in a `Popover` — it does not render the text input.
+If you need a combination with a text input and trigger button, take a look at the `Combobox` component.
+This component is mainly used to create type aheads
+
+### You might not need `Autocomplete`
+
+In some cases you might be better off using `Combobox` or `SelectMenu`.
+
+### The autocomplete component combines a set of external libraries
+
+* Uses `Downshift` for autocomplete
+* Uses `react-tiny-virtual-list` for performant list rendering
+* Uses `fuzzaldrin-plus` for fuzzy filtering
+
+## Default example
+
+```jsx
+<Autocomplete
+  title="Fruits"
+  onChange={(changedItem) => console.log(changedItem)}
+  items={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']}
+>
+  {(props) => {
+    const { getInputProps, getRef, inputValue } = props
+    return (
+      <TextInput
+        placeholder="Fruits"
+        value={inputValue}
+        innerRef={getRef}
+        {...getInputProps()}
+      />
+    )
+  }}
+</Autocomplete>
+```
+
+## Using children prop
+
+There is not different in between using this syntax or the above syntax.
+
+```jsx
+<Autocomplete
+  title="Fruits"
+  onChange={changedItem => console.log(changedItem)}
+  items={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']}
+  children={(props) => {
+    const { getInputProps, getRef, inputValue } = props
+    return (
+      <TextInput
+        placeholder="Fruits"
+        value={inputValue}
+        innerRef={getRef}
+        {...getInputProps()}
+      />
+    )
+  }}
+/>
+```
+
+## Open on focus
+
+Get the `openMenu` prop to manually open the menu on certain events such as `onFocus`.
+
+```jsx
+<Autocomplete
+  title="Fruits"
+  onChange={changedItem => console.log(changedItem)}
+  items={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']}
+>
+  {(props) => {
+    const { getInputProps, getRef, inputValue, openMenu } = props
+    return (
+      <TextInput
+        placeholder="Open on focus"
+        value={inputValue}
+        innerRef={getRef}
+        {...getInputProps({
+          onFocus: () => {
+            openMenu()
+          }
+        })}
+      />
+    )
+  }}
+</Autocomplete>
+```
+
+## Results with an external trigger
+
+```jsx
+<Autocomplete
+  title="Fruits"
+  onChange={changedItem => console.log(changedItem)}
+  items={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']}
+>
+  {({
+    getInputProps,
+    getButtonProps,
+    getRef,
+    inputValue,
+    toggleMenu
+  }) => (
+    <Pane innerRef={getRef} display="inline-block">
+      <TextInput
+        placeholder="Trigger with button"
+        value={inputValue}
+        {...getInputProps()}
+      />
+      <Button onClick={toggleMenu} {...getButtonProps()}>
+        Trigger
+      </Button>
+    </Pane>
+  )}
+</Autocomplete>
+```
+
+## Fully featured example
+
+Full width with flex and options title, onFocus, filtering, and button to trigger the autocomplete.
+Note that this is very similar the `Combobox` component.
+Consider using that component before using the `Autocomplete` component directly.
+
+```jsx
+<Autocomplete
+  title="Custom title"
+  onChange={changedItem => console.log(changedItem)}
+  items={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']}
+>
+  {({
+    key,
+    getInputProps,
+    getButtonProps,
+    getRef,
+    inputValue,
+    openMenu,
+    toggleMenu
+  }) => (
+    <Pane
+      key={key}
+      innerRef={getRef}
+      display="flex"
+    >
+      <TextInput
+        flex="1"
+        placeholder="Many Options!"
+        value={inputValue}
+        onFocus={openMenu}
+        {...getInputProps()}
+      />
+      <Button onClick={toggleMenu} {...getButtonProps()}>
+        Trigger
+      </Button>
+    </Pane>
+  )}
+</Autocomplete>
+```
+
+<PropsTable of="Autocomplete" />

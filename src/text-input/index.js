@@ -1,3 +1,2 @@
-export TextInput from './src/TextInput'
-export TextInputField from './src/TextInputField'
-export { InputAppearances as TextInputAppearances } from '../shared-styles'
+export { default as TextInput } from './src/TextInput'
+export { default as TextInputField } from './src/TextInputField'

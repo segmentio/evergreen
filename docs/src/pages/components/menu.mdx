@@ -1,0 +1,249 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+Evergreen exports multiple component to help create menus.
+All components are accessible through the `Menu` component.
+
+* **Menu**: menu wrapper, helps with focus management.
+* **Menu.Item**: single menu item button. Contains labels and icons.
+* **Menu.Group**: group menu items together.
+* **Menu.Divider**: menu divider to divide menu groups visually.
+* **Menu.OptionsGroup**: menu group which works like a radio group.
+
+## Focus management
+
+The `Menu` component is used to help with focus management.
+
+* Arrow down on a button will bring focus inside the popover.
+* Arrow keys within the menu will cycle through all of the menu items and skip `disabled` items.
+* The `Home` key (fn + arrow left) will go to the first item.
+* The `End` key (fn + arrow right) will go to the last item.
+
+
+## Menu without icons 
+
+All examples below will show the `Menu` inside of a `Popover`.
+It is important to understand the `Menu` component by itself does not manage a dropdown interaction.
+
+```jsx
+<Menu>
+  <Menu.Group>
+    <Menu.Item>Share...</Menu.Item>
+    <Menu.Item>Move...</Menu.Item>
+    <Menu.Item>Rename...</Menu.Item>
+  </Menu.Group>
+  <Menu.Divider />
+  <Menu.Group>
+    <Menu.Item intent="danger">Delete...</Menu.Item>
+  </Menu.Group>
+</Menu>
+```
+
+## Using `onSelect` handlers
+
+Menu items support a `onSelect` handler that is triggered on click and `enter` + `space` key down.
+
+```jsx
+<Menu.Item
+  onSelect={() => toaster.notify('Hello world')}
+>
+  Say hello
+</Menu.Item>
+```
+
+## Dropdown menu
+
+```jsx
+<Popover
+  position={Position.BOTTOM_LEFT}
+  content={
+    <Menu>
+      <Menu.Group>
+        <Menu.Item
+          onSelect={() => toaster.notify('Share')}
+        >
+          Share...
+        </Menu.Item>
+        <Menu.Item
+          onSelect={() => toaster.notify('Move')}
+        >
+          Move...
+        </Menu.Item>
+        <Menu.Item
+          onSelect={() => toaster.notify('Rename')}
+          secondaryText="⌘R"
+        >
+          Rename...
+        </Menu.Item>
+      </Menu.Group>
+      <Menu.Divider />
+      <Menu.Group>
+        <Menu.Item
+          onSelect={() => toaster.danger('Delete')}
+          intent="danger"
+        >
+          Delete...
+        </Menu.Item>
+      </Menu.Group>
+    </Menu>
+  }
+>
+  <Button marginRight={16}>Without Icons</Button>
+</Popover>
+```
+
+## Menu with icons
+
+The `onSelect` handlers are ommitted for brevity.
+
+```jsx
+<Popover
+  position={Position.BOTTOM_LEFT}
+  content={
+    <Menu>
+      <Menu.Group>
+        <Menu.Item icon="people">Share...</Menu.Item>
+        <Menu.Item icon="circle-arrow-right">Move...</Menu.Item>
+        <Menu.Item icon="edit" secondaryText="⌘R">
+          Rename...
+        </Menu.Item>
+      </Menu.Group>
+      <Menu.Divider />
+      <Menu.Group>
+        <Menu.Item icon="trash" intent="danger">
+          Delete...
+        </Menu.Item>
+      </Menu.Group>
+    </Menu>
+  }
+>
+  <Button marginRight={16}>With Icons</Button>
+</Popover>
+```
+
+
+## Groups with titles
+
+The `onSelect` handlers are ommitted for brevity.
+
+```jsx
+<Popover
+  position={Position.BOTTOM_LEFT}
+  content={
+    <Menu>
+      <Menu.Group title="Actions">
+        <Menu.Item icon="people">Share...</Menu.Item>
+        <Menu.Item icon="circle-arrow-right">Move...</Menu.Item>
+        <Menu.Item icon="edit" secondaryText="⌘R">
+          Rename...
+        </Menu.Item>
+      </Menu.Group>
+      <Menu.Divider />
+      <Menu.Group title="destructive">
+        <Menu.Item icon="trash" intent="danger">
+          Delete...
+        </Menu.Item>
+      </Menu.Group>
+    </Menu>
+  }
+>
+  <Button marginRight={16}>With Group Titles</Button>
+</Popover>
+```
+
+## Menu option groups
+
+The `Menu.OptionsGroup` is useful inside of table headers to help with sorting and filtering options.
+
+```jsx
+<Menu>
+  <Component
+    initialState={{
+      selected: 'asc'
+    }}
+  >
+    {({ state, setState }) => {
+      return (
+        <Menu.OptionsGroup
+          title="Order"
+          options={[
+            { label: 'Ascending', value: 'asc' },
+            { label: 'Descending', value: 'desc' }
+          ]}
+          selected={state.selected}
+          onChange={selected => setState({ selected })}
+        />
+      )
+    }}
+  </Component>
+
+  <Menu.Divider />
+
+  <Component
+    initialState={{
+      selected: 'email'
+    }}
+  >
+    {({ state, setState }) => {
+      return (
+        <Menu.OptionsGroup
+          title="Show"
+          options={[
+            { label: 'Email', value: 'email' },
+            { label: 'Phone', value: 'phone' },
+            { label: 'State', value: 'state' },
+            { label: 'Country', value: 'country' },
+            { label: 'Type', value: 'type' }
+          ]}
+          selected={state.selected}
+          onChange={selected => setState({ selected })}
+        />
+      )
+    }}
+  </Component>
+</Menu>
+```
+
+## Custom menu items
+
+The `Menu` by itself offers focus management to elements inside of the component that
+either have `[role="menuitemradio"]` or `[role="menuitem"]`.
+
+The focus styles are currently not working in the docs, sorry for the inconvenience!
+
+```jsx
+<Popover
+  position={Position.BOTTOM_LEFT}
+  content={
+    <Menu>
+      <ul>
+        <li>
+          <a href="..." role="menuitem">
+            Hey Evergreen,
+          </a>
+        </li>
+        <li>
+          <a href="..." role="menuitem">
+            I want custom items
+          </a>
+        </li>
+        <hr />
+        <li>
+          <a href="..." role="menuitem">
+            Oh sweet
+          </a>
+        </li>
+      </ul>
+    </Menu>
+  }
+>
+  <Button>Custom Menu Items</Button>
+</Popover>
+```
+
+<PropsTable of="Menu" />
+<PropsTable of="MenuItem" />
+<PropsTable of="MenuGroup" />
+<PropsTable of="MenuOptionsGroup" />
+<PropsTable of="MenuDivider" />

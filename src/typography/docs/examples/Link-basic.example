@@ -1,5 +1,0 @@
-<Box>
-  <Link href="#" marginRight={12} appearance="green">Green</Link>
-  <Link href="#" marginRight={12} appearance="blue">Blue</Link>
-  <Link href="#" marginRight={12} appearance="neutral">Neutral</Link>
-</Box>

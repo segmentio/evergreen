@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import LinkAppearances from './styles/LinkAppearances'
+import cx from 'classnames'
+import { withTheme } from '../../theme'
 import Text from './Text'
 
-export default class Link extends PureComponent {
+class Link extends PureComponent {
   static propTypes = {
     ...Text.propTypes,
 
@@ -24,28 +25,41 @@ export default class Link extends PureComponent {
     target: PropTypes.string,
 
     /**
-     * The appearance of the Link. Can be blue, green or neutral.
+     * The color (and styling) of the Link. Can be default, blue, green or neutral.
      */
-    appearance: PropTypes.oneOf(Object.keys(LinkAppearances))
+    color: PropTypes.string.isRequired,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired,
+
+    /**
+     * Class name passed to the link.
+     * Only use if you know what you are doing.
+     */
+    className: PropTypes.string
   }
 
   static defaultProps = {
-    appearance: 'green'
+    color: 'default'
   }
 
   render() {
-    const { appearance, ...props } = this.props
-    const appearanceStyle = LinkAppearances[appearance]
+    const { theme, className, color, ...props } = this.props
 
-    // Manage the color through the appearance
+    const themedClassName = theme.getLinkClassName(color)
+
     return (
       <Text
         is="a"
+        className={cx(className, themedClassName)}
         textDecoration="underline"
         color={null}
-        css={appearanceStyle}
         {...props}
       />
     )
   }
 }
+
+export default withTheme(Link)

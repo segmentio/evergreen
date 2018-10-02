@@ -1,0 +1,200 @@
+import SyntaxHighlighter from 'components/SyntaxHighlighter'
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `SelectMenu` component is an advanced interaction pattern which allows selection of multiple items from a dropdown list.
+It can be used as a substitute for the native multiple select element.
+
+
+### Implementation details
+
+The `SelectMenu` builds on top of the `Popover` component
+and uses `react-tiny-virtual-list` for the rendering of the virtualized list of options.
+
+
+## Multiselect
+
+The `SelectMenu` is unopinonated in how many items are selected in the list.
+Pass an array to the `selected` prop to select more items.
+
+## Options prop structure
+
+<SyntaxHighlighter>{`
+const options = [
+  {
+    label: 'String',
+    labelInList: 'Optional label to appear in list',
+    value: 'String or Number'
+  }
+]
+`}</SyntaxHighlighter>
+
+## Single selected item
+
+This example shows basic usage with a single selected item.
+
+```jsx
+<Component initialState={{ selected: null }}>
+  {({ setState, state }) => (
+    <SelectMenu
+      title="Select name"
+      options={
+        ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']
+          .map(label => ({ label, value: label }))
+      }
+      selected={state.selected}
+      onSelect={item => setState({ selected: item.value })}
+    >
+      <Button>{state.selected || 'Select name...'}</Button>
+    </SelectMenu>
+  )}
+</Component>
+```
+
+## Remove title and filter
+
+* `hasFilter={false}`:  to remove the search input filter.
+* `hasTitle={false}`:  to remove the title from the popover.
+
+```jsx
+<Component initialState={{ selected: null }}>
+  {({ setState, state }) => (
+    <SelectMenu
+      hasTitle={false}
+      hasFilter={false}
+      title="Select name"
+      options={
+        ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']
+          .map(label => ({ label, value: label }))
+      }
+      selected={state.selected}
+      onSelect={item => setState({ selected: item.value })}
+    >
+      <Button>{state.selected || 'Select name...'}</Button>
+    </SelectMenu>
+  )}
+</Component>
+```
+
+## Change the height and width
+
+```jsx
+<Component initialState={{ selected: null }}>
+  {({ setState, state }) => (
+    <SelectMenu
+      height={140}
+      width={180}
+      hasTitle={false}
+      hasFilter={false}
+      title="Select name"
+      options={
+        ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']
+          .map(label => ({ label, value: label }))
+      }
+      selected={state.selected}
+      onSelect={item => setState({ selected: item.value })}
+    >
+      <Button>{state.selected || 'Select name...'}</Button>
+    </SelectMenu>
+  )}
+</Component>
+```
+
+## Change the position of the popover
+
+Available positions:
+
+* `Position.TOP`
+* `Position.TOP_LEFT`
+* `Position.TOP_RIGHT`
+* `Position.BOTTOM`
+* `Position.BOTTOM_LEFT`
+* `Position.BOTTOM_RIGHT`
+
+```jsx
+<Component initialState={{ selected: null }}>
+  {({ setState, state }) => (
+    <SelectMenu
+      position={Position.TOP}
+      title="Select name"
+      options={
+        ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']
+          .map(label => ({ label, value: label }))
+      }
+      selected={state.selected}
+      onSelect={item => setState({ selected: item.value })}
+    >
+      <Button>{state.selected || 'Select name...'}</Button>
+    </SelectMenu>
+  )}
+</Component>
+```
+
+
+## Multiselect with deselect example
+
+This example shows usage with multiple selected items.
+
+This pattern is only an example.
+Selected values and the formatting of their names should be managed wherever you choose to manage state.
+The `onDeselect` method is provided to assist with this.
+
+As users click on selected values to remove them, you can update state.
+
+
+```jsx
+<Component
+  initialState={{
+    options: ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']
+          .map(label => ({ label, value: label })),
+    selected: []
+  }}
+>
+  {({ state, setState }) => (
+    <SelectMenu
+      isMultiSelect
+      title="Select multiple names"
+      options={state.options}
+      selected={state.selected}
+      onSelect={item => {
+        const selected = [...state.selected, item.value]
+        const selectedItems = selected
+        const selectedItemsLength = selectedItems.length
+        let selectedNames = ''
+        if (selectedItemsLength === 0) {
+          selectedNames = ''
+        } else if (selectedItemsLength === 1) {
+          selectedNames = selectedItems.toString()
+        } else if (selectedItemsLength > 1) {
+          selectedNames = selectedItemsLength.toString() + ' selected...'
+        }
+        setState({
+          selected,
+          selectedNames
+        })
+      }}
+      onDeselect={item => {
+        const deselectedItemIndex = state.selected.indexOf(item.value)
+        const selectedItems = state.selected.filter(
+          (_item, i) => i !== deselectedItemIndex
+        )
+        const selectedItemsLength = selectedItems.length
+        let selectedNames = ''
+        if (selectedItemsLength === 0) {
+          selectedNames = ''
+        } else if (selectedItemsLength === 1) {
+          selectedNames = selectedItems.toString()
+        } else if (selectedItemsLength > 1) {
+          selectedNames = selectedItemsLength.toString() + ' selected...'
+        }
+        setState({ selected: selectedItems, selectedNames })
+      }}
+    >
+      <Button>{state.selectedNames || 'Select multiple...'}</Button>
+    </SelectMenu>
+  )}
+</Component>
+```
+
+<PropsTable of="SelectMenu" />

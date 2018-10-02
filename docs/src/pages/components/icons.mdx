@@ -1,0 +1,56 @@
+import IconSearch from 'components/IconSearch'
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+Evergreen uses the amazing [@blueprintjs/icons](https://blueprintjs.com/docs/#icons) package for all of its icons.
+
+## Implementation Details
+
+The `Icon` component is almost identical to the `Icon` component found in BlueprintsJS.
+The exception is that BlueprintJS is using TypeScript.
+
+### Icons are not buttons
+
+A icon is only a `svg` element and should not have `onClick` handlers.
+If you need a clickable icon, use `IconButton` instead.
+
+## Basic icon usage
+
+```jsx
+<Icon icon="cross" />
+```
+
+## Resizing the icon
+
+```jsx
+<Icon icon="ban-circle" size={40} />
+```
+
+## Changing the color
+
+Use the `color` prop on a `Icon` component to change the color.
+There are a couple of presets available: `default`, `muted`, `disabled`, `selected`, `success`, `info`, `danger`, `warning`.
+
+```jsx
+<Pane>
+  <Icon icon="ban-circle" color="danger" marginRight={16} />
+  <Icon icon="tick-circle" color="success" marginRight={16} />
+  <Icon icon="warning-sign" color="warning" marginRight={16} />
+  <Icon icon="info-sign" color="info" marginRight={16} />
+  <Icon icon="edit" color="muted" marginRight={16} />
+  <Icon icon="edit" color="selected" marginRight={16} />
+  <Icon icon="edit" color="disabled" marginRight={16} />
+</Pane>
+```
+
+
+
+## All icons
+
+Each icon has two different `svg` variations, a `16px` and `20px` variation.
+Evergreen will choose the most appropriate size based on the `size` passed to the icon.
+
+<IconSearch />
+
+<PropsTable of="Icon" />

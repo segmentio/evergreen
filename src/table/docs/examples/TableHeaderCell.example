@@ -1,3 +1,0 @@
-<TableHead>
- <TableHeaderCell borderRight={null}>You almost never want to use this component directly.</TableHeaderCell>
-</TableHead>

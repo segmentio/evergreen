@@ -1,0 +1,21 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `Portal` component is a utility component to help with the `ReactDOM.createPortal` API.
+[Learn more about portal on the official React docs](https://reactjs.org/docs/portals.html)
+
+Portals are used throughout Evergreen in components such as `Overlay` and `Positioner` to provide
+a robust way of rendering outside of the current DOM tree.
+
+## Example
+
+```jsx
+<Portal>
+  <Pane background="red" padding={24} position="fixed" bottom={0}>
+    <Text color="white">Look ma, I am in a portal!</Text>
+  </Pane>
+</Portal>
+```
+
+<PropsTable of="Portal" />

@@ -1,9 +1,0 @@
-<Box>
-  <Code size={300}>The quick brown fox jumps over the lazy dog</Code>
-  <Code size={400}>The quick brown fox jumps over the lazy dog</Code>
-  <Code size={500}>The quick brown fox jumps over the lazy dog</Code>
-  <Code size={600}>The quick brown fox jumps over the lazy dog</Code>
-  <Code size={700}>The quick brown fox jumps over the lazy dog</Code>
-  <Code size={800}>The quick brown fox jumps over the lazy dog</Code>
-  <Code size={900}>The quick brown fox jumps over the lazy dog</Code>
-</Box>

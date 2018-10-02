@@ -1,38 +1,52 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
-import { colors } from '../../colors'
+import { Pane } from '../../layers'
 import { Paragraph } from '../../typography'
+import { withTheme } from '../../theme'
 
-export default class TooltipStateless extends PureComponent {
+class TooltipStateless extends PureComponent {
   static propTypes = {
-    children: PropTypes.node
-  }
+    children: PropTypes.node,
 
-  static styles = {
-    backgroundColor: colors.neutral['400A'],
-    borderRadius: 3,
-    paddingX: 8,
-    paddingY: 4,
-    maxWidth: 240
+    /**
+     * The appearance of the tooltip.
+     */
+    appearance: PropTypes.oneOf(['default', 'card']).isRequired,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   render() {
-    const { children, ...props } = this.props
+    const { theme, children, appearance, ...props } = this.props
+    const { color, ...themedProps } = theme.getTooltipProps(appearance)
+
     let child
     if (typeof children === 'string') {
       child = (
-        <Paragraph lineHeight={1.4} color="white" size={400}>
+        <Paragraph color={color} size={400}>
           {children}
         </Paragraph>
       )
     } else {
       child = children
     }
+
     return (
-      <Box {...TooltipStateless.styles} {...props}>
+      <Pane
+        borderRadius={3}
+        paddingX={8}
+        paddingY={4}
+        maxWidth={240}
+        {...themedProps}
+        {...props}
+      >
         {child}
-      </Box>
+      </Pane>
     )
   }
 }
+
+export default withTheme(TooltipStateless)

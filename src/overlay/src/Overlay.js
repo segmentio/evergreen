@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import Box, { css } from 'ui-box'
 import { Portal } from '../../portal'
-import { colors } from '../../colors'
+import { Stack } from '../../stack'
+import { StackingOrder } from '../../constants'
+import { withTheme } from '../../theme'
 
 const animationEasing = {
   standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
@@ -33,9 +35,9 @@ const fadeOutAnimation = css.keyframes('fadeOutAnimation', {
   }
 })
 
-const animationStyles = {
+const animationStyles = backgroundColor => ({
   '&::before': {
-    backgroundColor: colors.neutral['200A'],
+    backgroundColor,
     left: 0,
     top: 0,
     position: 'fixed',
@@ -54,7 +56,7 @@ const animationStyles = {
       animationEasing.acceleration
     } both`
   }
-}
+})
 
 /**
  * Overlay is essentially a wrapper around react-transition-group/Transition
@@ -77,6 +79,16 @@ class Overlay extends React.Component {
      * Props to be passed through on the inner Box.
      */
     containerProps: PropTypes.object,
+
+    /**
+     * Boolean indicating if clicking the overlay should close the overlay.
+     */
+    shouldCloseOnClick: PropTypes.bool,
+
+    /**
+     * Boolean indicating if pressing the esc key should close the overlay.
+     */
+    shouldCloseOnEscapePress: PropTypes.bool,
 
     /**
      * Callback fired before the "exiting" status is applied.
@@ -121,11 +133,18 @@ class Overlay extends React.Component {
      *
      * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
      */
-    onEntered: PropTypes.func
+    onEntered: PropTypes.func,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
     onHide: () => {},
+    shouldCloseOnClick: true,
+    shouldCloseOnEscapePress: true,
     onExit: () => {},
     onExiting: () => {},
     onExited: () => {},
@@ -220,7 +239,7 @@ class Overlay extends React.Component {
 
   onEsc = e => {
     // Esc key
-    if (e.keyCode === 27) {
+    if (e.keyCode === 27 && this.props.shouldCloseOnEscapePress) {
       this.close()
     }
   }
@@ -252,7 +271,7 @@ class Overlay extends React.Component {
   }
 
   handleBackdropClick = e => {
-    if (e.target !== e.currentTarget) {
+    if (e.target !== e.currentTarget || !this.props.shouldCloseOnClick) {
       return
     }
 
@@ -265,6 +284,8 @@ class Overlay extends React.Component {
 
   render() {
     const {
+      theme,
+
       containerProps = {},
       isShown,
       children,
@@ -277,45 +298,49 @@ class Overlay extends React.Component {
     if (exited) return null
 
     return (
-      <Portal>
-        <Transition
-          appear
-          unmountOnExit
-          timeout={ANIMATION_DURATION}
-          in={isShown && !exiting}
-          onExit={onExit}
-          onExiting={this.handleExiting}
-          onExited={this.handleExited}
-          onEnter={onEnter}
-          onEntering={this.handleEntering}
-          onEntered={this.handleEntered}
-        >
-          {state => (
-            <Box
-              onClick={this.handleBackdropClick}
-              innerRef={this.onContainerRef}
-              position="fixed"
-              top={0}
-              left={0}
-              right={0}
-              bottom={0}
-              zIndex={40}
-              css={animationStyles}
-              data-state={state}
-              {...containerProps}
+      <Stack value={StackingOrder.OVERLAY}>
+        {zIndex => (
+          <Portal>
+            <Transition
+              appear
+              unmountOnExit
+              timeout={ANIMATION_DURATION}
+              in={isShown && !exiting}
+              onExit={onExit}
+              onExiting={this.handleExiting}
+              onExited={this.handleExited}
+              onEnter={onEnter}
+              onEntering={this.handleEntering}
+              onEntered={this.handleEntered}
             >
-              {typeof children === 'function'
-                ? children({
-                    state,
-                    close: this.close
-                  })
-                : children}
-            </Box>
-          )}
-        </Transition>
-      </Portal>
+              {state => (
+                <Box
+                  onClick={this.handleBackdropClick}
+                  innerRef={this.onContainerRef}
+                  position="fixed"
+                  top={0}
+                  left={0}
+                  right={0}
+                  bottom={0}
+                  zIndex={zIndex}
+                  css={animationStyles(theme.overlayBackgroundColor)}
+                  data-state={state}
+                  {...containerProps}
+                >
+                  {typeof children === 'function'
+                    ? children({
+                        state,
+                        close: this.close
+                      })
+                    : children}
+                </Box>
+              )}
+            </Transition>
+          </Portal>
+        )}
+      </Stack>
     )
   }
 }
 
-export default Overlay
+export default withTheme(Overlay)

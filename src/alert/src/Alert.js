@@ -1,74 +1,13 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { spacing, dimensions, position, layout } from 'ui-box'
-import { colors } from '../../colors'
+import { withTheme } from '../../theme'
 import { Pane } from '../../layers'
-import { Text } from '../../typography'
+import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
-import {
-  CheckCircleIcon,
-  DangerIcon,
-  QuestionIcon,
-  WarningIcon
-} from '../../icons'
+import { Icon } from '../../icon'
 
-const getColorForType = type => {
-  switch (type) {
-    case 'success':
-      return colors.green['500']
-    case 'question':
-    default:
-      return colors.blue['500']
-    case 'danger':
-      return colors.red['500']
-    case 'warning':
-      return colors.yellow['500']
-  }
-}
-
-const getIconForType = type => {
-  const iconProps = {
-    size: 22,
-    iconSize: 14,
-    color: getColorForType(type)
-  }
-
-  switch (type) {
-    case 'success':
-      return <CheckCircleIcon {...iconProps} />
-    case 'question':
-    default:
-      return <QuestionIcon {...iconProps} />
-    case 'danger':
-      return <DangerIcon {...iconProps} />
-    case 'warning':
-      return <WarningIcon {...iconProps} />
-  }
-}
-
-const getStyle = ({ type }) => ({
-  '&:before': {
-    content: '""',
-    width: 3,
-    height: '100%',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    backgroundColor: getColorForType(type)
-  }
-})
-
-const AlertAppearances = {
-  default: {
-    boxShadow: `inset 0 0 0 1px ${colors.neutral['20A']}`
-  },
-  card: {
-    elevation: 1,
-    borderRadius: 3
-  }
-}
-
-export default class Alert extends PureComponent {
+class Alert extends PureComponent {
   static propTypes = {
     /**
      * Composes some Box APIs.
@@ -84,15 +23,10 @@ export default class Alert extends PureComponent {
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 
     /**
-     * The type of the alert.
+     * The intent of the alert.
      */
-    type: PropTypes.oneOf([
-      'default',
-      'success',
-      'warning',
-      'danger',
-      'question'
-    ]),
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
+      .isRequired,
 
     /**
      * The title of the alert.
@@ -122,21 +56,34 @@ export default class Alert extends PureComponent {
     /**
      * The appearance of the alert.
      */
-    appearance: PropTypes.oneOf(['default', 'card'])
+    appearance: PropTypes.oneOf(['default', 'card']),
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
-    type: 'default',
+    intent: 'none',
     hasTrim: true,
     hasIcon: true,
     isRemoveable: false,
     appearance: 'default'
   }
 
+  getIconForIntent = intent => {
+    const { theme } = this.props
+
+    return <Icon size={14} {...theme.getIconForIntent(intent)} />
+  }
+
   render() {
     const {
+      theme,
+
       title,
-      type,
+      intent,
       hasTrim,
       hasIcon,
       children,
@@ -146,15 +93,18 @@ export default class Alert extends PureComponent {
       ...props
     } = this.props
 
-    let style = {}
-    if (hasTrim && type !== 'default') {
-      style = getStyle({ type })
-    }
-
-    const appearanceProps = AlertAppearances[appearance]
+    /**
+     * Note that Alert return a className and additional properties.
+     */
+    const { className, ...themeProps } = theme.getAlertProps({
+      appearance,
+      intent,
+      hasTrim
+    })
 
     return (
       <Pane
+        className={className}
         role="alert"
         backgroundColor="white"
         overflow="hidden"
@@ -162,17 +112,23 @@ export default class Alert extends PureComponent {
         display="flex"
         paddingY={12}
         paddingX={16}
-        css={style}
-        {...appearanceProps}
+        {...themeProps}
         {...props}
       >
-        {hasIcon &&
-          type !== 'default' && (
-            <Pane marginRight={8}>{getIconForType(type)}</Pane>
-          )}
+        {hasIcon && (
+          <Pane
+            marginRight={10}
+            marginLeft={2}
+            height={14}
+            display="block"
+            marginTop={2}
+          >
+            {this.getIconForIntent(intent)}
+          </Pane>
+        )}
         <Pane display="flex" width="100%">
           <Pane flex={1}>
-            <Text
+            <Heading
               is="h4"
               fontWeight={600}
               size={400}
@@ -180,22 +136,28 @@ export default class Alert extends PureComponent {
               marginBottom={0}
             >
               {title}
-            </Text>
+            </Heading>
             {typeof children === 'string' ? (
-              <Text size={400} color="muted">
+              <Paragraph size={400} color="muted">
                 {children}
-              </Text>
+              </Paragraph>
             ) : (
               children
             )}
           </Pane>
           {isRemoveable && (
-            <Pane marginLeft={24} flexShrink={0}>
+            <Pane
+              marginLeft={24}
+              flexShrink={0}
+              marginBottom={-2}
+              marginTop={-2}
+              marginRight={-2}
+            >
               <IconButton
-                onClick={onRemove}
+                icon="cross"
+                appearance="minimal"
                 height={24}
-                appearance="ghost"
-                icon="close"
+                onClick={onRemove}
               />
             </Pane>
           )}
@@ -204,3 +166,5 @@ export default class Alert extends PureComponent {
     )
   }
 }
+
+export default withTheme(Alert)

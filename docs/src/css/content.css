@@ -1,127 +1,131 @@
-.Content {
-  & tt,
-  & code,
-  & kbd,
-  & samp {
-    font-family: var(--font-mono);
-    background-color: var(--turquoise-15A);
-    color: var(--turquoise-1000);
-    border-radius: 2px;
-    font-size: 90%;
-    font-weight: 500;
-    padding: 2px 4px;
+.Content code,
+.code {
+  font-family: var(--font-mono);
+  background-color: var(--teal-lightest);
+  box-shadow: 0 0 0 1px var(--teal-light);
+  color: var(--teal-dark);
+  border-radius: 2px;
+  font-size: 90%;
+  font-weight: 500;
+  padding: 2px 4px;
+}
+
+.Content p,
+.Content li,
+.paragraph,
+.li {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: -0.05px;
+}
+
+.Content p,
+.paragraph {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.Content li,
+.li {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+.Content h1,
+.h1 {
+  font-size: 35px;
+  font-weight: 500;
+  line-height: 40px;
+  letter-spacing: -0.2px;
+  margin-top: 54px;
+  margin-bottom: 4px;
+}
+
+.Content h2,
+.h2 {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  margin-bottom: 16px;
+  margin-top: 42px;
+}
+
+.Content h3,
+.h3 {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.05px;
+  margin-bottom: 16px;
+  margin-top: 32px;
+}
+
+.Content h4,
+.h4 {
+  font-size: 18px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.05px;
+  margin-bottom: 4px;
+  margin-top: 32px;
+}
+
+.Content a,
+.link {
+  color: var(--blue-base);
+  position: relative;
+
+  &:hover {
+    text-decoration: underline;
   }
 
-  & a {
-    color: var(--blue-500);
+  /* &:focus {
+    outline: 1px solid var(--blue-base);
+  } */
 
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &:focus {
-      outline: 1px solid var(--blue-500);
-    }
+  &:focus-visible::after {
+    text-decoration: none;
+    content: '';
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: -4px;
+    right: -4px;
+    bottom: -2px;
+    box-shadow: 0 0 0 2px var(--B6A);
+    border-radius: 3px;
   }
+}
 
-  & h1 {
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 32px;
-    letter-spacing: -0.2px;
-    margin-bottom: 4px;
-
-    & + p {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-      letter-spacing: -0.05px;
-      margin-top: 8px;
-      margin-bottom: 8px;
-    }
-  }
-
-  & h2 {
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 28px;
-    letter-spacing: -0.2px;
-    margin-bottom: 16px;
-    margin-top: 32px;
-  }
-
-  & h3 {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: -0.05px;
-    margin-bottom: 16px;
-    margin-top: 32px;
-  }
-
-  & h4 {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 22px;
-    letter-spacing: -0.05px;
-    margin-bottom: 4px;
-    margin-top: 32px;
-
-    & + p {
-      margin-top: 0;
-    }
-  }
+.Content blockquote,
+.blockquote {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.05px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-left: 2px solid var(--green-base);
+  padding: 12px;
+  background-color: var(--green-lightest);
 
   & p {
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin: 0.5em;
   }
+}
 
-  & li {
-    margin-top: 0.2em;
-    margin-bottom: 0.2em;
-  }
+.Content strong,
+.strong {
+  font-weight: 600;
+}
 
-  & p,
-  & li {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 22px;
-    letter-spacing: -0.05px;
-  }
-
-  & blockquote {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 22px;
-    letter-spacing: -0.05px;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    border-left: 2px solid var(--green-100A);
-    padding: 12px;
-    background-color: var(--green-7A);
-  }
-
-  & strong {
-    font-weight: 600;
-  }
-
-  & ul {
-    list-style-type: disc;
-    margin-left: 1.1em;
-    margin-top: 16px;
-    margin-bottom: 16px;
-  }
-
-  & pre:not(.prism-code) {
-    background-color: var(--neutral-10A);
-    padding: 16px;
-    overflow-x: auto;
-
-    & code {
-      background-color: transparent;
-      padding: 0;
-      line-height: 22px;
-    }
-  }
+.Content ul,
+.ul {
+  list-style-type: disc;
+  margin-left: 1.1em;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }

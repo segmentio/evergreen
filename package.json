@@ -1,6 +1,6 @@
 {
   "name": "evergreen-ui",
-  "version": "3.2.7",
+  "version": "4.0.0-41",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
@@ -25,10 +25,9 @@
     "test": "xo && ava",
     "prepublishOnly": "rm -rf esm commonjs && yarn run build",
     "precommit": "lint-staged",
-    "dev": "(export EG_PORT=6006 ; if [ $PORT ] ; then start-storybook -p $PORT ; else start-storybook -p $EG_PORT ; fi)",
+    "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
-    "create-docs-template": "./tools/create-docs-template.js",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
     "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore stories,test,docs --source-maps inline",
     "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore stories,test,docs --source-maps inline",
@@ -41,23 +40,25 @@
     "node": ">=8"
   },
   "dependencies": {
+    "@blueprintjs/icons": "^2.2.1",
     "arrify": "^1.0.1",
+    "classnames": "^2.2.6",
     "dom-helpers": "^3.2.1",
-    "downshift": "^1.16.0",
+    "downshift": "^1.31.16",
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
     "lodash.debounce": "^4.0.8",
     "lodash.mapvalues": "^4.6.0",
-    "object-values": "^1.0.0",
-    "prop-types": "^15.0.0",
+    "prop-types": "^15.6.2",
     "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.2.1",
-    "ui-box": "^1.1.0"
+    "tinycolor2": "^1.4.1",
+    "ui-box": "^1.4.0"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
   },
   "devDependencies": {
     "@reactions/component": "^2.0.2",
@@ -75,21 +76,22 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
     "concurrently": "^4.0.0",
-    "enzyme": "^3.2.0",
+    "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-xo-react": "^0.14.0",
     "eslint-plugin-react": "^7.5.1",
     "execa": "^0.8.0",
+    "faker": "^4.1.0",
     "file-loader": "^1.1.5",
     "fs-extra": "^4.0.3",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.2",
     "prettier": "^1.9.1",
-    "react": "^16.2.0",
+    "react": "^16.3.0",
     "react-chromatic": "^0.7.10",
-    "react-dom": "^16.2.0",
-    "react-test-renderer": "^16.2.0",
+    "react-dom": "^16.3.0",
+    "react-test-renderer": "^16.4.1",
     "sinon": "^4.4.2",
     "size-limit": "^0.14.0",
     "starwars-names": "^1.6.0",
@@ -163,7 +165,7 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "70 KB"
+      "limit": "200 KB"
     }
   ]
 }
