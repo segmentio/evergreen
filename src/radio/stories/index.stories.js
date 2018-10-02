@@ -60,9 +60,14 @@ storiesOf('radio', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Heading>Single Radio (uncommon)</Heading>
+      <Heading>Indeterminate Single Radio (uncommon)</Heading>
       <Box aria-label="Radio Group Label 12" role="group">
-        <Radio checked={false} name="group3" label="checked={false}" />
+        <Radio name="indeterminate" label="Indeterminate" />
+        <Radio
+          checked={false}
+          name="indeterminate"
+          label="Indeterminate `checked={false}`"
+        />
       </Box>
       <Heading marginTop={40}>Default usage, size 12</Heading>
       <Box aria-label="Radio Group Label 12" role="group">
