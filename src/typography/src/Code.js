@@ -11,7 +11,7 @@ class Code extends PureComponent {
     /**
      * The appearance of the code.
      */
-    appearance: PropTypes.oneOf(['default', 'minimal']).isRequired,
+    appearance: PropTypes.oneOf(['default', 'minimal']),
 
     /**
      * Theme provided by ThemeProvider.

@@ -13,8 +13,7 @@ class Heading extends PureComponent {
     /**
      * The size of the heading.
      */
-    size: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900])
-      .isRequired,
+    size: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900]),
 
     /**
      * Pass `default` to use the default margin top for that size.

@@ -10,7 +10,7 @@ export default class UnorderedList extends PureComponent {
      * Size of the text used in a list item.
      * Can be: 300, 400, 500, 600.
      */
-    size: PropTypes.oneOf([300, 400, 500, 600]).isRequired,
+    size: PropTypes.oneOf([300, 400, 500, 600]),
 
     /**
      * When passed, adds a icon before each list item in the list

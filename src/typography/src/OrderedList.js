@@ -10,7 +10,7 @@ export default class OrderedList extends PureComponent {
      * Size of the text used in a list item.
      * Can be: 300, 400, 500, 600.
      */
-    size: PropTypes.oneOf([300, 400, 500, 600]).isRequired
+    size: PropTypes.oneOf([300, 400, 500, 600])
   }
 
   static defaultProps = {

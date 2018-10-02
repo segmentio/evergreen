@@ -14,13 +14,13 @@ class Text extends PureComponent {
      * Size of the text style.
      * Can be: 300, 400, 500, 600.
      */
-    size: PropTypes.oneOf([300, 400, 500, 600]).isRequired,
+    size: PropTypes.oneOf([300, 400, 500, 600]),
 
     /**
      * Font family.
      * Can be: `ui`, `display` or `mono` or a custom font family.
      */
-    fontFamily: PropTypes.string.isRequired,
+    fontFamily: PropTypes.string,
 
     /**
      * Theme provided by ThemeProvider.

@@ -27,7 +27,7 @@ class Link extends PureComponent {
     /**
      * The color (and styling) of the Link. Can be default, blue, green or neutral.
      */
-    color: PropTypes.string.isRequired,
+    color: PropTypes.string,
 
     /**
      * Theme provided by ThemeProvider.
