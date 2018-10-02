@@ -6,13 +6,13 @@ const disabledState = '&[disabled] + div'
 const hoverState = '&:not([disabled]):hover + div'
 const focusState = '&:not([disabled]):focus + div'
 const activeState = '&:not([disabled]):active + div'
-const checkedState = '&:checked + div, &:indeterminate + div'
+const checkedState = '&:checked + div, &[type=checkbox]:indeterminate + div'
 const checkedHoverState =
-  '&:not([disabled]):checked:hover + div, &:not([disabled]):indeterminate:hover + div'
+  '&:not([disabled]):checked:hover + div, &[type=checkbox]:not([disabled]):indeterminate:hover + div'
 const checkedActiveState =
-  '&:not([disabled]):checked:active + div, &:not([disabled]):indeterminate:active + div'
+  '&:not([disabled]):checked:active + div, &[type=checkbox]:not([disabled]):indeterminate:active + div'
 const checkedDisabledState =
-  '&[disabled]:checked + div, &[disabled]:indeterminate + div'
+  '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div'
 
 const hiddenCheckboxStyle = {
   border: '0',
