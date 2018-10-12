@@ -4,19 +4,24 @@
     // config (`{"modules":false}` gets overridden). This can be improved with
     // Babel 7's `.babelrc.js` support.
     "development": {
-      "presets": ["env", "react", "stage-0"]
+      "presets": ["env", "react", "stage-0"],
+      "plugins": ["babel-plugin-add-react-displayname"]
     },
     "test": {
-      "presets": ["env", "react", "stage-0"]
+      "presets": ["env", "react", "stage-0"],
+      "plugins": ["babel-plugin-add-react-displayname"]
     },
     "production": {
-      "presets": ["env", "react", "stage-0"]
+      "presets": ["env", "react", "stage-0"],
+      "plugins": ["babel-plugin-add-react-displayname"]
     },
     "commonjs": {
-      "presets": ["env", "react", "stage-0"]
+      "presets": ["env", "react", "stage-0"],
+      "plugins": ["babel-plugin-add-react-displayname"]
     },
     "esm": {
-      "presets": [["env", { "modules": false }], "react", "stage-0"]
+      "presets": [["env", { "modules": false }], "react", "stage-0"],
+      "plugins": ["babel-plugin-add-react-displayname"]
     }
   }
 }

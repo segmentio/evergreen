@@ -1,6 +1,6 @@
 {
   "name": "evergreen-ui",
-  "version": "4.0.0-41",
+  "version": "4.0.0-44",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
@@ -71,6 +71,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.3",
+    "babel-plugin-add-react-displayname": "^0.0.5",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
