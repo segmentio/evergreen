@@ -1,27 +1,12 @@
 {
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "babel-plugin-add-react-displayname"
+  ],
   "env": {
-    // Workaround Babel 6's weird config inheritance by not having any root
-    // config (`{"modules":false}` gets overridden). This can be improved with
-    // Babel 7's `.babelrc.js` support.
-    "development": {
-      "presets": ["env", "react", "stage-0"],
-      "plugins": ["babel-plugin-add-react-displayname"]
-    },
-    "test": {
-      "presets": ["env", "react", "stage-0"],
-      "plugins": ["babel-plugin-add-react-displayname"]
-    },
-    "production": {
-      "presets": ["env", "react", "stage-0"],
-      "plugins": ["babel-plugin-add-react-displayname"]
-    },
-    "commonjs": {
-      "presets": ["env", "react", "stage-0"],
-      "plugins": ["babel-plugin-add-react-displayname"]
-    },
     "esm": {
-      "presets": [["env", { "modules": false }], "react", "stage-0"],
-      "plugins": ["babel-plugin-add-react-displayname"]
+      "presets": [["@babel/preset-env", { "modules": false }]]
     }
   }
 }

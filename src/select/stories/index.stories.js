@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Select } from '../../select'
+import { Select } from '..'
 import { Text, Label } from '../../typography'
 
 const Description = props => (

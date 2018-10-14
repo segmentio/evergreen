@@ -8,22 +8,22 @@ Popovers use smart positioning if there is not enough space on the bottom.
 
 ## Key points
 
-* Uses `Positioner` from `evergreen-positioner`
-* Tooltips use `onMouseLeave` and `onMouseEnter` to show and hide the tooltip
+- Uses `Positioner` from `evergreen-positioner`
+- Tooltips use `onMouseLeave` and `onMouseEnter` to show and hide the tooltip
 
 ### When creating a popover, you must specify both:
 
-* its content, by setting the content prop, and
-* its target, as a single child element or a function
+- its content, by setting the content prop, and
+- its target, as a single child element or a function
 
 When you pass a function to the content prop you will be able to close the popover inside of the content.
 
 ### Popovers close on:
 
-* outside click
-* escape key
-* window resize
-* something in content that calls the close function
+- outside click
+- escape key
+- window resize
+- something in content that calls the close function
 
 ## Design Example
 

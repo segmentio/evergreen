@@ -9,10 +9,10 @@
     "start": "next start"
   },
   "dependencies": {
-    "evergreen-ui": "latest",
-    "next": "^5.0.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "evergreen-ui": "3.2.7",
+    "next": "^7.0.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
   },
   "xo": false
 }

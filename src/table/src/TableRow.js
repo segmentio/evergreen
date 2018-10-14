@@ -97,7 +97,7 @@ class TableRow extends PureComponent {
       } else if (key === 'ArrowUp' || key === 'ArrowDown') {
         try {
           manageTableRowFocusInteraction(key, this.mainRef)
-        } catch (err) {}
+        } catch (error) {}
       } else if (key === 'Escape') {
         if (this.mainRef) this.mainRef.blur()
       }

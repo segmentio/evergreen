@@ -5,7 +5,7 @@
  */
 export default function manageTableRowFocusInteraction(key, ref) {
   let nextItemToFocus
-  const tableBodyChildren = Array.from(ref.parentElement.children)
+  const tableBodyChildren = [...ref.parentElement.children]
   const rowIndex = tableBodyChildren.indexOf(ref)
 
   if (key === 'ArrowUp' && rowIndex - 1 >= 0) {

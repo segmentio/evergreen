@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { StackingOrder } from '../../constants/'
+import { StackingOrder } from '../../constants'
 import StackingContext from './StackingContext'
 
 export default class Stack extends PureComponent {

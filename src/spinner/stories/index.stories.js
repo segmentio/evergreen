@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Spinner } from '../../spinner'
+import { Spinner } from '..'
 
 storiesOf('spinner', module).add('Spinner', () => (
   <Box padding={40}>

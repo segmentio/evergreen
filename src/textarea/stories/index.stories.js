@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Textarea } from '../../textarea'
+import { Textarea } from '..'
 import { Label, Text } from '../../typography'
 
 const Description = props => (

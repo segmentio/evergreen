@@ -33,7 +33,8 @@ export default () => {
                     available in the{' '}
                     <NativeLink href="https://github.com/segmentio/evergreen/tree/v4-create-theme">
                       v4-create-theme branch
-                    </NativeLink>.
+                    </NativeLink>
+                    .
                   </p>
                 </div>
               </div>

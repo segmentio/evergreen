@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Overlay } from '../../overlay'
+import { Overlay } from '..'
 import { Button } from '../../buttons'
 
 class OverlayManager extends PureComponent {

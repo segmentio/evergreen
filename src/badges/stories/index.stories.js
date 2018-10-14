@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Badge, Pill } from '../../badges'
+import { Badge, Pill } from '..'
 import { ThemeConsumer } from '../../theme'
 
 const wrapperStyles = {
