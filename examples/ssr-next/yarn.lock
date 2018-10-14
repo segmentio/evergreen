@@ -2077,7 +2077,7 @@ events@^1.0.0:
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
   integrity sha1-nr23Y1rQmccNzEwqH1AEKI6L2SQ=
 
-evergreen-ui@3.2.7:
+evergreen-ui@latest:
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/evergreen-ui/-/evergreen-ui-3.2.7.tgz#5bfe3914f31eb78470dd5ee9b9685c2c0b0882a5"
   integrity sha512-RE99GoTzTiXmrv8KTzB90ZLDMC+XiADSz5ZgE/UHzhnV+SdwSdNgMcddufgZ5zRHQVSjqYMuilXYLqUhSS47Eg==
