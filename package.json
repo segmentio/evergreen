@@ -24,7 +24,6 @@
   "scripts": {
     "test": "xo && ava",
     "prepublishOnly": "rm -rf esm commonjs && yarn run build",
-    "precommit": "lint-staged",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
@@ -178,5 +177,10 @@
       "path": "commonjs/index.js",
       "limit": "200 KB"
     }
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }
