@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Image } from '../../image'
+import { Image } from '..'
 
 storiesOf('image', module).add('Image', () => (
   <Box padding={40}>

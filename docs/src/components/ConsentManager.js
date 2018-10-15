@@ -15,7 +15,8 @@ export default () => {
         rel="noopener noreferrer"
       >
         Website Data Collection Policy
-      </a>.
+      </a>
+      .
     </span>
   )
   const bannerSubContent = 'You can change your preferences at any time.'

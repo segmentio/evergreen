@@ -1,7 +1,7 @@
 import { Intent } from '../../../../constants'
 import themedProperty from '../utils/themedProperty'
-import { colors, elevations } from '../foundational-styles/'
-import { fontFamilies, headings, paragraph, text } from '../typography/'
+import { colors, elevations } from '../foundational-styles'
+import { fontFamilies, headings, paragraph, text } from '../typography'
 
 /**
  * Controls include:

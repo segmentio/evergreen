@@ -4,7 +4,7 @@
  * @param {Element} ref - the cell to manage focus interaction for.
  */
 export default function manageTableCellFocusInteraction(key, ref) {
-  const tableRowChildren = Array.from(ref.parentElement.children)
+  const tableRowChildren = [...ref.parentElement.children]
   const columnIndex = tableRowChildren.indexOf(ref)
 
   let nextItemToFocus
@@ -18,9 +18,7 @@ export default function manageTableCellFocusInteraction(key, ref) {
       nextItemToFocus = tableRowChildren[columnIndex + 1]
     }
   } else if (key === 'ArrowUp' || key === 'ArrowDown') {
-    const tableBodyChildren = Array.from(
-      ref.parentElement.parentElement.children
-    )
+    const tableBodyChildren = [...ref.parentElement.parentElement.children]
     const rowIndex = tableBodyChildren.indexOf(ref.parentElement)
 
     let nextRow

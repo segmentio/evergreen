@@ -1,9 +1,9 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import toaster from '../src/'
-import { Button } from '../../buttons/'
-import { Heading, Paragraph, Ul, Li } from '../../typography/'
+import toaster from '../src'
+import { Button } from '../../buttons'
+import { Heading, Paragraph, Ul, Li } from '../../typography'
 
 const loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 eiusmod tempor incididunt ut labore et dolore magna aliqua.`

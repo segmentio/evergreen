@@ -1,5 +1,5 @@
 import tinycolor from 'tinycolor2'
-import { Themer } from '../../../../themer/'
+import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import palette from '../foundational-styles/palette'
 

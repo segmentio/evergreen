@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import Component from '@reactions/component'
-import { SegmentedControl } from '../../segmented-control'
+import { SegmentedControl } from '..'
 
 storiesOf('segmented-control', module).add('SegmentedControl', () => (
   <Box padding={40}>

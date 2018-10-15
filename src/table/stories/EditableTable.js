@@ -1,6 +1,6 @@
 import React from 'react'
 import faker from 'faker'
-import { Table } from '../'
+import { Table } from '..'
 import { Stack } from '../../stack'
 import { Pane } from '../../layers'
 import { SegmentedControl } from '../../segmented-control'

@@ -25,17 +25,17 @@ Include this in your issue if possible.
 We hope to formalize the 🌲 Evergreen design language more as we go.
 As a general rule of thumb try to follow these constraints:
 
-* Use `color` and the `typography` components.
-* 8px soft grid, (4px under 40px is also good).
-* Don't force line heights on grid if it looks poorly.
+- Use `color` and the `typography` components.
+- 8px soft grid, (4px under 40px is also good).
+- Don't force line heights on grid if it looks poorly.
 
 ### Component API
 
-* Write down how you would like to use this component.
-* Write down the component API and prop types.
-* Try to use `ui-box` for your components.
-* Try to make all heights possible.
-* Base the text style (font size) on the height.
+- Write down how you would like to use this component.
+- Write down the component API and prop types.
+- Try to use `ui-box` for your components.
+- Try to make all heights possible.
+- Base the text style (font size) on the height.
 
 Include this in your issue if possible.
 

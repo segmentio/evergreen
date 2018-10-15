@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import { StackingOrder } from '../../constants/'
+import { StackingOrder } from '../../constants'
 import Toast from './Toast'
 
 const wrapperClass = css({
