@@ -78,7 +78,7 @@ export default class RadioGroup extends PureComponent {
   }
 
   handleChange = event => {
-    const value = event.target.value
+    const { value } = event.target
 
     // Save a render cycle when it's a controlled input
     if (!this.props.value) {
