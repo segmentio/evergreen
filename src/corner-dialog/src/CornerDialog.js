@@ -177,7 +177,8 @@ export default class CornerDialog extends PureComponent {
     const { children } = this.props
     if (typeof children === 'function') {
       return children({ close: this.handleClose })
-    } else if (typeof children === 'string') {
+    }
+    if (typeof children === 'string') {
       return (
         <Paragraph size={400} color="muted">
           {children}

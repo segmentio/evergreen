@@ -7,6 +7,7 @@ export default class Manager extends React.Component {
   }
 
   state = {}
+
   render() {
     return this.props.children({
       setState: (...args) => {

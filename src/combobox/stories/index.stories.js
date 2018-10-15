@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import starWarsNames from 'starwars-names'
-import { Combobox } from '../../combobox'
+import { Combobox } from '..'
 import { Heading } from '../../typography'
 
 // Generate a big list of items

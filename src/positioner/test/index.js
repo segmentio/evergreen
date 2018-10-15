@@ -2,43 +2,31 @@ import test from 'ava'
 import getFittedPosition from '../src/getPosition'
 import { Position } from '../../constants'
 
-const dimensions = overrides =>
-  Object.assign(
-    {},
-    {
-      height: 100,
-      width: 100
-    },
-    overrides
-  )
+const dimensions = overrides => ({
+  height: 100,
+  width: 100,
+  ...overrides
+})
 
-const targetRect = overrides =>
-  Object.assign(
-    {},
-    {
-      x: 250,
-      y: 150,
-      width: 50,
-      height: 30,
-      top: 150,
-      bottom: 150 - 30,
-      left: 250,
-      right: 200
-    },
-    overrides
-  )
+const targetRect = overrides => ({
+  x: 250,
+  y: 150,
+  width: 50,
+  height: 30,
+  top: 150,
+  bottom: 150 - 30,
+  left: 250,
+  right: 200,
+  ...overrides
+})
 
 const targetOffset = 6
 
-const viewport = overrides =>
-  Object.assign(
-    {},
-    {
-      height: 250,
-      width: 850
-    },
-    overrides
-  )
+const viewport = overrides => ({
+  height: 250,
+  width: 850,
+  ...overrides
+})
 
 test('All positions work', t => {
   const generatedPositions = Object.values(Position).map(position =>

@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import tinycolor from 'tinycolor2'
-import { Pane } from '../../layers/'
-import { Heading, Code } from '../../typography/'
-import { defaultTheme } from '../../theme/'
+import { Pane } from '../../layers'
+import { Heading, Code } from '../../typography'
+import { defaultTheme } from '../../theme'
 import colors from './v3-colors'
 
 const { palette, scales } = defaultTheme

@@ -23,10 +23,10 @@ export default function autoHydrate() {
       try {
         const hydrationObject = JSON.parse(hydration.innerHTML)
         hydrate(hydrationObject)
-      } catch (err) {
+      } catch (error) {
         console.error(
           'Evergreen automatic hydration object is invalid JSON',
-          err
+          error
         )
       }
     }

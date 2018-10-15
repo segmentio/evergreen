@@ -32,17 +32,17 @@ export default class Playground extends React.Component {
   }
 
   handleToggle = () => {
-    this.setState({
-      isCodeCollapsed: !this.state.isCodeCollapsed
-    })
+    this.setState(({ isCodeCollapsed }) => ({
+      isCodeCollapsed: !isCodeCollapsed
+    }))
   }
 
   renderError = () => {
     return (
       <div className="Playground-error">
         <p>
-          Oops, something went wrong in with this live preview.<br /> Please
-          reload the page and try again.
+          Oops, something went wrong in with this live preview.
+          <br /> Please reload the page and try again.
         </p>
       </div>
     )
@@ -65,7 +65,8 @@ export default class Playground extends React.Component {
           rel="noopener noreferrer"
         >
           Learn more
-        </a>.
+        </a>
+        .
       </div>
     )
   }

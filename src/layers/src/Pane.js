@@ -113,15 +113,17 @@ class Pane extends PureComponent {
       )
     ) {
       return `1px solid ${theme.colors.border[borderSideProperty]}`
-    } else if (borderSideProperty === true) {
+    }
+    if (borderSideProperty === true) {
       return `1px solid ${theme.colors.border.default}`
-    } else if (borderSideProperty === false) {
+    }
+    if (borderSideProperty === false) {
       return null
-    } else if (
-      Object.prototype.hasOwnProperty.call(theme.colors.border, border)
-    ) {
+    }
+    if (Object.prototype.hasOwnProperty.call(theme.colors.border, border)) {
       return `1px solid ${theme.colors.border[border]}`
-    } else if (border === true) {
+    }
+    if (border === true) {
       return `1px solid ${theme.colors.border.default}`
     }
 

@@ -151,7 +151,7 @@ export default class Toast extends React.PureComponent {
   onRef = ref => {
     if (ref === null) return
 
-    const height = ref.getBoundingClientRect().height
+    const { height } = ref.getBoundingClientRect()
 
     this.setState({
       height

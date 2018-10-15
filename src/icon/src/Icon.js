@@ -15,6 +15,7 @@ export { IconNames }
 
 class Icon extends PureComponent {
   static SIZE_STANDARD = 16
+
   static SIZE_LARGE = 20
 
   static propTypes = {
@@ -86,7 +87,8 @@ class Icon extends PureComponent {
 
     if (icon == null) {
       return null
-    } else if (typeof icon !== 'string') {
+    }
+    if (typeof icon !== 'string') {
       return icon
     }
 
