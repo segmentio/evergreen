@@ -1,4 +1,4 @@
-import { Themer } from '../../../../themer/'
+import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 import {
@@ -10,7 +10,7 @@ import { defaultControlStyles } from '../shared'
 /**
  * Disabled styles are all the same for all buttons.
  */
-const disabled = defaultControlStyles.disabled
+const { disabled } = defaultControlStyles
 
 /**
  * Get button appearance.

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import { Portal } from '../../portal'
-import { Stack } from '../../stack/'
+import { Stack } from '../../stack'
 import { StackingOrder, Position } from '../../constants'
 import getPosition from './getPosition'
 

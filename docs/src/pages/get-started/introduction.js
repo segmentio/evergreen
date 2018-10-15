@@ -30,9 +30,10 @@ export default () => {
                   <h1>Introduction</h1>
                   <p className="p">
                     Evergreen is a pragmatic UI kit for building evolving
-                    products on the web.<br /> It is build and maintained
-                    open-source by{' '}
-                    <NativeLink href="https://segment.com/">Segment</NativeLink>.
+                    products on the web.
+                    <br /> It is build and maintained open-source by{' '}
+                    <NativeLink href="https://segment.com/">Segment</NativeLink>
+                    .
                   </p>
                   <h2>Core beliefs of Evergreen</h2>
                   <p>
@@ -87,7 +88,8 @@ $ npm install --save evergreen-ui
                     A working version, assuming you are using something like{' '}
                     <NativeLink href="https://github.com/facebookincubator/create-react-app">
                       Create React App
-                    </NativeLink>, might look like this:
+                    </NativeLink>
+                    , might look like this:
                   </p>
                 </div>
 

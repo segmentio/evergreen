@@ -110,7 +110,7 @@ export default class SegmentedControl extends PureComponent {
     } = this.props
 
     // Allows it to behave like a controlled input
-    let value = this.state.value
+    let { value } = this.state
     if (this.isControlled()) {
       value = this.props.value
     }

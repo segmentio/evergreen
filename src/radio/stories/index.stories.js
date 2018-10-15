@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import Component from '@reactions/component'
-import { Radio, RadioGroup } from '../../radio'
+import { Radio, RadioGroup } from '..'
 import { Heading } from '../../typography'
 
 storiesOf('radio', module)
@@ -60,7 +60,16 @@ storiesOf('radio', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Heading>Default usage, size 12</Heading>
+      <Heading>Indeterminate Single Radio (uncommon)</Heading>
+      <Box aria-label="Radio Group Label 12" role="group">
+        <Radio name="indeterminate" label="Indeterminate" />
+        <Radio
+          checked={false}
+          name="indeterminate"
+          label="Indeterminate `checked={false}`"
+        />
+      </Box>
+      <Heading marginTop={40}>Default usage, size 12</Heading>
       <Box aria-label="Radio Group Label 12" role="group">
         <Radio checked name="group" label="Radio default" />
         <Radio name="group" checked label="Radio checked" />

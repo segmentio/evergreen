@@ -10,16 +10,16 @@
   <br>
 </div>
 
-* **Works out of the box.** Evergreen contains a set of polished React components that work out of the box.
+- **Works out of the box.** Evergreen contains a set of polished React components that work out of the box.
 
-* **Flexible & composable.** Evergreen components are build on top of a React UI Primitive for endless composability.
+- **Flexible & composable.** Evergreen components are build on top of a React UI Primitive for endless composability.
 
-* **Enterprise-grade.** Evergreen features a UI design language for enterprise-grade web applications.
+- **Enterprise-grade.** Evergreen features a UI design language for enterprise-grade web applications.
 
 ## Documentation & Community
 
-* [Documentation](https://evergreen.segment.com/)
-* [Spectrum Chat](https://spectrum.chat/evergreen)
+- [Documentation](https://evergreen.segment.com/)
+- [Spectrum Chat](https://spectrum.chat/evergreen)
 
 ## Evergreen v3 to v4 Migration guide
 
@@ -50,12 +50,12 @@ ReactDOM.render(
 
 ## Core values of 🌲 Evergreen
 
-* **Evergreen is build on the belief that you can never predict all future requirements,
+- **Evergreen is build on the belief that you can never predict all future requirements,
   only prepare for it.** Instead of creating fixed configurations that work today, Evergreen promotes building systems that anticipate new and changing design requirements.
 
-* **Evergreen is build on the belief that things should work out of the box with smart defaults, but also offer full control when needed.** For example, Evergreen uses CSS-in-JS and builds on top of the Box component in [ui-box](https://github.com/segmentio/ui-box).
+- **Evergreen is build on the belief that things should work out of the box with smart defaults, but also offer full control when needed.** For example, Evergreen uses CSS-in-JS and builds on top of the Box component in [ui-box](https://github.com/segmentio/ui-box).
 
-* **Evergreen is build on the belief that using Evergreen and contributing to Evergreen should be a pleasant experience.** We prioritize documentation and all the tools for a solid developer experience. We advocate respect and inclusivity in our writings and interactions.
+- **Evergreen is build on the belief that using Evergreen and contributing to Evergreen should be a pleasant experience.** We prioritize documentation and all the tools for a solid developer experience. We advocate respect and inclusivity in our writings and interactions.
 
 ## FAQ
 
@@ -69,8 +69,8 @@ Evergreen offers easy Server Side Rendering (SSR) and automatic hydration.
 
 Evergreen bundles 2 CSS-in-JS solutions, from glamor and ui-box. To make it super easy to do server side rendering and hydration, Evergreen exposes a `extractStyles()` function that will do SSR for both at once.
 
-* How to use it with Next.js in the [ssr-next example app](examples/ssr-next).
-* [How to use it with GatsbyJS](https://github.com/segmentio/evergreen/issues/154)
+- How to use it with Next.js in the [ssr-next example app](examples/ssr-next).
+- [How to use it with GatsbyJS](https://github.com/segmentio/evergreen/issues/154)
 
 ## Contributing to Evergreen
 
@@ -96,17 +96,17 @@ to run the project in development and to build the project.
 
 Below you can read a description of each script.
 
-* `yarn dev`: Starts the development React Storybook.
+- `yarn dev`: Starts the development React Storybook.
 
-* `yarn test`: Lints the JavaScript files using XO and then runs the unit tests using AVA.
+- `yarn test`: Lints the JavaScript files using XO and then runs the unit tests using AVA.
 
-* `yarn build`: Builds all of the JavaScript files using Babel.
+- `yarn build`: Builds all of the JavaScript files using Babel.
 
-* `yarn clean`: removes all untracked files (`git clean -Xdf`).
+- `yarn clean`: removes all untracked files (`git clean -Xdf`).
 
-* `yarn release`: Releases new version of Evergreen (requires `np` to be installed globally).
+- `yarn release`: Releases new version of Evergreen (requires `np` to be installed globally).
 
-* `yarn create-package`: This command scaffolds a package with no specific boilerplate. It's useful for creating utilities.
+- `yarn create-package`: This command scaffolds a package with no specific boilerplate. It's useful for creating utilities.
 
 For the following command:
 
@@ -122,7 +122,7 @@ The following file tree will be generated:
 └── index.js
 ```
 
-* `yarn create-package:components`: This command scaffolds a package with React component(s) boilerplate.
+- `yarn create-package:components`: This command scaffolds a package with React component(s) boilerplate.
 
 You can pass one or more components to this command.
 
@@ -148,11 +148,11 @@ The following file tree will be generated:
 
 We will add you to the list if you make any meaningful contribution!
 
-* Jeroen Ransijn
-* Roland Warmerdam
-* Ben McMahon
-* Matt Shwery
-* ... many other on the Segment team and open-source contributors
+- Jeroen Ransijn
+- Roland Warmerdam
+- Ben McMahon
+- Matt Shwery
+- ... many other on the Segment team and open-source contributors
 
 This project is maintained by [Segment](https://segment.com/)
 
@@ -162,11 +162,11 @@ Please take a look at the [contributing guide](.github/CONTRIBUTING.md) and [roa
 
 Please respect our [Code of Conduct](.github/CODE_OF_CONDUCT.md), in short:
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+- Using welcoming and inclusive language
+- Being respectful of differing viewpoints and experiences
+- Gracefully accepting constructive criticism
+- Focusing on what is best for the community
+- Showing empathy towards other community members
 
 ## License
 

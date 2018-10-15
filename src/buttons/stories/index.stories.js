@@ -2,12 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import Component from '@reactions/component'
-import {
-  IconButton,
-  Button,
-  BackButton,
-  TextDropdownButton
-} from '../../buttons'
+import { IconButton, Button, BackButton, TextDropdownButton } from '..'
 import { Heading } from '../../typography'
 import { Pane } from '../../layers'
 import { SegmentedControl } from '../../segmented-control'

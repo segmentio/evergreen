@@ -267,7 +267,8 @@ function getPosition({
           position,
           rect: leftRect
         }
-      } else if (fitsOnRight) {
+      }
+      if (fitsOnRight) {
         return {
           position: Position.RIGHT,
           rect: rightRect
@@ -281,7 +282,8 @@ function getPosition({
           position,
           rect: rightRect
         }
-      } else if (fitsOnLeft) {
+      }
+      if (fitsOnLeft) {
         return {
           position: Position.LEFT,
           rect: leftRect
@@ -354,7 +356,8 @@ function getPosition({
         position,
         rect: topRect
       }
-    } else if (bottomRectFitsOnBottom) {
+    }
+    if (bottomRectFitsOnBottom) {
       return {
         position: flipHorizontal(position),
         rect: bottomRect
@@ -368,7 +371,8 @@ function getPosition({
         position,
         rect: bottomRect
       }
-    } else if (topRectFitsOnTop) {
+    }
+    if (topRectFitsOnTop) {
       return {
         position: flipHorizontal(position),
         rect: topRect

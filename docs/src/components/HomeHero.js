@@ -19,10 +19,12 @@ export default class Features extends React.PureComponent {
             <h1>A Design System for the Web</h1>
             <p>
               Evergreen is a React UI Framework for building ambitious products
-              on the web. Brought to you by{` `}
+              on the web. Brought to you by
+              {` `}
               <NativeLink className="Link" href="https://segment.com/">
                 Segment
-              </NativeLink>.
+              </NativeLink>
+              .
             </p>
             <div>
               <Button

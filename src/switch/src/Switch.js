@@ -150,9 +150,9 @@ class Switch extends PureComponent {
     if (isControlled(this)) {
       this.props.onChange(value)
     } else {
-      this.setState({
-        checked: !this.state.checked
-      })
+      this.setState(({ checked }) => ({
+        checked: !checked
+      }))
       this.props.onChange(value)
     }
   }

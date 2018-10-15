@@ -50,7 +50,11 @@ export default class TextStylePreview extends React.Component {
             )}
             {this.props.marginTop && (
               <React.Fragment>
-                Default margin top: <strong>{this.props.marginTop}px</strong>
+                Default margin top:{' '}
+                <strong>
+                  {this.props.marginTop}
+                  px
+                </strong>
                 <br />
               </React.Fragment>
             )}
