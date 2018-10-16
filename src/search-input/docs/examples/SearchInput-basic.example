@@ -1,7 +1,0 @@
-<Box>
-  <Box>
-    <SearchInput marginBottom={32} placeholder="Filter traits..." />
-  </Box>
-  <SearchInput marginBottom={32} height={40} placeholder="Height 40" />
-  <SearchInput width="100%" placeholder="Width 100%" />
-</Box>

@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import Component from '@reactions/component'
-import { SegmentedControl } from '../../segmented-control'
+import { SegmentedControl } from '..'
 
 storiesOf('segmented-control', module).add('SegmentedControl', () => (
   <Box padding={40}>
@@ -22,6 +22,7 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
     >
       {({ state, setState }) => (
         <SegmentedControl
+          name="time"
           width={240}
           options={state.options}
           value={state.value}
@@ -31,20 +32,30 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
     </Component>
     <Component
       initialState={{
-        options: [{ label: 'On', value: 'on' }, { label: 'Off', value: 'off' }],
-        value: 'on'
+        options: [{ label: 'On', value: true }, { label: 'Off', value: false }],
+        value: true
       }}
     >
       {({ state, setState }) => (
         <SegmentedControl
+          name="switch"
           marginTop={24}
           width={80}
           height={24}
           options={state.options}
           value={state.value}
-          onChange={value => setState({ value })}
+          onChange={value => {
+            setState({ value })
+          }}
         />
       )}
     </Component>
+    <SegmentedControl
+      marginTop={24}
+      width={80}
+      height={24}
+      options={[{ label: 'On', value: true }, { label: 'Off', value: false }]}
+      defaultValue={false}
+    />
   </Box>
 ))

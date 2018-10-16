@@ -1,16 +1,35 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
-import {
-  getTextStyleForControlHeight,
-  selectableTabStyle
-} from '../../shared-styles'
+import { withTheme } from '../../theme'
 
-export default class Tab extends PureComponent {
+class Tab extends PureComponent {
   static propTypes = {
+    /**
+     * Composes the Text component as the base.
+     */
     ...Text.propTypes,
+
+    /**
+     * Function triggered when tab is selected.
+     */
     onSelect: PropTypes.func,
-    isSelected: PropTypes.bool
+
+    /**
+     * When true, the tab is selected.
+     */
+    isSelected: PropTypes.bool,
+
+    /**
+     * The appearance of the tab.
+     * The default theme only comes with a default style.
+     */
+    appearance: PropTypes.string,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
@@ -48,8 +67,17 @@ export default class Tab extends PureComponent {
   }
 
   render() {
-    const { is, height, css, onSelect, isSelected, ...props } = this.props
-    const textStyle = getTextStyleForControlHeight({ height })
+    const {
+      theme,
+      is,
+      height,
+      onSelect,
+      isSelected,
+      appearance,
+      ...props
+    } = this.props
+
+    const textSize = theme.getTextSizeForControlHeight(height)
 
     let elementBasedProps
     if (is === 'a') {
@@ -72,23 +100,18 @@ export default class Tab extends PureComponent {
 
     return (
       <Text
+        className={theme.getTabClassName(appearance)}
         is={is}
-        {...textStyle}
+        size={textSize}
         height={height}
         {...Tab.styles}
         {...props}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}
         {...elementBasedProps}
-        css={
-          css
-            ? {
-                ...selectableTabStyle,
-                ...css
-              }
-            : selectableTabStyle
-        }
       />
     )
   }
 }
+
+export default withTheme(Tab)

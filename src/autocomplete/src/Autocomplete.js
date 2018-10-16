@@ -4,8 +4,8 @@ import fuzzaldrin from 'fuzzaldrin-plus'
 import Downshift from 'downshift'
 import VirtualList from 'react-tiny-virtual-list'
 import { Popover } from '../../popover'
-import { Position } from '../../positioner'
-import { Text } from '../../typography'
+import { Position } from '../../constants'
+import { Heading } from '../../typography'
 import { Pane } from '../../layers'
 import AutocompleteItem from './AutocompleteItem'
 
@@ -140,10 +140,8 @@ export default class Autocomplete extends PureComponent {
     return (
       <Pane width={width}>
         {title && (
-          <Pane padding={8} borderBottom="extraMuted">
-            <Text size={200} color="muted" isUppercase>
-              {title}
-            </Text>
+          <Pane padding={8} borderBottom="muted">
+            <Heading size={100}>{title}</Heading>
           </Pane>
         )}
         {items.length > 0 && (

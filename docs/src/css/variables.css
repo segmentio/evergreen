@@ -1,23 +1,123 @@
 :root {
-  --font-display: "SF UI Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-ui: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-mono: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace;
+  --font-display: 'SF UI Display', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
+  --font-ui: 'SF UI Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
+  --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono',
+    'Droid Sans Mono', 'Source Code Pro', monospace;
 }
 
+/**
+ * Scales
+ */
 
 :root {
-  --color-border-default: var(--neutral-20A);
-  --color-border-muted: var(--neutral-10A);;
+  --N1: #f9f9fb;
+  --N2: #f5f6f7;
+  --N3: #edf0f2;
+  --N4: #e4e7eb;
+  --N5: #c7ced4;
+  --N6: #a6b1bb;
+  --N7: #7b8b9a;
+  --N8: #66788a;
+  --N9: #425a70;
+  --N10: #234361;
+
+  --N1A: rgba(67, 90, 111, 0.04);
+  --N2A: rgba(67, 90, 111, 0.06);
+  --N3A: rgba(67, 90, 111, 0.09);
+  --N4A: rgba(67, 90, 111, 0.14);
+  --N5A: rgba(67, 90, 111, 0.3);
+  --N6A: rgba(67, 90, 111, 0.47);
+  --N7A: rgba(67, 90, 111, 0.7);
+  --N8A: rgba(67, 90, 111, 0.81);
+
+  --B1: #f7f9fd;
+  --B2: #f1f7fc;
+  --B3: #e9f2fa;
+  --B4: #ddebf7;
+  --B5: #b7d4ef;
+  --B6: #8fbce6;
+  --B7: #579ad9;
+  --B8: #3d8bd4;
+  --B9: #1070ca;
+  --B10: #084b8a;
+
+  --B1A: rgba(16, 112, 202, 0.04);
+  --B2A: rgba(16, 112, 202, 0.06);
+  --B3A: rgba(16, 112, 202, 0.09);
+  --B4A: rgba(16, 112, 202, 0.14);
+  --B5A: rgba(16, 112, 202, 0.3);
+  --B6A: rgba(16, 112, 202, 0.47);
+  --B7A: rgba(16, 112, 202, 0.7);
+  --B8A: rgba(16, 112, 202, 0.81);
+}
+
+/**
+ * Palette.
+ */
+:root {
+  --neutral-lightest: var(--N1);
+  --neutral-light: var(--N4);
+  --neutral-base: var(--N9);
+  --neutral-dark: var(--N10);
+
+  --blue-lightest: var(--B1);
+  --blue-light: var(--B4);
+  --blue-base: var(--B9);
+  --blue-dark: var(--B10);
+
+  --red-lightest: #fef6f6;
+  --red-light: #fae2e2;
+  --red-base: #ec4c47;
+  --red-dark: #bf0e08;
+
+  --orange-lightest: #fdf8f3;
+  --orange-light: #fae3cd;
+  --orange-base: #d9822b;
+  --orange-dark: #95591e;
+
+  --yellow-lightest: #fef8e7;
+  --yellow-light: #fbe6a2;
+  --yellow-base: #f7d154;
+  --yellow-dark: #7e6514;
+
+  --green-lightest: #f1faf5;
+  --green-light: #d4eee2;
+  --green-base: #47b881;
+  --green-dark: #00783e;
+
+  --teal-lightest: #f1fbfc;
+  --teal-light: #d2eef3;
+  --teal-base: #14b5d0;
+  --teal-dark: #007489;
+
+  --purple-lightest: #f8f7fc;
+  --purple-light: #eae7f8;
+  --purple-base: #735dd0;
+  --purple-dark: #37248f;
 }
 
 :root {
-  --color-border-shadow: var(--neutral-80A);
-  --color-blurry-shadow: var(--neutral-50A);
+  --color-border-default: var(--N4);
+  --color-border-muted: var(--N3);
+}
+
+:root {
+  --color-border-shadow: var(--N6A);
+  --color-blurry-shadow: var(--N5A);
 
   --elevation-0: 0 0 1px var(--color-border-shadow);
-  --elevation-1: 0 0 1px var(--color-border-shadow), 0 2px 4px -2px var(--color-blurry-shadow);
-  --elevation-2: 0 0 1px var(--color-border-shadow), 0 5px 8px -4px var(--color-blurry-shadow);
-  --elevation-3: 0 0 1px var(--color-border-shadow), 0 8px 10px -4px var(--color-blurry-shadow);
-  --elevation-4: 0 0 1px var(--color-border-shadow), 0 16px 24px -8px var(--color-blurry-shadow);
-  --elevation-5: 0 0 1px var(--color-border-shadow), 0 2px 4px -2px var(--color-blurry-shadow)
+  --elevation-1: 0 0 1px var(--color-border-shadow),
+    0 2px 4px -2px var(--color-blurry-shadow);
+  --elevation-2: 0 0 1px var(--color-border-shadow),
+    0 5px 8px -4px var(--color-blurry-shadow);
+  --elevation-3: 0 0 1px var(--color-border-shadow),
+    0 8px 10px -4px var(--color-blurry-shadow);
+  --elevation-4: 0 0 1px var(--color-border-shadow),
+    0 16px 24px -8px var(--color-blurry-shadow);
+  --elevation-5: 0 0 1px var(--color-border-shadow),
+    0 2px 4px -2px var(--color-blurry-shadow);
 }

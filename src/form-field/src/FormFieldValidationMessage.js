@@ -1,24 +1,46 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import { Paragraph } from '../../typography'
-import { colors } from '../../colors'
+import { withTheme } from '../../theme'
+import { Icon } from '../../icon'
+import { Pane } from '../../layers'
 
-export default class FormFieldValidationMessage extends PureComponent {
+class FormFieldValidationMessage extends PureComponent {
   static propTypes = {
     /**
-     * Composes the Paragraph component as the base.
+     * Composes the Pane component as the base.
      */
-    ...Paragraph.propTypes
+    ...Pane.propTypes,
+
+    /**
+     * The contents of the validation message.
+     * This is wrapped in a paragraph, use a string.
+     */
+    children: PropTypes.node,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   render() {
+    const { theme, children, ...props } = this.props
     return (
-      <Paragraph
-        marginTop={0}
-        size={300}
-        color={colors.red['700']}
-        {...this.props}
-        role="alert"
-      />
+      <Pane display="flex" {...props}>
+        <Icon
+          icon="error"
+          color="danger"
+          marginTop={1}
+          size={14}
+          marginRight={8}
+        />
+        <Paragraph marginTop={0} size={300} color="danger" role="alert">
+          {children}
+        </Paragraph>
+      </Pane>
     )
   }
 }
+
+export default withTheme(FormFieldValidationMessage)

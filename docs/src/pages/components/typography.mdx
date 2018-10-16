@@ -1,0 +1,382 @@
+import PropsTable from 'components/PropsTable'
+import TextStylePreview from 'components/TextStylePreview'
+import { ThemeConsumer, Pane, Heading, Text, Paragraph } from 'evergreen-ui'
+
+## Text components
+
+* **Heading**: used for headings. A `h2` element by default.
+* **Text**: used for single line text. A `span` element by default.
+* **Paragraph**: used for multiline text. A `p` element by default.
+* **Link**: used for links. A `a` element by default.
+* **Strong**: used to make text strong. A `strong` element by default.
+* **Small**: used for inline small text. A `small` element by default.
+* **Pre**: used for preformatted content. A `pre` element by default.
+* **Code**: used for inline code. A `code` element by default.
+
+## List components
+
+* **OrderedList**: used for headings. A `ol` element.
+* **UnorderedList**: used for headings. A `ul` element.
+* **ListItem**: used for headings. A `li` element.
+
+## Font families
+
+Evergreen uses three font family stacks, `ui`, `display` and `mono`.
+Text components will set the font family accordingly to their use case.
+There is not need for you to override this on a component level.
+
+
+<ThemeConsumer>
+  {theme => (
+    <div>
+      <Pane marginTop={48}>
+        <h2 className="heading h2">Heading Styles</h2>
+      </Pane>
+      <Pane borderBottom paddingBottom={24}>
+        {Object.keys(theme.typography.headings).map(size => {
+          return (
+            <TextStylePreview
+              key={size}
+              size={size}
+              renderComponent={() => {
+                return <Heading size={size}>Heading {size}</Heading>
+              }}
+              fontFamilies={theme.typography.fontFamilies}
+              {...theme.typography.headings[size]}
+            />
+          )
+        })}
+      </Pane>
+      <Pane marginTop={48}>
+        <h2 className="heading h2">Text Styles</h2>
+      </Pane>
+      <Pane borderBottom paddingBottom={24}>
+        {Object.keys(theme.typography.text).map(size => {
+          return (
+            <TextStylePreview
+              key={size}
+              size={size}
+              renderComponent={() => {
+                return <Text size={size}>Text {size}</Text>
+              }}
+              fontFamilies={theme.typography.fontFamilies}
+              fontFamily="ui"
+              {...theme.typography.text[size]}
+            />
+          )
+        })}
+      </Pane>
+      <Pane marginTop={48}>
+        <h2 className="heading h2">Paragraph Styles</h2>
+      </Pane>
+      <Pane borderBottom paddingBottom={24}>
+        {Object.keys(theme.typography.text).map(size => {
+          return (
+            <TextStylePreview
+              key={size}
+              size={size}
+              renderComponent={() => {
+                return (
+                  <Paragraph size={size}>
+                    Paragraph {size}. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua.
+                  </Paragraph>
+                )
+              }}
+              fontFamilies={theme.typography.fontFamilies}
+              fontFamily="ui"
+              {...theme.typography.text[size]}
+            />
+          )
+        })}
+      </Pane>
+    </div>
+  )}
+</ThemeConsumer>
+
+# Heading component
+
+The `Heading` component is used for all headings.
+
+The size options are: `100`, `200`, `300`, `400`, `500` (default), `600`, `700`, `800`, `900`.
+
+```jsx
+<Pane>
+  <Heading size={100} marginTop="default">100: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={200} marginTop="default">200: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={300} marginTop="default">300: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={400} marginTop="default">400: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={500} marginTop="default">500: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={600} marginTop="default">600: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={700} marginTop="default">700: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={800} marginTop="default">800: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={900} marginTop="default">900: The quick brown fox jumps over the lazy dog</Heading>
+</Pane>
+```
+
+## Changing the semantic element
+
+The `Heading` component will always render a `h2` until you specifiy otherwise with the `is` property.
+It’s important to realize that the style of a heading is independent from the semantic underlying element.
+
+```jsx
+<Heading is="h3">Heading h3</Heading>
+```
+
+<PropsTable of="Heading" />
+
+
+# Text component
+
+The `Text` component is used for single line text.
+The component renders a `span` element by default.
+If you need a multiline paragraph use the `Paragraph` component.
+
+The size options are:  `300`, `400` (default), `500`
+
+```jsx
+<div>
+  <div>
+    <Text size={300}>The quick brown fox jumps over the lazy dog</Text>
+  </div>
+  <div>
+    <Text size={400}>The quick brown fox jumps over the lazy dog</Text>
+  </div>
+  <div>
+    <Text size={500}>The quick brown fox jumps over the lazy dog</Text>
+  </div>
+</div>
+```
+
+## Set a muted color on a Text component
+
+```jsx
+<Text color="muted">The quick brown fox jumps over the lazy dog</Text>
+```
+
+
+# Paragraph component
+
+The `Paragraph` component is used for multiline text.
+This renders a `p` element by default.
+
+The size options are:  `300`, `400` (default), `500`
+
+```jsx
+<div>
+  <Paragraph size={300} marginTop="default">
+    Size 300. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </Paragraph>
+  <Paragraph size={400} marginTop="default">
+    Size 400. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </Paragraph>
+  <Paragraph marginTop="default">
+    Size 500. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </Paragraph>
+</div>
+```
+
+## Set a muted color on a paragraph
+
+```jsx
+<Paragraph color="muted">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</Paragraph>
+```
+
+<PropsTable of="Paragraph" />
+
+
+# Link component
+
+The `Link` component is used for anchor links.
+This component renders a `a` element by default.
+
+The size options are:  `300`, `400` (default), `500`
+
+```jsx
+<div>
+  <Link href="#" marginRight={12}>Default</Link>
+  <Link href="#" marginRight={12} color="green">Green</Link>
+  <Link href="#" marginRight={12} color="blue">Blue</Link>
+  <Link href="#" marginRight={12} color="neutral">Neutral</Link>
+</div>
+```
+
+<PropsTable of="Link" />
+
+# Strong component
+
+The `Strong` component renders strong text.
+This component renders a `strong` element by default.
+Make sure to set the `size` property if you are using this within a other text component such as a `Paragraph`.
+
+```jsx
+<div>
+  <div>
+    <Strong size={300}>The quick brown fox jumps over the lazy dog</Strong>
+  </div>
+  <div>
+    <Strong size={400}>The quick brown fox jumps over the lazy dog</Strong>
+  </div>
+  <div>
+    <Strong size={500}>The quick brown fox jumps over the lazy dog</Strong>
+  </div>
+</div>
+```
+
+<PropsTable of="Strong" />
+
+
+# Small component
+
+The `Small` component works only inside other text components.
+
+```jsx
+<Paragraph>
+  The <Small>small</Small> component can only be used in a other text component
+</Paragraph>
+```
+
+<PropsTable of="Small" />
+
+# Code component
+
+The `Code` component is based on the `Text` component but renders a `code` element by default.
+
+```jsx
+<div>
+  <div>
+    <Code size={300}>The quick brown fox jumps over the lazy dog</Code>
+  </div>
+  <div>
+    <Code size={400}>The quick brown fox jumps over the lazy dog</Code>
+  </div>
+  <div>
+    <Code size={500}>The quick brown fox jumps over the lazy dog</Code>
+  </div>
+  <div>
+    <Code size={300} appearance="minimal">The quick brown fox jumps over the lazy dog</Code>
+  </div>
+  <div>
+    <Code size={400} appearance="minimal">The quick brown fox jumps over the lazy dog</Code>
+  </div>
+  <div>
+    <Code size={500} appearance="minimal">The quick brown fox jumps over the lazy dog</Code>
+  </div>
+</div>
+```
+
+<PropsTable of="Code" />
+
+# Pre component
+
+The `Pre` component renders a chunk of preformatted text.
+This component renders a `pre` element by default.
+
+
+```jsx
+<Pre>
+  Preformatted text.
+</Pre>
+```
+
+<PropsTable of="Pre" />
+
+# UnorderedList component
+
+```jsx
+<UnorderedList>
+  <ListItem>Lorem ipsum dolor sit amet</ListItem>
+  <ListItem>Consectetur adipiscing elit</ListItem>
+  <ListItem>Integer molestie lorem at massa</ListItem>
+  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+</UnorderedList>
+```
+
+## Changing the size of all list items in a UnorderedList
+
+```jsx
+<UnorderedList size={300}>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+</UnorderedList>
+```
+
+
+## Adding icons to a list
+
+The icon property has access to all available icons.
+
+### Set icons for all list items on the list
+
+```jsx
+<UnorderedList
+  icon="tick"
+  iconColor="success"
+>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+</UnorderedList>
+```
+
+### Set icons on each individual list item
+
+```jsx
+<UnorderedList>
+  <ListItem icon="tick-circle" iconColor="success">
+    Lorem ipsum dolar set amet
+  </ListItem>
+  <ListItem icon="tick-circle" iconColor="success">
+    Lorem ipsum dolar set amet
+  </ListItem>
+  <ListItem icon="ban-circle" iconColor="danger">
+    Lorem ipsum dolar set amet
+  </ListItem>
+  <ListItem icon="ban-circle" iconColor="danger">
+    Lorem ipsum dolar set amet
+  </ListItem>
+</UnorderedList>
+```
+
+<PropsTable of="UnorderedList" />
+
+# OrderedList component
+
+```jsx
+<OrderedList>
+  <ListItem>Lorem ipsum dolor sit amet</ListItem>
+  <ListItem>Consectetur adipiscing elit</ListItem>
+  <ListItem>Integer molestie lorem at massa</ListItem>
+  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+</OrderedList>
+```
+
+## Changing the size of all list items in a OrderedList
+
+```jsx
+<OrderedList size={300}>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+</OrderedList>
+```
+
+<PropsTable of="OrderedList" />
+
+
+# ListItem component
+
+```jsx
+<ListItem>List item. Use inside of a UnorderedList or OrderedList.</ListItem>
+```
+
+<PropsTable of="ListItem" />

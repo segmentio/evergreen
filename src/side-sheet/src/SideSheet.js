@@ -3,12 +3,53 @@ import PropTypes from 'prop-types'
 import { css } from 'ui-box'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
+import { Position } from '../../constants'
 import SheetClose from './SheetClose'
 
 const paneProps = {
-  height: '100vh',
-  position: 'absolute',
-  right: 0
+  [Position.LEFT]: {
+    height: '100vh',
+    maxWidth: '100vw',
+    position: 'absolute',
+    left: 0,
+    right: 'auto'
+  },
+  [Position.RIGHT]: {
+    height: '100vh',
+    maxWidth: '100vw',
+    position: 'absolute',
+    right: 0,
+    left: 'auto'
+  },
+  [Position.TOP]: {
+    width: '100vw',
+    position: 'absolute',
+    maxHeight: '100vh',
+    top: 0,
+    bottom: 'auto'
+  },
+  [Position.BOTTOM]: {
+    width: '100vw',
+    maxHeight: '100vh',
+    position: 'absolute',
+    bottom: 0,
+    top: 'auto'
+  }
+}
+
+const subpaneProps = {
+  [Position.LEFT]: {
+    height: '100vh'
+  },
+  [Position.RIGHT]: {
+    height: '100vh'
+  },
+  [Position.TOP]: {
+    width: '100vw'
+  },
+  [Position.BOTTOM]: {
+    width: '100vw'
+  }
 }
 
 const animationEasing = {
@@ -18,35 +59,73 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const slideInAnimation = css.keyframes('slideInAnimation', {
-  from: {
-    transform: `translateX(100%)`
-  },
-  to: {
-    transform: `translateX(0)`
+const withAnimations = (animateIn, animateOut) => {
+  return {
+    '&[data-state="entering"], &[data-state="entered"]': {
+      animation: `${animateIn} ${ANIMATION_DURATION}ms ${
+        animationEasing.deceleration
+      } both`
+    },
+    '&[data-state="exiting"]': {
+      animation: `${animateOut} ${ANIMATION_DURATION}ms ${
+        animationEasing.acceleration
+      } both`
+    }
   }
-})
-
-const slideOutAnimation = css.keyframes('slideOutAnimation', {
-  from: {
-    transform: `translateX(0)`
-  },
-  to: {
-    transform: `translateX(100%)`
-  }
-})
+}
 
 const animationStyles = {
-  transform: `translateX(100%)`,
-  '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${slideInAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.deceleration
-    } both`
+  [Position.LEFT]: {
+    transform: `translateX(-100%)`,
+    ...withAnimations(
+      css.keyframes('anchoredLeftSlideInAnimation', {
+        from: { transform: `translateX(-100%)` },
+        to: { transform: `translateX(0)` }
+      }),
+      css.keyframes('anchoredLeftSlideOutAnimation', {
+        from: { transform: `translateX(0)` },
+        to: { transform: `translateX(-100%)` }
+      })
+    )
   },
-  '&[data-state="exiting"]': {
-    animation: `${slideOutAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.acceleration
-    } both`
+  [Position.RIGHT]: {
+    transform: `translateX(100%)`,
+    ...withAnimations(
+      css.keyframes('anchoredRightSlideInAnimation', {
+        from: { transform: `translateX(100%)` },
+        to: { transform: `translateX(0)` }
+      }),
+      css.keyframes('anchoredRightSlideOutAnimation', {
+        from: { transform: `translateX(0)` },
+        to: { transform: `translateX(100%)` }
+      })
+    )
+  },
+  [Position.TOP]: {
+    transform: `translateY(-100%)`,
+    ...withAnimations(
+      css.keyframes('anchoredTopSlideInAnimation', {
+        from: { transform: `translateY(-100%)` },
+        to: { transform: `translateY(0)` }
+      }),
+      css.keyframes('anchoredTopSlideOutAnimation', {
+        from: { transform: `translateY(0)` },
+        to: { transform: `translateY(-100%)` }
+      })
+    )
+  },
+  [Position.BOTTOM]: {
+    transform: `translateY(100%)`,
+    ...withAnimations(
+      css.keyframes('anchoredBottomSlideInAnimation', {
+        from: { transform: `translateY(100%)` },
+        to: { transform: `translateY(0)` }
+      }),
+      css.keyframes('anchoredBottomSlideOutAnimation', {
+        from: { transform: `translateY(0)` },
+        to: { transform: `translateY(100%)` }
+      })
+    )
   }
 }
 
@@ -73,6 +152,16 @@ class SideSheet extends React.Component {
     onOpenComplete: PropTypes.func,
 
     /**
+     * Boolean indicating if clicking the overlay should close the overlay.
+     */
+    shouldCloseOnOverlayClick: PropTypes.bool,
+
+    /**
+     * Boolean indicating if pressing the esc key should close the overlay.
+     */
+    shouldCloseOnEscapePress: PropTypes.bool,
+
+    /**
      * Width of the SideSheet.
      */
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -80,13 +169,26 @@ class SideSheet extends React.Component {
     /**
      * Properties to pass through the SideSheet container Pane.
      */
-    containerProps: PropTypes.object
+    containerProps: PropTypes.object,
+
+    /**
+     * Positions the sheet to the top, left, right, or bottom of the screen.
+     */
+    position: PropTypes.oneOf([
+      Position.TOP,
+      Position.BOTTOM,
+      Position.LEFT,
+      Position.RIGHT
+    ]).isRequired
   }
 
   static defaultProps = {
     width: 620,
     onCloseComplete: () => {},
-    onOpenComplete: () => {}
+    onOpenComplete: () => {},
+    shouldCloseOnOverlayClick: true,
+    shouldCloseOnEscapePress: true,
+    position: Position.RIGHT
   }
 
   render() {
@@ -96,30 +198,41 @@ class SideSheet extends React.Component {
       children,
       containerProps,
       onOpenComplete,
-      onCloseComplete
+      onCloseComplete,
+      shouldCloseOnOverlayClick,
+      shouldCloseOnEscapePress,
+      position
     } = this.props
 
     return (
       <Overlay
         isShown={isShown}
+        shouldCloseOnClick={shouldCloseOnOverlayClick}
+        shouldCloseOnEscapePress={shouldCloseOnEscapePress}
         onExited={onCloseComplete}
         onEntered={onOpenComplete}
       >
         {({ state, close }) => (
           <Pane
             width={width}
-            {...paneProps}
-            css={animationStyles}
+            {...paneProps[position]}
+            css={animationStyles[position]}
             data-state={state}
           >
-            <SheetClose data-state={state} isClosing={false} onClick={close} />
+            <SheetClose
+              position={position}
+              data-state={state}
+              isClosing={false}
+              onClick={close}
+            />
             <Pane
               elevation={4}
               backgroundColor="white"
               overflowY="auto"
+              maxHeight="100vh"
               data-state={state}
               width={width}
-              {...paneProps}
+              {...subpaneProps[position]}
               {...containerProps}
             >
               {typeof children === 'function' ? children({ close }) : children}

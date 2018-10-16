@@ -1,1 +1,1 @@
-export CornerDialog from './src/CornerDialog'
+export { default as CornerDialog } from './src/CornerDialog' // eslint-disable-line import/prefer-default-export

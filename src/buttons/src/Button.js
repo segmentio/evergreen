@@ -1,26 +1,43 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
+import { dimensions, spacing, position, layout } from 'ui-box'
 import { Text } from '../../typography'
-import { IconMap, IconAim } from '../../icons'
-import {
-  getBorderRadiusForControlHeight,
-  getTextStyleForControlHeight,
-  getIconSizeForControlHeight
-} from '../../shared-styles'
+import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
-import ButtonAppearances from './styles/ButtonAppearances'
+import { withTheme } from '../../theme'
 
-export default class Button extends PureComponent {
+class Button extends PureComponent {
   static propTypes = {
     /**
-     * Composes the Text component as the base.
+     * Composes the dimensions spec from the Box primitivie.
      */
-    ...Text.propTypes,
+    ...dimensions.propTypes,
+
+    /**
+     * Composes the spacing spec from the Box primitivie.
+     */
+    ...spacing.propTypes,
+
+    /**
+     * Composes the position spec from the Box primitivie.
+     */
+    ...position.propTypes,
+
+    /**
+     * Composes the layout spec from the Box primitivie.
+     */
+    ...layout.propTypes,
+
+    /**
+     * The intent of the button.
+     */
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
 
     /**
      * The appearance of the button.
      */
-    appearance: PropTypes.oneOf(Object.keys(ButtonAppearances)).isRequired,
+    appearance: PropTypes.oneOf(['default', 'minimal', 'primary']).isRequired,
 
     /**
      * When true, show a loading spinner before the children.
@@ -37,38 +54,38 @@ export default class Button extends PureComponent {
     /**
      * Sets an icon before the text. Can be any icon from Evergreen.
      */
-    iconBefore: PropTypes.oneOf(Object.keys(IconMap)),
-
-    /**
-     * The aim of the left icon. Not a big use case for this.
-     */
-    iconBeforeAim: PropTypes.oneOf(Object.keys(IconAim)),
+    iconBefore: PropTypes.string,
 
     /**
      * Sets an icon after the text. Can be any icon from Evergreen.
      */
-    iconAfter: PropTypes.oneOf(Object.keys(IconMap)),
-
-    /**
-     * The aim of the right icon. Useful to aim a triangle down.
-     */
-    iconAfterAim: PropTypes.oneOf(Object.keys(IconAim)),
+    iconAfter: PropTypes.string,
 
     /**
      * When true, the button is disabled.
      * isLoading also sets the button to disabled.
      */
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired,
+
+    /**
+     * Class name passed to the button.
+     * Only use if you know what you are doing.
+     */
+    className: PropTypes.string
   }
 
   static defaultProps = {
     appearance: 'default',
-    isActive: false,
-    iconBeforeAim: 'none',
-    iconAfterAim: 'none',
     height: 32,
-    paddingTop: 0,
-    paddingBottom: 0
+    intent: 'none',
+    isActive: false,
+    paddingBottom: 0,
+    paddingTop: 0
   }
 
   static styles = {
@@ -82,7 +99,10 @@ export default class Button extends PureComponent {
 
   render() {
     const {
-      css,
+      theme,
+      className,
+
+      intent,
       height,
       isActive,
       children,
@@ -98,17 +118,16 @@ export default class Button extends PureComponent {
 
       // Icons
       iconBefore: iconBeforeKey,
-      iconBeforeAim,
       iconAfter: iconAfterKey,
-      iconAfterAim,
 
       ...props
     } = this.props
-    const appearanceStyle = ButtonAppearances[appearance]
-    const textStyle = getTextStyleForControlHeight({ height })
-    const borderRadius = getBorderRadiusForControlHeight({ height })
-    const iconHeight = height - 4
-    const iconSize = getIconSizeForControlHeight({ height: iconHeight })
+
+    const themedClassName = theme.getButtonClassName(appearance, intent)
+    const textSize = theme.getTextSizeForControlHeight(height)
+
+    const borderRadius = theme.getBorderRadiusForControlHeight(height)
+    const iconSize = theme.getIconSizeForButton(height)
 
     const pr =
       paddingRight !== undefined ? paddingRight : Math.round(height / 2) // eslint-disable-line no-negated-condition
@@ -116,29 +135,32 @@ export default class Button extends PureComponent {
 
     let iconBefore
     if (iconBeforeKey) {
-      iconBefore = React.createElement(IconMap[iconBeforeKey], {
-        aim: iconBeforeAim,
-        iconSize,
-        color: 'inherit',
-        size: iconHeight,
-        marginLeft: -Math.round(pl * 0.6)
-      })
+      iconBefore = (
+        <Icon
+          icon={iconBeforeKey}
+          size={iconSize}
+          marginLeft={-Math.round(pl * 0.2)}
+          marginRight={Math.round(iconSize * 0.7)}
+        />
+      )
     }
 
     let iconAfter
     if (iconAfterKey) {
-      iconAfter = React.createElement(IconMap[iconAfterKey], {
-        aim: iconAfterAim,
-        iconSize,
-        color: 'inherit',
-        size: iconHeight,
-        marginRight: -Math.round(pl * 0.6)
-      })
+      iconAfter = (
+        <Icon
+          icon={iconAfterKey}
+          size={iconSize}
+          marginRight={-Math.round(pl * 0.2)}
+          marginLeft={Math.round(iconSize * 0.7)}
+        />
+      )
     }
 
     return (
       <Text
         is="button"
+        className={cx(themedClassName, className)}
         borderTopRightRadius={borderRadius}
         borderBottomRightRadius={borderRadius}
         borderTopLeftRadius={borderRadius}
@@ -147,13 +169,12 @@ export default class Button extends PureComponent {
         paddingBottom={paddingBottom}
         paddingRight={pr}
         paddingLeft={pl}
-        margin={0} // Removes weird margins in Safari
-        {...textStyle}
+        marginLeft={0} // Removes weird margins in Safari
+        marginRight={0} // Removes weird margins in Safari
+        marginTop={0} // Removes weird margins in Safari
+        marginBottom={0} // Removes weird margins in Safari
+        size={textSize}
         color={null} // Prevent the Text color overriding the glamor appearanceStyle color
-        css={{
-          ...appearanceStyle,
-          ...css
-        }}
         height={height}
         lineHeight={`${height}px`}
         {...(isActive ? { 'data-active': true } : {})}
@@ -175,3 +196,5 @@ export default class Button extends PureComponent {
     )
   }
 }
+
+export default withTheme(Button)

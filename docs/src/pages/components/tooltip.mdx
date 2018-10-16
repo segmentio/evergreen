@@ -1,0 +1,76 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `Tooltip` component is used to describe icon buttons.
+In some cases tooltips are used to show more content, this should
+be used cautiously since it is [hard to be completely accessible](https://inclusive-components.design/tooltips-toggletips/).
+
+## Tooltip with IconButton
+
+Each `IconButton` should always be wrapped in a `Tooltip`.
+
+```jsx
+<Tooltip content="Edit title">
+  <IconButton icon="edit" />
+</Tooltip>
+```
+
+## Tooltip to show some content
+
+Use with caution, it’s [hard to be completely accessible](https://inclusive-components.design/tooltips-toggletips/).
+
+```jsx
+<Tooltip content="Learn more about a feature">
+  <Icon icon="info-sign" />
+</Tooltip>
+```
+
+## Tooltip with card appearance
+
+Use with caution, it’s [hard to be completely accessible](https://inclusive-components.design/tooltips-toggletips/).
+
+```jsx
+<Tooltip
+  content={
+    <Paragraph margin={40}>Card appearance</Paragraph>
+  }
+  appearance="card"
+>
+  <Icon icon="info-sign" />
+</Tooltip>
+```
+
+## Positioning the Tooltip
+
+The `Tooltip` can be positioned on the following positions using the `position` prop:
+
+* `Position.TOP`
+* `Position.TOP_LEFT`
+* `Position.TOP_RIGHT`
+* `Position.BOTTOM`
+* `Position.BOTTOM_LEFT`
+* `Position.BOTTOM_RIGHT`
+* `Position.LEFT`
+* `Position.RIGHT`
+
+For a `Tooltip` the only realy useful sides are `TOP`, `RIGHT`, `BOTTOM` and `LEFT` as shown below.
+
+```jsx
+<Pane display="flex" justifyContent="space-between">
+  <Tooltip content="Top" position={Position.TOP}>
+    <IconButton icon="arrow-up" />
+  </Tooltip>
+  <Tooltip content="Right" position={Position.RIGHT}>
+    <IconButton icon="arrow-right" />
+  </Tooltip>
+  <Tooltip content="Bottom" position={Position.BOTTOM}>
+    <IconButton icon="arrow-down" />
+  </Tooltip>
+  <Tooltip content="Left" position={Position.LEFT}>
+    <IconButton icon="arrow-left" />
+  </Tooltip>
+</Pane>
+```
+
+<PropsTable of="Tooltip" />

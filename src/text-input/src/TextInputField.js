@@ -30,13 +30,18 @@ export default class TextInputField extends PureComponent {
     isRequired: PropTypes.bool,
 
     /**
-     * A optional description of the field under the input element.
+     * A optional description of the field under the label, above the input element.
      */
     description: PropTypes.node,
 
     /**
+     * A optional hint under the input element.
+     */
+    hint: PropTypes.node,
+
+    /**
      * If a validation message is passed it is shown under the input element
-     * and above the description.
+     * and above the hint.
      */
     validationMessage: PropTypes.node,
 
@@ -56,19 +61,11 @@ export default class TextInputField extends PureComponent {
      * The input width should be as wide as the form field.
      */
     inputWidth: '100%',
-
-    /**
-     * Increase the height somewhat from 32 because we are dealing mainly
-     * with traditional long style forms.
-     */
-    inputHeight: 36
+    inputHeight: 32
   }
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      id: (props.id || idCounter++).toString()
-    }
+  state = {
+    id: (this.props.id || idCounter++).toString()
   }
 
   render() {
@@ -77,6 +74,7 @@ export default class TextInputField extends PureComponent {
       id: unusedId,
 
       // FormField props
+      hint,
       label,
       description,
       validationMessage,
@@ -95,7 +93,7 @@ export default class TextInputField extends PureComponent {
       ...props
     } = this.props
 
-    const { id } = this.state
+    const id = `TextInputField-${this.state.id}`
 
     /**
      * Split the wrapper props from the input props.
@@ -107,6 +105,7 @@ export default class TextInputField extends PureComponent {
         marginBottom={24}
         label={label}
         isRequired={required}
+        hint={hint}
         description={description}
         validationMessage={validationMessage}
         labelFor={id}

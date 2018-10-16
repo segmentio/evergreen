@@ -1,8 +1,0 @@
-<div>
-  <Button marginRight={12} appearance="default">Default</Button>
-  <Button marginRight={12} appearance="green">Green</Button>
-  <Button marginRight={12} appearance="blue">Blue</Button>
-  <Button marginRight={12} appearance="red">Red</Button>
-  <Button marginRight={12} appearance="ghost">Ghost</Button>
-  <Button marginRight={12} appearance="ghostBlue">Ghost Blue</Button>
-</div>

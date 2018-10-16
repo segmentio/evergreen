@@ -1,0 +1,160 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+Evergreen exports the following components to build tabbed navigation.
+
+* **Tab**: the base horizontal tab component.
+* **SidebarTab**: a vertical tab component used in sidebars.
+* **Tablist**: a accessibility helper component used when tabs toggle panels on the page.
+* **TabNavigation**: a accessibility helper component used when tabs are links.
+
+
+## Presentational examples
+
+```jsx
+<Tab>Default tab</Tab>
+```
+
+```jsx
+<Tab isSelected>Selected</Tab>
+```
+
+```jsx
+<Tab onSelect={() => alert('selected!')}>Select handler</Tab>
+```
+
+## Accessibility
+
+The `Tab` component should be wrapped in a `Tablist` or `TabNavigation` component
+to comply to [WAI-ARIA](http://accessibility.athena-ict.com/aria/examples/tabpanel2.shtml) accessibility standards.
+
+If you are not using a link (`a` tag) for your Tab,
+make sure to wrap in a `Tablist`, see examples below.
+
+
+```js
+<Component
+  initialState={{
+    selectedIndex: 0,
+    tabs: ['Traits', 'Event History', 'Identities']
+  }}
+>
+  {({ state, setState }) => (
+    <Pane height={120}>
+      <Tablist marginBottom={16} flexBasis={240} marginRight={24}>
+        {state.tabs.map((tab, index) => (
+          <Tab
+            key={tab}
+            id={tab}
+            onSelect={() => setState({ selectedIndex: index })}
+            isSelected={index === state.selectedIndex}
+            aria-controls={`panel-${tab}`}
+          >
+            {tab}
+          </Tab>
+        ))}
+      </Tablist>
+      <Pane padding={16} background="tint1" flex="1">
+        {state.tabs.map((tab, index) => (
+          <Pane
+            key={tab}
+            id={`panel-${tab}`}
+            role="tabpanel"
+            aria-labelledby={tab}
+            aria-hidden={index !== state.selectedIndex}
+            display={index === state.selectedIndex ? 'block' : 'none'}
+          >
+            <Paragraph>Panel {tab}</Paragraph>
+          </Pane>
+        ))}
+      </Pane>
+    </Pane>
+  )}
+</Component>
+```
+
+## Tab Link usage
+
+If you are using a link (`a` tag), make sure to wrap your tabs in a `TabNavigation` component.
+
+```jsx
+<TabNavigation>
+  {['Traits', 'Event History', 'Identities'].map((tab, index) => (
+    <Tab key={tab} is="a" href="#" id={tab} isSelected={index === 0}>
+      {tab}
+    </Tab>
+  ))}
+</TabNavigation>
+```
+
+
+<PropsTable of="Tab" />
+
+# Sidebar tabs
+
+```js
+<Component
+  initialState={{
+    selectedIndex: 0,
+    tabs: ['Traits', 'Event History', 'Identities']
+  }}
+>
+  {({ state, setState }) => (
+    <Pane display="flex" height={240}>
+      <Tablist marginBottom={16} flexBasis={240} marginRight={24}>
+        {state.tabs.map((tab, index) => (
+          <SidebarTab
+            key={tab}
+            id={tab}
+            onSelect={() => setState({ selectedIndex: index })}
+            isSelected={index === state.selectedIndex}
+            aria-controls={`panel-${tab}`}
+          >
+            {tab}
+          </SidebarTab>
+        ))}
+      </Tablist>
+      <Pane padding={16} background="tint1" flex="1">
+        {state.tabs.map((tab, index) => (
+          <Pane
+            key={tab}
+            id={`panel-${tab}`}
+            role="tabpanel"
+            aria-labelledby={tab}
+            aria-hidden={index !== state.selectedIndex}
+            display={index === state.selectedIndex ? 'block' : 'none'}
+          >
+            <Paragraph>Panel {tab}</Paragraph>
+          </Pane>
+        ))}
+      </Pane>
+    </Pane>
+  )}
+</Component>
+```
+
+## Sidebar tab Link usage
+
+If you are using a link (`a` tag), make sure to wrap your tabs in a `TabNavigation` component.
+
+```jsx
+<TabNavigation marginX={-4} marginBottom={16}>
+  {['Traits', 'Event History', 'Identities'].map((tab, index) => (
+    <SidebarTab
+      key={tab}
+      is="a"
+      href="#"
+      id={tab}
+      isSelected={index === 0}
+    >
+      {tab}
+    </SidebarTab>
+  ))}
+</TabNavigation>
+```
+
+<PropsTable of="SidebarTab" />
+
+<PropsTable of="TabNavigation" />
+<PropsTable of="Tablist" />

@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
-import { CheckboxAppearances } from '../../shared-styles'
+import { withTheme } from '../../theme'
 
 const CheckIcon = ({ fill = 'currentColor', ...props }) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...props}>
@@ -18,27 +18,105 @@ CheckIcon.propTypes = {
   fill: PropTypes.string
 }
 
-export default class Checkbox extends PureComponent {
+const MinusIcon = ({ fill = 'currentColor', ...props }) => (
+  <svg width={16} height={16} viewBox="0 0 16 16" {...props}>
+    <path
+      fill={fill}
+      fillRule="evenodd"
+      d="M11 7H5c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1z"
+    />
+  </svg>
+)
+
+MinusIcon.propTypes = {
+  fill: PropTypes.string
+}
+
+class Checkbox extends PureComponent {
   static propTypes = {
-    ...Box.propTypes,
+    /**
+     * Composes some Box APIs.
+     */
+    ...spacing.propTypes,
+    ...position.propTypes,
+    ...layout.propTypes,
+    ...dimensions.propTypes,
+
+    /**
+     * The id attribute of the checkbox.
+     */
     id: PropTypes.string,
+
+    /**
+     * The id attribute of the radio.
+     */
     name: PropTypes.string,
+
+    /**
+     * Label of the checkbox.
+     */
     label: PropTypes.node,
+
+    /**
+     * The value attribute of the radio.
+     */
     value: PropTypes.string,
+
+    /**
+     * The checked attribute of the radio.
+     */
     checked: PropTypes.bool,
+
+    /**
+     * State in addition to "checked" and "unchecked".
+     * When true, the radio displays a "minus" icon.
+     */
+    indeterminate: PropTypes.bool,
+
+    /**
+     * Function called when state changes.
+     */
     onChange: PropTypes.func,
+
+    /**
+     * When true, the radio is disabled.
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * When true, the aria-invalid attribute is true.
+     * Used for accessibility.
+     */
     isInvalid: PropTypes.bool,
-    appearance: PropTypes.oneOf(Object.keys(CheckboxAppearances))
+
+    /**
+     * The appearance of the checkbox.
+     * The default theme only comes with a default style.
+     */
+    appearance: PropTypes.string,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
-    appearance: 'default',
-    onChange: () => {}
+    checked: false,
+    indeterminate: false,
+    onChange: () => {},
+    appearance: 'default'
+  }
+
+  setIndeterminate = el => {
+    if (!el) return
+    el.indeterminate = this.props.indeterminate
   }
 
   render() {
     const {
+      theme,
+
       id,
       name,
       label,
@@ -48,29 +126,33 @@ export default class Checkbox extends PureComponent {
       checked,
       onChange,
       value,
+      indeterminate,
       ...props
     } = this.props
-    const appearanceStyle = CheckboxAppearances[appearance]
+
+    const themedClassName = theme.getCheckboxClassName(appearance)
 
     return (
       <Box
         is="label"
         cursor={disabled ? 'not-allowed' : 'pointer'}
+        position="relative"
         display="flex"
         marginY={16}
         {...props}
       >
         <Box
+          className={themedClassName}
           is="input"
           id={id}
           type="checkbox"
           name={name}
           value={value}
-          checked={checked}
+          checked={checked || indeterminate}
           onChange={onChange}
           disabled={disabled}
-          {...(isInvalid ? { 'aria-invalid': true } : {})}
-          css={appearanceStyle}
+          aria-invalid={isInvalid}
+          innerRef={this.setIndeterminate}
         />
         <Box
           boxSizing="border-box"
@@ -81,13 +163,13 @@ export default class Checkbox extends PureComponent {
           width={16}
           height={16}
         >
-          <CheckIcon />
+          {indeterminate ? <MinusIcon /> : <CheckIcon />}
         </Box>
         {label && (
           <Text
             marginLeft={8}
             size={300}
-            color={disabled ? 'extraMuted' : 'default'}
+            color={disabled ? 'muted' : 'default'}
           >
             {label}
           </Text>
@@ -96,3 +178,5 @@ export default class Checkbox extends PureComponent {
     )
   }
 }
+
+export default withTheme(Checkbox)

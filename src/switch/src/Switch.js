@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
-import SwitchAppearances from './styles/SwitchAppearances'
+import { withTheme } from '../../theme'
 
 const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
@@ -54,30 +54,89 @@ const isControlled = component => {
   return {}.hasOwnProperty.call(component.props, 'checked')
 }
 
-export default class Switch extends PureComponent {
+class Switch extends PureComponent {
   static propTypes = {
+    /**
+     * Composes some Box APIs.
+     */
+    ...spacing.propTypes,
     ...position.propTypes,
     ...layout.propTypes,
-    ...spacing.propTypes,
+
+    /**
+     * The id attribute of the radio.
+     */
     id: PropTypes.string,
+
+    /**
+     * The name attribute of the radio.
+     */
     name: PropTypes.string,
+
+    /**
+     * Label of the radio.
+     */
     label: PropTypes.node,
+
+    /**
+     * The value attribute of the radio.
+     */
     value: PropTypes.string,
+
+    /**
+     * The height of the switch.
+     */
     height: PropTypes.number,
+
+    /**
+     * When true, the switch is checked (on).
+     */
     checked: PropTypes.bool,
+
+    /**
+     * Function called when state changes.
+     */
     onChange: PropTypes.func,
+
+    /**
+     * When true, the switch is disabled.
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * When true, the switch is invalid.
+     */
     isInvalid: PropTypes.bool,
-    appearance: PropTypes.oneOf(Object.keys(SwitchAppearances)),
+
+    /**
+     * The appearance of the checkbox.
+     * The default theme only comes with a default style.
+     */
+    appearance: PropTypes.string.isRequired,
+
+    /**
+     * When true, the switch has a check icon.
+     */
     hasCheckIcon: PropTypes.bool,
-    defaultChecked: PropTypes.bool
+
+    /**
+     * When true, the switch is true by default.
+     * This is for uncontrolled usage.
+     */
+    defaultChecked: PropTypes.bool,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
     height: 16,
     onChange: () => {},
     appearance: 'default',
-    hasCheckIcon: true
+    hasCheckIcon: true,
+    disabled: false
   }
 
   constructor(props, context) {
@@ -91,15 +150,17 @@ export default class Switch extends PureComponent {
     if (isControlled(this)) {
       this.props.onChange(value)
     } else {
-      this.setState({
-        checked: !this.state.checked
-      })
+      this.setState(({ checked }) => ({
+        checked: !checked
+      }))
       this.props.onChange(value)
     }
   }
 
   render() {
     const {
+      theme,
+
       id,
       name,
       height,
@@ -111,13 +172,21 @@ export default class Switch extends PureComponent {
       defaultChecked,
       ...props
     } = this.props
+
     const checked = isControlled(this) ? checkedProps : this.state.checked
-    const appearanceStyle = SwitchAppearances[appearance]
+    const themedClassName = theme.getSwitchClassName(appearance)
 
     return (
-      <Box is="label" display="block" width={height * 2} {...props}>
+      <Box
+        is="label"
+        display="block"
+        width={height * 2}
+        position="relative"
+        {...props}
+      >
         <Box
           is="input"
+          className={themedClassName}
           id={id}
           name={name}
           type="checkbox"
@@ -125,7 +194,6 @@ export default class Switch extends PureComponent {
           disabled={disabled}
           defaultChecked={defaultChecked}
           onChange={this.handleChange}
-          css={appearanceStyle}
         />
         <Box onClick={this.handleClick} height={height} width={height * 2}>
           <Box
@@ -151,3 +219,5 @@ export default class Switch extends PureComponent {
     )
   }
 }
+
+export default withTheme(Switch)

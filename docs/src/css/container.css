@@ -2,22 +2,18 @@
   /* width: 620px; */
   margin-left: auto;
   margin-right: auto;
+  width: 1024px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
 
-  @media (--range-palm) {
-    padding: 0 5%;
-    margin-top: 24px;
-  }
-  @media (--range-hand) {
-    padding: 0 6%;
-    margin-top: 40px;
-  }
-  @media (--range-lap) {
-    padding: 0 8%;
-    max-width: 760px;
-    margin-top: 40px;
-  }
+.Container--narrow {
+  padding-left: 120px;
+  padding-right: 120px;
+}
 
-  @media (--range-desk) {
-    margin-top: 40px;
-  }
+.Container-nextToSidebar {
+  padding-left: 48px;
+  padding-right: 48px;
+  width: 840px;
 }

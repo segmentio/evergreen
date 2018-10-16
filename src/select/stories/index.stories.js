@@ -1,17 +1,17 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Select } from '../../select'
+import { Select } from '..'
 import { Text, Label } from '../../typography'
 
 const Description = props => (
-  <Text is="p" marginTop={0} size={300} color="extraMuted" {...props} />
+  <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 )
 
 const appearance = 'default'
 
 storiesOf('select', module).add('Select', () => (
-  <div>
+  <Box padding={48}>
     <Box marginBottom={24} width={360}>
       <Label htmlFor={32} size={400} display="block">
         Height 32 (default)
@@ -98,5 +98,5 @@ storiesOf('select', module).add('Select', () => (
         <option>Kiwi</option>
       </Select>
     </Box>
-  </div>
+  </Box>
 ))

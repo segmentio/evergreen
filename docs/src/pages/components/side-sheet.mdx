@@ -1,0 +1,242 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `SideSheet` component is a panel overlaying the screen on the right side.
+It is used to show more details about a certain object or person.
+A `SideSheet` is often triggered by clicking a row in a table.
+
+### Use cases
+
+* Showing a profile view of a user
+* Showing detailed information about a transaction (such as a sync or run)
+* Showing configuration settings that don‘t need to be accessible by a URL
+
+### When not to use a side sheet
+
+Side Sheets are a great way to cheat creating a new page.
+As a general rule of thumb, a `SideSheet` should not be used as a replacement
+of a new page when the page needs to be accessible by a URL.
+Avoid showing a `SideSheet` based on a URL.
+
+### Implementation details
+
+The `SideSheet` component does not have any opinion about the contents of the `SideSheet`.
+In the examples below are some recipes to make sure usage of the `SideSheet` is consistent.
+It is recommended to compose more opinionated Side Sheets in the consuming application.
+
+### Side sheets close on
+
+* Backdrop click
+* Close icon button click
+* Escape key
+* The close function being called
+
+### Focus management
+
+When opening the `SideSheet`, focus will be brought inside the `SideSheet` by looking for elements with `[autofocus]` first, `[tabindex]` second and `button` last.
+
+When closing the `SideSheet`, focus will be brought back to the element that was focused before opening the `SideSheet`.
+This is normally the button that triggered the `SideSheet`.
+
+## Basic example
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <React.Fragment>
+      <SideSheet
+        isShown={state.isShown}
+        onCloseComplete={() => setState({ isShown: false })}
+      >
+        <Paragraph margin={40}>Basic Example</Paragraph>
+      </SideSheet>
+      <Button onClick={() => setState({ isShown: true })}>
+        Show Basic Side Sheet
+      </Button>
+    </React.Fragment>
+  )}
+</Component>
+```
+
+## Change position
+
+The `SideSheet` component can appearn on all side of the screens.
+
+* `Position.TOP`
+* `Position.RIGHT`
+* `Position.BOTTOM`
+* `Position.LEFT`
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <React.Fragment>
+      <SideSheet
+        position={Position.TOP}
+        isShown={state.isShown}
+        onCloseComplete={() => setState({ isShown: false })}
+      >
+        <Paragraph margin={40}>Basic Example</Paragraph>
+      </SideSheet>
+      <Button onClick={() => setState({ isShown: true })}>
+        Show Basic Side Sheet
+      </Button>
+    </React.Fragment>
+  )}
+</Component>
+```
+
+## Full featured example
+
+Full featured example with a header with a title, subtitle and a tab bar.
+Content is a simple card.
+
+```js
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <React.Fragment>
+      <SideSheet
+        isShown={state.isShown}
+        onCloseComplete={() => setState({ isShown: false })}
+        containerProps={{
+          display: 'flex',
+          flex: '1',
+          flexDirection: 'column',
+        }}
+      >
+        <Pane zIndex={1} flexShrink={0} elevation={0} backgroundColor="white">
+          <Pane padding={16} borderBottom="muted">
+            <Heading size={600}>Title</Heading>
+            <Paragraph size={400} color="muted">
+              Optional description or sub title
+            </Paragraph>
+          </Pane>
+          <Pane display="flex" padding={8}>
+            <Tablist>
+               {['Traits', 'Event History', 'Identities'].map(
+                  (tab, index) => (
+                    <Tab
+                      key={tab}
+                      isSelected={state.selectedIndex === index}
+                      onSelect={() => setState({ selectedIndex: index })}
+                    >
+                      {tab}
+                    </Tab>
+                  )
+                )}
+              
+            </Tablist>
+          </Pane>
+        </Pane>
+        <Pane flex="1" overflowY="scroll" background="tint1" padding={16}>
+          <Card
+            backgroundColor="white"
+            elevation={0}
+            height={240}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Heading>Some content</Heading>
+          </Card>
+        </Pane>
+      </SideSheet>
+      <Button onClick={() => setState({ isShown: true })}>
+        Show Basic Side Sheet
+      </Button>
+    </React.Fragment>
+  )}
+</Component>
+```
+
+## Title only
+
+Example with a header with a title. Content is a simple card.
+
+```js
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <React.Fragment>
+      <SideSheet
+        isShown={state.isShown}
+        onCloseComplete={() => setState({ isShown: false })}
+        containerProps={{
+          display: 'flex',
+          flex: '1',
+          flexDirection: 'column',
+        }}
+      >
+        <Pane zIndex={1} flexShrink={0} elevation={0} backgroundColor="white">
+          <Pane padding={16}>
+            <Heading size={600}>Title</Heading>
+          </Pane>
+        </Pane>
+        <Pane flex="1" overflowY="scroll" background="tint1" padding={16}>
+          <Card
+            backgroundColor="white"
+            elevation={0}
+            height={240}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Heading>Some content</Heading>
+          </Card>
+        </Pane>
+      </SideSheet>
+      <Button onClick={() => setState({ isShown: true })}>
+        Show Basic Side Sheet
+      </Button>
+    </React.Fragment>
+  )}
+</Component>
+```
+
+## Title and subtitle
+
+Example with a header with a title and title. Content is a simple card.
+
+```js
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <React.Fragment>
+      <SideSheet
+        isShown={state.isShown}
+        onCloseComplete={() => setState({ isShown: false })}
+        containerProps={{
+          display: 'flex',
+          flex: '1',
+          flexDirection: 'column',
+        }}
+      >
+        <Pane zIndex={1} flexShrink={0} elevation={0} backgroundColor="white">
+          <Pane padding={16}>
+            <Heading size={600}>Title</Heading>
+            <Paragraph size={400}>
+              Optional description or sub title
+            </Paragraph>
+          </Pane>
+        </Pane>
+        <Pane flex="1" overflowY="scroll" background="tint1" padding={16}>
+          <Card
+            backgroundColor="white"
+            elevation={0}
+            height={240}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Heading>Some content</Heading>
+          </Card>
+        </Pane>
+      </SideSheet>
+      <Button onClick={() => setState({ isShown: true })}>
+        Show Basic Side Sheet
+      </Button>
+    </React.Fragment>
+  )}
+</Component>
+```
+
+<PropsTable of="SideSheet" />

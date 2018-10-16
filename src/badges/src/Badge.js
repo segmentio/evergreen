@@ -1,18 +1,25 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Strong } from '../../typography'
-import { FillAppearances } from '../../shared-styles'
+import { withTheme } from '../../theme'
 
-export default class Badge extends PureComponent {
+class Badge extends PureComponent {
   static propTypes = {
     ...Strong.propTypes,
-    appearance: PropTypes.oneOf(Object.keys(FillAppearances.default)).isRequired
+
+    /**
+     * The color used for the badge.
+     * When the value is `automatic`, use the hash function to determine the color.
+     */
+    color: PropTypes.string.isRequired,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
-  static defaultProps = {
-    appearance: 'neutral',
-    isSolid: false
-  }
+  static defaultProps = { color: 'neutral', isSolid: false }
 
   static styles = {
     display: 'inline-block',
@@ -29,11 +36,23 @@ export default class Badge extends PureComponent {
   }
 
   render() {
-    const { appearance, isSolid, ...props } = this.props
-    const opacity = isSolid ? 'solid' : 'default'
-    const appearanceStyle = FillAppearances[opacity][appearance]
+    const { theme, color: propsColor, isSolid, ...props } = this.props
+
+    const { color, backgroundColor } = theme.getBadgeProps({
+      isSolid,
+      color: propsColor
+    })
+
     return (
-      <Strong size={300} {...Badge.styles} {...appearanceStyle} {...props} />
+      <Strong
+        size={300}
+        {...Badge.styles}
+        color={color}
+        backgroundColor={backgroundColor}
+        {...props}
+      />
     )
   }
 }
+
+export default withTheme(Badge)

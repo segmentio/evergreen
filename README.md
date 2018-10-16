@@ -1,5 +1,6 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/segmentio/evergreen/master/evergreen-github-hero.png" alt="Evergreen, A Design System for the Web. Evergreen is a React UI Framework for building ambitious products on the web. Brought to you by Segment.">
+  <a href="https://evergreen.segment.com/">
+    <img src="https://raw.githubusercontent.com/segmentio/evergreen/master/evergreen-github-hero.png" alt="Evergreen, A Design System for the Web. Evergreen is a React UI Framework for building ambitious products on the web. Brought to you by Segment.">
 	<br>
   <br>
   <a href="https://circleci.com/gh/segmentio/evergreen/tree/master">
@@ -9,36 +10,22 @@
   <br>
 </div>
 
+- **Works out of the box.** Evergreen contains a set of polished React components that work out of the box.
 
-* **Evergreen v4 coming soon**
-  * Prerelease: `yarn add evergreen-ui@next`
-  * [View PR](https://github.com/segmentio/evergreen/pull/200)
-  * [View v4 Documentation (WIP)](http://evergreen-v4.surge.sh/components/)
-* React 16
-* [Documentation (WIP)](http://evergreen.surge.sh/)
-* [View Live Storybook](https://segmentio.github.io/evergreen/)
-* Presentational React components
-* Powerful component API with [ui-box](https://github.com/segmentio/ui-box)
-* Dedicated UI Development Environment with [React storybook](https://storybook.js.org/)
-* Easy adoption because of CSS-in-JS
-* Easy Server Side Rendering (SSR) and automatic hydration
-* Interested in Evergreen? [Come work for Segment!](https://segment.com/jobs/)
-* Brought to you by [Segment](https://segment.com/)
+- **Flexible & composable.** Evergreen components are build on top of a React UI Primitive for endless composability.
 
+- **Enterprise-grade.** Evergreen features a UI design language for enterprise-grade web applications.
 
-## Spend the day with us at [Synapse](https://synapse.segment.com/?sgmt_ref=evergreen)
-All Evergreen developers get in free. Register with `SEGMENTDIGSDEVS`.
+## Documentation & Community
 
-## Core values of 🌲 Evergreen
+- [Documentation](https://evergreen.segment.com/)
+- [Spectrum Chat](https://spectrum.chat/evergreen)
 
-**Evergreen is built on the belief that you can never predict all future requirements,
-only prepare for it.** Instead of creating fixed configurations that work today, Evergreen promotes building systems that anticipate new and changing design requirements.
+## Evergreen v3 to v4 Migration guide
 
-**Evergreen is built on the belief that things should work out of the box with smart defaults, but also offer full control when needed.** For example, Evergreen uses CSS-in-JS and builds on top of the Box component in [ui-box](https://github.com/segmentio/ui-box).
+Evergreen v3 to v4 [migration guide](https://github.com/segmentio/evergreen/pull/200)
 
-**Evergreen is built on the belief that using Evergreen and contributing to Evergreen should be a pleasant experience.** We prioritize documentation and all the tools for a solid developer experience. We advocate respect and inclusivity in our writings and interactions.
-
-## Install and use components 🔓
+## Install and use components
 
 🌲 Evergreen is made up of multiple components and tools which you can import one by one. All you need to do is install the `evergreen-ui` package:
 
@@ -61,35 +48,40 @@ ReactDOM.render(
 )
 ```
 
+## Core values of 🌲 Evergreen
+
+- **Evergreen is build on the belief that you can never predict all future requirements,
+  only prepare for it.** Instead of creating fixed configurations that work today, Evergreen promotes building systems that anticipate new and changing design requirements.
+
+- **Evergreen is build on the belief that things should work out of the box with smart defaults, but also offer full control when needed.** For example, Evergreen uses CSS-in-JS and builds on top of the Box component in [ui-box](https://github.com/segmentio/ui-box).
+
+- **Evergreen is build on the belief that using Evergreen and contributing to Evergreen should be a pleasant experience.** We prioritize documentation and all the tools for a solid developer experience. We advocate respect and inclusivity in our writings and interactions.
+
 ## FAQ
 
-### Does Evergreen support theming?
+### Theming support?
 
-Evergreen currently does not support theming.
+Evergreen v4 supports theming partially. It is still complex to theme Evergreen. We have done exploratory work to make theming more powerful and accessible. The progress is available in the `v4-create-theme` branch.
 
-### Is theming support on the roadmap?
+### How does Server Side Rendering (SSR) work?
 
-This project is originally build to support the development of product at Segment. This is also the reason theming is not our short term priority. It is on our longer term priority list and hopefully will be supported later in 2018. Expect a clearer roadmap available before that.
-
-[Learn more about the theming roadmap](https://github.com/segmentio/evergreen/issues/179)
-
-### How does Server Side Rendering work?
+Evergreen offers easy Server Side Rendering (SSR) and automatic hydration.
 
 Evergreen bundles 2 CSS-in-JS solutions, from glamor and ui-box. To make it super easy to do server side rendering and hydration, Evergreen exposes a `extractStyles()` function that will do SSR for both at once.
 
-* How to use it with Next.js in the [ssr-next example app](examples/ssr-next).
-* [How to use it with GatsbyJS](https://github.com/segmentio/evergreen/issues/154)
+- How to use it with Next.js in the [ssr-next example app](examples/ssr-next).
+- [How to use it with GatsbyJS](https://github.com/segmentio/evergreen/issues/154)
 
 ## Contributing to Evergreen
 
-### Step 1. Configuring your editor ⚙
+### ⚙ Step 1. Configuring your editor
 
 If you are using Atom, make sure to install the [`prettier-atom`](https://atom.io/packages/prettier-atom), [`linter`](https://github.com/AtomLinter/linter) and [`linter-xo`](https://github.com/sindresorhus/atom-linter-xo) packages.
 
 All the configuration for prettier and xo is in the `package.json`.
 You shouldn't have to configure things separately, please file a issue if there's a problem.
 
-### Step 2. Get storybook up and running 📖
+### 📖 Step 2. Get storybook up and running
 
 To actually start seeing the components you have to run React Storybook:
 
@@ -97,40 +89,24 @@ To actually start seeing the components you have to run React Storybook:
 $ yarn dev
 ```
 
-### Step 3. Learn more in the Contributing guide 🎓
-
-Please take a look at the [contributing guide](.github/CONTRIBUTING.md) and [roadmap](ROADMAP.md) to better understand what to work on.
-
-## Scripts explained 🤓
+## 🤓 Scripts explained
 
 Inside the `package.json` there are a bunch of scripts that this repo uses
 to run the project in development and to build the project.
 
 Below you can read a description of each script.
 
-### `yarn dev`
+- `yarn dev`: Starts the development React Storybook.
 
-Starts the development React Storybook.
+- `yarn test`: Lints the JavaScript files using XO and then runs the unit tests using AVA.
 
-### `yarn test`
+- `yarn build`: Builds all of the JavaScript files using Babel.
 
-Lints the JavaScript files using XO and then runs the unit tests using AVA.
+- `yarn clean`: removes all untracked files (`git clean -Xdf`).
 
-### `yarn build`
+- `yarn release`: Releases new version of Evergreen (requires `np` to be installed globally).
 
-Builds all of the JavaScript files using Babel.
-
-### `yarn clean`
-
-Removes all untracked files (`git clean -Xdf`).
-
-### `yarn release`
-
-Releases new version of Evergreen (requires `np` to be installed globally).
-
-### `yarn create-package`
-
-This command scaffolds a package with no specific boilerplate. It's useful for creating utilities.
+- `yarn create-package`: This command scaffolds a package with no specific boilerplate. It's useful for creating utilities.
 
 For the following command:
 
@@ -146,9 +122,8 @@ The following file tree will be generated:
 └── index.js
 ```
 
-### `yarn create-package:components`
+- `yarn create-package:components`: This command scaffolds a package with React component(s) boilerplate.
 
-This command scaffolds a package with React component(s) boilerplate.
 You can pass one or more components to this command.
 
 For the following command:
@@ -169,55 +144,33 @@ The following file tree will be generated:
 └── index.js
 ```
 
-## yarn run create-docs-template
+## 🎉 Contributors
 
-For the following command:
+We will add you to the list if you make any meaningful contribution!
 
-```
-$ yarn run create-docs-template layers Pane Card
-```
-
-The following file tree will be generated:
-
-```
-/src/layers/docs
-├── index.js
-└── /examples/
-    ├── Pane-basic.example
-    └── Card-basic.example
-```
-
-### Manual steps for docs
-
-This `yarn run create-docs-template` script is far from perfect and still requires manual steps. This includes:
-
-* Making sure to use the right examples and write some docs.
-* Configure `docs/utils/getComponent.js`
-* Configure `docs/components/ComponentsSidebar.js`
-
-## Contributors 🎉
-
-We will add you to the list if you make any contribution!
-
-* Jeroen Ransijn
-* Roland Warmerdam
+- Jeroen Ransijn
+- Roland Warmerdam
+- Ben McMahon
+- Matt Shwery
+- ... many other on the Segment team and open-source contributors
 
 This project is maintained by [Segment](https://segment.com/)
 
 Please take a look at the [contributing guide](.github/CONTRIBUTING.md) and [roadmap](ROADMAP.md) to better understand what to work on.
 
-## Respect earns Respect 👏
+## 👏 Respect earns Respect
 
 Please respect our [Code of Conduct](.github/CODE_OF_CONDUCT.md), in short:
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+- Using welcoming and inclusive language
+- Being respectful of differing viewpoints and experiences
+- Gracefully accepting constructive criticism
+- Focusing on what is best for the community
+- Showing empathy towards other community members
 
 ## License
 
 Evergreen is released under the MIT license.
+The BlueprintJS icons are licensed under a [custom Apache 2.0 license](https://github.com/palantir/blueprint/blob/develop/LICENSE).
 
 Copyright © 2017 Segment.io, Inc.

@@ -6,7 +6,7 @@ import {
   FormFieldDescription,
   FormFieldLabel,
   FormFieldValidationMessage
-} from '../../form-field'
+} from '..'
 
 storiesOf('form-field', module)
   .add('FormField', () => (

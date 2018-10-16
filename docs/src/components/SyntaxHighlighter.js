@@ -1,24 +1,35 @@
+/* eslint-disable react/jsx-key */
 import React from 'react'
 import PropTypes from 'prop-types'
-import SyntaxHighlighter, {
-  registerLanguage
-} from 'react-syntax-highlighter/prism-light'
-import jsx from 'react-syntax-highlighter/languages/prism/jsx'
-import prism from 'react-syntax-highlighter/styles/prism/prism'
+import Highlight, { defaultProps } from 'prism-react-renderer'
 
-registerLanguage('jsx', jsx)
-
-export default class SyntaxHighlighterComponent extends React.Component {
+export default class SyntaxHighlighter2 extends React.PureComponent {
   static propTypes = {
     children: PropTypes.string
   }
 
+  componentDidCatch() {}
+
   render() {
-    const { children, ...props } = this.props
     return (
-      <SyntaxHighlighter language="javascript" style={prism} {...props}>
-        {children}
-      </SyntaxHighlighter>
+      <Highlight
+        {...defaultProps}
+        code={this.props.children.trim()}
+        language="jsx"
+        theme={undefined}
+      >
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <pre className={className} style={style}>
+            {tokens.map((line, i) => (
+              <div {...getLineProps({ line, key: i })}>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
     )
   }
 }

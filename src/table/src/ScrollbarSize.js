@@ -19,6 +19,15 @@ export default class ScrollbarSize extends PureComponent {
     outerWidth: null
   }
 
+  componentDidMount() {
+    const innerWidth = this.innerRef.getBoundingClientRect().width
+    const outerWidth = this.outerRef.getBoundingClientRect().width
+    this.setState({
+      innerWidth,
+      outerWidth
+    })
+  }
+
   componentWillUpdate(nextProps, nextState) {
     if (nextState.innerWidth && nextState.outerWidth) {
       this.props.handleScrollbarSize(
@@ -27,26 +36,18 @@ export default class ScrollbarSize extends PureComponent {
     }
   }
 
-  handleRef = ref => {
-    if (ref === null) return
-    const outerWidth = ref.getBoundingClientRect().width
-    this.setState({
-      outerWidth
-    })
+  handleOuterRef = ref => {
+    this.outerRef = ref
   }
 
   handleInnerRef = ref => {
-    if (ref === null) return
-    const innerWidth = ref.getBoundingClientRect().width
-    this.setState({
-      innerWidth
-    })
+    this.innerRef = ref
   }
 
   render() {
     return (
       <div
-        ref={this.handleRef}
+        ref={this.handleOuterRef}
         aria-hidden
         style={{
           position: 'fixed',

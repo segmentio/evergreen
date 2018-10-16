@@ -55,6 +55,12 @@ export default class CornerDialog extends PureComponent {
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 
     /**
+     * The intent of the CornerDialog. Used for the button.
+     */
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
+      .isRequired,
+
+    /**
      * When true, the dialog is shown.
      */
     isShown: PropTypes.bool,
@@ -124,6 +130,7 @@ export default class CornerDialog extends PureComponent {
 
   static defaultProps = {
     width: 392,
+    intent: 'none',
     hasFooter: true,
     confirmLabel: 'Learn More',
     hasCancel: true,
@@ -154,6 +161,10 @@ export default class CornerDialog extends PureComponent {
     this.props.onCloseComplete()
   }
 
+  handleCancel = () => {
+    this.props.onCancel(this.handleClose)
+  }
+
   handleClose = () => {
     this.setState({ exiting: true })
   }
@@ -166,7 +177,8 @@ export default class CornerDialog extends PureComponent {
     const { children } = this.props
     if (typeof children === 'function') {
       return children({ close: this.handleClose })
-    } else if (typeof children === 'string') {
+    }
+    if (typeof children === 'string') {
       return (
         <Paragraph size={400} color="muted">
           {children}
@@ -180,6 +192,7 @@ export default class CornerDialog extends PureComponent {
     const {
       title,
       width,
+      intent,
       isShown,
       hasFooter,
       hasCancel,
@@ -223,8 +236,8 @@ export default class CornerDialog extends PureComponent {
                 </Heading>
                 <IconButton
                   height={32}
-                  icon="close"
-                  appearance="ghost"
+                  icon="cross"
+                  appearance="minimal"
                   onClick={this.handleClose}
                 />
               </Pane>
@@ -241,14 +254,15 @@ export default class CornerDialog extends PureComponent {
                   flexDirection="row-reverse"
                 >
                   <Button
-                    appearance="green"
+                    appearance="primary"
+                    intent={intent}
                     marginLeft={8}
                     onClick={this.handleConfirm}
                   >
                     {confirmLabel}
                   </Button>
                   {hasCancel && (
-                    <Button onClick={this.handleClose}>{cancelLabel}</Button>
+                    <Button onClick={this.handleCancel}>{cancelLabel}</Button>
                   )}
                 </Pane>
               )}

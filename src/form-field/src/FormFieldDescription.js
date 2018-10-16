@@ -10,8 +10,6 @@ export default class FormFieldDescription extends PureComponent {
   }
 
   render() {
-    return (
-      <Paragraph marginTop={0} size={300} color="extraMuted" {...this.props} />
-    )
+    return <Paragraph marginTop={0} size={400} color="muted" {...this.props} />
   }
 }

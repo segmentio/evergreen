@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
-import { SearchIcon } from '../../icons'
-import { colors } from '../../colors'
+import { Icon } from '../../icon'
 import TableHeaderCell from './TableHeaderCell'
 
 const invisibleInput = {
@@ -16,7 +15,7 @@ const invisibleInput = {
   },
 
   '&::placeholder': {
-    color: colors.neutral['100A']
+    color: `rgba(67, 90, 111, 0.7)`
   }
 }
 
@@ -72,7 +71,13 @@ export default class SearchTableHeaderCell extends PureComponent {
 
     return (
       <TableHeaderCell {...props}>
-        <SearchIcon marginLeft={-8} marginTop={-0.5} iconSize={12} />
+        <Icon
+          icon="search"
+          color="muted"
+          marginLeft={2}
+          marginRight={10}
+          size={12}
+        />
         <Text
           is="input"
           size={300}

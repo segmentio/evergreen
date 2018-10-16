@@ -4,6 +4,7 @@ import Box, { dimensions, spacing, position, layout } from 'ui-box'
 import FormFieldLabel from './FormFieldLabel'
 import FormFieldDescription from './FormFieldDescription'
 import FormFieldValidationMessage from './FormFieldValidationMessage'
+import FormFieldHint from './FormFieldHint'
 
 export default class FormField extends PureComponent {
   static propTypes = {
@@ -23,13 +24,18 @@ export default class FormField extends PureComponent {
     isRequired: PropTypes.bool,
 
     /**
-     * A optional description of the field under the input element.
+     * A optional description of the field under the label, above the input element.
      */
     description: PropTypes.node,
 
     /**
+     * A optional hint under the input element.
+     */
+    hint: PropTypes.node,
+
+    /**
      * If a validation message is passed it is shown under the input element
-     * and above the description.
+     * and above the hint.
      */
     validationMessage: PropTypes.node,
 
@@ -62,6 +68,7 @@ export default class FormField extends PureComponent {
 
   render() {
     const {
+      hint,
       label,
       labelFor,
       children,
@@ -77,21 +84,30 @@ export default class FormField extends PureComponent {
         <FormFieldLabel
           htmlFor={labelFor}
           isAstrixShown={isRequired}
-          marginBottom={4}
+          marginBottom={description ? 0 : 4}
           {...labelProps}
         >
           {label}
         </FormFieldLabel>
-        {children}
-        {validationMessage && (
-          <FormFieldValidationMessage>
-            {validationMessage}
-          </FormFieldValidationMessage>
-        )}
-        {description && (
-          <FormFieldDescription marginTop={6}>
+        {typeof description === 'string' ? (
+          <FormFieldDescription marginBottom={4}>
             {description}
           </FormFieldDescription>
+        ) : (
+          description
+        )}
+        {children}
+        {typeof validationMessage === 'string' ? (
+          <FormFieldValidationMessage marginTop={8}>
+            {validationMessage}
+          </FormFieldValidationMessage>
+        ) : (
+          validationMessage
+        )}
+        {typeof hint === 'string' ? (
+          <FormFieldHint marginTop={6}>{hint}</FormFieldHint>
+        ) : (
+          hint
         )}
       </Box>
     )

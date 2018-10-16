@@ -1,0 +1,76 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `CornerDialog` component is used for announcements such as new features and feedback requests.
+Preferably the content of the `CornerDialog` should only contain one small paragraph.
+
+Good examples of call to actions for Corner Dialog are: **Learn More**, **Got It** and **Get in Touch**.
+
+## Multiple corner dialogs
+
+Be aware that only one `CornerDialog` can be shown at a single time.
+Multiple corner dialogs will stack on top of each other.
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <React.Fragment>
+      <CornerDialog
+        title="Welcome to this new feature"
+        isShown={state.isShown}
+        onCloseComplete={() => setState({ isShown: false })}
+      >
+        The cornder dialog component is used for new feature announcements
+        and feedback requests from the user.
+      </CornerDialog>
+      <Button onClick={() => setState({ isShown: true })}>
+        Show “Learn More” Corner Dialog
+      </Button>
+    </React.Fragment>
+  )}
+</Component>
+```
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <React.Fragment>
+      <CornerDialog
+        title="We’d love to hear from you!"
+        isShown={state.isShown}
+        onCloseComplete={() => setState({ isShown: false })}
+      >
+        Help shape Segment’s data governance product roadmap. If you’re
+        willing to provide feedback, let’s chat.
+      </CornerDialog>
+      <Button onClick={() => setState({ isShown: true })}>
+        Show “Get in Touch” Corner Dialog
+      </Button>
+    </React.Fragment>
+  )}
+</Component>
+```
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <React.Fragment>
+      <CornerDialog
+        title="GDPR agreement available"
+        isShown={state.isShown}
+        onCloseComplete={() => setState({ isShown: false })}
+      >
+        Segment now offers a Data Processing Agreement and EU&nbsp;Model
+        Contract Clauses as a means of meeting the adequacy and security
+        requirements of the GDPR.
+      </CornerDialog>
+      <Button onClick={() => setState({ isShown: true })}>
+        Show “GDPR” Corner Dialog
+      </Button>
+    </React.Fragment>
+  )}
+</Component>
+```
+
+<PropsTable of="CornerDialog" />

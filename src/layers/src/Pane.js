@@ -1,20 +1,14 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import ElevationStyles from './styles/elevation-styles'
-import BorderColors from './styles/border-colors'
-import LayerAppearances from './styles/layer-appearances'
-
-const ElevationPropType = PropTypes.oneOf(
-  ElevationStyles.map((_, index) => index)
-)
+import { withTheme } from '../../theme'
 
 const StringAndBoolPropType = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.bool
 ])
 
-export default class Pane extends PureComponent {
+class Pane extends PureComponent {
   static propTypes = {
     /**
      * Composes the Box component as the base.
@@ -22,32 +16,32 @@ export default class Pane extends PureComponent {
     ...Box.propTypes,
 
     /**
-     * The appearance of the Pane.
-     * Values: tint1, tint2, tint3, selected, dark.
+     * Background property.
+     * `tint1`, `tint2` etc. from `theme.colors.background` are available.
      */
-    appearance: PropTypes.oneOf(Object.keys(LayerAppearances)),
+    background: PropTypes.string,
 
     /**
      * Elevation of the Pane.
      * Values: 0, 1, 2, 3, 4.
      */
-    elevation: ElevationPropType,
+    elevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
 
     /**
      * Elevation of the Pane on hover. Might get deprecated.
      * Values: 0, 1, 2, 3, 4.
      */
-    hoverElevation: ElevationPropType,
+    hoverElevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
 
     /**
      * Elevation of the Pane on click. Might get deprecated.
      * Values: 0, 1, 2, 3, 4.
      */
-    activeElevation: ElevationPropType,
+    activeElevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
 
     /**
      * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
+     * Values: true, muted, default.
      */
     border: StringAndBoolPropType,
 
@@ -73,12 +67,74 @@ export default class Pane extends PureComponent {
      * Can be a explicit border value or a boolean.
      * Values: true, extraMuted, muted, default.
      */
-    borderLeft: StringAndBoolPropType
+    borderLeft: StringAndBoolPropType,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
+  }
+
+  getHoverElevationStyle = (hoverElevation, css) => {
+    const { theme } = this.props
+    if (!Number.isInteger(hoverElevation)) return {}
+
+    return {
+      transitionDuration: '150ms',
+      transitionProperty: 'box-shadow, transform',
+      transitionTimingFunction: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
+      ':hover': {
+        ...(css[':hover'] || {}),
+        transform: 'translateY(-2px)',
+        boxShadow: theme.getElevation(hoverElevation)
+      }
+    }
+  }
+
+  getActiveElevationStyle = (activeElevation, css) => {
+    const { theme } = this.props
+    if (!Number.isInteger(activeElevation)) return {}
+
+    return {
+      ':active': {
+        ...(css[':active'] || {}),
+        transform: 'translateY(-1px)',
+        boxShadow: theme.getElevation(activeElevation)
+      }
+    }
+  }
+
+  getBorderSideProperty = ({ borderSideProperty, border }) => {
+    const { theme } = this.props
+    if (
+      Object.prototype.hasOwnProperty.call(
+        theme.colors.border,
+        borderSideProperty
+      )
+    ) {
+      return `1px solid ${theme.colors.border[borderSideProperty]}`
+    }
+    if (borderSideProperty === true) {
+      return `1px solid ${theme.colors.border.default}`
+    }
+    if (borderSideProperty === false) {
+      return null
+    }
+    if (Object.prototype.hasOwnProperty.call(theme.colors.border, border)) {
+      return `1px solid ${theme.colors.border[border]}`
+    }
+    if (border === true) {
+      return `1px solid ${theme.colors.border.default}`
+    }
+
+    return borderSideProperty
   }
 
   render() {
     const {
-      appearance,
+      theme,
+
+      background,
 
       elevation,
       hoverElevation,
@@ -94,62 +150,21 @@ export default class Pane extends PureComponent {
       ...props
     } = this.props
 
-    let appearanceStyle = {}
-    if (Object.prototype.hasOwnProperty.call(LayerAppearances, appearance)) {
-      appearanceStyle = LayerAppearances[appearance]
-    }
-
-    let elevationStyle
-    if (Number.isInteger(elevation)) {
-      elevationStyle = ElevationStyles[elevation]
-    }
-
-    let hoverElevationStyle = {}
-    if (Number.isInteger(hoverElevation)) {
-      hoverElevationStyle = {
-        transitionDuration: '150ms',
-        transitionProperty: 'box-shadow, transform',
-        transitionTimingFunction: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-        ':hover': {
-          ...(css[':hover'] || {}),
-          transform: 'translateY(-2px)',
-          boxShadow: ElevationStyles[hoverElevation]
-        }
-      }
-    }
-
-    let activeElevationStyle = {}
-    if (Number.isInteger(activeElevation)) {
-      activeElevationStyle = {
-        ':active': {
-          ...(css[':active'] || {}),
-          transform: 'translateY(-1px)',
-          boxShadow: ElevationStyles[activeElevation]
-        }
-      }
-    }
+    const elevationStyle = theme.getElevation(elevation)
+    const hoverElevationStyle = this.getHoverElevationStyle(hoverElevation, css)
+    const activeElevationStyle = this.getActiveElevationStyle(
+      activeElevation,
+      css
+    )
 
     const [_borderTop, _borderRight, _borderBottom, _borderLeft] = [
       borderTop,
       borderRight,
       borderBottom,
       borderLeft
-    ].map(borderSideProperty => {
-      if (
-        Object.prototype.hasOwnProperty.call(BorderColors, borderSideProperty)
-      ) {
-        return `1px solid ${BorderColors[borderSideProperty]}`
-      } else if (borderSideProperty === true) {
-        // Use default, which is now muted, border color when explicitly a true boolean
-        return `1px solid ${BorderColors.muted}`
-      } else if (Object.prototype.hasOwnProperty.call(BorderColors, border)) {
-        return `1px solid ${BorderColors[border]}`
-      } else if (border === true) {
-        return `1px solid ${BorderColors.muted}`
-      }
-
-      return borderSideProperty
-    })
+    ].map(borderSideProperty =>
+      this.getBorderSideProperty({ borderSideProperty, border })
+    )
 
     return (
       <Box
@@ -158,7 +173,7 @@ export default class Pane extends PureComponent {
         borderBottom={_borderBottom}
         borderLeft={_borderLeft}
         boxShadow={elevationStyle}
-        {...appearanceStyle}
+        background={theme.getBackground(background)}
         css={{
           ...css,
           ...hoverElevationStyle,
@@ -169,3 +184,5 @@ export default class Pane extends PureComponent {
     )
   }
 }
+
+export default withTheme(Pane)

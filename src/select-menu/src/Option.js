@@ -1,21 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
+import { Icon } from '../../icon'
 import { TableRow, TextTableCell } from '../../table'
-
-const CheckIcon = ({ fill = 'currentColor', ...props }) => (
-  <svg width={10} height={7} viewBox="0 0 10 7" {...props}>
-    <path
-      fill={fill}
-      fillRule="evenodd"
-      d="M4 4.586L1.707 2.293A1 1 0 1 0 .293 3.707l3 3a.997.997 0 0 0 1.414 0l5-5A1 1 0 1 0 8.293.293L4 4.586z"
-    />
-  </svg>
-)
-
-CheckIcon.propTypes = {
-  fill: PropTypes.string
-}
 
 export default class Option extends PureComponent {
   static propTypes = {
@@ -25,7 +12,8 @@ export default class Option extends PureComponent {
     onSelect: PropTypes.func,
     onDeselect: PropTypes.func,
     isHighlighted: PropTypes.bool,
-    isSelected: PropTypes.bool
+    isSelected: PropTypes.bool,
+    isSelectable: PropTypes.bool
   }
 
   render() {
@@ -35,6 +23,7 @@ export default class Option extends PureComponent {
       onDeselect,
       isHighlighted,
       isSelected,
+      isSelectable,
       style,
       height,
       ...props
@@ -42,7 +31,7 @@ export default class Option extends PureComponent {
 
     return (
       <TableRow
-        isSelectable
+        isSelectable={isSelectable}
         isHighlighted={isHighlighted}
         onSelect={onSelect}
         onDeselect={onDeselect}
@@ -50,26 +39,22 @@ export default class Option extends PureComponent {
         style={style}
         display="flex"
         alignItems="center"
+        borderBottom={false}
         {...props}
       >
         <Pane
-          paddingLeft={11}
+          paddingLeft={12}
           paddingRight={8}
-          marginTop={-5}
           opacity={isSelected ? 1 : 0}
           flexGrow={0}
+          paddingTop={4}
         >
-          <CheckIcon />
+          <Icon color="selected" icon="tick" size={14} />
         </Pane>
         <TextTableCell
           height={height}
-          textProps={
-            isSelected
-              ? {
-                  color: 'inherit'
-                }
-              : {}
-          }
+          borderBottom="muted"
+          textProps={isSelected ? { color: 'selected' } : {}}
           paddingLeft={0}
           borderRight={null}
           flex={1}
