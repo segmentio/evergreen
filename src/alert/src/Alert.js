@@ -121,7 +121,6 @@ class Alert extends PureComponent {
             marginLeft={2}
             height={14}
             display="block"
-            marginTop={2}
           >
             {this.getIconForIntent(intent)}
           </Pane>
