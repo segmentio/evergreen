@@ -1,9 +1,9 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import toaster from '../src/'
-import { Button } from '../../buttons/'
-import { Heading, Paragraph, Ul, Li } from '../../typography/'
+import toaster from '../src'
+import { Button } from '../../buttons'
+import { Heading, Paragraph, Ul, Li } from '../../typography'
 
 const loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 eiusmod tempor incididunt ut labore et dolore magna aliqua.`
@@ -18,7 +18,6 @@ storiesOf('toaster', module).add('examples', () => (
         <Li>success</Li>
         <Li>warning</Li>
         <Li>danger</Li>
-        <Li>info</Li>
         <Li>
           closeAll — useful for page transitions when you want to close all
           toasts.
@@ -109,27 +108,6 @@ storiesOf('toaster', module).add('examples', () => (
           }
         >
           Danger with Text
-        </Button>
-      </Box>
-      <Box marginBottom={12}>
-        <Button
-          marginRight={8}
-          onClick={() =>
-            toaster.info('There are over 180 integrations available.')
-          }
-        >
-          Info
-        </Button>
-
-        <Button
-          marginRight={8}
-          onClick={() =>
-            toaster.info('There are over 180 integrations available.', {
-              description: loremIpsum
-            })
-          }
-        >
-          Info with Text
         </Button>
       </Box>
     </Box>

@@ -1,44 +1,33 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import { Button } from '../../../src'
+import Helmet from 'react-helmet'
 import TopBar from '../components/TopBar'
+import Layout from '../components/Layout'
+import PageFooter from '../components/PageFooter'
+import Features from '../components/Features'
+import HomeHero from '../components/HomeHero'
+import HomeMedia from '../components/HomeMedia'
 
-const NativeLink = ({ ...props }) => {
-  return <a target="_blank" rel="noopener noreferrer" {...props} />
-}
+export default class Root extends React.Component {
+  componentDidCatch(error, errorInfo) {
+    console.error(error, errorInfo)
+  }
 
-export default () => {
-  return (
-    <div className="MainLayout">
-      <TopBar />
-      <main className="MainLayout-main">
-        <div className="MainLayout-content">
-          <section className="Home">
-            <div className="Home-inner">
-              <h1>
-                Evergreen is a pragmatic UI kit<br /> for building
-                evolving&nbsp;products on&nbsp;the&nbsp;web.
-              </h1>
-              <p>
-                It is build and maintained open&#8209;source&nbsp;by&nbsp;
-                <NativeLink className="Link" href="https://segment.com/">
-                  Segment
-                </NativeLink>.
-              </p>
-              <div>
-                <Button
-                  is={Link}
-                  to="/get-started/introduction"
-                  appearance="green"
-                  height={40}
-                >
-                  Get Started
-                </Button>
-              </div>
-            </div>
-          </section>
+  render() {
+    return (
+      <Layout>
+        <Helmet>
+          <title>Evergreen</title>
+        </Helmet>
+        <div>
+          <TopBar />
+          <main>
+            <HomeHero />
+            <Features />
+            <HomeMedia />
+          </main>
         </div>
-      </main>
-    </div>
-  )
+        <PageFooter />
+      </Layout>
+    )
+  }
 }

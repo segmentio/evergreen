@@ -1,7 +1,8 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Badge, Pill, BadgeAppearances } from '../../badges'
+import { Badge, Pill } from '..'
+import { ThemeConsumer } from '../../theme'
 
 const wrapperStyles = {
   display: 'flex'
@@ -14,30 +15,38 @@ const baseStyles = {
 
 storiesOf('badges', module)
   .add('Badge', () => (
-    <Box style={{ ...wrapperStyles }}>
-      {Object.keys(BadgeAppearances.default).map(appearance => (
-        <Box key={appearance}>
-          <Badge appearance={appearance} {...baseStyles}>
-            {appearance}
-          </Badge>
-          <Badge appearance={appearance} {...baseStyles} isSolid>
-            {appearance}
-          </Badge>
+    <ThemeConsumer>
+      {theme => (
+        <Box style={{ ...wrapperStyles }}>
+          {theme.badgeColors.map(color => (
+            <Box key={color}>
+              <Badge color={color} {...baseStyles}>
+                {color}
+              </Badge>
+              <Badge color={color} {...baseStyles} isSolid>
+                {color}
+              </Badge>
+            </Box>
+          ))}
         </Box>
-      ))}
-    </Box>
+      )}
+    </ThemeConsumer>
   ))
   .add('Pill', () => (
-    <Box style={{ ...wrapperStyles }}>
-      {Object.keys(BadgeAppearances.default).map(appearance => (
-        <Box key={appearance}>
-          <Pill appearance={appearance} {...baseStyles}>
-            {appearance}
-          </Pill>
-          <Pill appearance={appearance} {...baseStyles} isSolid>
-            {appearance}
-          </Pill>
+    <ThemeConsumer>
+      {theme => (
+        <Box style={{ ...wrapperStyles }}>
+          {theme.badgeColors.map(color => (
+            <Box key={color}>
+              <Pill color={color} {...baseStyles}>
+                {color}
+              </Pill>
+              <Pill color={color} {...baseStyles} isSolid>
+                {color}
+              </Pill>
+            </Box>
+          ))}
         </Box>
-      ))}
-    </Box>
+      )}
+    </ThemeConsumer>
   ))

@@ -2,8 +2,9 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import { Portal } from '../../portal'
+import { Stack } from '../../stack'
+import { StackingOrder, Position } from '../../constants'
 import getPosition from './getPosition'
-import Position from './Position'
 
 const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
@@ -39,7 +40,16 @@ export default class Positioner extends PureComponent {
      * The position the element that is being positioned is on.
      * Smart positioning might override this.
      */
-    position: PropTypes.oneOf(Object.keys(Position)).isRequired,
+    position: PropTypes.oneOf([
+      Position.TOP,
+      Position.TOP_LEFT,
+      Position.TOP_RIGHT,
+      Position.BOTTOM,
+      Position.BOTTOM_LEFT,
+      Position.BOTTOM_RIGHT,
+      Position.LEFT,
+      Position.RIGHT
+    ]).isRequired,
 
     /**
      * When true, show the element being positioned.
@@ -73,11 +83,6 @@ export default class Positioner extends PureComponent {
     target: PropTypes.func.isRequired,
 
     /**
-     * The z-index of the element being positioned.
-     */
-    zIndex: PropTypes.number.isRequired,
-
-    /**
      * Initial scale of the element being positioned.
      */
     initialScale: PropTypes.number.isRequired,
@@ -100,7 +105,6 @@ export default class Positioner extends PureComponent {
 
   static defaultProps = {
     position: Position.BOTTOM,
-    zIndex: 40,
     bodyOffset: 6,
     targetOffset: 6,
     initialScale: 0.9,
@@ -113,6 +117,12 @@ export default class Positioner extends PureComponent {
   constructor(props, context) {
     super(props, context)
     this.state = initialState()
+  }
+
+  componentWillUnmount() {
+    if (this.latestAnimationFrame) {
+      cancelAnimationFrame(this.latestAnimationFrame)
+    }
   }
 
   getTargetRef = ref => {
@@ -128,23 +138,44 @@ export default class Positioner extends PureComponent {
     this.update()
   }
 
-  getTargetRect = () => this.targetRef.getBoundingClientRect()
-
-  update = () => {
+  update = (prevHeight = 0, prevWidth = 0) => {
     if (!this.props.isShown || !this.targetRef || !this.positionerRef) return
 
-    const targetRect = this.getTargetRect()
+    const targetRect = this.targetRef.getBoundingClientRect()
+    const hasEntered =
+      this.positionerRef.getAttribute('data-state') === 'entered'
+
     const viewportHeight =
       document.documentElement.clientHeight + window.scrollY
     const viewportWidth = document.documentElement.clientWidth + window.scrollX
+
+    let height
+    let width
+    if (hasEntered) {
+      // Only when the animation is done should we opt-in to `getBoundingClientRect`
+      const positionerRect = this.positionerRef.getBoundingClientRect()
+
+      // https://github.com/segmentio/evergreen/issues/255
+      // We need to ceil the width and height to prevent jitter when
+      // the window is zoomed (when `window.devicePixelRatio` is not an integer)
+      height = Math.round(positionerRect.height)
+      width = Math.round(positionerRect.width)
+    } else {
+      // When the animation is in flight use `offsetWidth/Height` which
+      // does not calculate the `transform` property as part of its result.
+      // There is still change on jitter during the animation (although unoticable)
+      // When the browser is zoomed in — we fix this with `Math.max`.
+      height = Math.max(this.positionerRef.offsetHeight, prevHeight)
+      width = Math.max(this.positionerRef.offsetWidth, prevWidth)
+    }
 
     const { rect, transformOrigin } = getPosition({
       position: this.props.position,
       targetRect,
       targetOffset: this.props.targetOffset,
       dimensions: {
-        height: this.positionerRef.offsetHeight,
-        width: this.positionerRef.offsetWidth
+        height,
+        width
       },
       viewport: {
         width: viewportWidth,
@@ -160,8 +191,8 @@ export default class Positioner extends PureComponent {
         transformOrigin
       },
       () => {
-        window.requestAnimationFrame(() => {
-          this.update()
+        this.latestAnimationFrame = requestAnimationFrame(() => {
+          this.update(height, width)
         })
       }
     )
@@ -182,7 +213,6 @@ export default class Positioner extends PureComponent {
 
   render() {
     const {
-      zIndex,
       target,
       isShown,
       children,
@@ -194,37 +224,48 @@ export default class Positioner extends PureComponent {
     const { left, top, transformOrigin } = this.state
 
     return (
-      <React.Fragment>
-        {target({ getRef: this.getTargetRef, isShown })}
-        <Portal>
-          <Transition
-            in={isShown}
-            timeout={animationDuration}
-            onEnter={this.handleEnter}
-            onEntered={this.props.onOpenComplete}
-            onExited={this.handleExited}
-            unmountOnExit
-          >
-            {state =>
-              children({
-                top,
-                left,
-                state,
-                zIndex,
-                css: getCSS({ targetOffset, initialScale, animationDuration }),
-                style: {
-                  transformOrigin,
-                  left,
-                  top,
-                  zIndex
-                },
-                getRef: this.getRef,
-                animationDuration
-              })
-            }
-          </Transition>
-        </Portal>
-      </React.Fragment>
+      <Stack value={StackingOrder.POSITIONER}>
+        {zIndex => {
+          return (
+            <React.Fragment>
+              {target({ getRef: this.getTargetRef, isShown })}
+
+              <Transition
+                in={isShown}
+                timeout={animationDuration}
+                onEnter={this.handleEnter}
+                onEntered={this.props.onOpenComplete}
+                onExited={this.handleExited}
+                unmountOnExit
+              >
+                {state => (
+                  <Portal>
+                    {children({
+                      top,
+                      left,
+                      state,
+                      zIndex,
+                      css: getCSS({
+                        targetOffset,
+                        initialScale,
+                        animationDuration
+                      }),
+                      style: {
+                        transformOrigin,
+                        left,
+                        top,
+                        zIndex
+                      },
+                      getRef: this.getRef,
+                      animationDuration
+                    })}
+                  </Portal>
+                )}
+              </Transition>
+            </React.Fragment>
+          )
+        }}
+      </Stack>
     )
   }
 }

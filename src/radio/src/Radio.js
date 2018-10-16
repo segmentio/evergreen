@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
-import { CheckboxAppearances } from '../../shared-styles'
+import { withTheme } from '../../theme'
 
 const CircleIcon = ({ size, fill = 'currentColor', ...props }) => (
   <svg width={size} height={size} viewBox="0 0 10 10" {...props}>
@@ -15,7 +15,7 @@ CircleIcon.propTypes = {
   size: PropTypes.number
 }
 
-export default class Radio extends PureComponent {
+class Radio extends PureComponent {
   static propTypes = {
     /**
      * Composes some Box APIs.
@@ -46,7 +46,11 @@ export default class Radio extends PureComponent {
     value: PropTypes.string,
 
     /**
-     * Function called when state changes.
+     * Function called when state changes
+     * Signature:
+     * ```
+     * function(event: object, checked: boolean) => void
+     * ```
      */
     onChange: PropTypes.func,
 
@@ -74,18 +78,36 @@ export default class Radio extends PureComponent {
      * When true, the aria-invalid attribute is true.
      * Used for accessibility.
      */
-    isInvalid: PropTypes.bool.isRequired
+    isInvalid: PropTypes.bool.isRequired,
+
+    /**
+     * The appearance of the checkbox.
+     * The default theme only comes with a default style.
+     */
+    appearance: PropTypes.string.isRequired,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
+    appearance: 'default',
     onChange: () => {},
     size: 12,
     isRequired: false,
     isInvalid: false
   }
 
+  handleChange = event => {
+    this.props.onChange(event, event.target.checked)
+  }
+
   render() {
     const {
+      theme,
+
       id,
       name,
       label,
@@ -96,30 +118,32 @@ export default class Radio extends PureComponent {
       value,
       size,
       isRequired,
+      appearance,
       ...props
     } = this.props
-    const appearanceStyle = CheckboxAppearances.default
+    const themedClassName = theme.getRadioClassName(appearance)
 
     return (
       <Box
         is="label"
         cursor={disabled ? 'not-allowed' : 'pointer'}
+        position="relative"
         display="flex"
         marginY={size === 12 ? 8 : 12}
         {...props}
       >
         <Box
           is="input"
+          className={themedClassName}
           id={id}
           type="radio"
           name={name}
           value={value}
           checked={checked}
-          onChange={e => onChange(e.target.value)}
+          onChange={this.handleChange}
           disabled={disabled}
           aria-invalid={isInvalid}
           required={isRequired}
-          css={appearanceStyle}
         />
         <Box
           boxSizing="border-box"
@@ -127,7 +151,7 @@ export default class Radio extends PureComponent {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          marginTop={size === 12 ? 2 : 3}
+          marginTop={2}
           width={size}
           height={size}
         >
@@ -137,7 +161,7 @@ export default class Radio extends PureComponent {
           <Text
             marginLeft={size === 12 ? 8 : 10}
             size={size === 12 ? 300 : 400}
-            color={disabled ? 'extraMuted' : 'default'}
+            color={disabled ? 'muted' : 'default'}
           >
             {label}
           </Text>
@@ -146,3 +170,5 @@ export default class Radio extends PureComponent {
     )
   }
 }
+
+export default withTheme(Radio)

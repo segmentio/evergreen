@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { css } from 'ui-box'
-import { colors } from '../../colors'
+import { withTheme } from '../../theme'
 
 const loadingKeyframes = css.keyframes('loading', {
   '0%': {
@@ -25,18 +25,18 @@ const outer = {
   animation: `${loadingKeyframes} 2s linear infinite`
 }
 
-const inner = {
+const inner = color => ({
   strokeDashoffset: 600,
   strokeDasharray: 300,
   strokeWidth: 12,
   strokeMiterlimit: 10,
   strokeLinecap: 'round',
   animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
-  stroke: colors.neutral['500'],
+  stroke: color,
   fill: 'transparent'
-}
+})
 
-export default class Spinner extends PureComponent {
+class Spinner extends PureComponent {
   static propTypes = {
     /**
      * Composes the Box component as the base.
@@ -46,7 +46,12 @@ export default class Spinner extends PureComponent {
     /**
      * The size of the spinner.
      */
-    size: PropTypes.number
+    size: PropTypes.number.isRequired,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
@@ -54,13 +59,21 @@ export default class Spinner extends PureComponent {
   }
 
   render() {
-    const { size, ...props } = this.props
+    const { theme, size, ...props } = this.props
     return (
       <Box width={size} height={size} lineHeight={0} {...props}>
         <Box is="svg" css={outer} x="0px" y="0px" viewBox="0 0 150 150">
-          <Box is="circle" css={inner} cx="75" cy="75" r="60" />
+          <Box
+            is="circle"
+            css={inner(theme.spinnerColor)}
+            cx="75"
+            cy="75"
+            r="60"
+          />
         </Box>
       </Box>
     )
   }
 }
+
+export default withTheme(Spinner)

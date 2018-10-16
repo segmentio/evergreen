@@ -1,0 +1,272 @@
+import PropsTable from 'components/PropsTable'
+import AdvancedTable from 'components/examples/AdvancedTable'
+import VirtualTable from 'components/examples/VirtualTable'
+
+## Introduction
+
+Evergreen exports a set of building blocks for building tables.
+This package is also used in places such as the options list in the `SelectMenu` component.
+Currently this package does not use real table elements.
+
+### Implementation details
+
+* None of these components implement HTML table elements such as: `table`, `th` or `tr`.
+* Most components are basic `Pane` components combined with `Text`.
+* All components are presentational, no sorting build in.
+
+### Available components
+
+Evergreen exports the following components for tables:
+
+* `Table`
+* `Table.Head`
+* `Table.Body`
+* `Table.Row`
+* `Table.Cell`
+* `Table.TextCell`
+* `Table.HeaderCell`
+* `Table.TextHeaderCell`
+* `Table.SearchHeaderCell`
+
+## Full featured table examples
+
+The source code of this example is availble in `docs/src/components/examples/AdvancedTable` on [GitHub](https://github.com/segmentio/evergreen).
+
+The following table is virtualized with `Table.VirtualBody`.
+
+<AdvancedTable />
+
+## Complete table example
+
+Use `onSelect` and `isSelectable` on a `Table.Row` to make it clickable.
+
+```jsx
+<Table>
+  <Table.Head>
+    <Table.SearchHeaderCell />
+    <Table.TextHeaderCell>
+      Last Activity
+    </Table.TextHeaderCell>
+    <Table.TextHeaderCell>
+      ltv
+    </Table.TextHeaderCell>
+  </Table.Head>
+  <Table.Body height={240}>
+    {profiles.map(profile => (
+      <Table.Row key={profile.id} isSelectable onSelect={() => alert(profile.name)}>
+        <Table.TextCell>{profile.name}</Table.TextCell>
+        <Table.TextCell>{profile.lastActivity}</Table.TextCell>
+        <Table.TextCell isNumber>
+          {profile.ltv}
+        </Table.TextCell>
+      </Table.Row>
+    ))}
+  </Table.Body>
+</Table>
+```
+
+### Fix or change width of column
+
+Table cells are all using flex layout.
+The below example shows how to create fixed width cells.
+Make sure to add the same properties to each cell in each row and head.
+
+```jsx
+<Table.Body>
+  <Table.Head>
+    <Table.TextCell flexBasis={560} flexShrink={0} flexGrow={0}>
+      Fixed width
+    </Table.TextCell>
+    <Table.TextCell>
+      Flex me col 2
+    </Table.TextCell>
+    <Table.TextCell>
+      Flex me col 3
+    </Table.TextCell>
+  </Table.Head>
+  <Table.Body>
+    <Table.Row>
+      <Table.TextCell flexBasis={560} flexShrink={0} flexGrow={0}>
+        Fixed width
+      </Table.TextCell>
+      <Table.TextCell>
+        Flex me col 2
+      </Table.TextCell>
+      <Table.TextCell>
+        Flex me col 3
+      </Table.TextCell>
+    </Table.Row>
+  </Table.Body>
+</Table.Body>
+```
+
+
+# Table
+
+This component is the container of all your table components.
+It is simply a `Pane` and not an actual table element.
+
+<PropsTable of="Table" />
+
+# Table.Head
+
+
+
+<PropsTable of="TableHead" rename="Table.Head" />
+<PropsTable of="TableBody" rename="Table.Body" />
+
+# Table.Row
+
+This component is used for table rows in your table and can be selectable and selected.
+Table rows can have a `intent` prop as well.
+
+## Table row intent
+
+```jsx
+<Pane>
+  {['none', 'danger', 'warning', 'success'].map(intent => {
+    return (
+      <Table.Row
+        key={intent}
+        isSelectable
+        onSelect={() => alert(intent)}
+        intent={intent}
+      >
+        <Table.TextCell>{intent}</Table.TextCell>
+      </Table.Row>
+    )
+  })}
+</Pane>
+```
+
+## Change height of table rows
+
+```jsx
+<Pane>
+  <Table.Row height={32}>
+    <Table.TextCell>Height 32</Table.TextCell>
+  </Table.Row>
+  <Table.Row height={40}>
+    <Table.TextCell>Height 40</Table.TextCell>
+  </Table.Row>
+  <Table.Row height="auto" paddingY={12}>
+    <Table.TextCell>
+      Auto height <br />based on <br />the content
+    </Table.TextCell>
+  </Table.Row>
+</Pane>
+```
+
+<PropsTable of="TableRow" rename="Table.Row" />
+
+# Table.Cell
+
+This component is for table cells in your table.
+Consider using `Table.TextCell` when you want to display text in your table cell.
+This can be used as a base to build more complex table cells.
+
+```jsx
+<Table.Row>
+  <Table.Cell>This should only be used as a base.</Table.Cell>
+  <Table.Cell>It doesn't have any text styling.</Table.Cell>
+</Table.Row>
+```
+
+<PropsTable of="TableCell" rename="Table.Cell" />
+
+# Table.TextCell
+
+```jsx
+<Table.Row>
+  <Table.TextCell size={500}>You want to use this component</Table.TextCell>
+  <Table.TextCell size={500}>When you are using text</Table.TextCell>
+  <Table.TextCell size={500}>In your table cell</Table.TextCell>
+</Table.Row>
+```
+
+<PropsTable of="TextTableCell" rename="Table.TextCell" />
+
+# Table.HeaderCell
+
+```jsx
+<Table.Head>
+  <Table.HeaderCell>You almost never want to use this component directly.</Table.HeaderCell>
+</Table.Head>
+```
+
+<PropsTable of="TableHeaderCell" rename="Table.HeaderCell" />
+
+# Table.TextHeaderCell
+
+```jsx
+<Table.Head>
+  <Table.TextHeaderCell>Age</Table.TextHeaderCell>
+  <Table.TextHeaderCell>Email</Table.TextHeaderCell>
+</Table.Head>
+```
+
+<PropsTable of="TextTableHeaderCell" rename="Table.TextHeaderCell" />
+
+# Table.SearchHeaderCell
+
+```jsx
+<Table.Head>
+  <Table.SearchHeaderCell
+    onChange={e => console.log(e.target.value)}
+    placeholder='Search by email...'
+  />
+</Table.Head>
+```
+
+<PropsTable of="SearchTableHeaderCell" rename="Table.SearchHeaderCell" />
+
+# Table.VirtualBody
+
+## Virtual tables
+
+Virtual tables in Evergreen are easy to create.
+Evergreen gives some nice features when working with virtual tables:
+
+* Table body can be dynamic (flexed for example), no need to supply a fixed height and resizing works
+* `Table.VirtualBody` is a drop-in replacement for `Table.Body`
+* There is no need to pass the total items/rows up front
+* Rows can be dynamic per row
+* Row heights can be unknown up front with `height="auto"`, this will reduce perfomance however
+
+### Simple virtuall body example
+
+```jsx
+<Table>
+  <Table.Head>
+    <Table.SearchHeaderCell />
+    <Table.TextHeaderCell>
+      Last Activity
+    </Table.TextHeaderCell>
+    <Table.TextHeaderCell>
+      ltv
+    </Table.TextHeaderCell>
+  </Table.Head>
+  <Table.VirtualBody height={240}>
+    {profiles.map(profile => (
+      <Table.Row key={profile.id} isSelectable onSelect={() => alert(profile.name)}>
+        <Table.TextCell>{profile.name}</Table.TextCell>
+        <Table.TextCell>{profile.lastActivity}</Table.TextCell>
+        <Table.TextCell isNumber>
+          {profile.ltv}
+        </Table.TextCell>
+      </Table.Row>
+    ))}
+  </Table.VirtualBody>
+</Table>
+```
+
+
+### Complete virtual example
+
+The source code of this example is availble in `docs/src/components/examples/VirtualTable` on [GitHub](https://github.com/segmentio/evergreen).
+This example features dynaminc and auto heights.
+
+<VirtualTable />
+
+<PropsTable of="TableVirtualBody" rename="Table.VirtualBody" />
+

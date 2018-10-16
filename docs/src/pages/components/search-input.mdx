@@ -1,0 +1,58 @@
+import PropsTable from 'components/PropsTable'
+
+The `SearchInput` component is a component that combines a `TextInput` with a search icon.
+It works exactly the same as a `TextInput`.
+
+
+## Basic example
+
+```jsx
+<SearchInput placeholder="Filter traits..." />
+```
+
+## Full width
+
+```jsx
+<SearchInput placeholder="Filter traits..." width="100%" />
+```
+
+## Change height
+
+The `SearchInput` uses the `height` property to resize itself.
+
+```jsx
+<SearchInput placeholder="Filter traits..." height={40} />
+```
+
+## Disabled
+
+```jsx
+<SearchInput disabled />
+```
+
+## Add margins
+
+The `SearchInput` is based on the `Box` layout primitive
+and accepts setting margin properties.
+
+```jsx
+<SearchInput placeholder="Filter traits..." height={40} marginBottom={40} />
+```
+
+## Controlled usage
+
+The `SearchInput` component works the same as using `input` directly.
+Use `e.target.value` to get the value of the component on change. 
+
+```jsx
+<Component initialState={{ value: ''}}>
+  {({ state, setState }) => (
+    <SearchInput
+      onChange={e => setState({ value: e.target.value })}
+      value={state.value}
+    />
+  )}
+</Component>
+```
+
+<PropsTable of="SearchInput" />

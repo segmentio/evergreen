@@ -1,0 +1,50 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `Spinner` component is used to indicate a loading state.
+
+## Basic example
+
+```jsx
+<Spinner />
+```
+
+## Changing the size
+
+Try to stay on the `8px` major scale grid, or in some cases the `4px` minor scale grid.
+
+```jsx
+<Spinner size={16} />
+```
+
+```jsx
+<Spinner size={24} />
+```
+
+```jsx
+<Spinner size={32} />
+```
+
+
+## Centering in a div
+
+Wrap your `Spinner` in a `Pane` to allow for centering of you `Spinner`.
+
+```jsx
+<Pane display="flex" alignItems="center" justifyContent="center" height={400}>
+  <Spinner />
+</Pane>
+```
+
+## Centering with automatic margins
+
+Alernatively you can center a `Spinner` with margins.
+
+```jsx
+<Pane>
+  <Spinner marginX="auto" marginY={120} />
+</Pane>
+```
+
+<PropsTable of="Spinner" />

@@ -59,7 +59,7 @@ module.exports = task('create-package-components', async () => {
   )
 
   await Promise.all(
-    componentNames.map(async componentName =>
+    componentNames.map(componentName =>
       createComponent({ componentName, packageDir })
     )
   )

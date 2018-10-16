@@ -12,7 +12,6 @@ export default class GetStartedSidebar extends PureComponent {
      */
     groups: [
       {
-        title: 'Get Started',
         links: [
           {
             to: '/get-started/introduction',

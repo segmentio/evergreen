@@ -1,0 +1,33 @@
+.PageFooter {
+}
+
+.PageFooter-inner {
+  align-items: center;
+  display: flex;
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+
+.PageFooter-left {
+  flex: 1;
+}
+
+.PageFooter-right {
+  flex: 3;
+  text-align: right;
+
+  & p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  & a {
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+      border-bottom: 2px solid rgba(255, 255, 255, 1);
+    }
+  }
+}

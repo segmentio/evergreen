@@ -1,6 +1,7 @@
 import React from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
+import { StackingOrder } from '../../constants'
 import Toast from './Toast'
 
 const wrapperClass = css({
@@ -10,7 +11,7 @@ const wrapperClass = css({
   left: 0,
   right: 0,
   position: 'fixed',
-  zIndex: 60,
+  zIndex: StackingOrder.TOASTER,
   pointerEvents: 'none'
 })
 
@@ -76,7 +77,7 @@ export default class ToastManager extends React.PureComponent {
       hasCloseButton: settings.hasCloseButton || true,
       duration: settings.duration || 5,
       close: () => this.closeToast(id),
-      type: settings.type
+      intent: settings.intent
     }
   }
 

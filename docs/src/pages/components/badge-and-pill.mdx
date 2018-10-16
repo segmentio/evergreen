@@ -1,0 +1,150 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `Badge` and `Pill` components are labels with a background color.
+
+* **Badge**: Used for state and text. Slightly rounded corners.
+* **Pill**: Used only for numbers. Circular.
+
+# Badge
+
+The `Badge` component should only be used for state and general text labels.
+Not for numbers.
+
+```jsx
+<Badge color="green">Success</Badge>
+```
+
+## Color options
+
+### Solid badges
+
+```js
+<Pane>
+  <Badge color="neutral" isSolid marginRight={8}>neutral</Badge>
+  <Badge color="green" isSolid marginRight={8}>green</Badge>
+  <Badge color="blue" isSolid marginRight={8}>blue</Badge>
+  <Badge color="red" isSolid marginRight={8}>red</Badge>
+  <Badge color="orange" isSolid marginRight={8}>orange</Badge>
+  <Badge color="purple" isSolid marginRight={8}>purple</Badge>
+  <Badge color="yellow" isSolid marginRight={8}>yellow</Badge>
+  <Badge color="teal" isSolid marginRight={8}>teal</Badge>
+</Pane>
+```
+
+### Subtle badges
+
+```js
+<Pane>
+  <Badge color="neutral" marginRight={8}>neutral</Badge>
+  <Badge color="green" marginRight={8}>green</Badge>
+  <Badge color="blue" marginRight={8}>blue</Badge>
+  <Badge color="red" marginRight={8}>red</Badge>
+  <Badge color="orange" marginRight={8}>orange</Badge>
+  <Badge color="purple" marginRight={8}>purple</Badge>
+  <Badge color="yellow" marginRight={8}>yellow</Badge>
+  <Badge color="teal" marginRight={8}>teal</Badge>
+</Pane>
+```
+
+## When to use what badge
+
+```js
+<Pane display="flex">
+  <Pane flexBasis={120}>
+    <Badge color="green">Success</Badge>
+  </Pane>
+  <Pane flexBasis={120}>
+    <Badge color="green" isSolid>Success</Badge>
+  </Pane>
+  <Pane>
+    <Strong>Operational, available, done, approved, added</Strong>
+  </Pane>
+</Pane>
+```
+
+```js
+<Pane display="flex">
+  <Pane flexBasis={120}>
+    <Badge color="red">Removed</Badge>
+  </Pane>
+  <Pane flexBasis={120}>
+    <Badge color="red" isSolid>Removed</Badge>
+  </Pane>
+  <Pane>
+    <Strong>Errors, declined, failed, removed, critical</Strong>
+  </Pane>
+</Pane>
+```
+
+```js
+<Pane display="flex">
+  <Pane flexBasis={120}>
+    <Badge color="blue">In progress</Badge>
+  </Pane>
+  <Pane flexBasis={120}>
+    <Badge color="blue" isSolid>In progress</Badge>
+  </Pane>
+  <Pane>
+    <Strong>In progress, open, modified</Strong>
+  </Pane>
+</Pane>
+```
+
+```js
+<Pane display="flex">
+  <Pane flexBasis={120}>
+    <Badge color="purple">Trial</Badge>
+  </Pane>
+  <Pane flexBasis={120}>
+    <Badge color="purple" isSolid>Trial</Badge>
+  </Pane>
+  <Pane>
+    <Strong>Trial, new, information, help</Strong>
+  </Pane>
+</Pane>
+```
+
+```js
+<Pane display="flex">
+  <Pane flexBasis={120}>
+    <Badge color="yellow">Moved</Badge>
+  </Pane>
+  <Pane flexBasis={120}>
+    <Badge color="yellow" isSolid>Moved</Badge>
+  </Pane>
+  <Pane>
+    <Strong>Busy, blocked, missing, warning</Strong>
+  </Pane>
+</Pane>
+```
+
+```js
+<Pane display="flex">
+  <Pane flexBasis={120}>
+    <Badge color="neutral">Beta</Badge>
+  </Pane>
+  <Pane flexBasis={120}>
+    <Badge color="neutral" isSolid>Beta</Badge>
+  </Pane>
+  <Pane>
+    <Strong>Betag</Strong>
+  </Pane>
+</Pane>
+```
+
+<PropsTable of="Badge" />
+
+# Pill
+
+The `Pill` component should only be used for numbers. 
+
+```jsx
+<Pane>
+  <Pill display="inline-flex" margin={8}>0</Pill>
+  <Pill display="inline-flex" margin={8} color="red" isSolid>24</Pill>
+</Pane>
+```
+
+<PropsTable of="Pill" />

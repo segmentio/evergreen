@@ -77,7 +77,9 @@ export default class RadioGroup extends PureComponent {
     radioCount += 1
   }
 
-  handleChange = value => {
+  handleChange = event => {
+    const { value } = event.target
+
     // Save a render cycle when it's a controlled input
     if (!this.props.value) {
       this.setState({ value })
@@ -106,11 +108,7 @@ export default class RadioGroup extends PureComponent {
     return (
       <Pane role="group" aria-label={label} {...props}>
         {label && (
-          <Text
-            size={size === 12 ? 200 : 300}
-            color="extraMuted"
-            fontWeight={500}
-          >
+          <Text color="muted" fontWeight={500}>
             {label}
           </Text>
         )}
@@ -123,7 +121,7 @@ export default class RadioGroup extends PureComponent {
             label={item.label}
             checked={selected === item.value}
             disabled={item.isDisabled}
-            onChange={() => this.handleChange(item.value)}
+            onChange={this.handleChange}
             isRequired={isRequired}
           />
         ))}

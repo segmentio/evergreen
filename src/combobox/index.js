@@ -1,1 +1,1 @@
-export Combobox from './src/Combobox'
+export { default as Combobox } from './src/Combobox' // eslint-disable-line import/prefer-default-export

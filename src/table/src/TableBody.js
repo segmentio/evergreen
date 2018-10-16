@@ -12,7 +12,7 @@ export default class TableBody extends PureComponent {
   render() {
     const { children, ...props } = this.props
     return (
-      <Pane flex="1" overflowY="scroll" {...props}>
+      <Pane data-evergreen-table-body flex="1" overflowY="scroll" {...props}>
         {children}
       </Pane>
     )

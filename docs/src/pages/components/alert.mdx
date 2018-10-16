@@ -1,0 +1,144 @@
+import PropsTable from 'components/PropsTable'
+
+## Introduction
+
+The `Alert` and `InlineAlert` components are used to give feedback
+to the user about an action or state.
+
+Evergreen exports two components to create text alerts:
+
+* **Alert**: alert component with icon, title and optional description.
+* **InlineAlert**: alert component with icon and title.
+
+### Intent API
+
+Both the `Alert` and the `InlineAlert` components implement the `intent` prop.
+The `intent` is a interface used across Evergreen and has the following options:
+
+* **info**: `intent="none"`
+* **success**:  `intent="success"`
+* **warning**: `intent="warning"`
+* **danger**: `intent="danger"`
+
+# Alert
+
+The `Alert` component can have a `title` and `children`. 
+There are props to configure the icon and the border on the left.
+
+```jsx
+<Pane>
+  <Alert
+    intent="none"
+    title="There are over 200 integrations available"
+    marginBottom={32}
+  />
+ <Alert
+    intent="success"
+    title="Your source is now sending data"
+    marginBottom={32}
+  />
+  <Alert
+    intent="warning"
+    title="Changes will affect all warehouses"
+    marginBottom={32}
+  />
+  <Alert
+    intent="danger"
+    title="We weren’t able to save your changes"
+  />
+</Pane>
+```
+
+## Alerts with description
+
+```jsx
+<Pane>
+  <Alert
+    intent="none"
+    title="There are over 200 integrations available"
+    marginBottom={32}
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </Alert>
+ <Alert
+    intent="success"
+    title="Your source is now sending data"
+    marginBottom={32}
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </Alert>
+  <Alert
+    intent="warning"
+    title="Changes will affect all warehouses"
+    marginBottom={32}
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </Alert>
+  <Alert
+    intent="danger"
+    title="We weren’t able to save your changes"
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </Alert>
+</Pane>
+```
+
+## Card appearance
+
+The card appearance is useful if the alert is presented outside of a card or pane.
+
+```jsx
+<Pane>
+  <Alert
+    appearance="card"
+    intent="none"
+    title="There are over 200 integrations available"
+    marginBottom={32}
+  />
+ <Alert
+    appearance="card"
+    intent="success"
+    title="Your source is now sending data"
+    marginBottom={32}
+  />
+  <Alert
+    appearance="card"
+    intent="warning"
+    title="Changes will affect all warehouses"
+    marginBottom={32}
+  />
+  <Alert
+    appearance="card"
+    intent="danger"
+    title="We weren’t able to save your changes"
+  />
+</Pane>
+```
+
+# InlineAlert
+
+The `InlineAlert` is useful when not showing a title and space is limited. 
+
+```jsx
+<Pane>
+<InlineAlert intent="none" marginBottom={16}>
+    There are over 200 integrations available
+  </InlineAlert>
+ <InlineAlert intent="success" marginBottom={16}>
+    Your source is now sending data
+  </InlineAlert>
+  <InlineAlert intent="warning" marginBottom={16}>
+    Changes will affect all warehouses
+  </InlineAlert>
+  <InlineAlert intent="danger">
+    We weren’t able to save your changes
+  </InlineAlert>
+</Pane>
+```
+
+
+<PropsTable of="Alert" />

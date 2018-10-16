@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Position, Positioner } from '../../positioner'
+import { Positioner } from '../../positioner'
+import { Tooltip } from '../../tooltip'
+import { Position } from '../../constants'
 import PopoverStateless from './PopoverStateless'
 
 export default class Popover extends Component {
@@ -8,7 +10,16 @@ export default class Popover extends Component {
     /**
      * The position the Popover is on. Smart positioning might override this.
      */
-    position: PropTypes.oneOf(Object.keys(Position)),
+    position: PropTypes.oneOf([
+      Position.TOP,
+      Position.TOP_LEFT,
+      Position.TOP_RIGHT,
+      Position.BOTTOM,
+      Position.BOTTOM_LEFT,
+      Position.BOTTOM_RIGHT,
+      Position.LEFT,
+      Position.RIGHT
+    ]),
 
     /**
      * When true, the Popover is manually shown.
@@ -54,11 +65,6 @@ export default class Popover extends Component {
     animationDuration: PropTypes.number,
 
     /**
-     * The z-index of the Popover card.
-     */
-    zIndex: PropTypes.number,
-
-    /**
      * Function called when the Popover opens.
      */
     onOpen: PropTypes.func.isRequired,
@@ -90,12 +96,11 @@ export default class Popover extends Component {
     minWidth: 200,
     minHeight: 40,
     animationDuration: 300,
-    zIndex: 40,
     onOpen: () => {},
     onClose: () => {},
     onOpenComplete: () => {},
     onCloseComplete: () => {},
-    bringFocusInside: true
+    bringFocusInside: false
   }
 
   constructor(props) {
@@ -115,17 +120,14 @@ export default class Popover extends Component {
    * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
    */
   bringFocusInside = () => {
-    if (!this.props.bringFocusInside) return
-
     // Always delay focus manipulation to just before repaint to prevent scroll jumping
     return requestAnimationFrame(() => {
       // Container ref may be undefined between component mounting and Portal rendering
       // activeElement may be undefined in some rare cases in IE
-
       if (
         this.popoverNode == null || // eslint-disable-line eqeqeq, no-eq-null
         document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
-        !this.props.isShown
+        !this.state.isShown
       ) {
         return
       }
@@ -137,14 +139,16 @@ export default class Popover extends Component {
         // Element marked autofocus has higher priority than the other clowns
         const autofocusElement = this.popoverNode.querySelector('[autofocus]')
         const wrapperElement = this.popoverNode.querySelector('[tabindex]')
-        const buttonElement = this.popoverNode.querySelector('button')
+        const buttonElements = this.popoverNode.querySelectorAll(
+          'button, a, [role="menuitem"], [role="menuitemradio"]'
+        )
 
         if (autofocusElement) {
           autofocusElement.focus()
         } else if (wrapperElement) {
           wrapperElement.focus()
-        } else if (buttonElement) {
-          buttonElement.focus()
+        } else if (buttonElements.length > 0) {
+          buttonElements[0].focus()
         }
       }
     })
@@ -175,14 +179,11 @@ export default class Popover extends Component {
 
   onBodyClick = e => {
     // Ignore clicks on the popover or button
-    if (this.targetRef === e.target) {
+    if (this.targetRef && this.targetRef.contains(e.target)) {
       return
     }
 
-    if (
-      this.popoverNode &&
-      (this.popoverNode === e.target || this.popoverNode.contains(e.target))
-    ) {
+    if (this.popoverNode && this.popoverNode.contains(e.target)) {
       return
     }
 
@@ -231,7 +232,7 @@ export default class Popover extends Component {
   }
 
   handleOpenComplete = () => {
-    this.bringFocusInside()
+    if (this.props.bringFocusInside) this.bringFocusInside()
     this.props.onOpenComplete()
   }
 
@@ -239,14 +240,24 @@ export default class Popover extends Component {
     this.props.onCloseComplete()
   }
 
+  handleKeyDown = e => {
+    if (e.key === 'ArrowDown') {
+      this.bringFocusInside()
+    }
+  }
+
   renderTarget = ({ getRef, isShown }) => {
     const { children } = this.props
+    const isTooltipInside = children && children.type === Tooltip
 
     const getTargetRef = ref => {
       this.targetRef = ref
       getRef(ref)
     }
 
+    /**
+     * When a function is passed, you can control the Popover manually.
+     */
     if (typeof children === 'function') {
       return children({
         toggle: this.toggle,
@@ -255,18 +266,44 @@ export default class Popover extends Component {
       })
     }
 
-    return React.cloneElement(children, {
+    const popoverTargetProps = {
       onClick: this.toggle,
-      innerRef: getTargetRef,
+      onKeyDown: this.handleKeyDown,
       role: 'button',
       'aria-expanded': isShown,
       'aria-haspopup': true
+    }
+
+    /**
+     * Tooltips can be used within a Popover (not the other way around)
+     * In this case the children is the Tooltip instead of a button.
+     * Pass the properties to the Tooltip and let the Tooltip
+     * add the properties to the target.
+     */
+    if (isTooltipInside) {
+      return React.cloneElement(children, {
+        popoverProps: {
+          getTargetRef,
+          isShown,
+
+          // These propeties will be spread as `popoverTargetProps`
+          // in the Tooltip component.
+          ...popoverTargetProps
+        }
+      })
+    }
+
+    /**
+     * With normal usage only popover props end up on the target.
+     */
+    return React.cloneElement(children, {
+      innerRef: getTargetRef,
+      ...popoverTargetProps
     })
   }
 
   render() {
     const {
-      zIndex,
       isShown,
       content,
       display,
@@ -286,7 +323,6 @@ export default class Popover extends Component {
         target={({ getRef, isShown, targetWidth }) => {
           return this.renderTarget({ getRef, isShown, targetWidth })
         }}
-        zIndex={zIndex}
         isShown={shown}
         position={position}
         animationDuration={animationDuration}

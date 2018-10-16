@@ -2,10 +2,10 @@ import { storiesOf } from '@storybook/react'
 import Component from '@reactions/component'
 import React from 'react'
 import Box from 'ui-box'
-import options from '../docs/starwars-options'
-import Manager from '../docs/Manager'
-import { SelectMenu } from '../../select-menu'
+import { SelectMenu } from '..'
 import { Button } from '../../buttons'
+import options from './starwars-options'
+import Manager from './Manager'
 
 storiesOf('select-menu', module).add('SelectMenu', () => (
   <Box padding={40}>
@@ -33,6 +33,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
     >
       {({ state, setState }) => (
         <SelectMenu
+          isMultiSelect
           title="Select multiple names"
           options={state.options}
           selected={state.selected}

@@ -7,26 +7,19 @@
 pre.prism-code {
   background: none;
   padding: 12px;
-  -webkit-font-smoothing: antialiased;
-  font-weight: 600;
-  background-color: var(--neutral-900);
-  color: var(--white-500);
+  /* -webkit-font-smoothing: antialiased; */
+  font-weight: 400;
+  background-color: color(var(--N10) shade(15%));
+  color: white;
   font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.4em;
+  font-size: 14px;
+  line-height: 1.6em;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
   word-wrap: normal;
-
-  -moz-tab-size: 2;
-  -o-tab-size: 2;
   tab-size: 2;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
   hyphens: none;
   overflow: auto;
 
@@ -66,16 +59,16 @@ pre[class*='language-'] {
 .token.constant,
 .token.symbol,
 .token.deleted {
-  color: var(--red-150);
+  color: color(var(--red-base) tint(40%) saturation(120%));
 }
 
 .token.boolean,
 .token.number {
-  color: var(--turquoise-200);
+  color: color(var(--teal-base) tint(20%));
 }
 
 .token.function {
-  color: var(--blue-50);
+  color: color(var(--teal-base) tint(40%));
 }
 
 .token.string {
@@ -87,7 +80,7 @@ pre[class*='language-'] {
 .token.char,
 .token.builtin,
 .token.inserted {
-  color: var(--yellow-400);
+  color: var(--yellow-base);
 }
 
 .token.operator,

@@ -1,2 +1,2 @@
-export extractStyles from './src/extractStyles'
-export autoHydrate from './src/autoHydrate'
+export { default as extractStyles } from './src/extractStyles'
+export { default as autoHydrate } from './src/autoHydrate'

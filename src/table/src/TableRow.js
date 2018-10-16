@@ -1,14 +1,23 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 import { Pane } from '../../layers'
-import { selectableRowStyle } from '../../shared-styles'
+import { withTheme } from '../../theme'
+import { TableRowProvider } from './TableRowContext'
+import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 
-export default class TableRow extends PureComponent {
+class TableRow extends PureComponent {
   static propTypes = {
     /**
      * Composes the Pane component as the base.
      */
     ...Pane.propTypes,
+
+    /**
+     * The height of the row. Remember to add paddings when using "auto".
+     */
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+      .isRequired,
 
     /**
      * Function that is called on click and enter/space keypress.
@@ -33,10 +42,35 @@ export default class TableRow extends PureComponent {
     /**
      * Manually set the TableRow to be highlighted.
      */
-    isHighlighted: PropTypes.bool
+    isHighlighted: PropTypes.bool,
+
+    /**
+     * The intent of the alert.
+     */
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
+      .isRequired,
+
+    /**
+     * The appearance of the table row. Default theme only support default.
+     */
+    appearance: PropTypes.string.isRequired,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired,
+
+    /**
+     * Class name passed to the table row.
+     * Only use if you know what you are doing.
+     */
+    className: PropTypes.string
   }
 
   static defaultProps = {
+    intent: 'none',
+    appearance: 'default',
+    height: 48,
     onClick: () => {},
     onSelect: () => {},
     onDeselect: () => {},
@@ -54,30 +88,42 @@ export default class TableRow extends PureComponent {
     }
   }
 
-  onRef = node => {
-    this.node = node
-  }
-
-  handleKeyPress = e => {
+  handleKeyDown = e => {
     if (this.props.isSelectable) {
-      if (e.key === 'Enter' || e.key === ' ') {
+      const { key } = e
+      if (key === 'Enter' || key === ' ') {
         this.props.onSelect()
-
-        // NOTE: In scenarios where the target for key press is our
-        // tabIndex <Pane> below, prevent the default event action
-        // so that browser scroll will not occur.
-        if (e.target === this.node) {
-          e.preventDefault()
-        }
+        e.preventDefault()
+      } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+        try {
+          manageTableRowFocusInteraction(key, this.mainRef)
+        } catch (error) {}
+      } else if (key === 'Escape') {
+        if (this.mainRef) this.mainRef.blur()
       }
     }
 
     this.props.onKeyPress(e)
   }
 
+  onRef = ref => {
+    this.mainRef = ref
+    if (typeof this.props.innerRef === 'function') {
+      this.props.innerRef(ref)
+    }
+  }
+
   render() {
     const {
+      innerRef,
+      theme,
+      className,
+      height,
       children,
+      intent,
+      appearance,
+      tabIndex = -1,
+
       // Filter out
       onClick,
       onKeyPress,
@@ -87,28 +133,32 @@ export default class TableRow extends PureComponent {
       isHighlighted,
       isSelectable,
       isSelected,
-      css = {},
       ...props
     } = this.props
 
+    const themedClassName = theme.getRowClassName(appearance, intent)
+
     return (
-      <Pane
-        innerRef={this.onRef}
-        display="flex"
-        {...(isSelectable
-          ? {
-              'aria-selected': isHighlighted,
-              'aria-current': isSelected,
-              css: { ...selectableRowStyle, ...css },
-              tabIndex: 0
-            }
-          : { css })}
-        onClick={this.handleClick}
-        onKeyPress={this.handleKeyPress}
-        {...props}
-      >
-        {children}
-      </Pane>
+      <TableRowProvider height={height}>
+        <Pane
+          innerRef={this.onRef}
+          className={cx(themedClassName, className)}
+          display="flex"
+          aria-selected={isHighlighted}
+          aria-current={isSelected}
+          data-isselectable={isSelectable}
+          tabIndex={isSelectable ? tabIndex : undefined}
+          onClick={this.handleClick}
+          onKeyDown={this.handleKeyDown}
+          height={height}
+          borderBottom="muted"
+          {...props}
+        >
+          {children}
+        </Pane>
+      </TableRowProvider>
     )
   }
 }
+
+export default withTheme(TableRow)

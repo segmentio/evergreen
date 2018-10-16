@@ -1,21 +1,11 @@
 import React, { PureComponent } from 'react'
-import mapValues from 'lodash.mapvalues'
-import TextStyles from './styles/TextStyles'
-import Text from './Text'
+import Box from 'ui-box'
 
-const textStyleTransformation = ({ fontSize, ...textStyle }) => ({
-  ...textStyle,
-  fontSize: `${Math.round(parseInt(fontSize, 10) * 0.8)}px`
-})
-
-const textStyles = mapValues(TextStyles, textStyleTransformation)
-
+/**
+ * Small can only be used inside of Text or Paragraph.
+ */
 export default class Small extends PureComponent {
-  static propTypes = {
-    ...Text.propTypes
-  }
-
   render() {
-    return <Text is="small" textStyles={textStyles} {...this.props} />
+    return <Box is="small" fontSize="85%" {...this.props} />
   }
 }

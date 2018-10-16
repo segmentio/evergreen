@@ -1,5 +1,0 @@
-<Combobox
-  openOnFocus
-  items={items}
-  onChange={selected => console.log(selected)}
-/>

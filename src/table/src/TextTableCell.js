@@ -24,7 +24,7 @@ export default class TextTableCell extends PureComponent {
     /**
      * Pass additional props to the Text component.
      */
-    textProps: PropTypes.shape(Text.propTypes)
+    textProps: PropTypes.object
   }
 
   static defaultProps = {
@@ -32,19 +32,15 @@ export default class TextTableCell extends PureComponent {
   }
 
   render() {
-    const { children, textProps, isNumber, ...props } = this.props
+    const { children, textProps, isNumber, placeholder, ...props } = this.props
+
     return (
       <TableCell {...props}>
         <Text
           size={300}
           flex="1"
           {...ellipsis}
-          {...(isNumber
-            ? {
-                textAlign: 'right',
-                fontFamily: 'mono'
-              }
-            : {})}
+          {...(isNumber ? { fontFamily: 'mono' } : {})}
           {...textProps}
         >
           {children}

@@ -2,17 +2,13 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import {
-  TextInputField,
-  TextInput,
-  TextInputAppearances
-} from '../../text-input'
+import { TextInputField, TextInput } from '..'
 import { Text, Label, Heading } from '../../typography'
 import { Pane, Card } from '../../layers'
 import { Button } from '../../buttons'
 
 const Description = props => (
-  <Text is="p" marginTop={0} size={300} color="extraMuted" {...props} />
+  <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 )
 
 class Manager extends React.Component {
@@ -21,6 +17,7 @@ class Manager extends React.Component {
   }
 
   state = {}
+
   render() {
     return this.props.children({
       setState: (...args) => {
@@ -34,7 +31,7 @@ class Manager extends React.Component {
 storiesOf('text-input', module)
   .add('TextInput', () => (
     <div>
-      {Object.keys(TextInputAppearances).map(appearance => (
+      {['default', 'neutral'].map(appearance => (
         <Box key={appearance} padding={40} float="left">
           <Heading marginBottom={24}>Appearance: {appearance}</Heading>
           <Box marginBottom={24} width={360}>
@@ -104,7 +101,9 @@ storiesOf('text-input', module)
   ))
   .add('TextInputField', () => (
     <Box padding={40}>
-      <Heading size={700}>TextInputField component</Heading>
+      <Heading size={700} marginBottom={40}>
+        TextInputField component
+      </Heading>
       <TextInputField
         label="Default text input field"
         description="This is a description."
@@ -116,6 +115,13 @@ storiesOf('text-input', module)
         required
         description="This is a description."
         placeholder="Placeholder text"
+      />
+      <TextInputField
+        isInvalid
+        required
+        label="A required text input field"
+        description="This is a description."
+        validationMessage="This field is required"
       />
       <Manager>
         {({ state, setState }) => {
@@ -135,7 +141,7 @@ storiesOf('text-input', module)
   .add('Settings example', () => {
     return (
       <Pane
-        appearance="tint1"
+        background="tint1"
         padding={40}
         height="100vh"
         boxSizing="border-box"
@@ -179,12 +185,20 @@ storiesOf('text-input', module)
             value="lgJ4AFjLN5"
             disabled
             description="This is your workspace's auto-generated unique identifier."
+            hint="You are not able to change this."
           />
-          <Button appearance="green" height={36} marginTop={32} display="flex">
+          <Button
+            intent="success"
+            appearance="primary"
+            marginTop={32}
+            display="flex"
+          >
             Save Changes
           </Button>
           <Pane paddingTop={32} marginTop={32} marginBottom={-8} borderTop>
-            <Button>Delete Your Workspace...</Button>
+            <Button intent="danger" iconBefore="error">
+              Delete Your Workspace...
+            </Button>
           </Pane>
         </Card>
       </Pane>

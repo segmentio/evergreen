@@ -1,30 +1,62 @@
 import React, { PureComponent } from 'react'
-import mapValues from 'lodash.mapvalues'
-import TextStyles from './styles/TextStyles'
-import Text from './Text'
+import PropTypes from 'prop-types'
+import Box from 'ui-box'
+import { withTheme } from '../../theme'
 
-const textStyleTransformation = ({ lineHeight, ...textStyle }) => ({
-  ...textStyle,
-  // Multiply line height by 1.1
-  lineHeight: `${Math.round(parseFloat(lineHeight, 10) * 1.08)}px`
-})
-
-const textStyles = mapValues(TextStyles, textStyleTransformation)
-
-export default class Paragraph extends PureComponent {
+class Paragraph extends PureComponent {
   static propTypes = {
-    ...Text.propTypes
+    /**
+     * Composes the Box component as the base.
+     */
+    ...Box.propTypes,
+
+    /**
+     * Size of the text style.
+     * Can be: 300, 400, 500.
+     */
+    size: PropTypes.oneOf([300, 400, 500]).isRequired,
+
+    /**
+     * Font family.
+     * Can be: `ui`, `display` or `mono` or a custom font family.
+     */
+    fontFamily: PropTypes.string.isRequired,
+
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired
+  }
+
+  static defaultProps = {
+    size: 400,
+    color: 'default',
+    fontFamily: 'ui'
   }
 
   render() {
+    const { theme, size, color, fontFamily, marginTop, ...props } = this.props
+
+    const {
+      marginTop: defaultMarginTop,
+      ...textStyle
+    } = theme.getParagraphStyle(size)
+
+    const finalMarginTop =
+      marginTop === 'default' ? defaultMarginTop : marginTop
+
     return (
-      <Text
+      <Box
         is="p"
-        marginTop={0}
+        color={theme.getTextColor(color)}
+        fontFamily={theme.getFontFamily(fontFamily)}
+        marginTop={finalMarginTop || 0}
         marginBottom={0}
-        textStyles={textStyles}
-        {...this.props}
+        {...textStyle}
+        {...props}
       />
     )
   }
 }
+
+export default withTheme(Paragraph)

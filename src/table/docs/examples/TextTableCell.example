@@ -1,5 +1,0 @@
-<TableRow>
-  <TextTableCell size={500}>You want to use this component</TextTableCell>
-  <TextTableCell size={500}>When you are using text</TextTableCell>
-  <TextTableCell size={500}>In your table cell</TextTableCell>
-</TableRow>

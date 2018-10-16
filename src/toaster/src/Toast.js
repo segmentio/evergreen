@@ -69,13 +69,8 @@ export default class Toast extends React.PureComponent {
     /**
      * The type of the alert.
      */
-    type: PropTypes.oneOf([
-      'default',
-      'success',
-      'warning',
-      'danger',
-      'question'
-    ]),
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
+      .isRequired,
 
     /**
      * The title of the alert.
@@ -96,6 +91,10 @@ export default class Toast extends React.PureComponent {
      * When false, will close the Toast and call onRemove when finished.
      */
     isShown: PropTypes.bool
+  }
+
+  static defaultProps = {
+    intent: 'none'
   }
 
   state = {
@@ -152,7 +151,7 @@ export default class Toast extends React.PureComponent {
   onRef = ref => {
     if (ref === null) return
 
-    const height = ref.getBoundingClientRect().height
+    const { height } = ref.getBoundingClientRect()
 
     this.setState({
       height
@@ -185,7 +184,7 @@ export default class Toast extends React.PureComponent {
                 flexShrink={0}
                 appearance="card"
                 elevation={3}
-                type={this.props.type}
+                intent={this.props.intent}
                 title={this.props.title}
                 isRemoveable={this.props.hasCloseButton}
                 onRemove={() => this.close()}

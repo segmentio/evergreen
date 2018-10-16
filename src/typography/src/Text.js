@@ -1,14 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import FontFamilies from './styles/FontFamilies'
-import TextStyles from './styles/TextStyles'
-import TextUppercaseStyles from './styles/TextUppercaseStyles'
-import TextColors from './styles/TextColors'
+import { withTheme } from '../../theme'
 
-const isDev = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV
-
-export default class Text extends PureComponent {
+class Text extends PureComponent {
   static propTypes = {
     /**
      * Composes the Box component as the base.
@@ -17,79 +12,49 @@ export default class Text extends PureComponent {
 
     /**
      * Size of the text style.
-     * Can be: 100, 200, 300, 400, 500, 600, 700, 800, 900.
+     * Can be: 300, 400, 500, 600.
      */
-    size: PropTypes.oneOf(Object.keys(TextStyles).map(Number)),
+    size: PropTypes.oneOf([300, 400, 500, 600]).isRequired,
 
     /**
      * Font family.
-     * Can be: ui, display or mono
+     * Can be: `ui`, `display` or `mono` or a custom font family.
      */
-    fontFamily: PropTypes.oneOf(Object.keys(FontFamilies)),
+    fontFamily: PropTypes.string.isRequired,
 
     /**
-     * Sets the text to uppercase.
-     * Only sizes 100 and 200 support uppercase styles at the moment.
+     * Theme provided by ThemeProvider.
      */
-    isUppercase: PropTypes.bool,
-
-    /**
-     * The text styles available.
-     * This is overridden by other text components that implement Text as the base.
-     * You should avoid setting this manually.
-     */
-    textStyles: PropTypes.object,
-
-    /**
-     * The uppercase text styles.
-     * You should avoid setting this manually.
-     */
-    textUppercaseStyles: PropTypes.object
+    theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
-    size: 500,
+    size: 400,
     color: 'default',
-    fontFamily: 'ui',
-    textStyles: TextStyles,
-    textUppercaseStyles: TextUppercaseStyles
+    fontFamily: 'ui'
   }
 
   render() {
-    const {
-      size,
-      color,
-      textStyles,
-      textUppercaseStyles,
-      fontFamily,
-      isUppercase,
-      ...props
-    } = this.props
+    const { theme, size, color, fontFamily, marginTop, ...props } = this.props
 
-    let textStyle = textStyles[size]
+    const { marginTop: defaultMarginTop, ...textStyle } = theme.getTextStyle(
+      size
+    )
 
-    if (isUppercase) {
-      // Only 100 and 200 support uppercase styles atm
-      // Fallback on non uppercase atm
-      if (Object.prototype.hasOwnProperty.call(textUppercaseStyles, size)) {
-        textStyle = textUppercaseStyles[size]
-      } else if (isDev) {
-        console.error(
-          `Uppercase ${size} not supported. <Text isUppercase> only supports the following sizes: ${JSON.stringify(
-            Object.keys(textUppercaseStyles).map(Number)
-          )}`
-        )
-      }
-    }
+    const finalMarginTop =
+      marginTop === 'default' ? defaultMarginTop : marginTop
 
     return (
       <Box
         is="span"
-        {...(color ? { color: TextColors[color] || color } : {})}
-        fontFamily={FontFamilies[fontFamily] || fontFamily}
+        color={theme.getTextColor(color)}
+        fontFamily={theme.getFontFamily(fontFamily)}
+        marginTop={finalMarginTop}
         {...textStyle}
         {...props}
       />
     )
   }
 }
+
+export default withTheme(Text)

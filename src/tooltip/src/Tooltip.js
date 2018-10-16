@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
-import { Position, Positioner } from '../../positioner'
+import { Positioner } from '../../positioner'
+import { Position } from '../../constants'
 import TooltipStateless from './TooltipStateless'
 
 let idCounter = 0
@@ -9,9 +10,23 @@ let idCounter = 0
 export default class Tooltip extends PureComponent {
   static propTypes = {
     /**
+     * The appearance of the tooltip.
+     */
+    appearance: PropTypes.oneOf(['default', 'card']).isRequired,
+
+    /**
      * The position the Popover is on.
      */
-    position: PropTypes.oneOf(Object.keys(Position)),
+    position: PropTypes.oneOf([
+      Position.TOP,
+      Position.TOP_LEFT,
+      Position.TOP_RIGHT,
+      Position.BOTTOM,
+      Position.BOTTOM_LEFT,
+      Position.BOTTOM_RIGHT,
+      Position.LEFT,
+      Position.RIGHT
+    ]),
 
     /**
      * The content of the Popover.
@@ -36,17 +51,12 @@ export default class Tooltip extends PureComponent {
     /**
      * Properties passed through to the Tooltip.
      */
-    statelessProps: PropTypes.object,
-
-    /**
-     * The z-index of the Tooltip.
-     */
-    zIndex: PropTypes.number.isRequired
+    statelessProps: PropTypes.object
   }
 
   static defaultProps = {
+    appearance: 'default',
     position: Position.BOTTOM,
-    zIndex: 40,
     hideDelay: 120
   }
 
@@ -84,15 +94,55 @@ export default class Tooltip extends PureComponent {
   renderTarget = ({ getRef }) => {
     const { children } = this.props
 
-    return React.cloneElement(children, {
+    const tooltipTargetProps = {
       onMouseEnter: this.show,
       onMouseLeave: this.hide,
-      'aria-describedby': this.state.id,
+      'aria-describedby': this.state.id
+    }
+
+    /**
+     * Tooltips can be used within a Popover (not the other way around)
+     * When a Tooltip is used within a Popover, the Popover passes
+     * its props to the Tooltip in a `popoverProps` object.
+     */
+    // eslint-disable-next-line react/prop-types
+    if (this.props.popoverProps) {
+      const {
+        // eslint-disable-next-line react/prop-types
+        getTargetRef,
+        // eslint-disable-next-line react/prop-types
+        isShown,
+        ...popoverTargetProps
+      } = this.props.popoverProps
+
+      return React.cloneElement(children, {
+        // Add the Popover props to the target.
+        ...popoverTargetProps,
+        // Add the Tooltip props to the target.
+        ...tooltipTargetProps,
+
+        innerRef: ref => {
+          // Get the ref for the Tooltip.
+          getRef(ref)
+          // Pass the ref to the Popover.
+          getTargetRef(ref)
+        }
+      })
+    }
+
+    /**
+     * With normal usage only the props for a Tooltip are passed to the target.
+     */
+    return React.cloneElement(children, {
+      ...tooltipTargetProps,
       innerRef: ref => {
         getRef(ref)
       }
     })
   }
+
+  isPopoverShown = () =>
+    this.props.popoverProps && this.props.popoverProps.isShown
 
   handleMouseEnterTarget = () => {
     this.setState({
@@ -107,17 +157,28 @@ export default class Tooltip extends PureComponent {
   }
 
   render() {
-    const { isShown, zIndex, content, position, statelessProps } = this.props
+    const {
+      appearance,
+      isShown,
+      content,
+      position,
+      statelessProps
+    } = this.props
     const { isShown: stateIsShown, isShownByTarget } = this.state
 
-    const shown = isShown || stateIsShown || isShownByTarget
+    let shown =
+      (isShown || stateIsShown || isShownByTarget) && !this.isPopoverShown()
+
+    // Tooltip was explicitly set to not be shown
+    if (isShown === false) {
+      shown = false
+    }
 
     return (
       <Positioner
         target={({ getRef }) => {
           return this.renderTarget({ getRef })
         }}
-        zIndex={zIndex}
         isShown={shown}
         position={position}
         animationDuration={160}
@@ -125,6 +186,7 @@ export default class Tooltip extends PureComponent {
         {({ css, style, state, getRef }) => (
           <TooltipStateless
             id={this.state.id}
+            appearance={appearance}
             innerRef={ref => getRef(ref)}
             data-state={state}
             css={css}

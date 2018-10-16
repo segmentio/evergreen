@@ -29,6 +29,11 @@ export default class OptionsList extends PureComponent {
     width: PropTypes.number,
 
     /**
+     * When true, multi select is accounted for.
+     */
+    isMultiSelect: PropTypes.bool,
+
+    /**
      * This holds the values of the options
      */
     selected: PropTypes.arrayOf(PropTypes.string),
@@ -75,10 +80,15 @@ export default class OptionsList extends PureComponent {
      * Hacky solution for broken autoFocus
      * https://github.com/segmentio/evergreen/issues/90
      */
-    window.setTimeout(() => {
+    requestAnimationFrame(() => {
       this.searchRef.querySelector('input').focus()
-    }, 1)
-    window.addEventListener('keyup', this.handleKeyUp)
+    })
+
+    window.addEventListener('keydown', this.handleKeyDown)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -87,10 +97,6 @@ export default class OptionsList extends PureComponent {
         selected: nextProps.selected
       })
     }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keyup', this.handleKeyUp)
   }
 
   isSelected = item => {
@@ -113,7 +119,7 @@ export default class OptionsList extends PureComponent {
         )
   }
 
-  getCurrentIndex() {
+  getCurrentIndex = () => {
     const { selected } = this.props
     const options = this.getFilteredOptions()
 
@@ -128,7 +134,7 @@ export default class OptionsList extends PureComponent {
     return this.search(options)
   }
 
-  handleKeyUp = e => {
+  handleKeyDown = e => {
     if (e.keyCode === 38) {
       this.handleArrowUp()
     }
@@ -142,7 +148,7 @@ export default class OptionsList extends PureComponent {
     }
   }
 
-  handleArrowUp() {
+  handleArrowUp = () => {
     const { onSelect } = this.props
     const options = this.getFilteredOptions()
 
@@ -155,7 +161,7 @@ export default class OptionsList extends PureComponent {
     onSelect(options[nextIndex])
   }
 
-  handleArrowDown() {
+  handleArrowDown = () => {
     const { onSelect } = this.props
     const options = this.getFilteredOptions()
 
@@ -168,7 +174,7 @@ export default class OptionsList extends PureComponent {
     onSelect(options[nextIndex])
   }
 
-  handleEnter() {
+  handleEnter = () => {
     const isSelected = this.getCurrentIndex() !== -1
 
     if (isSelected) {
@@ -185,6 +191,7 @@ export default class OptionsList extends PureComponent {
   handleSelect = item => {
     this.props.onSelect(item)
   }
+
   handleDeselect = item => {
     this.props.onDeselect(item)
   }
@@ -195,6 +202,7 @@ export default class OptionsList extends PureComponent {
 
   render() {
     const {
+      options: originalOptions,
       close,
       width,
       height,
@@ -206,11 +214,14 @@ export default class OptionsList extends PureComponent {
       renderItem,
       placeholder,
       optionsFilter,
+      isMultiSelect,
       defaultSearchValue,
       ...props
     } = this.props
-    const options = this.getFilteredOptions()
+    const options = this.search(originalOptions)
     const listHeight = height - (hasFilter ? 32 : 0)
+    const currentIndex = this.getCurrentIndex()
+    const scrollToIndex = currentIndex === -1 ? 0 : currentIndex
 
     return (
       <Pane
@@ -236,10 +247,16 @@ export default class OptionsList extends PureComponent {
             width="100%"
             itemSize={optionSize}
             itemCount={options.length}
-            overscanCount={3}
+            overscanCount={20}
             scrollToAlignment="auto"
+            {...(scrollToIndex
+              ? {
+                  scrollToIndex
+                }
+              : {})}
             renderItem={({ index, style }) => {
               const item = options[index]
+              const isSelected = this.isSelected(item)
               return renderItem({
                 key: item.value,
                 label: item.label,
@@ -247,7 +264,8 @@ export default class OptionsList extends PureComponent {
                 height: optionSize,
                 onSelect: () => this.handleSelect(item),
                 onDeselect: () => this.handleDeselect(item),
-                isSelected: this.isSelected(item)
+                isSelectable: !isSelected || isMultiSelect,
+                isSelected
               })
             }}
           />

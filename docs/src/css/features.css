@@ -1,0 +1,21 @@
+.Features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.Feature {
+}
+
+.Feature-title {
+  margin-top: 0;
+}
+
+.Feature-description {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: -0.05px;
+}
