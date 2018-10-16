@@ -20,10 +20,12 @@ Components always access a theme color or property through a get function. For e
 
 ## Accessing Colors
 
+You can programatically access colors with a theme's `palette` property.
+
 ```js
 import { defaultTheme } from 'evergreen-v4'
 
-console.log(palette.blue.lightest) // #F7F9FD
+console.log(defaultTheme.palette.blue.lightest) // #F7F9FD
 ```
 
 <ColorExamples marginTop={40} />
