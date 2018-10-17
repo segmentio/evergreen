@@ -168,7 +168,7 @@ export default class Autocomplete extends PureComponent {
                   index,
                   style,
                   children: itemString,
-                  isSelected: selectedItem === item,
+                  isSelected: itemToString(selectedItem) === itemString,
                   isHighlighted: highlightedIndex === index
                 })
               )
@@ -208,7 +208,6 @@ export default class Autocomplete extends PureComponent {
           getMenuProps,
           selectedItem,
           highlightedIndex,
-          selectItemAtIndex,
           ...restDownshiftProps
         }) => (
           <div>
@@ -229,8 +228,7 @@ export default class Autocomplete extends PureComponent {
                   getItemProps,
                   getMenuProps,
                   selectedItem,
-                  highlightedIndex,
-                  selectItemAtIndex
+                  highlightedIndex
                 })
               }}
               minHeight={0}
@@ -248,7 +246,6 @@ export default class Autocomplete extends PureComponent {
                   inputValue,
                   selectedItem,
                   highlightedIndex,
-                  selectItemAtIndex,
                   ...restDownshiftProps
                 })
               }
