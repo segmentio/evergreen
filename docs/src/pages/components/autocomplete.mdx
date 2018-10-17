@@ -99,7 +99,7 @@ Get the `openMenu` prop to manually open the menu on certain events such as `onF
 >
   {({
     getInputProps,
-    getButtonProps,
+    getToggleButtonProps,
     getRef,
     inputValue,
     toggleMenu
@@ -110,7 +110,7 @@ Get the `openMenu` prop to manually open the menu on certain events such as `onF
         value={inputValue}
         {...getInputProps()}
       />
-      <Button onClick={toggleMenu} {...getButtonProps()}>
+      <Button onClick={toggleMenu} {...getToggleButtonProps()}>
         Trigger
       </Button>
     </Pane>
@@ -133,7 +133,7 @@ Consider using that component before using the `Autocomplete` component directly
   {({
     key,
     getInputProps,
-    getButtonProps,
+    getToggleButtonProps,
     getRef,
     inputValue,
     openMenu,
@@ -151,7 +151,7 @@ Consider using that component before using the `Autocomplete` component directly
         onFocus={openMenu}
         {...getInputProps()}
       />
-      <Button onClick={toggleMenu} {...getButtonProps()}>
+      <Button onClick={toggleMenu} {...getToggleButtonProps()}>
         Trigger
       </Button>
     </Pane>

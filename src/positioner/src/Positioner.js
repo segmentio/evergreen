@@ -232,6 +232,7 @@ export default class Positioner extends PureComponent {
 
               <Transition
                 in={isShown}
+                appear // Show the children if isShown is true on initial render
                 timeout={animationDuration}
                 onEnter={this.handleEnter}
                 onEntered={this.props.onOpenComplete}

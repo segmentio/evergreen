@@ -35,7 +35,7 @@ export default class Autocomplete extends PureComponent {
     /**
      * The selected item to be selected & shown by default on the autocomplete
      */
-    defaultSelectedItem: PropTypes.any,
+    initialSelectedItem: PropTypes.any,
 
     /**
      * In case the array of items is not an array of strings,
@@ -115,9 +115,9 @@ export default class Autocomplete extends PureComponent {
     width,
     inputValue,
     highlightedIndex,
-    selectItemAtIndex,
     selectedItem,
-    getItemProps
+    getItemProps,
+    getMenuProps
   }) => {
     const {
       title,
@@ -137,8 +137,13 @@ export default class Autocomplete extends PureComponent {
 
     if (items.length === 0) return null
 
+    // Pass the actual DOM ref to downshift, this fixes touch support
+    const menuProps = getMenuProps()
+    menuProps.innerRef = menuProps.ref
+    delete menuProps.ref
+
     return (
-      <Pane width={width}>
+      <Pane width={width} {...menuProps}>
         {title && (
           <Pane padding={8} borderBottom="muted">
             <Heading size={100}>{title}</Heading>
@@ -163,10 +168,7 @@ export default class Autocomplete extends PureComponent {
                   index,
                   style,
                   children: itemString,
-                  onMouseUp: () => {
-                    selectItemAtIndex(index)
-                  },
-                  isSelected: itemToString(selectedItem) === itemString,
+                  isSelected: selectedItem === item,
                   isHighlighted: highlightedIndex === index
                 })
               )
@@ -180,22 +182,30 @@ export default class Autocomplete extends PureComponent {
   render() {
     const {
       children,
+      items,
       itemSize,
       position,
       renderItem,
       itemsFilter,
       popoverMaxHeight,
       popoverMinWidth,
-      defaultSelectedItem,
+      initialSelectedItem,
+      itemToString,
       ...props
     } = this.props
 
     return (
-      <Downshift defaultSelectedItem={defaultSelectedItem} {...props}>
+      <Downshift
+        initialSelectedItem={initialSelectedItem}
+        itemCount={items.length}
+        itemToString={itemToString}
+        {...props}
+      >
         {({
           isOpen: isShown,
           inputValue,
           getItemProps,
+          getMenuProps,
           selectedItem,
           highlightedIndex,
           selectItemAtIndex,
@@ -217,6 +227,7 @@ export default class Autocomplete extends PureComponent {
                   width: Math.max(this.state.targetWidth, popoverMinWidth),
                   inputValue,
                   getItemProps,
+                  getMenuProps,
                   selectedItem,
                   highlightedIndex,
                   selectItemAtIndex

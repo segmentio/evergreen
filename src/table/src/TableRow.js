@@ -144,8 +144,8 @@ class TableRow extends PureComponent {
           innerRef={this.onRef}
           className={cx(themedClassName, className)}
           display="flex"
-          aria-selected={isHighlighted}
-          aria-current={isSelected}
+          data-ishighlighted={isHighlighted}
+          aria-selected={isSelected}
           data-isselectable={isSelectable}
           tabIndex={isSelectable ? tabIndex : undefined}
           onClick={this.handleClick}
