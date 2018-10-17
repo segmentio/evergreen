@@ -64,6 +64,7 @@ The `intent` prop determines the appearance of the confirm button, `danger` is r
       <Dialog
         isShown={state.isShown}
         title="Danger intent"
+        intent="danger"
         onCloseComplete={() => setState({ isShown: false })}
         confirmLabel="Delete Something"
       >
