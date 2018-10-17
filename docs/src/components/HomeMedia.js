@@ -67,7 +67,7 @@ export default class HomeMedia extends React.PureComponent {
               title="Driving Adoption of a Design System"
               image={drivingAdoption}
               published="Coming Soon"
-              link="https://segment.com/blog/"
+              link="https://segment.com/blog/driving-adoption-of-a-design-system"
             />
             <MediaItem
               title="Growing a Design System"
