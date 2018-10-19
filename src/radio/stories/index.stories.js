@@ -74,7 +74,7 @@ storiesOf('radio', module)
         <Radio checked name="group" label="Radio default" />
         <Radio name="group" checked label="Radio checked" />
         <Radio name="group" disabled label="Radio disabled" />
-        <Radio name="group" disabled label="Radio checked disabled" />
+        <Radio name="group3" checked disabled label="Radio checked disabled" />
       </Box>
       <Heading marginTop={40}>Bigger usage, size 16</Heading>
       <Box aria-label="Radio Group Label 16" role="group">
@@ -83,7 +83,8 @@ storiesOf('radio', module)
         <Radio size={16} name="group2" disabled label="Radio disabled" />
         <Radio
           size={16}
-          name="group2"
+          name="group4"
+          checked
           disabled
           label="Radio checked disabled"
         />
