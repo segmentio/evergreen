@@ -24,7 +24,7 @@ fills.solid = {
     backgroundColor: palette.orange.base
   },
   yellow: {
-    color: palette.yellow.darkest,
+    color: palette.yellow.dark,
     backgroundColor: palette.yellow.base
   },
   green: {
