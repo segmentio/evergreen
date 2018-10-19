@@ -34,7 +34,8 @@ export default class Menu extends React.PureComponent {
 
   componentDidMount() {
     // Get the menu item buttons
-    this.menuItems = Array.prototype.slice.call(
+    // eslint-disable-next-line unicorn/prefer-spread
+    this.menuItems = Array.from(
       this.menuRef.querySelectorAll('[role="menuitemradio"], [role="menuitem"]')
     )
 
