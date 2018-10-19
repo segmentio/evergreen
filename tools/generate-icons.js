@@ -86,7 +86,7 @@ export {
   await fs.writeFile(indexPath, indexContent)
 }
 
-main().catch(err => {
-  console.error(err)
+main().catch(error => {
+  console.error(error)
   process.exitCode = 1
 })

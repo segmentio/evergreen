@@ -11,6 +11,7 @@ import { withTheme } from '../../theme'
 
 class Icon extends PureComponent {
   static SIZE_STANDARD = 16
+
   static SIZE_LARGE = 20
 
   static propTypes = {
