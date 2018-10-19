@@ -5,7 +5,8 @@
  */
 export default function manageTableRowFocusInteraction(key, ref) {
   let nextItemToFocus
-  const tableBodyChildren = [...ref.parentElement.children]
+  // eslint-disable-next-line unicorn/prefer-spread
+  const tableBodyChildren = Array.from(ref.parentElement.children)
   const rowIndex = tableBodyChildren.indexOf(ref)
 
   if (key === 'ArrowUp' && rowIndex - 1 >= 0) {
