@@ -56,7 +56,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             confirmLabel="View Agreement"
             onCloseComplete={() => setState({ isShown: false })}
           >
-            Segment now offers a Data Processing Agreement and EU&nbsp;Model
+            Segment now offers a Data Processing Agreement and EU Model
             Contract Clauses as a means of meeting the adequacy and security
             requirements of the GDPR.
           </CornerDialog>
