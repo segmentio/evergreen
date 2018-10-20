@@ -1,6 +1,7 @@
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
+import colors from '../foundational-styles/colors'
 
 const defaultAppearance = Themer.createTabAppearance({
   base: {},
@@ -13,6 +14,11 @@ const defaultAppearance = Themer.createTabAppearance({
   active: {
     backgroundColor: scales.blue.B3A,
     color: scales.blue.B9
+  },
+  disabled: {
+    boxShadow: 'none',
+    backgroundColor: colors.neutral['5A'],
+    color: colors.neutral['500']
   },
   current: {}
 })

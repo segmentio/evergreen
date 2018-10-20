@@ -6,6 +6,8 @@ const selectedState =
   '&[aria-current="page"], &[aria-selected="true"], &:active'
 const currentState = '&[aria-current="page"], &[aria-selected="true"]'
 const focusState = '&:focus'
+const disabledState =
+  '&:focus, &[aria-current], &[aria-selected="true"], &:active'
 
 const baseStyle = {
   cursor: 'pointer',
@@ -19,7 +21,7 @@ const baseStyle = {
 const createTabAppearance = (items = {}) => {
   missingStateWarning({
     items,
-    props: ['base', 'hover', 'active', 'focus', 'current'],
+    props: ['base', 'hover', 'active', 'focus', 'current', 'disabled'],
     cb: prop => {
       console.error(
         `Themer.createTabAppearance() is missing a ${prop} item `,
@@ -37,6 +39,10 @@ const createTabAppearance = (items = {}) => {
     [currentState]: {
       cursor: 'default',
       ...createAppearance(items.current)
+    },
+    [disabledState]: {
+      cursor: 'not-allowed',
+      ...createAppearance(items.disabled)
     }
   }
 }
