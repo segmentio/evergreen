@@ -51,7 +51,7 @@ class SearchInput extends PureComponent {
           height={height}
           paddingLeft={height}
           appearance={appearance}
-          disable={disabled}
+          disabled={disabled}
           width={width}
           {...remainingProps}
         />
