@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
-import colors from '../../theme/src/default-theme/foundational-styles/colors'
 
 class Tab extends PureComponent {
   static propTypes = {
@@ -55,17 +54,6 @@ class Tab extends PureComponent {
     tabIndex: 0
   }
 
-  static disabledStyles = {
-    cursor: 'not-allowed',
-    '&:focus': {
-      boxShadow: 'none'
-    },
-    '&[aria-current], &[aria-selected="true"], &:active': {
-      backgroundColor: colors.neutral['5A'],
-      color: colors.neutral['500']
-    }
-  }
-
   handleClick = e => {
     this.props.onClick(e)
     this.props.onSelect()
@@ -111,16 +99,14 @@ class Tab extends PureComponent {
         role: 'tab'
       }
     }
-    const tabStyles = disabled
-      ? { ...Tab.styles, ...Tab.disabledStyles }
-      : Tab.styles
+
     return (
       <Text
         className={theme.getTabClassName(appearance)}
         is={is}
         size={textSize}
         height={height}
-        {...tabStyles}
+        {...Tab.styles}
         {...props}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}
