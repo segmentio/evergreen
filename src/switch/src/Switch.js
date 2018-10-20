@@ -74,11 +74,6 @@ class Switch extends PureComponent {
     name: PropTypes.string,
 
     /**
-     * Label of the radio.
-     */
-    label: PropTypes.node,
-
-    /**
      * The value attribute of the radio.
      */
     value: PropTypes.string,
