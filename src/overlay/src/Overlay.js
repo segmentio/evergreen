@@ -162,6 +162,10 @@ class Overlay extends React.Component {
     }
   }
 
+  componentDidMount() {
+    document.body.style.overflow = 'hidden'
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.isShown && !this.props.isShown) {
       this.setState({
@@ -172,6 +176,7 @@ class Overlay extends React.Component {
 
   componentWillUnmount() {
     document.body.removeEventListener('keydown', this.onEsc, false)
+    document.body.style.overflow = 'visible'
   }
 
   /**
