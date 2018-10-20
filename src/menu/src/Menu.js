@@ -33,7 +33,6 @@ export default class Menu extends React.PureComponent {
   }
 
   onRefReady() {
-    console.log(this.menuRef)
     // Get the menu item buttons
     // eslint-disable-next-line unicorn/prefer-spread
     this.menuItems = Array.from(
