@@ -32,7 +32,8 @@ export default class Menu extends React.PureComponent {
     children: PropTypes.node
   }
 
-  componentDidMount() {
+  onRefReady() {
+    console.log(this.menuRef)
     // Get the menu item buttons
     // eslint-disable-next-line unicorn/prefer-spread
     this.menuItems = Array.from(
@@ -112,6 +113,7 @@ export default class Menu extends React.PureComponent {
 
   onMenuRef = ref => {
     this.menuRef = ref
+    if (ref) this.onRefReady()
   }
 
   render() {

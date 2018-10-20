@@ -131,7 +131,10 @@ export default class Positioner extends PureComponent {
 
   getRef = ref => {
     this.positionerRef = ref
-    this.props.innerRef(ref)
+
+    if (typeof this.props.innerRef === 'function') {
+      this.props.innerRef(ref)
+    }
   }
 
   handleEnter = () => {
