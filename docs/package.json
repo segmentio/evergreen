@@ -8,7 +8,7 @@
     "deploy": "rm -rf public && gatsby build && gh-pages -d public"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^0.15.0",
+    "@mdx-js/mdx": "^0.15.2",
     "@mdx-js/tag": "^0.15.0",
     "@reach/router": "^1.1.1",
     "@reactions/component": "^2.0.2",
