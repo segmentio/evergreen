@@ -17,7 +17,8 @@ const defaultAppearance = Themer.createTabAppearance({
   disabled: {
     boxShadow: 'none',
     backgroundColor: scales.neutral.N1A,
-    color: scales.neutral.N9
+    color: scales.neutral.N5,
+    pointerEvents: 'none'
   },
   current: {}
 })

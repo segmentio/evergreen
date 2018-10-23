@@ -82,11 +82,17 @@ class Tab extends PureComponent {
     const textSize = theme.getTextSizeForControlHeight(height)
 
     let elementBasedProps
+    if (disabled) {
+      elementBasedProps = {
+        'aria-disabled': true
+      }
+    }
     if (is === 'a') {
       // Use aria-current when it's a link
       // https://tink.uk/using-the-aria-current-attribute/
       elementBasedProps = isSelected
         ? {
+            ...elementBasedProps,
             'aria-current': 'page'
           }
         : {}
@@ -95,6 +101,7 @@ class Tab extends PureComponent {
       // Also pass down a aria-controls="panelId"
       // https://www.stefanjudis.com/blog/aria-selected-and-when-to-use-it/
       elementBasedProps = {
+        ...elementBasedProps,
         'aria-selected': isSelected,
         role: 'tab'
       }

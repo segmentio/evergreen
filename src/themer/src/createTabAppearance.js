@@ -6,8 +6,7 @@ const selectedState =
   '&[aria-current="page"], &[aria-selected="true"], &:active'
 const currentState = '&[aria-current="page"], &[aria-selected="true"]'
 const focusState = '&:focus'
-const disabledState =
-  '&:focus, &[aria-current], &[aria-selected="true"], &:active'
+const disabledState = '&[aria-disabled="true"]'
 
 const baseStyle = {
   cursor: 'pointer',
