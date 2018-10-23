@@ -113,6 +113,52 @@ storiesOf('tabs', module)
           </TabNavigation>
         </Box>
       </StorySection>
+      <StorySection>
+        <StoryHeader>
+          <StoryHeading>Disabled tab</StoryHeading>
+          <StoryDescription>
+            If you want a tab to be disabled, pass `disabled` prop with value
+            `true`. The `Identities` tab is disabled below.
+          </StoryDescription>
+        </StoryHeader>
+
+        <Box>
+          <TabManager>
+            {({ selectedIndex, onSelect }) => (
+              <Box>
+                <Tablist marginX={-4} marginBottom={16}>
+                  {tabs.map((tab, index) => (
+                    <Tab
+                      disabled={index === 2}
+                      key={tab}
+                      id={tab}
+                      onSelect={() => onSelect(index)}
+                      isSelected={index === selectedIndex}
+                      aria-controls={`panel-${tab}`}
+                    >
+                      {tab}
+                    </Tab>
+                  ))}
+                </Tablist>
+                <Box padding={16} backgroundColor="#eee">
+                  {tabs.map((tab, index) => (
+                    <Box
+                      key={tab}
+                      id={`panel-${tab}`}
+                      role="tabpanel"
+                      aria-labelledby={tab}
+                      aria-hidden={index !== selectedIndex}
+                      display={index === selectedIndex ? 'block' : 'none'}
+                    >
+                      <Paragraph>Panel {tab}</Paragraph>
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+            )}
+          </TabManager>
+        </Box>
+      </StorySection>
     </Box>
   ))
   .add('SidebarTab', () => (

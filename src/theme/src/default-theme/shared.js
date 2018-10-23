@@ -7,7 +7,8 @@ const defaultControlStyles = {
     backgroundImage: 'none',
     backgroundColor: scales.neutral.N2A,
     boxShadow: 'none',
-    color: scales.neutral.N7A
+    color: scales.neutral.N7A,
+    pointerEvents: 'none'
   },
   base: {
     backgroundColor: 'white',
