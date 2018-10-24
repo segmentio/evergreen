@@ -57,7 +57,7 @@ class TagInput extends React.Component {
       false
     ]),
     /** Provide props to tag component (actually `Badge`, for now). */
-    tagProps: PropTypes.object,
+    tagProps: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
     /** Controlled tag values. Each value is rendered inside a tag. */
     values: PropTypes.arrayOf(PropTypes.node)
   }
@@ -146,6 +146,7 @@ class TagInput extends React.Component {
     }
 
     const { disabled, tagProps } = this.props
+    const props = safeInvoke(tagProps, tag, index) || tagProps
 
     return (
       <Tag
@@ -155,7 +156,7 @@ class TagInput extends React.Component {
         marginY="6px"
         onRemove={disabled ? null : this.handleRemoveTag}
         isRemovable={!disabled}
-        tagProps={tagProps}
+        {...props}
       >
         {tag}
       </Tag>

@@ -25,6 +25,7 @@ class Tag extends React.PureComponent {
     const badgeStyles = {
       alignItems: 'center',
       display: 'inline-flex',
+      fontWeight: 400,
       textTransform: 'none'
     }
 

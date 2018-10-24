@@ -32,11 +32,18 @@ class StateManager extends React.PureComponent {
     }))
   }
 
+  tagProps = value => {
+    const color = value === 'invalid' ? 'red' : undefined
+    const isSolid = value === 'invalid'
+    return { color, isSolid }
+  }
+
   render() {
     return this.props.children({
       values: this.state.values,
       addValues: this.addValues,
-      removeValue: this.removeValue
+      removeValue: this.removeValue,
+      tagProps: this.tagProps
     })
   }
 }
@@ -89,6 +96,22 @@ storiesOf('tag-input', module).add('TagInput', () => (
             values={values}
             onAdd={addValues}
             onRemove={removeValue}
+          />
+        )}
+      </StateManager>
+    </StorySection>
+    <StorySection>
+      <StoryHeader>
+        <StoryHeading>With `tagProps`</StoryHeading>
+      </StoryHeader>
+      <StateManager values={['valid', 'invalid']}>
+        {({ values, addValues, removeValue, tagProps }) => (
+          <TagInput
+            inputProps={{ placeholder: 'Enter something...' }}
+            values={values}
+            onAdd={addValues}
+            onRemove={removeValue}
+            tagProps={tagProps}
           />
         )}
       </StateManager>
