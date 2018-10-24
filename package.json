@@ -175,7 +175,7 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "200 KB"
+      "limit": "204 KB"
     }
   ],
   "husky": {
