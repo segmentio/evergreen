@@ -9,6 +9,7 @@ import cx from 'classnames'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
 import { majorScale } from '../../scales'
+import safeInvoke from '../../lib/safe-invoke'
 import Tag from './Tag'
 
 let inputId = 1
@@ -79,15 +80,9 @@ class TagInput extends React.Component {
   addTags = (value = '') => {
     const { onAdd, onChange, values } = this.props
     const newValues = this.getValues(value)
-
-    let shouldClearInput
-    if (typeof onAdd === 'function') {
-      shouldClearInput = onAdd(newValues)
-    }
-
-    if (typeof onChange === 'function') {
-      shouldClearInput = shouldClearInput || onChange(values.concat(newValues))
-    }
+    const shouldClearInput =
+      safeInvoke(onAdd, newValues) ||
+      safeInvoke(onChange, values.concat(newValues))
 
     if (shouldClearInput !== false) {
       this.setState({ inputValue: '' })
@@ -114,26 +109,17 @@ class TagInput extends React.Component {
 
   handleInputBlur = event => {
     this.setState({ isFocused: false })
-
-    if (typeof this.props.onBlur === 'function') {
-      this.props.onBlur(event)
-    }
+    safeInvoke(this.props.onBlur, event)
   }
 
   handleInputChange = event => {
     this.setState({ inputValue: event.target.value })
-
-    if (typeof this.props.onInputChange === 'function') {
-      this.props.onInputChange(event)
-    }
+    safeInvoke(this.props.onInputChange, event)
   }
 
   handleInputFocus = event => {
     this.setState({ isFocused: true })
-
-    if (typeof this.props.onFocus === 'function') {
-      this.props.onFocus(event)
-    }
+    safeInvoke(this.props.onFocus, event)
   }
 
   handleKeyDown = event => {
@@ -178,24 +164,16 @@ class TagInput extends React.Component {
 
   removeTagAtIndex = index => {
     const { onChange, onRemove, values } = this.props
+    safeInvoke(onRemove, values[index], index)
 
-    if (typeof onRemove === 'function') {
-      onRemove(values[index], index)
-    }
-
-    if (typeof onChange === 'function') {
-      // Remove item at index as a new array
-      const newValues = values.filter((_, i) => i !== index)
-      onChange(newValues)
-    }
+    // Remove item at index as a new array
+    const newValues = values.filter((_, i) => i !== index)
+    safeInvoke(onChange, newValues)
   }
 
   setRef = node => {
     this.input = node
-
-    if (typeof this.props.inputRef === 'function') {
-      this.props.inputRef(node)
-    }
+    safeInvoke(this.props.inputRef, node)
   }
 
   render() {

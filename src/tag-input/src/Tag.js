@@ -6,7 +6,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Badge } from '../../badges'
 import { Icon } from '../../icon'
-import { withTheme } from '../../theme'
 import { minorScale } from '../../scales'
 
 class Tag extends React.PureComponent {
@@ -17,21 +16,11 @@ class Tag extends React.PureComponent {
      */
     onRemove: PropTypes.func,
     /** Whether or not the tag can be removed. */
-    removable: PropTypes.bool
-  }
-
-  static defaultProps = {
-    removable: true
-  }
-
-  handleRemove = event => {
-    if (typeof this.props.onRemove === 'function') {
-      this.props.onRemove(event)
-    }
+    isRemovable: PropTypes.bool
   }
 
   render() {
-    const { children, onRemove, removable, theme, ...props } = this.props
+    const { children, onRemove, isRemovable, ...props } = this.props
 
     const badgeStyles = {
       alignItems: 'center',
@@ -39,18 +28,18 @@ class Tag extends React.PureComponent {
       textTransform: 'none'
     }
 
-    if (removable) {
+    if (isRemovable) {
       badgeStyles.paddingRight = minorScale(1)
     }
 
     return (
       <Badge isInteractive {...badgeStyles} {...props}>
         {children}
-        {removable && (
+        {isRemovable && (
           <Icon
             icon="cross"
             marginLeft={minorScale(1)}
-            onClick={this.handleRemove}
+            onClick={onRemove}
             size={minorScale(3)}
           />
         )}
@@ -59,4 +48,4 @@ class Tag extends React.PureComponent {
   }
 }
 
-export default withTheme(Tag)
+export default Tag

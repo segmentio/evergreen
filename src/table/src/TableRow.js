@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { Pane } from '../../layers'
 import { withTheme } from '../../theme'
+import safeInvoke from '../../lib/safe-invoke'
 import { TableRowProvider } from './TableRowContext'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 
@@ -108,9 +109,7 @@ class TableRow extends PureComponent {
 
   onRef = ref => {
     this.mainRef = ref
-    if (typeof this.props.innerRef === 'function') {
-      this.props.innerRef(ref)
-    }
+    safeInvoke(this.props.innerRef, ref)
   }
 
   render() {
