@@ -3,27 +3,25 @@ import missingStateWarning from './missingStateWarning'
 import createAppearance from './createAppearance'
 
 const baseStyle = {
-  WebkitAppearance: 'none',
-  MozAppearance: 'none',
-  border: 'none'
+  alignItems: 'center',
+  display: 'inline-flex',
+  flexWrap: 'wrap'
 }
 
-const invalidState = '&[aria-invalid="true"]'
-const placeholder = '&::placeholder'
-const focusState = '&:focus'
-const disabledState = '&:disabled'
+const focusState = '&[aria-activedescendant]'
+const disabledState = '&[aria-disabled="true"]'
 
 /**
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createInputAppearance = (items = {}) => {
+const createTagInputAppearance = (items = {}) => {
   missingStateWarning({
     items,
-    props: ['base', 'invalid', 'placeholder', 'focus', 'disabled'],
+    props: ['base', 'focus', 'disabled'],
     cb: prop => {
       console.error(
-        `Themer.createInputAppearance() is missing a ${prop} item `,
+        `Themer.createTagInputAppearance() is missing a ${prop} item `,
         items
       )
     }
@@ -32,8 +30,6 @@ const createInputAppearance = (items = {}) => {
   return {
     ...baseStyle,
     ...createAppearance(items.base),
-    [invalidState]: createAppearance(items.invalid),
-    [placeholder]: createAppearance(items.placeholder),
     [focusState]: {
       zIndex: StackingOrder.FOCUSED,
       ...createAppearance(items.focus)
@@ -45,4 +41,4 @@ const createInputAppearance = (items = {}) => {
   }
 }
 
-export default createInputAppearance
+export default createTagInputAppearance

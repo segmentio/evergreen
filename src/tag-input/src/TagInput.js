@@ -1,0 +1,259 @@
+/**
+ * @overview TagInput accepts multiple values that can be individually removed
+ */
+
+import React from 'react'
+import PropTypes from 'prop-types'
+import Box from 'ui-box'
+import cx from 'classnames'
+import { Text } from '../../typography'
+import { withTheme } from '../../theme'
+import { majorScale } from '../../scales'
+import Tag from './Tag'
+
+let inputId = 1
+
+class TagInput extends React.Component {
+  static propTypes = {
+    /** The class name to apply to the container component. */
+    className: PropTypes.string,
+    /** Whether or not the input should be disabled. */
+    disabled: PropTypes.bool,
+    /** Props to pass to the input component. Note that `ref` and `key` are not supported. See `inputRef`. */
+    inputProps: PropTypes.object,
+    /**
+     * Ref handler for the <input> element.
+     * (input: HTMLInputElement | null) => void
+     */
+    inputRef: PropTypes.func,
+    /**
+     * Callback invoked when new tags are added.
+     * Returning `false` will prevent clearing the input.
+     * (values: Array) => void | false
+     */
+    onAdd: PropTypes.func,
+    /**
+     * Callback invoked when the tag values change.
+     * Returning `false` will prevent clearing the input.
+     * (values: Array) => void | false
+     */
+    onChange: PropTypes.func,
+    /**
+     * Callback invoked when the value of the <input> is changed. Shorthand for `inputProps={{ onChange }}`.
+     * (event) => void
+     */
+    onInputChange: PropTypes.func,
+    /**
+     * Callback invoked when a tag is removed.
+     * Receives value and index of removed tag.
+     * (value: string | node, index: number) => void
+     */
+    onRemove: PropTypes.func,
+    /** Value or RegExp to split on pasted text or on enter keypress */
+    separator: PropTypes.oneOf([
+      PropTypes.string,
+      PropTypes.instanceOf(RegExp),
+      false
+    ]),
+    /** Provide props to tag component (actually `Badge`, for now). */
+    tagProps: PropTypes.object,
+    /** Controlled tag values. Each value is rendered inside a tag. */
+    values: PropTypes.arrayOf(PropTypes.node)
+  }
+
+  static defaultProps = {
+    disabled: false,
+    height: 32,
+    separator: /[,\n\r]/,
+    values: [],
+    tagProps: {}
+  }
+
+  state = {
+    inputValue: '',
+    isFocused: false
+  }
+
+  id = `TagInput-${inputId++}`
+
+  addTags = (value = '') => {
+    const { onAdd, onChange, values } = this.props
+    const newValues = this.getValues(value)
+
+    let shouldClearInput
+    if (typeof onAdd === 'function') {
+      shouldClearInput = onAdd(newValues)
+    }
+
+    if (typeof onChange === 'function') {
+      shouldClearInput = shouldClearInput || onChange(values.concat(newValues))
+    }
+
+    if (shouldClearInput !== false) {
+      this.setState({ inputValue: '' })
+    }
+  }
+
+  getValues = (inputValue = '') => {
+    const { separator } = this.props
+
+    return separator
+      ? inputValue
+          .split(separator)
+          .map(v => v.trim())
+          .filter(v => v.length > 0)
+      : [inputValue]
+  }
+
+  handleBackspaceToRemove = () => {
+    const { values } = this.props
+
+    // Delete last item in values
+    this.removeTagAtIndex(values.length - 1)
+  }
+
+  handleInputBlur = event => {
+    this.setState({ isFocused: false })
+
+    if (typeof this.props.onBlur === 'function') {
+      this.props.onBlur(event)
+    }
+  }
+
+  handleInputChange = event => {
+    this.setState({ inputValue: event.target.value })
+
+    if (typeof this.props.onInputChange === 'function') {
+      this.props.onInputChange(event)
+    }
+  }
+
+  handleInputFocus = event => {
+    this.setState({ isFocused: true })
+
+    if (typeof this.props.onFocus === 'function') {
+      this.props.onFocus(event)
+    }
+  }
+
+  handleKeyDown = event => {
+    const { selectionEnd, value } = event.target
+
+    if (event.key === 'Enter') {
+      this.addTags(value)
+    } else if (event.key === 'Backspace' && selectionEnd === 0) {
+      this.handleBackspaceToRemove(event)
+    }
+  }
+
+  handleRemoveTag = event => {
+    // Using data attribute to simplify callback logic -- one handler for all children
+    const index = Number(
+      event.currentTarget.parentElement.getAttribute('data-tag-index')
+    )
+    this.removeTagAtIndex(index)
+  }
+
+  maybeRenderTag = (tag, index) => {
+    if (!tag) {
+      return null
+    }
+
+    const { disabled, tagProps } = this.props
+
+    return (
+      <Tag
+        key={`${tag}:${index}`}
+        data-tag-index={index}
+        marginRight={majorScale(1)}
+        marginY={majorScale(1)}
+        onRemove={disabled ? null : this.handleRemoveTag}
+        removable={!disabled}
+        tagProps={tagProps}
+      >
+        {tag}
+      </Tag>
+    )
+  }
+
+  removeTagAtIndex = index => {
+    const { onChange, onRemove, values } = this.props
+
+    if (typeof onRemove === 'function') {
+      onRemove(values[index], index)
+    }
+
+    if (typeof onChange === 'function') {
+      // Remove item at index as a new array
+      const newValues = values.filter((_, i) => i !== index)
+      onChange(newValues)
+    }
+  }
+
+  setRef = node => {
+    this.input = node
+
+    if (typeof this.props.inputRef === 'function') {
+      this.props.inputRef(node)
+    }
+  }
+
+  render() {
+    const {
+      className,
+      disabled,
+      height,
+      inputProps,
+      inputRef,
+      onAdd,
+      onChange,
+      onInputChange,
+      onRemove,
+      theme,
+      values,
+      ...props
+    } = this.props
+
+    const { inputValue, isFocused } = this.state
+
+    const themedContainerClassName = theme.getTagInputClassName('default')
+    const themedInputClassName = theme.getTextInputClassName('none')
+    const textSize = theme.getTextSizeForControlHeight(height)
+    const borderRadius = theme.getBorderRadiusForControlHeight(height)
+
+    return (
+      <Box
+        aria-disabled={disabled || undefined}
+        aria-activedescendant={isFocused ? this.id : undefined}
+        borderRadius={borderRadius}
+        className={cx(themedContainerClassName, className)}
+        paddingLeft={Math.round(height / 3.2)}
+        paddingRight={Math.round(height / 3.2)}
+        {...props}
+      >
+        {values.map(this.maybeRenderTag)}
+        <Text
+          is="input"
+          id={this.id}
+          color={disabled ? 'muted' : undefined}
+          disabled={disabled}
+          flexGrow="1"
+          height={height - 2}
+          marginY="1px"
+          size={textSize}
+          type="text"
+          value={inputValue}
+          {...inputProps}
+          className={themedInputClassName}
+          ref={this.setRef}
+          onChange={this.handleInputChange}
+          onBlur={this.handleInputBlur}
+          onFocus={this.handleInputFocus}
+          onKeyDown={this.handleKeyDown}
+        />
+      </Box>
+    )
+  }
+}
+
+export default withTheme(TagInput)

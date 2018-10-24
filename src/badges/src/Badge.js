@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { Strong } from '../../typography'
 import { withTheme } from '../../theme'
@@ -14,12 +15,21 @@ class Badge extends PureComponent {
     color: PropTypes.string.isRequired,
 
     /**
+     * Whether or not to apply hover/focus/active styles
+     */
+    isInteractive: PropTypes.bool,
+
+    /**
      * Theme provided by ThemeProvider.
      */
     theme: PropTypes.object.isRequired
   }
 
-  static defaultProps = { color: 'neutral', isSolid: false }
+  static defaultProps = {
+    color: 'neutral',
+    isInteractive: false,
+    isSolid: false
+  }
 
   static styles = {
     display: 'inline-block',
@@ -36,12 +46,22 @@ class Badge extends PureComponent {
   }
 
   render() {
-    const { theme, color: propsColor, isSolid, ...props } = this.props
+    const {
+      theme,
+      className,
+      color: propsColor,
+      isInteractive,
+      isSolid,
+      ...props
+    } = this.props
 
     const { color, backgroundColor } = theme.getBadgeProps({
-      isSolid,
-      color: propsColor
+      color: propsColor,
+      isSolid
     })
+
+    const appearance = isInteractive ? 'interactive' : 'default'
+    const classNames = cx(className, theme.getBadgeClassName(appearance))
 
     return (
       <Strong
@@ -50,6 +70,7 @@ class Badge extends PureComponent {
         color={color}
         backgroundColor={backgroundColor}
         {...props}
+        className={classNames}
       />
     )
   }

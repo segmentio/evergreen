@@ -5,10 +5,12 @@ export { default as badgeColors } from './badgeColors'
 export { default as spinnerColor } from './spinnerColor'
 
 // Class Name Getters.
+export { default as getBadgeClassName } from './getBadgeClassName'
 export { default as getButtonClassName } from './getButtonClassName'
 export { default as getLinkClassName } from './getLinkClassName'
 export { default as getCheckboxClassName } from './getCheckboxClassName'
 export { default as getRadioClassName } from './getRadioClassName'
+export { default as getTagInputClassName } from './getTagInputClassName'
 export { default as getTextInputClassName } from './getTextInputClassName'
 export { default as getTextareaClassName } from './getTextareaClassName'
 export {
