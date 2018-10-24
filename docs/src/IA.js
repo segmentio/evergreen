@@ -26,6 +26,7 @@ import Spinner from './images/illustrations/Spinner.png'
 import Switch from './images/illustrations/Switch.png'
 import Tab from './images/illustrations/Tab.png'
 import Table from './images/illustrations/Table.png'
+import TagInput from './images/illustrations/Tag Input.png'
 import TextInput from './images/illustrations/Text Input.png'
 import Textarea from './images/illustrations/Textarea.png'
 import Toaster from './images/illustrations/Toaster.png'
@@ -116,7 +117,8 @@ export default {
             github: githubLink('badges'),
             name: 'Badge & Pill',
             tags: ['badge', 'pills', 'tag'],
-            image: BadgePill
+            image: BadgePill,
+            related: ['tag-input']
           },
           {
             id: 'avatar',
@@ -142,6 +144,14 @@ export default {
             github: githubLink('search-input'),
             name: 'Search Input',
             image: SearchInput
+          },
+          {
+            id: 'tag-input',
+            github: githubLink('tag-input'),
+            name: 'Tag Input',
+            image: TagInput,
+            tags: ['badge', 'pills', 'tag'],
+            related: ['badge-and-pill']
           },
           {
             id: 'textarea',
