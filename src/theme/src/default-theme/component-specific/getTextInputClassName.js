@@ -55,7 +55,8 @@ InputAppearances.neutral = Themer.createInputAppearance({
 
 InputAppearances.none = Themer.createInputAppearance({
   base: {
-    appearance: 'none',
+    WebkitAppearance: 'none',
+    MozAppearance: 'none',
     backgroundColor: 'white'
   },
   invalid: {},
