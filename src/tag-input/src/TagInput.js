@@ -152,9 +152,9 @@ class TagInput extends React.Component {
         key={`${tag}:${index}`}
         data-tag-index={index}
         marginRight={majorScale(1)}
-        marginY={majorScale(1)}
+        marginY="6px"
         onRemove={disabled ? null : this.handleRemoveTag}
-        removable={!disabled}
+        isRemovable={!disabled}
         tagProps={tagProps}
       >
         {tag}
@@ -207,6 +207,7 @@ class TagInput extends React.Component {
         className={cx(themedContainerClassName, className)}
         paddingLeft={Math.round(height / 3.2)}
         paddingRight={Math.round(height / 3.2)}
+        paddingY="2px"
         {...props}
       >
         {values.map(this.maybeRenderTag)}
@@ -216,8 +217,7 @@ class TagInput extends React.Component {
           color={disabled ? 'muted' : undefined}
           disabled={disabled}
           flexGrow="1"
-          height={height - 2}
-          marginY="1px"
+          height={height - 4}
           size={textSize}
           type="text"
           value={inputValue}
