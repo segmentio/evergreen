@@ -16,6 +16,8 @@ let inputId = 1
 
 class TagInput extends React.Component {
   static propTypes = {
+    /** Whether or not the inputValue should be added to the tags when the input blurs. */
+    addOnBlur: PropTypes.bool,
     /** The class name to apply to the container component. */
     className: PropTypes.string,
     /** Whether or not the input should be disabled. */
@@ -63,6 +65,7 @@ class TagInput extends React.Component {
   }
 
   static defaultProps = {
+    addOnBlur: false,
     disabled: false,
     height: 32,
     separator: /[,\n\r]/,
@@ -109,8 +112,19 @@ class TagInput extends React.Component {
     this.removeTagAtIndex(values.length - 1)
   }
 
-  handleInputBlur = event => {
-    this.setState({ isFocused: false })
+  handleBlur = event => {
+    const container = event.target
+
+    // Use raf so that the dom has time to update `activeElement`
+    requestAnimationFrame(() => {
+      if (!container.contains(document.activeElement)) {
+        if (this.props.addOnBlur && this.state.inputValue) {
+          this.addTags(this.state.inputValue)
+        }
+        this.setState({ isFocused: false })
+      }
+    })
+
     safeInvoke(this.props.onBlur, event)
   }
 
@@ -183,6 +197,7 @@ class TagInput extends React.Component {
 
   render() {
     const {
+      addOnBlur,
       className,
       disabled,
       height,
@@ -216,6 +231,7 @@ class TagInput extends React.Component {
         paddingRight={Math.round(height / 3.2)}
         paddingY="2px"
         {...props}
+        onBlur={this.handleBlur}
       >
         {values.map(this.maybeRenderTag)}
         <Text
@@ -232,7 +248,6 @@ class TagInput extends React.Component {
           className={themedInputClassName}
           ref={this.setRef}
           onChange={this.handleInputChange}
-          onBlur={this.handleInputBlur}
           onFocus={this.handleInputFocus}
           onKeyDown={this.handleKeyDown}
         />

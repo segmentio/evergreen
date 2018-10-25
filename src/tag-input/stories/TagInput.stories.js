@@ -130,6 +130,7 @@ storiesOf('tag-input', module).add('TagInput', () => (
       <StateManager values={initialValues}>
         {({ values, addValues, removeValue, handleChange }) => (
           <TagInput
+            addOnBlur
             inputProps={{ placeholder: 'Enter something...' }}
             values={values}
             separator={false}
