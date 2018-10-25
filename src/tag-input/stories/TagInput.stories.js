@@ -26,6 +26,12 @@ class StateManager extends React.PureComponent {
     }))
   }
 
+  handleChange = values => {
+    if (values.length % 2 === 0) {
+      return false
+    }
+  }
+
   removeValue = (_value, index) => {
     this.setState(state => ({
       values: state.values.filter((_, i) => i !== index)
@@ -43,7 +49,8 @@ class StateManager extends React.PureComponent {
       values: this.state.values,
       addValues: this.addValues,
       removeValue: this.removeValue,
-      tagProps: this.tagProps
+      tagProps: this.tagProps,
+      handleChange: this.handleChange
     })
   }
 }
@@ -112,6 +119,24 @@ storiesOf('tag-input', module).add('TagInput', () => (
             onAdd={addValues}
             onRemove={removeValue}
             tagProps={tagProps}
+          />
+        )}
+      </StateManager>
+    </StorySection>
+    <StorySection>
+      <StoryHeader>
+        <StoryHeading>Prevent input clearing on even values</StoryHeading>
+      </StoryHeader>
+      <StateManager values={initialValues}>
+        {({ values, addValues, removeValue, handleChange }) => (
+          <TagInput
+            addOnBlur
+            inputProps={{ placeholder: 'Enter something...' }}
+            values={values}
+            separator={false}
+            onAdd={addValues}
+            onChange={handleChange}
+            onRemove={removeValue}
           />
         )}
       </StateManager>

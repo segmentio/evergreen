@@ -16,6 +16,8 @@ let inputId = 1
 
 class TagInput extends React.Component {
   static propTypes = {
+    /** Whether or not the inputValue should be added to the tags when the input blurs. */
+    addOnBlur: PropTypes.bool,
     /** The class name to apply to the container component. */
     className: PropTypes.string,
     /** Whether or not the input should be disabled. */
@@ -51,10 +53,10 @@ class TagInput extends React.Component {
      */
     onRemove: PropTypes.func,
     /** Value or RegExp to split on pasted text or on enter keypress */
-    separator: PropTypes.oneOf([
+    separator: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.instanceOf(RegExp),
-      false
+      PropTypes.oneOf([false])
     ]),
     /** Provide props to tag component (actually `Badge`, for now). */
     tagProps: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
@@ -63,6 +65,7 @@ class TagInput extends React.Component {
   }
 
   static defaultProps = {
+    addOnBlur: false,
     disabled: false,
     height: 32,
     separator: /[,\n\r]/,
@@ -80,9 +83,11 @@ class TagInput extends React.Component {
   addTags = (value = '') => {
     const { onAdd, onChange, values } = this.props
     const newValues = this.getValues(value)
-    const shouldClearInput =
-      safeInvoke(onAdd, newValues) ||
-      safeInvoke(onChange, values.concat(newValues))
+    let shouldClearInput = safeInvoke(onAdd, newValues)
+
+    if (typeof onChange === 'function') {
+      shouldClearInput = shouldClearInput || onChange(values.concat(newValues))
+    }
 
     if (shouldClearInput !== false) {
       this.setState({ inputValue: '' })
@@ -107,8 +112,19 @@ class TagInput extends React.Component {
     this.removeTagAtIndex(values.length - 1)
   }
 
-  handleInputBlur = event => {
-    this.setState({ isFocused: false })
+  handleBlur = event => {
+    const container = event.target
+
+    // Use raf so that the dom has time to update `activeElement`
+    requestAnimationFrame(() => {
+      if (!container.contains(document.activeElement)) {
+        if (this.props.addOnBlur && this.state.inputValue) {
+          this.addTags(this.state.inputValue)
+        }
+        this.setState({ isFocused: false })
+      }
+    })
+
     safeInvoke(this.props.onBlur, event)
   }
 
@@ -126,6 +142,8 @@ class TagInput extends React.Component {
     const { selectionEnd, value } = event.target
 
     if (event.key === 'Enter') {
+      // Prevent Enter keypresses from submitting forms since they have special powers inside TagInput
+      event.preventDefault()
       this.addTags(value)
     } else if (event.key === 'Backspace' && selectionEnd === 0) {
       this.handleBackspaceToRemove(event)
@@ -179,6 +197,7 @@ class TagInput extends React.Component {
 
   render() {
     const {
+      addOnBlur,
       className,
       disabled,
       height,
@@ -188,6 +207,8 @@ class TagInput extends React.Component {
       onChange,
       onInputChange,
       onRemove,
+      separator,
+      tagProps,
       theme,
       values,
       ...props
@@ -210,6 +231,7 @@ class TagInput extends React.Component {
         paddingRight={Math.round(height / 3.2)}
         paddingY="2px"
         {...props}
+        onBlur={this.handleBlur}
       >
         {values.map(this.maybeRenderTag)}
         <Text
@@ -226,7 +248,6 @@ class TagInput extends React.Component {
           className={themedInputClassName}
           ref={this.setRef}
           onChange={this.handleInputChange}
-          onBlur={this.handleInputBlur}
           onFocus={this.handleInputFocus}
           onKeyDown={this.handleKeyDown}
         />
