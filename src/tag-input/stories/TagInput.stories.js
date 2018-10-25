@@ -132,6 +132,7 @@ storiesOf('tag-input', module).add('TagInput', () => (
           <TagInput
             inputProps={{ placeholder: 'Enter something...' }}
             values={values}
+            separator={false}
             onAdd={addValues}
             onChange={handleChange}
             onRemove={removeValue}

@@ -51,10 +51,10 @@ class TagInput extends React.Component {
      */
     onRemove: PropTypes.func,
     /** Value or RegExp to split on pasted text or on enter keypress */
-    separator: PropTypes.oneOf([
+    separator: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.instanceOf(RegExp),
-      false
+      PropTypes.oneOf([false])
     ]),
     /** Provide props to tag component (actually `Badge`, for now). */
     tagProps: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
