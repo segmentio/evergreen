@@ -128,6 +128,8 @@ class TagInput extends React.Component {
     const { selectionEnd, value } = event.target
 
     if (event.key === 'Enter') {
+      // Prevent Enter keypresses from submitting forms since they have special powers inside TagInput
+      event.preventDefault()
       this.addTags(value)
     } else if (event.key === 'Backspace' && selectionEnd === 0) {
       this.handleBackspaceToRemove(event)
