@@ -129,6 +129,7 @@ In more delicate use cases you can use `onAdd` and `onRemove` instead of `onChan
       onAdd={value => {
         if (!value.includes('@')) {
           toaster.danger('Oops, you tried entering a invalid email. Try again.')
+          return
         }
         setState({
           values: [...state.values, value]
