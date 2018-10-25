@@ -80,9 +80,11 @@ class TagInput extends React.Component {
   addTags = (value = '') => {
     const { onAdd, onChange, values } = this.props
     const newValues = this.getValues(value)
-    const shouldClearInput =
-      safeInvoke(onAdd, newValues) ||
-      safeInvoke(onChange, values.concat(newValues))
+    let shouldClearInput = safeInvoke(onAdd, newValues)
+
+    if (typeof onChange === 'function') {
+      shouldClearInput = shouldClearInput || onChange(values.concat(newValues))
+    }
 
     if (shouldClearInput !== false) {
       this.setState({ inputValue: '' })
@@ -188,6 +190,8 @@ class TagInput extends React.Component {
       onChange,
       onInputChange,
       onRemove,
+      separator,
+      tagProps,
       theme,
       values,
       ...props
