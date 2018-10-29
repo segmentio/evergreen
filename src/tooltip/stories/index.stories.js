@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import { Tooltip } from '..'
 import { Text } from '../../typography'
 import { Position } from '../../constants'
-import { Button } from '../../buttons'
+import { Button, IconButton } from '../../buttons'
 
 storiesOf('tooltip', module)
   .add('Tooltip', () => (
@@ -27,6 +27,15 @@ storiesOf('tooltip', module)
         <Text marginLeft={40} display="inline-block" cursor="help">
           Disabled tooltip
         </Text>
+      </Tooltip>
+      <Tooltip content="Tooltip on a disabled button">
+        <IconButton
+          marginLeft={40}
+          display="inline-block"
+          disabled
+          icon="add"
+          appearance="minimal"
+        />
       </Tooltip>
     </Box>
   ))
