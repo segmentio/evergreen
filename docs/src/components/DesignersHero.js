@@ -5,6 +5,10 @@ import spotIllustration from '../images/sketch-hero.png'
 import sketchIcon from '../images/sketch-icon.png'
 
 export default class DesignersHero extends React.PureComponent {
+  trackDownload = () => {
+    window.analytics.track('Download Sketch File')
+  }
+
   render() {
     return (
       <section className="Hero">
@@ -18,6 +22,7 @@ export default class DesignersHero extends React.PureComponent {
             <div>
               <Button
                 is="a"
+                onClick={this.trackDownload}
                 href={withPrefix('/Evergreen v4 Community.sketch')}
                 iconBefore={
                   <img

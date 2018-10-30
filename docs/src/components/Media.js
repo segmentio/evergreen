@@ -31,9 +31,17 @@ class MediaItem extends React.PureComponent {
     image: PropTypes.string.isRequired
   }
 
+  track = () => {
+    window.analytics.track('Media Item Clicked', {
+      title: this.props.title,
+      link: this.props.link,
+      published: this.props.published
+    })
+  }
+
   render() {
     return (
-      <a href={this.props.link} className="MediaItem">
+      <a href={this.props.link} className="MediaItem" onClick={this.track}>
         <figure>
           <img
             src={this.props.image}
