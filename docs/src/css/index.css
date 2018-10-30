@@ -16,11 +16,11 @@
 @import './prism-theme.css';
 @import './content.css';
 @import './container.css';
-@import './home-hero.css';
+@import './hero.css';
 @import './main-layout.css';
 @import './prop-type-table.css';
 @import './overview.css';
 @import './mdx-page.css';
 @import './features.css';
 @import './page-footer.css';
-@import './home-media.css';
+@import './media.css';

@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import GitHubButton from 'react-github-button'
-import sketchIconImage from '../images/sketch-icon.png'
 import GitHubIcon from './GitHubIcon'
 import SpectrumIcon from './SpectrumIcon'
 import LogoWordmark from './LogoWordmark'
@@ -44,9 +43,6 @@ export default class TopBar extends PureComponent {
             activeClassName="is-active"
             to="/for-designers"
           >
-            <span className="icon-holder">
-              <img src={sketchIconImage} style={{ height: '100%', top: 1 }} />
-            </span>
             <span>For Designers</span>
           </Link>
         </nav>
