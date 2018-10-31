@@ -42,7 +42,7 @@ export default class Root extends React.Component {
     return (
       <Layout>
         <Helmet>
-          <title>Evergreen</title>
+          <title>Designers &middot; Evergreen</title>
         </Helmet>
         <div>
           <TopBar />

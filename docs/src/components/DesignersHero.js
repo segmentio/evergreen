@@ -4,6 +4,10 @@ import { Button } from '../../../src'
 import spotIllustration from '../images/sketch-hero.png'
 import sketchIcon from '../images/sketch-icon.png'
 
+const NativeLink = ({ ...props }) => {
+  return <a target="_blank" rel="noopener noreferrer" {...props} />
+}
+
 export default class DesignersHero extends React.PureComponent {
   trackDownload = () => {
     window.analytics.track('Download Sketch File')
@@ -16,8 +20,8 @@ export default class DesignersHero extends React.PureComponent {
           <div className="Hero-left">
             <h1>Evergreen for Designers</h1>
             <p>
-              We are happy to share a subset of our official design resource
-              with the Evergreen community.
+              Design products and side-projects with our official design
+              resource for the Evergreen community.
             </p>
             <div>
               <Button
@@ -38,6 +42,32 @@ export default class DesignersHero extends React.PureComponent {
               >
                 Download Sketch UI Kit
               </Button>
+            </div>
+            <div style={{ marginTop: 24, marginBottom: -32 }}>
+              <a
+                rel="license"
+                href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+              >
+                <img
+                  alt="Creative Commons License"
+                  style={{ borderWidth: 0 }}
+                  height="15"
+                  src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png"
+                />
+              </a>
+              <p style={{ fontSize: 11 }}>
+                <br />
+                This work is licensed under a{' '}
+                <NativeLink
+                  className="Link"
+                  rel="license"
+                  href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+                >
+                  Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+                  International License
+                </NativeLink>
+                .
+              </p>
             </div>
           </div>
           <div className="Hero-right" style={{ marginBottom: -80 }}>
