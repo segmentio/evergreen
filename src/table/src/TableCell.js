@@ -4,6 +4,7 @@ import cx from 'classnames'
 import { toaster } from '../../toaster'
 import { withTheme } from '../../theme'
 import { Pane } from '../../layers'
+import safeInvoke from '../../lib/safe-invoke'
 import { TableRowConsumer } from './TableRowContext'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
 
@@ -77,23 +78,12 @@ class TableCell extends PureComponent {
       }
     }
 
-    if (typeof this.props.onKeyDown === 'function') {
-      this.props.onKeyDown(e)
-    }
+    safeInvoke(this.props.onKeyDown, e)
   }
 
   onRef = ref => {
     this.mainRef = ref
-
-    if (typeof this.props.innerRef === 'function') {
-      this.props.innerRef(ref)
-    }
-  }
-
-  handleClick = e => {
-    if (typeof this.props.onClick === 'function') {
-      this.props.onClick(e)
-    }
+    safeInvoke(this.props.innerRef, ref)
   }
 
   render() {
@@ -124,7 +114,7 @@ class TableCell extends PureComponent {
               className={cx(themedClassName, className)}
               tabIndex={isSelectable ? tabIndex : undefined}
               data-isselectable={isSelectable}
-              onClick={this.handleClick}
+              onClick={onClick}
               onKeyDown={this.handleKeyDown}
               {...TableCell.styles}
               {...props}

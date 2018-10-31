@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { withTheme } from '../../theme'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
+import safeInvoke from '../../lib/safe-invoke'
 import TextTableCell from './TextTableCell'
 import TableCell from './TableCell'
 import EditableCellField from './EditableCellField'
@@ -109,8 +110,8 @@ class EditableCell extends React.PureComponent {
       value
     })
 
-    if (currentValue !== value && typeof onChange === 'function') {
-      onChange(value)
+    if (currentValue !== value) {
+      safeInvoke(onChange, value)
     }
 
     if (this.mainRef && isSelectable) {
