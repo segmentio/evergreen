@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
+import safeInvoke from '../../lib/safe-invoke'
 import SegmentedControlRadio from './SegmentedControlRadio'
 
 let radioCount = 1 // Used for generating unique input names
@@ -93,9 +94,7 @@ export default class SegmentedControl extends PureComponent {
       this.setState({ value })
     }
 
-    if (typeof this.props.onChange === 'function') {
-      this.props.onChange(value)
-    }
+    safeInvoke(this.props.onChange, value)
   }
 
   render() {

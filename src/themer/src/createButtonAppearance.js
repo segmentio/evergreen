@@ -5,6 +5,7 @@ import missingStateWarning from './missingStateWarning'
 const baseStyle = {
   WebkitFontSmoothing: 'antialiased',
   WebkitAppearance: 'none',
+  MozAppearance: 'none',
   verticalAlign: 'middle',
   textDecoration: 'none',
   border: 'none',
