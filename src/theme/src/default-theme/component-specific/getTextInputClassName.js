@@ -53,15 +53,33 @@ InputAppearances.neutral = Themer.createInputAppearance({
   }
 })
 
+InputAppearances.none = Themer.createInputAppearance({
+  base: {
+    backgroundColor: 'white'
+  },
+  invalid: {},
+  placeholder: {
+    color: scales.neutral.N6A
+  },
+  focus: {
+    outline: 'none'
+  },
+  disabled: {
+    backgroundColor: scales.neutral.N2
+  }
+})
+
 /**
  * Get the appearance of a `TextInput`.
- * @param {string} appearance
+ * @param {string} appearance - the appearance name
  * @return {Object} the appearance object.
  */
 const getTextInputAppearance = appearance => {
   switch (appearance) {
     case 'neutral':
       return InputAppearances.neutral
+    case 'none':
+      return InputAppearances.none
     default:
       return InputAppearances.default
   }
@@ -69,7 +87,7 @@ const getTextInputAppearance = appearance => {
 
 /**
  * Get the className of a `TextInput`.
- * @param {string} appearance
+ * @param {string} appearance - the appearance name
  * @return {string} the appearance class name.
  */
 export default memoizeClassName(getTextInputAppearance)

@@ -30,6 +30,7 @@ const baseStyle = {
   WebkitFontSmoothing: 'antialiased',
   textDecoration: 'none',
   WebkitAppearance: 'none',
+  MozAppearance: 'none',
   border: 'none',
   outline: 'none',
   cursor: 'pointer'
