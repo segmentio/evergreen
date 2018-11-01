@@ -15,6 +15,8 @@ const wrapperClass = css({
   pointerEvents: 'none'
 })
 
+const hasCustomId = settings => Object.hasOwnProperty.call(settings, 'id')
+
 export default class ToastManager extends React.PureComponent {
   static propTypes = {
     /**
@@ -56,6 +58,16 @@ export default class ToastManager extends React.PureComponent {
   }
 
   notify = (title, settings) => {
+    // If there's a custom toast ID passed, close existing toasts with the same custom ID
+    if (hasCustomId(settings)) {
+      for (const toast of this.state.toasts) {
+        // Since unique ID is still appended to a custom ID, skip the unique ID and check only prefix
+        if (String(toast.id).startsWith(settings.id)) {
+          this.closeToast(toast.id)
+        }
+      }
+    }
+
     const instance = this.createToastInstance(title, settings)
 
     this.setState(previousState => {
@@ -68,7 +80,8 @@ export default class ToastManager extends React.PureComponent {
   }
 
   createToastInstance = (title, settings) => {
-    const id = ++ToastManager.idCounter
+    const uniqueId = ++ToastManager.idCounter
+    const id = hasCustomId(settings) ? `${settings.id}-${uniqueId}` : uniqueId
 
     return {
       id,

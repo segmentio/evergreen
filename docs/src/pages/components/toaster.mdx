@@ -150,3 +150,21 @@ The `duration` property is in seconds — not milliseconds.
   10 Seconds
 </Button>
 ```
+
+## Unique toasts
+
+There are cases when it's only one toast with the same content can be shown at a time.
+Passing a unique ID via `id` property allows Evergreen to close all previous toasts with the same ID, before showing a new one.
+
+
+```jsx
+<Button
+  onClick={() =>
+    toaster.warning('Only one toaster will be shown', {
+      id: 'forbidden-action'
+    })
+  }
+>
+  Show only one toaster
+</Button>
+```
