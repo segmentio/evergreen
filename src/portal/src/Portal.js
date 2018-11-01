@@ -19,9 +19,6 @@ export default class Portal extends Component {
     }
 
     this.el = document.createElement('div')
-  }
-
-  componentDidMount() {
     portalContainer.appendChild(this.el)
   }
 
