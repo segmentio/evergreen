@@ -120,9 +120,7 @@ const getIconForIntent = intent => {
  * @param {number} size - 100–900. 500 is default.
  * @return {Object} heading style.
  */
-const getHeadingStyle = size => {
-  return themedProperty(headings, String(size))
-}
+const getHeadingStyle = size => themedProperty(headings, String(size))
 
 /**
  * Text styles for single line text.
@@ -188,5 +186,4 @@ export {
   getTextStyle,
   getParagraphStyle,
   getFontFamily,
-  getTextColor
-}
+  getTextColor}
