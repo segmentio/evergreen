@@ -16,8 +16,7 @@ storiesOf('icon', module).add('Icon', () => (
         package for all of its icons.
       </Paragraph>
     </Box>
-    {Object.keys(IconNames).map(iconKey => {
-      return (
+    {Object.keys(IconNames).map(iconKey => (
         <Box
           key={iconKey}
           float="left"
@@ -34,7 +33,6 @@ storiesOf('icon', module).add('Icon', () => (
             {IconNames[iconKey]}
           </Text>
         </Box>
-      )
-    })}
+      ))}
   </div>
 ))
