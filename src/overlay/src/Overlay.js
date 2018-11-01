@@ -6,6 +6,7 @@ import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder } from '../../constants'
 import { withTheme } from '../../theme'
+import safeInvoke from '../../lib/safe-invoke'
 
 const animationEasing = {
   standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
@@ -89,6 +90,13 @@ class Overlay extends React.Component {
      * Boolean indicating if pressing the esc key should close the overlay.
      */
     shouldCloseOnEscapePress: PropTypes.bool,
+
+    /**
+     * Function called when overlay is about to close.
+     * Return `false` to prevent the sheet from closing.
+     * type: `Function -> Boolean`
+     */
+    onBeforeClose: PropTypes.func,
 
     /**
      * Callback fired before the "exiting" status is applied.
@@ -246,7 +254,10 @@ class Overlay extends React.Component {
   }
 
   close = () => {
-    this.setState({ exiting: true })
+    const shouldClose = safeInvoke(this.props.onBeforeClose)
+    if (shouldClose !== false) {
+      this.setState({ exiting: true })
+    }
   }
 
   handleEntering = node => {
