@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import warning from 'warning'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
@@ -88,6 +89,13 @@ class MenuItem extends React.PureComponent {
       icon,
       ...passthroughProps
     } = this.props
+
+    if (process.env.NODE_ENV !== 'production') {
+      warning(
+        typeof this.props.onClick !== 'function',
+        '<Menu.Item> expects `onSelect` prop, but you passed `onClick`.'
+      )
+    }
 
     const themedClassName = theme.getMenuItemClassName(appearance, 'none')
 
