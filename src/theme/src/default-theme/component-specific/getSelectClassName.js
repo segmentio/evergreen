@@ -24,9 +24,7 @@ SelectAppearances.default = Themer.createSelectAppearance({
  * @param {string} appearance
  * @return {string} the appearance object.
  */
-const getSelectAppearance = () => {
-  return SelectAppearances.default
-}
+const getSelectAppearance = () => SelectAppearances.default
 
 /**
  * Get the className of a `Select`.
