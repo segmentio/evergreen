@@ -226,7 +226,7 @@ export default class AdvancedTable extends React.Component {
     return (
       <Table.Row key={profile.id}>
         <Table.Cell display="flex" alignItems="center">
-          <Avatar name={profile.name} flexShrink={0} />
+          <Avatar name={profile.name} />
           <Text marginLeft={8} size={300} fontWeight={500}>
             {profile.name}
           </Text>
