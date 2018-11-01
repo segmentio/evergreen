@@ -33,9 +33,7 @@ TagInputAppearances.default = Themer.createTagInputAppearance({
  * @param {string} appearance - the appearance name
  * @return {Object} the appearance object.
  */
-const getTextInputAppearance = () => {
-  return TagInputAppearances.default
-}
+const getTextInputAppearance = () => TagInputAppearances.default
 
 /**
  * Get the className of a `TagInput`.
