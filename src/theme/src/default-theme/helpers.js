@@ -7,9 +7,7 @@ import colors from './foundational-styles/colors'
  * @param {String} bottom - color.
  * @return {String} CSS background propery.
  */
-const linearGradient = (top, bottom) => {
-  return `linear-gradient(to bottom, ${top}, ${bottom})`
-}
+const linearGradient = (top, bottom) => `linear-gradient(to bottom, ${top}, ${bottom})`
 
 /**
  * @param {Intent} intent
@@ -113,5 +111,4 @@ export {
   linearGradient,
   getTextColorForIntent,
   getLinearGradientWithStates,
-  getPrimaryButtonStylesForIntent
-}
+  getPrimaryButtonStylesForIntent}
