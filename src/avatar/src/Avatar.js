@@ -146,6 +146,7 @@ class Avatar extends PureComponent {
         borderRadius={9999}
         position="relative"
         display="inline-flex"
+        flexShrink={0}
         justifyContent="center"
         backgroundColor={colorProps.backgroundColor}
         title={name}

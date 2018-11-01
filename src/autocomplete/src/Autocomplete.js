@@ -199,9 +199,10 @@ export default class Autocomplete extends PureComponent {
           selectedItem,
           highlightedIndex,
           selectItemAtIndex,
+          getRootProps,
           ...restDownshiftProps
         }) => (
-          <div>
+          <Pane width="100%" {...getRootProps({ refKey: 'innerRef' })}>
             <Popover
               bringFocusInside={false}
               isShown={isShown}
@@ -242,7 +243,7 @@ export default class Autocomplete extends PureComponent {
                 })
               }
             </Popover>
-          </div>
+          </Pane>
         )}
       </Downshift>
     )

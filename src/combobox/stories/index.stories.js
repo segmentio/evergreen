@@ -4,6 +4,7 @@ import Box from 'ui-box'
 import starWarsNames from 'starwars-names'
 import { Combobox } from '..'
 import { Heading } from '../../typography'
+import { Pane } from '../../layers'
 
 // Generate a big list of items
 const items = starWarsNames.all.sort((a, b) => {
@@ -63,6 +64,49 @@ storiesOf('combobox', module).add('Combobox', () => (
         itemToString={i => i.label}
         onChange={handleChange}
       />
+    </Box>
+
+    <Box marginBottom={16}>
+      <Heading>Full width combobox</Heading>
+
+      <Pane display="flex" background="tint1" padding={16}>
+        <Combobox
+          width="100%"
+          defaultSelectedItem={customItems[0]}
+          items={customItems}
+          itemToString={i => i.label}
+          onChange={handleChange}
+        />
+      </Pane>
+
+      <Heading>Pane has 75% width</Heading>
+      <Pane display="flex" background="tint2" width="75%" padding={16}>
+        <Combobox
+          width="100%"
+          defaultSelectedItem={customItems[0]}
+          items={customItems}
+          itemToString={i => i.label}
+          onChange={handleChange}
+        />
+      </Pane>
+
+      <Heading>
+        Pane is a column flexbox and Combobox is set to 100% width
+      </Heading>
+      <Pane
+        flexDirection="column"
+        display="flex"
+        background="greenTint"
+        padding={16}
+      >
+        <Combobox
+          width="100%"
+          defaultSelectedItem={customItems[0]}
+          items={customItems}
+          itemToString={i => i.label}
+          onChange={handleChange}
+        />
+      </Pane>
     </Box>
   </Box>
 ))

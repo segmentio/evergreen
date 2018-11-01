@@ -46,6 +46,16 @@ storiesOf('toaster', module).add('examples', () => (
         >
           Notify with Text
         </Button>
+        <Button
+          marginRight={8}
+          onClick={() =>
+            toaster.notify('A simple general message', {
+              id: 'general-message'
+            })
+          }
+        >
+          Notify once
+        </Button>
       </Box>
       <Box marginBottom={12}>
         <Button
