@@ -54,7 +54,8 @@
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.5.0",
     "tinycolor2": "^1.4.1",
-    "ui-box": "^1.4.0"
+    "ui-box": "^1.4.0",
+    "warning": "^4.0.2"
   },
   "peerDependencies": {
     "react": "^16.3.0",

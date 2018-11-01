@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import warning from 'warning'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
 
@@ -33,7 +34,6 @@ class Tab extends PureComponent {
   }
 
   static defaultProps = {
-    onClick: () => {},
     onSelect: () => {},
     onKeyPress: () => {},
     is: 'span',
@@ -54,7 +54,10 @@ class Tab extends PureComponent {
   }
 
   handleClick = e => {
-    this.props.onClick(e)
+    if (typeof this.props.onClick === 'function') {
+      this.props.onClick(e)
+    }
+
     this.props.onSelect()
   }
 
@@ -76,6 +79,13 @@ class Tab extends PureComponent {
       appearance,
       ...props
     } = this.props
+
+    if (process.env.NODE_ENV !== 'production') {
+      warning(
+        typeof this.props.onClick !== 'function',
+        '<Tab> expects `onSelect` prop, but you passed `onClick`.'
+      )
+    }
 
     const textSize = theme.getTextSizeForControlHeight(height)
 
