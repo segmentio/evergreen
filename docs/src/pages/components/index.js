@@ -6,8 +6,7 @@ import Overview from '../../components/Overview'
 import Layout from '../../components/Layout'
 import PageFooter from '../../components/PageFooter'
 
-export default () => {
-  return (
+export default () => (
     <Layout>
       <Helmet>
         <title>Components · Evergreen</title>
@@ -21,4 +20,3 @@ export default () => {
       <PageFooter />
     </Layout>
   )
-}
