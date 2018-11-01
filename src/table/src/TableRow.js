@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
+import warning from 'warning'
 import { Pane } from '../../layers'
 import { withTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
@@ -72,14 +73,16 @@ class TableRow extends PureComponent {
     intent: 'none',
     appearance: 'default',
     height: 48,
-    onClick: () => {},
     onSelect: () => {},
     onDeselect: () => {},
     onKeyPress: () => {}
   }
 
   handleClick = e => {
-    this.props.onClick(e)
+    if (typeof this.props.onClick === 'function') {
+      this.props.onClick(e)
+    }
+
     if (this.props.isSelectable) {
       if (this.props.isSelected) {
         this.props.onDeselect()
@@ -134,6 +137,13 @@ class TableRow extends PureComponent {
       isSelected,
       ...props
     } = this.props
+
+    if (process.env.NODE_ENV !== 'production') {
+      warning(
+        typeof onClick !== 'function',
+        '<Table.Row> expects `onSelect` prop, but you passed `onClick`.'
+      )
+    }
 
     const themedClassName = theme.getRowClassName(appearance, intent)
 
