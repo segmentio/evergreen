@@ -22,9 +22,7 @@ const defaultAppearance = Themer.createTabAppearance({
  * @param {string} appearance
  * @return {string} the appearance object.
  */
-const getTabAppearance = () => {
-  return defaultAppearance
-}
+const getTabAppearance = () => defaultAppearance
 
 /**
  * Get the className of a `Tab`.
