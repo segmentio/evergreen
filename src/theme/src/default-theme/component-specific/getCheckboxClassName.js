@@ -75,9 +75,7 @@ const defaultAppearance = Themer.createCheckboxAppearance({
  * @param {String} appearance.
  * @return {Object} the appearance of the checkbox.
  */
-const getCheckboxAppearance = () => {
-  return defaultAppearance
-}
+const getCheckboxAppearance = () => defaultAppearance
 
 /**
  * Get the className of a `Checkbox`.
