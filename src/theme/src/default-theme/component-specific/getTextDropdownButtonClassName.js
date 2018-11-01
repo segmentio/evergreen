@@ -19,9 +19,7 @@ const defaultAppearance = Themer.createTextDropdownButtonAppearance({
 /**
  * Get the appearance of a `TextDropdownButton`.
  */
-const getTextDropdownButtonAppearance = () => {
-  return defaultAppearance
-}
+const getTextDropdownButtonAppearance = () => defaultAppearance
 
 /**
  * Get the className of a `TextDropdownButton`.
