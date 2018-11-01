@@ -17,9 +17,7 @@ Appearances.default = Themer.createTableCellAppearance({
  * @param {string} appearance
  * @return {string} the appearance object.
  */
-const getAppearance = () => {
-  return Appearances.default
-}
+const getAppearance = () => Appearances.default
 
 /**
  * Get the className of a `Table.EditableCell`.
