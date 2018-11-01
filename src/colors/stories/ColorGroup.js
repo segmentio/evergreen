@@ -4,8 +4,7 @@ import { Pane } from '../../layers'
 import { Heading } from '../../typography'
 import Swatch from './Swatch'
 
-const ColorGroup = props => {
-  return (
+const ColorGroup = props => (
     <Pane marginTop={32} minWidth={160}>
       <Pane borderBottom paddingBottom={8}>
         <Heading>{props.title}</Heading>
@@ -24,7 +23,6 @@ const ColorGroup = props => {
       </Pane>
     </Pane>
   )
-}
 
 ColorGroup.propTypes = {
   title: PropTypes.node,
