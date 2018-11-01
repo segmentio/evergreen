@@ -44,6 +44,11 @@ class Spinner extends PureComponent {
     ...Box.propTypes,
 
     /**
+     * Delay after which spinner should be visible.
+     */
+    delay: PropTypes.number,
+
+    /**
      * The size of the spinner.
      */
     size: PropTypes.number.isRequired,
@@ -55,10 +60,23 @@ class Spinner extends PureComponent {
   }
 
   static defaultProps = {
-    size: 40
+    size: 40,
+    delay: 0
+  }
+
+  constructor({ delay }) {
+    super()
+
+    this.state = {
+      isVisible: delay === 0
+    }
   }
 
   render() {
+    if (!this.state.isVisible) {
+      return null
+    }
+
     const { theme, size, ...props } = this.props
     return (
       <Box width={size} height={size} lineHeight={0} {...props}>
@@ -73,6 +91,22 @@ class Spinner extends PureComponent {
         </Box>
       </Box>
     )
+  }
+
+  componentDidMount() {
+    const { delay } = this.props
+
+    if (delay > 0) {
+      this.delayTimer = setTimeout(() => {
+        this.setState({
+          isVisible: true
+        })
+      }, delay)
+    }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.delayTimer)
   }
 }
 
