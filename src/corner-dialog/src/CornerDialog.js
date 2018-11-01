@@ -148,8 +148,9 @@ export default class CornerDialog extends PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isShown && !this.props.isShown) {
+  componentDidUpdate(prevProps) {
+    if (!prevProps.isShown && this.props.isShown) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         exited: false
       })
