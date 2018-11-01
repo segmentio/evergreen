@@ -43,9 +43,7 @@ const defaultAppearance = Themer.createSwitchAppearance({
  * @param {string} appearance
  * @return {Object} the appearance object.
  */
-const getSwitchAppearance = () => {
-  return defaultAppearance
-}
+const getSwitchAppearance = () => defaultAppearance
 
 /**
  * Get the className of a `Switch`.
