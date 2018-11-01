@@ -4,8 +4,7 @@ import PropTypes from 'prop-types'
 import { Pane, Heading } from 'evergreen-ui'
 import Swatch from './Swatch'
 
-const ColorGroup = props => {
-  return (
+const ColorGroup = props => (
     <Pane marginTop={32} minWidth={160}>
       <Pane borderBottom={true} paddingBottom={8}>
         <Heading>{props.title}</Heading>
@@ -24,7 +23,6 @@ const ColorGroup = props => {
       </Pane>
     </Pane>
   )
-}
 
 ColorGroup.propTypes = {
   title: PropTypes.node,
