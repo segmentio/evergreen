@@ -303,7 +303,6 @@ storiesOf('side-sheet', module)
                   setState({ isConfirmationShown: true })
                   return false
                 }
-                return true
               }}
               onCloseComplete={() => setState({ isShown: false })}
             >
