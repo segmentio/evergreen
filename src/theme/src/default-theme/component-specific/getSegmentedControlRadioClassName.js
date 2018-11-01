@@ -15,9 +15,7 @@ const defaultAppearance = Themer.createSegmentedControlRadioAppearance({
  * @param {string} appearance
  * @return {string} the appearance object.
  */
-const getSegmentedControlRadioAppearance = () => {
-  return defaultAppearance
-}
+const getSegmentedControlRadioAppearance = () => defaultAppearance
 
 /**
  * Get the className of a `SegmentedControlRadio`.
