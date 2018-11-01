@@ -152,6 +152,14 @@ class SideSheet extends React.Component {
     onOpenComplete: PropTypes.func,
 
     /**
+     * Function called when overlay is about to close.
+     * Return `true` to close the sheet. (default)
+     * Return `false` to prevent the sheet from closing.
+     * type: `Function -> Boolean`
+     */
+    onBeforeClose: PropTypes.func,
+
+    /**
      * Boolean indicating if clicking the overlay should close the overlay.
      */
     shouldCloseOnOverlayClick: PropTypes.bool,
@@ -186,6 +194,7 @@ class SideSheet extends React.Component {
     width: 620,
     onCloseComplete: () => {},
     onOpenComplete: () => {},
+    onBeforeClose: () => true,
     shouldCloseOnOverlayClick: true,
     shouldCloseOnEscapePress: true,
     position: Position.RIGHT
@@ -199,6 +208,7 @@ class SideSheet extends React.Component {
       containerProps,
       onOpenComplete,
       onCloseComplete,
+      onBeforeClose,
       shouldCloseOnOverlayClick,
       shouldCloseOnEscapePress,
       position
@@ -209,6 +219,7 @@ class SideSheet extends React.Component {
         isShown={isShown}
         shouldCloseOnClick={shouldCloseOnOverlayClick}
         shouldCloseOnEscapePress={shouldCloseOnEscapePress}
+        onBeforeClose={onBeforeClose}
         onExited={onCloseComplete}
         onEntered={onOpenComplete}
       >

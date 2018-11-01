@@ -91,6 +91,14 @@ class Overlay extends React.Component {
     shouldCloseOnEscapePress: PropTypes.bool,
 
     /**
+     * Function called when overlay is about to close.
+     * Return `true` to close the sheet. (default)
+     * Return `false` to prevent the sheet from closing.
+     * type: `Function -> Boolean`
+     */
+    onBeforeClose: PropTypes.func,
+
+    /**
      * Callback fired before the "exiting" status is applied.
      * type: `Function(node: HtmlElement) -> void`
      */
@@ -145,6 +153,7 @@ class Overlay extends React.Component {
     onHide: () => {},
     shouldCloseOnClick: true,
     shouldCloseOnEscapePress: true,
+    onBeforeClose: () => true,
     onExit: () => {},
     onExiting: () => {},
     onExited: () => {},
@@ -245,7 +254,9 @@ class Overlay extends React.Component {
   }
 
   close = () => {
-    this.setState({ exiting: true })
+    if (this.props.onBeforeClose()) {
+      this.setState({ exiting: true })
+    }
   }
 
   handleEntering = node => {
