@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import warning from 'warning'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
+import warning from '../../lib/warning'
 
 class Tab extends PureComponent {
   static propTypes = {
@@ -82,7 +82,7 @@ class Tab extends PureComponent {
 
     if (process.env.NODE_ENV !== 'production') {
       warning(
-        typeof this.props.onClick !== 'function',
+        typeof this.props.onClick === 'function',
         '<Tab> expects `onSelect` prop, but you passed `onClick`.'
       )
     }
