@@ -35,8 +35,7 @@ const getLinearGradientWithStates = (
   startColor,
   endColor,
   intensityMultiplier = 1
-) => {
-  return {
+) => ({
     base: linearGradient(startColor, endColor),
     hover: linearGradient(
       tinycolor(startColor)
@@ -54,8 +53,7 @@ const getLinearGradientWithStates = (
         .darken(5 * intensityMultiplier)
         .toString()
     )
-  }
-}
+  })
 
 /**
  * Gradients in the default theme have a intentional hue shift.
