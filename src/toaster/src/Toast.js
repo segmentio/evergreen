@@ -102,10 +102,11 @@ export default class Toast extends React.PureComponent {
     height: 0
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (Object.hasOwnProperty.call(nextProps, 'isShown')) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.isShown !== this.props.isShown) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
-        isShown: nextProps.isShown
+        isShown: this.props.isShown
       })
     }
   }

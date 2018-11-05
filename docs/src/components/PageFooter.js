@@ -27,7 +27,13 @@ export default class PageFooter extends React.PureComponent {
           </div>
         </div>
         <div className="Container PageFooter-inner">
-          <ConsentManager />
+          <div className="PageFooter-left">
+            <ConsentManager />
+          </div>
+
+          <div className="PageFooter-right">
+            <p>© {new Date().getFullYear()}, Segment.io, Inc.</p>
+          </div>
         </div>
       </footer>
     )
