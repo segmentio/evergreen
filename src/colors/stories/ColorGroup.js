@@ -10,16 +10,14 @@ const ColorGroup = props => (
         <Heading>{props.title}</Heading>
       </Pane>
       <Pane>
-        {Object.keys(props.colorGroup).map(key => {
-          return (
+        {Object.keys(props.colorGroup).map(key => (
             <Swatch
               key={key}
               color={props.colorGroup[key]}
               name={key}
               property={props.name(key)}
             />
-          )
-        })}
+        ))}
       </Pane>
     </Pane>
   )
