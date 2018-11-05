@@ -3,6 +3,7 @@ import missingStateWarning from './missingStateWarning'
 
 const baseStyle = {
   WebkitAppearance: 'none',
+  MozAppearance: 'none',
   border: 'none',
   flex: 1,
   background: 'none',

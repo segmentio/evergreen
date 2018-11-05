@@ -4,6 +4,8 @@ import { Pane } from '../../layers'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import { withTheme } from '../../theme'
+import safeInvoke from '../../lib/safe-invoke'
+import warning from '../../lib/warning'
 
 class MenuItem extends React.PureComponent {
   static propTypes = {
@@ -61,9 +63,7 @@ class MenuItem extends React.PureComponent {
     this.props.onSelect(event)
 
     /* eslint-disable react/prop-types */
-    if (typeof this.props.onClick === 'function') {
-      this.props.onClick(event)
-    }
+    safeInvoke(this.props.onClick, event)
     /* eslint-enable react/prop-types */
   }
 
@@ -74,9 +74,7 @@ class MenuItem extends React.PureComponent {
     }
 
     /* eslint-disable react/prop-types */
-    if (typeof this.props.onKeyPress === 'function') {
-      this.props.onKeyPress(event)
-    }
+    safeInvoke(this.props.onKeyPress, event)
     /* eslint-enable react/prop-types */
   }
 
@@ -91,6 +89,13 @@ class MenuItem extends React.PureComponent {
       icon,
       ...passthroughProps
     } = this.props
+
+    if (process.env.NODE_ENV !== 'production') {
+      warning(
+        typeof this.props.onClick === 'function',
+        '<Menu.Item> expects `onSelect` prop, but you passed `onClick`.'
+      )
+    }
 
     const themedClassName = theme.getMenuItemClassName(appearance, 'none')
 
