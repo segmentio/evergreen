@@ -1,4 +1,4 @@
-.HomeMedia-grid {
+.Media-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 24px;
@@ -8,6 +8,7 @@
 
 .MediaItem {
   display: flex;
+  overflow: hidden;
   flex-direction: column;
   background: white;
   border-radius: 3px;

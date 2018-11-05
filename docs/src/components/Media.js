@@ -1,8 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import figmaDesignSystems from '../images/design-systems-com.png'
-import growingADesignSystem from '../images/growing-a-design-system.png'
-import drivingAdoption from '../images/driving-adoption-of-a-design-system.png'
 
 const MediaIcon = props => {
   return (
@@ -34,14 +31,24 @@ class MediaItem extends React.PureComponent {
     image: PropTypes.string.isRequired
   }
 
+  track = () => {
+    window.analytics.track('Media Item Clicked', {
+      title: this.props.title,
+      link: this.props.link,
+      published: this.props.published
+    })
+  }
+
   render() {
     return (
-      <a href={this.props.link} className="MediaItem">
-        <img
-          src={this.props.image}
-          alt={this.props.title}
-          className="MediaItem-image"
-        />
+      <a href={this.props.link} className="MediaItem" onClick={this.track}>
+        <figure>
+          <img
+            src={this.props.image}
+            alt={this.props.title}
+            className="MediaItem-image"
+          />
+        </figure>
         <div className="MediaItem-content">
           <h3 className="MediaItem-title">{this.props.title}</h3>
           <p className="MediaItem-published">{this.props.published}</p>
@@ -51,36 +58,26 @@ class MediaItem extends React.PureComponent {
   }
 }
 
-export default class HomeMedia extends React.PureComponent {
+export default class Media extends React.PureComponent {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    items: PropTypes.array.isRequired
+  }
+
   render() {
     return (
-      <section className="HomeMedia bg-tint2 clearfix">
-        <div className="HomeMedia-inner Container">
+      <section className="Media bg-tint2 clearfix">
+        <div className="Media-inner Container">
           <header style={{ textAlign: 'center', marginTop: 64 }}>
             <MediaIcon />
             <h2 className="h2" style={{ marginTop: 32 }}>
-              Evergreen Related Media
+              {this.props.title}
             </h2>
           </header>
-          <div className="HomeMedia-grid">
-            <MediaItem
-              title="Driving Adoption of a Design System"
-              image={drivingAdoption}
-              published="October, 2018"
-              link="https://segment.com/blog/driving-adoption-of-a-design-system"
-            />
-            <MediaItem
-              title="Growing a Design System"
-              image={growingADesignSystem}
-              published="June, 2018"
-              link="https://www.youtube.com/watch?v=aoxEhlLpG9k"
-            />
-            <MediaItem
-              title="Hijack a project to convince your company it’s ready for a design system"
-              image={figmaDesignSystems}
-              published="April, 2018"
-              link="https://www.designsystems.com/stories/convince-your-company-its-ready-for-a-design-system/"
-            />
+          <div className="Media-grid">
+            {this.props.items.map(item => (
+              <MediaItem key={item.title} {...item} />
+            ))}
           </div>
         </div>
       </section>
