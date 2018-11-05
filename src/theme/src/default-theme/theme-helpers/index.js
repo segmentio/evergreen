@@ -143,9 +143,7 @@ const getTextStyle = size => {
  * @param {number} size - 300–500. 400 is default.
  * @return {Object} text style.
  */
-const getParagraphStyle = size => {
-  return themedProperty(paragraph, String(size))
-}
+const getParagraphStyle = size => themedProperty(paragraph, String(size))
 
 /**
  * Get the font family. This is used to override the font family.
