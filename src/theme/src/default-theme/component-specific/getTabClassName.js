@@ -1,6 +1,12 @@
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
+import { defaultControlStyles } from '../shared'
+
+/**
+ * Disabled styles are all the same.
+ */
+const { disabled } = defaultControlStyles
 
 const defaultAppearance = Themer.createTabAppearance({
   base: {},
@@ -14,6 +20,7 @@ const defaultAppearance = Themer.createTabAppearance({
     backgroundColor: scales.blue.B3A,
     color: scales.blue.B9
   },
+  disabled,
   current: {}
 })
 

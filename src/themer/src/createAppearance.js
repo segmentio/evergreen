@@ -16,7 +16,10 @@ const whitelist = [
 
   'outline',
   // Not sure if cursor should be configurable
-  'cursor'
+  'cursor',
+
+  // Added to prevent pointer events on disabled tab
+  'pointerEvents'
 ]
 
 /**
