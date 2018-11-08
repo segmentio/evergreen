@@ -53,7 +53,7 @@ const getLinearGradientWithStates = (
         .darken(5 * intensityMultiplier)
         .toString()
     )
-  })
+})
 
 /**
  * Gradients in the default theme have a intentional hue shift.
@@ -109,4 +109,5 @@ export {
   linearGradient,
   getTextColorForIntent,
   getLinearGradientWithStates,
-  getPrimaryButtonStylesForIntent}
+  getPrimaryButtonStylesForIntent
+}
