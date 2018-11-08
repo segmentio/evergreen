@@ -7,7 +7,8 @@ import colors from './foundational-styles/colors'
  * @param {String} bottom - color.
  * @return {String} CSS background propery.
  */
-const linearGradient = (top, bottom) => `linear-gradient(to bottom, ${top}, ${bottom})`
+const linearGradient = (top, bottom) =>
+  `linear-gradient(to bottom, ${top}, ${bottom})`
 
 /**
  * @param {Intent} intent
@@ -36,23 +37,23 @@ const getLinearGradientWithStates = (
   endColor,
   intensityMultiplier = 1
 ) => ({
-    base: linearGradient(startColor, endColor),
-    hover: linearGradient(
-      tinycolor(startColor)
-        .darken(5 * intensityMultiplier)
-        .toString(),
-      tinycolor(endColor)
-        .darken(5 * intensityMultiplier)
-        .toString()
-    ),
-    active: linearGradient(
-      tinycolor(endColor)
-        .darken(5 * intensityMultiplier)
-        .toString(),
-      tinycolor(endColor)
-        .darken(5 * intensityMultiplier)
-        .toString()
-    )
+  base: linearGradient(startColor, endColor),
+  hover: linearGradient(
+    tinycolor(startColor)
+      .darken(5 * intensityMultiplier)
+      .toString(),
+    tinycolor(endColor)
+      .darken(5 * intensityMultiplier)
+      .toString()
+  ),
+  active: linearGradient(
+    tinycolor(endColor)
+      .darken(5 * intensityMultiplier)
+      .toString(),
+    tinycolor(endColor)
+      .darken(5 * intensityMultiplier)
+      .toString()
+  )
 })
 
 /**

@@ -5,22 +5,22 @@ import { Heading } from '../../typography'
 import Swatch from './Swatch'
 
 const ColorGroup = props => (
-    <Pane marginTop={32} minWidth={160}>
-      <Pane borderBottom paddingBottom={8}>
-        <Heading>{props.title}</Heading>
-      </Pane>
-      <Pane>
-        {Object.keys(props.colorGroup).map(key => (
-            <Swatch
-              key={key}
-              color={props.colorGroup[key]}
-              name={key}
-              property={props.name(key)}
-            />
-        ))}
-      </Pane>
+  <Pane marginTop={32} minWidth={160}>
+    <Pane borderBottom paddingBottom={8}>
+      <Heading>{props.title}</Heading>
     </Pane>
-  )
+    <Pane>
+      {Object.keys(props.colorGroup).map(key => (
+        <Swatch
+          key={key}
+          color={props.colorGroup[key]}
+          name={key}
+          property={props.name(key)}
+        />
+      ))}
+    </Pane>
+  </Pane>
+)
 
 ColorGroup.propTypes = {
   title: PropTypes.node,

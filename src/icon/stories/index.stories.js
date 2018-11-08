@@ -17,22 +17,22 @@ storiesOf('icon', module).add('Icon', () => (
       </Paragraph>
     </Box>
     {Object.keys(IconNames).map(iconKey => (
-        <Box
-          key={iconKey}
-          float="left"
-          width={140}
-          height={140}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          flexDirection="column"
-          textAlign="center"
-        >
-          <Icon icon={IconNames[iconKey]} color="default" />
-          <Text is="p" size={300}>
-            {IconNames[iconKey]}
-          </Text>
-        </Box>
-      ))}
+      <Box
+        key={iconKey}
+        float="left"
+        width={140}
+        height={140}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
+        textAlign="center"
+      >
+        <Icon icon={IconNames[iconKey]} color="default" />
+        <Text is="p" size={300}>
+          {IconNames[iconKey]}
+        </Text>
+      </Box>
+    ))}
   </div>
 ))
