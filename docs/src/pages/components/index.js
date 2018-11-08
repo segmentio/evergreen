@@ -7,16 +7,16 @@ import Layout from '../../components/Layout'
 import PageFooter from '../../components/PageFooter'
 
 export default () => (
-    <Layout>
-      <Helmet>
-        <title>Components · Evergreen</title>
-      </Helmet>
-      <div>
-        <TopBar />
-        <main tabIndex={-1}>
-          <Overview ia={IA} />
-        </main>
-      </div>
-      <PageFooter />
-    </Layout>
-  )
+  <Layout>
+    <Helmet>
+      <title>Components · Evergreen</title>
+    </Helmet>
+    <div>
+      <TopBar />
+      <main tabIndex={-1}>
+        <Overview ia={IA} />
+      </main>
+    </div>
+    <PageFooter />
+  </Layout>
+)

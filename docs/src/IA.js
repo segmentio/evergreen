@@ -33,7 +33,8 @@ import Toaster from './images/illustrations/Toaster.png'
 import Tooltip from './images/illustrations/Tooltip.png'
 import Typography from './images/illustrations/Typography.png'
 
-const githubLink = str => `https://github.com/segmentio/evergreen/tree/master/src/${str}`
+const githubLink = str =>
+  `https://github.com/segmentio/evergreen/tree/master/src/${str}`
 
 /**
  * Information Architecture.
