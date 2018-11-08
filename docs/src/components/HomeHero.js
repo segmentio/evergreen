@@ -9,12 +9,12 @@ const NativeLink = ({ ...props }) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
-export default class Features extends React.PureComponent {
+export default class HomeHero extends React.PureComponent {
   render() {
     return (
-      <section className="HomeHero">
-        <div className="HomeHero-inner">
-          <div className="HomeHero-left">
+      <section className="Hero">
+        <div className="Hero-inner">
+          <div className="Hero-left">
             <LogoWordmark style={{ marginBottom: 12 }} width={134} />
             <h1>A Design System for the Web</h1>
             <p>
@@ -57,7 +57,7 @@ export default class Features extends React.PureComponent {
               </Button>
             </div>
           </div>
-          <div className="HomeHero-right">
+          <div className="Hero-right">
             <img
               src={spotIllustration}
               alt="Evergreen spot illustration"

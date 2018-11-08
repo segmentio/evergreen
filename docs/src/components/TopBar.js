@@ -38,6 +38,13 @@ export default class TopBar extends PureComponent {
           >
             Components
           </Link>
+          <Link
+            className="TopBar-link TopBar-link--icon"
+            activeClassName="is-active"
+            to="/for-designers"
+          >
+            <span>For Designers</span>
+          </Link>
         </nav>
         <div className="TopBar-navRight">
           <GitHubButton

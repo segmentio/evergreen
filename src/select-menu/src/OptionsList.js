@@ -91,10 +91,11 @@ export default class OptionsList extends PureComponent {
     window.removeEventListener('keydown', this.handleKeyDown)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.selected !== this.state.selected) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.selected !== this.props.selected) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
-        selected: nextProps.selected
+        selected: this.props.selected
       })
     }
   }
