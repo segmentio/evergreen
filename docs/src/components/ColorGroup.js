@@ -6,7 +6,7 @@ import Swatch from './Swatch'
 
 const ColorGroup = props => (
     <Pane marginTop={32} minWidth={160}>
-      <Pane borderBottom={true} paddingBottom={8}>
+      <Pane borderBottom paddingBottom={8}>
         <Heading>{props.title}</Heading>
       </Pane>
       <Pane>
