@@ -184,4 +184,5 @@ export {
   getTextStyle,
   getParagraphStyle,
   getFontFamily,
-  getTextColor}
+  getTextColor
+}
