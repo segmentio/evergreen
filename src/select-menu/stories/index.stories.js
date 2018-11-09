@@ -19,6 +19,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
           title="Select name"
           options={options}
           selected={state.selected}
+          filterProps={{ placeholder: 'Filter by name...' }}
           onSelect={item => setState({ selected: item.value })}
         >
           <Button>{state.selected || 'Select name...'}</Button>

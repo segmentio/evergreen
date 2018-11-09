@@ -77,7 +77,12 @@ export default class SelectMenu extends PureComponent {
      * rendered on the right side of the Select Menu to give additional
      * information when an option is selected.
      */
-    detailView: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
+    detailView: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+
+    /**
+     * Change the filters options in Option List
+     */
+    filterProps: PropTypes.shape({ placeholder: PropTypes.string })
   }
 
   static defaultProps = {
@@ -115,6 +120,7 @@ export default class SelectMenu extends PureComponent {
       hasFilter,
       detailView,
       isMultiSelect,
+      filterProps,
       ...props
     } = this.props
 
@@ -132,6 +138,7 @@ export default class SelectMenu extends PureComponent {
             hasFilter={hasFilter}
             hasTitle={hasTitle}
             isMultiSelect={isMultiSelect}
+            filterProps={filterProps}
             listProps={{
               onSelect: item => {
                 this.props.onSelect(item)

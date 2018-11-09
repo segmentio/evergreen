@@ -16,6 +16,7 @@ export default class SelectMenuContent extends PureComponent {
     hasTitle: PropTypes.bool,
     hasFilter: PropTypes.bool,
     listProps: PropTypes.shape(OptionsList.propTypes),
+    filterProps: PropTypes.shape({ placeholder: PropTypes.string }),
 
     /**
      * When true, multi select is accounted for.
@@ -45,7 +46,8 @@ export default class SelectMenuContent extends PureComponent {
       title,
       listProps,
       detailView,
-      isMultiSelect
+      isMultiSelect,
+      filterProps
     } = this.props
 
     const headerHeight = 40
@@ -88,6 +90,7 @@ export default class SelectMenuContent extends PureComponent {
             isMultiSelect={isMultiSelect}
             close={close}
             {...listProps}
+            {...filterProps}
           />
         </Pane>
         {hasDetailView && detailView}
