@@ -3,6 +3,7 @@ import React from 'react'
 import Box from 'ui-box'
 import { Table } from '..'
 import { Portal } from '../../portal'
+import { Pane } from '../../layers'
 import AdvancedTable from './AdvancedTable'
 import VirtualTable from './VirtualTable'
 import EditableTable from './EditableTable'
@@ -206,6 +207,42 @@ storiesOf('table', module)
             </Table.Row>
           )
         })}
+      </Table.VirtualBody>
+    </Box>
+  ))
+  .add('Table.VirtualBody grouped panes selectable cells', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Table.VirtualBody height={600}>
+        <Pane height={48}>
+          <Table.Row>
+            <Table.EditableCell
+              isSelectable
+              data-cell-1
+              arrowKeysOverrides={{
+                down: '[data-cell-2]'
+              }}
+            >
+              Cell 1
+            </Table.EditableCell>
+          </Table.Row>
+        </Pane>
+        <Pane height={48}>
+          <Table.Row>
+            <Table.EditableCell
+              isSelectable
+              data-cell-2
+              arrowKeysOverrides={{
+                up: '[data-cell-1]'
+              }}
+            >
+              Cell 2
+            </Table.EditableCell>
+          </Table.Row>
+        </Pane>
       </Table.VirtualBody>
     </Box>
   ))

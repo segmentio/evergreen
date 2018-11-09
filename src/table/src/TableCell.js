@@ -8,6 +8,23 @@ import safeInvoke from '../../lib/safe-invoke'
 import { TableRowConsumer } from './TableRowContext'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
 
+function executeArrowKeyOverride(override) {
+  if (!override) {
+    return
+  }
+  if (typeof override === 'function') {
+    override()
+    return
+  }
+  if (typeof override === 'string') {
+    document.querySelector(override).focus()
+    return
+  }
+
+  // This needs to be the node, not a React ref.
+  override.focus()
+}
+
 class TableCell extends PureComponent {
   static propTypes = {
     /**
@@ -38,6 +55,37 @@ class TableCell extends PureComponent {
     theme: PropTypes.object.isRequired,
 
     /**
+     * Advanced arrow keys overrides for selectable cells.
+     * A string will be used as a selector.
+     */
+    arrowKeysOverrides: PropTypes.shape({
+      up: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.element,
+        PropTypes.oneOf([false])
+      ]),
+      down: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.element,
+        PropTypes.oneOf([false])
+      ]),
+      left: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.element,
+        PropTypes.oneOf([false])
+      ]),
+      right: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.element,
+        PropTypes.oneOf([false])
+      ])
+    }),
+
+    /**
      * Class name passed to the table cell.
      * Only use if you know what you are doing.
      */
@@ -59,6 +107,8 @@ class TableCell extends PureComponent {
   }
 
   handleKeyDown = e => {
+    const { arrowKeysOverrides = {} } = this.props
+
     if (this.props.isSelectable) {
       const { key } = e
       if (
@@ -68,10 +118,15 @@ class TableCell extends PureComponent {
         key === 'ArrowRight'
       ) {
         try {
+          // Support arrow key overrides.
+          const override =
+            arrowKeysOverrides[key.substr('Arrow'.length).toLowerCase()]
+          if (override) return executeArrowKeyOverride(override)
+
           manageTableCellFocusInteraction(key, this.mainRef)
         } catch (error) {
           toaster.danger('Keyboard interaction not possible')
-          console.error('Keyboard control not impossible', error)
+          console.error('Keyboard interaction not possible', error)
         }
       } else if (key === 'Escape') {
         this.mainRef.blur()
