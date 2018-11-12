@@ -172,7 +172,12 @@ class Dialog extends React.Component {
     /**
      * Props that are passed to the dialog container.
      */
-    containerProps: PropTypes.object
+    containerProps: PropTypes.object,
+
+    /**
+     * Props that are passed to the content container.
+     */
+    contentContainerProps: PropTypes.object
   }
 
   static defaultProps = {
@@ -229,6 +234,7 @@ class Dialog extends React.Component {
       shouldCloseOnOverlayClick,
       shouldCloseOnEscapePress,
       containerProps,
+      contentContainerProps,
       minHeightContent
     } = this.props
 
@@ -298,6 +304,7 @@ class Dialog extends React.Component {
               padding={16}
               flexDirection="column"
               minHeight={minHeightContent}
+              {...contentContainerProps}
             >
               <Pane>{this.renderChildren(close)}</Pane>
             </Pane>
