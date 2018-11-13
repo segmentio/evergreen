@@ -117,10 +117,12 @@ class TableCell extends PureComponent {
         key === 'ArrowLeft' ||
         key === 'ArrowRight'
       ) {
+        e.preventDefault()
         try {
           // Support arrow key overrides.
           const override =
             arrowKeysOverrides[key.substr('Arrow'.length).toLowerCase()]
+          if (override === false) return
           if (override) return executeArrowKeyOverride(override)
 
           manageTableCellFocusInteraction(key, this.mainRef)
@@ -154,6 +156,7 @@ class TableCell extends PureComponent {
       tabIndex = -1,
       className,
       rightView,
+      arrowKeysOverrides,
       ...props
     } = this.props
 
