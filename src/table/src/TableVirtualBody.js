@@ -277,8 +277,6 @@ export default class TableVirtualBody extends PureComponent {
               : estimatedItemSize || null
           }
           itemSize={itemSize}
-          onScroll={console.log}
-          scrollToIndex={0}
           overscanCount={overscanCount}
           itemCount={React.Children.count(children)}
           renderItem={({ index, style }) => {
