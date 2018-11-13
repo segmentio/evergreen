@@ -14,6 +14,7 @@
 
 .TopBar-nav {
   position: relative;
+  display: flex;
   flex: 1;
 
   @media (--range-palm), (--range-hand) {
@@ -37,6 +38,7 @@
 .TopBar-link {
   color: var(--neutral-base);
   text-transform: uppercase;
+  line-height: 16px;
   font-size: 12px;
   padding: 10px 12px;
   margin-right: 8px;
@@ -68,7 +70,8 @@
     width: 16px;
     height: 16px;
     display: inline-block;
-    margin-top: -2px;
+    position: relative;
+    top: -1px;
 
     & + span {
       margin-left: 8px;

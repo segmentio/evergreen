@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
+import warning from '../../lib/warning'
 
 class Tab extends PureComponent {
   static propTypes = {
@@ -33,11 +34,11 @@ class Tab extends PureComponent {
   }
 
   static defaultProps = {
-    onClick: () => {},
     onSelect: () => {},
     onKeyPress: () => {},
     is: 'span',
-    height: 28
+    height: 28,
+    disabled: false
   }
 
   static styles = {
@@ -54,7 +55,10 @@ class Tab extends PureComponent {
   }
 
   handleClick = e => {
-    this.props.onClick(e)
+    if (typeof this.props.onClick === 'function') {
+      this.props.onClick(e)
+    }
+
     this.props.onSelect()
   }
 
@@ -74,17 +78,31 @@ class Tab extends PureComponent {
       onSelect,
       isSelected,
       appearance,
+      disabled,
       ...props
     } = this.props
+
+    if (process.env.NODE_ENV !== 'production') {
+      warning(
+        typeof this.props.onClick === 'function',
+        '<Tab> expects `onSelect` prop, but you passed `onClick`.'
+      )
+    }
 
     const textSize = theme.getTextSizeForControlHeight(height)
 
     let elementBasedProps
+    if (disabled) {
+      elementBasedProps = {
+        'aria-disabled': true
+      }
+    }
     if (is === 'a') {
       // Use aria-current when it's a link
       // https://tink.uk/using-the-aria-current-attribute/
       elementBasedProps = isSelected
         ? {
+            ...elementBasedProps,
             'aria-current': 'page'
           }
         : {}
@@ -93,6 +111,7 @@ class Tab extends PureComponent {
       // Also pass down a aria-controls="panelId"
       // https://www.stefanjudis.com/blog/aria-selected-and-when-to-use-it/
       elementBasedProps = {
+        ...elementBasedProps,
         'aria-selected': isSelected,
         role: 'tab'
       }

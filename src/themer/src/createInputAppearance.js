@@ -4,6 +4,7 @@ import createAppearance from './createAppearance'
 
 const baseStyle = {
   WebkitAppearance: 'none',
+  MozAppearance: 'none',
   border: 'none'
 }
 
@@ -22,7 +23,7 @@ const createInputAppearance = (items = {}) => {
     props: ['base', 'invalid', 'placeholder', 'focus', 'disabled'],
     cb: prop => {
       console.error(
-        `Themer.createCheckboxAppearance() is missing a ${prop} item `,
+        `Themer.createInputAppearance() is missing a ${prop} item `,
         items
       )
     }

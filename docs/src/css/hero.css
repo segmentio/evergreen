@@ -1,8 +1,8 @@
-.HomeHero {
+.Hero {
   & h1 {
     margin-bottom: 0.4em;
 
-    font-size: 36px;
+    font-size: 35px;
     font-weight: 600;
     line-height: 58px;
     letter-spacing: -0.2px;
@@ -30,7 +30,7 @@
   }
 }
 
-.HomeHero-inner {
+.Hero-inner {
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
@@ -39,11 +39,11 @@
   align-items: center;
 }
 
-.HomeHero-left {
+.Hero-left {
   flex: 1;
 }
 
-.HomeHero-right {
+.Hero-right {
   flex: 1;
   padding-left: 48px;
 

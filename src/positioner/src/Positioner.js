@@ -145,9 +145,8 @@ export default class Positioner extends PureComponent {
     const hasEntered =
       this.positionerRef.getAttribute('data-state') === 'entered'
 
-    const viewportHeight =
-      document.documentElement.clientHeight + window.scrollY
-    const viewportWidth = document.documentElement.clientWidth + window.scrollX
+    const viewportHeight = document.documentElement.clientHeight
+    const viewportWidth = document.documentElement.clientWidth
 
     let height
     let width

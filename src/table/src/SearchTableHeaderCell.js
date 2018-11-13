@@ -8,6 +8,7 @@ const invisibleInput = {
   border: 'none',
   backgroundColor: 'transparent',
   WebkitAppearance: 'none',
+  MozAppearance: 'none',
   WebkitFontSmoothing: 'antialiased',
 
   '&:focus': {

@@ -100,6 +100,10 @@
   }
 }
 
+.Link--small {
+  font-size: 10px;
+}
+
 .Content blockquote,
 .blockquote {
   font-size: 14px;

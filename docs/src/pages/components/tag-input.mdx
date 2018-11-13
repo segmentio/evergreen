@@ -1,0 +1,148 @@
+import PropsTable from 'components/PropsTable'
+
+The `TagInput` component is a text input component that adds values as tags.
+
+## Highlights
+
+- Backspace (when cursor is at position 0 in the input) removes items
+- Enter keypress appends items to the list
+- Define (or disable) a `separator` to add multiple items at once (splits on comma and new line by default)
+- Values prop is controlled,  it's up to consumers to control adding/removing items via `onAdd`, `onRemove`, or conveniently using `onChange` to get the new array.
+- Prevent input clearing (for instance if an item is invalid) by returning `false` during `onAdd` or `onChange`
+
+
+## Basic controlled TagInput
+
+```jsx
+<Component initialState={{ values: ['Kauri', 'Willow'] }}>
+  {({ state, setState }) => (
+    <TagInput
+      inputProps={{ placeholder: 'Add trees...' }}
+      values={state.values}
+      onChange={values => {
+        setState({ values })
+      }}
+    />
+  )}
+</Component>
+```
+
+## Full width TagInput
+
+Use the `width` property to control the width of the `TagInput`.
+
+```jsx
+<Component initialState={{ values: ['Kauri', 'Willow'] }}>
+  {({ state, setState }) => (
+    <TagInput
+      inputProps={{ placeholder: 'Add trees...' }}
+      width="100%"
+      values={state.values}
+      onChange={values => {
+        setState({ values })
+      }}
+    />
+  )}
+</Component>
+```
+
+## Disabled TagInput
+
+Use the `disabled` property to disable interactions with the `TagInput`.
+
+```jsx
+<Component initialState={{ values: ['Kauri', 'Willow'] }}>
+  {({ state, setState }) => (
+    <TagInput
+      disabled
+      inputProps={{ placeholder: 'Add trees...' }}
+      values={state.values}
+      onChange={values => {
+        setState({ values })
+      }}
+    />
+  )}
+</Component>
+```
+
+## Change props of tags
+
+Use the `tagProps` to change properties of a tag.
+This is useful in cases when you want to create red tags for example.
+
+```jsx
+<Component initialState={{ values: ['Kauri', 'Willow'] }}>
+  {({ state, setState }) => (
+    <TagInput
+      tagProps={{
+        color: 'red',
+        isSolid: true
+      }}
+      inputProps={{ placeholder: 'Add red items...' }}
+      values={state.values}
+      onChange={values => {
+        setState({ values })
+      }}
+    />
+  )}
+</Component>
+```
+
+## Change props of tags based on the value
+
+In some cases you might want to change the props of a tag based on the input.
+Pass a function to the `tagProps` to achieve this.
+
+```jsx
+<Component initialState={{ values: ['matt@awesome.com', 'troll_mailer'] }}>
+  {({ state, setState }) => (
+    <TagInput
+      tagProps={value => {
+        if (!value.includes('@')) return { color: 'red', isSolid: true }
+        return {}
+      }}
+      inputProps={{ placeholder: 'Add email...' }}
+      values={state.values}
+      onChange={values => {
+        setState({ values })
+      }}
+    />
+  )}
+</Component>
+```
+
+## Using onAdd and onRemove (advanced)
+
+In more delicate use cases you can use `onAdd` and `onRemove` instead of `onChange`.
+
+- `onAdd/onChange` will give you strings that were entered and split (based on `separator`) and trimmed
+- `onRemove/onChange` will give you the `this.props.values` with the item removed at a particular index, which could contain jsx if your `props.values` included it
+
+*If you are using an array of strings for use `onChange` safely*, otherwise use `onAdd/onRemove`
+
+```jsx
+<Component initialState={{ values: ['matt@awesome.com'] }}>
+  {({ state, setState }) => (
+    <TagInput
+      inputProps={{ placeholder: 'Add email...' }}
+      values={state.values}
+      onAdd={value => {
+        if (!value.includes('@')) {
+          toaster.danger('Oops, you tried entering a invalid email. Try again.')
+          return
+        }
+        setState({
+          values: [...state.values, value]
+        })
+      }}
+      onRemove={(_value, index) => {
+        setState({
+          values: state.values.filter((_, i) => i !== index)
+        })
+      }}
+    />
+  )}
+</Component>
+```
+
+<PropsTable of="TagInput" />

@@ -8,6 +8,7 @@ import { Dialog } from '..'
 import { Button } from '../../buttons'
 import { Combobox } from '../../combobox'
 import { SideSheet } from '../../side-sheet'
+import { Pane } from '../../layers'
 import { Popover } from '../../popover'
 import DialogManager from './DialogManager'
 
@@ -221,6 +222,72 @@ storiesOf('dialog', module)
         </Box>
       )}
     </DialogManager>
+  ))
+  .add('Dialog with customized content container', () => (
+    <React.Fragment>
+      <DialogManager>
+        {({ isShown, show, hide }) => (
+          <Box marginBottom={16}>
+            <Dialog
+              isShown={isShown}
+              onCloseComplete={hide}
+              hasHeader={false}
+              hasFooter={false}
+              contentContainerProps={{ padding: 0 }}
+            >
+              <Pane
+                height={160}
+                background="yellowTint"
+                borderTopLeftRadius="8px"
+                borderTopRightRadius="8px"
+              />
+              <Paragraph>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae
+                odio modi enim voluptas quaerat sapiente eius, veritatis, minus
+                odit molestiae necessitatibus quae fuga excepturi obcaecati,
+                sunt mollitia aut similique. Consequuntur?
+              </Paragraph>
+              <Paragraph>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Nesciunt sit accusantium unde dolore dolorum aliquid nihil
+                maxime! Harum error unde quidem dolore! Aperiam tenetur minus ad
+                officia, dignissimos rerum facere.
+              </Paragraph>
+            </Dialog>
+            <Button onClick={show}>Dialog with no content paddings</Button>
+          </Box>
+        )}
+      </DialogManager>
+      <DialogManager>
+        {({ isShown, show, hide }) => (
+          <Box marginBottom={16}>
+            <Dialog
+              isShown={isShown}
+              onCloseComplete={hide}
+              hasHeader={false}
+              hasFooter={false}
+              contentContainerProps={{
+                padding: '4px',
+                flexDirection: 'row',
+                flexWrap: 'wrap'
+              }}
+            >
+              <Pane width="25%" height={160} backgroundColor="#F9F9FB" />
+              <Pane width="25%" height={160} backgroundColor="#E4E7EB" />
+              <Pane width="25%" height={160} backgroundColor="#425A70" />
+              <Pane width="25%" height={160} backgroundColor="#234361" />
+              <Pane width="25%" height={160} backgroundColor="#F7F9FD" />
+              <Pane width="25%" height={160} backgroundColor="#DDEBF7" />
+              <Pane width="25%" height={160} backgroundColor="#1070CA" />
+              <Pane width="25%" height={160} backgroundColor="#084B8A" />
+            </Dialog>
+            <Button onClick={show}>
+              Dialog with overridden default flexbox configs
+            </Button>
+          </Box>
+        )}
+      </DialogManager>
+    </React.Fragment>
   ))
   .add('Dialog with endless stacking', () => (
     <DialogManager>

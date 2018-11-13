@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react'
+import Component from '@reactions/component'
 import React from 'react'
 import Box from 'ui-box'
 import { SideSheet } from '..'
@@ -6,7 +7,8 @@ import { Heading, Paragraph } from '../../typography'
 import { Card, Pane } from '../../layers'
 import { Button } from '../../buttons'
 import { Tab } from '../../tabs'
-import { Manager } from '../../manager'
+import { Dialog } from '../../dialog'
+import { TextInput } from '../../text-input'
 import Menu from '../../menu/src/Menu'
 
 storiesOf('side-sheet', module)
@@ -16,7 +18,7 @@ storiesOf('side-sheet', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Manager isShown>
+      <Component initialState={{ isShown: false }}>
         {({ state, setState }) => (
           <Box>
             <SideSheet
@@ -36,7 +38,7 @@ storiesOf('side-sheet', module)
                   </Paragraph>
                 </Pane>
                 <Pane display="flex" padding={8}>
-                  <Manager selectedIndex={0}>
+                  <Component initialState={{ selectedIndex: 0 }}>
                     {({ setState, state }) =>
                       ['Traits', 'Event History', 'Identities'].map(
                         (tab, index) => (
@@ -50,7 +52,7 @@ storiesOf('side-sheet', module)
                         )
                       )
                     }
-                  </Manager>
+                  </Component>
                 </Pane>
               </Pane>
               <Pane flex="1" overflowY="scroll" background="tint1" padding={16}>
@@ -71,7 +73,7 @@ storiesOf('side-sheet', module)
             </Button>
           </Box>
         )}
-      </Manager>
+      </Component>
     </Box>
   ))
   .add('title + sub title', () => (
@@ -80,7 +82,7 @@ storiesOf('side-sheet', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Manager isShown>
+      <Component initialState={{ isShown: false }}>
         {({ state, setState }) => (
           <Box>
             <SideSheet
@@ -118,7 +120,7 @@ storiesOf('side-sheet', module)
             </Button>
           </Box>
         )}
-      </Manager>
+      </Component>
     </Box>
   ))
   .add('title', () => (
@@ -127,7 +129,7 @@ storiesOf('side-sheet', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Manager isShown>
+      <Component initialState={{ isShown: false }}>
         {({ state, setState }) => (
           <Box>
             <SideSheet
@@ -162,7 +164,7 @@ storiesOf('side-sheet', module)
             </Button>
           </Box>
         )}
-      </Manager>
+      </Component>
     </Box>
   ))
   .add('close from within', () => (
@@ -171,7 +173,7 @@ storiesOf('side-sheet', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Manager isShown>
+      <Component initialState={{ isShown: false }}>
         {({ state, setState }) => (
           <Box>
             <SideSheet
@@ -191,7 +193,7 @@ storiesOf('side-sheet', module)
             </Button>
           </Box>
         )}
-      </Manager>
+      </Component>
     </Box>
   ))
   .add('positions', () => (
@@ -200,7 +202,7 @@ storiesOf('side-sheet', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Manager isShown position="left">
+      <Component initialState={{ isShown: false, position: 'left' }}>
         {({ state, setState }) => (
           <Box>
             <SideSheet
@@ -250,7 +252,7 @@ storiesOf('side-sheet', module)
             ))}
           </Box>
         )}
-      </Manager>
+      </Component>
     </Box>
   ))
   .add('escape + overlay click disabled', () => (
@@ -259,7 +261,7 @@ storiesOf('side-sheet', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Manager isShown>
+      <Component initialState={{ isShown: false }}>
         {({ state, setState }) => (
           <Box>
             <SideSheet
@@ -273,6 +275,111 @@ storiesOf('side-sheet', module)
             </Button>
           </Box>
         )}
-      </Manager>
+      </Component>
+    </Box>
+  ))
+  .add('onBeforeClose', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Component
+        initialState={{
+          value: 'Change me',
+          newValue: 'Change me',
+          isShown: false,
+          hasChanges: false,
+          isLoading: false,
+          isConfirmationShown: false
+        }}
+      >
+        {({ state, setState }) => (
+          <Box>
+            <SideSheet
+              isShown={state.isShown}
+              onBeforeClose={() => {
+                if (state.hasChanges) {
+                  setState({ isConfirmationShown: true })
+                  return false
+                }
+              }}
+              onCloseComplete={() => setState({ isShown: false })}
+            >
+              {({ close }) => {
+                return (
+                  <Box padding={40}>
+                    <Dialog
+                      intent="danger"
+                      isShown={state.isConfirmationShown}
+                      title="You have unsaved changes"
+                      onConfirm={closeDialog => {
+                        setState(
+                          {
+                            newValue: state.value,
+                            hasChanges: false
+                          },
+                          () => {
+                            closeDialog()
+                          }
+                        )
+                      }}
+                      onCloseComplete={() => {
+                        setState({
+                          isConfirmationShown: false
+                        })
+                        if (!state.hasChanges) {
+                          close()
+                        }
+                      }}
+                      confirmLabel="Discard Changes"
+                    >
+                      Are you sure you want to discard your unsaved changes?
+                    </Dialog>
+                    <Pane>
+                      <TextInput
+                        value={state.newValue}
+                        onChange={e => {
+                          setState({
+                            newValue: e.target.value,
+                            hasChanges: state.value !== e.target.value
+                          })
+                        }}
+                        marginRight={16}
+                      />
+                      <Button
+                        appearance="primary"
+                        isLoading={state.isLoading}
+                        disabled={!state.hasChanges}
+                        onClick={() => {
+                          setState({ isLoading: true })
+                          setTimeout(() => {
+                            setState(
+                              {
+                                value: state.newValue,
+                                hasChanges: false,
+                                isLoading: false
+                              },
+                              close
+                            )
+                          }, 2000)
+                        }}
+                      >
+                        Save
+                      </Button>
+                    </Pane>
+                    <Paragraph marginTop={16}>
+                      Current value: {state.value}
+                    </Paragraph>
+                  </Box>
+                )
+              }}
+            </SideSheet>
+            <Button onClick={() => setState({ isShown: true })}>
+              Show Side Sheet
+            </Button>
+          </Box>
+        )}
+      </Component>
     </Box>
   ))
