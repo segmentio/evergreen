@@ -4,6 +4,7 @@ import React from 'react'
 import Box from 'ui-box'
 import { SelectMenu } from '..'
 import { Button } from '../../buttons'
+import { Text } from '../../typography'
 import options from './starwars-options'
 import Manager from './Manager'
 
@@ -75,5 +76,20 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
         </SelectMenu>
       )}
     </Component>
+    <SelectMenu
+      title="Empty state"
+      emptyView={
+        <Box
+          height="100%"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Text size={300}>No options found</Text>
+        </Box>
+      }
+    >
+      <Button>Empty state</Button>
+    </SelectMenu>
   </Box>
 ))
