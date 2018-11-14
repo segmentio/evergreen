@@ -5,29 +5,56 @@ import addMonths from 'date-fns/add_months'
 import addYears from 'date-fns/add_years'
 import format from 'date-fns/format'
 
-import { Popover } from '../../popover'
-import { TextInput } from '../../text-input'
 import { Text } from '../../typography'
 import { IconButton, Button } from '../../buttons'
 import { majorScale } from '../../scales'
 
 import Calendar from './Calendar'
 
-class DatePickerPopover extends PureComponent {
+export default class DatePicker extends PureComponent {
+  static propTypes = {
+    /**
+     * The date presentation of calendar
+     */
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date)
+    ]).isRequired,
+
+    /**
+     * Should if a button to quickly jump to today is shown
+     */
+    shouldShowTodayButton: PropTypes.bool,
+
+    /**
+     * Callback function to be invokved when users select a date
+     */
+    onChange: PropTypes.func
+  }
+
+  static defaultProps = {
+    width: 280,
+    shouldShowTodayButton: true
+  }
+
   state = { value: this.props.value }
 
-  changeCurrentDate = (fn, increment) => () =>
-    this.setState(prevState => ({ value: fn(prevState.value, increment) }))
+  changeDate = value =>
+    this.setState(
+      { value },
+      () => this.props.onChange && this.props.onChange(value)
+    )
 
-  doGoToNextMonth = this.changeCurrentDate(addMonths, 1)
+  doGoToNextMonth = () => this.changeDate(addMonths(this.state.value, 1))
 
-  doGoToPrevMonth = this.changeCurrentDate(addMonths, -1)
+  doGoToPrevMonth = () => this.changeDate(addMonths(this.state.value, -1))
 
-  doGoToNextYear = this.changeCurrentDate(addYears, 1)
+  doGoToNextYear = () => this.changeDate(addYears(this.state.value, 1))
 
-  doGoToPrevYear = this.changeCurrentDate(addYears, -1)
+  doGoToPrevYear = () => this.changeDate(addYears(this.state.value, -1))
 
-  doJumpToToday = () => this.setState({ value: new Date() })
+  doJumpToToday = () => this.changeDate(new Date())
 
   render() {
     const { value, shouldShowTodayButton, ...props } = this.props
@@ -61,7 +88,7 @@ class DatePickerPopover extends PureComponent {
             onClick={this.doGoToNextYear}
           />
         </Box>
-        <Calendar now={this.state.value} />
+        <Calendar pivotDate={this.state.value} onClick={this.changeDate} />
         {shouldShowTodayButton ? (
           <Button
             appearance="minimal"
@@ -72,43 +99,6 @@ class DatePickerPopover extends PureComponent {
           </Button>
         ) : null}
       </Box>
-    )
-  }
-}
-export default class DatePicker extends PureComponent {
-  static propTypes = {
-    /**
-     * The date presentation of calendar
-     */
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.instanceOf(Date)
-    ]).isRequired,
-
-    /**
-     * Should if a button to quickly jump to today is shown
-     */
-    shouldShowTodayButton: PropTypes.bool,
-
-    /**
-     * Props that are passed to text input field
-     */
-    textInputProps: PropTypes.object
-  }
-
-  static defaultProps = {
-    width: 280,
-    shouldShowTodayButton: true
-  }
-
-  render() {
-    const { textInputProps, ...rest } = this.props
-
-    return (
-      <Popover content={<DatePickerPopover {...rest} />}>
-        <TextInput placeholder="Pick a date" {...textInputProps} />
-      </Popover>
     )
   }
 }

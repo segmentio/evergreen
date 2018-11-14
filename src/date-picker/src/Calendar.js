@@ -91,17 +91,18 @@ function DateBox({ children, ...props }) {
   )
 }
 
-function DateCell({ date, isCurrentMonth, isToday }) {
+function DateCell({ date, isCurrentMonth, isToday, onClick }) {
   return (
     <ThemeConsumer>
       {theme => (
-        <DateBox onClick={() => console.log(date)}>
+        <DateBox>
           <Button
             appearance="minimal"
+            position="relative"
+            onClick={() => onClick && onClick(date)}
             color={
               isCurrentMonth ? theme.colors.text.dark : theme.scales.neutral.N5
             }
-            position="relative"
           >
             {date.getDate()}
             {isToday ? (
@@ -121,13 +122,14 @@ function DateCell({ date, isCurrentMonth, isToday }) {
 }
 
 DateCell.propTypes = {
+  date: PropTypes.instanceOf(Date).isRequired,
   isCurrentMonth: PropTypes.bool,
   isToday: PropTypes.bool,
-  date: PropTypes.instanceOf(Date).isRequired
+  onClick: PropTypes.func
 }
 
-export default function Month({ now, ...rest }) {
-  const dates = makeCalendarData(now)
+function Calendar({ pivotDate, onClick, ...rest }) {
+  const dates = makeCalendarData(pivotDate)
   return (
     <Box
       display="flex"
@@ -158,8 +160,15 @@ export default function Month({ now, ...rest }) {
         <Text fontWeight={600}>Sat</Text>
       </DateBox>
       {dates.map(date => (
-        <DateCell key={date.date.toString()} {...date} />
+        <DateCell key={date.date.toString()} {...date} onClick={onClick} />
       ))}
     </Box>
   )
 }
+
+Calendar.propTypes = {
+  pivotDate: PropTypes.instanceOf(Date).isRequired,
+  onClick: PropTypes.func
+}
+
+export default Calendar
