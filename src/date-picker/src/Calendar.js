@@ -1,13 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+
 import getDaysInMonth from 'date-fns/get_days_in_month'
 import startOfMonth from 'date-fns/start_of_month'
 import addDays from 'date-fns/add_days'
 import getDay from 'date-fns/get_day'
+
 import { majorScale } from '../../scales'
 import { Text } from '../../typography'
 import { ThemeConsumer } from '../../theme'
+import { Button } from '../../buttons'
 
 export const SUN = 0
 export const MON = 1
@@ -65,16 +68,15 @@ function makeCalendarData(pivotDate) {
   return [...first, ...data, ...last]
 }
 
-function DateBox(props) {
+function DateBox({ children, ...props }) {
   return (
     <Box
       width={`${100 / 7}%`}
       height={majorScale(4)}
       textAlign="center"
-      cursor={props.onClick ? 'pointer' : 'default'}
       {...props}
     >
-      {props.children}
+      {children}
     </Box>
   )
 }
@@ -84,14 +86,15 @@ function DateCell({ date, currentMonth }) {
     <ThemeConsumer>
       {theme => (
         <DateBox onClick={() => console.log(date)}>
-          <Text
+          <Button
+            appearance="minimal"
             userSelect="none"
             color={
               currentMonth ? theme.colors.text.dark : theme.scales.neutral.N5
             }
           >
             {date.getDate()}
-          </Text>
+          </Button>
         </DateBox>
       )}
     </ThemeConsumer>

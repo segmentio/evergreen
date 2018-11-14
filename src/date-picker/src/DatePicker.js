@@ -76,7 +76,6 @@ class DatePickerPopover extends PureComponent {
     )
   }
 }
-
 export default class DatePicker extends PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([
