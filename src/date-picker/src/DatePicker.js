@@ -8,24 +8,12 @@ import format from 'date-fns/format'
 import { Popover } from '../../popover'
 import { TextInput } from '../../text-input'
 import { Text } from '../../typography'
-import { IconButton } from '../../buttons'
+import { IconButton, Button } from '../../buttons'
 import { majorScale } from '../../scales'
 
 import Calendar from './Calendar'
 
 class DatePickerPopover extends PureComponent {
-  static propTypes = {
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.instanceOf(Date)
-    ]).isRequired
-  }
-
-  static defaultProps = {
-    width: 280
-  }
-
   state = { value: this.props.value }
 
   changeCurrentDate = (fn, increment) => () =>
@@ -39,8 +27,10 @@ class DatePickerPopover extends PureComponent {
 
   doGoToPrevYear = this.changeCurrentDate(addYears, -1)
 
+  doJumpToToday = () => this.setState({ value: new Date() })
+
   render() {
-    const { value, ...props } = this.props
+    const { value, shouldShowTodayButton, ...props } = this.props
     return (
       <Box
         display="flex"
@@ -72,26 +62,51 @@ class DatePickerPopover extends PureComponent {
           />
         </Box>
         <Calendar now={this.state.value} />
+        {shouldShowTodayButton ? (
+          <Button
+            appearance="minimal"
+            justifyContent="center"
+            onClick={this.doJumpToToday}
+          >
+            Today
+          </Button>
+        ) : null}
       </Box>
     )
   }
 }
 export default class DatePicker extends PureComponent {
   static propTypes = {
+    /**
+     * The date presentation of calendar
+     */
     value: PropTypes.oneOfType([
-      PropTypes.string, // A formatted string
-      PropTypes.number, // A timestamp
-      PropTypes.instanceOf(Date) // Or a Date object
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date)
     ]).isRequired,
-    textInputProps: PropTypes.object,
-    dateFormat: PropTypes.string
+
+    /**
+     * Should if a button to quickly jump to today is shown
+     */
+    shouldShowTodayButton: PropTypes.bool,
+
+    /**
+     * Props that are passed to text input field
+     */
+    textInputProps: PropTypes.object
+  }
+
+  static defaultProps = {
+    width: 280,
+    shouldShowTodayButton: true
   }
 
   render() {
-    const { value, textInputProps, ...rest } = this.props
+    const { textInputProps, ...rest } = this.props
 
     return (
-      <Popover content={<DatePickerPopover value={value} />} {...rest}>
+      <Popover content={<DatePickerPopover {...rest} />}>
         <TextInput placeholder="Pick a date" {...textInputProps} />
       </Popover>
     )
