@@ -129,7 +129,12 @@ DateCell.propTypes = {
 }
 
 function getWeekdayNames(dates, locale, { weekday }) {
-  return dates.map(d => new Intl.DateTimeFormat(locale, { weekday }).format(d))
+  return dates.map(d => {
+    const name = new Intl.DateTimeFormat(locale, { weekday }).format(d)
+    // Some locales may have the same weekday name in narrow format
+    // e.g. T(iistai) and T(orstai) in Finnish
+    return { name, key: name + d }
+  })
 }
 
 function Calendar({ pivotDate, onClick, locale, localeOptions, ...rest }) {
@@ -147,8 +152,8 @@ function Calendar({ pivotDate, onClick, locale, localeOptions, ...rest }) {
       paddingTop={majorScale(2)}
       {...rest}
     >
-      {weekdays.map(name => (
-        <DateBox key={name}>
+      {weekdays.map(({ name, key }) => (
+        <DateBox key={key}>
           <Text fontWeight={600}>{name}</Text>
         </DateBox>
       ))}

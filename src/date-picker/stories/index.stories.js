@@ -53,28 +53,64 @@ storiesOf('date-picker', module)
     </Box>
   ))
   .add('With different locales ', () => (
-    <Component
-      initialState={{
-        date: new Date(),
-        locale: 'fi-FI',
-        locales: [
-          { label: 'fi-FI', value: 'fi-FI' },
-          { label: 'vi-VN', value: 'vi-VN' },
-          { label: 'es-ES', value: 'es-ES' },
-          { label: 'en-GB', value: 'en-GB' },
-          { label: 'zh-CN', value: 'zh-CN' }
-        ]
-      }}
-    >
-      {({ state, setState }) => (
-        <Box padding={16}>
-          <SegmentedControl
-            options={state.locales}
-            value={state.value}
-            onChange={locale => setState({ locale })}
-          />
-          <DatePicker value={state.date} locale={state.locale} />
-        </Box>
-      )}
-    </Component>
+    <Box padding={16}>
+      <Component
+        initialState={{
+          date: new Date(),
+          locale: 'fi-FI',
+          locales: [
+            { label: 'fi-FI', value: 'fi-FI' },
+            { label: 'vi-VN', value: 'vi-VN' },
+            { label: 'es-ES', value: 'es-ES' },
+            { label: 'en-GB', value: 'en-GB' },
+            { label: 'zh-CN', value: 'zh-CN' },
+            { label: 'ru-RU', value: 'ru-RU' }
+          ],
+          localeOptions: {
+            weekday: 'narrow'
+          },
+          weekdayFormats: [
+            { label: 'narrow', value: 'narrow' },
+            { label: 'short', value: 'short' },
+            { label: 'long', value: 'long' }
+          ],
+          todayButtonLabels: new Map([
+            ['fi-FI', 'Tänään'],
+            ['vi-VN', 'Hôm nay'],
+            ['es-ES', 'Hoy'],
+            ['en-GB', 'Today'],
+            ['zh-CN', '今天'],
+            ['ru-RU', 'сегодня']
+          ])
+        }}
+      >
+        {({ state, setState }) => (
+          <Box>
+            <Box display="flex" marginBottom={16} width="100%">
+              <Box width="50%" paddingX={16}>
+                <SegmentedControl
+                  options={state.locales}
+                  value={state.locale}
+                  onChange={locale => setState({ locale })}
+                />
+              </Box>
+              <Box width="50%" paddingX={16}>
+                <SegmentedControl
+                  options={state.weekdayFormats}
+                  value={state.localeOptions.weekday}
+                  onChange={weekday => setState({ localeOptions: { weekday } })}
+                />
+              </Box>
+            </Box>
+            <DatePicker
+              width={400}
+              value={state.date}
+              locale={state.locale}
+              localeOptions={state.localeOptions}
+              todayButtonLabel={state.todayButtonLabels.get(state.locale)}
+            />
+          </Box>
+        )}
+      </Component>
+    </Box>
   ))

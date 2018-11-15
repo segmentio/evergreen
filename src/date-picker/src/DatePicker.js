@@ -22,9 +22,14 @@ export default class DatePicker extends PureComponent {
     ]).isRequired,
 
     /**
-     * Should if a button to quickly jump to today is shown
+     * Should if a button to quickly jump to the current date is shown
      */
     shouldShowTodayButton: PropTypes.bool,
+
+    /**
+     * Label of button to jump to the current date
+     */
+    todayButtonLabel: PropTypes.string,
 
     /**
      * The locale used to format date time in calendar
@@ -46,6 +51,7 @@ export default class DatePicker extends PureComponent {
   static defaultProps = {
     width: 280,
     shouldShowTodayButton: true,
+    todayButtonLabel: 'Today',
     locale: 'en-US',
     localeOptions: {
       weekday: 'short'
@@ -80,10 +86,12 @@ export default class DatePicker extends PureComponent {
     const {
       value,
       shouldShowTodayButton,
+      todayButtonLabel,
       locale,
       localeOptions,
       ...props
     } = this.props
+
     return (
       <Box
         display="flex"
@@ -126,7 +134,7 @@ export default class DatePicker extends PureComponent {
             justifyContent="center"
             onClick={this.doJumpToToday}
           >
-            Today
+            {todayButtonLabel}
           </Button>
         ) : null}
       </Box>
