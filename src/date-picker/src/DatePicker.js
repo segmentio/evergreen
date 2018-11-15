@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import addMonths from 'date-fns/add_months'
 import addYears from 'date-fns/add_years'
-import format from 'date-fns/format'
 
 import { Text } from '../../typography'
 import { IconButton, Button } from '../../buttons'
@@ -28,6 +27,17 @@ export default class DatePicker extends PureComponent {
     shouldShowTodayButton: PropTypes.bool,
 
     /**
+     * The locale used to format date time in calendar
+     */
+    locale: PropTypes.string,
+
+    /**
+     * Options used to format date time
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
+     */
+    localeOptions: PropTypes.object,
+
+    /**
      * Callback function to be invokved when users select a date
      */
     onChange: PropTypes.func
@@ -35,7 +45,11 @@ export default class DatePicker extends PureComponent {
 
   static defaultProps = {
     width: 280,
-    shouldShowTodayButton: true
+    shouldShowTodayButton: true,
+    locale: 'en-US',
+    localeOptions: {
+      weekday: 'short'
+    }
   }
 
   state = { value: this.props.value }
@@ -45,6 +59,12 @@ export default class DatePicker extends PureComponent {
       { value },
       () => this.props.onChange && this.props.onChange(value)
     )
+
+  getCurrentMonthTitle = () =>
+    new Intl.DateTimeFormat(this.props.locale, {
+      month: 'long',
+      year: 'numeric'
+    }).format(this.state.value)
 
   doGoToNextMonth = () => this.changeDate(addMonths(this.state.value, 1))
 
@@ -57,7 +77,13 @@ export default class DatePicker extends PureComponent {
   doJumpToToday = () => this.changeDate(new Date())
 
   render() {
-    const { value, shouldShowTodayButton, ...props } = this.props
+    const {
+      value,
+      shouldShowTodayButton,
+      locale,
+      localeOptions,
+      ...props
+    } = this.props
     return (
       <Box
         display="flex"
@@ -76,7 +102,7 @@ export default class DatePicker extends PureComponent {
             appearance="minimal"
             onClick={this.doGoToPrevMonth}
           />
-          <Text marginX="auto">{format(this.state.value, 'MMMM YYYY')}</Text>
+          <Text marginX="auto">{this.getCurrentMonthTitle()}</Text>
           <IconButton
             icon="chevron-right"
             appearance="minimal"
@@ -88,7 +114,12 @@ export default class DatePicker extends PureComponent {
             onClick={this.doGoToNextYear}
           />
         </Box>
-        <Calendar pivotDate={this.state.value} onClick={this.changeDate} />
+        <Calendar
+          pivotDate={this.state.value}
+          onClick={this.changeDate}
+          locale={locale}
+          localeOptions={localeOptions}
+        />
         {shouldShowTodayButton ? (
           <Button
             appearance="minimal"

@@ -128,8 +128,17 @@ DateCell.propTypes = {
   onClick: PropTypes.func
 }
 
-function Calendar({ pivotDate, onClick, ...rest }) {
+function getWeekdayNames(dates, locale, { weekday }) {
+  return dates.map(d => new Intl.DateTimeFormat(locale, { weekday }).format(d))
+}
+
+function Calendar({ pivotDate, onClick, locale, localeOptions, ...rest }) {
   const dates = makeCalendarData(pivotDate)
+  const weekdays = getWeekdayNames(
+    dates.slice(0, 7).map(({ date }) => date),
+    locale,
+    localeOptions
+  )
   return (
     <Box
       display="flex"
@@ -138,27 +147,12 @@ function Calendar({ pivotDate, onClick, ...rest }) {
       paddingTop={majorScale(2)}
       {...rest}
     >
-      <DateBox>
-        <Text fontWeight={600}>Sun</Text>
-      </DateBox>
-      <DateBox>
-        <Text fontWeight={600}>Mon</Text>
-      </DateBox>
-      <DateBox>
-        <Text fontWeight={600}>Tue</Text>
-      </DateBox>
-      <DateBox>
-        <Text fontWeight={600}>Wed</Text>
-      </DateBox>
-      <DateBox>
-        <Text fontWeight={600}>Thu</Text>
-      </DateBox>
-      <DateBox>
-        <Text fontWeight={600}>Fri</Text>
-      </DateBox>
-      <DateBox>
-        <Text fontWeight={600}>Sat</Text>
-      </DateBox>
+      {weekdays.map(name => (
+        <DateBox key={name}>
+          <Text fontWeight={600}>{name}</Text>
+        </DateBox>
+      ))}
+
       {dates.map(date => (
         <DateCell key={date.date.toString()} {...date} onClick={onClick} />
       ))}
