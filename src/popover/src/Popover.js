@@ -92,7 +92,6 @@ export default class Popover extends Component {
 
   static defaultProps = {
     position: Position.BOTTOM,
-    isShown: false,
     minWidth: 200,
     minHeight: 40,
     animationDuration: 300,
@@ -316,7 +315,8 @@ export default class Popover extends Component {
     } = this.props
     const { isShown: stateIsShown } = this.state
 
-    const shown = isShown || stateIsShown
+    // If `isShown` is a boolean, popover is controlled manually, not via mouse events
+    const shown = typeof isShown === 'boolean' ? isShown : stateIsShown
 
     return (
       <Positioner
