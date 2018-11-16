@@ -5,6 +5,8 @@ import Component from '@reactions/component'
 import { DatePicker } from '..'
 import format from 'date-fns/format'
 import isWeekend from 'date-fns/is_weekend'
+import isBefore from 'date-fns/is_before'
+import isSameDay from 'date-fns/is_same_day'
 import { Paragraph } from '../../typography'
 import { Popover } from '../../popover'
 import { TextInput } from '../../text-input'
@@ -12,49 +14,103 @@ import { Combobox } from '../../combobox'
 
 storiesOf('date-picker', module)
   .add('DatePicker', () => (
-    <Box padding={40}>
+    <Box padding={40} display="flex" flexWrap="wrap">
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
 
-      <Box display="flex" flexWrap="wrap">
-        <Box width="33.33%">
-          <Paragraph marginY={16}>Default date picker</Paragraph>
-          <DatePicker value={new Date(2018, 7, 1)} onChange={console.log} />
-        </Box>
-        <Box width="33.33%">
-          <Paragraph marginY={16}>Without Today button</Paragraph>
-          <DatePicker
-            value={new Date(2019, 6, 1)}
-            shouldShowTodayButton={false}
-          />
-        </Box>
-        <Box width="33.33%">
-          <Paragraph marginY={16}>Disable all weekends</Paragraph>
-          <DatePicker value={new Date(1989, 7, 1)} disableDates={isWeekend} />
-        </Box>
+      <Box width="33.33%">
+        <Paragraph marginY={16}>Default date picker</Paragraph>
+        <DatePicker value={new Date(2018, 7, 1)} onChange={console.log} />
       </Box>
 
-      <Paragraph marginY={16}>Use with a popover</Paragraph>
-      <Component initialState={{ date: new Date() }}>
-        {({ state, setState }) => (
-          <Popover
-            content={
-              <DatePicker
-                value={state.date}
-                onChange={date => setState({ date })}
+      <Box width="33.33%">
+        <Paragraph marginY={16}>Without Today button</Paragraph>
+        <DatePicker
+          value={new Date(2019, 6, 1)}
+          shouldShowTodayButton={false}
+        />
+      </Box>
+
+      <Box width="33.33%">
+        <Paragraph marginY={16}>Disable all weekends</Paragraph>
+        <DatePicker value={new Date(1989, 7, 1)} disableDates={isWeekend} />
+      </Box>
+
+      <Box width="33.33%">
+        <Paragraph marginY={16}>Use with a popover</Paragraph>
+        <Component initialState={{ date: new Date() }}>
+          {({ state, setState }) => (
+            <Popover
+              content={
+                <DatePicker
+                  value={state.date}
+                  onChange={date => setState({ date })}
+                />
+              }
+            >
+              <TextInput
+                value={format(state.date, 'DD/MM/YYYY')}
+                placeholder="Pick a date"
+                readOnly
               />
-            }
-          >
-            <TextInput
-              value={format(state.date, 'DD/MM/YYYY')}
-              placeholder="Pick a date"
-              readOnly
-            />
-          </Popover>
-        )}
-      </Component>
+            </Popover>
+          )}
+        </Component>
+      </Box>
+
+      <Box width="66.66%">
+        <Paragraph marginY={16}>As a date range picker</Paragraph>
+        <Component
+          initialState={{ startDate: new Date(), endDate: new Date() }}
+        >
+          {({ state, setState }) => (
+            <Box display="flex">
+              <Box width="50%">
+                <Popover
+                  content={
+                    <DatePicker
+                      value={state.startDate}
+                      disableDates={d =>
+                        !isSameDay(state.endDate, state.startDate) &&
+                        isBefore(state.endDate, d)
+                      }
+                      onChange={startDate => setState({ startDate })}
+                    />
+                  }
+                >
+                  <TextInput
+                    value={format(state.startDate, 'DD/MM/YYYY')}
+                    placeholder="Pick the start date"
+                    readOnly
+                  />
+                </Popover>
+              </Box>
+              <Box width="50%">
+                <Popover
+                  content={
+                    <DatePicker
+                      value={state.endDate}
+                      disableDates={d =>
+                        !isSameDay(state.endDate, state.startDate) &&
+                        !isBefore(state.startDate, d)
+                      }
+                      onChange={endDate => setState({ endDate })}
+                    />
+                  }
+                >
+                  <TextInput
+                    value={format(state.endDate, 'DD/MM/YYYY')}
+                    placeholder="Pick the end date"
+                    readOnly
+                  />
+                </Popover>
+              </Box>
+            </Box>
+          )}
+        </Component>
+      </Box>
     </Box>
   ))
   .add('With different locales ', () => (
