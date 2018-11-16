@@ -6,7 +6,6 @@ import { DatePicker } from '..'
 import format from 'date-fns/format'
 import isWeekend from 'date-fns/is_weekend'
 import isBefore from 'date-fns/is_before'
-import isSameDay from 'date-fns/is_same_day'
 import { Paragraph } from '../../typography'
 import { Popover } from '../../popover'
 import { TextInput } from '../../text-input'
@@ -60,7 +59,7 @@ storiesOf('date-picker', module)
         </Component>
       </Box>
 
-      <Box width="66.66%">
+      <Box width="33.33%">
         <Paragraph marginY={16}>As a date range picker</Paragraph>
         <Component
           initialState={{ startDate: new Date(), endDate: new Date() }}
@@ -72,15 +71,17 @@ storiesOf('date-picker', module)
                   content={
                     <DatePicker
                       value={state.startDate}
-                      disableDates={d =>
-                        !isSameDay(state.endDate, state.startDate) &&
-                        isBefore(state.endDate, d)
-                      }
-                      onChange={startDate => setState({ startDate })}
+                      onChange={startDate => {
+                        const endDate = isBefore(state.endDate, startDate)
+                          ? startDate
+                          : state.endDate
+                        setState({ startDate, endDate })
+                      }}
                     />
                   }
                 >
                   <TextInput
+                    width="95%"
                     value={format(state.startDate, 'DD/MM/YYYY')}
                     placeholder="Pick the start date"
                     readOnly
@@ -92,15 +93,13 @@ storiesOf('date-picker', module)
                   content={
                     <DatePicker
                       value={state.endDate}
-                      disableDates={d =>
-                        !isSameDay(state.endDate, state.startDate) &&
-                        !isBefore(state.startDate, d)
-                      }
+                      disableDates={d => isBefore(d, state.startDate)}
                       onChange={endDate => setState({ endDate })}
                     />
                   }
                 >
                   <TextInput
+                    width="95%"
                     value={format(state.endDate, 'DD/MM/YYYY')}
                     placeholder="Pick the end date"
                     readOnly
