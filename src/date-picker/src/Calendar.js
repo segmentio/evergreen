@@ -44,7 +44,7 @@ function makeDaysArray(pivot, length, { increment = 1, ...rest } = {}) {
   ).acc
 }
 
-function makeCalendarData(pivotDate) {
+function makeCalendarData(pivotDate, disableDates) {
   const today = new Date()
   const totalDays = getDaysInMonth(pivotDate)
   const firstDay = startOfMonth(pivotDate)
@@ -55,7 +55,8 @@ function makeCalendarData(pivotDate) {
   const present = makeDaysArray(addDays(firstDay, -1), totalDays, {
     isCurrentMonth: true,
     isToday: date => isSameDay(date, today),
-    isSelected: date => isSameDay(date, pivotDate)
+    isSelected: date => isSameDay(date, pivotDate),
+    isDisabled: disableDates
   })
 
   // Complement days from previous month
@@ -64,15 +65,18 @@ function makeCalendarData(pivotDate) {
     dayOfFirstDay === SUN ? 0 : dayOfFirstDay,
     {
       increment: -1,
-      isCurrentMonth: false
+      isCurrentMonth: false,
+      isDisabled: disableDates
     }
   )
+
   const future = makeDaysArray(
     addDays(lastDay, -1),
     dayOfLastDay === SUN ? 0 : SAT - dayOfLastDay + 1,
     {
       increment: 1,
-      isCurrentMonth: false
+      isCurrentMonth: false,
+      isDisabled: disableDates
     }
   )
 
@@ -117,9 +121,10 @@ function Calendar({
   onClick,
   locale = DEFAULT.locale,
   localeOptions = DEFAULT.localeOptions,
+  disableDates,
   ...rest
 }) {
-  const dates = makeCalendarData(pivotDate)
+  const dates = makeCalendarData(pivotDate, disableDates)
   const weekdays = getWeekdayNames(
     dates.slice(0, 7).map(({ date }) => date),
     locale,
@@ -143,41 +148,44 @@ function Calendar({
         </DateBox>
       ))}
 
-      {dates.map(({ date, isCurrentMonth, isToday, isSelected }) => (
-        <ThemeConsumer key={date.toString()}>
-          {theme => (
-            <DateBox>
-              <Button
-                padding={0}
-                display="block"
-                width="100%"
-                textAlign="center"
-                appearance={isSelected ? 'primary' : 'minimal'}
-                position="relative"
-                onClick={() => onClick && onClick(date)}
-                color={
-                  isSelected
-                    ? theme.scales.neutral.N1
-                    : isCurrentMonth
-                      ? theme.colors.text.dark
-                      : theme.scales.neutral.N5
-                }
-              >
-                {dateFormatter.format(date)}
-                {isToday ? (
-                  <Icon
-                    icon="dot"
-                    color={isSelected ? theme.scales.neutral.N1 : 'info'}
-                    position="absolute"
-                    bottom={0}
-                    right={0}
-                  />
-                ) : null}
-              </Button>
-            </DateBox>
-          )}
-        </ThemeConsumer>
-      ))}
+      {dates.map(
+        ({ date, isCurrentMonth, isToday, isSelected, isDisabled }) => (
+          <ThemeConsumer key={date.toString()}>
+            {theme => (
+              <DateBox>
+                <Button
+                  padding={0}
+                  display="block"
+                  width="100%"
+                  textAlign="center"
+                  appearance={isSelected ? 'primary' : 'minimal'}
+                  position="relative"
+                  onClick={() => onClick && onClick(date)}
+                  disabled={isDisabled}
+                  color={
+                    isSelected
+                      ? theme.scales.neutral.N1
+                      : isCurrentMonth
+                        ? theme.colors.text.dark
+                        : theme.scales.neutral.N6
+                  }
+                >
+                  {dateFormatter.format(date)}
+                  {isToday ? (
+                    <Icon
+                      icon="dot"
+                      color={isSelected ? theme.scales.neutral.N1 : 'info'}
+                      position="absolute"
+                      bottom={0}
+                      right={0}
+                    />
+                  ) : null}
+                </Button>
+              </DateBox>
+            )}
+          </ThemeConsumer>
+        )
+      )}
     </Box>
   )
 }
@@ -186,7 +194,8 @@ Calendar.propTypes = {
   pivotDate: PropTypes.instanceOf(Date).isRequired,
   onClick: PropTypes.func,
   locale: PropTypes.string,
-  localeOptions: PropTypes.object
+  localeOptions: PropTypes.object,
+  disableDates: PropTypes.func
 }
 
 export default Calendar

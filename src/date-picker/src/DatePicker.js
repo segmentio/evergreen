@@ -43,6 +43,11 @@ export default class DatePicker extends PureComponent {
     localeOptions: PropTypes.object,
 
     /**
+     * Validation function to determine if a date is disabled
+     */
+    disableDates: PropTypes.func,
+
+    /**
      * Callback function to be invokved when users select a date
      */
     onChange: PropTypes.func
@@ -96,6 +101,7 @@ export default class DatePicker extends PureComponent {
       todayButtonLabel,
       locale,
       localeOptions,
+      disableDates,
       ...props
     } = this.props
 
@@ -136,6 +142,7 @@ export default class DatePicker extends PureComponent {
           onClick={this.changeDate}
           locale={locale}
           localeOptions={localeOptions}
+          disableDates={disableDates}
         />
         {shouldShowTodayButton ? (
           <Button

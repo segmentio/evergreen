@@ -4,6 +4,7 @@ import Box from 'ui-box'
 import Component from '@reactions/component'
 import { DatePicker } from '..'
 import format from 'date-fns/format'
+import isWeekend from 'date-fns/is_weekend'
 import { Paragraph } from '../../typography'
 import { Popover } from '../../popover'
 import { TextInput } from '../../text-input'
@@ -17,17 +18,21 @@ storiesOf('date-picker', module)
         document.body.style.height = '100vh'
       })()}
 
-      <Box display="flex">
-        <Box width="50%">
+      <Box display="flex" flexWrap="wrap">
+        <Box width="33.33%">
           <Paragraph marginY={16}>Default date picker</Paragraph>
           <DatePicker value={new Date(2018, 7, 1)} onChange={console.log} />
         </Box>
-        <Box width="50%">
+        <Box width="33.33%">
           <Paragraph marginY={16}>Without Today button</Paragraph>
           <DatePicker
             value={new Date(2019, 6, 1)}
             shouldShowTodayButton={false}
           />
+        </Box>
+        <Box width="33.33%">
+          <Paragraph marginY={16}>Disable all weekends</Paragraph>
+          <DatePicker value={new Date(1989, 7, 1)} disableDates={isWeekend} />
         </Box>
       </Box>
 
