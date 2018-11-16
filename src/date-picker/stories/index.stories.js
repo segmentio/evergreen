@@ -103,7 +103,7 @@ storiesOf('date-picker', module)
               </Box>
             </Box>
             <DatePicker
-              width={400}
+              width={320}
               value={state.date}
               locale={state.locale}
               localeOptions={state.localeOptions}

@@ -54,7 +54,10 @@ export default class DatePicker extends PureComponent {
     todayButtonLabel: 'Today',
     locale: 'en-US',
     localeOptions: {
-      weekday: 'short'
+      weekday: 'short',
+      month: 'long',
+      year: 'numeric',
+      day: 'numeric'
     }
   }
 
@@ -68,8 +71,12 @@ export default class DatePicker extends PureComponent {
 
   getCurrentMonthTitle = () =>
     new Intl.DateTimeFormat(this.props.locale, {
-      month: 'long',
-      year: 'numeric'
+      month:
+        this.props.localeOptions.month ||
+        DatePicker.defaultProps.localeOptions.month,
+      year:
+        this.props.localeOptions.year ||
+        DatePicker.defaultProps.localeOptions.year
     }).format(this.state.value)
 
   doGoToNextMonth = () => this.changeDate(addMonths(this.state.value, 1))
@@ -110,7 +117,9 @@ export default class DatePicker extends PureComponent {
             appearance="minimal"
             onClick={this.doGoToPrevMonth}
           />
-          <Text marginX="auto">{this.getCurrentMonthTitle()}</Text>
+          <Text marginX="auto" userSelect="none">
+            {this.getCurrentMonthTitle()}
+          </Text>
           <IconButton
             icon="chevron-right"
             appearance="minimal"

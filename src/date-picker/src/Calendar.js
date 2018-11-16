@@ -81,6 +81,7 @@ function makeCalendarData(pivotDate) {
 function DateBox({ children, ...props }) {
   return (
     <Box
+      userSelect="none"
       width={`${100 / 7}%`}
       height={majorScale(4)}
       textAlign="center"
@@ -91,12 +92,16 @@ function DateBox({ children, ...props }) {
   )
 }
 
-function DateCell({ date, isCurrentMonth, isToday, onClick }) {
+function DateCell({ date, isCurrentMonth, isToday, onClick, formatter }) {
   return (
     <ThemeConsumer>
       {theme => (
         <DateBox>
           <Button
+            padding={0}
+            display="block"
+            width="100%"
+            textAlign="center"
             appearance="minimal"
             position="relative"
             onClick={() => onClick && onClick(date)}
@@ -104,7 +109,7 @@ function DateCell({ date, isCurrentMonth, isToday, onClick }) {
               isCurrentMonth ? theme.colors.text.dark : theme.scales.neutral.N5
             }
           >
-            {date.getDate()}
+            {formatter ? formatter.format(date) : date.getDay()}
             {isToday ? (
               <Icon
                 icon="dot"
@@ -123,6 +128,7 @@ function DateCell({ date, isCurrentMonth, isToday, onClick }) {
 
 DateCell.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
+  formatter: PropTypes.instanceOf(Intl.DateTimeFormat),
   isCurrentMonth: PropTypes.bool,
   isToday: PropTypes.bool,
   onClick: PropTypes.func
@@ -137,13 +143,33 @@ function getWeekdayNames(dates, locale, { weekday }) {
   })
 }
 
-function Calendar({ pivotDate, onClick, locale, localeOptions, ...rest }) {
+const DEFAULT = {
+  locale: 'en-US',
+  localeOptions: {
+    weekday: 'short',
+    month: 'long',
+    year: 'numeric',
+    day: 'numeric'
+  }
+}
+
+function Calendar({
+  pivotDate,
+  onClick,
+  locale = DEFAULT.locale,
+  localeOptions = DEFAULT.localeOptions,
+  ...rest
+}) {
   const dates = makeCalendarData(pivotDate)
   const weekdays = getWeekdayNames(
     dates.slice(0, 7).map(({ date }) => date),
     locale,
     localeOptions
   )
+  const dateFormatter = new Intl.DateTimeFormat(locale, {
+    day: localeOptions.day || DEFAULT.localeOptions.day
+  })
+
   return (
     <Box
       display="flex"
@@ -159,7 +185,12 @@ function Calendar({ pivotDate, onClick, locale, localeOptions, ...rest }) {
       ))}
 
       {dates.map(date => (
-        <DateCell key={date.date.toString()} {...date} onClick={onClick} />
+        <DateCell
+          key={date.date.toString()}
+          {...date}
+          onClick={onClick}
+          formatter={dateFormatter}
+        />
       ))}
     </Box>
   )
@@ -167,7 +198,9 @@ function Calendar({ pivotDate, onClick, locale, localeOptions, ...rest }) {
 
 Calendar.propTypes = {
   pivotDate: PropTypes.instanceOf(Date).isRequired,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  locale: PropTypes.string,
+  localeOptions: PropTypes.object
 }
 
 export default Calendar
