@@ -92,48 +92,6 @@ function DateBox({ children, ...props }) {
   )
 }
 
-function DateCell({ date, isCurrentMonth, isToday, onClick, formatter }) {
-  return (
-    <ThemeConsumer>
-      {theme => (
-        <DateBox>
-          <Button
-            padding={0}
-            display="block"
-            width="100%"
-            textAlign="center"
-            appearance="minimal"
-            position="relative"
-            onClick={() => onClick && onClick(date)}
-            color={
-              isCurrentMonth ? theme.colors.text.dark : theme.scales.neutral.N5
-            }
-          >
-            {formatter ? formatter.format(date) : date.getDay()}
-            {isToday ? (
-              <Icon
-                icon="dot"
-                color="info"
-                position="absolute"
-                bottom={0}
-                right={0}
-              />
-            ) : null}
-          </Button>
-        </DateBox>
-      )}
-    </ThemeConsumer>
-  )
-}
-
-DateCell.propTypes = {
-  date: PropTypes.instanceOf(Date).isRequired,
-  formatter: PropTypes.instanceOf(Intl.DateTimeFormat),
-  isCurrentMonth: PropTypes.bool,
-  isToday: PropTypes.bool,
-  onClick: PropTypes.func
-}
-
 function getWeekdayNames(dates, locale, { weekday }) {
   return dates.map(d => {
     const name = new Intl.DateTimeFormat(locale, { weekday }).format(d)
@@ -184,13 +142,38 @@ function Calendar({
         </DateBox>
       ))}
 
-      {dates.map(date => (
-        <DateCell
-          key={date.date.toString()}
-          {...date}
-          onClick={onClick}
-          formatter={dateFormatter}
-        />
+      {dates.map(({ date, isCurrentMonth, isToday }) => (
+        <ThemeConsumer key={date.toString()}>
+          {theme => (
+            <DateBox>
+              <Button
+                padding={0}
+                display="block"
+                width="100%"
+                textAlign="center"
+                appearance="minimal"
+                position="relative"
+                onClick={() => onClick && onClick(date)}
+                color={
+                  isCurrentMonth
+                    ? theme.colors.text.dark
+                    : theme.scales.neutral.N5
+                }
+              >
+                {dateFormatter.format(date)}
+                {isToday ? (
+                  <Icon
+                    icon="dot"
+                    color="info"
+                    position="absolute"
+                    bottom={0}
+                    right={0}
+                  />
+                ) : null}
+              </Button>
+            </DateBox>
+          )}
+        </ThemeConsumer>
       ))}
     </Box>
   )
