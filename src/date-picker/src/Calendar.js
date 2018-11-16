@@ -70,15 +70,24 @@ function makeCalendarData(pivotDate, disableDates) {
     }
   )
 
-  const future = makeDaysArray(
-    addDays(lastDay, -1),
-    dayOfLastDay === SUN ? 0 : SAT - dayOfLastDay + 1,
-    {
-      increment: 1,
-      isCurrentMonth: false,
-      isDisabled: disableDates
-    }
-  )
+  // Calculate how many dates in the future we need to add to calendar
+  // Always show 6 weeks to avoid UI jumping
+  const MAX_DAYS_SHOWN = 42
+
+  // TODO: Add prop to start calendar on Monday
+  const preliminaryFutureDays =
+    dayOfLastDay === SUN ? 0 : SAT - dayOfLastDay + 1
+
+  const actualFutureDays =
+    past.length + present.length + preliminaryFutureDays === MAX_DAYS_SHOWN
+      ? preliminaryFutureDays
+      : MAX_DAYS_SHOWN - present.length - past.length
+
+  const future = makeDaysArray(addDays(lastDay, -1), actualFutureDays, {
+    increment: 1,
+    isCurrentMonth: false,
+    isDisabled: disableDates
+  })
 
   return [...past, ...present, ...future]
 }
