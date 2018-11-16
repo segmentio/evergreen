@@ -7,7 +7,7 @@ import format from 'date-fns/format'
 import { Paragraph } from '../../typography'
 import { Popover } from '../../popover'
 import { TextInput } from '../../text-input'
-import { SegmentedControl } from '../../segmented-control'
+import { Combobox } from '../../combobox'
 
 storiesOf('date-picker', module)
   .add('DatePicker', () => (
@@ -58,57 +58,96 @@ storiesOf('date-picker', module)
         initialState={{
           date: new Date(),
           locale: 'fi-FI',
-          locales: [
-            { label: 'fi-FI', value: 'fi-FI' },
-            { label: 'vi-VN', value: 'vi-VN' },
-            { label: 'es-ES', value: 'es-ES' },
-            { label: 'en-GB', value: 'en-GB' },
-            { label: 'zh-CN', value: 'zh-CN' },
-            { label: 'ru-RU', value: 'ru-RU' }
-          ],
+          locales: ['fi-FI', 'vi-VN', 'es-ES', 'ar-AE', 'ru-RU', 'zh-CN'],
           localeOptions: {
-            weekday: 'narrow'
+            weekday: 'narrow',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
           },
-          weekdayFormats: [
-            { label: 'narrow', value: 'narrow' },
-            { label: 'short', value: 'short' },
-            { label: 'long', value: 'long' }
-          ],
+          weekdayFormats: ['narrow', 'short', 'long'],
+          dayFormats: ['numeric', '2-digit'],
+          monthFormats: ['numeric', '2-digit', 'narrow', 'short', 'long'],
+          yearFormats: ['numeric', '2-digit'],
           todayButtonLabels: new Map([
             ['fi-FI', 'Tänään'],
             ['vi-VN', 'Hôm nay'],
             ['es-ES', 'Hoy'],
-            ['en-GB', 'Today'],
+            ['ar-AE', 'اليَوْم'],
             ['zh-CN', '今天'],
             ['ru-RU', 'сегодня']
           ])
         }}
       >
         {({ state, setState }) => (
-          <Box>
-            <Box display="flex" marginBottom={16} width="100%">
-              <Box width="50%" paddingX={16}>
-                <SegmentedControl
-                  options={state.locales}
-                  value={state.locale}
-                  onChange={locale => setState({ locale })}
-                />
-              </Box>
-              <Box width="50%" paddingX={16}>
-                <SegmentedControl
-                  options={state.weekdayFormats}
-                  value={state.localeOptions.weekday}
-                  onChange={weekday => setState({ localeOptions: { weekday } })}
-                />
-              </Box>
+          <Box display="flex">
+            <Box
+              width="50%"
+              display="flex"
+              flexDirection="column"
+              justifyContent="space-between"
+            >
+              <Combobox
+                selectedItem={state.locale}
+                items={state.locales}
+                onChange={locale => setState({ locale })}
+                autocompleteProps={{ title: 'Locale' }}
+              />
+              <Combobox
+                selectedItem={state.localeOptions.weekday}
+                items={state.weekdayFormats}
+                onChange={weekday =>
+                  setState({
+                    localeOptions: { ...state.localeOptions, weekday }
+                  })
+                }
+                autocompleteProps={{ title: 'Weekday' }}
+              />
+              <Combobox
+                selectedItem={state.localeOptions.day}
+                items={state.dayFormats}
+                onChange={day =>
+                  setState({
+                    localeOptions: { ...state.localeOptions, day }
+                  })
+                }
+                autocompleteProps={{ title: 'Day' }}
+              />
+              <Combobox
+                selectedItem={state.localeOptions.month}
+                items={state.monthFormats}
+                onChange={month =>
+                  setState({
+                    localeOptions: { ...state.localeOptions, month }
+                  })
+                }
+                autocompleteProps={{ title: 'Month' }}
+              />
+              <Combobox
+                selectedItem={state.localeOptions.year}
+                items={state.yearFormats}
+                onChange={year =>
+                  setState({
+                    localeOptions: { ...state.localeOptions, year }
+                  })
+                }
+                autocompleteProps={{ title: 'Year' }}
+              />
             </Box>
-            <DatePicker
-              width={320}
-              value={state.date}
-              locale={state.locale}
-              localeOptions={state.localeOptions}
-              todayButtonLabel={state.todayButtonLabels.get(state.locale)}
-            />
+            <div>
+              <DatePicker
+                width={320}
+                value={state.date}
+                locale={state.locale}
+                localeOptions={state.localeOptions}
+                todayButtonLabel={state.todayButtonLabels.get(state.locale)}
+                onChange={date => setState({ date })}
+              />
+              <Paragraph>
+                Selected date:{' '}
+                {new Intl.DateTimeFormat(state.locale).format(state.date)}
+              </Paragraph>
+            </div>
           </Box>
         )}
       </Component>
