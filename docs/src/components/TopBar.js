@@ -17,7 +17,6 @@ export default class TopBar extends PureComponent {
 
   render() {
     const { children, ...props } = this.props
-    console.log('stelaaaa------', this.props)
     return (
       <div className="TopBar" {...props}>
         <Link to="/" className="focus-ring-link">
