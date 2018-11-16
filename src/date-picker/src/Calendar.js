@@ -54,7 +54,8 @@ function makeCalendarData(pivotDate) {
 
   const present = makeDaysArray(addDays(firstDay, -1), totalDays, {
     isCurrentMonth: true,
-    isToday: date => isSameDay(date, today)
+    isToday: date => isSameDay(date, today),
+    isSelected: date => isSameDay(date, pivotDate)
   })
 
   // Complement days from previous month
@@ -142,7 +143,7 @@ function Calendar({
         </DateBox>
       ))}
 
-      {dates.map(({ date, isCurrentMonth, isToday }) => (
+      {dates.map(({ date, isCurrentMonth, isToday, isSelected }) => (
         <ThemeConsumer key={date.toString()}>
           {theme => (
             <DateBox>
@@ -151,20 +152,22 @@ function Calendar({
                 display="block"
                 width="100%"
                 textAlign="center"
-                appearance="minimal"
+                appearance={isSelected ? 'primary' : 'minimal'}
                 position="relative"
                 onClick={() => onClick && onClick(date)}
                 color={
-                  isCurrentMonth
-                    ? theme.colors.text.dark
-                    : theme.scales.neutral.N5
+                  isSelected
+                    ? theme.scales.neutral.N1
+                    : isCurrentMonth
+                      ? theme.colors.text.dark
+                      : theme.scales.neutral.N5
                 }
               >
                 {dateFormatter.format(date)}
                 {isToday ? (
                   <Icon
                     icon="dot"
-                    color="info"
+                    color={isSelected ? theme.scales.neutral.N1 : 'info'}
                     position="absolute"
                     bottom={0}
                     right={0}
