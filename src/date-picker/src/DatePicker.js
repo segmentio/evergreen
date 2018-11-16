@@ -66,13 +66,9 @@ export default class DatePicker extends PureComponent {
     }
   }
 
-  state = { value: this.props.value }
+  state = { pivotDate: this.props.value }
 
-  changeDate = value =>
-    this.setState(
-      { value },
-      () => this.props.onChange && this.props.onChange(value)
-    )
+  changePivotDate = pivotDate => this.setState({ pivotDate })
 
   getCurrentMonthTitle = () =>
     new Intl.DateTimeFormat(this.props.locale, {
@@ -82,17 +78,22 @@ export default class DatePicker extends PureComponent {
       year:
         this.props.localeOptions.year ||
         DatePicker.defaultProps.localeOptions.year
-    }).format(this.state.value)
+    }).format(this.state.pivotDate)
 
-  doGoToNextMonth = () => this.changeDate(addMonths(this.state.value, 1))
+  doGoToNextMonth = () =>
+    this.changePivotDate(addMonths(this.state.pivotDate, 1))
 
-  doGoToPrevMonth = () => this.changeDate(addMonths(this.state.value, -1))
+  doGoToPrevMonth = () =>
+    this.changePivotDate(addMonths(this.state.pivotDate, -1))
 
-  doGoToNextYear = () => this.changeDate(addYears(this.state.value, 1))
+  doGoToNextYear = () => this.changePivotDate(addYears(this.state.pivotDate, 1))
 
-  doGoToPrevYear = () => this.changeDate(addYears(this.state.value, -1))
+  doGoToPrevYear = () =>
+    this.changePivotDate(addYears(this.state.pivotDate, -1))
 
-  doJumpToToday = () => this.changeDate(new Date())
+  doJumpToToday = () => this.changePivotDate(new Date())
+
+  doCalendarClick = date => this.props.onChange && this.props.onChange(date)
 
   render() {
     const {
@@ -138,8 +139,9 @@ export default class DatePicker extends PureComponent {
           />
         </Box>
         <Calendar
-          pivotDate={this.state.value}
-          onClick={this.changeDate}
+          pivotDate={this.state.pivotDate}
+          selectedDate={this.props.value}
+          onClick={this.doCalendarClick}
           locale={locale}
           localeOptions={localeOptions}
           disableDates={disableDates}

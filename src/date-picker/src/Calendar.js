@@ -44,7 +44,7 @@ function makeDaysArray(pivot, length, { increment = 1, ...rest } = {}) {
   ).acc
 }
 
-function makeCalendarData(pivotDate, disableDates) {
+function makeCalendarData(pivotDate, selectedDate, disableDates) {
   const today = new Date()
   const totalDays = getDaysInMonth(pivotDate)
   const firstDay = startOfMonth(pivotDate)
@@ -55,7 +55,7 @@ function makeCalendarData(pivotDate, disableDates) {
   const present = makeDaysArray(addDays(firstDay, -1), totalDays, {
     isCurrentMonth: true,
     isToday: date => isSameDay(date, today),
-    isSelected: date => isSameDay(date, pivotDate),
+    isSelected: date => isSameDay(date, selectedDate),
     isDisabled: disableDates
   })
 
@@ -66,6 +66,7 @@ function makeCalendarData(pivotDate, disableDates) {
     {
       increment: -1,
       isCurrentMonth: false,
+      isSelected: date => isSameDay(date, selectedDate),
       isDisabled: disableDates
     }
   )
@@ -86,6 +87,7 @@ function makeCalendarData(pivotDate, disableDates) {
   const future = makeDaysArray(addDays(lastDay, -1), actualFutureDays, {
     increment: 1,
     isCurrentMonth: false,
+    isSelected: date => isSameDay(date, selectedDate),
     isDisabled: disableDates
   })
 
@@ -127,13 +129,14 @@ const DEFAULT = {
 
 function Calendar({
   pivotDate,
+  selectedDate,
   onClick,
   locale = DEFAULT.locale,
   localeOptions = DEFAULT.localeOptions,
   disableDates,
   ...rest
 }) {
-  const dates = makeCalendarData(pivotDate, disableDates)
+  const dates = makeCalendarData(pivotDate, selectedDate, disableDates)
   const weekdays = getWeekdayNames(
     dates.slice(0, 7).map(({ date }) => date),
     locale,
@@ -201,6 +204,7 @@ function Calendar({
 
 Calendar.propTypes = {
   pivotDate: PropTypes.instanceOf(Date).isRequired,
+  selectedDate: PropTypes.instanceOf(Date),
   onClick: PropTypes.func,
   locale: PropTypes.string,
   localeOptions: PropTypes.object,
