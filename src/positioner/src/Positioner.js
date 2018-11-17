@@ -230,6 +230,7 @@ export default class Positioner extends PureComponent {
               {target({ getRef: this.getTargetRef, isShown })}
 
               <Transition
+                appear
                 in={isShown}
                 timeout={animationDuration}
                 onEnter={this.handleEnter}
