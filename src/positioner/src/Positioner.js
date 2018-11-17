@@ -119,13 +119,6 @@ export default class Positioner extends PureComponent {
     this.state = initialState()
   }
 
-  componentDidMount() {
-    // If `isShown` is `true` on first render, <Transition> won't emit any enter/entered events
-    // because there was no transition from `false` to `true`
-    // In order to still display and position the content properly, `update()` must be fired after first render
-    this.update()
-  }
-
   componentWillUnmount() {
     if (this.latestAnimationFrame) {
       cancelAnimationFrame(this.latestAnimationFrame)
@@ -237,6 +230,7 @@ export default class Positioner extends PureComponent {
               {target({ getRef: this.getTargetRef, isShown })}
 
               <Transition
+                appear
                 in={isShown}
                 timeout={animationDuration}
                 onEnter={this.handleEnter}
