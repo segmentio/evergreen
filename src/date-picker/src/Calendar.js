@@ -2,25 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 
-import getDaysInMonth from 'date-fns/get_days_in_month'
-import startOfMonth from 'date-fns/start_of_month'
 import addDays from 'date-fns/add_days'
 import getDay from 'date-fns/get_day'
+import getDaysInMonth from 'date-fns/get_days_in_month'
 import isSameDay from 'date-fns/is_same_day'
+import startOfMonth from 'date-fns/start_of_month'
 
 import { majorScale } from '../../scales'
-import { Text } from '../../typography'
-import { ThemeConsumer } from '../../theme'
 import { Button } from '../../buttons'
 import { Icon } from '../../icon'
+import { Text } from '../../typography'
+import { ThemeConsumer } from '../../theme'
 
-export const SUN = 0
-export const MON = 1
-export const TUE = 2
-export const WED = 3
-export const THU = 4
-export const FRI = 5
-export const SAT = 6
+const SUN = 0
+const SAT = 6
 
 function makeDaysArray(pivot, length, { increment = 1, ...rest } = {}) {
   return Array.from({ length }).reduce(
@@ -94,20 +89,6 @@ function makeCalendarData(pivotDate, selectedDate, disableDates) {
   return [...past, ...present, ...future]
 }
 
-function DateBox({ children, ...props }) {
-  return (
-    <Box
-      userSelect="none"
-      width={`${100 / 7}%`}
-      height={majorScale(4)}
-      textAlign="center"
-      {...props}
-    >
-      {children}
-    </Box>
-  )
-}
-
 function getWeekdayNames(dates, locale, { weekday }) {
   return dates.map(d => {
     const name = new Intl.DateTimeFormat(locale, { weekday }).format(d)
@@ -125,6 +106,20 @@ const DEFAULT = {
     year: 'numeric',
     day: 'numeric'
   }
+}
+
+function DateBox({ children, ...props }) {
+  return (
+    <Box
+      userSelect="none"
+      width={`${100 / 7}%`}
+      height={majorScale(4)}
+      textAlign="center"
+      {...props}
+    >
+      {children}
+    </Box>
+  )
 }
 
 function Calendar({

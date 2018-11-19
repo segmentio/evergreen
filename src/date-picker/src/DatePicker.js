@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+
 import addMonths from 'date-fns/add_months'
 import addYears from 'date-fns/add_years'
 
 import { Text } from '../../typography'
-import { IconButton, Button } from '../../buttons'
+import { Button, IconButton } from '../../buttons'
 import { majorScale } from '../../scales'
 
 import Calendar from './Calendar'
@@ -13,7 +14,7 @@ import Calendar from './Calendar'
 export default class DatePicker extends PureComponent {
   static propTypes = {
     /**
-     * The date presentation of calendar
+     * The current selected date on calendar
      */
     value: PropTypes.oneOfType([
       PropTypes.string,
@@ -22,22 +23,22 @@ export default class DatePicker extends PureComponent {
     ]).isRequired,
 
     /**
-     * Should if a button to quickly jump to the current date is shown
+     * Should a button to quickly jump to the current date is shown
      */
     shouldShowTodayButton: PropTypes.bool,
 
     /**
-     * Label of button to jump to the current date
+     * Label of ShowToday button
      */
     todayButtonLabel: PropTypes.string,
 
     /**
-     * The locale used to format date time in calendar
+     * The locale used to format date in calendar
      */
     locale: PropTypes.string,
 
     /**
-     * Options used to format date time
+     * Options used to format
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
      */
     localeOptions: PropTypes.object,
