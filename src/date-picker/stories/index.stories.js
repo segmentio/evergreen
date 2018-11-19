@@ -12,7 +12,7 @@ import { TextInput } from '../../text-input'
 import { Combobox } from '../../combobox'
 
 storiesOf('date-picker', module)
-  .add('DatePicker', () => (
+  .add('Inline DatePicker', () => (
     <Box padding={40} display="flex" flexWrap="wrap">
       {(() => {
         document.body.style.margin = '0'
@@ -36,7 +36,10 @@ storiesOf('date-picker', module)
         <Paragraph marginY={16}>Disable all weekends</Paragraph>
         <DatePicker value={new Date(1989, 7, 1)} disableDates={isWeekend} />
       </Box>
-
+    </Box>
+  ))
+  .add('DatePicker inputs', () => (
+    <Box padding={40} display="flex" flexWrap="wrap">
       <Box width="33.33%">
         <Paragraph marginY={16}>Use with a popover</Paragraph>
         <Component initialState={{ date: new Date() }}>
@@ -142,7 +145,6 @@ storiesOf('date-picker', module)
         {({ state, setState }) => (
           <Box display="flex">
             <Box
-              width="50%"
               display="flex"
               flexDirection="column"
               justifyContent="space-between"
@@ -194,7 +196,7 @@ storiesOf('date-picker', module)
                 autocompleteProps={{ title: 'Year' }}
               />
             </Box>
-            <div>
+            <Box marginLeft={32}>
               <DatePicker
                 width={320}
                 value={state.date}
@@ -203,11 +205,11 @@ storiesOf('date-picker', module)
                 todayButtonLabel={state.todayButtonLabels.get(state.locale)}
                 onChange={date => setState({ date })}
               />
-              <Paragraph>
+              <Paragraph textAlign="center">
                 Selected date:{' '}
                 {new Intl.DateTimeFormat(state.locale).format(state.date)}
               </Paragraph>
-            </div>
+            </Box>
           </Box>
         )}
       </Component>
