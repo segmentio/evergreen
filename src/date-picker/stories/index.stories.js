@@ -2,17 +2,14 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import Component from '@reactions/component'
-import { DatePicker } from '..'
+import { DatePicker, InlineDatePicker, DateRangePicker } from '..'
 import format from 'date-fns/format'
 import isWeekend from 'date-fns/is_weekend'
-import isBefore from 'date-fns/is_before'
 import { Paragraph } from '../../typography'
-import { Popover } from '../../popover'
-import { TextInput } from '../../text-input'
 import { Combobox } from '../../combobox'
 
 storiesOf('date-picker', module)
-  .add('Inline DatePicker', () => (
+  .add('InlineDatePicker', () => (
     <Box padding={40} display="flex" flexWrap="wrap">
       {(() => {
         document.body.style.margin = '0'
@@ -21,12 +18,12 @@ storiesOf('date-picker', module)
 
       <Box width="33.33%">
         <Paragraph marginY={16}>Default date picker</Paragraph>
-        <DatePicker value={new Date(2018, 7, 1)} onChange={console.log} />
+        <InlineDatePicker value={new Date(2018, 7, 1)} onChange={console.log} />
       </Box>
 
       <Box width="33.33%">
         <Paragraph marginY={16}>Without Today button</Paragraph>
-        <DatePicker
+        <InlineDatePicker
           value={new Date(2019, 6, 1)}
           shouldShowTodayButton={false}
         />
@@ -34,82 +31,83 @@ storiesOf('date-picker', module)
 
       <Box width="33.33%">
         <Paragraph marginY={16}>Disable all weekends</Paragraph>
-        <DatePicker value={new Date(1989, 7, 1)} disableDates={isWeekend} />
+        <InlineDatePicker
+          value={new Date(1989, 7, 1)}
+          disableDates={isWeekend}
+        />
       </Box>
     </Box>
   ))
-  .add('DatePicker inputs', () => (
+  .add('DatePicker', () => (
     <Box padding={40} display="flex" flexWrap="wrap">
       <Box width="33.33%">
-        <Paragraph marginY={16}>Use with a popover</Paragraph>
+        <Paragraph marginY={16}>Default date picker (uncontrolled)</Paragraph>
+        <DatePicker value={new Date()} />
+      </Box>
+
+      <Box width="33.33%">
+        <Paragraph marginY={16}>Default date picker (controlled)</Paragraph>
         <Component initialState={{ date: new Date() }}>
           {({ state, setState }) => (
-            <Popover
-              content={
-                <DatePicker
-                  value={state.date}
-                  onChange={date => setState({ date })}
-                />
-              }
-            >
-              <TextInput
-                value={format(state.date, 'DD/MM/YYYY')}
-                placeholder="Pick a date"
-                readOnly
-              />
-            </Popover>
+            <DatePicker
+              value={state.date}
+              onChange={date => setState({ date })}
+            />
           )}
         </Component>
       </Box>
 
       <Box width="33.33%">
-        <Paragraph marginY={16}>As a date range picker</Paragraph>
+        <Paragraph marginY={16}>With different format</Paragraph>
+        <Component initialState={{ date: new Date() }}>
+          {({ state, setState }) => (
+            <DatePicker
+              value={state.date}
+              dateFormatter={d => format(d, 'YYYY-MM-DD')}
+              onChange={date => setState({ date })}
+            />
+          )}
+        </Component>
+      </Box>
+    </Box>
+  ))
+  .add('DateRangePicker', () => (
+    <Box padding={16} display="flex">
+      <Box width="50%">
+        <Paragraph marginY={16}>Default date range picker</Paragraph>
         <Component
           initialState={{ startDate: new Date(), endDate: new Date() }}
         >
           {({ state, setState }) => (
-            <Box display="flex">
-              <Box width="50%">
-                <Popover
-                  content={
-                    <DatePicker
-                      value={state.startDate}
-                      onChange={startDate => {
-                        const endDate = isBefore(state.endDate, startDate)
-                          ? startDate
-                          : state.endDate
-                        setState({ startDate, endDate })
-                      }}
-                    />
-                  }
-                >
-                  <TextInput
-                    width="95%"
-                    value={format(state.startDate, 'DD/MM/YYYY')}
-                    placeholder="Pick the start date"
-                    readOnly
-                  />
-                </Popover>
-              </Box>
-              <Box width="50%">
-                <Popover
-                  content={
-                    <DatePicker
-                      value={state.endDate}
-                      disableDates={d => isBefore(d, state.startDate)}
-                      onChange={endDate => setState({ endDate })}
-                    />
-                  }
-                >
-                  <TextInput
-                    width="95%"
-                    value={format(state.endDate, 'DD/MM/YYYY')}
-                    placeholder="Pick the end date"
-                    readOnly
-                  />
-                </Popover>
-              </Box>
-            </Box>
+            <DateRangePicker
+              startDate={state.startDate}
+              endDate={state.endDate}
+              onChange={(startDate, endDate) => {
+                console.log(startDate, endDate)
+                setState({ startDate, endDate })
+              }}
+            />
+          )}
+        </Component>
+      </Box>
+      <Box width="50%">
+        <Paragraph marginY={16}>
+          Both inputs share common datepicker props
+        </Paragraph>
+        <Component
+          initialState={{ startDate: new Date(), endDate: new Date() }}
+        >
+          {({ state, setState }) => (
+            <DateRangePicker
+              startDate={state.startDate}
+              endDate={state.endDate}
+              onChange={(startDate, endDate) => {
+                console.log(startDate, endDate)
+                setState({ startDate, endDate })
+              }}
+              locale="fi-FI"
+              disableDates={isWeekend}
+            />
           )}
         </Component>
       </Box>
@@ -150,12 +148,14 @@ storiesOf('date-picker', module)
               justifyContent="space-between"
             >
               <Combobox
+                marginBottom={16}
                 selectedItem={state.locale}
                 items={state.locales}
                 onChange={locale => setState({ locale })}
                 autocompleteProps={{ title: 'Locale' }}
               />
               <Combobox
+                marginBottom={16}
                 selectedItem={state.localeOptions.weekday}
                 items={state.weekdayFormats}
                 onChange={weekday =>
@@ -166,6 +166,7 @@ storiesOf('date-picker', module)
                 autocompleteProps={{ title: 'Weekday' }}
               />
               <Combobox
+                marginBottom={16}
                 selectedItem={state.localeOptions.day}
                 items={state.dayFormats}
                 onChange={day =>
@@ -176,6 +177,7 @@ storiesOf('date-picker', module)
                 autocompleteProps={{ title: 'Day' }}
               />
               <Combobox
+                marginBottom={16}
                 selectedItem={state.localeOptions.month}
                 items={state.monthFormats}
                 onChange={month =>
@@ -186,6 +188,7 @@ storiesOf('date-picker', module)
                 autocompleteProps={{ title: 'Month' }}
               />
               <Combobox
+                marginBottom={16}
                 selectedItem={state.localeOptions.year}
                 items={state.yearFormats}
                 onChange={year =>
@@ -197,7 +200,7 @@ storiesOf('date-picker', module)
               />
             </Box>
             <Box marginLeft={32}>
-              <DatePicker
+              <InlineDatePicker
                 width={320}
                 value={state.date}
                 locale={state.locale}
