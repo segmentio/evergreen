@@ -71,7 +71,7 @@ export default class DateRangePicker extends React.Component {
             locale={locale}
             localeOptions={localeOptions}
             disableDates={date =>
-              isBefore(date, startDate) || disableDates(date)
+              isBefore(date, startDate) || (disableDates && disableDates(date))
             }
             onChange={endDate => onChange && onChange(startDate, endDate)}
           />

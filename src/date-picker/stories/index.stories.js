@@ -101,10 +101,9 @@ storiesOf('date-picker', module)
             <DateRangePicker
               startDate={state.startDate}
               endDate={state.endDate}
-              onChange={(startDate, endDate) => {
-                console.log(startDate, endDate)
+              onChange={(startDate, endDate) =>
                 setState({ startDate, endDate })
-              }}
+              }
               locale="fi-FI"
               disableDates={isWeekend}
             />
