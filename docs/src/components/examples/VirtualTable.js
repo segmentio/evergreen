@@ -40,42 +40,37 @@ const users = range(1000)
 
 export default class VirtualTable extends React.PureComponent {
   state = {
-    scrollToIndex: '',
-    scrollOffset: '',
-    scrollToAlignment: ''
+    scrollToIndex: null,
+    scrollOffset: null,
+    scrollToAlignment: null
+  }
+
+  setValue = property => {
+    return e => {
+      const value = e.target.value ? parseInt(e.target.value, 10) : null
+      this.setState({
+        [property]: value
+      })
+    }
   }
 
   render() {
-    const scrollOffset =
-      this.state.scrollOffset.length > 0
-        ? parseInt(this.state.scrollOffset, 10)
-        : null
-    const scrollToIndex =
-      this.state.scrollToIndex.length > 0
-        ? parseInt(this.state.scrollToIndex, 10)
-        : null
     return (
       <Fragment>
         <Pane display="flex">
           <TextInputField
-            value={this.state.scrollOffset}
             label="scrollOffset"
             marginRight={minorScale(4)}
-            onChange={event =>
-              this.setState({ scrollOffset: event.target.value })
-            }
+            onChange={this.setValue('scrollOffset')}
           />
           <TextInputField
-            value={this.state.scrollToIndex}
+            type="number"
             label="scrollToIndex"
             marginRight={minorScale(4)}
-            onChange={event =>
-              this.setState({ scrollToIndex: event.target.value })
-            }
+            onChange={this.setValue('scrollToIndex')}
           />
           <SelectField
             label="scrollToAlignment"
-            value={this.state.scrollToAlignment}
             onChange={event =>
               this.setState({ scrollToAlignment: event.target.value })
             }
@@ -100,8 +95,8 @@ export default class VirtualTable extends React.PureComponent {
             <Table.VirtualBody
               flex={1}
               allowAutoHeight
-              scrollOffset={scrollOffset}
-              scrollToIndex={scrollToIndex}
+              scrollOffset={this.state.scrollOffset}
+              scrollToIndex={this.state.scrollToIndex}
               scrollToAlignment={this.state.scrollToAlignment}
             >
               {users.map((user, index) => {
