@@ -25,7 +25,12 @@ export default class SelectMenuContent extends PureComponent {
     /**
      * Node that is placed right next to the options.
      */
-    detailView: PropTypes.node
+    detailView: PropTypes.node,
+
+    /**
+     * Node that is displayed instead of options list when there are no options.
+     */
+    emptyView: PropTypes.node
   }
 
   static defaultProps = {
@@ -45,12 +50,14 @@ export default class SelectMenuContent extends PureComponent {
       title,
       listProps,
       detailView,
+      emptyView,
       isMultiSelect
     } = this.props
 
     const headerHeight = 40
     const optionsListHeight = hasTitle ? height - headerHeight : height
     const hasDetailView = Boolean(detailView)
+    const hasEmptyView = Boolean(emptyView)
 
     return (
       <Pane display="flex" height={height}>
@@ -81,14 +88,19 @@ export default class SelectMenuContent extends PureComponent {
               />
             </Pane>
           )}
-          <OptionsList
-            height={optionsListHeight}
-            hasFilter={hasFilter}
-            options={options}
-            isMultiSelect={isMultiSelect}
-            close={close}
-            {...listProps}
-          />
+
+          {options.length === 0 && hasEmptyView ? (
+            <Pane height={optionsListHeight}>{emptyView}</Pane>
+          ) : (
+            <OptionsList
+              height={optionsListHeight}
+              hasFilter={hasFilter}
+              options={options}
+              isMultiSelect={isMultiSelect}
+              close={close}
+              {...listProps}
+            />
+          )}
         </Pane>
         {hasDetailView && detailView}
       </Pane>

@@ -77,7 +77,13 @@ export default class SelectMenu extends PureComponent {
      * rendered on the right side of the Select Menu to give additional
      * information when an option is selected.
      */
-    detailView: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
+    detailView: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+
+    /**
+     * Can be a function that returns a node, or a node itself, that is
+     * rendered instead of the options list when there are no options.
+     */
+    emptyView: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
   }
 
   static defaultProps = {
@@ -103,6 +109,20 @@ export default class SelectMenu extends PureComponent {
     return {}
   }
 
+  getEmptyView = (close, emptyView) => {
+    if (typeof emptyView === 'function') {
+      return {
+        emptyView: emptyView({ close })
+      }
+    }
+
+    if (emptyView) {
+      return { emptyView }
+    }
+
+    return {}
+  }
+
   render() {
     const {
       title,
@@ -114,6 +134,7 @@ export default class SelectMenu extends PureComponent {
       hasTitle,
       hasFilter,
       detailView,
+      emptyView,
       isMultiSelect,
       ...props
     } = this.props
@@ -143,6 +164,7 @@ export default class SelectMenu extends PureComponent {
             }}
             close={close}
             {...this.getDetailView(close, detailView)}
+            {...this.getEmptyView(close, emptyView)}
           />
         )}
         {...props}
