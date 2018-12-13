@@ -46,7 +46,20 @@ export default class TableVirtualBody extends PureComponent {
      * When allowAutoHeight is true and this prop is true, the estimated height
      * will be computed based on the average height of auto height rows.
      */
-    useAverageAutoHeightEstimation: PropTypes.bool
+    useAverageAutoHeightEstimation: PropTypes.bool,
+
+    /**
+     * The scrollToIndex property passed to react-tiny-virtual-list
+     */
+    scrollToIndex: PropTypes.number,
+    /**
+     * The scrollOffset property passed to react-tiny-virtual-list
+     */
+    scrollOffset: PropTypes.number,
+    /**
+     * The scrollToAlignment property passed to react-tiny-virtual-list
+     */
+    scrollToAlignment: PropTypes.oneOf(['start', 'center', 'end', 'auto'])
   }
 
   static defaultProps = {
@@ -246,6 +259,9 @@ export default class TableVirtualBody extends PureComponent {
       overscanCount,
       estimatedItemSize,
       useAverageAutoHeightEstimation,
+      scrollToIndex,
+      scrollOffset,
+      scrollToAlignment,
       ...props
     } = this.props
 
@@ -279,6 +295,9 @@ export default class TableVirtualBody extends PureComponent {
           itemSize={itemSize}
           overscanCount={overscanCount}
           itemCount={React.Children.count(children)}
+          scrollToIndex={scrollToIndex}
+          scrollOffset={scrollOffset}
+          scrollToAlignment={scrollToAlignment}
           renderItem={({ index, style }) => {
             // If some children are strings by accident, support this gracefully.
             if (!React.isValidElement(children[index])) {

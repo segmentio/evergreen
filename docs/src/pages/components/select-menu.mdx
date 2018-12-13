@@ -131,6 +131,41 @@ Available positions:
 </Component>
 ```
 
+## Empty view
+
+It's possible to display a custom empty view instead of options list via `emptyView`, when there are no properties supplied.
+Note that empty view won't be shown when options are being filtered and there are no search results.
+
+```jsx
+<SelectMenu
+  title="Empty view"
+  options={[]}
+  emptyView={(
+    <Pane height="100%" display="flex" alignItems="center" justifyContent="center">
+      <Text size={300}>No options found</Text>
+    </Pane>
+  )}
+>
+  <Button>Select option...</Button>
+</SelectMenu>
+```
+
+It's also possible to close `<SelectMenu>` from within empty view:
+
+```jsx
+<SelectMenu
+  title="Empty view"
+  options={[]}
+  emptyView={({ close }) => (
+    <Pane height="100%" display="flex" alignItems="center" justifyContent="center">
+      <Button onClick={close}>Close</Button>
+    </Pane>
+  )}
+>
+  <Button>Select option...</Button>
+</SelectMenu>
+```
+
 
 ## Multiselect with deselect example
 

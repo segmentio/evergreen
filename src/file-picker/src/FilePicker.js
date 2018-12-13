@@ -130,6 +130,7 @@ export default class FilePicker extends PureComponent {
           borderBottomLeftRadius={0}
           height={height}
           flexShrink={0}
+          type="button"
         >
           {buttonText}
         </Button>
