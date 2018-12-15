@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import Box from 'ui-box'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
 import { Icon } from '../../icon'
@@ -115,7 +114,7 @@ class TextInput extends PureComponent {
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
 
     return (
-      <Box
+      <React.Fragment
         display="inline-flex"
         flex={1}
         position="relative"
@@ -154,7 +153,6 @@ class TextInput extends PureComponent {
               appearance="default"
               onClick={onClear}
               marginLeft={-20}
-              marginTop={6}
             />
           )}
         {isClearable &&
@@ -169,10 +167,9 @@ class TextInput extends PureComponent {
                 this.setState({ value: '' })
               }}
               marginLeft={-20}
-              marginTop={6}
             />
           )}
-      </Box>
+      </React.Fragment>
     )
   }
 }
