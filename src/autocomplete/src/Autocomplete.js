@@ -155,7 +155,10 @@ export default class Autocomplete extends PureComponent {
             scrollToAlignment="auto"
             renderItem={({ index, style }) => {
               const item = items[index]
-              const itemString = itemToString(item)
+              const itemString = item ? itemToString(item) : ''
+              const selectedItemString = selectedItem
+                ? itemToString(selectedItem)
+                : ''
               return renderItem(
                 getItemProps({
                   item,
@@ -166,7 +169,7 @@ export default class Autocomplete extends PureComponent {
                   onMouseUp: () => {
                     selectItemAtIndex(index)
                   },
-                  isSelected: itemToString(selectedItem) === itemString,
+                  isSelected: selectedItemString === itemString,
                   isHighlighted: highlightedIndex === index
                 })
               )
