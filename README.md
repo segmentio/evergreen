@@ -156,7 +156,7 @@ We will add you to the list if you make any meaningful contribution!
 
 This project is maintained by [Segment](https://segment.com/)
 
-Please take a look at the [contributing guide](.github/CONTRIBUTING.md) and [roadmap](ROADMAP.md) to better understand what to work on.
+Please take a look at the [contributing guide](.github/CONTRIBUTING.md) to better understand what to work on.
 
 ## 👏 Respect earns Respect
 
