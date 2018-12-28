@@ -125,7 +125,7 @@ Content is a simple card.
                     </Tab>
                   )
                 )}
-              
+
             </Tablist>
           </Pane>
         </Pane>
@@ -233,6 +233,29 @@ Example with a header with a title and title. Content is a simple card.
       </SideSheet>
       <Button onClick={() => setState({ isShown: true })}>
         Show Basic Side Sheet
+      </Button>
+    </React.Fragment>
+  )}
+</Component>
+```
+
+## Preserve scroll position and prevent body scrolling
+
+Use the `preventBodyScrolling` prop to disable scrolling outside the side sheet.
+
+```jsx collapse
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <React.Fragment>
+      <SideSheet
+        isShown={state.isShown}
+        onCloseComplete={() => setState({ isShown: false })}
+        preventBodyScrolling
+      >
+        <Paragraph margin={40}>Basic Example</Paragraph>
+      </SideSheet>
+      <Button onClick={() => setState({ isShown: true })}>
+        Show Side Sheet
       </Button>
     </React.Fragment>
   )}

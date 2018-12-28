@@ -7,6 +7,7 @@ import { Stack } from '../../stack'
 import { StackingOrder } from '../../constants'
 import { withTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
+import preventBodyScroll from '../../lib/prevent-body-scroll'
 
 const animationEasing = {
   standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
@@ -82,6 +83,11 @@ class Overlay extends React.Component {
     containerProps: PropTypes.object,
 
     /**
+     * Whether or not to prevent body scrolling outside the context of the overlay
+     */
+    preventBodyScrolling: PropTypes.bool,
+
+    /**
      * Boolean indicating if clicking the overlay should close the overlay.
      */
     shouldCloseOnClick: PropTypes.bool,
@@ -153,6 +159,7 @@ class Overlay extends React.Component {
     onHide: () => {},
     shouldCloseOnClick: true,
     shouldCloseOnEscapePress: true,
+    preventBodyScrolling: false,
     onExit: () => {},
     onExiting: () => {},
     onExited: () => {},
@@ -180,6 +187,7 @@ class Overlay extends React.Component {
   }
 
   componentWillUnmount() {
+    this.handleBodyScroll(false)
     document.body.removeEventListener('keydown', this.onEsc, false)
   }
 
@@ -260,6 +268,17 @@ class Overlay extends React.Component {
     }
   }
 
+  handleBodyScroll = preventScroll => {
+    if (this.props.preventBodyScrolling) {
+      preventBodyScroll(preventScroll)
+    }
+  }
+
+  handleEnter = () => {
+    this.handleBodyScroll(true)
+    safeInvoke(this.props.onEnter)
+  }
+
   handleEntering = node => {
     document.body.addEventListener('keydown', this.onEsc, false)
     this.props.onEntering(node)
@@ -269,6 +288,11 @@ class Overlay extends React.Component {
     this.previousActiveElement = document.activeElement
     this.bringFocusInsideOverlay()
     this.props.onEntered(node)
+  }
+
+  handleExit = () => {
+    this.handleBodyScroll(false)
+    safeInvoke(this.props.onExit)
   }
 
   handleExiting = node => {
@@ -300,9 +324,7 @@ class Overlay extends React.Component {
 
       containerProps = {},
       isShown,
-      children,
-      onExit,
-      onEnter
+      children
     } = this.props
 
     const { exiting, exited } = this.state
@@ -318,10 +340,10 @@ class Overlay extends React.Component {
               unmountOnExit
               timeout={ANIMATION_DURATION}
               in={isShown && !exiting}
-              onExit={onExit}
+              onExit={this.handleExit}
               onExiting={this.handleExiting}
               onExited={this.handleExited}
-              onEnter={onEnter}
+              onEnter={this.handleEnter}
               onEntering={this.handleEntering}
               onEntered={this.handleEntered}
             >

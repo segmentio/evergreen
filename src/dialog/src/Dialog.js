@@ -177,7 +177,12 @@ class Dialog extends React.Component {
     /**
      * Props that are passed to the content container.
      */
-    contentContainerProps: PropTypes.object
+    contentContainerProps: PropTypes.object,
+
+    /**
+     * Whether or not to prevent scrolling in the outer body
+     */
+    preventBodyScrolling: PropTypes.bool
   }
 
   static defaultProps = {
@@ -197,7 +202,8 @@ class Dialog extends React.Component {
     shouldCloseOnOverlayClick: true,
     shouldCloseOnEscapePress: true,
     onCancel: close => close(),
-    onConfirm: close => close()
+    onConfirm: close => close(),
+    preventBodyScrolling: false
   }
 
   renderChildren = close => {
@@ -235,7 +241,8 @@ class Dialog extends React.Component {
       shouldCloseOnEscapePress,
       containerProps,
       contentContainerProps,
-      minHeightContent
+      minHeightContent,
+      preventBodyScrolling
     } = this.props
 
     const sideOffsetWithUnit = Number.isInteger(sideOffset)
@@ -260,6 +267,7 @@ class Dialog extends React.Component {
           alignItems: 'flex-start',
           justifyContent: 'center'
         }}
+        preventBodyScrolling={preventBodyScrolling}
       >
         {({ state, close }) => (
           <Pane
