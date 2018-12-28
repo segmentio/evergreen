@@ -1,4 +1,5 @@
 let previousOverflow
+let previousPaddingRight
 
 /**
  * Toggle the body scroll / overflow and additional styling
@@ -24,8 +25,9 @@ export default function preventBodyScroll(preventScroll) {
 
   /** If there's a diff due to scrollbars, then account for it with padding */
   if (preventScroll) {
+    previousPaddingRight = document.body.style.paddingRight
     document.body.style.paddingRight = Math.max(0, scrollBarWidth || 0) + 'px'
   } else {
-    document.body.style.paddingRight = ''
+    document.body.style.paddingRight = previousPaddingRight || ''
   }
 }
