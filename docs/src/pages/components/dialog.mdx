@@ -55,7 +55,7 @@ This is normally the button that triggered the `Dialog`.
 
 ## Default with a danger intent
 
-The `intent` prop determines the appearance of the confirm button, `danger` is red. 
+The `intent` prop determines the appearance of the confirm button, `danger` is red.
 
 ```jsx
 <Component initialState={{ isShown: false }}>
@@ -220,12 +220,34 @@ Use the `hasFooter`, `hasHeader` props to show or hide the footer and header.
   {({ state, setState }) => (
     <Pane>
       <Dialog
-        isShown={state.isShown}      
+        isShown={state.isShown}
         onCloseComplete={() => setState({ isShown: false })}
         hasFooter={false}
         hasHeader={false}
       >
         Completely custom dialog
+      </Dialog>
+
+      <Button onClick={() => setState({ isShown: true })}>Show Dialog</Button>
+    </Pane>
+  )}
+</Component>
+```
+
+## Preserve scroll position and prevent body scrolling
+
+Use the `preventBodyScrolling` prop to disable scrolling outside the dialog.
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <Pane paddingY='40vh'>
+      <Dialog
+        isShown={state.isShown}
+        onCloseComplete={() => setState({ isShown: false })}
+        preventBodyScrolling
+      >
+        Scroll-locked body
       </Dialog>
 
       <Button onClick={() => setState({ isShown: true })}>Show Dialog</Button>

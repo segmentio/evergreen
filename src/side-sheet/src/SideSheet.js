@@ -186,7 +186,12 @@ class SideSheet extends React.Component {
       Position.BOTTOM,
       Position.LEFT,
       Position.RIGHT
-    ]).isRequired
+    ]).isRequired,
+
+    /**
+     * Whether or not to prevent scrolling in the outer body
+     */
+    preventBodyScrolling: PropTypes.bool
   }
 
   static defaultProps = {
@@ -209,7 +214,8 @@ class SideSheet extends React.Component {
       onBeforeClose,
       shouldCloseOnOverlayClick,
       shouldCloseOnEscapePress,
-      position
+      position,
+      preventBodyScrolling
     } = this.props
 
     return (
@@ -220,6 +226,7 @@ class SideSheet extends React.Component {
         onBeforeClose={onBeforeClose}
         onExited={onCloseComplete}
         onEntered={onOpenComplete}
+        preventBodyScrolling={preventBodyScrolling}
       >
         {({ state, close }) => (
           <Pane
