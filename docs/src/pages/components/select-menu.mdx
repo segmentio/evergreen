@@ -232,4 +232,31 @@ As users click on selected values to remove them, you can update state.
 </Component>
 ```
 
+## onFocusChange example
+
+This example shows basic usage with onFocusChange. 
+
+```jsx
+<Component initialState={{ selected: null }}>
+  {({ setState, state }) => (
+    <Pane>
+    <SelectMenu
+      title="Select name"
+      onFocusChange={filter => setState({filter})}
+      options={
+        ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']
+          .map(label => ({ label, value: label }))
+      }
+      selected={state.selected}
+      onSelect={item => setState({ selected: item.value })}
+    >
+      <Button>{state.selected || 'Select name...'}</Button>
+    </SelectMenu>
+    <Pane>{state.filter}</Pane>
+    </Pane>
+  )}
+  
+</Component>
+```
+
 <PropsTable of="SelectMenu" />

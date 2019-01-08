@@ -39,6 +39,7 @@ export default class OptionsList extends PureComponent {
     selected: PropTypes.arrayOf(PropTypes.string),
     onSelect: PropTypes.func,
     onDeselect: PropTypes.func,
+    onFilterChange: PropTypes.func,
     hasFilter: PropTypes.bool,
     optionSize: PropTypes.number,
     renderItem: PropTypes.func,
@@ -57,6 +58,7 @@ export default class OptionsList extends PureComponent {
     optionSize: 33,
     onSelect: () => {},
     onDeselect: () => {},
+    onFilterChange: () => {},
     selected: [],
     renderItem: itemRenderer,
     optionsFilter: fuzzyFilter,
@@ -187,6 +189,7 @@ export default class OptionsList extends PureComponent {
     this.setState({
       searchValue
     })
+    this.props.onFilterChange(searchValue)
   }
 
   handleSelect = item => {
