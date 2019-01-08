@@ -61,6 +61,11 @@ export default class SelectMenu extends PureComponent {
     hasFilter: PropTypes.bool,
 
     /**
+     * Function that is called as the onChange() event for the filter.
+     */
+    onFilterChange: PropTypes.func,
+
+    /**
      * The position of the Select Menu.
      */
     position: PropTypes.oneOf([
@@ -160,6 +165,7 @@ export default class SelectMenu extends PureComponent {
               onDeselect: item => {
                 this.props.onDeselect(item)
               },
+              onFilterChange: this.props.onFilterChange,
               selected: arrify(selected)
             }}
             close={close}

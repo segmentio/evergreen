@@ -232,4 +232,60 @@ As users click on selected values to remove them, you can update state.
 </Component>
 ```
 
+## onFilterChange example
+
+This example shows basic usage with onFocusChange. 
+
+```jsx
+<Component initialState={{ selected: null }}>
+  {({ setState, state }) => (
+    <Pane>
+    <Pane marginBottom={8}>
+      <Text>Filter value: {state.filter}</Text>
+    </Pane>
+    <SelectMenu
+      title="Select name"
+      onFilterChange={filter => setState({filter})}
+      options={
+        ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']
+          .map(label => ({ label, value: label }))
+      }
+      selected={state.selected}
+      onSelect={item => setState({ selected: item.value })}
+    >
+      <Button>{state.selected || 'Select name...'}</Button>
+    </SelectMenu>
+    </Pane>
+  )}
+  
+</Component>
+```
+
+## Disabled option example
+
+This example shows basic usage for disabling some options. Options that are disabled cannot be clicked and their labels are muted.
+
+```jsx
+<Component initialState={{ selected: null }}>
+  {({ setState, state }) => (
+    <Pane>
+    <Pane marginBottom={8}>
+      <Text>Filter value: {state.filter}</Text>
+    </Pane>
+    <SelectMenu
+      title="Select Option"
+      options={
+        [{ label: "Disabled", value: "disabled", disabled: true }, { label: "Not Disabled", value: "not-disabled" }]
+      }
+      selected={state.selected}
+      onSelect={item => setState({ selected: item.value })}
+    >
+      <Button>{state.selected || 'Select name...'}</Button>
+    </SelectMenu>
+    </Pane>
+  )}
+  
+</Component>
+```
+
 <PropsTable of="SelectMenu" />
