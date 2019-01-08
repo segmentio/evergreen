@@ -5,6 +5,7 @@ import Box from 'ui-box'
 import { SelectMenu } from '..'
 import { Button } from '../../buttons'
 import { Text } from '../../typography'
+import { Pane } from '../../layers'
 import options from './starwars-options'
 import Manager from './Manager'
 
@@ -24,6 +25,22 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
         >
           <Button>{state.selected || 'Select name...'}</Button>
         </SelectMenu>
+      )}
+    </Manager>
+    <Manager>
+      {({ setState, state }) => (
+        <Pane display="inline-block">
+          <Text display="block">Filter Text: {state.filterText}</Text>
+          <SelectMenu
+            title="Select name"
+            options={options}
+            selected={state.selected}
+            onFilterChange={filterText => setState({ filterText })}
+            onSelect={item => setState({ selected: item.value })}
+          >
+            <Button>Select w/ onFilterChange</Button>
+          </SelectMenu>
+        </Pane>
       )}
     </Manager>
     <Component
