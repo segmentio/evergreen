@@ -269,7 +269,8 @@ export default class OptionsList extends PureComponent {
                 onSelect: () => this.handleSelect(item),
                 onDeselect: () => this.handleDeselect(item),
                 isSelectable: !isSelected || isMultiSelect,
-                isSelected
+                isSelected,
+                disabled: item.disabled
               })
             }}
           />
