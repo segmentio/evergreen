@@ -85,7 +85,8 @@ class Select extends PureComponent {
 
   static defaultProps = {
     appearance: 'default',
-    height: 32
+    height: 32,
+    isInvalid: false
   }
 
   render() {
@@ -133,7 +134,7 @@ class Select extends PureComponent {
           required={required}
           autoFocus={autoFocus}
           disabled={disabled}
-          aria-invalid={isInvalid}
+          aria-invalid={String(isInvalid)}
           size={textSize}
           borderRadius={borderRadius}
           textTransform="default"
