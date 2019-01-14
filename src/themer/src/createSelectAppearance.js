@@ -19,7 +19,7 @@ const baseStyle = {
 }
 
 const disabledState = '[disabled]'
-const invalidState = '&[aria-invalid]'
+const invalidState = '&[aria-invalid="true"]'
 const hoverState = '&:not([disabled]):hover'
 const focusState = '&:not([disabled]):focus'
 const activeState = '&:not([disabled]):active'
