@@ -15,6 +15,12 @@ export default class SelectMenu extends PureComponent {
     title: PropTypes.string,
 
     /**
+     * The content for the tooltip in the header of the Select Menu.
+     */
+
+    tooltipContent: PropTypes.string,
+
+    /**
      * The width of the Select Menu.
      */
     width: PropTypes.number,
@@ -54,6 +60,11 @@ export default class SelectMenu extends PureComponent {
      * When true, show the title.
      */
     hasTitle: PropTypes.bool,
+
+    /**
+     * When true, show the tooltip.
+     */
+    hasTooltip: PropTypes.bool,
 
     /**
      * When true, show the filter.
@@ -131,12 +142,14 @@ export default class SelectMenu extends PureComponent {
   render() {
     const {
       title,
+      tooltipContent,
       width,
       height,
       options,
       selected,
       position,
       hasTitle,
+      hasTooltip,
       hasFilter,
       detailView,
       emptyView,
@@ -155,8 +168,10 @@ export default class SelectMenu extends PureComponent {
             height={height}
             options={options}
             title={title}
+            tooltipContent={tooltipContent}
             hasFilter={hasFilter}
             hasTitle={hasTitle}
+            hasTooltip={hasTooltip}
             isMultiSelect={isMultiSelect}
             listProps={{
               onSelect: item => {

@@ -269,13 +269,35 @@ This example shows basic usage for disabling some options. Options that are disa
 <Component initialState={{ selected: null }}>
   {({ setState, state }) => (
     <Pane>
-    <Pane marginBottom={8}>
-      <Text>Filter value: {state.filter}</Text>
-    </Pane>
     <SelectMenu
       title="Select Option"
       options={
         [{ label: "Disabled", value: "disabled", disabled: true }, { label: "Not Disabled", value: "not-disabled" }]
+      }
+      selected={state.selected}
+      onSelect={item => setState({ selected: item.value })}
+    >
+      <Button>{state.selected || 'Select name...'}</Button>
+    </SelectMenu>
+    </Pane>
+  )}
+  
+</Component>
+```
+## Tooltip in Header Example
+
+This example shows usage of a tooltip in the SelectMenu header.
+
+```jsx
+<Component initialState={{ selected: null }}>
+  {({ setState, state }) => (
+    <Pane>
+    <SelectMenu
+      title="Select Option"
+      tooltipContent="Choose one of the options below."
+      hasTooltip={true}
+      options={
+        [{ label: "Option 1", value: "option-1"}, { label: "Option 2", value: "option-2" }]
       }
       selected={state.selected}
       onSelect={item => setState({ selected: item.value })}

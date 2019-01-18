@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { IconButton } from '../../buttons'
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
+import { Icon } from '../../icon'
+import { Tooltip } from '../../tooltip'
 import OptionsList from './OptionsList'
 import OptionShapePropType from './OptionShapePropType'
 
@@ -10,11 +12,13 @@ export default class SelectMenuContent extends PureComponent {
   static propTypes = {
     close: PropTypes.func,
     title: PropTypes.string,
+    tooltipContent: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     options: PropTypes.arrayOf(OptionShapePropType),
     hasTitle: PropTypes.bool,
     hasFilter: PropTypes.bool,
+    hasTooltip: PropTypes.bool,
     listProps: PropTypes.shape(OptionsList.propTypes),
 
     /**
@@ -45,9 +49,11 @@ export default class SelectMenuContent extends PureComponent {
       height,
       options,
       hasTitle,
+      hasTooltip,
       hasFilter,
       close,
       title,
+      tooltipContent,
       listProps,
       detailView,
       emptyView,
@@ -77,8 +83,13 @@ export default class SelectMenuContent extends PureComponent {
               height={headerHeight}
               boxSizing="border-box"
             >
-              <Pane flex="1">
+              <Pane flex="1" display="flex" alignItems="center">
                 <Heading size={400}>{title}</Heading>
+                {hasTooltip && (
+                  <Tooltip content={tooltipContent}>
+                    <Icon size={12} marginLeft={4} icon="help" />
+                  </Tooltip>
+                )}
               </Pane>
               <IconButton
                 icon="cross"
