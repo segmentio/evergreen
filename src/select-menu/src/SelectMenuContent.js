@@ -1,10 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { IconButton } from '../../buttons'
 import { Pane } from '../../layers'
-import { Heading } from '../../typography'
-import { Icon } from '../../icon'
-import { Tooltip } from '../../tooltip'
 import OptionsList from './OptionsList'
 import OptionShapePropType from './OptionShapePropType'
 
@@ -12,19 +8,23 @@ export default class SelectMenuContent extends PureComponent {
   static propTypes = {
     close: PropTypes.func,
     title: PropTypes.string,
-    tooltipContent: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
+    headerHeight: PropTypes.number,
     options: PropTypes.arrayOf(OptionShapePropType),
     hasTitle: PropTypes.bool,
     hasFilter: PropTypes.bool,
-    hasTooltip: PropTypes.bool,
     listProps: PropTypes.shape(OptionsList.propTypes),
 
     /**
      * When true, multi select is accounted for.
      */
     isMultiSelect: PropTypes.bool,
+
+    /**
+     * Node that is placed in the header section, above the options.
+     */
+    titleView: PropTypes.node,
 
     /**
      * Node that is placed right next to the options.
@@ -49,19 +49,18 @@ export default class SelectMenuContent extends PureComponent {
       height,
       options,
       hasTitle,
-      hasTooltip,
       hasFilter,
       close,
-      title,
-      tooltipContent,
       listProps,
+      titleView,
       detailView,
       emptyView,
+      headerHeight,
       isMultiSelect
     } = this.props
 
-    const headerHeight = 40
     const optionsListHeight = hasTitle ? height - headerHeight : height
+
     const hasDetailView = Boolean(detailView)
     const hasEmptyView = Boolean(emptyView)
 
@@ -74,31 +73,7 @@ export default class SelectMenuContent extends PureComponent {
           flexDirection="column"
           borderRight={hasDetailView ? 'muted' : null}
         >
-          {hasTitle && (
-            <Pane
-              display="flex"
-              alignItems="center"
-              borderBottom="default"
-              padding={8}
-              height={headerHeight}
-              boxSizing="border-box"
-            >
-              <Pane flex="1" display="flex" alignItems="center">
-                <Heading size={400}>{title}</Heading>
-                {hasTooltip && (
-                  <Tooltip content={tooltipContent}>
-                    <Icon size={12} marginLeft={4} icon="help" />
-                  </Tooltip>
-                )}
-              </Pane>
-              <IconButton
-                icon="cross"
-                appearance="minimal"
-                height={24}
-                onClick={close}
-              />
-            </Pane>
-          )}
+          {hasTitle && titleView}
 
           {options.length === 0 && hasEmptyView ? (
             <Pane height={optionsListHeight}>{emptyView}</Pane>

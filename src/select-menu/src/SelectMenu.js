@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import arrify from 'arrify'
 import { Popover } from '../../popover'
 import { Position } from '../../constants'
+import { Pane } from '../../layers'
+import { Heading } from '../../typography'
+import { IconButton } from '../../buttons'
 import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
 import SelectedPropType from './SelectedPropType'
@@ -13,12 +16,6 @@ export default class SelectMenu extends PureComponent {
      * The title of the Select Menu.
      */
     title: PropTypes.string,
-
-    /**
-     * The content for the tooltip in the header of the Select Menu.
-     */
-
-    tooltipContent: PropTypes.string,
 
     /**
      * The width of the Select Menu.
@@ -62,11 +59,6 @@ export default class SelectMenu extends PureComponent {
     hasTitle: PropTypes.bool,
 
     /**
-     * When true, show the tooltip.
-     */
-    hasTooltip: PropTypes.bool,
-
-    /**
      * When true, show the filter.
      */
     hasFilter: PropTypes.bool,
@@ -94,6 +86,13 @@ export default class SelectMenu extends PureComponent {
      * information when an option is selected.
      */
     detailView: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+
+    /**
+     * Can be a function that returns a node, or a node itself, that is
+     * rendered in the header section of the Select Menu to customize
+     * the header.
+     */
+    titleView: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
 
     /**
      * Can be a function that returns a node, or a node itself, that is
@@ -139,23 +138,58 @@ export default class SelectMenu extends PureComponent {
     return {}
   }
 
+  getTitleView = (close, title, headerHeight, titleView) => {
+    if (typeof titleView === 'function') {
+      return {
+        titleView: titleView({ close, title })
+      }
+    }
+    if (titleView) {
+      return { titleView }
+    }
+
+    return {
+      titleView: (
+        <Pane
+          display="flex"
+          alignItems="center"
+          borderBottom="default"
+          padding={8}
+          height={headerHeight}
+          boxSizing="border-box"
+        >
+          <Pane flex="1" display="flex" alignItems="center">
+            <Heading size={400}>{title}</Heading>
+          </Pane>
+          <IconButton
+            icon="cross"
+            appearance="minimal"
+            height={24}
+            onClick={close}
+          />
+        </Pane>
+      )
+    }
+  }
+
   render() {
     const {
       title,
-      tooltipContent,
       width,
       height,
       options,
       selected,
       position,
       hasTitle,
-      hasTooltip,
       hasFilter,
       detailView,
       emptyView,
+      titleView,
       isMultiSelect,
       ...props
     } = this.props
+
+    const headerHeight = 40
 
     return (
       <Popover
@@ -168,11 +202,10 @@ export default class SelectMenu extends PureComponent {
             height={height}
             options={options}
             title={title}
-            tooltipContent={tooltipContent}
             hasFilter={hasFilter}
             hasTitle={hasTitle}
-            hasTooltip={hasTooltip}
             isMultiSelect={isMultiSelect}
+            headerHeight={headerHeight}
             listProps={{
               onSelect: item => {
                 this.props.onSelect(item)
@@ -186,6 +219,7 @@ export default class SelectMenu extends PureComponent {
             close={close}
             {...this.getDetailView(close, detailView)}
             {...this.getEmptyView(close, emptyView)}
+            {...this.getTitleView(close, title, headerHeight, titleView)}
           />
         )}
         {...props}
