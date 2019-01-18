@@ -40,7 +40,8 @@ export default class SelectMenuContent extends PureComponent {
   static defaultProps = {
     options: [],
     hasTitle: true,
-    hasFilter: true
+    hasFilter: true,
+    headerHeight: 40
   }
 
   render() {
