@@ -65,6 +65,14 @@ storiesOf('combobox', module).add('Combobox', () => (
         onChange={handleChange}
       />
     </Box>
+    <Box marginBottom={16}>
+      <Heading>Disabled usage</Heading>
+      <Combobox items={items} onChange={handleChange} disabled />
+    </Box>
+    <Box marginBottom={16}>
+      <Heading>Loading usage</Heading>
+      <Combobox items={items} onChange={handleChange} isLoading />
+    </Box>
 
     <Box marginBottom={16}>
       <Heading>Full width combobox</Heading>
