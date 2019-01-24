@@ -6,6 +6,27 @@ import { IconButton } from '../../buttons'
 import OptionsList from './OptionsList'
 import OptionShapePropType from './OptionShapePropType'
 
+const DefaultTitleView = ({ close, title, headerHeight }) => (
+  <Pane
+    display="flex"
+    alignItems="center"
+    borderBottom="default"
+    padding={8}
+    height={headerHeight}
+    boxSizing="border-box"
+  >
+    <Pane flex="1" display="flex" alignItems="center">
+      <Heading size={400}>{title}</Heading>
+    </Pane>
+    <IconButton icon="cross" appearance="minimal" height={24} onClick={close} />
+  </Pane>
+)
+
+DefaultTitleView.propTypes = {
+  close: PropTypes.func,
+  title: PropTypes.string,
+  headerHeight: PropTypes.number
+}
 export default class SelectMenuContent extends PureComponent {
   static propTypes = {
     close: PropTypes.func,
@@ -43,26 +64,7 @@ export default class SelectMenuContent extends PureComponent {
     options: [],
     hasTitle: true,
     hasFilter: true,
-    titleView: ({ close, title, headerHeight }) => (
-      <Pane
-        display="flex"
-        alignItems="center"
-        borderBottom="default"
-        padding={8}
-        height={headerHeight}
-        boxSizing="border-box"
-      >
-        <Pane flex="1" display="flex" alignItems="center">
-          <Heading size={400}>{title}</Heading>
-        </Pane>
-        <IconButton
-          icon="cross"
-          appearance="minimal"
-          height={24}
-          onClick={close}
-        />
-      </Pane>
-    )
+    titleView: DefaultTitleView
   }
 
   render() {
