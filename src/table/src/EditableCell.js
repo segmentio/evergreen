@@ -44,7 +44,12 @@ class EditableCell extends React.PureComponent {
     /**
      * Function called when value changes. (value: string) => void.
      */
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+
+    /**
+     * When true, the cell will initialize in the editing state.
+     */
+    autoFocus: PropTypes.bool
   }
 
   static defaultProps = {
@@ -62,7 +67,8 @@ class EditableCell extends React.PureComponent {
   }
 
   state = {
-    value: this.props.children
+    value: this.props.children,
+    isEditing: this.props.autoFocus
   }
 
   onMainRef = ref => {
