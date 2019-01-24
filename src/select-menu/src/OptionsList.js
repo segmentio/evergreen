@@ -212,6 +212,7 @@ export default class OptionsList extends PureComponent {
       height,
       onSelect,
       onDeselect,
+      onFilterChange,
       selected,
       hasFilter,
       optionSize,

@@ -86,6 +86,13 @@ export default class SelectMenu extends PureComponent {
 
     /**
      * Can be a function that returns a node, or a node itself, that is
+     * rendered in the header section of the Select Menu to customize
+     * the header.
+     */
+    titleView: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+
+    /**
+     * Can be a function that returns a node, or a node itself, that is
      * rendered instead of the options list when there are no options.
      */
     emptyView: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
@@ -140,6 +147,7 @@ export default class SelectMenu extends PureComponent {
       hasFilter,
       detailView,
       emptyView,
+      titleView,
       isMultiSelect,
       ...props
     } = this.props
@@ -158,6 +166,7 @@ export default class SelectMenu extends PureComponent {
             hasFilter={hasFilter}
             hasTitle={hasTitle}
             isMultiSelect={isMultiSelect}
+            titleView={titleView}
             listProps={{
               onSelect: item => {
                 this.props.onSelect(item)
