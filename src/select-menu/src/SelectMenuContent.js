@@ -97,8 +97,6 @@ export default class SelectMenuContent extends PureComponent {
           borderRight={hasDetailView ? 'muted' : null}
         >
           {titleView({ close, title, headerHeight })}
-          {/* <titleView close={close} title={title} headerHeight={headerHeight} /> */}
-
           {options.length === 0 && hasEmptyView ? (
             <Pane height={optionsListHeight}>{emptyView}</Pane>
           ) : (
