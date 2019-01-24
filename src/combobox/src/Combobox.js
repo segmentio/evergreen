@@ -64,12 +64,24 @@ export default class Combobox extends PureComponent {
     /**
      * Properties forwarded to the autocomplete component. Use with caution.
      */
-    autocompleteProps: PropTypes.object
+    autocompleteProps: PropTypes.object,
+
+    /**
+     * Makes the input element disabled.
+     */
+    disabled: PropTypes.bool,
+
+    /**
+     * When true, show a loading spinner. This also disables the button.
+     */
+    isLoading: PropTypes.bool
   }
 
   static defaultProps = {
     width: 240,
-    openOnFocus: false
+    openOnFocus: false,
+    disabled: false,
+    isLoading: false
   }
 
   constructor(props, context) {
@@ -101,8 +113,11 @@ export default class Combobox extends PureComponent {
       buttonProps,
       openOnFocus,
       autocompleteProps,
+      isLoading,
       ...props
     } = this.props
+
+    const disabled = props.disabled || isLoading
 
     return (
       <Autocomplete
@@ -137,6 +152,7 @@ export default class Combobox extends PureComponent {
               value={inputValue}
               borderTopRightRadius={0}
               borderBottomRightRadius={0}
+              disabled={disabled}
               {...getInputProps({
                 ...inputProps,
                 placeholder,
@@ -159,14 +175,16 @@ export default class Combobox extends PureComponent {
             <IconButton
               iconAim="down"
               color="muted"
-              icon="caret-down"
+              icon={isLoading ? '' : 'caret-down'}
               appearance="default"
               height={height}
               marginLeft={-1}
-              paddingLeft={0}
+              paddingLeft={isLoading ? 12 : 0}
               paddingRight={0}
               borderTopLeftRadius={0}
               borderBottomLeftRadius={0}
+              disabled={disabled}
+              isLoading={isLoading}
               {...getButtonProps({
                 ...buttonProps,
                 onClick: () => {
