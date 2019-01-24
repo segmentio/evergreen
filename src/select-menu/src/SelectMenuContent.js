@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
+import { Heading } from '../../typography'
+import { IconButton } from '../../buttons'
 import OptionsList from './OptionsList'
 import OptionShapePropType from './OptionShapePropType'
 
@@ -41,11 +43,31 @@ export default class SelectMenuContent extends PureComponent {
     options: [],
     hasTitle: true,
     hasFilter: true,
-    headerHeight: 40
+    titleView: ({ close, title, headerHeight }) => (
+      <Pane
+        display="flex"
+        alignItems="center"
+        borderBottom="default"
+        padding={8}
+        height={headerHeight}
+        boxSizing="border-box"
+      >
+        <Pane flex="1" display="flex" alignItems="center">
+          <Heading size={400}>{title}</Heading>
+        </Pane>
+        <IconButton
+          icon="cross"
+          appearance="minimal"
+          height={24}
+          onClick={close}
+        />
+      </Pane>
+    )
   }
 
   render() {
     const {
+      title,
       width,
       height,
       options,
@@ -56,10 +78,10 @@ export default class SelectMenuContent extends PureComponent {
       titleView,
       detailView,
       emptyView,
-      headerHeight,
       isMultiSelect
     } = this.props
 
+    const headerHeight = 40
     const optionsListHeight = hasTitle ? height - headerHeight : height
 
     const hasDetailView = Boolean(detailView)
@@ -74,7 +96,8 @@ export default class SelectMenuContent extends PureComponent {
           flexDirection="column"
           borderRight={hasDetailView ? 'muted' : null}
         >
-          {hasTitle && titleView}
+          {titleView({ close, title, headerHeight })}
+          {/* <titleView close={close} title={title} headerHeight={headerHeight} /> */}
 
           {options.length === 0 && hasEmptyView ? (
             <Pane height={optionsListHeight}>{emptyView}</Pane>

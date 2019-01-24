@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 import arrify from 'arrify'
 import { Popover } from '../../popover'
 import { Position } from '../../constants'
-import { Pane } from '../../layers'
-import { Heading } from '../../typography'
-import { IconButton } from '../../buttons'
 import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
 import SelectedPropType from './SelectedPropType'
@@ -138,40 +135,6 @@ export default class SelectMenu extends PureComponent {
     return {}
   }
 
-  getTitleView = (close, title, headerHeight, titleView) => {
-    if (typeof titleView === 'function') {
-      return {
-        titleView: titleView({ close, title })
-      }
-    }
-    if (titleView) {
-      return { titleView }
-    }
-
-    return {
-      titleView: (
-        <Pane
-          display="flex"
-          alignItems="center"
-          borderBottom="default"
-          padding={8}
-          height={headerHeight}
-          boxSizing="border-box"
-        >
-          <Pane flex="1" display="flex" alignItems="center">
-            <Heading size={400}>{title}</Heading>
-          </Pane>
-          <IconButton
-            icon="cross"
-            appearance="minimal"
-            height={24}
-            onClick={close}
-          />
-        </Pane>
-      )
-    }
-  }
-
   render() {
     const {
       title,
@@ -189,8 +152,6 @@ export default class SelectMenu extends PureComponent {
       ...props
     } = this.props
 
-    const headerHeight = 40
-
     return (
       <Popover
         minWidth={width}
@@ -205,7 +166,7 @@ export default class SelectMenu extends PureComponent {
             hasFilter={hasFilter}
             hasTitle={hasTitle}
             isMultiSelect={isMultiSelect}
-            headerHeight={headerHeight}
+            titleView={titleView}
             listProps={{
               onSelect: item => {
                 this.props.onSelect(item)
@@ -219,7 +180,6 @@ export default class SelectMenu extends PureComponent {
             close={close}
             {...this.getDetailView(close, detailView)}
             {...this.getEmptyView(close, emptyView)}
-            {...this.getTitleView(close, title, headerHeight, titleView)}
           />
         )}
         {...props}
