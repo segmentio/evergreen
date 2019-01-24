@@ -54,7 +54,8 @@ class EditableCell extends React.PureComponent {
 
   static defaultProps = {
     size: 300,
-    isSelectable: true
+    isSelectable: true,
+    autoFocus: false
   }
 
   static getDerivedStateFromProps(props, state) {
