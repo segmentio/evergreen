@@ -131,6 +131,7 @@ export default class EditableTable extends React.PureComponent {
                           <Table.EditableCell
                             isSelectable={this.state.isSelectable}
                             borderRight="muted"
+                            autoFocus={user.id === 1} // Example condition
                             onChange={this.handleChange.bind(
                               null,
                               user.id,
