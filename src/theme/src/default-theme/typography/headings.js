@@ -81,6 +81,7 @@ export default {
     fontSize: '12px',
     fontWeight: 600,
     lineHeight: '16px',
+    letterSpacing: '0',
     marginTop: 16,
     fontFamily: fontFamilies.ui,
     color: colors.text.muted
