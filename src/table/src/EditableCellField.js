@@ -140,12 +140,20 @@ export default class EditableCellField extends React.PureComponent {
   }
 
   handleKeyDown = e => {
-    const { key } = e
-    if (key === 'Escape') {
-      this.props.onCancel()
-    } else if (key === 'Enter') {
-      this.textareaRef.blur()
-      e.preventDefault()
+    switch (e.key) {
+      case 'Escape':
+        this.props.onCancel()
+        this.textareaRef.blur()
+        break
+      case 'Enter':
+        this.textareaRef.blur()
+        e.preventDefault()
+        break
+      case 'Tab':
+        this.textareaRef.blur()
+        break
+      default:
+        break
     }
   }
 
