@@ -98,7 +98,7 @@ export default class SelectMenuContent extends PureComponent {
           flexDirection="column"
           borderRight={hasDetailView ? 'muted' : null}
         >
-          {titleView({ close, title, headerHeight })}
+          {hasTitle && titleView({ close, title, headerHeight })}
           {options.length === 0 && hasEmptyView ? (
             <Pane height={optionsListHeight}>{emptyView}</Pane>
           ) : (
