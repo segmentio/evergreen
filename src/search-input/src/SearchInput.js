@@ -53,6 +53,7 @@ class SearchInput extends PureComponent {
           appearance={appearance}
           disabled={disabled}
           width={width}
+          type="search"
           {...remainingProps}
         />
       </Box>
