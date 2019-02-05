@@ -60,8 +60,13 @@ class EditableCell extends React.PureComponent {
 
   static getDerivedStateFromProps(props, state) {
     if (props.children !== state.value) {
+      if (state.value !== '') {
+        return {
+          value: props.children
+        }
+      }
       return {
-        value: props.children
+        value: state.value
       }
     }
     return null
