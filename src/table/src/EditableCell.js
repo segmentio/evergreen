@@ -58,20 +58,6 @@ class EditableCell extends React.PureComponent {
     autoFocus: false
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.children !== state.value) {
-      if (state.value !== '' && props.children === '') {
-        return {
-          value: state.value
-        }
-      }
-      return {
-        value: props.children
-      }
-    }
-    return null
-  }
-
   state = {
     value: this.props.children,
     isEditing: this.props.autoFocus
@@ -102,10 +88,10 @@ class EditableCell extends React.PureComponent {
      * as the value in the text field.
      */
     if (key.match(/^[a-z]{0,10}$/) && !e.metaKey && !e.ctrlKey && !e.altKey) {
-      this.setState({
+      this.setState(prevState => ({
         isEditing: true,
-        value: key
-      })
+        value: prevState.value + key
+      }))
     } else if (key === 'Enter' || key === 'Shift') {
       this.setState({
         isEditing: true
@@ -115,16 +101,13 @@ class EditableCell extends React.PureComponent {
 
   handleFieldChangeComplete = value => {
     const { onChange, isSelectable } = this.props
-    const currentValue = this.state.value
 
     this.setState({
       isEditing: false,
       value
     })
 
-    if (currentValue !== value) {
-      safeInvoke(onChange, value)
-    }
+    safeInvoke(onChange, value)
 
     if (this.mainRef && isSelectable) {
       this.mainRef.focus()
