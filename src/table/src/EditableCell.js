@@ -59,14 +59,15 @@ class EditableCell extends React.PureComponent {
   }
 
   static getDerivedStateFromProps(props, state) {
+    console.log(props.children)
     if (props.children !== state.value) {
-      if (state.value !== '') {
+      if (state.value !== '' && props.children === '') {
         return {
-          value: props.children
+          value: state.value
         }
       }
       return {
-        value: state.value
+        value: props.children
       }
     }
     return null
@@ -106,7 +107,7 @@ class EditableCell extends React.PureComponent {
         isEditing: true,
         value: key
       })
-    } else if (key === 'Enter') {
+    } else if (key === 'Enter' || key === 'Shift') {
       this.setState({
         isEditing: true
       })
