@@ -87,15 +87,20 @@ class EditableCell extends React.PureComponent {
      * When the user presses a character on the keyboard, use that character
      * as the value in the text field.
      */
-    if (key.match(/^[a-z]{0,10}$/) && !e.metaKey && !e.ctrlKey && !e.altKey) {
+    if (key === 'Enter' || key === 'Shift' || this.state.value !== '') {
+      this.setState({
+        isEditing: true
+      })
+    } else if (
+      key.match(/^[a-z]{0,10}$/) &&
+      !e.metaKey &&
+      !e.ctrlKey &&
+      !e.altKey
+    ) {
       this.setState(prevState => ({
         isEditing: true,
         value: prevState.value + key
       }))
-    } else if (key === 'Enter' || key === 'Shift') {
-      this.setState({
-        isEditing: true
-      })
     }
   }
 
