@@ -59,7 +59,6 @@ class EditableCell extends React.PureComponent {
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log(props.children)
     if (props.children !== state.value) {
       if (state.value !== '' && props.children === '') {
         return {
