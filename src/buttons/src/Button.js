@@ -177,6 +177,7 @@ class Button extends PureComponent {
         color={null} // Prevent the Text color overriding the glamor appearanceStyle color
         height={height}
         lineHeight={`${height}px`}
+        whiteSpace="nowrap"
         {...(isActive ? { 'data-active': true } : {})}
         {...Button.styles}
         {...props}
