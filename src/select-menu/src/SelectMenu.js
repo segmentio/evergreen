@@ -61,12 +61,12 @@ export default class SelectMenu extends PureComponent {
     hasFilter: PropTypes.bool,
 
     /**
-     * When true, show the filter.
+     * The placeholder of the search filter.
      */
     filterPlaceholder: PropTypes.string,
 
     /**
-     * When true, show the filter.
+     * The icon of the search filter.
      */
     filterIcon: PropTypes.string,
 
