@@ -56,7 +56,8 @@ export default class SearchTableHeaderCell extends PureComponent {
   static defaultProps = {
     onChange: () => {},
     spellCheck: true,
-    placeholder: 'Filter...'
+    placeholder: 'Filter...',
+    icon: 'search'
   }
 
   render() {
@@ -67,13 +68,14 @@ export default class SearchTableHeaderCell extends PureComponent {
       autoFocus,
       spellCheck,
       placeholder,
+      icon,
       ...props
     } = this.props
 
     return (
       <TableHeaderCell {...props}>
         <Icon
-          icon="search"
+          icon={icon}
           color="muted"
           marginLeft={2}
           marginRight={10}

@@ -61,6 +61,16 @@ export default class SelectMenu extends PureComponent {
     hasFilter: PropTypes.bool,
 
     /**
+     * When true, show the filter.
+     */
+    filterPlaceholder: PropTypes.string,
+
+    /**
+     * When true, show the filter.
+     */
+    filterIcon: PropTypes.string,
+
+    /**
      * Function that is called as the onChange() event for the filter.
      */
     onFilterChange: PropTypes.func,
@@ -145,6 +155,8 @@ export default class SelectMenu extends PureComponent {
       position,
       hasTitle,
       hasFilter,
+      filterPlaceholder,
+      filterIcon,
       detailView,
       emptyView,
       titleView,
@@ -164,6 +176,8 @@ export default class SelectMenu extends PureComponent {
             options={options}
             title={title}
             hasFilter={hasFilter}
+            filterPlaceholder={filterPlaceholder}
+            filterIcon={filterIcon}
             hasTitle={hasTitle}
             isMultiSelect={isMultiSelect}
             titleView={titleView}
