@@ -24,7 +24,7 @@
   "sideEffects": false,
   "scripts": {
     "test": "xo && ava",
-    "prepublishOnly": "rm -rf esm commonjs && yarn run build",
+    "prepare": "rm -rf esm commonjs && yarn run build",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
