@@ -61,7 +61,7 @@ storiesOf('combobox', module).add('Combobox', () => (
       <Combobox
         defaultSelectedItem={customItems[0]}
         items={customItems}
-        itemToString={i => i.label}
+        itemToString={i => (i ? i.label : '')}
         onChange={handleChange}
       />
     </Box>
@@ -82,7 +82,7 @@ storiesOf('combobox', module).add('Combobox', () => (
           width="100%"
           defaultSelectedItem={customItems[0]}
           items={customItems}
-          itemToString={i => i.label}
+          itemToString={i => (i ? i.label : '')}
           onChange={handleChange}
         />
       </Pane>
@@ -93,7 +93,7 @@ storiesOf('combobox', module).add('Combobox', () => (
           width="100%"
           defaultSelectedItem={customItems[0]}
           items={customItems}
-          itemToString={i => i.label}
+          itemToString={i => (i ? i.label : '')}
           onChange={handleChange}
         />
       </Pane>
@@ -111,7 +111,7 @@ storiesOf('combobox', module).add('Combobox', () => (
           width="100%"
           defaultSelectedItem={customItems[0]}
           items={customItems}
-          itemToString={i => i.label}
+          itemToString={i => (i ? i.label : '')}
           onChange={handleChange}
         />
       </Pane>

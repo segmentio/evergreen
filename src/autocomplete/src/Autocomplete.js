@@ -9,7 +9,22 @@ import { Heading } from '../../typography'
 import { Pane } from '../../layers'
 import AutocompleteItem from './AutocompleteItem'
 
-const fuzzyFilter = (items, input) => fuzzaldrin.filter(items, input)
+const fuzzyFilter = itemToString => {
+  if (itemToString) {
+    return (items, input) => {
+      const wrappedItems = items.map(item => ({
+        key: itemToString(item),
+        item
+      }))
+
+      return fuzzaldrin
+        .filter(wrappedItems, input, { key: 'key' })
+        .map(({ item }) => item)
+    }
+  }
+
+  return (items, input) => fuzzaldrin.filter(items, input)
+}
 
 const autocompleteItemRenderer = props => <AutocompleteItem {...props} />
 
@@ -98,7 +113,6 @@ export default class Autocomplete extends PureComponent {
   static defaultProps = {
     itemToString: i => (i ? String(i) : ''),
     itemSize: 32,
-    itemsFilter: fuzzyFilter,
     isFilterDisabled: false,
     popoverMinWidth: 240,
     popoverMaxHeight: 240,
@@ -130,10 +144,11 @@ export default class Autocomplete extends PureComponent {
       isFilterDisabled
     } = this.props
 
+    const filter = itemsFilter || fuzzyFilter(itemToString)
     const items =
       isFilterDisabled || inputValue.trim() === ''
         ? originalItems
-        : itemsFilter(originalItems, inputValue)
+        : filter(originalItems, inputValue)
 
     if (items.length === 0) return null
 
