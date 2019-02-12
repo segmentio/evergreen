@@ -114,7 +114,9 @@ export default class SelectMenu extends PureComponent {
     width: 240,
     height: 248,
     position: Position.BOTTOM_LEFT,
-    isMultiSelect: false
+    isMultiSelect: false,
+    filterPlaceholder: 'Filter...',
+    filterIcon: 'search'
   }
 
   getDetailView = (close, detailView) => {
