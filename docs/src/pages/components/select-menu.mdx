@@ -334,4 +334,31 @@ This example shows how one should use titleView to pass in a custom title.
 </Component>
 ```
 
+## Custom Filter PlaceHolder and Icon Example
+
+It's possible to change the filter placeholder and filter icon through the `filterPlaceholder` and `filterIcon` props.
+
+Note that the icon can be one found in Segment's various [icons](https://evergreen.segment.com/components/icons), or `none`.
+
+
+```jsx
+<Component initialState={{ selected: null }}>
+  {({ setState, state }) => (
+    <SelectMenu
+      title="Select name"
+      options={
+        ['Comedy', 'Drama', 'Fantasy', 'Family', 'Action']
+          .map(label => ({ label, value: label }))
+      }
+      selected={state.selected}
+      onSelect={item => setState({ selected: item.value })}
+      filterPlaceholder={"Choose a genre"}
+      filterIcon={"film"}
+    >
+      <Button>{state.selected || 'Select name...'}</Button>
+    </SelectMenu>
+  )}
+</Component>
+```
+
 <PropsTable of="SelectMenu" />
