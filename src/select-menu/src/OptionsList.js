@@ -221,7 +221,6 @@ export default class OptionsList extends PureComponent {
       filterIcon,
       optionSize,
       renderItem,
-      placeholder,
       optionsFilter,
       isMultiSelect,
       defaultSearchValue,
