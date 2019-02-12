@@ -50,7 +50,12 @@ export default class SearchTableHeaderCell extends PureComponent {
     /**
      * Text to display in the input if the input is empty.
      */
-    placeholder: PropTypes.string
+    placeholder: PropTypes.string,
+
+    /**
+     * Icon to display in the input.
+     */
+    icon: PropTypes.string
   }
 
   static defaultProps = {
