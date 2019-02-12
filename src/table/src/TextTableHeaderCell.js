@@ -13,7 +13,7 @@ export default class TextTableHeaderCell extends PureComponent {
     /**
      * Pass additional props to the Text component.
      */
-    textProps: PropTypes.objectOf(PropTypes.object)
+    textProps: PropTypes.objectOf(PropTypes.string)
   }
 
   render() {
