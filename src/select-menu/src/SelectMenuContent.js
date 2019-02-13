@@ -37,6 +37,8 @@ export default class SelectMenuContent extends PureComponent {
     options: PropTypes.arrayOf(OptionShapePropType),
     hasTitle: PropTypes.bool,
     hasFilter: PropTypes.bool,
+    filterPlaceholder: PropTypes.string,
+    filterIcon: PropTypes.string,
     listProps: PropTypes.shape(OptionsList.propTypes),
 
     /**
@@ -75,6 +77,8 @@ export default class SelectMenuContent extends PureComponent {
       options,
       hasTitle,
       hasFilter,
+      filterPlaceholder,
+      filterIcon,
       close,
       listProps,
       titleView,
@@ -105,6 +109,8 @@ export default class SelectMenuContent extends PureComponent {
             <OptionsList
               height={optionsListHeight}
               hasFilter={hasFilter}
+              filterPlaceholder={filterPlaceholder}
+              filterIcon={filterIcon}
               options={options}
               isMultiSelect={isMultiSelect}
               close={close}
