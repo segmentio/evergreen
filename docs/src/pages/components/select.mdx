@@ -129,6 +129,21 @@ Anytime you would reach for a native select, use this.
 </SelectField>
 ```
 
+## Validation message without invalid input
+
+```jsx
+<SelectField
+  isInvalid={false}
+  required
+  label="A required text input field"
+  description="This is a description."
+  validationMessage="This field is required"
+>
+  <option value="foo" checked>Foo</option>
+  <option value="bar">Bar</option>
+</SelectField>
+```
+
 ## Controlled usage
 
 The `SelectField` component works the same as using `input` directly.
