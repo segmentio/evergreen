@@ -22,7 +22,8 @@ class TextInput extends PureComponent {
     disabled: PropTypes.bool,
 
     /**
-     * Sets visual styling to be invalid.
+     * Sets visual styling of _only_ the text input to be "invalid". 
+     * Note that this does not effect any `validationMessage`.
      */
     isInvalid: PropTypes.bool,
 
