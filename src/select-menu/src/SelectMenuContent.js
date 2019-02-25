@@ -49,7 +49,7 @@ export default class SelectMenuContent extends PureComponent {
     /**
      * Node that is placed in the header section, above the options.
      */
-    titleView: PropTypes.node,
+    titleView: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
 
     /**
      * Node that is placed right next to the options.
