@@ -34,6 +34,7 @@
     "build": "concurrently --names 'commonjs,esm' 'yarn run build-commonjs' 'yarn run build-esm'",
     "clean": "git clean -Xdf",
     "release": "np",
+    "build-docs": "cd docs && yarn install && yarn deploy",
     "chromatic": "chromatic test --storybook-addon --script-name dev --app-code=alj8xoz1ujt"
   },
   "engines": {
