@@ -104,7 +104,7 @@ Below you can read a description of each script.
 
 - `yarn clean`: removes all untracked files (`git clean -Xdf`).
 
-- `yarn release`: Releases new version of Evergreen (requires `np` to be installed globally).
+- `yarn release`: Releases new version of Evergreen (requires MFA via npm as a collaborator)
 
 - `yarn create-package`: This command scaffolds a package with no specific boilerplate. It's useful for creating utilities.
 

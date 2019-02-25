@@ -33,7 +33,9 @@
     "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test' --source-maps inline",
     "build": "concurrently --names 'commonjs,esm' 'yarn run build-commonjs' 'yarn run build-esm'",
     "clean": "git clean -Xdf",
-    "release": "np --no-publish",
+    "release": "np",
+    "deploy-docs": "cd docs && yarn install && yarn deploy",
+    "postpublish": "yarn deploy-docs",
     "chromatic": "chromatic test --storybook-addon --script-name dev --app-code=alj8xoz1ujt"
   },
   "engines": {
@@ -91,6 +93,7 @@
     "fs-extra": "^7.0.0",
     "husky": "^1.1.2",
     "lint-staged": "^7.3.0",
+    "np": "^4.0.2",
     "prettier": "^1.14.3",
     "react": "^16.5.2",
     "react-chromatic": "^0.8.4",
