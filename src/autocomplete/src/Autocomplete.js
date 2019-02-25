@@ -198,6 +198,7 @@ export default class Autocomplete extends PureComponent {
           getItemProps,
           selectedItem,
           selectItemAtIndex,
+          highlightedIndex,
           getRootProps,
           ...restDownshiftProps
         }) => (
