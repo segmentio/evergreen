@@ -6,3 +6,5 @@ node_modules
 /.out/
 /docs/public/
 .cache
+/npm-shrinkwrap.json
+/package-lock.json
