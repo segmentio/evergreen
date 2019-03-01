@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { Button } from '../../../src'
+import startupBanner from '../images/startup-banner.png'
 import spotIllustration from '../images/evergreen-spot-illustration.png'
 import GitHubIcon from './GitHubIcon'
 import LogoWordmark from './LogoWordmark'
@@ -13,6 +14,15 @@ export default class HomeHero extends React.PureComponent {
   render() {
     return (
       <section className="Hero">
+        <div>
+          <NativeLink className="Link" href="https://segment.com/startups">
+            <img
+              src={startupBanner}
+              alt="Segment Startup Program"
+              width="100%"
+            />
+          </NativeLink>
+        </div>
         <div className="Hero-inner">
           <div className="Hero-left">
             <LogoWordmark style={{ marginBottom: 12 }} width={134} />
