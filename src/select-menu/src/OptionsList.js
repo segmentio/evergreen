@@ -43,7 +43,8 @@ export default class OptionsList extends PureComponent {
     hasFilter: PropTypes.bool,
     optionSize: PropTypes.number,
     renderItem: PropTypes.func,
-    placeholder: PropTypes.string,
+    filterPlaceholder: PropTypes.string,
+    filterIcon: PropTypes.string,
     optionsFilter: PropTypes.func,
     defaultSearchValue: PropTypes.string
   }
@@ -62,7 +63,8 @@ export default class OptionsList extends PureComponent {
     selected: [],
     renderItem: itemRenderer,
     optionsFilter: fuzzyFilter,
-    placeholder: 'Filter...',
+    filterPlaceholder: 'Filter...',
+    filterIcon: 'search',
     defaultSearchValue: ''
   }
 
@@ -215,9 +217,10 @@ export default class OptionsList extends PureComponent {
       onFilterChange,
       selected,
       hasFilter,
+      filterPlaceholder,
+      filterIcon,
       optionSize,
       renderItem,
-      placeholder,
       optionsFilter,
       isMultiSelect,
       defaultSearchValue,
@@ -243,6 +246,8 @@ export default class OptionsList extends PureComponent {
               innerRef={this.assignSearchRef}
               borderRight={null}
               height={32}
+              placeholder={filterPlaceholder}
+              icon={filterIcon}
             />
           </TableHead>
         )}

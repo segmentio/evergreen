@@ -35,7 +35,7 @@ export default class FormField extends PureComponent {
 
     /**
      * If a validation message is passed it is shown under the input element
-     * and above the hint.
+     * and above the hint. This is unaffected by `isInvalid`.
      */
     validationMessage: PropTypes.node,
 

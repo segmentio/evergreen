@@ -57,7 +57,7 @@ export default class Popover extends Component {
     /**
      * Properties passed through to the Popover card.
      */
-    statelessProps: PropTypes.objectOf(PopoverStateless.propTypes),
+    statelessProps: PropTypes.shape(PopoverStateless.propTypes),
 
     /**
      * Duration of the animation.
