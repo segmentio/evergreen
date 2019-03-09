@@ -121,6 +121,18 @@ The `TextInputField` component combines a `TextInput` with a label and optional
 />
 ```
 
+## Validation message without invalid input
+
+```jsx
+<TextInputField
+  isInvalid={false}
+  required
+  label="A required text input field"
+  description="This is a description."
+  validationMessage="This field is required"
+/>
+```
+
 ## Controlled usage
 
 The `TextInputField` component works the same as using `input` directly.

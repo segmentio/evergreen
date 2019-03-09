@@ -9,7 +9,7 @@
  *
  * The following file tree will be generated:
  *
- * /src/pacakage-name
+ * /src/package-name
  * ├── /src/
  * |   │── ComponentName.js
  * |   └── ComponentName2.js
