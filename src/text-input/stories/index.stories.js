@@ -75,6 +75,19 @@ storiesOf('text-input', module)
             <Label htmlFor={24} size={300} display="block" marginBottom={4}>
               Height 24
             </Label>
+            <TextInput
+              appearance={appearance}
+              height={24}
+              name={24}
+              id={24}
+              placeholder="An isClearable, uncontrolled input"
+              isClearable
+            />
+          </Box>
+          <Box marginBottom={24}>
+            <Label htmlFor={24} size={300} display="block" marginBottom={4}>
+              Height 24
+            </Label>
             <TextInput appearance={appearance} height={24} name={24} id={24} />
           </Box>
           <Box marginBottom={24}>
@@ -132,6 +145,21 @@ storiesOf('text-input', module)
               description="This is a description."
               value={state.value}
               onChange={e => setState({ value: e.target.value })}
+            />
+          )
+        }}
+      </Manager>
+      <Manager>
+        {({ state, setState }) => {
+          return (
+            <TextInputField
+              label="A controlled text input field with isClearable"
+              required
+              description="This is a description."
+              value={state.value}
+              onChange={e => setState({ value: e.target.value })}
+              onClear={() => setState({ value: '' })}
+              isClearable
             />
           )
         }}
