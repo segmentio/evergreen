@@ -153,8 +153,9 @@ storiesOf('text-input', module)
         {({ state, setState }) => {
           return (
             <TextInputField
-              label="A controlled text input field with isClearable"
+              label="A controlled text input field with isClearable and onClear"
               required
+              placeholder="A controlled text input field with isClearable and onClear"
               description="This is a description."
               value={state.value}
               onChange={e => setState({ value: e.target.value })}
