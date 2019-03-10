@@ -56,13 +56,16 @@ export default class AdvancedTable extends React.Component {
         bValue = Number(bValue.substr(1))
       }
 
+      // Support string comparison
+      const sortTable = { true: 1, false: -1 }
+
       // Order ascending (Order.ASC)
       if (this.state.ordering === Order.ASC) {
-        return aValue - bValue
+        return aValue === bValue ? 0 : sortTable[aValue > bValue]
       }
 
       // Order descending (Order.DESC)
-      return bValue - aValue
+      return bValue === aValue ? 0 : sortTable[bValue > aValue]
     })
   }
 
