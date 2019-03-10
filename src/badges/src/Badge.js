@@ -10,7 +10,6 @@ class Badge extends PureComponent {
 
     /**
      * The color used for the badge.
-     * When the value is `automatic`, use the hash function to determine the color.
      */
     color: PropTypes.string.isRequired,
 
