@@ -5,7 +5,17 @@ daysUntilClose: 7
 # Issues with these labels will never be considered stale
 exemptLabels:
   - pinned
-  - security
+  - 'Priority: High'
+  - 'Priority: Medium'
+  - 'Priority: Low'
+  - 'Type: Bug'
+  - 'Type: Documentation'
+  - 'Type: Improvement'
+  - 'Type: Maintenance'
+  - 'Type: New Package'
+  - 'Type: New Package'
+# Only mark PRs as stale (for now)
+only: pulls
 # Label to use when marking an issue as stale
 staleLabel: wontfix
 # Comment to post when marking an issue as stale. Set to `false` to disable
