@@ -108,6 +108,7 @@ export default class ToastManager extends React.PureComponent {
               isShown: false
             }
           }
+
           return toast
         })
       }

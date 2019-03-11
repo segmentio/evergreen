@@ -17,7 +17,7 @@ export function hydrate(hydration) {
 
 export default function autoHydrate() {
   if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-    const hydration = document.getElementById('evergreen-hydrate')
+    const hydration = document.querySelector('#evergreen-hydrate')
 
     if (hydration) {
       try {

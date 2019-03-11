@@ -21,7 +21,7 @@ const createTagInputAppearance = (items = {}) => {
     props: ['base', 'focus', 'disabled'],
     cb: prop => {
       console.error(
-        `Themer.createTagInputAppearance() is missing a ${prop} item `,
+        `Themer.createTagInputAppearance() is missing a ${prop} item`,
         items
       )
     }

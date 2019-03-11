@@ -120,6 +120,7 @@ const getSheetCloseClassName = position => {
       ...sharedStyles
     }).toString()
   }
+
   return sheetCloseClassNameCache[position]
 }
 

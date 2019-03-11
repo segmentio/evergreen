@@ -113,6 +113,7 @@ export default class Tooltip extends PureComponent {
         // eslint-disable-next-line react/prop-types
         isShown,
         ...popoverTargetProps
+        // eslint-disable-next-line react/prop-types
       } = this.props.popoverProps
 
       return React.cloneElement(children, {
@@ -142,6 +143,7 @@ export default class Tooltip extends PureComponent {
   }
 
   isPopoverShown = () =>
+    // eslint-disable-next-line react/prop-types
     this.props.popoverProps && this.props.popoverProps.isShown
 
   handleMouseEnterTarget = () => {

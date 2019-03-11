@@ -29,7 +29,7 @@ const createSegmentedControlRadioAppearance = (items = {}) => {
     props: ['base', 'hover', 'disabled', 'active', 'focus'],
     cb: prop => {
       console.error(
-        `Themer.createSegmentedControlRadioAppearance() is missing a ${prop} item `,
+        `Themer.createSegmentedControlRadioAppearance() is missing a ${prop} item`,
         items
       )
     }

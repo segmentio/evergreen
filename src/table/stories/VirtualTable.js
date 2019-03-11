@@ -31,6 +31,7 @@ const users = range(1000)
         content: faker.random.arrayElement(randomLengthContent)
       }
     }
+
     return item
   })
 

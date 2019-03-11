@@ -10,6 +10,8 @@ import { minorScale } from '../../scales'
 
 class Tag extends React.PureComponent {
   static propTypes = {
+    /** The badge content */
+    children: PropTypes.node,
     /**
      * Callback invoked when the removal icon is clicked.
      * (event) => void

@@ -55,6 +55,7 @@ const getButtonAppearance = (appearance, intent) => {
         }
       })
     }
+
     case 'minimal': {
       const intentTextColor = getTextColorForIntent(intent, scales.blue.B9)
       return Themer.createButtonAppearance({
@@ -76,6 +77,7 @@ const getButtonAppearance = (appearance, intent) => {
         focusAndActive: {}
       })
     }
+
     case 'default':
     default: {
       const intentTextColor = getTextColorForIntent(intent)

@@ -165,6 +165,7 @@ export default class Combobox extends PureComponent {
                       isOpenedByButton: false
                     })
                   }
+
                   if (e.target.value.trim() === '') {
                     // Prevent the selected item from sticking around
                     clearSelection()

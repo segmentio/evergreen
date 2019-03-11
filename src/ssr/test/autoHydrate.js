@@ -1,4 +1,3 @@
-/* eslint-disable import/first, import/order */
 import test from 'ava'
 import React from 'react'
 import Box from 'ui-box'

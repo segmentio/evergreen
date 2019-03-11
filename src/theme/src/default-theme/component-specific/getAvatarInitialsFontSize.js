@@ -7,6 +7,7 @@ const getAvatarInitialsFontSize = (size, sizeLimitOneCharacter) => {
   if (size <= sizeLimitOneCharacter) {
     return Math.ceil(size / 2.2)
   }
+
   return Math.ceil(size / 2.6)
 }
 

@@ -101,6 +101,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             } else if (selectedItemsLength > 1) {
               selectedNames = selectedItemsLength.toString() + ' selected...'
             }
+
             setState({
               selected,
               selectedNames
@@ -120,6 +121,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             } else if (selectedItemsLength > 1) {
               selectedNames = selectedItemsLength.toString() + ' selected...'
             }
+
             setState({ selected: selectedItems, selectedNames })
           }}
         >

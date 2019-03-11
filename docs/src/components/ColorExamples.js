@@ -1,5 +1,5 @@
 import React from 'react'
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+// eslint-disable-next-line import/no-unresolved
 import { Pane, Heading, ThemeConsumer } from 'evergreen-ui'
 import ColorGroup from './ColorGroup'
 

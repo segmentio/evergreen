@@ -179,6 +179,7 @@ export default class CornerDialog extends PureComponent {
     if (typeof children === 'function') {
       return children({ close: this.handleClose })
     }
+
     if (typeof children === 'string') {
       return (
         <Paragraph size={400} color="muted">
@@ -186,6 +187,7 @@ export default class CornerDialog extends PureComponent {
         </Paragraph>
       )
     }
+
     return children
   }
 

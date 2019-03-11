@@ -34,7 +34,7 @@ const createButtonAppearance = (items = {}) => {
     props: ['base', 'hover', 'focus', 'active', 'focusAndActive', 'disabled'],
     cb: prop => {
       console.error(
-        `Themer.createButtonAppearance() is missing a ${prop} state in items: `,
+        `Themer.createButtonAppearance() is missing a ${prop} state in items:`,
         items
       )
     }
@@ -56,4 +56,5 @@ const createButtonAppearance = (items = {}) => {
     [focusAndActiveState]: createAppearance(items.focusAndActive)
   }
 }
+
 export default createButtonAppearance

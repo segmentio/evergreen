@@ -10,5 +10,6 @@ export default function hashCode(s) {
     // Convert to 32bit integer
     hash &= hash
   }
+
   return Math.abs(hash)
 }

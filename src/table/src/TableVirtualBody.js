@@ -304,6 +304,7 @@ export default class TableVirtualBody extends PureComponent {
               if (typeof children[index] === 'string') {
                 return <div style={style}>{children[index]}</div>
               }
+
               return <div style={style}>&nbsp;</div>
             }
 

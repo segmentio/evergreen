@@ -62,7 +62,7 @@ const createCheckboxAppearance = (items = {}) => {
     ],
     cb: prop => {
       console.error(
-        `Themer.createCheckboxAppearance() is missing a ${prop} state in items: `,
+        `Themer.createCheckboxAppearance() is missing a ${prop} state in items:`,
         items
       )
     }

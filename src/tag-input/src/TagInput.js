@@ -22,6 +22,8 @@ class TagInput extends React.Component {
     className: PropTypes.string,
     /** Whether or not the input should be disabled. */
     disabled: PropTypes.bool,
+    /** The vertical size of the input */
+    height: PropTypes.number,
     /** Props to pass to the input component. Note that `ref` and `key` are not supported. See `inputRef`. */
     inputProps: PropTypes.object,
     /**
@@ -36,11 +38,21 @@ class TagInput extends React.Component {
      */
     onAdd: PropTypes.func,
     /**
+     * Callback invoked when focus on the input blurs.
+     * (event) => void
+     */
+    onBlur: PropTypes.func,
+    /**
      * Callback invoked when the tag values change.
      * Returning `false` will prevent clearing the input.
      * (values: Array) => void | false
      */
     onChange: PropTypes.func,
+    /**
+     * Callback invoked when the input receives focus.
+     * (event) => void
+     */
+    onFocus: PropTypes.func,
     /**
      * Callback invoked when the value of the <input> is changed. Shorthand for `inputProps={{ onChange }}`.
      * (event) => void
@@ -60,6 +72,10 @@ class TagInput extends React.Component {
     ]),
     /** Provide props to tag component (actually `Badge`, for now). */
     tagProps: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: PropTypes.object.isRequired,
     /** Controlled tag values. Each value is rendered inside a tag. */
     values: PropTypes.arrayOf(PropTypes.node)
   }
@@ -121,6 +137,7 @@ class TagInput extends React.Component {
         if (this.props.addOnBlur && this.state.inputValue) {
           this.addTags(this.state.inputValue)
         }
+
         this.setState({ isFocused: false })
       }
     })

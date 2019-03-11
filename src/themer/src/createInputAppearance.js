@@ -23,7 +23,7 @@ const createInputAppearance = (items = {}) => {
     props: ['base', 'invalid', 'placeholder', 'focus', 'disabled'],
     cb: prop => {
       console.error(
-        `Themer.createInputAppearance() is missing a ${prop} item `,
+        `Themer.createInputAppearance() is missing a ${prop} item`,
         items
       )
     }

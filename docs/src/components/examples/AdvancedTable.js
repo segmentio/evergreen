@@ -1,6 +1,5 @@
 import React from 'react'
 import { filter } from 'fuzzaldrin-plus'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import {
   Table,
   Popover,

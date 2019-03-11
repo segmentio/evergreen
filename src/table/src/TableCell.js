@@ -12,10 +12,12 @@ function executeArrowKeyOverride(override) {
   if (!override) {
     return
   }
+
   if (typeof override === 'function') {
     override()
     return
   }
+
   if (typeof override === 'string') {
     document.querySelector(override).focus()
     return
@@ -33,9 +35,9 @@ class TableCell extends PureComponent {
     ...Pane.propTypes,
 
     /*
-    * Makes the TableCell focusable. Used by EditableCell.
-    * Will add tabIndex={-1 || this.props.tabIndex}.
-    */
+     * Makes the TableCell focusable. Used by EditableCell.
+     * Will add tabIndex={-1 || this.props.tabIndex}.
+     */
     isSelectable: PropTypes.bool,
 
     /**
