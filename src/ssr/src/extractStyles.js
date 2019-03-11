@@ -16,8 +16,11 @@ export default function extractStyles(options = {}) {
   const scriptProps = {
     type: 'application/json',
     id: 'evergreen-hydrate',
-    nonce: options.nonce,
     dangerouslySetInnerHTML: { __html: JSON.stringify(evergreenCache) }
+  }
+
+  if (options.nonce) {
+    scriptProps.nonce = options.nonce
   }
 
   return {
