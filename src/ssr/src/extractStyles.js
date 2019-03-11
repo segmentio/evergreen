@@ -2,7 +2,7 @@ import React from 'react'
 import { extractStyles as boxExtractStyles } from 'ui-box'
 import { renderStatic } from 'glamor/server'
 
-export default function extractStyles(scriptAttributes = {}) {
+export default function extractStyles(options = {}) {
   const { styles, cache } = boxExtractStyles()
   const { ids, css } = renderStatic(
     () => 'let glamor believe there is some html here'
@@ -16,8 +16,8 @@ export default function extractStyles(scriptAttributes = {}) {
   const scriptProps = {
     type: 'application/json',
     id: 'evergreen-hydrate',
-    dangerouslySetInnerHTML: { __html: JSON.stringify(evergreenCache) },
-    ...scriptAttributes
+    nonce: options.nonce,
+    dangerouslySetInnerHTML: { __html: JSON.stringify(evergreenCache) }
   }
 
   return {
