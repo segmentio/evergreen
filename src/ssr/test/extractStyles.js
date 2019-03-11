@@ -8,7 +8,7 @@ import extractStyles from '../src/extractStyles'
 
 test.serial('returns styles for a Box', t => {
   render(<Box height={11} />)
-  const result = extractStyles()
+  const result = extractStyles({ nonce: 'abcd1234' })
   t.snapshot(result)
   t.truthy(result.css)
   t.truthy(result.cache.uiBoxCache)
