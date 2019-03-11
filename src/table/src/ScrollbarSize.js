@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unused-state */
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
@@ -28,10 +27,10 @@ export default class ScrollbarSize extends PureComponent {
     })
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.innerWidth && nextState.outerWidth) {
+  componentDidUpdate() {
+    if (this.state.innerWidth && this.state.outerWidth) {
       this.props.handleScrollbarSize(
-        nextState.outerWidth - nextState.innerWidth
+        this.state.outerWidth - this.state.innerWidth
       )
     }
   }
