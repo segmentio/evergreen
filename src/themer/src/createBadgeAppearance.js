@@ -17,7 +17,7 @@ const createBadgeAppearance = (items = {}) => {
     props: ['base', 'hover'],
     cb: prop => {
       console.error(
-        `Themer.createBadgeAppearance() is missing a ${prop} item `,
+        `Themer.createBadgeAppearance() is missing a ${prop} item`,
         items
       )
     }

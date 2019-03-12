@@ -15,7 +15,7 @@ export default class Toaster {
 
     const container = document.createElement('div')
     container.setAttribute('data-evergreen-toaster-container', '')
-    document.body.appendChild(container)
+    document.body.append(container)
 
     ReactDOM.render(
       <ToastManager

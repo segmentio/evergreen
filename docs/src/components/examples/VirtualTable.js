@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import faker from 'faker'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import {
   Table,
   Pane,
@@ -35,6 +34,7 @@ const users = range(1000)
         content: faker.random.arrayElement(randomLengthContent)
       }
     }
+
     return item
   })
 

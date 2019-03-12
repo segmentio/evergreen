@@ -12,5 +12,6 @@ export default function majorScale(x) {
       `majorScale only accepts integers as input, instead ${x} was passed.`
     )
   }
+
   return x * 8
 }

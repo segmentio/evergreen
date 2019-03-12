@@ -1,6 +1,6 @@
 import React from 'react'
 import { filter } from 'fuzzaldrin-plus'
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+// eslint-disable-next-line import/no-unresolved
 import { Pane, SearchInput, IconNames, Text, Icon } from 'evergreen-ui'
 
 const iconKeys = Object.keys(IconNames)

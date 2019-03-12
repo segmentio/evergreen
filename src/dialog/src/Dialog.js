@@ -212,9 +212,11 @@ class Dialog extends React.Component {
     if (typeof children === 'function') {
       return children({ close })
     }
+
     if (typeof children === 'string') {
       return <Paragraph>{children}</Paragraph>
     }
+
     return children
   }
 

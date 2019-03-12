@@ -34,7 +34,7 @@ const createSelectAppearance = (items = {}) => {
     props: ['base', 'disabled', 'invalid', 'hover', 'active', 'focus'],
     cb: prop => {
       console.error(
-        `Themer.createSelectAppearance() is missing a ${prop} item `,
+        `Themer.createSelectAppearance() is missing a ${prop} item`,
         items
       )
     }

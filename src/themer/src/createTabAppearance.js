@@ -23,7 +23,7 @@ const createTabAppearance = (items = {}) => {
     props: ['base', 'hover', 'active', 'focus', 'current', 'disabled'],
     cb: prop => {
       console.error(
-        `Themer.createTabAppearance() is missing a ${prop} item `,
+        `Themer.createTabAppearance() is missing a ${prop} item`,
         items
       )
     }

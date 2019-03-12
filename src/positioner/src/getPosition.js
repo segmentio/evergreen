@@ -147,6 +147,7 @@ const getTransformOrigin = ({ rect, position, dimensions, targetCenter }) => {
     /* Syntax: x-offset | y-offset */
     return `${centerX}px ${dimensions.height}px `
   }
+
   /* Syntax: x-offset | y-offset */
   return `${centerX}px 0px `
 }
@@ -268,6 +269,7 @@ function getPosition({
           rect: leftRect
         }
       }
+
       if (fitsOnRight) {
         return {
           position: Position.RIGHT,
@@ -283,6 +285,7 @@ function getPosition({
           rect: rightRect
         }
       }
+
       if (fitsOnLeft) {
         return {
           position: Position.LEFT,
@@ -357,6 +360,7 @@ function getPosition({
         rect: topRect
       }
     }
+
     if (bottomRectFitsOnBottom) {
       return {
         position: flipHorizontal(position),
@@ -372,6 +376,7 @@ function getPosition({
         rect: bottomRect
       }
     }
+
     if (topRectFitsOnTop) {
       return {
         position: flipHorizontal(position),

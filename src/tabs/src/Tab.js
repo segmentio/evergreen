@@ -67,6 +67,7 @@ class Tab extends PureComponent {
       this.props.onSelect()
       e.preventDefault()
     }
+
     this.props.onKeyPress(e)
   }
 
@@ -97,6 +98,7 @@ class Tab extends PureComponent {
         'aria-disabled': true
       }
     }
+
     if (is === 'a') {
       // Use aria-current when it's a link
       // https://tink.uk/using-the-aria-current-attribute/

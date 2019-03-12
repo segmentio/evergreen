@@ -41,7 +41,7 @@ const createSwitchAppearance = (items = {}) => {
     ],
     cb: prop => {
       console.error(
-        `Themer.createSwitchAppearance() is missing a ${prop} item `,
+        `Themer.createSwitchAppearance() is missing a ${prop} item`,
         items
       )
     }

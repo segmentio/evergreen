@@ -92,7 +92,7 @@ class MenuItem extends React.PureComponent {
 
     if (process.env.NODE_ENV !== 'production') {
       warning(
-        typeof this.props.onClick === 'function',
+        'onClick' in this.props,
         '<Menu.Item> expects `onSelect` prop, but you passed `onClick`.'
       )
     }

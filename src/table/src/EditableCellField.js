@@ -82,6 +82,7 @@ export default class EditableCellField extends React.PureComponent {
       if (isTableBody) {
         return ref
       }
+
       if (ref.parentElement) {
         ref = ref.parentElement
       } else {

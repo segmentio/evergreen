@@ -15,7 +15,7 @@ const createLinkAppearance = (items = {}) => {
     props: ['base', 'hover', 'active', 'focus'],
     cb: prop => {
       console.error(
-        `Themer.createLinkAppearance() is missing a ${prop} item `,
+        `Themer.createLinkAppearance() is missing a ${prop} item`,
         items
       )
     }

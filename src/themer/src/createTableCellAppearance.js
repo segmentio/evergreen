@@ -14,7 +14,7 @@ const createTableCellAppearance = (items = {}) => {
     props: ['focus'],
     cb: prop => {
       console.error(
-        `Themer.createTableCellAppearance() is missing a ${prop} item `,
+        `Themer.createTableCellAppearance() is missing a ${prop} item`,
         items
       )
     }

@@ -35,6 +35,7 @@ export default class Option extends PureComponent {
     if (disabled) {
       textProps.color = 'muted'
     }
+
     if (isSelected) {
       textProps.color = 'selected'
     }

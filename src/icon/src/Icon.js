@@ -88,6 +88,7 @@ class Icon extends PureComponent {
     if (icon == null) {
       return null
     }
+
     if (typeof icon !== 'string') {
       return icon
     }

@@ -23,7 +23,7 @@ const createRowAppearance = (items = {}) => {
     props: ['base', 'hover', 'active', 'focus', 'current'],
     cb: prop => {
       console.error(
-        `Themer.createRowAppearance() is missing a ${prop} item `,
+        `Themer.createRowAppearance() is missing a ${prop} item`,
         items
       )
     }

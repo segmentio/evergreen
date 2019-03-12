@@ -42,7 +42,7 @@ function createAppearance(obj = {}) {
       }
     } else if (isDev) {
       console.error(
-        `createAppearance() only accepts whitelisted properties, key '${key}' is not whitelisted in whitelist: `,
+        `createAppearance() only accepts whitelisted properties, key '${key}' is not whitelisted in whitelist:`,
         whitelist
       )
     }

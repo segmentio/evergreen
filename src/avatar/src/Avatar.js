@@ -136,6 +136,7 @@ class Avatar extends PureComponent {
     if (size <= sizeLimitOneCharacter) {
       initials = initials.substring(0, 1)
     }
+
     const colorProps = this.getColorProps()
 
     return (

@@ -76,6 +76,7 @@ const getPrimaryButtonStylesForIntent = intent => {
           .toString()
       }
     }
+
     case Intent.WARNING: {
       const startColor = '#EE9913'
       const endColor = '#D9822B'
@@ -86,6 +87,7 @@ const getPrimaryButtonStylesForIntent = intent => {
           .toString()
       }
     }
+
     case Intent.DANGER: {
       const startColor = '#EC4C47'
       const endColor = '#D64540'
@@ -96,6 +98,7 @@ const getPrimaryButtonStylesForIntent = intent => {
           .toString()
       }
     }
+
     default: {
       const startColor = '#0788DE'
       const endColor = '#116AB8'
