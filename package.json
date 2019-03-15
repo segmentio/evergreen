@@ -36,7 +36,7 @@
     "release": "np",
     "deploy-docs": "cd docs && yarn install && yarn deploy",
     "postpublish": "yarn deploy-docs",
-    "chromatic": "chromatic test --storybook-addon --script-name dev --app-code=alj8xoz1ujt"
+    "chromatic": "chromatic test --script-name dev --app-code=alj8xoz1ujt"
   },
   "engines": {
     "node": ">=8"
@@ -72,14 +72,12 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@reactions/component": "^2.0.2",
-    "@storybook/addon-actions": "^3.4.11",
-    "@storybook/addon-links": "^3.4.11",
-    "@storybook/addon-options": "^3.4.11",
-    "@storybook/addons": "^3.4.11",
-    "@storybook/react": "^3.4.11",
+    "@storybook/addon-knobs": "^5.0.1",
+    "@storybook/react": "5.0.1",
     "ava": "^1.3.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
     "babel-plugin-add-react-displayname": "^0.0.5",
     "concurrently": "^4.0.1",
     "enzyme": "^3.7.0",
@@ -96,12 +94,12 @@
     "np": "^4.0.2",
     "prettier": "^1.14.3",
     "react": "^16.5.2",
-    "react-chromatic": "^0.8.4",
     "react-dom": "^16.5.2",
     "react-test-renderer": "^16.5.2",
     "sinon": "^7.0.0",
     "size-limit": "^0.21.1",
     "starwars-names": "^1.6.0",
+    "storybook-chromatic": "^1.3.0",
     "url-loader": "^1.1.2",
     "xo": "^0.24.0"
   },
