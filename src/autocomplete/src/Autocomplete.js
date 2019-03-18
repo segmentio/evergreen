@@ -125,6 +125,22 @@ export default class Autocomplete extends PureComponent {
     })
   }
 
+  stateReducer = (state, changes) => {
+    const { items } = this.props
+
+    if (
+      Object.prototype.hasOwnProperty.call(changes, 'isOpen') &&
+      changes.isOpen
+    ) {
+      return {
+        ...changes,
+        highlightedIndex: items.indexOf(state.selectedItem)
+      }
+    }
+
+    return changes
+  }
+
   renderResults = ({
     width,
     inputValue,
@@ -206,7 +222,11 @@ export default class Autocomplete extends PureComponent {
     } = this.props
 
     return (
-      <Downshift initialSelectedItem={initialSelectedItem} {...props}>
+      <Downshift
+        initialSelectedItem={initialSelectedItem}
+        stateReducer={this.stateReducer}
+        {...props}
+      >
         {({
           isOpen: isShown,
           inputValue,
