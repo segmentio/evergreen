@@ -48,9 +48,22 @@ export default class Autocomplete extends PureComponent {
     selectedItem: PropTypes.any,
 
     /**
-     * The selected item to be selected & shown by default on the autocomplete
+     * The selected item to be selected & shown by default on the autocomplete (deprecated)
+     * @return {Error} a deprecation warning
      */
-    defaultSelectedItem: PropTypes.any,
+    defaultSelectedItem: () =>
+      new Error(
+        `The 'defaultSelectedItem' prop is deprecated, use 'initialSelectedItem' instead`
+      ),
+
+    /**
+     * The selected item to be selected & shown by default on the autocomplete (deprecated)
+     * @return {Error} a deprecation warning
+     */
+    defaultInputValue: () =>
+      new Error(
+        `The 'defaultInputValue' prop is deprecated, use 'initialInputValue' instead`
+      ),
 
     /**
      * In case the array of items is not an array of strings,
@@ -102,6 +115,15 @@ export default class Autocomplete extends PureComponent {
      * Defines the maximum height the results container will be
      */
     popoverMaxHeight: PropTypes.number,
+
+    /**
+     * The selected item to be selected & shown by default on the autocomplete (deprecated)
+     * @return {Error} a deprecation warning
+     */
+    getButtonProps: () =>
+      new Error(
+        `The 'getButtonProps' prop is deprecated, use 'getToggleButtonProps' instead`
+      ),
 
     ...Downshift.propTypes
   }
@@ -201,12 +223,22 @@ export default class Autocomplete extends PureComponent {
       itemsFilter,
       popoverMaxHeight,
       popoverMinWidth,
-      defaultSelectedItem,
+      defaultSelectedItem, // Deprecated
+      initialSelectedItem,
+      defaultInputValue, // Deprecated
+      initialInputValue,
+      getButtonProps, // Deprecated
+      getToggleButtonProps,
       ...props
     } = this.props
 
     return (
-      <Downshift defaultSelectedItem={defaultSelectedItem} {...props}>
+      <Downshift
+        initialSelectedItem={initialSelectedItem || defaultSelectedItem}
+        initialInputValue={initialInputValue || defaultInputValue}
+        getToggleButtonProps={getToggleButtonProps || getButtonProps}
+        {...props}
+      >
         {({
           isOpen: isShown,
           inputValue,
