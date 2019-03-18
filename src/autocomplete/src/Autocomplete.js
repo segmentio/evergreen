@@ -147,6 +147,22 @@ export default class Autocomplete extends PureComponent {
     })
   }
 
+  stateReducer = (state, changes) => {
+    const { items } = this.props
+
+    if (
+      Object.prototype.hasOwnProperty.call(changes, 'isOpen') &&
+      changes.isOpen
+    ) {
+      return {
+        ...changes,
+        highlightedIndex: items.indexOf(state.selectedItem)
+      }
+    }
+
+    return changes
+  }
+
   renderResults = ({
     width,
     inputValue,
@@ -237,6 +253,7 @@ export default class Autocomplete extends PureComponent {
         initialSelectedItem={initialSelectedItem || defaultSelectedItem}
         initialInputValue={initialInputValue || defaultInputValue}
         getToggleButtonProps={getToggleButtonProps || getButtonProps}
+        stateReducer={this.stateReducer}
         {...props}
       >
         {({
