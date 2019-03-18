@@ -50,7 +50,7 @@ export default class Autocomplete extends PureComponent {
     /**
      * The selected item to be selected & shown by default on the autocomplete
      */
-    defaultSelectedItem: PropTypes.any,
+    initialSelectedItem: PropTypes.any,
 
     /**
      * In case the array of items is not an array of strings,
@@ -201,12 +201,12 @@ export default class Autocomplete extends PureComponent {
       itemsFilter,
       popoverMaxHeight,
       popoverMinWidth,
-      defaultSelectedItem,
+      initialSelectedItem,
       ...props
     } = this.props
 
     return (
-      <Downshift defaultSelectedItem={defaultSelectedItem} {...props}>
+      <Downshift initialSelectedItem={initialSelectedItem} {...props}>
         {({
           isOpen: isShown,
           inputValue,

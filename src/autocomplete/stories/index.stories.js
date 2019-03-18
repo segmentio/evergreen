@@ -129,7 +129,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
       <Autocomplete onChange={handleChange} items={items}>
         {({
           getInputProps,
-          getButtonProps,
+          getToggleButtonProps,
           getRef,
           inputValue,
           toggleMenu
@@ -140,7 +140,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
               value={inputValue}
               {...getInputProps()}
             />
-            <Button onClick={toggleMenu} {...getButtonProps()}>
+            <Button onClick={toggleMenu} {...getToggleButtonProps()}>
               Trigger
             </Button>
           </Box>

@@ -47,7 +47,7 @@
     "arrify": "^1.0.1",
     "classnames": "^2.2.6",
     "dom-helpers": "^3.2.1",
-    "downshift": "^1.31.16",
+    "downshift": "^3.2.10",
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
     "lodash.debounce": "^4.0.8",
