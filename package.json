@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
-    "@blueprintjs/icons": "^3.2.0",
+    "@blueprintjs/icons": "^3.6.0",
     "arrify": "^1.0.1",
     "classnames": "^2.2.6",
     "dom-helpers": "^3.2.1",
