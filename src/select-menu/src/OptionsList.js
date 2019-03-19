@@ -13,7 +13,9 @@ import Option from './Option'
  * @param options <Array[String]> - ['label', 'label2', ...]
  * @param input <String>
  */
-const fuzzyFilter = (options, input) => fuzzaldrin.filter(options, input)
+const fuzzyFilter = (options, input, { key }) => {
+  return fuzzaldrin.filter(options, input, { key })
+}
 
 /**
  * This is the default item renderer of options
@@ -62,7 +64,6 @@ export default class OptionsList extends PureComponent {
     onFilterChange: () => {},
     selected: [],
     renderItem: itemRenderer,
-    optionsFilter: fuzzyFilter,
     filterPlaceholder: 'Filter...',
     filterIcon: 'search',
     defaultSearchValue: ''
@@ -114,14 +115,18 @@ export default class OptionsList extends PureComponent {
     const { optionsFilter } = this.props
     const { searchValue } = this.state
 
-    return searchValue.trim() === ''
-      ? options // Return if no search query
-      : optionsFilter(
-          options.map(item => item.labelInList || item.label),
-          searchValue
-        ).map(name =>
-          options.find(item => item.labelInList === name || item.label === name)
-        )
+    if (searchValue.trim() === '') {
+      return options
+    }
+
+    // Preserve backwards compatibility with allowing custom filters, which accept array of strings
+    if (typeof optionsFilter === 'function') {
+      return optionsFilter(options.map(item => item.label), searchValue).map(
+        name => options.find(item => item.label === name)
+      )
+    }
+
+    return fuzzyFilter(options, searchValue, { key: 'label' })
   }
 
   getCurrentIndex = () => {
