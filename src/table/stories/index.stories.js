@@ -43,7 +43,7 @@ storiesOf('Components|Lists & Tables/Table', module)
     </Box>
   ))
   .add('Editable Table offset test ', () => (
-    <Box padding={24} paddingTop={800} height="100vh">
+    <Box padding={24} height="100vh">
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
