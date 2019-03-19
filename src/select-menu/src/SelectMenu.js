@@ -26,7 +26,7 @@ export default class SelectMenu extends PureComponent {
 
     /**
      * The options to show in the menu.
-     * [{ label: String, value: String | Number, labelInList?: String }]
+     * [{ label: String, value: String | Number }]
      */
     options: PropTypes.arrayOf(OptionShapePropType),
 

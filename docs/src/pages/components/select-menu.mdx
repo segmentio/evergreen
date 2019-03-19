@@ -24,7 +24,6 @@ Pass an array to the `selected` prop to select more items.
 const options = [
   {
     label: 'String',
-    labelInList: 'Optional label to appear in list',
     value: 'String or Number'
   }
 ]
@@ -234,7 +233,7 @@ As users click on selected values to remove them, you can update state.
 
 ## onFilterChange example
 
-This example shows basic usage with onFocusChange. 
+This example shows basic usage with onFocusChange.
 
 ```jsx
 <Component initialState={{ selected: null }}>
@@ -257,7 +256,7 @@ This example shows basic usage with onFocusChange.
     </SelectMenu>
     </Pane>
   )}
-  
+
 </Component>
 ```
 
@@ -281,7 +280,7 @@ This example shows basic usage for disabling some options. Options that are disa
     </SelectMenu>
     </Pane>
   )}
-  
+
 </Component>
 ```
 ## Custom Title Example
@@ -317,7 +316,7 @@ This example shows how one should use titleView to pass in a custom title.
               height={24}
               onClick={close}
             />
-          </Pane>             
+          </Pane>
         )
       }}
       options={
@@ -330,7 +329,7 @@ This example shows how one should use titleView to pass in a custom title.
     </SelectMenu>
     </Pane>
   )}
-  
+
 </Component>
 ```
 
