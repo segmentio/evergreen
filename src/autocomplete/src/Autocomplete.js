@@ -212,8 +212,8 @@ export default class Autocomplete extends PureComponent {
           inputValue,
           getItemProps,
           selectedItem,
-          selectItemAtIndex,
           highlightedIndex,
+          selectItemAtIndex,
           getRootProps,
           ...restDownshiftProps
         }) => (
@@ -234,9 +234,7 @@ export default class Autocomplete extends PureComponent {
                   inputValue,
                   getItemProps,
                   selectedItem,
-                  highlightedIndex: this.props.items.includes(selectedItem)
-                    ? this.props.items.indexOf(selectedItem)
-                    : 0,
+                  highlightedIndex,
                   selectItemAtIndex
                 })
               }}
@@ -254,9 +252,7 @@ export default class Autocomplete extends PureComponent {
                   },
                   inputValue,
                   selectedItem,
-                  highlightedIndex: this.props.items.includes(selectedItem)
-                    ? this.props.items.indexOf(selectedItem)
-                    : 0,
+                  highlightedIndex,
                   selectItemAtIndex,
                   ...restDownshiftProps
                 })
