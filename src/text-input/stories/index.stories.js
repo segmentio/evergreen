@@ -138,69 +138,62 @@ storiesOf('Components|Text Inputs & File Uploading/Text Input', module)
       </Manager>
     </Box>
   ))
-  .add('Settings example', () => {
-    return (
-      <Pane
-        background="tint1"
-        padding={40}
-        height="100vh"
+  .add('Settings example', () => (
+    <Pane background="tint1" padding={40} height="100vh" boxSizing="border-box">
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Card
+        elevation={1}
+        backgroundColor="white"
+        width={640}
         boxSizing="border-box"
+        marginX="auto"
+        padding={48}
       >
-        {(() => {
-          document.body.style.margin = '0'
-          document.body.style.height = '100vh'
-        })()}
-        <Card
-          elevation={1}
-          backgroundColor="white"
-          width={640}
-          boxSizing="border-box"
-          marginX="auto"
-          padding={48}
+        <Pane is="header" marginBottom={32}>
+          <Heading id="general-settings" size={700} marginBottom={8}>
+            General Settings
+          </Heading>
+          <Text color="muted" size={400}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </Text>
+        </Pane>
+        <TextInputField
+          value="Workspace Prod"
+          required
+          label="Workspace name"
+        />
+        <TextInputField
+          required
+          type="email"
+          label="Billing email"
+          description="We’ll send invoices and billing-related notifications to you here."
+          value="some-billing@email.com"
+        />
+        <TextInputField
+          id="ids-are-optional"
+          label="Workspace ID"
+          value="lgJ4AFjLN5"
+          disabled
+          description="This is your workspace's auto-generated unique identifier."
+          hint="You are not able to change this."
+        />
+        <Button
+          intent="success"
+          appearance="primary"
+          marginTop={32}
+          display="flex"
         >
-          <Pane is="header" marginBottom={32}>
-            <Heading id="general-settings" size={700} marginBottom={8}>
-              General Settings
-            </Heading>
-            <Text color="muted" size={400}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Text>
-          </Pane>
-          <TextInputField
-            value="Workspace Prod"
-            required
-            label="Workspace name"
-          />
-          <TextInputField
-            required
-            type="email"
-            label="Billing email"
-            description="We’ll send invoices and billing-related notifications to you here."
-            value="some-billing@email.com"
-          />
-          <TextInputField
-            id="ids-are-optional"
-            label="Workspace ID"
-            value="lgJ4AFjLN5"
-            disabled
-            description="This is your workspace's auto-generated unique identifier."
-            hint="You are not able to change this."
-          />
-          <Button
-            intent="success"
-            appearance="primary"
-            marginTop={32}
-            display="flex"
-          >
-            Save Changes
+          Save Changes
+        </Button>
+        <Pane paddingTop={32} marginTop={32} marginBottom={-8} borderTop>
+          <Button intent="danger" iconBefore="error">
+            Delete Your Workspace...
           </Button>
-          <Pane paddingTop={32} marginTop={32} marginBottom={-8} borderTop>
-            <Button intent="danger" iconBefore="error">
-              Delete Your Workspace...
-            </Button>
-          </Pane>
-        </Card>
-      </Pane>
-    )
-  })
+        </Pane>
+      </Card>
+    </Pane>
+  ))
