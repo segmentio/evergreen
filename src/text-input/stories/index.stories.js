@@ -28,7 +28,7 @@ class Manager extends React.Component {
   }
 }
 
-storiesOf('text-input', module)
+storiesOf('Components|Text Inputs & File Uploading/Text Input', module)
   .add('TextInput', () => (
     <div>
       {['default', 'neutral'].map(appearance => (

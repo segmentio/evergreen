@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react'
+import { withKnobs, boolean, number, select } from '@storybook/addon-knobs'
 import React from 'react'
 import Box from 'ui-box'
 import Component from '@reactions/component'
@@ -7,7 +8,11 @@ import { Heading } from '../../typography'
 import { Pane } from '../../layers'
 import { SegmentedControl } from '../../segmented-control'
 
-const buttonsStory = storiesOf('buttons', module)
+const buttonsStory = storiesOf(
+  'Components|Buttons & Atomic Elements/Buttons',
+  module
+)
+buttonsStory.addDecorator(withKnobs)
 
 buttonsStory.add('Common', () => (
   <Box padding={40}>
@@ -207,68 +212,59 @@ buttonsStory.add('Button types', () => (
           />
           <Heading marginTop="default">Default Appearance</Heading>
           <Box marginTop={12}>
-            <Button height={state.value} marginRight={16}>
-              Default
-            </Button>
-            <Button height={state.value} marginRight={16} intent="success">
-              Success
-            </Button>
-            <Button height={state.value} marginRight={16} intent="warning">
-              Warning
-            </Button>
-            <Button height={state.value} intent="danger">
-              Danger
-            </Button>
+            {['default', 'success', 'warning', 'danger'].map(intent => (
+              <Button
+                key={intent}
+                intent={intent}
+                marginRight={16}
+                disabled={boolean('Disabled', false)}
+                isLoading={boolean('isLoading', false)}
+                isActive={boolean('isActive', false)}
+                height={select('Height', ['24', '32', '40'], state.value)}
+                paddingBottom={number('Padding Bottom', '0')}
+                paddingTop={number('Padding Top', '0')}
+              >
+                {intent.charAt(0).toUpperCase() + intent.slice(1)}
+              </Button>
+            ))}
           </Box>
           <Heading marginTop="default">Primary Appearance</Heading>
           <Box marginTop={12}>
-            <Button height={state.value} appearance="primary" marginRight={16}>
-              Default
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              marginRight={16}
-              intent="success"
-            >
-              Success
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button height={state.value} appearance="primary" intent="danger">
-              Danger
-            </Button>
+            {['default', 'success', 'warning', 'danger'].map(intent => (
+              <Button
+                key={intent}
+                intent={intent}
+                appearance="primary"
+                marginRight={16}
+                disabled={boolean('Disabled', false)}
+                isLoading={boolean('isLoading', false)}
+                isActive={boolean('isActive', false)}
+                height={select('Height', ['24', '32', '40'], state.value)}
+                paddingBottom={number('Padding Bottom', '0')}
+                paddingTop={number('Padding Top', '0')}
+              >
+                {intent.charAt(0).toUpperCase() + intent.slice(1)}
+              </Button>
+            ))}
           </Box>
           <Heading marginTop="default">Minimal Appearance</Heading>
           <Box marginTop={12}>
-            <Button height={state.value} appearance="minimal" marginRight={16}>
-              Default
-            </Button>
-            <Button
-              height={state.value}
-              appearance="minimal"
-              marginRight={16}
-              intent="success"
-            >
-              Success
-            </Button>
-            <Button
-              height={state.value}
-              appearance="minimal"
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button height={state.value} appearance="minimal" intent="danger">
-              Danger
-            </Button>
+            {['default', 'success', 'warning', 'danger'].map(intent => (
+              <Button
+                key={intent}
+                intent={intent}
+                appearance="minimal"
+                marginRight={16}
+                disabled={boolean('Disabled', false)}
+                isLoading={boolean('isLoading', false)}
+                isActive={boolean('isActive', false)}
+                height={select('Height', ['24', '32', '40'], state.value)}
+                paddingBottom={number('Padding Bottom', '0')}
+                paddingTop={number('Padding Top', '0')}
+              >
+                {intent.charAt(0).toUpperCase() + intent.slice(1)}
+              </Button>
+            ))}
           </Box>
         </React.Fragment>
       )}
@@ -287,114 +283,80 @@ buttonsStory.add('IconButton', () => (
     <Pane borderRight paddingRight={24} marginRight={24} float="left">
       <Heading marginBottom={16}>Height 32</Heading>
       <Box float="left" marginRight={16}>
-        <IconButton marginBottom={16} icon="cog" />
-        <IconButton marginBottom={16} icon="plus" />
-        <IconButton marginBottom={16} icon="filter" />
-        <IconButton marginBottom={16} icon="edit" />
-        <IconButton marginBottom={16} icon="refresh" />
+        {['cog', 'plus', 'filter', 'edit', 'refresh'].map(icon => (
+          <IconButton key={icon} marginBottom={16} icon={icon} />
+        ))}
       </Box>
       <Box float="left">
-        <IconButton marginBottom={16} appearance="minimal" icon="cross" />
-        <IconButton marginBottom={16} appearance="minimal" icon="more" />
-        <IconButton marginBottom={16} appearance="minimal" icon="plus" />
-        <IconButton marginBottom={16} appearance="minimal" icon="edit" />
-        <IconButton marginBottom={16} appearance="minimal" icon="search" />
+        {['cross', 'more', 'plus', 'edit', 'search'].map(icon => (
+          <IconButton
+            key={icon}
+            marginBottom={16}
+            appearance="minimal"
+            icon={icon}
+          />
+        ))}
       </Box>
     </Pane>
     <Pane float="left">
       <Heading marginBottom={16}>Height 24</Heading>
       <Box float="left" marginRight={16}>
-        <IconButton marginBottom={16} height={24} icon="cog" />
-        <IconButton marginBottom={16} height={24} icon="plus" />
-        <IconButton marginBottom={16} height={24} icon="filter" />
-        <IconButton marginBottom={16} height={24} icon="edit" />
-        <IconButton marginBottom={16} height={24} icon="chevron-left" />
-        <IconButton marginBottom={16} height={24} icon="chevron-right" />
+        {['cog', 'plus', 'filter', 'edit', 'chevron-left', 'chevron-right'].map(
+          icon => (
+            <IconButton key={icon} marginBottom={16} height={24} icon={icon} />
+          )
+        )}
       </Box>
       <Box float="left" marginRight={16}>
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon="cross"
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon="more"
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon="plus"
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon="trash"
-          intent="danger"
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon="filter"
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon="edit"
-        />
+        {['cross', 'more', 'plus', 'trash', 'filter', 'edit'].map(icon => (
+          <IconButton
+            key={icon}
+            marginBottom={16}
+            appearance="minimal"
+            height={24}
+            icon={icon}
+          />
+        ))}
       </Box>
       <Box float="left">
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon="clipboard"
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon="calendar"
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon="lock"
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon="unlock"
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon="notifications"
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon="manual"
-        />
+        {['trash', 'calendar', 'lock', 'unlock', 'notifications', 'manual'].map(
+          icon => (
+            <IconButton
+              key={icon}
+              marginBottom={16}
+              appearance="minimal"
+              height={24}
+              icon={icon}
+            />
+          )
+        )}
       </Box>
     </Pane>
   </Box>
 ))
 
-buttonsStory.add('Button presets', () => (
+buttonsStory.add('BackButton', () => (
   <Box padding={40}>
-    <BackButton>Back</BackButton>
+    <BackButton
+      intent={select(
+        'Intent',
+        ['none', 'success', 'warning', 'danger'],
+        'none'
+      )}
+      appearance={select(
+        'Appearance',
+        ['default', 'primary', 'minimal'],
+        'default'
+      )}
+      disabled={boolean('Disabled', false)}
+      isLoading={boolean('isLoading', false)}
+      isActive={boolean('isActive', false)}
+      height={select('Height', ['24', '32', '40'], '32')}
+      paddingBottom={number('Padding Bottom', '0')}
+      paddingTop={number('Padding Top', '0')}
+    >
+      Back
+    </BackButton>
   </Box>
 ))
 

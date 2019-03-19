@@ -79,7 +79,7 @@ const controlUsage = (
   </Popover>
 )
 
-storiesOf('popover', module)
+storiesOf('Components|Selects & Dropdown Memus/Popover', module)
   .add('positions', () => (
     <Box
       display="flex"

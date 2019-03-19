@@ -3,7 +3,7 @@ import React from 'react'
 import Box from 'ui-box'
 import { Spinner } from '..'
 
-storiesOf('spinner', module)
+storiesOf('Components|Feedback Indicators/Spinner', module)
   .add('Spinner', () => (
     <Box padding={40}>
       {(() => {

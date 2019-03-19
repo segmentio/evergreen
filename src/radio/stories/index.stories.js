@@ -5,7 +5,7 @@ import Component from '@reactions/component'
 import { Radio, RadioGroup } from '..'
 import { Heading } from '../../typography'
 
-storiesOf('radio', module)
+storiesOf('Components|Toggles/Radio', module)
   .add('RadioGroup', () => (
     <Box padding={40}>
       {(() => {

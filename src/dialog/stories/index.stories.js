@@ -27,7 +27,7 @@ const comboboxItems = starWarsNames.all.sort((a, b) => {
   return 0
 })
 
-storiesOf('dialog', module)
+storiesOf('Components|Overlays/Dialog', module)
   .add('Dialog', () => (
     <Box padding={40}>
       {(() => {

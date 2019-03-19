@@ -13,7 +13,7 @@ const baseStyles = {
   display: 'block'
 }
 
-storiesOf('badges', module)
+storiesOf('Components|Buttons & Atomic Elements/Badges', module)
   .add('Badge', () => (
     <ThemeConsumer>
       {theme => (

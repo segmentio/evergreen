@@ -34,7 +34,7 @@ function previewTextComponent(Comp, sizes = TextSizes, props) {
   )
 }
 
-storiesOf('typography', module)
+storiesOf('Foundation|Typography', module)
   .add('Text', () => <div>{previewTextComponent(Text)}</div>)
   .add('Link', () => (
     <Box padding={40}>

@@ -36,7 +36,7 @@ class TabManager extends React.PureComponent {
 
 const tabs = ['Traits', 'Event History', 'Identities']
 
-storiesOf('tabs', module)
+storiesOf('Components|Buttons & Atomic Elements/Tabs', module)
   .add('Tab', () => (
     <Box padding={40}>
       {(() => {

@@ -14,7 +14,7 @@ const dynamicHeights = range(500).map(() => {
   return Math.max(Math.ceil(Math.random() * 100), 32)
 })
 
-storiesOf('table', module)
+storiesOf('Components|Lists & Tables/Table', module)
   .add('Advanced Sortable Table', () => (
     <Box padding={24}>
       {(() => {

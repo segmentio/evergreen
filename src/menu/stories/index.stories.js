@@ -8,7 +8,7 @@ import { UnorderedList, ListItem } from '../../typography'
 import { Popover } from '../../popover'
 import { Position } from '../../constants'
 
-storiesOf('menu', module)
+storiesOf('Components|Selects & Dropdown Memus/Menu', module)
   .add('dropdown', () => (
     <Box padding={40}>
       <Popover

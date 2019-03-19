@@ -11,7 +11,7 @@ import { Dialog } from '../../dialog'
 import { TextInput } from '../../text-input'
 import Menu from '../../menu/src/Menu'
 
-storiesOf('side-sheet', module)
+storiesOf('Components|Overlays/Side Sheet', module)
   .add('title + sub title + tabs', () => (
     <Box padding={40}>
       {(() => {

@@ -6,7 +6,7 @@ import { Text } from '../../typography'
 import { Position } from '../../constants'
 import { Button } from '../../buttons'
 
-storiesOf('tooltip', module)
+storiesOf('Components|Overlays/Tooltip', module)
   .add('Tooltip', () => (
     <Box padding={40}>
       {(() => {

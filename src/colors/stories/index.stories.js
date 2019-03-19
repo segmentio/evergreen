@@ -3,7 +3,7 @@ import React from 'react'
 import ColorExamples from './ColorExamples'
 import ColorMapping from './ColorMapping'
 
-storiesOf('colors', module)
+storiesOf('Foundation|Colors', module)
   .add('overview', () => (
     <div style={{ margin: 40 }}>
       <ColorExamples />

@@ -3,7 +3,7 @@ import React from 'react'
 import Box from 'ui-box'
 import { Checkbox } from '..'
 
-storiesOf('checkbox', module).add('Checkbox', () => (
+storiesOf('Components|Toggles/Checkbox', module).add('Checkbox', () => (
   <Box padding={40}>
     <Checkbox label="Checkbox default" />
     <Checkbox checked label="Checkbox checked" />

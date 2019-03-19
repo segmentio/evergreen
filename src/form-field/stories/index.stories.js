@@ -8,7 +8,7 @@ import {
   FormFieldValidationMessage
 } from '..'
 
-storiesOf('form-field', module)
+storiesOf('Components|Utilies & Helpers/Form Field', module)
   .add('FormField', () => (
     <Box padding={40}>
       {(() => {

@@ -13,7 +13,7 @@ const cardStyle = {
   alignItems: 'center'
 }
 
-storiesOf('layers', module)
+storiesOf('Foundation|Layout Primitives', module)
   .add('Pane', () => (
     <ThemeConsumer>
       {theme => (

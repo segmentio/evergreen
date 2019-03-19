@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import { Switch } from '..'
 import { Heading } from '../../typography'
 
-storiesOf('switch', module).add('Switch', () => (
+storiesOf('Components|Toggles/Sswitch', module).add('Switch', () => (
   <Box padding={40}>
     {(() => {
       document.body.style.margin = '0'

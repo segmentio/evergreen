@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import { Icon, IconNames } from '..'
 import { Heading, Paragraph, Text, Link } from '../../typography'
 
-storiesOf('icon', module).add('Icon', () => (
+storiesOf('Foundation|Icons', module).add('Icon', () => (
   <div>
     <Box paddingLeft={40}>
       <Heading size={800}>Icons</Heading>
