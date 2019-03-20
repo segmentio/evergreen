@@ -244,15 +244,13 @@ export default class CornerDialog extends PureComponent {
                 <Heading is="h4" size={600} flex="1">
                   {title}
                 </Heading>
-                {hasClose ? (
+                {hasClose && (
                   <IconButton
                     height={32}
                     icon="cross"
                     appearance="minimal"
                     onClick={this.handleClose}
                   />
-                ) : (
-                  <IconButton height={32} icon="blank" appearance="minimal" />
                 )}
               </Pane>
 
