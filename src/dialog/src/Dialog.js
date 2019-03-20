@@ -306,14 +306,12 @@ class Dialog extends React.Component {
                 <Heading is="h4" size={600} flex="1">
                   {title}
                 </Heading>
-                {hasClose ? (
+                {hasClose && (
                   <IconButton
                     appearance="minimal"
                     icon="cross"
                     onClick={() => onCancel(close)}
                   />
-                ) : (
-                  <IconButton appearance="minimal" icon="blank" />
                 )}
               </Pane>
             )}
