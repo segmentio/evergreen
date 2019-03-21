@@ -2,6 +2,12 @@ const Path = require('path')
 
 module.exports = {
   plugins: [
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://evergreen.segment.com`
+      }
+    },
     `gatsby-plugin-favicon`,
     {
       resolve: `gatsby-mdx`,
