@@ -19,6 +19,7 @@
     "fuzzaldrin-plus": "^0.6.0",
     "gatsby": "^2.0.8",
     "gatsby-mdx": "^0.1.4",
+    "gatsby-plugin-canonical-urls": "^2.0.12",
     "gatsby-plugin-favicon": "^3.1.4",
     "gatsby-plugin-postcss": "^1.0.0",
     "gatsby-plugin-react-helmet": "next",
