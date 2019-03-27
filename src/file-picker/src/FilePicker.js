@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Button } from '../../buttons'
 import { TextInput } from '../../text-input'
+import safeInvoke from '../../lib/safe-invoke'
 
 export const CLASS_PREFIX = 'evergreen-file-picker'
 
@@ -150,15 +151,12 @@ export default class FilePicker extends PureComponent {
   }
 
   handleFileChange = e => {
-    const { onChange } = this.props
     // Firefox returns the same array instance each time for some reason
     const files = [...e.target.files]
 
     this.setState({ files })
 
-    if (onChange) {
-      onChange(files)
-    }
+    safeInvoke(this.props.onChange, files)
   }
 
   handleButtonClick = () => {
@@ -166,15 +164,17 @@ export default class FilePicker extends PureComponent {
   }
 
   handleBlur = e => {
-    const { onBlur } = this.props
     const { files } = this.state
 
     // Redux-form derives field value from bubbled onBlur event, which is fake here
-    if (e && e.stopPropagation) e.stopPropagation()
-    if (this.fileInput) this.fileInput.blur()
-
-    if (onBlur) {
-      onBlur(files)
+    if (e && e.stopPropagation) {
+      e.stopPropagation()
     }
+
+    if (this.fileInput) {
+      this.fileInput.blur()
+    }
+
+    safeInvoke(this.props.onBlur, files)
   }
 }
