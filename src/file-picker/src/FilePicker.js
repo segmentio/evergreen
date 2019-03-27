@@ -49,7 +49,12 @@ export default class FilePicker extends PureComponent {
     /**
      * Function called when onChange is fired
      */
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+
+    /**
+     * Function called when onBlur is fired
+     */
+    onBlur: PropTypes.func
   }
 
   constructor() {
@@ -120,6 +125,7 @@ export default class FilePicker extends PureComponent {
           height={height}
           flex={1}
           textOverflow="ellipsis"
+          onBlur={this.handleBlur}
         />
 
         <Button
@@ -131,6 +137,7 @@ export default class FilePicker extends PureComponent {
           height={height}
           flexShrink={0}
           type="button"
+          onBlur={this.handleBlur}
         >
           {buttonText}
         </Button>
@@ -156,5 +163,18 @@ export default class FilePicker extends PureComponent {
 
   handleButtonClick = () => {
     this.fileInput.click()
+  }
+
+  handleBlur = e => {
+    const { onBlur } = this.props
+    const { files } = this.state
+
+    // Redux-form derives field value from bubbled onBlur event, which is fake here
+    e.stopPropagation()
+    this.fileInput.blur()
+
+    if (onBlur) {
+      onBlur(files)
+    }
   }
 }
