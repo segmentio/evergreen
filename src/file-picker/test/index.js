@@ -69,6 +69,21 @@ test('calls onChange', t => {
   t.deepEqual(onChange.firstCall.args[0], e.target.files)
 })
 
+test('calls onBlur', t => {
+  const onBlur = sinon.spy()
+  const component = shallow(<FilePicker onBlur={onBlur} />)
+  const e = {
+    target: {
+      files: [{ name: 'data.json' }]
+    }
+  }
+
+  component.find(`.${CLASS_PREFIX}-file-input`).simulate('change', e)
+  component.find(`.${CLASS_PREFIX}-text-input`).simulate('blur')
+  t.true(onBlur.calledOnce)
+  t.deepEqual(component.state().files, e.target.files)
+})
+
 test('handles 1 file selected', t => {
   const component = shallow(<FilePicker />)
   const e = {
