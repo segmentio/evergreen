@@ -164,6 +164,7 @@ export default class FilePicker extends PureComponent {
   }
 
   handleBlur = e => {
+    if (e.target) e.target.files = this.state.files
     safeInvoke(this.props.onBlur, e)
   }
 }
