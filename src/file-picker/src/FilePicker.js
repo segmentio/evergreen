@@ -164,17 +164,6 @@ export default class FilePicker extends PureComponent {
   }
 
   handleBlur = e => {
-    const { files } = this.state
-
-    // Redux-form derives field value from bubbled onBlur event, which is fake here
-    if (e && e.stopPropagation) {
-      e.stopPropagation()
-    }
-
-    if (this.fileInput) {
-      this.fileInput.blur()
-    }
-
-    safeInvoke(this.props.onBlur, files)
+    safeInvoke(this.props.onBlur, e)
   }
 }
