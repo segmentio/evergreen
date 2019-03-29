@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Button } from '../../buttons'
 import { TextInput } from '../../text-input'
+import safeInvoke from '../../lib/safe-invoke'
 
 export const CLASS_PREFIX = 'evergreen-file-picker'
 
@@ -49,7 +50,12 @@ export default class FilePicker extends PureComponent {
     /**
      * Function called when onChange is fired
      */
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+
+    /**
+     * Function called when onBlur is fired
+     */
+    onBlur: PropTypes.func
   }
 
   constructor() {
@@ -120,6 +126,7 @@ export default class FilePicker extends PureComponent {
           height={height}
           flex={1}
           textOverflow="ellipsis"
+          onBlur={this.handleBlur}
         />
 
         <Button
@@ -131,6 +138,7 @@ export default class FilePicker extends PureComponent {
           height={height}
           flexShrink={0}
           type="button"
+          onBlur={this.handleBlur}
         >
           {buttonText}
         </Button>
@@ -143,18 +151,20 @@ export default class FilePicker extends PureComponent {
   }
 
   handleFileChange = e => {
-    const { onChange } = this.props
     // Firefox returns the same array instance each time for some reason
     const files = [...e.target.files]
 
     this.setState({ files })
 
-    if (onChange) {
-      onChange(files)
-    }
+    safeInvoke(this.props.onChange, files)
   }
 
   handleButtonClick = () => {
     this.fileInput.click()
+  }
+
+  handleBlur = e => {
+    if (e && e.target) e.target.files = this.state.files
+    safeInvoke(this.props.onBlur, e)
   }
 }
