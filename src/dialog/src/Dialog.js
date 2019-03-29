@@ -89,6 +89,11 @@ class Dialog extends React.Component {
     hasCancel: PropTypes.bool,
 
     /**
+     * When true, the close button is shown
+     */
+    hasClose: PropTypes.bool,
+
+    /**
      * Function that will be called when the exit transition is complete.
      */
     onCloseComplete: PropTypes.func,
@@ -188,6 +193,7 @@ class Dialog extends React.Component {
   static defaultProps = {
     isShown: false,
     hasHeader: true,
+    hasClose: true,
     hasFooter: true,
     hasCancel: true,
     intent: 'none',
@@ -229,6 +235,7 @@ class Dialog extends React.Component {
       topOffset,
       sideOffset,
       hasHeader,
+      hasClose,
       hasFooter,
       hasCancel,
       onCloseComplete,
@@ -299,11 +306,13 @@ class Dialog extends React.Component {
                 <Heading is="h4" size={600} flex="1">
                   {title}
                 </Heading>
-                <IconButton
-                  appearance="minimal"
-                  icon="cross"
-                  onClick={() => onCancel(close)}
-                />
+                {hasClose && (
+                  <IconButton
+                    appearance="minimal"
+                    icon="cross"
+                    onClick={() => onCancel(close)}
+                  />
+                )}
               </Pane>
             )}
 

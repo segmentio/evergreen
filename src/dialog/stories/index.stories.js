@@ -173,6 +173,29 @@ storiesOf('dialog', module)
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
+              hasClose={false}
+              shouldCloseOnOverlayClick={false}
+              shouldCloseOnEscapePress={false}
+              onCloseComplete={hide}
+            >
+              {({ close }) => (
+                <Box>
+                  Modal Dialog
+                  <Button marginTop={16} onClick={close}>
+                    Self Managed Close
+                  </Button>
+                </Box>
+              )}
+            </Dialog>
+            <Button onClick={show}>Show Modal Dialog without Close</Button>
+          </Box>
+        )}
+      </DialogManager>
+      <DialogManager>
+        {({ isShown, show, hide }) => (
+          <Box marginBottom={16}>
+            <Dialog
+              isShown={isShown}
               title="Dialog with Internal Scrolling"
               onCloseComplete={hide}
             >
