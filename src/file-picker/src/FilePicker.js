@@ -48,6 +48,20 @@ export default class FilePicker extends PureComponent {
     height: PropTypes.number,
 
     /**
+     * The placeholder attribute of the input.
+     */
+    placeholder: PropTypes.string,
+
+    /**
+     * Button labels in different states of the component.
+     */
+    buttonLabels: PropTypes.shape({
+      selectLabel: PropTypes.string,
+      replaceFileLabel: PropTypes.string,
+      replaceFilesLabel: PropTypes.string
+    }),
+
+    /**
      * Function called when onChange is fired
      */
     onChange: PropTypes.func,
@@ -75,6 +89,8 @@ export default class FilePicker extends PureComponent {
       disabled,
       capture,
       height,
+      placeholder,
+      buttonLabels,
       onChange, // Remove onChange from props
       ...props
     } = this.props
@@ -91,11 +107,22 @@ export default class FilePicker extends PureComponent {
 
     let buttonText
     if (files.length === 0) {
-      buttonText = 'Select file'
+      buttonText =
+        buttonLabels === undefined || buttonLabels.selectLabel === undefined
+          ? 'Select file'
+          : buttonLabels.selectLabel
     } else if (files.length === 1) {
-      buttonText = 'Replace file'
+      buttonText =
+        buttonLabels === undefined ||
+        buttonLabels.replaceFileLabel === undefined
+          ? 'Replace file'
+          : buttonLabels.replaceFileLabel
     } else {
-      buttonText = 'Replace files'
+      buttonText =
+        buttonLabels === undefined ||
+        buttonLabels.replaceFilesLabel === undefined
+          ? 'Replace files'
+          : buttonLabels.replaceFilesLabel
     }
 
     return (
@@ -119,7 +146,9 @@ export default class FilePicker extends PureComponent {
           className={`${CLASS_PREFIX}-text-input`}
           readOnly
           value={inputValue}
-          placeholder="Select a file to upload…"
+          placeholder={
+            placeholder === undefined ? 'Select a file to upload…' : placeholder
+          }
           // There's a weird specifity issue when there's two differently sized inputs on the page
           borderTopRightRadius="0 !important"
           borderBottomRightRadius="0 !important"
