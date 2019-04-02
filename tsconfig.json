@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+      "outDir": "./dist/",
+      "sourceMap": true,
+      "inlineSourceMap": true,
+      "noImplicitAny": true,
+      "module": "commonjs",
+      "target": "es5",
+      "jsx": "react",
+      "rootDir": "src"
+  },
+  "include": [
+      "./src/**/*"
+  ]
+}

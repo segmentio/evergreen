@@ -1,8 +1,9 @@
 import { css } from 'glamor'
 import scales from '../foundational-styles/scales'
 import colors from '../foundational-styles/colors'
+import { IntentType } from '../../../../constants'
 
-const getTrimStyle = intent => ({
+const getTrimStyle = (intent: IntentType) => ({
   '&:before': {
     content: '""',
     width: 3,
@@ -22,7 +23,15 @@ const getTrimStyle = intent => ({
  * @param {boolean} props.hasTrim - when true, the alert has a trim.
  * @return {Object} { className, ...themedProps }
  */
-const getAlertProps = ({ appearance, intent, hasTrim }) => {
+const getAlertProps = ({
+  appearance,
+  intent,
+  hasTrim
+}: {
+  appearance: string
+  intent: IntentType
+  hasTrim: boolean
+}) => {
   const trimClassName = hasTrim ? css(getTrimStyle(intent)).toString() : ''
 
   switch (appearance) {

@@ -5,7 +5,7 @@ import scales from '../foundational-styles/scales'
  * @param {string} appearance - default, minimal.
  * @return {string} the themd properties.
  */
-const getCodeProps = appearance => {
+const getCodeProps = (appearance: string) => {
   switch (appearance) {
     case 'minimal':
       return {}

@@ -1,4 +1,4 @@
-import { Intent } from '../../../../constants'
+import { Intent, IntentType } from '../../../../constants'
 import themedProperty from '../utils/themedProperty'
 import { colors, elevations } from '../foundational-styles'
 import { fontFamilies, headings, paragraph, text } from '../typography'
@@ -11,7 +11,7 @@ import { fontFamilies, headings, paragraph, text } from '../typography'
  * @param {number} height
  * @return {number} border radius
  */
-const getBorderRadiusForControlHeight = height => {
+const getBorderRadiusForControlHeight = (height: number) => {
   if (height <= 40) return 3
   return 4
 }
@@ -21,7 +21,7 @@ const getBorderRadiusForControlHeight = height => {
  * @param {number} height
  * @return {number} text size of the control height.
  */
-const getTextSizeForControlHeight = height => {
+const getTextSizeForControlHeight = (height: number) => {
   if (height <= 24) return 300
   if (height <= 28) return 300
   if (height <= 32) return 300
@@ -35,7 +35,7 @@ const getTextSizeForControlHeight = height => {
  * @param {number} height
  * @return {number} icon size
  */
-const getIconSizeForButton = height => {
+const getIconSizeForButton = (height: number) => {
   if (height <= 28) return 12
   if (height <= 32) return 12
   if (height <= 40) return 16
@@ -52,7 +52,7 @@ const getIconSizeForSelect = getIconSizeForButton
  * @param {number} height
  * @return {number} icon size
  */
-const getIconSizeForIconButton = height => {
+const getIconSizeForIconButton = (height: number) => {
   if (height <= 28) return 12
   if (height <= 32) return 14 // Slightly bigger than getIconSizeForButton
   if (height <= 40) return 16
@@ -65,7 +65,7 @@ const getIconSizeForIconButton = height => {
  * @param {string} background
  * @return {string} background property.
  */
-const getBackground = background => {
+const getBackground = (background: string) => {
   /**
    * Return one of theme presets or the original value.
    */
@@ -77,7 +77,7 @@ const getBackground = background => {
  * @param {string} level — level of elevation.
  * @return {string} elevation box-shadow.
  */
-const getElevation = level => {
+const getElevation = (level: number) => {
   /**
    * There is no fallback, undefined will be returned.
    */
@@ -89,7 +89,7 @@ const getElevation = level => {
  * @param {string} color
  * @return {string} color of the icon
  */
-const getIconColor = color => {
+const getIconColor = (color: string) => {
   /**
    * Check if there is a preset in the theme for the icon color.
    */
@@ -101,7 +101,7 @@ const getIconColor = color => {
  * @param {Intent} intent
  * @return {Object} properties
  */
-const getIconForIntent = intent => {
+const getIconForIntent = (intent: IntentType) => {
   switch (intent) {
     case Intent.SUCCESS:
       return { icon: 'tick-circle', color: 'success' }
@@ -120,7 +120,7 @@ const getIconForIntent = intent => {
  * @param {number} size - 100–900. 500 is default.
  * @return {Object} heading style.
  */
-const getHeadingStyle = size => {
+const getHeadingStyle = (size: number) => {
   return themedProperty(headings, String(size))
 }
 
@@ -135,7 +135,7 @@ const getHeadingStyle = size => {
  * @param {number} size - 300–500. 400 is default.
  * @return {Object} text style.
  */
-const getTextStyle = size => {
+const getTextStyle = (size: number) => {
   return themedProperty(text, String(size))
 }
 
@@ -145,7 +145,7 @@ const getTextStyle = size => {
  * @param {number} size - 300–500. 400 is default.
  * @return {Object} text style.
  */
-const getParagraphStyle = size => {
+const getParagraphStyle = (size: number) => {
   return themedProperty(paragraph, String(size))
 }
 
@@ -154,7 +154,7 @@ const getParagraphStyle = size => {
  * @param {string} fontFamily
  * @return {string} font family
  */
-const getFontFamily = fontFamily => {
+const getFontFamily = (fontFamily: string) => {
   /**
    * Allow for passing in a custom fontFamily not in the theme.
    */
@@ -166,7 +166,7 @@ const getFontFamily = fontFamily => {
  * @param {string} fontFamily
  * @return {string} font family
  */
-const getTextColor = color => {
+const getTextColor = (color: string) => {
   /**
    * Allow for passing in a custom text color not in the theme.
    */

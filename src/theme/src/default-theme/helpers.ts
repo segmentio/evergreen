@@ -1,5 +1,5 @@
-import tinycolor from 'tinycolor2'
-import { Intent } from '../../../constants'
+import * as tinycolor from 'tinycolor2'
+import { Intent, IntentType } from '../../../constants'
 import colors from './foundational-styles/colors'
 
 /**
@@ -7,7 +7,7 @@ import colors from './foundational-styles/colors'
  * @param {String} bottom - color.
  * @return {String} CSS background propery.
  */
-const linearGradient = (top, bottom) => {
+const linearGradient = (top: string, bottom: string) => {
   return `linear-gradient(to bottom, ${top}, ${bottom})`
 }
 
@@ -15,7 +15,7 @@ const linearGradient = (top, bottom) => {
  * @param {Intent} intent
  * @return {String} color
  */
-const getTextColorForIntent = (intent, defaultColor) => {
+const getTextColorForIntent = (intent: IntentType, defaultColor?: string) => {
   switch (intent) {
     case Intent.SUCCESS:
       return colors.text.success
@@ -34,9 +34,9 @@ const getTextColorForIntent = (intent, defaultColor) => {
  * @param {Number} intensityMultiplier - Some colors need more darkening.
  */
 const getLinearGradientWithStates = (
-  startColor,
-  endColor,
-  intensityMultiplier = 1
+  startColor: string,
+  endColor: string,
+  intensityMultiplier: number = 1
 ) => {
   return {
     base: linearGradient(startColor, endColor),
@@ -64,7 +64,7 @@ const getLinearGradientWithStates = (
  * @param {Intent} intent - intent of the gradient.
  * @return {Object} { base, hover, active }
  */
-const getPrimaryButtonStylesForIntent = intent => {
+const getPrimaryButtonStylesForIntent = (intent: IntentType) => {
   switch (intent) {
     case Intent.SUCCESS: {
       const startColor = '#23C277'

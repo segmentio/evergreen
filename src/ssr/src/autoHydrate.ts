@@ -1,11 +1,16 @@
 import { hydrate as boxHydrate } from 'ui-box'
 import { rehydrate } from 'glamor'
 
+interface IHydration {
+  uiBoxCache?: ReadonlyArray<ReadonlyArray<[string, string]>>;
+  glamorIds?: string[];
+}
+
 /**
  * You shouldn't have to manually run this.
  * This is mainly an export for testing purposes.
  */
-export function hydrate(hydration) {
+export function hydrate(hydration: IHydration) {
   if (hydration.uiBoxCache) {
     boxHydrate(hydration.uiBoxCache)
   }

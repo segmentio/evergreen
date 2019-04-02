@@ -40,6 +40,6 @@ const defaultControlStyles = {
 }
 
 // Can't figure out to disable rule for xo linter.
-const ignore = null
+const ignore: any = null
 
 export { defaultControlStyles, ignore }

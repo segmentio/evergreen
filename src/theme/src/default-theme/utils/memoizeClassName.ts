@@ -20,12 +20,12 @@ import { css } from 'glamor'
  * @param {function} fn — function that return an appearance (object).
  * @return {string} a class name.
  */
-const memoizeClassName = fn => {
+const memoizeClassName = (fn: (...args: any[]) => any) => {
   // Memo will hold a list of string keys with string values (classNames).
-  const memo = {}
+  const memo: { [key: string]: string } = {}
 
   // Return the wrapped function.
-  return (...args) => {
+  return (...args: any[]): string => {
     // Create a key by joining all args.
     const key = args.join('_') || '__no_args__'
 
