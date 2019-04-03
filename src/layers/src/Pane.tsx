@@ -1,81 +1,33 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import Box from 'ui-box'
-import { withTheme } from '../../theme'
+import * as React from 'react'
+import Box, { BoxProps } from 'ui-box'
 
-const StringAndBoolPropType = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.bool
-])
+import { withTheme, PropsWithTheme } from '../../theme'
+import { AnyObject } from '../../types/helper'
 
-class Pane extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Box component as the base.
-     */
-    ...Box.propTypes,
+type Elevation = 0 | 1 | 2 | 3 | 4
+type Border = boolean | 'muted' | 'default'
+type BorderValues = boolean | 'muted' | 'extraMuted' | 'default'
 
-    /**
-     * Background property.
-     * `tint1`, `tint2` etc. from `theme.colors.background` are available.
-     */
-    background: PropTypes.string,
+interface IProps extends BoxProps {
+  /**
+   * Background property.
+   * `tint1`, `tint2` etc. from `theme.colors.background` are available.
+   */
+  background?: string
 
-    /**
-     * Elevation of the Pane.
-     * Values: 0, 1, 2, 3, 4.
-     */
-    elevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
+  elevation?: Elevation
+  hoverElevation?: Elevation
+  activeElevation?: Elevation
 
-    /**
-     * Elevation of the Pane on hover. Might get deprecated.
-     * Values: 0, 1, 2, 3, 4.
-     */
-    hoverElevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
+  border?: Border
+  borderTop?: BorderValues
+  borderBottom?: BorderValues
+  borderLeft?: BorderValues
+  borderRight?: BorderValues
+}
 
-    /**
-     * Elevation of the Pane on click. Might get deprecated.
-     * Values: 0, 1, 2, 3, 4.
-     */
-    activeElevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, muted, default.
-     */
-    border: StringAndBoolPropType,
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderTop: StringAndBoolPropType,
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderRight: StringAndBoolPropType,
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderBottom: StringAndBoolPropType,
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderLeft: StringAndBoolPropType,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
-  getHoverElevationStyle = (hoverElevation, css) => {
+class Pane extends React.PureComponent<PropsWithTheme<IProps>> {
+  getHoverElevationStyle = (hoverElevation: Elevation, css: AnyObject) => {
     const { theme } = this.props
     if (!Number.isInteger(hoverElevation)) return {}
 
@@ -91,7 +43,7 @@ class Pane extends PureComponent {
     }
   }
 
-  getActiveElevationStyle = (activeElevation, css) => {
+  getActiveElevationStyle = (activeElevation: Elevation, css: AnyObject) => {
     const { theme } = this.props
     if (!Number.isInteger(activeElevation)) return {}
 
@@ -104,9 +56,16 @@ class Pane extends PureComponent {
     }
   }
 
-  getBorderSideProperty = ({ borderSideProperty, border }) => {
+  getBorderSideProperty = ({
+    borderSideProperty,
+    border
+  }: {
+    borderSideProperty: BorderValues
+    border: Border
+  }) => {
     const { theme } = this.props
     if (
+      typeof borderSideProperty === 'string' &&
       Object.prototype.hasOwnProperty.call(
         theme.colors.border,
         borderSideProperty
@@ -123,7 +82,10 @@ class Pane extends PureComponent {
       return null
     }
 
-    if (Object.prototype.hasOwnProperty.call(theme.colors.border, border)) {
+    if (
+      typeof border === 'string' &&
+      Object.prototype.hasOwnProperty.call(theme.colors.border, border)
+    ) {
       return `1px solid ${theme.colors.border[border]}`
     }
 

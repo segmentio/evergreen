@@ -1,4 +1,5 @@
 import { css } from 'glamor'
+import { AnyFunction } from '../../../../types/helper'
 
 /**
  * Memoize a function that takes N number of strings as arguments and returns
@@ -20,7 +21,7 @@ import { css } from 'glamor'
  * @param {function} fn — function that return an appearance (object).
  * @return {string} a class name.
  */
-const memoizeClassName = (fn: (...args: any[]) => any) => {
+const memoizeClassName = (fn: AnyFunction) => {
   // Memo will hold a list of string keys with string values (classNames).
   const memo: { [key: string]: string } = {}
 
