@@ -1,14 +1,14 @@
 /* eslint react/no-array-index-key: 0, eqeqeq: 0, no-eq-null: 0 */
 import * as React from 'react'
 // import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 import {
   IconName,
   IconNames,
   IconSvgPaths16,
   IconSvgPaths20
 } from '@blueprintjs/icons'
-import { withTheme } from '../../theme'
+import { withTheme, PropsWithTheme } from '../../theme'
 import { AnyObject } from '../../types/helper'
 
 export { IconNames }
@@ -19,16 +19,15 @@ export { IconNames }
  * Refer to the LICENSE for BlueprintJS here: https://github.com/palantir/blueprint/blob/develop/LICENSE
  */
 
-interface IProps {
+interface IProps extends BoxProps {
   color?: string
   icon: IconName
   size: number
   title?: string
   style?: AnyObject
-  theme: AnyObject
 }
 
-class Icon extends React.PureComponent<IProps> {
+class Icon extends React.PureComponent<PropsWithTheme<IProps>> {
   static SIZE_STANDARD = 16
 
   static SIZE_LARGE = 20

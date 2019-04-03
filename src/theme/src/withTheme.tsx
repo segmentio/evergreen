@@ -1,13 +1,18 @@
 import * as React from 'react'
 import { ThemeConsumer } from './ThemeContext'
-import { AddOptionalTo, PropsOf } from '../../types/helper'
+import { AnyObject } from '../../types/helper'
 
 /**
  * HOC that uses ThemeConsumer.
  * @param {React.Component} WrappedComponent - Component that gets theme.
  */
-function withTheme<C extends React.ComponentType<any>>(WrappedComponent: C) {
-  const render: React.SFC<AddOptionalTo<PropsOf<C>, 'theme'>> = () => (
+
+export type PropsWithTheme<Props> = Props & { theme: AnyObject }
+
+function withTheme<I>(
+  WrappedComponent: React.ComponentType<PropsWithTheme<I>>
+) {
+  const render: React.SFC<I> = () => (
     <ThemeConsumer>
       {theme => <WrappedComponent theme={theme} {...this.props} />}
     </ThemeConsumer>

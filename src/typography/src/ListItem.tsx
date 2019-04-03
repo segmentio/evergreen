@@ -1,24 +1,26 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
+import { IconName } from '@blueprintjs/icons'
+
 import { Icon } from '../../icon'
-import Text from './Text'
+import Text, { ITextProps } from './Text'
+import { PropsWithTheme } from '../../theme'
 
-export default class ListItem extends PureComponent {
-  static propTypes = {
-    ...Text.propTypes,
+interface IProps extends ITextProps {
+  /**
+   * When passed, adds a icon before the list item.
+   * See Evergreen `Icon` for documentation.
+   */
+  icon?: IconName
 
-    /**
-     * When passed, adds a icon before the list item.
-     * See Evergreen `Icon` for documentation.
-     */
-    icon: PropTypes.string,
+  /**
+   * The color of the icon.
+   */
+  iconColor?: string
+}
 
-    /**
-     * The color of the icon.
-     */
-    iconColor: PropTypes.string
-  }
-
+export default class ListItem extends React.PureComponent<
+  PropsWithTheme<IProps>
+> {
   render() {
     const { children, size, icon, iconColor, ...props } = this.props
 
