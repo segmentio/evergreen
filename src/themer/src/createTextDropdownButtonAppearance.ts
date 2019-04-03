@@ -1,6 +1,14 @@
 import { StackingOrder } from '../../constants'
 import createAppearance from './createAppearance'
-import missingStateWarning from './missingStateWarning'
+import missingStateWarning, { logMissingState } from './missingStateWarning'
+
+interface IItems {
+  base?: any
+  hover?: any
+  focus?: any
+  active?: any
+  disabled?: any
+}
 
 const baseStyle = {
   WebkitFontSmoothing: 'antialiased',
@@ -11,16 +19,12 @@ const baseStyle = {
   border: 'none',
   outline: 'none',
   cursor: 'pointer',
-  '&::-moz-focus-inner ': {
-    border: 0
-  }
+  background: 'none'
 }
 
 const disabledState = `[disabled], [data-disabled]`
 const hoverState = '&:not([disabled]):not([data-disabled]):hover'
 const focusState = '&:not([disabled]):not([data-disabled]):focus'
-const focusAndActiveState =
-  '&:not([disabled]):not([data-disabled]):focus:active, &:not([disabled]):not([data-disabled])[aria-expanded="true"]:focus, &:not([disabled]):not([data-disabled])[data-active]:focus'
 const activeState =
   '&:not([disabled]):not([data-disabled]):active, &:not([disabled]):not([data-disabled])[aria-expanded="true"], &:not([disabled]):not([data-disabled])[data-active]'
 
@@ -28,32 +32,23 @@ const activeState =
  * @param {object} items - object with a set of items.
  * @return {object} the final appearance.
  */
-const createButtonAppearance = (items = {}) => {
+const createButtonAppearance = (items: IItems = {}) => {
   missingStateWarning({
     items,
-    props: ['base', 'hover', 'focus', 'active', 'focusAndActive', 'disabled'],
-    cb: prop => {
-      console.error(
-        `Themer.createButtonAppearance() is missing a ${prop} state in items:`,
-        items
-      )
-    }
+    props: ['base', 'hover', 'focus', 'active', 'disabled'],
+    cb: logMissingState('createTextDropdownButtonAppearance', items)
   })
 
   return {
     ...baseStyle,
     ...createAppearance(items.base),
-    [disabledState]: {
-      cursor: 'not-allowed',
-      ...createAppearance(items.disabled)
-    },
+    [disabledState]: createAppearance(items.disabled),
     [hoverState]: createAppearance(items.hover),
     [focusState]: {
       zIndex: StackingOrder.FOCUSED,
       ...createAppearance(items.focus)
     },
-    [activeState]: createAppearance(items.active),
-    [focusAndActiveState]: createAppearance(items.focusAndActive)
+    [activeState]: createAppearance(items.active)
   }
 }
 

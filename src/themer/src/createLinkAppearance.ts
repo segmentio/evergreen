@@ -1,5 +1,12 @@
-import missingStateWarning from './missingStateWarning'
+import missingStateWarning, { logMissingState } from './missingStateWarning'
 import createAppearance from './createAppearance'
+
+interface IItems {
+  base?: any
+  hover?: any
+  focus?: any
+  active?: any
+}
 
 const hoverState = '&:hover'
 const activeState = '&:active'
@@ -9,16 +16,11 @@ const focusState = '&:focus'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createLinkAppearance = (items = {}) => {
+const createLinkAppearance = (items: IItems = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'active', 'focus'],
-    cb: prop => {
-      console.error(
-        `Themer.createLinkAppearance() is missing a ${prop} item`,
-        items
-      )
-    }
+    cb: logMissingState('createLinkAppearance', items)
   })
 
   return {

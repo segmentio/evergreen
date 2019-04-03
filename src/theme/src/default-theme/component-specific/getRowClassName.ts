@@ -1,12 +1,11 @@
-import tinycolor from 'tinycolor2'
+import * as tinycolor from 'tinycolor2'
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
+import { IntentType } from '../../../../constants'
 
-const Appearances = {}
-
-Appearances.default = Themer.createRowAppearance({
+const defaultAppearance = Themer.createRowAppearance({
   base: {},
 
   hover: {
@@ -24,7 +23,7 @@ Appearances.default = Themer.createRowAppearance({
   current: {}
 })
 
-Appearances.danger = Themer.createRowAppearance({
+const danger = Themer.createRowAppearance({
   base: {
     backgroundColor: palette.red.lightest
   },
@@ -50,7 +49,7 @@ Appearances.danger = Themer.createRowAppearance({
   current: {}
 })
 
-Appearances.warning = Themer.createRowAppearance({
+const warning = Themer.createRowAppearance({
   base: {
     backgroundColor: palette.orange.lightest
   },
@@ -76,7 +75,7 @@ Appearances.warning = Themer.createRowAppearance({
   current: {}
 })
 
-Appearances.success = Themer.createRowAppearance({
+const success = Themer.createRowAppearance({
   base: {
     backgroundColor: palette.green.lightest
   },
@@ -108,17 +107,17 @@ Appearances.success = Themer.createRowAppearance({
  * @param {string} intent - none, info, success, warning, danger.
  * @return {string} the appearance object.
  */
-const getRowAppearance = (appearance, intent) => {
+const getRowAppearance = (appearance: string, intent: IntentType) => {
   switch (intent) {
     case 'danger':
-      return Appearances.danger
+      return danger
     case 'warning':
-      return Appearances.warning
+      return warning
     case 'success':
-      return Appearances.success
+      return success
     case 'none':
     default:
-      return Appearances.default
+      return defaultAppearance
   }
 }
 

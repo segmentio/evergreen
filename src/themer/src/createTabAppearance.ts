@@ -1,5 +1,14 @@
 import createAppearance from './createAppearance'
-import missingStateWarning from './missingStateWarning'
+import missingStateWarning, { logMissingState } from './missingStateWarning'
+
+interface IItems {
+  base?: any
+  hover?: any
+  active?: any
+  focus?: any
+  current?: any
+  disabled?: any
+}
 
 const hoverState = '&:hover'
 const selectedState =
@@ -17,16 +26,11 @@ const baseStyle = {
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createTabAppearance = (items = {}) => {
+const createTabAppearance = (items: IItems = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'active', 'focus', 'current', 'disabled'],
-    cb: prop => {
-      console.error(
-        `Themer.createTabAppearance() is missing a ${prop} item`,
-        items
-      )
-    }
+    cb: logMissingState('createTabAppearance', items)
   })
 
   return {

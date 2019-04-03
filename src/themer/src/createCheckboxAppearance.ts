@@ -1,5 +1,18 @@
 import createAppearance from './createAppearance'
-import missingStateWarning from './missingStateWarning'
+import missingStateWarning, { logMissingState } from './missingStateWarning'
+
+interface IItems {
+  base?: any
+  hover?: any
+  focus?: any
+  active?: any
+  focusAndActive?: any
+  disabled?: any
+  checked?: any
+  checkedActive?: any
+  checkedHover?: any
+  checkedDisabled?: any
+}
 
 const defaultState = '& + div'
 const disabledState = '&[disabled] + div'
@@ -46,7 +59,7 @@ const checkedStyles = {
  * @param {object} items - object with a set of items.
  * @return {object} the final appearance.
  */
-const createCheckboxAppearance = (items = {}) => {
+const createCheckboxAppearance = (items: IItems = {}) => {
   missingStateWarning({
     items,
     props: [
@@ -60,12 +73,7 @@ const createCheckboxAppearance = (items = {}) => {
       'checkedHover',
       'checkedActive'
     ],
-    cb: prop => {
-      console.error(
-        `Themer.createCheckboxAppearance() is missing a ${prop} state in items:`,
-        items
-      )
-    }
+    cb: logMissingState('createCheckboxAppearance', items)
   })
 
   return {

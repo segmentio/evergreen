@@ -1,6 +1,13 @@
 import { StackingOrder } from '../../constants'
-import missingStateWarning from './missingStateWarning'
+import missingStateWarning, { logMissingState } from './missingStateWarning'
 import createAppearance from './createAppearance'
+
+interface IItems {
+  base?: any
+  focus?: any
+  disabled?: any
+  invalid?: any
+}
 
 const baseStyle = {
   alignItems: 'center',
@@ -15,16 +22,11 @@ const disabledState = '&[aria-disabled="true"]'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createTagInputAppearance = (items = {}) => {
+const createTagInputAppearance = (items: IItems = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'focus', 'disabled'],
-    cb: prop => {
-      console.error(
-        `Themer.createTagInputAppearance() is missing a ${prop} item`,
-        items
-      )
-    }
+    cb: logMissingState('createTagInputAppearance', items)
   })
 
   return {

@@ -3,9 +3,7 @@ import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
 
-const TagInputAppearances = {}
-
-TagInputAppearances.default = Themer.createTagInputAppearance({
+const defaultAppearance = Themer.createTagInputAppearance({
   base: {
     backgroundColor: 'white',
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 1px 2px ${
@@ -34,7 +32,7 @@ TagInputAppearances.default = Themer.createTagInputAppearance({
  * @return {Object} the appearance object.
  */
 const getTextInputAppearance = () => {
-  return TagInputAppearances.default
+  return defaultAppearance
 }
 
 /**

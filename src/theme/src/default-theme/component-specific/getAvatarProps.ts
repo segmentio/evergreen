@@ -1,4 +1,4 @@
-import fills from '../foundational-styles/fills'
+import fills, { ColorKey } from '../foundational-styles/fills'
 
 /**
  * @param {boolean} isSolid
@@ -6,11 +6,19 @@ import fills from '../foundational-styles/fills'
  * @param {number} hashValue
  * @return {Object} { color, backgroundColor }
  */
-const getAvatarProps = ({ isSolid, color, hashValue }) => {
+const getAvatarProps = ({
+  isSolid,
+  color,
+  hashValue
+}: {
+  isSolid: boolean
+  color: ColorKey | 'automatic'
+  hashValue: number
+}) => {
   const appearances = fills[isSolid ? 'solid' : 'subtle']
 
   if (color === 'automatic') {
-    const keys = Object.keys(appearances)
+    const keys = Object.keys(appearances) as ColorKey[]
     const key = keys[hashValue % keys.length]
     return appearances[key]
   }

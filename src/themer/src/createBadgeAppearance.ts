@@ -1,5 +1,10 @@
 import createAppearance from './createAppearance'
-import missingStateWarning from './missingStateWarning'
+import missingStateWarning, { logMissingState } from './missingStateWarning'
+
+interface IItems {
+  base?: any
+  hover?: any
+}
 
 const hoverState = '&:hover'
 
@@ -11,16 +16,11 @@ const baseStyle = {
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createBadgeAppearance = (items = {}) => {
+const createBadgeAppearance = (items: IItems = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'hover'],
-    cb: prop => {
-      console.error(
-        `Themer.createBadgeAppearance() is missing a ${prop} item`,
-        items
-      )
-    }
+    cb: logMissingState('createBadgeAppearance', items)
   })
 
   return {

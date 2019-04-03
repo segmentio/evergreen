@@ -64,7 +64,7 @@ const getLinearGradientWithStates = (
  * @param {Intent} intent - intent of the gradient.
  * @return {Object} { base, hover, active }
  */
-const getPrimaryButtonStylesForIntent = (intent: IntentType) => {
+const getPrimaryButtonStylesForIntent = (intent?: IntentType) => {
   switch (intent) {
     case Intent.SUCCESS: {
       const startColor = '#23C277'

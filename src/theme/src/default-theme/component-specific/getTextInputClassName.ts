@@ -3,9 +3,7 @@ import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
 
-const InputAppearances = {}
-
-InputAppearances.default = Themer.createInputAppearance({
+const defaultAppearance = Themer.createInputAppearance({
   base: {
     backgroundColor: 'white',
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 1px 2px ${
@@ -32,7 +30,7 @@ InputAppearances.default = Themer.createInputAppearance({
   }
 })
 
-InputAppearances.neutral = Themer.createInputAppearance({
+const neutral = Themer.createInputAppearance({
   base: {
     backgroundColor: scales.neutral.N2A
   },
@@ -53,7 +51,7 @@ InputAppearances.neutral = Themer.createInputAppearance({
   }
 })
 
-InputAppearances.none = Themer.createInputAppearance({
+const none = Themer.createInputAppearance({
   base: {
     backgroundColor: 'white'
   },
@@ -74,14 +72,14 @@ InputAppearances.none = Themer.createInputAppearance({
  * @param {string} appearance - the appearance name
  * @return {Object} the appearance object.
  */
-const getTextInputAppearance = appearance => {
+const getTextInputAppearance = (appearance: string) => {
   switch (appearance) {
     case 'neutral':
-      return InputAppearances.neutral
+      return neutral
     case 'none':
-      return InputAppearances.none
+      return none
     default:
-      return InputAppearances.default
+      return defaultAppearance
   }
 }
 

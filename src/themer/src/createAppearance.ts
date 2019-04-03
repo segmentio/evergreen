@@ -1,4 +1,5 @@
 import isDev from './isDev'
+import { AnyObject } from '../../types/helper'
 
 const whitelist = [
   'background',
@@ -26,8 +27,8 @@ const whitelist = [
  * @param {object?} obj - input object that will be filtered against the whitelist.
  * @return {object} the result will always be a object
  */
-function createAppearance(obj = {}) {
-  const result = {}
+function createAppearance(obj: AnyObject = {}) {
+  const result: AnyObject = {}
 
   Object.keys(obj).forEach(key => {
     if (whitelist.includes(key)) {

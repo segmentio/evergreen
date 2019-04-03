@@ -1,6 +1,14 @@
 import { StackingOrder } from '../../constants'
-import missingStateWarning from './missingStateWarning'
+import missingStateWarning, { logMissingState } from './missingStateWarning'
 import createAppearance from './createAppearance'
+
+interface IItems {
+  base?: any
+  focus?: any
+  invalid?: any
+  placeholder?: any
+  disabled?: any
+}
 
 const baseStyle = {
   WebkitAppearance: 'none',
@@ -17,16 +25,11 @@ const disabledState = '&:disabled'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createInputAppearance = (items = {}) => {
+const createInputAppearance = (items: IItems = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'invalid', 'placeholder', 'focus', 'disabled'],
-    cb: prop => {
-      console.error(
-        `Themer.createInputAppearance() is missing a ${prop} item`,
-        items
-      )
-    }
+    cb: logMissingState('createInputAppearance', items)
   })
 
   return {

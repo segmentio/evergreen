@@ -4,6 +4,15 @@ import colors from './colors'
 /**
  * Fills are used in Avatars and Badges.
  */
+export type ColorKey =
+  | 'neutral'
+  | 'blue'
+  | 'red'
+  | 'orange'
+  | 'yellow'
+  | 'green'
+  | 'teal'
+  | 'purple'
 
 const solid = {
   neutral: {

@@ -13,7 +13,7 @@ const interactiveAppearance = Themer.createBadgeAppearance({
  * @param {string} appearance - the appearance name
  * @return {string} the appearance object.
  */
-const getBadgeAppearance = appearance => {
+const getBadgeAppearance = (appearance: string) => {
   switch (appearance) {
     case 'interactive':
       return interactiveAppearance

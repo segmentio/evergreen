@@ -1,5 +1,14 @@
 import createAppearance from './createAppearance'
-import missingStateWarning from './missingStateWarning'
+import missingStateWarning, { logMissingState } from './missingStateWarning'
+
+interface IItems {
+  base?: any
+  hover?: any
+  focus?: any
+  active?: any
+  disabled?: any
+  invalid?: any
+}
 
 const baseStyle = {
   WebkitAppearance: 'none',
@@ -28,16 +37,11 @@ const activeState = '&:not([disabled]):active'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createSelectAppearance = (items = {}) => {
+const createSelectAppearance = (items: IItems = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'disabled', 'invalid', 'hover', 'active', 'focus'],
-    cb: prop => {
-      console.error(
-        `Themer.createSelectAppearance() is missing a ${prop} item`,
-        items
-      )
-    }
+    cb: logMissingState('createSelectAppearance', items)
   })
 
   return {

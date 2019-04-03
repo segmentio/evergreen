@@ -1,4 +1,4 @@
-import tinycolor from 'tinycolor2'
+import * as tinycolor from 'tinycolor2'
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import palette from '../foundational-styles/palette'
@@ -9,7 +9,7 @@ import palette from '../foundational-styles/palette'
  * @param {string} color
  * @return {Object} appearance of the link.
  */
-const getLinkAppearance = color => {
+const getLinkAppearance = (color: string) => {
   switch (color) {
     case 'neutral':
       return Themer.createLinkAppearance({

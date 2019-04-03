@@ -1,5 +1,13 @@
 import createAppearance from './createAppearance'
-import missingStateWarning from './missingStateWarning'
+import missingStateWarning, { logMissingState } from './missingStateWarning'
+
+interface IItems {
+  base?: any
+  hover?: any
+  focus?: any
+  active?: any
+  current?: any
+}
 
 const hoverState = '&[data-isselectable="true"]:hover'
 const focusState = '&[data-isselectable="true"]:focus, &[aria-selected="true"]'
@@ -17,16 +25,11 @@ const baseStyle = {
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createRowAppearance = (items = {}) => {
+const createRowAppearance = (items: IItems = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'active', 'focus', 'current'],
-    cb: prop => {
-      console.error(
-        `Themer.createRowAppearance() is missing a ${prop} item`,
-        items
-      )
-    }
+    cb: logMissingState('createRowAppearance', items)
   })
 
   return {

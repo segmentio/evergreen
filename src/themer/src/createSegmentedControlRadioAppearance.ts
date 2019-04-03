@@ -1,6 +1,14 @@
 import { StackingOrder } from '../../constants'
 import createAppearance from './createAppearance'
-import missingStateWarning from './missingStateWarning'
+import missingStateWarning, { logMissingState } from './missingStateWarning'
+
+interface IItems {
+  base?: any
+  hover?: any
+  focus?: any
+  active?: any
+  disabled?: any
+}
 
 const baseStyle = {
   WebkitFontSmoothing: 'antialiased',
@@ -23,16 +31,11 @@ const focusState = '& input:focus + label'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createSegmentedControlRadioAppearance = (items = {}) => {
+const createSegmentedControlRadioAppearance = (items: IItems = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'disabled', 'active', 'focus'],
-    cb: prop => {
-      console.error(
-        `Themer.createSegmentedControlRadioAppearance() is missing a ${prop} item`,
-        items
-      )
-    }
+    cb: logMissingState('createSegmentedControlRadioAppearance', items)
   })
 
   return {

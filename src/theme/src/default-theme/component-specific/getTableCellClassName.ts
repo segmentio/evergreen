@@ -2,9 +2,7 @@ import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 
-const Appearances = {}
-
-Appearances.default = Themer.createTableCellAppearance({
+const defaultAppearance = Themer.createTableCellAppearance({
   focus: {
     outline: 'none',
     backgroundColor: scales.blue.B2A,
@@ -18,7 +16,7 @@ Appearances.default = Themer.createTableCellAppearance({
  * @return {string} the appearance object.
  */
 const getAppearance = () => {
-  return Appearances.default
+  return defaultAppearance
 }
 
 /**
