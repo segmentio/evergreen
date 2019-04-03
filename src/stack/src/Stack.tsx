@@ -1,22 +1,20 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
 import { StackingOrder } from '../../constants'
 import StackingContext from './StackingContext'
 
-export default class Stack extends PureComponent {
-  static propTypes = {
-    /**
-     * Function that takes the current z-index and returns a React Node.
-     * (zIndex) => ReactNode.
-     */
-    children: PropTypes.func.isRequired,
+interface IProps {
+  /**
+   * Function that takes the current z-index and returns a React Node.
+   */
+  children: (zIndex: number) => React.ReactNode
 
-    /**
-     * Set the value of the stack. This will increment for children.
-     */
-    value: PropTypes.number
-  }
+  /**
+   * Set the value of the stack. This will increment for children.
+   */
+  value?: number
+}
 
+export default class Stack extends React.PureComponent<IProps> {
   static defaultProps = {
     value: StackingOrder.STACKING_CONTEXT
   }

@@ -1,7 +1,22 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import Box, { css } from 'ui-box'
-import { withTheme } from '../../theme'
+import * as React from 'react'
+import Box, { BoxProps } from 'ui-box'
+import { css } from 'glamor'
+import { withTheme, PropsWithTheme } from '../../theme'
+
+interface IProps extends BoxProps {
+  /**
+   * The size of the spinner.
+   */
+  size: number
+  /**
+   * Delay after which spinner should be visible.
+   */
+  delay?: number
+}
+
+interface IState {
+  isVisible: boolean
+}
 
 const loadingKeyframes = css.keyframes('loading', {
   '0%': {
@@ -25,7 +40,7 @@ const outer = {
   animation: `${loadingKeyframes} 2s linear infinite`
 }
 
-const inner = color => ({
+const inner = (color: string) => ({
   strokeDashoffset: 600,
   strokeDasharray: 300,
   strokeWidth: 12,
@@ -36,41 +51,23 @@ const inner = color => ({
   fill: 'transparent'
 })
 
-class Spinner extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Box component as the base.
-     */
-    ...Box.propTypes,
-
-    /**
-     * Delay after which spinner should be visible.
-     */
-    delay: PropTypes.number,
-
-    /**
-     * The size of the spinner.
-     */
-    size: PropTypes.number.isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
+class Spinner extends React.PureComponent<PropsWithTheme<IProps>, IState> {
   static defaultProps = {
     size: 40,
     delay: 0
   }
 
-  constructor({ delay }) {
-    super()
+  constructor(props: any) {
+    super(props)
+
+    const { delay } = props
 
     this.state = {
       isVisible: delay === 0
     }
   }
+
+  delayTimer: any
 
   render() {
     if (!this.state.isVisible) {

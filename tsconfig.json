@@ -1,15 +1,13 @@
 {
   "compilerOptions": {
-      "outDir": "./dist/",
-      "sourceMap": true,
-      "inlineSourceMap": true,
-      "noImplicitAny": true,
-      "module": "commonjs",
-      "target": "es5",
-      "jsx": "react",
-      "rootDir": "src"
+    "outDir": "./dist/",
+    "inlineSourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "rootDir": "src"
   },
-  "include": [
-      "./src/**/*"
-  ]
+  "include": ["./src/**/*.ts*"],
+  "exclude": ["node_modules", "./src/**/stories", "./src/**/test"]
 }
