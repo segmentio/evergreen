@@ -1,10 +1,18 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import Box, { spacing, position, layout, dimensions } from 'ui-box'
-import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import * as React from 'react'
+import Box, { BoxProps } from 'ui-box'
 
-const CheckIcon = ({ fill = 'currentColor', ...props }) => (
+import { PropsWithTheme, withTheme } from '../../theme'
+import { AnyFunction } from '../../types/helper'
+import { Text } from '../../typography'
+
+interface IIconProps {
+  fill?: string
+}
+
+const CheckIcon: React.SFC<IIconProps> = ({
+  fill = 'currentColor',
+  ...props
+}: IIconProps) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...props}>
     <path
       fill={fill}
@@ -14,11 +22,10 @@ const CheckIcon = ({ fill = 'currentColor', ...props }) => (
   </svg>
 )
 
-CheckIcon.propTypes = {
-  fill: PropTypes.string
-}
-
-const MinusIcon = ({ fill = 'currentColor', ...props }) => (
+const MinusIcon: React.SFC<IIconProps> = ({
+  fill = 'currentColor',
+  ...props
+}: IIconProps) => (
   <svg width={16} height={16} viewBox="0 0 16 16" {...props}>
     <path
       fill={fill}
@@ -28,79 +35,39 @@ const MinusIcon = ({ fill = 'currentColor', ...props }) => (
   </svg>
 )
 
-MinusIcon.propTypes = {
-  fill: PropTypes.string
+interface IProps extends BoxProps {
+  // The id attribute of the checkbox.
+  id?: string
+
+  // The id attribute of the radio.
+  name?: string
+
+  // Label of the checkbox.
+  label?: React.ReactNode
+
+  // The value attribute of the radio.
+  value?: string
+
+  // The checked attribute of the radio.
+  checked?: boolean
+
+  // State in addition to "checked" and "unchecked". When true, the radio displays a "minus" icon.
+  indeterminate?: boolean
+
+  // Function called when state changes.
+  onChange?: AnyFunction
+
+  // When true, the radio is disabled.
+  disabled?: boolean
+
+  // When true, the aria-invalid attribute is true. Used for accessibility.
+  isInvalid?: boolean
+
+  // The appearance of the checkbox. The default theme only comes with a default style.
+  appearance?: string
 }
 
-class Checkbox extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes some Box APIs.
-     */
-    ...spacing.propTypes,
-    ...position.propTypes,
-    ...layout.propTypes,
-    ...dimensions.propTypes,
-
-    /**
-     * The id attribute of the checkbox.
-     */
-    id: PropTypes.string,
-
-    /**
-     * The id attribute of the radio.
-     */
-    name: PropTypes.string,
-
-    /**
-     * Label of the checkbox.
-     */
-    label: PropTypes.node,
-
-    /**
-     * The value attribute of the radio.
-     */
-    value: PropTypes.string,
-
-    /**
-     * The checked attribute of the radio.
-     */
-    checked: PropTypes.bool,
-
-    /**
-     * State in addition to "checked" and "unchecked".
-     * When true, the radio displays a "minus" icon.
-     */
-    indeterminate: PropTypes.bool,
-
-    /**
-     * Function called when state changes.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * When true, the radio is disabled.
-     */
-    disabled: PropTypes.bool,
-
-    /**
-     * When true, the aria-invalid attribute is true.
-     * Used for accessibility.
-     */
-    isInvalid: PropTypes.bool,
-
-    /**
-     * The appearance of the checkbox.
-     * The default theme only comes with a default style.
-     */
-    appearance: PropTypes.string,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
+class Checkbox extends React.PureComponent<PropsWithTheme<IProps>> {
   static defaultProps = {
     checked: false,
     indeterminate: false,
@@ -108,7 +75,7 @@ class Checkbox extends PureComponent {
     appearance: 'default'
   }
 
-  setIndeterminate = el => {
+  setIndeterminate = (el: any) => {
     if (!el) return
     el.indeterminate = this.props.indeterminate
   }

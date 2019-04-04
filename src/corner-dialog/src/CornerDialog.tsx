@@ -1,11 +1,79 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import { css } from 'ui-box'
+import { css } from 'glamor'
+import * as React from 'react'
 import Transition from 'react-transition-group/Transition'
+
+import { Button, IconButton } from '../../buttons'
+import { IntentType } from '../../constants'
 import { Pane, Card } from '../../layers'
 import { Portal } from '../../portal'
 import { Paragraph, Heading } from '../../typography'
-import { Button, IconButton } from '../../buttons'
+import { AnyFunction, AnyObject } from '../../types/helper'
+
+interface IProps {
+  /**
+   * Children can be a string, node or a function accepting `({ close })`.
+   * When passing a string, <Paragraph size={400} color="muted" /> is used to wrap the string.
+   */
+  children: React.ReactNode
+
+  // The intent of the CornerDialog. Used for the button.
+  intent?: IntentType
+
+  // When true, the dialog is shown.
+  isShown?: boolean
+
+  // Title of the Dialog. Titles should use Title Case.
+  title?: React.ReactNode
+
+  // Function that will be called when the exit transition is complete.
+  onCloseComplete: AnyFunction
+
+  // Function that will be called when the enter transition is complete.
+  onOpenComplete?: AnyFunction
+
+  // When true, the footer with the cancel and confirm button is shown.
+  hasFooter?: boolean
+
+  /**
+   * Function that will be called when the confirm button is clicked.
+   * This does not close the Dialog. A close function will be passed
+   * as a paramater you can use to close the dialog.
+   *
+   * `onConfirm={(close) => close()}`
+   */
+  onConfirm?: AnyFunction
+
+  // Label of the confirm button.
+  confirmLabel?: string
+
+  // When true, the cancel button is shown.
+  hasCancel?: boolean
+
+  // When true, the close button is shown.
+  hasClose?: boolean
+
+  /**
+   * Function that will be called when the cancel button is clicked.
+   * This closes the Dialog by default.
+   *
+   * `onCancel={(close) => close()}`
+   */
+  onCancel?: AnyFunction
+
+  // Label of the cancel button.
+  cancelLabel?: string
+
+  // Width of the Dialog.
+  width?: string | number
+
+  // Props that are passed to the dialog container.
+  containerProps?: AnyObject
+}
+
+interface IState {
+  exiting: boolean
+  exited: boolean
+}
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -46,93 +114,7 @@ const animationStyles = {
   }
 }
 
-export default class CornerDialog extends PureComponent {
-  static propTypes = {
-    /**
-     * Children can be a string, node or a function accepting `({ close })`.
-     * When passing a string, <Paragraph size={400} color="muted" /> is used to wrap the string.
-     */
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
-
-    /**
-     * The intent of the CornerDialog. Used for the button.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * When true, the dialog is shown.
-     */
-    isShown: PropTypes.bool,
-
-    /**
-     * Title of the Dialog. Titles should use Title Case.
-     */
-    title: PropTypes.node,
-
-    /**
-     * Function that will be called when the exit transition is complete.
-     */
-    onCloseComplete: PropTypes.func,
-
-    /**
-     * Function that will be called when the enter transition is complete.
-     */
-    onOpenComplete: PropTypes.func,
-
-    /**
-     * When true, the footer with the cancel and confirm button is shown.
-     */
-    hasFooter: PropTypes.bool,
-
-    /**
-     * Function that will be called when the confirm button is clicked.
-     * This does not close the Dialog. A close function will be passed
-     * as a paramater you can use to close the dialog.
-     *
-     * `onConfirm={(close) => close()}`
-     */
-    onConfirm: PropTypes.func,
-
-    /**
-     * Label of the confirm button.
-     */
-    confirmLabel: PropTypes.string,
-
-    /**
-     * When true, the cancel button is shown.
-     */
-    hasCancel: PropTypes.bool,
-
-    /**
-     * When true, the close button is shown.
-     */
-    hasClose: PropTypes.bool,
-
-    /**
-     * Function that will be called when the cancel button is clicked.
-     * This closes the Dialog by default.
-     *
-     * `onCancel={(close) => close()}`
-     */
-    onCancel: PropTypes.func,
-
-    /**
-     * Label of the cancel button.
-     */
-    cancelLabel: PropTypes.string,
-
-    /**
-     * Width of the Dialog.
-     */
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * Props that are passed to the dialog container.
-     */
-    containerProps: PropTypes.object
-  }
-
+export default class CornerDialog extends React.PureComponent<IProps, IState> {
   static defaultProps = {
     width: 392,
     intent: 'none',
@@ -141,11 +123,11 @@ export default class CornerDialog extends PureComponent {
     hasCancel: true,
     hasClose: true,
     cancelLabel: 'Close',
-    onCancel: close => close(),
-    onConfirm: close => close()
+    onCancel: (close: AnyFunction) => close(),
+    onConfirm: (close: AnyFunction) => close()
   }
 
-  constructor(props) {
+  constructor(props: IProps) {
     super(props)
 
     this.state = {
@@ -154,7 +136,7 @@ export default class CornerDialog extends PureComponent {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: IProps) {
     if (!prevProps.isShown && this.props.isShown) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
