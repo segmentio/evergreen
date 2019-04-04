@@ -1,12 +1,12 @@
+import { renderStatic } from 'glamor/server'
 import * as React from 'react'
 import { extractStyles as boxExtractStyles } from 'ui-box'
-import { renderStatic } from 'glamor/server'
 
 interface IScriptProps {
-  type: string;
-  id: string;
-  dangerouslySetInnerHTML: any;
-  nonce?: any;
+  type: string
+  id: string
+  dangerouslySetInnerHTML: any
+  nonce?: any
 }
 
 export default function extractStyles(options: { nonce?: any } = {}) {
@@ -31,7 +31,7 @@ export default function extractStyles(options: { nonce?: any } = {}) {
   }
 
   return {
-    css: styles + '\n' + css,
+    css: `${styles}\n${css}`,
     cache: evergreenCache,
     hydrationScript: <script {...scriptProps} />
   }

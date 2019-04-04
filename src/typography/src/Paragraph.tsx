@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
+
 import { PropsWithTheme, withTheme } from '../../theme'
 
 type Size = 300 | 400 | 500
@@ -7,10 +8,7 @@ type Size = 300 | 400 | 500
 interface IProps extends BoxProps {
   size?: Size
 
-  /**
-   * Font family.
-   * Can be: `ui`, `display` or `mono` or a custom font family.
-   */
+  // Font family. Can be: `ui`, `display` or `mono` or a custom font family.
   fontFamily?: string
 }
 

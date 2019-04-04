@@ -1,13 +1,13 @@
 /* eslint react/no-array-index-key: 0, eqeqeq: 0, no-eq-null: 0 */
-import * as React from 'react'
-// import PropTypes from 'prop-types'
-import Box, { BoxProps } from 'ui-box'
 import {
   IconName,
   IconNames,
   IconSvgPaths16,
   IconSvgPaths20
 } from '@blueprintjs/icons'
+import * as React from 'react'
+import Box, { BoxProps } from 'ui-box'
+
 import { withTheme, PropsWithTheme } from '../../theme'
 import { AnyObject } from '../../types/helper'
 

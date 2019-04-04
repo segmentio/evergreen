@@ -1,4 +1,5 @@
 {
   "eslint.enable": false,
-  "xo.enable": true
+  "xo.enable": false,
+  "xo.format.enable": true
 }

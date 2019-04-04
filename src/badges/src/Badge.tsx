@@ -1,18 +1,15 @@
-import * as React from 'react'
 import cx from 'classnames'
-import { Strong } from '../../typography'
+import * as React from 'react'
+
 import { withTheme, PropsWithTheme } from '../../theme'
+import { Strong } from '../../typography'
 import { ITextProps } from '../../typography/src/Text'
 
 export interface IBadgeProps extends ITextProps {
-  /**
-   * The color used for the badge.
-   */
+  // The color used for the badge.
   color: string
 
-  /**
-   * Whether or not to apply hover/focus/active styles
-   */
+  // Whether or not to apply hover/focus/active styles
   isInteractive?: boolean
 }
 

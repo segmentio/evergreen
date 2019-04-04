@@ -1,7 +1,8 @@
 import * as tinycolor from 'tinycolor2'
+
 import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
 import palette from '../foundational-styles/palette'
+import memoizeClassName from '../utils/memoizeClassName'
 
 /**
  * The link appearance unlike the Button is based on the color property.

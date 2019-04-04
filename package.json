@@ -79,21 +79,23 @@
     "@storybook/addons": "^3.4.11",
     "@storybook/react": "^3.4.11",
     "@types/storybook__react": "^4.0.1",
-    "@typescript-eslint/eslint-plugin": "^1.5.0",
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
     "ava": "^1.3.1",
     "concurrently": "^4.0.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
-    "eslint-config-prettier": "^3.1.0",
-    "eslint-config-xo-react": "^0.17.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-config-xo-react": "^0.19.0",
     "eslint-config-xo-typescript": "^0.9.0",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.0",
     "execa": "^1.0.0",
     "faker": "^4.1.0",
     "file-loader": "^2.0.0",
     "fs-extra": "^7.0.0",
     "np": "^4.0.2",
-    "prettier": "^1.14.3",
+    "prettier": "^1.16.4",
     "react": "^16.8.6",
     "react-chromatic": "^0.8.4",
     "react-dom": "^16.8.6",
@@ -106,20 +108,59 @@
     "xo": "^0.24.0"
   },
   "xo": {
-    "parser": "babel-eslint",
+    "parser": "@typescript-eslint/parser",
     "typescript": true,
+    "ignores": [
+      "docs",
+      "tools",
+      "src/**/stories",
+      "src/**/test",
+      "**/*.js"
+    ],
     "extends": [
+      "xo-typescript",
       "xo-react",
       "prettier",
       "prettier/react"
     ],
+    "extensions": [
+      "tsx",
+      "ts"
+    ],
     "envs": [
       "browser"
     ],
-    "space": true,
+    "4space": true,
     "semicolon": false,
     "rules": {
+      "capitalized-comments": [
+        "off"
+      ],
       "indent": [
+        "off"
+      ],
+      "import/named": [
+        "off"
+      ],
+      "@typescript-eslint/indent": [
+        "error",
+        2
+      ],
+      "@typescript-eslint/interface-name-prefix": ["error", "always"],
+      "@typescript-eslint/member-delimiter-style": ["error",
+        {
+          "multiline": {
+            "delimiter": "none",
+            "requireLast": false
+          },
+          "singleline": {
+            "delimiter": "none",
+            "requireLast": false
+          }
+        },
+        2
+      ],
+      "@typescript-eslint/explicit-function-return-type": [
         "off"
       ],
       "react/jsx-indent-props": [
@@ -150,6 +191,12 @@
     "settings": {
       "react": {
         "version": "^16.3.0"
+      },
+      "import/resolver": {
+        "@typescript-eslint/parser": [
+          ".ts",
+          ".tsx"
+        ]
       }
     }
   },

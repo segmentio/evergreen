@@ -2,22 +2,16 @@ import { IconName } from '@blueprintjs/icons'
 import * as React from 'react'
 import { BoxProps } from 'ui-box'
 
-import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
 import { withTheme, PropsWithTheme } from '../../theme'
+import { Text } from '../../typography'
 
 interface IProps extends BoxProps {
-  /**
-   * Forcefully set the active state of a button.
-   * Useful in conjuction with a Popover.
-   */
+  // Forcefully set the active state of a button. Useful in conjuction with a Popover.
   isActive?: boolean
 
-  /**
-   * When true, the button is disabled.
-   * isLoading also sets the button to disabled.
-   */
+  // When true, the button is disabled. isLoading also sets the button to disabled.
   disabled?: boolean
 
   /**
@@ -34,10 +28,7 @@ interface IProps extends BoxProps {
    */
   icon?: IconName | JSX.Element
 
-  /**
-   * Class name passed to the button.
-   * Only use if you know what you are doing.
-   */
+  // Class name passed to the button. Only use if you know what you are doing.
   className?: string
 }
 

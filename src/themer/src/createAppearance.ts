@@ -1,5 +1,5 @@
-import isDev from './isDev'
 import { AnyObject } from '../../types/helper'
+import isDev from './isDev'
 
 const whitelist = [
   'background',

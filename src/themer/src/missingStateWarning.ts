@@ -1,6 +1,6 @@
-import isDev from './isDev'
+import { AnyObject, AnyFunction } from '../../types/helper'
 import hasOwnProperty from './hasOwnProperty'
-import { AnyObject } from '../../types/helper'
+import isDev from './isDev'
 
 function missingStateWarning({
   items,
@@ -9,7 +9,7 @@ function missingStateWarning({
 }: {
   items: AnyObject
   props: string[]
-  cb: Function
+  cb: AnyFunction
 }) {
   if (!isDev) return
   props.forEach(prop => {

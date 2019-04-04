@@ -1,7 +1,7 @@
 import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 import { getPrimaryButtonStylesForIntent } from '../helpers'
+import memoizeClassName from '../utils/memoizeClassName'
 
 const primaryStyle = getPrimaryButtonStylesForIntent()
 

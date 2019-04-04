@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
+
 import { withTheme, PropsWithTheme } from '../../theme'
 
 export type TextSize = 300 | 400 | 500 | 600
@@ -7,9 +8,7 @@ export type TextSize = 300 | 400 | 500 | 600
 export interface ITextProps extends BoxProps {
   size?: TextSize
 
-  /**
-   * Can be: `ui`, `display`, or `mono` or a custom font family
-   */
+  // Can be: `ui`, `display`, or `mono` or a custom font family
   fontFamily?: string
 }
 

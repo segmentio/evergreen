@@ -1,9 +1,10 @@
 import * as tinycolor from 'tinycolor2'
+
+import { IntentType } from '../../../../constants'
 import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
-import { IntentType } from '../../../../constants'
+import memoizeClassName from '../utils/memoizeClassName'
 
 const defaultAppearance = Themer.createRowAppearance({
   base: {},

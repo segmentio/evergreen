@@ -1,20 +1,16 @@
-import * as React from 'react'
 import cx from 'classnames'
+import * as React from 'react'
+
 import { PropsWithTheme, withTheme } from '../../theme'
 import Text, { ITextProps } from './Text'
 
 type Appearance = 'default' | 'minimal'
 
 interface IProps extends ITextProps {
-  /**
-   * The appearance of the code.
-   */
+  // The appearance of the code.
   appearance?: Appearance
 
-  /**
-   * Class name passed to the button
-   * Only use if you know what you are doing
-   */
+  // Class name passed to the button. Only use if you know what you are doing
   className?: string
 }
 

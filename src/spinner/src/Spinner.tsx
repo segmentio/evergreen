@@ -1,16 +1,14 @@
+import { css } from 'glamor'
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
-import { css } from 'glamor'
+
 import { withTheme, PropsWithTheme } from '../../theme'
 
 interface IProps extends BoxProps {
-  /**
-   * The size of the spinner.
-   */
+  // The size of the spinner.
   size: number
-  /**
-   * Delay after which spinner should be visible.
-   */
+
+  // Delay after which spinner should be visible.
   delay?: number
 }
 
@@ -57,6 +55,8 @@ class Spinner extends React.PureComponent<PropsWithTheme<IProps>, IState> {
     delay: 0
   }
 
+  delayTimer: any
+
   constructor(props: PropsWithTheme<IProps>) {
     super(props)
 
@@ -66,8 +66,6 @@ class Spinner extends React.PureComponent<PropsWithTheme<IProps>, IState> {
       isVisible: delay === 0
     }
   }
-
-  delayTimer: any
 
   render() {
     if (!this.state.isVisible) {

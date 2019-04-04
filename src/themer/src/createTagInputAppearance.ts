@@ -1,6 +1,6 @@
 import { StackingOrder } from '../../constants'
-import missingStateWarning, { logMissingState } from './missingStateWarning'
 import createAppearance from './createAppearance'
+import missingStateWarning, { logMissingState } from './missingStateWarning'
 
 interface IItems {
   base?: any

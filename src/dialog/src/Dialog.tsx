@@ -1,13 +1,13 @@
-import * as React from 'react'
 import { css } from 'glamor'
+import * as React from 'react'
 
-import { Pane } from '../../layers'
-import { Paragraph, Heading } from '../../typography'
-import { Overlay } from '../../overlay'
 import { Button, IconButton } from '../../buttons'
-import { withTheme, PropsWithTheme } from '../../theme'
 import { IntentType } from '../../constants'
+import { Pane } from '../../layers'
+import { Overlay } from '../../overlay'
+import { withTheme, PropsWithTheme } from '../../theme'
 import { AnyFunction, AnyObject } from '../../types/helper'
+import { Paragraph, Heading } from '../../typography'
 
 interface IProps {
   /**
@@ -16,49 +16,31 @@ interface IProps {
    */
   children: React.ReactNode
 
-  /**
-   * The intent of the Dialog. Used for the button.
-   */
+  // The intent of the Dialog. Used for the button.
   intent?: IntentType
 
-  /**
-   * When true, the dialog is shown.
-   */
+  // When true, the dialog is shown.
   isShown?: boolean
 
-  /**
-   * Title of the Dialog. Titles should use Title Case.
-   */
+  // Title of the Dialog. Titles should use Title Case.
   title?: React.ReactNode
 
-  /**
-   * When true, the header with the title and close icon button is shown.
-   */
+  // When true, the header with the title and close icon button is shown.
   hasHeader?: boolean
 
-  /**
-   * When true, the footer with the cancel and confirm button is shown.
-   */
+  // When true, the footer with the cancel and confirm button is shown.
   hasFooter?: boolean
 
-  /**
-   * When true, the cancel button is shown.
-   */
+  // When true, the cancel button is shown.
   hasCancel?: boolean
 
-  /**
-   * When true, the close button is shown
-   */
+  // When true, the close button is shown
   hasClose?: boolean
 
-  /**
-   * Function that will be called when the exit transition is complete.
-   */
+  // Function that will be called when the exit transition is complete.
   onCloseComplete?: AnyFunction
 
-  /**
-   * Function that will be called when the enter transition is complete.
-   */
+  // Function that will be called when the enter transition is complete.
   onOpenComplete?: AnyFunction
 
   /**
@@ -70,19 +52,13 @@ interface IProps {
    */
   onConfirm?: AnyFunction
 
-  /**
-   * Label of the confirm button.
-   */
+  // Label of the confirm button.
   confirmLabel?: string
 
-  /**
-   * When true, the confirm button is set to loading.
-   */
+  // When true, the confirm button is set to loading.
   isConfirmLoading?: boolean
 
-  /**
-   * When true, the confirm button is set to disabled.
-   */
+  // When true, the confirm button is set to disabled.
   isConfirmDisabled?: boolean
 
   /**
@@ -93,24 +69,16 @@ interface IProps {
    */
   onCancel?: AnyFunction
 
-  /**
-   * Label of the cancel button.
-   */
+  // Label of the cancel button.
   cancelLabel?: string
 
-  /**
-   * Boolean indicating if clicking the overlay should close the overlay.
-   */
+  // Boolean indicating if clicking the overlay should close the overlay.
   shouldCloseOnOverlayClick?: boolean
 
-  /**
-   * Boolean indicating if pressing the esc key should close the overlay.
-   */
+  // Boolean indicating if pressing the esc key should close the overlay.
   shouldCloseOnEscapePress?: boolean
 
-  /**
-   * Width of the Dialog.
-   */
+  // Width of the Dialog.
   width?: string | number
 
   /**
@@ -120,31 +88,19 @@ interface IProps {
    */
   topOffset?: string | number
 
-  /**
-   * The space on the left/right sides of the dialog when there isn't enough
-   * horizontal space available on screen.
-   */
+  // The space on the left/right sides of the dialog when there isn't enough horizontal space available on screen.
   sideOffset?: string | number
 
-  /**
-   * The min height of the body content.
-   * Makes it less weird when only showing little content.
-   */
+  // The min height of the body content. Makes it less weird when only showing little content.
   minHeightContent?: string | number
 
-  /**
-   * Props that are passed to the dialog container.
-   */
+  // Props that are passed to the dialog container.
   containerProps?: AnyObject
 
-  /**
-   * Props that are passed to the content container.
-   */
+  // Props that are passed to the content container.
   contentContainerProps?: AnyObject
 
-  /**
-   * Whether or not to prevent scrolling in the outer body
-   */
+  // Whether or not to prevent scrolling in the outer body
   preventBodyScrolling?: boolean
 }
 

@@ -1,12 +1,12 @@
-import * as React from 'react'
 import { IconName } from '@blueprintjs/icons'
+import * as React from 'react'
+import { BoxProps } from 'ui-box'
 
 import { Icon } from '../../icon'
-import { withTheme, PropsWithTheme } from '../../theme'
-import Button from './Button'
 import { IntentType } from '../../constants'
-import Appearance from '../../types/appearance'
-import { BoxProps } from 'ui-box'
+import { withTheme, PropsWithTheme } from '../../theme'
+import { Appearance } from '../../types/appearance'
+import Button from './Button'
 
 interface IProps extends BoxProps {
   /**
@@ -23,37 +23,22 @@ interface IProps extends BoxProps {
    */
   icon?: IconName | JSX.Element
 
-  /**
-   * Specifies an explicit icon size instead of the default value
-   */
+  // Specifies an explicit icon size instead of the default value
   iconSize?: number
 
-  /**
-   * The intent of the button.
-   */
+  // The intent of the button.
   intent?: IntentType
 
-  /**
-   * The appearance of the button.
-   */
+  // The appearance of the button.
   appearance?: Appearance
 
-  /**
-   * Forcefully set the active state of a button.
-   * Useful in conjuction with a Popover.
-   */
+  // Forcefully set the active state of a button. Useful in conjuction with a Popover.
   isActive?: boolean
 
-  /**
-   * When true, the button is disabled.
-   * isLoading also sets the button to disabled.
-   */
+  // When true, the button is disabled. isLoading also sets the button to disabled.
   disabled?: boolean
 
-  /**
-   * Class name passed to the button.
-   * Only use if you know what you are doing.
-   */
+  // Class name passed to the button. Only use if you know what you are doing.
   className?: string
 }
 

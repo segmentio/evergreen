@@ -1,5 +1,6 @@
-import * as React from 'react'
 import cx from 'classnames'
+import * as React from 'react'
+
 import { PropsWithTheme, withTheme } from '../../theme'
 import Text, { ITextProps } from './Text'
 
@@ -10,25 +11,16 @@ interface IProps extends ITextProps {
    */
   rel?: string
 
-  /**
-   * Specifies the URL of the linked resource. A URL might be absolute or relative.
-   */
+  // Specifies the URL of the linked resource. A URL might be absolute or relative.
   href?: string
 
-  /**
-   * Target atrribute, common use case is target="_blank."
-   */
+  // Target atrribute, common use case is target="_blank."
   target?: string
 
-  /**
-   * The color (and styling) of the Link. Can be default, blue, green or neutral.
-   */
+  // The color (and styling) of the Link. Can be default, blue, green or neutral.
   color?: string
 
-  /**
-   * Class name passed to the link.
-   * Only use if you know what you are doing.
-   */
+  // Class name passed to the link. Only use if you know what you are doing.
   className?: string
 }
 

@@ -3,14 +3,10 @@ import { StackingOrder } from '../../constants'
 import StackingContext from './StackingContext'
 
 interface IProps {
-  /**
-   * Function that takes the current z-index and returns a React Node.
-   */
+  // Function that takes the current z-index and returns a React Node.
   children: (zIndex: number) => React.ReactNode
 
-  /**
-   * Set the value of the stack. This will increment for children.
-   */
+  // Set the value of the stack. This will increment for children.
   value?: number
 }
 

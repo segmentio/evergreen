@@ -1,9 +1,8 @@
 import * as React from 'react'
+
 import defaultTheme from './default-theme'
 
-/**
- * Use React 16.3+ createContext API.
- */
+// Use React 16.3+ createContext API.
 const {
   Provider: ThemeProvider,
   Consumer: ThemeConsumer

@@ -8,61 +8,37 @@ import { AnyFunction, AnyObject } from '../../types/helper'
 type UIBoxTypes = ILayoutProps & IPositionProps & ISpacingProps
 
 interface IProps extends UIBoxTypes {
-  /**
-   * The id attribute of the radio.
-   */
+  // The id attribute of the radio.
   id?: string
 
-  /**
-   * The name attribute of the radio.
-   */
+  // The name attribute of the radio.
   name?: string
 
-  /**
-   * The value attribute of the radio.
-   */
+  // The value attribute of the radio.
   value?: string
 
-  /**
-   * The height of the switch.
-   */
+  // The height of the switch.
   height?: number
 
-  /**
-   * When true, the switch is checked (on).
-   */
+  // When true, the switch is checked (on).
   checked?: boolean
 
-  /**
-   * Function called when state changes.
-   */
+  // Function called when state changes.
   onChange?: AnyFunction
 
-  /**
-   * When true, the switch is disabled.
-   */
+  // When true, the switch is disabled.
   disabled?: boolean
 
-  /**
-   * When true, the switch is invalid.
-   */
+  // When true, the switch is invalid.
   isInvalid?: boolean
 
-  /**
-   * The appearance of the checkbox.
-   * The default theme only comes with a default style.
-   */
+  // The appearance of the checkbox. The default theme only comes with a default style.
   appearance: string
 
-  /**
-   * When true, the switch has a check icon.
-   */
+  // When true, the switch has a check icon.
   hasCheckIcon?: boolean
 
-  /**
-   * When true, the switch is true by default.
-   * This is for uncontrolled usage.
-   */
+  // When true, the switch is true by default. This is for uncontrolled usage.
   defaultChecked?: boolean
 }
 
@@ -102,11 +78,16 @@ const handleContainerStyle = {
   }
 }
 
-const CheckIcon: React.SFC<{ fill?: string; size?: number }> = ({
+interface ICheckIconProps {
+  fill?: string
+  size?: number
+}
+
+const CheckIcon: React.SFC<ICheckIconProps> = ({
   size,
   fill = 'currentColor',
   ...props
-}) => (
+}: ICheckIconProps) => (
   <svg width={10} height={size} viewBox="0 0 10 7" {...props}>
     <path
       fill={fill}

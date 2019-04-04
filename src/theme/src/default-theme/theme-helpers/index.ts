@@ -1,27 +1,22 @@
 import { Intent, IntentType } from '../../../../constants'
-import themedProperty from '../utils/themedProperty'
+import { AnyObject } from '../../../../types/helper'
 import { colors, elevations } from '../foundational-styles'
 import { fontFamilies, headings, paragraph, text } from '../typography'
+import themedProperty from '../utils/themedProperty'
 
 /**
  * Controls include:
  * - Button
  * - IconButton
  * - TextInput
- * @param {number} height
- * @return {number} border radius
  */
-const getBorderRadiusForControlHeight = (height: number) => {
+const getBorderRadiusForControlHeight = (height: number): number => {
   if (height <= 40) return 3
   return 4
 }
 
-/**
- * Get the text size for a control with a certain height.
- * @param {number} height
- * @return {number} text size of the control height.
- */
-const getTextSizeForControlHeight = (height: number) => {
+// Get the text size for a control with a certain height.
+const getTextSizeForControlHeight = (height: number): number => {
   if (height <= 24) return 300
   if (height <= 28) return 300
   if (height <= 32) return 300
@@ -30,12 +25,8 @@ const getTextSizeForControlHeight = (height: number) => {
   return 500
 }
 
-/**
- * Get the size for a icon in a Button with a certain height.
- * @param {number} height
- * @return {number} icon size
- */
-const getIconSizeForButton = (height: number) => {
+// Get the size for a icon in a Button with a certain height.
+const getIconSizeForButton = (height: number): number => {
   if (height <= 28) return 12
   if (height <= 32) return 12
   if (height <= 40) return 16
@@ -47,12 +38,8 @@ const getIconSizeForButton = (height: number) => {
 const getIconSizeForInput = getIconSizeForButton
 const getIconSizeForSelect = getIconSizeForButton
 
-/**
- * Get the size for a icon in a IconButton with a certain height.
- * @param {number} height
- * @return {number} icon size
- */
-const getIconSizeForIconButton = (height: number) => {
+// Get the size for a icon in a IconButton with a certain height.
+const getIconSizeForIconButton = (height: number): number => {
   if (height <= 28) return 12
   if (height <= 32) return 14 // Slightly bigger than getIconSizeForButton
   if (height <= 40) return 16
@@ -60,48 +47,26 @@ const getIconSizeForIconButton = (height: number) => {
   return 20
 }
 
-/**
- * Get background property.
- * @param {string} background
- * @return {string} background property.
- */
-const getBackground = (background: string) => {
-  /**
-   * Return one of theme presets or the original value.
-   */
+// Get background property.
+const getBackground = (background: string): string => {
+  // Return one of theme presets or the original value.
   return themedProperty(colors.background, background)
 }
 
-/**
- * Get box-shadow (elevation).
- * @param {string} level — level of elevation.
- * @return {string} elevation box-shadow.
- */
-const getElevation = (level: number) => {
-  /**
-   * There is no fallback, undefined will be returned.
-   */
+// Get box-shadow (elevation).
+const getElevation = (level: number): string => {
+  // There is no fallback, undefined will be returned.
   return elevations[level]
 }
 
-/**
- * Get the color for an icon.
- * @param {string} color
- * @return {string} color of the icon
- */
-const getIconColor = (color: string) => {
-  /**
-   * Check if there is a preset in the theme for the icon color.
-   */
+// Get the color for an icon.
+const getIconColor = (color: string): string => {
+  // Check if there is a preset in the theme for the icon color.
   return themedProperty(colors.icon, color)
 }
 
-/**
- * Get the properties for an icon based on the intent.
- * @param {Intent} intent
- * @return {Object} properties
- */
-const getIconForIntent = (intent: IntentType) => {
+// Get the properties for an icon based on the intent.
+const getIconForIntent = (intent: IntentType): AnyObject => {
   switch (intent) {
     case Intent.SUCCESS:
       return { icon: 'tick-circle', color: 'success' }
@@ -115,12 +80,8 @@ const getIconForIntent = (intent: IntentType) => {
   }
 }
 
-/**
- * Heading styles.
- * @param {number} size - 100–900. 500 is default.
- * @return {Object} heading style.
- */
-const getHeadingStyle = (size: number) => {
+// Heading styles.
+const getHeadingStyle = (size: number): AnyObject => {
   return themedProperty(headings, String(size))
 }
 
@@ -132,44 +93,28 @@ const getHeadingStyle = (size: number) => {
  * - Code
  * - ListItem
  * - Label
- * @param {number} size - 300–500. 400 is default.
- * @return {Object} text style.
  */
-const getTextStyle = (size: number) => {
+const getTextStyle = (size: number): AnyObject => {
   return themedProperty(text, String(size))
 }
 
 /**
  * Text styles for paragraphs (multi line text).
  * This is used in the Paragraph.
- * @param {number} size - 300–500. 400 is default.
- * @return {Object} text style.
  */
-const getParagraphStyle = (size: number) => {
+const getParagraphStyle = (size: number): AnyObject => {
   return themedProperty(paragraph, String(size))
 }
 
-/**
- * Get the font family. This is used to override the font family.
- * @param {string} fontFamily
- * @return {string} font family
- */
-const getFontFamily = (fontFamily: string) => {
-  /**
-   * Allow for passing in a custom fontFamily not in the theme.
-   */
+// Get the font family. This is used to override the font family.
+const getFontFamily = (fontFamily: string): string => {
+  // Allow for passing in a custom fontFamily not in the theme.
   return themedProperty(fontFamilies, fontFamily)
 }
 
-/**
- * Get the text color. This is used to override the color.
- * @param {string} fontFamily
- * @return {string} font family
- */
-const getTextColor = (color: string) => {
-  /**
-   * Allow for passing in a custom text color not in the theme.
-   */
+// Get the text color. This is used to override the color.
+const getTextColor = (color: string): string => {
+  // Allow for passing in a custom text color not in the theme.
   return themedProperty(colors.text, color)
 }
 

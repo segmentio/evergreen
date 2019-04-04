@@ -6,12 +6,7 @@ import scales from './scales'
  * A required property is required by the default theme NOT by Evergreen itself.
  */
 export default {
-  /**
-   * Available on Pane as `<Pane background="tint1" />`
-   * @property {string} background.tint1 - Lightest tinted background color. Required property.
-   * @property {string} background.tint2 - Slightly darker tinted background color. Required property.
-   * @property {string} background.overlay - color used for the overlay
-   */
+  // Available on Pane as `<Pane background="tint1" />`
   background: {
     tint1: scales.neutral.N1,
     tint2: scales.neutral.N2,
@@ -27,22 +22,13 @@ export default {
     tealTint: palette.teal.lightest
   },
 
-  /**
-   * Available on Pane as `<Pane borderBottom borderRight="muted" />`
-   * @property {string} text.default - Required property.
-   * @property {string} text.muted - Slightly lighter color than default. Required property.
-   */
+  // Available on Pane as `<Pane borderBottom borderRight="muted" />`
   border: {
     default: scales.neutral.N4, // Was BorderColors.muted in v3 and under.
     muted: scales.neutral.N3 // Was BorderColors.extraMuted in v3 and under
   },
 
-  /**
-   * Text colors available on Text as `<Text color="muted" />`.
-   * @property {string} text.muted - Required property.
-   * @property {string} text.default - Required property. Default for text.
-   * @property {string} text.dark - Required property. Default for headings.
-   */
+  // Text colors available on Text as `<Text color="muted" />`.
   text: {
     muted: scales.neutral.N8,
     default: scales.neutral.N9,
@@ -56,12 +42,7 @@ export default {
     warning: palette.orange.dark
   },
 
-  /**
-   * Icon colors available on Icon.
-   * @property {string} icon.default - Required property.
-   * @property {string} icon.muted - Required property.
-   * @property {string} icon.selected - Required property.
-   */
+  // Icon colors available on Icon.
   icon: {
     default: scales.neutral.N8,
     muted: scales.neutral.N7,
@@ -75,13 +56,7 @@ export default {
     warning: palette.orange.base
   },
 
-  /**
-   * Used for Alerts and other (future) componentes that express intent.
-   * @property {string} intent.none - Required property.
-   * @property {string} intent.success - Required property.
-   * @property {string} intent.danger - Required property.
-   * @property {string} intent.warning - Required property.
-   */
+  // Used for Alerts and other (future) componentes that express intent.
   intent: {
     none: palette.blue.base,
     success: palette.green.base,

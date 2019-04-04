@@ -1,4 +1,5 @@
 import * as React from 'react'
+
 import Text, { ITextProps } from './Text'
 
 export default class Pre extends React.PureComponent<ITextProps> {

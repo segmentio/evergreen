@@ -3,10 +3,10 @@ import { BoxProps } from 'ui-box'
 
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import Radio from './Radio'
 import { AnyFunction } from '../../types/helper'
+import Radio from './Radio'
 
-interface Options {
+interface IOptions {
   label: React.ReactNode
   value: string
   isDisabled?: boolean
@@ -14,7 +14,7 @@ interface Options {
 
 interface IProps extends BoxProps {
   // The options for the radios of the Radio Group.
-  options?: Options[]
+  options?: IOptions[]
 
   // The selected item value when controlled.
   value?: string
@@ -43,7 +43,7 @@ let radioCount = 1 // Used for generating unique input names
 
 export default class RadioGroup extends React.PureComponent<IProps, IState> {
   static defaultProps = {
-    options: [] as Options[],
+    options: [] as IOptions[],
     onChange: () => {},
     size: 12 as 12 | 16,
     isRequired: false

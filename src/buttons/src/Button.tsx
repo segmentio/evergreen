@@ -3,56 +3,36 @@ import cx from 'classnames'
 import * as React from 'react'
 import { BoxProps } from 'ui-box'
 
-import Appearance from '../../types/appearance'
-import { Text } from '../../typography'
+import { Appearance } from '../../types/appearance'
+import { IntentType } from '../../constants'
 import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
 import { withTheme, PropsWithTheme } from '../../theme'
-import { IntentType } from '../../constants'
+import { Text } from '../../typography'
 
 export interface IButtonProps extends BoxProps {
-  /**
-   * The intent of the button.
-   */
+  // The intent of the button.
   intent?: IntentType
 
-  /**
-   * The appearance of the button.
-   */
+  // The appearance of the button.
   appearance?: Appearance
 
-  /**
-   * When true, show a loading spinner before the children.
-   * This also disables the button.
-   */
+  // When true, show a loading spinner before the children. This also disables the button.
   isLoading?: boolean
 
-  /**
-   * Forcefully set the active state of a button.
-   * Useful in conjuction with a Popover.
-   */
+  // Forcefully set the active state of a button. Useful in conjuction with a Popover.
   isActive?: boolean
 
-  /**
-   * Sets an icon before the text. Can be any icon from Evergreen.
-   */
+  // Sets an icon before the text. Can be any icon from Evergreen.
   iconBefore?: IconName
 
-  /**
-   * Sets an icon after the text. Can be any icon from Evergreen.
-   */
+  // Sets an icon after the text. Can be any icon from Evergreen.
   iconAfter?: IconName
 
-  /**
-   * When true, the button is disabled.
-   * isLoading also sets the button to disabled.
-   */
+  // When true, the button is disabled. isLoading also sets the button to disabled.
   disabled?: boolean
 
-  /**
-   * Class name passed to the button.
-   * Only use if you know what you are doing.
-   */
+  // Class name passed to the button. Only use if you know what you are doing.
   className?: string
 }
 
@@ -108,8 +88,9 @@ class Button extends React.PureComponent<PropsWithTheme<IButtonProps>> {
     const iconSize = theme.getIconSizeForButton(height)
 
     const pr =
-      paddingRight !== undefined ? paddingRight : Math.round(+height / 2) // eslint-disable-line no-negated-condition
-    const pl = paddingLeft !== undefined ? paddingLeft : Math.round(+height / 2) // eslint-disable-line no-negated-condition
+      paddingRight !== undefined ? paddingRight : Math.round(Number(height) / 2) // eslint-disable-line no-negated-condition
+    const pl =
+      paddingLeft !== undefined ? paddingLeft : Math.round(Number(height) / 2) // eslint-disable-line no-negated-condition
 
     let iconBefore
     if (iconBeforeKey) {
@@ -117,7 +98,7 @@ class Button extends React.PureComponent<PropsWithTheme<IButtonProps>> {
         <Icon
           icon={iconBeforeKey}
           size={iconSize}
-          marginLeft={-Math.round(+pl * 0.2)}
+          marginLeft={-Math.round(Number(pl) * 0.2)}
           marginRight={Math.round(iconSize * 0.7)}
         />
       )
@@ -129,7 +110,7 @@ class Button extends React.PureComponent<PropsWithTheme<IButtonProps>> {
         <Icon
           icon={iconAfterKey}
           size={iconSize}
-          marginRight={-Math.round(+pl * 0.2)}
+          marginRight={-Math.round(Number(pl) * 0.2)}
           marginLeft={Math.round(iconSize * 0.7)}
         />
       )
@@ -162,9 +143,9 @@ class Button extends React.PureComponent<PropsWithTheme<IButtonProps>> {
       >
         {isLoading && (
           <Spinner
-            marginLeft={-Math.round(+height / 8)}
-            marginRight={Math.round(+height / 4)}
-            size={Math.round(+height / 2)}
+            marginLeft={-Math.round(Number(height) / 8)}
+            marginRight={Math.round(Number(height) / 4)}
+            size={Math.round(Number(height) / 2)}
           />
         )}
         {iconBefore || null}

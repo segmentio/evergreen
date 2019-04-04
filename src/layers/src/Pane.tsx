@@ -9,10 +9,7 @@ type Border = boolean | 'muted' | 'default'
 type BorderValues = boolean | 'muted' | 'extraMuted' | 'default'
 
 interface IProps extends BoxProps {
-  /**
-   * Background property.
-   * `tint1`, `tint2` etc. from `theme.colors.background` are available.
-   */
+  // Background property. `tint1`, `tint2` etc. from `theme.colors.background` are available.
   background?: string
 
   elevation?: Elevation

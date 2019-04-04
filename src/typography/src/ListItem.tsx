@@ -1,20 +1,15 @@
-import * as React from 'react'
 import { IconName } from '@blueprintjs/icons'
+import * as React from 'react'
 
 import { Icon } from '../../icon'
-import Text, { ITextProps } from './Text'
 import { PropsWithTheme } from '../../theme'
+import Text, { ITextProps } from './Text'
 
 interface IProps extends ITextProps {
-  /**
-   * When passed, adds a icon before the list item.
-   * See Evergreen `Icon` for documentation.
-   */
+  // When passed, adds a icon before the list item. See Evergreen `Icon` for documentation.
   icon?: IconName
 
-  /**
-   * The color of the icon.
-   */
+  // The color of the icon.
   iconColor?: string
 }
 

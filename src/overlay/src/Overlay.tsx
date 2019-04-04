@@ -1,14 +1,14 @@
+import { css } from 'glamor'
 import * as React from 'react'
 import Transition from 'react-transition-group/Transition'
 import Box from 'ui-box'
-import { css } from 'glamor'
 
+import { StackingOrder } from '../../constants'
+import preventBodyScroll from '../../lib/prevent-body-scroll'
+import safeInvoke from '../../lib/safe-invoke'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
-import { StackingOrder } from '../../constants'
 import { withTheme, PropsWithTheme } from '../../theme'
-import safeInvoke from '../../lib/safe-invoke'
-import preventBodyScroll from '../../lib/prevent-body-scroll'
 import { GenericFunction, AnyObject } from '../../types/helper'
 
 interface IProps {
@@ -144,6 +144,10 @@ class Overlay extends React.Component<PropsWithTheme<IProps>, IState> {
     onEntered: () => {}
   }
 
+  containerElement: HTMLElement
+
+  previousActiveElement: HTMLElement
+
   constructor(props: PropsWithTheme<IProps>) {
     super(props)
 
@@ -153,11 +157,9 @@ class Overlay extends React.Component<PropsWithTheme<IProps>, IState> {
     }
   }
 
-  containerElement: HTMLElement
-  previousActiveElement: HTMLElement
-
   componentDidUpdate(prevProps: IProps) {
     if (!prevProps.isShown && this.props.isShown) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         exited: false
       })
@@ -344,10 +346,7 @@ class Overlay extends React.Component<PropsWithTheme<IProps>, IState> {
                   {...containerProps}
                 >
                   {typeof children === 'function'
-                    ? children({
-                        state,
-                        close: this.close
-                      })
+                    ? children({ state, close: this.close })
                     : children}
                 </Box>
               )}

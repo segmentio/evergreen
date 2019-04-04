@@ -2,27 +2,20 @@ import * as React from 'react'
 import Box from 'ui-box'
 
 import { Image } from '../../image'
-import { Text } from '../../typography'
 import { withTheme, PropsWithTheme } from '../../theme'
+import { AnyFunction } from '../../types/helper'
+import { Text } from '../../typography'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
-import { AnyFunction } from '../../types/helper'
 
 interface IProps {
-  /**
-   * The src attribute of the image.
-   * When it's not available, render initials instead.
-   */
+  // The src attribute of the image. When it's not available, render initials instead.
   src?: string
 
-  /**
-   * The size of the avatar.
-   */
+  // The size of the avatar.
   size?: number
 
-  /**
-   * The name used for the initials and title attribute.
-   */
+  // The name used for the initials and title attribute.
   name?: string
 
   /**
@@ -32,31 +25,19 @@ interface IProps {
    */
   hashValue?: string
 
-  /**
-   * When true, render a solid avatar.
-   */
+  // When true, render a solid avatar.
   isSolid?: boolean
 
-  /**
-   * The color used for the avatar.
-   * When the value is `automatic`, use the hash function to determine the color.
-   */
+  // The color used for the avatar. When the value is `automatic`, use the hash function to determine the color.
   color?: string
 
-  /**
-   * Function to get the initials based on the name.
-   */
+  // Function to get the initials based on the name.
   getInitials?: AnyFunction
 
-  /**
-   * When true, force show the initials.
-   * This is useful in some cases when using Gravatar and transparent pngs.
-   */
+  // When true, force show the initials. This is useful in some cases when using Gravatar and transparent pngs.
   forceShowInitials?: boolean
 
-  /**
-   * When the size is smaller than this number, use a single initial for the avatar.
-   */
+  // When the size is smaller than this number, use a single initial for the avatar.
   sizeLimitOneCharacter?: number
 }
 

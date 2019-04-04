@@ -1,12 +1,12 @@
+import { IntentType } from '../../../../constants'
 import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
-import scales from '../foundational-styles/scales'
 import {
   getTextColorForIntent,
   getPrimaryButtonStylesForIntent
 } from '../helpers'
+import scales from '../foundational-styles/scales'
 import { defaultControlStyles } from '../shared'
-import { IntentType } from '../../../../constants'
+import memoizeClassName from '../utils/memoizeClassName'
 
 /**
  * Disabled styles are all the same for all buttons.

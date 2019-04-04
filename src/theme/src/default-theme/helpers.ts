@@ -1,4 +1,5 @@
 import * as tinycolor from 'tinycolor2'
+
 import { Intent, IntentType } from '../../../constants'
 import colors from './foundational-styles/colors'
 

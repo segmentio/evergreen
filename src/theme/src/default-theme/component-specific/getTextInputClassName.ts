@@ -1,7 +1,7 @@
 import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
+import memoizeClassName from '../utils/memoizeClassName'
 
 const defaultAppearance = Themer.createInputAppearance({
   base: {

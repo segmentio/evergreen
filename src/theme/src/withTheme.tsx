@@ -1,20 +1,18 @@
 import * as React from 'react'
-import { ThemeConsumer } from './ThemeContext'
-import { AnyObject } from '../../types/helper'
 
-/**
- * HOC that uses ThemeConsumer.
- * @param {React.Component} WrappedComponent - Component that gets theme.
- */
+import { AnyObject } from '../../types/helper'
+import { ThemeConsumer } from './ThemeContext'
+
+// HOC that uses ThemeConsumer.
 
 export type PropsWithTheme<Props> = Props & { theme: AnyObject }
 
-function withTheme<I>(
-  WrappedComponent: React.ComponentType<PropsWithTheme<I>>
+function withTheme<TProps>(
+  WrappedComponent: React.ComponentType<PropsWithTheme<TProps>>
 ) {
-  const render: React.SFC<I> = () => (
+  const render: React.SFC<TProps> = (props: TProps) => (
     <ThemeConsumer>
-      {theme => <WrappedComponent theme={theme} {...this.props} />}
+      {theme => <WrappedComponent theme={theme} {...props} />}
     </ThemeConsumer>
   )
 

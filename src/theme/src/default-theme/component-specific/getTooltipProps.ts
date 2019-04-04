@@ -1,4 +1,5 @@
 import * as tinycolor from 'tinycolor2'
+
 import palette from '../foundational-styles/palette'
 
 const getTooltipProps = (appearance: string) => {

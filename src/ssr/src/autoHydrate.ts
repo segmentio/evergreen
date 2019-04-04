@@ -1,9 +1,9 @@
-import { hydrate as boxHydrate } from 'ui-box'
 import { rehydrate } from 'glamor'
+import { hydrate as boxHydrate } from 'ui-box'
 
 interface IHydration {
-  uiBoxCache?: ReadonlyArray<ReadonlyArray<[string, string]>>;
-  glamorIds?: string[];
+  uiBoxCache?: ReadonlyArray<ReadonlyArray<[string, string]>>
+  glamorIds?: string[]
 }
 
 /**

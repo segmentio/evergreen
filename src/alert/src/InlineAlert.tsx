@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { BoxProps } from 'ui-box'
 
-import { withTheme, PropsWithTheme } from '../../theme'
-import { Pane } from '../../layers'
-import { Text } from '../../typography'
-import { Icon } from '../../icon'
 import { IntentType } from '../../constants'
+import { Icon } from '../../icon'
+import { Pane } from '../../layers'
+import { withTheme, PropsWithTheme } from '../../theme'
+import { Text } from '../../typography'
 import { TextSize } from '../../typography/src/Text'
 
 interface IProps extends BoxProps {

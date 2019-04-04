@@ -1,4 +1,5 @@
 import * as React from 'react'
+
 import Pane from './Pane'
 
 export default class Card extends React.PureComponent {

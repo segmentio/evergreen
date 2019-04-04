@@ -9,10 +9,6 @@ import fontFamilies from './fontFamilies'
  * - ListItem
  * - Label
  * - Link
- * @property {Object} 600 - Required property.
- * @property {Object} 500 - Required property.
- * @property {Object} 400 - Required property. Default.
- * @property {Object} 300 - Required property.
  */
 export default {
   /**
@@ -25,9 +21,7 @@ export default {
     lineHeight: '24px',
     letterSpacing: '-0.07px',
     marginTop: 28,
-    /**
-     * Use font family display because the font-size is 20px.
-     */
+    // Use font family display because the font-size is 20px.
     fontFamily: fontFamilies.display
   },
   '500': {

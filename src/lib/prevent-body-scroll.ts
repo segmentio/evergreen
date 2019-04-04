@@ -26,7 +26,7 @@ export default function preventBodyScroll(preventScroll: boolean) {
   /** If there's a diff due to scrollbars, then account for it with padding */
   if (preventScroll) {
     previousPaddingRight = document.body.style.paddingRight
-    document.body.style.paddingRight = Math.max(0, scrollBarWidth || 0) + 'px'
+    document.body.style.paddingRight = `${Math.max(0, scrollBarWidth || 0)}px`
   } else {
     document.body.style.paddingRight = previousPaddingRight || ''
   }

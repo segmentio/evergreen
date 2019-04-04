@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
+
 import { withTheme, PropsWithTheme } from '../../theme'
-import { AnyObject } from '../../types/helper'
 
 type Size = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800
 

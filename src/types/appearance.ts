@@ -1,3 +1,1 @@
-type Appearance = 'default' | 'primary' | 'minimal'
-
-export default Appearance
+export type Appearance = 'default' | 'primary' | 'minimal'

@@ -1,7 +1,8 @@
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
-import { Text } from '../../typography'
+
 import { withTheme, PropsWithTheme } from '../../theme'
+import { Text } from '../../typography'
 import { AnyObject } from '../../types/helper'
 
 interface ICircleIconProps {
@@ -13,7 +14,7 @@ const CircleIcon: React.SFC<ICircleIconProps> = ({
   size,
   fill = 'currentColor',
   ...props
-}) => (
+}: ICircleIconProps) => (
   <svg width={size} height={size} viewBox="0 0 10 10" {...props}>
     <circle fill={fill} cx="5" cy="5" r="5" />
   </svg>

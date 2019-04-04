@@ -1,21 +1,16 @@
+import { IconName } from '@blueprintjs/icons'
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
-import { IconName } from '@blueprintjs/icons'
 
 type Size = 300 | 400 | 500 | 600
 
 interface IProps extends BoxProps {
   size?: Size
 
-  /**
-   * When passed, adds a icon before each list item in the list
-   * You can override this on a individual list item.
-   */
+  // When passed, adds a icon before each list item in the list. You can override this on a individual list item.
   icon?: IconName
 
-  /**
-   * The color of the icon in each list item in the list.
-   */
+  // The color of the icon in each list item in the list.
   iconColor?: string
 }
 
