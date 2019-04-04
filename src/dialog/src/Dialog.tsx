@@ -1,11 +1,152 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { css } from 'ui-box'
+import * as React from 'react'
+import { css } from 'glamor'
+
 import { Pane } from '../../layers'
 import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
 import { Button, IconButton } from '../../buttons'
-import { withTheme } from '../../theme'
+import { withTheme, PropsWithTheme } from '../../theme'
+import { IntentType } from '../../constants'
+import { AnyFunction, AnyObject } from '../../types/helper'
+
+interface IProps {
+  /**
+   * Children can be a string, node or a function accepting `({ close })`.
+   * When passing a string, <Paragraph /> is used to wrap the string.
+   */
+  children: React.ReactNode
+
+  /**
+   * The intent of the Dialog. Used for the button.
+   */
+  intent?: IntentType
+
+  /**
+   * When true, the dialog is shown.
+   */
+  isShown?: boolean
+
+  /**
+   * Title of the Dialog. Titles should use Title Case.
+   */
+  title?: React.ReactNode
+
+  /**
+   * When true, the header with the title and close icon button is shown.
+   */
+  hasHeader?: boolean
+
+  /**
+   * When true, the footer with the cancel and confirm button is shown.
+   */
+  hasFooter?: boolean
+
+  /**
+   * When true, the cancel button is shown.
+   */
+  hasCancel?: boolean
+
+  /**
+   * When true, the close button is shown
+   */
+  hasClose?: boolean
+
+  /**
+   * Function that will be called when the exit transition is complete.
+   */
+  onCloseComplete?: AnyFunction
+
+  /**
+   * Function that will be called when the enter transition is complete.
+   */
+  onOpenComplete?: AnyFunction
+
+  /**
+   * Function that will be called when the confirm button is clicked.
+   * This does not close the Dialog. A close function will be passed
+   * as a paramater you can use to close the dialog.
+   *
+   * `onConfirm={(close) => close()}`
+   */
+  onConfirm?: AnyFunction
+
+  /**
+   * Label of the confirm button.
+   */
+  confirmLabel?: string
+
+  /**
+   * When true, the confirm button is set to loading.
+   */
+  isConfirmLoading?: boolean
+
+  /**
+   * When true, the confirm button is set to disabled.
+   */
+  isConfirmDisabled?: boolean
+
+  /**
+   * Function that will be called when the cancel button is clicked.
+   * This closes the Dialog by default.
+   *
+   * `onCancel={(close) => close()}`
+   */
+  onCancel?: AnyFunction
+
+  /**
+   * Label of the cancel button.
+   */
+  cancelLabel?: string
+
+  /**
+   * Boolean indicating if clicking the overlay should close the overlay.
+   */
+  shouldCloseOnOverlayClick?: boolean
+
+  /**
+   * Boolean indicating if pressing the esc key should close the overlay.
+   */
+  shouldCloseOnEscapePress?: boolean
+
+  /**
+   * Width of the Dialog.
+   */
+  width?: string | number
+
+  /**
+   * The space above the dialog.
+   * This offset is also used at the bottom when there is not enough vertical
+   * space available on screen — and the dialog scrolls internally.
+   */
+  topOffset?: string | number
+
+  /**
+   * The space on the left/right sides of the dialog when there isn't enough
+   * horizontal space available on screen.
+   */
+  sideOffset?: string | number
+
+  /**
+   * The min height of the body content.
+   * Makes it less weird when only showing little content.
+   */
+  minHeightContent?: string | number
+
+  /**
+   * Props that are passed to the dialog container.
+   */
+  containerProps?: AnyObject
+
+  /**
+   * Props that are passed to the content container.
+   */
+  contentContainerProps?: AnyObject
+
+  /**
+   * Whether or not to prevent scrolling in the outer body
+   */
+  preventBodyScrolling?: boolean
+}
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -49,154 +190,14 @@ const animationStyles = {
   }
 }
 
-class Dialog extends React.Component {
-  static propTypes = {
-    /**
-     * Children can be a string, node or a function accepting `({ close })`.
-     * When passing a string, <Paragraph /> is used to wrap the string.
-     */
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
-
-    /**
-     * The intent of the Dialog. Used for the button.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * When true, the dialog is shown.
-     */
-    isShown: PropTypes.bool,
-
-    /**
-     * Title of the Dialog. Titles should use Title Case.
-     */
-    title: PropTypes.node,
-
-    /**
-     * When true, the header with the title and close icon button is shown.
-     */
-    hasHeader: PropTypes.bool,
-
-    /**
-     * When true, the footer with the cancel and confirm button is shown.
-     */
-    hasFooter: PropTypes.bool,
-
-    /**
-     * When true, the cancel button is shown.
-     */
-    hasCancel: PropTypes.bool,
-
-    /**
-     * When true, the close button is shown
-     */
-    hasClose: PropTypes.bool,
-
-    /**
-     * Function that will be called when the exit transition is complete.
-     */
-    onCloseComplete: PropTypes.func,
-
-    /**
-     * Function that will be called when the enter transition is complete.
-     */
-    onOpenComplete: PropTypes.func,
-
-    /**
-     * Function that will be called when the confirm button is clicked.
-     * This does not close the Dialog. A close function will be passed
-     * as a paramater you can use to close the dialog.
-     *
-     * `onConfirm={(close) => close()}`
-     */
-    onConfirm: PropTypes.func,
-
-    /**
-     * Label of the confirm button.
-     */
-    confirmLabel: PropTypes.string,
-
-    /**
-     * When true, the confirm button is set to loading.
-     */
-    isConfirmLoading: PropTypes.bool,
-
-    /**
-     * When true, the confirm button is set to disabled.
-     */
-    isConfirmDisabled: PropTypes.bool,
-
-    /**
-     * Function that will be called when the cancel button is clicked.
-     * This closes the Dialog by default.
-     *
-     * `onCancel={(close) => close()}`
-     */
-    onCancel: PropTypes.func,
-
-    /**
-     * Label of the cancel button.
-     */
-    cancelLabel: PropTypes.string,
-
-    /**
-     * Boolean indicating if clicking the overlay should close the overlay.
-     */
-    shouldCloseOnOverlayClick: PropTypes.bool,
-
-    /**
-     * Boolean indicating if pressing the esc key should close the overlay.
-     */
-    shouldCloseOnEscapePress: PropTypes.bool,
-
-    /**
-     * Width of the Dialog.
-     */
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * The space above the dialog.
-     * This offset is also used at the bottom when there is not enough vertical
-     * space available on screen — and the dialog scrolls internally.
-     */
-    topOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * The space on the left/right sides of the dialog when there isn't enough
-     * horizontal space available on screen.
-     */
-    sideOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * The min height of the body content.
-     * Makes it less weird when only showing little content.
-     */
-    minHeightContent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * Props that are passed to the dialog container.
-     */
-    containerProps: PropTypes.object,
-
-    /**
-     * Props that are passed to the content container.
-     */
-    contentContainerProps: PropTypes.object,
-
-    /**
-     * Whether or not to prevent scrolling in the outer body
-     */
-    preventBodyScrolling: PropTypes.bool
-  }
-
+class Dialog extends React.Component<PropsWithTheme<IProps>> {
   static defaultProps = {
     isShown: false,
     hasHeader: true,
     hasClose: true,
     hasFooter: true,
     hasCancel: true,
-    intent: 'none',
+    intent: 'none' as IntentType,
     width: 560,
     topOffset: '12vmin',
     sideOffset: '16px',
@@ -207,12 +208,12 @@ class Dialog extends React.Component {
     cancelLabel: 'Cancel',
     shouldCloseOnOverlayClick: true,
     shouldCloseOnEscapePress: true,
-    onCancel: close => close(),
-    onConfirm: close => close(),
+    onCancel: (close: AnyFunction) => close(),
+    onConfirm: (close: AnyFunction) => close(),
     preventBodyScrolling: false
   }
 
-  renderChildren = close => {
+  renderChildren = (close: AnyFunction) => {
     const { children } = this.props
 
     if (typeof children === 'function') {
@@ -254,14 +255,16 @@ class Dialog extends React.Component {
       preventBodyScrolling
     } = this.props
 
-    const sideOffsetWithUnit = Number.isInteger(sideOffset)
-      ? `${sideOffset}px`
-      : sideOffset
+    const sideOffsetWithUnit =
+      typeof sideOffset === 'number' && Number.isInteger(sideOffset)
+        ? `${sideOffset}px`
+        : sideOffset
     const maxWidth = `calc(100% - ${sideOffsetWithUnit} * 2)`
 
-    const topOffsetWithUnit = Number.isInteger(topOffset)
-      ? `${topOffset}px`
-      : topOffset
+    const topOffsetWithUnit =
+      typeof topOffset === 'number' && Number.isInteger(topOffset)
+        ? `${topOffset}px`
+        : topOffset
     const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
 
     return (
@@ -278,7 +281,7 @@ class Dialog extends React.Component {
         }}
         preventBodyScrolling={preventBodyScrolling}
       >
-        {({ state, close }) => (
+        {({ state, close }: any) => (
           <Pane
             role="dialog"
             backgroundColor="white"

@@ -1,5 +1,5 @@
 // http://erlycoder.com/49/javascript-hash-functions-to-convert-string-into-integer-hash-
-export default function hashCode(s) {
+export default function hashCode(s: any) {
   const str = String(s)
   let hash = 0
   let char

@@ -2,20 +2,20 @@ import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 import { withTheme, PropsWithTheme } from '../../theme'
 
-type Size = 300 | 400 | 500 | 600
+export type TextSize = 300 | 400 | 500 | 600
 
 export interface ITextProps extends BoxProps {
-  size: Size
+  size?: TextSize
 
   /**
    * Can be: `ui`, `display`, or `mono` or a custom font family
    */
-  fontFamily: string
+  fontFamily?: string
 }
 
 class Text extends React.PureComponent<PropsWithTheme<ITextProps>> {
   static defaultProps = {
-    size: 400 as Size,
+    size: 400 as TextSize,
     color: 'default',
     fontFamily: 'ui'
   }

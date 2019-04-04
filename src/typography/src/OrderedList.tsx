@@ -7,9 +7,9 @@ interface IProps extends BoxProps {
   size: Size
 }
 
-export default class OrderedList extends React.PureComponent<IProps> {
+export default class OrderedList extends React.PureComponent<Partial<IProps>> {
   static defaultProps = {
-    size: 400 as Size
+    size: 400 as Size // this makes size optional in props (hence Partial, but not in childprops down below)
   }
 
   static styles = {

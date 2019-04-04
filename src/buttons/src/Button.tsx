@@ -19,7 +19,7 @@ export interface IButtonProps extends BoxProps {
   /**
    * The appearance of the button.
    */
-  appearance: Appearance
+  appearance?: Appearance
 
   /**
    * When true, show a loading spinner before the children.

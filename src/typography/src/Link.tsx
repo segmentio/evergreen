@@ -23,7 +23,7 @@ interface IProps extends ITextProps {
   /**
    * The color (and styling) of the Link. Can be default, blue, green or neutral.
    */
-  color: string
+  color?: string
 
   /**
    * Class name passed to the link.

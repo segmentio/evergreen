@@ -5,7 +5,7 @@ import { IconName } from '@blueprintjs/icons'
 type Size = 300 | 400 | 500 | 600
 
 interface IProps extends BoxProps {
-  size: Size
+  size?: Size
 
   /**
    * When passed, adds a icon before each list item in the list

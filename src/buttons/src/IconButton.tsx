@@ -31,12 +31,12 @@ interface IProps extends BoxProps {
   /**
    * The intent of the button.
    */
-  intent: IntentType
+  intent?: IntentType
 
   /**
    * The appearance of the button.
    */
-  appearance: Appearance
+  appearance?: Appearance
 
   /**
    * Forcefully set the active state of a button.

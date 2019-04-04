@@ -1,17 +1,16 @@
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
-import { withTheme } from '../../theme'
+import { withTheme, PropsWithTheme } from '../../theme'
 import { AnyObject } from '../../types/helper'
 
 type Size = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800
 
 interface IProps extends BoxProps {
-  size: Size
+  size?: Size
   marginTop?: boolean | number | string
-  theme: AnyObject
 }
 
-class Heading extends React.PureComponent<IProps> {
+class Heading extends React.PureComponent<PropsWithTheme<IProps>> {
   static defaultProps = {
     size: 500 as Size
   }

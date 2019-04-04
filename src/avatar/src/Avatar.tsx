@@ -1,11 +1,68 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
 import Box from 'ui-box'
+
 import { Image } from '../../image'
 import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import { withTheme, PropsWithTheme } from '../../theme'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
+import { AnyFunction } from '../../types/helper'
+
+interface IProps {
+  /**
+   * The src attribute of the image.
+   * When it's not available, render initials instead.
+   */
+  src?: string
+
+  /**
+   * The size of the avatar.
+   */
+  size?: number
+
+  /**
+   * The name used for the initials and title attribute.
+   */
+  name?: string
+
+  /**
+   * The value used for the hash function.
+   * The name is used as the hashValue by default.
+   * When dealing with anonymous users you should use the id instead.
+   */
+  hashValue?: string
+
+  /**
+   * When true, render a solid avatar.
+   */
+  isSolid?: boolean
+
+  /**
+   * The color used for the avatar.
+   * When the value is `automatic`, use the hash function to determine the color.
+   */
+  color?: string
+
+  /**
+   * Function to get the initials based on the name.
+   */
+  getInitials?: AnyFunction
+
+  /**
+   * When true, force show the initials.
+   * This is useful in some cases when using Gravatar and transparent pngs.
+   */
+  forceShowInitials?: boolean
+
+  /**
+   * When the size is smaller than this number, use a single initial for the avatar.
+   */
+  sizeLimitOneCharacter?: number
+}
+
+interface IState {
+  imageHasFailedLoading: boolean
+}
 
 const initialsProps = {
   top: 0,
@@ -16,64 +73,7 @@ const initialsProps = {
   lineHeight: 1
 }
 
-class Avatar extends PureComponent {
-  static propTypes = {
-    /**
-     * The src attribute of the image.
-     * When it's not available, render initials instead.
-     */
-    src: PropTypes.string,
-
-    /**
-     * The size of the avatar.
-     */
-    size: PropTypes.number,
-
-    /**
-     * The name used for the initials and title attribute.
-     */
-    name: PropTypes.string,
-
-    /**
-     * The value used for the hash function.
-     * The name is used as the hashValue by default.
-     * When dealing with anonymous users you should use the id instead.
-     */
-    hashValue: PropTypes.string,
-
-    /**
-     * When true, render a solid avatar.
-     */
-    isSolid: PropTypes.bool,
-
-    /**
-     * The color used for the avatar.
-     * When the value is `automatic`, use the hash function to determine the color.
-     */
-    color: PropTypes.string.isRequired,
-
-    /**
-     * Function to get the initials based on the name.
-     */
-    getInitials: PropTypes.func,
-
-    /**
-     * When true, force show the initials.
-     * This is useful in some cases when using Gravatar and transparent pngs.
-     */
-    forceShowInitials: PropTypes.bool,
-
-    /**
-     * When the size is smaller than this number, use a single initial for the avatar.
-     */
-    sizeLimitOneCharacter: PropTypes.number,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
+class Avatar extends React.PureComponent<PropsWithTheme<IProps>, IState> {
   static defaultProps = {
     color: 'automatic',
     size: 24,
@@ -83,7 +83,7 @@ class Avatar extends PureComponent {
     sizeLimitOneCharacter: 20
   }
 
-  constructor(props, context) {
+  constructor(props: PropsWithTheme<IProps>, context: any) {
     super(props, context)
     this.state = { imageHasFailedLoading: false }
   }

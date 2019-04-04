@@ -5,13 +5,13 @@ import { PropsWithTheme, withTheme } from '../../theme'
 type Size = 300 | 400 | 500
 
 interface IProps extends BoxProps {
-  size: Size
+  size?: Size
 
   /**
    * Font family.
    * Can be: `ui`, `display` or `mono` or a custom font family.
    */
-  fontFamily: string
+  fontFamily?: string
 }
 
 class Paragraph extends React.PureComponent<PropsWithTheme<IProps>> {

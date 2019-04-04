@@ -136,7 +136,7 @@ class Switch extends React.PureComponent<PropsWithTheme<IProps>, IState> {
     }
   }
 
-  handleChange = value => {
+  handleChange = (value: any) => {
     if (isControlled(this)) {
       this.props.onChange(value)
     } else {

@@ -9,7 +9,7 @@ interface IProps extends ITextProps {
   /**
    * The appearance of the code.
    */
-  appearance: Appearance
+  appearance?: Appearance
 
   /**
    * Class name passed to the button

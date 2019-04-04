@@ -1,78 +1,68 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import { spacing, dimensions, position, layout } from 'ui-box'
-import { withTheme } from '../../theme'
+import * as React from 'react'
+import { BoxProps } from 'ui-box'
+
+import { withTheme, PropsWithTheme } from '../../theme'
 import { Pane } from '../../layers'
 import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
 import { Icon } from '../../icon'
+import { IntentType } from '../../constants'
+import { AnyFunction } from '../../types/helper'
 
-class Alert extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes some Box APIs.
-     */
-    ...spacing.propTypes,
-    ...position.propTypes,
-    ...layout.propTypes,
-    ...dimensions.propTypes,
+type Appearance = 'default' | 'card'
 
-    /**
-     * The content of the alert. When a string is passed it is wrapped in a `<Text size={400} />` component.
-     */
-    children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+interface IProps extends BoxProps {
+  /**
+   * The content of the alert. When a string is passed it is wrapped in a `<Text size={400} />` component.
+   */
+  children?: string | React.ReactNode
 
-    /**
-     * The intent of the alert.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
+  /**
+   * The intent of the alert.
+   */
+  intent: IntentType
 
-    /**
-     * The title of the alert.
-     */
-    title: PropTypes.node,
+  /**
+   * The title of the alert.
+   */
+  title?: React.ReactNode
 
-    /**
-     * When true, show a border on the left matching the type.
-     */
-    hasTrim: PropTypes.bool,
+  /**
+   * When true, show a border on the left matching the type.
+   */
+  hasTrim?: boolean
 
-    /**
-     * When true, show a icon on the left matching the type,
-     */
-    hasIcon: PropTypes.bool,
+  /**
+   * When true, show a icon on the left matching the type,
+   */
+  hasIcon?: boolean
 
-    /**
-     * When true, show a remove icon button.
-     */
-    isRemoveable: PropTypes.bool,
+  /**
+   * When true, show a remove icon button.
+   */
+  isRemoveable?: boolean
 
-    /**
-     * Function called when the remove button is clicked.
-     */
-    onRemove: PropTypes.func,
+  /**
+   * Function called when the remove button is clicked.
+   */
+  onRemove?: AnyFunction
 
-    /**
-     * The appearance of the alert.
-     */
-    appearance: PropTypes.oneOf(['default', 'card']),
+  /**
+   * The appearance of the alert.
+   */
+  appearance: Appearance
+}
 
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
+class Alert extends React.PureComponent<PropsWithTheme<IProps>> {
   static defaultProps = {
-    intent: 'none',
+    intent: 'none' as IntentType,
     hasTrim: true,
     hasIcon: true,
     isRemoveable: false,
-    appearance: 'default'
+    appearance: 'default' as Appearance
   }
 
-  getIconForIntent = intent => {
+  getIconForIntent = (intent: IntentType) => {
     const { theme } = this.props
 
     return <Icon size={14} {...theme.getIconForIntent(intent)} />
