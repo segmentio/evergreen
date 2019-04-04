@@ -1,11 +1,19 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
+import { css } from 'glamor'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
-import StatelessTextInput from './StatelessTextInput'
+import { Icon } from '../../icon'
 
-class TextInput extends PureComponent {
+// Create a style to override default IE, Edge native input=["text"] clear button
+const hideMsClearPseudoElement = css({
+  'input[type=text]::-ms-clear': {
+    display: 'none'
+  }
+})
+
+class StatelessTextInput extends PureComponent {
   static propTypes = {
     /**
      * Composes the Text component as the base.
@@ -34,7 +42,8 @@ class TextInput extends PureComponent {
     isClearable: PropTypes.bool,
 
     /**
-     * Clears the input value when TextInput is Stateful
+     * Used to trigger the function that should clear the input value in Parent component.
+     * Note that this is required to leverage the click of the [X] icon.
      */
     onClear: PropTypes.func,
 
@@ -70,10 +79,6 @@ class TextInput extends PureComponent {
     className: PropTypes.string
   }
 
-  state = {
-    value: this.props.defaultValue || ''
-  }
-
   static defaultProps = {
     appearance: 'default',
     height: 32,
@@ -99,6 +104,7 @@ class TextInput extends PureComponent {
       appearance,
       placeholder,
       spellCheck,
+      value,
       ...props
     } = this.props
     const themedClassName = theme.getTextInputClassName(appearance)
@@ -106,30 +112,42 @@ class TextInput extends PureComponent {
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
 
     return (
-      <StatelessTextInput
-        value={this.state.value}
-        isClearable={isClearable}
-        onClear={() => this.setState({ value: '' })}
-        onChange={e => this.setState({ value: e.target.value })}
-        className={cx(themedClassName, className)}
-        type="text"
-        size={textSize}
-        width={width}
-        height={height}
-        required={required}
-        disabled={disabled}
-        placeholder={placeholder}
-        paddingLeft={Math.round(height / 3.2)}
-        paddingRight={Math.round(height / 3.2)}
-        borderRadius={borderRadius}
-        spellCheck={spellCheck}
-        aria-invalid={isInvalid}
-        {...(disabled ? { color: 'muted' } : {})}
-        css={css}
-        {...props}
-      />
+      <React.Fragment>
+        <Text
+          is="input"
+          className={cx(themedClassName, className)}
+          type="text"
+          size={textSize}
+          width={width}
+          height={height}
+          required={required}
+          disabled={disabled}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          paddingLeft={Math.round(height / 3.2)}
+          paddingRight={Math.round(height / 3.2)}
+          borderRadius={borderRadius}
+          spellCheck={spellCheck}
+          aria-invalid={isInvalid}
+          {...(disabled ? { color: 'muted' } : {})}
+          css={css}
+          {...hideMsClearPseudoElement}
+          {...props}
+        />
+        {isClearable &&
+          value && (
+            <Icon
+              color="muted"
+              icon="cross"
+              appearance="default"
+              onClick={onClear}
+              marginLeft={-20}
+            />
+          )}
+      </React.Fragment>
     )
   }
 }
 
-export default withTheme(TextInput)
+export default withTheme(StatelessTextInput)
