@@ -1,13 +1,79 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
 import Transition from 'react-transition-group/Transition'
-import Box, { css } from 'ui-box'
+import Box from 'ui-box'
+import { css } from 'glamor'
+
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder } from '../../constants'
-import { withTheme } from '../../theme'
+import { withTheme, PropsWithTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
 import preventBodyScroll from '../../lib/prevent-body-scroll'
+import { GenericFunction, AnyObject } from '../../types/helper'
+
+interface IProps {
+  /**
+   * Children can be a node or a function accepting `close: func`
+   * and `state: ENTERING | ENTERED | EXITING | EXITED`.
+   */
+  children: React.ReactNode
+
+  // Show the component; triggers the enter or exit states.
+  isShown?: boolean
+
+  // Props to be passed through on the inner Box.
+  containerProps?: AnyObject
+
+  // Whether or not to prevent body scrolling outside the context of the overlay
+  preventBodyScrolling?: boolean
+
+  // Boolean indicating if clicking the overlay should close the overlay.
+  shouldCloseOnClick?: boolean
+
+  // Boolean indicating if pressing the esc key should close the overlay.
+  shouldCloseOnEscapePress?: boolean
+
+  /**
+   * Function called when overlay is about to close.
+   * Return `false` to prevent the sheet from closing.
+   */
+  onBeforeClose?: GenericFunction<boolean>
+
+  // Callback fired before the "exiting" status is applied.
+  onExit?: (node: HTMLElement) => void
+
+  // Callback fired after the "exiting" status is applied.
+  onExiting?: (node: HTMLElement) => void
+
+  // Callback fired after the "exited" status is applied.
+  onExited?: (node: HTMLElement) => void
+
+  /**
+   * Callback fired before the "entering" status is applied.
+   * An extra parameter isAppearing is supplied to indicate if the enter stage
+   * is occurring on the initial mount.
+   */
+  onEnter?: (node: HTMLElement, isAppearing?: boolean) => void
+
+  /**
+   * Callback fired after the "entering" status is applied.
+   * An extra parameter isAppearing is supplied to indicate if the enter stage
+   * is occurring on the initial mount.
+   */
+  onEntering?: (node: HTMLElement, isAppearing?: boolean) => void
+
+  /**
+   * Callback fired after the "entered" status is applied.
+   * An extra parameter isAppearing is supplied to indicate if the enter stage
+   * is occurring on the initial mount.
+   */
+  onEntered?: (node: HTMLElement, isAppearing?: boolean) => void
+}
+
+interface IState {
+  exiting: boolean
+  exited: boolean
+}
 
 const animationEasing = {
   standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
@@ -37,7 +103,7 @@ const fadeOutAnimation = css.keyframes('fadeOutAnimation', {
   }
 })
 
-const animationStyles = backgroundColor => ({
+const animationStyles = (backgroundColor: string) => ({
   '&::before': {
     backgroundColor,
     left: 0,
@@ -64,97 +130,7 @@ const animationStyles = backgroundColor => ({
  * Overlay is essentially a wrapper around react-transition-group/Transition
  * Learn more: https://reactcommunity.org/react-transition-group/
  */
-class Overlay extends React.Component {
-  static propTypes = {
-    /**
-     * Children can be a node or a function accepting `close: func`
-     * and `state: ENTERING | ENTERED | EXITING | EXITED`.
-     */
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
-
-    /**
-     * Show the component; triggers the enter or exit states.
-     */
-    isShown: PropTypes.bool,
-
-    /**
-     * Props to be passed through on the inner Box.
-     */
-    containerProps: PropTypes.object,
-
-    /**
-     * Whether or not to prevent body scrolling outside the context of the overlay
-     */
-    preventBodyScrolling: PropTypes.bool,
-
-    /**
-     * Boolean indicating if clicking the overlay should close the overlay.
-     */
-    shouldCloseOnClick: PropTypes.bool,
-
-    /**
-     * Boolean indicating if pressing the esc key should close the overlay.
-     */
-    shouldCloseOnEscapePress: PropTypes.bool,
-
-    /**
-     * Function called when overlay is about to close.
-     * Return `false` to prevent the sheet from closing.
-     * type: `Function -> Boolean`
-     */
-    onBeforeClose: PropTypes.func,
-
-    /**
-     * Callback fired before the "exiting" status is applied.
-     * type: `Function(node: HtmlElement) -> void`
-     */
-    onExit: PropTypes.func,
-
-    /**
-     * Callback fired after the "exiting" status is applied.
-     * type: `Function(node: HtmlElement) -> void`
-     */
-    onExiting: PropTypes.func,
-
-    /**
-     * Callback fired after the "exited" status is applied.
-     * type: `Function(exitState: Any?, node: HtmlElement) -> void`
-     */
-    onExited: PropTypes.func,
-
-    /**
-     * Callback fired before the "entering" status is applied.
-     * An extra parameter isAppearing is supplied to indicate if the enter stage
-     * is occurring on the initial mount.
-     *
-     * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
-     */
-    onEnter: PropTypes.func,
-
-    /**
-     * Callback fired after the "entering" status is applied.
-     * An extra parameter isAppearing is supplied to indicate if the enter stage
-     * is occurring on the initial mount.
-     *
-     * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
-     */
-    onEntering: PropTypes.func,
-
-    /**
-     * Callback fired after the "entered" status is applied.
-     * An extra parameter isAppearing is supplied to indicate if the enter stage
-     * is occurring on the initial mount.
-     *
-     * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
-     */
-    onEntered: PropTypes.func,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
+class Overlay extends React.Component<PropsWithTheme<IProps>, IState> {
   static defaultProps = {
     onHide: () => {},
     shouldCloseOnClick: true,
@@ -168,7 +144,7 @@ class Overlay extends React.Component {
     onEntered: () => {}
   }
 
-  constructor(props) {
+  constructor(props: PropsWithTheme<IProps>) {
     super(props)
 
     this.state = {
@@ -177,9 +153,11 @@ class Overlay extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  containerElement: HTMLElement
+  previousActiveElement: HTMLElement
+
+  componentDidUpdate(prevProps: IProps) {
     if (!prevProps.isShown && this.props.isShown) {
-      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         exited: false
       })
@@ -214,11 +192,15 @@ class Overlay extends React.Component {
       )
       if (isFocusOutsideModal) {
         // Element marked autofocus has higher priority than the other clowns
-        const autofocusElement = this.containerElement.querySelector(
+        const autofocusElement: HTMLElement = this.containerElement.querySelector(
           '[autofocus]'
         )
-        const wrapperElement = this.containerElement.querySelector('[tabindex]')
-        const buttonElement = this.containerElement.querySelector('button')
+        const wrapperElement: HTMLElement = this.containerElement.querySelector(
+          '[tabindex]'
+        )
+        const buttonElement: HTMLElement = this.containerElement.querySelector(
+          'button'
+        )
 
         if (autofocusElement) {
           autofocusElement.focus()
@@ -254,7 +236,7 @@ class Overlay extends React.Component {
     })
   }
 
-  onEsc = e => {
+  onEsc = (e: KeyboardEvent) => {
     // Esc key
     if (e.keyCode === 27 && this.props.shouldCloseOnEscapePress) {
       this.close()
@@ -268,7 +250,7 @@ class Overlay extends React.Component {
     }
   }
 
-  handleBodyScroll = preventScroll => {
+  handleBodyScroll = (preventScroll: any) => {
     if (this.props.preventBodyScrolling) {
       preventBodyScroll(preventScroll)
     }
@@ -279,13 +261,13 @@ class Overlay extends React.Component {
     safeInvoke(this.props.onEnter)
   }
 
-  handleEntering = node => {
+  handleEntering = (node: HTMLElement) => {
     document.body.addEventListener('keydown', this.onEsc, false)
     this.props.onEntering(node)
   }
 
-  handleEntered = node => {
-    this.previousActiveElement = document.activeElement
+  handleEntered = (node: HTMLElement) => {
+    this.previousActiveElement = document.activeElement as HTMLElement
     this.bringFocusInsideOverlay()
     this.props.onEntered(node)
   }
@@ -295,18 +277,18 @@ class Overlay extends React.Component {
     safeInvoke(this.props.onExit)
   }
 
-  handleExiting = node => {
+  handleExiting = (node: HTMLElement) => {
     document.body.removeEventListener('keydown', this.onEsc, false)
     this.bringFocusBackToTarget()
     this.props.onExiting(node)
   }
 
-  handleExited = node => {
+  handleExited = (node: HTMLElement) => {
     this.setState({ exiting: false, exited: true })
     this.props.onExited(node)
   }
 
-  handleBackdropClick = e => {
+  handleBackdropClick = (e: Event) => {
     if (e.target !== e.currentTarget || !this.props.shouldCloseOnClick) {
       return
     }
@@ -314,7 +296,7 @@ class Overlay extends React.Component {
     this.close()
   }
 
-  onContainerRef = ref => {
+  onContainerRef = (ref: HTMLElement) => {
     this.containerElement = ref
   }
 

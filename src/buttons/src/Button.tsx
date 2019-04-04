@@ -1,88 +1,66 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import { IconName } from '@blueprintjs/icons'
 import cx from 'classnames'
-import { dimensions, spacing, position, layout } from 'ui-box'
+import * as React from 'react'
+import { BoxProps } from 'ui-box'
+
+import Appearance from '../../types/appearance'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
-import { withTheme } from '../../theme'
+import { withTheme, PropsWithTheme } from '../../theme'
+import { IntentType } from '../../constants'
 
-class Button extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the dimensions spec from the Box primitivie.
-     */
-    ...dimensions.propTypes,
+export interface IButtonProps extends BoxProps {
+  /**
+   * The intent of the button.
+   */
+  intent?: IntentType
 
-    /**
-     * Composes the spacing spec from the Box primitivie.
-     */
-    ...spacing.propTypes,
+  /**
+   * The appearance of the button.
+   */
+  appearance: Appearance
 
-    /**
-     * Composes the position spec from the Box primitivie.
-     */
-    ...position.propTypes,
+  /**
+   * When true, show a loading spinner before the children.
+   * This also disables the button.
+   */
+  isLoading?: boolean
 
-    /**
-     * Composes the layout spec from the Box primitivie.
-     */
-    ...layout.propTypes,
+  /**
+   * Forcefully set the active state of a button.
+   * Useful in conjuction with a Popover.
+   */
+  isActive?: boolean
 
-    /**
-     * The intent of the button.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+  /**
+   * Sets an icon before the text. Can be any icon from Evergreen.
+   */
+  iconBefore?: IconName
 
-    /**
-     * The appearance of the button.
-     */
-    appearance: PropTypes.oneOf(['default', 'minimal', 'primary']).isRequired,
+  /**
+   * Sets an icon after the text. Can be any icon from Evergreen.
+   */
+  iconAfter?: IconName
 
-    /**
-     * When true, show a loading spinner before the children.
-     * This also disables the button.
-     */
-    isLoading: PropTypes.bool,
+  /**
+   * When true, the button is disabled.
+   * isLoading also sets the button to disabled.
+   */
+  disabled?: boolean
 
-    /**
-     * Forcefully set the active state of a button.
-     * Useful in conjuction with a Popover.
-     */
-    isActive: PropTypes.bool,
+  /**
+   * Class name passed to the button.
+   * Only use if you know what you are doing.
+   */
+  className?: string
+}
 
-    /**
-     * Sets an icon before the text. Can be any icon from Evergreen.
-     */
-    iconBefore: PropTypes.string,
-
-    /**
-     * Sets an icon after the text. Can be any icon from Evergreen.
-     */
-    iconAfter: PropTypes.string,
-
-    /**
-     * When true, the button is disabled.
-     * isLoading also sets the button to disabled.
-     */
-    disabled: PropTypes.bool,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
-
-    /**
-     * Class name passed to the button.
-     * Only use if you know what you are doing.
-     */
-    className: PropTypes.string
-  }
-
+class Button extends React.PureComponent<PropsWithTheme<IButtonProps>> {
   static defaultProps = {
-    appearance: 'default',
+    appearance: 'default' as Appearance,
     height: 32,
-    intent: 'none',
+    intent: 'none' as IntentType,
     isActive: false,
     paddingBottom: 0,
     paddingTop: 0
@@ -130,8 +108,8 @@ class Button extends PureComponent {
     const iconSize = theme.getIconSizeForButton(height)
 
     const pr =
-      paddingRight !== undefined ? paddingRight : Math.round(height / 2) // eslint-disable-line no-negated-condition
-    const pl = paddingLeft !== undefined ? paddingLeft : Math.round(height / 2) // eslint-disable-line no-negated-condition
+      paddingRight !== undefined ? paddingRight : Math.round(+height / 2) // eslint-disable-line no-negated-condition
+    const pl = paddingLeft !== undefined ? paddingLeft : Math.round(+height / 2) // eslint-disable-line no-negated-condition
 
     let iconBefore
     if (iconBeforeKey) {
@@ -139,7 +117,7 @@ class Button extends PureComponent {
         <Icon
           icon={iconBeforeKey}
           size={iconSize}
-          marginLeft={-Math.round(pl * 0.2)}
+          marginLeft={-Math.round(+pl * 0.2)}
           marginRight={Math.round(iconSize * 0.7)}
         />
       )
@@ -151,7 +129,7 @@ class Button extends PureComponent {
         <Icon
           icon={iconAfterKey}
           size={iconSize}
-          marginRight={-Math.round(pl * 0.2)}
+          marginRight={-Math.round(+pl * 0.2)}
           marginLeft={Math.round(iconSize * 0.7)}
         />
       )
@@ -184,9 +162,9 @@ class Button extends PureComponent {
       >
         {isLoading && (
           <Spinner
-            marginLeft={-Math.round(height / 8)}
-            marginRight={Math.round(height / 4)}
-            size={Math.round(height / 2)}
+            marginLeft={-Math.round(+height / 8)}
+            marginRight={Math.round(+height / 4)}
+            size={Math.round(+height / 2)}
           />
         )}
         {iconBefore || null}

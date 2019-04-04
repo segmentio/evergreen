@@ -1,29 +1,22 @@
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 import cx from 'classnames'
-import PropTypes from 'prop-types'
 import { Strong } from '../../typography'
-import { withTheme } from '../../theme'
+import { withTheme, PropsWithTheme } from '../../theme'
+import { ITextProps } from '../../typography/src/Text'
 
-class Badge extends PureComponent {
-  static propTypes = {
-    ...Strong.propTypes,
+export interface IBadgeProps extends ITextProps {
+  /**
+   * The color used for the badge.
+   */
+  color: string
 
-    /**
-     * The color used for the badge.
-     */
-    color: PropTypes.string.isRequired,
+  /**
+   * Whether or not to apply hover/focus/active styles
+   */
+  isInteractive?: boolean
+}
 
-    /**
-     * Whether or not to apply hover/focus/active styles
-     */
-    isInteractive: PropTypes.bool,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
+class Badge extends React.PureComponent<PropsWithTheme<IBadgeProps>> {
   static defaultProps = {
     color: 'neutral',
     isInteractive: false,

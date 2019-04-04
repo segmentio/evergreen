@@ -1,7 +1,74 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import Box, { spacing, position, layout } from 'ui-box'
-import { withTheme } from '../../theme'
+import * as React from 'react'
+import Box from 'ui-box'
+
+import { withTheme, PropsWithTheme } from '../../theme'
+import { ILayoutProps, IPositionProps, ISpacingProps } from '../../types/uibox'
+import { AnyFunction, AnyObject } from '../../types/helper'
+
+type UIBoxTypes = ILayoutProps & IPositionProps & ISpacingProps
+
+interface IProps extends UIBoxTypes {
+  /**
+   * The id attribute of the radio.
+   */
+  id?: string
+
+  /**
+   * The name attribute of the radio.
+   */
+  name?: string
+
+  /**
+   * The value attribute of the radio.
+   */
+  value?: string
+
+  /**
+   * The height of the switch.
+   */
+  height?: number
+
+  /**
+   * When true, the switch is checked (on).
+   */
+  checked?: boolean
+
+  /**
+   * Function called when state changes.
+   */
+  onChange?: AnyFunction
+
+  /**
+   * When true, the switch is disabled.
+   */
+  disabled?: boolean
+
+  /**
+   * When true, the switch is invalid.
+   */
+  isInvalid?: boolean
+
+  /**
+   * The appearance of the checkbox.
+   * The default theme only comes with a default style.
+   */
+  appearance: string
+
+  /**
+   * When true, the switch has a check icon.
+   */
+  hasCheckIcon?: boolean
+
+  /**
+   * When true, the switch is true by default.
+   * This is for uncontrolled usage.
+   */
+  defaultChecked?: boolean
+}
+
+interface IState {
+  checked: boolean
+}
 
 const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
@@ -35,7 +102,11 @@ const handleContainerStyle = {
   }
 }
 
-const CheckIcon = ({ size, fill = 'currentColor', ...props }) => (
+const CheckIcon: React.SFC<{ fill?: string; size?: number }> = ({
+  size,
+  fill = 'currentColor',
+  ...props
+}) => (
   <svg width={10} height={size} viewBox="0 0 10 7" {...props}>
     <path
       fill={fill}
@@ -45,87 +116,11 @@ const CheckIcon = ({ size, fill = 'currentColor', ...props }) => (
   </svg>
 )
 
-CheckIcon.propTypes = {
-  fill: PropTypes.string,
-  size: PropTypes.number
-}
-
-const isControlled = component => {
+const isControlled = (component: AnyObject) => {
   return {}.hasOwnProperty.call(component.props, 'checked')
 }
 
-class Switch extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes some Box APIs.
-     */
-    ...spacing.propTypes,
-    ...position.propTypes,
-    ...layout.propTypes,
-
-    /**
-     * The id attribute of the radio.
-     */
-    id: PropTypes.string,
-
-    /**
-     * The name attribute of the radio.
-     */
-    name: PropTypes.string,
-
-    /**
-     * The value attribute of the radio.
-     */
-    value: PropTypes.string,
-
-    /**
-     * The height of the switch.
-     */
-    height: PropTypes.number,
-
-    /**
-     * When true, the switch is checked (on).
-     */
-    checked: PropTypes.bool,
-
-    /**
-     * Function called when state changes.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * When true, the switch is disabled.
-     */
-    disabled: PropTypes.bool,
-
-    /**
-     * When true, the switch is invalid.
-     */
-    isInvalid: PropTypes.bool,
-
-    /**
-     * The appearance of the checkbox.
-     * The default theme only comes with a default style.
-     */
-    appearance: PropTypes.string.isRequired,
-
-    /**
-     * When true, the switch has a check icon.
-     */
-    hasCheckIcon: PropTypes.bool,
-
-    /**
-     * When true, the switch is true by default.
-     * This is for uncontrolled usage.
-     */
-    defaultChecked: PropTypes.bool,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
+class Switch extends React.PureComponent<PropsWithTheme<IProps>, IState> {
   static defaultProps = {
     height: 16,
     onChange: () => {},
@@ -134,7 +129,7 @@ class Switch extends PureComponent {
     disabled: false
   }
 
-  constructor(props, context) {
+  constructor(props: PropsWithTheme<IProps>, context: any) {
     super(props, context)
     this.state = {
       checked: props.checked || props.defaultChecked || false
@@ -190,7 +185,7 @@ class Switch extends PureComponent {
           defaultChecked={defaultChecked}
           onChange={this.handleChange}
         />
-        <Box onClick={this.handleClick} height={height} width={height * 2}>
+        <Box height={height} width={height * 2}>
           <Box
             height={height}
             width={height}

@@ -12,7 +12,7 @@ let portalContainer: any
 export default class Portal extends React.Component<IProps> {
   el: any
 
-  constructor(props: any) {
+  constructor(props: IProps) {
     super(props)
 
     // This fixes SSR

@@ -21,7 +21,7 @@ export { IconNames }
 
 interface IProps extends BoxProps {
   color?: string
-  icon: IconName
+  icon: IconName | JSX.Element
   size: number
   title?: string
   style?: AnyObject

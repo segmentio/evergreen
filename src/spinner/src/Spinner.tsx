@@ -57,7 +57,7 @@ class Spinner extends React.PureComponent<PropsWithTheme<IProps>, IState> {
     delay: 0
   }
 
-  constructor(props: any) {
+  constructor(props: PropsWithTheme<IProps>) {
     super(props)
 
     const { delay } = props
