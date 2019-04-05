@@ -16,7 +16,7 @@ function storyTemplate(componentName) {
 module.exports = ({ packageName, componentNames = [] }) => {
   return `
 import { storiesOf } from '@storybook/react'
-import React from 'react'
+import * as React from 'react'
 import Box from 'ui-box'
 import { ${componentNames.join(', ')} } from '../../${packageName}'
 

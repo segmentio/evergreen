@@ -2,13 +2,14 @@
 
 module.exports = ({ componentName }) => {
   return `
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 
-export default class ${componentName} extends PureComponent {
-  static propTypes = {}
+interface IProps extends BoxProps {
+}
 
+export default class ${componentName} extends React.PureComponent<IProps> {
   render() {
     const { ...props } = this.props
 

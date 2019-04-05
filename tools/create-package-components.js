@@ -54,7 +54,7 @@ module.exports = task('create-package-components', async () => {
   // Create `src` dir in package
   await fs.ensureDir(path.join(packageDir, 'src'))
   await fs.writeFile(
-    path.join(packageDir, 'index.js'),
+    path.join(packageDir, 'index.ts'),
     getIndexFile(componentNames)
   )
 
@@ -66,7 +66,7 @@ module.exports = task('create-package-components', async () => {
 
   await fs.ensureDir(path.join(packageDir, 'stories'))
   await fs.writeFile(
-    path.join(packageDir, 'stories', `index.stories.js`),
+    path.join(packageDir, 'stories', `index.stories.tsx`),
     componentStoriesTemplate({ packageName, componentNames })
   )
 })
@@ -85,7 +85,7 @@ async function createComponent({ componentName, packageDir }) {
   }
 
   await fs.writeFile(
-    path.join(packageDir, 'src', `${componentName}.js`),
+    path.join(packageDir, 'src', `${componentName}.tsx`),
     componentTemplate({ componentName })
   )
 }

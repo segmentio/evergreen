@@ -44,7 +44,7 @@ module.exports = task('create-package-js', async () => {
   // Create `src` dir in package
   await fs.ensureDir(path.join(packageDir, 'src'))
   await fs.writeFile(
-    path.join(packageDir, 'index.js'),
+    path.join(packageDir, 'index.ts'),
     `export derp from './src/derp'`
   )
 })
