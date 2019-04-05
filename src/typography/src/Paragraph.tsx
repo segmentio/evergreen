@@ -5,14 +5,14 @@ import { PropsWithTheme, withTheme } from '../../theme'
 
 type Size = 300 | 400 | 500
 
-interface IProps extends BoxProps {
+export interface IParagraphProps extends BoxProps {
   size?: Size
 
   // Font family. Can be: `ui`, `display` or `mono` or a custom font family.
   fontFamily?: string
 }
 
-class Paragraph extends React.PureComponent<PropsWithTheme<IProps>> {
+class Paragraph extends React.PureComponent<PropsWithTheme<IParagraphProps>> {
   static defaultProps = {
     size: 400 as Size,
     color: 'default',

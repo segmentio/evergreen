@@ -10,6 +10,13 @@ export { Checkbox } from './checkbox'
 export { StackingOrder, Intent, Position } from './constants'
 export { CornerDialog } from './corner-dialog'
 export { Dialog } from './dialog'
+export {
+  FormField,
+  FormFieldDescription,
+  FormFieldHint,
+  FormFieldLabel,
+  FormFieldValidationMessage
+} from './form-field'
 export { Icon, IconNames } from './icon'
 export { Image } from './image'
 export { Pane, Card } from './layers'

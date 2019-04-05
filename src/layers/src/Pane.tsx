@@ -8,7 +8,7 @@ type Elevation = 0 | 1 | 2 | 3 | 4
 type Border = boolean | 'muted' | 'default'
 type BorderValues = boolean | 'muted' | 'extraMuted' | 'default'
 
-interface IProps extends BoxProps {
+export interface IPaneProps extends BoxProps {
   // Background property. `tint1`, `tint2` etc. from `theme.colors.background` are available.
   background?: string
 
@@ -23,7 +23,7 @@ interface IProps extends BoxProps {
   borderRight?: BorderValues
 }
 
-class Pane extends React.PureComponent<PropsWithTheme<IProps>> {
+class Pane extends React.PureComponent<PropsWithTheme<IPaneProps>> {
   getHoverElevationStyle = (hoverElevation: Elevation, css: AnyObject) => {
     const { theme } = this.props
     if (!Number.isInteger(hoverElevation)) return {}
