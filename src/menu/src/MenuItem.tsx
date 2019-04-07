@@ -1,81 +1,74 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Pane } from '../../layers'
-import { Text } from '../../typography'
+import { IconName } from '@blueprintjs/icons'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
+
+import { IntentType } from '../../constants'
 import { Icon } from '../../icon'
-import { withTheme } from '../../theme'
+import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
+import { PropsWithTheme, withTheme } from '../../theme'
+import { AnyFunction } from '../../types/helper'
+import { Text } from '../../typography'
 
-class MenuItem extends React.PureComponent {
+interface IProps {
+  // Element type to use for the menu item. Ex: `<MenuItem is={ReactRouterLink}>...</MenuItem>`
+  is?: string | AnyFunction
+
+  // Function that is called on click and enter/space keypress.
+  onSelect?: AnyFunction
+
+  // The icon before the label.
+  icon: IconName | JSX.Element
+
+  // The children of the component.
+  children: React.ReactNode
+
+  // Secondary text shown on the right.
+  secondaryText: React.ReactNode
+
+  // The default theme only supports one default appearance.
+  appearance?: string
+
+  // The intent of the menu item.
+  intent?: IntentType
+}
+
+class MenuItem extends React.PureComponent<PropsWithTheme<IProps>> {
   static propTypes = {
-    /**
-     * Element type to use for the menu item.
-     * For example: `<MenuItem is={ReactRouterLink}>...</MenuItem>`
-     */
     is: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-
-    /**
-     * Function that is called on click and enter/space keypress.
-     */
     onSelect: PropTypes.func,
-
-    /**
-     * The icon before the label.
-     */
-    icon: PropTypes.node,
-
-    /**
-     * The children of the component.
-     */
+    icon: PropTypes.node as (
+      | PropTypes.Validator<IconName>
+      | PropTypes.Validator<JSX.Element>),
     children: PropTypes.node,
-
-    /**
-     * Secondary text shown on the right.
-     */
     secondaryText: PropTypes.node,
-
-    /**
-     * The default theme only supports one default appearance.
-     */
     appearance: PropTypes.string.isRequired,
-
-    /**
-     * The intent of the menu item.
-     */
     intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
+      .isRequired as PropTypes.Validator<IntentType>,
     theme: PropTypes.object.isRequired
   }
 
   static defaultProps = {
     is: 'div',
-    intent: 'none',
+    intent: 'none' as IntentType,
     appearance: 'default',
     onSelect: () => {}
   }
 
-  handleClick = event => {
+  handleClick = (event: React.SyntheticEvent) => {
     this.props.onSelect(event)
 
-    /* eslint-disable react/prop-types */
-    safeInvoke(this.props.onClick, event)
-    /* eslint-enable react/prop-types */
+    safeInvoke((this.props as any).onClick, event)
   }
 
-  handleKeyPress = event => {
+  handleKeyPress = (event: KeyboardEvent) => {
     if (event.key === 'Enter' || event.key === ' ') {
       this.props.onSelect(event)
       event.preventDefault()
     }
 
-    /* eslint-disable react/prop-types */
-    safeInvoke(this.props.onKeyPress, event)
-    /* eslint-enable react/prop-types */
+    safeInvoke((this.props as any).onKeyPress, event)
   }
 
   render() {

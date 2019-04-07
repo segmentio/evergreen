@@ -20,6 +20,7 @@ export {
 export { Icon, IconNames } from './icon'
 export { Image } from './image'
 export { Pane, Card } from './layers'
+export { Menu } from './menu'
 export { Overlay } from './overlay'
 export { Portal } from './portal'
 export { Radio, RadioGroup } from './radio'

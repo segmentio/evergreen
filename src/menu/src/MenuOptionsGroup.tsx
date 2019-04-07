@@ -1,30 +1,35 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
+import * as PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
-import { withTheme } from '../../theme'
+import { PropsWithTheme, withTheme } from '../../theme'
+import { AnyFunction } from '../../types/helper'
 import MenuOption from './MenuOption'
 
-class MenuOptionsGroup extends React.PureComponent {
+type TOption = {
+  value: string
+  label: string
+}
+
+interface IProps {
+  // Title of the menu group.
+  title?: React.ReactNode
+
+  // The current value of the option group.
+  selected?: number | string
+
+  // Function called when selection changes.
+  onChange?: AnyFunction
+
+  // List of options rendered in the group.
+  options?: TOption[]
+}
+
+class MenuOptionsGroup extends React.PureComponent<PropsWithTheme<IProps>> {
   static propTypes = {
-    /**
-     * Title of the menu group.
-     */
     title: PropTypes.node,
-
-    /**
-     * The current value of the option group.
-     */
     selected: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-    /**
-     * Function called when selection changes.
-     */
     onChange: PropTypes.func,
-
-    /**
-     * List of options rendered in the group.
-     */
     options: PropTypes.array
   }
 

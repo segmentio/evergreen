@@ -1,9 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
+
 import { Pane } from '../../layers'
-import MenuItem from './MenuItem'
 import MenuDivider from './MenuDivider'
 import MenuGroup from './MenuGroup'
+import MenuItem from './MenuItem'
 import MenuOption from './MenuOption'
 import MenuOptionsGroup from './MenuOptionsGroup'
 
@@ -14,7 +15,12 @@ const KeyCodes = {
   End: 35
 }
 
-export default class Menu extends React.PureComponent {
+interface IProps {
+  // The children of the component.
+  children: React.ReactNode
+}
+
+export default class Menu extends React.PureComponent<IProps> {
   static Item = MenuItem
 
   static Divider = MenuDivider
@@ -26,11 +32,16 @@ export default class Menu extends React.PureComponent {
   static OptionsGroup = MenuOptionsGroup
 
   static propTypes = {
-    /**
-     * The children of the component.
-     */
     children: PropTypes.node
   }
+
+  menuItems: any[]
+
+  menuRef: any
+
+  firstItem: any
+
+  lastItem: any
 
   componentDidMount() {
     // Get the menu item buttons
@@ -46,12 +57,15 @@ export default class Menu extends React.PureComponent {
     this.firstItem = this.menuItems[0]
     this.lastItem = this.menuItems[this.menuItems.length - 1]
 
-    const focusNext = (currentItem, startItem) => {
+    const focusNext = (
+      currentItem: React.ReactNode,
+      startItem: React.ReactNode
+    ) => {
       // Determine which item is the startItem (first or last)
       const goingDown = startItem === this.firstItem
 
       // Helper function for getting next legitimate element
-      const move = elem => {
+      const move = (elem: React.ReactNode) => {
         const indexOfItem = this.menuItems.indexOf(elem)
 
         if (goingDown) {
@@ -83,9 +97,8 @@ export default class Menu extends React.PureComponent {
 
     this.menuItems.forEach(menuItem => {
       // Handle key presses for menuItem
-      menuItem.addEventListener('keydown', e => {
-        // Go to next/previous item if it exists
-        // or loop around
+      menuItem.addEventListener('keydown', (e: KeyboardEvent) => {
+        // Go to next/previous item if it exists or loop around
 
         if (e.keyCode === KeyCodes.ArrowDown) {
           e.preventDefault()
@@ -110,7 +123,7 @@ export default class Menu extends React.PureComponent {
     })
   }
 
-  onMenuRef = ref => {
+  onMenuRef = (ref: React.ReactNode) => {
     this.menuRef = ref
   }
 

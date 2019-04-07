@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { AnyFunction, AnyObject } from '../../types/helper'
+import { AnyFunction } from '../../types/helper'
 
 interface IProps {
   children?: AnyFunction

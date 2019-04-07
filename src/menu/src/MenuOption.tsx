@@ -1,45 +1,40 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Pane } from '../../layers'
-import { Text } from '../../typography'
+import * as React from 'react'
+import * as PropTypes from 'prop-types'
+
 import { Icon } from '../../icon'
-import { withTheme } from '../../theme'
+import { Pane } from '../../layers'
+import { PropsWithTheme, withTheme } from '../../theme'
+import { AnyFunction } from '../../types/helper'
+import { Text } from '../../typography'
 
-class MenuOption extends React.PureComponent {
+interface IProps {
+  // The id attribute of the menu option.
+  id?: string
+
+  // Function that is called on click and enter/space keypress.
+  onSelect?: AnyFunction
+
+  // The icon before the label.
+  isSelected?: boolean
+
+  // The children of the component.
+  children?: React.ReactNode
+
+  // Secondary text shown on the right.
+  secondaryText?: React.ReactNode
+
+  // The default theme only supports one default appearance.
+  appearance?: string
+}
+
+class MenuOption extends React.PureComponent<PropsWithTheme<IProps>> {
   static propTypes = {
-    /**
-     * The id attribute of the menu option.
-     */
     id: PropTypes.string,
-
-    /**
-     * Function that is called on click and enter/space keypress.
-     */
     onSelect: PropTypes.func,
-
-    /**
-     * The icon before the label.
-     */
     isSelected: PropTypes.bool,
-
-    /**
-     * The children of the component.
-     */
     children: PropTypes.node,
-
-    /**
-     * Secondary text shown on the right.
-     */
     secondaryText: PropTypes.node,
-
-    /**
-     * The default theme only supports one default appearance.
-     */
     appearance: PropTypes.string.isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
     theme: PropTypes.object.isRequired
   }
 
@@ -55,7 +50,7 @@ class MenuOption extends React.PureComponent {
     this.props.onSelect()
   }
 
-  handleKeyPress = e => {
+  handleKeyPress = (e: KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       this.props.onSelect()
       e.preventDefault()
@@ -75,11 +70,7 @@ class MenuOption extends React.PureComponent {
     const themedClassName = theme.getMenuItemClassName(appearance, 'none')
 
     const textProps = isSelected
-      ? {
-          color: 'selected',
-          fontWeight: 500,
-          marginLeft: 16
-        }
+      ? { color: 'selected', fontWeight: 500, marginLeft: 16 }
       : { marginLeft: 44 }
 
     return (

@@ -1,18 +1,20 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
+
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
 
-export default class MenuGroup extends React.PureComponent {
-  static propTypes = {
-    /**
-     * Title of the menu group.
-     */
-    title: PropTypes.node,
+interface IProps {
+  // Title of the menu group.
+  title: React.ReactNode
 
-    /**
-     * The children of the menu group.
-     */
+  // The children of the menu group.
+  children: React.ReactNode
+}
+
+export default class MenuGroup extends React.PureComponent<IProps> {
+  static propTypes = {
+    title: PropTypes.node,
     children: PropTypes.node
   }
 
