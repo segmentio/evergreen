@@ -1,6 +1,9 @@
 import { configure } from '@storybook/react'
+import { setAddon } from '@storybook/react'
 import { setOptions } from '@storybook/addon-options'
 import 'react-chromatic/storybook-addon'
+import JSXAddon from 'storybook-addon-jsx'
+setAddon(JSXAddon)
 
 // Option defaults:
 setOptions({
@@ -68,8 +71,9 @@ setOptions({
   selectedAddonPanel: undefined // The order of addons in the "Addons Panel" is the same as you import them in 'addons.js'. The first panel will be opened by default as you run Storybook
 })
 
+const req = require.context('../src', true, /.stories.tsx$/)
 function loadStories() {
-  require('./requireStories!./empty')
+  req.keys().forEach(filename => req(filename))
 }
 
 configure(loadStories, module)
