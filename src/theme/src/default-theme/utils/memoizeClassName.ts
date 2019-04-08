@@ -1,4 +1,4 @@
-import { css } from 'glamor'
+import { css } from 'ui-box'
 
 import { AnyFunction } from '../../../../types/helper'
 

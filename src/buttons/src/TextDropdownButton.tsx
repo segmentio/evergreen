@@ -90,9 +90,9 @@ class TextDropdownButton extends React.PureComponent<PropsWithTheme<IProps>> {
       >
         {isLoading && (
           <Spinner
-            marginLeft={-Math.round(height / 8)}
-            marginRight={Math.round(height / 4)}
-            size={Math.round(height / 2)}
+            marginLeft={-Math.round(Number(height) / 8)}
+            marginRight={Math.round(Number(height) / 4)}
+            size={Math.round(Number(height) / 2)}
           />
         )}
         {children}

@@ -1,7 +1,8 @@
-import React from 'react'
 import test from 'ava'
-import render from 'react-test-renderer'
 import { shallow } from 'enzyme'
+import * as React from 'react'
+import * as render from 'react-test-renderer'
+
 import Alert from '../src/Alert'
 
 test('basic snapshot', t => {
@@ -21,7 +22,7 @@ test('outputs children', t => {
 })
 
 test('type snapshot', t => {
-  const component = <Alert title="Test title" type="danger" />
+  const component = <Alert title="Test title" intent="danger" />
   const tree = render.create(component).toJSON()
   t.snapshot(tree)
 })

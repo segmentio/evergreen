@@ -1,5 +1,15 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
-import { BoxProps } from 'ui-box'
+import {
+  dimensions,
+  layout,
+  position,
+  spacing,
+  TDimensions,
+  TLayout,
+  TPosition,
+  TSpacing
+} from 'ui-box'
 
 import { IconButton } from '../../buttons'
 import { IntentType } from '../../constants'
@@ -11,12 +21,14 @@ import { Heading, Paragraph } from '../../typography'
 
 type Appearance = 'default' | 'card'
 
+type BoxProps = TDimensions & TLayout & TPosition & TSpacing
+
 interface IProps extends BoxProps {
   // The content of the alert. When a string is passed it is wrapped in a `<Text size={400} />` component.
   children?: string | React.ReactNode
 
   // The intent of the alert.
-  intent: IntentType
+  intent?: IntentType
 
   // The title of the alert.
   title?: React.ReactNode
@@ -34,10 +46,29 @@ interface IProps extends BoxProps {
   onRemove?: AnyFunction
 
   // The appearance of the alert.
-  appearance: Appearance
+  appearance?: Appearance
 }
 
 class Alert extends React.PureComponent<PropsWithTheme<IProps>> {
+  static propTypes = {
+    ...dimensions.propTypes,
+    ...layout.propTypes,
+    ...position.propTypes,
+    ...spacing.propTypes,
+    children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
+      .isRequired as PropTypes.Validator<IntentType>,
+    title: PropTypes.node,
+    hasTrim: PropTypes.bool,
+    hasIcon: PropTypes.bool,
+    isRemoveable: PropTypes.bool,
+    onRemove: PropTypes.func,
+    appearance: PropTypes.oneOf(['default', 'card']) as PropTypes.Validator<
+      Appearance
+    >,
+    theme: PropTypes.object.isRequired
+  }
+
   static defaultProps = {
     intent: 'none' as IntentType,
     hasTrim: true,

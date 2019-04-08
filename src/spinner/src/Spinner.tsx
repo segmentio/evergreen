@@ -1,4 +1,4 @@
-import { css } from 'glamor'
+import { css } from 'ui-box'
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 

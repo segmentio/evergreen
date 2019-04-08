@@ -1,8 +1,10 @@
 import { storiesOf } from '@storybook/react'
-import React from 'react'
+import * as React from 'react'
 import Box from 'ui-box'
 import { InlineAlert, Alert } from '..'
 import { Heading } from '../../typography'
+
+type Appearance = 'default' | 'card'
 
 storiesOf('alert', module)
   .add('Alert', () => (
@@ -12,7 +14,7 @@ storiesOf('alert', module)
           document.body.style.margin = '0'
           document.body.style.height = '100vh'
         })()}
-        {['default', 'card'].map(appearance => (
+        {['default', 'card'].map((appearance: Appearance) => (
           <Box key={appearance} float="left" marginRight={40}>
             <Heading marginBottom={16}>{appearance}</Heading>
             <Alert
@@ -28,7 +30,6 @@ storiesOf('alert', module)
             />
             <Alert
               appearance={appearance}
-              marginBottom={32}
               intent="warning"
               title="Changes will affect all Warehouses."
             />
@@ -42,7 +43,7 @@ storiesOf('alert', module)
         ))}
       </Box>
       <Box padding={40}>
-        {['default', 'card'].map(appearance => (
+        {['default', 'card'].map((appearance: Appearance) => (
           <Box key={appearance} float="left" marginRight={40}>
             <Heading marginBottom={16}>{appearance}</Heading>
             <Alert

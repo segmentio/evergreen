@@ -5,8 +5,8 @@ import { withTheme, PropsWithTheme } from '../../theme'
 import { AnyObject } from '../../types/helper'
 
 type Elevation = 0 | 1 | 2 | 3 | 4
-type Border = boolean | 'muted' | 'default'
-type BorderValues = boolean | 'muted' | 'extraMuted' | 'default'
+// type Border = 'muted' | 'default'
+// type BorderValues = 'muted' | 'extraMuted' | 'default'
 
 export interface IPaneProps extends BoxProps {
   // Background property. `tint1`, `tint2` etc. from `theme.colors.background` are available.
@@ -16,11 +16,11 @@ export interface IPaneProps extends BoxProps {
   hoverElevation?: Elevation
   activeElevation?: Elevation
 
-  border?: Border
-  borderTop?: BorderValues
-  borderBottom?: BorderValues
-  borderLeft?: BorderValues
-  borderRight?: BorderValues
+  border?: string
+  borderTop?: string
+  borderBottom?: string
+  borderLeft?: string
+  borderRight?: string
 }
 
 class Pane extends React.PureComponent<PropsWithTheme<IPaneProps>> {
@@ -57,8 +57,8 @@ class Pane extends React.PureComponent<PropsWithTheme<IPaneProps>> {
     borderSideProperty,
     border
   }: {
-    borderSideProperty: BorderValues
-    border: Border
+    borderSideProperty: string
+    border: string
   }) => {
     const { theme } = this.props
     if (
@@ -71,13 +71,13 @@ class Pane extends React.PureComponent<PropsWithTheme<IPaneProps>> {
       return `1px solid ${theme.colors.border[borderSideProperty]}`
     }
 
-    if (borderSideProperty === true) {
-      return `1px solid ${theme.colors.border.default}`
-    }
+    // if (borderSideProperty === true) {
+    //   return `1px solid ${theme.colors.border.default}`
+    // }
 
-    if (borderSideProperty === false) {
-      return null
-    }
+    // if (borderSideProperty === false) {
+    //   return null
+    // }
 
     if (
       typeof border === 'string' &&
@@ -86,9 +86,9 @@ class Pane extends React.PureComponent<PropsWithTheme<IPaneProps>> {
       return `1px solid ${theme.colors.border[border]}`
     }
 
-    if (border === true) {
-      return `1px solid ${theme.colors.border.default}`
-    }
+    // if (border === true) {
+    //   return `1px solid ${theme.colors.border.default}`
+    // }
 
     return borderSideProperty
   }

@@ -5,9 +5,10 @@ import { withTheme, PropsWithTheme } from '../../theme'
 
 type Size = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800
 
-interface IProps extends BoxProps {
+interface IProps extends Partial<BoxProps> {
   size?: Size
-  marginTop?: boolean | number | string
+  // marginTop?: boolean | number | string
+  marginTop?: number | string
 }
 
 class Heading extends React.PureComponent<PropsWithTheme<IProps>> {

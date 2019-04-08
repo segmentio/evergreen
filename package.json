@@ -51,9 +51,9 @@
     "@types/react-dom": "^16.8.3",
     "@types/react-transition-group": "^2.0.16",
     "@types/tinycolor2": "^1.4.1",
-    "@types/ui-box": "^1.4.0",
     "arrify": "^1.0.1",
     "classnames": "^2.2.6",
+    "csstype": "^2.6.3",
     "dom-helpers": "^3.2.1",
     "downshift": "^1.31.16",
     "fuzzaldrin-plus": "^0.6.0",
@@ -79,6 +79,9 @@
     "@storybook/addon-options": "^4.1.16",
     "@storybook/addons": "^4.1.16",
     "@storybook/react": "^4.1.16",
+    "@types/enzyme": "^3.9.1",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/react-test-renderer": "^16.8.1",
     "@types/storybook__react": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
@@ -110,6 +113,7 @@
     "size-limit": "^0.21.1",
     "starwars-names": "^1.6.0",
     "storybook-addon-jsx": "^5.3.0",
+    "ts-node": "^8.0.3",
     "typescript": "^3.4.1",
     "url-loader": "^1.1.2",
     "xo": "^0.24.0"
@@ -122,7 +126,8 @@
       "tools",
       "src/**/stories",
       "src/**/test",
-      "**/*.js"
+      "**/*.js",
+      "src/**/*.d.ts"
     ],
     "extends": [
       "xo-typescript",
@@ -216,11 +221,14 @@
     "singleQuote": true
   },
   "ava": {
+    "compileEnhancements": false,
+    "extensions": ["ts", "tsx"],
     "files": [
-      "**/test/**/*.js"
+      "**/test/**/*.tsx"
     ],
     "require": [
-      "./tools/test-setup"
+      "ts-node/register",
+      "./tools/test-setup.ts"
     ]
   },
   "size-limit": [

@@ -5,7 +5,8 @@
     "module": "commonjs",
     "target": "es5",
     "jsx": "react",
-    "rootDir": "src"
+    "rootDir": "src",
+    "typeRoots": ["./src/types", "node_modules/@types"]
   },
   "include": ["./src/**/*.ts*"],
   "exclude": ["node_modules", "./src/**/stories", "./src/**/test"]

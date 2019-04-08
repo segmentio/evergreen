@@ -1,4 +1,4 @@
-import { css } from 'glamor'
+import { css } from 'ui-box'
 
 import scales from '../foundational-styles/scales'
 import colors from '../foundational-styles/colors'

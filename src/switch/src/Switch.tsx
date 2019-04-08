@@ -1,13 +1,10 @@
 import * as React from 'react'
-import Box from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 
 import { withTheme, PropsWithTheme } from '../../theme'
-import { ILayoutProps, IPositionProps, ISpacingProps } from '../../types/uibox'
 import { AnyFunction, AnyObject } from '../../types/helper'
 
-type UIBoxTypes = ILayoutProps & IPositionProps & ISpacingProps
-
-interface IProps extends UIBoxTypes {
+interface IProps extends BoxProps {
   // The id attribute of the radio.
   id?: string
 
