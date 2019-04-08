@@ -1,10 +1,11 @@
 import { IconName } from '@blueprintjs/icons'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
 type Size = 300 | 400 | 500 | 600
 
-interface IProps extends BoxProps {
+interface IProps extends Partial<BoxProps> {
   size?: Size
 
   // When passed, adds a icon before each list item in the list. You can override this on a individual list item.
@@ -15,6 +16,14 @@ interface IProps extends BoxProps {
 }
 
 export default class UnorderedList extends React.PureComponent<IProps> {
+  static propTypes = {
+    ...Box.propTypes,
+    size: PropTypes.oneOf([300, 400, 500, 600])
+      .isRequired as PropTypes.Validator<Size>,
+    icon: PropTypes.string,
+    iconColor: PropTypes.string
+  }
+
   static defaultProps = {
     size: 400 as Size
   }

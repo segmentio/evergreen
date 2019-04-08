@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react'
-import React from 'react'
+import * as React from 'react'
 import Box from 'ui-box'
 import { Avatar } from '..'
 import { Heading, Paragraph } from '../../typography'
@@ -90,7 +90,7 @@ storiesOf('avatar', module).add('Avatar', () => (
       {anonymousIds.map(id => (
         <Avatar
           key={id}
-          hashValue={id}
+          hashValue={String(id)}
           name="Anonymous User"
           marginRight={12}
           size={40}

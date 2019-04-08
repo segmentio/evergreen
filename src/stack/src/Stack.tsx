@@ -1,3 +1,4 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import { StackingOrder } from '../../constants'
 import StackingContext from './StackingContext'
@@ -11,6 +12,11 @@ interface IProps {
 }
 
 export default class Stack extends React.PureComponent<IProps> {
+  static propTypes = {
+    children: PropTypes.func.isRequired,
+    value: PropTypes.number
+  }
+
   static defaultProps = {
     value: StackingOrder.STACKING_CONTEXT
   }

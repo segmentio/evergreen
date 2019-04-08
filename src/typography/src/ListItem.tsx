@@ -1,8 +1,8 @@
 import { IconName } from '@blueprintjs/icons'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import { Icon } from '../../icon'
-import { PropsWithTheme } from '../../theme'
 import Text, { ITextProps } from './Text'
 
 interface IProps extends ITextProps {
@@ -13,9 +13,13 @@ interface IProps extends ITextProps {
   iconColor?: string
 }
 
-export default class ListItem extends React.PureComponent<
-  PropsWithTheme<IProps>
-> {
+export default class ListItem extends React.PureComponent<IProps> {
+  static propTypes = {
+    ...Text.propTypes,
+    icon: PropTypes.string,
+    iconColor: PropTypes.string
+  }
+
   render() {
     const { children, size, icon, iconColor, ...props } = this.props
 

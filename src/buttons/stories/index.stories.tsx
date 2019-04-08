@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react'
-import React from 'react'
+import * as React from 'react'
 import Box from 'ui-box'
 import Component from '@reactions/component'
 import { IconButton, Button, BackButton, TextDropdownButton } from '..'

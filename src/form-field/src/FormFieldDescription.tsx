@@ -6,6 +6,10 @@ import { IParagraphProps } from '../../typography/src/Paragraph'
 export default class FormFieldDescription extends React.PureComponent<
   IParagraphProps
 > {
+  static propTypes = {
+    ...Paragraph.propTypes
+  }
+
   render() {
     return <Paragraph marginTop={0} size={400} color="muted" {...this.props} />
   }

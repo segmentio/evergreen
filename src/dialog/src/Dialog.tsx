@@ -1,4 +1,5 @@
 import { css } from 'ui-box'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import { Button, IconButton } from '../../buttons'
@@ -147,6 +148,35 @@ const animationStyles = {
 }
 
 class Dialog extends React.Component<PropsWithTheme<IProps>> {
+  static propTypes = {
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
+      .isRequired as PropTypes.Validator<IntentType>,
+    isShown: PropTypes.bool,
+    title: PropTypes.node,
+    hasHeader: PropTypes.bool,
+    hasFooter: PropTypes.bool,
+    hasCancel: PropTypes.bool,
+    hasClose: PropTypes.bool,
+    onCloseComplete: PropTypes.func,
+    onOpenComplete: PropTypes.func,
+    onConfirm: PropTypes.func,
+    confirmLabel: PropTypes.string,
+    isConfirmLoading: PropTypes.bool,
+    isConfirmDisabled: PropTypes.bool,
+    onCancel: PropTypes.func,
+    cancelLabel: PropTypes.string,
+    shouldCloseOnOverlayClick: PropTypes.bool,
+    shouldCloseOnEscapePress: PropTypes.bool,
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    topOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    sideOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    minHeightContent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    containerProps: PropTypes.object,
+    contentContainerProps: PropTypes.object,
+    preventBodyScrolling: PropTypes.bool
+  }
+
   static defaultProps = {
     isShown: false,
     hasHeader: true,

@@ -19,13 +19,13 @@ interface IProps {
   onSelect?: AnyFunction
 
   // The icon before the label.
-  icon: IconName | JSX.Element
+  icon?: IconName | JSX.Element
 
   // The children of the component.
   children: React.ReactNode
 
   // Secondary text shown on the right.
-  secondaryText: React.ReactNode
+  secondaryText?: React.ReactNode
 
   // The default theme only supports one default appearance.
   appearance?: string

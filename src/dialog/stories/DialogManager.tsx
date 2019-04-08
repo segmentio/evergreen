@@ -1,7 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
+import * as PropTypes from 'prop-types'
 
-export default class DialogManager extends React.PureComponent {
+export default class DialogManager extends React.PureComponent<{
+  children: any
+}> {
   static propTypes = {
     children: PropTypes.func
   }
@@ -19,7 +21,6 @@ export default class DialogManager extends React.PureComponent {
         this.setState({
           isLoading: true
         })
-
         window.setTimeout(() => {
           this.setState({
             isShown: false

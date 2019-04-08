@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react'
-import React from 'react'
+import * as React from 'react'
 import Box from 'ui-box'
 import {
   FormField,
@@ -15,7 +15,7 @@ storiesOf('form-field', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <FormField>FormField</FormField>
+      <FormField label="FormField">FormField</FormField>
     </Box>
   ))
   .add('FormFieldDescription', () => (

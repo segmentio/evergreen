@@ -1,29 +1,72 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
 import { withTheme, PropsWithTheme } from '../../theme'
 import { AnyObject } from '../../types/helper'
 
-type Elevation = 0 | 1 | 2 | 3 | 4
-// type Border = 'muted' | 'default'
-// type BorderValues = 'muted' | 'extraMuted' | 'default'
+export type Elevation = 0 | 1 | 2 | 3 | 4
+type Border = boolean | 'muted' | 'default'
+type BorderValues = boolean | 'muted' | 'extraMuted' | 'default'
 
-export interface IPaneProps extends BoxProps {
+type TBoolAndString = {
+  border?: Border
+  borderTop?: BorderValues
+  borderBottom?: BorderValues
+  borderLeft?: BorderValues
+  borderRight?: BorderValues
+}
+
+type TOverrideBoxProps = Pick<
+  BoxProps,
+  Exclude<keyof BoxProps, keyof TBoolAndString>
+>
+
+export interface IPaneProps extends Partial<TOverrideBoxProps> {
   // Background property. `tint1`, `tint2` etc. from `theme.colors.background` are available.
   background?: string
 
   elevation?: Elevation
   hoverElevation?: Elevation
   activeElevation?: Elevation
-
-  border?: string
-  borderTop?: string
-  borderBottom?: string
-  borderLeft?: string
-  borderRight?: string
 }
 
 class Pane extends React.PureComponent<PropsWithTheme<IPaneProps>> {
+  static propTypes = {
+    ...Box.propTypes,
+    background: PropTypes.string,
+    elevation: PropTypes.oneOf([0, 1, 2, 3, 4]) as PropTypes.Validator<
+      Elevation
+    >,
+    hoverElevation: PropTypes.oneOf([0, 1, 2, 3, 4]) as PropTypes.Validator<
+      Elevation
+    >,
+    activeElevation: PropTypes.oneOf([0, 1, 2, 3, 4]) as PropTypes.Validator<
+      Elevation
+    >,
+    border: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool
+    ]) as PropTypes.Validator<Border>,
+    borderTop: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool
+    ]) as PropTypes.Validator<BorderValues>,
+    borderRight: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool
+    ]) as PropTypes.Validator<BorderValues>,
+    borderBottom: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool
+    ]) as PropTypes.Validator<BorderValues>,
+    borderLeft: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool
+    ]) as PropTypes.Validator<BorderValues>,
+    theme: PropTypes.object.isRequired
+  }
+
   getHoverElevationStyle = (hoverElevation: Elevation, css: AnyObject) => {
     const { theme } = this.props
     if (!Number.isInteger(hoverElevation)) return {}
@@ -57,8 +100,8 @@ class Pane extends React.PureComponent<PropsWithTheme<IPaneProps>> {
     borderSideProperty,
     border
   }: {
-    borderSideProperty: string
-    border: string
+    borderSideProperty: string | boolean
+    border: string | boolean
   }) => {
     const { theme } = this.props
     if (
@@ -71,13 +114,13 @@ class Pane extends React.PureComponent<PropsWithTheme<IPaneProps>> {
       return `1px solid ${theme.colors.border[borderSideProperty]}`
     }
 
-    // if (borderSideProperty === true) {
-    //   return `1px solid ${theme.colors.border.default}`
-    // }
+    if (borderSideProperty === true) {
+      return `1px solid ${theme.colors.border.default}`
+    }
 
-    // if (borderSideProperty === false) {
-    //   return null
-    // }
+    if (borderSideProperty === false) {
+      return null
+    }
 
     if (
       typeof border === 'string' &&
@@ -86,9 +129,9 @@ class Pane extends React.PureComponent<PropsWithTheme<IPaneProps>> {
       return `1px solid ${theme.colors.border[border]}`
     }
 
-    // if (border === true) {
-    //   return `1px solid ${theme.colors.border.default}`
-    // }
+    if (border === true) {
+      return `1px solid ${theme.colors.border.default}`
+    }
 
     return borderSideProperty
   }

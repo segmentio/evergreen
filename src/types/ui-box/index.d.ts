@@ -498,8 +498,8 @@ declare module 'ui-box' {
     [key: string]: any
   }
 
-  export type Box = Component<BoxProps | CSSProps>
-  export const Box: ComponentClass<BoxProps | CSSProps>
+  export type Box = Component<BoxProps>
+  export const Box: ComponentClass<BoxProps>
   export default Box
 
   type CacheEntry = ReadonlyArray<[/** key */ string, /** value */ string]>

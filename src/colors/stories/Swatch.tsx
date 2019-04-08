@@ -1,15 +1,20 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
+
 import { Pane } from '../../layers'
-import { Heading, Text, Code } from '../../typography'
 import { Popover } from '../../popover'
+import { Heading, Text, Code } from '../../typography'
 
 function uppercaseColor(color) {
   if (color[0] === '#') return color.toUpperCase()
   return color
 }
 
-export default class Swatch extends React.Component {
+export default class Swatch extends React.Component<{
+  color: string
+  name: string
+  property: string
+}> {
   static propTypes = {
     color: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

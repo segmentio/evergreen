@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import { withTheme, PropsWithTheme } from '../../theme'
@@ -7,13 +8,22 @@ import { ITextProps } from '../../typography/src/Text'
 
 export interface IBadgeProps extends ITextProps {
   // The color used for the badge.
-  color: string
+  color?: string
 
   // Whether or not to apply hover/focus/active styles
   isInteractive?: boolean
+
+  isSolid?: boolean
 }
 
 class Badge extends React.PureComponent<PropsWithTheme<IBadgeProps>> {
+  static propTypes = {
+    ...Strong.propTypes,
+    color: PropTypes.string.isRequired,
+    isInteractive: PropTypes.bool,
+    theme: PropTypes.object.isRequired
+  }
+
   static defaultProps = {
     color: 'neutral',
     isInteractive: false,

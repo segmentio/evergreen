@@ -1,3 +1,4 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
@@ -20,7 +21,12 @@ const CircleIcon: React.SFC<ICircleIconProps> = ({
   </svg>
 )
 
-interface IProps extends BoxProps {
+CircleIcon.propTypes = {
+  fill: PropTypes.string,
+  size: PropTypes.number
+}
+
+interface IProps extends Partial<BoxProps> {
   // The id attribute of the radio.
   id?: string
 
@@ -56,6 +62,22 @@ interface IProps extends BoxProps {
 }
 
 class Radio extends React.PureComponent<PropsWithTheme<IProps>> {
+  static propTypes = {
+    ...Box.propTypes,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    label: PropTypes.node,
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    disabled: PropTypes.bool,
+    checked: PropTypes.bool,
+    size: PropTypes.oneOf([12, 16]) as PropTypes.Validator<12 | 16>,
+    isRequired: PropTypes.bool.isRequired,
+    isInvalid: PropTypes.bool.isRequired,
+    appearance: PropTypes.string.isRequired,
+    theme: PropTypes.object.isRequired
+  }
+
   static defaultProps = {
     appearance: 'default',
     onChange: () => {},

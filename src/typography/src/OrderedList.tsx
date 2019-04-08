@@ -1,15 +1,22 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
 type Size = 300 | 400 | 500 | 600
 
 interface IProps extends BoxProps {
-  size: Size
+  size?: Size
 }
 
-export default class OrderedList extends React.PureComponent<Partial<IProps>> {
+export default class OrderedList extends React.PureComponent<IProps> {
+  static propTypes = {
+    ...Box.propTypes,
+    size: PropTypes.oneOf([300, 400, 500, 600])
+      .isRequired as PropTypes.Validator<Size>
+  }
+
   static defaultProps = {
-    size: 400 as Size // this makes size optional in props (hence Partial, but not in childprops down below)
+    size: 400 as Size
   }
 
   static styles = {
@@ -26,7 +33,7 @@ export default class OrderedList extends React.PureComponent<Partial<IProps>> {
 
     const finalChildren = React.Children.map(
       children,
-      (child: { props: IProps }) => {
+      (child: { props: { size: Size } }) => {
         if (!React.isValidElement(child)) {
           return child
         }

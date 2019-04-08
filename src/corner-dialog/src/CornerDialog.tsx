@@ -1,4 +1,5 @@
 import { css } from 'ui-box'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import Transition from 'react-transition-group/Transition'
 
@@ -26,7 +27,7 @@ interface IProps {
   title?: React.ReactNode
 
   // Function that will be called when the exit transition is complete.
-  onCloseComplete: AnyFunction
+  onCloseComplete?: AnyFunction
 
   // Function that will be called when the enter transition is complete.
   onOpenComplete?: AnyFunction
@@ -115,6 +116,25 @@ const animationStyles = {
 }
 
 export default class CornerDialog extends React.PureComponent<IProps, IState> {
+  static propTypes = {
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
+      .isRequired as PropTypes.Validator<IntentType>,
+    isShown: PropTypes.bool,
+    title: PropTypes.node,
+    onCloseComplete: PropTypes.func,
+    onOpenComplete: PropTypes.func,
+    hasFooter: PropTypes.bool,
+    onConfirm: PropTypes.func,
+    confirmLabel: PropTypes.string,
+    hasCancel: PropTypes.bool,
+    hasClose: PropTypes.bool,
+    onCancel: PropTypes.func,
+    cancelLabel: PropTypes.string,
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    containerProps: PropTypes.object
+  }
+
   static defaultProps = {
     width: 392,
     intent: 'none',

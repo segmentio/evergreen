@@ -1,12 +1,12 @@
-import { css } from 'ui-box'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
-import Box, { BoxProps } from 'ui-box'
+import Box, { BoxProps, css } from 'ui-box'
 
 import { withTheme, PropsWithTheme } from '../../theme'
 
-interface IProps extends BoxProps {
+interface IProps extends Partial<BoxProps> {
   // The size of the spinner.
-  size: number
+  size?: number
 
   // Delay after which spinner should be visible.
   delay?: number
@@ -50,6 +50,13 @@ const inner = (color: string) => ({
 })
 
 class Spinner extends React.PureComponent<PropsWithTheme<IProps>, IState> {
+  static propTypes = {
+    ...Box.propTypes,
+    delay: PropTypes.number,
+    size: PropTypes.number.isRequired,
+    theme: PropTypes.object.isRequired
+  }
+
   static defaultProps = {
     size: 40,
     delay: 0

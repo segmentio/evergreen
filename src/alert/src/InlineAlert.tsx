@@ -1,15 +1,6 @@
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
-import {
-  dimensions,
-  layout,
-  position,
-  spacing,
-  TDimensions,
-  TLayout,
-  TPosition,
-  TSpacing
-} from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 
 import { IntentType } from '../../constants'
 import { Icon } from '../../icon'
@@ -18,9 +9,7 @@ import { withTheme, PropsWithTheme } from '../../theme'
 import { Text } from '../../typography'
 import { TextSize } from '../../typography/src/Text'
 
-type BoxProps = TDimensions & TLayout & TPosition & TSpacing
-
-interface IProps extends BoxProps {
+interface IProps extends Partial<BoxProps> {
   // The content of the alert.
   children?: string | React.ReactNode
 
@@ -36,10 +25,7 @@ interface IProps extends BoxProps {
 
 class InlineAlert extends React.PureComponent<PropsWithTheme<IProps>> {
   static propTypes = {
-    ...dimensions.propTypes,
-    ...layout.propTypes,
-    ...position.propTypes,
-    ...spacing.propTypes,
+    ...Box.propTypes,
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
       .isRequired as PropTypes.Validator<IntentType>,

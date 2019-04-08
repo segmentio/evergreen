@@ -1,3 +1,4 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
@@ -12,6 +13,14 @@ interface IProps extends Partial<BoxProps> {
 }
 
 class Heading extends React.PureComponent<PropsWithTheme<IProps>> {
+  static propTypes = {
+    ...Box.propTypes,
+    size: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900])
+      .isRequired as PropTypes.Validator<Size>,
+    marginTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    theme: PropTypes.object.isRequired
+  }
+
   static defaultProps = {
     size: 500 as Size
   }

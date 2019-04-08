@@ -6,7 +6,7 @@ import { Heading } from '../../typography'
 
 interface IProps {
   // Title of the menu group.
-  title: React.ReactNode
+  title?: React.ReactNode
 
   // The children of the menu group.
   children: React.ReactNode

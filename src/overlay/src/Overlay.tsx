@@ -1,7 +1,7 @@
-import { css } from 'ui-box'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import Transition from 'react-transition-group/Transition'
-import Box from 'ui-box'
+import Box, { css } from 'ui-box'
 
 import { StackingOrder } from '../../constants'
 import preventBodyScroll from '../../lib/prevent-body-scroll'
@@ -131,6 +131,23 @@ const animationStyles = (backgroundColor: string) => ({
  * Learn more: https://reactcommunity.org/react-transition-group/
  */
 class Overlay extends React.Component<PropsWithTheme<IProps>, IState> {
+  static propTypes = {
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+    isShown: PropTypes.bool,
+    containerProps: PropTypes.object,
+    preventBodyScrolling: PropTypes.bool,
+    shouldCloseOnClick: PropTypes.bool,
+    shouldCloseOnEscapePress: PropTypes.bool,
+    onBeforeClose: PropTypes.func,
+    onExit: PropTypes.func,
+    onExiting: PropTypes.func,
+    onExited: PropTypes.func,
+    onEnter: PropTypes.func,
+    onEntering: PropTypes.func,
+    onEntered: PropTypes.func,
+    theme: PropTypes.object.isRequired
+  }
+
   static defaultProps = {
     onHide: () => {},
     shouldCloseOnClick: true,

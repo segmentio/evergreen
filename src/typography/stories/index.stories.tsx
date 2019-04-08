@@ -20,7 +20,11 @@ const TextSizes = [300, 400, 500]
 const HeadingSizes = [100, 200, 300, 400, 500, 600, 700, 800, 900]
 const dummyText = 'A red flair silhouetted the jagged edge of a wing.'
 
-function previewTextComponent(Comp, sizes = TextSizes, props) {
+function previewTextComponent(
+  Comp: React.ElementType,
+  sizes = TextSizes,
+  props?: any
+) {
   return (
     <Box>
       {sizes.map(size => (
@@ -77,7 +81,7 @@ storiesOf('typography', module)
   .add('Strong', () => <div>{previewTextComponent(Strong)}</div>)
   .add('UnorderedList', () => (
     <Box padding={40}>
-      {[300, 400, 500].map(size => (
+      {[300, 400, 500].map((size: 300 | 400 | 500) => (
         <Box key={size}>
           <Heading size={700} marginTop="default">
             Size {size}
@@ -102,7 +106,7 @@ storiesOf('typography', module)
   ))
   .add('UnorderedList with icons', () => (
     <Box padding={40}>
-      {[300, 400, 500].map(size => (
+      {[300, 400, 500].map((size: 300 | 400 | 500) => (
         <Box key={size}>
           <Heading size={700} marginTop="default">
             Size {size}
@@ -144,7 +148,7 @@ storiesOf('typography', module)
   ))
   .add('OrderedList', () => (
     <Box padding={40}>
-      {[300, 400, 500].map(size => (
+      {[300, 400, 500].map((size: 300 | 400 | 500) => (
         <Box key={size}>
           <Heading size={700} marginTop="default">
             Size {size}

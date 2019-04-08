@@ -1,3 +1,4 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
@@ -7,14 +8,14 @@ import FormFieldHint from './FormFieldHint'
 import FormFieldLabel from './FormFieldLabel'
 import FormFieldValidationMessage from './FormFieldValidationMessage'
 
-interface IProps extends BoxProps {
+interface IProps extends Partial<BoxProps> {
   // The label used above the input element.
   label: React.ReactNode
 
   // Passed on the label as a htmlFor prop.
   labelFor?: string
 
-  labelProps: ITextProps
+  labelProps?: ITextProps
 
   // Wether or not show a asterix after the label.
   isRequired?: boolean
@@ -30,6 +31,16 @@ interface IProps extends BoxProps {
 }
 
 export default class FormField extends React.PureComponent<IProps> {
+  static propTypes = {
+    label: PropTypes.node.isRequired,
+    labelFor: PropTypes.string,
+    isRequired: PropTypes.bool,
+    description: PropTypes.node,
+    hint: PropTypes.node,
+    validationMessage: PropTypes.node,
+    ...Box.propTypes
+  }
+
   static defaultProps = {
     labelProps: {
       size: 400

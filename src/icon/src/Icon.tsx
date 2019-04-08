@@ -19,7 +19,7 @@ export { IconNames }
  * Refer to the LICENSE for BlueprintJS here: https://github.com/palantir/blueprint/blob/develop/LICENSE
  */
 
-interface IProps extends BoxProps {
+interface IProps extends Partial<BoxProps> {
   color?: string
   icon: IconName | JSX.Element
   size?: number

@@ -1,13 +1,14 @@
 import { IconName } from '@blueprintjs/icons'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
-import { BoxProps } from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 
 import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
 import { withTheme, PropsWithTheme } from '../../theme'
 import { Text } from '../../typography'
 
-interface IProps extends BoxProps {
+interface IProps extends Partial<BoxProps> {
   // Forcefully set the active state of a button. Useful in conjuction with a Popover.
   isActive?: boolean
 
@@ -33,6 +34,15 @@ interface IProps extends BoxProps {
 }
 
 class TextDropdownButton extends React.PureComponent<PropsWithTheme<IProps>> {
+  static propTypes = {
+    ...Box.propTypes,
+    isActive: PropTypes.bool,
+    disabled: PropTypes.bool,
+    icon: PropTypes.string.isRequired as PropTypes.Validator<IconName>,
+    theme: PropTypes.object.isRequired,
+    className: PropTypes.string
+  }
+
   static defaultProps = {
     isActive: false,
     icon: 'caret-down' as IconName

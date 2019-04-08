@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import { PropsWithTheme, withTheme } from '../../theme'
@@ -25,6 +26,16 @@ interface IProps extends ITextProps {
 }
 
 class Link extends React.PureComponent<PropsWithTheme<IProps>> {
+  static propTypes = {
+    ...Text.propTypes,
+    rel: PropTypes.string,
+    href: PropTypes.string,
+    target: PropTypes.string,
+    color: PropTypes.string.isRequired,
+    theme: PropTypes.object.isRequired,
+    className: PropTypes.string
+  }
+
   static defaultProps = {
     color: 'default'
   }

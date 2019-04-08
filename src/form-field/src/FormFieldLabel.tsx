@@ -1,3 +1,4 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import { Label } from '../../typography'
@@ -9,6 +10,11 @@ interface IProps extends ITextProps {
 }
 
 export default class FormFieldLabel extends React.PureComponent<IProps> {
+  static propTypes = {
+    ...Label.propTypes,
+    isAstrixShown: PropTypes.bool
+  }
+
   render() {
     const { children, isAstrixShown, ...props } = this.props
     return (

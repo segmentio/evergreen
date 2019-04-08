@@ -1,15 +1,6 @@
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
-import {
-  dimensions,
-  layout,
-  position,
-  spacing,
-  TDimensions,
-  TLayout,
-  TPosition,
-  TSpacing
-} from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 
 import { IconButton } from '../../buttons'
 import { IntentType } from '../../constants'
@@ -21,9 +12,7 @@ import { Heading, Paragraph } from '../../typography'
 
 type Appearance = 'default' | 'card'
 
-type BoxProps = TDimensions & TLayout & TPosition & TSpacing
-
-interface IProps extends BoxProps {
+interface IProps extends Partial<BoxProps> {
   // The content of the alert. When a string is passed it is wrapped in a `<Text size={400} />` component.
   children?: string | React.ReactNode
 
@@ -51,10 +40,7 @@ interface IProps extends BoxProps {
 
 class Alert extends React.PureComponent<PropsWithTheme<IProps>> {
   static propTypes = {
-    ...dimensions.propTypes,
-    ...layout.propTypes,
-    ...position.propTypes,
-    ...spacing.propTypes,
+    ...Box.propTypes,
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
       .isRequired as PropTypes.Validator<IntentType>,

@@ -1,6 +1,7 @@
 import { IconName } from '@blueprintjs/icons'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
-import { BoxProps } from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 
 import { Icon } from '../../icon'
 import { IntentType } from '../../constants'
@@ -8,7 +9,7 @@ import { withTheme, PropsWithTheme } from '../../theme'
 import { Appearance } from '../../types/appearance'
 import Button from './Button'
 
-interface IProps extends BoxProps {
+interface IProps extends Partial<BoxProps> {
   /**
    * Name of a Blueprint UI icon, or an icon element, to render.
    * This prop is required because it determines the content of the component, but it can
@@ -43,6 +44,20 @@ interface IProps extends BoxProps {
 }
 
 class IconButton extends React.PureComponent<PropsWithTheme<IProps>> {
+  static propTypes = {
+    ...Box.propTypes,
+    icon: PropTypes.string as PropTypes.Validator<IconName>,
+    iconSize: PropTypes.number,
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
+      .isRequired as PropTypes.Validator<IntentType>,
+    appearance: PropTypes.oneOf(['default', 'minimal', 'primary'])
+      .isRequired as PropTypes.Validator<Appearance>,
+    isActive: PropTypes.bool,
+    disabled: PropTypes.bool,
+    theme: PropTypes.object.isRequired,
+    className: PropTypes.string
+  }
+
   static defaultProps = {
     intent: 'none' as IntentType,
     appearance: 'default' as Appearance,

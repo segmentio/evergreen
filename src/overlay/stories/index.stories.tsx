@@ -1,11 +1,12 @@
 import { storiesOf } from '@storybook/react'
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
 import Box from 'ui-box'
+
 import { Overlay } from '..'
 import { Button } from '../../buttons'
 
-class OverlayManager extends PureComponent {
+class OverlayManager extends React.PureComponent<{ children: any }> {
   static propTypes = {
     children: PropTypes.func
   }

@@ -1,3 +1,4 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
@@ -35,7 +36,7 @@ const MinusIcon: React.SFC<IIconProps> = ({
   </svg>
 )
 
-interface IProps extends BoxProps {
+interface IProps extends Partial<BoxProps> {
   // The id attribute of the checkbox.
   id?: string
 
@@ -68,6 +69,21 @@ interface IProps extends BoxProps {
 }
 
 class Checkbox extends React.PureComponent<PropsWithTheme<IProps>> {
+  static propTypes = {
+    ...Box.propTypes,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    label: PropTypes.node,
+    value: PropTypes.string,
+    checked: PropTypes.bool,
+    indeterminate: PropTypes.bool,
+    onChange: PropTypes.func,
+    disabled: PropTypes.bool,
+    isInvalid: PropTypes.bool,
+    appearance: PropTypes.string,
+    theme: PropTypes.object.isRequired
+  }
+
   static defaultProps = {
     checked: false,
     indeterminate: false,

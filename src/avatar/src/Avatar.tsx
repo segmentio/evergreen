@@ -1,5 +1,6 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
-import Box from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 
 import { Image } from '../../image'
 import { withTheme, PropsWithTheme } from '../../theme'
@@ -8,7 +9,7 @@ import { Text } from '../../typography'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
 
-interface IProps {
+interface IProps extends Partial<BoxProps> {
   // The src attribute of the image. When it's not available, render initials instead.
   src?: string
 
@@ -55,6 +56,20 @@ const initialsProps = {
 }
 
 class Avatar extends React.PureComponent<PropsWithTheme<IProps>, IState> {
+  static propTypes = {
+    ...Box.propTypes,
+    src: PropTypes.string,
+    size: PropTypes.number,
+    name: PropTypes.string,
+    hashValue: PropTypes.string,
+    isSolid: PropTypes.bool,
+    color: PropTypes.string.isRequired,
+    getInitials: PropTypes.func,
+    forceShowInitials: PropTypes.bool,
+    sizeLimitOneCharacter: PropTypes.number,
+    theme: PropTypes.object.isRequired
+  }
+
   static defaultProps = {
     color: 'automatic',
     size: 24,

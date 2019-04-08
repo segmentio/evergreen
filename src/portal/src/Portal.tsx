@@ -1,3 +1,4 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
@@ -10,6 +11,10 @@ interface IProps {
 let portalContainer: any
 
 export default class Portal extends React.Component<IProps> {
+  static propTypes = {
+    children: PropTypes.node.isRequired
+  }
+
   el: any
 
   constructor(props: IProps) {

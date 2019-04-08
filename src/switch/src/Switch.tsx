@@ -1,10 +1,11 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
 import { withTheme, PropsWithTheme } from '../../theme'
 import { AnyFunction, AnyObject } from '../../types/helper'
 
-interface IProps extends BoxProps {
+interface IProps extends Partial<BoxProps> {
   // The id attribute of the radio.
   id?: string
 
@@ -30,7 +31,7 @@ interface IProps extends BoxProps {
   isInvalid?: boolean
 
   // The appearance of the checkbox. The default theme only comes with a default style.
-  appearance: string
+  appearance?: string
 
   // When true, the switch has a check icon.
   hasCheckIcon?: boolean
@@ -99,6 +100,22 @@ const isControlled = (component: AnyObject) => {
 }
 
 class Switch extends React.PureComponent<PropsWithTheme<IProps>, IState> {
+  static propTypes = {
+    ...Box.propTypes,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    value: PropTypes.string,
+    height: PropTypes.number,
+    checked: PropTypes.bool,
+    onChange: PropTypes.func,
+    disabled: PropTypes.bool,
+    isInvalid: PropTypes.bool,
+    appearance: PropTypes.string.isRequired,
+    hasCheckIcon: PropTypes.bool,
+    defaultChecked: PropTypes.bool,
+    theme: PropTypes.object.isRequired
+  }
+
   static defaultProps = {
     height: 16,
     onChange: () => {},

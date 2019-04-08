@@ -1,7 +1,8 @@
 import { IconName } from '@blueprintjs/icons'
 import cx from 'classnames'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
-import { BoxProps } from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 
 import { Appearance } from '../../types/appearance'
 import { IntentType } from '../../constants'
@@ -10,7 +11,7 @@ import { Spinner } from '../../spinner'
 import { withTheme, PropsWithTheme } from '../../theme'
 import { Text } from '../../typography'
 
-export interface IButtonProps extends BoxProps {
+export interface IButtonProps extends Partial<BoxProps> {
   // The intent of the button.
   intent?: IntentType
 
@@ -37,6 +38,25 @@ export interface IButtonProps extends BoxProps {
 }
 
 class Button extends React.PureComponent<PropsWithTheme<IButtonProps>> {
+  static propTypes = {
+    ...Box.propTypes,
+    intent: PropTypes.oneOf([
+      'none',
+      'success',
+      'warning',
+      'danger'
+    ]) as PropTypes.Validator<IntentType>,
+    appearance: PropTypes.oneOf(['default', 'minimal', 'primary'])
+      .isRequired as PropTypes.Validator<Appearance>,
+    isLoading: PropTypes.bool,
+    isActive: PropTypes.bool,
+    iconBefore: PropTypes.string as PropTypes.Validator<IconName>,
+    iconAfter: PropTypes.string as PropTypes.Validator<IconName>,
+    disabled: PropTypes.bool,
+    theme: PropTypes.object.isRequired,
+    className: PropTypes.string
+  }
+
   static defaultProps = {
     appearance: 'default' as Appearance,
     height: 32,

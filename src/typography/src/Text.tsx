@@ -1,3 +1,4 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
@@ -5,7 +6,7 @@ import { withTheme, PropsWithTheme } from '../../theme'
 
 export type TextSize = 300 | 400 | 500 | 600
 
-export interface ITextProps extends BoxProps {
+export interface ITextProps extends Partial<BoxProps> {
   size?: TextSize
 
   // Can be: `ui`, `display`, or `mono` or a custom font family
@@ -13,6 +14,14 @@ export interface ITextProps extends BoxProps {
 }
 
 class Text extends React.PureComponent<PropsWithTheme<ITextProps>> {
+  static propTypes = {
+    ...Box.propTypes,
+    size: PropTypes.oneOf([300, 400, 500, 600])
+      .isRequired as PropTypes.Validator<TextSize>,
+    fontFamily: PropTypes.string.isRequired,
+    theme: PropTypes.object.isRequired
+  }
+
   static defaultProps = {
     size: 400 as TextSize,
     color: 'default',
@@ -42,6 +51,6 @@ class Text extends React.PureComponent<PropsWithTheme<ITextProps>> {
   }
 }
 
-const out = withTheme<ITextProps>(Text)
+const out = withTheme(Text)
 
 export default out

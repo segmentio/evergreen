@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import { PropsWithTheme, withTheme } from '../../theme'
@@ -15,6 +16,14 @@ interface IProps extends ITextProps {
 }
 
 class Code extends React.PureComponent<PropsWithTheme<IProps>> {
+  static propTypes = {
+    ...Text.propTypes,
+    appearance: PropTypes.oneOf(['default', 'minimal'])
+      .isRequired as PropTypes.Validator<Appearance>,
+    theme: PropTypes.object.isRequired,
+    className: PropTypes.string
+  }
+
   static defaultProps = {
     appearance: 'default' as Appearance
   }

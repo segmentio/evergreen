@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/react'
-import React from 'react'
+import * as React from 'react'
 import Box from 'ui-box'
+
 import { Switch } from '..'
 import { Heading } from '../../typography'
 

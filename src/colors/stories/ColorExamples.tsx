@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
 import { ThemeConsumer } from '../../theme'

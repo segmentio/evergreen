@@ -1,3 +1,4 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import { Icon } from '../../icon'
@@ -14,6 +15,12 @@ interface IProps extends IPaneProps {
 class FormFieldValidationMessage extends React.PureComponent<
   PropsWithTheme<IProps>
 > {
+  static propTypes = {
+    ...Pane.propTypes,
+    children: PropTypes.node,
+    theme: PropTypes.object.isRequired
+  }
+
   render() {
     const { theme, children, ...props } = this.props
     return (
