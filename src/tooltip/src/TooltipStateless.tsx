@@ -1,21 +1,24 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
 import { Pane } from '../../layers'
+import { IPaneProps } from '../../layers/src/Pane'
 import { Paragraph } from '../../typography'
-import { withTheme } from '../../theme'
+import { withTheme, PropsWithTheme } from '../../theme'
 
-class TooltipStateless extends PureComponent {
+export interface IStatelessTooltipProps extends Partial<IPaneProps> {
+  children: any
+
+  // The appearance of the tooltip.
+  appearance: 'default' | 'card'
+}
+
+class TooltipStateless extends React.PureComponent<
+  PropsWithTheme<IStatelessTooltipProps>
+> {
   static propTypes = {
     children: PropTypes.node,
-
-    /**
-     * The appearance of the tooltip.
-     */
-    appearance: PropTypes.oneOf(['default', 'card']).isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
+    appearance: PropTypes.oneOf(['default', 'card'])
+      .isRequired as PropTypes.Validator<'default' | 'card'>,
     theme: PropTypes.object.isRequired
   }
 

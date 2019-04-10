@@ -8,15 +8,15 @@ import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
 import { PropsWithTheme, withTheme } from '../../theme'
-import { AnyFunction } from '../../types/helper'
+
 import { Text } from '../../typography'
 
 interface IProps {
   // Element type to use for the menu item. Ex: `<MenuItem is={ReactRouterLink}>...</MenuItem>`
-  is?: string | AnyFunction
+  is?: string | ((...args: any[]) => any)
 
   // Function that is called on click and enter/space keypress.
-  onSelect?: AnyFunction
+  onSelect?: (...args: any[]) => any
 
   // The icon before the label.
   icon?: IconName | JSX.Element

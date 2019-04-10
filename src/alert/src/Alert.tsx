@@ -7,7 +7,7 @@ import { IntentType } from '../../constants'
 import { Icon } from '../../icon'
 import { Pane } from '../../layers'
 import { PropsWithTheme, withTheme } from '../../theme'
-import { AnyFunction } from '../../types/helper'
+
 import { Heading, Paragraph } from '../../typography'
 
 type Appearance = 'default' | 'card'
@@ -32,7 +32,7 @@ interface IProps extends Partial<BoxProps> {
   isRemoveable?: boolean
 
   // Function called when the remove button is clicked.
-  onRemove?: AnyFunction
+  onRemove?: (...args: any[]) => any
 
   // The appearance of the alert.
   appearance?: Appearance

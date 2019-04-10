@@ -4,7 +4,7 @@ import Box, { BoxProps } from 'ui-box'
 
 import { Image } from '../../image'
 import { withTheme, PropsWithTheme } from '../../theme'
-import { AnyFunction } from '../../types/helper'
+
 import { Text } from '../../typography'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
@@ -33,7 +33,7 @@ interface IProps extends Partial<BoxProps> {
   color?: string
 
   // Function to get the initials based on the name.
-  getInitials?: AnyFunction
+  getInitials?: (...args: any[]) => any
 
   // When true, force show the initials. This is useful in some cases when using Gravatar and transparent pngs.
   forceShowInitials?: boolean

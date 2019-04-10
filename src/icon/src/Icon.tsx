@@ -9,7 +9,6 @@ import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
 import { withTheme, PropsWithTheme } from '../../theme'
-import { AnyObject } from '../../types/helper'
 
 export { IconNames }
 
@@ -24,7 +23,7 @@ interface IProps extends Partial<BoxProps> {
   icon: IconName | JSX.Element
   size?: number
   title?: string
-  style?: AnyObject
+  style?: { [key: string]: any }
 }
 
 class Icon extends React.PureComponent<PropsWithTheme<IProps>> {

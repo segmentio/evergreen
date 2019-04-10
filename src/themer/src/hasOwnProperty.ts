@@ -1,4 +1,2 @@
-import { AnyObject } from '../../types/helper'
-
-export default (obj: AnyObject, prop: string) =>
+export default (obj: { [key: string]: any }, prop: string) =>
   Object.prototype.hasOwnProperty.call(obj, prop)

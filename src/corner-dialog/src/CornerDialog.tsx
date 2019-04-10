@@ -8,7 +8,6 @@ import { IntentType } from '../../constants'
 import { Pane, Card } from '../../layers'
 import { Portal } from '../../portal'
 import { Paragraph, Heading } from '../../typography'
-import { AnyFunction, AnyObject } from '../../types/helper'
 
 interface IProps {
   /**
@@ -27,10 +26,10 @@ interface IProps {
   title?: React.ReactNode
 
   // Function that will be called when the exit transition is complete.
-  onCloseComplete?: AnyFunction
+  onCloseComplete?: (...args: any[]) => any
 
   // Function that will be called when the enter transition is complete.
-  onOpenComplete?: AnyFunction
+  onOpenComplete?: (...args: any[]) => any
 
   // When true, the footer with the cancel and confirm button is shown.
   hasFooter?: boolean
@@ -42,7 +41,7 @@ interface IProps {
    *
    * `onConfirm={(close) => close()}`
    */
-  onConfirm?: AnyFunction
+  onConfirm?: (...args: any[]) => any
 
   // Label of the confirm button.
   confirmLabel?: string
@@ -59,7 +58,7 @@ interface IProps {
    *
    * `onCancel={(close) => close()}`
    */
-  onCancel?: AnyFunction
+  onCancel?: (...args: any[]) => any
 
   // Label of the cancel button.
   cancelLabel?: string
@@ -68,7 +67,7 @@ interface IProps {
   width?: string | number
 
   // Props that are passed to the dialog container.
-  containerProps?: AnyObject
+  containerProps?: { [key: string]: any }
 }
 
 interface IState {
@@ -143,8 +142,8 @@ export default class CornerDialog extends React.PureComponent<IProps, IState> {
     hasCancel: true,
     hasClose: true,
     cancelLabel: 'Close',
-    onCancel: (close: AnyFunction) => close(),
-    onConfirm: (close: AnyFunction) => close()
+    onCancel: (close: (...args: any[]) => any) => close(),
+    onConfirm: (close: (...args: any[]) => any) => close()
   }
 
   constructor(props: IProps) {

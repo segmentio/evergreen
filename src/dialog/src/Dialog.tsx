@@ -7,7 +7,6 @@ import { IntentType } from '../../constants'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
 import { withTheme, PropsWithTheme } from '../../theme'
-import { AnyFunction, AnyObject } from '../../types/helper'
 import { Paragraph, Heading } from '../../typography'
 
 interface IProps {
@@ -39,10 +38,10 @@ interface IProps {
   hasClose?: boolean
 
   // Function that will be called when the exit transition is complete.
-  onCloseComplete?: AnyFunction
+  onCloseComplete?: (...args: any[]) => any
 
   // Function that will be called when the enter transition is complete.
-  onOpenComplete?: AnyFunction
+  onOpenComplete?: (...args: any[]) => any
 
   /**
    * Function that will be called when the confirm button is clicked.
@@ -51,7 +50,7 @@ interface IProps {
    *
    * `onConfirm={(close) => close()}`
    */
-  onConfirm?: AnyFunction
+  onConfirm?: (...args: any[]) => any
 
   // Label of the confirm button.
   confirmLabel?: string
@@ -68,7 +67,7 @@ interface IProps {
    *
    * `onCancel={(close) => close()}`
    */
-  onCancel?: AnyFunction
+  onCancel?: (...args: any[]) => any
 
   // Label of the cancel button.
   cancelLabel?: string
@@ -96,10 +95,10 @@ interface IProps {
   minHeightContent?: string | number
 
   // Props that are passed to the dialog container.
-  containerProps?: AnyObject
+  containerProps?: { [key: string]: any }
 
   // Props that are passed to the content container.
-  contentContainerProps?: AnyObject
+  contentContainerProps?: { [key: string]: any }
 
   // Whether or not to prevent scrolling in the outer body
   preventBodyScrolling?: boolean
@@ -194,12 +193,12 @@ class Dialog extends React.Component<PropsWithTheme<IProps>> {
     cancelLabel: 'Cancel',
     shouldCloseOnOverlayClick: true,
     shouldCloseOnEscapePress: true,
-    onCancel: (close: AnyFunction) => close(),
-    onConfirm: (close: AnyFunction) => close(),
+    onCancel: (close: (...args: any[]) => any) => close(),
+    onConfirm: (close: (...args: any[]) => any) => close(),
     preventBodyScrolling: false
   }
 
-  renderChildren = (close: AnyFunction) => {
+  renderChildren = (close: (...args: any[]) => any) => {
     const { children } = this.props
 
     if (typeof children === 'function') {

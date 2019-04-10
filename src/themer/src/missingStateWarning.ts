@@ -1,4 +1,3 @@
-import { AnyObject, AnyFunction } from '../../types/helper'
 import hasOwnProperty from './hasOwnProperty'
 import isDev from './isDev'
 
@@ -7,9 +6,9 @@ function missingStateWarning({
   props,
   cb
 }: {
-  items: AnyObject
+  items: { [key: string]: any }
   props: string[]
-  cb: AnyFunction
+  cb: (...args: any[]) => any
 }) {
   if (!isDev) return
   props.forEach(prop => {
@@ -19,9 +18,10 @@ function missingStateWarning({
   })
 }
 
-export const logMissingState = (call: string, items: AnyObject) => (
-  prop: string
-) => {
+export const logMissingState = (
+  call: string,
+  items: { [key: string]: any }
+) => (prop: string) => {
   console.error(`Themer.${call}() is missing a ${prop} item`, items)
 }
 

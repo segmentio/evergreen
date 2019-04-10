@@ -1,9 +1,8 @@
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
-import { AnyFunction } from '../../types/helper'
 
 interface IProps {
-  children?: AnyFunction
+  children?: (...args: any[]) => any
   [key: string]: any
 }
 

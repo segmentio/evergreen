@@ -1,7 +1,8 @@
-import { storiesOf } from '@storybook/react'
-import React from 'react'
-import Box from 'ui-box'
 import Component from '@reactions/component'
+import { storiesOf } from '@storybook/react'
+import * as React from 'react'
+import Box from 'ui-box'
+
 import { SegmentedControl } from '..'
 
 storiesOf('segmented-control', module).add('SegmentedControl', () => (

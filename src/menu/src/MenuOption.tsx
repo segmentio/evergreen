@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types'
 import { Icon } from '../../icon'
 import { Pane } from '../../layers'
 import { PropsWithTheme, withTheme } from '../../theme'
-import { AnyFunction } from '../../types/helper'
+
 import { Text } from '../../typography'
 
 interface IProps {
@@ -12,7 +12,7 @@ interface IProps {
   id?: string
 
   // Function that is called on click and enter/space keypress.
-  onSelect?: AnyFunction
+  onSelect?: (...args: any[]) => any
 
   // The icon before the label.
   isSelected?: boolean

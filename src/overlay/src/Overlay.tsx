@@ -9,7 +9,6 @@ import safeInvoke from '../../lib/safe-invoke'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { withTheme, PropsWithTheme } from '../../theme'
-import { GenericFunction, AnyObject } from '../../types/helper'
 
 interface IProps {
   /**
@@ -22,7 +21,7 @@ interface IProps {
   isShown?: boolean
 
   // Props to be passed through on the inner Box.
-  containerProps?: AnyObject
+  containerProps?: { [key: string]: any }
 
   // Whether or not to prevent body scrolling outside the context of the overlay
   preventBodyScrolling?: boolean
@@ -37,7 +36,7 @@ interface IProps {
    * Function called when overlay is about to close.
    * Return `false` to prevent the sheet from closing.
    */
-  onBeforeClose?: GenericFunction<boolean>
+  onBeforeClose?: (...args: any[]) => boolean
 
   // Callback fired before the "exiting" status is applied.
   onExit?: (node: HTMLElement) => void

@@ -1,22 +1,73 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
 import Transition from 'react-transition-group/Transition'
+
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
-import { StackingOrder, Position } from '../../constants'
+import { StackingOrder, Position, TPosition } from '../../constants'
 import getPosition from './getPosition'
+
+interface IProps {
+  // The position the element that is being positioned is on. Smart positioning might override this.
+  position?: TPosition
+
+  // When true, show the element being positioned.
+  isShown?: boolean
+
+  // Function that returns the element being positioned.
+  children: any
+
+  // Function that returns the ref of the element being positioned.
+  innerRef?: any
+
+  // The minimum distance from the body to the element being positioned.
+  bodyOffset?: number
+
+  // The minimum distance from the target to the element being positioned.
+  targetOffset?: number
+
+  /**
+   * Function that should return a node for the target.
+   * ({ getRef: () -> Ref, isShown: Bool }) -> React Node
+   */
+  target: any
+
+  // Initial scale of the element being positioned.
+  initialScale?: number
+
+  // Duration of the animation.
+  animationDuration?: number
+
+  // Function that will be called when the exit transition is complete.
+  onCloseComplete?: (...args: any[]) => any
+
+  // Function that will be called when the enter transition is complete.
+  onOpenComplete?: (...args: any[]) => any
+}
+
+interface IState {
+  top: number
+  left: number
+  transformOrigin: string
+}
 
 const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
 }
 
-const initialState = () => ({
+const initialState = (): IState => ({
   top: null,
   left: null,
   transformOrigin: null
 })
 
-const getCSS = ({ initialScale, animationDuration }) => ({
+const getCSS = ({
+  initialScale,
+  animationDuration
+}: {
+  initialScale: string | number
+  animationDuration: number
+}) => ({
   position: 'fixed',
   opacity: 0,
   transitionTimingFunction: animationEasing.spring,
@@ -34,12 +85,8 @@ const getCSS = ({ initialScale, animationDuration }) => ({
   }
 })
 
-export default class Positioner extends PureComponent {
+export default class Positioner extends React.PureComponent<IProps, IState> {
   static propTypes = {
-    /**
-     * The position the element that is being positioned is on.
-     * Smart positioning might override this.
-     */
     position: PropTypes.oneOf([
       Position.TOP,
       Position.TOP_LEFT,
@@ -49,57 +96,16 @@ export default class Positioner extends PureComponent {
       Position.BOTTOM_RIGHT,
       Position.LEFT,
       Position.RIGHT
-    ]).isRequired,
-
-    /**
-     * When true, show the element being positioned.
-     */
+    ]).isRequired as PropTypes.Validator<TPosition>,
     isShown: PropTypes.bool,
-
-    /**
-     * Function that returns the element being positioned.
-     */
     children: PropTypes.func.isRequired,
-
-    /**
-     * Function that returns the ref of the element being positioned.
-     */
     innerRef: PropTypes.func.isRequired,
-
-    /**
-     * The minimum distance from the body to the element being positioned.
-     */
     bodyOffset: PropTypes.number.isRequired,
-
-    /**
-     * The minimum distance from the target to the element being positioned.
-     */
     targetOffset: PropTypes.number.isRequired,
-
-    /**
-     * Function that should return a node for the target.
-     * ({ getRef: () -> Ref, isShown: Bool }) -> React Node
-     */
     target: PropTypes.func.isRequired,
-
-    /**
-     * Initial scale of the element being positioned.
-     */
     initialScale: PropTypes.number.isRequired,
-
-    /**
-     * Duration of the animation.
-     */
     animationDuration: PropTypes.number.isRequired,
-
-    /**
-     * Function that will be called when the exit transition is complete.
-     */
     onCloseComplete: PropTypes.func.isRequired,
-
-    /**
-     * Function that will be called when the enter transition is complete.
-     */
     onOpenComplete: PropTypes.func.isRequired
   }
 
@@ -114,7 +120,13 @@ export default class Positioner extends PureComponent {
     onCloseComplete: () => {}
   }
 
-  constructor(props, context) {
+  latestAnimationFrame: any
+
+  positionerRef: any
+
+  targetRef: any
+
+  constructor(props: IProps, context: any) {
     super(props, context)
     this.state = initialState()
   }
@@ -125,11 +137,11 @@ export default class Positioner extends PureComponent {
     }
   }
 
-  getTargetRef = ref => {
+  getTargetRef = (ref: any) => {
     this.targetRef = ref
   }
 
-  getRef = ref => {
+  getRef = (ref: any) => {
     this.positionerRef = ref
     this.props.innerRef(ref)
   }
@@ -148,8 +160,8 @@ export default class Positioner extends PureComponent {
     const viewportHeight = document.documentElement.clientHeight
     const viewportWidth = document.documentElement.clientWidth
 
-    let height
-    let width
+    let height: number
+    let width: number
     if (hasEntered) {
       // Only when the animation is done should we opt-in to `getBoundingClientRect`
       const positionerRect = this.positionerRef.getBoundingClientRect()
@@ -246,7 +258,6 @@ export default class Positioner extends PureComponent {
                       state,
                       zIndex,
                       css: getCSS({
-                        targetOffset,
                         initialScale,
                         animationDuration
                       }),

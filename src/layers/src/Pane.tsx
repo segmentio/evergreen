@@ -3,7 +3,6 @@ import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
 import { withTheme, PropsWithTheme } from '../../theme'
-import { AnyObject } from '../../types/helper'
 
 export type Elevation = 0 | 1 | 2 | 3 | 4
 type Border = boolean | 'muted' | 'default'
@@ -67,7 +66,10 @@ class Pane extends React.PureComponent<PropsWithTheme<IPaneProps>> {
     theme: PropTypes.object.isRequired
   }
 
-  getHoverElevationStyle = (hoverElevation: Elevation, css: AnyObject) => {
+  getHoverElevationStyle = (
+    hoverElevation: Elevation,
+    css: { [key: string]: any }
+  ) => {
     const { theme } = this.props
     if (!Number.isInteger(hoverElevation)) return {}
 
@@ -83,7 +85,10 @@ class Pane extends React.PureComponent<PropsWithTheme<IPaneProps>> {
     }
   }
 
-  getActiveElevationStyle = (activeElevation: Elevation, css: AnyObject) => {
+  getActiveElevationStyle = (
+    activeElevation: Elevation,
+    css: { [key: string]: any }
+  ) => {
     const { theme } = this.props
     if (!Number.isInteger(activeElevation)) return {}
 

@@ -22,13 +22,17 @@ export { Image } from './image'
 export { Pane, Card } from './layers'
 export { Menu } from './menu'
 export { Overlay } from './overlay'
+export { Popover } from './popover'
 export { Portal } from './portal'
+export { Positioner } from './positioner'
 export { Radio, RadioGroup } from './radio'
+export { SegmentedControl } from './segmented-control'
 export { Spinner } from './spinner'
 export { extractStyles } from './ssr'
 export { Stack, StackingContext } from './stack'
 export { Switch } from './switch'
 export { ThemeProvider, ThemeConsumer, withTheme, defaultTheme } from './theme'
+export { Tooltip } from './tooltip'
 export {
   UnorderedList,
   Ul,

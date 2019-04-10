@@ -1,22 +1,49 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
 import debounce from 'lodash.debounce'
+
 import { Positioner } from '../../positioner'
-import { Position } from '../../constants'
-import TooltipStateless from './TooltipStateless'
+import { Position, TPosition } from '../../constants'
+import TooltipStateless, { IStatelessTooltipProps } from './TooltipStateless'
+import { IPopoverProps } from '../../popover/src/Popover'
+
+interface IProps {
+  // The appearance of the tooltip.
+  appearance?: 'default' | 'card'
+
+  // The position the Popover is on.
+  position: TPosition
+
+  // The content of the Popover.
+  content: any
+
+  // Time in ms before hiding the Tooltip.
+  hideDelay?: number
+
+  // When True, manually show the Tooltip.
+  isShown?: boolean
+
+  // The target button of the Tooltip.
+  children: any
+
+  // Properties passed through to the Tooltip.
+  statelessProps?: IStatelessTooltipProps
+
+  popoverProps?: IPopoverProps
+}
+
+interface IState {
+  id: string
+  isShown: boolean
+  isShownByTarget: boolean
+}
 
 let idCounter = 0
 
-export default class Tooltip extends PureComponent {
+export default class Tooltip extends React.PureComponent<IProps, IState> {
   static propTypes = {
-    /**
-     * The appearance of the tooltip.
-     */
-    appearance: PropTypes.oneOf(['default', 'card']).isRequired,
-
-    /**
-     * The position the Popover is on.
-     */
+    appearance: PropTypes.oneOf(['default', 'card'])
+      .isRequired as PropTypes.Validator<'default' | 'card'>,
     position: PropTypes.oneOf([
       Position.TOP,
       Position.TOP_LEFT,
@@ -26,31 +53,11 @@ export default class Tooltip extends PureComponent {
       Position.BOTTOM_RIGHT,
       Position.LEFT,
       Position.RIGHT
-    ]),
-
-    /**
-     * The content of the Popover.
-     */
+    ]) as PropTypes.Validator<TPosition>,
     content: PropTypes.node.isRequired,
-
-    /**
-     * Time in ms before hiding the Tooltip.
-     */
     hideDelay: PropTypes.number.isRequired,
-
-    /**
-     * When True, manually show the Tooltip.
-     */
     isShown: PropTypes.bool,
-
-    /**
-     * The target button of the Tooltip.
-     */
     children: PropTypes.node.isRequired,
-
-    /**
-     * Properties passed through to the Tooltip.
-     */
     statelessProps: PropTypes.object
   }
 
@@ -60,7 +67,7 @@ export default class Tooltip extends PureComponent {
     hideDelay: 120
   }
 
-  constructor(props, context) {
+  constructor(props: IProps, context: any) {
     super(props, context)
 
     this.state = {
@@ -91,7 +98,7 @@ export default class Tooltip extends PureComponent {
     })
   }
 
-  renderTarget = ({ getRef }) => {
+  renderTarget = ({ getRef }: { getRef: (ref: any) => void }) => {
     const { children } = this.props
 
     const tooltipTargetProps = {
@@ -122,7 +129,7 @@ export default class Tooltip extends PureComponent {
         // Add the Tooltip props to the target.
         ...tooltipTargetProps,
 
-        innerRef: ref => {
+        innerRef: (ref: any) => {
           // Get the ref for the Tooltip.
           getRef(ref)
           // Pass the ref to the Popover.
@@ -136,7 +143,7 @@ export default class Tooltip extends PureComponent {
      */
     return React.cloneElement(children, {
       ...tooltipTargetProps,
-      innerRef: ref => {
+      innerRef: (ref: any) => {
         getRef(ref)
       }
     })
@@ -189,7 +196,7 @@ export default class Tooltip extends PureComponent {
           <TooltipStateless
             id={this.state.id}
             appearance={appearance}
-            innerRef={ref => getRef(ref)}
+            innerRef={(ref: any) => getRef(ref)}
             data-state={state}
             css={css}
             style={style}

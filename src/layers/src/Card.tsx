@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import Pane from './Pane'
+import Pane, { IPaneProps } from './Pane'
 
-export default class Card extends React.PureComponent {
+export default class Card extends React.PureComponent<IPaneProps> {
   static propTypes = {
     ...Pane.propTypes
   }

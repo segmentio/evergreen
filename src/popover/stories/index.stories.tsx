@@ -1,14 +1,15 @@
 import { storiesOf } from '@storybook/react'
-import React from 'react'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
 import Box from 'ui-box'
+
 import { Popover } from '..'
 import { Tooltip } from '../../tooltip'
 import { TextInputField } from '../../text-input'
 import { Pane } from '../../layers'
 import { Heading, Paragraph, Text } from '../../typography'
 import { Button } from '../../buttons'
-import { Position } from '../../constants'
+import { Position, TPosition } from '../../constants'
 import { Icon, IconNames } from '../../icon'
 
 const PopoverContent = () => (
@@ -148,7 +149,6 @@ storiesOf('popover', module)
         <Button marginRight={20}>Trigger Closable Popover</Button>
       </Popover>
       <Popover
-        useSmartPositioning={false}
         content={({ close }) => <ClosablePopoverContent close={close} />}
       >
         <Button marginRight={20}>Disable Smart Positioning</Button>

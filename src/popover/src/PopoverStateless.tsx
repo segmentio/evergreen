@@ -1,17 +1,19 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
+
 import { Card } from '../../layers'
+import { IPaneProps } from '../../layers/src/Pane'
 
-export default class PopoverStateless extends PureComponent {
+export interface IPopoverStatelessProps extends IPaneProps {
+  // The content of the Popover.
+  children?: React.ReactNode
+}
+
+export default class PopoverStateless extends React.PureComponent<
+  IPopoverStatelessProps
+> {
   static propTypes = {
-    /**
-     * Composes the Card as the base.
-     */
     ...Card.propTypes,
-
-    /**
-     * The content of the Popover.
-     */
     children: PropTypes.node
   }
 

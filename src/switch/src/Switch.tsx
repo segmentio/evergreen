@@ -3,7 +3,6 @@ import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
 import { withTheme, PropsWithTheme } from '../../theme'
-import { AnyFunction, AnyObject } from '../../types/helper'
 
 interface IProps extends Partial<BoxProps> {
   // The id attribute of the radio.
@@ -22,7 +21,7 @@ interface IProps extends Partial<BoxProps> {
   checked?: boolean
 
   // Function called when state changes.
-  onChange?: AnyFunction
+  onChange?: (...args: any[]) => any
 
   // When true, the switch is disabled.
   disabled?: boolean
@@ -95,7 +94,7 @@ const CheckIcon: React.SFC<ICheckIconProps> = ({
   </svg>
 )
 
-const isControlled = (component: AnyObject) => {
+const isControlled = (component: { [key: string]: any }) => {
   return {}.hasOwnProperty.call(component.props, 'checked')
 }
 

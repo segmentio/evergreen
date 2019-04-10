@@ -4,7 +4,7 @@ import Box, { BoxProps } from 'ui-box'
 
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import { AnyFunction } from '../../types/helper'
+
 import Radio from './Radio'
 
 interface IOptions {
@@ -24,7 +24,7 @@ interface IProps extends Partial<BoxProps> {
   defaultValue?: string
 
   // Function called when state changes.
-  onChange?: AnyFunction
+  onChange?: (...args: any[]) => any
 
   // Label to display above the radio button options.
   label?: string

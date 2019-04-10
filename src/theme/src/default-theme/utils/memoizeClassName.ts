@@ -1,7 +1,5 @@
 import { css } from 'ui-box'
 
-import { AnyFunction } from '../../../../types/helper'
-
 /**
  * Memoize a function that takes N number of strings as arguments and returns
  * a CSS-in-JS object.
@@ -22,7 +20,7 @@ import { AnyFunction } from '../../../../types/helper'
  * @param {function} fn — function that return an appearance (object).
  * @return {string} a class name.
  */
-const memoizeClassName = (fn: AnyFunction) => {
+const memoizeClassName = (fn: (...args: any[]) => any) => {
   // Memo will hold a list of string keys with string values (classNames).
   const memo: { [key: string]: string } = {}
 

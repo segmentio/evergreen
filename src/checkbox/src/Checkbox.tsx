@@ -3,7 +3,7 @@ import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
 import { PropsWithTheme, withTheme } from '../../theme'
-import { AnyFunction } from '../../types/helper'
+
 import { Text } from '../../typography'
 
 interface IIconProps {
@@ -56,7 +56,7 @@ interface IProps extends Partial<BoxProps> {
   indeterminate?: boolean
 
   // Function called when state changes.
-  onChange?: AnyFunction
+  onChange?: (...args: any[]) => any
 
   // When true, the radio is disabled.
   disabled?: boolean

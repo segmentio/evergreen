@@ -1,5 +1,4 @@
 import { Intent, IntentType } from '../../../../constants'
-import { AnyObject } from '../../../../types/helper'
 import { colors, elevations } from '../foundational-styles'
 import { fontFamilies, headings, paragraph, text } from '../typography'
 import themedProperty from '../utils/themedProperty'
@@ -66,7 +65,7 @@ const getIconColor = (color: string): string => {
 }
 
 // Get the properties for an icon based on the intent.
-const getIconForIntent = (intent: IntentType): AnyObject => {
+const getIconForIntent = (intent: IntentType): { [key: string]: any } => {
   switch (intent) {
     case Intent.SUCCESS:
       return { icon: 'tick-circle', color: 'success' }
@@ -81,7 +80,7 @@ const getIconForIntent = (intent: IntentType): AnyObject => {
 }
 
 // Heading styles.
-const getHeadingStyle = (size: number): AnyObject => {
+const getHeadingStyle = (size: number): { [key: string]: any } => {
   return themedProperty(headings, String(size))
 }
 
@@ -94,7 +93,7 @@ const getHeadingStyle = (size: number): AnyObject => {
  * - ListItem
  * - Label
  */
-const getTextStyle = (size: number): AnyObject => {
+const getTextStyle = (size: number): { [key: string]: any } => {
   return themedProperty(text, String(size))
 }
 
@@ -102,7 +101,7 @@ const getTextStyle = (size: number): AnyObject => {
  * Text styles for paragraphs (multi line text).
  * This is used in the Paragraph.
  */
-const getParagraphStyle = (size: number): AnyObject => {
+const getParagraphStyle = (size: number): { [key: string]: any } => {
   return themedProperty(paragraph, String(size))
 }
 

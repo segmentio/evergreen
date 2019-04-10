@@ -1,10 +1,42 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
 import Box from 'ui-box'
 import { css } from 'glamor'
 import cx from 'classnames'
 import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import { withTheme, PropsWithTheme } from '../../theme'
+
+interface IProps {
+  // The name attribute of the radio input.
+  name: string
+
+  // The label used for the radio.
+  label: any
+
+  // The value attribute of the radio input.
+  value: string
+
+  // The height of the control.
+  height: number
+
+  // When true, the radio input is checked.
+  checked: boolean
+
+  // Function called when the state changes.
+  onChange: (...args: any[]) => any
+
+  // The appearance of the control. Currently only `default` is possible.
+  appearance: string
+
+  // When true, this item is the first item.
+  isFirstItem?: boolean
+
+  // When true, this item is the last item.
+  isLastItem?: boolean
+
+  // The unique id of the radio option.
+  id?: string
+}
 
 const labelClass = css({
   display: 'flex',
@@ -41,61 +73,20 @@ const offscreenCss = css({
   clip: 'rect(0 0 0 0)'
 })
 
-class SegmentedControlRadio extends PureComponent {
+class SegmentedControlRadio extends React.PureComponent<
+  PropsWithTheme<IProps>
+> {
   static propTypes = {
-    /**
-     * The name attribute of the radio input.
-     */
     name: PropTypes.string.isRequired,
-
-    /**
-     * The label used for the radio.
-     */
     label: PropTypes.node.isRequired,
-
-    /**
-     * The value attribute of the radio input.
-     */
     value: PropTypes.string.isRequired,
-
-    /**
-     * The height of the control.
-     */
     height: PropTypes.number.isRequired,
-
-    /**
-     * When true, the radio input is checked.
-     */
     checked: PropTypes.bool.isRequired,
-
-    /**
-     * Function called when the state changes.
-     */
     onChange: PropTypes.func.isRequired,
-
-    /**
-     * The appearance of the control. Currently only `default` is possible.
-     */
     appearance: PropTypes.string.isRequired,
-
-    /**
-     * When true, this item is the first item.
-     */
     isFirstItem: PropTypes.bool,
-
-    /**
-     * When true, this item is the last item.
-     */
     isLastItem: PropTypes.bool,
-
-    /**
-     * The unique id of the radio option.
-     */
     id: PropTypes.string,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
     theme: PropTypes.object.isRequired
   }
 

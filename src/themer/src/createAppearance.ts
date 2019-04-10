@@ -1,4 +1,3 @@
-import { AnyObject } from '../../types/helper'
 import isDev from './isDev'
 
 const whitelist = [
@@ -27,8 +26,8 @@ const whitelist = [
  * @param {object?} obj - input object that will be filtered against the whitelist.
  * @return {object} the result will always be a object
  */
-function createAppearance(obj: AnyObject = {}) {
-  const result: AnyObject = {}
+function createAppearance(obj: { [key: string]: any } = {}) {
+  const result: { [key: string]: any } = {}
 
   Object.keys(obj).forEach(key => {
     if (whitelist.includes(key)) {

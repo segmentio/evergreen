@@ -1,15 +1,66 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
 import { Positioner } from '../../positioner'
 import { Tooltip } from '../../tooltip'
-import { Position } from '../../constants'
-import PopoverStateless from './PopoverStateless'
+import { Position, TPosition } from '../../constants'
+import PopoverStateless, { IPopoverStatelessProps } from './PopoverStateless'
 
-export default class Popover extends Component {
+export interface IPopoverProps {
+  // The position the Popover is on. Smart positioning might override this.
+  position?: TPosition
+
+  // When true, the Popover is manually shown.
+  isShown?: boolean
+
+  // The content of the Popover.
+  content: React.ReactNode
+
+  /**
+   * The target button of the Popover.
+   * When a function the following arguments are passed:
+   * ({ toggle: Function -> Void, getRef: Function -> Ref, isShown: Bool })
+   */
+  children: any
+
+  // The display property passed to the Popover card.
+  display?: string
+
+  // The min width of the Popover card.
+  minWidth?: string | number
+
+  // The min height of the Popover card.
+  minHeight?: string | number
+
+  // Properties passed through to the Popover card.
+  statelessProps?: IPopoverStatelessProps
+
+  // Duration of the animation.
+  animationDuration?: number
+
+  // Function called when the Popover opens.
+  onOpen?: (...args: any[]) => any
+
+  // Function fired when Popover closes.
+  onClose?: (...args: any[]) => any
+
+  // Function that will be called when the enter transition is complete.
+  onOpenComplete?: (...args: any[]) => any
+
+  // Function that will be called when the exit transition is complete.
+  onCloseComplete?: (...args: any[]) => any
+
+  // When true, bring focus inside of the Popover on open.
+  bringFocusInside?: boolean
+
+  getTargetRef?: any
+}
+
+interface IState {
+  isShown: boolean
+}
+
+export default class Popover extends React.Component<IPopoverProps, IState> {
   static propTypes = {
-    /**
-     * The position the Popover is on. Smart positioning might override this.
-     */
     position: PropTypes.oneOf([
       Position.TOP,
       Position.TOP_LEFT,
@@ -19,74 +70,20 @@ export default class Popover extends Component {
       Position.BOTTOM_RIGHT,
       Position.LEFT,
       Position.RIGHT
-    ]),
-
-    /**
-     * When true, the Popover is manually shown.
-     */
+    ]) as PropTypes.Validator<TPosition>,
     isShown: PropTypes.bool,
-
-    /**
-     * The content of the Popover.
-     */
     content: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
-
-    /**
-     * The target button of the Popover.
-     * When a function the following arguments are passed:
-     * ({ toggle: Function -> Void, getRef: Function -> Ref, isShown: Bool })
-     */
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
       .isRequired,
-
-    /**
-     * The display property passed to the Popover card.
-     */
     display: PropTypes.string,
-
-    /**
-     * The min width of the Popover card.
-     */
     minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-    /**
-     * The min height of the Popover card.
-     */
     minHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-    /**
-     * Properties passed through to the Popover card.
-     */
     statelessProps: PropTypes.shape(PopoverStateless.propTypes),
-
-    /**
-     * Duration of the animation.
-     */
     animationDuration: PropTypes.number,
-
-    /**
-     * Function called when the Popover opens.
-     */
     onOpen: PropTypes.func.isRequired,
-
-    /**
-     * Function fired when Popover closes.
-     */
     onClose: PropTypes.func.isRequired,
-
-    /**
-     * Function that will be called when the enter transition is complete.
-     */
     onOpenComplete: PropTypes.func.isRequired,
-
-    /**
-     * Function that will be called when the exit transition is complete.
-     */
     onCloseComplete: PropTypes.func.isRequired,
-
-    /**
-     * When true, bring focus inside of the Popover on open.
-     */
     bringFocusInside: PropTypes.bool
   }
 
@@ -102,7 +99,11 @@ export default class Popover extends Component {
     bringFocusInside: false
   }
 
-  constructor(props) {
+  popoverNode: any
+
+  targetRef: any
+
+  constructor(props: IPopoverProps) {
     super(props)
     this.state = {
       isShown: props.isShown
@@ -176,7 +177,7 @@ export default class Popover extends Component {
     })
   }
 
-  onBodyClick = e => {
+  onBodyClick = (e: any) => {
     // Ignore clicks on the popover or button
     if (this.targetRef && this.targetRef.contains(e.target)) {
       return
@@ -189,7 +190,7 @@ export default class Popover extends Component {
     this.close()
   }
 
-  onEsc = e => {
+  onEsc = (e: KeyboardEvent) => {
     // Esc key
     if (e.keyCode === 27) {
       this.close()
@@ -239,24 +240,29 @@ export default class Popover extends Component {
     this.props.onCloseComplete()
   }
 
-  handleKeyDown = e => {
+  handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'ArrowDown') {
       this.bringFocusInside()
     }
   }
 
-  renderTarget = ({ getRef, isShown }) => {
+  renderTarget = ({
+    getRef,
+    isShown
+  }: {
+    getRef: (ref: any) => void
+    isShown: boolean
+    targetWidth?: string | number
+  }) => {
     const { children } = this.props
     const isTooltipInside = children && children.type === Tooltip
 
-    const getTargetRef = ref => {
+    const getTargetRef = (ref: any) => {
       this.targetRef = ref
       getRef(ref)
     }
 
-    /**
-     * When a function is passed, you can control the Popover manually.
-     */
+    // When a function is passed, you can control the Popover manually.
     if (typeof children === 'function') {
       return children({
         toggle: this.toggle,
@@ -292,9 +298,7 @@ export default class Popover extends Component {
       })
     }
 
-    /**
-     * With normal usage only popover props end up on the target.
-     */
+    // With normal usage only popover props end up on the target.
     return React.cloneElement(children, {
       innerRef: getTargetRef,
       ...popoverTargetProps
@@ -320,7 +324,15 @@ export default class Popover extends Component {
 
     return (
       <Positioner
-        target={({ getRef, isShown, targetWidth }) => {
+        target={({
+          getRef,
+          isShown,
+          targetWidth
+        }: {
+          getRef: (ref: any) => void
+          isShown: boolean
+          targetWidth?: string | number
+        }) => {
           return this.renderTarget({ getRef, isShown, targetWidth })
         }}
         isShown={shown}
@@ -329,9 +341,9 @@ export default class Popover extends Component {
         onOpenComplete={this.handleOpenComplete}
         onCloseComplete={onCloseComplete}
       >
-        {({ css, style, state, getRef }) => (
+        {({ css, style, state, getRef }: any) => (
           <PopoverStateless
-            innerRef={ref => {
+            innerRef={(ref: any) => {
               this.popoverNode = ref
               getRef(ref)
             }}

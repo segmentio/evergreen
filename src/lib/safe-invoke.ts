@@ -1,6 +1,7 @@
-import { AnyFunction } from '../types/helper'
-
-export default function safeInvoke(fn: AnyFunction, ...args: any[]) {
+export default function safeInvoke(
+  fn: (...args: any[]) => any,
+  ...args: any[]
+) {
   if (typeof fn === 'function') {
     return fn(...args)
   }

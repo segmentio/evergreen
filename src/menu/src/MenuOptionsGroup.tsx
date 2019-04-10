@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
 import { PropsWithTheme, withTheme } from '../../theme'
-import { AnyFunction } from '../../types/helper'
+
 import MenuOption from './MenuOption'
 
 type TOption = {
@@ -19,7 +19,7 @@ interface IProps {
   selected?: number | string
 
   // Function called when selection changes.
-  onChange?: AnyFunction
+  onChange?: (...args: any[]) => any
 
   // List of options rendered in the group.
   options?: TOption[]

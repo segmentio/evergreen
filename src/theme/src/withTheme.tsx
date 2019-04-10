@@ -1,11 +1,10 @@
 import * as React from 'react'
 
-import { AnyObject } from '../../types/helper'
 import { ThemeConsumer } from './ThemeContext'
 
 // HOC that uses ThemeConsumer.
 
-export type PropsWithTheme<Props> = Props & { theme: AnyObject }
+export type PropsWithTheme<Props> = Props & { theme: { [key: string]: any } }
 
 function withTheme<TProps>(
   WrappedComponent: React.ComponentType<PropsWithTheme<TProps>>

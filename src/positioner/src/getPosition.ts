@@ -1,16 +1,29 @@
-import { Position } from '../../constants'
+import { Position, TPosition } from '../../constants'
 
-/**
- * Function to create a Rect.
- * @param {Object} dimensions
- * @param {Number} dimensions.width
- * @param {Number} dimensions.height
- * @param {Object} position
- * @param {Number} position.left
- * @param {Number} position.top
- * @return {Object} Rect { width, height, left, top, right, bottom }
- */
-const makeRect = ({ width, height }, { left, top }) => {
+type TDimensions = {
+  width: number
+  height: number
+}
+
+type TPositions = {
+  left: number
+  top: number
+}
+
+type TRect = {
+  width: number
+  height: number
+  left: number
+  top: number
+  right: number
+  bottom: number
+}
+
+// Function to create a Rect.
+const makeRect = (
+  { width, height }: TDimensions,
+  { left, top }: TPositions
+) => {
   const ceiledLeft = Math.ceil(left)
   const ceiledTop = Math.ceil(top)
   return {
@@ -23,12 +36,8 @@ const makeRect = ({ width, height }, { left, top }) => {
   }
 }
 
-/**
- * Function to flip a position upside down.
- * @param {Position} position
- * @return {Position} flipped position
- */
-const flipHorizontal = position => {
+// Function to flip a position upside down.
+const flipHorizontal = (position: TPosition) => {
   switch (position) {
     case Position.TOP_LEFT:
       return Position.BOTTOM_LEFT
@@ -46,12 +55,8 @@ const flipHorizontal = position => {
   }
 }
 
-/**
- * Function that returns if position is aligned on top.
- * @param {Position} position
- * @return {Boolean}
- */
-const isAlignedOnTop = position => {
+// Function that returns if position is aligned on top.
+const isAlignedOnTop = (position: TPosition) => {
   switch (position) {
     case Position.TOP_LEFT:
     case Position.TOP:
@@ -62,12 +67,8 @@ const isAlignedOnTop = position => {
   }
 }
 
-/**
- * Function that returns if position is aligned left or right.
- * @param {Position} position
- * @return {Boolean}
- */
-const isAlignedHorizontal = position => {
+// Function that returns if position is aligned left or right.
+const isAlignedHorizontal = (position: TPosition) => {
   switch (position) {
     case Position.LEFT:
     case Position.RIGHT:
@@ -77,58 +78,45 @@ const isAlignedHorizontal = position => {
   }
 }
 
-/**
- * Function that returns if a rect fits on bottom.
- * @param {Rect} rect
- * @param {Object} viewport
- * @param {Number} viewportOffset
- * @return {Boolean}
- */
-const getFitsOnBottom = (rect, viewport, viewportOffset) => {
+// Function that returns if a rect fits on bottom.
+const getFitsOnBottom = (
+  rect: TRect,
+  viewport: any,
+  viewportOffset: number
+) => {
   return rect.bottom < viewport.height - viewportOffset
 }
 
-/**
- * Function that returns if a rect fits on top.
- * @param {Rect} rect
- * @param {Number} viewportOffset
- * @return {Boolean}
- */
-const getFitsOnTop = (rect, viewportOffset) => {
+// Function that returns if a rect fits on top.
+const getFitsOnTop = (rect: TRect, viewportOffset: number) => {
   return rect.top > viewportOffset
 }
 
-/**
- * Function that returns if a rect fits on right.
- * @param {Rect} rect
- * @param {Object} viewport
- * @param {Number} viewportOffset
- * @return {Boolean}
- */
-const getFitsOnRight = (rect, viewport, viewportOffset) => {
+// Function that returns if a rect fits on right.
+const getFitsOnRight = (rect: TRect, viewport: any, viewportOffset: number) => {
   return rect.right < viewport.width - viewportOffset
 }
 
-/**
- * Function that returns if a rect fits on left.
- * @param {Rect} rect
- * @param {Number} viewportOffset
- * @return {Boolean}
- */
-const getFitsOnLeft = (rect, viewportOffset) => {
+// Function that returns if a rect fits on left.
+const getFitsOnLeft = (rect: TRect, viewportOffset: number) => {
   return rect.left > viewportOffset
 }
 
 /**
  * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin
  * Function that returns the CSS `tranform-origin` property.
- * @param {Rect} rect
- * @param {Position} position
- * @param {Object} dimensions — the dimensions of the positioner.
- * @param {Number} targetCenter - center of the target.
- * @return {String} transform origin
  */
-const getTransformOrigin = ({ rect, position, dimensions, targetCenter }) => {
+const getTransformOrigin = ({
+  rect,
+  position,
+  dimensions,
+  targetCenter
+}: {
+  rect: TRect
+  position: TPosition
+  dimensions: any
+  targetCenter: number
+}) => {
   const centerY = Math.round(targetCenter - rect.top)
 
   if (position === Position.LEFT) {
@@ -152,16 +140,7 @@ const getTransformOrigin = ({ rect, position, dimensions, targetCenter }) => {
   return `${centerX}px 0px `
 }
 
-/**
- * Function that takes in numbers and position and gives the final coords.
- * @param {Position} position — the position the positioner should be on.
- * @param {Object} dimensions — the dimensions of the positioner.
- * @param {Object} targetRect — the rect of the target.
- * @param {Number} targetOffset - offset from the target.
- * @param {Object} viewport - the width and height of the viewport.
- * @param {Object} viewportOffset - offset from the viewport.
- * @return {Object} - { x: Number, y: Number }
- */
+// Function that takes in numbers and position and gives the final coords.
 export default function getFittedPosition({
   position,
   dimensions,
@@ -169,6 +148,13 @@ export default function getFittedPosition({
   targetOffset,
   viewport,
   viewportOffset = 8
+}: {
+  position: TPosition
+  dimensions: any
+  targetRect: TRect
+  targetOffset: number
+  viewport: any
+  viewportOffset: number
 }) {
   const { rect, position: finalPosition } = getPosition({
     position,
@@ -240,6 +226,13 @@ function getPosition({
   targetOffset,
   viewport,
   viewportOffset = 8
+}: {
+  position: TPosition
+  dimensions: any
+  targetRect: TRect
+  targetOffset: number
+  viewport: any
+  viewportOffset: number
 }) {
   const isHorizontal = isAlignedHorizontal(position)
 
@@ -405,15 +398,18 @@ function getPosition({
   }
 }
 
-/**
- * Function that takes in numbers and position and gives the final coords.
- * @param {Object} position - the width and height of the viewport.
- * @param {Number} targetOffset - offset from the target.
- * @param {Object} dimensions — the dimensions of the positioner.
- * @param {Object} targetRect — the rect of the target.
- * @return {Object} - { x: Number, y: Number }
- */
-function getRect({ position, targetOffset, dimensions, targetRect }) {
+// Function that takes in numbers and position and gives the final coords.
+function getRect({
+  position,
+  targetOffset,
+  dimensions,
+  targetRect
+}: {
+  position: TPosition
+  dimensions: any
+  targetRect: TRect
+  targetOffset: number
+}) {
   const leftRect = targetRect.left + targetRect.width / 2 - dimensions.width / 2
   const alignedTopY = targetRect.top - dimensions.height - targetOffset
   const alignedBottomY = targetRect.bottom + targetOffset

@@ -4,7 +4,6 @@ import Box, { BoxProps } from 'ui-box'
 
 import { withTheme, PropsWithTheme } from '../../theme'
 import { Text } from '../../typography'
-import { AnyObject } from '../../types/helper'
 
 interface ICircleIconProps {
   fill?: string
@@ -40,7 +39,7 @@ interface IProps extends Partial<BoxProps> {
   value?: string
 
   // Function called when state changes
-  onChange?: (event: AnyObject, checked: boolean) => void
+  onChange?: (event: { [key: string]: any }, checked: boolean) => void
 
   // When true, the radio is disabled.
   disabled?: boolean
