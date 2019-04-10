@@ -17,7 +17,7 @@ Anytime you would reach for a native select, use this.
 
 ```jsx
 <Select onChange={event => alert(event.target.value)}>
-  <option value="foo" checked>Foo</option>
+  <option value="foo" selected>Foo</option>
   <option value="bar">Bar</option>
 </Select>
 ```
@@ -28,7 +28,7 @@ Anytime you would reach for a native select, use this.
 <Component initialState={{ value: 'foo' }}>
   {({ state, setState }) => (
     <Select value={state.value} onChange={event => setState({ value: event.target.value })}>
-      <option value="foo" checked>Foo</option>
+      <option value="foo" selected>Foo</option>
       <option value="bar">Bar</option>
     </Select>
   )}
@@ -39,7 +39,7 @@ Anytime you would reach for a native select, use this.
 
 ```jsx
 <Select width="100%">
-  <option value="foo" checked>Foo</option>
+  <option value="foo" selected>Foo</option>
   <option value="bar">Bar</option>
 </Select>
 ```
@@ -48,7 +48,7 @@ Anytime you would reach for a native select, use this.
 
 ```jsx
 <Select width={240}>
-  <option value="foo" checked>Foo</option>
+  <option value="foo" selected>Foo</option>
   <option value="bar">Bar</option>
 </Select>
 ```
@@ -57,7 +57,7 @@ Anytime you would reach for a native select, use this.
 
 ```jsx
 <Select width={240} height={40}>
-  <option value="foo" checked>Foo</option>
+  <option value="foo" selected>Foo</option>
   <option value="bar">Bar</option>
 </Select>
 ```
@@ -66,7 +66,7 @@ Anytime you would reach for a native select, use this.
 
 ```jsx
 <Select width={240} height={40} marginBottom={40}>
-  <option value="foo" checked>Foo</option>
+  <option value="foo" selected>Foo</option>
   <option value="bar">Bar</option>
 </Select>
 ```
@@ -83,7 +83,7 @@ Anytime you would reach for a native select, use this.
   label="Default text input field"
   description="This is a description."
 >
-  <option value="foo" checked>Foo</option>
+  <option value="foo" selected>Foo</option>
   <option value="bar">Bar</option>
 </SelectField>
 ```
@@ -95,7 +95,7 @@ Anytime you would reach for a native select, use this.
   label="Default text input field"
   hint="This is a hint."
 >
-  <option value="foo" checked>Foo</option>
+  <option value="foo" selected>Foo</option>
   <option value="bar">Bar</option>
 </SelectField>
 ```
@@ -109,7 +109,7 @@ Anytime you would reach for a native select, use this.
   required
   description="This is a description."
 >
-  <option value="foo" checked>Foo</option>
+  <option value="foo" selected>Foo</option>
   <option value="bar">Bar</option>
 </SelectField>
 ```
@@ -124,7 +124,7 @@ Anytime you would reach for a native select, use this.
   description="This is a description."
   validationMessage="This field is required"
 >
-  <option value="foo" checked>Foo</option>
+  <option value="foo" selected>Foo</option>
   <option value="bar">Bar</option>
 </SelectField>
 ```
@@ -139,7 +139,7 @@ Anytime you would reach for a native select, use this.
   description="This is a description."
   validationMessage="This field is required"
 >
-  <option value="foo" checked>Foo</option>
+  <option value="foo" selected>Foo</option>
   <option value="bar">Bar</option>
 </SelectField>
 ```
@@ -159,7 +159,7 @@ Use `e.target.value` to get the value of the component on change.
       value={state.value}
       onChange={e => setState({ value: e.target.value })}
     >
-      <option value="foo" checked>Foo</option>
+      <option value="foo" selected>Foo</option>
       <option value="bar">Bar</option>
     </SelectField>
   )}
