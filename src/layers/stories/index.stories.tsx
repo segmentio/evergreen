@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
+
 import { Pane, Card } from '..'
 import { ThemeConsumer } from '../../theme'
 import { Elevation } from '../src/Pane'
@@ -66,7 +67,7 @@ storiesOf('layers', module)
       {theme => (
         <div>
           <Pane overflow="auto">
-            {theme.elevations.map((style, index) => (
+            {theme.elevations.map((style, index: Elevation) => (
               <Card key={style} {...cardStyle} elevation={index}>
                 Elevation {index}
               </Card>

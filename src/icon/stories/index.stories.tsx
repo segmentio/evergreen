@@ -1,7 +1,7 @@
-import { IconName } from '@blueprintjs/icons'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import Box from 'ui-box'
+
 import { Icon, IconNames } from '..'
 import { Heading, Paragraph, Text, Link } from '../../typography'
 

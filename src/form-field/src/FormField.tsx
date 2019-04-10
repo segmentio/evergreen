@@ -8,7 +8,7 @@ import FormFieldHint from './FormFieldHint'
 import FormFieldLabel from './FormFieldLabel'
 import FormFieldValidationMessage from './FormFieldValidationMessage'
 
-interface IProps extends Partial<BoxProps> {
+export interface IFormFieldProps extends Partial<BoxProps> {
   // The label used above the input element.
   label: React.ReactNode
 
@@ -30,7 +30,7 @@ interface IProps extends Partial<BoxProps> {
   validationMessage?: React.ReactNode
 }
 
-export default class FormField extends React.PureComponent<IProps> {
+export default class FormField extends React.PureComponent<IFormFieldProps> {
   static propTypes = {
     label: PropTypes.node.isRequired,
     labelFor: PropTypes.string,

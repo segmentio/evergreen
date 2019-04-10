@@ -1,65 +1,60 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
 import { splitBoxProps } from 'ui-box'
+
 import { FormField } from '../../form-field'
-import TextInput from './TextInput'
+import TextInput, { ITextInputProps } from './TextInput'
+import { IFormFieldProps } from '../../form-field/src/FormField'
+
+type TExtendedProps = ITextInputProps & IFormFieldProps
+
+interface IProps extends Partial<TExtendedProps> {
+  // The label used above the input element.
+  label: any
+
+  // Passed on the label as a htmlFor prop.
+  labelFor?: string
+
+  // Wether or not show a asterix after the label.
+  isRequired?: boolean
+
+  // A optional description of the field under the label, above the input element.
+  description?: any
+
+  // A optional hint under the input element.
+  hint?: any
+
+  /**
+   * If a validation message is passed it is shown under the input element
+   * and above the hint. This is unaffected by `isInvalid`.
+   */
+  validationMessage?: any
+
+  // The height of the input element.
+  inputHeight?: number
+
+  // The width of the input width.
+  inputWidth?: number | string
+}
 
 let idCounter = 0
 
-export default class TextInputField extends PureComponent {
+export default class TextInputField extends React.PureComponent<IProps> {
   static propTypes = {
-    /**
-     * Composes the TextInput component as the base.
-     */
     ...TextInput.propTypes,
     ...FormField.propTypes,
-
-    /**
-     * The label used above the input element.
-     */
     label: PropTypes.node.isRequired,
-
-    /**
-     * Passed on the label as a htmlFor prop.
-     */
     labelFor: PropTypes.string,
-
-    /**
-     * Wether or not show a asterix after the label.
-     */
     isRequired: PropTypes.bool,
-
-    /**
-     * A optional description of the field under the label, above the input element.
-     */
     description: PropTypes.node,
-
-    /**
-     * A optional hint under the input element.
-     */
     hint: PropTypes.node,
-
-    /**
-     * If a validation message is passed it is shown under the input element
-     * and above the hint. This is unaffected by `isInvalid`.
-     */
     validationMessage: PropTypes.node,
-
-    /**
-     * The height of the input element.
-     */
     inputHeight: PropTypes.number,
-
-    /**
-     * The width of the input width.
-     */
     inputWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   }
 
   static defaultProps = {
-    /**
-     * The input width should be as wide as the form field.
-     */
+    // The input width should be as wide as the form field.
     inputWidth: '100%',
     inputHeight: 32
   }
@@ -95,9 +90,7 @@ export default class TextInputField extends PureComponent {
 
     const id = `TextInputField-${this.state.id}`
 
-    /**
-     * Split the wrapper props from the input props.
-     */
+    // Split the wrapper props from the input props.
     const { matchedProps, remainingProps } = splitBoxProps(props)
 
     return (

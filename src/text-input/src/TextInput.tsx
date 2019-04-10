@@ -1,61 +1,51 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import cx from 'classnames'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
+
 import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import { ITextProps } from '../../typography/src/Text'
+import { withTheme, PropsWithTheme } from '../../theme'
 
-class TextInput extends PureComponent {
+export interface ITextInputProps extends Partial<ITextProps> {
+  // Makes the input element required.
+  required?: boolean
+
+  // Makes the input element disabled.
+  disabled?: boolean
+
+  /**
+   * Sets visual styling of _only_ the text input to be "invalid".
+   * Note that this does not effect any `validationMessage`.
+   */
+  isInvalid?: boolean
+
+  // Use the native spell check functionality of the browser.
+  spellCheck?: boolean
+
+  // The placeholder text when there is no value present.
+  placeholder?: string
+
+  // The appearance of the TextInput.
+  appearance?: string
+
+  // The width of the TextInput.
+  width?: string | number
+
+  // Class name passed to the button. Only use if you know what you are doing.
+  className?: string
+}
+
+class TextInput extends React.PureComponent<PropsWithTheme<ITextInputProps>> {
   static propTypes = {
-    /**
-     * Composes the Text component as the base.
-     */
     ...Text.propTypes,
-
-    /**
-     * Makes the input element required.
-     */
     required: PropTypes.bool,
-
-    /**
-     * Makes the input element disabled.
-     */
     disabled: PropTypes.bool,
-
-    /**
-     * Sets visual styling of _only_ the text input to be "invalid". 
-     * Note that this does not effect any `validationMessage`.
-     */
     isInvalid: PropTypes.bool,
-
-    /**
-     * Use the native spell check functionality of the browser.
-     */
     spellCheck: PropTypes.bool,
-
-    /**
-     * The placeholder text when there is no value present.
-     */
     placeholder: PropTypes.string,
-
-    /**
-     * The appearance of the TextInput.
-     */
     appearance: PropTypes.string,
-
-    /**
-     * The width of the TextInput.
-     */
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
     theme: PropTypes.object.isRequired,
-
-    /**
-     * Class name passed to the button.
-     * Only use if you know what you are doing.
-     */
     className: PropTypes.string
   }
 
@@ -99,8 +89,8 @@ class TextInput extends PureComponent {
         required={required}
         disabled={disabled}
         placeholder={placeholder}
-        paddingLeft={Math.round(height / 3.2)}
-        paddingRight={Math.round(height / 3.2)}
+        paddingLeft={Math.round(Number(height) / 3.2)}
+        paddingRight={Math.round(Number(height) / 3.2)}
         borderRadius={borderRadius}
         spellCheck={spellCheck}
         aria-invalid={isInvalid}

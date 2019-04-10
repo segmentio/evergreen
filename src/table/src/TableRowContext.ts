@@ -1,11 +1,9 @@
-import React from 'react'
+import * as React from 'react'
 
-/**
- * Use React 16.3+ createContext API.
- */
+// Use React 16.3+ createContext API.
 const {
   Provider: TableRowProvider,
   Consumer: TableRowConsumer
-} = React.createContext()
+} = React.createContext(undefined)
 
 export { TableRowProvider, TableRowConsumer }

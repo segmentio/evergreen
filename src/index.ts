@@ -31,7 +31,9 @@ export { Spinner } from './spinner'
 export { extractStyles } from './ssr'
 export { Stack, StackingContext } from './stack'
 export { Switch } from './switch'
+export { TextInput, TextInputField } from './text-input'
 export { ThemeProvider, ThemeConsumer, withTheme, defaultTheme } from './theme'
+export { toaster } from './toaster'
 export { Tooltip } from './tooltip'
 export {
   UnorderedList,

@@ -1,8 +1,24 @@
-import React from 'react'
 import { css } from 'glamor'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
+
 import { StackingOrder } from '../../constants'
 import Toast from './Toast'
+
+interface IProps {
+  // Function called with the `this.notify` function.
+  bindNotify: (...args: any[]) => any
+
+  // Function called with the `this.getToasts` function.
+  bindGetToasts: (...args: any[]) => any
+
+  // Function called with the `this.closeAll` function.
+  bindCloseAll: (...args: any[]) => any
+}
+
+interface IState {
+  toasts: any[]
+}
 
 const wrapperClass = css({
   maxWidth: 560,
@@ -15,29 +31,19 @@ const wrapperClass = css({
   pointerEvents: 'none'
 })
 
-const hasCustomId = settings => Object.hasOwnProperty.call(settings, 'id')
+const hasCustomId = (settings: any) =>
+  Object.hasOwnProperty.call(settings, 'id')
 
-export default class ToastManager extends React.PureComponent {
+export default class ToastManager extends React.PureComponent<IProps, IState> {
   static propTypes = {
-    /**
-     * Function called with the `this.notify` function.
-     */
     bindNotify: PropTypes.func.isRequired,
-
-    /**
-     * Function called with the `this.getToasts` function.
-     */
     bindGetToasts: PropTypes.func.isRequired,
-
-    /**
-     * Function called with the `this.closeAll` function.
-     */
     bindCloseAll: PropTypes.func.isRequired
   }
 
   static idCounter = 0
 
-  constructor(props, context) {
+  constructor(props: IProps, context: any) {
     super(props, context)
 
     props.bindNotify(this.notify)
@@ -57,7 +63,7 @@ export default class ToastManager extends React.PureComponent {
     this.getToasts().forEach(toast => toast.close())
   }
 
-  notify = (title, settings) => {
+  notify = (title: string, settings: any) => {
     // If there's a custom toast ID passed, close existing toasts with the same custom ID
     if (hasCustomId(settings)) {
       for (const toast of this.state.toasts) {
@@ -79,7 +85,7 @@ export default class ToastManager extends React.PureComponent {
     return instance
   }
 
-  createToastInstance = (title, settings) => {
+  createToastInstance = (title: string, settings: any) => {
     const uniqueId = ++ToastManager.idCounter
     const id = hasCustomId(settings) ? `${settings.id}-${uniqueId}` : uniqueId
 
@@ -89,7 +95,7 @@ export default class ToastManager extends React.PureComponent {
       description: settings.description,
       hasCloseButton: settings.hasCloseButton || true,
       duration: settings.duration || 5,
-      close: () => this.closeToast(id),
+      close: () => this.closeToast(Number(id)),
       intent: settings.intent
     }
   }
@@ -98,7 +104,7 @@ export default class ToastManager extends React.PureComponent {
    * This will set isShown on the Toast which will close the toast.
    * It won't remove the toast until onExited triggers onRemove.
    */
-  closeToast = id => {
+  closeToast = (id: number) => {
     this.setState(previousState => {
       return {
         toasts: previousState.toasts.map(toast => {
@@ -115,7 +121,7 @@ export default class ToastManager extends React.PureComponent {
     })
   }
 
-  removeToast = id => {
+  removeToast = (id: number) => {
     this.setState(previousState => {
       return {
         toasts: previousState.toasts.filter(toast => toast.id !== id)
@@ -125,7 +131,7 @@ export default class ToastManager extends React.PureComponent {
 
   render() {
     return (
-      <span className={wrapperClass}>
+      <span className={`${wrapperClass}`}>
         {this.state.toasts.map(({ id, description, ...props }) => {
           return (
             <Toast key={id} onRemove={() => this.removeToast(id)} {...props}>

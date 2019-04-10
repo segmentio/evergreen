@@ -1,8 +1,41 @@
-import React from 'react'
 import { css } from 'glamor'
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
 import Transition from 'react-transition-group/Transition'
+
 import Alert from '../../alert/src/Alert'
+import { IntentType } from '../../constants'
+
+interface IProps {
+  // The z-index of the toast.
+  zIndex?: number
+
+  // Duration of the toast.
+  duration?: number
+
+  // Function called when the toast is all the way closed.
+  onRemove?: (...args: any[]) => any
+
+  // The type of the alert.
+  intent?: IntentType
+
+  // The title of the alert.
+  title?: any
+
+  // Description of the alert.
+  children?: any
+
+  // When true, show a close icon button inside of the toast.
+  hasCloseButton?: boolean
+
+  // When false, will close the Toast and call onRemove when finished.
+  isShown?: boolean
+}
+
+interface IState {
+  isShown: boolean
+  height: number
+}
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -49,52 +82,21 @@ const animationStyles = css({
   }
 })
 
-export default class Toast extends React.PureComponent {
+export default class Toast extends React.PureComponent<IProps, IState> {
   static propTypes = {
-    /**
-     * The z-index of the toast.
-     */
     zIndex: PropTypes.number,
-
-    /**
-     * Duration of the toast.
-     */
     duration: PropTypes.number,
-
-    /**
-     * Function called when the toast is all the way closed.
-     */
     onRemove: PropTypes.func,
-
-    /**
-     * The type of the alert.
-     */
     intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * The title of the alert.
-     */
+      .isRequired as PropTypes.Validator<IntentType>,
     title: PropTypes.node,
-
-    /**
-     * Description of the alert.
-     */
     children: PropTypes.node,
-
-    /**
-     * When true, show a close icon button inside of the toast.
-     */
     hasCloseButton: PropTypes.bool,
-
-    /**
-     * When false, will close the Toast and call onRemove when finished.
-     */
     isShown: PropTypes.bool
   }
 
   static defaultProps = {
-    intent: 'none'
+    intent: 'none' as IntentType
   }
 
   state = {
@@ -102,7 +104,9 @@ export default class Toast extends React.PureComponent {
     height: 0
   }
 
-  componentDidUpdate(prevProps) {
+  closeTimer: NodeJS.Timeout
+
+  componentDidUpdate(prevProps: IProps) {
     if (prevProps.isShown !== this.props.isShown) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
@@ -149,7 +153,7 @@ export default class Toast extends React.PureComponent {
     this.startCloseTimer()
   }
 
-  onRef = ref => {
+  onRef = (ref: any) => {
     if (ref === null) return
 
     const { height } = ref.getBoundingClientRect()
@@ -171,7 +175,7 @@ export default class Toast extends React.PureComponent {
         {state => (
           <div
             data-state={state}
-            className={animationStyles}
+            className={`${animationStyles}`}
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
             style={{

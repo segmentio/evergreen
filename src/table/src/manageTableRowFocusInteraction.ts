@@ -3,8 +3,8 @@
  * @param {Object} key - React `event.key`.
  * @param {Element} ref - the cell to manage focus interaction for.
  */
-export default function manageTableRowFocusInteraction(key, ref) {
-  let nextItemToFocus
+export default function manageTableRowFocusInteraction(key: string, ref: any) {
+  let nextItemToFocus: any
   // eslint-disable-next-line unicorn/prefer-spread
   const tableBodyChildren = Array.from(ref.parentElement.children)
   const rowIndex = tableBodyChildren.indexOf(ref)

@@ -3,7 +3,7 @@
  * @param {Object} key - React `event.key`.
  * @param {Element} ref - the cell to manage focus interaction for.
  */
-export default function manageTableCellFocusInteraction(key, ref) {
+export default function manageTableCellFocusInteraction(key: string, ref: any) {
   // eslint-disable-next-line unicorn/prefer-spread
   const tableRowChildren = Array.from(ref.parentElement.children)
   const columnIndex = tableRowChildren.indexOf(ref)
@@ -25,7 +25,7 @@ export default function manageTableCellFocusInteraction(key, ref) {
     )
     const rowIndex = tableBodyChildren.indexOf(ref.parentElement)
 
-    let nextRow
+    let nextRow: any
     if (key === 'ArrowUp' && rowIndex - 1 >= 0) {
       nextRow = tableBodyChildren[rowIndex - 1]
     } else if (key === 'ArrowDown' && rowIndex + 1 < tableBodyChildren.length) {

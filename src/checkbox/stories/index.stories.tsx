@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import Box from 'ui-box'
+
 import { Checkbox } from '..'
 
 storiesOf('checkbox', module).add('Checkbox', () => (

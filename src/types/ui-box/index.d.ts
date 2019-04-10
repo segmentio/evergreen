@@ -536,4 +536,8 @@ declare module 'ui-box' {
     props: object,
     keys: ReadonlyArray<string>
   ): { matchedProps: object; remainingProps: object }
+
+  export function splitBoxProps(
+    props: object
+  ): { matchedProps: object; remainingProps: object }
 }

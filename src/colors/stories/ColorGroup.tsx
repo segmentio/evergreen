@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
 import Swatch from './Swatch'

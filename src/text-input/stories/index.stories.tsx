@@ -2,16 +2,22 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+
 import { TextInputField, TextInput } from '..'
 import { Text, Label, Heading } from '../../typography'
 import { Pane, Card } from '../../layers'
 import { Button } from '../../buttons'
+import { ITextProps } from '../../typography/src/Text'
 
-const Description = props => (
+const Description = (props: Partial<ITextProps>) => (
   <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 )
 
-class Manager extends React.Component {
+interface IState {
+  [key: string]: any
+}
+
+class Manager extends React.Component<{ children: any }, IState> {
   static propTypes = {
     children: PropTypes.func
   }
@@ -20,9 +26,7 @@ class Manager extends React.Component {
 
   render() {
     return this.props.children({
-      setState: (...args) => {
-        this.setState(...args)
-      },
+      setState: this.setState,
       state: this.state
     })
   }
