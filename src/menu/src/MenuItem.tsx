@@ -11,7 +11,7 @@ import { PropsWithTheme, withTheme } from '../../theme'
 
 import { Text } from '../../typography'
 
-interface IProps {
+interface MenuItemProps {
   // Element type to use for the menu item. Ex: `<MenuItem is={ReactRouterLink}>...</MenuItem>`
   is?: string | ((...args: any[]) => any)
 
@@ -34,7 +34,7 @@ interface IProps {
   intent?: IntentType
 }
 
-class MenuItem extends React.PureComponent<PropsWithTheme<IProps>> {
+class MenuItem extends React.PureComponent<PropsWithTheme<MenuItemProps>> {
   static propTypes = {
     is: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
     onSelect: PropTypes.func,

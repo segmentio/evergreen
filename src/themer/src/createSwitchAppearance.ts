@@ -1,7 +1,7 @@
 import createAppearance from './createAppearance'
 import missingStateWarning, { logMissingState } from './missingStateWarning'
 
-interface IItems {
+interface Items {
   base?: any
   disabled?: any
   hover?: any
@@ -38,7 +38,7 @@ const hiddenCheckboxStyle = {
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createSwitchAppearance = (items: IItems = {}) => {
+const createSwitchAppearance = (items: Items = {}) => {
   missingStateWarning({
     items,
     props: [

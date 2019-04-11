@@ -6,7 +6,7 @@ import Transition from 'react-transition-group/Transition'
 import Alert from '../../alert/src/Alert'
 import { IntentType } from '../../constants'
 
-interface IProps {
+interface ToastProps {
   // The z-index of the toast.
   zIndex?: number
 
@@ -32,7 +32,7 @@ interface IProps {
   isShown?: boolean
 }
 
-interface IState {
+interface ToastState {
   isShown: boolean
   height: number
 }
@@ -82,7 +82,7 @@ const animationStyles = css({
   }
 })
 
-export default class Toast extends React.PureComponent<IProps, IState> {
+export default class Toast extends React.PureComponent<ToastProps, ToastState> {
   static propTypes = {
     zIndex: PropTypes.number,
     duration: PropTypes.number,
@@ -106,7 +106,7 @@ export default class Toast extends React.PureComponent<IProps, IState> {
 
   closeTimer: NodeJS.Timeout
 
-  componentDidUpdate(prevProps: IProps) {
+  componentDidUpdate(prevProps: ToastProps) {
     if (prevProps.isShown !== this.props.isShown) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({

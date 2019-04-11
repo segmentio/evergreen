@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import Text, { ITextProps } from './Text'
+import Text, { TextProps } from './Text'
 
-export default class Pre extends React.PureComponent<ITextProps> {
+export default class Pre extends React.PureComponent<TextProps> {
   static propTypes = {
     ...Text.propTypes
   }

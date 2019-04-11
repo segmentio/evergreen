@@ -7,17 +7,17 @@ import { TextInputField, TextInput } from '..'
 import { Text, Label, Heading } from '../../typography'
 import { Pane, Card } from '../../layers'
 import { Button } from '../../buttons'
-import { ITextProps } from '../../typography/src/Text'
+import { TextProps } from '../../typography/src/Text'
 
-const Description = (props: Partial<ITextProps>) => (
+const Description = (props: Partial<TextProps>) => (
   <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 )
 
-interface IState {
+interface State {
   [key: string]: any
 }
 
-class Manager extends React.Component<{ children: any }, IState> {
+class Manager extends React.Component<{ children: any }, State> {
   static propTypes = {
     children: PropTypes.func
   }

@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 import { Paragraph } from '../../typography'
-import { IParagraphProps } from '../../typography/src/Paragraph'
+import { ParagraphProps } from '../../typography/src/Paragraph'
 
 export default class FormFieldDescription extends React.PureComponent<
-  IParagraphProps
+  ParagraphProps
 > {
   static propTypes = {
     ...Paragraph.propTypes

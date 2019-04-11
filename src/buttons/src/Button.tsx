@@ -11,7 +11,7 @@ import { Spinner } from '../../spinner'
 import { withTheme, PropsWithTheme } from '../../theme'
 import { Text } from '../../typography'
 
-export interface IButtonProps extends Partial<BoxProps> {
+export interface ButtonProps extends Partial<BoxProps> {
   // The intent of the button.
   intent?: IntentType
 
@@ -37,7 +37,7 @@ export interface IButtonProps extends Partial<BoxProps> {
   className?: string
 }
 
-class Button extends React.PureComponent<PropsWithTheme<IButtonProps>> {
+class Button extends React.PureComponent<PropsWithTheme<ButtonProps>> {
   static propTypes = {
     ...Box.propTypes,
     intent: PropTypes.oneOf([

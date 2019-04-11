@@ -1,7 +1,7 @@
 import missingStateWarning, { logMissingState } from './missingStateWarning'
 import createAppearance from './createAppearance'
 
-interface IItems {
+interface Items {
   base?: any
   hover?: any
   focus?: any
@@ -16,7 +16,7 @@ const focusState = '&:focus'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createLinkAppearance = (items: IItems = {}) => {
+const createLinkAppearance = (items: Items = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'active', 'focus'],

@@ -6,14 +6,14 @@ import { withTheme, PropsWithTheme } from '../../theme'
 
 export type TextSize = 300 | 400 | 500 | 600
 
-export interface ITextProps extends Partial<BoxProps> {
+export interface TextProps extends Partial<BoxProps> {
   size?: TextSize
 
   // Can be: `ui`, `display`, or `mono` or a custom font family
   fontFamily?: string
 }
 
-class Text extends React.PureComponent<PropsWithTheme<ITextProps>> {
+class Text extends React.PureComponent<PropsWithTheme<TextProps>> {
   static propTypes = {
     ...Box.propTypes,
     size: PropTypes.oneOf([300, 400, 500, 600])

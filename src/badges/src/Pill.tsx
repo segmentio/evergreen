@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import Badge, { IBadgeProps } from './Badge'
+import Badge, { BadgeProps } from './Badge'
 
-export default class Pill extends React.PureComponent<IBadgeProps> {
+export default class Pill extends React.PureComponent<BadgeProps> {
   static propTypes = {
     ...Badge.propTypes
   }

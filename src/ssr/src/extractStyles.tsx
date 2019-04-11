@@ -2,7 +2,7 @@ import { renderStatic } from 'glamor/server'
 import * as React from 'react'
 import { extractStyles as boxExtractStyles } from 'ui-box'
 
-interface IScriptProps {
+interface ScriptProps {
   type: string
   id: string
   dangerouslySetInnerHTML: any
@@ -20,7 +20,7 @@ export default function extractStyles(options: { nonce?: any } = {}) {
     glamorIds: ids
   }
 
-  const scriptProps: IScriptProps = {
+  const scriptProps: ScriptProps = {
     type: 'application/json',
     id: 'evergreen-hydrate',
     dangerouslySetInnerHTML: { __html: JSON.stringify(evergreenCache) }

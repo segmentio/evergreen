@@ -4,20 +4,20 @@ import * as ReactDOM from 'react-dom'
 
 import canUseDom from '../../util/canUseDom'
 
-interface IProps {
+interface PortalProps {
   children: React.ReactNode
 }
 
 let portalContainer: any
 
-export default class Portal extends React.Component<IProps> {
+export default class Portal extends React.Component<PortalProps> {
   static propTypes = {
     children: PropTypes.node.isRequired
   }
 
   el: any
 
-  constructor(props: IProps) {
+  constructor(props: PortalProps) {
     super(props)
 
     // This fixes SSR

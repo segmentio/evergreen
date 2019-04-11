@@ -6,14 +6,14 @@ import { PropsWithTheme, withTheme } from '../../theme'
 
 type Size = 300 | 400 | 500
 
-export interface IParagraphProps extends Partial<BoxProps> {
+export interface ParagraphProps extends Partial<BoxProps> {
   size?: Size
 
   // Font family. Can be: `ui`, `display` or `mono` or a custom font family.
   fontFamily?: string
 }
 
-class Paragraph extends React.PureComponent<PropsWithTheme<IParagraphProps>> {
+class Paragraph extends React.PureComponent<PropsWithTheme<ParagraphProps>> {
   static propTypes = {
     ...Box.propTypes,
     size: PropTypes.oneOf([300, 400, 500]).isRequired as PropTypes.Validator<

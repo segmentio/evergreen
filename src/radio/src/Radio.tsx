@@ -5,16 +5,16 @@ import Box, { BoxProps } from 'ui-box'
 import { withTheme, PropsWithTheme } from '../../theme'
 import { Text } from '../../typography'
 
-interface ICircleIconProps {
+interface CircleIconProps {
   fill?: string
   size: number
 }
 
-const CircleIcon: React.SFC<ICircleIconProps> = ({
+const CircleIcon: React.SFC<CircleIconProps> = ({
   size,
   fill = 'currentColor',
   ...props
-}: ICircleIconProps) => (
+}: CircleIconProps) => (
   <svg width={size} height={size} viewBox="0 0 10 10" {...props}>
     <circle fill={fill} cx="5" cy="5" r="5" />
   </svg>
@@ -25,7 +25,7 @@ CircleIcon.propTypes = {
   size: PropTypes.number
 }
 
-interface IProps extends Partial<BoxProps> {
+interface RadioProps extends Partial<BoxProps> {
   // The id attribute of the radio.
   id?: string
 
@@ -60,7 +60,7 @@ interface IProps extends Partial<BoxProps> {
   appearance?: string
 }
 
-class Radio extends React.PureComponent<PropsWithTheme<IProps>> {
+class Radio extends React.PureComponent<PropsWithTheme<RadioProps>> {
   static propTypes = {
     ...Box.propTypes,
     id: PropTypes.string,

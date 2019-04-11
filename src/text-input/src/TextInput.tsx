@@ -3,10 +3,10 @@ import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import { Text } from '../../typography'
-import { ITextProps } from '../../typography/src/Text'
+import { TextProps } from '../../typography/src/Text'
 import { withTheme, PropsWithTheme } from '../../theme'
 
-export interface ITextInputProps extends Partial<ITextProps> {
+export interface TextInputProps extends Partial<TextProps> {
   // Makes the input element required.
   required?: boolean
 
@@ -35,7 +35,7 @@ export interface ITextInputProps extends Partial<ITextProps> {
   className?: string
 }
 
-class TextInput extends React.PureComponent<PropsWithTheme<ITextInputProps>> {
+class TextInput extends React.PureComponent<PropsWithTheme<TextInputProps>> {
   static propTypes = {
     ...Text.propTypes,
     required: PropTypes.bool,

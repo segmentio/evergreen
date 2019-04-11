@@ -1,7 +1,7 @@
 import createAppearance from './createAppearance'
 import missingStateWarning, { logMissingState } from './missingStateWarning'
 
-interface IItems {
+interface Items {
   base?: any
   hover?: any
   focus?: any
@@ -25,7 +25,7 @@ const baseStyle = {
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createRowAppearance = (items: IItems = {}) => {
+const createRowAppearance = (items: Items = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'active', 'focus', 'current'],

@@ -3,12 +3,12 @@ import * as React from 'react'
 import { splitBoxProps } from 'ui-box'
 
 import { FormField } from '../../form-field'
-import TextInput, { ITextInputProps } from './TextInput'
-import { IFormFieldProps } from '../../form-field/src/FormField'
+import TextInput, { TextInputProps } from './TextInput'
+import { FormFieldProps } from '../../form-field/src/FormField'
 
-type TExtendedProps = ITextInputProps & IFormFieldProps
+type ExtendedProps = TextInputProps & FormFieldProps
 
-interface IProps extends Partial<TExtendedProps> {
+interface TextInputFieldProps extends Partial<ExtendedProps> {
   // The label used above the input element.
   label: any
 
@@ -39,7 +39,9 @@ interface IProps extends Partial<TExtendedProps> {
 
 let idCounter = 0
 
-export default class TextInputField extends React.PureComponent<IProps> {
+export default class TextInputField extends React.PureComponent<
+  TextInputFieldProps
+> {
   static propTypes = {
     ...TextInput.propTypes,
     ...FormField.propTypes,

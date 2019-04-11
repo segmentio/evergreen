@@ -3,7 +3,7 @@ import * as React from 'react'
 import { StackingOrder } from '../../constants'
 import StackingContext from './StackingContext'
 
-interface IProps {
+interface StackProps {
   // Function that takes the current z-index and returns a React Node.
   children: (zIndex: number) => React.ReactNode
 
@@ -11,7 +11,7 @@ interface IProps {
   value?: number
 }
 
-export default class Stack extends React.PureComponent<IProps> {
+export default class Stack extends React.PureComponent<StackProps> {
   static propTypes = {
     children: PropTypes.func.isRequired,
     value: PropTypes.number

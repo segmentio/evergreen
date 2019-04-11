@@ -9,7 +9,7 @@ import { Overlay } from '../../overlay'
 import { withTheme, PropsWithTheme } from '../../theme'
 import { Paragraph, Heading } from '../../typography'
 
-interface IProps {
+interface DialogProps {
   /**
    * Children can be a string, node or a function accepting `({ close })`.
    * When passing a string, <Paragraph /> is used to wrap the string.
@@ -146,7 +146,7 @@ const animationStyles = {
   }
 }
 
-class Dialog extends React.Component<PropsWithTheme<IProps>> {
+class Dialog extends React.Component<PropsWithTheme<DialogProps>> {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
     intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])

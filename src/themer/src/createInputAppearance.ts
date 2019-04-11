@@ -2,7 +2,7 @@ import { StackingOrder } from '../../constants'
 import missingStateWarning, { logMissingState } from './missingStateWarning'
 import createAppearance from './createAppearance'
 
-interface IItems {
+interface Items {
   base?: any
   focus?: any
   invalid?: any
@@ -25,7 +25,7 @@ const disabledState = '&:disabled'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createInputAppearance = (items: IItems = {}) => {
+const createInputAppearance = (items: Items = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'invalid', 'placeholder', 'focus', 'disabled'],

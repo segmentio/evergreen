@@ -5,7 +5,7 @@ import Box, { BoxProps } from 'ui-box'
 
 type Size = 300 | 400 | 500 | 600
 
-interface IProps extends Partial<BoxProps> {
+interface UnorderedListProps extends Partial<BoxProps> {
   size?: Size
 
   // When passed, adds a icon before each list item in the list. You can override this on a individual list item.
@@ -15,7 +15,9 @@ interface IProps extends Partial<BoxProps> {
   iconColor?: string
 }
 
-export default class UnorderedList extends React.PureComponent<IProps> {
+export default class UnorderedList extends React.PureComponent<
+  UnorderedListProps
+> {
   static propTypes = {
     ...Box.propTypes,
     size: PropTypes.oneOf([300, 400, 500, 600])

@@ -6,14 +6,14 @@ import { PropsWithTheme, withTheme } from '../../theme'
 
 import { Text } from '../../typography'
 
-interface IIconProps {
+interface IconProps {
   fill?: string
 }
 
-const CheckIcon: React.SFC<IIconProps> = ({
+const CheckIcon: React.SFC<IconProps> = ({
   fill = 'currentColor',
   ...props
-}: IIconProps) => (
+}: IconProps) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...props}>
     <path
       fill={fill}
@@ -23,10 +23,10 @@ const CheckIcon: React.SFC<IIconProps> = ({
   </svg>
 )
 
-const MinusIcon: React.SFC<IIconProps> = ({
+const MinusIcon: React.SFC<IconProps> = ({
   fill = 'currentColor',
   ...props
-}: IIconProps) => (
+}: IconProps) => (
   <svg width={16} height={16} viewBox="0 0 16 16" {...props}>
     <path
       fill={fill}
@@ -36,7 +36,7 @@ const MinusIcon: React.SFC<IIconProps> = ({
   </svg>
 )
 
-interface IProps extends Partial<BoxProps> {
+interface CheckboxProps extends Partial<BoxProps> {
   // The id attribute of the checkbox.
   id?: string
 
@@ -68,7 +68,7 @@ interface IProps extends Partial<BoxProps> {
   appearance?: string
 }
 
-class Checkbox extends React.PureComponent<PropsWithTheme<IProps>> {
+class Checkbox extends React.PureComponent<PropsWithTheme<CheckboxProps>> {
   static propTypes = {
     ...Box.propTypes,
     id: PropTypes.string,

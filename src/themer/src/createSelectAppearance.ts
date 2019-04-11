@@ -1,7 +1,7 @@
 import createAppearance from './createAppearance'
 import missingStateWarning, { logMissingState } from './missingStateWarning'
 
-interface IItems {
+interface Items {
   base?: any
   hover?: any
   focus?: any
@@ -37,7 +37,7 @@ const activeState = '&:not([disabled]):active'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createSelectAppearance = (items: IItems = {}) => {
+const createSelectAppearance = (items: Items = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'disabled', 'invalid', 'hover', 'active', 'focus'],

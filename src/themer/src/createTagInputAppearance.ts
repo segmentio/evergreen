@@ -2,7 +2,7 @@ import { StackingOrder } from '../../constants'
 import createAppearance from './createAppearance'
 import missingStateWarning, { logMissingState } from './missingStateWarning'
 
-interface IItems {
+interface Items {
   base?: any
   focus?: any
   disabled?: any
@@ -22,7 +22,7 @@ const disabledState = '&[aria-disabled="true"]'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createTagInputAppearance = (items: IItems = {}) => {
+const createTagInputAppearance = (items: Items = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'focus', 'disabled'],

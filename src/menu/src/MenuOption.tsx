@@ -7,7 +7,7 @@ import { PropsWithTheme, withTheme } from '../../theme'
 
 import { Text } from '../../typography'
 
-interface IProps {
+interface MenuOptionProps {
   // The id attribute of the menu option.
   id?: string
 
@@ -27,7 +27,7 @@ interface IProps {
   appearance?: string
 }
 
-class MenuOption extends React.PureComponent<PropsWithTheme<IProps>> {
+class MenuOption extends React.PureComponent<PropsWithTheme<MenuOptionProps>> {
   static propTypes = {
     id: PropTypes.string,
     onSelect: PropTypes.func,

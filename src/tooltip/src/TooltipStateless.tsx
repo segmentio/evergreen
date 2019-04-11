@@ -1,11 +1,11 @@
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import { Pane } from '../../layers'
-import { IPaneProps } from '../../layers/src/Pane'
+import { PaneProps } from '../../layers/src/Pane'
 import { Paragraph } from '../../typography'
 import { withTheme, PropsWithTheme } from '../../theme'
 
-export interface IStatelessTooltipProps extends Partial<IPaneProps> {
+export interface StatelessTooltipProps extends Partial<PaneProps> {
   children: any
 
   // The appearance of the tooltip.
@@ -13,7 +13,7 @@ export interface IStatelessTooltipProps extends Partial<IPaneProps> {
 }
 
 class TooltipStateless extends React.PureComponent<
-  PropsWithTheme<IStatelessTooltipProps>
+  PropsWithTheme<StatelessTooltipProps>
 > {
   static propTypes = {
     children: PropTypes.node,

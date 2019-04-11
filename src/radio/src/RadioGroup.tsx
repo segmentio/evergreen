@@ -7,15 +7,15 @@ import { Text } from '../../typography'
 
 import Radio from './Radio'
 
-interface IOptions {
+interface Options {
   label: React.ReactNode
   value: string
   isDisabled?: boolean
 }
 
-interface IProps extends Partial<BoxProps> {
+interface RadioGroupProps extends Partial<BoxProps> {
   // The options for the radios of the Radio Group.
-  options?: IOptions[]
+  options?: Options[]
 
   // The selected item value when controlled.
   value?: string
@@ -36,13 +36,16 @@ interface IProps extends Partial<BoxProps> {
   isRequired?: boolean
 }
 
-interface IState {
+interface RadioGroupState {
   value: string
 }
 
 let radioCount = 1 // Used for generating unique input names
 
-export default class RadioGroup extends React.PureComponent<IProps, IState> {
+export default class RadioGroup extends React.PureComponent<
+  RadioGroupProps,
+  RadioGroupState
+> {
   static propTypes = {
     ...Box.propTypes,
     options: PropTypes.arrayOf(
@@ -61,7 +64,7 @@ export default class RadioGroup extends React.PureComponent<IProps, IState> {
   }
 
   static defaultProps = {
-    options: [] as IOptions[],
+    options: [] as Options[],
     onChange: () => {},
     size: 12 as 12 | 16,
     isRequired: false
@@ -69,7 +72,7 @@ export default class RadioGroup extends React.PureComponent<IProps, IState> {
 
   name: string
 
-  constructor(props: IProps, context: any) {
+  constructor(props: RadioGroupProps, context: any) {
     super(props, context)
 
     this.state = {

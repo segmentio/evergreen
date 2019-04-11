@@ -1,7 +1,7 @@
 import createAppearance from './createAppearance'
 import missingStateWarning, { logMissingState } from './missingStateWarning'
 
-interface IItems {
+interface Items {
   focus?: any
 }
 
@@ -12,7 +12,7 @@ const focusState =
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createTableCellAppearance = (items: IItems = {}) => {
+const createTableCellAppearance = (items: Items = {}) => {
   missingStateWarning({
     items,
     props: ['focus'],

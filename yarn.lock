@@ -1832,6 +1832,11 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@types/starwars-names@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@types/starwars-names/-/starwars-names-1.6.0.tgz#9fef2b6b1068e94b4468b9311c9567223dc86783"
+  integrity sha512-nuJc4vEVSdrdHXAlEWbGMwg6qJkqCaVqJxEccMUpLdl6UwjQzycblGnY8Ey4MPJWTdg3cBegKdSwJMVmD4i2+w==
+
 "@types/storybook__react@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@types/storybook__react/-/storybook__react-4.0.1.tgz#b6320c9d027b8ee7ef1445fef8b4cba196d48ace"

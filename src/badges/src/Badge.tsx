@@ -4,9 +4,9 @@ import * as React from 'react'
 
 import { withTheme, PropsWithTheme } from '../../theme'
 import { Strong } from '../../typography'
-import { ITextProps } from '../../typography/src/Text'
+import { TextProps } from '../../typography/src/Text'
 
-export interface IBadgeProps extends ITextProps {
+export interface BadgeProps extends TextProps {
   // The color used for the badge.
   color?: string
 
@@ -16,7 +16,7 @@ export interface IBadgeProps extends ITextProps {
   isSolid?: boolean
 }
 
-class Badge extends React.PureComponent<PropsWithTheme<IBadgeProps>> {
+class Badge extends React.PureComponent<PropsWithTheme<BadgeProps>> {
   static propTypes = {
     ...Strong.propTypes,
     color: PropTypes.string.isRequired,

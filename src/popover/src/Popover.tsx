@@ -2,12 +2,12 @@ import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import { Positioner } from '../../positioner'
 import { Tooltip } from '../../tooltip'
-import { Position, TPosition } from '../../constants'
-import PopoverStateless, { IPopoverStatelessProps } from './PopoverStateless'
+import { Position, PositionType } from '../../constants'
+import PopoverStateless, { PopoverStatelessProps } from './PopoverStateless'
 
-export interface IPopoverProps {
+export interface PopoverProps {
   // The position the Popover is on. Smart positioning might override this.
-  position?: TPosition
+  position?: PositionType
 
   // When true, the Popover is manually shown.
   isShown?: boolean
@@ -32,7 +32,7 @@ export interface IPopoverProps {
   minHeight?: string | number
 
   // Properties passed through to the Popover card.
-  statelessProps?: IPopoverStatelessProps
+  statelessProps?: PopoverStatelessProps
 
   // Duration of the animation.
   animationDuration?: number
@@ -55,11 +55,14 @@ export interface IPopoverProps {
   getTargetRef?: any
 }
 
-interface IState {
+interface PopoverState {
   isShown: boolean
 }
 
-export default class Popover extends React.Component<IPopoverProps, IState> {
+export default class Popover extends React.Component<
+  PopoverProps,
+  PopoverState
+> {
   static propTypes = {
     position: PropTypes.oneOf([
       Position.TOP,
@@ -70,7 +73,7 @@ export default class Popover extends React.Component<IPopoverProps, IState> {
       Position.BOTTOM_RIGHT,
       Position.LEFT,
       Position.RIGHT
-    ]) as PropTypes.Validator<TPosition>,
+    ]) as PropTypes.Validator<PositionType>,
     isShown: PropTypes.bool,
     content: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
@@ -103,7 +106,7 @@ export default class Popover extends React.Component<IPopoverProps, IState> {
 
   targetRef: any
 
-  constructor(props: IPopoverProps) {
+  constructor(props: PopoverProps) {
     super(props)
     this.state = {
       isShown: props.isShown

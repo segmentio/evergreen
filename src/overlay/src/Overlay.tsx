@@ -10,7 +10,7 @@ import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { withTheme, PropsWithTheme } from '../../theme'
 
-interface IProps {
+interface OverlayProps {
   /**
    * Children can be a node or a function accepting `close: func`
    * and `state: ENTERING | ENTERED | EXITING | EXITED`.
@@ -69,7 +69,7 @@ interface IProps {
   onEntered?: (node: HTMLElement, isAppearing?: boolean) => void
 }
 
-interface IState {
+interface OverlayState {
   exiting: boolean
   exited: boolean
 }
@@ -129,7 +129,10 @@ const animationStyles = (backgroundColor: string) => ({
  * Overlay is essentially a wrapper around react-transition-group/Transition
  * Learn more: https://reactcommunity.org/react-transition-group/
  */
-class Overlay extends React.Component<PropsWithTheme<IProps>, IState> {
+class Overlay extends React.Component<
+  PropsWithTheme<OverlayProps>,
+  OverlayState
+> {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
     isShown: PropTypes.bool,
@@ -164,7 +167,7 @@ class Overlay extends React.Component<PropsWithTheme<IProps>, IState> {
 
   previousActiveElement: HTMLElement
 
-  constructor(props: PropsWithTheme<IProps>) {
+  constructor(props: PropsWithTheme<OverlayProps>) {
     super(props)
 
     this.state = {
@@ -173,7 +176,7 @@ class Overlay extends React.Component<PropsWithTheme<IProps>, IState> {
     }
   }
 
-  componentDidUpdate(prevProps: IProps) {
+  componentDidUpdate(prevProps: OverlayProps) {
     if (!prevProps.isShown && this.props.isShown) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({

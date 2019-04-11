@@ -3,9 +3,9 @@ import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import { PropsWithTheme, withTheme } from '../../theme'
-import Text, { ITextProps } from './Text'
+import Text, { TextProps } from './Text'
 
-interface IProps extends ITextProps {
+interface LinkProps extends TextProps {
   /**
    * This attribute names a relationship of the linked document to the current document.
    * Common use case is: rel="noopener noreferrer".
@@ -25,7 +25,7 @@ interface IProps extends ITextProps {
   className?: string
 }
 
-class Link extends React.PureComponent<PropsWithTheme<IProps>> {
+class Link extends React.PureComponent<PropsWithTheme<LinkProps>> {
   static propTypes = {
     ...Text.propTypes,
     rel: PropTypes.string,

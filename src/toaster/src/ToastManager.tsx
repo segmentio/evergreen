@@ -5,7 +5,7 @@ import * as React from 'react'
 import { StackingOrder } from '../../constants'
 import Toast from './Toast'
 
-interface IProps {
+interface ToastManagerProps {
   // Function called with the `this.notify` function.
   bindNotify: (...args: any[]) => any
 
@@ -16,7 +16,7 @@ interface IProps {
   bindCloseAll: (...args: any[]) => any
 }
 
-interface IState {
+interface ToastManagerState {
   toasts: any[]
 }
 
@@ -34,7 +34,10 @@ const wrapperClass = css({
 const hasCustomId = (settings: any) =>
   Object.hasOwnProperty.call(settings, 'id')
 
-export default class ToastManager extends React.PureComponent<IProps, IState> {
+export default class ToastManager extends React.PureComponent<
+  ToastManagerProps,
+  ToastManagerState
+> {
   static propTypes = {
     bindNotify: PropTypes.func.isRequired,
     bindGetToasts: PropTypes.func.isRequired,
@@ -43,7 +46,7 @@ export default class ToastManager extends React.PureComponent<IProps, IState> {
 
   static idCounter = 0
 
-  constructor(props: IProps, context: any) {
+  constructor(props: ToastManagerProps, context: any) {
     super(props, context)
 
     props.bindNotify(this.notify)

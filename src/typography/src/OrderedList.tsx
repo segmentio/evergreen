@@ -4,11 +4,11 @@ import Box, { BoxProps } from 'ui-box'
 
 type Size = 300 | 400 | 500 | 600
 
-interface IProps extends BoxProps {
+interface OrderedListProps extends BoxProps {
   size?: Size
 }
 
-export default class OrderedList extends React.PureComponent<IProps> {
+export default class OrderedList extends React.PureComponent<OrderedListProps> {
   static propTypes = {
     ...Box.propTypes,
     size: PropTypes.oneOf([300, 400, 500, 600])

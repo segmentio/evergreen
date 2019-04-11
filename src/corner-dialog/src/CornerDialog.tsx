@@ -9,7 +9,7 @@ import { Pane, Card } from '../../layers'
 import { Portal } from '../../portal'
 import { Paragraph, Heading } from '../../typography'
 
-interface IProps {
+interface CornerDialogProps {
   /**
    * Children can be a string, node or a function accepting `({ close })`.
    * When passing a string, <Paragraph size={400} color="muted" /> is used to wrap the string.
@@ -70,7 +70,7 @@ interface IProps {
   containerProps?: { [key: string]: any }
 }
 
-interface IState {
+interface CornerDialogState {
   exiting: boolean
   exited: boolean
 }
@@ -114,7 +114,10 @@ const animationStyles = {
   }
 }
 
-export default class CornerDialog extends React.PureComponent<IProps, IState> {
+export default class CornerDialog extends React.PureComponent<
+  CornerDialogProps,
+  CornerDialogState
+> {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
     intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
@@ -146,7 +149,7 @@ export default class CornerDialog extends React.PureComponent<IProps, IState> {
     onConfirm: (close: (...args: any[]) => any) => close()
   }
 
-  constructor(props: IProps) {
+  constructor(props: CornerDialogProps) {
     super(props)
 
     this.state = {
@@ -155,7 +158,7 @@ export default class CornerDialog extends React.PureComponent<IProps, IState> {
     }
   }
 
-  componentDidUpdate(prevProps: IProps) {
+  componentDidUpdate(prevProps: CornerDialogProps) {
     if (!prevProps.isShown && this.props.isShown) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({

@@ -3,17 +3,17 @@ import * as React from 'react'
 
 import { Icon } from '../../icon'
 import { Pane } from '../../layers'
-import { IPaneProps } from '../../layers/src/Pane'
+import { PaneProps } from '../../layers/src/Pane'
 import { PropsWithTheme, withTheme } from '../../theme'
 import { Paragraph } from '../../typography'
 
-interface IProps extends IPaneProps {
+interface FormFieldValidationProps extends PaneProps {
   // The contents of the validation message. This is wrapped in a paragraph, use a string.
   children: React.ReactNode
 }
 
 class FormFieldValidationMessage extends React.PureComponent<
-  PropsWithTheme<IProps>
+  PropsWithTheme<FormFieldValidationProps>
 > {
   static propTypes = {
     ...Pane.propTypes,

@@ -9,7 +9,7 @@ import { withTheme, PropsWithTheme } from '../../theme'
 import { Appearance } from '../../types/appearance'
 import Button from './Button'
 
-interface IProps extends Partial<BoxProps> {
+interface IconButtonProps extends Partial<BoxProps> {
   /**
    * Name of a Blueprint UI icon, or an icon element, to render.
    * This prop is required because it determines the content of the component, but it can
@@ -43,7 +43,7 @@ interface IProps extends Partial<BoxProps> {
   className?: string
 }
 
-class IconButton extends React.PureComponent<PropsWithTheme<IProps>> {
+class IconButton extends React.PureComponent<PropsWithTheme<IconButtonProps>> {
   static propTypes = {
     ...Box.propTypes,
     icon: PropTypes.string as PropTypes.Validator<IconName>,

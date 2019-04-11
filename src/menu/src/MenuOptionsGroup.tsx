@@ -6,12 +6,12 @@ import { PropsWithTheme, withTheme } from '../../theme'
 
 import MenuOption from './MenuOption'
 
-type TOption = {
+type Option = {
   value: string
   label: string
 }
 
-interface IProps {
+interface MenuOptionsGroupProps {
   // Title of the menu group.
   title?: React.ReactNode
 
@@ -22,10 +22,12 @@ interface IProps {
   onChange?: (...args: any[]) => any
 
   // List of options rendered in the group.
-  options?: TOption[]
+  options?: Option[]
 }
 
-class MenuOptionsGroup extends React.PureComponent<PropsWithTheme<IProps>> {
+class MenuOptionsGroup extends React.PureComponent<
+  PropsWithTheme<MenuOptionsGroupProps>
+> {
   static propTypes = {
     title: PropTypes.node,
     selected: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

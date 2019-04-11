@@ -8,7 +8,7 @@ import { Spinner } from '../../spinner'
 import { withTheme, PropsWithTheme } from '../../theme'
 import { Text } from '../../typography'
 
-interface IProps extends Partial<BoxProps> {
+interface TextDropdownButtonProps extends Partial<BoxProps> {
   // Forcefully set the active state of a button. Useful in conjuction with a Popover.
   isActive?: boolean
 
@@ -33,7 +33,9 @@ interface IProps extends Partial<BoxProps> {
   className?: string
 }
 
-class TextDropdownButton extends React.PureComponent<PropsWithTheme<IProps>> {
+class TextDropdownButton extends React.PureComponent<
+  PropsWithTheme<TextDropdownButtonProps>
+> {
   static propTypes = {
     ...Box.propTypes,
     isActive: PropTypes.bool,

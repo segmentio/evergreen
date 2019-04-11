@@ -321,7 +321,7 @@ declare module 'ui-box' {
     }
   }
 
-  export type TPosition = {
+  export type PositionType = {
     bottom?: string | number
     left?: string | number
     position?: string
@@ -449,7 +449,7 @@ declare module 'ui-box' {
     TList &
     TOpacity &
     TOverflow &
-    TPosition &
+    PositionType &
     TSpacing &
     TText &
     TTransform &

@@ -8,7 +8,7 @@ export type Elevation = 0 | 1 | 2 | 3 | 4
 type Border = boolean | 'muted' | 'default'
 type BorderValues = boolean | 'muted' | 'extraMuted' | 'default'
 
-type TBoolAndString = {
+type BoolAndString = {
   border?: Border
   borderTop?: BorderValues
   borderBottom?: BorderValues
@@ -16,12 +16,12 @@ type TBoolAndString = {
   borderRight?: BorderValues
 }
 
-type TOverrideBoxProps = Pick<
+type OverrideBoxProps = Pick<
   BoxProps,
-  Exclude<keyof BoxProps, keyof TBoolAndString>
+  Exclude<keyof BoxProps, keyof BoolAndString>
 >
 
-export interface IPaneProps extends Partial<TOverrideBoxProps> {
+export interface PaneProps extends Partial<OverrideBoxProps> {
   // Background property. `tint1`, `tint2` etc. from `theme.colors.background` are available.
   background?: string
 
@@ -30,7 +30,7 @@ export interface IPaneProps extends Partial<TOverrideBoxProps> {
   activeElevation?: Elevation
 }
 
-class Pane extends React.PureComponent<PropsWithTheme<IPaneProps>> {
+class Pane extends React.PureComponent<PropsWithTheme<PaneProps>> {
   static propTypes = {
     ...Box.propTypes,
     background: PropTypes.string,

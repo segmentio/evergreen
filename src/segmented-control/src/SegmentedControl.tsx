@@ -5,14 +5,14 @@ import Box, { BoxProps } from 'ui-box'
 import safeInvoke from '../../lib/safe-invoke'
 import SegmentedControlRadio from './SegmentedControlRadio'
 
-type TOptions = {
+type Options = {
   label: string
   value: number | string | boolean
 }
 
-interface IProps extends Partial<BoxProps> {
+interface SegmentedControlProps extends Partial<BoxProps> {
   // The options for the radios of the Segmented Control.
-  options: TOptions[]
+  options: Options[]
 
   // The current value of the Segmented Control when controlled.
   value?: number | string | boolean
@@ -30,15 +30,15 @@ interface IProps extends Partial<BoxProps> {
   height?: number
 }
 
-interface IState {
+interface SegmentedControlState {
   value: number | string | boolean
 }
 
 let radioCount = 1 // Used for generating unique input names
 
 export default class SegmentedControl extends React.PureComponent<
-  IProps,
-  IState
+  SegmentedControlProps,
+  SegmentedControlState
 > {
   static propTypes = {
     ...Box.propTypes,
@@ -73,7 +73,7 @@ export default class SegmentedControl extends React.PureComponent<
 
   name: string
 
-  constructor(props: IProps, context: any) {
+  constructor(props: SegmentedControlProps, context: any) {
     super(props, context)
 
     let value = props.defaultValue

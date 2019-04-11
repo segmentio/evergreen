@@ -12,7 +12,7 @@ import { Heading, Paragraph } from '../../typography'
 
 type Appearance = 'default' | 'card'
 
-interface IProps extends Partial<BoxProps> {
+interface AlertProps extends Partial<BoxProps> {
   // The content of the alert. When a string is passed it is wrapped in a `<Text size={400} />` component.
   children?: string | React.ReactNode
 
@@ -38,7 +38,7 @@ interface IProps extends Partial<BoxProps> {
   appearance?: Appearance
 }
 
-class Alert extends React.PureComponent<PropsWithTheme<IProps>> {
+class Alert extends React.PureComponent<PropsWithTheme<AlertProps>> {
   static propTypes = {
     ...Box.propTypes,
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),

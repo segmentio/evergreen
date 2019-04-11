@@ -6,13 +6,13 @@ import { withTheme, PropsWithTheme } from '../../theme'
 
 type Size = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800
 
-interface IProps extends Partial<BoxProps> {
+interface HeadingProps extends Partial<BoxProps> {
   size?: Size
   // marginTop?: boolean | number | string
   marginTop?: number | string
 }
 
-class Heading extends React.PureComponent<PropsWithTheme<IProps>> {
+class Heading extends React.PureComponent<PropsWithTheme<HeadingProps>> {
   static propTypes = {
     ...Box.propTypes,
     size: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900])

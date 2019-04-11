@@ -9,7 +9,7 @@ import { TextInputField } from '../../text-input'
 import { Pane } from '../../layers'
 import { Heading, Paragraph, Text } from '../../typography'
 import { Button } from '../../buttons'
-import { Position, TPosition } from '../../constants'
+import { Position, PositionType } from '../../constants'
 import { Icon, IconNames } from '../../icon'
 
 const PopoverContent = () => (

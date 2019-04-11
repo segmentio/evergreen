@@ -2,7 +2,7 @@ import { StackingOrder } from '../../constants'
 import createAppearance from './createAppearance'
 import missingStateWarning, { logMissingState } from './missingStateWarning'
 
-interface IItems {
+interface Items {
   base?: any
   hover?: any
   focus?: any
@@ -32,7 +32,7 @@ const activeState =
  * @param {object} items - object with a set of items.
  * @return {object} the final appearance.
  */
-const createButtonAppearance = (items: IItems = {}) => {
+const createButtonAppearance = (items: Items = {}) => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'focus', 'active', 'disabled'],

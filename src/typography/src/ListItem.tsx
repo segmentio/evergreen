@@ -3,9 +3,9 @@ import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import { Icon } from '../../icon'
-import Text, { ITextProps } from './Text'
+import Text, { TextProps } from './Text'
 
-interface IProps extends ITextProps {
+interface ListItemProps extends TextProps {
   // When passed, adds a icon before the list item. See Evergreen `Icon` for documentation.
   icon?: IconName
 
@@ -13,7 +13,7 @@ interface IProps extends ITextProps {
   iconColor?: string
 }
 
-export default class ListItem extends React.PureComponent<IProps> {
+export default class ListItem extends React.PureComponent<ListItemProps> {
   static propTypes = {
     ...Text.propTypes,
     icon: PropTypes.string,

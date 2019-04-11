@@ -4,7 +4,7 @@ import Box, { BoxProps } from 'ui-box'
 
 import { withTheme, PropsWithTheme } from '../../theme'
 
-interface IProps extends Partial<BoxProps> {
+interface SwitchProps extends Partial<BoxProps> {
   // The id attribute of the radio.
   id?: string
 
@@ -39,7 +39,7 @@ interface IProps extends Partial<BoxProps> {
   defaultChecked?: boolean
 }
 
-interface IState {
+interface SwitchState {
   checked: boolean
 }
 
@@ -75,16 +75,16 @@ const handleContainerStyle = {
   }
 }
 
-interface ICheckIconProps {
+interface CheckIconProps {
   fill?: string
   size?: number
 }
 
-const CheckIcon: React.SFC<ICheckIconProps> = ({
+const CheckIcon: React.SFC<CheckIconProps> = ({
   size,
   fill = 'currentColor',
   ...props
-}: ICheckIconProps) => (
+}: CheckIconProps) => (
   <svg width={10} height={size} viewBox="0 0 10 7" {...props}>
     <path
       fill={fill}
@@ -98,7 +98,10 @@ const isControlled = (component: { [key: string]: any }) => {
   return {}.hasOwnProperty.call(component.props, 'checked')
 }
 
-class Switch extends React.PureComponent<PropsWithTheme<IProps>, IState> {
+class Switch extends React.PureComponent<
+  PropsWithTheme<SwitchProps>,
+  SwitchState
+> {
   static propTypes = {
     ...Box.propTypes,
     id: PropTypes.string,
@@ -123,7 +126,7 @@ class Switch extends React.PureComponent<PropsWithTheme<IProps>, IState> {
     disabled: false
   }
 
-  constructor(props: PropsWithTheme<IProps>, context: any) {
+  constructor(props: PropsWithTheme<SwitchProps>, context: any) {
     super(props, context)
     this.state = {
       checked: props.checked || props.defaultChecked || false

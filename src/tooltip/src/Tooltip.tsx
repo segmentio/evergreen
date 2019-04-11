@@ -3,16 +3,16 @@ import * as React from 'react'
 import debounce from 'lodash.debounce'
 
 import { Positioner } from '../../positioner'
-import { Position, TPosition } from '../../constants'
-import TooltipStateless, { IStatelessTooltipProps } from './TooltipStateless'
-import { IPopoverProps } from '../../popover/src/Popover'
+import { Position, PositionType } from '../../constants'
+import TooltipStateless, { StatelessTooltipProps } from './TooltipStateless'
+import { PopoverProps } from '../../popover/src/Popover'
 
-interface IProps {
+interface TooltipProps {
   // The appearance of the tooltip.
   appearance?: 'default' | 'card'
 
   // The position the Popover is on.
-  position: TPosition
+  position: PositionType
 
   // The content of the Popover.
   content: any
@@ -27,12 +27,12 @@ interface IProps {
   children: any
 
   // Properties passed through to the Tooltip.
-  statelessProps?: IStatelessTooltipProps
+  statelessProps?: StatelessTooltipProps
 
-  popoverProps?: IPopoverProps
+  popoverProps?: PopoverProps
 }
 
-interface IState {
+interface TooltipState {
   id: string
   isShown: boolean
   isShownByTarget: boolean
@@ -40,7 +40,10 @@ interface IState {
 
 let idCounter = 0
 
-export default class Tooltip extends React.PureComponent<IProps, IState> {
+export default class Tooltip extends React.PureComponent<
+  TooltipProps,
+  TooltipState
+> {
   static propTypes = {
     appearance: PropTypes.oneOf(['default', 'card'])
       .isRequired as PropTypes.Validator<'default' | 'card'>,
@@ -53,7 +56,7 @@ export default class Tooltip extends React.PureComponent<IProps, IState> {
       Position.BOTTOM_RIGHT,
       Position.LEFT,
       Position.RIGHT
-    ]) as PropTypes.Validator<TPosition>,
+    ]) as PropTypes.Validator<PositionType>,
     content: PropTypes.node.isRequired,
     hideDelay: PropTypes.number.isRequired,
     isShown: PropTypes.bool,
@@ -67,7 +70,7 @@ export default class Tooltip extends React.PureComponent<IProps, IState> {
     hideDelay: 120
   }
 
-  constructor(props: IProps, context: any) {
+  constructor(props: TooltipProps, context: any) {
     super(props, context)
 
     this.state = {

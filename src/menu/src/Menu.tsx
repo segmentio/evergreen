@@ -15,12 +15,12 @@ const KeyCodes = {
   End: 35
 }
 
-interface IProps {
+interface MenuProps {
   // The children of the component.
   children: React.ReactNode
 }
 
-export default class Menu extends React.PureComponent<IProps> {
+export default class Menu extends React.PureComponent<MenuProps> {
   static Item = MenuItem
 
   static Divider = MenuDivider

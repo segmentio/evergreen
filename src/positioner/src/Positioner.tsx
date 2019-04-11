@@ -4,12 +4,12 @@ import Transition from 'react-transition-group/Transition'
 
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
-import { StackingOrder, Position, TPosition } from '../../constants'
-import getPosition from './getPosition'
+import { StackingOrder, Position, PositionType } from '../../constants'
+import gePositionType from './gePositionType'
 
-interface IProps {
+interface PositionerProps {
   // The position the element that is being positioned is on. Smart positioning might override this.
-  position?: TPosition
+  position?: PositionType
 
   // When true, show the element being positioned.
   isShown?: boolean
@@ -45,7 +45,7 @@ interface IProps {
   onOpenComplete?: (...args: any[]) => any
 }
 
-interface IState {
+interface PositionerState {
   top: number
   left: number
   transformOrigin: string
@@ -55,7 +55,7 @@ const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
 }
 
-const initialState = (): IState => ({
+const initialState = (): PositionerState => ({
   top: null,
   left: null,
   transformOrigin: null
@@ -85,7 +85,10 @@ const getCSS = ({
   }
 })
 
-export default class Positioner extends React.PureComponent<IProps, IState> {
+export default class Positioner extends React.PureComponent<
+  PositionerProps,
+  PositionerState
+> {
   static propTypes = {
     position: PropTypes.oneOf([
       Position.TOP,
@@ -96,7 +99,7 @@ export default class Positioner extends React.PureComponent<IProps, IState> {
       Position.BOTTOM_RIGHT,
       Position.LEFT,
       Position.RIGHT
-    ]).isRequired as PropTypes.Validator<TPosition>,
+    ]).isRequired as PropTypes.Validator<PositionType>,
     isShown: PropTypes.bool,
     children: PropTypes.func.isRequired,
     innerRef: PropTypes.func.isRequired,
@@ -126,7 +129,7 @@ export default class Positioner extends React.PureComponent<IProps, IState> {
 
   targetRef: any
 
-  constructor(props: IProps, context: any) {
+  constructor(props: PositionerProps, context: any) {
     super(props, context)
     this.state = initialState()
   }
@@ -180,7 +183,7 @@ export default class Positioner extends React.PureComponent<IProps, IState> {
       width = Math.max(this.positionerRef.offsetWidth, prevWidth)
     }
 
-    const { rect, transformOrigin } = getPosition({
+    const { rect, transformOrigin } = gePositionType({
       position: this.props.position,
       targetRect,
       targetOffset: this.props.targetOffset,

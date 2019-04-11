@@ -3,11 +3,11 @@ import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import { PropsWithTheme, withTheme } from '../../theme'
-import Text, { ITextProps } from './Text'
+import Text, { TextProps } from './Text'
 
 type Appearance = 'default' | 'minimal'
 
-interface IProps extends ITextProps {
+interface CodeProps extends TextProps {
   // The appearance of the code.
   appearance?: Appearance
 
@@ -15,7 +15,7 @@ interface IProps extends ITextProps {
   className?: string
 }
 
-class Code extends React.PureComponent<PropsWithTheme<IProps>> {
+class Code extends React.PureComponent<PropsWithTheme<CodeProps>> {
   static propTypes = {
     ...Text.propTypes,
     appearance: PropTypes.oneOf(['default', 'minimal'])
@@ -48,4 +48,4 @@ class Code extends React.PureComponent<PropsWithTheme<IProps>> {
   }
 }
 
-export default withTheme<IProps>(Code)
+export default withTheme<CodeProps>(Code)

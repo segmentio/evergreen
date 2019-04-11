@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import Button, { IButtonProps } from './Button'
+import Button, { ButtonProps } from './Button'
 
-export default class BackButton extends React.PureComponent<IButtonProps> {
+export default class BackButton extends React.PureComponent<ButtonProps> {
   static propTypes = {
     ...Button.propTypes
   }

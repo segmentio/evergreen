@@ -1,5 +1,5 @@
 import test from 'ava'
-import getFittedPosition from '../src/getPosition'
+import getFittedPosition from '../src/gePositionType'
 import { Position } from '../../constants'
 
 const dimensions = overrides => ({

@@ -1,11 +1,9 @@
 import * as React from 'react'
 
 import { Paragraph } from '../../typography'
-import { IParagraphProps } from '../../typography/src/Paragraph'
+import { ParagraphProps } from '../../typography/src/Paragraph'
 
-export default class FormFieldHint extends React.PureComponent<
-  IParagraphProps
-> {
+export default class FormFieldHint extends React.PureComponent<ParagraphProps> {
   static propTypes = {
     ...Paragraph.propTypes
   }

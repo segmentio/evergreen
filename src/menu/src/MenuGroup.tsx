@@ -4,7 +4,7 @@ import * as React from 'react'
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
 
-interface IProps {
+interface MenuGroupProps {
   // Title of the menu group.
   title?: React.ReactNode
 
@@ -12,7 +12,7 @@ interface IProps {
   children: React.ReactNode
 }
 
-export default class MenuGroup extends React.PureComponent<IProps> {
+export default class MenuGroup extends React.PureComponent<MenuGroupProps> {
   static propTypes = {
     title: PropTypes.node,
     children: PropTypes.node

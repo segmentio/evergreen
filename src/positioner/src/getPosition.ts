@@ -1,16 +1,16 @@
-import { Position, TPosition } from '../../constants'
+import { Position, PositionType } from '../../constants'
 
-type TDimensions = {
+type Dimensions = {
   width: number
   height: number
 }
 
-type TPositions = {
+type PositionTypes = {
   left: number
   top: number
 }
 
-type TRect = {
+type Rect = {
   width: number
   height: number
   left: number
@@ -21,8 +21,8 @@ type TRect = {
 
 // Function to create a Rect.
 const makeRect = (
-  { width, height }: TDimensions,
-  { left, top }: TPositions
+  { width, height }: Dimensions,
+  { left, top }: PositionTypes
 ) => {
   const ceiledLeft = Math.ceil(left)
   const ceiledTop = Math.ceil(top)
@@ -37,7 +37,7 @@ const makeRect = (
 }
 
 // Function to flip a position upside down.
-const flipHorizontal = (position: TPosition) => {
+const flipHorizontal = (position: PositionType) => {
   switch (position) {
     case Position.TOP_LEFT:
       return Position.BOTTOM_LEFT
@@ -56,7 +56,7 @@ const flipHorizontal = (position: TPosition) => {
 }
 
 // Function that returns if position is aligned on top.
-const isAlignedOnTop = (position: TPosition) => {
+const isAlignedOnTop = (position: PositionType) => {
   switch (position) {
     case Position.TOP_LEFT:
     case Position.TOP:
@@ -68,7 +68,7 @@ const isAlignedOnTop = (position: TPosition) => {
 }
 
 // Function that returns if position is aligned left or right.
-const isAlignedHorizontal = (position: TPosition) => {
+const isAlignedHorizontal = (position: PositionType) => {
   switch (position) {
     case Position.LEFT:
     case Position.RIGHT:
@@ -79,26 +79,22 @@ const isAlignedHorizontal = (position: TPosition) => {
 }
 
 // Function that returns if a rect fits on bottom.
-const getFitsOnBottom = (
-  rect: TRect,
-  viewport: any,
-  viewportOffset: number
-) => {
+const getFitsOnBottom = (rect: Rect, viewport: any, viewportOffset: number) => {
   return rect.bottom < viewport.height - viewportOffset
 }
 
 // Function that returns if a rect fits on top.
-const getFitsOnTop = (rect: TRect, viewportOffset: number) => {
+const getFitsOnTop = (rect: Rect, viewportOffset: number) => {
   return rect.top > viewportOffset
 }
 
 // Function that returns if a rect fits on right.
-const getFitsOnRight = (rect: TRect, viewport: any, viewportOffset: number) => {
+const getFitsOnRight = (rect: Rect, viewport: any, viewportOffset: number) => {
   return rect.right < viewport.width - viewportOffset
 }
 
 // Function that returns if a rect fits on left.
-const getFitsOnLeft = (rect: TRect, viewportOffset: number) => {
+const getFitsOnLeft = (rect: Rect, viewportOffset: number) => {
   return rect.left > viewportOffset
 }
 
@@ -112,8 +108,8 @@ const getTransformOrigin = ({
   dimensions,
   targetCenter
 }: {
-  rect: TRect
-  position: TPosition
+  rect: Rect
+  position: PositionType
   dimensions: any
   targetCenter: number
 }) => {
@@ -149,14 +145,14 @@ export default function getFittedPosition({
   viewport,
   viewportOffset = 8
 }: {
-  position: TPosition
+  position: PositionType
   dimensions: any
-  targetRect: TRect
+  targetRect: Rect
   targetOffset: number
   viewport: any
   viewportOffset: number
 }) {
-  const { rect, position: finalPosition } = getPosition({
+  const { rect, position: finalPosition } = gePositionType({
     position,
     dimensions,
     targetRect,
@@ -219,7 +215,7 @@ export default function getFittedPosition({
  * @param {Object} viewportOffset - offset from the viewport.
  * @return {Object} - { rect: Rect, position: Position }
  */
-function getPosition({
+function gePositionType({
   position,
   dimensions,
   targetRect,
@@ -227,9 +223,9 @@ function getPosition({
   viewport,
   viewportOffset = 8
 }: {
-  position: TPosition
+  position: PositionType
   dimensions: any
-  targetRect: TRect
+  targetRect: Rect
   targetOffset: number
   viewport: any
   viewportOffset: number
@@ -405,9 +401,9 @@ function getRect({
   dimensions,
   targetRect
 }: {
-  position: TPosition
+  position: PositionType
   dimensions: any
-  targetRect: TRect
+  targetRect: Rect
   targetOffset: number
 }) {
   const leftRect = targetRect.left + targetRect.width / 2 - dimensions.width / 2

@@ -9,7 +9,7 @@ import { withTheme, PropsWithTheme } from '../../theme'
 import { Text } from '../../typography'
 import { TextSize } from '../../typography/src/Text'
 
-interface IProps extends Partial<BoxProps> {
+interface InlineAlertProps extends Partial<BoxProps> {
   // The content of the alert.
   children?: string | React.ReactNode
 
@@ -23,7 +23,9 @@ interface IProps extends Partial<BoxProps> {
   size?: TextSize
 }
 
-class InlineAlert extends React.PureComponent<PropsWithTheme<IProps>> {
+class InlineAlert extends React.PureComponent<
+  PropsWithTheme<InlineAlertProps>
+> {
   static propTypes = {
     ...Box.propTypes,
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),

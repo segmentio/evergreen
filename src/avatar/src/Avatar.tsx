@@ -9,7 +9,7 @@ import { Text } from '../../typography'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
 
-interface IProps extends Partial<BoxProps> {
+interface AvatarProps extends Partial<BoxProps> {
   // The src attribute of the image. When it's not available, render initials instead.
   src?: string
 
@@ -42,7 +42,7 @@ interface IProps extends Partial<BoxProps> {
   sizeLimitOneCharacter?: number
 }
 
-interface IState {
+interface AvatarState {
   imageHasFailedLoading: boolean
 }
 
@@ -55,7 +55,10 @@ const initialsProps = {
   lineHeight: 1
 }
 
-class Avatar extends React.PureComponent<PropsWithTheme<IProps>, IState> {
+class Avatar extends React.PureComponent<
+  PropsWithTheme<AvatarProps>,
+  AvatarState
+> {
   static propTypes = {
     ...Box.propTypes,
     src: PropTypes.string,
@@ -79,7 +82,7 @@ class Avatar extends React.PureComponent<PropsWithTheme<IProps>, IState> {
     sizeLimitOneCharacter: 20
   }
 
-  constructor(props: PropsWithTheme<IProps>, context: any) {
+  constructor(props: PropsWithTheme<AvatarProps>, context: any) {
     super(props, context)
     this.state = { imageHasFailedLoading: false }
   }

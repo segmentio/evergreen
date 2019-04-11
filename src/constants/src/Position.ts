@@ -1,4 +1,4 @@
-export type TPosition =
+export type PositionType =
   | 'top'
   | 'top-left'
   | 'top-right'
@@ -9,12 +9,12 @@ export type TPosition =
   | 'right'
 
 export default {
-  TOP: 'top' as TPosition,
-  TOP_LEFT: 'top-left' as TPosition,
-  TOP_RIGHT: 'top-right' as TPosition,
-  BOTTOM: 'bottom' as TPosition,
-  BOTTOM_LEFT: 'bottom-left' as TPosition,
-  BOTTOM_RIGHT: 'bottom-right' as TPosition,
-  LEFT: 'left' as TPosition,
-  RIGHT: 'right' as TPosition
+  TOP: 'top' as PositionType,
+  TOP_LEFT: 'top-left' as PositionType,
+  TOP_RIGHT: 'top-right' as PositionType,
+  BOTTOM: 'bottom' as PositionType,
+  BOTTOM_LEFT: 'bottom-left' as PositionType,
+  BOTTOM_RIGHT: 'bottom-right' as PositionType,
+  LEFT: 'left' as PositionType,
+  RIGHT: 'right' as PositionType
 }

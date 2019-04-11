@@ -2,14 +2,16 @@ import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import { Label } from '../../typography'
-import { ITextProps } from '../../typography/src/Text'
+import { TextProps } from '../../typography/src/Text'
 
-interface IProps extends ITextProps {
+interface FormFieldLabelProps extends TextProps {
   // Wether or not to show an asterix after the label.
   isAstrixShown?: boolean
 }
 
-export default class FormFieldLabel extends React.PureComponent<IProps> {
+export default class FormFieldLabel extends React.PureComponent<
+  FormFieldLabelProps
+> {
   static propTypes = {
     ...Label.propTypes,
     isAstrixShown: PropTypes.bool

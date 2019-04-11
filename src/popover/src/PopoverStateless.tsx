@@ -2,15 +2,15 @@ import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import { Card } from '../../layers'
-import { IPaneProps } from '../../layers/src/Pane'
+import { PaneProps } from '../../layers/src/Pane'
 
-export interface IPopoverStatelessProps extends IPaneProps {
+export interface PopoverStatelessProps extends PaneProps {
   // The content of the Popover.
   children?: React.ReactNode
 }
 
 export default class PopoverStateless extends React.PureComponent<
-  IPopoverStatelessProps
+  PopoverStatelessProps
 > {
   static propTypes = {
     ...Card.propTypes,

@@ -6,7 +6,7 @@ import cx from 'classnames'
 import { Text } from '../../typography'
 import { withTheme, PropsWithTheme } from '../../theme'
 
-interface IProps {
+interface SegmentedControlRadioProps {
   // The name attribute of the radio input.
   name: string
 
@@ -74,7 +74,7 @@ const offscreenCss = css({
 })
 
 class SegmentedControlRadio extends React.PureComponent<
-  PropsWithTheme<IProps>
+  PropsWithTheme<SegmentedControlRadioProps>
 > {
   static propTypes = {
     name: PropTypes.string.isRequired,

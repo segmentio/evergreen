@@ -2,11 +2,11 @@ import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import Box, { BoxProps } from 'ui-box'
 
-interface IProps extends Partial<BoxProps> {
+interface ImageProps extends Partial<BoxProps> {
   src?: string
 }
 
-export default class Image extends React.PureComponent<IProps> {
+export default class Image extends React.PureComponent<ImageProps> {
   static propTypes = {
     ...Box.propTypes,
     src: PropTypes.string

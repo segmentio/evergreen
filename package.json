@@ -82,6 +82,7 @@
     "@types/enzyme": "^3.9.1",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/react-test-renderer": "^16.8.1",
+    "@types/starwars-names": "^1.6.0",
     "@types/storybook__react": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
@@ -158,10 +159,7 @@
         "error",
         2
       ],
-      "@typescript-eslint/interface-name-prefix": [
-        "error",
-        "always"
-      ],
+      "@typescript-eslint/interface-name-prefix": ["off"],
       "@typescript-eslint/member-delimiter-style": [
         "error",
         {
@@ -222,7 +220,10 @@
   },
   "ava": {
     "compileEnhancements": false,
-    "extensions": ["ts", "tsx"],
+    "extensions": [
+      "ts",
+      "tsx"
+    ],
     "files": [
       "**/test/**/*.tsx"
     ],

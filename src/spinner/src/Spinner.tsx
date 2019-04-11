@@ -4,7 +4,7 @@ import Box, { BoxProps, css } from 'ui-box'
 
 import { withTheme, PropsWithTheme } from '../../theme'
 
-interface IProps extends Partial<BoxProps> {
+interface SpinnerProps extends Partial<BoxProps> {
   // The size of the spinner.
   size?: number
 
@@ -12,7 +12,7 @@ interface IProps extends Partial<BoxProps> {
   delay?: number
 }
 
-interface IState {
+interface SpinnerState {
   isVisible: boolean
 }
 
@@ -49,7 +49,10 @@ const inner = (color: string) => ({
   fill: 'transparent'
 })
 
-class Spinner extends React.PureComponent<PropsWithTheme<IProps>, IState> {
+class Spinner extends React.PureComponent<
+  PropsWithTheme<SpinnerProps>,
+  SpinnerState
+> {
   static propTypes = {
     ...Box.propTypes,
     delay: PropTypes.number,
@@ -64,7 +67,7 @@ class Spinner extends React.PureComponent<PropsWithTheme<IProps>, IState> {
 
   delayTimer: any
 
-  constructor(props: PropsWithTheme<IProps>) {
+  constructor(props: PropsWithTheme<SpinnerProps>) {
     super(props)
 
     const { delay } = props
