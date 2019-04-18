@@ -41,6 +41,14 @@ export default class Combobox extends PureComponent {
     initialSelectedItem: PropTypes.any,
 
     /**
+     * Default selected item when uncontrolled (deprecated)
+     */
+    defaultSelectedItem: () =>
+      new Error(
+        `The 'defaultSelectedItem' prop is deprecated, use 'initialSelectedItem' instead`
+      ),
+
+    /**
      * The placeholder text when there is no value present.
      */
     placeholder: PropTypes.string,
@@ -104,6 +112,7 @@ export default class Combobox extends PureComponent {
       items,
       selectedItem,
       initialSelectedItem,
+      defaultSelectedItem,
       itemToString,
       width,
       height,
@@ -123,7 +132,7 @@ export default class Combobox extends PureComponent {
       <Autocomplete
         items={items}
         selectedItem={selectedItem}
-        initialSelectedItem={initialSelectedItem}
+        initialSelectedItem={initialSelectedItem || defaultSelectedItem}
         itemToString={itemToString}
         onChange={onChange}
         onStateChange={this.handleStateChange}

@@ -53,6 +53,14 @@ export default class Autocomplete extends PureComponent {
     initialSelectedItem: PropTypes.any,
 
     /**
+     * The selected item to be selected & shown by default on the autocomplete (deprecated)
+     */
+    defaultSelectedItem: () =>
+      new Error(
+        `The 'defaultSelectedItem' prop is deprecated, use 'initialSelectedItem' instead`
+      ),
+
+    /**
      * In case the array of items is not an array of strings,
      * this function is used on each item to return the string that will be shown on the filter
      */
@@ -218,12 +226,13 @@ export default class Autocomplete extends PureComponent {
       popoverMaxHeight,
       popoverMinWidth,
       initialSelectedItem,
+      defaultSelectedItem,
       ...props
     } = this.props
 
     return (
       <Downshift
-        initialSelectedItem={initialSelectedItem}
+        initialSelectedItem={initialSelectedItem || defaultSelectedItem}
         stateReducer={this.stateReducer}
         {...props}
       >
