@@ -83,6 +83,14 @@ class TextInput extends PureComponent {
     spellCheck: true
   }
 
+  handleClear = () => {
+    this.setState({ value: '' })
+  }
+
+  handleChange = event => {
+    this.setState({ value: event.target.value })
+  }
+
   render() {
     const {
       theme,
@@ -101,6 +109,7 @@ class TextInput extends PureComponent {
       spellCheck,
       ...props
     } = this.props
+
     const themedClassName = theme.getTextInputClassName(appearance)
     const textSize = theme.getTextSizeForControlHeight(height)
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
@@ -109,8 +118,8 @@ class TextInput extends PureComponent {
       <StatelessTextInput
         value={this.state.value}
         isClearable={isClearable}
-        onClear={() => this.setState({ value: '' })}
-        onChange={e => this.setState({ value: e.target.value })}
+        onClear={this.handleClear}
+        onChange={this.handleChange}
         className={cx(themedClassName, className)}
         type="text"
         size={textSize}
