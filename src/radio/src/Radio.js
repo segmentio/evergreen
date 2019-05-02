@@ -55,6 +55,12 @@ class Radio extends PureComponent {
     onChange: PropTypes.func,
 
     /**
+     * This sets the initial `checked` state of a radio.
+     * This is for uncontrolled usage.
+     */
+    defaultChecked: PropTypes.bool,
+
+    /**
      * When true, the radio is disabled.
      */
     disabled: PropTypes.bool,
@@ -111,6 +117,7 @@ class Radio extends PureComponent {
       id,
       name,
       label,
+      defaultChecked,
       disabled,
       isInvalid,
       checked,
@@ -141,6 +148,7 @@ class Radio extends PureComponent {
           value={value}
           checked={checked}
           onChange={this.handleChange}
+          defaultChecked={defaultChecked}
           disabled={disabled}
           aria-invalid={isInvalid}
           required={isRequired}

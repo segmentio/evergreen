@@ -89,5 +89,14 @@ storiesOf('radio', module)
           label="Radio checked disabled"
         />
       </Box>
+      <Heading marginTop={40}>DefaultChecked usage</Heading>
+      <Box aria-label="Radio Group Label 12" role="group">
+        <Radio
+          defaultChecked
+          name="default-checked-group"
+          label="Radio 1 (defaultChecked)"
+        />
+        <Radio name="default-checked-group" label="Radio 2" />
+      </Box>
     </Box>
   ))
