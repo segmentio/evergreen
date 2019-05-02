@@ -11,5 +11,6 @@ storiesOf('checkbox', module).add('Checkbox', () => (
     <Checkbox disabled checked label="Checkbox checked disabled" />
     <Checkbox indeterminate label="Checkbox indeterminate" />
     <Checkbox checked indeterminate label="Checkbox checked indeterminate" />
+    <Checkbox defaultChecked label="Checkbox defaultChecked" />
   </Box>
 ))

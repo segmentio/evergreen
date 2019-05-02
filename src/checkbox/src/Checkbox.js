@@ -79,6 +79,12 @@ class Checkbox extends PureComponent {
     onChange: PropTypes.func,
 
     /**
+     * When true, the checkbox is true initially.
+     * This is for uncontrolled usage.
+     */
+    defaultChecked: PropTypes.bool,
+
+    /**
      * When true, the radio is disabled.
      */
     disabled: PropTypes.bool,
@@ -102,8 +108,6 @@ class Checkbox extends PureComponent {
   }
 
   static defaultProps = {
-    checked: false,
-    indeterminate: false,
     onChange: () => {},
     appearance: 'default'
   }
@@ -121,6 +125,7 @@ class Checkbox extends PureComponent {
       name,
       label,
       appearance,
+      defaultChecked,
       disabled,
       isInvalid,
       checked,
@@ -150,6 +155,7 @@ class Checkbox extends PureComponent {
           value={value}
           checked={checked || indeterminate}
           onChange={onChange}
+          defaultChecked={defaultChecked}
           disabled={disabled}
           aria-invalid={isInvalid}
           innerRef={this.setIndeterminate}
