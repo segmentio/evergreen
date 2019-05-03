@@ -1,9 +1,10 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
   "plugins": [
     "@babel/plugin-transform-runtime",
     "@babel/plugin-proposal-class-properties",
-    "babel-plugin-add-react-displayname"
+    "babel-plugin-add-react-displayname",
+    "babel-plugin-typescript-to-proptypes"
   ],
   "env": {
     "esm": {

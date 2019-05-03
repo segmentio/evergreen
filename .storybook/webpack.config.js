@@ -1,33 +1,24 @@
-const path = require('path')
-const webpack = require('webpack')
+module.exports = (_baseConfig, _env, config) => {
+  config.module.rules.push(
+    ...[
+      {
+        test: /\.(png\?.*|jpg\?.*|jpg|png)$/,
+        loader: 'url-loader'
+      },
+      {
+        test: /\.(blob)/,
+        loader: 'file-loader'
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        use: [
+          { loader: require.resolve('awesome-typescript-loader') },
+          { loader: require.resolve('react-docgen-typescript-loader') }
+        ]
+      }
+    ]
+  )
 
-module.exports = storybookBaseConfig => {
-  // Return the altered config
-  return {
-    ...storybookBaseConfig,
-    plugins: [
-      ...storybookBaseConfig.plugins,
-      new webpack.LoaderOptionsPlugin({
-        debug: true
-      })
-    ],
-    module: {
-      ...storybookBaseConfig.module,
-      rules: [
-        ...storybookBaseConfig.module.rules,
-        {
-          test: /\.(png\?.*|jpg\?.*|jpg|png)$/,
-          loader: 'url-loader'
-        },
-        {
-          test: /\.(blob)/,
-          loader: 'file-loader'
-        },
-        {
-          test: /\.(json)/,
-          loader: 'json-loader'
-        }
-      ]
-    }
-  }
+  config.resolve.extensions.push('.ts', '.tsx')
+  return config
 }

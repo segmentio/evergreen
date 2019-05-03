@@ -3,6 +3,7 @@ node_modules
 .DS_Store
 /commonjs/
 /esm/
+/generated/
 /.out/
 /docs/public/
 .cache

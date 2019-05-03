@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "allowJs": true,
+    "alwaysStrict": true,
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "rootDir": "src"
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+    "/commonjs",
+    "/esm",
+    "/docs",
+    "/examples",
+    "/tools"
+  ]
+}
