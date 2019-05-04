@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { css } from 'glamor'
+import { css as gcss } from 'glamor'
 import { Icon } from '../../icon'
 import { Position } from '../../constants'
+
+const css: any = gcss
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -124,9 +126,8 @@ const getSheetCloseClassName = position => {
   return sheetCloseClassNameCache[position]
 }
 
-export default class SheetClose extends PureComponent {
+export default class SheetClose extends PureComponent<any & BoxProps> {
   static propTypes = {
-    ...Box.propTypes,
     isClosing: PropTypes.bool,
     position: PropTypes.oneOf([
       Position.LEFT,

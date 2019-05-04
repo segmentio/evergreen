@@ -4,7 +4,7 @@ import { Pane } from '../../layers'
 import { Icon } from '../../icon'
 import { TableRow, TextTableCell } from '../../table'
 
-export default class Option extends PureComponent {
+export default class Option extends PureComponent<any> {
   static propTypes = {
     label: PropTypes.string,
     style: PropTypes.any,
@@ -31,7 +31,7 @@ export default class Option extends PureComponent {
       ...props
     } = this.props
 
-    const textProps = {}
+    const textProps: any = {}
     if (disabled) {
       textProps.color = 'muted'
     }

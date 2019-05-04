@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Textarea } from '../../textarea'
 
-export default class EditableCellField extends React.PureComponent {
+export default class EditableCellField extends React.PureComponent<any> {
   static propTypes = {
     /**
      * Used as the defaultValue of the textarea.

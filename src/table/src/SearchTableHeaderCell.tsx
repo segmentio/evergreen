@@ -20,13 +20,10 @@ const invisibleInput = {
   }
 }
 
-export default class SearchTableHeaderCell extends PureComponent {
+export default class SearchTableHeaderCell extends PureComponent<
+  any & React.ComponentProps<typeof TableHeaderCell>
+> {
   static propTypes = {
-    /**
-     * Composes the TableHeaderCell component as the base.
-     */
-    ...TableHeaderCell.propTypes,
-
     /**
      * The value of the input.
      */

@@ -1,18 +1,15 @@
 import React, { PureComponent } from 'react'
-import Box, { splitBoxProps } from 'ui-box'
+import Box, * as BoxExports from 'ui-box'
 import { Icon } from '../../icon'
 import { TextInput } from '../../text-input'
 import { withTheme } from '../../theme'
 import { StackingOrder } from '../../constants'
 
-class SearchInput extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the TextInput component as the base.
-     */
-    ...TextInput.propTypes
-  }
+const { splitBoxProps } = BoxExports
 
+class SearchInput extends PureComponent<
+  any & React.ComponentProps<typeof TextInput>
+> {
   static defaultProps = {
     height: 32,
     appearance: 'default'

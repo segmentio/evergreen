@@ -4,7 +4,7 @@ import colors from './colors'
 /**
  * Fills are used in Avatars and Badges.
  */
-const fills = {}
+const fills: any = {}
 
 fills.solid = {
   neutral: {

@@ -4,7 +4,7 @@ import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
 
-const Appearances = {}
+const Appearances: any = {}
 
 Appearances.default = Themer.createRowAppearance({
   base: {},

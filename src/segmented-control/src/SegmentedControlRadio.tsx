@@ -41,7 +41,7 @@ const offscreenCss = css({
   clip: 'rect(0 0 0 0)'
 })
 
-class SegmentedControlRadio extends PureComponent {
+class SegmentedControlRadio extends PureComponent<any> {
   static propTypes = {
     /**
      * The name attribute of the radio input.

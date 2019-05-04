@@ -1,19 +1,19 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { splitBoxProps } from 'ui-box'
+import * as BoxExports from 'ui-box'
 import { FormField } from '../../form-field'
 import TextInput from './TextInput'
 
+const { splitBoxProps } = BoxExports
+
 let idCounter = 0
 
-export default class TextInputField extends PureComponent {
+export default class TextInputField extends PureComponent<
+  any &
+    React.ComponentProps<typeof TextInput> &
+    React.ComponentProps<typeof FormField>
+> {
   static propTypes = {
-    /**
-     * Composes the TextInput component as the base.
-     */
-    ...TextInput.propTypes,
-    ...FormField.propTypes,
-
     /**
      * The label used above the input element.
      */

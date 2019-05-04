@@ -1,13 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
-import Box, { css } from 'ui-box'
+import Box from 'ui-box'
+import { css as gcss } from 'glamor'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder } from '../../constants'
 import { withTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
 import preventBodyScroll from '../../lib/prevent-body-scroll'
+
+const css: any = gcss
 
 const animationEasing = {
   standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
@@ -64,7 +67,7 @@ const animationStyles = backgroundColor => ({
  * Overlay is essentially a wrapper around react-transition-group/Transition
  * Learn more: https://reactcommunity.org/react-transition-group/
  */
-class Overlay extends React.Component {
+class Overlay extends React.Component<any, any> {
   static propTypes = {
     /**
      * Children can be a node or a function accepting `close: func`

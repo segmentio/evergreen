@@ -27,13 +27,8 @@ function executeArrowKeyOverride(override) {
   override.focus()
 }
 
-class TableCell extends PureComponent {
+class TableCell extends PureComponent<any & React.ComponentProps<typeof Pane>> {
   static propTypes = {
-    /**
-     * Composes the Pane component as the base.
-     */
-    ...Pane.propTypes,
-
     /*
      * Makes the TableCell focusable. Used by EditableCell.
      * Will add tabIndex={-1 || this.props.tabIndex}.

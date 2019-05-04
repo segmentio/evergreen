@@ -1,20 +1,10 @@
 import React, { PureComponent } from 'react'
 import Button from './Button'
 
-export default class BackButton extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Button component as the base.
-     */
-    ...Button.propTypes
-  }
-
+export default class BackButton extends PureComponent<
+  React.ComponentProps<typeof Button>
+> {
   static defaultProps = {
-    /**
-     * Composes the Button component as the base.
-     */
-    ...Button.defaultProps,
-
     children: 'Back'
   }
 

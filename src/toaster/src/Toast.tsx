@@ -1,8 +1,10 @@
 import React from 'react'
-import { css } from 'glamor'
+import { css as gcss } from 'glamor'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import Alert from '../../alert/src/Alert'
+
+const css: any = gcss
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -49,7 +51,7 @@ const animationStyles = css({
   }
 })
 
-export default class Toast extends React.PureComponent {
+export default class Toast extends React.PureComponent<any> {
   static propTypes = {
     /**
      * The z-index of the toast.
@@ -96,6 +98,8 @@ export default class Toast extends React.PureComponent {
   static defaultProps = {
     intent: 'none'
   }
+
+  closeTimer: any
 
   state = {
     isShown: true,

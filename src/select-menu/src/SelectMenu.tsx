@@ -7,7 +7,7 @@ import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
 import SelectedPropType from './SelectedPropType'
 
-export default class SelectMenu extends PureComponent {
+export default class SelectMenu extends PureComponent<any> {
   static propTypes = {
     /**
      * The title of the Select Menu.

@@ -7,13 +7,14 @@
     "noImplicitAny": false,
     "noImplicitThis": true,
     "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
+    "strictPropertyInitialization": false,
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "react",
     "resolveJsonModule": true,
-    "outDir": "./generated"
+    "outDir": "./generated",
+    "declaration": true
   },
   "include": ["src"],
   "exclude": [
@@ -21,6 +22,8 @@
     "/commonjs",
     "/esm",
     "/docs",
+    "**/stories/**/*",
+    "*.stories.tsx",
     "/examples",
     "/tools"
   ]

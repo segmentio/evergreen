@@ -1,32 +1,12 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { dimensions, spacing, position, layout } from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import { withTheme } from '../../theme'
 
-class Select extends PureComponent {
+class Select extends PureComponent<any & BoxProps> {
   static propTypes = {
-    /**
-     * Composes the dimensions spec from the Box primitivie.
-     */
-    ...dimensions.propTypes,
-
-    /**
-     * Composes the spacing spec from the Box primitivie.
-     */
-    ...spacing.propTypes,
-
-    /**
-     * Composes the position spec from the Box primitivie.
-     */
-    ...position.propTypes,
-
-    /**
-     * Composes the layout spec from the Box primitivie.
-     */
-    ...layout.propTypes,
-
     /**
      * The id attribute for the select.
      */

@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'ui-box'
+import { css as gcss } from 'glamor'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
 import { Position } from '../../constants'
 import SheetClose from './SheetClose'
+
+const css: any = gcss
 
 const paneProps = {
   [Position.LEFT]: {
@@ -129,7 +131,7 @@ const animationStyles = {
   }
 }
 
-class SideSheet extends React.Component {
+class SideSheet extends React.Component<any> {
   static propTypes = {
     /**
      * Children can be a string, node or a function accepting `({ close })`.

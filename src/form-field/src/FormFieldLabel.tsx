@@ -2,13 +2,10 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Label } from '../../typography'
 
-export default class FormFieldLabel extends PureComponent {
+export default class FormFieldLabel extends PureComponent<
+  any & React.ComponentProps<typeof Label>
+> {
   static propTypes = {
-    /**
-     * Composes the Label component as the base.
-     */
-    ...Label.propTypes,
-
     /**
      * Wether or not tho show an asterix after the label.
      */

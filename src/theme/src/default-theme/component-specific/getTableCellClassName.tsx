@@ -2,7 +2,7 @@ import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 
-const Appearances = {}
+const Appearances: any = {}
 
 Appearances.default = Themer.createTableCellAppearance({
   focus: {

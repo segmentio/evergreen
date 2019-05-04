@@ -46,7 +46,7 @@ const checkedStyles = {
  * @param {object} items - object with a set of items.
  * @return {object} the final appearance.
  */
-const createCheckboxAppearance = (items = {}) => {
+const createCheckboxAppearance = (items: any = {}): any => {
   missingStateWarning({
     items,
     props: [

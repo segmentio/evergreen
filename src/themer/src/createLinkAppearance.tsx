@@ -9,7 +9,7 @@ const focusState = '&:focus'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createLinkAppearance = (items = {}) => {
+const createLinkAppearance = (items: any = {}): any => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'active', 'focus'],

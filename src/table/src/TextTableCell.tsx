@@ -9,13 +9,10 @@ const ellipsis = {
   whiteSpace: 'nowrap'
 }
 
-export default class TextTableCell extends PureComponent {
+export default class TextTableCell extends PureComponent<
+  any & React.ComponentProps<typeof TableCell>
+> {
   static propTypes = {
-    /**
-     * Composes the TableCell component as the base.
-     */
-    ...TableCell.propTypes,
-
     /**
      * Adds textAlign: right and fontFamily: mono.
      */

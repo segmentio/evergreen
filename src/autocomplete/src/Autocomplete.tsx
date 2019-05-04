@@ -29,7 +29,7 @@ const fuzzyFilter = itemToString => {
 const autocompleteItemRenderer = props => <AutocompleteItem {...props} />
 
 // https://github.com/paypal/downshift/issues/164
-export default class Autocomplete extends PureComponent {
+export default class Autocomplete extends PureComponent<any, any> {
   static propTypes = {
     /**
      * This prop can be either a string or a Node.

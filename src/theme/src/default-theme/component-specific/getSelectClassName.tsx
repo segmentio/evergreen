@@ -4,7 +4,7 @@ import { defaultControlStyles } from '../shared'
 import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
 
-const SelectAppearances = {}
+const SelectAppearances: any = {}
 
 SelectAppearances.default = Themer.createSelectAppearance({
   base: defaultControlStyles.base,

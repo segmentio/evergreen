@@ -1,15 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 import { withTheme } from '../../theme'
 
-class Heading extends PureComponent {
+class Heading extends PureComponent<any & BoxProps> {
   static propTypes = {
-    /**
-     * Heading composes Box as the base.
-     */
-    ...Box.propTypes,
-
     /**
      * The size of the heading.
      */

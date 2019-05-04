@@ -26,7 +26,7 @@ const hiddenCheckboxStyle = {
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createSwitchAppearance = (items = {}) => {
+const createSwitchAppearance = (items: any = {}): any => {
   missingStateWarning({
     items,
     props: [

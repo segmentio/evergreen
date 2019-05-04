@@ -8,13 +8,8 @@ import warning from '../../lib/warning'
 import { TableRowProvider } from './TableRowContext'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 
-class TableRow extends PureComponent {
+class TableRow extends PureComponent<React.ComponentProps<typeof Pane>> {
   static propTypes = {
-    /**
-     * Composes the Pane component as the base.
-     */
-    ...Pane.propTypes,
-
     /**
      * The height of the row. Remember to add paddings when using "auto".
      */

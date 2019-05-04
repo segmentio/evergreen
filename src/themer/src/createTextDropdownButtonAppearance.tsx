@@ -24,7 +24,7 @@ const activeState =
  * @param {object} items - object with a set of items.
  * @return {object} the final appearance.
  */
-const createButtonAppearance = (items = {}) => {
+const createButtonAppearance = (items: any = {}): any => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'focus', 'active', 'disabled'],

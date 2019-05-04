@@ -12,7 +12,9 @@ import SearchTableHeaderCell from './SearchTableHeaderCell'
 import EditableCell from './EditableCell'
 import SelectMenuCell from './SelectMenuCell'
 
-export default class Table extends PureComponent {
+export default class Table extends PureComponent<
+  React.ComponentProps<typeof Pane>
+> {
   static Body = TableBody
 
   static VirtualBody = TableVirtualBody
@@ -34,13 +36,6 @@ export default class Table extends PureComponent {
   static EditableCell = EditableCell
 
   static SelectMenuCell = SelectMenuCell
-
-  static propTypes = {
-    /**
-     * Composes the Pane component as the base.
-     */
-    ...Pane.propTypes
-  }
 
   render() {
     const { children, ...props } = this.props

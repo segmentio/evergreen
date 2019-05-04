@@ -32,7 +32,7 @@
     "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test' --source-maps inline --extensions '.js,.ts,.tsx'",
     "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test' --source-maps inline --extensions '.js,.ts,.tsx'",
     "build": "concurrently --names 'commonjs,esm' 'yarn run build-commonjs' 'yarn run build-esm'",
-    "build-types": "tsc --allowJs false --declaration --emitDeclarationOnly",
+    "build-types": "tsc --emitDeclarationOnly",
     "type-check": "tsc --noEmit",
     "clean": "git clean -Xdf",
     "release": "np",

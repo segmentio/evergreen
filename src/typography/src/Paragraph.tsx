@@ -1,15 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 import { withTheme } from '../../theme'
 
-class Paragraph extends PureComponent {
+class Paragraph extends PureComponent<any & BoxProps> {
   static propTypes = {
-    /**
-     * Composes the Box component as the base.
-     */
-    ...Box.propTypes,
-
     /**
      * Size of the text style.
      * Can be: 300, 400, 500.

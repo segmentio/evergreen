@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { spacing, position, layout } from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 import { withTheme } from '../../theme'
 
 const animationEasing = {
@@ -54,15 +54,8 @@ const isControlled = component => {
   return {}.hasOwnProperty.call(component.props, 'checked')
 }
 
-class Switch extends PureComponent {
+class Switch extends PureComponent<any & BoxProps> {
   static propTypes = {
-    /**
-     * Composes some Box APIs.
-     */
-    ...spacing.propTypes,
-    ...position.propTypes,
-    ...layout.propTypes,
-
     /**
      * The id attribute of the radio.
      */

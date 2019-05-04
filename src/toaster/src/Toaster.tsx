@@ -27,6 +27,12 @@ export default class Toaster {
     )
   }
 
+  notifyHandler: any = () => {}
+
+  getToastsHandler: any = () => {}
+
+  closeAllHandler: any = () => {}
+
   _bindNotify = handler => {
     this.notifyHandler = handler
   }

@@ -1,13 +1,14 @@
 import { Component } from 'react'
 import canUseDom from 'dom-helpers/util/inDOM'
 import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
 
 let portalContainer
 
-export default class Portal extends Component {
-  constructor() {
-    super()
+export default class Portal extends Component<{ children: React.ReactNode }> {
+  el: HTMLDivElement
+
+  constructor(props) {
+    super(props)
 
     // This fixes SSR
     if (!canUseDom) return
@@ -31,8 +32,4 @@ export default class Portal extends Component {
     if (!canUseDom) return null
     return ReactDOM.createPortal(this.props.children, this.el)
   }
-}
-
-Portal.propTypes = {
-  children: PropTypes.node.isRequired
 }

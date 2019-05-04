@@ -5,13 +5,10 @@ import { withTheme } from '../../theme'
 import { Icon } from '../../icon'
 import { Pane } from '../../layers'
 
-class FormFieldValidationMessage extends PureComponent {
+class FormFieldValidationMessage extends PureComponent<
+  any & React.ComponentProps<typeof Pane>
+> {
   static propTypes = {
-    /**
-     * Composes the Pane component as the base.
-     */
-    ...Pane.propTypes,
-
     /**
      * The contents of the validation message.
      * This is wrapped in a paragraph, use a string.

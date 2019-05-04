@@ -1,11 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 
-export default class UnorderedList extends PureComponent {
+export default class UnorderedList extends PureComponent<any & BoxProps> {
   static propTypes = {
-    ...Box.propTypes,
-
     /**
      * Size of the text used in a list item.
      * Can be: 300, 400, 500, 600.

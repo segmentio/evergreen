@@ -1,11 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 
-export default class OrderedList extends PureComponent {
+export default class OrderedList extends PureComponent<any & BoxProps> {
   static propTypes = {
-    ...Box.propTypes,
-
     /**
      * Size of the text used in a list item.
      * Can be: 300, 400, 500, 600.
@@ -34,9 +32,10 @@ export default class OrderedList extends PureComponent {
         return child
       }
 
-      return React.cloneElement(child, {
+      const childProps: any = child.props
+      return React.cloneElement<{ size?: number }>(child, {
         // Prefer more granularly defined icon if present
-        size: child.props.size || size
+        size: childProps.size || size
       })
     })
 

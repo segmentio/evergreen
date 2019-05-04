@@ -17,7 +17,7 @@ const disabledState = '&:disabled'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createInputAppearance = (items = {}) => {
+const createInputAppearance = (items: any = {}): any => {
   missingStateWarning({
     items,
     props: ['base', 'invalid', 'placeholder', 'focus', 'disabled'],

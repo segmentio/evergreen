@@ -4,7 +4,7 @@ import VirtualList from 'react-tiny-virtual-list'
 import debounce from 'lodash.debounce'
 import { Pane } from '../../layers'
 
-export default class TableVirtualBody extends PureComponent {
+export default class TableVirtualBody extends PureComponent<any> {
   static propTypes = {
     /**
      * Composes the Pane component as the base.

@@ -2,11 +2,9 @@ import React, { PureComponent } from 'react'
 import Box from 'ui-box'
 import Tab from './Tab'
 
-export default class SidebarTab extends PureComponent {
-  static propTypes = {
-    ...Tab.propTypes
-  }
-
+export default class SidebarTab extends PureComponent<
+  any & React.ComponentProps<typeof Tab>
+> {
   static defaultProps = {
     height: 32
   }

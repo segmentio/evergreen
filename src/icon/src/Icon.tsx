@@ -13,7 +13,7 @@ export { IconNames }
  * Refer to the LICENSE for BlueprintJS here: https://github.com/palantir/blueprint/blob/develop/LICENSE
  */
 
-class Icon extends PureComponent {
+class Icon extends PureComponent<any> {
   static SIZE_STANDARD = 16
 
   static SIZE_LARGE = 20

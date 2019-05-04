@@ -14,7 +14,7 @@ import Tag from './Tag'
 
 let inputId = 1
 
-class TagInput extends React.Component {
+class TagInput extends React.Component<any> {
   static propTypes = {
     /** Whether or not the inputValue should be added to the tags when the input blurs. */
     addOnBlur: PropTypes.bool,
@@ -96,6 +96,8 @@ class TagInput extends React.Component {
 
   id = `TagInput-${inputId++}`
 
+  input: any
+
   addTags = (value = '') => {
     const { onAdd, onChange, values } = this.props
     const newValues = this.getValues(value)
@@ -163,7 +165,7 @@ class TagInput extends React.Component {
       event.preventDefault()
       this.addTags(value)
     } else if (event.key === 'Backspace' && selectionEnd === 0) {
-      this.handleBackspaceToRemove(event)
+      this.handleBackspaceToRemove()
     }
   }
 

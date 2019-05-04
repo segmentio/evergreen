@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 
-export default class Image extends PureComponent {
+export default class Image extends PureComponent<any & BoxProps> {
   static propTypes = {
-    ...Box.propTypes,
     src: PropTypes.string
   }
 

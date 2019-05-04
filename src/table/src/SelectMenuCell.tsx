@@ -9,13 +9,10 @@ import TableCell from './TableCell'
 
 const MIN_SELECT_MENU_WIDTH = 240
 
-class SelectMenuCell extends React.PureComponent {
+class SelectMenuCell extends React.PureComponent<
+  any & React.ComponentProps<typeof TableCell>
+> {
   static propTypes = {
-    /**
-     * Composes the TableCell component as the base.
-     */
-    ...TableCell.propTypes,
-
     /*
      * Makes the TableCell focusable.
      * Will add tabIndex={-1 || this.props.tabIndex}.

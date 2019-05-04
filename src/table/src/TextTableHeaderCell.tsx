@@ -3,13 +3,10 @@ import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import TableHeaderCell from './TableHeaderCell'
 
-export default class TextTableHeaderCell extends PureComponent {
+export default class TextTableHeaderCell extends PureComponent<
+  any & React.ComponentProps<typeof TableHeaderCell>
+> {
   static propTypes = {
-    /**
-     * Composes the TableHeaderCell component as the base.
-     */
-    ...TableHeaderCell.propTypes,
-
     /**
      * Pass additional props to the Text component.
      */

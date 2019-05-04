@@ -7,7 +7,7 @@ import { withTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
 
-class MenuItem extends React.PureComponent {
+class MenuItem extends React.PureComponent<any> {
   static propTypes = {
     /**
      * Element type to use for the menu item.
@@ -62,9 +62,7 @@ class MenuItem extends React.PureComponent {
   handleClick = event => {
     this.props.onSelect(event)
 
-    /* eslint-disable react/prop-types */
     safeInvoke(this.props.onClick, event)
-    /* eslint-enable react/prop-types */
   }
 
   handleKeyPress = event => {
@@ -73,9 +71,7 @@ class MenuItem extends React.PureComponent {
       event.preventDefault()
     }
 
-    /* eslint-disable react/prop-types */
     safeInvoke(this.props.onKeyPress, event)
-    /* eslint-enable react/prop-types */
   }
 
   render() {

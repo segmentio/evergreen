@@ -14,7 +14,7 @@ const KeyCodes = {
   End: 35
 }
 
-export default class Menu extends React.PureComponent {
+export default class Menu extends React.PureComponent<any> {
   static Item = MenuItem
 
   static Divider = MenuDivider

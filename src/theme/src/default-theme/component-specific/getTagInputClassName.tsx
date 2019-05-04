@@ -3,7 +3,7 @@ import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
 
-const TagInputAppearances = {}
+const TagInputAppearances: any = {}
 
 TagInputAppearances.default = Themer.createTagInputAppearance({
   base: {

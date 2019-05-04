@@ -7,7 +7,7 @@ import safeInvoke from '../../lib/safe-invoke'
 
 export const CLASS_PREFIX = 'evergreen-file-picker'
 
-export default class FilePicker extends PureComponent {
+export default class FilePicker extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Name attribute of the input.

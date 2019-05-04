@@ -8,7 +8,7 @@ const focusState =
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createTableCellAppearance = (items = {}) => {
+const createTableCellAppearance = (items: any = {}): any => {
   missingStateWarning({
     items,
     props: ['focus'],

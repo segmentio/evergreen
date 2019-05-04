@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { dimensions, spacing, position, layout } from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 import FormFieldLabel from './FormFieldLabel'
 import FormFieldDescription from './FormFieldDescription'
 import FormFieldValidationMessage from './FormFieldValidationMessage'
 import FormFieldHint from './FormFieldHint'
 
-export default class FormField extends PureComponent {
+export default class FormField extends PureComponent<any & BoxProps> {
   static propTypes = {
     /**
      * The label used above the input element.
@@ -37,27 +37,7 @@ export default class FormField extends PureComponent {
      * If a validation message is passed it is shown under the input element
      * and above the hint. This is unaffected by `isInvalid`.
      */
-    validationMessage: PropTypes.node,
-
-    /**
-     * Composes the dimensions spec from the Box primitivie.
-     */
-    ...dimensions.propTypes,
-
-    /**
-     * Composes the spacing spec from the Box primitivie.
-     */
-    ...spacing.propTypes,
-
-    /**
-     * Composes the position spec from the Box primitivie.
-     */
-    ...position.propTypes,
-
-    /**
-     * Composes the layout spec from the Box primitivie.
-     */
-    ...layout.propTypes
+    validationMessage: PropTypes.node
   }
 
   static defaultProps = {

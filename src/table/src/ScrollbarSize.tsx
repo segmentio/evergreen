@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-export default class ScrollbarSize extends PureComponent {
+export default class ScrollbarSize extends PureComponent<any> {
   static propTypes = {
     /**
      * Returns the size of the scrollbar by creating a hidden fixed div.

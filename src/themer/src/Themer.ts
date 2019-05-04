@@ -1,3 +1,6 @@
+/**
+ * Themer is an object with a set of functions for creating custom themes.
+ */
 import createBadgeAppearance from './createBadgeAppearance'
 import createButtonAppearance from './createButtonAppearance'
 import createCheckboxAppearance from './createCheckboxAppearance'
@@ -12,9 +15,6 @@ import createSegmentedControlRadioAppearance from './createSegmentedControlRadio
 import createSwitchAppearance from './createSwitchAppearance'
 import createTableCellAppearance from './createTableCellAppearance'
 
-/**
- * Themer is an object with a set of functions for creating custom themes.
- */
 export default {
   createBadgeAppearance,
   createButtonAppearance,

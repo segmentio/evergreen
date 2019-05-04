@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'ui-box'
+import { css as gcss } from 'glamor'
 import { Pane } from '../../layers'
 import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
 import { Button, IconButton } from '../../buttons'
 import { withTheme } from '../../theme'
+
+const css: any = gcss
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -49,7 +51,7 @@ const animationStyles = {
   }
 }
 
-class Dialog extends React.Component {
+class Dialog extends React.Component<any> {
   static propTypes = {
     /**
      * Children can be a string, node or a function accepting `({ close })`.

@@ -15,7 +15,7 @@ const linearGradient = (top, bottom) => {
  * @param {Intent} intent
  * @return {String} color
  */
-const getTextColorForIntent = (intent, defaultColor) => {
+const getTextColorForIntent = (intent, defaultColor?: string) => {
   switch (intent) {
     case Intent.SUCCESS:
       return colors.text.success
@@ -64,7 +64,7 @@ const getLinearGradientWithStates = (
  * @param {Intent} intent - intent of the gradient.
  * @return {Object} { base, hover, active }
  */
-const getPrimaryButtonStylesForIntent = intent => {
+const getPrimaryButtonStylesForIntent = (intent?: string) => {
   switch (intent) {
     case Intent.SUCCESS: {
       const startColor = '#23C277'

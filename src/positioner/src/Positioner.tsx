@@ -34,7 +34,7 @@ const getCSS = ({ initialScale, animationDuration }) => ({
   }
 })
 
-export default class Positioner extends PureComponent {
+export default class Positioner extends PureComponent<any> {
   static propTypes = {
     /**
      * The position the element that is being positioned is on.

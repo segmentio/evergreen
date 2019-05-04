@@ -8,13 +8,10 @@ import TextTableCell from './TextTableCell'
 import TableCell from './TableCell'
 import EditableCellField from './EditableCellField'
 
-class EditableCell extends React.PureComponent {
+class EditableCell extends React.PureComponent<
+  any & React.ComponentProps<typeof TableCell>
+> {
   static propTypes = {
-    /**
-     * Composes the TableCell component as the base.
-     */
-    ...TableCell.propTypes,
-
     /*
      * Makes the TableCell focusable.
      * Will add tabIndex={-1 || this.props.tabIndex}.

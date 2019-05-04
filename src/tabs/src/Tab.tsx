@@ -4,13 +4,8 @@ import { Text } from '../../typography'
 import { withTheme } from '../../theme'
 import warning from '../../lib/warning'
 
-class Tab extends PureComponent {
+class Tab extends PureComponent<any & React.ComponentProps<typeof Text>> {
   static propTypes = {
-    /**
-     * Composes the Text component as the base.
-     */
-    ...Text.propTypes,
-
     /**
      * Function triggered when tab is selected.
      */

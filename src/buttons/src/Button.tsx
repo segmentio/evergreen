@@ -1,34 +1,14 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { dimensions, spacing, position, layout } from 'ui-box'
+import { BoxProps } from 'ui-box'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
 import { withTheme } from '../../theme'
 
-class Button extends PureComponent {
+class Button extends PureComponent<any & BoxProps> {
   static propTypes = {
-    /**
-     * Composes the dimensions spec from the Box primitivie.
-     */
-    ...dimensions.propTypes,
-
-    /**
-     * Composes the spacing spec from the Box primitivie.
-     */
-    ...spacing.propTypes,
-
-    /**
-     * Composes the position spec from the Box primitivie.
-     */
-    ...position.propTypes,
-
-    /**
-     * Composes the layout spec from the Box primitivie.
-     */
-    ...layout.propTypes,
-
     /**
      * The intent of the button.
      */

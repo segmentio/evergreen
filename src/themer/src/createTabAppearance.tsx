@@ -17,7 +17,7 @@ const baseStyle = {
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createTabAppearance = (items = {}) => {
+const createTabAppearance = (items: any = {}): any => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'active', 'focus', 'current', 'disabled'],

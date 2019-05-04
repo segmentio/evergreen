@@ -28,7 +28,7 @@ const activeState = '&:not([disabled]):active'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createSelectAppearance = (items = {}) => {
+const createSelectAppearance = (items: any = {}): any => {
   missingStateWarning({
     items,
     props: ['base', 'disabled', 'invalid', 'hover', 'active', 'focus'],

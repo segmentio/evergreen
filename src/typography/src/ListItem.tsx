@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { Icon } from '../../icon'
 import Text from './Text'
 
-export default class ListItem extends PureComponent {
+export default class ListItem extends PureComponent<
+  any & React.ComponentProps<typeof Text>
+> {
   static propTypes = {
-    ...Text.propTypes,
-
     /**
      * When passed, adds a icon before the list item.
      * See Evergreen `Icon` for documentation.

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { StackingOrder } from '../../constants'
 import StackingContext from './StackingContext'
 
-export default class Stack extends PureComponent {
+export default class Stack extends PureComponent<any> {
   static propTypes = {
     /**
      * Function that takes the current z-index and returns a React Node.

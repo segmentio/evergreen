@@ -1,7 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { css } from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
+import { css as gcss } from 'glamor'
 import { withTheme } from '../../theme'
+
+const css: any = gcss
 
 const loadingKeyframes = css.keyframes('loading', {
   '0%': {
@@ -36,13 +39,8 @@ const inner = color => ({
   fill: 'transparent'
 })
 
-class Spinner extends PureComponent {
+class Spinner extends PureComponent<any & BoxProps, any> {
   static propTypes = {
-    /**
-     * Composes the Box component as the base.
-     */
-    ...Box.propTypes,
-
     /**
      * Delay after which spinner should be visible.
      */
@@ -64,12 +62,10 @@ class Spinner extends PureComponent {
     delay: 0
   }
 
-  constructor({ delay }) {
-    super()
+  delayTimer?: any
 
-    this.state = {
-      isVisible: delay === 0
-    }
+  state = {
+    isVisible: this.props.delay === 0
   }
 
   render() {

@@ -4,13 +4,8 @@ import cx from 'classnames'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
 
-class TextInput extends PureComponent {
+class TextInput extends PureComponent<any & React.ComponentProps<typeof Text>> {
   static propTypes = {
-    /**
-     * Composes the Text component as the base.
-     */
-    ...Text.propTypes,
-
     /**
      * Makes the input element required.
      */

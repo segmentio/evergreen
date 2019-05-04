@@ -11,7 +11,7 @@ const baseStyle = {
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createBadgeAppearance = (items = {}) => {
+const createBadgeAppearance = (items: any = {}): any => {
   missingStateWarning({
     items,
     props: ['base', 'hover'],

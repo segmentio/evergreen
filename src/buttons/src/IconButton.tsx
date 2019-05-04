@@ -1,32 +1,12 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { dimensions, spacing, position, layout } from 'ui-box'
+import { BoxProps } from 'ui-box'
 import { Icon } from '../../icon'
 import { withTheme } from '../../theme'
 import Button from './Button'
 
-class IconButton extends PureComponent {
+class IconButton extends PureComponent<any & BoxProps> {
   static propTypes = {
-    /**
-     * Composes the dimensions spec from the Box primitivie.
-     */
-    ...dimensions.propTypes,
-
-    /**
-     * Composes the spacing spec from the Box primitivie.
-     */
-    ...spacing.propTypes,
-
-    /**
-     * Composes the position spec from the Box primitivie.
-     */
-    ...position.propTypes,
-
-    /**
-     * Composes the layout spec from the Box primitivie.
-     */
-    ...layout.propTypes,
-
     /**
      * Name of a Blueprint UI icon, or an icon element, to render.
      * This prop is required because it determines the content of the component, but it can

@@ -4,10 +4,8 @@ import cx from 'classnames'
 import { withTheme } from '../../theme'
 import Text from './Text'
 
-class Link extends PureComponent {
+class Link extends PureComponent<any & React.ComponentProps<typeof Text>> {
   static propTypes = {
-    ...Text.propTypes,
-
     /**
      * This attribute names a relationship of the linked document to the current document.
      * Common use case is: rel="noopener noreferrer".

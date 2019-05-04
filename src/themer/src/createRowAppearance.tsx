@@ -17,7 +17,7 @@ const baseStyle = {
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createRowAppearance = (items = {}) => {
+const createRowAppearance = (items: any = {}): any => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'active', 'focus', 'current'],

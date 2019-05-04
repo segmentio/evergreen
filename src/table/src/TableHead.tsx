@@ -3,13 +3,10 @@ import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import ScrollbarSize from './ScrollbarSize'
 
-export default class TableHead extends PureComponent {
+export default class TableHead extends PureComponent<
+  any & React.ComponentProps<typeof Pane>
+> {
   static propTypes = {
-    /**
-     * Composes the Pane component as the base.
-     */
-    ...Pane.propTypes,
-
     /**
      * The height of the table head.
      */

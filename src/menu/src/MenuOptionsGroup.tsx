@@ -5,7 +5,7 @@ import { Heading } from '../../typography'
 import { withTheme } from '../../theme'
 import MenuOption from './MenuOption'
 
-class MenuOptionsGroup extends React.PureComponent {
+class MenuOptionsGroup extends React.PureComponent<any> {
   static propTypes = {
     /**
      * Title of the menu group.

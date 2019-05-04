@@ -23,7 +23,7 @@ const focusState = '& input:focus + label'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createSegmentedControlRadioAppearance = (items = {}) => {
+const createSegmentedControlRadioAppearance = (items: any = {}): any => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'disabled', 'active', 'focus'],

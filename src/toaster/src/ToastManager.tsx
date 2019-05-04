@@ -13,11 +13,11 @@ const wrapperClass = css({
   position: 'fixed',
   zIndex: StackingOrder.TOASTER,
   pointerEvents: 'none'
-})
+}).toString()
 
 const hasCustomId = settings => Object.hasOwnProperty.call(settings, 'id')
 
-export default class ToastManager extends React.PureComponent {
+export default class ToastManager extends React.PureComponent<any, any> {
   static propTypes = {
     /**
      * Function called with the `this.notify` function.

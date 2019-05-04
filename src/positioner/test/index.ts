@@ -2,13 +2,13 @@ import test from 'ava'
 import getFittedPosition from '../src/getPosition'
 import { Position } from '../../constants'
 
-const dimensions = overrides => ({
+const dimensions = (overrides?: any) => ({
   height: 100,
   width: 100,
   ...overrides
 })
 
-const targetRect = overrides => ({
+const targetRect = (overrides?: any) => ({
   x: 250,
   y: 150,
   width: 50,
@@ -22,7 +22,7 @@ const targetRect = overrides => ({
 
 const targetOffset = 6
 
-const viewport = overrides => ({
+const viewport = (overrides?: any) => ({
   height: 250,
   width: 850,
   ...overrides

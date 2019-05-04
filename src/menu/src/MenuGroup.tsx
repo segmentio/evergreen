@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
 
-export default class MenuGroup extends React.PureComponent {
+export default class MenuGroup extends React.PureComponent<any> {
   static propTypes = {
     /**
      * Title of the menu group.

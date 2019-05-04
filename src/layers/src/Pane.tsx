@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 import { withTheme } from '../../theme'
 
 const StringAndBoolPropType = PropTypes.oneOfType([
@@ -8,13 +8,8 @@ const StringAndBoolPropType = PropTypes.oneOfType([
   PropTypes.bool
 ])
 
-class Pane extends PureComponent {
+class Pane extends PureComponent<any & BoxProps> {
   static propTypes = {
-    /**
-     * Composes the Box component as the base.
-     */
-    ...Box.propTypes,
-
     /**
      * Background property.
      * `tint1`, `tint2` etc. from `theme.colors.background` are available.

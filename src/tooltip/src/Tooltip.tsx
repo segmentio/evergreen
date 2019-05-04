@@ -7,7 +7,7 @@ import TooltipStateless from './TooltipStateless'
 
 let idCounter = 0
 
-export default class Tooltip extends PureComponent {
+export default class Tooltip extends PureComponent<any, any> {
   static propTypes = {
     /**
      * The appearance of the tooltip.
@@ -92,7 +92,9 @@ export default class Tooltip extends PureComponent {
   }
 
   renderTarget = ({ getRef }) => {
-    const { children } = this.props
+    if (!React.isValidElement(this.props.children)) {
+      return this.props.children
+    }
 
     const tooltipTargetProps = {
       onMouseEnter: this.show,
@@ -105,18 +107,14 @@ export default class Tooltip extends PureComponent {
      * When a Tooltip is used within a Popover, the Popover passes
      * its props to the Tooltip in a `popoverProps` object.
      */
-    // eslint-disable-next-line react/prop-types
     if (this.props.popoverProps) {
       const {
-        // eslint-disable-next-line react/prop-types
         getTargetRef,
-        // eslint-disable-next-line react/prop-types
         isShown,
         ...popoverTargetProps
-        // eslint-disable-next-line react/prop-types
       } = this.props.popoverProps
 
-      return React.cloneElement(children, {
+      return React.cloneElement(this.props.children, {
         // Add the Popover props to the target.
         ...popoverTargetProps,
         // Add the Tooltip props to the target.
@@ -134,7 +132,7 @@ export default class Tooltip extends PureComponent {
     /**
      * With normal usage only the props for a Tooltip are passed to the target.
      */
-    return React.cloneElement(children, {
+    return React.cloneElement<any>(this.props.children, {
       ...tooltipTargetProps,
       innerRef: ref => {
         getRef(ref)
@@ -143,7 +141,6 @@ export default class Tooltip extends PureComponent {
   }
 
   isPopoverShown = () =>
-    // eslint-disable-next-line react/prop-types
     this.props.popoverProps && this.props.popoverProps.isShown
 
   handleMouseEnterTarget = () => {

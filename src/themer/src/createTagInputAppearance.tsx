@@ -15,7 +15,7 @@ const disabledState = '&[aria-disabled="true"]'
  * @param {object} items - object with a set of states.
  * @return {object} the final appearance.
  */
-const createTagInputAppearance = (items = {}) => {
+const createTagInputAppearance = (items: any = {}): any => {
   missingStateWarning({
     items,
     props: ['base', 'focus', 'disabled'],

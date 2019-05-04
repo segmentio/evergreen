@@ -4,10 +4,8 @@ import cx from 'classnames'
 import { withTheme } from '../../theme'
 import Text from './Text'
 
-class Code extends PureComponent {
+class Code extends PureComponent<any & React.ComponentProps<typeof Text>> {
   static propTypes = {
-    ...Text.propTypes,
-
     /**
      * The appearance of the code.
      */

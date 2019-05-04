@@ -23,7 +23,7 @@ const fuzzyFilter = (options, input, { key }) => {
  */
 const itemRenderer = props => <Option {...props} />
 
-export default class OptionsList extends PureComponent {
+export default class OptionsList extends PureComponent<any, any> {
   static propTypes = {
     options: PropTypes.arrayOf(OptionShapePropType),
     close: PropTypes.func,
@@ -69,6 +69,8 @@ export default class OptionsList extends PureComponent {
     defaultSearchValue: ''
   }
 
+  searchRef: any
+
   constructor(props, context) {
     super(props, context)
 
@@ -86,7 +88,9 @@ export default class OptionsList extends PureComponent {
      * https://github.com/segmentio/evergreen/issues/90
      */
     requestAnimationFrame(() => {
-      this.searchRef.querySelector('input').focus()
+      if (this.searchRef) {
+        this.searchRef.querySelector('input').focus()
+      }
     })
 
     window.addEventListener('keydown', this.handleKeyDown)

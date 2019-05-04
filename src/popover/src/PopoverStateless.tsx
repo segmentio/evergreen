@@ -2,13 +2,10 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Card } from '../../layers'
 
-export default class PopoverStateless extends PureComponent {
+export default class PopoverStateless extends PureComponent<
+  any & React.ComponentProps<typeof Card>
+> {
   static propTypes = {
-    /**
-     * Composes the Card as the base.
-     */
-    ...Card.propTypes,
-
     /**
      * The content of the Popover.
      */

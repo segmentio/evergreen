@@ -5,7 +5,7 @@ import { Tooltip } from '../../tooltip'
 import { Position } from '../../constants'
 import PopoverStateless from './PopoverStateless'
 
-export default class Popover extends Component {
+export default class Popover extends Component<any, any> {
   static propTypes = {
     /**
      * The position the Popover is on. Smart positioning might override this.

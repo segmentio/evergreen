@@ -4,7 +4,7 @@ import { Pane } from '../../layers'
 import { Paragraph } from '../../typography'
 import { withTheme } from '../../theme'
 
-class TooltipStateless extends PureComponent {
+class TooltipStateless extends PureComponent<any> {
   static propTypes = {
     children: PropTypes.node,
 

@@ -5,7 +5,7 @@ import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import { withTheme } from '../../theme'
 
-class MenuOption extends React.PureComponent {
+class MenuOption extends React.PureComponent<any> {
   static propTypes = {
     /**
      * The id attribute of the menu option.

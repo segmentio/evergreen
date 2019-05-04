@@ -27,7 +27,7 @@ DefaultTitleView.propTypes = {
   title: PropTypes.string,
   headerHeight: PropTypes.number
 }
-export default class SelectMenuContent extends PureComponent {
+export default class SelectMenuContent extends PureComponent<any> {
   static propTypes = {
     close: PropTypes.func,
     title: PropTypes.string,

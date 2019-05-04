@@ -16,7 +16,7 @@ const initialsProps = {
   lineHeight: 1
 }
 
-class Avatar extends PureComponent {
+class Avatar extends PureComponent<any, any> {
   static propTypes = {
     /**
      * The src attribute of the image.

@@ -4,10 +4,8 @@ import PropTypes from 'prop-types'
 import { Strong } from '../../typography'
 import { withTheme } from '../../theme'
 
-class Badge extends PureComponent {
+class Badge extends PureComponent<any & React.ComponentProps<typeof Strong>> {
   static propTypes = {
-    ...Strong.propTypes,
-
     /**
      * The color used for the badge.
      */
