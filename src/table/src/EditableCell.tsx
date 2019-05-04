@@ -16,9 +16,9 @@ class EditableCell extends React.PureComponent {
     ...TableCell.propTypes,
 
     /*
-    * Makes the TableCell focusable.
-    * Will add tabIndex={-1 || this.props.tabIndex}.
-    */
+     * Makes the TableCell focusable.
+     * Will add tabIndex={-1 || this.props.tabIndex}.
+     */
     isSelectable: PropTypes.bool.isRequired,
 
     /**

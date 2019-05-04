@@ -4,7 +4,7 @@ import cx from 'classnames'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
 
-class Textarea extends PureComponent {
+class TextInput extends PureComponent {
   static propTypes = {
     /**
      * Composes the Text component as the base.
@@ -12,17 +12,17 @@ class Textarea extends PureComponent {
     ...Text.propTypes,
 
     /**
-     * Makes the textarea element required.
+     * Makes the input element required.
      */
     required: PropTypes.bool,
 
     /**
-     * Makes the textarea element disabled.
+     * Makes the input element disabled.
      */
     disabled: PropTypes.bool,
 
     /**
-     * Sets visual styling of _only_ the text area to be "invalid". 
+     * Sets visual styling of _only_ the text input to be "invalid".
      * Note that this does not effect any `validationMessage`.
      */
     isInvalid: PropTypes.bool,
@@ -31,11 +31,6 @@ class Textarea extends PureComponent {
      * Use the native spell check functionality of the browser.
      */
     spellCheck: PropTypes.bool,
-
-    /**
-     * Allow the Grammarly browser extension to attach to the backing textarea.
-     */
-    grammarly: PropTypes.bool,
 
     /**
      * The placeholder text when there is no value present.
@@ -66,17 +61,11 @@ class Textarea extends PureComponent {
 
   static defaultProps = {
     appearance: 'default',
-    width: '100%',
+    height: 32,
+    width: 280,
     disabled: false,
     isInvalid: false,
-    spellCheck: true,
-    grammarly: false
-  }
-
-  static styles = {
-    minHeight: 80,
-    paddingX: 10,
-    paddingY: 8
+    spellCheck: true
   }
 
   render() {
@@ -93,16 +82,18 @@ class Textarea extends PureComponent {
       appearance,
       placeholder,
       spellCheck,
-      grammarly,
       ...props
     } = this.props
-    const themedClassName = theme.getTextareaClassName(appearance)
+    const themedClassName = theme.getTextInputClassName(appearance)
+    const textSize = theme.getTextSizeForControlHeight(height)
+    const borderRadius = theme.getBorderRadiusForControlHeight(height)
 
     return (
       <Text
-        is="textarea"
+        is="input"
         className={cx(themedClassName, className)}
-        size={400}
+        type="text"
+        size={textSize}
         width={width}
         height={height}
         required={required}
@@ -110,17 +101,15 @@ class Textarea extends PureComponent {
         placeholder={placeholder}
         paddingLeft={Math.round(height / 3.2)}
         paddingRight={Math.round(height / 3.2)}
-        borderRadius={3}
+        borderRadius={borderRadius}
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
-        data-gramm_editor={grammarly}
         {...(disabled ? { color: 'muted' } : {})}
         css={css}
-        {...Textarea.styles}
         {...props}
       />
     )
   }
 }
 
-export default withTheme(Textarea)
+export default withTheme(TextInput)
