@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
-    "allowJs": true,
+    "allowJs": false,
     "alwaysStrict": true,
     "noImplicitAny": false,
     "noImplicitThis": true,
@@ -12,6 +12,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "react",
+    "resolveJsonModule": true,
     "outDir": "./generated"
   },
   "include": ["src"],
