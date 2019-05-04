@@ -8,6 +8,7 @@ module.exports = {
         siteUrl: `https://evergreen.segment.com`
       }
     },
+    `gatsby-plugin-typescript`,
     `gatsby-plugin-favicon`,
     {
       resolve: `gatsby-mdx`,

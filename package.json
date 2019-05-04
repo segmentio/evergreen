@@ -217,7 +217,11 @@
     "singleQuote": true
   },
   "lint-staged": {
-    "*.js": [
+    "docs/**/*.js": [
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.{js,ts,tsx}": [
       "xo --fix",
       "prettier --write",
       "git add"
