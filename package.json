@@ -241,6 +241,7 @@
     ],
     "compileEnhancements": false,
     "require": [
+      "@babel/register",
       "ts-node/register/transpile-only",
       "./tools/test-setup"
     ]
