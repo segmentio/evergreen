@@ -13,7 +13,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "resolveJsonModule": true,
-    "outDir": "./generated",
+    "outDir": "./dist",
     "declaration": true
   },
   "include": ["src"],
@@ -22,6 +22,8 @@
     "/commonjs",
     "/esm",
     "/docs",
+    "**/test/**/*",
+    "*.test.*",
     "**/stories/**/*",
     "*.stories.tsx",
     "/examples",
