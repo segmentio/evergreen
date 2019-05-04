@@ -29,7 +29,10 @@ const fuzzyFilter = itemToString => {
 const autocompleteItemRenderer = props => <AutocompleteItem {...props} />
 
 // https://github.com/paypal/downshift/issues/164
-export default class Autocomplete extends PureComponent<any, any> {
+export default class Autocomplete extends PureComponent<
+  { children: (props: any) => React.ReactNode },
+  any
+> {
   static propTypes = {
     /**
      * This prop can be either a string or a Node.
@@ -119,6 +122,8 @@ export default class Autocomplete extends PureComponent<any, any> {
     targetWidth: 0
   }
 
+  targetRef: HTMLElement
+
   componentDidMount() {
     this.setState({
       targetWidth: this.targetRef.getBoundingClientRect().width
@@ -142,7 +147,7 @@ export default class Autocomplete extends PureComponent<any, any> {
       renderItem,
       popoverMaxHeight,
       isFilterDisabled
-    } = this.props
+    } = this.props as any
 
     const filter = itemsFilter || fuzzyFilter(itemToString)
     const items =
@@ -167,7 +172,7 @@ export default class Autocomplete extends PureComponent<any, any> {
             itemCount={items.length}
             scrollToIndex={highlightedIndex || 0}
             overscanCount={3}
-            scrollToAlignment="auto"
+            scrollToAlignment={'auto' as any}
             renderItem={({ index, style }) => {
               const item = items[index]
               const itemString = itemToString(item)
@@ -203,7 +208,7 @@ export default class Autocomplete extends PureComponent<any, any> {
       popoverMinWidth,
       defaultSelectedItem,
       ...props
-    } = this.props
+    } = this.props as any
 
     return (
       <Downshift defaultSelectedItem={defaultSelectedItem} {...props}>

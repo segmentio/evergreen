@@ -7,7 +7,7 @@ import Radio from './Radio'
 
 let radioCount = 1 // Used for generating unique input names
 
-export default class RadioGroup extends PureComponent<any & BoxProps> {
+export default class RadioGroup extends PureComponent<any & BoxProps, any> {
   static propTypes = {
     /**
      * The options for the radios of the Radio Group.
@@ -57,6 +57,8 @@ export default class RadioGroup extends PureComponent<any & BoxProps> {
     size: 12,
     isRequired: false
   }
+
+  name: string
 
   constructor(props, context) {
     super(props, context)

@@ -5,7 +5,7 @@ import { TextInput } from '../../text-input'
 import { withTheme } from '../../theme'
 import { StackingOrder } from '../../constants'
 
-const { splitBoxProps } = BoxExports
+const { splitBoxProps } = BoxExports as any
 
 class SearchInput extends PureComponent<
   any & React.ComponentProps<typeof TextInput>

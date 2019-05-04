@@ -2,7 +2,9 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Option from '../../select-menu/src/Option'
 
-export default class AutocompleteItem extends PureComponent {
+export default class AutocompleteItem extends PureComponent<
+  React.ComponentProps<typeof Option>
+> {
   static propTypes = {
     children: PropTypes.node,
     style: PropTypes.object,

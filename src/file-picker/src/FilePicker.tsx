@@ -58,13 +58,11 @@ export default class FilePicker extends PureComponent<any, any> {
     onBlur: PropTypes.func
   }
 
-  constructor() {
-    super()
-
-    this.state = {
-      files: []
-    }
+  state = {
+    files: []
   }
+
+  fileInput: any
 
   render() {
     const {
@@ -84,7 +82,7 @@ export default class FilePicker extends PureComponent<any, any> {
     if (files.length === 0) {
       inputValue = ''
     } else if (files.length === 1) {
-      inputValue = files[0].name
+      inputValue = (files[0] as any).name
     } else {
       inputValue = `${files.length} files`
     }

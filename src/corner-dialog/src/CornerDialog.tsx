@@ -147,13 +147,9 @@ export default class CornerDialog extends PureComponent<any, any> {
     onConfirm: close => close()
   }
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      exiting: false,
-      exited: !props.isShown
-    }
+  state = {
+    exiting: false,
+    exited: !this.props.isShown
   }
 
   componentDidUpdate(prevProps) {

@@ -267,7 +267,7 @@ export default class OptionsList extends PureComponent<any, any> {
             itemSize={optionSize}
             itemCount={options.length}
             overscanCount={20}
-            scrollToAlignment="auto"
+            scrollToAlignment={'auto' as any}
             {...(scrollToIndex
               ? {
                   scrollToIndex

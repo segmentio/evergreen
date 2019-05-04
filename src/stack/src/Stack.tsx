@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { StackingOrder } from '../../constants'
 import StackingContext from './StackingContext'
 
-export default class Stack extends PureComponent<any> {
+export default class Stack extends PureComponent<
+  any & { children: (props: any) => React.ReactNode }
+> {
   static propTypes = {
     /**
      * Function that takes the current z-index and returns a React Node.
@@ -22,7 +24,7 @@ export default class Stack extends PureComponent<any> {
   }
 
   render() {
-    const { children, value } = this.props
+    const { children, value } = this.props as any
     return (
       <StackingContext.Consumer>
         {previousValue => {

@@ -34,7 +34,10 @@ const getCSS = ({ initialScale, animationDuration }) => ({
   }
 })
 
-export default class Positioner extends PureComponent<any> {
+export default class Positioner extends PureComponent<
+  any & { children: (props: any) => React.ReactNode },
+  any
+> {
   static propTypes = {
     /**
      * The position the element that is being positioned is on.
@@ -113,6 +116,12 @@ export default class Positioner extends PureComponent<any> {
     onOpenComplete: () => {},
     onCloseComplete: () => {}
   }
+
+  latestAnimationFrame: any
+
+  targetRef: any
+
+  positionerRef: any
 
   constructor(props, context) {
     super(props, context)
@@ -216,9 +225,9 @@ export default class Positioner extends PureComponent<any> {
       isShown,
       children,
       initialScale,
-      targetOffset,
-      animationDuration
-    } = this.props
+      animationDuration,
+      onOpenComplete
+    } = this.props as any
 
     const { left, top, transformOrigin } = this.state
 
@@ -234,7 +243,7 @@ export default class Positioner extends PureComponent<any> {
                 in={isShown}
                 timeout={animationDuration}
                 onEnter={this.handleEnter}
-                onEntered={this.props.onOpenComplete}
+                onEntered={onOpenComplete}
                 onExited={this.handleExited}
                 unmountOnExit
               >
@@ -246,7 +255,6 @@ export default class Positioner extends PureComponent<any> {
                       state,
                       zIndex,
                       css: getCSS({
-                        targetOffset,
                         initialScale,
                         animationDuration
                       }),

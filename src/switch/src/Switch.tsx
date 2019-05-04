@@ -54,7 +54,7 @@ const isControlled = component => {
   return {}.hasOwnProperty.call(component.props, 'checked')
 }
 
-class Switch extends PureComponent<any & BoxProps> {
+class Switch extends PureComponent<any & BoxProps, any> {
   static propTypes = {
     /**
      * The id attribute of the radio.
@@ -183,7 +183,7 @@ class Switch extends PureComponent<any & BoxProps> {
           defaultChecked={defaultChecked}
           onChange={this.handleChange}
         />
-        <Box onClick={this.handleClick} height={height} width={height * 2}>
+        <Box height={height} width={height * 2}>
           <Box
             height={height}
             width={height}

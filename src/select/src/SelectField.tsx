@@ -4,18 +4,16 @@ import * as BoxExports from 'ui-box'
 import { FormField } from '../../form-field'
 import Select from './Select'
 
-const { splitBoxProps } = BoxExports
+const { splitBoxProps } = BoxExports as any
 
 let idCounter = 0
 
-export default class TextInputField extends PureComponent<any> {
+export default class TextInputField extends PureComponent<
+  any &
+    React.ComponentProps<typeof Select> &
+    React.ComponentProps<typeof FormField>
+> {
   static propTypes = {
-    /**
-     * Composes the Select component as the base.
-     */
-    ...Select.propTypes,
-    ...FormField.propTypes,
-
     /**
      * The label used above the input element.
      */

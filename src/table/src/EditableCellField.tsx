@@ -60,6 +60,12 @@ export default class EditableCellField extends React.PureComponent<any> {
     width: 0
   }
 
+  latestAnimationFrame: any
+
+  textareaRef: any
+
+  tableBodyRef: any
+
   componentDidMount() {
     this.update()
 

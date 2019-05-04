@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { BoxProps } from 'ui-box'
 import { css as gcss } from 'glamor'
 import { Icon } from '../../icon'
 import { Position } from '../../constants'

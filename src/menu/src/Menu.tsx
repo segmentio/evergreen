@@ -32,6 +32,14 @@ export default class Menu extends React.PureComponent<any> {
     children: PropTypes.node
   }
 
+  menuItems: HTMLElement[]
+
+  menuRef: any
+
+  firstItem: any
+
+  lastItem: any
+
   componentDidMount() {
     // Get the menu item buttons
     // eslint-disable-next-line unicorn/prefer-spread

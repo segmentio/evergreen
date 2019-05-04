@@ -102,6 +102,10 @@ export default class Popover extends Component<any, any> {
     bringFocusInside: false
   }
 
+  popoverNode: any
+
+  targetRef: any
+
   constructor(props) {
     super(props)
     this.state = {
@@ -247,7 +251,7 @@ export default class Popover extends Component<any, any> {
 
   renderTarget = ({ getRef, isShown }) => {
     const { children } = this.props
-    const isTooltipInside = children && children.type === Tooltip
+    const isTooltipInside = children && (children as any).type === Tooltip
 
     const getTargetRef = ref => {
       this.targetRef = ref
@@ -265,6 +269,10 @@ export default class Popover extends Component<any, any> {
       })
     }
 
+    if (!React.isValidElement(children)) {
+      return children
+    }
+
     const popoverTargetProps = {
       onClick: this.toggle,
       onKeyDown: this.handleKeyDown,
@@ -280,7 +288,7 @@ export default class Popover extends Component<any, any> {
      * add the properties to the target.
      */
     if (isTooltipInside) {
-      return React.cloneElement(children, {
+      return React.cloneElement<any>(children, {
         popoverProps: {
           getTargetRef,
           isShown,
@@ -295,7 +303,7 @@ export default class Popover extends Component<any, any> {
     /**
      * With normal usage only popover props end up on the target.
      */
-    return React.cloneElement(children, {
+    return React.cloneElement<any>(children, {
       innerRef: getTargetRef,
       ...popoverTargetProps
     })
@@ -320,9 +328,7 @@ export default class Popover extends Component<any, any> {
 
     return (
       <Positioner
-        target={({ getRef, isShown, targetWidth }) => {
-          return this.renderTarget({ getRef, isShown, targetWidth })
-        }}
+        target={this.renderTarget}
         isShown={shown}
         position={position}
         animationDuration={animationDuration}

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-export default class ScrollbarSize extends PureComponent<any> {
+export default class ScrollbarSize extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Returns the size of the scrollbar by creating a hidden fixed div.
@@ -18,6 +18,10 @@ export default class ScrollbarSize extends PureComponent<any> {
     outerWidth: null
   }
 
+  innerRef: any
+
+  outerRef: any
+
   componentDidMount() {
     const innerWidth = this.innerRef.getBoundingClientRect().width
     const outerWidth = this.outerRef.getBoundingClientRect().width
@@ -30,7 +34,7 @@ export default class ScrollbarSize extends PureComponent<any> {
   componentDidUpdate() {
     if (this.state.innerWidth && this.state.outerWidth) {
       this.props.handleScrollbarSize(
-        this.state.outerWidth - this.state.innerWidth
+        this.state.outerWidth! - this.state.innerWidth!
       )
     }
   }

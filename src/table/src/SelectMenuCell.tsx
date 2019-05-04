@@ -48,6 +48,10 @@ class SelectMenuCell extends React.PureComponent<
     isFocused: false
   }
 
+  mainRef: any
+
+  overlayRef: any
+
   constructor(props) {
     super(props)
     this.onResize = debounce(this.onResize, 200)

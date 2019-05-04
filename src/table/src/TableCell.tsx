@@ -19,7 +19,11 @@ function executeArrowKeyOverride(override) {
   }
 
   if (typeof override === 'string') {
-    document.querySelector(override).focus()
+    const node: HTMLElement | null = document.querySelector(override)
+    if (node) {
+      node.focus()
+    }
+
     return
   }
 
@@ -102,6 +106,8 @@ class TableCell extends PureComponent<any & React.ComponentProps<typeof Pane>> {
     flexShrink: 0,
     overflow: 'hidden'
   }
+
+  mainRef: any | HTMLElement
 
   handleKeyDown = e => {
     const { arrowKeysOverrides = {} } = this.props

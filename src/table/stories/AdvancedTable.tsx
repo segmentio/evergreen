@@ -19,16 +19,12 @@ const Order = {
   DESC: 'DESC'
 }
 
-export default class AdvancedTable extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      searchQuery: '',
-      orderedColumn: 1,
-      ordering: Order.NONE,
-      column2Show: 'email'
-    }
+export default class AdvancedTable extends React.Component<any, any> {
+  state = {
+    searchQuery: '',
+    orderedColumn: 1,
+    ordering: Order.NONE,
+    column2Show: 'email'
   }
 
   sort = profiles => {

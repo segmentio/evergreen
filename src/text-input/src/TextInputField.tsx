@@ -4,7 +4,7 @@ import * as BoxExports from 'ui-box'
 import { FormField } from '../../form-field'
 import TextInput from './TextInput'
 
-const { splitBoxProps } = BoxExports
+const { splitBoxProps } = BoxExports as any
 
 let idCounter = 0
 

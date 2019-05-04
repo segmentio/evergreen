@@ -9,7 +9,8 @@ import TableCell from './TableCell'
 import EditableCellField from './EditableCellField'
 
 class EditableCell extends React.PureComponent<
-  any & React.ComponentProps<typeof TableCell>
+  any & React.ComponentProps<typeof TableCell>,
+  any
 > {
   static propTypes = {
     /*
@@ -54,6 +55,12 @@ class EditableCell extends React.PureComponent<
     isSelectable: true,
     autoFocus: false
   }
+
+  mainRef: any
+
+  overlayRef: any
+
+  handleFieldEscape: any
 
   state = {
     value: this.props.children,

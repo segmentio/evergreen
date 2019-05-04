@@ -8,7 +8,7 @@ import warning from '../../lib/warning'
 import { TableRowProvider } from './TableRowContext'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 
-class TableRow extends PureComponent<React.ComponentProps<typeof Pane>> {
+class TableRow extends PureComponent<any & React.ComponentProps<typeof Pane>> {
   static propTypes = {
     /**
      * The height of the row. Remember to add paddings when using "auto".
@@ -72,6 +72,8 @@ class TableRow extends PureComponent<React.ComponentProps<typeof Pane>> {
     onDeselect: () => {},
     onKeyPress: () => {}
   }
+
+  mainRef: any
 
   handleClick = e => {
     if (typeof this.props.onClick === 'function') {
@@ -143,7 +145,7 @@ class TableRow extends PureComponent<React.ComponentProps<typeof Pane>> {
     const themedClassName = theme.getRowClassName(appearance, intent)
 
     return (
-      <TableRowProvider height={height}>
+      <TableRowProvider value={height}>
         <Pane
           innerRef={this.onRef}
           className={cx(themedClassName, className)}

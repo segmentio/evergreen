@@ -6,7 +6,10 @@ import SegmentedControlRadio from './SegmentedControlRadio'
 
 let radioCount = 1 // Used for generating unique input names
 
-export default class SegmentedControl extends PureComponent<any & BoxProps> {
+export default class SegmentedControl extends PureComponent<
+  any & BoxProps,
+  any
+> {
   static propTypes = {
     /**
      * The options for the radios of the Segmented Control.
@@ -59,6 +62,8 @@ export default class SegmentedControl extends PureComponent<any & BoxProps> {
   static defaultProps = {
     height: 32
   }
+
+  name: string
 
   constructor(props, context) {
     super(props, context)

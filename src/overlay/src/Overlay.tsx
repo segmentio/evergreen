@@ -171,6 +171,10 @@ class Overlay extends React.Component<any, any> {
     onEntered: () => {}
   }
 
+  containerElement: any
+
+  previousActiveElement: any
+
   constructor(props) {
     super(props)
 
