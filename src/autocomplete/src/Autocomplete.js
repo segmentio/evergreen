@@ -106,10 +106,6 @@ export default class Autocomplete extends PureComponent {
     ...Downshift.propTypes
   }
 
-  state = {
-    targetWidth: 0
-  }
-
   static defaultProps = {
     itemToString: i => (i ? String(i) : ''),
     itemSize: 32,
@@ -117,6 +113,10 @@ export default class Autocomplete extends PureComponent {
     popoverMinWidth: 240,
     popoverMaxHeight: 240,
     renderItem: autocompleteItemRenderer
+  }
+
+  state = {
+    targetWidth: 0
   }
 
   componentDidMount() {

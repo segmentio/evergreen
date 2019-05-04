@@ -22,13 +22,13 @@ export default class TableHead extends PureComponent {
     accountForScrollbar: PropTypes.bool
   }
 
-  state = {
-    scrollbarWidth: 0
-  }
-
   static defaultProps = {
     height: 32,
     accountForScrollbar: true
+  }
+
+  state = {
+    scrollbarWidth: 0
   }
 
   handleScrollbarSize = width => {

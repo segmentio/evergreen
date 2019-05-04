@@ -74,6 +74,15 @@ export default class TableVirtualBody extends PureComponent {
     calculatedHeight: 0
   }
 
+  constructor(props) {
+    super(props)
+
+    this.initializeHelpers()
+
+    // Add a onResize.
+    this.onResize = debounce(this.onResize, 200)
+  }
+
   static getDerivedStateFromProps(props, state) {
     if (props.height !== state.calculatedHeight) {
       return {
@@ -83,15 +92,6 @@ export default class TableVirtualBody extends PureComponent {
 
     // Return null to indicate no change to state.
     return null
-  }
-
-  constructor(props) {
-    super(props)
-
-    this.initializeHelpers()
-
-    // Add a onResize.
-    this.onResize = debounce(this.onResize, 200)
   }
 
   componentDidMount() {

@@ -1,22 +1,21 @@
 import React from 'react'
 import { ThemeConsumer } from './ThemeContext'
 
-type Difference<A, B> = Pick<A, Exclude<keyof A, keyof B>>
+type Omit<T, K> = Pick<T, Exclude<keyof T, K>>
 
-interface ThemeProps {
+interface WithThemeProps {
   // TODO: type this
   theme: object
 }
 
 /**
- * HOC that uses ThemeConsumer.
- * @param {React.Component} Component - Component that gets theme.
+ * HOC that injects the `theme` from the ThemeConsumer into the wrapper component.
  */
-function withTheme<P extends ThemeProps>(Component: React.ComponentType<P>) {
+export default function withTheme<P extends WithThemeProps>(Component: React.ComponentType<P>) {
   const displayName =
     Component.displayName || Component.name || 'Component'
 
-  return class WithTheme extends React.Component<Difference<P, ThemeProps>> {
+  return class WithTheme extends React.Component<Omit<P, keyof WithThemeProps>> {
     static displayName = `withTheme(${displayName})`
 
     render() {
@@ -28,5 +27,3 @@ function withTheme<P extends ThemeProps>(Component: React.ComponentType<P>) {
     }
   }
 }
-
-export default withTheme

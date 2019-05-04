@@ -12,7 +12,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "rootDir": "src"
+    "outDir": "./generated"
   },
   "include": ["src"],
   "exclude": [

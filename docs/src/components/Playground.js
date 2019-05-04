@@ -6,7 +6,7 @@ import uniqueId from 'lodash/uniqueId'
 import * as components from 'evergreen-ui'
 import Component from '@reactions/component'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
-import profiles from './examples/profiles.json' // eslint-disable-line import/extensions
+import profiles from './examples/profiles.json'
 
 export default class Playground extends React.Component {
   static propTypes = {

@@ -7,7 +7,7 @@ let previousPaddingRight
  *
  * @param {boolean} preventScroll - whether or not to prevent body scrolling
  */
-export default function preventBodyScroll(preventScroll) {
+export default function preventBodyScroll(preventScroll: boolean): void {
   /** Get the width before toggling the style so we can calculate the scrollbar width for a smooth, jankless style change */
   const { width } = document.body.getBoundingClientRect()
 

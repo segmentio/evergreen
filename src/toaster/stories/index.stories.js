@@ -19,10 +19,10 @@ storiesOf('toaster', module).add('examples', () => (
         <Li>warning</Li>
         <Li>danger</Li>
         <Li>
-          closeAll — useful for page transitions when you want to close all
+          closeAll - useful for page transitions when you want to close all
           toasts.
         </Li>
-        <Li>getToasts — useful to know if you already triggered a toast.</Li>
+        <Li>getToasts - useful to know if you already triggered a toast.</Li>
       </Ul>
     </Box>
     <Box>

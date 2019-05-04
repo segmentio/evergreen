@@ -7,7 +7,7 @@ import { Menu } from '../../menu'
 import { Avatar } from '../../avatar'
 import { Text } from '../../typography'
 import { IconButton, TextDropdownButton } from '../../buttons'
-import profiles from './profiles.json' // eslint-disable-line import/extensions
+import profiles from './profiles.json'
 
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()

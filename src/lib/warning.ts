@@ -1,8 +1,8 @@
 const shownWarnings: string[] = []
 
-export default (condition: boolean, warning: string) => {
-  if (condition && !shownWarnings.includes(warning)) {
-    console.error(`Warning: ${warning}`)
-    shownWarnings.push(warning)
+export default function warning(condition: boolean, message: string): void {
+  if (condition && !shownWarnings.includes(message)) {
+    console.error(`Warning: ${message}`)
+    shownWarnings.push(message)
   }
 }

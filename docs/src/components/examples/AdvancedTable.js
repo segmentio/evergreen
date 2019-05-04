@@ -11,7 +11,7 @@ import {
   TextDropdownButton
   // eslint-disable-next-line import/no-unresolved
 } from 'evergreen-ui'
-import profiles from './profiles.json' // eslint-disable-line import/extensions
+import profiles from './profiles.json'
 
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
