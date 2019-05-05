@@ -6,7 +6,7 @@
     "alwaysStrict": true,
     "noImplicitAny": false,
     "noImplicitThis": true,
-    "strictFunctionTypes": true,
+    "strictFunctionTypes": false,
     "strictPropertyInitialization": false,
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,

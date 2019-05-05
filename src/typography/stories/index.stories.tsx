@@ -20,7 +20,7 @@ const TextSizes = [300, 400, 500]
 const HeadingSizes = [100, 200, 300, 400, 500, 600, 700, 800, 900]
 const dummyText = 'A red flair silhouetted the jagged edge of a wing.'
 
-function previewTextComponent(Comp, sizes = TextSizes, props) {
+function previewTextComponent(Comp, sizes = TextSizes, props?: any) {
   return (
     <Box>
       {sizes.map(size => (

@@ -1,32 +1,28 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { withTheme } from '../../theme'
+import { withTheme, Theme } from '../../theme'
 
-class Heading extends PureComponent<any & React.ComponentProps<typeof Box>> {
-  static propTypes = {
-    /**
-     * The size of the heading.
-     */
-    size: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900])
-      .isRequired,
+type HeadingSize = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
 
-    /**
-     * Pass `default` to use the default margin top for that size.
-     */
-    marginTop: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.number,
-      PropTypes.string
-    ]),
+interface HeadingProps extends React.ComponentProps<typeof Box> {
+  /**
+   * Pass `default` to use the default margin top for that size.
+   */
+  marginTop?: boolean | number | string | 'default'
 
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
+  /**
+   * The size of the heading.
+   */
+  size: HeadingSize
 
-  static defaultProps = {
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: Theme
+}
+
+class Heading extends PureComponent<HeadingProps> {
+  static defaultProps: Partial<HeadingProps> = {
     size: 500
   }
 

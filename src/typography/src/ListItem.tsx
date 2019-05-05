@@ -1,24 +1,21 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import { Icon } from '../../icon'
 import Text from './Text'
 
-export default class ListItem extends PureComponent<
-  any & React.ComponentProps<typeof Text>
-> {
-  static propTypes = {
-    /**
-     * When passed, adds a icon before the list item.
-     * See Evergreen `Icon` for documentation.
-     */
-    icon: PropTypes.string,
+interface ListItemProps extends React.ComponentProps<typeof Text> {
+  /**
+   * When passed, adds a icon before the list item.
+   * See Evergreen `Icon` for documentation.
+   */
+  icon?: string
 
-    /**
-     * The color of the icon.
-     */
-    iconColor: PropTypes.string
-  }
+  /**
+   * The color of the icon.
+   */
+  iconColor?: string
+}
 
+export default class ListItem extends PureComponent<ListItemProps> {
   render() {
     const { children, size, icon, iconColor, ...props } = this.props
 

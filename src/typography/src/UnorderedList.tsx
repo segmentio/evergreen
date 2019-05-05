@@ -1,29 +1,26 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import Box from 'ui-box'
 
-export default class UnorderedList extends PureComponent<
-  any & React.ComponentProps<typeof Box>
-> {
-  static propTypes = {
-    /**
-     * Size of the text used in a list item.
-     * Can be: 300, 400, 500, 600.
-     */
-    size: PropTypes.oneOf([300, 400, 500, 600]).isRequired,
+interface UnorderedListProps extends React.ComponentProps<typeof Box> {
+  /**
+   * When passed, adds a icon before the list item.
+   * See Evergreen `Icon` for documentation.
+   */
+  icon?: string
 
-    /**
-     * When passed, adds a icon before each list item in the list
-     * You can override this on a individual list item.
-     */
-    icon: PropTypes.string,
+  /**
+   * The color of the icon in each list item in the list.
+   */
+  iconColor?: string
 
-    /**
-     * The color of the icon in each list item in the list.
-     */
-    iconColor: PropTypes.string
-  }
+  /**
+   * Size of the text used in a list item.
+   * Can be: 300, 400, 500, 600.
+   */
+  size?: 300 | 400 | 500 | 600
+}
 
+export default class UnorderedList extends PureComponent<UnorderedListProps> {
   static defaultProps = {
     size: 400
   }

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import Box from 'ui-box'
 import { withTheme, Theme } from '../../theme'
 
-interface TextProps {
+interface TextProps extends React.ComponentProps<typeof Box> {
   /**
    * The color (alias or valid color) applied to the text
    */
@@ -24,7 +24,7 @@ interface TextProps {
   theme: Theme
 }
 
-class Text extends PureComponent<TextProps & React.ComponentProps<typeof Box>> {
+class Text extends PureComponent<TextProps> {
   static defaultProps: Partial<TextProps> = {
     size: 400,
     color: 'default',

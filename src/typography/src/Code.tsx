@@ -1,29 +1,28 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { withTheme } from '../../theme'
+import { withTheme, Theme } from '../../theme'
 import Text from './Text'
 
-class Code extends PureComponent<any & React.ComponentProps<typeof Text>> {
-  static propTypes = {
-    /**
-     * The appearance of the code.
-     */
-    appearance: PropTypes.oneOf(['default', 'minimal']).isRequired,
+interface CodeProps extends React.ComponentProps<typeof Text> {
+  /**
+   * The appearance of the code.
+   */
+  appearance: 'default' | 'minimal'
 
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
+  /**
+   * Class name passed to the button.
+   * Only use if you know what you are doing.
+   */
+  className?: string
 
-    /**
-     * Class name passed to the button.
-     * Only use if you know what you are doing.
-     */
-    className: PropTypes.string
-  }
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: Theme
+}
 
-  static defaultProps = {
+class Code extends PureComponent<CodeProps> {
+  static defaultProps: Partial<CodeProps> = {
     appearance: 'default'
   }
 
