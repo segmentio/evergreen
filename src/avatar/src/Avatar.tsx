@@ -8,14 +8,14 @@ import { withTheme } from '../../theme'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
 
-const initialsProps = {
+const initialsStyleClass = css({
   top: 0,
   position: 'absolute',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   lineHeight: 1
-}
+})
 
 class Avatar extends PureComponent<any, any> {
   static propTypes = {
@@ -156,7 +156,7 @@ class Avatar extends PureComponent<any, any> {
       >
         {(imageUnavailable || forceShowInitials) && (
           <Text
-            className={css(initialsProps)}
+            className={initialsStyleClass}
             fontSize={initialsFontSize}
             lineHeight={initialsFontSize}
             width={size}
