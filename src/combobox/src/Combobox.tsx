@@ -1,11 +1,14 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { Autocomplete } from '../../autocomplete'
 import { TextInput } from '../../text-input'
 import { IconButton } from '../../buttons'
 
-export default class Combobox extends PureComponent<any & BoxProps, any> {
+export default class Combobox extends PureComponent<
+  any & React.ComponentProps<typeof Box>,
+  any
+> {
   static propTypes = {
     /**
      * The options to show in the menu.

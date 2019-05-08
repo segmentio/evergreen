@@ -234,7 +234,7 @@ class SideSheet extends React.Component<any> {
           <Pane
             width={width}
             {...paneProps[position]}
-            css={animationStyles[position]}
+            className={css(animationStyles[position])}
             data-state={state}
           >
             <SheetClose

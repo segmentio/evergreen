@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
 import { withTheme } from '../../theme'
 
-class Button extends PureComponent<any & BoxProps> {
+class Button extends PureComponent<any & React.ComponentProps<typeof Box>> {
   static propTypes = {
     /**
      * The intent of the button.

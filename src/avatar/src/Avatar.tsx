@@ -1,3 +1,4 @@
+import { css } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
@@ -155,7 +156,7 @@ class Avatar extends PureComponent<any, any> {
       >
         {(imageUnavailable || forceShowInitials) && (
           <Text
-            css={initialsProps}
+            className={css(initialsProps)}
             fontSize={initialsFontSize}
             lineHeight={initialsFontSize}
             width={size}

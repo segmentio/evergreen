@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 
-export default class OrderedList extends PureComponent<any & BoxProps> {
+export default class OrderedList extends PureComponent<
+  any & React.ComponentProps<typeof Box>
+> {
   static propTypes = {
     /**
      * Size of the text used in a list item.
@@ -13,15 +15,6 @@ export default class OrderedList extends PureComponent<any & BoxProps> {
 
   static defaultProps = {
     size: 400
-  }
-
-  static styles = {
-    is: 'ol',
-    margin: 0,
-    marginLeft: '1.1em',
-    padding: 0,
-    listStylePosition: 'inside',
-    listStyle: 'decimal'
   }
 
   render() {
@@ -40,7 +33,15 @@ export default class OrderedList extends PureComponent<any & BoxProps> {
     })
 
     return (
-      <Box {...OrderedList.styles} {...props}>
+      <Box
+        is="ol"
+        margin={0}
+        marginLeft="1.1em"
+        padding={0}
+        listStylePosition="inside"
+        listStyle="decimal"
+        {...props}
+      >
         {finalChildren}
       </Box>
     )

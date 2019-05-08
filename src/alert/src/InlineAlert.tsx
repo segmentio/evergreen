@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { withTheme } from '../../theme'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
 
-class InlineAlert extends PureComponent<any & BoxProps> {
+class InlineAlert extends PureComponent<
+  any & React.ComponentProps<typeof Box>
+> {
   static propTypes = {
     /**
      * The content of the alert.

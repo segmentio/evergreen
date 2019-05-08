@@ -67,7 +67,7 @@ Evergreen v4 supports theming partially. It is still complex to theme Evergreen.
 
 Evergreen offers easy Server Side Rendering (SSR) and automatic hydration.
 
-Evergreen bundles 2 CSS-in-JS solutions, from glamor and ui-box. To make it super easy to do server side rendering and hydration, Evergreen exposes a `extractStyles()` function that will do SSR for both at once.
+Evergreen provides a CSS-in-JS solution from `ui-box`. To make it super easy to do server side rendering and hydration, Evergreen exposes a `extractStyles()` function that will do SSR for both at once.
 
 - How to use it with Next.js in the [ssr-next example app](examples/ssr-next).
 - [How to use it with GatsbyJS](https://github.com/segmentio/evergreen/issues/154)

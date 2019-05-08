@@ -1,6 +1,7 @@
+import { css } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { withTheme } from '../../theme'
 
 const animationEasing = {
@@ -54,7 +55,10 @@ const isControlled = component => {
   return {}.hasOwnProperty.call(component.props, 'checked')
 }
 
-class Switch extends PureComponent<any & BoxProps, any> {
+class Switch extends PureComponent<
+  any & React.ComponentProps<typeof Box>,
+  any
+> {
   static propTypes = {
     /**
      * The id attribute of the radio.
@@ -188,7 +192,7 @@ class Switch extends PureComponent<any & BoxProps, any> {
             height={height}
             width={height}
             data-checked={checked}
-            css={iconContainerStyle}
+            className={css(iconContainerStyle)}
           >
             {hasCheckIcon && <CheckIcon size={height / 2 - 3} />}
           </Box>
@@ -196,10 +200,14 @@ class Switch extends PureComponent<any & BoxProps, any> {
             width={height * 2}
             display="flex"
             data-checked={checked}
-            css={handleContainerStyle}
+            className={css(handleContainerStyle)}
           >
             <Box flex={1} padding={2}>
-              <Box width={height - 4} height={height - 4} css={handleStyle} />
+              <Box
+                width={height - 4}
+                height={height - 4}
+                className={css(handleStyle)}
+              />
             </Box>
           </Box>
         </Box>

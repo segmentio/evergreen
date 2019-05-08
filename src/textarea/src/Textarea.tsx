@@ -78,8 +78,6 @@ class Textarea extends PureComponent<any & React.ComponentProps<typeof Text>> {
     const {
       theme,
       className,
-
-      css,
       width,
       height,
       disabled,
@@ -110,7 +108,6 @@ class Textarea extends PureComponent<any & React.ComponentProps<typeof Text>> {
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
         {...(disabled ? { color: 'muted' } : {})}
-        css={css}
         {...Textarea.styles}
         {...props}
       />

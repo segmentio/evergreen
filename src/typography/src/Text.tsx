@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { withTheme } from '../../theme'
 
 interface Theme {
@@ -19,7 +19,7 @@ interface TextProps {
   theme: Theme
 }
 
-class Text extends PureComponent<TextProps & BoxProps> {
+class Text extends PureComponent<TextProps & React.ComponentProps<typeof Box>> {
   static defaultProps: Partial<TextProps> = {
     size: 400,
     color: 'default',
@@ -33,9 +33,8 @@ class Text extends PureComponent<TextProps & BoxProps> {
       size
     )
 
-    const finalMarginTop = marginTop === 'default'
-      ? defaultMarginTop
-      : marginTop
+    const finalMarginTop =
+      marginTop === 'default' ? defaultMarginTop : marginTop
 
     return (
       <Box

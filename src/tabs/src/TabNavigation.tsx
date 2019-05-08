@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 
-export default class TabNavigation extends PureComponent<BoxProps> {
+export default class TabNavigation extends PureComponent<
+  React.ComponentProps<typeof Box>
+> {
   render() {
     return <Box is="nav" role="navigation" {...this.props} />
   }

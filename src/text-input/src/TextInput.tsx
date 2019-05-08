@@ -67,8 +67,6 @@ class TextInput extends PureComponent<any & React.ComponentProps<typeof Text>> {
     const {
       theme,
       className,
-
-      css,
       width,
       height,
       disabled,
@@ -100,7 +98,6 @@ class TextInput extends PureComponent<any & React.ComponentProps<typeof Text>> {
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         {...(disabled ? { color: 'muted' } : {})}
-        css={css}
         {...props}
       />
     )

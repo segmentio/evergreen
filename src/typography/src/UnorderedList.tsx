@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 
-export default class UnorderedList extends PureComponent<any & BoxProps> {
+export default class UnorderedList extends PureComponent<
+  any & React.ComponentProps<typeof Box>
+> {
   static propTypes = {
     /**
      * Size of the text used in a list item.
@@ -26,15 +28,6 @@ export default class UnorderedList extends PureComponent<any & BoxProps> {
     size: 400
   }
 
-  static styles = {
-    is: 'ul',
-    margin: 0,
-    marginLeft: '1.1em',
-    padding: 0,
-    listStylePosition: 'inside',
-    listStyle: 'disc'
-  }
-
   render() {
     const { children, size, icon, iconColor, ...props } = this.props
 
@@ -54,7 +47,14 @@ export default class UnorderedList extends PureComponent<any & BoxProps> {
     })
 
     return (
-      <Box {...UnorderedList.styles} {...props}>
+      <Box
+        is="ul"
+        margin={0}
+        marginLeft="1.1em"
+        padding={0}
+        listStyle="disc"
+        {...props}
+      >
         {finalChildren}
       </Box>
     )

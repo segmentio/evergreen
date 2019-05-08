@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
 import { withTheme } from '../../theme'
 
-class TextDropdownButton extends PureComponent<any & BoxProps> {
+class TextDropdownButton extends PureComponent<
+  any & React.ComponentProps<typeof Box>
+> {
   static propTypes = {
     /**
      * Forcefully set the active state of a button.
