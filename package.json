@@ -19,11 +19,13 @@
   "module": "esm/index.js",
   "files": [
     "commonjs",
-    "esm"
+    "esm",
+    "dist"
   ],
+  "types": "./dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "test": "xo && ava",
+    "test": "xo && ava && yarn type-check",
     "prepublishOnly": "rm -rf esm commonjs && yarn run build",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
@@ -31,8 +33,8 @@
     "build-storybook": "build-storybook -s .storybook/static -o .out",
     "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test' --source-maps inline --extensions '.js,.ts,.tsx'",
     "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test' --source-maps inline --extensions '.js,.ts,.tsx'",
-    "build": "concurrently --names 'commonjs,esm' 'yarn run build-commonjs' 'yarn run build-esm'",
-    "build-types": "tsc --allowJs false --declaration --emitDeclarationOnly",
+    "build": "concurrently --names 'commonjs,esm,types' 'yarn run build-commonjs' 'yarn run build-esm' 'yarn run build-types'",
+    "build-types": "tsc --emitDeclarationOnly",
     "type-check": "tsc --noEmit",
     "clean": "git clean -Xdf",
     "release": "np",
@@ -184,6 +186,9 @@
       "react/jsx-indent": [
         "off"
       ],
+      "react/no-unused-prop-types": [
+        "off"
+      ],
       "react/require-default-props": [
         "off"
       ],
@@ -241,6 +246,7 @@
     ],
     "compileEnhancements": false,
     "require": [
+      "@babel/register",
       "ts-node/register/transpile-only",
       "./tools/test-setup"
     ]

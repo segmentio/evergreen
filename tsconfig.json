@@ -2,17 +2,19 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
-    "allowJs": true,
+    "allowJs": false,
     "alwaysStrict": true,
     "noImplicitAny": false,
     "noImplicitThis": true,
     "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
+    "strictPropertyInitialization": false,
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "outDir": "./generated"
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "declaration": true
   },
   "include": ["src"],
   "exclude": [
@@ -20,6 +22,10 @@
     "/commonjs",
     "/esm",
     "/docs",
+    "**/test/**/*",
+    "*.test.*",
+    "**/stories/**/*",
+    "*.stories.tsx",
     "/examples",
     "/tools"
   ]
