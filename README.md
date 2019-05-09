@@ -144,6 +144,20 @@ The following file tree will be generated:
 └── index.js
 ```
 
+### 📖 Step 3. Run evergreen locally
+
+To locally run the project, you need to go inside docs folder.
+But docs depends on main lib built.
+
+To start the project run the following commands:
+
+```
+$ yarn build
+$ cd docs
+$ yarn install
+$ yarn dev
+```
+
 ## 🎉 Contributors
 
 We will add you to the list if you make any meaningful contribution!
