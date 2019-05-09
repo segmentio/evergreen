@@ -4,7 +4,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { Badge } from '../../badges'
 import { Icon } from '../../icon'
 import { minorScale } from '../../scales'
@@ -25,7 +25,7 @@ class Tag extends React.PureComponent<any> {
   render() {
     const { children, onRemove, isRemovable, ...props } = this.props
 
-    const badgeStyles: BoxProps = {
+    const badgeStyles: React.ComponentProps<typeof Box> = {
       alignItems: 'center',
       display: 'inline-flex',
       fontWeight: 400,

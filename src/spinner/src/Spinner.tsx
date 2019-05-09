@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { css as gcss } from 'glamor'
 import { withTheme } from '../../theme'
 
@@ -39,7 +39,10 @@ const inner = color => ({
   fill: 'transparent'
 })
 
-class Spinner extends PureComponent<any & BoxProps, any> {
+class Spinner extends PureComponent<
+  any & React.ComponentProps<typeof Box>,
+  any
+> {
   static propTypes = {
     /**
      * Delay after which spinner should be visible.
@@ -76,10 +79,16 @@ class Spinner extends PureComponent<any & BoxProps, any> {
     const { theme, size, ...props } = this.props
     return (
       <Box width={size} height={size} lineHeight={0} {...props}>
-        <Box is="svg" css={outer} x="0px" y="0px" viewBox="0 0 150 150">
+        <Box
+          is="svg"
+          className={css(outer)}
+          x="0px"
+          y="0px"
+          viewBox="0 0 150 150"
+        >
           <Box
             is="circle"
-            css={inner(theme.spinnerColor)}
+            className={css(inner(theme.spinnerColor))}
             cx="75"
             cy="75"
             r="60"

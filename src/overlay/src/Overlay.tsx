@@ -1,4 +1,5 @@
 import React from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import Box from 'ui-box'
@@ -364,9 +365,12 @@ class Overlay extends React.Component<any, any> {
                   right={0}
                   bottom={0}
                   zIndex={zIndex}
-                  css={animationStyles(theme.overlayBackgroundColor)}
                   data-state={state}
                   {...containerProps}
+                  className={cx(
+                    containerProps.className,
+                    css(animationStyles(theme.overlayBackgroundColor))
+                  )}
                 >
                   {typeof children === 'function'
                     ? children({

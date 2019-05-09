@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
 
@@ -15,7 +15,7 @@ CircleIcon.propTypes = {
   size: PropTypes.number
 }
 
-class Radio extends PureComponent<any & BoxProps> {
+class Radio extends PureComponent<any & React.ComponentProps<typeof Box>> {
   static propTypes = {
     /**
      * The id attribute of the radio.

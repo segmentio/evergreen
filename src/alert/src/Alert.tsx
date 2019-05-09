@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { withTheme } from '../../theme'
 import { Pane } from '../../layers'
 import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
 import { Icon } from '../../icon'
 
-class Alert extends PureComponent<any & BoxProps> {
+class Alert extends PureComponent<any & React.ComponentProps<typeof Box>> {
   static propTypes = {
     /**
      * The content of the alert. When a string is passed it is wrapped in a `<Text size={400} />` component.

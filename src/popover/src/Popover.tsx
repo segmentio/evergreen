@@ -1,3 +1,5 @@
+import cx from 'classnames'
+import { css as gcss } from 'glamor'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Positioner } from '../../positioner'
@@ -317,7 +319,7 @@ export default class Popover extends Component<any, any> {
       minWidth,
       position,
       minHeight,
-      statelessProps,
+      statelessProps = {},
       animationDuration,
       onCloseComplete
     } = this.props
@@ -342,12 +344,12 @@ export default class Popover extends Component<any, any> {
               getRef(ref)
             }}
             data-state={state}
-            css={css}
             style={style}
             display={display}
             minWidth={minWidth}
             minHeight={minHeight}
             {...statelessProps}
+            className={cx(statelessProps.className, gcss(css))}
           >
             {typeof content === 'function'
               ? content({ close: this.close })

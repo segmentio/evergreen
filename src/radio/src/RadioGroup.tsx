@@ -1,13 +1,16 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
 import Radio from './Radio'
 
 let radioCount = 1 // Used for generating unique input names
 
-export default class RadioGroup extends PureComponent<any & BoxProps, any> {
+export default class RadioGroup extends PureComponent<
+  any & React.ComponentProps<typeof Box>,
+  any
+> {
   static propTypes = {
     /**
      * The options for the radios of the Radio Group.

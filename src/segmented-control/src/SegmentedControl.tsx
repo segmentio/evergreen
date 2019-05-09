@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import safeInvoke from '../../lib/safe-invoke'
 import SegmentedControlRadio from './SegmentedControlRadio'
 
 let radioCount = 1 // Used for generating unique input names
 
 export default class SegmentedControl extends PureComponent<
-  any & BoxProps,
+  any & React.ComponentProps<typeof Box>,
   any
 > {
   static propTypes = {

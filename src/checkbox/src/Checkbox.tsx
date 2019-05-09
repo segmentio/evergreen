@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
 
@@ -32,7 +32,7 @@ MinusIcon.propTypes = {
   fill: PropTypes.string
 }
 
-class Checkbox extends PureComponent<any & BoxProps> {
+class Checkbox extends PureComponent<any & React.ComponentProps<typeof Box>> {
   static propTypes = {
     /**
      * The id attribute of the checkbox.

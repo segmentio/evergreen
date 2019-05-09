@@ -1,6 +1,7 @@
+import cx from 'classnames'
+import { css as gcss } from 'glamor'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { css as gcss } from 'glamor'
 import { Pane } from '../../layers'
 import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
@@ -38,7 +39,7 @@ const closeAnimation = css.keyframes('closeAnimation', {
   }
 })
 
-const animationStyles = {
+const animationStylesClass = css({
   '&[data-state="entering"], &[data-state="entered"]': {
     animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
       animationEasing.deceleration
@@ -49,7 +50,7 @@ const animationStyles = {
       animationEasing.acceleration
     } both`
   }
-}
+})
 
 class Dialog extends React.Component<any> {
   static propTypes = {
@@ -250,7 +251,7 @@ class Dialog extends React.Component<any> {
       cancelLabel,
       shouldCloseOnOverlayClick,
       shouldCloseOnEscapePress,
-      containerProps,
+      containerProps = {},
       contentContainerProps,
       minHeightContent,
       preventBodyScrolling
@@ -293,9 +294,9 @@ class Dialog extends React.Component<any> {
             marginY={topOffsetWithUnit}
             display="flex"
             flexDirection="column"
-            css={animationStyles}
             data-state={state}
             {...containerProps}
+            className={cx(containerProps.className, animationStylesClass)}
           >
             {hasHeader && (
               <Pane

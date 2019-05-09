@@ -1,14 +1,29 @@
+import cx from 'classnames'
+import { css as gcss } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { withTheme } from '../../theme'
+
+interface Props {
+  background: string
+  elevation: 0 | 1 | 2 | 3 | 4
+  hoverElevation?: any
+  activeElevation?: any
+  border?: any
+  borderTop?: any
+  borderRight?: any
+  borderBottom?: any
+  borderLeft?: any
+  theme?: any
+}
 
 const StringAndBoolPropType = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.bool
 ])
 
-class Pane extends PureComponent<any & BoxProps> {
+class Pane extends PureComponent<any & React.ComponentProps<typeof Box>> {
   static propTypes = {
     /**
      * Background property.
@@ -134,6 +149,7 @@ class Pane extends PureComponent<any & BoxProps> {
       theme,
 
       background,
+      className,
 
       elevation,
       hoverElevation,
@@ -145,6 +161,7 @@ class Pane extends PureComponent<any & BoxProps> {
       borderBottom,
       borderLeft,
 
+      // TODO fully deprecate this
       css = {},
       ...props
     } = this.props
@@ -165,6 +182,15 @@ class Pane extends PureComponent<any & BoxProps> {
       this.getBorderSideProperty({ borderSideProperty, border })
     )
 
+    const classNames = cx(
+      className,
+      gcss({
+        ...css,
+        ...hoverElevationStyle,
+        ...activeElevationStyle
+      })
+    )
+
     return (
       <Box
         borderTop={_borderTop}
@@ -173,11 +199,7 @@ class Pane extends PureComponent<any & BoxProps> {
         borderLeft={_borderLeft}
         boxShadow={elevationStyle}
         background={theme.getBackground(background)}
-        css={{
-          ...css,
-          ...hoverElevationStyle,
-          ...activeElevationStyle
-        }}
+        className={classNames}
         {...props}
       />
     )

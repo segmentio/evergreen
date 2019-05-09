@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { Icon } from '../../icon'
 import { withTheme } from '../../theme'
 import Button from './Button'
 
-class IconButton extends PureComponent<any & BoxProps> {
+class IconButton extends PureComponent<any & React.ComponentProps<typeof Box>> {
   static propTypes = {
     /**
      * Name of a Blueprint UI icon, or an icon element, to render.

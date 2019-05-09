@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import { withTheme } from '../../theme'
 
-class Select extends PureComponent<any & BoxProps> {
+class Select extends PureComponent<any & React.ComponentProps<typeof Box>> {
   static propTypes = {
     /**
      * The id attribute for the select.

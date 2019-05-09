@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import { css as gcss } from 'glamor'
 import { Icon } from '../../icon'
 import { Position } from '../../constants'
@@ -126,7 +126,9 @@ const getSheetCloseClassName = position => {
   return sheetCloseClassNameCache[position]
 }
 
-export default class SheetClose extends PureComponent<any & BoxProps> {
+export default class SheetClose extends PureComponent<
+  any & React.ComponentProps<typeof Box>
+> {
   static propTypes = {
     isClosing: PropTypes.bool,
     position: PropTypes.oneOf([

@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { BoxProps } from 'ui-box'
+import Box from 'ui-box'
 import FormFieldLabel from './FormFieldLabel'
 import FormFieldDescription from './FormFieldDescription'
 import FormFieldValidationMessage from './FormFieldValidationMessage'
 import FormFieldHint from './FormFieldHint'
 
-export default class FormField extends PureComponent<any & BoxProps> {
+export default class FormField extends PureComponent<
+  any & React.ComponentProps<typeof Box>
+> {
   static propTypes = {
     /**
      * The label used above the input element.
