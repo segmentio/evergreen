@@ -1,21 +1,26 @@
 import React from 'react'
-import { ThemeConsumer } from './ThemeContext'
+import { ThemeConsumer, Theme } from './ThemeContext'
 
-type Omit<T, K> = Pick<T, Exclude<keyof T, K>>
+type Difference<T, K> = Pick<T, Exclude<keyof T, keyof K>>
 
 interface WithThemeProps {
-  // TODO: type this
-  theme: object
+  /**
+   * The theme context from the ThemeProvider
+   */
+  theme: Theme
 }
 
 /**
  * HOC that injects the `theme` from the ThemeConsumer into the wrapper component.
  */
-export default function withTheme<P extends WithThemeProps>(Component: React.ComponentType<P>) {
-  const displayName =
-    Component.displayName || Component.name || 'Component'
+export function withTheme<P extends WithThemeProps>(
+  Component: React.ComponentType<P>
+): React.ComponentClass<Difference<P, WithThemeProps>, {}> {
+  const displayName = Component.displayName || Component.name || 'Component'
 
-  return class WithTheme extends React.Component<Omit<P, keyof WithThemeProps>> {
+  return class WithTheme extends React.Component<
+    Difference<P, WithThemeProps>
+  > {
     static displayName = `withTheme(${displayName})`
 
     render() {
