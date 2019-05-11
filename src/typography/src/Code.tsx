@@ -10,7 +10,7 @@ interface CodeProps extends React.ComponentProps<typeof Text> {
   appearance: 'default' | 'minimal'
 
   /**
-   * Class name passed to the button.
+   * Class name passed to the component.
    * Only use if you know what you are doing.
    */
   className?: string

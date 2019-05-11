@@ -48,7 +48,7 @@ class TextInput extends PureComponent<any & React.ComponentProps<typeof Text>> {
     theme: PropTypes.object.isRequired,
 
     /**
-     * Class name passed to the button.
+     * Class name passed to the input.
      * Only use if you know what you are doing.
      */
     className: PropTypes.string

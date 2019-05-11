@@ -53,7 +53,7 @@ class Textarea extends PureComponent<any & React.ComponentProps<typeof Text>> {
     theme: PropTypes.object.isRequired,
 
     /**
-     * Class name passed to the button.
+     * Class name passed to the textarea.
      * Only use if you know what you are doing.
      */
     className: PropTypes.string
