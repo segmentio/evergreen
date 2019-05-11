@@ -19,14 +19,4 @@ const {
   Consumer: ThemeConsumer
 } = React.createContext<Theme>(defaultTheme)
 
-export interface Theme {
-  getCodeProps: (appearance: 'default' | 'minimal') => any
-  getFontFamily: (fontFamily?: string) => string
-  getHeadingStyle: (size?: number) => any
-  getLinkClassName: (color?: string) => string
-  getParagraphStyle: (size?: number) => any
-  getTextColor: (colorAlias?: string) => string
-  getTextStyle: (size?: number) => any
-}
-
 export { ThemeProvider, ThemeConsumer }
