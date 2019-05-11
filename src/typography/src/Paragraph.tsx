@@ -1,33 +1,8 @@
 import React, { PureComponent } from 'react'
-<<<<<<< HEAD
-import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { withTheme } from '../../theme'
-
-class Paragraph extends PureComponent<any & React.ComponentProps<typeof Box>> {
-  static propTypes = {
-    /**
-     * Size of the text style.
-     * Can be: 300, 400, 500.
-     */
-    size: PropTypes.oneOf([300, 400, 500]).isRequired,
-
-    /**
-     * Font family.
-     * Can be: `ui`, `display` or `mono` or a custom font family.
-     */
-    fontFamily: PropTypes.string.isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-=======
-import Box, { BoxProps } from 'ui-box'
 import { withTheme, Theme } from '../../theme'
 
-interface ParagraphProps extends BoxProps {
+interface ParagraphProps extends React.ComponentProps<typeof Box> {
   /**
    * The color (alias or valid color) applied to the text
    */
@@ -50,7 +25,6 @@ interface ParagraphProps extends BoxProps {
    */
   theme: Theme
 }
->>>>>>> migrate typography components to TS
 
 class Paragraph extends PureComponent<ParagraphProps> {
   static defaultProps: Partial<ParagraphProps> = {

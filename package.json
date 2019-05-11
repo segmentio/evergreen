@@ -25,7 +25,8 @@
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "test": "xo && ava && yarn type-check",
+    "test": "yarn lint && ava && yarn type-check",
+    "lint": "xo",
     "prepublishOnly": "rm -rf esm commonjs && yarn run build",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
