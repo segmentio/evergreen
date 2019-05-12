@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import Box from 'ui-box'
 
-interface UnorderedListProps extends React.ComponentProps<typeof Box> {
+export interface UnorderedListProps extends React.ComponentProps<typeof Box> {
   /**
    * When passed, adds a icon before the list item.
    * See Evergreen `Icon` for documentation.

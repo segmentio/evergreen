@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import Box from 'ui-box'
 
-interface OrderedListProps extends React.ComponentProps<typeof Box> {
+export interface OrderedListProps extends React.ComponentProps<typeof Box> {
   /**
    * Size of the text used in a list item.
    * Can be: 300, 400, 500, 600.

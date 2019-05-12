@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { Icon } from '../../icon'
 import Text from './Text'
 
-interface ListItemProps extends React.ComponentProps<typeof Text> {
+export interface ListItemProps extends React.ComponentProps<typeof Text> {
   /**
    * When passed, adds a icon before the list item.
    * See Evergreen `Icon` for documentation.

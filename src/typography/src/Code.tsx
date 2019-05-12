@@ -3,7 +3,7 @@ import cx from 'classnames'
 import { withTheme, Theme } from '../../theme'
 import Text from './Text'
 
-interface CodeProps extends React.ComponentProps<typeof Text> {
+export interface CodeProps extends React.ComponentProps<typeof Text> {
   /**
    * The appearance of the code.
    */

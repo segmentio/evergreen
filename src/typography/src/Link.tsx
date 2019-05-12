@@ -3,7 +3,7 @@ import cx from 'classnames'
 import { withTheme, Theme } from '../../theme'
 import Text from './Text'
 
-interface LinkProps extends React.ComponentProps<typeof Text> {
+export interface LinkProps extends React.ComponentProps<typeof Text> {
   /**
    * Class name passed to the link.
    * Only use if you know what you are doing.

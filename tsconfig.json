@@ -3,6 +3,7 @@
     "target": "esnext",
     "module": "commonjs",
     "allowJs": false,
+    "importHelpers": true,
     "alwaysStrict": true,
     "noImplicitAny": false,
     "noImplicitThis": true,

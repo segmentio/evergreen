@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import Box from 'ui-box'
 import { withTheme, Theme } from '../../theme'
 
-interface TextProps extends React.ComponentProps<typeof Box> {
+export interface TextProps extends React.ComponentProps<typeof Box> {
   /**
    * The color (alias or valid color) applied to the text
    */

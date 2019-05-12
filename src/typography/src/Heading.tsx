@@ -4,7 +4,7 @@ import { withTheme, Theme } from '../../theme'
 
 type HeadingSize = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
 
-interface HeadingProps extends React.ComponentProps<typeof Box> {
+export interface HeadingProps extends React.ComponentProps<typeof Box> {
   /**
    * Pass `default` to use the default margin top for that size.
    */
