@@ -1,13 +1,16 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Validator } from 'react'
+import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { withTheme, Theme } from '../../theme'
 import Text from './Text'
+
+type Appearance = 'default' | 'minimal'
 
 export interface CodeProps extends React.ComponentProps<typeof Text> {
   /**
    * The appearance of the code.
    */
-  appearance: 'default' | 'minimal'
+  appearance: Appearance
 
   /**
    * Class name passed to the component.
@@ -22,6 +25,14 @@ export interface CodeProps extends React.ComponentProps<typeof Text> {
 }
 
 class Code extends PureComponent<CodeProps> {
+  static propTypes = {
+    appearance: PropTypes.oneOf(['default', 'minimal']).isRequired as Validator<
+      Appearance
+    >,
+    className: PropTypes.string,
+    theme: PropTypes.object.isRequired as Validator<Theme>
+  }
+
   static defaultProps: Partial<CodeProps> = {
     appearance: 'default'
   }

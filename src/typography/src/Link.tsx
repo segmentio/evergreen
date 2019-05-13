@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Validator } from 'react'
+import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { withTheme, Theme } from '../../theme'
 import Text from './Text'
@@ -38,6 +39,15 @@ export interface LinkProps extends React.ComponentProps<typeof Text> {
 }
 
 class Link extends PureComponent<LinkProps> {
+  static propTypes = {
+    className: PropTypes.string,
+    color: PropTypes.string,
+    href: PropTypes.string,
+    rel: PropTypes.string,
+    target: PropTypes.string,
+    theme: PropTypes.object.isRequired as Validator<Theme>
+  }
+
   static defaultProps = {
     color: 'default'
   }

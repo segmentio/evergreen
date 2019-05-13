@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import { Icon } from '../../icon'
 import Text from './Text'
 
@@ -16,6 +17,12 @@ export interface ListItemProps extends React.ComponentProps<typeof Text> {
 }
 
 export default class ListItem extends PureComponent<ListItemProps> {
+  static propTypes = {
+    ...Text.propTypes,
+    icon: PropTypes.string,
+    iconColor: PropTypes.string
+  }
+
   render() {
     const { children, size, icon, iconColor, ...props } = this.props
 

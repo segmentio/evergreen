@@ -3,10 +3,7 @@
   "plugins": [
     "@babel/plugin-transform-runtime",
     "@babel/plugin-proposal-class-properties",
-    "babel-plugin-add-react-displayname",
-    ["babel-plugin-typescript-to-proptypes", {
-      "typeCheck": true
-    }]
+    "babel-plugin-add-react-displayname"
   ],
   "env": {
     "esm": {

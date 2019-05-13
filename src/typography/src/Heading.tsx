@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Validator } from 'react'
+import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { withTheme, Theme } from '../../theme'
 
@@ -22,6 +23,17 @@ export interface HeadingProps extends React.ComponentProps<typeof Box> {
 }
 
 class Heading extends PureComponent<HeadingProps> {
+  static propTypes = {
+    marginTop: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.number,
+      PropTypes.string
+    ]),
+    size: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900])
+      .isRequired as Validator<HeadingSize>,
+    theme: PropTypes.object.isRequired as Validator<Theme>
+  }
+
   static defaultProps: Partial<HeadingProps> = {
     size: 500
   }

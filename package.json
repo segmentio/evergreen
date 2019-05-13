@@ -89,7 +89,6 @@
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "babel-plugin-add-react-displayname": "^0.0.5",
-    "babel-plugin-typescript-to-proptypes": "^0.17.1",
     "concurrently": "^4.0.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
