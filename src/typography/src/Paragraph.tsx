@@ -1,29 +1,46 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Validator } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { withTheme } from '../../theme'
+import { withTheme, Theme } from '../../theme'
 
-class Paragraph extends PureComponent<any & React.ComponentProps<typeof Box>> {
+type FontFamily = 'ui' | 'display' | 'mono'
+type ParagraphSize = 300 | 400 | 500
+
+export interface ParagraphProps extends React.ComponentProps<typeof Box> {
+  /**
+   * The color (alias or valid color) applied to the text
+   */
+  color?: string
+
+  /**
+   * Font family.
+   * Can be: `ui`, `display` or `mono` or a custom font family.
+   */
+  fontFamily?: FontFamily
+
+  /**
+   * Size of the text style.
+   * Can be: 300, 400, 500.
+   */
+  size?: ParagraphSize
+
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: Theme
+}
+
+class Paragraph extends PureComponent<ParagraphProps> {
   static propTypes = {
-    /**
-     * Size of the text style.
-     * Can be: 300, 400, 500.
-     */
-    size: PropTypes.oneOf([300, 400, 500]).isRequired,
-
-    /**
-     * Font family.
-     * Can be: `ui`, `display` or `mono` or a custom font family.
-     */
-    fontFamily: PropTypes.string.isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
+    color: PropTypes.string,
+    fontFamily: PropTypes.oneOf(['ui', 'display', 'mono']) as Validator<
+      FontFamily
+    >,
+    size: PropTypes.oneOf([300, 400, 500, 600]) as Validator<ParagraphSize>,
+    theme: PropTypes.object.isRequired as Validator<Theme>
   }
 
-  static defaultProps = {
+  static defaultProps: Partial<ParagraphProps> = {
     size: 400,
     color: 'default',
     fontFamily: 'ui'

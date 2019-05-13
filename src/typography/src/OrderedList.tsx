@@ -1,16 +1,20 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Validator } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 
-export default class OrderedList extends PureComponent<
-  any & React.ComponentProps<typeof Box>
-> {
+type ListSize = 300 | 400 | 500 | 600
+
+export interface OrderedListProps extends React.ComponentProps<typeof Box> {
+  /**
+   * Size of the text used in a list item.
+   * Can be: 300, 400, 500, 600.
+   */
+  size: ListSize
+}
+
+export default class OrderedList extends PureComponent<OrderedListProps> {
   static propTypes = {
-    /**
-     * Size of the text used in a list item.
-     * Can be: 300, 400, 500, 600.
-     */
-    size: PropTypes.oneOf([300, 400, 500, 600]).isRequired
+    size: PropTypes.number as Validator<ListSize>
   }
 
   static defaultProps = {

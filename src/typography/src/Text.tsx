@@ -1,8 +1,12 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Validator } from 'react'
+import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { withTheme, Theme } from '../../theme'
 
-interface TextProps {
+type FontFamily = 'ui' | 'display' | 'mono'
+type TextSize = 300 | 400 | 500 | 600
+
+export interface TextProps extends React.ComponentProps<typeof Box> {
   /**
    * The color (alias or valid color) applied to the text
    */
@@ -11,12 +15,12 @@ interface TextProps {
   /**
    * The font family alias applied to the text
    */
-  fontFamily?: 'ui' | 'display' | 'mono'
+  fontFamily?: FontFamily
 
   /**
    * The size of the text style
    */
-  size?: 300 | 400 | 500 | 600
+  size?: TextSize
 
   /**
    * Theme provided by ThemeProvider.
@@ -24,7 +28,16 @@ interface TextProps {
   theme: Theme
 }
 
-class Text extends PureComponent<TextProps & React.ComponentProps<typeof Box>> {
+class Text extends PureComponent<TextProps> {
+  static propTypes = {
+    color: PropTypes.string,
+    fontFamily: PropTypes.oneOf(['ui', 'display', 'mono']) as Validator<
+      FontFamily
+    >,
+    size: PropTypes.oneOf([300, 400, 500, 600]) as Validator<TextSize>,
+    theme: PropTypes.object.isRequired as Validator<Theme>
+  }
+
   static defaultProps: Partial<TextProps> = {
     size: 400,
     color: 'default',

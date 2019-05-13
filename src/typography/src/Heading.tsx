@@ -1,32 +1,40 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Validator } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { withTheme } from '../../theme'
+import { withTheme, Theme } from '../../theme'
 
-class Heading extends PureComponent<any & React.ComponentProps<typeof Box>> {
+type HeadingSize = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+
+export interface HeadingProps extends React.ComponentProps<typeof Box> {
+  /**
+   * Pass `default` to use the default margin top for that size.
+   */
+  marginTop?: boolean | number | string | 'default'
+
+  /**
+   * The size of the heading.
+   */
+  size: HeadingSize
+
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: Theme
+}
+
+class Heading extends PureComponent<HeadingProps> {
   static propTypes = {
-    /**
-     * The size of the heading.
-     */
-    size: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900])
-      .isRequired,
-
-    /**
-     * Pass `default` to use the default margin top for that size.
-     */
     marginTop: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.number,
       PropTypes.string
     ]),
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
+    size: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900])
+      .isRequired as Validator<HeadingSize>,
+    theme: PropTypes.object.isRequired as Validator<Theme>
   }
 
-  static defaultProps = {
+  static defaultProps: Partial<HeadingProps> = {
     size: 500
   }
 
