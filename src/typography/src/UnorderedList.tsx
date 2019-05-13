@@ -27,7 +27,7 @@ export default class UnorderedList extends PureComponent<UnorderedListProps> {
   static propTypes = {
     icon: PropTypes.string,
     iconColor: PropTypes.string,
-    size: PropTypes.string as Validator<ListSize>
+    size: PropTypes.number as Validator<ListSize>
   }
 
   static defaultProps = {

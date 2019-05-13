@@ -14,7 +14,7 @@ export interface OrderedListProps extends React.ComponentProps<typeof Box> {
 
 export default class OrderedList extends PureComponent<OrderedListProps> {
   static propTypes = {
-    size: PropTypes.string as Validator<ListSize>
+    size: PropTypes.number as Validator<ListSize>
   }
 
   static defaultProps = {
