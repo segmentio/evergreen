@@ -92,7 +92,7 @@ export default class Popover extends Component {
     /**
      * Boolean indicating if clicking outside the dialog should close the dialog.
      */
-    shouldNotCloseOnOutsideClick: PropTypes.bool
+    shouldNotCloseOnBodyClick: PropTypes.bool
   }
 
   static defaultProps = {
@@ -105,7 +105,7 @@ export default class Popover extends Component {
     onOpenComplete: () => {},
     onCloseComplete: () => {},
     bringFocusInside: false,
-    shouldNotCloseOnOutsideClick: false
+    shouldNotCloseOnBodyClick: false
   }
 
   constructor(props) {
@@ -192,7 +192,7 @@ export default class Popover extends Component {
       return
     }
 
-    if (this.props.shouldNotCloseOnOutsideClick) {
+    if (this.props.shouldNotCloseOnBodyClick) {
       return
     }
 
