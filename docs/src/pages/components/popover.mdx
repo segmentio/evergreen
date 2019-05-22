@@ -277,7 +277,7 @@ The Popover can be positioned on the following positions using the `position` pr
       <Button onClick={close}>Close</Button>
     </Pane>
   )}
-  shouldNotCloseOnBodyClick
+  shouldCloseOnExternalClick={false}
 >
   <Button>Trigger Popover</Button>
 </Popover>
