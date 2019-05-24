@@ -142,7 +142,8 @@ export default class CornerDialog extends PureComponent {
     hasClose: true,
     cancelLabel: 'Close',
     onCancel: close => close(),
-    onConfirm: close => close()
+    onConfirm: close => close(),
+    onCloseComplete: () => {}
   }
 
   constructor(props) {
