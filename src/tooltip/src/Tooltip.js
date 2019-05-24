@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
+import { css as glamorCss } from 'glamor'
 import { Positioner } from '../../positioner'
 import { Position } from '../../constants'
 import TooltipStateless from './TooltipStateless'
@@ -191,7 +192,7 @@ export default class Tooltip extends PureComponent {
             appearance={appearance}
             innerRef={ref => getRef(ref)}
             data-state={state}
-            css={css}
+            {...glamorCss(css)}
             style={style}
             onMouseEnter={this.handleMouseEnterTarget}
             onMouseLeave={this.handleMouseLeaveTarget}

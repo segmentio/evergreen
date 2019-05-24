@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
+import { css as glamorCss } from 'glamor'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
 
@@ -22,7 +23,7 @@ class TextInput extends PureComponent {
     disabled: PropTypes.bool,
 
     /**
-     * Sets visual styling of _only_ the text input to be "invalid". 
+     * Sets visual styling of _only_ the text input to be "invalid".
      * Note that this does not effect any `validationMessage`.
      */
     isInvalid: PropTypes.bool,
@@ -105,7 +106,7 @@ class TextInput extends PureComponent {
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         {...(disabled ? { color: 'muted' } : {})}
-        css={css}
+        {...glamorCss(css)}
         {...props}
       />
     )

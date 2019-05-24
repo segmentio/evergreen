@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { css as glamorCss } from 'glamor'
 import { Positioner } from '../../positioner'
 import { Tooltip } from '../../tooltip'
 import { Position } from '../../constants'
@@ -336,7 +337,7 @@ export default class Popover extends Component {
               getRef(ref)
             }}
             data-state={state}
-            css={css}
+            {...glamorCss(css)}
             style={style}
             display={display}
             minWidth={minWidth}

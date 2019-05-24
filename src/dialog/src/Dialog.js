@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'ui-box'
+import { css } from 'glamor'
 import { Pane } from '../../layers'
 import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
@@ -291,7 +291,7 @@ class Dialog extends React.Component {
             marginY={topOffsetWithUnit}
             display="flex"
             flexDirection="column"
-            css={animationStyles}
+            {...css(animationStyles)}
             data-state={state}
             {...containerProps}
           >

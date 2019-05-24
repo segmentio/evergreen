@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'ui-box'
+import { css } from 'glamor'
 import Transition from 'react-transition-group/Transition'
 import { Pane, Card } from '../../layers'
 import { Portal } from '../../portal'
@@ -232,7 +232,7 @@ export default class CornerDialog extends PureComponent {
               backgroundColor="white"
               elevation={4}
               width={width}
-              css={animationStyles}
+              {...css(animationStyles)}
               data-state={state}
               position="fixed"
               bottom={16}

@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
-import Box, { css } from 'ui-box'
+import Box from 'ui-box'
+import { css } from 'glamor'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder } from '../../constants'
@@ -357,7 +358,7 @@ class Overlay extends React.Component {
                   right={0}
                   bottom={0}
                   zIndex={zIndex}
-                  css={animationStyles(theme.overlayBackgroundColor)}
+                  {...css(animationStyles(theme.overlayBackgroundColor))}
                   data-state={state}
                   {...containerProps}
                 >

@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { css as glamorCss } from 'glamor'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { withTheme } from '../../theme'
@@ -178,11 +179,11 @@ class Pane extends PureComponent {
         borderLeft={_borderLeft}
         boxShadow={elevationStyle}
         background={theme.getBackground(background)}
-        css={{
+        {...glamorCss({
           ...css,
           ...hoverElevationStyle,
           ...activeElevationStyle
-        }}
+        })}
         {...props}
       />
     )

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
+import { css } from 'glamor'
 import { withTheme } from '../../theme'
 
 const animationEasing = {
@@ -195,7 +196,7 @@ class Switch extends PureComponent {
             height={height}
             width={height}
             data-checked={checked}
-            css={iconContainerStyle}
+            {...css(iconContainerStyle)}
           >
             {hasCheckIcon && <CheckIcon size={height / 2 - 3} />}
           </Box>
@@ -203,10 +204,14 @@ class Switch extends PureComponent {
             width={height * 2}
             display="flex"
             data-checked={checked}
-            css={handleContainerStyle}
+            {...css(handleContainerStyle)}
           >
             <Box flex={1} padding={2}>
-              <Box width={height - 4} height={height - 4} css={handleStyle} />
+              <Box
+                width={height - 4}
+                height={height - 4}
+                {...css(handleStyle)}
+              />
             </Box>
           </Box>
         </Box>

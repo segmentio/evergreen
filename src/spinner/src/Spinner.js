@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { css } from 'ui-box'
+import Box from 'ui-box'
+import { css } from 'glamor'
 import { withTheme } from '../../theme'
 
 const loadingKeyframes = css.keyframes('loading', {
@@ -80,10 +81,10 @@ class Spinner extends PureComponent {
     const { theme, size, ...props } = this.props
     return (
       <Box width={size} height={size} lineHeight={0} {...props}>
-        <Box is="svg" css={outer} x="0px" y="0px" viewBox="0 0 150 150">
+        <Box is="svg" {...css(outer)} x="0px" y="0px" viewBox="0 0 150 150">
           <Box
             is="circle"
-            css={inner(theme.spinnerColor)}
+            {...css(inner(theme.spinnerColor))}
             cx="75"
             cy="75"
             r="60"

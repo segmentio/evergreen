@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { css } from 'glamor'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import TableHeaderCell from './TableHeaderCell'
@@ -90,7 +91,7 @@ export default class SearchTableHeaderCell extends PureComponent {
           is="input"
           size={300}
           flex="1"
-          css={invisibleInput}
+          {...css(invisibleInput)}
           value={value}
           onChange={e => onChange(e.target.value)}
           autoFocus={autoFocus}

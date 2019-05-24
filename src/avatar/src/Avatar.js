@@ -1,20 +1,21 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import { css } from 'glamor'
 import { Image } from '../../image'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
 
-const initialsProps = {
+const initialsProps = css({
   top: 0,
   position: 'absolute',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   lineHeight: 1
-}
+})
 
 class Avatar extends PureComponent {
   static propTypes = {
@@ -155,7 +156,7 @@ class Avatar extends PureComponent {
       >
         {(imageUnavailable || forceShowInitials) && (
           <Text
-            css={initialsProps}
+            {...initialsProps}
             fontSize={initialsFontSize}
             lineHeight={initialsFontSize}
             width={size}
