@@ -70,7 +70,7 @@ There is not need for you to override this on a component level.
         <h2 className="heading h2">Paragraph Styles</h2>
       </Pane>
       <Pane borderBottom paddingBottom={24}>
-        {Object.keys(theme.typography.text).map(size => {
+        {[300, 400, 500].map(size => {
           return (
             <TextStylePreview
               key={size}
