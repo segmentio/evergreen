@@ -147,6 +147,9 @@ storiesOf('popover', module)
       >
         <Button marginRight={20}>Trigger Closable Popover</Button>
       </Popover>
+      <Popover content={<PopoverContent />} shouldCloseOnExternalClick={false}>
+        <Button marginRight={20}>No Close on Body Click</Button>
+      </Popover>
       <Popover
         useSmartPositioning={false}
         content={({ close }) => <ClosablePopoverContent close={close} />}
