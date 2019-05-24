@@ -183,14 +183,11 @@ class Pane extends PureComponent {
         background={theme.getBackground(background)}
         className={cx(
           className,
-          glamorCss(
-            {
-              ...css,
-              ...hoverElevationStyle,
-              ...activeElevationStyle
-            },
-            className
-          ).toString()
+          glamorCss({
+            ...css,
+            ...hoverElevationStyle,
+            ...activeElevationStyle
+          }).toString()
         )}
         {...props}
       />
