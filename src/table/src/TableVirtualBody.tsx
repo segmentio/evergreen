@@ -305,14 +305,19 @@ export default class TableVirtualBody extends PureComponent<
           scrollToAlignment={scrollToAlignment}
           renderItem={({ index, style }) => {
             const child = children[index]
+            const key = child.key || index
+            const props = {
+              key,
+              style
+            }
 
             // If some children are strings by accident, support this gracefully.
             if (!React.isValidElement(child)) {
               if (typeof child === 'string') {
-                return <div style={style}>{child}</div>
+                return <div {...props}>{child}</div>
               }
 
-              return <div style={style}>&nbsp;</div>
+              return <div {...props}>&nbsp;</div>
             }
 
             // When allowing height="auto" for rows, and a auto height item is
@@ -330,9 +335,10 @@ export default class TableVirtualBody extends PureComponent<
                 <div
                   ref={ref => this.onVirtualHelperRef(index, ref)}
                   data-virtual-index={index}
+                  {...props}
                   style={{
                     opacity: 0,
-                    ...style
+                    ...props.style
                   }}
                 >
                   {child}
@@ -342,9 +348,7 @@ export default class TableVirtualBody extends PureComponent<
 
             // When allowAutoHeight is false, or when the height is known.
             // Simply render the item.
-            return React.cloneElement<{ style?: any }>(child, {
-              style
-            })
+            return React.cloneElement<{ key?: any; style?: any }>(child, props)
           }}
         />
       </Pane>

@@ -89,7 +89,12 @@ export default class Popover extends Component<any, any> {
     /**
      * When true, bring focus inside of the Popover on open.
      */
-    bringFocusInside: PropTypes.bool
+    bringFocusInside: PropTypes.bool,
+
+    /**
+     * Boolean indicating if clicking outside the dialog should close the dialog.
+     */
+    shouldCloseOnExternalClick: PropTypes.bool
   }
 
   static defaultProps = {
@@ -101,7 +106,8 @@ export default class Popover extends Component<any, any> {
     onClose: () => {},
     onOpenComplete: () => {},
     onCloseComplete: () => {},
-    bringFocusInside: false
+    bringFocusInside: false,
+    shouldCloseOnExternalClick: true
   }
 
   popoverNode: any
@@ -189,6 +195,10 @@ export default class Popover extends Component<any, any> {
     }
 
     if (this.popoverNode && this.popoverNode.contains(e.target)) {
+      return
+    }
+
+    if (this.props.shouldCloseOnExternalClick === false) {
       return
     }
 
