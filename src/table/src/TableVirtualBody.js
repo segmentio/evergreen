@@ -59,7 +59,11 @@ export default class TableVirtualBody extends PureComponent {
     /**
      * The scrollToAlignment property passed to react-tiny-virtual-list
      */
-    scrollToAlignment: PropTypes.oneOf(['start', 'center', 'end', 'auto'])
+    scrollToAlignment: PropTypes.oneOf(['start', 'center', 'end', 'auto']),
+    /**
+     * The onScroll callback passed to react-tiny-virtual-list
+     */
+    onScroll: PropTypes.func
   }
 
   static defaultProps = {
@@ -262,6 +266,7 @@ export default class TableVirtualBody extends PureComponent {
       scrollToIndex,
       scrollOffset,
       scrollToAlignment,
+      onScroll,
       ...props
     } = this.props
 
@@ -298,6 +303,7 @@ export default class TableVirtualBody extends PureComponent {
           scrollToIndex={scrollToIndex}
           scrollOffset={scrollOffset}
           scrollToAlignment={scrollToAlignment}
+          onScroll={onScroll}
           renderItem={({ index, style }) => {
             const child = children[index]
             const key = child.key || index
