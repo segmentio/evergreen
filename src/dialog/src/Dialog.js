@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'glamor'
+import cx from 'classnames'
 import { Pane } from '../../layers'
 import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
@@ -209,7 +210,8 @@ class Dialog extends React.Component {
     shouldCloseOnEscapePress: true,
     onCancel: close => close(),
     onConfirm: close => close(),
-    preventBodyScrolling: false
+    preventBodyScrolling: false,
+    containerProps: {}
   }
 
   renderChildren = close => {
@@ -248,7 +250,7 @@ class Dialog extends React.Component {
       cancelLabel,
       shouldCloseOnOverlayClick,
       shouldCloseOnEscapePress,
-      containerProps,
+      containerProps: { className: containerPropsClassName, ...containerProps },
       contentContainerProps,
       minHeightContent,
       preventBodyScrolling
@@ -291,7 +293,10 @@ class Dialog extends React.Component {
             marginY={topOffsetWithUnit}
             display="flex"
             flexDirection="column"
-            {...css(animationStyles)}
+            className={cx(
+              containerPropsClassName,
+              css(animationStyles).toString()
+            )}
             data-state={state}
             {...containerProps}
           >

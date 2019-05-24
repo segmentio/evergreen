@@ -102,7 +102,7 @@ class Textarea extends PureComponent {
     return (
       <Text
         is="textarea"
-        className={cx(themedClassName, className)}
+        className={cx(themedClassName, className, glamorCss(css).toString())}
         size={400}
         width={width}
         height={height}
@@ -116,7 +116,6 @@ class Textarea extends PureComponent {
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
         {...(disabled ? { color: 'muted' } : {})}
-        {...glamorCss(css)}
         {...Textarea.styles}
         {...props}
       />

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { css as glamorCss } from 'glamor'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { withTheme } from '../../theme'
@@ -152,6 +153,7 @@ class Pane extends PureComponent {
       borderLeft,
 
       css = {},
+      className,
       ...props
     } = this.props
 
@@ -179,11 +181,17 @@ class Pane extends PureComponent {
         borderLeft={_borderLeft}
         boxShadow={elevationStyle}
         background={theme.getBackground(background)}
-        {...glamorCss({
-          ...css,
-          ...hoverElevationStyle,
-          ...activeElevationStyle
-        })}
+        className={cx(
+          className,
+          glamorCss(
+            {
+              ...css,
+              ...hoverElevationStyle,
+              ...activeElevationStyle
+            },
+            className
+          ).toString()
+        )}
         {...props}
       />
     )

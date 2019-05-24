@@ -156,7 +156,7 @@ class Avatar extends PureComponent {
       >
         {(imageUnavailable || forceShowInitials) && (
           <Text
-            {...initialsProps}
+            className={initialsProps}
             fontSize={initialsFontSize}
             lineHeight={initialsFontSize}
             width={size}

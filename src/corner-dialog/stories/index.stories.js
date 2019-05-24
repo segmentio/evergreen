@@ -18,6 +18,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             title="Welcome to This New Feature"
             isShown={state.isShown}
             onCloseComplete={() => setState({ isShown: false })}
+            containerProps={{ className: 'testClassName' }}
           >
             The Corner Dialog component is used for new feature announcements
             and feedback requests from the user.

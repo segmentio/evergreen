@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
+import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
 import { Positioner } from '../../positioner'
 import { Position } from '../../constants'
@@ -58,7 +59,8 @@ export default class Tooltip extends PureComponent {
   static defaultProps = {
     appearance: 'default',
     position: Position.BOTTOM,
-    hideDelay: 120
+    hideDelay: 120,
+    statelessProps: {}
   }
 
   constructor(props, context) {
@@ -165,7 +167,7 @@ export default class Tooltip extends PureComponent {
       isShown,
       content,
       position,
-      statelessProps
+      statelessProps: { className, ...statelessProps }
     } = this.props
     const { isShown: stateIsShown, isShownByTarget } = this.state
 
@@ -192,7 +194,7 @@ export default class Tooltip extends PureComponent {
             appearance={appearance}
             innerRef={ref => getRef(ref)}
             data-state={state}
-            {...glamorCss(css)}
+            className={cx(className, glamorCss(css).toString())}
             style={style}
             onMouseEnter={this.handleMouseEnterTarget}
             onMouseLeave={this.handleMouseLeaveTarget}

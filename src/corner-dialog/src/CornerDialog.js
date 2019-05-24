@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'glamor'
+import cx from 'classnames'
 import Transition from 'react-transition-group/Transition'
 import { Pane, Card } from '../../layers'
 import { Portal } from '../../portal'
@@ -142,7 +143,8 @@ export default class CornerDialog extends PureComponent {
     hasClose: true,
     cancelLabel: 'Close',
     onCancel: close => close(),
-    onConfirm: close => close()
+    onConfirm: close => close(),
+    containerProps: {}
   }
 
   constructor(props) {
@@ -209,7 +211,7 @@ export default class CornerDialog extends PureComponent {
       cancelLabel,
       confirmLabel,
       onOpenComplete,
-      containerProps
+      containerProps: { className: containerPropsClassName, ...containerProps }
     } = this.props
 
     const { exiting, exited } = this.state
@@ -232,7 +234,10 @@ export default class CornerDialog extends PureComponent {
               backgroundColor="white"
               elevation={4}
               width={width}
-              {...css(animationStyles)}
+              className={cx(
+                containerPropsClassName,
+                css(animationStyles).toString()
+              )}
               data-state={state}
               position="fixed"
               bottom={16}

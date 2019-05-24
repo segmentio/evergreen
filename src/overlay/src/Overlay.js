@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import Box from 'ui-box'
+import cx from 'classnames'
 import { css } from 'glamor'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
@@ -166,7 +167,8 @@ class Overlay extends React.Component {
     onExited: () => {},
     onEnter: () => {},
     onEntering: () => {},
-    onEntered: () => {}
+    onEntered: () => {},
+    containerProps: {}
   }
 
   constructor(props) {
@@ -323,7 +325,7 @@ class Overlay extends React.Component {
     const {
       theme,
 
-      containerProps = {},
+      containerProps: { className: containerPropsClassName, ...containerProps },
       isShown,
       children
     } = this.props
@@ -358,7 +360,12 @@ class Overlay extends React.Component {
                   right={0}
                   bottom={0}
                   zIndex={zIndex}
-                  {...css(animationStyles(theme.overlayBackgroundColor))}
+                  className={cx(
+                    containerPropsClassName,
+                    css(
+                      animationStyles(theme.overlayBackgroundColor)
+                    ).toString()
+                  )}
                   data-state={state}
                   {...containerProps}
                 >

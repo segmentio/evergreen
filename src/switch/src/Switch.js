@@ -210,7 +210,7 @@ class Switch extends PureComponent {
               <Box
                 width={height - 4}
                 height={height - 4}
-                {...css(handleStyle)}
+                className={css(handleStyle)}
               />
             </Box>
           </Box>

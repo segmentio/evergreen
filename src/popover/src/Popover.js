@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css as glamorCss } from 'glamor'
+import cx from 'classnames'
 import { Positioner } from '../../positioner'
 import { Tooltip } from '../../tooltip'
 import { Position } from '../../constants'
@@ -100,7 +101,8 @@ export default class Popover extends Component {
     onClose: () => {},
     onOpenComplete: () => {},
     onCloseComplete: () => {},
-    bringFocusInside: false
+    bringFocusInside: false,
+    statelessProps: {}
   }
 
   constructor(props) {
@@ -310,7 +312,7 @@ export default class Popover extends Component {
       minWidth,
       position,
       minHeight,
-      statelessProps,
+      statelessProps: { className, ...statelessProps },
       animationDuration,
       onCloseComplete
     } = this.props
@@ -337,7 +339,7 @@ export default class Popover extends Component {
               getRef(ref)
             }}
             data-state={state}
-            {...glamorCss(css)}
+            className={cx(className, glamorCss(css).toString())}
             style={style}
             display={display}
             minWidth={minWidth}

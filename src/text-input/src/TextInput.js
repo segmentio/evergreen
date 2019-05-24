@@ -92,7 +92,7 @@ class TextInput extends PureComponent {
     return (
       <Text
         is="input"
-        className={cx(themedClassName, className)}
+        className={cx(themedClassName, className, glamorCss(css).toString())}
         type="text"
         size={textSize}
         width={width}
@@ -106,7 +106,6 @@ class TextInput extends PureComponent {
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         {...(disabled ? { color: 'muted' } : {})}
-        {...glamorCss(css)}
         {...props}
       />
     )
