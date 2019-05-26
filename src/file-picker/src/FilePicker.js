@@ -53,13 +53,19 @@ export default class FilePicker extends PureComponent {
     placeholder: PropTypes.string,
 
     /**
-     * Button labels in different states of the component.
+     * The label of select file button.
      */
-    buttonLabels: PropTypes.shape({
-      selectLabel: PropTypes.string,
-      replaceFileLabel: PropTypes.string,
-      replaceFilesLabel: PropTypes.string
-    }),
+    selectFileButtonLabel: PropTypes.string,
+
+    /**
+     * The label of replace file button.
+     */
+    replaceFileButtonLabel: PropTypes.string,
+
+    /**
+     * The label of replace files button.
+     */
+    replaceFilesButtonLabel: PropTypes.string,
 
     /**
      * Function called when onChange is fired
@@ -90,7 +96,9 @@ export default class FilePicker extends PureComponent {
       capture,
       height,
       placeholder,
-      buttonLabels,
+      selectFileButtonLabel,
+      replaceFileButtonLabel,
+      replaceFilesButtonLabel,
       onChange, // Remove onChange from props
       ...props
     } = this.props
@@ -108,21 +116,19 @@ export default class FilePicker extends PureComponent {
     let buttonText
     if (files.length === 0) {
       buttonText =
-        buttonLabels === undefined || buttonLabels.selectLabel === undefined
+        selectFileButtonLabel === undefined
           ? 'Select file'
-          : buttonLabels.selectLabel
+          : selectFileButtonLabel
     } else if (files.length === 1) {
       buttonText =
-        buttonLabels === undefined ||
-        buttonLabels.replaceFileLabel === undefined
+        replaceFileButtonLabel === undefined
           ? 'Replace file'
-          : buttonLabels.replaceFileLabel
+          : replaceFileButtonLabel
     } else {
       buttonText =
-        buttonLabels === undefined ||
-        buttonLabels.replaceFilesLabel === undefined
+        replaceFilesButtonLabel === undefined
           ? 'Replace files'
-          : buttonLabels.replaceFilesLabel
+          : replaceFilesButtonLabel
     }
 
     return (
