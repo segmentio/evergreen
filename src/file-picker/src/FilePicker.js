@@ -78,6 +78,13 @@ export default class FilePicker extends PureComponent {
     onBlur: PropTypes.func
   }
 
+  static defaultProps = {
+    placeholder: 'Select a file to upload…',
+    selectFileButtonLabel: 'Select file',
+    replaceFileButtonLabel: 'Replace file',
+    replaceFilesButtonLabel: 'Replace files'
+  }
+
   constructor() {
     super()
 
@@ -115,20 +122,11 @@ export default class FilePicker extends PureComponent {
 
     let buttonText
     if (files.length === 0) {
-      buttonText =
-        selectFileButtonLabel === undefined
-          ? 'Select file'
-          : selectFileButtonLabel
+      buttonText = selectFileButtonLabel
     } else if (files.length === 1) {
-      buttonText =
-        replaceFileButtonLabel === undefined
-          ? 'Replace file'
-          : replaceFileButtonLabel
+      buttonText = replaceFileButtonLabel
     } else {
-      buttonText =
-        replaceFilesButtonLabel === undefined
-          ? 'Replace files'
-          : replaceFilesButtonLabel
+      buttonText = replaceFilesButtonLabel
     }
 
     return (
@@ -152,9 +150,7 @@ export default class FilePicker extends PureComponent {
           className={`${CLASS_PREFIX}-text-input`}
           readOnly
           value={inputValue}
-          placeholder={
-            placeholder === undefined ? 'Select a file to upload…' : placeholder
-          }
+          placeholder={placeholder}
           // There's a weird specifity issue when there's two differently sized inputs on the page
           borderTopRightRadius="0 !important"
           borderBottomRightRadius="0 !important"
