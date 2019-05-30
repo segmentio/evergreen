@@ -45,6 +45,11 @@ export default class Popover extends Component {
     display: PropTypes.string,
 
     /**
+     * The custom style property allows to override the default property of Positioner.
+     */
+    customStyle: PropTypes.object,
+
+    /**
      * The min width of the Popover card.
      */
     minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -319,6 +324,7 @@ export default class Popover extends Component {
       minWidth,
       position,
       minHeight,
+      customStyle,
       statelessProps,
       animationDuration,
       onCloseComplete
@@ -347,7 +353,7 @@ export default class Popover extends Component {
             }}
             data-state={state}
             css={css}
-            style={style}
+            style={[style, customStyle]}
             display={display}
             minWidth={minWidth}
             minHeight={minHeight}
