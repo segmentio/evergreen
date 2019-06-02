@@ -15,6 +15,8 @@ import {
   OrderedList,
   ListItem
 } from '..'
+import { ListSize as OrderedListSize } from '../src/OrderedList'
+import { ListSize as UnorderedListSize } from '../src/UnorderedList'
 
 const TextSizes = [300, 400, 500]
 const HeadingSizes = [100, 200, 300, 400, 500, 600, 700, 800, 900]
@@ -86,7 +88,7 @@ storiesOf('typography', module)
             A paragraph before a list. You have to manually set the margins on a
             list.
           </Paragraph>
-          <OrderedList size={size} marginY={16}>
+          <OrderedList size={size as OrderedListSize} marginY={16}>
             <ListItem>Lorem ipsum dolar set amet</ListItem>
             <ListItem>Lorem ipsum dolar set amet</ListItem>
             <ListItem>Lorem ipsum dolar set amet</ListItem>
@@ -110,7 +112,7 @@ storiesOf('typography', module)
           <Paragraph size={size} marginTop="default">
             You can add icons to list items individually.
           </Paragraph>
-          <UnorderedList size={size} marginY={16}>
+          <UnorderedList size={size as UnorderedListSize} marginY={16}>
             <ListItem icon="tick-circle" iconColor="success">
               Lorem ipsum dolar set amet
             </ListItem>
@@ -128,7 +130,7 @@ storiesOf('typography', module)
             Or you can set the icon on the list.
           </Paragraph>
           <UnorderedList
-            size={size}
+            size={size as UnorderedListSize}
             marginY={16}
             icon="tick"
             iconColor="success"
@@ -153,7 +155,7 @@ storiesOf('typography', module)
             A paragraph before a list. You have to manually set the margins on a
             list.
           </Paragraph>
-          <UnorderedList size={size} marginY={16}>
+          <UnorderedList size={size as UnorderedListSize} marginY={16}>
             <ListItem>Lorem ipsum dolar set amet</ListItem>
             <ListItem>Lorem ipsum dolar set amet</ListItem>
             <ListItem>Lorem ipsum dolar set amet</ListItem>

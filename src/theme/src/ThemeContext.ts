@@ -2,6 +2,11 @@ import React from 'react'
 import defaultTheme from './default-theme'
 
 export interface Theme {
+  colors: any
+  badgeColors: any
+  elevations: any
+  palette: any
+  scales: any
   getCodeProps: (appearance: 'default' | 'minimal') => any
   getFontFamily: (fontFamily?: string) => string
   getHeadingStyle: (size?: number) => any

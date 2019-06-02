@@ -10,7 +10,7 @@ const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
 const StorySection = props => <Box marginBottom={40} {...props} />
 const initialValues = ['First', 'Second', 'Third']
 
-class StateManager extends React.PureComponent {
+class StateManager extends React.PureComponent<any, any> {
   static propTypes = {
     children: PropTypes.func,
     values: PropTypes.arrayOf(PropTypes.node)
