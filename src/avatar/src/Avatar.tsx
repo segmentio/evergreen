@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Image } from '../../image'
 import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import { withTheme, Theme } from '../../theme'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
 
@@ -17,62 +17,81 @@ const initialsStyleClass = css({
   lineHeight: 1
 })
 
-class Avatar extends PureComponent<any, any> {
+export interface AvatarProps extends React.ComponentProps<typeof Box> {
+  /**
+   * The color used for the avatar.
+   * When the value is `automatic`, use the hash function to determine the color.
+   */
+  color: 'automatic' | string
+
+  /**
+   * When true, force show the initials.
+   * This is useful in some cases when using Gravatar and transparent pngs.
+   */
+  forceShowInitials?: boolean
+
+  /**
+   * Function to get the initials based on the name.
+   */
+  getInitials: (name?: string | any, fallback?: string) => string
+
+  /**
+   * The value used for the hash function.
+   * The name is used as the hashValue by default.
+   * When dealing with anonymous users you should use the id instead.
+   */
+  hashValue?: string | number
+
+  /**
+   * When true, render a solid avatar.
+   */
+  isSolid?: boolean
+
+  /**
+   * The name used for the initials and title attribute.
+   */
+  name?: string
+
+  /**
+   * The size of the avatar.
+   */
+  size: number
+
+  /**
+   * When the size is smaller than this number, use a single initial for the avatar.
+   */
+  sizeLimitOneCharacter: number
+
+  /**
+   * The src attribute of the image.
+   * When it's not available, render initials instead.
+   */
+  src?: string
+
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: Theme
+}
+
+interface AvatarState {
+  imageHasFailedLoading: boolean
+}
+
+class Avatar extends PureComponent<AvatarProps, AvatarState> {
   static propTypes = {
-    /**
-     * The src attribute of the image.
-     * When it's not available, render initials instead.
-     */
-    src: PropTypes.string,
-
-    /**
-     * The size of the avatar.
-     */
-    size: PropTypes.number,
-
-    /**
-     * The name used for the initials and title attribute.
-     */
-    name: PropTypes.string,
-
-    /**
-     * The value used for the hash function.
-     * The name is used as the hashValue by default.
-     * When dealing with anonymous users you should use the id instead.
-     */
-    hashValue: PropTypes.string,
-
-    /**
-     * When true, render a solid avatar.
-     */
-    isSolid: PropTypes.bool,
-
-    /**
-     * The color used for the avatar.
-     * When the value is `automatic`, use the hash function to determine the color.
-     */
     color: PropTypes.string.isRequired,
-
-    /**
-     * Function to get the initials based on the name.
-     */
-    getInitials: PropTypes.func,
-
-    /**
-     * When true, force show the initials.
-     * This is useful in some cases when using Gravatar and transparent pngs.
-     */
     forceShowInitials: PropTypes.bool,
-
-    /**
-     * When the size is smaller than this number, use a single initial for the avatar.
-     */
-    sizeLimitOneCharacter: PropTypes.number,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
+    getInitials: PropTypes.func as PropTypes.Validator<
+      (name?: string | any, fallback?: string) => string
+    >,
+    hashValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    isSolid: PropTypes.bool,
+    name: PropTypes.string,
+    size: PropTypes.number.isRequired,
+    sizeLimitOneCharacter: PropTypes.number.isRequired,
+    src: PropTypes.string,
+    theme: PropTypes.object.isRequired as PropTypes.Validator<Theme>
   }
 
   static defaultProps = {
@@ -84,9 +103,8 @@ class Avatar extends PureComponent<any, any> {
     sizeLimitOneCharacter: 20
   }
 
-  constructor(props, context) {
-    super(props, context)
-    this.state = { imageHasFailedLoading: false }
+  state = {
+    imageHasFailedLoading: false
   }
 
   handleError = () => {

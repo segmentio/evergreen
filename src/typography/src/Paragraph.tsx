@@ -40,10 +40,10 @@ class Paragraph extends PureComponent<ParagraphProps> {
     theme: PropTypes.object.isRequired as Validator<Theme>
   }
 
-  static defaultProps: Partial<ParagraphProps> = {
-    size: 400,
-    color: 'default',
-    fontFamily: 'ui'
+  static defaultProps = {
+    size: 400 as const,
+    color: 'default' as const,
+    fontFamily: 'ui' as const
   }
 
   render() {

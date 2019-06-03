@@ -33,8 +33,8 @@ class Code extends PureComponent<CodeProps> {
     theme: PropTypes.object.isRequired as Validator<Theme>
   }
 
-  static defaultProps: Partial<CodeProps> = {
-    appearance: 'default'
+  static defaultProps = {
+    appearance: 'default' as const
   }
 
   render() {

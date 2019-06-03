@@ -34,8 +34,8 @@ class Heading extends PureComponent<HeadingProps> {
     theme: PropTypes.object.isRequired as Validator<Theme>
   }
 
-  static defaultProps: Partial<HeadingProps> = {
-    size: 500
+  static defaultProps = {
+    size: 500 as const
   }
 
   render() {

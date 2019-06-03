@@ -1,4 +1,7 @@
-export default function getInitials(name, fallback = '?') {
+export default function getInitials(
+  name?: string | unknown,
+  fallback: string = '?'
+): string {
   if (!name || typeof name !== 'string') return fallback
   return name
     .replace(/\s+/, ' ')

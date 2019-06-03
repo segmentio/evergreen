@@ -46,10 +46,10 @@ class InlineAlert extends PureComponent<InlineAlertProps> {
     theme: PropTypes.object.isRequired as PropTypes.Validator<Theme>
   }
 
-  static defaultProps: Partial<InlineAlertProps> = {
-    intent: 'none',
+  static defaultProps = {
+    intent: 'none' as const,
     hasIcon: true,
-    size: 400
+    size: 400 as const
   }
 
   getIconForIntent = intent => {
