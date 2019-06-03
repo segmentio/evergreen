@@ -38,10 +38,10 @@ class Text extends PureComponent<TextProps> {
     theme: PropTypes.object.isRequired as Validator<Theme>
   }
 
-  static defaultProps: Partial<TextProps> = {
-    size: 400,
-    color: 'default',
-    fontFamily: 'ui'
+  static defaultProps = {
+    size: 400 as const,
+    color: 'default' as const,
+    fontFamily: 'ui' as const
   }
 
   render() {
