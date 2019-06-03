@@ -202,7 +202,7 @@ export default function getFittedPosition({
   if (rect.bottom > viewport.height - viewportOffset) {
     const delta = Math.ceil(rect.bottom - (viewport.height - viewportOffset))
     rect.top -= delta
-    rect.right -= delta
+    rect.bottom -= delta
   }
 
   const targetCenter = isAlignedHorizontal(position)
