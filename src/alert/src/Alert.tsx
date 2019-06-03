@@ -73,11 +73,11 @@ class Alert extends PureComponent<AlertProps> {
     title: PropTypes.node
   }
 
-  static defaultProps: Partial<AlertProps> = {
-    appearance: 'default',
+  static defaultProps = {
+    appearance: 'default' as const,
     hasIcon: true,
     hasTrim: true,
-    intent: 'none',
+    intent: 'none' as const,
     isRemoveable: false
   }
 

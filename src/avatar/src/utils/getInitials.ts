@@ -1,5 +1,5 @@
 export default function getInitials(
-  name?: string | any,
+  name?: string | unknown,
   fallback: string = '?'
 ): string {
   if (!name || typeof name !== 'string') return fallback

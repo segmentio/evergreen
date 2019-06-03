@@ -94,7 +94,7 @@ class Avatar extends PureComponent<AvatarProps, AvatarState> {
     theme: PropTypes.object.isRequired as PropTypes.Validator<Theme>
   }
 
-  static defaultProps: Partial<AvatarProps> = {
+  static defaultProps = {
     color: 'automatic',
     size: 24,
     isSolid: false,
