@@ -304,7 +304,7 @@ export default class TableVirtualBody extends PureComponent<
           scrollOffset={scrollOffset}
           scrollToAlignment={scrollToAlignment}
           renderItem={({ index, style }) => {
-            const child = children[index]
+            const child: any = children[index]
             const key = child.key || index
             const props = {
               key,

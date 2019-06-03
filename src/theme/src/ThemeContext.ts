@@ -7,17 +7,34 @@ export interface Theme {
   elevations: any
   palette: any
   scales: any
+  getAlertProps: (props: {
+    appearance: 'default' | 'card' | undefined
+    intent: 'none' | 'success' | 'warning' | 'danger' | undefined
+    hasTrim: boolean | undefined
+  }) =>
+    | {
+        className: string
+        elevation: number
+        borderRadius: number
+      }
+    | {
+        className: string
+        boxShadow: string
+      }
+  getBorderRadiusForControlHeight: (height: number) => number
   getCodeProps: (appearance: 'default' | 'minimal') => any
   getFontFamily: (fontFamily?: string) => string
   getHeadingStyle: (size?: number) => any
+  getIconForIntent: (
+    intent?: 'none' | 'success' | 'warning' | 'danger'
+  ) => { icon: string; color: string }
   getLinkClassName: (color?: string) => string
   getParagraphStyle: (size?: number) => any
-  getTextColor: (colorAlias?: string) => string
-  getTextStyle: (size?: number) => any
   getTagInputClassName: (alias: 'default') => string
+  getTextColor: (colorAlias?: string) => string
   getTextInputClassName: (alias: 'none') => string
   getTextSizeForControlHeight: (height: number) => number
-  getBorderRadiusForControlHeight: (height: number) => number
+  getTextStyle: (size?: number) => any
 }
 
 /**

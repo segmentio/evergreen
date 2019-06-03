@@ -1,44 +1,52 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { withTheme } from '../../theme'
+import { withTheme, Theme } from '../../theme'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
+import { TextProps } from '../../typography/src/Text'
 
-class InlineAlert extends PureComponent<
-  any & React.ComponentProps<typeof Box>
-> {
+type Intent = 'none' | 'success' | 'warning' | 'danger'
+
+interface InlineAlertProps extends React.ComponentProps<typeof Box> {
+  /**
+   * The content of the alert. When a string is passed it is wrapped in a `<Text size={400} />` component.
+   */
+  children?: React.ReactNode
+
+  /**
+   * When true, show a icon on the left matching the type,
+   */
+  hasIcon?: boolean
+
+  /**
+   * The intent of the alert.
+   */
+  intent: Intent
+
+  /**
+   * The size of the Text.
+   */
+  size?: TextProps['size']
+
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: Theme
+}
+
+class InlineAlert extends PureComponent<InlineAlertProps> {
   static propTypes = {
-    /**
-     * The content of the alert.
-     */
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-
-    /**
-     * The intent of the alert. This should always be set explicitly.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * When true, show a icon on the left matching the type.
-     * There is no point not showing this.
-     */
     hasIcon: PropTypes.bool,
-
-    /**
-     * The size of the Text.
-     */
-    size: PropTypes.number,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
+      .isRequired as PropTypes.Validator<Intent>,
+    size: PropTypes.number as PropTypes.Validator<TextProps['size']>,
+    theme: PropTypes.object.isRequired as PropTypes.Validator<Theme>
   }
 
-  static defaultProps = {
+  static defaultProps: Partial<InlineAlertProps> = {
     intent: 'none',
     hasIcon: true,
     size: 400
