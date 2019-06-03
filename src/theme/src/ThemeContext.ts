@@ -27,7 +27,10 @@ export interface Theme {
   getHeadingStyle: (size?: number) => any
   getIconForIntent: (
     intent?: 'none' | 'success' | 'warning' | 'danger'
-  ) => { icon: string; color: string }
+  ) => {
+    icon: string
+    color: string
+  }
   getLinkClassName: (color?: string) => string
   getParagraphStyle: (size?: number) => any
   getTagInputClassName: (alias: 'default') => string
