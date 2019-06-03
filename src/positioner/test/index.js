@@ -116,11 +116,11 @@ test('It pushes the rect to the right if overflowing on the left side', t => {
 test('It pushes the rect to the top if overflowing on the bottom side', t => {
   t.snapshot(
     getFittedPosition({
-      position: Position.BOTTOM,
+      position: Position.TOP,
       dimensions: dimensions({ width: 50, height: 100 }),
-      targetRect: targetRect({ left: 100, x: 100, top: 100, y: 100 }),
+      targetRect: targetRect({ left: 100, x: 100, top: 550, y: 550 }),
       targetOffset,
-      viewport: viewport({ width: 1000, height: 500 })
+      viewport: viewport({ height: 500 })
     })
   )
 })
