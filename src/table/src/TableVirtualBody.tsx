@@ -348,7 +348,7 @@ export default class TableVirtualBody extends PureComponent<
 
             // When allowAutoHeight is false, or when the height is known.
             // Simply render the item.
-            return React.cloneElement<{ key?: any; style?: any }>(child, props)
+            return React.cloneElement(child, props)
           }}
         />
       </Pane>
