@@ -21,6 +21,18 @@ export interface Theme {
         className: string
         boxShadow: string
       }
+  getAvatarInitialsFontSize: (
+    size: number,
+    sizeLimitOneCharacter: number
+  ) => number
+  getAvatarProps: (props: {
+    isSolid?: boolean
+    color: string
+    hashValue?: number
+  }) => {
+    color: string
+    backgroundColor: string
+  }
   getBorderRadiusForControlHeight: (height: number) => number
   getCodeProps: (appearance: 'default' | 'minimal') => any
   getFontFamily: (fontFamily?: string) => string

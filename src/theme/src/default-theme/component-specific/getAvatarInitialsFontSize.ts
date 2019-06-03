@@ -3,7 +3,10 @@
  * @param {number} sizeLimitOneCharacter
  * @return {number} font size
  */
-const getAvatarInitialsFontSize = (size, sizeLimitOneCharacter) => {
+const getAvatarInitialsFontSize = (
+  size: number,
+  sizeLimitOneCharacter: number
+): number => {
   if (size <= sizeLimitOneCharacter) {
     return Math.ceil(size / 2.2)
   }
