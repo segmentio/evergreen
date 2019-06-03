@@ -28,7 +28,15 @@ const users = range(100).map(index => {
   }
 })
 
-export default class EditableTable extends React.PureComponent {
+interface EditableTableState {
+  isSelectable: boolean
+  users: any[]
+}
+
+export default class EditableTable extends React.PureComponent<
+  {},
+  EditableTableState
+> {
   state = {
     users,
     isSelectable: true

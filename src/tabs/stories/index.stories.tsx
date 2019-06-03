@@ -14,7 +14,18 @@ const StoryDescription = props => (
   <Paragraph size={400} color="muted" {...props} />
 )
 
-class TabManager extends React.PureComponent {
+interface TabManagerProps {
+  children: (props: {
+    selectedIndex: number
+    onSelect: (index: number) => void
+  }) => JSX.Element
+}
+
+interface TabManagerState {
+  selectedIndex: number
+}
+
+class TabManager extends React.PureComponent<TabManagerProps, TabManagerState> {
   static propTypes = {
     children: PropTypes.func
   }

@@ -19,8 +19,10 @@ class Manager extends React.Component {
   state = {}
 
   render() {
+    // @ts-ignore
     return this.props.children({
       setState: (...args) => {
+        // @ts-ignore
         this.setState(...args)
       },
       state: this.state

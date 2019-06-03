@@ -34,7 +34,7 @@
     "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test' --source-maps inline --extensions '.js,.ts,.tsx'",
     "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test' --source-maps inline --extensions '.js,.ts,.tsx'",
     "build": "concurrently --names 'commonjs,esm,types' 'yarn run build-commonjs' 'yarn run build-esm' 'yarn run build-types'",
-    "build-types": "tsc --emitDeclarationOnly",
+    "build-types": "tsc --declaration --emitDeclarationOnly",
     "type-check": "tsc --noEmit",
     "clean": "git clean -Xdf",
     "release": "np",
@@ -59,7 +59,7 @@
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.5.0",
     "tinycolor2": "^1.4.1",
-    "ui-box": "^2.0.0"
+    "ui-box": "2.0.0"
   },
   "peerDependencies": {
     "react": "^16.3.0",
@@ -75,11 +75,9 @@
     "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.0.0",
     "@reactions/component": "^2.0.2",
-    "@storybook/addon-actions": "^4.0.0",
-    "@storybook/addon-links": "^4.0.0",
-    "@storybook/addon-options": "^4.0.0",
-    "@storybook/addons": "^4.0.0",
-    "@storybook/react": "^4.0.0",
+    "@storybook/addons": "^5.0.11",
+    "@storybook/react": "^5.0.11",
+    "@storybook/theming": "^5.0.11",
     "@types/react": "^16.8.15",
     "@types/react-dom": "^16.8.4",
     "@typescript-eslint/eslint-plugin": "^1.7.0",

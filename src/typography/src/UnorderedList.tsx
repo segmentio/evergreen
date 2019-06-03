@@ -2,7 +2,7 @@ import React, { PureComponent, Validator } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 
-type ListSize = 300 | 400 | 500 | 600
+export type ListSize = 300 | 400 | 500 | 600
 
 export interface UnorderedListProps extends React.ComponentProps<typeof Box> {
   /**

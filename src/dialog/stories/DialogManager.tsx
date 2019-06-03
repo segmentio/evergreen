@@ -1,7 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class DialogManager extends React.PureComponent {
+interface Props {
+  children: (props: {
+    isLoading: boolean
+    isShown: boolean
+    confirmLoading: () => void
+    show: () => void
+    hide: () => void
+  }) => JSX.Element
+}
+
+interface State {
+  isLoading: boolean
+  isShown: boolean
+}
+
+export default class DialogManager extends React.PureComponent<Props, State> {
   static propTypes = {
     children: PropTypes.func
   }
