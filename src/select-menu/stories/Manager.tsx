@@ -1,7 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class Manager extends React.Component {
+interface Props {
+  children: (props: {
+    setState: React.Component['setState']
+    state: State
+  }) => JSX.Element
+}
+
+interface State {
+  [key: number]: any
+  [key: string]: any
+}
+
+export default class Manager extends React.Component<Props, State> {
   static propTypes = {
     children: PropTypes.func
   }

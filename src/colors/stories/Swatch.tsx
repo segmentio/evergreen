@@ -9,7 +9,13 @@ function uppercaseColor(color) {
   return color
 }
 
-export default class Swatch extends React.Component {
+interface Props {
+  color: string
+  name: string
+  property: string
+}
+
+export default class Swatch extends React.Component<Props> {
   static propTypes = {
     color: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

@@ -15,8 +15,16 @@ const randomLengthContent = [
   `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
 ]
 
+interface User {
+  id: number
+  name: string
+  email: string
+  height: number | string
+  content?: string
+}
+
 // Generate a bunch of users.
-const users = range(1000)
+const users: User[] = range(1000)
   .map((user, index) => ({
     id: index,
     name: faker.name.findName(),
@@ -35,7 +43,15 @@ const users = range(1000)
     return item
   })
 
-export default class VirtualTable extends React.PureComponent {
+interface VirtualTableState {
+  [key: string]: number | null
+  [key: number]: number | null
+}
+
+export default class VirtualTable extends React.PureComponent<
+  {},
+  VirtualTableState
+> {
   state = {
     scrollToIndex: null,
     scrollOffset: null,
@@ -72,7 +88,7 @@ export default class VirtualTable extends React.PureComponent {
               this.setState({ scrollToAlignment: event.target.value })
             }
           >
-            <option value="" checked>
+            <option value="" selected>
               scrollToAlignment
             </option>
             <option value="auto">Auto</option>

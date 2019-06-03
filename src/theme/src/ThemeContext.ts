@@ -14,6 +14,10 @@ export interface Theme {
   getParagraphStyle: (size?: number) => any
   getTextColor: (colorAlias?: string) => string
   getTextStyle: (size?: number) => any
+  getTagInputClassName: (alias: 'default') => string
+  getTextInputClassName: (alias: 'none') => string
+  getTextSizeForControlHeight: (height: number) => number
+  getBorderRadiusForControlHeight: (height: number) => number
 }
 
 /**

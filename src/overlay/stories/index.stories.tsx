@@ -5,7 +5,19 @@ import Box from 'ui-box'
 import { Overlay } from '..'
 import { Button } from '../../buttons'
 
-class OverlayManager extends PureComponent {
+interface Props {
+  children: (props: {
+    isShown: boolean
+    show: () => void
+    hide: () => void
+  }) => JSX.Element
+}
+
+interface State {
+  isShown: boolean
+}
+
+class OverlayManager extends PureComponent<Props, State> {
   static propTypes = {
     children: PropTypes.func
   }

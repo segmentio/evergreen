@@ -7,77 +7,98 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import cx from 'classnames'
 import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import { withTheme, Theme } from '../../theme'
 import { majorScale } from '../../scales'
 import safeInvoke from '../../lib/safe-invoke'
 import Tag from './Tag'
 
 let inputId = 1
 
-class TagInput extends React.Component<any> {
+interface TagInputProps {
+  /** Whether or not the inputValue should be added to the tags when the input blurs. */
+  addOnBlur?: boolean
+  /** The class name to apply to the container component. */
+  className?: string
+  /** Whether or not the input should be disabled. */
+  disabled?: boolean
+  /** The vertical size of the input */
+  height?: number
+  /** Props to pass to the input component. Note that `ref` and `key` are not supported. See `inputRef`. */
+  inputProps?: object
+  /**
+   * Ref handler for the <input> element.
+   * (input: HTMLInputElement | null) => void
+   */
+  inputRef?: (inputNode: HTMLInputElement | null) => void
+  /**
+   * Callback invoked when new tags are added.
+   * Returning `false` will prevent clearing the input.
+   */
+  onAdd?: (values: any[]) => void | false
+  /**
+   * Callback invoked when focus on the input blurs.
+   */
+  onBlur?: (event: React.SyntheticEvent) => void
+  /**
+   * Callback invoked when the tag values change.
+   * Returning `false` will prevent clearing the input.
+   */
+  onChange?: (values: any[]) => void | false
+  /**
+   * Callback invoked when the input receives focus.
+   */
+  onFocus?: (event: React.SyntheticEvent) => void
+  /**
+   * Callback invoked when the value of the <input> is changed. Shorthand for `inputProps={{ onChange }}`.
+   */
+  onInputChange?: (event: React.SyntheticEvent) => void
+  /**
+   * Callback invoked when a tag is removed.
+   * Receives value and index of removed tag.
+   * (value: string | node, index: number) => void
+   */
+  onRemove?: (value: any, index: number) => void
+  /** Value or RegExp to split on pasted text or on enter keypress */
+  separator?: string | RegExp | false
+  /** Provide props to tag component (actually `Badge`, for now). */
+  tagProps?: ((tag: any, index: number) => object) | object
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: Theme
+  /** Controlled tag values. Each value is rendered inside a tag. */
+  values: React.ReactNode[]
+}
+
+interface TagInputState {
+  inputValue: string
+  isFocused: boolean
+}
+
+class TagInput extends React.Component<TagInputProps, TagInputState> {
   static propTypes = {
-    /** Whether or not the inputValue should be added to the tags when the input blurs. */
     addOnBlur: PropTypes.bool,
-    /** The class name to apply to the container component. */
     className: PropTypes.string,
-    /** Whether or not the input should be disabled. */
     disabled: PropTypes.bool,
-    /** The vertical size of the input */
     height: PropTypes.number,
-    /** Props to pass to the input component. Note that `ref` and `key` are not supported. See `inputRef`. */
     inputProps: PropTypes.object,
-    /**
-     * Ref handler for the <input> element.
-     * (input: HTMLInputElement | null) => void
-     */
     inputRef: PropTypes.func,
-    /**
-     * Callback invoked when new tags are added.
-     * Returning `false` will prevent clearing the input.
-     * (values: Array) => void | false
-     */
     onAdd: PropTypes.func,
-    /**
-     * Callback invoked when focus on the input blurs.
-     * (event) => void
-     */
     onBlur: PropTypes.func,
-    /**
-     * Callback invoked when the tag values change.
-     * Returning `false` will prevent clearing the input.
-     * (values: Array) => void | false
-     */
     onChange: PropTypes.func,
-    /**
-     * Callback invoked when the input receives focus.
-     * (event) => void
-     */
     onFocus: PropTypes.func,
-    /**
-     * Callback invoked when the value of the <input> is changed. Shorthand for `inputProps={{ onChange }}`.
-     * (event) => void
-     */
     onInputChange: PropTypes.func,
-    /**
-     * Callback invoked when a tag is removed.
-     * Receives value and index of removed tag.
-     * (value: string | node, index: number) => void
-     */
     onRemove: PropTypes.func,
-    /** Value or RegExp to split on pasted text or on enter keypress */
     separator: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.instanceOf(RegExp),
       PropTypes.oneOf([false])
-    ]),
-    /** Provide props to tag component (actually `Badge`, for now). */
+    ]) as PropTypes.Requireable<string | false | RegExp>,
     tagProps: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
-    /** Controlled tag values. Each value is rendered inside a tag. */
-    values: PropTypes.arrayOf(PropTypes.node)
+    theme: PropTypes.object.isRequired as PropTypes.Validator<Theme>,
+    values: PropTypes.arrayOf(PropTypes.node) as PropTypes.Validator<
+      React.ReactNode[]
+    >
   }
 
   static defaultProps = {
@@ -237,8 +258,8 @@ class TagInput extends React.Component<any> {
 
     const themedContainerClassName = theme.getTagInputClassName('default')
     const themedInputClassName = theme.getTextInputClassName('none')
-    const textSize = theme.getTextSizeForControlHeight(height)
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
+    const textSize = theme.getTextSizeForControlHeight(height!)
+    const borderRadius = theme.getBorderRadiusForControlHeight(height!)
 
     return (
       <Box
@@ -246,8 +267,8 @@ class TagInput extends React.Component<any> {
         aria-activedescendant={isFocused ? this.id : undefined}
         borderRadius={borderRadius}
         className={cx(themedContainerClassName, className)}
-        paddingLeft={Math.round(height / 3.2)}
-        paddingRight={Math.round(height / 3.2)}
+        paddingLeft={Math.round(height! / 3.2)}
+        paddingRight={Math.round(height! / 3.2)}
         paddingY="2px"
         {...props}
         onBlur={this.handleBlur}
@@ -259,7 +280,7 @@ class TagInput extends React.Component<any> {
           color={disabled ? 'muted' : undefined}
           disabled={disabled}
           flexGrow="1"
-          height={height - 4}
+          height={height! - 4}
           size={textSize}
           type="text"
           value={inputValue}

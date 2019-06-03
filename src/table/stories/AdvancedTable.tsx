@@ -57,11 +57,11 @@ export default class AdvancedTable extends React.Component<any, any> {
 
       // Order ascending (Order.ASC)
       if (this.state.ordering === Order.ASC) {
-        return aValue === bValue ? 0 : sortTable[aValue > bValue]
+        return aValue === bValue ? 0 : sortTable[Number(aValue > bValue)]
       }
 
       // Order descending (Order.DESC)
-      return bValue === aValue ? 0 : sortTable[bValue > aValue]
+      return bValue === aValue ? 0 : sortTable[Number(bValue > aValue)]
     })
   }
 

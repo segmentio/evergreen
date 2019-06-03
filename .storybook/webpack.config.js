@@ -1,4 +1,4 @@
-module.exports = (_baseConfig, _env, config) => {
+module.exports = ({ config }) => {
   config.module.rules.push(
     ...[
       {

@@ -13,12 +13,12 @@
     "esModuleInterop": true,
     "jsx": "react",
     "resolveJsonModule": true,
-    "outDir": "./dist",
-    "declaration": true
+    "outDir": "./dist"
   },
   "include": ["src"],
   "exclude": [
     "node_modules",
+    "/dist",
     "/commonjs",
     "/esm",
     "/docs",

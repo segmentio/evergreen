@@ -10,7 +10,21 @@ const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
 const StorySection = props => <Box marginBottom={40} {...props} />
 const initialValues = ['First', 'Second', 'Third']
 
-class StateManager extends React.PureComponent<any, any> {
+interface StateManagerProps {
+  values?: any[]
+  children: (props: {
+    values: any[]
+    addValues: (values: any[]) => void
+    removeValue: (value: string, index: number) => void
+    tagProps: object
+    handleChange: (values: any) => void | false
+  }) => JSX.Element
+}
+
+class StateManager extends React.PureComponent<
+  StateManagerProps,
+  { values: any[] }
+> {
   static propTypes = {
     children: PropTypes.func,
     values: PropTypes.arrayOf(PropTypes.node)
@@ -20,13 +34,13 @@ class StateManager extends React.PureComponent<any, any> {
     values: this.props.values || []
   }
 
-  addValues = (values = []) => {
+  addValues = (values: any[] = []) => {
     this.setState(state => ({
       values: [...state.values, ...values]
     }))
   }
 
-  handleChange = values => {
+  handleChange = (values: any[]): void | false => {
     if (values.length % 2 === 0) {
       return false
     }
