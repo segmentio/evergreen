@@ -1,67 +1,84 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { withTheme } from '../../theme'
+import { withTheme, Theme } from '../../theme'
 import { Pane } from '../../layers'
 import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
 import { Icon } from '../../icon'
 
-class Alert extends PureComponent<any & React.ComponentProps<typeof Box>> {
+type Appearance = 'default' | 'card'
+type Intent = 'none' | 'success' | 'warning' | 'danger'
+
+interface AlertProps extends React.ComponentProps<typeof Box> {
+  /**
+   * The appearance of the alert.
+   */
+  appearance: Appearance
+
+  /**
+   * The content of the alert. When a string is passed it is wrapped in a `<Text size={400} />` component.
+   */
+  children?: React.ReactNode
+
+  /**
+   * When true, show a icon on the left matching the type,
+   */
+  hasIcon?: boolean
+
+  /**
+   * When true, show a border on the left matching the type.
+   */
+  hasTrim?: boolean
+
+  /**
+   * The intent of the alert.
+   */
+  intent: Intent
+
+  /**
+   * When true, show a remove icon button.
+   */
+  isRemoveable?: boolean
+
+  /**
+   * Function called when the remove button is clicked.
+   */
+  onRemove?: () => void
+
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: Theme
+
+  /**
+   * The title of the alert.
+   */
+  title?: React.ReactNode
+}
+
+class Alert extends PureComponent<AlertProps> {
   static propTypes = {
-    /**
-     * The content of the alert. When a string is passed it is wrapped in a `<Text size={400} />` component.
-     */
+    appearance: PropTypes.oneOf(['default', 'card']) as PropTypes.Validator<
+      Appearance
+    >,
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-
-    /**
-     * The intent of the alert.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * The title of the alert.
-     */
-    title: PropTypes.node,
-
-    /**
-     * When true, show a border on the left matching the type.
-     */
-    hasTrim: PropTypes.bool,
-
-    /**
-     * When true, show a icon on the left matching the type,
-     */
     hasIcon: PropTypes.bool,
-
-    /**
-     * When true, show a remove icon button.
-     */
+    hasTrim: PropTypes.bool,
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
+      .isRequired as PropTypes.Validator<Intent>,
     isRemoveable: PropTypes.bool,
-
-    /**
-     * Function called when the remove button is clicked.
-     */
     onRemove: PropTypes.func,
-
-    /**
-     * The appearance of the alert.
-     */
-    appearance: PropTypes.oneOf(['default', 'card']),
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
+    theme: PropTypes.object.isRequired as PropTypes.Validator<Theme>,
+    title: PropTypes.node
   }
 
-  static defaultProps = {
-    intent: 'none',
-    hasTrim: true,
+  static defaultProps: Partial<AlertProps> = {
+    appearance: 'default',
     hasIcon: true,
-    isRemoveable: false,
-    appearance: 'default'
+    hasTrim: true,
+    intent: 'none',
+    isRemoveable: false
   }
 
   getIconForIntent = intent => {
