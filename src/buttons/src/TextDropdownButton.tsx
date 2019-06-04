@@ -1,12 +1,11 @@
 import React, { PureComponent, ReactElement } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
 import { Text } from '../../typography'
 import { Icon, IconName } from '../../icon'
 import { Spinner } from '../../spinner'
 import { withTheme, Theme } from '../../theme'
 
-interface TextDropdownButtonProps extends React.ComponentProps<typeof Box> {
+interface TextDropdownButtonProps extends React.ComponentProps<typeof Text> {
   /**
    * Forcefully set the active state of a button.
    * Useful in conjuction with a Popover.

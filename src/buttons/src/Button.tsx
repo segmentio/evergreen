@@ -1,7 +1,6 @@
 import React, { PureComponent, ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import Box from 'ui-box'
 import { Text } from '../../typography'
 import { Icon, IconName } from '../../icon'
 import { Spinner } from '../../spinner'
@@ -10,7 +9,7 @@ import { withTheme, Theme } from '../../theme'
 type Intent = 'none' | 'success' | 'warning' | 'danger'
 type Appearance = 'default' | 'minimal' | 'primary'
 
-interface ButtonProps extends React.ComponentProps<typeof Box> {
+interface ButtonProps extends React.ComponentProps<typeof Text> {
   /**
    * The intent of the button.
    */
