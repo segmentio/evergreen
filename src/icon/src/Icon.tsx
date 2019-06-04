@@ -2,10 +2,15 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { IconNames, IconSvgPaths16, IconSvgPaths20 } from '@blueprintjs/icons'
+import {
+  IconNames,
+  IconName,
+  IconSvgPaths16,
+  IconSvgPaths20
+} from '@blueprintjs/icons'
 import { withTheme } from '../../theme'
 
-export { IconNames }
+export { IconNames, IconName }
 
 /**
  * This implementation is a remix of the Icon component in Blueprintjs:

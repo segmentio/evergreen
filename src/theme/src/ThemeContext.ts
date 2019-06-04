@@ -50,6 +50,10 @@ export interface Theme {
   getTextInputClassName: (alias: 'none') => string
   getTextSizeForControlHeight: (height: number) => number
   getTextStyle: (size?: number) => any
+  getButtonClassName: (appearance: string, intent: string) => string
+  getIconSizeForButton: (height: number) => number
+  getIconSizeForIconButton: (height: number) => number
+  getTextDropdownButtonClassName: () => string
 }
 
 /**
