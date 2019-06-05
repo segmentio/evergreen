@@ -34,6 +34,7 @@ export interface Theme {
     backgroundColor: string
   }
   getBorderRadiusForControlHeight: (height: number) => number
+  getButtonClassName: (appearance: string, intent: string) => string
   getCodeProps: (appearance: 'default' | 'minimal') => any
   getFontFamily: (fontFamily?: string) => string
   getHeadingStyle: (size?: number) => any
@@ -43,10 +44,13 @@ export interface Theme {
     icon: string
     color: string
   }
+  getIconSizeForButton: (height: number) => number
+  getIconSizeForIconButton: (height: number) => number
   getLinkClassName: (color?: string) => string
   getParagraphStyle: (size?: number) => any
   getTagInputClassName: (alias: 'default') => string
   getTextColor: (colorAlias?: string) => string
+  getTextDropdownButtonClassName: () => string
   getTextInputClassName: (alias: 'none') => string
   getTextSizeForControlHeight: (height: number) => number
   getTextStyle: (size?: number) => any

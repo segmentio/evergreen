@@ -1,68 +1,83 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import Box from 'ui-box'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
+import { Icon, IconName } from '../../icon'
 import { Spinner } from '../../spinner'
-import { withTheme } from '../../theme'
+import { withTheme, Theme } from '../../theme'
 
-class Button extends PureComponent<any & React.ComponentProps<typeof Box>> {
+type Intent = 'none' | 'success' | 'warning' | 'danger'
+type Appearance = 'default' | 'minimal' | 'primary'
+
+interface ButtonProps extends React.ComponentProps<typeof Text> {
+  /**
+   * The intent of the button.
+   */
+  intent: Intent
+
+  /**
+   * The appearance of the button.
+   */
+  appearance: Appearance
+
+  /**
+   * Sets the height and font-size of the button.
+   */
+  height: number
+
+  /**
+   * When true, show a loading spinner before the children.
+   * This also disables the button.
+   */
+  isLoading?: boolean
+
+  /**
+   * Forcefully set the active state of a button.
+   * Useful in conjuction with a Popover.
+   */
+  isActive?: boolean
+
+  /**
+   * Sets an icon before the text. Can be any icon from Evergreen.
+   */
+  iconBefore?: IconName
+
+  /**
+   * Sets an icon after the text. Can be any icon from Evergreen.
+   */
+  iconAfter?: IconName
+
+  /**
+   * When true, the button is disabled.
+   * isLoading also sets the button to disabled.
+   */
+  disabled?: boolean
+
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: Theme
+}
+
+class Button extends PureComponent<ButtonProps> {
   static propTypes = {
-    /**
-     * The intent of the button.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
-
-    /**
-     * The appearance of the button.
-     */
-    appearance: PropTypes.oneOf(['default', 'minimal', 'primary']).isRequired,
-
-    /**
-     * When true, show a loading spinner before the children.
-     * This also disables the button.
-     */
+    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
+      .isRequired as PropTypes.Validator<Intent>,
+    appearance: PropTypes.oneOf(['default', 'minimal', 'primary'])
+      .isRequired as PropTypes.Validator<Appearance>,
+    height: PropTypes.number.isRequired,
     isLoading: PropTypes.bool,
-
-    /**
-     * Forcefully set the active state of a button.
-     * Useful in conjuction with a Popover.
-     */
     isActive: PropTypes.bool,
-
-    /**
-     * Sets an icon before the text. Can be any icon from Evergreen.
-     */
-    iconBefore: PropTypes.string,
-
-    /**
-     * Sets an icon after the text. Can be any icon from Evergreen.
-     */
-    iconAfter: PropTypes.string,
-
-    /**
-     * When true, the button is disabled.
-     * isLoading also sets the button to disabled.
-     */
+    iconBefore: PropTypes.string as PropTypes.Requireable<IconName>,
+    iconAfter: PropTypes.string as PropTypes.Requireable<IconName>,
     disabled: PropTypes.bool,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
-
-    /**
-     * Class name passed to the button.
-     * Only use if you know what you are doing.
-     */
-    className: PropTypes.string
+    theme: PropTypes.object.isRequired as PropTypes.Validator<Theme>
   }
 
   static defaultProps = {
-    appearance: 'default',
+    appearance: 'default' as const,
     height: 32,
-    intent: 'none',
+    intent: 'none' as const,
     isActive: false,
     paddingBottom: 0,
     paddingTop: 0
@@ -110,10 +125,11 @@ class Button extends PureComponent<any & React.ComponentProps<typeof Box>> {
     const iconSize = theme.getIconSizeForButton(height)
 
     const pr =
-      paddingRight !== undefined ? paddingRight : Math.round(height / 2) // eslint-disable-line no-negated-condition
-    const pl = paddingLeft !== undefined ? paddingLeft : Math.round(height / 2) // eslint-disable-line no-negated-condition
+      typeof paddingRight === 'number' ? paddingRight : Math.round(height / 2)
+    const pl =
+      typeof paddingLeft === 'number' ? paddingLeft : Math.round(height / 2)
 
-    let iconBefore
+    let iconBefore: ReactNode | undefined
     if (iconBeforeKey) {
       iconBefore = (
         <Icon
@@ -125,7 +141,7 @@ class Button extends PureComponent<any & React.ComponentProps<typeof Box>> {
       )
     }
 
-    let iconAfter
+    let iconAfter: ReactNode | undefined
     if (iconAfterKey) {
       iconAfter = (
         <Icon

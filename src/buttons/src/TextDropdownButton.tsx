@@ -1,56 +1,60 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, ReactElement } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
+import { Icon, IconName } from '../../icon'
 import { Spinner } from '../../spinner'
-import { withTheme } from '../../theme'
+import { withTheme, Theme } from '../../theme'
 
-class TextDropdownButton extends PureComponent<
-  any & React.ComponentProps<typeof Box>
-> {
+interface TextDropdownButtonProps extends React.ComponentProps<typeof Text> {
+  /**
+   * Forcefully set the active state of a button.
+   * Useful in conjuction with a Popover.
+   */
+  isActive?: boolean
+
+  /**
+   * When true, the button is disabled.
+   * isLoading also sets the button to disabled.
+   */
+  disabled?: boolean
+
+  /**
+   * Name of a Blueprint UI icon, or an icon element, to render.
+   * This prop is required because it determines the content of the component, but it can
+   * be explicitly set to falsy values to render nothing.
+   *
+   * - If given an `IconName` (a string literal union of all icon names),
+   *   that icon will be rendered as an `<svg>` with `<path>` tags.
+   * - If given a `JSX.Element`, that element will be rendered and _all other props on this component are ignored._
+   *   This type is supported to simplify usage of this component in other Blueprint components.
+   *   As a consumer, you should never use `<Icon icon={<element />}` directly; simply render `<element />` instead.
+   */
+  icon: IconName | ReactElement
+
+  /**
+   * Sets the height and spinner size of the button.
+   */
+  height: number
+
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: Theme
+}
+
+class TextDropdownButton extends PureComponent<TextDropdownButtonProps> {
   static propTypes = {
-    /**
-     * Forcefully set the active state of a button.
-     * Useful in conjuction with a Popover.
-     */
     isActive: PropTypes.bool,
-
-    /**
-     * When true, the button is disabled.
-     * isLoading also sets the button to disabled.
-     */
     disabled: PropTypes.bool,
-
-    /**
-     * Name of a Blueprint UI icon, or an icon element, to render.
-     * This prop is required because it determines the content of the component, but it can
-     * be explicitly set to falsy values to render nothing.
-     *
-     * - If `null` or `undefined` or `false`, this component will render nothing.
-     * - If given an `IconName` (a string literal union of all icon names),
-     *   that icon will be rendered as an `<svg>` with `<path>` tags.
-     * - If given a `JSX.Element`, that element will be rendered and _all other props on this component are ignored._
-     *   This type is supported to simplify usage of this component in other Blueprint components.
-     *   As a consumer, you should never use `<Icon icon={<element />}` directly; simply render `<element />` instead.
-     */
-    icon: PropTypes.string.isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
-
-    /**
-     * Class name passed to the button.
-     * Only use if you know what you are doing.
-     */
-    className: PropTypes.string
+    icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+      .isRequired as PropTypes.Validator<IconName | ReactElement>,
+    height: PropTypes.number.isRequired,
+    theme: PropTypes.object.isRequired as PropTypes.Validator<Theme>
   }
 
   static defaultProps = {
     isActive: false,
-    icon: 'caret-down'
+    icon: 'caret-down' as const
   }
 
   static styles = {

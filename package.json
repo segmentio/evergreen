@@ -48,6 +48,7 @@
   "dependencies": {
     "@babel/runtime": "^7.1.2",
     "@blueprintjs/icons": "^3.2.0",
+    "@types/classnames": "^2.2.8",
     "arrify": "^1.0.1",
     "classnames": "^2.2.6",
     "dom-helpers": "^3.2.1",
@@ -112,7 +113,7 @@
     "size-limit": "^0.21.1",
     "starwars-names": "^1.6.0",
     "ts-node": "^8.1.0",
-    "typescript": "^3.4.5",
+    "typescript": "^3.5.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.30.0",
     "xo": "^0.24.0"
