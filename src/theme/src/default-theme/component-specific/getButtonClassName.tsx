@@ -1,3 +1,4 @@
+import { Rule } from 'glamor'
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
@@ -14,11 +15,11 @@ const { disabled } = defaultControlStyles
 
 /**
  * Get button appearance.
- * @param {string} appearance - default, primary, minimal.
- * @param {string} intent - none, success, warning, danger.
- * @return {Object} the appearance of the button.
+ * @param appearance - default, primary, minimal.
+ * @param intent - none, success, warning, danger.
+ * @return the appearance of the button.
  */
-const getButtonAppearance = (appearance, intent) => {
+const getButtonAppearance = (appearance: string, intent: string): Rule => {
   switch (appearance) {
     case 'primary': {
       const { linearGradient, focusColor } = getPrimaryButtonStylesForIntent(
@@ -98,8 +99,8 @@ const getButtonAppearance = (appearance, intent) => {
 
 /**
  * Get the className of a `Button`|`IconButton`.
- * @param {string} appearance - default, primary, minimal.
- * @param {Intent} intent - none, success, warning, danger.
- * @return {string} the appearance class name.
+ * @param appearance - default, primary, minimal.
+ * @param intent - none, success, warning, danger.
+ * @return the appearance class name.
  */
 export default memoizeClassName(getButtonAppearance)

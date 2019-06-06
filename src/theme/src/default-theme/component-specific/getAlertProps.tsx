@@ -1,8 +1,12 @@
 import { css } from 'glamor'
+import Box from 'ui-box'
 import scales from '../foundational-styles/scales'
 import colors from '../foundational-styles/colors'
 
-const getTrimStyle = intent => ({
+type Colors = typeof colors
+type Intent = keyof Colors['intent']
+
+const getTrimStyle = (intent: Intent) => ({
   '&:before': {
     content: '""',
     width: 3,
@@ -14,15 +18,25 @@ const getTrimStyle = intent => ({
   }
 })
 
+interface Params {
+  appearance?: string
+  intent: Intent
+  hasTrim?: boolean
+}
+
 /**
  * Get the themed props for the Alert component.
- * @param {Object} props
- * @param {string} props.appearance - default theme supports `default` and `card`.
- * @param {Intent} props.intent - intent of the alert. May be `none`.
- * @param {boolean} props.hasTrim - when true, the alert has a trim.
- * @return {Object} { className, ...themedProps }
+ * @param props
+ * @param props.appearance - default theme supports `default` and `card`.
+ * @param props.intent - intent of the alert. May be `none`.
+ * @param props.hasTrim - when true, the alert has a trim.
+ * @return Box props
  */
-const getAlertProps = ({ appearance, intent, hasTrim }) => {
+const getAlertProps = ({
+  appearance,
+  intent,
+  hasTrim
+}: Params): React.ComponentProps<typeof Box> => {
   const trimClassName = hasTrim ? css(getTrimStyle(intent)).toString() : ''
 
   switch (appearance) {

@@ -7,53 +7,32 @@ export interface Theme {
   elevations: any
   palette: any
   scales: any
-  getAlertProps: (props: {
-    appearance: 'default' | 'card' | undefined
-    intent: 'none' | 'success' | 'warning' | 'danger' | undefined
-    hasTrim: boolean | undefined
-  }) =>
-    | {
-        className: string
-        elevation: number
-        borderRadius: number
-      }
-    | {
-        className: string
-        boxShadow: string
-      }
-  getAvatarInitialsFontSize: (
-    size: number,
-    sizeLimitOneCharacter: number
-  ) => number
-  getAvatarProps: (props: {
-    isSolid?: boolean
-    color: string
-    hashValue?: number
-  }) => {
-    color: string
-    backgroundColor: string
-  }
-  getBorderRadiusForControlHeight: (height: number) => number
-  getButtonClassName: (appearance: string, intent: string) => string
-  getCodeProps: (appearance: 'default' | 'minimal') => any
-  getFontFamily: (fontFamily?: string) => string
-  getHeadingStyle: (size?: number) => any
-  getIconForIntent: (
-    intent?: 'none' | 'success' | 'warning' | 'danger'
-  ) => {
-    icon: string
-    color: string
-  }
-  getIconSizeForButton: (height: number) => number
-  getIconSizeForIconButton: (height: number) => number
-  getLinkClassName: (color?: string) => string
-  getParagraphStyle: (size?: number) => any
-  getTagInputClassName: (alias: 'default') => string
-  getTextColor: (colorAlias?: string) => string
-  getTextDropdownButtonClassName: () => string
-  getTextInputClassName: (alias: 'none') => string
-  getTextSizeForControlHeight: (height: number) => number
-  getTextStyle: (size?: number) => any
+  getAlertProps: typeof defaultTheme.getAlertProps
+  getAvatarInitialsFontSize: typeof defaultTheme.getAvatarInitialsFontSize
+  getAvatarProps: typeof defaultTheme.getAvatarProps
+  getBackground: typeof defaultTheme.getBackground
+  getBadgeClassName: typeof defaultTheme.getBadgeClassName
+  getBadgeProps: typeof defaultTheme.getBadgeProps
+  getBorderRadiusForControlHeight: typeof defaultTheme.getBorderRadiusForControlHeight
+  getButtonClassName: typeof defaultTheme.getButtonClassName
+  getCodeProps: typeof defaultTheme.getCodeProps
+  getElevation: typeof defaultTheme.getElevation
+  getFontFamily: typeof defaultTheme.getFontFamily
+  getHeadingStyle: typeof defaultTheme.getHeadingStyle
+  getIconColor: typeof defaultTheme.getIconColor
+  getIconForIntent: typeof defaultTheme.getIconForIntent
+  getIconSizeForButton: typeof defaultTheme.getIconSizeForButton
+  getIconSizeForIconButton: typeof defaultTheme.getIconSizeForIconButton
+  getIconSizeForInput: typeof defaultTheme.getIconSizeForInput
+  getIconSizeForSelect: typeof defaultTheme.getIconSizeForSelect
+  getLinkClassName: typeof defaultTheme.getLinkClassName
+  getParagraphStyle: typeof defaultTheme.getParagraphStyle
+  getTagInputClassName: typeof defaultTheme.getTagInputClassName
+  getTextColor: typeof defaultTheme.getTextColor
+  getTextDropdownButtonClassName: typeof defaultTheme.getTextDropdownButtonClassName
+  getTextInputClassName: typeof defaultTheme.getTextInputClassName
+  getTextSizeForControlHeight: typeof defaultTheme.getTextSizeForControlHeight
+  getTextStyle: typeof defaultTheme.getTextStyle
 }
 
 /**

@@ -1,3 +1,4 @@
+import { Rule } from 'glamor'
 import tinycolor from 'tinycolor2'
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
@@ -6,10 +7,10 @@ import palette from '../foundational-styles/palette'
 /**
  * The link appearance unlike the Button is based on the color property.
  * Currently the Link does not support the Intent or the appearance interface.
- * @param {string} color
- * @return {Object} appearance of the link.
+ * @param color
+ * @return appearance of the link.
  */
-const getLinkAppearance = color => {
+const getLinkAppearance = (color: string): Rule => {
   switch (color) {
     case 'neutral':
       return Themer.createLinkAppearance({
@@ -81,7 +82,7 @@ const getLinkAppearance = color => {
 
 /**
  * Get the className of a `Link` component.
- * @param {string} color
- * @return {string} the appearance class name.
+ * @param color
+ * @return the appearance class name.
  */
 export default memoizeClassName(getLinkAppearance)

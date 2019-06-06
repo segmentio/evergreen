@@ -9,7 +9,7 @@ export interface HeadingProps extends React.ComponentProps<typeof Box> {
   /**
    * Pass `default` to use the default margin top for that size.
    */
-  marginTop?: boolean | number | string | 'default'
+  marginTop?: boolean | number | string | null | 'default'
 
   /**
    * The size of the heading.

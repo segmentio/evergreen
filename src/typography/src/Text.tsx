@@ -10,17 +10,17 @@ export interface TextProps extends React.ComponentProps<typeof Box> {
   /**
    * The color (alias or valid color) applied to the text
    */
-  color?: string
+  color: string
 
   /**
    * The font family alias applied to the text
    */
-  fontFamily?: FontFamily
+  fontFamily: FontFamily
 
   /**
    * The size of the text style
    */
-  size?: TextSize
+  size: TextSize
 
   /**
    * Theme provided by ThemeProvider.
@@ -30,11 +30,12 @@ export interface TextProps extends React.ComponentProps<typeof Box> {
 
 class Text extends PureComponent<TextProps> {
   static propTypes = {
-    color: PropTypes.string,
-    fontFamily: PropTypes.oneOf(['ui', 'display', 'mono']) as Validator<
-      FontFamily
+    color: PropTypes.string.isRequired,
+    fontFamily: PropTypes.oneOf(['ui', 'display', 'mono'])
+      .isRequired as Validator<FontFamily>,
+    size: PropTypes.oneOf([300, 400, 500, 600]).isRequired as Validator<
+      TextSize
     >,
-    size: PropTypes.oneOf([300, 400, 500, 600]) as Validator<TextSize>,
     theme: PropTypes.object.isRequired as Validator<Theme>
   }
 

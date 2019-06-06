@@ -1,11 +1,12 @@
+import Box from 'ui-box'
 import scales from '../foundational-styles/scales'
 
 /**
  * Get the themed properties for a `Code` text component.
- * @param {string} appearance - default, minimal.
- * @return {string} the themd properties.
+ * @param appearance - default, minimal.
+ * @return the themd properties.
  */
-const getCodeProps = appearance => {
+const getCodeProps = (appearance: string): React.ComponentProps<typeof Box> => {
   switch (appearance) {
     case 'minimal':
       return {}

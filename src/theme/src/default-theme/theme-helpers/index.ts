@@ -1,3 +1,4 @@
+import Box from 'ui-box'
 import { Intent } from '../../../../constants'
 import themedProperty from '../utils/themedProperty'
 import { colors, elevations } from '../foundational-styles'
@@ -8,20 +9,20 @@ import { fontFamilies, headings, paragraph, text } from '../typography'
  * - Button
  * - IconButton
  * - TextInput
- * @param {number} height
- * @return {number} border radius
+ * @param height
+ * @return border radius
  */
-const getBorderRadiusForControlHeight = height => {
+const getBorderRadiusForControlHeight = (height: number): number => {
   if (height <= 40) return 3
   return 4
 }
 
 /**
  * Get the text size for a control with a certain height.
- * @param {number} height
- * @return {number} text size of the control height.
+ * @param height
+ * @return text size of the control height.
  */
-const getTextSizeForControlHeight = height => {
+const getTextSizeForControlHeight = (height: number): number => {
   if (height <= 24) return 300
   if (height <= 28) return 300
   if (height <= 32) return 300
@@ -32,10 +33,10 @@ const getTextSizeForControlHeight = height => {
 
 /**
  * Get the size for a icon in a Button with a certain height.
- * @param {number} height
- * @return {number} icon size
+ * @param height
+ * @return icon size
  */
-const getIconSizeForButton = height => {
+const getIconSizeForButton = (height: number): number => {
   if (height <= 28) return 12
   if (height <= 32) return 12
   if (height <= 40) return 16
@@ -49,10 +50,10 @@ const getIconSizeForSelect = getIconSizeForButton
 
 /**
  * Get the size for a icon in a IconButton with a certain height.
- * @param {number} height
- * @return {number} icon size
+ * @param height
+ * @return icon size
  */
-const getIconSizeForIconButton = height => {
+const getIconSizeForIconButton = (height: number): number => {
   if (height <= 28) return 12
   if (height <= 32) return 14 // Slightly bigger than getIconSizeForButton
   if (height <= 40) return 16
@@ -62,10 +63,10 @@ const getIconSizeForIconButton = height => {
 
 /**
  * Get background property.
- * @param {string} background
- * @return {string} background property.
+ * @param background
+ * @return background property.
  */
-const getBackground = background => {
+const getBackground = (background: string): string => {
   /**
    * Return one of theme presets or the original value.
    */
@@ -74,10 +75,10 @@ const getBackground = background => {
 
 /**
  * Get box-shadow (elevation).
- * @param {string} level — level of elevation.
- * @return {string} elevation box-shadow.
+ * @param level — level of elevation.
+ * @return elevation box-shadow.
  */
-const getElevation = level => {
+const getElevation = (level: number): string => {
   /**
    * There is no fallback, undefined will be returned.
    */
@@ -86,22 +87,27 @@ const getElevation = level => {
 
 /**
  * Get the color for an icon.
- * @param {string} color
- * @return {string} color of the icon
+ * @param color
+ * @return color of the icon
  */
-const getIconColor = color => {
+const getIconColor = (color: string): string => {
   /**
    * Check if there is a preset in the theme for the icon color.
    */
   return themedProperty(colors.icon, color)
 }
 
+interface IntentIcon {
+  icon: string
+  color: string
+}
+
 /**
  * Get the properties for an icon based on the intent.
- * @param {Intent} intent
- * @return {Object} properties
+ * @param intent
+ * @return properties
  */
-const getIconForIntent = intent => {
+const getIconForIntent = (intent?: string): IntentIcon => {
   switch (intent) {
     case Intent.SUCCESS:
       return { icon: 'tick-circle', color: 'success' }
@@ -117,10 +123,10 @@ const getIconForIntent = intent => {
 
 /**
  * Heading styles.
- * @param {number} size - 100–900. 500 is default.
- * @return {Object} heading style.
+ * @param size - 100–900. 500 is default.
+ * @return heading style.
  */
-const getHeadingStyle = size => {
+const getHeadingStyle = (size: number): React.ComponentProps<typeof Box> => {
   return themedProperty(headings, String(size))
 }
 
@@ -132,29 +138,29 @@ const getHeadingStyle = size => {
  * - Code
  * - ListItem
  * - Label
- * @param {number} size - 300–500. 400 is default.
- * @return {Object} text style.
+ * @param size - 300–500. 400 is default.
+ * @return text style.
  */
-const getTextStyle = size => {
+const getTextStyle = (size: number): React.ComponentProps<typeof Box> => {
   return themedProperty(text, String(size))
 }
 
 /**
  * Text styles for paragraphs (multi line text).
  * This is used in the Paragraph.
- * @param {number} size - 300–500. 400 is default.
- * @return {Object} text style.
+ * @param size - 300–500. 400 is default.
+ * @return text style.
  */
-const getParagraphStyle = size => {
+const getParagraphStyle = (size: number): React.ComponentProps<typeof Box> => {
   return themedProperty(paragraph, String(size))
 }
 
 /**
  * Get the font family. This is used to override the font family.
- * @param {string} fontFamily
- * @return {string} font family
+ * @param fontFamily
+ * @return font family
  */
-const getFontFamily = fontFamily => {
+const getFontFamily = (fontFamily: string): string => {
   /**
    * Allow for passing in a custom fontFamily not in the theme.
    */
@@ -163,10 +169,10 @@ const getFontFamily = fontFamily => {
 
 /**
  * Get the text color. This is used to override the color.
- * @param {string} fontFamily
- * @return {string} font family
+ * @param color
+ * @return text color
  */
-const getTextColor = color => {
+const getTextColor = (color: string): string => {
   /**
    * Allow for passing in a custom text color not in the theme.
    */

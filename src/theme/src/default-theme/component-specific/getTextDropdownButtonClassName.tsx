@@ -1,3 +1,4 @@
+import { Rule } from 'glamor'
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
@@ -19,7 +20,7 @@ const defaultAppearance = Themer.createTextDropdownButtonAppearance({
 /**
  * Get the appearance of a `TextDropdownButton`.
  */
-const getTextDropdownButtonAppearance = () => {
+const getTextDropdownButtonAppearance = (): Rule => {
   return defaultAppearance
 }
 

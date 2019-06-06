@@ -14,7 +14,7 @@ export interface LinkProps extends React.ComponentProps<typeof Text> {
   /**
    * The color (and styling) of the Link. Can be default, blue, green or neutral.
    */
-  color?: string
+  color: string
 
   /**
    * Specifies the URL of the linked resource. A URL might be absolute or relative.
@@ -41,7 +41,7 @@ export interface LinkProps extends React.ComponentProps<typeof Text> {
 class Link extends PureComponent<LinkProps> {
   static propTypes = {
     className: PropTypes.string,
-    color: PropTypes.string,
+    color: PropTypes.string.isRequired,
     href: PropTypes.string,
     rel: PropTypes.string,
     target: PropTypes.string,

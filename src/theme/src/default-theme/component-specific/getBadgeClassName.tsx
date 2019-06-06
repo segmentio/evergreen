@@ -1,3 +1,4 @@
+import { Rule } from 'glamor'
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 
@@ -10,10 +11,10 @@ const interactiveAppearance = Themer.createBadgeAppearance({
 
 /**
  * Get the appearance of an interactive `Badge`.
- * @param {string} appearance - the appearance name
- * @return {string} the appearance object.
+ * @param appearance - the appearance name
+ * @return the appearance object.
  */
-const getBadgeAppearance = appearance => {
+const getBadgeAppearance = (appearance: string): Rule | undefined => {
   switch (appearance) {
     case 'interactive':
       return interactiveAppearance
@@ -24,7 +25,7 @@ const getBadgeAppearance = appearance => {
 
 /**
  * Get the className of a `Badge`.
- * @param {string} appearance - the appearance name
- * @return {string} the appearance class name.
+ * @param appearance - the appearance name
+ * @return the appearance class name.
  */
 export default memoizeClassName(getBadgeAppearance)

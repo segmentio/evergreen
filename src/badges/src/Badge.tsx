@@ -2,24 +2,36 @@ import React, { PureComponent } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { Strong } from '../../typography'
-import { withTheme } from '../../theme'
+import { withTheme, Theme } from '../../theme'
 
-class Badge extends PureComponent<any & React.ComponentProps<typeof Strong>> {
+interface BadgeProps extends React.ComponentProps<typeof Strong> {
+  /**
+   * The color used for the badge.
+   */
+  color: string
+
+  /**
+   * Whether or not to apply hover/focus/active styles
+   */
+  isInteractive: boolean
+
+  /**
+   * Whether or not a dark background with light text should be used
+   */
+  isSolid: boolean
+
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: Theme
+}
+
+class Badge extends PureComponent<BadgeProps> {
   static propTypes = {
-    /**
-     * The color used for the badge.
-     */
     color: PropTypes.string.isRequired,
-
-    /**
-     * Whether or not to apply hover/focus/active styles
-     */
-    isInteractive: PropTypes.bool,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
+    isInteractive: PropTypes.bool.isRequired,
+    isSolid: PropTypes.bool.isRequired,
+    theme: PropTypes.object.isRequired as PropTypes.Validator<Theme>
   }
 
   static defaultProps = {

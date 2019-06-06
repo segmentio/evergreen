@@ -10,19 +10,19 @@ export interface ParagraphProps extends React.ComponentProps<typeof Box> {
   /**
    * The color (alias or valid color) applied to the text
    */
-  color?: string
+  color: string
 
   /**
    * Font family.
    * Can be: `ui`, `display` or `mono` or a custom font family.
    */
-  fontFamily?: FontFamily
+  fontFamily: FontFamily
 
   /**
    * Size of the text style.
    * Can be: 300, 400, 500.
    */
-  size?: ParagraphSize
+  size: ParagraphSize
 
   /**
    * Theme provided by ThemeProvider.
@@ -32,11 +32,12 @@ export interface ParagraphProps extends React.ComponentProps<typeof Box> {
 
 class Paragraph extends PureComponent<ParagraphProps> {
   static propTypes = {
-    color: PropTypes.string,
-    fontFamily: PropTypes.oneOf(['ui', 'display', 'mono']) as Validator<
-      FontFamily
+    color: PropTypes.string.isRequired,
+    fontFamily: PropTypes.oneOf(['ui', 'display', 'mono'])
+      .isRequired as Validator<FontFamily>,
+    size: PropTypes.oneOf([300, 400, 500]).isRequired as Validator<
+      ParagraphSize
     >,
-    size: PropTypes.oneOf([300, 400, 500, 600]) as Validator<ParagraphSize>,
     theme: PropTypes.object.isRequired as Validator<Theme>
   }
 

@@ -1,3 +1,4 @@
+import { Rule } from 'glamor'
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
@@ -71,10 +72,10 @@ InputAppearances.none = Themer.createInputAppearance({
 
 /**
  * Get the appearance of a `TextInput`.
- * @param {string} appearance - the appearance name
- * @return {Object} the appearance object.
+ * @param appearance - the appearance name
+ * @return the appearance object.
  */
-const getTextInputAppearance = appearance => {
+const getTextInputAppearance = (appearance: string): Rule => {
   switch (appearance) {
     case 'neutral':
       return InputAppearances.neutral
@@ -87,7 +88,7 @@ const getTextInputAppearance = appearance => {
 
 /**
  * Get the className of a `TextInput`.
- * @param {string} appearance - the appearance name
- * @return {string} the appearance class name.
+ * @param appearance - the appearance name
+ * @return the appearance class name.
  */
 export default memoizeClassName(getTextInputAppearance)

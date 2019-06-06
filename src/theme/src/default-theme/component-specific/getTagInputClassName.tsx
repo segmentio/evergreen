@@ -1,3 +1,4 @@
+import { Rule } from 'glamor'
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
@@ -30,16 +31,14 @@ TagInputAppearances.default = Themer.createTagInputAppearance({
 
 /**
  * Get the appearance of a `TagInput`.
- * @param {string} appearance - the appearance name
- * @return {Object} the appearance object.
+ * @return the appearance object.
  */
-const getTextInputAppearance = () => {
+const getTextInputAppearance = (): Rule => {
   return TagInputAppearances.default
 }
 
 /**
  * Get the className of a `TagInput`.
- * @param {string} appearance - the appearance name
- * @return {string} the appearance class name.
+ * @return the appearance class name.
  */
 export default memoizeClassName(getTextInputAppearance)
