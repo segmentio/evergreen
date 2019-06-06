@@ -97,7 +97,7 @@ const getIconColor = (color: string): string => {
   return themedProperty(colors.icon, color)
 }
 
-interface IntentIcon {
+export interface IntentIcon {
   icon: string
   color: string
 }

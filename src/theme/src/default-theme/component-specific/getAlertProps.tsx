@@ -18,7 +18,7 @@ const getTrimStyle = (intent: Intent) => ({
   }
 })
 
-interface Params {
+export interface GetAlertPropsParams {
   appearance?: string
   intent: Intent
   hasTrim?: boolean
@@ -36,7 +36,7 @@ const getAlertProps = ({
   appearance,
   intent,
   hasTrim
-}: Params): React.ComponentProps<typeof Box> => {
+}: GetAlertPropsParams): React.ComponentProps<typeof Box> => {
   const trimClassName = hasTrim ? css(getTrimStyle(intent)).toString() : ''
 
   switch (appearance) {

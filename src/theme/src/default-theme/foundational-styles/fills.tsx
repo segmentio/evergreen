@@ -16,7 +16,7 @@ interface FillColorValues {
   backgroundColor: string
 }
 
-interface Fills {
+export interface Fills {
   solid: { [color in FillColor]: FillColorValues }
   subtle: { [color in FillColor]: FillColorValues }
   options: FillColor[]
