@@ -15,7 +15,7 @@ class MenuOptionsGroup extends React.PureComponent {
     /**
      * The current value of the option group.
      */
-    selected: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    selected: PropTypes.any,
 
     /**
      * Function called when selection changes.
