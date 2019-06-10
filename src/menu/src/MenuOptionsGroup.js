@@ -39,10 +39,10 @@ class MenuOptionsGroup extends React.PureComponent {
           </Heading>
         )}
         <Pane>
-          {options.map(option => {
+          {options.map((option, i) => {
             return (
               <MenuOption
-                key={option.value}
+                key={option.value + i}
                 isSelected={option.value === selected}
                 onSelect={() => onChange(option.value)}
               >
