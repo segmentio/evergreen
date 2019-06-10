@@ -17,12 +17,12 @@ export default class SelectMenu extends PureComponent {
     /**
      * The width of the Select Menu.
      */
-    width: PropTypes.number,
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
      * The height of the Select Menu.
      */
-    height: PropTypes.number,
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
      * The options to show in the menu.
