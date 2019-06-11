@@ -25,17 +25,17 @@ export default class TextInputField extends PureComponent {
     labelFor: PropTypes.string,
 
     /**
-     * Wether or not show a asterix after the label.
+     * Whether or not to show an asterix after the label.
      */
     isRequired: PropTypes.bool,
 
     /**
-     * A optional description of the field under the label, above the input element.
+     * An optional description of the field under the label, above the input element.
      */
     description: PropTypes.node,
 
     /**
-     * A optional hint under the input element.
+     * An optional hint under the input element.
      */
     hint: PropTypes.node,
 

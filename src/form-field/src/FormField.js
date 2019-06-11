@@ -19,17 +19,17 @@ export default class FormField extends PureComponent {
     labelFor: PropTypes.string,
 
     /**
-     * Wether or not show a asterix after the label.
+     * Whether or not show an asterix after the label.
      */
     isRequired: PropTypes.bool,
 
     /**
-     * A optional description of the field under the label, above the input element.
+     * An optional description of the field under the label, above the input element.
      */
     description: PropTypes.node,
 
     /**
-     * A optional hint under the input element.
+     * An optional hint under the input element.
      */
     hint: PropTypes.node,
 
@@ -40,22 +40,22 @@ export default class FormField extends PureComponent {
     validationMessage: PropTypes.node,
 
     /**
-     * Composes the dimensions spec from the Box primitivie.
+     * Composes the dimensions spec from the Box primitive.
      */
     ...dimensions.propTypes,
 
     /**
-     * Composes the spacing spec from the Box primitivie.
+     * Composes the spacing spec from the Box primitive.
      */
     ...spacing.propTypes,
 
     /**
-     * Composes the position spec from the Box primitivie.
+     * Composes the position spec from the Box primitive.
      */
     ...position.propTypes,
 
     /**
-     * Composes the layout spec from the Box primitivie.
+     * Composes the layout spec from the Box primitive.
      */
     ...layout.propTypes
   }

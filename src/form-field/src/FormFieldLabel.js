@@ -10,7 +10,7 @@ export default class FormFieldLabel extends PureComponent {
     ...Label.propTypes,
 
     /**
-     * Wether or not tho show an asterix after the label.
+     * Whether or not to show an asterix after the label.
      */
     isAstrixShown: PropTypes.bool
   }
