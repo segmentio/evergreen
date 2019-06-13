@@ -38,7 +38,7 @@ export default class OptionsList extends PureComponent {
     /**
      * This holds the values of the options
      */
-    selected: PropTypes.arrayOf(PropTypes.string),
+    selected: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     onSelect: PropTypes.func,
     onDeselect: PropTypes.func,
     onFilterChange: PropTypes.func,
