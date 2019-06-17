@@ -11,10 +11,11 @@ import { Button } from '../../buttons'
 import { Position } from '../../constants'
 import { Icon, IconNames } from '../../icon'
 
-const PopoverContent = () => (
+// eslint-disable-next-line react/prop-types
+const PopoverContent = ({ height = 240 }) => (
   <Pane
     width={240}
-    height={240}
+    height={height}
     display="flex"
     alignItems="center"
     justifyContent="center"
@@ -170,6 +171,14 @@ storiesOf('popover', module)
       <Popover content={<PopoverContent />}>
         <Button position="absolute" left={40} bottom={40} marginRight={20}>
           Use Smart Positioning
+        </Button>
+      </Popover>
+      <Popover
+        content={<PopoverContent height={999} />}
+        position={Position.TOP_LEFT}
+      >
+        <Button position="absolute" left={40} top={80} marginRight={20}>
+          Compensated for shooting past the bottom
         </Button>
       </Popover>
     </Box>
