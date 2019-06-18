@@ -151,7 +151,26 @@ storiesOf('menu', module)
           </Menu>
         }
       >
-        <Button>Custom Menu Items</Button>
+        <Button marginRight={16}>Custom Menu Items</Button>
+      </Popover>
+      <Popover
+        position={Position.BOTTOM_LEFT}
+        trigger="hover"
+        content={
+          <Menu>
+            <Menu.Group>
+              <Menu.Item>Share...</Menu.Item>
+              <Menu.Item>Move...</Menu.Item>
+              <Menu.Item secondaryText="⌘R">Rename...</Menu.Item>
+            </Menu.Group>
+            <Menu.Divider />
+            <Menu.Group>
+              <Menu.Item intent="danger">Delete...</Menu.Item>
+            </Menu.Group>
+          </Menu>
+        }
+      >
+        <Button>Hover menus</Button>
       </Popover>
 
       <UnorderedList marginTop={24}>
