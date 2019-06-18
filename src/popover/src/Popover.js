@@ -25,6 +25,10 @@ export default class Popover extends Component {
      * When true, the Popover is manually shown.
      */
     isShown: PropTypes.bool,
+    /**
+     * Open the Popover based on click or hover. Default is click.
+     */
+    trigger: PropTypes.oneOf(['click', 'hover']),
 
     /**
      * The content of the Popover.
@@ -105,7 +109,8 @@ export default class Popover extends Component {
     onOpenComplete: () => {},
     onCloseComplete: () => {},
     bringFocusInside: false,
-    shouldCloseOnExternalClick: true
+    shouldCloseOnExternalClick: true,
+    trigger: 'click'
   }
 
   constructor(props) {
@@ -236,7 +241,6 @@ export default class Popover extends Component {
     document.body.removeEventListener('keydown', this.onEsc, false)
 
     this.bringFocusBackToTarget()
-
     this.props.onClose()
   }
 
@@ -252,6 +256,18 @@ export default class Popover extends Component {
   handleKeyDown = e => {
     if (e.key === 'ArrowDown') {
       this.bringFocusInside()
+    }
+  }
+
+  handleOpenHover = () => {
+    if (this.props.trigger === 'hover') {
+      this.open()
+    }
+  }
+
+  handleCloseHover = () => {
+    if (this.props.trigger === 'hover') {
+      this.close()
     }
   }
 
@@ -277,6 +293,7 @@ export default class Popover extends Component {
 
     const popoverTargetProps = {
       onClick: this.toggle,
+      onMouseEnter: this.handleOpenHover,
       onKeyDown: this.handleKeyDown,
       role: 'button',
       'aria-expanded': isShown,
@@ -352,6 +369,7 @@ export default class Popover extends Component {
             minWidth={minWidth}
             minHeight={minHeight}
             {...statelessProps}
+            onMouseLeave={this.handleCloseHover}
           >
             {typeof content === 'function'
               ? content({ close: this.close })
