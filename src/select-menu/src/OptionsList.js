@@ -36,9 +36,16 @@ export default class OptionsList extends PureComponent {
     isMultiSelect: PropTypes.bool,
 
     /**
+     * When true, menu closes on option selection.
+     */
+    closeOnSelect: PropTypes.bool,
+
+    /**
      * This holds the values of the options
      */
-    selected: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    selected: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    ),
     onSelect: PropTypes.func,
     onDeselect: PropTypes.func,
     onFilterChange: PropTypes.func,
@@ -201,6 +208,9 @@ export default class OptionsList extends PureComponent {
 
   handleSelect = item => {
     this.props.onSelect(item)
+    if (!this.props.isMultiSelect && this.props.closeOnSelect) {
+      this.props.close()
+    }
   }
 
   handleDeselect = item => {
