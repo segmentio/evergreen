@@ -46,6 +46,11 @@ export default class SelectMenuContent extends PureComponent {
      */
     isMultiSelect: PropTypes.bool,
 
+    /*
+     * When true, menu closes on option selection.
+     */
+    closeOnSelect: PropTypes.bool,
+
     /**
      * Node that is placed in the header section, above the options.
      */
@@ -84,7 +89,8 @@ export default class SelectMenuContent extends PureComponent {
       titleView,
       detailView,
       emptyView,
-      isMultiSelect
+      isMultiSelect,
+      closeOnSelect
     } = this.props
 
     const headerHeight = 40
@@ -114,6 +120,7 @@ export default class SelectMenuContent extends PureComponent {
               options={options}
               isMultiSelect={isMultiSelect}
               close={close}
+              closeOnSelect={closeOnSelect}
               {...listProps}
             />
           )}

@@ -105,7 +105,12 @@ export default class SelectMenu extends PureComponent {
      * Can be a function that returns a node, or a node itself, that is
      * rendered instead of the options list when there are no options.
      */
-    emptyView: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
+    emptyView: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+
+    /*
+     * When true, menu closes on option selection.
+     */
+    closeOnSelect: PropTypes.bool
   }
 
   static defaultProps = {
@@ -116,7 +121,8 @@ export default class SelectMenu extends PureComponent {
     position: Position.BOTTOM_LEFT,
     isMultiSelect: false,
     filterPlaceholder: 'Filter...',
-    filterIcon: 'search'
+    filterIcon: 'search',
+    closeOnSelect: false
   }
 
   getDetailView = (close, detailView) => {
@@ -163,6 +169,7 @@ export default class SelectMenu extends PureComponent {
       emptyView,
       titleView,
       isMultiSelect,
+      closeOnSelect,
       ...props
     } = this.props
 
@@ -196,6 +203,7 @@ export default class SelectMenu extends PureComponent {
             close={close}
             {...this.getDetailView(close, detailView)}
             {...this.getEmptyView(close, emptyView)}
+            closeOnSelect={closeOnSelect}
           />
         )}
         {...props}

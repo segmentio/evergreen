@@ -30,6 +30,19 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
     </Manager>
     <Manager>
       {({ setState, state }) => (
+        <SelectMenu
+          title="Select name"
+          options={options}
+          selected={state.selected}
+          onSelect={item => setState({ selected: item.value })}
+          closeOnSelect
+        >
+          <Button>Menu will close on select</Button>
+        </SelectMenu>
+      )}
+    </Manager>
+    <Manager>
+      {({ setState, state }) => (
         <Pane display="inline-block">
           <Text display="block">Filter Text: {state.filterText}</Text>
           <SelectMenu
