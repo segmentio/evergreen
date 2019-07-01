@@ -103,6 +103,10 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
           options={state.options}
           selected={state.selected}
           onSelect={item => {
+            if (state.selected.includes(item.value)) {
+              return
+            }
+
             const selected = [...state.selected, item.value]
             const selectedItems = selected
             const selectedItemsLength = selectedItems.length
