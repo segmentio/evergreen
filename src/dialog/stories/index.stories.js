@@ -212,7 +212,7 @@ storiesOf('dialog', module)
               isShown={isShown}
               shouldCloseOnOverlayClick={false}
               shouldCloseOnEscapePress={false}
-              title="Dialog with Internal Scrolling"
+              title="Dialog with overlay and escape key disabled"
               onCloseComplete={hide}
               onCancel={close => {
                 console.log('You canceled')
