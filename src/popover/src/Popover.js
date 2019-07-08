@@ -87,6 +87,11 @@ export default class Popover extends Component {
      * Function that will be called when the exit transition is complete.
      */
     onCloseComplete: PropTypes.func.isRequired,
+    
+    /**
+     * Function that will be called when the body is clicked.
+     */
+    onBodyClick: PropTypes.func.isRequired,
 
     /**
      * When true, bring focus inside of the Popover on open.
@@ -107,7 +112,8 @@ export default class Popover extends Component {
     onOpen: () => {},
     onClose: () => {},
     onOpenComplete: () => {},
-    onCloseComplete: () => {},
+    onCloseComplete: () => {},    
+    onBodyClick: () => {},
     bringFocusInside: false,
     shouldCloseOnExternalClick: true,
     trigger: 'click'
@@ -196,6 +202,9 @@ export default class Popover extends Component {
     if (this.popoverNode && this.popoverNode.contains(e.target)) {
       return
     }
+    
+    // Notify body click
+    this.props.onBodyClick(e)
 
     if (this.props.shouldCloseOnExternalClick === false) {
       return
