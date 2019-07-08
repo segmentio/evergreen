@@ -198,7 +198,7 @@ export default class Popover extends Component {
       return
     }
     
-    // notify body click
+    // Notify body click
     this.props.onBodyClick(e)
 
     if (this.props.shouldCloseOnExternalClick === false) {
