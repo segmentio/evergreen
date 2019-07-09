@@ -13,7 +13,7 @@ export default class TableHead extends PureComponent {
     /**
      * The height of the table head.
      */
-    height: PropTypes.oneOfType(PropTypes.number, PropTypes.string).isRequired,
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 
     /**
      * This should always be true if you are using TableHead together with a TableBody.
