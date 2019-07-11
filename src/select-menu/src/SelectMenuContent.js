@@ -31,8 +31,8 @@ export default class SelectMenuContent extends PureComponent {
   static propTypes = {
     close: PropTypes.func,
     title: PropTypes.string,
-    width: PropTypes.number,
-    height: PropTypes.number,
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     headerHeight: PropTypes.number,
     options: PropTypes.arrayOf(OptionShapePropType),
     hasTitle: PropTypes.bool,
