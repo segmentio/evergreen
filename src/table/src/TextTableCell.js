@@ -40,7 +40,7 @@ export default class TextTableCell extends PureComponent {
           size={300}
           flex="1"
           {...ellipsis}
-          {...(isNumber ? { fontFamily: 'mono' } : {})}
+          {...(isNumber ? { fontFamily: 'mono', textAlign: 'right' } : {})}
           {...textProps}
         >
           {children}
