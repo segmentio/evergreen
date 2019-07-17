@@ -49,7 +49,7 @@ export interface Theme {
   getLinkClassName: (color?: string) => string
   getParagraphStyle: (size?: number) => any
   getTagInputClassName: (alias: 'default') => string
-  getTextareaClassName: (appearance: string) => string
+  getTextareaClassName: typeof defaultTheme.getTextareaClassName
   getTextColor: (colorAlias?: string) => string
   getTextDropdownButtonClassName: () => string
   getTextInputClassName: (alias: 'none') => string
