@@ -2,65 +2,78 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import { withTheme, Theme } from '../../theme'
 
-class Textarea extends PureComponent<any & React.ComponentProps<typeof Text>> {
+interface TextareaProps extends React.ComponentProps<typeof Text> {
+  /**
+   * Makes the textarea element required.
+   */
+  required: boolean
+
+  /**
+   * Makes the textarea element disabled.
+   */
+  disabled: boolean
+
+  /**
+   * Sets visual styling of _only_ the text area to be "invalid".
+   * Note that this does not effect any `validationMessage`.
+   */
+  isInvalid: boolean
+
+  /**
+   * Use the native spell check functionality of the browser.
+   */
+  spellCheck: boolean
+
+  /**
+   * Allow the Grammarly browser extension to attach to the backing textarea.
+   */
+  grammarly: boolean
+
+  /**
+   * The placeholder text when there is no value present.
+   */
+  placeholder: string
+
+  /**
+   * The appearance of the TextInput.
+   */
+  appearance: 'default'
+
+  /**
+   * The width of the TextInput.
+   */
+  width: string | number
+
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: Theme
+
+  /**
+   * Class name passed to the textarea.
+   * Only use if you know what you are doing.
+   */
+  className: string
+}
+
+class Textarea extends PureComponent<any & TextareaProps> {
   static propTypes = {
-    /**
-     * Makes the textarea element required.
-     */
     required: PropTypes.bool,
-
-    /**
-     * Makes the textarea element disabled.
-     */
     disabled: PropTypes.bool,
-
-    /**
-     * Sets visual styling of _only_ the text area to be "invalid".
-     * Note that this does not effect any `validationMessage`.
-     */
     isInvalid: PropTypes.bool,
-
-    /**
-     * Use the native spell check functionality of the browser.
-     */
     spellCheck: PropTypes.bool,
-
-    /**
-     * Allow the Grammarly browser extension to attach to the backing textarea.
-     */
     grammarly: PropTypes.bool,
-
-    /**
-     * The placeholder text when there is no value present.
-     */
     placeholder: PropTypes.string,
-
-    /**
-     * The appearance of the TextInput.
-     */
     appearance: PropTypes.string,
-
-    /**
-     * The width of the TextInput.
-     */
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
-
-    /**
-     * Class name passed to the textarea.
-     * Only use if you know what you are doing.
-     */
+    theme: PropTypes.object.isRequired as PropTypes.Validator<Theme>,
     className: PropTypes.string
   }
 
   static defaultProps = {
-    appearance: 'default',
+    appearance: 'default' as const,
     width: '100%',
     disabled: false,
     isInvalid: false,
