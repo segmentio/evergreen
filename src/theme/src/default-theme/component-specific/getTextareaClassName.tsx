@@ -3,7 +3,7 @@ import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
 
-const Appearances: any = {}
+const Appearances: { [key: string]: any } = {}
 
 Appearances.default = Themer.createInputAppearance({
   base: {
@@ -79,7 +79,7 @@ Appearances.editableCell = Themer.createInputAppearance({
  * @param {string} appearance
  * @return {Object} the appearance object.
  */
-const getTextareaAppearance = appearance => {
+const getTextareaAppearance = (appearance: string): any => {
   switch (appearance) {
     case 'neutral':
       return Appearances.neutral

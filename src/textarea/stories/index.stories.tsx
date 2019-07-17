@@ -8,7 +8,7 @@ const Description = props => (
   <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 )
 
-storiesOf('textarea', module).add('overview', () => (
+storiesOf('Textarea', module).add('overview', () => (
   <Box padding={48}>
     <Box marginBottom={24} width={360}>
       <Label htmlFor={32} size={400} display="block">
