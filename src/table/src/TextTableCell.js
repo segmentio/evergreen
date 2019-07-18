@@ -17,7 +17,7 @@ export default class TextTableCell extends PureComponent {
     ...TableCell.propTypes,
 
     /**
-     * Adds textAlign: right and fontFamily: mono.
+     * Adds fontFamily: mono.
      */
     isNumber: PropTypes.bool.isRequired,
 
