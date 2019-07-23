@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, ReactText, Validator } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { Text } from '../../typography'
@@ -58,18 +58,21 @@ interface TextareaProps extends React.ComponentProps<typeof Text> {
   className: string
 }
 
-class Textarea extends PureComponent<any & TextareaProps> {
+class Textarea extends PureComponent<TextareaProps> {
   static propTypes = {
-    required: PropTypes.bool,
-    disabled: PropTypes.bool,
-    isInvalid: PropTypes.bool,
-    spellCheck: PropTypes.bool,
-    grammarly: PropTypes.bool,
-    placeholder: PropTypes.string,
-    appearance: PropTypes.string,
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    theme: PropTypes.object.isRequired as PropTypes.Validator<Theme>,
-    className: PropTypes.string
+    required: PropTypes.bool as Validator<boolean>,
+    disabled: PropTypes.bool as Validator<boolean>,
+    isInvalid: PropTypes.bool as Validator<boolean>,
+    spellCheck: PropTypes.bool as Validator<boolean>,
+    grammarly: PropTypes.bool as Validator<boolean>,
+    placeholder: PropTypes.string as Validator<string>,
+    appearance: PropTypes.string as Validator<'default'>,
+    width: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]) as PropTypes.Validator<ReactText>,
+    theme: PropTypes.object.isRequired as Validator<Theme>,
+    className: PropTypes.string as PropTypes.Validator<string>
   }
 
   static defaultProps = {
