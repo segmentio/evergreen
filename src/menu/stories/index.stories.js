@@ -130,6 +130,44 @@ storiesOf('menu', module)
         position={Position.BOTTOM_LEFT}
         content={
           <Menu>
+            <Component initialState={{ selected: ['email', 'state'] }}>
+              {({ state, setState }) => {
+                return (
+                  <Menu.OptionsGroup
+                    title="Show"
+                    options={[
+                      { label: 'Email', value: 'email' },
+                      { label: 'Phone', value: 'phone' },
+                      { label: 'State', value: 'state' },
+                      { label: 'Country', value: 'country' },
+                      { label: 'Type', value: 'type' }
+                    ]}
+                    selected={state.selected}
+                    isMultiSelect
+                    onChange={value => {
+                      const { selected } = state
+                      if (selected.find(itemValue => itemValue === value)) {
+                        const index = selected.indexOf(value)
+                        selected.splice(index, 1)
+                      } else {
+                        selected.push(value)
+                      }
+
+                      setState({ selected })
+                    }}
+                  />
+                )
+              }}
+            </Component>
+          </Menu>
+        }
+      >
+        <Button marginRight={16}>Multiselect Option Group</Button>
+      </Popover>
+      <Popover
+        position={Position.BOTTOM_LEFT}
+        content={
+          <Menu>
             <ul>
               <li>
                 <a href="..." role="menuitem">

@@ -25,11 +25,27 @@ class MenuOptionsGroup extends React.PureComponent {
     /**
      * List of options rendered in the group.
      */
-    options: PropTypes.array
+    options: PropTypes.array,
+
+    /**
+     * When true, multi select is accounted for.
+     */
+    isMultiSelect: PropTypes.bool
+  }
+
+  isSelected = option => {
+    const { value } = option
+    const { isMultiSelect, selected } = this.props
+
+    if (isMultiSelect) {
+      return Boolean(selected.find(itemValue => itemValue === value))
+    }
+
+    return Boolean(value === selected)
   }
 
   render() {
-    const { title, options, selected, onChange } = this.props
+    const { title, options, onChange } = this.props
 
     return (
       <Pane paddingY={8}>
@@ -39,11 +55,11 @@ class MenuOptionsGroup extends React.PureComponent {
           </Heading>
         )}
         <Pane>
-          {options.map((option) => {
+          {options.map(option => {
             return (
               <MenuOption
                 key={option.value}
-                isSelected={option.value === selected}
+                isSelected={this.isSelected(option)}
                 onSelect={() => onChange(option.value)}
               >
                 {option.label}
