@@ -225,6 +225,7 @@ export default class OptionsList extends PureComponent {
     const {
       options: originalOptions,
       close,
+      closeOnSelect,
       width,
       height,
       onSelect,
