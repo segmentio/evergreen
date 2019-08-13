@@ -27,7 +27,7 @@ export default class Features extends React.PureComponent {
             of the box.
           </Feature>
           <Feature title="Flexible & composable">
-            Evergreen components are build on top of a React UI Primitive for
+            Evergreen components are built on top of a React UI Primitive for
             endless composability.
           </Feature>
           <Feature title="Enterprise-grade">
