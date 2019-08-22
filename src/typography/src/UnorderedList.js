@@ -33,7 +33,6 @@ export default class UnorderedList extends PureComponent {
     margin: 0,
     marginLeft: '1.1em',
     padding: 0,
-    listStylePosition: 'inside',
     listStyle: 'disc'
   }
 
