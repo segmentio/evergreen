@@ -22,7 +22,6 @@ export default class OrderedList extends PureComponent {
     margin: 0,
     marginLeft: '1.1em',
     padding: 0,
-    listStylePosition: 'inside',
     listStyle: 'decimal'
   }
 
