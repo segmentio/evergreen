@@ -80,8 +80,8 @@ export default class OptionsList extends PureComponent {
     super(props, context)
 
     this.state = {
-      searchValue: props.defaultSearchValue,
-      selected: props.selected
+      currentIndex: 0,
+      displayedOptions: props.options
     }
   }
 
@@ -103,24 +103,14 @@ export default class OptionsList extends PureComponent {
     window.removeEventListener('keydown', this.handleKeyDown)
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.selected !== this.props.selected) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({
-        selected: this.props.selected
-      })
-    }
-  }
-
   isSelected = item => {
-    const { selected } = this.state
+    const { selected } = this.props
 
     return Boolean(selected.find(selectedItem => selectedItem === item.value))
   }
 
-  search = options => {
-    const { optionsFilter } = this.props
-    const { searchValue } = this.state
+  search = searchValue => {
+    const { options, optionsFilter } = this.props
 
     if (searchValue.trim() === '') {
       return options
@@ -136,72 +126,60 @@ export default class OptionsList extends PureComponent {
     return fuzzyFilter(options, searchValue, { key: 'label' })
   }
 
-  getCurrentIndex = () => {
-    const { selected } = this.props
-    const options = this.getFilteredOptions()
-
-    return options.findIndex(
-      option => option.value === selected[selected.length - 1]
-    )
-  }
-
-  getFilteredOptions() {
-    const { options } = this.props
-
-    return this.search(options)
-  }
-
   handleKeyDown = e => {
     if (e.keyCode === 38) {
+      // Needed to avoid mixing up navigation on the menu with the filter (if present)
+      e.preventDefault()
       this.handleArrowUp()
     }
 
     if (e.keyCode === 40) {
+      // Needed to avoid mixing up navigation on the menu with the filter (if present)
+      e.preventDefault()
       this.handleArrowDown()
     }
 
     if (e.keyCode === 13) {
+      // Needed to avoid mixing up navigation on the menu with the filter (if present)
+      e.preventDefault()
       this.handleEnter()
     }
   }
 
   handleArrowUp = () => {
-    const { onSelect } = this.props
-    const options = this.getFilteredOptions()
-
-    let nextIndex = this.getCurrentIndex() - 1
-
-    if (nextIndex < 0) {
-      nextIndex = options.length - 1
-    }
-
-    onSelect(options[nextIndex])
+    const nextIndex = Math.max(this.state.currentIndex - 1, 0)
+    this.setState(prevState => {
+      return { ...prevState, currentIndex: nextIndex }
+    })
   }
 
   handleArrowDown = () => {
-    const { onSelect } = this.props
-    const options = this.getFilteredOptions()
-
-    let nextIndex = this.getCurrentIndex() + 1
-
-    if (nextIndex === options.length) {
-      nextIndex = 0
-    }
-
-    onSelect(options[nextIndex])
+    const nextIndex = Math.min(
+      this.state.currentIndex + 1,
+      this.state.displayedOptions.length - 1
+    )
+    this.setState(prevState => {
+      return { ...prevState, currentIndex: nextIndex }
+    })
   }
 
   handleEnter = () => {
-    const isSelected = this.getCurrentIndex() !== -1
+    if (this.state.displayedOptions.length === 0) {
+      return
+    }
 
-    if (isSelected) {
-      this.props.close()
+    const option = this.state.displayedOptions[this.state.currentIndex]
+    if (this.isSelected(option)) {
+      this.handleDeselect(option)
+    } else {
+      this.handleSelect(option)
     }
   }
 
   handleChange = searchValue => {
     this.setState({
-      searchValue
+      displayedOptions: this.search(searchValue),
+      currentIndex: 0
     })
     this.props.onFilterChange(searchValue)
   }
@@ -241,11 +219,8 @@ export default class OptionsList extends PureComponent {
       defaultSearchValue,
       ...props
     } = this.props
-    const options = this.search(originalOptions)
-    const listHeight = height - (hasFilter ? 32 : 0)
-    const currentIndex = this.getCurrentIndex()
-    const scrollToIndex = currentIndex === -1 ? 0 : currentIndex
 
+    const listHeight = height - (hasFilter ? 32 : 0)
     return (
       <Pane
         height={height}
@@ -271,16 +246,16 @@ export default class OptionsList extends PureComponent {
             height={listHeight}
             width="100%"
             itemSize={optionSize}
-            itemCount={options.length}
+            itemCount={this.state.displayedOptions.length}
             overscanCount={20}
             scrollToAlignment="auto"
-            {...(scrollToIndex
-              ? {
-                  scrollToIndex
-                }
-              : {})}
+            scrollToIndex={
+              this.state.displayedOptions.length > 0
+                ? this.state.currentIndex
+                : null
+            }
             renderItem={({ index, style }) => {
-              const item = options[index]
+              const item = this.state.displayedOptions[index]
               const isSelected = this.isSelected(item)
               return renderItem({
                 key: item.value,
@@ -291,7 +266,8 @@ export default class OptionsList extends PureComponent {
                 onDeselect: () => this.handleDeselect(item),
                 isSelectable: !isSelected || isMultiSelect,
                 isSelected,
-                disabled: item.disabled
+                disabled: item.disabled,
+                isHighlighted: this.state.currentIndex === index
               })
             }}
           />
