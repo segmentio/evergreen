@@ -89,5 +89,22 @@ storiesOf('radio', module)
           label="Radio checked disabled"
         />
       </Box>
+      <Heading marginTop={40}>With a sublabel</Heading>
+      <Box aria-label="Radio Group Label 16" role="group">
+        <Radio
+          checked
+          size={16}
+          name="group2"
+          label="Radio default"
+          sublabel="This is an example of a sublabel"
+        />
+        <Radio
+          size={16}
+          name="group2"
+          checked
+          label="Radio checked"
+          sublabel="This is another example of a sublabel"
+        />
+      </Box>
     </Box>
   ))

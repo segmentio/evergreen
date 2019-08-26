@@ -41,6 +41,11 @@ class Radio extends PureComponent {
     label: PropTypes.node,
 
     /**
+     * Sublabel of the radio.
+     */
+    sublabel: PropTypes.node,
+
+    /**
      * The value attribute of the radio.
      */
     value: PropTypes.string,
@@ -119,6 +124,7 @@ class Radio extends PureComponent {
       size,
       isRequired,
       appearance,
+      sublabel,
       ...props
     } = this.props
     const themedClassName = theme.getRadioClassName(appearance)
@@ -157,15 +163,26 @@ class Radio extends PureComponent {
         >
           <CircleIcon size={size === 12 ? 4 : 4} />
         </Box>
-        {label && (
-          <Text
-            marginLeft={size === 12 ? 8 : 10}
-            size={size === 12 ? 300 : 400}
-            color={disabled ? 'muted' : 'default'}
-          >
-            {label}
-          </Text>
-        )}
+        <Box display="flex" flexDirection="column">
+          {label && (
+            <Text
+              marginLeft={size === 12 ? 8 : 10}
+              size={size === 12 ? 300 : 400}
+              color={disabled ? 'muted' : 'default'}
+            >
+              {label}
+            </Text>
+          )}
+          {sublabel && (
+            <Text
+              marginLeft={size === 12 ? 8 : 10}
+              size={size === 12 ? 300 : 400}
+              color="muted"
+            >
+              {sublabel}
+            </Text>
+          )}
+        </Box>
       </Box>
     )
   }
