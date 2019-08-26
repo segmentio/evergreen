@@ -48,7 +48,7 @@ class Checkbox extends PureComponent {
     id: PropTypes.string,
 
     /**
-     * The id attribute of the radio.
+     * The id attribute of the checkbox.
      */
     name: PropTypes.string,
 
@@ -58,18 +58,18 @@ class Checkbox extends PureComponent {
     label: PropTypes.node,
 
     /**
-     * The value attribute of the radio.
+     * The value attribute of the checkbox.
      */
     value: PropTypes.string,
 
     /**
-     * The checked attribute of the radio.
+     * The checked attribute of the checkbox.
      */
     checked: PropTypes.bool,
 
     /**
      * State in addition to "checked" and "unchecked".
-     * When true, the radio displays a "minus" icon.
+     * When true, the checkbox displays a "minus" icon.
      */
     indeterminate: PropTypes.bool,
 
@@ -79,7 +79,7 @@ class Checkbox extends PureComponent {
     onChange: PropTypes.func,
 
     /**
-     * When true, the radio is disabled.
+     * When true, the checkbox is disabled.
      */
     disabled: PropTypes.bool,
 
