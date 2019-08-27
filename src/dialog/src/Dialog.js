@@ -311,6 +311,7 @@ class Dialog extends React.Component {
                     appearance="minimal"
                     icon="cross"
                     onClick={() => onCancel(close)}
+                    type="button"
                   />
                 )}
               </Pane>
@@ -333,7 +334,7 @@ class Dialog extends React.Component {
                 <Pane padding={16} float="right">
                   {/* Cancel should be first to make sure focus gets on it first. */}
                   {hasCancel && (
-                    <Button tabIndex={0} onClick={() => onCancel(close)}>
+                    <Button tabIndex={0} onClick={() => onCancel(close)} type="button">
                       {cancelLabel}
                     </Button>
                   )}
@@ -346,6 +347,7 @@ class Dialog extends React.Component {
                     disabled={isConfirmDisabled}
                     onClick={() => onConfirm(close)}
                     intent={intent}
+                    type="submit"
                   >
                     {confirmLabel}
                   </Button>
