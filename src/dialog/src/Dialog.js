@@ -280,6 +280,7 @@ class Dialog extends React.Component {
       >
         {({ state, close }) => (
           <Pane
+            is="form"
             role="dialog"
             backgroundColor="white"
             elevation={4}
