@@ -7,7 +7,7 @@ import { Button } from '../../buttons'
 import { Text } from '../../typography'
 import { Pane } from '../../layers'
 import { TextInput } from '../../text-input'
-import options from './starwars-options'
+import options, { optionsWithIcons } from './starwars-options'
 import Manager from './Manager'
 
 storiesOf('select-menu', module).add('SelectMenu', () => (
@@ -38,6 +38,18 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
           closeOnSelect
         >
           <Button>Menu will close on select</Button>
+        </SelectMenu>
+      )}
+    </Manager>
+    <Manager>
+      {({ setState, state }) => (
+        <SelectMenu
+          title="Select name"
+          options={optionsWithIcons}
+          selected={state.selected}
+          onSelect={item => setState({ selected: item.value })}
+        >
+          <Button>Options with icons</Button>
         </SelectMenu>
       )}
     </Manager>

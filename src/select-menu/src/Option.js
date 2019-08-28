@@ -2,11 +2,13 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Icon } from '../../icon'
+import { Image } from '../../image'
 import { TableRow, TextTableCell } from '../../table'
 
 export default class Option extends PureComponent {
   static propTypes = {
     label: PropTypes.string,
+    icon: PropTypes.string,
     style: PropTypes.any,
     height: PropTypes.number,
     onSelect: PropTypes.func,
@@ -28,6 +30,7 @@ export default class Option extends PureComponent {
       disabled,
       style,
       height,
+      icon,
       ...props
     } = this.props
 
@@ -72,7 +75,10 @@ export default class Option extends PureComponent {
           alignSelf="stretch"
           cursor={disabled ? 'default' : 'pointer'}
         >
-          {label}
+          <Pane alignItems="center" display="flex">
+            {icon && <Image src={icon} width={24} marginRight={8} />}
+            {label}
+          </Pane>
         </TextTableCell>
       </TableRow>
     )
