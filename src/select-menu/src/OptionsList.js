@@ -239,7 +239,6 @@ export default class OptionsList extends PureComponent {
       optionsFilter,
       isMultiSelect,
       defaultSearchValue,
-      closeOnSelect,
       ...props
     } = this.props
     const options = this.search(originalOptions)
@@ -286,6 +285,7 @@ export default class OptionsList extends PureComponent {
               return renderItem({
                 key: item.value,
                 label: item.label,
+                icon: item.icon,
                 style,
                 height: optionSize,
                 onSelect: () => this.handleSelect(item),
