@@ -178,7 +178,10 @@ It's possible to include icons in the menu list.
 ```jsx
 <SelectMenu
   title="Options with icons"
-  options={[{ label: 'Apple', value: 'Apple', icon: https://upload.wikimedia.org/wikipedia/commons/d/d2/Malus-Boskoop_organic.jpg }]}
+  options={[
+    { label: 'Apple', value: 'Apple', icon: 'https://upload.wikimedia.org/wikipedia/commons/d/d2/Malus-Boskoop_organic.jpg' },
+    { label: 'Banana', value: 'Banana', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Bananas_white_background_DS.jpg/2560px-Bananas_white_background_DS.jpg' },
+  ]}
 >
   <Button>Select option...</Button>
 </SelectMenu>
