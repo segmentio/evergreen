@@ -239,6 +239,7 @@ export default class OptionsList extends PureComponent {
       optionsFilter,
       isMultiSelect,
       defaultSearchValue,
+      closeOnSelect,
       ...props
     } = this.props
     const options = this.search(originalOptions)
