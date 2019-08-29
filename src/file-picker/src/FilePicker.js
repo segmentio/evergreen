@@ -108,7 +108,7 @@ export default class FilePicker extends PureComponent {
     if (placeholder) {
       placeholderText = placeholder
     } else {
-      placeholderText = 'Select a file to upload...'
+      placeholderText = 'Select a file to upload…'
     }
 
     return (
