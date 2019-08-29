@@ -169,7 +169,8 @@ export default {
             id: 'filepicker',
             github: githubLink('file-picker'),
             name: 'Filepicker',
-            image: Filepicker
+            image: Filepicker,
+            placeholder: 'Placeholder'
           }
         ]
       },

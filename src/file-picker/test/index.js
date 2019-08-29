@@ -122,3 +122,11 @@ test('clones files array', t => {
   t.deepEqual(component.state('files'), e.target.files)
   t.not(component.state('files'), e.target.files)
 })
+
+test('sets placeholder', t => {
+  const component = shallow(<FilePicker placeholder="placeholder here!" />)
+  t.is(
+    component.find(`.${CLASS_PREFIX}-text-input`).prop('placeholder'),
+    'placeholder here!'
+  )
+})
