@@ -11,6 +11,7 @@ import { withTheme } from '../../theme'
 import { majorScale } from '../../scales'
 import safeInvoke from '../../lib/safe-invoke'
 import Tag from './Tag'
+import AutocompleteTagInput from './AutocompleteTagInput'
 
 let inputId = 1
 
@@ -77,7 +78,9 @@ class TagInput extends React.Component {
      */
     theme: PropTypes.object.isRequired,
     /** Controlled tag values. Each value is rendered inside a tag. */
-    values: PropTypes.arrayOf(PropTypes.node)
+    values: PropTypes.arrayOf(PropTypes.node),
+    /** Autocomplete options for tags */
+    autoComplete: PropTypes.array
   }
 
   static defaultProps = {
@@ -86,12 +89,14 @@ class TagInput extends React.Component {
     height: 32,
     separator: /[,\n\r]/,
     values: [],
+    autoComplete: ['teste', 'teste'],
     tagProps: {}
   }
 
   state = {
     inputValue: '',
-    isFocused: false
+    isFocused: false,
+    autoComplete: []
   }
 
   id = `TagInput-${inputId++}`
@@ -164,6 +169,8 @@ class TagInput extends React.Component {
       this.addTags(value)
     } else if (event.key === 'Backspace' && selectionEnd === 0) {
       this.handleBackspaceToRemove(event)
+    } else {
+      this.searchAutoComplete(value)
     }
   }
 
@@ -173,6 +180,32 @@ class TagInput extends React.Component {
       event.currentTarget.parentElement.getAttribute('data-tag-index')
     )
     this.removeTagAtIndex(index)
+  }
+
+  handleAutoComplete = word => {
+    this.addTags(word)
+    this.setState({
+      autoComplete: []
+    })
+  }
+
+  searchAutoComplete = keyWord => {
+    const { autoComplete } = this.props
+
+    const autoCompleteOption = autoComplete
+      .filter(element => element.includes(keyWord))
+      .map((element, index) => {
+        return {
+          id: index,
+          word: element
+        }
+      })
+
+    if (autoCompleteOption) {
+      this.setState({
+        autoComplete: autoCompleteOption
+      })
+    }
   }
 
   maybeRenderTag = (tag, index) => {
@@ -231,7 +264,7 @@ class TagInput extends React.Component {
       ...props
     } = this.props
 
-    const { inputValue, isFocused } = this.state
+    const { inputValue, isFocused, autoComplete } = this.state
 
     const themedContainerClassName = theme.getTagInputClassName('default')
     const themedInputClassName = theme.getTextInputClassName('none')
@@ -250,6 +283,12 @@ class TagInput extends React.Component {
         {...props}
         onBlur={this.handleBlur}
       >
+        {autoComplete && (
+          <AutocompleteTagInput
+            options={autoComplete}
+            onClick={this.handleAutoComplete}
+          />
+        )}
         {values.map(this.maybeRenderTag)}
         <Text
           is="input"
