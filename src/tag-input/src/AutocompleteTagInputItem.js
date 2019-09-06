@@ -19,7 +19,13 @@ class AutocompleteTagInputItem extends React.Component {
     const { word, onClick } = this.props
 
     return (
-      <Box display="block" width="100%" marginTop="5px" marginBottom="5px">
+      <Box
+        display="block"
+        width="100%"
+        marginTop="5px"
+        marginBottom="5px"
+        cursor="pointer"
+      >
         <span
           onClick={() => {
             onClick(word)
