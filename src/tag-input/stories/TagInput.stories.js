@@ -2,8 +2,8 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { TagInput } from '..'
 import { Heading } from '../../typography'
+import { TagInput } from '..'
 
 const StoryHeader = props => <Box marginBottom={16} {...props} />
 const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
@@ -137,6 +137,26 @@ storiesOf('tag-input', module).add('TagInput', () => (
             onAdd={addValues}
             onChange={handleChange}
             onRemove={removeValue}
+          />
+        )}
+      </StateManager>
+    </StorySection>
+    <StorySection>
+      <StoryHeader>
+        <StoryHeading>With autocomplete options</StoryHeading>
+      </StoryHeader>
+      <StateManager>
+        {({ values, addValues, removeValue }) => (
+          <TagInput
+            inputProps={{ placeholder: 'Enter something...' }}
+            values={values}
+            onAdd={addValues}
+            onRemove={removeValue}
+            autoCompleteOptions={[
+              'Autocomplete 1',
+              'Autocomplete 2',
+              'Autocomplete 3'
+            ]}
           />
         )}
       </StateManager>
