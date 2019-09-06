@@ -89,7 +89,7 @@ class TagInput extends React.Component {
     height: 32,
     separator: /[,\n\r]/,
     values: [],
-    autoCompleteOptions: ['teste', 'teste'],
+    autoCompleteOptions: [],
     tagProps: {}
   }
 
@@ -278,14 +278,17 @@ class TagInput extends React.Component {
         paddingLeft={Math.round(height / 3.2)}
         paddingRight={Math.round(height / 3.2)}
         paddingY="2px"
+        position="relative"
         {...props}
         onBlur={this.handleBlur}
       >
-        {optionsToShow && (
-          <AutocompleteTagInput
-            options={optionsToShow}
-            onClick={this.handleAutoComplete}
-          />
+        {optionsToShow.length > 0 && (
+          <Box borderRadius={borderRadius} paddingY="2px">
+            <AutocompleteTagInput
+              options={optionsToShow}
+              onClick={this.handleAutoComplete}
+            />
+          </Box>
         )}
         {values.map(this.maybeRenderTag)}
         <Text

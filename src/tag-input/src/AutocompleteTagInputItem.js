@@ -4,6 +4,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import Box from 'ui-box'
 import { withTheme } from '../../theme'
 
 class AutocompleteTagInputItem extends React.Component {
@@ -18,13 +19,15 @@ class AutocompleteTagInputItem extends React.Component {
     const { word, onClick } = this.props
 
     return (
-      <h1
-        onClick={() => {
-          onClick(word)
-        }}
-      >
-        {word}
-      </h1>
+      <Box display="block" width="100%" marginTop="5px" marginBottom="5px">
+        <span
+          onClick={() => {
+            onClick(word)
+          }}
+        >
+          {word}
+        </span>
+      </Box>
     )
   }
 }

@@ -4,6 +4,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import Box from 'ui-box'
 import { withTheme } from '../../theme'
 import AutocompleteTagInputItem from './AutocompleteTagInputItem'
 
@@ -21,15 +22,25 @@ class AutocompleteTagInput extends React.Component {
     const { options, onClick } = this.props
 
     return (
-      <div>
+      <Box
+        position="absolute"
+        top="135%"
+        height="70px"
+        overflow="auto"
+        width="100%"
+        left="0"
+        color="#425A70"
+        background="#E4E7EB"
+        paddingLeft="15px"
+      >
         {options.map(element => (
           <AutocompleteTagInputItem
             onClick={onClick}
             word={element.word}
-            key={element.index}
+            key={element.id}
           />
         ))}
-      </div>
+      </Box>
     )
   }
 }
