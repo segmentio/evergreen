@@ -80,7 +80,7 @@ class TagInput extends React.Component {
     /** Controlled tag values. Each value is rendered inside a tag. */
     values: PropTypes.arrayOf(PropTypes.node),
     /** Autocomplete options for tags */
-    autoComplete: PropTypes.array
+    autoCompleteOptions: PropTypes.array
   }
 
   static defaultProps = {
@@ -89,14 +89,14 @@ class TagInput extends React.Component {
     height: 32,
     separator: /[,\n\r]/,
     values: [],
-    autoComplete: ['teste', 'teste'],
+    autoCompleteOptions: ['teste', 'teste'],
     tagProps: {}
   }
 
   state = {
     inputValue: '',
     isFocused: false,
-    autoComplete: []
+    optionsToShow: []
   }
 
   id = `TagInput-${inputId++}`
@@ -185,14 +185,14 @@ class TagInput extends React.Component {
   handleAutoComplete = word => {
     this.addTags(word)
     this.setState({
-      autoComplete: []
+      optionsToShow: []
     })
   }
 
   searchAutoComplete = keyWord => {
-    const { autoComplete } = this.props
+    const { autoCompleteOptions } = this.props
 
-    const autoCompleteOption = autoComplete
+    const optionsToShow = autoCompleteOptions
       .filter(element => element.includes(keyWord))
       .map((element, index) => {
         return {
@@ -201,10 +201,8 @@ class TagInput extends React.Component {
         }
       })
 
-    if (autoCompleteOption) {
-      this.setState({
-        autoComplete: autoCompleteOption
-      })
+    if (optionsToShow) {
+      this.setState({ optionsToShow })
     }
   }
 
@@ -264,7 +262,7 @@ class TagInput extends React.Component {
       ...props
     } = this.props
 
-    const { inputValue, isFocused, autoComplete } = this.state
+    const { inputValue, isFocused, optionsToShow } = this.state
 
     const themedContainerClassName = theme.getTagInputClassName('default')
     const themedInputClassName = theme.getTextInputClassName('none')
@@ -283,9 +281,9 @@ class TagInput extends React.Component {
         {...props}
         onBlur={this.handleBlur}
       >
-        {autoComplete && (
+        {optionsToShow && (
           <AutocompleteTagInput
-            options={autoComplete}
+            options={optionsToShow}
             onClick={this.handleAutoComplete}
           />
         )}
