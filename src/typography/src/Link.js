@@ -38,15 +38,21 @@ class Link extends PureComponent {
      * Class name passed to the link.
      * Only use if you know what you are doing.
      */
-    className: PropTypes.string
+    className: PropTypes.string,
+
+    /**
+     * The size of link font.
+     */
+    size: PropTypes.number
   }
 
   static defaultProps = {
-    color: 'default'
+    color: 'default',
+    size: 400
   }
 
   render() {
-    const { theme, className, color, ...props } = this.props
+    const { size, theme, className, color, ...props } = this.props
 
     const themedClassName = theme.getLinkClassName(color)
 
@@ -56,6 +62,7 @@ class Link extends PureComponent {
         className={cx(className, themedClassName)}
         textDecoration="underline"
         color={null}
+        size={size}
         {...props}
       />
     )
