@@ -51,6 +51,11 @@ storiesOf('typography', module)
           Green Link
         </Link>
       </Box>
+      <Box marginBottom={24}>
+        <Link href="#" size={600}>
+          Changed size font link
+        </Link>
+      </Box>
     </Box>
   ))
   .add('Paragraph', () => (
