@@ -58,7 +58,7 @@ export default class TextInputField extends PureComponent {
     /**
      * Optional icon in input
      */
-    icon: PropTypes.shapce({
+    icon: PropTypes.shape({
       iconPosition: PropTypes.object,
       content: PropTypes.element
     })
