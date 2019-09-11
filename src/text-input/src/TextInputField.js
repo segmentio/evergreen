@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { splitBoxProps } from 'ui-box'
+import Box, { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
 import TextInput from './TextInput'
 
@@ -68,6 +68,26 @@ export default class TextInputField extends PureComponent {
     id: (this.props.id || idCounter++).toString()
   }
 
+  checkPadding = icon => {
+    if (icon) {
+      const padding = Object.keys(icon.iconPosition).map(key => {
+        const firstLetter = key[0]
+        const newKey = `padding${firstLetter.toUpperCase()}${key.substring(
+          1,
+          key.length
+        )}`
+
+        return {
+          [newKey]: icon.iconPosition[key] + 20
+        }
+      })
+
+      return padding[0]
+    }
+
+    return {}
+  }
+
   render() {
     const {
       // We are using the id from the state
@@ -88,6 +108,7 @@ export default class TextInputField extends PureComponent {
       appearance,
       placeholder,
       spellCheck,
+      icon,
 
       // Rest props are spread on the FormField
       ...props
@@ -99,6 +120,7 @@ export default class TextInputField extends PureComponent {
      * Split the wrapper props from the input props.
      */
     const { matchedProps, remainingProps } = splitBoxProps(props)
+    const padding = this.checkPadding(icon)
 
     return (
       <FormField
@@ -111,18 +133,33 @@ export default class TextInputField extends PureComponent {
         labelFor={id}
         {...matchedProps}
       >
-        <TextInput
-          id={id}
-          width={inputWidth}
-          height={inputHeight}
-          disabled={disabled}
-          required={required}
-          isInvalid={isInvalid}
-          appearance={appearance}
-          placeholder={placeholder}
-          spellCheck={spellCheck}
-          {...remainingProps}
-        />
+        <Box position="relative">
+          {icon && (
+            <Box
+              position="absolute"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              height={inputHeight}
+              {...icon.iconPosition}
+            >
+              {icon.content}
+            </Box>
+          )}
+          <TextInput
+            id={id}
+            width={inputWidth}
+            height={inputHeight}
+            disabled={disabled}
+            required={required}
+            isInvalid={isInvalid}
+            appearance={appearance}
+            placeholder={placeholder}
+            spellCheck={spellCheck}
+            {...padding}
+            {...remainingProps}
+          />
+        </Box>
       </FormField>
     )
   }
