@@ -1,9 +1,9 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { CornerDialog } from '..'
 import { Button } from '../../buttons'
 import { Manager } from '../../manager'
+import { CornerDialog } from '..'
 
 storiesOf('corner-dialog', module).add('CornerDialog', () => (
   <Box padding={40}>
@@ -82,6 +82,31 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
           </CornerDialog>
           <Button onClick={() => setState({ isShown: true })}>
             Show License Terms Dialog
+          </Button>
+        </Box>
+      )}
+    </Manager>
+    <Manager isShown={false}>
+      {({ state, setState }) => (
+        <Box marginTop={24}>
+          <CornerDialog
+            title="Please Read License Terms"
+            isShown={state.isShown}
+            hasClose={false}
+            hasCancel={false}
+            width={492}
+            confirmLabel="View Terms"
+            onCloseComplete={() => setState({ isShown: false })}
+            position={{
+              position: 'fixed',
+              bottom: '45%',
+              right: '25%'
+            }}
+          >
+            MIT License
+          </CornerDialog>
+          <Button onClick={() => setState({ isShown: true })}>
+            Dynamic position
           </Button>
         </Box>
       )}
