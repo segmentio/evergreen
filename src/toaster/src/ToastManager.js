@@ -1,19 +1,8 @@
 import React from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import { StackingOrder } from '../../constants'
+import { StackingOrder, AbsolutePosition } from '../../constants'
 import Toast from './Toast'
-
-const wrapperClass = css({
-  maxWidth: 560,
-  margin: '0 auto',
-  top: 0,
-  left: 0,
-  right: 0,
-  position: 'fixed',
-  zIndex: StackingOrder.TOASTER,
-  pointerEvents: 'none'
-})
 
 const hasCustomId = settings => Object.hasOwnProperty.call(settings, 'id')
 
@@ -45,7 +34,8 @@ export default class ToastManager extends React.PureComponent {
     props.bindCloseAll(this.closeAll)
 
     this.state = {
-      toasts: []
+      toasts: [],
+      position: AbsolutePosition.TOP_RIGHT
     }
   }
 
@@ -58,6 +48,8 @@ export default class ToastManager extends React.PureComponent {
   }
 
   notify = (title, settings) => {
+    this.checkPosition(settings)
+
     // If there's a custom toast ID passed, close existing toasts with the same custom ID
     if (hasCustomId(settings)) {
       for (const toast of this.state.toasts) {
@@ -77,6 +69,12 @@ export default class ToastManager extends React.PureComponent {
     })
 
     return instance
+  }
+
+  checkPosition = settings => {
+    if (settings.position) {
+      this.setState({ position: settings.position })
+    }
   }
 
   createToastInstance = (title, settings) => {
@@ -124,6 +122,15 @@ export default class ToastManager extends React.PureComponent {
   }
 
   render() {
+    const wrapperClass = css({
+      maxWidth: 560,
+      margin: '0 auto',
+      position: 'fixed',
+      zIndex: StackingOrder.TOASTER,
+      pointerEvents: 'none',
+      ...this.state.position
+    })
+
     return (
       <span className={wrapperClass}>
         {this.state.toasts.map(({ id, description, ...props }) => {
