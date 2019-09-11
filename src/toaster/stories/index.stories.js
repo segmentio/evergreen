@@ -4,6 +4,7 @@ import Box from 'ui-box'
 import toaster from '../src'
 import { Button } from '../../buttons'
 import { Heading, Paragraph, Ul, Li } from '../../typography'
+import { AbsolutePosition } from '../../constants'
 
 const loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 eiusmod tempor incididunt ut labore et dolore magna aliqua.`
@@ -118,6 +119,51 @@ storiesOf('toaster', module).add('examples', () => (
           }
         >
           Danger with Text
+        </Button>
+      </Box>
+      <Box marginBottom={12}>
+        <Button
+          marginRight={8}
+          onClick={() =>
+            toaster.notify('Messages now is on left bottom notify', {
+              position: AbsolutePosition.BOTTOM_LEFT
+            })
+          }
+        >
+          Left bottom
+        </Button>
+
+        <Button
+          marginRight={8}
+          onClick={() =>
+            toaster.notify('Messages now is on right bottom notify', {
+              position: AbsolutePosition.BOTTOM_RIGHT
+            })
+          }
+        >
+          Right bottom
+        </Button>
+
+        <Button
+          marginRight={8}
+          onClick={() =>
+            toaster.notify('Messages now is on top left message', {
+              position: AbsolutePosition.TOP_LEFT
+            })
+          }
+        >
+          Left top
+        </Button>
+
+        <Button
+          marginRight={8}
+          onClick={() =>
+            toaster.notify('Messages now is on top right message', {
+              position: AbsolutePosition.TOP_RIGHT
+            })
+          }
+        >
+          Right top
         </Button>
       </Box>
     </Box>
