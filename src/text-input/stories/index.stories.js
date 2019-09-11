@@ -2,10 +2,11 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { TextInputField, TextInput } from '..'
 import { Text, Label, Heading } from '../../typography'
 import { Pane, Card } from '../../layers'
 import { Button } from '../../buttons'
+import { Icon } from '../../icon'
+import { TextInputField, TextInput } from '..'
 
 const Description = props => (
   <Text is="p" marginTop={0} size={300} color="muted" {...props} />
@@ -136,6 +137,26 @@ storiesOf('text-input', module)
           )
         }}
       </Manager>
+      <TextInputField
+        label="Text input field with right icon"
+        placeholder="Placeholder text"
+        icon={{
+          content: <Icon icon="user" color="default" size={15} />,
+          iconPosition: {
+            right: 10
+          }
+        }}
+      />
+      <TextInputField
+        label="Text input field with left icon"
+        placeholder="Placeholder text"
+        icon={{
+          content: <Icon icon="lock" color="default" size={15} />,
+          iconPosition: {
+            left: 10
+          }
+        }}
+      />
     </Box>
   ))
   .add('Settings example', () => {
