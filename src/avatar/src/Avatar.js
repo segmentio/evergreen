@@ -167,7 +167,8 @@ class Avatar extends PureComponent {
         )}
         {!imageUnavailable && (
           <Image
-            width="auto"
+            objectFit="cover"
+            width="100%"
             height="100%"
             src={src}
             onError={this.handleError}
