@@ -53,7 +53,15 @@ export default class TextInputField extends PureComponent {
     /**
      * The width of the input width.
      */
-    inputWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    inputWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+    /**
+     * Optional icon in input
+     */
+    icon: PropTypes.shapce({
+      iconPosition: PropTypes.object,
+      content: PropTypes.element
+    })
   }
 
   static defaultProps = {
@@ -69,23 +77,22 @@ export default class TextInputField extends PureComponent {
   }
 
   checkPadding = icon => {
+    const padding = {}
+
     if (icon) {
-      const padding = Object.keys(icon.iconPosition).map(key => {
-        const firstLetter = key[0]
-        const newKey = `padding${firstLetter.toUpperCase()}${key.substring(
-          1,
-          key.length
-        )}`
-
-        return {
-          [newKey]: icon.iconPosition[key] + 20
+      for (const key in icon.iconPosition) {
+        if ({}.hasOwnProperty.call(icon.iconPosition, key)) {
+          const firstLetter = key[0]
+          const newKey = `padding${firstLetter.toUpperCase()}${key.substring(
+            1,
+            key.length
+          )}`
+          padding[newKey] = icon.iconPosition[key] + 20
         }
-      })
-
-      return padding[0]
+      }
     }
 
-    return {}
+    return padding
   }
 
   render() {
