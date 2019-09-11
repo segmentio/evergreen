@@ -37,9 +37,7 @@ const closeAnimation = css.keyframes('closeAnimation', {
 
 const animationStyles = {
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.spring
-    } both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`
   },
   '&[data-state="exiting"]': {
     animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
@@ -130,7 +128,12 @@ export default class CornerDialog extends PureComponent {
     /**
      * Props that are passed to the dialog container.
      */
-    containerProps: PropTypes.object
+    containerProps: PropTypes.object,
+
+    /**
+     * Props that will set position of corner dialog
+     */
+    position: PropTypes.object
   }
 
   static defaultProps = {
@@ -143,7 +146,12 @@ export default class CornerDialog extends PureComponent {
     cancelLabel: 'Close',
     onCancel: close => close(),
     onConfirm: close => close(),
-    onCloseComplete: () => {}
+    onCloseComplete: () => {},
+    position: {
+      position: 'fixed',
+      bottom: 16,
+      right: 50
+    }
   }
 
   constructor(props) {
@@ -210,7 +218,8 @@ export default class CornerDialog extends PureComponent {
       cancelLabel,
       confirmLabel,
       onOpenComplete,
-      containerProps
+      containerProps,
+      position
     } = this.props
 
     const { exiting, exited } = this.state
@@ -235,10 +244,8 @@ export default class CornerDialog extends PureComponent {
               width={width}
               css={animationStyles}
               data-state={state}
-              position="fixed"
-              bottom={16}
-              right={16}
               padding={32}
+              {...position}
               {...containerProps}
             >
               <Pane display="flex" alignItems="center" marginBottom={12}>
