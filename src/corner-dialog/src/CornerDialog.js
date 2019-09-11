@@ -149,7 +149,7 @@ export default class CornerDialog extends PureComponent {
     onCloseComplete: () => {},
     position: {
       position: 'fixed',
-      bottom: 16,
+      bottom: 50,
       right: 50
     }
   }
