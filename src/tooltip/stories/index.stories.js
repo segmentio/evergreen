@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Tooltip } from '..'
 import { Text } from '../../typography'
 import { Position } from '../../constants'
 import { Button } from '../../buttons'
+import { Tooltip } from '..'
 
 storiesOf('tooltip', module)
   .add('Tooltip', () => (
@@ -26,6 +26,11 @@ storiesOf('tooltip', module)
       <Tooltip isShown={false} content="Should never see it">
         <Text marginLeft={40} display="inline-block" cursor="help">
           Disabled tooltip
+        </Text>
+      </Tooltip>
+      <Tooltip showDelay={800} content="My delayed tooltip content">
+        <Text marginLeft={40} display="inline-block" cursor="help">
+          Delayed tooltip
         </Text>
       </Tooltip>
     </Box>
