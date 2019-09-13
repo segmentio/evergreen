@@ -167,7 +167,7 @@ class Avatar extends PureComponent {
         )}
         {!imageUnavailable && (
           <Image
-            objectFit="cover"
+            style={{ objectFit: 'cover' }} // ui-box doesn't support objectFit directly
             width="100%"
             height="100%"
             src={src}
