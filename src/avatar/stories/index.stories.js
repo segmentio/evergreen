@@ -63,6 +63,20 @@ storiesOf('avatar', module).add('Avatar', () => (
         size={40}
       />
       <Avatar
+        key="Alan Turing"
+        src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
+        name="Alan Turing"
+        marginRight={12}
+        size={40}
+      />
+      <Avatar
+        key="Matt Shwery"
+        src="https://avatars1.githubusercontent.com/u/710752?s=460&v=4"
+        name="Matt Shwery"
+        marginRight={12}
+        size={40}
+      />
+      <Avatar
         key="transparent"
         forceShowInitials
         src="http://www.cityrider.com/fixed/43aspect.png"
