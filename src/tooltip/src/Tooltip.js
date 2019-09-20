@@ -98,14 +98,6 @@ export default class Tooltip extends PureComponent {
   }
 
   hide = () => {
-    if (!this.state.isShown) {
-      if (!this.state.willShow) return
-      this.setState({
-        willShow: false
-      })
-      return
-    }
-
     this.setState({
       isShown: false,
       willShow: false
