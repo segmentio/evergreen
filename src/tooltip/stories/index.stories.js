@@ -28,6 +28,11 @@ storiesOf('tooltip', module)
           Disabled tooltip
         </Text>
       </Tooltip>
+      <Tooltip showDelay={800} content="My delayed tooltip content">
+        <Text marginLeft={40} display="inline-block" cursor="help">
+          Delayed tooltip
+        </Text>
+      </Tooltip>
     </Box>
   ))
   .add('Positions', () => (
