@@ -4,6 +4,7 @@ import Box, { dimensions, spacing, position, layout } from 'ui-box'
 import { Autocomplete } from '../../autocomplete'
 import { TextInput } from '../../text-input'
 import { IconButton } from '../../buttons'
+import deprecated from '../../lib/deprecated'
 
 export default class Combobox extends PureComponent {
   static propTypes = {
@@ -38,7 +39,15 @@ export default class Combobox extends PureComponent {
     /**
      * Default selected item when uncontrolled.
      */
-    defaultSelectedItem: PropTypes.any,
+    initialSelectedItem: PropTypes.any,
+
+    /**
+     * Default selected item when uncontrolled (deprecated)
+     */
+    defaultSelectedItem: deprecated(
+      PropTypes.any,
+      'Use "initialSelectedItem" instead.'
+    ),
 
     /**
      * The placeholder text when there is no value present.
@@ -103,7 +112,8 @@ export default class Combobox extends PureComponent {
     const {
       items,
       selectedItem,
-      defaultSelectedItem,
+      defaultSelectedItem, // Deprecated
+      initialSelectedItem,
       itemToString,
       width,
       height,
@@ -123,7 +133,7 @@ export default class Combobox extends PureComponent {
       <Autocomplete
         items={items}
         selectedItem={selectedItem}
-        defaultSelectedItem={defaultSelectedItem}
+        initialSelectedItem={initialSelectedItem || defaultSelectedItem}
         itemToString={itemToString}
         onChange={onChange}
         onStateChange={this.handleStateChange}
@@ -136,7 +146,7 @@ export default class Combobox extends PureComponent {
           openMenu,
           inputValue,
           getInputProps,
-          getButtonProps,
+          getToggleButtonProps,
           clearSelection
         }) => (
           <Box
@@ -186,7 +196,7 @@ export default class Combobox extends PureComponent {
               borderBottomLeftRadius={0}
               disabled={disabled}
               isLoading={isLoading}
-              {...getButtonProps({
+              {...getToggleButtonProps({
                 ...buttonProps,
                 onClick: () => {
                   if (!isShown) {

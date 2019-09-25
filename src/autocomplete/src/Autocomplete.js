@@ -7,6 +7,7 @@ import { Popover } from '../../popover'
 import { Position } from '../../constants'
 import { Heading } from '../../typography'
 import { Pane } from '../../layers'
+import deprecated from '../../lib/deprecated'
 import AutocompleteItem from './AutocompleteItem'
 
 const fuzzyFilter = itemToString => {
@@ -48,9 +49,20 @@ export default class Autocomplete extends PureComponent {
     selectedItem: PropTypes.any,
 
     /**
-     * The selected item to be selected & shown by default on the autocomplete
+     * The selected item to be selected & shown by default on the autocomplete (deprecated)
      */
-    defaultSelectedItem: PropTypes.any,
+    defaultSelectedItem: deprecated(
+      PropTypes.any,
+      'Use "initialSelectedItem" instead.'
+    ),
+
+    /**
+     * The selected item to be selected & shown by default on the autocomplete (deprecated)
+     */
+    defaultInputValue: deprecated(
+      PropTypes.any,
+      'Use "initialInputValue" instead.'
+    ),
 
     /**
      * In case the array of items is not an array of strings,
@@ -103,6 +115,14 @@ export default class Autocomplete extends PureComponent {
      */
     popoverMaxHeight: PropTypes.number,
 
+    /**
+     * The selected item to be selected & shown by default on the autocomplete (deprecated)
+     */
+    getButtonProps: deprecated(
+      PropTypes.func,
+      'Use "getToggleButtonProps" instead.'
+    ),
+
     ...Downshift.propTypes
   }
 
@@ -123,6 +143,22 @@ export default class Autocomplete extends PureComponent {
     this.setState({
       targetWidth: this.targetRef.getBoundingClientRect().width
     })
+  }
+
+  stateReducer = (state, changes) => {
+    const { items } = this.props
+
+    if (
+      Object.prototype.hasOwnProperty.call(changes, 'isOpen') &&
+      changes.isOpen
+    ) {
+      return {
+        ...changes,
+        highlightedIndex: items.indexOf(state.selectedItem)
+      }
+    }
+
+    return changes
   }
 
   renderResults = ({
@@ -201,12 +237,23 @@ export default class Autocomplete extends PureComponent {
       itemsFilter,
       popoverMaxHeight,
       popoverMinWidth,
-      defaultSelectedItem,
+      defaultSelectedItem, // Deprecated
+      initialSelectedItem,
+      defaultInputValue, // Deprecated
+      initialInputValue,
+      getButtonProps, // Deprecated
+      getToggleButtonProps,
       ...props
     } = this.props
 
     return (
-      <Downshift defaultSelectedItem={defaultSelectedItem} {...props}>
+      <Downshift
+        initialSelectedItem={initialSelectedItem || defaultSelectedItem}
+        initialInputValue={initialInputValue || defaultInputValue}
+        getToggleButtonProps={getToggleButtonProps || getButtonProps}
+        stateReducer={this.stateReducer}
+        {...props}
+      >
         {({
           isOpen: isShown,
           inputValue,
