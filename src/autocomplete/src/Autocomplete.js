@@ -7,6 +7,7 @@ import { Popover } from '../../popover'
 import { Position } from '../../constants'
 import { Heading } from '../../typography'
 import { Pane } from '../../layers'
+import deprecated from '../../lib/deprecated'
 import AutocompleteItem from './AutocompleteItem'
 
 const fuzzyFilter = itemToString => {
@@ -49,21 +50,19 @@ export default class Autocomplete extends PureComponent {
 
     /**
      * The selected item to be selected & shown by default on the autocomplete (deprecated)
-     * @return {Error} a deprecation warning
      */
-    defaultSelectedItem: () =>
-      new Error(
-        `The 'defaultSelectedItem' prop is deprecated, use 'initialSelectedItem' instead`
-      ),
+    defaultSelectedItem: deprecated(
+      PropTypes.any,
+      'Use "initialSelectedItem" instead.'
+    ),
 
     /**
      * The selected item to be selected & shown by default on the autocomplete (deprecated)
-     * @return {Error} a deprecation warning
      */
-    defaultInputValue: () =>
-      new Error(
-        `The 'defaultInputValue' prop is deprecated, use 'initialInputValue' instead`
-      ),
+    defaultInputValue: deprecated(
+      PropTypes.any,
+      'Use "initialInputValue" instead.'
+    ),
 
     /**
      * In case the array of items is not an array of strings,
@@ -118,12 +117,11 @@ export default class Autocomplete extends PureComponent {
 
     /**
      * The selected item to be selected & shown by default on the autocomplete (deprecated)
-     * @return {Error} a deprecation warning
      */
-    getButtonProps: () =>
-      new Error(
-        `The 'getButtonProps' prop is deprecated, use 'getToggleButtonProps' instead`
-      ),
+    getButtonProps: deprecated(
+      PropTypes.func,
+      'Use "getToggleButtonProps" instead.'
+    ),
 
     ...Downshift.propTypes
   }

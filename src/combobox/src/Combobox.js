@@ -4,6 +4,7 @@ import Box, { dimensions, spacing, position, layout } from 'ui-box'
 import { Autocomplete } from '../../autocomplete'
 import { TextInput } from '../../text-input'
 import { IconButton } from '../../buttons'
+import deprecated from '../../lib/deprecated'
 
 export default class Combobox extends PureComponent {
   static propTypes = {
@@ -42,12 +43,11 @@ export default class Combobox extends PureComponent {
 
     /**
      * Default selected item when uncontrolled (deprecated)
-     * @return {Error} a deprecation warning
      */
-    defaultSelectedItem: () =>
-      new Error(
-        `The 'defaultSelectedItem' prop is deprecated, use 'initialSelectedItem' instead`
-      ),
+    defaultSelectedItem: deprecated(
+      PropTypes.any,
+      'Use "initialSelectedItem" instead.'
+    ),
 
     /**
      * The placeholder text when there is no value present.
