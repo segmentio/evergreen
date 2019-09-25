@@ -7,7 +7,9 @@ import { withTheme } from '../../theme'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
 
-const isObjectFitSupported = 'objectFit' in document.documentElement.style
+const isObjectFitSupported =
+  typeof document !== 'undefined' &&
+  'objectFit' in document.documentElement.style
 
 const initialsProps = {
   top: 0,
