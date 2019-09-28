@@ -207,6 +207,10 @@ export default class Autocomplete extends PureComponent {
             renderItem={({ index, style }) => {
               const item = items[index]
               const itemString = itemToString(item)
+              const onSelect = () => {
+                selectItemAtIndex(index)
+              }
+
               return renderItem(
                 getItemProps({
                   item,
@@ -214,9 +218,8 @@ export default class Autocomplete extends PureComponent {
                   index,
                   style,
                   children: itemString,
-                  onMouseUp: () => {
-                    selectItemAtIndex(index)
-                  },
+                  onMouseUp: onSelect,
+                  onTouchEnd: onSelect,
                   isSelected: itemToString(selectedItem) === itemString,
                   isHighlighted: highlightedIndex === index
                 })
