@@ -54,12 +54,12 @@ class Button extends PureComponent {
     /**
      * Sets an icon before the text. Can be any icon from Evergreen.
      */
-    iconBefore: PropTypes.string,
+    iconBefore: PropTypes.node,
 
     /**
      * Sets an icon after the text. Can be any icon from Evergreen.
      */
-    iconAfter: PropTypes.string,
+    iconAfter: PropTypes.node,
 
     /**
      * When true, the button is disabled.
