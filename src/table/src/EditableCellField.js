@@ -65,6 +65,8 @@ export default class EditableCellField extends React.PureComponent {
 
     requestAnimationFrame(() => {
       this.textareaRef.focus()
+      // Move cursor to end of cell content
+      this.textareaRef.selectionStart = this.textareaRef.value.length
     })
   }
 

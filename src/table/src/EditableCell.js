@@ -16,9 +16,9 @@ class EditableCell extends React.PureComponent {
     ...TableCell.propTypes,
 
     /*
-    * Makes the TableCell focusable.
-    * Will add tabIndex={-1 || this.props.tabIndex}.
-    */
+     * Makes the TableCell focusable.
+     * Will add tabIndex={-1 || this.props.tabIndex}.
+     */
     isSelectable: PropTypes.bool.isRequired,
 
     /**
@@ -87,20 +87,20 @@ class EditableCell extends React.PureComponent {
      * When the user presses a character on the keyboard, use that character
      * as the value in the text field.
      */
-    if (key === 'Enter' || key === 'Shift') {
+    if (key === 'Enter') {
       this.setState({
         isEditing: true
       })
     } else if (
-      key.match(/^[a-z]{0,10}$/) &&
+      key.match(/^[a-zA-Z0-9]$/) &&
       !e.metaKey &&
       !e.ctrlKey &&
       !e.altKey
     ) {
-      this.setState(prevState => ({
+      this.setState({
         isEditing: true,
-        value: prevState.value + key
-      }))
+        value: key
+      })
     }
   }
 
