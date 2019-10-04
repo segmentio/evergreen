@@ -38,14 +38,10 @@ const closeAnimation = css.keyframes('closeAnimation', {
 
 const animationStyles = {
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.deceleration
-    } both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
   },
   '&[data-state="exiting"]': {
-    animation: `${closeAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.acceleration
-    } both`
+    animation: `${closeAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
   }
 }
 
@@ -187,7 +183,12 @@ class Dialog extends React.Component {
     /**
      * Whether or not to prevent scrolling in the outer body
      */
-    preventBodyScrolling: PropTypes.bool
+    preventBodyScrolling: PropTypes.bool,
+
+    /**
+     * Props that are passed to the Overlay component.
+     */
+    overlayProps: PropTypes.object
   }
 
   static defaultProps = {
@@ -209,7 +210,8 @@ class Dialog extends React.Component {
     shouldCloseOnEscapePress: true,
     onCancel: close => close(),
     onConfirm: close => close(),
-    preventBodyScrolling: false
+    preventBodyScrolling: false,
+    overlayProps: {}
   }
 
   renderChildren = close => {
@@ -251,7 +253,8 @@ class Dialog extends React.Component {
       containerProps,
       contentContainerProps,
       minHeightContent,
-      preventBodyScrolling
+      preventBodyScrolling,
+      overlayProps
     } = this.props
 
     const sideOffsetWithUnit = Number.isInteger(sideOffset)
@@ -274,7 +277,8 @@ class Dialog extends React.Component {
         containerProps={{
           display: 'flex',
           alignItems: 'flex-start',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          ...overlayProps
         }}
         preventBodyScrolling={preventBodyScrolling}
       >
