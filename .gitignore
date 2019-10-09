@@ -8,3 +8,4 @@ node_modules
 .cache
 /npm-shrinkwrap.json
 /package-lock.json
+/.idea/

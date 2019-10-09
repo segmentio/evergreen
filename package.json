@@ -44,6 +44,7 @@
   "dependencies": {
     "@babel/runtime": "^7.1.2",
     "@blueprintjs/icons": "^3.2.0",
+    "@types/react": "^16.9.5",
     "arrify": "^1.0.1",
     "classnames": "^2.2.6",
     "dom-helpers": "^3.2.1",
@@ -57,7 +58,7 @@
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.5.0",
     "tinycolor2": "^1.4.1",
-    "ui-box": "^1.4.0"
+    "ui-box": "^2.0.0"
   },
   "peerDependencies": {
     "react": "^16.3.0",
