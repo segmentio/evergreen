@@ -22,7 +22,7 @@ class Textarea extends PureComponent {
     disabled: PropTypes.bool,
 
     /**
-     * Sets visual styling of _only_ the text area to be "invalid". 
+     * Sets visual styling of _only_ the text area to be "invalid".
      * Note that this does not effect any `validationMessage`.
      */
     isInvalid: PropTypes.bool,
@@ -84,7 +84,6 @@ class Textarea extends PureComponent {
       theme,
       className,
 
-      css,
       width,
       height,
       disabled,
@@ -115,7 +114,6 @@ class Textarea extends PureComponent {
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
         {...(disabled ? { color: 'muted' } : {})}
-        css={css}
         {...Textarea.styles}
         {...props}
       />

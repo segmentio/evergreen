@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Positioner } from '../../positioner'
@@ -345,7 +346,7 @@ export default class Popover extends Component {
       minWidth,
       position,
       minHeight,
-      statelessProps,
+      statelessProps: { className: statelessClassName, statelessProps } = {},
       animationDuration,
       onCloseComplete
     } = this.props
@@ -365,14 +366,14 @@ export default class Popover extends Component {
         onOpenComplete={this.handleOpenComplete}
         onCloseComplete={onCloseComplete}
       >
-        {({ css, style, state, getRef }) => (
+        {({ className, style, state, getRef }) => (
           <PopoverStateless
             innerRef={ref => {
               this.popoverNode = ref
               getRef(ref)
             }}
             data-state={state}
-            css={css}
+            className={cx(className, statelessClassName)}
             display={display}
             minWidth={minWidth}
             minHeight={minHeight}

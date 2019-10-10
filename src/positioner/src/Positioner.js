@@ -1,3 +1,4 @@
+import { css } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
@@ -16,23 +17,25 @@ const initialState = () => ({
   transformOrigin: null
 })
 
-const getCSS = ({ initialScale, animationDuration }) => ({
-  position: 'fixed',
-  opacity: 0,
-  transitionTimingFunction: animationEasing.spring,
-  transitionDuration: `${animationDuration}ms`,
-  transitionProperty: 'opacity, transform',
-  transform: `scale(${initialScale}) translateY(-1px)`,
-  '&[data-state="entering"], &[data-state="entered"]': {
-    opacity: 1,
-    visibility: 'visible',
-    transform: `scale(1)`
-  },
-  '&[data-state="exiting"]': {
+const getCSS = ({ initialScale, animationDuration }) => {
+  return css({
+    position: 'fixed',
     opacity: 0,
-    transform: 'scale(1)'
-  }
-})
+    transitionTimingFunction: animationEasing.spring,
+    transitionDuration: `${animationDuration}ms`,
+    transitionProperty: 'opacity, transform',
+    transform: `scale(${initialScale}) translateY(-1px)`,
+    '&[data-state="entering"], &[data-state="entered"]': {
+      opacity: 1,
+      visibility: 'visible',
+      transform: `scale(1)`
+    },
+    '&[data-state="exiting"]': {
+      opacity: 0,
+      transform: 'scale(1)'
+    }
+  })
+}
 
 export default class Positioner extends PureComponent {
   static propTypes = {
@@ -245,11 +248,11 @@ export default class Positioner extends PureComponent {
                       left,
                       state,
                       zIndex,
-                      css: getCSS({
+                      className: getCSS({
                         targetOffset,
                         initialScale,
                         animationDuration
-                      }),
+                      }).toString(),
                       style: {
                         transformOrigin,
                         left,

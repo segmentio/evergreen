@@ -1,6 +1,7 @@
+import cx from 'classnames'
+import { css } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'ui-box'
 import Transition from 'react-transition-group/Transition'
 import { Pane, Card } from '../../layers'
 import { Portal } from '../../portal'
@@ -35,7 +36,7 @@ const closeAnimation = css.keyframes('closeAnimation', {
   }
 })
 
-const animationStyles = {
+const animationStyles = css({
   '&[data-state="entering"], &[data-state="entered"]': {
     animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
       animationEasing.spring
@@ -44,7 +45,7 @@ const animationStyles = {
   '&[data-state="exiting"]': {
     animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
   }
-}
+}).toString()
 
 export default class CornerDialog extends PureComponent {
   static propTypes = {
@@ -210,7 +211,7 @@ export default class CornerDialog extends PureComponent {
       cancelLabel,
       confirmLabel,
       onOpenComplete,
-      containerProps
+      containerProps: { className: containerClassName, ...containerProps } = {}
     } = this.props
 
     const { exiting, exited } = this.state
@@ -233,7 +234,7 @@ export default class CornerDialog extends PureComponent {
               backgroundColor="white"
               elevation={4}
               width={width}
-              css={animationStyles}
+              className={cx(containerClassName, animationStyles)}
               data-state={state}
               position="fixed"
               bottom={16}

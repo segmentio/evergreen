@@ -1,7 +1,9 @@
+import cx from 'classnames'
+import { css } from 'glamor'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
-import Box, { css } from 'ui-box'
+import Box from 'ui-box'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder } from '../../constants'
@@ -322,7 +324,7 @@ class Overlay extends React.Component {
     const {
       theme,
 
-      containerProps = {},
+      containerProps: { className: containerClassName, ...containerProps } = {},
       isShown,
       children
     } = this.props
@@ -357,7 +359,12 @@ class Overlay extends React.Component {
                   right={0}
                   bottom={0}
                   zIndex={zIndex}
-                  css={animationStyles(theme.overlayBackgroundColor)}
+                  className={cx(
+                    containerClassName,
+                    css(
+                      animationStyles(theme.overlayBackgroundColor)
+                    ).toString()
+                  )}
                   data-state={state}
                   {...containerProps}
                 >

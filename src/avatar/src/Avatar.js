@@ -1,3 +1,4 @@
+import { css } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
@@ -11,14 +12,14 @@ const isObjectFitSupported =
   typeof document !== 'undefined' &&
   'objectFit' in document.documentElement.style
 
-const initialsProps = {
+const initialsProps = css({
   top: 0,
   position: 'absolute',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   lineHeight: 1
-}
+}).toString()
 
 class Avatar extends PureComponent {
   static propTypes = {
@@ -159,7 +160,7 @@ class Avatar extends PureComponent {
       >
         {(imageUnavailable || forceShowInitials) && (
           <Text
-            css={initialsProps}
+            className={initialsProps}
             fontSize={initialsFontSize}
             lineHeight={initialsFontSize}
             width={size}
