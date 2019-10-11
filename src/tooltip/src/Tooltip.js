@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import { css as gcss } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
@@ -179,7 +180,7 @@ export default class Tooltip extends PureComponent {
       isShown,
       content,
       position,
-      statelessProps: { className: statelessClassName, ...statelessProps } = {}
+      statelessProps = {}
     } = this.props
     const { isShown: stateIsShown, isShownByTarget } = this.state
 
@@ -200,17 +201,20 @@ export default class Tooltip extends PureComponent {
         position={position}
         animationDuration={160}
       >
-        {({ className, style, state, getRef }) => (
+        {({ css, style, state, getRef }) => (
           <TooltipStateless
             id={this.state.id}
             appearance={appearance}
             innerRef={ref => getRef(ref)}
             data-state={state}
-            className={cx(statelessClassName, className)}
             style={style}
             onMouseEnter={this.handleMouseEnterTarget}
             onMouseLeave={this.handleMouseLeaveTarget}
             {...statelessProps}
+            className={cx(
+              statelessProps.classNames,
+              css ? gcss(css) : undefined
+            )}
           >
             {content}
           </TooltipStateless>

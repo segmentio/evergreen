@@ -8,12 +8,12 @@ const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
 }
 
-const handleStyle = css({
+const handleStyleClass = {
   backgroundColor: '#fff',
   borderRadius: 9999
-}).toString()
+}
 
-const iconContainerStyle = css({
+const iconContainerStyleClass = css({
   transition: `all 500ms ${animationEasing.spring}`,
   opacity: 0,
   transform: 'scale(0.0)',
@@ -26,15 +26,15 @@ const iconContainerStyle = css({
     opacity: 1,
     transform: 'scale(1)'
   }
-}).toString()
+})
 
-const handleContainerStyle = css({
+const handleContainerStyleClass = css({
   transition: 'transform 200ms ease-in-out',
   transform: 'translateX(0%)',
   '&[data-checked="true"]': {
     transform: 'translateX(50%)'
   }
-}).toString()
+})
 
 const CheckIcon = ({ size, fill = 'currentColor', ...props }) => (
   <svg width={10} height={size} viewBox="0 0 10 7" {...props}>
@@ -196,7 +196,7 @@ class Switch extends PureComponent {
             height={height}
             width={height}
             data-checked={checked}
-            className={iconContainerStyle}
+            css={iconContainerStyleClass}
           >
             {hasCheckIcon && <CheckIcon size={height / 2 - 3} />}
           </Box>
@@ -204,13 +204,13 @@ class Switch extends PureComponent {
             width={height * 2}
             display="flex"
             data-checked={checked}
-            className={handleContainerStyle}
+            className={handleContainerStyleClass}
           >
             <Box flex={1} padding={2}>
               <Box
                 width={height - 4}
                 height={height - 4}
-                className={handleStyle}
+                className={handleStyleClass}
               />
             </Box>
           </Box>

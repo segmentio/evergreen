@@ -12,14 +12,14 @@ const isObjectFitSupported =
   typeof document !== 'undefined' &&
   'objectFit' in document.documentElement.style
 
-const initialsProps = css({
+const initialsStyleClass = css({
   top: 0,
   position: 'absolute',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   lineHeight: 1
-}).toString()
+})
 
 class Avatar extends PureComponent {
   static propTypes = {
@@ -160,7 +160,7 @@ class Avatar extends PureComponent {
       >
         {(imageUnavailable || forceShowInitials) && (
           <Text
-            className={initialsProps}
+            className={initialsStyleClass}
             fontSize={initialsFontSize}
             lineHeight={initialsFontSize}
             width={size}

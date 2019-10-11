@@ -74,7 +74,7 @@ const withAnimations = (animateIn, animateOut) => {
   }
 }
 
-const animationStyles = {
+const animationStylesClass = {
   [Position.LEFT]: css({
     transform: `translateX(-100%)`,
     ...withAnimations(
@@ -87,7 +87,7 @@ const animationStyles = {
         to: { transform: `translateX(-100%)` }
       })
     )
-  }).toString(),
+  }),
   [Position.RIGHT]: css({
     transform: `translateX(100%)`,
     ...withAnimations(
@@ -100,7 +100,7 @@ const animationStyles = {
         to: { transform: `translateX(100%)` }
       })
     )
-  }).toString(),
+  }),
   [Position.TOP]: css({
     transform: `translateY(-100%)`,
     ...withAnimations(
@@ -113,7 +113,7 @@ const animationStyles = {
         to: { transform: `translateY(-100%)` }
       })
     )
-  }).toString(),
+  }),
   [Position.BOTTOM]: css({
     transform: `translateY(100%)`,
     ...withAnimations(
@@ -126,7 +126,7 @@ const animationStyles = {
         to: { transform: `translateY(100%)` }
       })
     )
-  }).toString()
+  })
 }
 
 class SideSheet extends React.Component {
@@ -232,7 +232,7 @@ class SideSheet extends React.Component {
           <Pane
             width={width}
             {...paneProps[position]}
-            className={animationStyles[position]}
+            className={animationStylesClass[position]}
             data-state={state}
           >
             <SheetClose

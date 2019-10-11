@@ -324,7 +324,7 @@ class Overlay extends React.Component {
     const {
       theme,
 
-      containerProps: { className: containerClassName, ...containerProps } = {},
+      containerProps = {},
       isShown,
       children
     } = this.props
@@ -359,14 +359,12 @@ class Overlay extends React.Component {
                   right={0}
                   bottom={0}
                   zIndex={zIndex}
-                  className={cx(
-                    containerClassName,
-                    css(
-                      animationStyles(theme.overlayBackgroundColor)
-                    ).toString()
-                  )}
                   data-state={state}
                   {...containerProps}
+                  className={cx(
+                    containerProps.className,
+                    css(animationStyles(theme.overlayBackgroundColor))
+                  )}
                 >
                   {typeof children === 'function'
                     ? children({

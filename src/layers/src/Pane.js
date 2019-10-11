@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import { css } from 'glamor'
+import { css as gcss } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
@@ -151,20 +151,16 @@ class Pane extends PureComponent {
       borderRight,
       borderBottom,
       borderLeft,
-      className,
 
-      css: propsCss = {},
+      css = {},
       ...props
     } = this.props
 
     const elevationStyle = theme.getElevation(elevation)
-    const hoverElevationStyle = this.getHoverElevationStyle(
-      hoverElevation,
-      propsCss
-    )
+    const hoverElevationStyle = this.getHoverElevationStyle(hoverElevation, css)
     const activeElevationStyle = this.getActiveElevationStyle(
       activeElevation,
-      propsCss
+      css
     )
 
     const [_borderTop, _borderRight, _borderBottom, _borderLeft] = [
@@ -176,6 +172,15 @@ class Pane extends PureComponent {
       this.getBorderSideProperty({ borderSideProperty, border })
     )
 
+    const className = cx(
+      props.className,
+      gcss({
+        ...css,
+        ...hoverElevationStyle,
+        ...activeElevationStyle
+      })
+    )
+
     return (
       <Box
         borderTop={_borderTop}
@@ -184,15 +189,8 @@ class Pane extends PureComponent {
         borderLeft={_borderLeft}
         boxShadow={elevationStyle}
         background={theme.getBackground(background)}
-        className={cx(
-          className,
-          css(
-            css(activeElevationStyle),
-            css(hoverElevationStyle),
-            css(propsCss)
-          ).toString()
-        )}
         {...props}
+        className={className}
       />
     )
   }

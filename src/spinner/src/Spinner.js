@@ -22,11 +22,11 @@ const loadingCircleKeyframes = css.keyframes('loading-circle', {
   }
 })
 
-const outer = css({
+const outerClass = css({
   animation: `${loadingKeyframes} 2s linear infinite`
-}).toString()
+})
 
-const inner = color =>
+const innerClass = color =>
   css({
     strokeDashoffset: 600,
     strokeDasharray: 300,
@@ -36,7 +36,7 @@ const inner = color =>
     animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
     stroke: color,
     fill: 'transparent'
-  }).toString()
+  })
 
 class Spinner extends PureComponent {
   static propTypes = {
@@ -82,10 +82,16 @@ class Spinner extends PureComponent {
     const { theme, size, ...props } = this.props
     return (
       <Box width={size} height={size} lineHeight={0} {...props}>
-        <Box is="svg" className={outer} x="0px" y="0px" viewBox="0 0 150 150">
+        <Box
+          is="svg"
+          className={outerClass}
+          x="0px"
+          y="0px"
+          viewBox="0 0 150 150"
+        >
           <Box
             is="circle"
-            className={inner(theme.spinnerColor)}
+            className={innerClass(theme.spinnerColor)}
             cx="75"
             cy="75"
             r="60"

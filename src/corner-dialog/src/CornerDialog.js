@@ -36,7 +36,7 @@ const closeAnimation = css.keyframes('closeAnimation', {
   }
 })
 
-const animationStyles = css({
+const animationStylesClass = css({
   '&[data-state="entering"], &[data-state="entered"]': {
     animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
       animationEasing.spring
@@ -45,7 +45,7 @@ const animationStyles = css({
   '&[data-state="exiting"]': {
     animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
   }
-}).toString()
+})
 
 export default class CornerDialog extends PureComponent {
   static propTypes = {
@@ -211,7 +211,7 @@ export default class CornerDialog extends PureComponent {
       cancelLabel,
       confirmLabel,
       onOpenComplete,
-      containerProps: { className: containerClassName, ...containerProps } = {}
+      containerProps
     } = this.props
 
     const { exiting, exited } = this.state
@@ -234,13 +234,13 @@ export default class CornerDialog extends PureComponent {
               backgroundColor="white"
               elevation={4}
               width={width}
-              className={cx(containerClassName, animationStyles)}
               data-state={state}
               position="fixed"
               bottom={16}
               right={16}
               padding={32}
               {...containerProps}
+              className={cx(containerProps.className, animationStylesClass)}
             >
               <Pane display="flex" alignItems="center" marginBottom={12}>
                 <Heading is="h4" size={600} flex="1">

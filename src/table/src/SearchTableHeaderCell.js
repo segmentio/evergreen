@@ -5,7 +5,7 @@ import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import TableHeaderCell from './TableHeaderCell'
 
-const invisibleInput = css({
+const invisibleInputClass = css({
   border: 'none',
   backgroundColor: 'transparent',
   WebkitAppearance: 'none',
@@ -19,7 +19,7 @@ const invisibleInput = css({
   '&::placeholder': {
     color: `rgba(67, 90, 111, 0.7)`
   }
-}).toString()
+})
 
 export default class SearchTableHeaderCell extends PureComponent {
   static propTypes = {
@@ -91,7 +91,7 @@ export default class SearchTableHeaderCell extends PureComponent {
           is="input"
           size={300}
           flex="1"
-          className={invisibleInput}
+          className={invisibleInputClass}
           value={value}
           onChange={e => onChange(e.target.value)}
           autoFocus={autoFocus}
