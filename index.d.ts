@@ -28,7 +28,7 @@ declare module 'evergreen-ui' {
     hasTrim?: boolean;
     hasIcon?: boolean;
     isRemoveable?: boolean;
-    onRemove?: () => void;
+    onRemove?: (event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => void;
     appearance?: 'default' | 'card';
   }
 
