@@ -1,6 +1,7 @@
 /* tslint:disable:interface-name max-classes-per-file no-empty-interface */
 
 declare module 'evergreen-ui' {
+  import { IconName } from '@blueprintjs/icons'
   import * as React from 'react'
   import { EnhancerProps } from 'ui-box/dist/types/enhancers'
 
@@ -14,26 +15,7 @@ declare module 'evergreen-ui' {
 
   type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right';
   type IntentTypes = 'none' | 'success' | 'warning' | 'danger';
-  type IconNameTypes =
-    ''
-    | 'loading'
-    | 'error'
-    | 'tick-circle'
-    | 'caret-down'
-    | 'cross'
-    | 'menu'
-    | 'list'
-    | 'more'
-    | 'properties'
-    | 'diagram-tree'
-    | 'database'
-    | 'join-table'
-    | 'function'
-    | 'person'
-    | 'import'
-    | 'predictive-analysis'
-    | 'refresh'
-    | 'export';
+  type IconNameTypes = IconName | undefined | null | false | JSX.Element;
 
   type RemovedAttributes = 'color' | 'title' ;
   type ElementProps = Omit<React.HtmlHTMLAttributes<HTMLElement>, RemovedAttributes>;
@@ -203,12 +185,42 @@ declare module 'evergreen-ui' {
     intent?: IntentTypes;
   }
 
+  export interface MenuGroupProps extends PaneProps, ElementProps {
+    title?: JSX.Element;
+    children: React.ReactNode[] | React.ReactNode;
+  }
+
+  export interface MenuOptionProps {
+    id?: string;
+    onSelect?: () => void;
+    isSelected?: boolean;
+    children?: JSX.Element;
+    secondaryText?: JSX.Element;
+    appearance?: 'default';
+  }
+
+  export interface MenuOptionsGroupProps<T> {
+    title?: JSX.Element;
+    selected?: T;
+    onChange?: (value: T) => void;
+    options: Array<{ value: T, label: string }>;
+  }
+
   export class Menu extends React.PureComponent<MenuProps> {
     // @ts-ignore
     public static Item = class MenuItem extends React.PureComponent<MenuItemProps> {
     }
     // @ts-ignore
     public static Divider = class MenuDivider extends React.PureComponent {
+    }
+    // @ts-ignore
+    public static Group = class MenuGroup extends React.PureComponent<MenuGroupProps> {
+    }
+    // @ts-ignore
+    public static Option = class Option extends React.PureComponent<MenuOptionProps> {
+    }
+    // @ts-ignore
+    public static OptionsGroup = class MenuOptionsGroup<T extends string | number> extends React.PureComponent<MenuOptionsGroupProps<T>> {
     }
   }
 
@@ -220,6 +232,9 @@ declare module 'evergreen-ui' {
   }
 
   export class Pane extends React.PureComponent<PaneProps> {
+  }
+
+  export interface PopoverStatelessProps extends UIBoxProps, ElementProps {
   }
 
   export interface PopoverProps {
@@ -241,6 +256,7 @@ declare module 'evergreen-ui' {
     onBodyClick?: () => void;
     bringFocusInside?: boolean;
     shouldCloseOnExternalClick?: boolean;
+    statelessProps?: PopoverStatelessProps;
   }
 
   export class Popover extends React.PureComponent<PopoverProps> {
