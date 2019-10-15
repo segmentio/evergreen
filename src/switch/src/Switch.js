@@ -8,10 +8,10 @@ const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
 }
 
-const handleStyleClass = {
+const handleStyleClass = css({
   backgroundColor: '#fff',
   borderRadius: 9999
-}
+})
 
 const iconContainerStyleClass = css({
   transition: `all 500ms ${animationEasing.spring}`,
@@ -196,9 +196,9 @@ class Switch extends PureComponent {
             height={height}
             width={height}
             data-checked={checked}
-            css={iconContainerStyleClass}
+            className={iconContainerStyleClass}
           >
-            {hasCheckIcon && <CheckIcon size={height / 2 - 3} />}
+            {hasCheckIcon && <CheckIcon size={height / 2 - 3}/>}
           </Box>
           <Box
             width={height * 2}

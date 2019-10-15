@@ -48,7 +48,7 @@ const animationStylesClass = css({
       animationEasing.acceleration
     } both`
   }
-})
+}).toString()
 
 class Dialog extends React.Component {
   static propTypes = {

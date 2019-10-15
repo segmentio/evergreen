@@ -45,7 +45,7 @@ const animationStylesClass = css({
   '&[data-state="exiting"]': {
     animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
   }
-})
+}).toString()
 
 export default class CornerDialog extends PureComponent {
   static propTypes = {
@@ -211,7 +211,7 @@ export default class CornerDialog extends PureComponent {
       cancelLabel,
       confirmLabel,
       onOpenComplete,
-      containerProps
+      containerProps = {}
     } = this.props
 
     const { exiting, exited } = this.state

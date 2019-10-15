@@ -178,7 +178,7 @@ class Pane extends PureComponent {
         ...css,
         ...hoverElevationStyle,
         ...activeElevationStyle
-      })
+      }).toString()
     )
 
     return (

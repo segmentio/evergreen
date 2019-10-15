@@ -363,7 +363,7 @@ class Overlay extends React.Component {
                   {...containerProps}
                   className={cx(
                     containerProps.className,
-                    css(animationStyles(theme.overlayBackgroundColor))
+                    css(animationStyles(theme.overlayBackgroundColor)).toString()
                   )}
                 >
                   {typeof children === 'function'

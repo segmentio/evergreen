@@ -378,13 +378,13 @@ export default class Popover extends Component {
             minWidth={minWidth}
             minHeight={minHeight}
             {...statelessProps}
-            className={cx(statelessProps.className, gcss(css))}
+            className={cx(statelessProps.className, css ? gcss(css).toString() : undefined)}
             style={
               statelessProps && statelessProps.style
                 ? {
-                    ...style,
-                    ...statelessProps.style
-                  }
+                  ...style,
+                  ...statelessProps.style
+                }
                 : style
             }
             onMouseLeave={this.handleCloseHover}

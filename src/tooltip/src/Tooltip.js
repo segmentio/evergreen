@@ -213,7 +213,7 @@ export default class Tooltip extends PureComponent {
             {...statelessProps}
             className={cx(
               statelessProps.classNames,
-              css ? gcss(css) : undefined
+              css ? gcss(css).toString() : undefined
             )}
           >
             {content}
