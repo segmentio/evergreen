@@ -27,6 +27,8 @@ const fuzzyFilter = itemToString => {
   return (items, input) => fuzzaldrin.filter(items, input)
 }
 
+const noop = () => {}
+
 const autocompleteItemRenderer = props => <AutocompleteItem {...props} />
 
 // https://github.com/paypal/downshift/issues/164
@@ -255,6 +257,7 @@ export default class Autocomplete extends PureComponent {
         initialInputValue={initialInputValue || defaultInputValue}
         getToggleButtonProps={getToggleButtonProps || getButtonProps}
         stateReducer={this.stateReducer}
+        scrollIntoView={noop}
         {...props}
       >
         {({
