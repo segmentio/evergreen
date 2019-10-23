@@ -15,7 +15,6 @@ const handleStyle = {
 const iconContainerStyle = {
   transition: `all 500ms ${animationEasing.spring}`,
   opacity: 0,
-  transform: 'scale(0.0)',
   display: 'flex',
   position: 'absolute',
   alignItems: 'center',
@@ -23,6 +22,13 @@ const iconContainerStyle = {
   paddingLeft: 4,
   '&[data-checked="true"]': {
     opacity: 1,
+    transform: 'scale(1)'
+  },
+  '> svg': {
+    transition: `all 500ms ${animationEasing.spring}`,
+    transform: 'scale(0)'
+  },
+  '&[data-checked="true"] > svg': {
     transform: 'scale(1)'
   }
 }
