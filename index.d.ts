@@ -3,26 +3,13 @@
 declare module 'evergreen-ui' {
   import { IconName } from '@blueprintjs/icons'
   import * as React from 'react'
-  import { EnhancerProps } from 'ui-box/dist/types/enhancers'
-
-  interface UIBoxProps extends Partial<EnhancerProps> {
-    innerRef?: React.Ref<HTMLElement>;
-    children?: React.ReactNode;
-    height?: string | number;
-    width?: string | number;
-    css?: object;
-  }
+  import { BoxProps } from 'ui-box/dist/types/box-types'
 
   type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right';
   type IntentTypes = 'none' | 'success' | 'warning' | 'danger';
-  type IconNameTypes = IconName | undefined | null | false | JSX.Element;
+  type IconNameTypes = IconName | '';
 
-  type RemovedAttributes = 'color' | 'title' ;
-  type ElementProps = Omit<React.HtmlHTMLAttributes<HTMLElement>, RemovedAttributes>;
-  type ElementInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, RemovedAttributes>;
-  type ElementButtonProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, RemovedAttributes>;
-
-  export interface AlertProps extends PaneProps, ElementProps {
+  export interface AlertProps extends PaneProps {
     intent: IntentTypes;
     title?: React.ReactNode;
     hasTrim?: boolean;
@@ -66,7 +53,7 @@ declare module 'evergreen-ui' {
   export class Autocomplete extends React.PureComponent<AutocompleteProps> {
   }
 
-  export interface AvatarProps extends UIBoxProps, ElementProps {
+  export interface AvatarProps extends BoxProps<'div'> {
     src?: string;
     size?: number;
     name?: string;
@@ -81,7 +68,7 @@ declare module 'evergreen-ui' {
   export class Avatar extends React.PureComponent<AvatarProps> {
   }
 
-  export interface CheckboxProps extends UIBoxProps, ElementInputProps {
+  export interface CheckboxProps extends BoxProps<'input'> {
     label?: React.ReactNode;
     indeterminate?: boolean;
     isInvalid?: boolean;
@@ -91,7 +78,7 @@ declare module 'evergreen-ui' {
   export class Checkbox extends React.PureComponent<CheckboxProps> {
   }
 
-  export interface ButtonProps extends Omit<TextProps, keyof ElementButtonProps>, ElementButtonProps {
+  export interface ButtonProps extends Omit<TextProps, keyof BoxProps<'div'>>, BoxProps<'button'> {
     intent?: IntentTypes;
     appearance?: 'default' | 'minimal' | 'primary';
     isLoading?: boolean;
@@ -103,7 +90,7 @@ declare module 'evergreen-ui' {
   export class Button extends React.PureComponent<ButtonProps> {
   }
 
-  export interface CardProps extends PaneProps, ElementProps {
+  export interface CardProps extends PaneProps {
   }
 
   export class Card extends React.PureComponent<CardProps> {
@@ -121,7 +108,7 @@ declare module 'evergreen-ui' {
   export class Icon extends React.PureComponent<IconProps> {
   }
 
-  export interface FormFieldProps extends UIBoxProps, ElementProps {
+  export interface FormFieldProps extends BoxProps<'div'> {
     label: NonNullable<React.ReactNode>;
     labelFor?: string;
     description?: React.ReactNode;
@@ -132,26 +119,26 @@ declare module 'evergreen-ui' {
   export class FormField extends React.PureComponent<FormFieldProps> {
   }
 
-  export interface FormFieldDescriptionProps extends ParagraphProps, ElementProps {
+  export interface FormFieldDescriptionProps extends ParagraphProps {
   }
 
   export class FormFieldDescription extends React.PureComponent<FormFieldDescriptionProps> {
   }
 
-  export interface FormFieldHintProps extends ParagraphProps, ElementProps {
+  export interface FormFieldHintProps extends ParagraphProps {
   }
 
   export class FormFieldHint extends React.PureComponent<ParagraphProps> {
   }
 
-  export interface FormFieldLabelProps extends LabelProps, ElementProps {
+  export interface FormFieldLabelProps extends LabelProps {
     isAstrixShown?: boolean;
   }
 
   export class FormFieldLabel extends React.PureComponent<FormFieldLabelProps> {
   }
 
-  export interface FormFieldValidationMessageProps extends PaneProps, ElementProps {
+  export interface FormFieldValidationMessageProps extends PaneProps {
   }
 
   export class FormFieldValidationMessage extends React.PureComponent<FormFieldValidationMessageProps> {
@@ -166,7 +153,7 @@ declare module 'evergreen-ui' {
   export class IconButton extends React.PureComponent<IconButtonProps> {
   }
 
-  export interface LabelProps extends TextProps, ElementProps {
+  export interface LabelProps extends TextProps {
     htmlFor?: string;
   }
 
@@ -174,10 +161,10 @@ declare module 'evergreen-ui' {
   }
 
   export interface MenuProps {
-    children: React.ReactNode[];
+    children: React.ReactNode[] | React.ReactNode;
   }
 
-  export interface MenuItemProps extends PaneProps, ElementProps {
+  export interface MenuItemProps extends PaneProps {
     onSelect?: () => void;
     icon?: JSX.Element;
     secondaryText?: JSX.Element;
@@ -185,7 +172,7 @@ declare module 'evergreen-ui' {
     intent?: IntentTypes;
   }
 
-  export interface MenuGroupProps extends PaneProps, ElementProps {
+  export interface MenuGroupProps extends PaneProps {
     title?: JSX.Element;
     children: React.ReactNode[] | React.ReactNode;
   }
@@ -224,7 +211,7 @@ declare module 'evergreen-ui' {
     }
   }
 
-  export interface PaneProps extends UIBoxProps, ElementProps {
+  export interface PaneProps extends BoxProps<'div'> {
     background?: 'tint1' | 'tint2' | 'overlay' | 'yellowTint' | 'greenTint' | 'orangeTint' | 'redTint' | 'blueTint' | 'purpleTint' | 'tealTint';
     elevation?: 0 | 1 | 2 | 3 | 4;
     hoverElevation?: 0 | 1 | 2 | 3 | 4;
@@ -234,7 +221,7 @@ declare module 'evergreen-ui' {
   export class Pane extends React.PureComponent<PaneProps> {
   }
 
-  export interface PopoverStatelessProps extends UIBoxProps, ElementProps {
+  export interface PopoverStatelessProps extends BoxProps<'div'> {
   }
 
   export interface PopoverProps {
@@ -262,7 +249,7 @@ declare module 'evergreen-ui' {
   export class Popover extends React.PureComponent<PopoverProps> {
   }
 
-  export interface ParagraphProps extends UIBoxProps, ElementProps {
+  export interface ParagraphProps extends BoxProps<'div'> {
     size?: 300 | 400 | 500;
     fontFamily?: 'ui' | 'display' | 'mono';
   }
@@ -301,7 +288,7 @@ declare module 'evergreen-ui' {
   export class Positioner extends React.PureComponent<PositionerProps> {
   }
 
-  export interface RadioProps extends UIBoxProps, ElementInputProps {
+  export interface RadioProps extends BoxProps<'input'> {
     label?: React.ReactNode;
     size?: 12 | 16;
     isInvalid?: boolean;
@@ -311,7 +298,7 @@ declare module 'evergreen-ui' {
   export class Radio extends React.PureComponent<RadioProps> {
   }
 
-  export interface RadioGroupProps extends Omit<PaneProps & ElementProps, 'onChange'> {
+  export interface RadioGroupProps extends PaneProps {
     options: Array<{ label: React.ReactNode, value: string, isDisabled?: boolean }>;
     value?: string;
     defaultValue?: string;
@@ -330,7 +317,7 @@ declare module 'evergreen-ui' {
   export class SearchInput extends React.PureComponent<SearchInputProps> {
   }
 
-  export interface SegmentedControlProps extends Omit<UIBoxProps & ElementProps, 'onChange' | 'defaultValue'> {
+  export interface SegmentedControlProps extends BoxProps<'div'> {
     options: Array<{ label: string, value: NonNullable<SegmentedControlProps['value']> }>;
     value?: number | string | boolean;
     defaultValue?: number | string | boolean;
@@ -342,7 +329,7 @@ declare module 'evergreen-ui' {
   export class SegmentedControl extends React.PureComponent<SegmentedControlProps> {
   }
 
-  export interface SelectMenuProps {
+  export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'content'> {
     title?: string;
     width?: string | number | null;
     height?: string | number;
@@ -384,10 +371,18 @@ declare module 'evergreen-ui' {
   export class SideSheet extends React.PureComponent<SideSheetProps> {
   }
 
-  export interface SidebarTabProps extends TabProps, Omit<ElementProps, 'onSelect'> {
+  export interface SidebarTabProps extends TabProps {
   }
 
   export class SidebarTab extends React.PureComponent<SidebarTabProps> {
+  }
+
+  export interface SpinnerProps extends BoxProps<'div'> {
+    delay?: number;
+    size: number;
+  }
+
+  export class Spinner extends React.PureComponent<SpinnerProps> {
   }
 
   export interface StackProps {
@@ -398,7 +393,8 @@ declare module 'evergreen-ui' {
   export class Stack extends React.PureComponent<StackProps> {
   }
 
-  export interface TabProps extends TextProps, ElementProps {
+
+  export interface TabProps extends TextProps {
     onSelect?: () => void;
     isSelected?: boolean;
     disabled?: boolean;
@@ -408,19 +404,19 @@ declare module 'evergreen-ui' {
   export class Tab extends React.PureComponent<TabProps> {
   }
 
-  export interface TablistProps extends UIBoxProps, ElementProps {
+  export interface TablistProps extends BoxProps<'div'> {
   }
 
   export class Tablist extends React.PureComponent<TablistProps> {
   }
 
-  export interface TabNavigationProps extends UIBoxProps, ElementProps {
+  export interface TabNavigationProps extends BoxProps<'div'> {
   }
 
   export class TabNavigation extends React.PureComponent<TabNavigationProps> {
   }
 
-  export interface TextProps extends UIBoxProps, ElementProps {
+  export interface TextProps extends BoxProps<'div'> {
     size?: 300 | 400 | 500 | 600;
     fontFamily?: 'ui' | 'display' | 'mono';
   }
@@ -428,7 +424,7 @@ declare module 'evergreen-ui' {
   export class Text extends React.PureComponent<TextProps> {
   }
 
-  export interface TextInputProps extends Omit<TextProps, keyof ElementInputProps>, ElementInputProps {
+  export interface TextInputProps extends Omit<TextProps, keyof BoxProps<'div'>>, BoxProps<'input'> {
     isInvalid?: boolean;
     spellCheck?: boolean;
     appearance?: 'default' | 'primary';
@@ -449,7 +445,7 @@ declare module 'evergreen-ui' {
   export class TextInputField extends React.PureComponent<TextInputFieldProps> {
   }
 
-  export interface TooltipProps extends Omit<TextProps, 'position'>, ElementProps {
+  export interface TooltipProps extends Omit<TextProps, 'position'> {
     appearance?: 'default' | 'card';
     position?: PositionTypes;
     content: React.ReactNode;
@@ -458,14 +454,6 @@ declare module 'evergreen-ui' {
   }
 
   export class Tooltip extends React.PureComponent<TooltipProps> {
-  }
-
-  export interface SpinnerProps extends UIBoxProps, ElementProps {
-    delay?: number;
-    size: number;
-  }
-
-  export class Spinner extends React.PureComponent<SpinnerProps> {
   }
 
   // This is not defined components

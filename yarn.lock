@@ -13315,10 +13315,10 @@ uglifyjs-webpack-plugin@^1.2.4:
     webpack-sources "^1.1.0"
     worker-farm "^1.5.2"
 
-ui-box@^2.0.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-2.1.1.tgz#00816e9adc4c3b986ca377c4bb101f6a8d1523c0"
-  integrity sha512-lImFFjf9Glxg+7Kc7lFsuQZ+4nKYH8jwCrP8qTxBP/k0ytSK1WRmQDOq0TXwtRv9wZ5T8HaEz5OF4lReXCaEFg==
+ui-box@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-2.1.2.tgz#fa448c8ad236ab794a634a592fcdd69aec951232"
+  integrity sha512-4AKwZrmuALdvLVFL0h9Vce9ilE1qgvyTdKzeDpI+lMqZ18zvFceHehmHxh6pmCCA7aDYY0XQJpjdqPB7/JOl0A==
   dependencies:
     "@emotion/hash" "^0.7.1"
     inline-style-prefixer "^5.0.4"
