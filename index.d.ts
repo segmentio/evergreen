@@ -311,10 +311,61 @@ declare module 'evergreen-ui' {
   export class RadioGroup extends React.PureComponent<RadioGroupProps> {
   }
 
+  export interface OptionsListProps {
+    options?: Array<{
+      label?: string;
+      value: string | number;
+      disabled?: boolean;
+    }>;
+    close?: () => void;
+    height?: number;
+    width?: number;
+    isMultiSelect?: boolean;
+    selected?: string;
+    onSelect?: (value: OptionsListProps['options'][number]) => void;
+    onDeselect?: (value: OptionsListProps['options'][number]) => void;
+    onFilterChange?: (value: string) => void;
+    hasFilter?: boolean;
+    optionSize?: number;
+    renderItem: (props: {
+      key: NonNullable<OptionsListProps['options']>[number]['value'];
+      label: NonNullable<OptionsListProps['options']>[number]['label'];
+      style: object,
+      height: NonNullable<OptionsListProps['optionSize']>,
+      onSelect: () => void;
+      onDeselect: () => void;
+      isSelectable: boolean;
+      isSelected: boolean;
+      disabled: NonNullable<OptionsListProps['options']>[number]['disabled'];
+    }) => JSX.Element;
+    filterPlaceholder?: string;
+    filterIcon?: string;
+    optionsFilter?: (
+      value: Array<NonNullable<OptionsListProps['options']>[number]['label']>,
+      filter: NonNullable<OptionsListProps['defaultSearchValue']>
+    ) => void;
+    defaultSearchValue?: string;
+  }
+
+  export class OptionsList extends React.PureComponent<OptionsListProps> {
+  }
+
   interface SearchInputProps extends TextInputProps {
   }
 
   export class SearchInput extends React.PureComponent<SearchInputProps> {
+  }
+
+  export interface SearchTableHeaderCellProps extends TableHeaderCellProps {
+    value?: string;
+    onChange?: (value: string) => void;
+    autoFocus?: boolean;
+    spellCheck?: boolean;
+    placeholder?: string;
+    icon?: IconProps['icon'];
+  }
+
+  export class SearchTableHeaderCell extends React.PureComponent<SearchTableHeaderCellProps> {
   }
 
   export interface SegmentedControlProps extends BoxProps<'div'> {
@@ -327,6 +378,31 @@ declare module 'evergreen-ui' {
   }
 
   export class SegmentedControl extends React.PureComponent<SegmentedControlProps> {
+  }
+
+  export interface SelectMenuContentProps {
+    close?: OptionsListProps['close'];
+    title?: string;
+    width?: number;
+    height?: number;
+    headerHeight?: number;
+    options?: OptionsListProps['options'];
+    hasTitle?: boolean;
+    hasFilter?: boolean;
+    filterPlaceholder?: string;
+    filterIcon?: OptionsListProps['filterIcon'];
+    listProps?: OptionsListProps;
+    isMultiSelect?: boolean;
+    titleView?: React.ReactNode | ((props: {
+      close: NonNullable<SelectMenuContentProps['close']>,
+      title: SelectMenuContentProps['title'],
+      headerHeight: NonNullable<SelectMenuContentProps['headerHeight']>,
+    }) => React.ReactNode);
+    detailView?: React.ReactNode;
+    emptyView?: React.ReactNode;
+  }
+
+  export class SelectMenuContent extends React.PureComponent<SelectMenuContentProps> {
   }
 
   export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'content'> {
@@ -393,6 +469,117 @@ declare module 'evergreen-ui' {
   export class Stack extends React.PureComponent<StackProps> {
   }
 
+  export interface TableBodyProps extends PaneProps {
+  }
+
+  export class TableBody extends React.PureComponent<TableBodyProps> {
+  }
+
+  export interface TableCellProps extends PaneProps {
+    isSelectable?: boolean;
+    appearance?: 'default';
+    rightView?: React.ReactNode;
+    arrowKeysOverrides?: {
+      up: string | JSX.Element | false | (() => React.ReactNode);
+      down: string | JSX.Element | false | (() => React.ReactNode);
+      left: string | JSX.Element | false | (() => React.ReactNode);
+      right: string | JSX.Element | false | (() => React.ReactNode);
+    };
+  }
+
+  export class TableCell extends React.PureComponent<TableCellProps> {
+  }
+
+  interface TableEditableCellProps extends TextTableCellProps {
+    isSelectable?: boolean;
+    disabled?: boolean;
+    placeholder?: React.ReactNode;
+    size?: 300 | 400;
+    children?: string | number;
+    onChange?: (value: string | number) => void;
+    autoFocus?: boolean;
+  }
+
+  export interface TableHeaderCellProps extends TableCellProps {
+  }
+
+  export class TableHeaderCell extends React.PureComponent<TableHeaderCellProps> {
+  }
+
+  export interface TableHeadProps extends PaneProps {
+    height?: number;
+    accountForScrollbar?: boolean;
+  }
+
+  export class TableHead extends React.PureComponent<TableHeadProps> {
+  }
+
+  export interface TableRowProps extends PaneProps {
+    onSelect?: () => void;
+    onDeselect?: () => void;
+    isSelectable?: boolean;
+    isSelected?: boolean;
+    isHighlighted?: boolean;
+    intent?: IntentTypes;
+    appearance?: 'default';
+  }
+
+  export class TableRow extends React.PureComponent<TableRowProps> {
+  }
+
+  interface TableSelectMenuCellProps extends TextTableCellProps {
+    isSelectable?: boolean;
+    disabled?: boolean;
+    placeholder?: React.ReactNode;
+    size?: 300 | 400;
+    selectMenuProps?: SelectMenuProps;
+  }
+
+  interface TableVirtualBodyProps extends PaneProps {
+    children?: React.ReactNode | React.ReactNode[];
+    defaultHeight?: number;
+    allowAutoHeight?: boolean;
+    overscanCount?: number;
+    estimatedItemSize?: number;
+    useAverageAutoHeightEstimation?: boolean;
+    scrollToIndex?: number;
+    scrollOffset?: number;
+    scrollToAlignment?: 'start' | 'center' | 'end' | 'auto';
+  }
+
+  export interface TableProps extends PaneProps {
+  }
+
+  export class Table extends React.PureComponent<TableProps> {
+    // @ts-ignore
+    public static Body = TableBody
+
+    // @ts-ignore
+    public static VirtualBody = class VirtualBody extends React.PureComponent<TableVirtualBodyProps> {
+    }
+
+    // @ts-ignore
+    public static Head = TableHead
+    // @ts-ignore
+    public static HeaderCell = TableHeaderCell
+    // @ts-ignore
+    public static TextHeaderCell = TextTableHeaderCell
+    // @ts-ignore
+    public static SearchHeaderCell = SearchTableHeaderCell
+    // @ts-ignore
+    public static Row = TableRow
+    // @ts-ignore
+    public static Cell = TableCell
+    // @ts-ignore
+    public static TextCell = TextTableCell
+
+    // @ts-ignore
+    public static EditableCell = class EditableCell extends React.PureComponent<TableEditableCellProps> {
+    }
+    // @ts-ignore
+    public static SelectMenuCell = class SelectMenuCell extends React.PureComponent<TableSelectMenuCellProps> {
+    }
+  }
 
   export interface TabProps extends TextProps {
     onSelect?: () => void;
@@ -414,6 +601,21 @@ declare module 'evergreen-ui' {
   }
 
   export class TabNavigation extends React.PureComponent<TabNavigationProps> {
+  }
+
+  export interface TextTableCellProps extends TableCellProps {
+    isNumber?: boolean;
+    textProps?: TextProps;
+  }
+
+  export class TextTableCell extends React.PureComponent<TextTableCellProps> {
+  }
+
+  export interface TextTableHeaderCellProps extends PaneProps {
+    textProps?: TextProps;
+  }
+
+  export class TextTableHeaderCell extends React.PureComponent<TextTableHeaderCellProps> {
   }
 
   export interface TextProps extends BoxProps<'div'> {
@@ -526,46 +728,13 @@ declare module 'evergreen-ui' {
   export class OptionShapePropType extends React.PureComponent<UnknownProps> {
   }
 
-  export class OptionsList extends React.PureComponent<UnknownProps> {
-  }
-
   export class SelectedPropType extends React.PureComponent<UnknownProps> {
-  }
-
-  export class SelectMenuContent extends React.PureComponent<UnknownProps> {
   }
 
   export class Switch extends React.PureComponent<UnknownProps> {
   }
 
   export class StackingContext extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Table extends React.PureComponent<UnknownProps> {
-  }
-
-  export class TableHead extends React.PureComponent<UnknownProps> {
-  }
-
-  export class TableHeaderCell extends React.PureComponent<UnknownProps> {
-  }
-
-  export class TextTableHeaderCell extends React.PureComponent<UnknownProps> {
-  }
-
-  export class SearchTableHeaderCell extends React.PureComponent<UnknownProps> {
-  }
-
-  export class TableBody extends React.PureComponent<UnknownProps> {
-  }
-
-  export class TableRow extends React.PureComponent<UnknownProps> {
-  }
-
-  export class TableCell extends React.PureComponent<UnknownProps> {
-  }
-
-  export class TextTableCell extends React.PureComponent<UnknownProps> {
   }
 
   export class TagInput extends React.PureComponent<UnknownProps> {
