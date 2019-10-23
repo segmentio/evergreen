@@ -1,13 +1,15 @@
 /* tslint:disable:interface-name max-classes-per-file no-empty-interface */
 
+
 declare module 'evergreen-ui' {
   import { IconName } from '@blueprintjs/icons'
   import * as React from 'react'
+  import { extractStyles as boxExtractStyles } from 'ui-box'
   import { BoxProps } from 'ui-box/dist/types/box-types'
 
   type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right';
   type IntentTypes = 'none' | 'success' | 'warning' | 'danger';
-  type IconNameTypes = IconName | '';
+  export type IconNames = IconName | '';
 
   export interface AlertProps extends PaneProps {
     intent: IntentTypes;
@@ -83,8 +85,8 @@ declare module 'evergreen-ui' {
     appearance?: 'default' | 'minimal' | 'primary';
     isLoading?: boolean;
     isActive?: boolean;
-    iconBefore?: IconNameTypes;
-    iconAfter?: IconNameTypes;
+    iconBefore?: IconNames;
+    iconAfter?: IconNames;
   }
 
   export class Button extends React.PureComponent<ButtonProps> {
@@ -98,7 +100,7 @@ declare module 'evergreen-ui' {
 
   export interface IconProps {
     color?: string;
-    icon: IconNameTypes;
+    icon: IconNames;
     size?: number;
     title?: string;
     style?: object;
@@ -145,7 +147,7 @@ declare module 'evergreen-ui' {
   }
 
   export interface IconButtonProps extends ButtonProps {
-    icon: IconNameTypes;
+    icon: IconNames;
     iconAim?: 'down' | 'up';
     iconSize?: number;
   }
@@ -417,7 +419,7 @@ declare module 'evergreen-ui' {
     hasTitle?: boolean;
     hasFilter?: boolean;
     filterPlaceholder?: string;
-    filterIcon?: IconNameTypes;
+    filterIcon?: IconNames;
     onFilterChange?: (searchValue: string) => void;
     position?: Omit<PositionTypes, 'left' | 'right'>;
     detailView?: PopoverProps['content'];
@@ -658,6 +660,19 @@ declare module 'evergreen-ui' {
   export class Tooltip extends React.PureComponent<TooltipProps> {
   }
 
+  export function majorScale(x: number): number;
+
+  export function minorScale(x: number): number;
+
+  export function extractStyles(options?: { nonce?: React.ScriptHTMLAttributes<'script'>['nonce'] }): {
+    css: string;
+    cache: {
+      uiBoxCache: ReturnType<typeof boxExtractStyles>['cache'],
+      glamorIds: string[],
+    };
+    hydrationScript: JSX.Element
+  };
+
   // This is not defined components
 
   type UnknownProps = Record<string, any>;
@@ -701,9 +716,6 @@ declare module 'evergreen-ui' {
   export class FilePicker extends React.PureComponent<UnknownProps> {
   }
 
-  export class IconNames extends React.PureComponent<UnknownProps> {
-  }
-
   export class Image extends React.PureComponent<UnknownProps> {
   }
 
@@ -711,12 +723,6 @@ declare module 'evergreen-ui' {
   }
 
   export class Portal extends React.PureComponent<UnknownProps> {
-  }
-
-  export class minorScale extends React.PureComponent<UnknownProps> {
-  }
-
-  export class majorScale extends React.PureComponent<UnknownProps> {
   }
 
   export class Select extends React.PureComponent<UnknownProps> {
