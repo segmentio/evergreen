@@ -55,7 +55,16 @@ export default class FilePicker extends PureComponent {
     /**
      * Function called when onBlur is fired
      */
-    onBlur: PropTypes.func
+    onBlur: PropTypes.func,
+
+    /**
+     * Placeholder of the text input
+     */
+    placeholder: PropTypes.string
+  }
+
+  static defaultProps = {
+    placeholder: 'Select a file to upload…'
   }
 
   constructor() {
@@ -76,6 +85,7 @@ export default class FilePicker extends PureComponent {
       capture,
       height,
       onChange, // Remove onChange from props
+      placeholder,
       ...props
     } = this.props
     const { files } = this.state
@@ -119,7 +129,7 @@ export default class FilePicker extends PureComponent {
           className={`${CLASS_PREFIX}-text-input`}
           readOnly
           value={inputValue}
-          placeholder="Select a file to upload…"
+          placeholder={placeholder}
           // There's a weird specifity issue when there's two differently sized inputs on the page
           borderTopRightRadius="0 !important"
           borderBottomRightRadius="0 !important"
