@@ -3,6 +3,7 @@ import React from 'react'
 import Box from 'ui-box'
 import { Button } from '../../buttons'
 import { Manager } from '../../manager'
+import AbsolutePosition from '../../constants/src/AbsolutePosition'
 import { CornerDialog } from '..'
 
 storiesOf('corner-dialog', module).add('CornerDialog', () => (
@@ -97,11 +98,45 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             width={492}
             confirmLabel="View Terms"
             onCloseComplete={() => setState({ isShown: false })}
-            position={{
-              position: 'fixed',
-              bottom: '0%',
-              right: '0%'
-            }}
+            position={AbsolutePosition.TOP_LEFT}
+          >
+            MIT License
+          </CornerDialog>
+          <Button onClick={() => setState({ isShown: true })}>Top left</Button>
+        </Box>
+      )}
+    </Manager>
+    <Manager isShown={false}>
+      {({ state, setState }) => (
+        <Box marginTop={24}>
+          <CornerDialog
+            title="Please Read License Terms"
+            isShown={state.isShown}
+            hasClose={false}
+            hasCancel={false}
+            width={492}
+            confirmLabel="View Terms"
+            onCloseComplete={() => setState({ isShown: false })}
+            position={AbsolutePosition.TOP_RIGHT}
+          >
+            MIT License
+          </CornerDialog>
+          <Button onClick={() => setState({ isShown: true })}>Top right</Button>
+        </Box>
+      )}
+    </Manager>
+    <Manager isShown={false}>
+      {({ state, setState }) => (
+        <Box marginTop={24}>
+          <CornerDialog
+            title="Please Read License Terms"
+            isShown={state.isShown}
+            hasClose={false}
+            hasCancel={false}
+            width={492}
+            confirmLabel="View Terms"
+            onCloseComplete={() => setState({ isShown: false })}
+            position={AbsolutePosition.BOTTOM_RIGHT}
           >
             MIT License
           </CornerDialog>
@@ -122,63 +157,13 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             width={492}
             confirmLabel="View Terms"
             onCloseComplete={() => setState({ isShown: false })}
-            position={{
-              position: 'fixed',
-              bottom: '0%',
-              left: '0%'
-            }}
+            position={AbsolutePosition.BOTTOM_LEFT}
           >
             MIT License
           </CornerDialog>
           <Button onClick={() => setState({ isShown: true })}>
             Bottom left
           </Button>
-        </Box>
-      )}
-    </Manager>
-    <Manager isShown={false}>
-      {({ state, setState }) => (
-        <Box marginTop={24}>
-          <CornerDialog
-            title="Please Read License Terms"
-            isShown={state.isShown}
-            hasClose={false}
-            hasCancel={false}
-            width={492}
-            confirmLabel="View Terms"
-            onCloseComplete={() => setState({ isShown: false })}
-            position={{
-              position: 'fixed',
-              top: '0%',
-              right: '0%'
-            }}
-          >
-            MIT License
-          </CornerDialog>
-          <Button onClick={() => setState({ isShown: true })}>Top right</Button>
-        </Box>
-      )}
-    </Manager>
-    <Manager isShown={false}>
-      {({ state, setState }) => (
-        <Box marginTop={24}>
-          <CornerDialog
-            title="Please Read License Terms"
-            isShown={state.isShown}
-            hasClose={false}
-            hasCancel={false}
-            width={492}
-            confirmLabel="View Terms"
-            onCloseComplete={() => setState({ isShown: false })}
-            position={{
-              position: 'fixed',
-              top: '0%',
-              left: '0%'
-            }}
-          >
-            MIT License
-          </CornerDialog>
-          <Button onClick={() => setState({ isShown: true })}>Top left</Button>
         </Box>
       )}
     </Manager>
