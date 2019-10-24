@@ -63,6 +63,10 @@ export default class FilePicker extends PureComponent {
     placeholder: PropTypes.string
   }
 
+  static defaultProps = {
+    placeholder: 'Select a file to upload…'
+  }
+
   constructor() {
     super()
 
@@ -104,13 +108,6 @@ export default class FilePicker extends PureComponent {
       buttonText = 'Replace files'
     }
 
-    let placeholderText
-    if (placeholder) {
-      placeholderText = placeholder
-    } else {
-      placeholderText = 'Select a file to upload…'
-    }
-
     return (
       <Box display="flex" className={`${CLASS_PREFIX}-root`} {...props}>
         <Box
@@ -132,7 +129,7 @@ export default class FilePicker extends PureComponent {
           className={`${CLASS_PREFIX}-text-input`}
           readOnly
           value={inputValue}
-          placeholder={placeholderText}
+          placeholder={placeholder}
           // There's a weird specifity issue when there's two differently sized inputs on the page
           borderTopRightRadius="0 !important"
           borderBottomRightRadius="0 !important"
