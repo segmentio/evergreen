@@ -15,11 +15,34 @@ class AutocompleteTagInput extends React.Component {
     /**
      * Callback invoked where autocomplete option is clicked.
      */
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    /**
+     * Size of font
+     */
+    fontSize: PropTypes.string,
+    /**
+     * Color of font
+     */
+    color: PropTypes.string,
+    /**
+     * Color of background
+     */
+    backgroundColor: PropTypes.string,
+    /**
+     * Font
+     */
+    fontFamily: PropTypes.string
   }
 
   render() {
-    const { options, onClick } = this.props
+    const {
+      options = [],
+      onClick,
+      fontSize = '15px',
+      color = '#425A70',
+      backgroundColor = '#E4E7EB',
+      fontFamily = 'helvetica'
+    } = this.props
 
     return (
       <Box
@@ -29,8 +52,10 @@ class AutocompleteTagInput extends React.Component {
         overflow="auto"
         width="100%"
         left="0"
-        color="#425A70"
-        background="#E4E7EB"
+        color={color}
+        fontFamily={fontFamily}
+        background={backgroundColor}
+        fontSize={fontSize}
         paddingLeft="15px"
       >
         {options.map(element => (

@@ -80,7 +80,7 @@ class TagInput extends React.Component {
     /** Controlled tag values. Each value is rendered inside a tag. */
     values: PropTypes.arrayOf(PropTypes.node),
     /** Autocomplete options for tags */
-    autoCompleteOptions: PropTypes.array
+    autoComplete: PropTypes.object
   }
 
   static defaultProps = {
@@ -89,7 +89,7 @@ class TagInput extends React.Component {
     height: 32,
     separator: /[,\n\r]/,
     values: [],
-    autoCompleteOptions: [],
+    autoComplete: {},
     tagProps: {}
   }
 
@@ -189,10 +189,10 @@ class TagInput extends React.Component {
 
   searchAutoComplete = event => {
     const { value } = event.target
-    const { autoCompleteOptions } = this.props
+    const { autoComplete } = this.props
 
     if (value) {
-      const optionsToShow = autoCompleteOptions
+      const optionsToShow = autoComplete.options
         .filter(element => element.toUpperCase().includes(value.toUpperCase()))
         .map((element, index) => ({ id: index, word: element }))
 
@@ -257,6 +257,7 @@ class TagInput extends React.Component {
       tagProps,
       theme,
       values,
+      autoComplete,
       ...props
     } = this.props
 
@@ -285,6 +286,7 @@ class TagInput extends React.Component {
             <AutocompleteTagInput
               options={optionsToShow}
               onClick={this.handleAutoComplete}
+              {...autoComplete.style}
             />
           </Box>
         )}

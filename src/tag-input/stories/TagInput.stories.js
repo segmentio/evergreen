@@ -152,11 +152,10 @@ storiesOf('tag-input', module).add('TagInput', () => (
             values={values}
             onAdd={addValues}
             onRemove={removeValue}
-            autoCompleteOptions={[
-              'Autocomplete 1',
-              'Autocomplete 2',
-              'Autocomplete 3'
-            ]}
+            autoComplete={{
+              options: ['Autocomplete 1', 'Autocomplete 2', 'Autocomplete 3'],
+              style: {}
+            }}
           />
         )}
       </StateManager>
