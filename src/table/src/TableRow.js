@@ -4,7 +4,6 @@ import cx from 'classnames'
 import { Pane } from '../../layers'
 import { withTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
-import warning from '../../lib/warning'
 import { TableRowProvider } from './TableRowContext'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 
@@ -137,14 +136,6 @@ class TableRow extends PureComponent {
       isSelected,
       ...props
     } = this.props
-
-    if (process.env.NODE_ENV !== 'production') {
-      warning(
-        typeof onClick === 'function',
-        '<Table.Row> expects `onSelect` prop, but you passed `onClick`.'
-      )
-    }
-
     const themedClassName = theme.getRowClassName(appearance, intent)
 
     return (
