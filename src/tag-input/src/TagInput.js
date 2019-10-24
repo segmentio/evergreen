@@ -169,8 +169,6 @@ class TagInput extends React.Component {
       this.addTags(value)
     } else if (event.key === 'Backspace' && selectionEnd === 0) {
       this.handleBackspaceToRemove(event)
-    } else {
-      this.searchAutoComplete(value)
     }
   }
 
@@ -189,20 +187,20 @@ class TagInput extends React.Component {
     })
   }
 
-  searchAutoComplete = keyWord => {
+  searchAutoComplete = event => {
+    const { value } = event.target
     const { autoCompleteOptions } = this.props
 
-    const optionsToShow = autoCompleteOptions
-      .filter(element => element.includes(keyWord))
-      .map((element, index) => {
-        return {
-          id: index,
-          word: element
-        }
-      })
+    if (value) {
+      const optionsToShow = autoCompleteOptions
+        .filter(element => element.toUpperCase().includes(value.toUpperCase()))
+        .map((element, index) => ({ id: index, word: element }))
 
-    if (optionsToShow) {
-      this.setState({ optionsToShow })
+      if (optionsToShow) {
+        this.setState({ optionsToShow })
+      }
+    } else {
+      this.setState({ optionsToShow: [] })
     }
   }
 
@@ -307,6 +305,7 @@ class TagInput extends React.Component {
           onChange={this.handleInputChange}
           onFocus={this.handleInputFocus}
           onKeyDown={this.handleKeyDown}
+          onKeyUp={this.searchAutoComplete}
         />
       </Box>
     )
