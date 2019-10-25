@@ -4,7 +4,7 @@ jobs:
   noop:
     working_directory: ~/evergreen
     docker:
-      - image: circleci/node:8.11
+      - image: circleci/node:10
     steps:
       - echo 'noop'
 
