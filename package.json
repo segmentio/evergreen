@@ -1,6 +1,6 @@
 {
   "name": "evergreen-ui",
-  "version": "4.19.2",
+  "version": "4.20.0",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
@@ -60,8 +60,8 @@
     "ui-box": "^2.1.1"
   },
   "peerDependencies": {
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
