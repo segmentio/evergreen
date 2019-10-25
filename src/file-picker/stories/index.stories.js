@@ -17,6 +17,14 @@ storiesOf('file-picker', module).add('FilePicker', () => (
       onChange={files => console.log(files)}
     />
 
+    <FilePicker
+      multiple
+      width={250}
+      marginBottom={32}
+      onChange={files => console.log(files)}
+      placeholder="Placeholder dynamic here!"
+    />
+
     <FilePicker multiple width={350} height={24} marginBottom={32} />
 
     <FilePicker disabled width={250} marginBottom={32} />

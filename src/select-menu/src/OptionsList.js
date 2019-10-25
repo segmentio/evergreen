@@ -225,6 +225,7 @@ export default class OptionsList extends PureComponent {
     const {
       options: originalOptions,
       close,
+      closeOnSelect,
       width,
       height,
       onSelect,
@@ -274,11 +275,7 @@ export default class OptionsList extends PureComponent {
             itemCount={options.length}
             overscanCount={20}
             scrollToAlignment="auto"
-            {...(scrollToIndex
-              ? {
-                  scrollToIndex
-                }
-              : {})}
+            scrollToIndex={scrollToIndex || undefined}
             renderItem={({ index, style }) => {
               const item = options[index]
               const isSelected = this.isSelected(item)
