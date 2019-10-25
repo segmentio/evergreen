@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { MDXProvider } from '@mdx-js/tag'
+import { MDXProvider } from '../../node_modules/@mdx-js/react'
 import MDXPlayground from './MDXPlayground'
 
 /**
