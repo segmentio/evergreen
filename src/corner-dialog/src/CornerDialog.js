@@ -6,7 +6,8 @@ import { Pane, Card } from '../../layers'
 import { Portal } from '../../portal'
 import { Paragraph, Heading } from '../../typography'
 import { Button, IconButton } from '../../buttons'
-import AbsolutePosition from '../../constants/src/AbsolutePosition'
+import absolutePositions from '../../constants/src/AbsolutePosition'
+import positions from '../../constants/src/Position'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -134,7 +135,12 @@ export default class CornerDialog extends PureComponent {
     /**
      * Props that will set position of corner dialog
      */
-    position: PropTypes.string
+    position: PropTypes.oneOf([
+      positions.TOP_LEFT,
+      positions.TOP_RIGHT,
+      positions.BOTTOM_LEFT,
+      positions.BOTTOM_RIGHT
+    ])
   }
 
   static defaultProps = {
@@ -148,7 +154,7 @@ export default class CornerDialog extends PureComponent {
     onCancel: close => close(),
     onConfirm: close => close(),
     onCloseComplete: () => {},
-    position: 'BOTTOM_RIGHT'
+    position: positions.BOTTOM_RIGHT
   }
 
   constructor(props) {
@@ -242,7 +248,11 @@ export default class CornerDialog extends PureComponent {
               data-state={state}
               padding={32}
               position="fixed"
-              {...AbsolutePosition[position]}
+              {...absolutePositions[
+                Object.keys(absolutePositions).includes(position)
+                  ? position
+                  : positions.BOTTOM_RIGHT
+              ]}
               {...containerProps}
             >
               <Pane display="flex" alignItems="center" marginBottom={12}>

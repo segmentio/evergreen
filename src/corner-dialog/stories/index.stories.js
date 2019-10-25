@@ -3,6 +3,7 @@ import React from 'react'
 import Box from 'ui-box'
 import { Button } from '../../buttons'
 import { Manager } from '../../manager'
+import positions from '../../constants/src/Position'
 import { CornerDialog } from '..'
 
 storiesOf('corner-dialog', module).add('CornerDialog', () => (
@@ -97,7 +98,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             width={492}
             confirmLabel="View Terms"
             onCloseComplete={() => setState({ isShown: false })}
-            position="TOP_LEFT"
+            position={positions.TOP_LEFT}
           >
             MIT License
           </CornerDialog>
@@ -116,7 +117,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             width={492}
             confirmLabel="View Terms"
             onCloseComplete={() => setState({ isShown: false })}
-            position="TOP_RIGHT"
+            position={positions.TOP_RIGHT}
           >
             MIT License
           </CornerDialog>
@@ -135,7 +136,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             width={492}
             confirmLabel="View Terms"
             onCloseComplete={() => setState({ isShown: false })}
-            position="BOTTOM_RIGHT"
+            position={positions.BOTTOM_RIGHT}
           >
             MIT License
           </CornerDialog>
@@ -156,7 +157,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             width={492}
             confirmLabel="View Terms"
             onCloseComplete={() => setState({ isShown: false })}
-            position="BOTTOM_LEFT"
+            position={positions.BOTTOM_LEFT}
           >
             MIT License
           </CornerDialog>
