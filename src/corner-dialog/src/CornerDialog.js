@@ -134,7 +134,7 @@ export default class CornerDialog extends PureComponent {
     /**
      * Props that will set position of corner dialog
      */
-    position: PropTypes.oneOf(AbsolutePosition)
+    position: PropTypes.string
   }
 
   static defaultProps = {
@@ -148,7 +148,7 @@ export default class CornerDialog extends PureComponent {
     onCancel: close => close(),
     onConfirm: close => close(),
     onCloseComplete: () => {},
-    position: AbsolutePosition.BOTTOM_LEFT
+    position: 'BOTTOM_RIGHT'
   }
 
   constructor(props) {
@@ -222,7 +222,6 @@ export default class CornerDialog extends PureComponent {
     const { exiting, exited } = this.state
 
     if (exited) return null
-
     return (
       <Portal>
         <Transition
@@ -243,7 +242,7 @@ export default class CornerDialog extends PureComponent {
               data-state={state}
               padding={32}
               position="fixed"
-              {...position}
+              {...AbsolutePosition[position]}
               {...containerProps}
             >
               <Pane display="flex" alignItems="center" marginBottom={12}>

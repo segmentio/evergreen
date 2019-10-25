@@ -3,7 +3,6 @@ import React from 'react'
 import Box from 'ui-box'
 import { Button } from '../../buttons'
 import { Manager } from '../../manager'
-import AbsolutePosition from '../../constants/src/AbsolutePosition'
 import { CornerDialog } from '..'
 
 storiesOf('corner-dialog', module).add('CornerDialog', () => (
@@ -98,7 +97,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             width={492}
             confirmLabel="View Terms"
             onCloseComplete={() => setState({ isShown: false })}
-            position={AbsolutePosition.TOP_LEFT}
+            position="TOP_LEFT"
           >
             MIT License
           </CornerDialog>
@@ -117,7 +116,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             width={492}
             confirmLabel="View Terms"
             onCloseComplete={() => setState({ isShown: false })}
-            position={AbsolutePosition.TOP_RIGHT}
+            position="TOP_RIGHT"
           >
             MIT License
           </CornerDialog>
@@ -136,7 +135,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             width={492}
             confirmLabel="View Terms"
             onCloseComplete={() => setState({ isShown: false })}
-            position={AbsolutePosition.BOTTOM_RIGHT}
+            position="BOTTOM_RIGHT"
           >
             MIT License
           </CornerDialog>
@@ -157,7 +156,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             width={492}
             confirmLabel="View Terms"
             onCloseComplete={() => setState({ isShown: false })}
-            position={AbsolutePosition.BOTTOM_LEFT}
+            position="BOTTOM_LEFT"
           >
             MIT License
           </CornerDialog>
