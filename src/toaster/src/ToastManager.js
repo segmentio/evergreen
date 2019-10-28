@@ -14,6 +14,11 @@ export default class ToastManager extends React.PureComponent {
     bindNotify: PropTypes.func.isRequired,
 
     /**
+     * Function called with the `this.remove` function.
+     */
+    bindRemove: PropTypes.func.isRequired,
+
+    /**
      * Function called with the `this.getToasts` function.
      */
     bindGetToasts: PropTypes.func.isRequired,
@@ -30,6 +35,7 @@ export default class ToastManager extends React.PureComponent {
     super(props, context)
 
     props.bindNotify(this.notify)
+    props.bindRemove(this.remove)
     props.bindGetToasts(this.getToasts)
     props.bindCloseAll(this.closeAll)
 
@@ -47,17 +53,21 @@ export default class ToastManager extends React.PureComponent {
     this.getToasts().forEach(toast => toast.close())
   }
 
+  remove = id => {
+    for (const toast of this.state.toasts) {
+      // Since unique ID is still appended to a custom ID, skip the unique ID and check only prefix
+      if (String(toast.id).startsWith(id)) {
+        this.closeToast(toast.id)
+      }
+    }
+  }
+
   notify = (title, settings) => {
     this.checkPosition(settings)
 
     // If there's a custom toast ID passed, close existing toasts with the same custom ID
     if (hasCustomId(settings)) {
-      for (const toast of this.state.toasts) {
-        // Since unique ID is still appended to a custom ID, skip the unique ID and check only prefix
-        if (String(toast.id).startsWith(settings.id)) {
-          this.closeToast(toast.id)
-        }
-      }
+      this.remove(settings.id)
     }
 
     const instance = this.createToastInstance(title, settings)

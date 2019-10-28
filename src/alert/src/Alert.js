@@ -119,9 +119,9 @@ class Alert extends PureComponent {
           <Pane
             marginRight={10}
             marginLeft={2}
-            height={14}
-            display="block"
-            marginTop={2}
+            height={20}
+            display="flex"
+            alignItems="center"
           >
             {this.getIconForIntent(intent)}
           </Pane>

@@ -1,18 +1,20 @@
+import positions from './Position'
+
 export default {
-  TOP_LEFT: {
-    top: 0,
-    left: 0
+  [positions.TOP_LEFT]: {
+    top: 50,
+    left: 50
   },
-  TOP_RIGHT: {
-    top: 0,
-    right: 0
+  [positions.TOP_RIGHT]: {
+    top: 50,
+    right: 50
   },
-  BOTTOM_LEFT: {
-    bottom: 0,
-    left: 0
+  [positions.BOTTOM_LEFT]: {
+    bottom: 50,
+    left: 50
   },
-  BOTTOM_RIGHT: {
-    bottom: 0,
-    right: 0
+  [positions.BOTTOM_RIGHT]: {
+    bottom: 50,
+    right: 50
   }
 }

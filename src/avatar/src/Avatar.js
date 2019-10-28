@@ -7,6 +7,10 @@ import { withTheme } from '../../theme'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
 
+const isObjectFitSupported =
+  typeof document !== 'undefined' &&
+  'objectFit' in document.documentElement.style
+
 const initialsProps = {
   top: 0,
   position: 'absolute',
@@ -167,7 +171,8 @@ class Avatar extends PureComponent {
         )}
         {!imageUnavailable && (
           <Image
-            width="auto"
+            style={{ objectFit: 'cover' }} // Unsupported by ui-box directly
+            width={isObjectFitSupported ? '100%' : 'auto'} // Fallback to old behaviour on IE
             height="100%"
             src={src}
             onError={this.handleError}

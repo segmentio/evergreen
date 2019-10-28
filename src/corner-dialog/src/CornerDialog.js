@@ -6,6 +6,8 @@ import { Pane, Card } from '../../layers'
 import { Portal } from '../../portal'
 import { Paragraph, Heading } from '../../typography'
 import { Button, IconButton } from '../../buttons'
+import absolutePositions from '../../constants/src/AbsolutePosition'
+import positions from '../../constants/src/Position'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -37,9 +39,7 @@ const closeAnimation = css.keyframes('closeAnimation', {
 
 const animationStyles = {
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.spring
-    } both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`
   },
   '&[data-state="exiting"]': {
     animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
@@ -130,7 +130,17 @@ export default class CornerDialog extends PureComponent {
     /**
      * Props that are passed to the dialog container.
      */
-    containerProps: PropTypes.object
+    containerProps: PropTypes.object,
+
+    /**
+     * Props that will set position of corner dialog
+     */
+    position: PropTypes.oneOf([
+      positions.TOP_LEFT,
+      positions.TOP_RIGHT,
+      positions.BOTTOM_LEFT,
+      positions.BOTTOM_RIGHT
+    ])
   }
 
   static defaultProps = {
@@ -143,7 +153,8 @@ export default class CornerDialog extends PureComponent {
     cancelLabel: 'Close',
     onCancel: close => close(),
     onConfirm: close => close(),
-    onCloseComplete: () => {}
+    onCloseComplete: () => {},
+    position: positions.BOTTOM_RIGHT
   }
 
   constructor(props) {
@@ -210,13 +221,13 @@ export default class CornerDialog extends PureComponent {
       cancelLabel,
       confirmLabel,
       onOpenComplete,
-      containerProps
+      containerProps,
+      position
     } = this.props
 
     const { exiting, exited } = this.state
 
     if (exited) return null
-
     return (
       <Portal>
         <Transition
@@ -235,10 +246,13 @@ export default class CornerDialog extends PureComponent {
               width={width}
               css={animationStyles}
               data-state={state}
-              position="fixed"
-              bottom={16}
-              right={16}
               padding={32}
+              position="fixed"
+              {...absolutePositions[
+                Object.keys(absolutePositions).includes(position)
+                  ? position
+                  : positions.BOTTOM_RIGHT
+              ]}
               {...containerProps}
             >
               <Pane display="flex" alignItems="center" marginBottom={12}>

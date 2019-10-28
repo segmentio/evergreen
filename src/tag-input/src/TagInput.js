@@ -27,7 +27,7 @@ class TagInput extends React.Component {
     /** Props to pass to the input component. Note that `ref` and `key` are not supported. See `inputRef`. */
     inputProps: PropTypes.object,
     /**
-     * Ref handler for the <input> element.
+     * Ref handler for the input element.
      * (input: HTMLInputElement | null) => void
      */
     inputRef: PropTypes.func,
@@ -54,7 +54,7 @@ class TagInput extends React.Component {
      */
     onFocus: PropTypes.func,
     /**
-     * Callback invoked when the value of the <input> is changed. Shorthand for `inputProps={{ onChange }}`.
+     * Callback invoked when the value of the input is changed. Shorthand for `inputProps={{ onChange }}`.
      * (event) => void
      */
     onInputChange: PropTypes.func,

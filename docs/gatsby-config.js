@@ -10,7 +10,7 @@ module.exports = {
     },
     `gatsby-plugin-favicon`,
     {
-      resolve: `gatsby-mdx`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
         defaultLayouts: {
           default: require.resolve('./src/components/Page.js')
