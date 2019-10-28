@@ -16,5 +16,10 @@ export default {
   [positions.BOTTOM_RIGHT]: {
     bottom: 50,
     right: 50
+  },
+  [positions.TOP_CENTER]: {
+    top: 0,
+    left: 0,
+    right: 0
   }
 }

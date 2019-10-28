@@ -6,5 +6,6 @@ export default {
   BOTTOM_LEFT: 'bottom-left',
   BOTTOM_RIGHT: 'bottom-right',
   LEFT: 'left',
-  RIGHT: 'right'
+  RIGHT: 'right',
+  TOP_CENTER: 'top-center'
 }

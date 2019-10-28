@@ -41,7 +41,7 @@ export default class ToastManager extends React.PureComponent {
 
     this.state = {
       toasts: [],
-      position: Position.TOP_RIGHT
+      position: Position.TOP_CENTER
     }
   }
 
@@ -83,7 +83,7 @@ export default class ToastManager extends React.PureComponent {
 
   checkPosition = ({ position }) => {
     if (position) {
-      this.setState({ position: AbsolutePosition[position] })
+      this.setState({ position })
     }
   }
 
@@ -138,7 +138,7 @@ export default class ToastManager extends React.PureComponent {
       position: 'fixed',
       zIndex: StackingOrder.TOASTER,
       pointerEvents: 'none',
-      ...this.state.position
+      ...AbsolutePosition[this.state.position]
     })
 
     return (
