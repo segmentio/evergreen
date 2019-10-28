@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import toaster from '../src'
 import { Button } from '../../buttons'
 import { Heading, Paragraph, Ul, Li } from '../../typography'
-import { AbsolutePosition } from '../../constants'
+import { Position } from '../../constants'
 
 const loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 eiusmod tempor incididunt ut labore et dolore magna aliqua.`
@@ -143,7 +143,7 @@ storiesOf('toaster', module).add('examples', () => (
           marginRight={8}
           onClick={() =>
             toaster.notify('Messages now is on left bottom notify', {
-              position: AbsolutePosition.BOTTOM_LEFT
+              position: Position.BOTTOM_LEFT
             })
           }
         >
@@ -154,7 +154,7 @@ storiesOf('toaster', module).add('examples', () => (
           marginRight={8}
           onClick={() =>
             toaster.notify('Messages now is on right bottom notify', {
-              position: AbsolutePosition.BOTTOM_RIGHT
+              position: Position.BOTTOM_RIGHT
             })
           }
         >
@@ -165,7 +165,7 @@ storiesOf('toaster', module).add('examples', () => (
           marginRight={8}
           onClick={() =>
             toaster.notify('Messages now is on top left message', {
-              position: AbsolutePosition.TOP_LEFT
+              position: Position.TOP_LEFT
             })
           }
         >
@@ -176,7 +176,7 @@ storiesOf('toaster', module).add('examples', () => (
           marginRight={8}
           onClick={() =>
             toaster.notify('Messages now is on top right message', {
-              position: AbsolutePosition.TOP_RIGHT
+              position: Position.TOP_RIGHT
             })
           }
         >

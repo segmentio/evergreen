@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import { StackingOrder, AbsolutePosition } from '../../constants'
+import { StackingOrder, Position, AbsolutePosition } from '../../constants'
 import Toast from './Toast'
 
 const hasCustomId = settings => Object.hasOwnProperty.call(settings, 'id')
@@ -41,7 +41,7 @@ export default class ToastManager extends React.PureComponent {
 
     this.state = {
       toasts: [],
-      position: AbsolutePosition.TOP_RIGHT
+      position: Position.TOP_RIGHT
     }
   }
 
@@ -81,9 +81,9 @@ export default class ToastManager extends React.PureComponent {
     return instance
   }
 
-  checkPosition = settings => {
-    if (settings.position) {
-      this.setState({ position: settings.position })
+  checkPosition = ({ position }) => {
+    if (position) {
+      this.setState({ position: AbsolutePosition[position] })
     }
   }
 
