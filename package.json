@@ -17,6 +17,7 @@
   "license": "MIT",
   "main": "commonjs/index.js",
   "module": "esm/index.js",
+  "types": "index.d.ts",
   "files": [
     "commonjs",
     "esm"
@@ -180,7 +181,7 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "210 KB"
+      "limit": "212 KB"
     }
   ],
   "husky": {
