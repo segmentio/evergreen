@@ -1,6 +1,7 @@
+import { css } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { css } from 'ui-box'
+import Box from 'ui-box'
 import { withTheme } from '../../theme'
 
 const loadingKeyframes = css.keyframes('loading', {
@@ -21,20 +22,21 @@ const loadingCircleKeyframes = css.keyframes('loading-circle', {
   }
 })
 
-const outer = {
+const outerClass = css({
   animation: `${loadingKeyframes} 2s linear infinite`
-}
-
-const inner = color => ({
-  strokeDashoffset: 600,
-  strokeDasharray: 300,
-  strokeWidth: 12,
-  strokeMiterlimit: 10,
-  strokeLinecap: 'round',
-  animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
-  stroke: color,
-  fill: 'transparent'
 })
+
+const innerClass = color =>
+  css({
+    strokeDashoffset: 600,
+    strokeDasharray: 300,
+    strokeWidth: 12,
+    strokeMiterlimit: 10,
+    strokeLinecap: 'round',
+    animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
+    stroke: color,
+    fill: 'transparent'
+  })
 
 class Spinner extends PureComponent {
   static propTypes = {
@@ -80,10 +82,16 @@ class Spinner extends PureComponent {
     const { theme, size, ...props } = this.props
     return (
       <Box width={size} height={size} lineHeight={0} {...props}>
-        <Box is="svg" css={outer} x="0px" y="0px" viewBox="0 0 150 150">
+        <Box
+          is="svg"
+          className={outerClass}
+          x="0px"
+          y="0px"
+          viewBox="0 0 150 150"
+        >
           <Box
             is="circle"
-            css={inner(theme.spinnerColor)}
+            className={innerClass(theme.spinnerColor)}
             cx="75"
             cy="75"
             r="60"

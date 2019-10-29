@@ -1,3 +1,4 @@
+import { css } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
@@ -7,12 +8,12 @@ const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
 }
 
-const handleStyle = {
+const handleStyleClass = css({
   backgroundColor: '#fff',
   borderRadius: 9999
-}
+})
 
-const iconContainerStyle = {
+const iconContainerStyleClass = css({
   transition: `all 500ms ${animationEasing.spring}`,
   opacity: 0,
   display: 'flex',
@@ -31,15 +32,15 @@ const iconContainerStyle = {
   '&[data-checked="true"] > svg': {
     transform: 'scale(1)'
   }
-}
+})
 
-const handleContainerStyle = {
+const handleContainerStyleClass = css({
   transition: 'transform 200ms ease-in-out',
   transform: 'translateX(0%)',
   '&[data-checked="true"]': {
     transform: 'translateX(50%)'
   }
-}
+})
 
 const CheckIcon = ({ size, fill = 'currentColor', ...props }) => (
   <svg width={10} height={size} viewBox="0 0 10 7" {...props}>
@@ -201,18 +202,22 @@ class Switch extends PureComponent {
             height={height}
             width={height}
             data-checked={checked}
-            css={iconContainerStyle}
+            className={iconContainerStyleClass}
           >
-            {hasCheckIcon && <CheckIcon size={height / 2 - 3} />}
+            {hasCheckIcon && <CheckIcon size={height / 2 - 3}/>}
           </Box>
           <Box
             width={height * 2}
             display="flex"
             data-checked={checked}
-            css={handleContainerStyle}
+            className={handleContainerStyleClass}
           >
             <Box flex={1} padding={2}>
-              <Box width={height - 4} height={height - 4} css={handleStyle} />
+              <Box
+                width={height - 4}
+                height={height - 4}
+                className={handleStyleClass}
+              />
             </Box>
           </Box>
         </Box>

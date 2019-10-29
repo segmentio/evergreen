@@ -1,6 +1,6 @@
+import { css } from 'glamor'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'ui-box'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
 import { Position } from '../../constants'
@@ -74,8 +74,8 @@ const withAnimations = (animateIn, animateOut) => {
   }
 }
 
-const animationStyles = {
-  [Position.LEFT]: {
+const animationStylesClass = {
+  [Position.LEFT]: css({
     transform: `translateX(-100%)`,
     ...withAnimations(
       css.keyframes('anchoredLeftSlideInAnimation', {
@@ -87,8 +87,8 @@ const animationStyles = {
         to: { transform: `translateX(-100%)` }
       })
     )
-  },
-  [Position.RIGHT]: {
+  }),
+  [Position.RIGHT]: css({
     transform: `translateX(100%)`,
     ...withAnimations(
       css.keyframes('anchoredRightSlideInAnimation', {
@@ -100,8 +100,8 @@ const animationStyles = {
         to: { transform: `translateX(100%)` }
       })
     )
-  },
-  [Position.TOP]: {
+  }),
+  [Position.TOP]: css({
     transform: `translateY(-100%)`,
     ...withAnimations(
       css.keyframes('anchoredTopSlideInAnimation', {
@@ -113,8 +113,8 @@ const animationStyles = {
         to: { transform: `translateY(-100%)` }
       })
     )
-  },
-  [Position.BOTTOM]: {
+  }),
+  [Position.BOTTOM]: css({
     transform: `translateY(100%)`,
     ...withAnimations(
       css.keyframes('anchoredBottomSlideInAnimation', {
@@ -126,7 +126,7 @@ const animationStyles = {
         to: { transform: `translateY(100%)` }
       })
     )
-  }
+  })
 }
 
 class SideSheet extends React.Component {
@@ -232,7 +232,7 @@ class SideSheet extends React.Component {
           <Pane
             width={width}
             {...paneProps[position]}
-            css={animationStyles[position]}
+            className={animationStylesClass[position]}
             data-state={state}
           >
             <SheetClose

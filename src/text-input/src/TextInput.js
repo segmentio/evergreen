@@ -22,7 +22,7 @@ class TextInput extends PureComponent {
     disabled: PropTypes.bool,
 
     /**
-     * Sets visual styling of _only_ the text input to be "invalid". 
+     * Sets visual styling of _only_ the text input to be "invalid".
      * Note that this does not effect any `validationMessage`.
      */
     isInvalid: PropTypes.bool,
@@ -73,7 +73,6 @@ class TextInput extends PureComponent {
       theme,
       className,
 
-      css,
       width,
       height,
       disabled,
@@ -105,7 +104,6 @@ class TextInput extends PureComponent {
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         {...(disabled ? { color: 'muted' } : {})}
-        css={css}
         {...props}
       />
     )

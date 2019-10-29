@@ -845,10 +845,10 @@
   dependencies:
     arrify "^1.0.1"
 
-"@emotion/hash@^0.6.5":
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.6.6.tgz#62266c5f0eac6941fece302abad69f2ee7e25e44"
-  integrity sha512-ojhgxzUHZ7am3D2jHkMzPpsBAiB005GF5YU4ea+8DNPybMk01JJUM9V9YRlF/GE95tcOm8DxQvWA2jq19bGalQ==
+"@emotion/hash@^0.7.1":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.7.3.tgz#a166882c81c0c6040975dd30df24fae8549bd96f"
+  integrity sha512-14ZVlsB9akwvydAdaEnVnvqu6J2P6ySv39hYyl/aoB6w/V+bXX0tay8cF6paqbgZsN2n5Xh15uF4pE+GvE+itw==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -6491,7 +6491,7 @@ github-url-from-git@^1.5.0:
   resolved "https://registry.yarnpkg.com/github-url-from-git/-/github-url-from-git-1.5.0.tgz#f985fedcc0a9aa579dc88d7aff068d55cc6251a0"
   integrity sha1-+YX+3MCpqledyI16/waNVcxiUaA=
 
-glamor@^2.20.0, glamor@^2.20.40:
+glamor@^2.20.40:
   version "2.20.40"
   resolved "https://registry.yarnpkg.com/glamor/-/glamor-2.20.40.tgz#f606660357b7cf18dface731ad1a2cfa93817f05"
   integrity sha512-DNXCd+c14N9QF8aAKrfl4xakPk5FdcFwmH7sD0qnC0Pr7xoZ5W9yovhUrY/dJc3psfGGXC58vqQyRtuskyUJxA==
@@ -7299,12 +7299,11 @@ inline-style-prefixer@^3.0.6:
     bowser "^1.7.3"
     css-in-js-utils "^2.0.0"
 
-inline-style-prefixer@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-4.0.2.tgz#d390957d26f281255fe101da863158ac6eb60911"
-  integrity sha512-N8nVhwfYga9MiV9jWlwfdj1UDIaZlBFu4cJSJkIr7tZX7sHpHhGR5su1qdpW+7KPL8ISTvCIkcaFi/JdBknvPg==
+inline-style-prefixer@^5.0.4:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-5.1.0.tgz#cb63195f9456dcda25cf59743e45c4d9815b0811"
+  integrity sha512-giteQHPMrApQOSjNSjteO5ZGSGMRf9gas14fRy2lg2buSc1nRnj6o6xuNds5cMTKrkncyrTu3gJn/yflFMVdmg==
   dependencies:
-    bowser "^1.7.3"
     css-in-js-utils "^2.0.0"
 
 inquirer@3.3.0, inquirer@^3.3.0:
@@ -13303,15 +13302,14 @@ uglifyjs-webpack-plugin@^1.2.4:
     webpack-sources "^1.1.0"
     worker-farm "^1.5.2"
 
-ui-box@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-1.4.0.tgz#c146158bb750eef006e78780296fc0a2eff3004b"
-  integrity sha512-l1rhH+6pRPG5jdHd9qAbKMo0nW9//WDJtqY6WZYk2uiCbfPEbK1oTq6Ly7UXGi887psr8gAsSYfJyyDArYnUxQ==
+ui-box@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-2.1.1.tgz#00816e9adc4c3b986ca377c4bb101f6a8d1523c0"
+  integrity sha512-lImFFjf9Glxg+7Kc7lFsuQZ+4nKYH8jwCrP8qTxBP/k0ytSK1WRmQDOq0TXwtRv9wZ5T8HaEz5OF4lReXCaEFg==
   dependencies:
-    "@emotion/hash" "^0.6.5"
-    glamor "^2.20.0"
-    inline-style-prefixer "^4.0.2"
-    prop-types "^15.6.0"
+    "@emotion/hash" "^0.7.1"
+    inline-style-prefixer "^5.0.4"
+    prop-types "^15.7.2"
 
 uid-number@^0.0.6:
   version "0.0.6"

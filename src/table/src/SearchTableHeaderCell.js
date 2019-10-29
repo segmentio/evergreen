@@ -1,10 +1,11 @@
+import { css } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import TableHeaderCell from './TableHeaderCell'
 
-const invisibleInput = {
+const invisibleInputClass = css({
   border: 'none',
   backgroundColor: 'transparent',
   WebkitAppearance: 'none',
@@ -18,7 +19,7 @@ const invisibleInput = {
   '&::placeholder': {
     color: `rgba(67, 90, 111, 0.7)`
   }
-}
+})
 
 export default class SearchTableHeaderCell extends PureComponent {
   static propTypes = {
@@ -90,7 +91,7 @@ export default class SearchTableHeaderCell extends PureComponent {
           is="input"
           size={300}
           flex="1"
-          css={invisibleInput}
+          className={invisibleInputClass}
           value={value}
           onChange={e => onChange(e.target.value)}
           autoFocus={autoFocus}
