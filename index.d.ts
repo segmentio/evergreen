@@ -589,6 +589,23 @@ declare module 'evergreen-ui' {
   export class IconButton extends React.PureComponent<IconButtonProps> {
   }
 
+  export interface InlineAlertProps extends PaneProps {
+    intent?: IntentTypes
+
+    /**
+     * When true, show a icon on the left matching the type,
+     */
+    hasIcon?: boolean
+
+    /**
+     * The size of the Text.
+     */
+    size?: keyof Typography['text']
+  }
+
+  export class InlineAlert extends React.PureComponent<InlineAlertProps> {
+  }
+
   export interface LabelProps extends TextProps {
     htmlFor?: string
   }
@@ -1113,9 +1130,6 @@ declare module 'evergreen-ui' {
   // ====================================================
 
   type UnknownProps = Record<string, any>
-
-  export class InlineAlert extends React.PureComponent<UnknownProps> {
-  }
 
   export class AutocompleteItem extends React.PureComponent<UnknownProps> {
   }
