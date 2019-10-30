@@ -4,7 +4,7 @@ declare module 'evergreen-ui' {
   import { IconName } from '@blueprintjs/icons'
   import * as React from 'react'
   import { extractStyles as boxExtractStyles } from 'ui-box'
-  import { BoxProps } from 'ui-box/dist/types/box-types'
+  import { BoxProps, Is } from 'ui-box/dist/types/box-types'
 
   type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
   type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
@@ -524,6 +524,14 @@ declare module 'evergreen-ui' {
   export class Card extends React.PureComponent<CardProps> {
   }
 
+  export interface CodeProps extends TextProps<'code'> {
+
+  }
+
+
+  export class Code extends React.PureComponent<CodeProps> {
+  }
+
   export interface IconProps {
     icon: IconName
     /**
@@ -622,7 +630,7 @@ declare module 'evergreen-ui' {
   export class InlineAlert extends React.PureComponent<InlineAlertProps> {
   }
 
-  export interface LabelProps extends TextProps {
+  export interface LabelProps extends TextProps<'label'> {
     htmlFor?: string
   }
 
@@ -718,8 +726,8 @@ declare module 'evergreen-ui' {
   export class Popover extends React.PureComponent<PopoverProps> {
   }
 
-  export interface ParagraphProps extends BoxProps<'div'> {
-    size?: FontSizeSmall | FontSizeMedium
+  export type ParagraphProps<T extends Is = 'p'> = BoxProps<T> & {
+    size?: keyof Typography['paragraph']
     fontFamily?: FontFamily
   }
 
@@ -962,6 +970,13 @@ declare module 'evergreen-ui' {
   export class SidebarTab extends React.PureComponent<SidebarTabProps> {
   }
 
+  export interface SmallProps extends BoxProps<'small'> {
+
+  }
+
+  export class Small extends React.PureComponent<SmallProps> {
+  }
+
   export interface SpinnerProps extends BoxProps<'div'> {
     delay?: number
     size: number
@@ -976,6 +991,12 @@ declare module 'evergreen-ui' {
   }
 
   export class Stack extends React.PureComponent<StackProps> {
+  }
+
+  export interface StrongProps extends TextProps<'strong'> {
+  }
+
+  export class Strong extends React.PureComponent<StrongProps> {
   }
 
   export interface TableBodyProps extends PaneProps {
@@ -1112,6 +1133,22 @@ declare module 'evergreen-ui' {
   export class TabNavigation extends React.PureComponent<TabNavigationProps> {
   }
 
+  export interface TextareaProps extends TextProps<'textarea'> {
+    required?: boolean
+    disabled?: boolean
+    isInvalid?: boolean
+    spellCheck?: boolean
+    grammarly?: boolean
+    appearance?: string
+    name?: string
+    placeholder?: string
+    theme?: Theme
+    className?: string
+  }
+
+  export class Textarea extends React.PureComponent<TextareaProps> {
+  }
+
   export interface TextTableCellProps extends TableCellProps {
     isNumber?: boolean
     textProps?: TextProps
@@ -1127,15 +1164,15 @@ declare module 'evergreen-ui' {
   export class TextTableHeaderCell extends React.PureComponent<TextTableHeaderCellProps> {
   }
 
-  export interface TextProps extends BoxProps<'div'> {
-    size?: FontSizeSmall | FontSizeMedium | FontSizeLarge
+  export type TextProps<T extends Is = 'span'> = BoxProps<T> & {
+    size?: keyof Typography['text']
     fontFamily?: FontFamily
   }
 
   export class Text extends React.PureComponent<TextProps> {
   }
 
-  export type TextInputProps = Omit<TextProps, keyof BoxProps<'div'>> & BoxProps<'input'> & {
+  export type TextInputProps = TextProps<'input'> & {
     isInvalid?: boolean
     spellCheck?: boolean
     appearance?: TextInputAppearance
@@ -1241,9 +1278,6 @@ declare module 'evergreen-ui' {
   export class TagInput extends React.PureComponent<UnknownProps> {
   }
 
-  export class Textarea extends React.PureComponent<UnknownProps> {
-  }
-
   export class toaster extends React.PureComponent<UnknownProps> {
   }
 
@@ -1265,18 +1299,9 @@ declare module 'evergreen-ui' {
   export class Li extends React.PureComponent<UnknownProps> {
   }
 
-  export class Code extends React.PureComponent<UnknownProps> {
-  }
-
   export class Pre extends React.PureComponent<UnknownProps> {
   }
 
   export class Link extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Small extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Strong extends React.PureComponent<UnknownProps> {
   }
 }
