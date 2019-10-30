@@ -589,6 +589,13 @@ declare module 'evergreen-ui' {
   export class FormFieldValidationMessage extends React.PureComponent<FormFieldValidationMessageProps> {
   }
 
+  export interface HeadingProps extends BoxProps<'h2'> {
+    size?: keyof Typography['headings']
+  }
+
+  export class Heading extends React.PureComponent<HeadingProps> {
+  }
+
   export interface IconButtonProps extends ButtonProps {
     icon: IconName
     iconAim?: 'down' | 'up'
@@ -1256,9 +1263,6 @@ declare module 'evergreen-ui' {
   }
 
   export class Li extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Heading extends React.PureComponent<UnknownProps> {
   }
 
   export class Code extends React.PureComponent<UnknownProps> {
