@@ -441,10 +441,19 @@ declare module 'evergreen-ui' {
   export class Alert extends React.PureComponent<AlertProps> {
   }
 
+  export interface AutocompleteItemProps {
+    isSelected: boolean
+    isHighlighted: boolean
+    key: string
+  }
+
   // https://github.com/downshift-js/downshift
   export interface AutocompleteProps {
+    defaultSelectedItem?: string
     title?: React.ReactNode
     items: any[]
+    renderItem?: (i: AutocompleteItemProps) => React.ComponentClass<AutocompleteItemProps>
+    itemsFilter?: (items: string[], input: string) => string[]
     itemToString?: (i: any) => string
     children: (props: {
                  toggle: () => void,
