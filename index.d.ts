@@ -833,6 +833,46 @@ declare module 'evergreen-ui' {
   export class SegmentedControl extends React.PureComponent<SegmentedControlProps> {
   }
 
+  export interface SelectProps extends Omit<BoxProps<'div'>, 'onChange'> {
+    /**
+     * The initial value of an uncontrolled select
+     */
+    defaultValue?: string
+
+    /**
+     * The value of the select.
+     */
+    value?: string
+
+    /**
+     * When true, the select is required.
+     */
+    required?: boolean
+
+    /**
+     * When true, the select should auto focus.
+     */
+    autoFocus?: boolean
+
+    /**
+     * When true, the select is invalid.
+     */
+    isInvalid?: boolean
+
+    /**
+     * The appearance of the select. The default theme only supports default.
+     */
+    appearance?: string
+
+    /**
+     * Function called when value changes.
+     */
+    onChange?(event: React.ChangeEvent<HTMLSelectElement>): void
+  }
+
+  export class Select extends React.PureComponent<SelectProps> {
+  }
+
   export interface SelectMenuContentProps {
     close?: OptionsListProps['close']
     title?: string
@@ -1165,9 +1205,6 @@ declare module 'evergreen-ui' {
   }
 
   export class Portal extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Select extends React.PureComponent<UnknownProps> {
   }
 
   export class SelectField extends React.PureComponent<UnknownProps> {
