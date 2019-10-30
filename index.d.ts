@@ -34,13 +34,407 @@ declare module 'evergreen-ui' {
 
   export type IconName = IconName
 
+
+  export interface Colors {
+    background: {
+      blueTint: string
+      greenTint: string
+      orangeTint: string
+      overlay: string
+      purpleTint: string
+      redTint: string
+      tealTint: string
+      tint1: string
+      tint2: string
+      yellowTint: string
+    }
+    border: {
+      default: string
+      muted: string
+    }
+    icon: {
+      danger: string
+      default: string
+      disabled: string
+      info: string
+      muted: string
+      selected: string
+      success: string
+      warning: string
+    }
+    intent: {
+      danger: string
+      none: string
+      success: string
+      warning: string
+    }
+    text: {
+      danger: string
+      dark: string
+      default: string
+      info: string
+      muted: string
+      selected: string
+      success: string
+      warning: string
+    }
+  }
+
+  interface SolidFills {
+    blue: {
+      backgroundColor: string
+      color: string
+    }
+    green: {
+      backgroundColor: string
+      color: string
+    }
+    neutral: {
+      backgroundColor: string
+      color: string
+    }
+    orange: {
+      backgroundColor: string
+      color: string
+    }
+    purple: {
+      backgroundColor: string
+      color: string
+    }
+    red: {
+      backgroundColor: string
+      color: string
+    }
+    teal: {
+      backgroundColor: string
+      color: string
+    }
+    yellow: {
+      backgroundColor: string
+      color: string
+    }
+  }
+
+  interface SubtleFills {
+    blue: {
+      backgroundColor: string
+      color: string
+    }
+    green: {
+      backgroundColor: string
+      color: string
+    }
+    neutral: {
+      backgroundColor: string
+      color: string
+    }
+    orange: {
+      backgroundColor: string
+      color: string
+    }
+    purple: {
+      backgroundColor: string
+      color: string
+    }
+    red: {
+      backgroundColor: string
+      color: string
+    }
+    teal: {
+      backgroundColor: string
+      color: string
+    }
+    yellow: {
+      backgroundColor: string
+      color: string
+    }
+  }
+
+  interface Fills {
+    options: string[]
+    solid: SolidFills
+    subtle: SubtleFills
+  }
+
+  interface Palette {
+    blue: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    green: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    neutral: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    orange: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    purple: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    red: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    teal: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    yellow: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+  }
+
+  interface ColorScales {
+    blue: {
+      B1: string
+      B10: string
+      B1A: string
+      B2: string
+      B2A: string
+      B3: string
+      B3A: string
+      B4: string
+      B4A: string
+      B5: string
+      B5A: string
+      B6: string
+      B6A: string
+      B7: string
+      B7A: string
+      B8: string
+      B8A: string
+      B9: string
+    }
+    neutral: {
+      N1: string
+      N10: string
+      N1A: string
+      N2: string
+      N2A: string
+      N3: string
+      N3A: string
+      N4: string
+      N4A: string
+      N5: string
+      N5A: string
+      N6: string
+      N6A: string
+      N7: string
+      N7A: string
+      N8: string
+      N8A: string
+      N9: string
+    }
+  }
+
+  interface Typography {
+    fontFamilies: {
+      display: string
+      mono: string
+      ui: string
+    }
+    headings: {
+      100: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+        textTransform: string
+      }
+      200: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        lineHeight: string
+        marginTop: number
+      }
+      300: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      400: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      500: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      600: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      700: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      800: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      900: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+    }
+    paragraph: {
+      300: {
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      400: {
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      500: {
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+    }
+    text: {
+      300: {
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      400: {
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      '500': {
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      600: {
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+    }
+  }
+
+  export interface Theme {
+    avatarColors: string[]
+    badgeColors: string[]
+    colors: Colors
+    elevations: Elevation[]
+    fills: Fills
+    overlayBackgroundColor: string
+    palette: Palette
+    scales: ColorScales
+    spinnerColor: string
+    typography: Typography
+    getIconColor(color: string): string
+    getAvatarProps(args: {
+      isSolid?: boolean
+      color: string
+      hashValue?: string
+    }): { color: string; backgroundColor: string }
+  }
+
+  export const defaultTheme: Theme
+
   export interface AlertProps extends Omit<PaneProps, 'title'> {
     intent: IntentTypes
     title?: React.ReactNode
     hasTrim?: boolean
+    /**
+     * When true, show a icon on the left matching the type,
+     */
     hasIcon?: boolean
+    /**
+     * When true, show a remove icon button.
+     */
     isRemoveable?: boolean
+    /**
+     * Function called when the remove button is clicked.
+     */
     onRemove?: (event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => void
+    /**
+     * The appearance of the alert.
+     */
     appearance?: AlertAppearance
   }
 
