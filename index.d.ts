@@ -4,13 +4,14 @@ declare module 'evergreen-ui' {
   import { IconName } from '@blueprintjs/icons'
   import * as React from 'react'
   import { extractStyles as boxExtractStyles } from 'ui-box'
-  import { BoxProps } from 'ui-box/dist/types/box-types'
+  import { BoxProps, Is } from 'ui-box/dist/types/box-types'
 
   type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
   type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
   type DefaultAppearance = 'default'
   type AlertAppearance = DefaultAppearance | 'card'
   type ButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
+  type CheckboxAppearance = DefaultAppearance
   type TextInputAppearance = DefaultAppearance | 'primary'
   type TooltipAppearance = DefaultAppearance | 'card'
   type PositionState = 'exited' | 'entering' | 'entered' | 'exiting'
@@ -27,29 +28,430 @@ declare module 'evergreen-ui' {
     | 'blueTint'
     | 'purpleTint'
     | 'tealTint'
-  type FontSizeSmall = 300 | 400;
-  type FontSizeMedium = 500;
-  type FontSizeLarge = 600;
+  type FontSizeSmall = 300 | 400
 
-  export type IconNames = IconName | ''
+  export type IconName = IconName
 
-  export interface AlertProps extends PaneProps {
+
+  export interface Colors {
+    background: {
+      blueTint: string
+      greenTint: string
+      orangeTint: string
+      overlay: string
+      purpleTint: string
+      redTint: string
+      tealTint: string
+      tint1: string
+      tint2: string
+      yellowTint: string
+    }
+    border: {
+      default: string
+      muted: string
+    }
+    icon: {
+      danger: string
+      default: string
+      disabled: string
+      info: string
+      muted: string
+      selected: string
+      success: string
+      warning: string
+    }
+    intent: {
+      danger: string
+      none: string
+      success: string
+      warning: string
+    }
+    text: {
+      danger: string
+      dark: string
+      default: string
+      info: string
+      muted: string
+      selected: string
+      success: string
+      warning: string
+    }
+  }
+
+  interface SolidFills {
+    blue: {
+      backgroundColor: string
+      color: string
+    }
+    green: {
+      backgroundColor: string
+      color: string
+    }
+    neutral: {
+      backgroundColor: string
+      color: string
+    }
+    orange: {
+      backgroundColor: string
+      color: string
+    }
+    purple: {
+      backgroundColor: string
+      color: string
+    }
+    red: {
+      backgroundColor: string
+      color: string
+    }
+    teal: {
+      backgroundColor: string
+      color: string
+    }
+    yellow: {
+      backgroundColor: string
+      color: string
+    }
+  }
+
+  interface SubtleFills {
+    blue: {
+      backgroundColor: string
+      color: string
+    }
+    green: {
+      backgroundColor: string
+      color: string
+    }
+    neutral: {
+      backgroundColor: string
+      color: string
+    }
+    orange: {
+      backgroundColor: string
+      color: string
+    }
+    purple: {
+      backgroundColor: string
+      color: string
+    }
+    red: {
+      backgroundColor: string
+      color: string
+    }
+    teal: {
+      backgroundColor: string
+      color: string
+    }
+    yellow: {
+      backgroundColor: string
+      color: string
+    }
+  }
+
+  interface Fills {
+    options: string[]
+    solid: SolidFills
+    subtle: SubtleFills
+  }
+
+  interface Palette {
+    blue: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    green: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    neutral: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    orange: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    purple: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    red: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    teal: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+    yellow: {
+      base: string
+      dark: string
+      light: string
+      lightest: string
+    }
+  }
+
+  interface ColorScales {
+    blue: {
+      B1: string
+      B10: string
+      B1A: string
+      B2: string
+      B2A: string
+      B3: string
+      B3A: string
+      B4: string
+      B4A: string
+      B5: string
+      B5A: string
+      B6: string
+      B6A: string
+      B7: string
+      B7A: string
+      B8: string
+      B8A: string
+      B9: string
+    }
+    neutral: {
+      N1: string
+      N10: string
+      N1A: string
+      N2: string
+      N2A: string
+      N3: string
+      N3A: string
+      N4: string
+      N4A: string
+      N5: string
+      N5A: string
+      N6: string
+      N6A: string
+      N7: string
+      N7A: string
+      N8: string
+      N8A: string
+      N9: string
+    }
+  }
+
+  interface Typography {
+    fontFamilies: {
+      display: string
+      mono: string
+      ui: string
+    }
+    headings: {
+      100: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+        textTransform: string
+      }
+      200: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        lineHeight: string
+        marginTop: number
+      }
+      300: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      400: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      500: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      600: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      700: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      800: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      900: {
+        color: string
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+    }
+    paragraph: {
+      300: {
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      400: {
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      500: {
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+    }
+    text: {
+      300: {
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      400: {
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      '500': {
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+      600: {
+        fontFamily: string
+        fontSize: string
+        fontWeight: number
+        letterSpacing: string
+        lineHeight: string
+        marginTop: number
+      }
+    }
+  }
+
+  export interface Theme {
+    avatarColors: string[]
+    badgeColors: string[]
+    colors: Colors
+    elevations: Elevation[]
+    fills: Fills
+    overlayBackgroundColor: string
+    palette: Palette
+    scales: ColorScales
+    spinnerColor: string
+    typography: Typography
+    getIconColor(color: string): string
+    getAvatarProps(args: {
+      isSolid?: boolean
+      color: string
+      hashValue?: string
+    }): { color: string; backgroundColor: string }
+  }
+
+  export const defaultTheme: Theme
+
+  export interface AlertProps extends Omit<PaneProps, 'title'> {
     intent: IntentTypes
     title?: React.ReactNode
     hasTrim?: boolean
+    /**
+     * When true, show a icon on the left matching the type,
+     */
     hasIcon?: boolean
+    /**
+     * When true, show a remove icon button.
+     */
     isRemoveable?: boolean
+    /**
+     * Function called when the remove button is clicked.
+     */
     onRemove?: (event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => void
+    /**
+     * The appearance of the alert.
+     */
     appearance?: AlertAppearance
   }
 
   export class Alert extends React.PureComponent<AlertProps> {
   }
 
+  export interface AutocompleteItemProps {
+    isSelected: boolean
+    isHighlighted: boolean
+    key: string
+  }
+
   // https://github.com/downshift-js/downshift
   export interface AutocompleteProps {
+    defaultSelectedItem?: string
     title?: React.ReactNode
     items: any[]
+    renderItem?: (i: AutocompleteItemProps) => React.ComponentClass<AutocompleteItemProps>
+    itemsFilter?: (items: string[], input: string) => string[]
     itemToString?: (i: any) => string
     children: (props: {
                  toggle: () => void,
@@ -96,7 +498,7 @@ declare module 'evergreen-ui' {
     label?: React.ReactNode
     indeterminate?: boolean
     isInvalid?: boolean
-    appearance?: DefaultAppearance
+    appearance?: CheckboxAppearance
   }
 
   export class Checkbox extends React.PureComponent<CheckboxProps> {
@@ -107,8 +509,8 @@ declare module 'evergreen-ui' {
     appearance?: ButtonAppearance
     isLoading?: boolean
     isActive?: boolean
-    iconBefore?: IconNames
-    iconAfter?: IconNames
+    iconBefore?: IconName
+    iconAfter?: IconName
   }
 
   export class Button extends React.PureComponent<ButtonProps> {
@@ -120,12 +522,35 @@ declare module 'evergreen-ui' {
   export class Card extends React.PureComponent<CardProps> {
   }
 
+  export type CodeProps = TextProps<'code'>
+
+
+  export class Code extends React.PureComponent<CodeProps> {
+  }
+
   export interface IconProps {
+    icon: IconName
+    /**
+     * Color of icon. Equivalent to setting CSS `fill` property.
+     */
     color?: string
-    icon: IconNames
+    /**
+     * Size of the icon, in pixels.
+     * Blueprint contains 16px and 20px SVG icon images,
+     * and chooses the appropriate resolution based on this prop.
+     */
     size?: number
+    /**
+     * Description string.
+     * Browsers usually render this as a tooltip on hover, whereas screen
+     * readers will use it for aural feedback.
+     * By default, this is set to the icon's name for accessibility.
+     */
     title?: string
-    style?: object
+    /**
+     * CSS style properties.
+     */
+    style?: React.CSSProperties
     className?: string
   }
 
@@ -168,8 +593,15 @@ declare module 'evergreen-ui' {
   export class FormFieldValidationMessage extends React.PureComponent<FormFieldValidationMessageProps> {
   }
 
+  export interface HeadingProps extends BoxProps<'h2'> {
+    size?: keyof Typography['headings']
+  }
+
+  export class Heading extends React.PureComponent<HeadingProps> {
+  }
+
   export interface IconButtonProps extends ButtonProps {
-    icon: IconNames
+    icon: IconName
     iconAim?: 'down' | 'up'
     iconSize?: number
   }
@@ -177,7 +609,24 @@ declare module 'evergreen-ui' {
   export class IconButton extends React.PureComponent<IconButtonProps> {
   }
 
-  export interface LabelProps extends TextProps {
+  export interface InlineAlertProps extends PaneProps {
+    intent?: IntentTypes
+
+    /**
+     * When true, show a icon on the left matching the type,
+     */
+    hasIcon?: boolean
+
+    /**
+     * The size of the Text.
+     */
+    size?: keyof Typography['text']
+  }
+
+  export class InlineAlert extends React.PureComponent<InlineAlertProps> {
+  }
+
+  export interface LabelProps extends TextProps<'label'> {
     htmlFor?: string
   }
 
@@ -196,7 +645,7 @@ declare module 'evergreen-ui' {
     intent?: IntentTypes
   }
 
-  export interface MenuGroupProps extends PaneProps {
+  export interface MenuGroupProps extends Omit<PaneProps, 'title'> {
     title?: JSX.Element
     children: React.ReactNode[] | React.ReactNode
   }
@@ -273,8 +722,8 @@ declare module 'evergreen-ui' {
   export class Popover extends React.PureComponent<PopoverProps> {
   }
 
-  export interface ParagraphProps extends BoxProps<'div'> {
-    size?: FontSizeSmall | FontSizeMedium
+  export type ParagraphProps<T extends Is = 'p'> = BoxProps<T> & {
+    size?: keyof Typography['paragraph']
     fontFamily?: FontFamily
   }
 
@@ -322,7 +771,7 @@ declare module 'evergreen-ui' {
   export class Radio extends React.PureComponent<RadioProps> {
   }
 
-  export interface RadioGroupProps extends PaneProps {
+  export interface RadioGroupProps extends Omit<PaneProps, 'onChange'> {
     options: Array<{ label: React.ReactNode, value: string, isDisabled?: boolean }>
     value?: string
     defaultValue?: string
@@ -380,7 +829,7 @@ declare module 'evergreen-ui' {
   export class SearchInput extends React.PureComponent<SearchInputProps> {
   }
 
-  export interface SearchTableHeaderCellProps extends TableHeaderCellProps {
+  export interface SearchTableHeaderCellProps extends Omit<TableHeaderCellProps, 'onChange'> {
     value?: string
     onChange?: (value: string) => void
     autoFocus?: boolean
@@ -392,7 +841,7 @@ declare module 'evergreen-ui' {
   export class SearchTableHeaderCell extends React.PureComponent<SearchTableHeaderCellProps> {
   }
 
-  export interface SegmentedControlProps extends BoxProps<'div'> {
+  export interface SegmentedControlProps extends Omit<BoxProps<'div'>, 'defaultValue' | 'onChange'> {
     options: Array<{ label: string, value: NonNullable<SegmentedControlProps['value']> }>
     value?: number | string | boolean
     defaultValue?: number | string | boolean
@@ -402,6 +851,46 @@ declare module 'evergreen-ui' {
   }
 
   export class SegmentedControl extends React.PureComponent<SegmentedControlProps> {
+  }
+
+  export interface SelectProps extends Omit<BoxProps<'div'>, 'onChange'> {
+    /**
+     * The initial value of an uncontrolled select
+     */
+    defaultValue?: string
+
+    /**
+     * The value of the select.
+     */
+    value?: string
+
+    /**
+     * When true, the select is required.
+     */
+    required?: boolean
+
+    /**
+     * When true, the select should auto focus.
+     */
+    autoFocus?: boolean
+
+    /**
+     * When true, the select is invalid.
+     */
+    isInvalid?: boolean
+
+    /**
+     * The appearance of the select. The default theme only supports default.
+     */
+    appearance?: string
+
+    /**
+     * Function called when value changes.
+     */
+    onChange?(event: React.ChangeEvent<HTMLSelectElement>): void
+  }
+
+  export class Select extends React.PureComponent<SelectProps> {
   }
 
   export interface SelectMenuContentProps {
@@ -441,7 +930,7 @@ declare module 'evergreen-ui' {
     hasTitle?: boolean
     hasFilter?: boolean
     filterPlaceholder?: string
-    filterIcon?: IconNames
+    filterIcon?: IconName
     onFilterChange?: (searchValue: string) => void
     position?: Omit<PositionTypes, 'left' | 'right'>
     detailView?: PopoverProps['content']
@@ -477,6 +966,13 @@ declare module 'evergreen-ui' {
   export class SidebarTab extends React.PureComponent<SidebarTabProps> {
   }
 
+  export interface SmallProps extends BoxProps<'small'> {
+
+  }
+
+  export class Small extends React.PureComponent<SmallProps> {
+  }
+
   export interface SpinnerProps extends BoxProps<'div'> {
     delay?: number
     size: number
@@ -491,6 +987,11 @@ declare module 'evergreen-ui' {
   }
 
   export class Stack extends React.PureComponent<StackProps> {
+  }
+
+  export type StrongProps = TextProps<'strong'>
+
+  export class Strong extends React.PureComponent<StrongProps> {
   }
 
   export interface TableBodyProps extends PaneProps {
@@ -514,7 +1015,7 @@ declare module 'evergreen-ui' {
   export class TableCell extends React.PureComponent<TableCellProps> {
   }
 
-  interface TableEditableCellProps extends TextTableCellProps {
+  interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' | 'onChange'> {
     isSelectable?: boolean
     disabled?: boolean
     placeholder?: React.ReactNode
@@ -551,7 +1052,7 @@ declare module 'evergreen-ui' {
   export class TableRow extends React.PureComponent<TableRowProps> {
   }
 
-  interface TableSelectMenuCellProps extends TextTableCellProps {
+  interface TableSelectMenuCellProps extends Omit<TextTableCellProps, 'placeholder'> {
     isSelectable?: boolean
     disabled?: boolean
     placeholder?: React.ReactNode
@@ -627,6 +1128,22 @@ declare module 'evergreen-ui' {
   export class TabNavigation extends React.PureComponent<TabNavigationProps> {
   }
 
+  export interface TextareaProps extends TextProps<'textarea'> {
+    required?: boolean
+    disabled?: boolean
+    isInvalid?: boolean
+    spellCheck?: boolean
+    grammarly?: boolean
+    appearance?: string
+    name?: string
+    placeholder?: string
+    theme?: Theme
+    className?: string
+  }
+
+  export class Textarea extends React.PureComponent<TextareaProps> {
+  }
+
   export interface TextTableCellProps extends TableCellProps {
     isNumber?: boolean
     textProps?: TextProps
@@ -642,15 +1159,15 @@ declare module 'evergreen-ui' {
   export class TextTableHeaderCell extends React.PureComponent<TextTableHeaderCellProps> {
   }
 
-  export interface TextProps extends BoxProps<'div'> {
-    size?: FontSizeSmall | FontSizeMedium | FontSizeLarge
+  export type TextProps<T extends Is = 'span'> = BoxProps<T> & {
+    size?: keyof Typography['text']
     fontFamily?: FontFamily
   }
 
   export class Text extends React.PureComponent<TextProps> {
   }
 
-  export interface TextInputProps extends Omit<TextProps, keyof BoxProps<'div'>>, BoxProps<'input'> {
+  export type TextInputProps = TextProps<'input'> & {
     isInvalid?: boolean
     spellCheck?: boolean
     appearance?: TextInputAppearance
@@ -696,12 +1213,11 @@ declare module 'evergreen-ui' {
     hydrationScript: JSX.Element
   }
 
-  // This is not defined components
+  // ====================================================
+  // The following component types have yet to be defined
+  // ====================================================
 
   type UnknownProps = Record<string, any>
-
-  export class InlineAlert extends React.PureComponent<UnknownProps> {
-  }
 
   export class AutocompleteItem extends React.PureComponent<UnknownProps> {
   }
@@ -719,15 +1235,6 @@ declare module 'evergreen-ui' {
   }
 
   export class Combobox extends React.PureComponent<UnknownProps> {
-  }
-
-  export class StackingOrder extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Intent extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Position extends React.PureComponent<UnknownProps> {
   }
 
   export class CornerDialog extends React.PureComponent<UnknownProps> {
@@ -748,9 +1255,6 @@ declare module 'evergreen-ui' {
   export class Portal extends React.PureComponent<UnknownProps> {
   }
 
-  export class Select extends React.PureComponent<UnknownProps> {
-  }
-
   export class SelectField extends React.PureComponent<UnknownProps> {
   }
 
@@ -767,9 +1271,6 @@ declare module 'evergreen-ui' {
   }
 
   export class TagInput extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Textarea extends React.PureComponent<UnknownProps> {
   }
 
   export class toaster extends React.PureComponent<UnknownProps> {
@@ -793,21 +1294,9 @@ declare module 'evergreen-ui' {
   export class Li extends React.PureComponent<UnknownProps> {
   }
 
-  export class Heading extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Code extends React.PureComponent<UnknownProps> {
-  }
-
   export class Pre extends React.PureComponent<UnknownProps> {
   }
 
   export class Link extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Small extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Strong extends React.PureComponent<UnknownProps> {
   }
 }
