@@ -28,9 +28,7 @@ declare module 'evergreen-ui' {
     | 'blueTint'
     | 'purpleTint'
     | 'tealTint'
-  type FontSizeSmall = 300 | 400;
-  type FontSizeMedium = 500;
-  type FontSizeLarge = 600;
+  type FontSizeSmall = 300 | 400
 
   export type IconName = IconName
 
