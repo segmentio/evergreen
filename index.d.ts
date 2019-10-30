@@ -522,9 +522,7 @@ declare module 'evergreen-ui' {
   export class Card extends React.PureComponent<CardProps> {
   }
 
-  export interface CodeProps extends TextProps<'code'> {
-
-  }
+  export type CodeProps = TextProps<'code'>
 
 
   export class Code extends React.PureComponent<CodeProps> {
@@ -991,8 +989,7 @@ declare module 'evergreen-ui' {
   export class Stack extends React.PureComponent<StackProps> {
   }
 
-  export interface StrongProps extends TextProps<'strong'> {
-  }
+  export type StrongProps = TextProps<'strong'>
 
   export class Strong extends React.PureComponent<StrongProps> {
   }
