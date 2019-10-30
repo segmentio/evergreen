@@ -11,6 +11,7 @@ declare module 'evergreen-ui' {
   type DefaultAppearance = 'default'
   type AlertAppearance = DefaultAppearance | 'card'
   type ButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
+  type CheckboxAppearance = DefaultAppearance
   type TextInputAppearance = DefaultAppearance | 'primary'
   type TooltipAppearance = DefaultAppearance | 'card'
   type PositionState = 'exited' | 'entering' | 'entered' | 'exiting'
@@ -31,9 +32,9 @@ declare module 'evergreen-ui' {
   type FontSizeMedium = 500;
   type FontSizeLarge = 600;
 
-  export type IconNames = IconName | ''
+  export type IconName = IconName
 
-  export interface AlertProps extends PaneProps {
+  export interface AlertProps extends Omit<PaneProps, 'title'> {
     intent: IntentTypes
     title?: React.ReactNode
     hasTrim?: boolean
@@ -96,7 +97,7 @@ declare module 'evergreen-ui' {
     label?: React.ReactNode
     indeterminate?: boolean
     isInvalid?: boolean
-    appearance?: DefaultAppearance
+    appearance?: CheckboxAppearance
   }
 
   export class Checkbox extends React.PureComponent<CheckboxProps> {
@@ -107,8 +108,8 @@ declare module 'evergreen-ui' {
     appearance?: ButtonAppearance
     isLoading?: boolean
     isActive?: boolean
-    iconBefore?: IconNames
-    iconAfter?: IconNames
+    iconBefore?: IconName
+    iconAfter?: IconName
   }
 
   export class Button extends React.PureComponent<ButtonProps> {
@@ -121,11 +122,28 @@ declare module 'evergreen-ui' {
   }
 
   export interface IconProps {
+    icon: IconName
+    /**
+     * Color of icon. Equivalent to setting CSS `fill` property.
+     */
     color?: string
-    icon: IconNames
+    /**
+     * Size of the icon, in pixels.
+     * Blueprint contains 16px and 20px SVG icon images,
+     * and chooses the appropriate resolution based on this prop.
+     */
     size?: number
+    /**
+     * Description string.
+     * Browsers usually render this as a tooltip on hover, whereas screen
+     * readers will use it for aural feedback.
+     * By default, this is set to the icon's name for accessibility.
+     */
     title?: string
-    style?: object
+    /**
+     * CSS style properties.
+     */
+    style?: React.CSSProperties
     className?: string
   }
 
@@ -169,7 +187,7 @@ declare module 'evergreen-ui' {
   }
 
   export interface IconButtonProps extends ButtonProps {
-    icon: IconNames
+    icon: IconName
     iconAim?: 'down' | 'up'
     iconSize?: number
   }
@@ -196,7 +214,7 @@ declare module 'evergreen-ui' {
     intent?: IntentTypes
   }
 
-  export interface MenuGroupProps extends PaneProps {
+  export interface MenuGroupProps extends Omit<PaneProps, 'title'> {
     title?: JSX.Element
     children: React.ReactNode[] | React.ReactNode
   }
@@ -322,7 +340,7 @@ declare module 'evergreen-ui' {
   export class Radio extends React.PureComponent<RadioProps> {
   }
 
-  export interface RadioGroupProps extends PaneProps {
+  export interface RadioGroupProps extends Omit<PaneProps, 'onChange'> {
     options: Array<{ label: React.ReactNode, value: string, isDisabled?: boolean }>
     value?: string
     defaultValue?: string
@@ -380,7 +398,7 @@ declare module 'evergreen-ui' {
   export class SearchInput extends React.PureComponent<SearchInputProps> {
   }
 
-  export interface SearchTableHeaderCellProps extends TableHeaderCellProps {
+  export interface SearchTableHeaderCellProps extends Omit<TableHeaderCellProps, 'onChange'> {
     value?: string
     onChange?: (value: string) => void
     autoFocus?: boolean
@@ -392,7 +410,7 @@ declare module 'evergreen-ui' {
   export class SearchTableHeaderCell extends React.PureComponent<SearchTableHeaderCellProps> {
   }
 
-  export interface SegmentedControlProps extends BoxProps<'div'> {
+  export interface SegmentedControlProps extends Omit<BoxProps<'div'>, 'defaultValue' | 'onChange'> {
     options: Array<{ label: string, value: NonNullable<SegmentedControlProps['value']> }>
     value?: number | string | boolean
     defaultValue?: number | string | boolean
@@ -441,7 +459,7 @@ declare module 'evergreen-ui' {
     hasTitle?: boolean
     hasFilter?: boolean
     filterPlaceholder?: string
-    filterIcon?: IconNames
+    filterIcon?: IconName
     onFilterChange?: (searchValue: string) => void
     position?: Omit<PositionTypes, 'left' | 'right'>
     detailView?: PopoverProps['content']
@@ -514,7 +532,7 @@ declare module 'evergreen-ui' {
   export class TableCell extends React.PureComponent<TableCellProps> {
   }
 
-  interface TableEditableCellProps extends TextTableCellProps {
+  interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' | 'onChange'> {
     isSelectable?: boolean
     disabled?: boolean
     placeholder?: React.ReactNode
@@ -551,7 +569,7 @@ declare module 'evergreen-ui' {
   export class TableRow extends React.PureComponent<TableRowProps> {
   }
 
-  interface TableSelectMenuCellProps extends TextTableCellProps {
+  interface TableSelectMenuCellProps extends Omit<TextTableCellProps, 'placeholder'> {
     isSelectable?: boolean
     disabled?: boolean
     placeholder?: React.ReactNode
@@ -650,7 +668,7 @@ declare module 'evergreen-ui' {
   export class Text extends React.PureComponent<TextProps> {
   }
 
-  export interface TextInputProps extends Omit<TextProps, keyof BoxProps<'div'>>, BoxProps<'input'> {
+  export type TextInputProps = Omit<TextProps, keyof BoxProps<'div'>> & BoxProps<'input'> & {
     isInvalid?: boolean
     spellCheck?: boolean
     appearance?: TextInputAppearance
@@ -696,7 +714,9 @@ declare module 'evergreen-ui' {
     hydrationScript: JSX.Element
   }
 
-  // This is not defined components
+  // ====================================================
+  // The following component types have yet to be defined
+  // ====================================================
 
   type UnknownProps = Record<string, any>
 
@@ -719,15 +739,6 @@ declare module 'evergreen-ui' {
   }
 
   export class Combobox extends React.PureComponent<UnknownProps> {
-  }
-
-  export class StackingOrder extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Intent extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Position extends React.PureComponent<UnknownProps> {
   }
 
   export class CornerDialog extends React.PureComponent<UnknownProps> {
