@@ -515,6 +515,21 @@ declare module 'evergreen-ui' {
   export class BackButton extends React.PureComponent<BackButtonProps> {
   }
 
+  export interface BadgeProps extends StrongProps {
+    /**
+     * The color used for the badge. When the value is `automatic`, use the hash function to determine the color.
+     */
+    color?: 'automatic' | 'neutral' | 'blue' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'purple'
+    /**
+     * Whether or not to apply hover/focus/active styles.
+     */
+    isInteractive?: boolean
+    isSolid?: boolean
+  }
+
+  export class Badge extends React.PureComponent<BadgeProps> {
+  }
+
   export interface ButtonProps extends TextProps<'button'> {
     intent?: IntentTypes
     appearance?: ButtonAppearance
@@ -608,6 +623,184 @@ declare module 'evergreen-ui' {
 
 
   export class Code extends React.PureComponent<CodeProps> {
+  }
+
+  export interface ComboboxProps extends BoxProps<'div'> {
+    /**
+     * The options to show in the menu.
+     */
+    items: AutocompleteProps['items']
+    /**
+     * The selected item when controlled.
+     */
+    selectedItem?: AutocompleteProps['selectedItem']
+    /**
+     * Function called when value changes.
+     */
+    onChange?: AutocompleteProps['onChange']
+    /**
+     * Properties forwarded to the autocomplete component. Use with caution.
+     */
+    autocompleteProps?: AutocompleteProps
+    /**
+     * Default selected item when uncontrolled.
+     */
+    defaultSelectedItem?: string
+    /**
+     * When true, open the autocomplete on focus.
+     */
+    openOnFocus?: boolean
+    /**
+     * Default selected item when uncontrolled.
+     */
+    initialSelectedItem?: any
+    /**
+     * The placeholder text when there is no value present.
+     */
+    placeholder?: string
+    /**
+     * In case the array of items is not an array of strings,
+     * this function is used on each item to return the string that will be shown on the filter
+     */
+    itemToString?: AutocompleteProps['itemToString']
+    /**
+     * Properties forwarded to the input. Use with caution.
+     */
+    inputProps?: TextInputProps
+    /**
+     * Properties forwarded to the button. Use with caution.
+     */
+    buttonProps?: IconButtonProps
+    /**
+     * Makes the input element disabled.
+     */
+    disabled?: boolean
+    /**
+     * When true, show a loading spinner. This also disables the button.
+     */
+    isLoading?: boolean
+  }
+
+  export class Combobox extends React.PureComponent<ComboboxProps> {
+  }
+
+  export interface DialogProps {
+    /**
+     * Children can be a string, node or a function accepting `({ close })`.
+     * When passing a string, <Paragraph /> is used to wrap the string.
+     */
+    children?: React.ReactNode | (({ close }: { close: () => void }) => void)
+    /**
+     * The intent of the Dialog. Used for the button. Defaults to none.
+     */
+    intent?: IntentTypes
+    /**
+     * When true, the dialog is shown. Defaults to false.
+     */
+    isShown?: boolean
+    /**
+     * Title of the Dialog. Titles should use Title Case.
+     */
+    title?: string
+    /**
+     * When true, the header with the title and close icon button is shown.
+     * Defaults to true.
+     */
+    hasHeader?: boolean
+    /**
+     * When true, the footer with the cancel and confirm button is shown.
+     * Defaults to true.
+     */
+    hasFooter?: boolean
+    /**
+     * When true, the cancel button is shown. Defaults to true.
+     */
+    hasCancel?: boolean
+    /**
+     * When true, the close button is shown. Defaults to true.
+     */
+    hasClose?: boolean
+    /**
+     * Function that will be called when the exit transition is complete.
+     */
+    onCloseComplete?: () => void
+    /**
+     * Function that will be called when the enter transition is complete.
+     */
+    onOpenComplete?: () => void
+    /**
+     * Function that will be called when the confirm button is clicked.
+     * This does not close the Dialog. A close function will be passed
+     * as a paramater you can use to close the dialog.
+     * If unspecified, this defaults to closing the Dialog.
+     */
+    onConfirm?: (close: () => void) => void
+    /**
+     * Label of the confirm button. Default to 'Confirm'.
+     */
+    confirmLabel?: string
+    /**
+     * When true, the confirm button is set to loading. Defaults to false.
+     */
+    isConfirmLoading?: boolean
+    /**
+     * When true, the confirm button is set to disabled. Defaults to false.
+     */
+    isConfirmDisabled?: boolean
+    /**
+     * Function that will be called when the cancel button is clicked.
+     * This closes the Dialog by default.
+     */
+    onCancel?: (close: () => void) => void
+    /**
+     * Label of the cancel button. Defaults to 'Cancel'.
+     */
+    cancelLabel?: string
+    /**
+     * Boolean indicating if clicking the overlay should close the overlay.
+     * Defaults to true.
+     */
+    shouldCloseOnOverlayClick?: boolean
+    /**
+     * Boolean indicating if pressing the esc key should close the overlay.
+     * Defaults to true.
+     */
+    shouldCloseOnEscapePress?: boolean
+    /**
+     * Width of the Dialog.
+     */
+    width?: string | number
+    /**
+     * The space above the dialog.
+     * This offset is also used at the bottom when there is not enough vertical
+     * space available on screen — and the dialog scrolls internally.
+     */
+    topOffset?: string | number
+    /**
+     * The space on the left/right sides of the dialog when there isn't enough
+     * horizontal space available on screen.
+     */
+    sideOffset?: string | number
+    /**
+     * The min height of the body content.
+     * Makes it less weird when only showing little content.
+     */
+    minHeightContent?: string | number
+    /**
+     * Props that are passed to the dialog container.
+     */
+    containerProps?: object
+    /**
+     * Props that are passed to the content container.
+     */
+    contentContainerProps?: object
+    /**
+     * Whether or not to prevent scrolling in the outer body. Defaults to false.
+     */
+    preventBodyScrolling?: boolean
+  }
+
+  export class Dialog extends React.PureComponent<DialogProps> {
   }
 
   export interface IconProps {
@@ -778,6 +971,33 @@ declare module 'evergreen-ui' {
   export class Label extends React.PureComponent<LabelProps> {
   }
 
+  export interface LinkProps extends TextProps<'a'> {
+    /**
+     * This attribute names a relationship of the linked document to the current document.
+     * Common use case is: rel="noopener noreferrer".
+     */
+    rel?: string
+    /**
+     * Specifies the URL of the linked resource. A URL might be absolute or relative.
+     */
+    href?: string
+    /**
+     * Target atrribute, common use case is target="_blank."
+     */
+    target?: string
+    /**
+     * The color (and styling) of the Link. Can be default, blue, green or neutral.
+     */
+    color?: string
+    /**
+     * Class name passed to the link.
+     */
+    className?: string
+  }
+
+  export class Link extends React.PureComponent<LinkProps> {
+  }
+
   export interface ListItemProps extends TextProps<'li'> {
     /**
      * When passed, adds a icon before the list item.
@@ -854,6 +1074,11 @@ declare module 'evergreen-ui' {
   export class Pane extends React.PureComponent<PaneProps> {
   }
 
+  export type PillProps = BadgeProps
+
+  export class Pill extends React.PureComponent<PillProps> {
+  }
+
   export interface PopoverStatelessProps extends BoxProps<'div'> {
   }
 
@@ -921,7 +1146,7 @@ declare module 'evergreen-ui' {
   export class Positioner extends React.PureComponent<PositionerProps> {
   }
 
-  export interface RadioProps extends BoxProps<'input'> {
+  export interface RadioProps extends Omit<BoxProps<'input'>, 'onChange'> {
     /**
      * The id attribute of the radio.
      */
@@ -1052,18 +1277,37 @@ declare module 'evergreen-ui' {
   export class OptionsList extends React.PureComponent<OptionsListProps> {
   }
 
-  interface SearchInputProps extends TextInputProps {
+  export interface SearchInputProps extends TextInputProps {
+    height?: number
   }
 
   export class SearchInput extends React.PureComponent<SearchInputProps> {
   }
 
   export interface SearchTableHeaderCellProps extends Omit<TableHeaderCellProps, 'onChange'> {
+    /**
+     * The value of the input.
+     */
     value?: string
-    onChange?: (value: string) => void
+    /**
+     * Sets whether the component should be automatically focused on component render.
+     */
     autoFocus?: boolean
+    /**
+     * Sets whether to apply spell checking to the content.
+     */
     spellCheck?: boolean
+    /**
+     * Text to display in the input if the input is empty.
+     */
     placeholder?: string
+    /**
+     * Handler to be called when the input changes.
+     */
+    onChange?(value: string): void
+    /**
+     * Icon to display in the input.
+     */
     icon?: IconProps['icon']
   }
 
@@ -1262,8 +1506,7 @@ declare module 'evergreen-ui' {
   export class SideSheet extends React.PureComponent<SideSheetProps> {
   }
 
-  export interface SidebarTabProps extends TabProps {
-  }
+  export type SidebarTabProps = TabProps
 
   export class SidebarTab extends React.PureComponent<SidebarTabProps> {
   }
@@ -1361,28 +1604,66 @@ declare module 'evergreen-ui' {
   }
 
   export interface TableCellProps extends PaneProps {
+    /**
+     * Makes the TableCell focusable. Used by EditableCell.
+     * Will add tabIndex={-1 || this.props.tabIndex}.
+     */
     isSelectable?: boolean
+    /**
+     * The appearance of the table row. Default theme only support default.
+     */
     appearance?: DefaultAppearance
+    /**
+     * Optional node to be placed on the right side of the table cell.
+     * Useful for icons and icon buttons.
+     */
     rightView?: React.ReactNode
+    /**
+     * Advanced arrow keys overrides for selectable cells.
+     * A string will be used as a selector.
+     */
     arrowKeysOverrides?: {
       up: string | JSX.Element | false | (() => React.ReactNode)
       down: string | JSX.Element | false | (() => React.ReactNode)
       left: string | JSX.Element | false | (() => React.ReactNode)
       right: string | JSX.Element | false | (() => React.ReactNode)
     }
+    /**
+     * Class name passed to the table cell.
+     */
+    className?: string
   }
 
   export class TableCell extends React.PureComponent<TableCellProps> {
   }
 
   interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' | 'onChange'> {
-    isSelectable?: boolean
-    disabled?: boolean
-    placeholder?: React.ReactNode
-    size?: FontSizeSmall
-    children?: string | number
-    onChange?: (value: string | number) => void
     autoFocus?: boolean
+    /**
+     * Makes the TableCell focusable.
+     * Will add tabIndex={-1 || this.props.tabIndex}.
+     */
+    isSelectable?: boolean
+    /**
+     * When true, the cell can't be edited.
+     */
+    disabled?: boolean
+    /**
+     * Optional placeholder when children is falsy.
+     */
+    placeholder?: React.ReactNode
+    /**
+     * The size used for the TextTableCell and Textarea.
+     */
+    size?: FontSizeSmall
+    /**
+     * This is the value of the cell.
+     */
+    children?: string | number
+    /**
+     * Function called when value changes.
+     */
+    onChange?(value: string): void
   }
 
   export interface TableHeaderCellProps extends TableCellProps {
@@ -1400,35 +1681,113 @@ declare module 'evergreen-ui' {
   }
 
   export interface TableRowProps extends PaneProps {
-    onSelect?: () => void
-    onDeselect?: () => void
+    /**
+     * The height of the row. Remember to add paddings when using "auto".
+     */
+    height?: number | string
+    /**
+     * Makes the TableRow selectable.
+     */
     isSelectable?: boolean
+    /**
+     * Makes the TableRow selected.
+     */
     isSelected?: boolean
+    /**
+     * Manually set the TableRow to be highlighted.
+     */
     isHighlighted?: boolean
+    /**
+     * The intent of the alert.
+     */
     intent?: IntentTypes
+    /**
+     * The appearance of the table row. Default theme only support default.
+     */
     appearance?: DefaultAppearance
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme?: Theme
+    /**
+     * Class name passed to the table row.
+     * Only use if you know what you are doing.
+     */
+    className?: string
+    /**
+     * Function that is called on click and enter/space keypress.
+     */
+    onSelect?(): void
+    /**
+     * Function that is called on click and enter/space keypress.
+     */
+    onDeselect?(): void
   }
 
   export class TableRow extends React.PureComponent<TableRowProps> {
   }
 
   interface TableSelectMenuCellProps extends Omit<TextTableCellProps, 'placeholder'> {
+    /**
+     * Makes the TableCell focusable.
+     * Will add tabIndex={-1 || this.props.tabIndex}.
+     */
     isSelectable?: boolean
+    /**
+     * When true, the cell can't be edited.
+     */
     disabled?: boolean
+    /**
+     * Optional placeholder when children is falsy.
+     */
     placeholder?: React.ReactNode
+    /**
+     * The size used for the TextTableCell and Textarea.
+     */
     size?: FontSizeSmall
+    /**
+     * The size used for the TextTableCell and Textarea.
+     */
     selectMenuProps?: SelectMenuProps
   }
 
   interface TableVirtualBodyProps extends PaneProps {
     children?: React.ReactNode | React.ReactNode[]
+    /**
+     * Default height of each row.
+     * 48 is the default height of a TableRow.
+     */
     defaultHeight?: number
+    /**
+     * When true, support `height="auto"` on children being rendered.
+     * This is somewhat of an expirmental feature.
+     */
     allowAutoHeight?: boolean
+    /**
+     * The overscanCount property passed to react-tiny-virtual-list.
+     */
     overscanCount?: number
+    /**
+     * When passed, this is used as the `estimatedItemSize` in react-tiny-virtual-list.
+     * Only when `allowAutoHeight` and`useAverageAutoHeightEstimation` are false.
+     */
     estimatedItemSize?: number
+    /**
+     * When allowAutoHeight is true and this prop is true, the estimated height
+     * will be computed based on the average height of auto height rows.
+     */
     useAverageAutoHeightEstimation?: boolean
+    /**
+     * The scrollToIndex property passed to react-tiny-virtual-list
+     */
     scrollToIndex?: number
+    /**
+     * The scrollOffset property passed to react-tiny-virtual-list
+     */
     scrollOffset?: number
+    /**
+     * The scrollToAlignment property passed to react-tiny-virtual-list
+     */
     scrollToAlignment?: 'start' | 'center' | 'end' | 'auto'
   }
 
@@ -1467,25 +1826,54 @@ declare module 'evergreen-ui' {
   }
 
   export interface TabProps extends TextProps {
-    onSelect?: () => void
+    /**
+     * Function triggered when tab is selected.
+     */
+    onSelect?(): void
+    /**
+     * When true, the tab is selected.
+     */
     isSelected?: boolean
     disabled?: boolean
+    /**
+     * The appearance of the tab.
+     * The default theme only comes with a default style.
+     */
     appearance?: DefaultAppearance
   }
 
   export class Tab extends React.PureComponent<TabProps> {
   }
 
-  export interface TablistProps extends BoxProps<'div'> {
-  }
+  export type TablistProps = BoxProps<'div'>
 
   export class Tablist extends React.PureComponent<TablistProps> {
   }
 
-  export interface TabNavigationProps extends BoxProps<'div'> {
-  }
+  export type TabNavigationProps = BoxProps<'nav'>
 
   export class TabNavigation extends React.PureComponent<TabNavigationProps> {
+  }
+
+  export interface TagInputProps extends BoxProps<'div'> {
+    addOnBlur?: boolean
+    className?: string
+    disabled?: boolean
+    height?: number
+    inputProps?: TextProps<'input'>
+    inputRef?: (input: HTMLInputElement | null) => void
+    onAdd?: (values: string[]) => void | false
+    onBlur?: (event: Event) => void
+    onChange?: (values: string[]) => void | false
+    onFocus?: (event: Event) => void
+    onInputChange?: (event: Event) => void
+    onRemove?: (value: string | React.ReactNode, index: number) => void
+    separator?: string
+    tagProps?: any
+    values?: string[]
+  }
+
+  export class TagInput extends React.PureComponent<TagInputProps> {
   }
 
   export interface TextareaProps extends TextProps<'textarea'> {
@@ -1538,7 +1926,13 @@ declare module 'evergreen-ui' {
   }
 
   export interface TextTableCellProps extends TableCellProps {
+    /**
+     * Adds textAlign: right and fontFamily: mono.
+     */
     isNumber?: boolean
+    /**
+     * Pass additional props to the Text component.
+     */
     textProps?: TextProps
   }
 
@@ -1711,6 +2105,91 @@ declare module 'evergreen-ui' {
     hydrationScript: JSX.Element
   }
 
+  /**
+   * Optional settings that can be set when creating a new Toast.
+   */
+  interface ToasterSettings {
+    /**
+     * A description of the toast which is rendered as the children of the Toast's Alert component.
+     */
+    description?: React.ReactNode
+    /**
+     * How long the Toast will be visible (in seconds). Defaults to 5 seconds.
+     */
+    duration?: number
+    /**
+     * Assign a Toast an id if you want only one instance of that toast visible at any given time.
+     * When a new toast with an id is opened, any visible toasts with the same id will be closed.
+     */
+    id?: string
+    /**
+     * Whether to show a close button on the Toast. Defaults to true.
+     */
+    hasCloseButton?: boolean
+  }
+
+  interface Toast {
+    /**
+     * The id of the Toast.
+     */
+    id: string
+    /**
+     * The title of the Toast.
+     */
+    title: React.ReactNode
+    /**
+     * The description of the Toast.
+     */
+    description?: React.ReactNode
+    /**
+     * Whether the Toast is showing a close button.
+     */
+    hasCloseButton: boolean
+    /**
+     * How long the Toast is visible for.
+     */
+    duration: number
+    /**
+     * Close will close this Toast.
+     */
+    close(): void
+    /**
+     * The intent of this Toast. One of none, success, warning, or danger.
+     */
+    intent: IntentTypes
+  }
+
+  /**
+   * The toaster is used to show toasts (alerts) on top of an overlay. The toasts will close
+   * themselves when the close button is clicked, or after a timeout — the default is 5 seconds.
+   */
+  export const toaster: {
+    /**
+     * Opens a Toast with an intent of none.
+     */
+    notify: (title: string, settings?: ToasterSettings) => void
+    /**
+     * Opens a Toast with an intent of success.
+     */
+    success: (title: string, settings?: ToasterSettings) => void
+    /**
+     * Opens a Toast with an intent of warning.
+     */
+    warning: (title: string, settings?: ToasterSettings) => void
+    /**
+     * Opens a Toast with an intent of danger.
+     */
+    danger: (title: string, settings?: ToasterSettings) => void
+    /**
+     * Closes all visible Toasts.
+     */
+    closeAll: () => void
+    /**
+     * Returns all visible Toasts.
+     */
+    getToasts: () => Toast[]
+  }
+
   // ====================================================
   // The following component types have yet to be defined
   // ====================================================
@@ -1720,19 +2199,7 @@ declare module 'evergreen-ui' {
   export class AutocompleteItem extends React.PureComponent<UnknownProps> {
   }
 
-  export class Badge extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Pill extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Combobox extends React.PureComponent<UnknownProps> {
-  }
-
   export class CornerDialog extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Dialog extends React.PureComponent<UnknownProps> {
   }
 
   export class FilePicker extends React.PureComponent<UnknownProps> {
@@ -1753,12 +2220,6 @@ declare module 'evergreen-ui' {
   export class StackingContext extends React.PureComponent<UnknownProps> {
   }
 
-  export class TagInput extends React.PureComponent<UnknownProps> {
-  }
-
-  export class toaster extends React.PureComponent<UnknownProps> {
-  }
-
   export class Ul extends React.PureComponent<UnknownProps> {
   }
 
@@ -1772,8 +2233,5 @@ declare module 'evergreen-ui' {
   }
 
   export class Pre extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Link extends React.PureComponent<UnknownProps> {
   }
 }
