@@ -12,6 +12,7 @@ declare module 'evergreen-ui' {
   type AlertAppearance = DefaultAppearance | 'card'
   type ButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
   type CheckboxAppearance = DefaultAppearance
+  type IconButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
   type TextInputAppearance = DefaultAppearance | 'primary'
   type TooltipAppearance = DefaultAppearance | 'card'
   type PositionState = 'exited' | 'entering' | 'entered' | 'exiting'
@@ -375,7 +376,7 @@ declare module 'evergreen-ui' {
         lineHeight: string
         marginTop: number
       }
-      '500': {
+      500: {
         fontSize: string
         fontWeight: number
         letterSpacing: string
@@ -413,6 +414,17 @@ declare module 'evergreen-ui' {
   }
 
   export const defaultTheme: Theme
+
+  export enum Position {
+    TOP = 'top',
+    TOP_LEFT = 'top-left',
+    TOP_RIGHT = 'top-right',
+    BOTTOM = 'bottom',
+    BOTTOM_LEFT = 'bottom-left',
+    BOTTOM_RIGHT = 'bottom-right',
+    LEFT = 'left',
+    RIGHT = 'right'
+  }
 
   export interface AlertProps extends Omit<PaneProps, 'title'> {
     intent: IntentTypes
@@ -482,6 +494,10 @@ declare module 'evergreen-ui' {
   export interface AvatarProps extends BoxProps<'div'> {
     src?: string
     size?: number
+    /**
+     * When provided, the first and last initial of the name will be used.
+     * For example: Foo Bar -> FB
+     */
     name?: string
     hashValue?: string
     isSolid?: boolean
@@ -494,32 +510,98 @@ declare module 'evergreen-ui' {
   export class Avatar extends React.PureComponent<AvatarProps> {
   }
 
-  export interface CheckboxProps extends BoxProps<'input'> {
-    label?: React.ReactNode
-    indeterminate?: boolean
-    isInvalid?: boolean
-    appearance?: CheckboxAppearance
+  export type BackButtonProps = ButtonProps
+
+  export class BackButton extends React.PureComponent<BackButtonProps> {
   }
 
-  export class Checkbox extends React.PureComponent<CheckboxProps> {
-  }
-
-  export interface ButtonProps extends Omit<TextProps, keyof BoxProps<'div'>>, BoxProps<'button'> {
+  export interface ButtonProps extends TextProps<'button'> {
     intent?: IntentTypes
     appearance?: ButtonAppearance
+    /**
+     * When true, show a loading spinner before the children.
+     * This also disables the button.
+     */
     isLoading?: boolean
+    /**
+     * Forcefully set the active state of a button.
+     * Useful in conjuction with a Popover.
+     */
     isActive?: boolean
+    /**
+     * Sets an icon before the text. Can be any icon from Evergreen.
+     */
     iconBefore?: IconName
+    /**
+     * Sets an icon after the text. Can be any icon from Evergreen.
+     */
     iconAfter?: IconName
+    /**
+     * When true, the button is disabled.
+     * isLoading also sets the button to disabled.
+     */
+    disabled?: boolean
+    /**
+     * Class name passed to the button.
+     */
+    className?: string
   }
 
   export class Button extends React.PureComponent<ButtonProps> {
   }
 
-  export interface CardProps extends PaneProps {
-  }
+  export type CardProps = PaneProps
 
   export class Card extends React.PureComponent<CardProps> {
+  }
+
+  export interface CheckboxProps extends BoxProps<'input'> {
+    /**
+     * The id attribute of the checkbox.
+     */
+    id?: string
+    /**
+     * The id attribute of the radio.
+     */
+    name?: string
+    /**
+     * Label of the checkbox.
+     */
+    label?: React.ReactNode
+    /**
+     * The value attribute of the radio.
+     */
+    value?: string
+    /**
+     * The checked attribute of the radio.
+     */
+    checked?: boolean
+    /**
+     * State in addition to "checked" and "unchecked".
+     * When true, the radio displays a "minus" icon.
+     */
+    indeterminate?: boolean
+    /**
+     * When true, the radio is disabled.
+     */
+    disabled?: boolean
+    /**
+     * When true, the aria-invalid attribute is true.
+     * Used for accessibility.
+     */
+    isInvalid?: boolean
+    /**
+     * The appearance of the checkbox.
+     * The default theme only comes with a default style.
+     */
+    appearance?: CheckboxAppearance
+    /**
+     * Function called when state changes.
+     */
+    onChange?(event: React.ChangeEvent<HTMLInputElement>): void
+  }
+
+  export class Checkbox extends React.PureComponent<CheckboxProps> {
   }
 
   export type CodeProps = TextProps<'code'>
@@ -558,11 +640,39 @@ declare module 'evergreen-ui' {
   }
 
   export interface FormFieldProps extends BoxProps<'div'> {
-    label: NonNullable<React.ReactNode>
+    /**
+     * The label used above the input element.
+     */
+    label?: React.ReactNode
+    /**
+     * Passed on the label as a htmlFor prop.
+     */
     labelFor?: string
+    /**
+     * Wether or not show a asterix after the label.
+     */
+    isRequired?: boolean
+    /**
+     * A optional description of the field under the label, above the input element.
+     */
     description?: React.ReactNode
+    /**
+     * A optional hint under the input element.
+     */
     hint?: React.ReactNode
+    /**
+     * If a validation message is passed it is shown under the input element
+     * and above the hint.
+     */
     validationMessage?: React.ReactNode
+    /**
+     * The height of the input element.
+     */
+    inputHeight?: number
+    /**
+     * The width of the input width.
+     */
+    inputWidth?: number | string
   }
 
   export class FormField extends React.PureComponent<FormFieldProps> {
@@ -581,6 +691,9 @@ declare module 'evergreen-ui' {
   }
 
   export interface FormFieldLabelProps extends LabelProps {
+    /**
+     * Whether or not to show an asterix after the label.
+     */
     isAstrixShown?: boolean
   }
 
@@ -601,12 +714,46 @@ declare module 'evergreen-ui' {
   }
 
   export interface IconButtonProps extends ButtonProps {
-    icon: IconName
-    iconAim?: 'down' | 'up'
+    /**
+     * Name of a Blueprint UI icon, or an icon element, to render.
+     */
+    icon?: IconName
+    /**
+     * Specifies an explicit icon size instead of the default value.
+     */
     iconSize?: number
+    /**
+     * The intent of the button.
+     */
+    intent?: IntentTypes
+    /**
+     * The appearance of the button.
+     */
+    appearance?: IconButtonAppearance
+    /**
+     * Forcefully set the active state of a button.
+     * Useful in conjuction with a Popover.
+     */
+    isActive?: boolean
+    /**
+     * When true, the button is disabled.
+     * isLoading also sets the button to disabled.
+     */
+    disabled?: boolean
+    /**
+     * Class name passed to the button.
+     */
+    className?: string
   }
 
   export class IconButton extends React.PureComponent<IconButtonProps> {
+  }
+
+  export interface ImageProps extends BoxProps<'img'> {
+    src?: string
+  }
+
+  export class Image extends React.PureComponent<ImageProps> {
   }
 
   export interface InlineAlertProps extends PaneProps {
@@ -626,11 +773,24 @@ declare module 'evergreen-ui' {
   export class InlineAlert extends React.PureComponent<InlineAlertProps> {
   }
 
-  export interface LabelProps extends TextProps<'label'> {
-    htmlFor?: string
-  }
+  export type LabelProps = TextProps<'label'>
 
   export class Label extends React.PureComponent<LabelProps> {
+  }
+
+  export interface ListItemProps extends TextProps<'li'> {
+    /**
+     * When passed, adds a icon before the list item.
+     * See Evergreen `Icon` for documentation.
+     */
+    icon?: IconName
+    /**
+     * The color of the icon.
+     */
+    iconColor?: string
+  }
+
+  export class ListItem extends React.PureComponent<ListItemProps> {
   }
 
   export interface MenuProps {
@@ -762,23 +922,92 @@ declare module 'evergreen-ui' {
   }
 
   export interface RadioProps extends BoxProps<'input'> {
+    /**
+     * The id attribute of the radio.
+     */
+    id?: string
+    /**
+     * The name attribute of the radio.
+     */
+    name?: string
+    /**
+     * Label of the radio.
+     */
     label?: React.ReactNode
-    size?: 12 | 16
+    /**
+     * The value attribute of the radio.
+     */
+    value?: string
+    /**
+     * Function called when state changes
+     */
+    onChange?(event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void
+    /**
+     * When true, the radio is disabled.
+     */
+    disabled?: boolean
+    /**
+     * When true, the radio is checked.
+     */
+    checked?: boolean
+    /**
+     * The size of the radio circle. This also informs the text size and spacing.
+     */
+    size: 12 | 16
+    /**
+     * When true, the radio get the required attribute.
+     */
+    isRequired?: boolean
+    /**
+     * When true, the aria-invalid attribute is true.
+     * Used for accessibility.
+     */
     isInvalid?: boolean
+    /**
+     * The appearance of the checkbox.
+     * The default theme only comes with a default style.
+     */
     appearance?: DefaultAppearance
   }
 
   export class Radio extends React.PureComponent<RadioProps> {
   }
 
+  interface RadioGroupOption {
+    label: React.ReactNode
+    value: string
+    isDisabled?: boolean
+  }
+
   export interface RadioGroupProps extends Omit<PaneProps, 'onChange'> {
-    options: Array<{ label: React.ReactNode, value: string, isDisabled?: boolean }>
-    value?: string
+    /**
+     * The default value of the Radio Group when uncontrolled.
+     */
     defaultValue?: string
-    onChange: (value: string) => void
+    /**
+     * The options for the radios of the Radio Group.
+     */
+    options?: RadioGroupOption[]
+    /**
+     * The selected item value when controlled.
+     */
+    value?: string
+    /**
+     * Label to display above the radio button options.
+     */
     label?: string
+    /**
+     * The size of the radio circle. This also informs the text size and spacing.
+     */
     size?: 12 | 16
+    /**
+     * When true, the radio get the required attribute.
+     */
     isRequired?: boolean
+    /**
+     * Function called when state changes.
+     */
+    onChange?(value: string): void
   }
 
   export class RadioGroup extends React.PureComponent<RadioGroupProps> {
@@ -893,6 +1122,11 @@ declare module 'evergreen-ui' {
   export class Select extends React.PureComponent<SelectProps> {
   }
 
+  export type SelectFieldProps = FormFieldProps
+
+  export class SelectField extends React.PureComponent<SelectFieldProps> {
+  }
+
   export interface SelectMenuContentProps {
     close?: OptionsListProps['close']
     title?: string
@@ -918,24 +1152,92 @@ declare module 'evergreen-ui' {
   export class SelectMenuContent extends React.PureComponent<SelectMenuContentProps> {
   }
 
+  export interface SelectMenuItem {
+    label: string
+    value: string | number
+    labelInList?: string
+    disabled?: boolean
+  }
+
+  export type SelectMenuPropsViewCallback = (args: { close(): void }) => React.ReactNode
+
   export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'content'> {
+    /**
+     * The title of the Select Menu.
+     */
     title?: string
+    /**
+     * The width of the Select Menu.
+     */
     width?: string | number | null
+    /**
+     * The height of the Select Menu.
+     */
     height?: string | number
-    options: Array<{ label: string, value: string | null }>
-    onSelect?: (item: { label: string, value: string }) => void
-    onDeselect?: (item: { label: string, value: string }) => void
+    /**
+     * The options to show in the menu.
+     */
+    options?: SelectMenuItem[]
+    /**
+     * The selected value/values.
+     */
     selected?: string | string[]
+    /**
+     * When true, multi select is accounted for.
+     */
     isMultiSelect?: boolean
+    /**
+     * When true, show the title.
+     */
     hasTitle?: boolean
+    /**
+     * When true, show the filter.
+     */
     hasFilter?: boolean
-    filterPlaceholder?: string
-    filterIcon?: IconName
-    onFilterChange?: (searchValue: string) => void
+    /**
+     * The position of the Select Menu.
+     */
     position?: Omit<PositionTypes, 'left' | 'right'>
-    detailView?: PopoverProps['content']
-    titleView?: React.ReactNode | (() => React.ReactNode)
-    emptyView?: React.ReactNode | (() => React.ReactNode)
+    /**
+     * Can be a function that returns a node, or a node itself, that is
+     * rendered on the right side of the Select Menu to give additional
+     * information when an option is selected.
+     */
+    detailView?: React.ReactNode | SelectMenuPropsViewCallback
+    /**
+     * Can be a function that returns a node, or a node itself, that is
+     * rendered instead of the options list when there are no options.
+     */
+    emptyView?: React.ReactNode | SelectMenuPropsViewCallback
+    /**
+     * Can be a function that returns a node, or a node itself, that is
+     * rendered in the header section of the Select Menu to customize
+     * the header.
+     */
+    titleView?: React.ReactNode | SelectMenuPropsViewCallback
+    /**
+     * Function that is called when an option is selected.
+     */
+    onSelect?(item: SelectMenuItem): void
+    /**
+     * Function that is called when an option is deselected.
+     */
+    onDeselect?(item: SelectMenuItem): void
+    /**
+     * Function that is called as the onChange() event for the filter.
+     */
+    onFilterChange?(searchValue: string): void
+    /**
+     * The placeholder of the search filter.
+     */
+    filterPlaceholder?: string
+    /**
+     * The icon of the search filter.
+     */
+    filterIcon?: IconName
+    /*
+     * When true, menu closes on option selection.
+     */
     closeOnSelect?: boolean
   }
 
@@ -974,7 +1276,13 @@ declare module 'evergreen-ui' {
   }
 
   export interface SpinnerProps extends BoxProps<'div'> {
-    delay?: number
+    /**
+     * Delay after which spinner should be visible.
+     */
+    delay?: boolean
+    /**
+     * The size of the spinner.
+     */
     size: number
   }
 
@@ -992,6 +1300,58 @@ declare module 'evergreen-ui' {
   export type StrongProps = TextProps<'strong'>
 
   export class Strong extends React.PureComponent<StrongProps> {
+  }
+
+  export interface SwitchProps extends Omit<BoxProps<'label'>, 'onChange'> {
+    /**
+     * The id attribute of the radio.
+     */
+    id?: string
+    /**
+     * The name attribute of the radio.
+     */
+    name?: string
+    /**
+     * The value attribute of the radio.
+     */
+    value?: string
+    /**
+     * The height of the switch.
+     */
+    height?: number
+    /**
+     * When true, the switch is checked (on).
+     */
+    checked?: boolean
+    /**
+     * Function called when state changes.
+     */
+    onChange?(event: React.ChangeEvent<HTMLInputElement>): void
+    /**
+     * When true, the switch is disabled.
+     */
+    disabled?: boolean
+    /**
+     * When true, the switch is invalid.
+     */
+    isInvalid?: boolean
+    /**
+     * The appearance of the checkbox.
+     * The default theme only comes with a default style.
+     */
+    appearance: DefaultAppearance
+    /**
+     * When true, the switch has a check icon.
+     */
+    hasCheckIcon?: boolean
+    /**
+     * When true, the switch is true by default.
+     * This is for uncontrolled usage.
+     */
+    defaultChecked?: boolean
+  }
+
+  export class Switch extends React.PureComponent<SwitchProps> {
   }
 
   export interface TableBodyProps extends PaneProps {
@@ -1144,6 +1504,39 @@ declare module 'evergreen-ui' {
   export class Textarea extends React.PureComponent<TextareaProps> {
   }
 
+  export interface TextDropdownButtonProps extends TextProps<'button'> {
+    /**
+     * Forcefully set the active state of a button.
+     * Useful in conjuction with a Popover.
+     */
+    isActive?: boolean
+    /**
+     * When true, the button is disabled.
+     * isLoading also sets the button to disabled.
+     */
+    disabled?: boolean
+    /**
+     * Name of a Blueprint UI icon, or an icon element, to render.
+     * This prop is required because it determines the content of the component, but it can
+     * be explicitly set to falsy values to render nothing.
+     *
+     * - If `null` or `undefined` or `false`, this component will render nothing.
+     * - If given an `IconName` (a string literal union of all icon names),
+     *   that icon will be rendered as an `<svg>` with `<path>` tags.
+     * - If given a `JSX.Element`, that element will be rendered and _all other props on this component are ignored._
+     *   This type is supported to simplify usage of this component in other Blueprint components.
+     *   As a consumer, you should never use `<Icon icon={<element />}` directly; simply render `<element />` instead.
+     */
+    icon?: IconName | null | false
+    /**
+     * Class name passed to the button.
+     */
+    className?: string
+  }
+
+  export class TextDropdownButton extends React.PureComponent<TextDropdownButtonProps> {
+  }
+
   export interface TextTableCellProps extends TableCellProps {
     isNumber?: boolean
     textProps?: TextProps
@@ -1168,36 +1561,141 @@ declare module 'evergreen-ui' {
   }
 
   export type TextInputProps = TextProps<'input'> & {
+    /**
+     * Makes the input element required.
+     */
+    required?: boolean
+    /**
+     * Makes the input element disabled.
+     */
+    disabled?: boolean
+    /**
+     * Sets visual styling of _only_ the text input to be "invalid".
+     * Note that this does not effect any `validationMessage`.
+     */
     isInvalid?: boolean
+    /**
+     * Use the native spell check functionality of the browser.
+     */
     spellCheck?: boolean
+    /**
+     * The placeholder text when there is no value present.
+     */
+    placeholder?: string
+    /**
+     * The appearance of the TextInput.
+     */
     appearance?: TextInputAppearance
+    /**
+     * The width of the TextInput.
+     */
+    width?: string | number
+    /**
+     * Class name passed to the button.
+     */
+    className?: string
   }
 
   export class TextInput extends React.PureComponent<TextInputProps> {
   }
 
   export interface TextInputFieldProps extends TextInputProps {
-    label: NonNullable<React.ReactNode>
+    /**
+     * The label used above the input element.
+     */
+    label: React.ReactNode
+    /**
+     * Passed on the label as a htmlFor prop.
+     */
+    labelFor?: string
+    /**
+     * Wether or not show a asterix after the label.
+     */
+    required?: boolean
+    /**
+     * A optional description of the field under the label, above the input element.
+     */
     description?: React.ReactNode
+    /**
+     * A optional hint under the input element.
+     */
     hint?: React.ReactNode
+    /**
+     * If a validation message is passed it is shown under the input element
+     * and above the hint.
+     */
     validationMessage?: React.ReactNode
+    /**
+     * The height of the input element.
+     */
     inputHeight?: number
+    /**
+     * The width of the input width.
+     */
     inputWidth?: number | string
   }
 
   export class TextInputField extends React.PureComponent<TextInputFieldProps> {
   }
 
-
-  export interface TooltipProps extends Omit<TextProps, 'position'> {
+  export interface TooltipStatelessProps extends PaneProps {
+    /**
+     * The appearance of the tooltip.
+     */
     appearance?: TooltipAppearance
+  }
+
+  export interface TooltipProps {
+    /**
+     * The appearance of the Tooltip.
+     */
+    appearance?: TooltipAppearance
+    /**
+     * The position the Tooltip is on.
+     */
     position?: PositionTypes
+    /**
+     * The content of the Tooltip.
+     */
     content: React.ReactNode
+    /**
+     * Time in ms before hiding the Tooltip.
+     */
     hideDelay?: number
+    /**
+     * Time in ms before showing the Tooltip.
+     */
+    showDelay?: number
+    /**
+     * When true, manually show the Tooltip.
+     */
     isShown?: boolean
+    /**
+     * Properties passed through to the Tooltip.
+     */
+    statelessProps?: TooltipStatelessProps
   }
 
   export class Tooltip extends React.PureComponent<TooltipProps> {
+  }
+
+  export interface UnorderedListProps extends BoxProps<'ul'> {
+    /**
+     * Size of the text used in a list item.
+     */
+    size: keyof Typography['text']
+    /**
+     * When passed, adds a icon before each list item in the list
+     * You can override this on a individual list item.
+     */
+    icon?: string
+    /**
+     * The color of the icon in each list item in the list.
+     */
+    iconColor?: string
+  }
+
+  export class UnorderedList extends React.PureComponent<UnorderedListProps> {
   }
 
   export function majorScale(x: number): number
@@ -1228,12 +1726,6 @@ declare module 'evergreen-ui' {
   export class Pill extends React.PureComponent<UnknownProps> {
   }
 
-  export class BackButton extends React.PureComponent<UnknownProps> {
-  }
-
-  export class TextDropdownButton extends React.PureComponent<UnknownProps> {
-  }
-
   export class Combobox extends React.PureComponent<UnknownProps> {
   }
 
@@ -1246,25 +1738,16 @@ declare module 'evergreen-ui' {
   export class FilePicker extends React.PureComponent<UnknownProps> {
   }
 
-  export class Image extends React.PureComponent<UnknownProps> {
-  }
-
   export class Overlay extends React.PureComponent<UnknownProps> {
   }
 
   export class Portal extends React.PureComponent<UnknownProps> {
   }
 
-  export class SelectField extends React.PureComponent<UnknownProps> {
-  }
-
   export class OptionShapePropType extends React.PureComponent<UnknownProps> {
   }
 
   export class SelectedPropType extends React.PureComponent<UnknownProps> {
-  }
-
-  export class Switch extends React.PureComponent<UnknownProps> {
   }
 
   export class StackingContext extends React.PureComponent<UnknownProps> {
@@ -1276,9 +1759,6 @@ declare module 'evergreen-ui' {
   export class toaster extends React.PureComponent<UnknownProps> {
   }
 
-  export class UnorderedList extends React.PureComponent<UnknownProps> {
-  }
-
   export class Ul extends React.PureComponent<UnknownProps> {
   }
 
@@ -1286,9 +1766,6 @@ declare module 'evergreen-ui' {
   }
 
   export class Ol extends React.PureComponent<UnknownProps> {
-  }
-
-  export class ListItem extends React.PureComponent<UnknownProps> {
   }
 
   export class Li extends React.PureComponent<UnknownProps> {
