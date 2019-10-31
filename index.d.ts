@@ -451,10 +451,18 @@ declare module 'evergreen-ui' {
   export class Alert extends React.PureComponent<AlertProps> {
   }
 
-  export interface AutocompleteItemProps {
-    isSelected: boolean
-    isHighlighted: boolean
-    key: string
+  interface OptionProps extends TableRowProps {
+    height?: number | string
+    label: string
+    icon?: string
+    disabled?: boolean
+  }
+
+  export interface AutocompleteItemProps extends OptionProps {
+    children?: OptionProps['label']
+  }
+
+  export class AutocompleteItem extends React.PureComponent<AutocompleteItemProps> {
   }
 
   // https://github.com/downshift-js/downshift
@@ -462,7 +470,7 @@ declare module 'evergreen-ui' {
     defaultSelectedItem?: string
     title?: React.ReactNode
     items: any[]
-    renderItem?: (i: AutocompleteItemProps) => React.ComponentClass<AutocompleteItemProps>
+    renderItem?: (i: AutocompleteItemProps) => AutocompleteItem
     itemsFilter?: (items: string[], input: string) => string[]
     itemToString?: (i: any) => string
     children: (props: {
@@ -2267,9 +2275,6 @@ declare module 'evergreen-ui' {
   // ====================================================
 
   type UnknownProps = Record<string, any>
-
-  export class AutocompleteItem extends React.PureComponent<UnknownProps> {
-  }
 
   export class FilePicker extends React.PureComponent<UnknownProps> {
   }
