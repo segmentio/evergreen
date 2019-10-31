@@ -684,6 +684,78 @@ declare module 'evergreen-ui' {
   export class Combobox extends React.PureComponent<ComboboxProps> {
   }
 
+  export interface CornerDialogProps {
+    /**
+     * Children can be a string, node or a function accepting `({ close })`.
+     * When passing a string, <Paragraph /> is used to wrap the string.
+     */
+    children?: React.ReactNode | (({ close }: { close: () => void }) => void)
+    /**
+     * The intent of the Dialog. Used for the button. Defaults to none.
+     */
+    intent?: IntentTypes
+    /**
+     * When true, the dialog is shown. Defaults to false.
+     */
+    isShown?: boolean
+    /**
+     * Title of the Dialog. Titles should use Title Case.
+     */
+    title?: string
+    /**
+     * Function that will be called when the exit transition is complete.
+     */
+    onCloseComplete?: () => void
+    /**
+     * Function that will be called when the enter transition is complete.
+     */
+    onOpenComplete?: () => void
+    /**
+     * When true, the footer with the cancel and confirm button is shown.
+     * Defaults to true.
+     */
+    hasFooter?: boolean
+    /**
+     * Function that will be called when the confirm button is clicked.
+     * This does not close the Dialog. A close function will be passed
+     * as a paramater you can use to close the dialog.
+     * If unspecified, this defaults to closing the Dialog.
+     */
+    onConfirm?: (close: () => void) => void
+    /**
+     * Label of the confirm button. Default to 'Confirm'.
+     */
+    confirmLabel?: string
+    /**
+     * When true, the cancel button is shown. Defaults to true.
+     */
+    hasCancel?: boolean
+    /**
+     * When true, the close button is shown. Defaults to true.
+     */
+    hasClose?: boolean
+    /**
+     * Function that will be called when the cancel button is clicked.
+     * This closes the Dialog by default.
+     */
+    onCancel?: (close: () => void) => void
+    /**
+     * Label of the cancel button. Defaults to 'Cancel'.
+     */
+    cancelLabel?: string
+    /**
+     * Width of the Dialog.
+     */
+    width?: string | number
+    /**
+     * Props that are passed to the dialog container.
+     */
+    containerProps?: CardProps
+  }
+
+  export class CornerDialog extends React.PureComponent<CornerDialogProps> {
+  }
+
   export interface DialogProps {
     /**
      * Children can be a string, node or a function accepting `({ close })`.
@@ -1855,7 +1927,7 @@ declare module 'evergreen-ui' {
   export class TabNavigation extends React.PureComponent<TabNavigationProps> {
   }
 
-  export interface TagInputProps extends BoxProps<'div'> {
+  export interface TagInputProps extends Omit<BoxProps<'div'>, 'onChange'> {
     addOnBlur?: boolean
     className?: string
     disabled?: boolean
@@ -1863,10 +1935,10 @@ declare module 'evergreen-ui' {
     inputProps?: TextProps<'input'>
     inputRef?: (input: HTMLInputElement | null) => void
     onAdd?: (values: string[]) => void | false
-    onBlur?: (event: Event) => void
+    onBlur?: (event: React.FocusEvent) => void
     onChange?: (values: string[]) => void | false
-    onFocus?: (event: Event) => void
-    onInputChange?: (event: Event) => void
+    onFocus?: (event: React.FocusEvent) => void
+    onInputChange?: (event: React.ChangeEvent) => void
     onRemove?: (value: string | React.ReactNode, index: number) => void
     separator?: string
     tagProps?: any
@@ -2197,9 +2269,6 @@ declare module 'evergreen-ui' {
   type UnknownProps = Record<string, any>
 
   export class AutocompleteItem extends React.PureComponent<UnknownProps> {
-  }
-
-  export class CornerDialog extends React.PureComponent<UnknownProps> {
   }
 
   export class FilePicker extends React.PureComponent<UnknownProps> {
