@@ -20,7 +20,8 @@
   "types": "index.d.ts",
   "files": [
     "commonjs",
-    "esm"
+    "esm",
+    "index.d.ts"
   ],
   "sideEffects": false,
   "scripts": {
