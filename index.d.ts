@@ -689,7 +689,7 @@ declare module 'evergreen-ui' {
      * Children can be a string, node or a function accepting `({ close })`.
      * When passing a string, <Paragraph /> is used to wrap the string.
      */
-    children?: ReactNode | (({ close }: { close: () => void }) => void)
+    children?: React.ReactNode | (({ close }: { close: () => void }) => void)
     /**
      * The intent of the Dialog. Used for the button. Defaults to none.
      */
