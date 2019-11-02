@@ -212,7 +212,7 @@ export default class Tooltip extends PureComponent {
             onMouseLeave={this.handleMouseLeaveTarget}
             {...statelessProps}
             className={cx(
-              statelessProps.classNames,
+              statelessProps.className,
               css ? gcss(css).toString() : undefined
             )}
           >
