@@ -86,12 +86,16 @@ export default class Tooltip extends PureComponent {
     this.hide = debounce(this.hide, this.props.hideDelay)
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timeout)
+  }
+
   show = () => {
     if (this.state.isShown) return
     this.setState({
       willShow: true
     })
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       if (!this.state.willShow) return
       this.setState({
         isShown: true
