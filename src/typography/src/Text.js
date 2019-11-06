@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import { css as gcss } from 'glamor'
+import { css as glamorCss } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
@@ -62,7 +62,7 @@ class Text extends PureComponent {
         fontFamily={theme.getFontFamily(fontFamily)}
         marginTop={finalMarginTop}
         {...textStyle}
-        className={cx(className, css ? gcss(css).toString() : undefined)}
+        className={cx(className, css ? glamorCss(css).toString() : undefined)}
         {...props}
       />
     )

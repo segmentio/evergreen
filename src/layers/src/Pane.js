@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import { css as gcss } from 'glamor'
+import { css as glamorCss } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
@@ -174,7 +174,7 @@ class Pane extends PureComponent {
 
     const className = cx(
       props.className,
-      gcss({
+      glamorCss({
         ...css,
         ...hoverElevationStyle,
         ...activeElevationStyle
