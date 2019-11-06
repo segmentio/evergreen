@@ -3,9 +3,9 @@
 declare module 'evergreen-ui' {
   import { IconName } from '@blueprintjs/icons'
   import * as React from 'react'
-  import { extractStyles as boxExtractStyles } from 'ui-box'
-  import Box from 'ui-box'
+  import Box, { extractStyles as boxExtractStyles } from 'ui-box'
   import { BoxProps, Is } from 'ui-box/dist/types/box-types'
+  import { StyleAttribute, CSSProperties } from 'glamor'
   import { DownshiftProps, GetInputPropsOptions } from 'downshift'
 
   type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
@@ -1204,7 +1204,7 @@ declare module 'evergreen-ui' {
       top: number,
       left: number,
       zIndex: NonNullable<StackProps['value']>,
-      css,
+      css: StyleAttribute | CSSProperties,
       style: {
         transformOrigin: string,
         left: number,
