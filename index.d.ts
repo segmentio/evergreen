@@ -1201,9 +1201,9 @@ declare module 'evergreen-ui' {
     position?: PositionTypes
     isShown?: boolean
     children: (params: {
-      top: number
-      left: number
-      zIndex: NonNullable<StackProps['value']>
+      top: number,
+      left: number,
+      zIndex: NonNullable<StackProps['value']>,
       css: StyleAttribute | CSSProperties,
       style: {
         transformOrigin: string,
