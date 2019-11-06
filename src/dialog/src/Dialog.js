@@ -1,4 +1,3 @@
-import cx from 'classnames'
 import { css } from 'glamor'
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -37,7 +36,7 @@ const closeAnimation = css.keyframes('closeAnimation', {
   }
 })
 
-const animationStylesClass = css({
+const animationStyles = {
   '&[data-state="entering"], &[data-state="entered"]': {
     animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
       animationEasing.deceleration
@@ -48,7 +47,7 @@ const animationStylesClass = css({
       animationEasing.acceleration
     } both`
   }
-}).toString()
+}
 
 class Dialog extends React.Component {
   static propTypes = {
@@ -300,9 +299,9 @@ class Dialog extends React.Component {
             marginY={topOffsetWithUnit}
             display="flex"
             flexDirection="column"
+            css={animationStyles}
             data-state={state}
             {...containerProps}
-            className={cx(containerProps.className, animationStylesClass)}
           >
             {hasHeader && (
               <Pane
