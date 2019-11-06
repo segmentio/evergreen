@@ -75,7 +75,7 @@ const withAnimations = (animateIn, animateOut) => {
 }
 
 const animationStylesClass = {
-  [Position.LEFT]: css({
+  [Position.LEFT]: {
     transform: `translateX(-100%)`,
     ...withAnimations(
       css.keyframes('anchoredLeftSlideInAnimation', {
@@ -87,8 +87,8 @@ const animationStylesClass = {
         to: { transform: `translateX(-100%)` }
       })
     )
-  }),
-  [Position.RIGHT]: css({
+  },
+  [Position.RIGHT]: {
     transform: `translateX(100%)`,
     ...withAnimations(
       css.keyframes('anchoredRightSlideInAnimation', {
@@ -100,8 +100,8 @@ const animationStylesClass = {
         to: { transform: `translateX(100%)` }
       })
     )
-  }),
-  [Position.TOP]: css({
+  },
+  [Position.TOP]: {
     transform: `translateY(-100%)`,
     ...withAnimations(
       css.keyframes('anchoredTopSlideInAnimation', {
@@ -113,8 +113,8 @@ const animationStylesClass = {
         to: { transform: `translateY(-100%)` }
       })
     )
-  }),
-  [Position.BOTTOM]: css({
+  },
+  [Position.BOTTOM]: {
     transform: `translateY(100%)`,
     ...withAnimations(
       css.keyframes('anchoredBottomSlideInAnimation', {
@@ -126,7 +126,7 @@ const animationStylesClass = {
         to: { transform: `translateY(100%)` }
       })
     )
-  })
+  }
 }
 
 class SideSheet extends React.Component {
@@ -232,7 +232,7 @@ class SideSheet extends React.Component {
           <Pane
             width={width}
             {...paneProps[position]}
-            className={animationStylesClass[position]}
+            css={animationStylesClass[position]}
             data-state={state}
           >
             <SheetClose
