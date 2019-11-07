@@ -36,7 +36,7 @@ const innerClass = color =>
     animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
     stroke: color,
     fill: 'transparent'
-  }).toSting()
+  }).toString()
 
 class Spinner extends PureComponent {
   static propTypes = {
