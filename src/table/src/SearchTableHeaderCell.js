@@ -19,7 +19,7 @@ const invisibleInputClass = css({
   '&::placeholder': {
     color: `rgba(67, 90, 111, 0.7)`
   }
-})
+}).toString()
 
 export default class SearchTableHeaderCell extends PureComponent {
   static propTypes = {

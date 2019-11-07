@@ -19,7 +19,7 @@ const initialsStyleClass = css({
   alignItems: 'center',
   justifyContent: 'center',
   lineHeight: 1
-})
+}).toString()
 
 class Avatar extends PureComponent {
   static propTypes = {
