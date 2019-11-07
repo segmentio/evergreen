@@ -11,7 +11,7 @@ const animationEasing = {
 const handleStyleClass = css({
   backgroundColor: '#fff',
   borderRadius: 9999
-})
+}).toString()
 
 const iconContainerStyleClass = css({
   transition: `all 500ms ${animationEasing.spring}`,
@@ -32,7 +32,7 @@ const iconContainerStyleClass = css({
   '&[data-checked="true"] > svg': {
     transform: 'scale(1)'
   }
-})
+}).toString()
 
 const handleContainerStyleClass = css({
   transition: 'transform 200ms ease-in-out',
@@ -40,7 +40,7 @@ const handleContainerStyleClass = css({
   '&[data-checked="true"]': {
     transform: 'translateX(50%)'
   }
-})
+}).toString()
 
 const CheckIcon = ({ size, fill = 'currentColor', ...props }) => (
   <svg width={10} height={size} viewBox="0 0 10 7" {...props}>
@@ -204,7 +204,7 @@ class Switch extends PureComponent {
             data-checked={checked}
             className={iconContainerStyleClass}
           >
-            {hasCheckIcon && <CheckIcon size={height / 2 - 3}/>}
+            {hasCheckIcon && <CheckIcon size={height / 2 - 3} />}
           </Box>
           <Box
             width={height * 2}

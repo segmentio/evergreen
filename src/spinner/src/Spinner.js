@@ -24,7 +24,7 @@ const loadingCircleKeyframes = css.keyframes('loading-circle', {
 
 const outerClass = css({
   animation: `${loadingKeyframes} 2s linear infinite`
-})
+}).toString()
 
 const innerClass = color =>
   css({
@@ -36,7 +36,7 @@ const innerClass = color =>
     animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
     stroke: color,
     fill: 'transparent'
-  })
+  }).toSting()
 
 class Spinner extends PureComponent {
   static propTypes = {
