@@ -158,6 +158,7 @@ class Checkbox extends PureComponent {
           boxSizing="border-box"
           borderRadius={3}
           display="flex"
+          flex="none"
           alignItems="center"
           justifyContent="center"
           width={16}
