@@ -149,6 +149,7 @@ class Radio extends PureComponent {
           boxSizing="border-box"
           borderRadius={9999}
           display="flex"
+          flex="none"
           alignItems="center"
           justifyContent="center"
           marginTop={2}
