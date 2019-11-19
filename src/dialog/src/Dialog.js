@@ -12,7 +12,7 @@ const animationEasing = {
   acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`
 }
 
-const DEFAULT_ANIMATION_DURATION = 400
+const DEFAULT_ANIMATION_DURATION = 200
 
 const generateOpenAnimation = animation => {
   return css.keyframes('openAnimation', animation)

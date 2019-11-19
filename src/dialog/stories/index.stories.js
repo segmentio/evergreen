@@ -237,6 +237,7 @@ storiesOf('dialog', module)
               title="Dialog with Custom CSS animation"
               onCloseComplete={hide}
               hasFooter={false}
+              animationDuration={400}
               openAnimation={{
                 from: {
                   transform: 'translateX(1000px)',
