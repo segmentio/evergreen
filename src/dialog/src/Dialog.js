@@ -224,7 +224,7 @@ class Dialog extends React.Component {
     onConfirm: close => close(),
     preventBodyScrolling: false,
     overlayProps: {},
-    animationDuration: 400,
+    animationDuration: 200,
     openAnimation: {
       from: {
         transform: 'scale(0.8)',
