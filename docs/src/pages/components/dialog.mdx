@@ -23,7 +23,6 @@ This could be a deletion of some sorts or initiating a lengthy download.
 > An element is considered modal if it [blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
 > We use the term “dialog” to avoid confusion with the adjective.
 
-
 ### Focus Management
 
 When opening a `Dialog`, focus will be brought inside the `Dialog`
@@ -191,7 +190,6 @@ This will hide the confirm and cancel buttons.
 Use the `hasHeader` prop to show or hide the header.
 This will hide both the close icon button as the title.
 
-
 ```jsx
 <Component initialState={{ isShown: false }}>
   {({ state, setState }) => (
@@ -213,7 +211,6 @@ This will hide both the close icon button as the title.
 ## Remove default footer and header
 
 Use the `hasFooter`, `hasHeader` props to show or hide the footer and header.
-
 
 ```jsx
 <Component initialState={{ isShown: false }}>
@@ -241,13 +238,55 @@ Use the `preventBodyScrolling` prop to disable scrolling outside the dialog.
 ```jsx
 <Component initialState={{ isShown: false }}>
   {({ state, setState }) => (
-    <Pane paddingY='40vh'>
+    <Pane paddingY="40vh">
       <Dialog
         isShown={state.isShown}
         onCloseComplete={() => setState({ isShown: false })}
         preventBodyScrolling
       >
         Scroll-locked body
+      </Dialog>
+
+      <Button onClick={() => setState({ isShown: true })}>Show Dialog</Button>
+    </Pane>
+  )}
+</Component>
+```
+
+## Using custom CSS animations
+
+Use `openAnimation`, `closeAnimation` and `animationDuration` to set custom CSS animations.
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <Pane paddingY="40vh">
+      <Dialog
+        isShown={state.isShown}
+        onCloseComplete={() => setState({ isShown: false })}
+        animationDuration={400}
+        openAnimation={{
+          from: {
+            transform: 'translateX(1000px)',
+            opacity: 0
+          },
+          to: {
+            transform: 'translateX(0)',
+            opacity: 1
+          }
+        }}
+        closeAnimation={{
+          from: {
+            transform: 'translateX(0)',
+            opacity: 1
+          },
+          to: {
+            transform: 'translateX(1000px)',
+            opacity: 0
+          }
+        }}
+      >
+        You're using custom CSS animations.
       </Dialog>
 
       <Button onClick={() => setState({ isShown: true })}>Show Dialog</Button>

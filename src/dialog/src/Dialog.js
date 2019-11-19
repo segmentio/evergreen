@@ -12,40 +12,32 @@ const animationEasing = {
   acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`
 }
 
-const ANIMATION_DURATION = 200
+const DEFAULT_ANIMATION_DURATION = 400
 
-const openAnimation = css.keyframes('openAnimation', {
-  from: {
-    transform: 'scale(0.8)',
-    opacity: 0
-  },
-  to: {
-    transform: 'scale(1)',
-    opacity: 1
-  }
-})
+const generateOpenAnimation = animation => {
+  return css.keyframes('openAnimation', animation)
+}
 
-const closeAnimation = css.keyframes('closeAnimation', {
-  from: {
-    transform: 'scale(1)',
-    opacity: 1
-  },
-  to: {
-    transform: 'scale(0.8)',
-    opacity: 0
-  }
-})
+const generateCloseAnimation = animation => {
+  return css.keyframes('closeAnimation', animation)
+}
 
-const animationStyles = {
-  '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.deceleration
-    } both`
-  },
-  '&[data-state="exiting"]': {
-    animation: `${closeAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.acceleration
-    } both`
+const animationStyles = (
+  openAnimation,
+  closeAnimation,
+  animationDuration = DEFAULT_ANIMATION_DURATION
+) => {
+  return {
+    '&[data-state="entering"], &[data-state="entered"]': {
+      animation: `${generateOpenAnimation(
+        openAnimation
+      )} ${animationDuration}ms ${animationEasing.deceleration} both`
+    },
+    '&[data-state="exiting"]': {
+      animation: `${generateCloseAnimation(
+        closeAnimation
+      )} ${animationDuration}ms ${animationEasing.acceleration} both`
+    }
   }
 }
 
@@ -192,7 +184,23 @@ class Dialog extends React.Component {
     /**
      * Props that are passed to the Overlay component.
      */
-    overlayProps: PropTypes.object
+    overlayProps: PropTypes.object,
+
+    /**
+     * Props used to set the duration of the open and close animations related to
+     * the Dialog component
+     */
+    animationDuration: PropTypes.number,
+
+    /**
+     * Props responsible to add a custom open CSS animation to the Dialog component
+     */
+    openAnimation: PropTypes.object,
+
+    /**
+     * Props responsible to add a custom close CSS animation to the Dialog component
+     */
+    closeAnimation: PropTypes.object
   }
 
   static defaultProps = {
@@ -215,7 +223,28 @@ class Dialog extends React.Component {
     onCancel: close => close(),
     onConfirm: close => close(),
     preventBodyScrolling: false,
-    overlayProps: {}
+    overlayProps: {},
+    animationDuration: 400,
+    openAnimation: {
+      from: {
+        transform: 'scale(0.8)',
+        opacity: 0
+      },
+      to: {
+        transform: 'scale(1)',
+        opacity: 1
+      }
+    },
+    closeAnimation: {
+      from: {
+        transform: 'scale(1)',
+        opacity: 1
+      },
+      to: {
+        transform: 'scale(0.8)',
+        opacity: 0
+      }
+    }
   }
 
   renderChildren = close => {
@@ -258,7 +287,10 @@ class Dialog extends React.Component {
       contentContainerProps,
       minHeightContent,
       preventBodyScrolling,
-      overlayProps
+      overlayProps,
+      openAnimation,
+      closeAnimation,
+      animationDuration
     } = this.props
 
     const sideOffsetWithUnit = Number.isInteger(sideOffset)
@@ -299,7 +331,11 @@ class Dialog extends React.Component {
             marginY={topOffsetWithUnit}
             display="flex"
             flexDirection="column"
-            css={animationStyles}
+            css={animationStyles(
+              openAnimation,
+              closeAnimation,
+              animationDuration
+            )}
             data-state={state}
             {...containerProps}
           >

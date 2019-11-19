@@ -229,6 +229,48 @@ storiesOf('dialog', module)
           </Box>
         )}
       </DialogManager>
+      <DialogManager>
+        {({ isShown, show, hide }) => (
+          <Box marginBottom={16}>
+            <Dialog
+              isShown={isShown}
+              title="Dialog with Custom CSS animation"
+              onCloseComplete={hide}
+              hasFooter={false}
+              openAnimation={{
+                from: {
+                  transform: 'translateX(1000px)',
+                  opacity: 0
+                },
+                to: {
+                  transform: 'translateX(0)',
+                  opacity: 1
+                }
+              }}
+              closeAnimation={{
+                from: {
+                  transform: 'translateX(0)',
+                  opacity: 1
+                },
+                to: {
+                  transform: 'translateX(1000px)',
+                  opacity: 0
+                }
+              }}
+            >
+              <Box>
+                <Paragraph>
+                  You are also able to use custom CSS animations to your Dialog
+                  components
+                </Paragraph>
+              </Box>
+            </Dialog>
+            <Button onClick={show}>
+              Show Dialog with Custom CSS animation
+            </Button>
+          </Box>
+        )}
+      </DialogManager>
     </Box>
   ))
   .add('Dialog with nested Combobox', () => (
