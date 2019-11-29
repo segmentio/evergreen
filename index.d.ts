@@ -603,6 +603,10 @@ declare module 'evergreen-ui' {
      */
     indeterminate?: boolean
     /**
+     * Function that returns the ref of the checkbox.
+     */
+    innerRef?: (ref: React.RefObject<HTMLElement>) => void,
+    /**
      * When true, the radio is disabled.
      */
     disabled?: boolean

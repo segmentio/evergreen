@@ -74,6 +74,11 @@ class Checkbox extends PureComponent {
     indeterminate: PropTypes.bool,
 
     /**
+     * Function that returns the ref of the checkbox.
+     */
+    innerRef: PropTypes.func,
+
+    /**
      * Function called when state changes.
      */
     onChange: PropTypes.func,
@@ -104,13 +109,17 @@ class Checkbox extends PureComponent {
   static defaultProps = {
     checked: false,
     indeterminate: false,
+    innerRef: () => {},
     onChange: () => {},
     appearance: 'default'
   }
 
-  setIndeterminate = el => {
-    if (!el) return
-    el.indeterminate = this.props.indeterminate
+  handleInnerRef = el => {
+    if (el) {
+      el.indeterminate = this.props.indeterminate
+    }
+
+    this.props.innerRef(el)
   }
 
   render() {
@@ -127,6 +136,7 @@ class Checkbox extends PureComponent {
       onChange,
       value,
       indeterminate,
+      innerRef,
       ...props
     } = this.props
 
@@ -152,7 +162,7 @@ class Checkbox extends PureComponent {
           onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
-          innerRef={this.setIndeterminate}
+          innerRef={this.handleInnerRef}
         />
         <Box
           boxSizing="border-box"
