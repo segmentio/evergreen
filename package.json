@@ -147,6 +147,9 @@
       ],
       "unicorn/filename-case": [
         "off"
+      ],
+      "unicorn/prefer-node-append": [
+        "off"
       ]
     },
     "settings": {
