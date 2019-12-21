@@ -15,11 +15,11 @@ export default class Portal extends Component {
     if (!portalContainer) {
       portalContainer = document.createElement('div')
       portalContainer.setAttribute('evergreen-portal-container', '')
-      document.body.append(portalContainer)
+      document.body.appendChild(portalContainer)
     }
 
     this.el = document.createElement('div')
-    portalContainer.append(this.el)
+    portalContainer.appendChild(this.el)
   }
 
   componentWillUnmount() {
