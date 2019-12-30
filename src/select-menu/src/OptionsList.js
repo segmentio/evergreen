@@ -92,7 +92,7 @@ export default class OptionsList extends PureComponent {
      * Hacky solution for broken autoFocus
      * https://github.com/segmentio/evergreen/issues/90
      */
-    requestAnimationFrame(() => {
+    this.requestId = requestAnimationFrame(() => {
       this.searchRef.querySelector('input').focus()
     })
 
@@ -100,6 +100,7 @@ export default class OptionsList extends PureComponent {
   }
 
   componentWillUnmount() {
+    cancelAnimationFrame(this.requestId)
     window.removeEventListener('keydown', this.handleKeyDown)
   }
 
