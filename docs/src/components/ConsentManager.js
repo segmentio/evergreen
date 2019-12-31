@@ -33,20 +33,12 @@ export default () => {
 
   const bannerContent = (
     <span>
-      We use cookies (and other similar technologies) to collect data to improve
-      your experience on our site. By using our website, you’re agreeing to the
-      collection of data as described in our{' '}
-      <a
-        href="https://segment.com/docs/legal/website-data-collection-policy/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Website Data Collection Policy
-      </a>
-      .
+      We use cookies (and other similar technologies) to collect data in order
+      to improve our site. You have the option to opt-in or opt-out of certain
+      cookie tracking technologies.
     </span>
   )
-  const bannerSubContent = 'You can change your preferences at any time.'
+  const bannerSubContent = 'To do so, click here.'
   const preferencesDialogTitle = 'Website Data Collection Preferences'
   const preferencesDialogContent =
     'We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site.'
