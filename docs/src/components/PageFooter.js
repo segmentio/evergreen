@@ -1,6 +1,6 @@
 import React from 'react'
+import { openConsentManager } from '@segment/consent-manager'
 import SegmentLogoWordmark from './SegmentLogoWordmark'
-import ConsentManager from './ConsentManager'
 
 const NativeLink = props => (
   <a target="_blank" rel="noopener noreferrer" {...props} />
@@ -28,7 +28,9 @@ export default class PageFooter extends React.PureComponent {
         </div>
         <div className="Container PageFooter-inner">
           <div className="PageFooter-left">
-            <ConsentManager />
+            <button type="button" onClick={openConsentManager}>
+              Website Data Collection Preferences
+            </button>
           </div>
 
           <div className="PageFooter-right">
