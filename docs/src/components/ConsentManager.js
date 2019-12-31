@@ -1,9 +1,36 @@
 import React from 'react'
-import { ConsentManager, openConsentManager } from '@segment/consent-manager'
-import inEU from '@segment/in-eu'
+import inRegions from '@segment/in-regions'
+import { ConsentManager, CloseBehavior } from '@segment/consent-manager'
 import segmentWriteKey from '../../segmentWriteKey'
 
 export default () => {
+  const inCA = inRegions(['CA'])
+  const inEU = inRegions(['EU'])
+  const shouldRequireConsent = inRegions(['CA', 'EU'])
+  const caDefaultPreferences = {
+    advertising: false,
+    marketingAndAnalytics: true,
+    functional: true
+  }
+
+  const euDefaultPreferences = {
+    advertising: false,
+    marketingAndAnalytics: false,
+    functional: false
+  }
+
+  const closeBehavior = inCA()
+    ? () => caDefaultPreferences
+    : inEU()
+    ? CloseBehavior.DENY
+    : CloseBehavior.ACCEPT
+
+  const initialPreferences = inCA()
+    ? caDefaultPreferences
+    : inEU()
+    ? euDefaultPreferences
+    : undefined
+
   const bannerContent = (
     <span>
       We use cookies (and other similar technologies) to collect data to improve
@@ -31,18 +58,16 @@ export default () => {
     <div>
       <ConsentManager
         writeKey={segmentWriteKey}
-        shouldRequireConsent={inEU}
         bannerContent={bannerContent}
         bannerSubContent={bannerSubContent}
         preferencesDialogTitle={preferencesDialogTitle}
         preferencesDialogContent={preferencesDialogContent}
         cancelDialogTitle={cancelDialogTitle}
         cancelDialogContent={cancelDialogContent}
+        closeBehavior={closeBehavior}
+        shouldRequireConsent={shouldRequireConsent}
+        initialPreferences={initialPreferences}
       />
-
-      <button type="button" onClick={openConsentManager}>
-        Website Data Collection Preferences
-      </button>
     </div>
   )
 }
