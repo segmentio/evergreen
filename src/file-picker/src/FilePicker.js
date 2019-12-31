@@ -175,7 +175,7 @@ export default class FilePicker extends PureComponent {
 
   handleBlur = e => {
     // Setting e.target.files to an array fails. It must be a FileList
-    if (e && e.target) e.target.files = this.fileInput.files
+    if (e && e.target) e.target.files = this.fileInput && this.fileInput.files
 
     safeInvoke(this.props.onBlur, e)
   }
