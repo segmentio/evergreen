@@ -96,7 +96,12 @@ class SegmentedControlRadio extends PureComponent {
     /**
      * Theme provided by ThemeProvider.
      */
-    theme: PropTypes.object.isRequired
+    theme: PropTypes.object.isRequired,
+
+    /**
+     * When true, the input is disabled.
+     */
+    disabled: PropTypes.bool
   }
 
   render() {
@@ -112,7 +117,8 @@ class SegmentedControlRadio extends PureComponent {
       onChange,
       appearance,
       isFirstItem,
-      isLastItem
+      isLastItem,
+      disabled
     } = this.props
 
     const themedClassName = theme.getSegmentedControlRadioClassName(appearance)
@@ -144,6 +150,7 @@ class SegmentedControlRadio extends PureComponent {
           value={value}
           checked={checked}
           onChange={e => onChange(e.target.value)}
+          disabled={disabled}
         />
         <Text
           is="label"
@@ -152,6 +159,7 @@ class SegmentedControlRadio extends PureComponent {
           fontWeight={500}
           size={textSize}
           className={`${labelClass}`}
+          disabled={disabled}
         >
           {label}
         </Text>
