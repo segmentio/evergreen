@@ -1104,7 +1104,7 @@ declare module 'evergreen-ui' {
   }
 
   export interface MenuGroupProps extends Omit<PaneProps, 'title'> {
-    title?: JSX.Element
+    title?: React.ReactNode
     children: React.ReactNode[] | React.ReactNode
   }
 
