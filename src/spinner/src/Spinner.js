@@ -1,5 +1,5 @@
 import { css } from 'glamor'
-import React, { PureComponent } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { withTheme } from '../../theme'
@@ -38,84 +38,73 @@ const innerClass = color =>
     fill: 'transparent'
   }).toString()
 
-class Spinner extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Box component as the base.
-     */
-    ...Box.propTypes,
+const Spinner = ({ delay, theme, size, ...props }) => {
+  const [isVisible, setIsVisible] = useState(delay === 0)
+  const [delayTimer, setDelayTimer] = useState(null)
 
-    /**
-     * Delay after which spinner should be visible.
-     */
-    delay: PropTypes.number,
-
-    /**
-     * The size of the spinner.
-     */
-    size: PropTypes.number.isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
-  static defaultProps = {
-    size: 40,
-    delay: 0
-  }
-
-  constructor({ delay }) {
-    super()
-
-    this.state = {
-      isVisible: delay === 0
-    }
-  }
-
-  render() {
-    if (!this.state.isVisible) {
-      return null
-    }
-
-    const { theme, size, ...props } = this.props
-    return (
-      <Box width={size} height={size} lineHeight={0} {...props}>
-        <Box
-          is="svg"
-          className={outerClass}
-          x="0px"
-          y="0px"
-          viewBox="0 0 150 150"
-        >
-          <Box
-            is="circle"
-            className={innerClass(theme.spinnerColor)}
-            cx="75"
-            cy="75"
-            r="60"
-          />
-        </Box>
-      </Box>
-    )
-  }
-
-  componentDidMount() {
-    const { delay } = this.props
-
+  useEffect(() => {
     if (delay > 0) {
-      this.delayTimer = setTimeout(() => {
-        this.setState({
-          isVisible: true
-        })
+      const newDelayTimer = setTimeout(() => {
+        setIsVisible(true)
       }, delay)
+      setDelayTimer(newDelayTimer)
     }
+
+    return function() {
+      clearTimeout(delayTimer)
+    }
+  }, [])
+
+  if (!isVisible) {
+    return null
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.delayTimer)
-  }
+  return (
+    <Box width={size} height={size} lineHeight={0} {...props}>
+      <Box
+        is="svg"
+        className={outerClass}
+        x="0px"
+        y="0px"
+        viewBox="0 0 150 150"
+      >
+        <Box
+          is="circle"
+          className={innerClass(theme.spinnerColor)}
+          cx="75"
+          cy="75"
+          r="60"
+        />
+      </Box>
+    </Box>
+  )
+}
+
+Spinner.propTypes = {
+  /**
+   * Composes the Box component as the base.
+   */
+  ...Box.propTypes,
+
+  /**
+   * Delay after which spinner should be visible.
+   */
+  delay: PropTypes.number,
+
+  /**
+   * The size of the spinner.
+   */
+  size: PropTypes.number.isRequired,
+
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: PropTypes.object.isRequired
+}
+
+Spinner.defaultProps = {
+  size: 40,
+  delay: 0
 }
 
 export default withTheme(Spinner)
