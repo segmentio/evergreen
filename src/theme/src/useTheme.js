@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import { ThemeProvider, ThemeConsumer } from './ThemeContext'
+import ThemeContext from './ThemeContext'
 
 function useTheme() {
-  return useContext({ Consumer: ThemeConsumer, Provider: ThemeProvider })
+  return useContext(ThemeContext)
 }
 
 export default useTheme
