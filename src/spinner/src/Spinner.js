@@ -2,7 +2,7 @@ import { css } from 'glamor'
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { useTheme } from '../../theme'
+import { withTheme } from '../../theme'
 
 const loadingKeyframes = css.keyframes('loading', {
   '0%': {
@@ -38,8 +38,7 @@ const innerClass = color =>
     fill: 'transparent'
   }).toString()
 
-const Spinner = ({ delay, size, ...props }) => {
-  const theme = useTheme()
+const Spinner = ({ delay, size, theme, ...props }) => {
   const [isVisible, setIsVisible] = useState(delay === 0)
   const [delayTimer, setDelayTimer] = useState(null)
 
@@ -95,7 +94,12 @@ Spinner.propTypes = {
   /**
    * The size of the spinner.
    */
-  size: PropTypes.number.isRequired
+  size: PropTypes.number.isRequired,
+
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme: PropTypes.object.isRequired
 }
 
 Spinner.defaultProps = {
@@ -103,4 +107,4 @@ Spinner.defaultProps = {
   delay: 0
 }
 
-export default Spinner
+export default withTheme(Spinner)
