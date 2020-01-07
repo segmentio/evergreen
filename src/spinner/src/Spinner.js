@@ -38,7 +38,7 @@ const innerClass = color =>
     fill: 'transparent'
   }).toString()
 
-const Spinner = ({ delay, size, theme, ...props }) => {
+function Spinner({ delay, size, theme, ...props }) {
   const [isVisible, setIsVisible] = useState(delay === 0)
   const [delayTimer, setDelayTimer] = useState(null)
 
