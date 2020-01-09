@@ -22,7 +22,7 @@ const PageLayout = ({ children }) => (
               style={{ marginBottom: 160 }}
             >
               <div className="Content">
-                <DocsMDXProvider>{children}</DocsMDXProvider>
+                <DocsMDXProvider noInline>{children}</DocsMDXProvider>
               </div>
             </div>
           </section>
