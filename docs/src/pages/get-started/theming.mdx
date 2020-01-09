@@ -1,0 +1,64 @@
+import ThemeLayout from '../../components/ThemeLayout'
+
+export default ThemeLayout
+
+### Theme Provider
+
+In order to style your app, you must wrap it in the `ThemeProvider` component.
+This component uses the `React.Context` API under the hood.
+
+In order to use the `ThemeProvider` component, you must pass it a value prop that is a `Theme` object.
+
+## Simple theming
+
+The `ThemeProvider` Component, you can either override the default styles(shown below) or use your own theme completely.
+
+```jsx
+<Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <ThemeProvider
+      value={{
+        ...defaultTheme,
+        spinnerColor: 'hotpink'
+      }}
+    >
+      <Spinner />
+    </ThemeProvider>
+  )}
+</Component>
+```
+
+## Nested theming
+
+You can theme certain parts of your app differently by nesting the `ThemeProvider` components.
+
+```jsx
+<ThemeProvider
+  value={{
+    ...defaultTheme,
+    spinnerColor: 'hotpink'
+  }}
+>
+  <Spinner />
+    <ThemeProvider
+      value={{
+        ...defaultTheme,
+        spinnerColor: 'blue'
+      }}
+    >
+      <Spinner />
+    </ThemeProvider>
+</ThemeProvider>
+```
+
+## Using withTheme
+
+...
+
+## Using useTheme
+
+...
+
+## Theme object attributes
+
+...
