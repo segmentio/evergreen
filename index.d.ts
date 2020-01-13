@@ -1,7 +1,7 @@
 /* tslint:disable:interface-name max-classes-per-file no-empty-interface */
 
 declare module 'evergreen-ui' {
-  import { IconName } from '@blueprintjs/icons'
+  import { IconName as BlueprintIconName } from '@blueprintjs/icons'
   import * as React from 'react'
   import Box, { extractStyles as boxExtractStyles } from 'ui-box'
   import { BoxProps, Is } from 'ui-box/dist/types/box-types'
@@ -22,7 +22,7 @@ declare module 'evergreen-ui' {
   type Elevation = 0 | 1 | 2 | 3 | 4
   type FontSizeSmall = 300 | 400
 
-  export type IconName = IconName
+  export type IconName = BlueprintIconName
 
 
   export interface Colors {
