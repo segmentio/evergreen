@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 
 const TYPES = {
   OBJECT: 'Object',
@@ -39,22 +40,30 @@ const attributes = [
     description: () => (
       <div>
         Object that looks like the following:{' '}
-        <code>
-          {`{\n
-                    solid: {\n
-                        colorName: {\n
-                            color: 'some-color',\n
-                            backgroundColor: 'some-color'\n
-                        }\n
-                    },\n
-                    subtle: {\n
-                        colorName: {\n
-                            color: 'some-color',\n
-                            backgroundColor: 'some-color'\n
-                        }\n
-                    }\n
-                }`}
-        </code>{' '}
+        <LiveProvider
+          noInline
+          disabled
+          code={`const fills = {
+  solid: {
+      colorName: {
+          color: 'some-color',
+          backgroundColor: 'some-color'
+      }
+  },
+  subtle: {
+      colorName: {
+          color: 'some-color',
+          backgroundColor: 'some-color'
+      }
+  }
+}
+
+render(null)`}
+        >
+          <LiveEditor />
+          <LiveError />
+          <LivePreview />
+        </LiveProvider>
         You are allowed to change the <code>colorName</code> keys to match your
         color choices.
       </div>
