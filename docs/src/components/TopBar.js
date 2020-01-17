@@ -1,3 +1,4 @@
+import loadable from '@loadable/component'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
@@ -7,7 +8,10 @@ import SpectrumIcon from './SpectrumIcon'
 import LogoWordmark from './LogoWordmark'
 // eslint-disable-next-line import/no-unassigned-import
 import 'react-github-button/assets/style.css'
-import ConsentManager from './ConsentManager'
+
+// ConsentManager uses a package `@segment/in-regions` that breaks SSR
+// so we need to use `@loadable/component` as a shim
+const ConsentManager = loadable(() => import('./ConsentManager'))
 
 export default class TopBar extends PureComponent {
   static propTypes = {
@@ -52,7 +56,6 @@ export default class TopBar extends PureComponent {
           <div className="TopBar-navRight">
             <GitHubButton
               type="stargazers"
-              size="default"
               namespace="segmentio"
               repo="evergreen"
             />

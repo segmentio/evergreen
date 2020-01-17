@@ -46,8 +46,6 @@
   "dependencies": {
     "@babel/runtime": "^7.1.2",
     "@blueprintjs/icons": "^3.2.0",
-    "@segment/consent-manager": "^4.2.2",
-    "@segment/in-regions": "^1.2.0",
     "@types/react": "^16.9.5",
     "arrify": "^1.0.1",
     "classnames": "^2.2.6",
