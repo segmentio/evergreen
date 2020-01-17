@@ -1,6 +1,6 @@
 import React from 'react'
 import inRegions from '@segment/in-regions'
-import { ConsentManager, CloseBehavior } from '@segment/consent-manager'
+import { ConsentManager } from '@segment/consent-manager'
 import segmentWriteKey from '../../segmentWriteKey'
 
 export default () => {
@@ -22,8 +22,8 @@ export default () => {
   const closeBehavior = inCA()
     ? () => caDefaultPreferences
     : inEU()
-    ? CloseBehavior.DENY
-    : CloseBehavior.ACCEPT
+    ? 'deny'
+    : 'accept'
 
   const initialPreferences = inCA()
     ? caDefaultPreferences

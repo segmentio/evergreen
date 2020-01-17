@@ -763,7 +763,7 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2":
+"@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.7":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.8.3.tgz#0811944f73a6c926bb2ad35e918dcc1bfab279f1"
   integrity sha512-fVHx1rzEmwB130VTkLnxR+HmxcTjGzH12LYQcFFoBwakMd3aOMD4OsRN7tGG/UOYE2ektgFrS8uACAoRk1CY0w==
@@ -1190,6 +1190,14 @@
   dependencies:
     core-js "^2.5.7"
 
+"@loadable/component@^5.12.0":
+  version "5.12.0"
+  resolved "https://registry.yarnpkg.com/@loadable/component/-/component-5.12.0.tgz#34d056d15f53dc08d04e9203cad6867cf4f7306c"
+  integrity sha512-eDG7FPZ8tCFA/mqu2IrYV6eS+UxGBo21PwtEV9QpkpYrx25xKRXzJUm36yfQPK3o7jXu43xpPkwiU4mLWcjJlw==
+  dependencies:
+    "@babel/runtime" "^7.7.7"
+    hoist-non-react-statics "^3.3.1"
+
 "@mdx-js/mdx@^1.5.1":
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-1.5.1.tgz#470ce07e01cef4f7b1d5051640e5235d5e75aebb"
@@ -1323,13 +1331,6 @@
     prop-types "^15.6.1"
     react-emotion "^9.1.2"
 
-"@segment/in-eu@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@segment/in-eu/-/in-eu-0.2.1.tgz#ee03e0126e0082b9abec9a33e6c2902fd3ad7f47"
-  integrity sha512-7JKBw/l3S9J0ldo/n6XPfd3sT89f300KOCvmZsd8sryVZOWlE4L2LMKT538I34bjRdaOd1aJ52TsOAZUOLqxiQ==
-  dependencies:
-    jstz "^2.0.0"
-
 "@segment/in-eu@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@segment/in-eu/-/in-eu-0.3.0.tgz#b7d452a2f7e3a29461c0774f4d1570c7e8448ca8"
@@ -1341,6 +1342,17 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@segment/in-regions/-/in-regions-1.2.0.tgz#ac0a74ba0b2899dc9435ba93d01f49e9ccf0a0ff"
   integrity sha512-oJIl49/P+cESNc9+CIFdqNV2zR721RfK59MX5Reid7J6sZ38BLXmWrGvq4E1m54EYKxa+mc8MVCJOEMKpGXwFQ==
+  dependencies:
+    "@segment/in-eu" "^0.3.0"
+    "@types/jest" "^24.0.24"
+    "@types/node" "^12.12.21"
+    jstz "^2.1.1"
+    us "^2.0.0"
+
+"@segment/in-regions@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@segment/in-regions/-/in-regions-1.2.1.tgz#0289e5cbe6cc296e556bcc66d71ad332cbef8f6a"
+  integrity sha512-s1acgyTOAd++aF3XI3fLQA7K1/qxWQ/kr9hiPZQ00vDdQQUSNoa2RL1LdQCwE2zP85xbPzdKRUgYpnF8yfqs8w==
   dependencies:
     "@segment/in-eu" "^0.3.0"
     "@types/jest" "^24.0.24"
@@ -6583,6 +6595,13 @@ hoist-non-react-statics@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
   integrity sha512-0XsbTXxgiaCDYDIWFcwkmerZPSwywfUqYmwT4jzewKTQSWoE6FCMoUVOeBJWK3E/CrWbxRG3m5GzY4lnIwGRBA==
+  dependencies:
+    react-is "^16.7.0"
+
+hoist-non-react-statics@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#101685d3aff3b23ea213163f6e8e12f4f111e19f"
+  integrity sha512-wbg3bpgA/ZqWrZuMOeJi8+SKMhr7X9TesL/rXMjTzh0p0JUBo3II8DHboYbuIXWRlttrUFxwcu/5kygrCw8fJw==
   dependencies:
     react-is "^16.7.0"
 
