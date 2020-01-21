@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Badge, Pill } from '..'
 import { ThemeConsumer } from '../../theme'
+import { Badge, Pill } from '..'
 
 const wrapperStyles = {
   display: 'flex'

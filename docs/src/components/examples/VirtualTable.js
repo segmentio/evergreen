@@ -7,7 +7,6 @@ import {
   TextInputField,
   SelectField,
   minorScale
-  // eslint-disable-next-line import/no-unresolved
 } from 'evergreen-ui'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)

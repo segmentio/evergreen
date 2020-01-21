@@ -1,4 +1,4 @@
-/* eslint-disable react/no-danger, import/no-unresolved */
+/* eslint-disable react/no-danger */
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 import { extractStyles } from 'evergreen-ui'

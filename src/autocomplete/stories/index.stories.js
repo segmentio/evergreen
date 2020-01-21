@@ -2,9 +2,9 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import starWarsNames from 'starwars-names'
-import { Autocomplete } from '..'
 import { TextInput } from '../../text-input'
 import { Button } from '../../buttons'
+import { Autocomplete } from '..'
 
 // Generate a big list of items
 const items = [

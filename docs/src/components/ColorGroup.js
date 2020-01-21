@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// eslint-disable-next-line import/no-unresolved
 import { Pane, Heading } from 'evergreen-ui'
 import Swatch from './Swatch'
 

@@ -4,13 +4,13 @@ import Box from 'ui-box'
 import Component from '@reactions/component'
 import starWarsNames from 'starwars-names'
 import { Strong, Paragraph } from '../../typography'
-import { Dialog } from '..'
 import { Button } from '../../buttons'
 import { Combobox } from '../../combobox'
 import { SideSheet } from '../../side-sheet'
 import { Pane } from '../../layers'
 import { Popover } from '../../popover'
 import DialogManager from './DialogManager'
+import { Dialog } from '..'
 
 // Generate a big list of items
 const comboboxItems = starWarsNames.all.sort((a, b) => {

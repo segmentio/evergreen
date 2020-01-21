@@ -148,6 +148,18 @@
       ],
       "unicorn/prefer-node-append": [
         "off"
+      ],
+      "unicorn/prefer-string-slice": [
+        "warn"
+      ],
+      "unicorn/prefer-node-remove": [
+        "off"
+      ],
+      "unicorn/prefer-dataset": [
+        "off"
+      ],
+      "unicorn/catch-error-name": [
+        "off"
       ]
     },
     "settings": {

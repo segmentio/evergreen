@@ -19,17 +19,21 @@ export default () => {
     functional: false
   }
 
-  const closeBehavior = inCA()
-    ? () => caDefaultPreferences
-    : inEU()
-    ? 'deny'
-    : 'accept'
+  let closeBehavior
+  if (inCA()) {
+    closeBehavior = () => caDefaultPreferences
+  } else if (inEU()) {
+    closeBehavior = 'deny'
+  } else {
+    closeBehavior = 'accept'
+  }
 
-  const initialPreferences = inCA()
-    ? caDefaultPreferences
-    : inEU()
-    ? euDefaultPreferences
-    : undefined
+  let initialPreferences
+  if (inCA()) {
+    initialPreferences = caDefaultPreferences
+  } else if (inEU()) {
+    initialPreferences = euDefaultPreferences
+  }
 
   const bannerContent = (
     <span>

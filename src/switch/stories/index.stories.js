@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Switch } from '..'
 import { Heading } from '../../typography'
+import { Switch } from '..'
 
 storiesOf('switch', module).add('Switch', () => (
   <Box padding={40}>

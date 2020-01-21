@@ -2,13 +2,13 @@ import { storiesOf } from '@storybook/react'
 import Component from '@reactions/component'
 import React from 'react'
 import Box from 'ui-box'
-import { SelectMenu } from '..'
 import { Button } from '../../buttons'
 import { Text } from '../../typography'
 import { Pane } from '../../layers'
 import { TextInput } from '../../text-input'
 import options, { optionsWithIcons } from './starwars-options'
 import Manager from './Manager'
+import { SelectMenu } from '..'
 
 storiesOf('select-menu', module).add('SelectMenu', () => (
   <Box padding={40}>
