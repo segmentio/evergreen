@@ -29,7 +29,21 @@ Components.strong = props => <strong className="strong" {...props} />
 
 export default class DocsMDXProvider extends React.PureComponent {
   static propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    noInline: PropTypes.bool
+  }
+
+  static defaultProps = {
+    noInline: false
+  }
+
+  constructor(props) {
+    super(props)
+
+    // This feels hacky...
+    Components.code = newProps => (
+      <MDXPlayground {...newProps} noInline={props.noInline} />
+    )
   }
 
   render() {

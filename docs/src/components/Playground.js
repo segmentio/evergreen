@@ -12,7 +12,12 @@ export default class Playground extends React.Component {
   static propTypes = {
     codeText: PropTypes.string.isRequired,
     scope: PropTypes.object,
-    isOpenByDefault: PropTypes.bool
+    isOpenByDefault: PropTypes.bool,
+    noInline: PropTypes.bool
+  }
+
+  static defaultProps = {
+    noInline: false
   }
 
   constructor(props) {
@@ -81,7 +86,7 @@ export default class Playground extends React.Component {
   }
 
   render() {
-    const { scope } = this.props
+    const { scope, noInline } = this.props
     const { codeText, hasError, isCodeCollapsed, uniqueId } = this.state
 
     if (hasError) return this.renderError()
@@ -91,6 +96,7 @@ export default class Playground extends React.Component {
         scope={{ ReactDOM, Component, profiles, ...components, ...scope }}
         code={codeText}
         mountStylesheet={false}
+        noInline={noInline}
       >
         <div className="Playground" data-iscodecollapsed={isCodeCollapsed}>
           <div>

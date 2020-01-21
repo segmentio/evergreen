@@ -7,18 +7,26 @@ export default class MDXPlayground extends React.Component {
   static propTypes = {
     children: PropTypes.string,
     collapse: PropTypes.bool,
-    static: PropTypes.bool
+    static: PropTypes.bool,
+    noInline: PropTypes.bool
+  }
+
+  static defaultProps = {
+    noInline: false
   }
 
   render() {
+    const { children, collapse, noInline } = this.props
+
     if (this.props.static) {
-      return <SyntaxHighlighter>{this.props.children}</SyntaxHighlighter>
+      return <SyntaxHighlighter>{children}</SyntaxHighlighter>
     }
 
     return (
       <Playground
-        codeText={this.props.children}
-        isOpenByDefault={!this.props.collapse}
+        codeText={children}
+        isOpenByDefault={!collapse}
+        noInline={noInline}
       />
     )
   }
