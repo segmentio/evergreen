@@ -74,7 +74,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@reactions/component": "^2.0.2",
-    "@size-limit/preset-big-lib": "^3.0.0",
+    "@size-limit/preset-small-lib": "^3.0.0",
     "@storybook/addon-actions": "^3.4.11",
     "@storybook/addon-links": "^3.4.11",
     "@storybook/addon-options": "^3.4.11",
