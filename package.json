@@ -37,8 +37,7 @@
     "clean": "git clean -Xdf",
     "release": "np",
     "deploy-docs": "cd docs && yarn install && yarn deploy",
-    "postpublish": "yarn deploy-docs",
-    "chromatic": "chromatic test --storybook-addon --script-name dev --app-code=alj8xoz1ujt"
+    "postpublish": "yarn deploy-docs"
   },
   "engines": {
     "node": ">=10"
