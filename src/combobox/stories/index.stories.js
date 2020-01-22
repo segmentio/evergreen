@@ -2,9 +2,9 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import starWarsNames from 'starwars-names'
-import { Combobox } from '..'
 import { Heading } from '../../typography'
 import { Pane } from '../../layers'
+import { Combobox } from '..'
 
 // Generate a big list of items
 const items = starWarsNames.all.sort((a, b) => {

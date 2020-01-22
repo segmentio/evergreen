@@ -37,11 +37,10 @@
     "clean": "git clean -Xdf",
     "release": "np",
     "deploy-docs": "cd docs && yarn install && yarn deploy",
-    "postpublish": "yarn deploy-docs",
-    "chromatic": "chromatic test --storybook-addon --script-name dev --app-code=alj8xoz1ujt"
+    "postpublish": "yarn deploy-docs"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
@@ -75,6 +74,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@reactions/component": "^2.0.2",
+    "@size-limit/preset-small-lib": "^3.0.0",
     "@storybook/addon-actions": "^3.4.11",
     "@storybook/addon-links": "^3.4.11",
     "@storybook/addon-options": "^3.4.11",
@@ -90,23 +90,20 @@
     "eslint-config-prettier": "^3.1.0",
     "eslint-config-xo-react": "^0.17.0",
     "eslint-plugin-react": "^7.11.1",
-    "execa": "^1.0.0",
     "faker": "^4.1.0",
     "file-loader": "^2.0.0",
     "fs-extra": "^7.0.0",
-    "husky": "^1.1.2",
-    "lint-staged": "^7.3.0",
-    "np": "^4.0.2",
+    "husky": "^4.0.10",
+    "lint-staged": "^10.0.1",
+    "np": "^5.2.1",
     "prettier": "^1.14.3",
     "react": "^16.5.2",
-    "react-chromatic": "^0.8.4",
     "react-dom": "^16.5.2",
     "react-test-renderer": "^16.5.2",
-    "sinon": "^7.0.0",
-    "size-limit": "^0.21.1",
+    "sinon": "^8.1.0",
     "starwars-names": "^1.6.0",
     "url-loader": "^1.1.2",
-    "xo": "^0.24.0"
+    "xo": "^0.25.3"
   },
   "xo": {
     "parser": "babel-eslint",
@@ -150,6 +147,18 @@
       ],
       "unicorn/prefer-node-append": [
         "off"
+      ],
+      "unicorn/prefer-string-slice": [
+        "warn"
+      ],
+      "unicorn/prefer-node-remove": [
+        "off"
+      ],
+      "unicorn/prefer-dataset": [
+        "off"
+      ],
+      "unicorn/catch-error-name": [
+        "off"
       ]
     },
     "settings": {
@@ -165,12 +174,10 @@
   "lint-staged": {
     "*.js": [
       "xo --fix",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "*.{json,md}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "ava": {

@@ -3,7 +3,6 @@ import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import { Location, navigate } from '@reach/router'
-// eslint-disable-next-line import/no-unresolved
 import { Button, IconButton, Tooltip } from 'evergreen-ui'
 import IA from '../IA'
 import DocsMDXProvider from './DocsMDXProvider'

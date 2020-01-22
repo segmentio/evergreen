@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Tooltip } from '..'
 import { Text } from '../../typography'
 import { Position } from '../../constants'
 import { Button } from '../../buttons'
+import { Tooltip } from '..'
 
 storiesOf('tooltip', module)
   .add('Tooltip', () => (

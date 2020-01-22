@@ -17,6 +17,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     },
     plugins: [
       // See https://github.com/FormidableLabs/react-live/issues/5
+      // eslint-disable-next-line prefer-named-capture-group
       new webpack.IgnorePlugin(/^(xor|props)$/)
     ],
     resolve: {

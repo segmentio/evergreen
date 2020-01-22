@@ -7,13 +7,6 @@ import MenuGroup from './MenuGroup'
 import MenuOption from './MenuOption'
 import MenuOptionsGroup from './MenuOptionsGroup'
 
-const KeyCodes = {
-  ArrowUp: 38,
-  ArrowDown: 40,
-  Home: 36,
-  End: 35
-}
-
 export default class Menu extends React.PureComponent {
   static Item = MenuItem
 
@@ -87,22 +80,22 @@ export default class Menu extends React.PureComponent {
         // Go to next/previous item if it exists
         // or loop around
 
-        if (e.keyCode === KeyCodes.ArrowDown) {
+        if (e.key === 'ArrowDown') {
           e.preventDefault()
           focusNext(menuItem, this.firstItem)
         }
 
-        if (e.keyCode === KeyCodes.ArrowUp) {
+        if (e.key === 'ArrowUp') {
           e.preventDefault()
           focusNext(menuItem, this.lastItem)
         }
 
-        if (e.keyCode === KeyCodes.Home) {
+        if (e.key === 'Home') {
           e.preventDefault()
           this.firstItem.focus()
         }
 
-        if (e.keyCode === KeyCodes.End) {
+        if (e.key === 'End') {
           e.preventDefault()
           this.lastItem.focus()
         }

@@ -2,7 +2,6 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Popover } from '..'
 import { Tooltip } from '../../tooltip'
 import { TextInputField } from '../../text-input'
 import { Pane } from '../../layers'
@@ -10,6 +9,7 @@ import { Heading, Paragraph, Text } from '../../typography'
 import { Button } from '../../buttons'
 import { Position } from '../../constants'
 import { Icon, IconNames } from '../../icon'
+import { Popover } from '..'
 
 // eslint-disable-next-line react/prop-types
 const PopoverContent = ({ height = 240 }) => (
