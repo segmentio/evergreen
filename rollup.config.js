@@ -22,10 +22,14 @@ const namedExports = {
   ]
 }
 
+const ignoreSSR = {
+  ssr: './ssr/index.umd.js'
+}
+
 export default [
   // UMD Development
   {
-    input: 'src/index.umd.js',
+    input: 'src/index.js',
     external,
     output: {
       file: 'umd/evergreen.js',
@@ -38,13 +42,14 @@ export default [
       }
     },
     plugins: [
+      replace({
+        'process.env.NODE_ENV': JSON.stringify('development'),
+        ...ignoreSSR
+      }),
       resolve(),
       commonjs({
         include: 'node_modules/**',
         namedExports
-      }),
-      replace({
-        'process.env.NODE_ENV': JSON.stringify('development')
       }),
       babel({
         exclude: 'node_modules/**',
@@ -54,7 +59,7 @@ export default [
   },
   // UMD Production
   {
-    input: 'src/index.umd.js',
+    input: 'src/index.js',
     external,
     output: {
       file: 'umd/evergreen.min.js',
@@ -67,13 +72,14 @@ export default [
       }
     },
     plugins: [
+      replace({
+        'process.env.NODE_ENV': JSON.stringify('production'),
+        ...ignoreSSR
+      }),
       resolve(),
       commonjs({
         include: 'node_modules/**',
         namedExports
-      }),
-      replace({
-        'process.env.NODE_ENV': JSON.stringify('production')
       }),
       babel({
         exclude: 'node_modules/**',
