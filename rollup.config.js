@@ -5,9 +5,13 @@ import resolve from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 import pkg from './package.json'
 
+// Use peerDependencies as rollup external
+// https://rollupjs.org/guide/en/#peer-dependencies
 const { peerDependencies } = pkg
 const external = Object.keys(peerDependencies)
 
+// Explicitly specify unresolvable named exports.
+// https://github.com/rollup/plugins/tree/master/packages/commonjs#namedexports
 const namedExports = {
   'node_modules/react-is/index.js': ['isForwardRef'],
   'node_modules/react-tiny-virtual-list/node_modules/prop-types/index.js': [
@@ -22,6 +26,7 @@ const namedExports = {
   ]
 }
 
+// Ignore SSR imports in UMD, replace with empty functions
 const ignoreSSR = {
   ssr: './ssr/index.umd.js'
 }
