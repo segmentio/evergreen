@@ -19,7 +19,7 @@ storiesOf('select', module).add('Select', () => (
       <Description marginBottom={8}>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.
       </Description>
-      <Select appearance={appearance} name={32} id={32}>
+      <Select appearance={appearance} name="height_32" id="height_32">
         <option>Apple</option>
         <option>Pear</option>
         <option>Banana</option>
@@ -58,7 +58,12 @@ storiesOf('select', module).add('Select', () => (
       <Label htmlFor={24} size={300} display="block" marginBottom={4}>
         Height 24
       </Label>
-      <Select appearance={appearance} height={24} name={24} id={24}>
+      <Select
+        appearance={appearance}
+        height={24}
+        name="height_24"
+        id="height_24"
+      >
         <option>Apple</option>
         <option>Pear</option>
         <option>Banana</option>
@@ -69,7 +74,12 @@ storiesOf('select', module).add('Select', () => (
       <Label htmlFor={28} size={300} display="block" marginBottom={4}>
         Height 28
       </Label>
-      <Select appearance={appearance} height={28} name={28} id={28}>
+      <Select
+        appearance={appearance}
+        height={28}
+        name="height_28"
+        id="height_28"
+      >
         <option>Apple</option>
         <option>Pear</option>
         <option>Banana</option>
@@ -80,7 +90,12 @@ storiesOf('select', module).add('Select', () => (
       <Label htmlFor={36} size={400} display="block" marginBottom={4}>
         Height 36
       </Label>
-      <Select appearance={appearance} height={36} name={36} id={36}>
+      <Select
+        appearance={appearance}
+        height={36}
+        name="height_36"
+        id="height_36"
+      >
         <option>Apple</option>
         <option>Pear</option>
         <option>Banana</option>
@@ -91,7 +106,12 @@ storiesOf('select', module).add('Select', () => (
       <Label htmlFor={40} size={500} display="block" marginBottom={4}>
         Height 40
       </Label>
-      <Select appearance={appearance} height={40} name={40} id={40}>
+      <Select
+        appearance={appearance}
+        height={40}
+        name="height_40"
+        id="height_40"
+      >
         <option>Apple</option>
         <option>Pear</option>
         <option>Banana</option>

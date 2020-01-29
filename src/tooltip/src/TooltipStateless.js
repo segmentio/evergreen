@@ -21,7 +21,7 @@ class TooltipStateless extends PureComponent {
 
   render() {
     const { theme, children, appearance, ...props } = this.props
-    const { color, ...themedProps } = theme.getTooltipProps(appearance)
+    const { color, ...themedProps } = theme.getTooltipProps(appearance, theme)
 
     let child
     if (typeof children === 'string') {

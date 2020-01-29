@@ -75,7 +75,7 @@ class Alert extends PureComponent {
   getIconForIntent = intent => {
     const { theme } = this.props
 
-    return <Icon size={14} {...theme.getIconForIntent(intent)} />
+    return <Icon size={14} {...theme.getIconForIntent(intent, theme)} />
   }
 
   render() {
@@ -96,11 +96,14 @@ class Alert extends PureComponent {
     /**
      * Note that Alert return a className and additional properties.
      */
-    const { className, ...themeProps } = theme.getAlertProps({
-      appearance,
-      intent,
-      hasTrim
-    })
+    const { className, ...themeProps } = theme.getAlertProps(
+      {
+        appearance,
+        intent,
+        hasTrim
+      },
+      theme
+    )
 
     return (
       <Pane

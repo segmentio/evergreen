@@ -49,7 +49,8 @@ class Text extends PureComponent {
     } = this.props
 
     const { marginTop: defaultMarginTop, ...textStyle } = theme.getTextStyle(
-      size
+      size,
+      theme
     )
 
     const finalMarginTop =
@@ -58,8 +59,8 @@ class Text extends PureComponent {
     return (
       <Box
         is="span"
-        color={theme.getTextColor(color)}
-        fontFamily={theme.getFontFamily(fontFamily)}
+        color={theme.getTextColor(color, theme)}
+        fontFamily={theme.getFontFamily(fontFamily, theme)}
         marginTop={finalMarginTop}
         {...textStyle}
         className={cx(className, css ? glamorCss(css).toString() : undefined)}

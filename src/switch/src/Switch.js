@@ -176,7 +176,7 @@ class Switch extends PureComponent {
     } = this.props
 
     const checked = isControlled(this) ? checkedProps : this.state.checked
-    const themedClassName = theme.getSwitchClassName(appearance)
+    const themedClassName = theme.getSwitchClassName(appearance, theme)
 
     return (
       <Box

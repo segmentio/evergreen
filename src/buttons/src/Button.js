@@ -123,11 +123,11 @@ class Button extends PureComponent {
       ...props
     } = this.props
 
-    const themedClassName = theme.getButtonClassName(appearance, intent)
-    const textSize = theme.getTextSizeForControlHeight(height)
+    const themedClassName = theme.getButtonClassName(appearance, intent, theme)
+    const textSize = theme.getTextSizeForControlHeight(height, theme)
 
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
-    const iconSize = theme.getIconSizeForButton(height)
+    const borderRadius = theme.getBorderRadiusForControlHeight(height, theme)
+    const iconSize = theme.getIconSizeForButton(height, theme)
 
     const pr =
       paddingRight !== undefined ? paddingRight : Math.round(height / 2) // eslint-disable-line no-negated-condition

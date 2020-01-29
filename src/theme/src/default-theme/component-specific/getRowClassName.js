@@ -1,127 +1,76 @@
 import tinycolor from 'tinycolor2'
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
-import scales from '../foundational-styles/scales'
-import palette from '../foundational-styles/palette'
-
-const Appearances = {}
-
-Appearances.default = Themer.createRowAppearance({
-  base: {
-    color: palette.neutral.base
-  },
-
-  hover: {
-    backgroundColor: scales.neutral.N1A
-  },
-
-  focus: {
-    backgroundColor: scales.blue.B1A
-  },
-
-  active: {
-    backgroundColor: scales.blue.B2A
-  },
-
-  current: {}
-})
-
-Appearances.danger = Themer.createRowAppearance({
-  base: {
-    backgroundColor: palette.red.lightest
-  },
-
-  hover: {
-    backgroundColor: tinycolor(palette.red.lightest)
-      .darken(1)
-      .toString()
-  },
-
-  focus: {
-    backgroundColor: tinycolor(palette.red.lightest)
-      .darken(1.5)
-      .toString()
-  },
-
-  active: {
-    backgroundColor: tinycolor(palette.red.lightest)
-      .darken(2.2)
-      .toString()
-  },
-
-  current: {}
-})
-
-Appearances.warning = Themer.createRowAppearance({
-  base: {
-    backgroundColor: palette.orange.lightest
-  },
-
-  hover: {
-    backgroundColor: tinycolor(palette.orange.lightest)
-      .darken(1)
-      .toString()
-  },
-
-  focus: {
-    backgroundColor: tinycolor(palette.orange.lightest)
-      .darken(1.5)
-      .toString()
-  },
-
-  active: {
-    backgroundColor: tinycolor(palette.orange.lightest)
-      .darken(2.5)
-      .toString()
-  },
-
-  current: {}
-})
-
-Appearances.success = Themer.createRowAppearance({
-  base: {
-    backgroundColor: palette.green.lightest
-  },
-
-  hover: {
-    backgroundColor: tinycolor(palette.green.lightest)
-      .darken(1)
-      .toString()
-  },
-
-  focus: {
-    backgroundColor: tinycolor(palette.green.lightest)
-      .darken(2)
-      .toString()
-  },
-
-  active: {
-    backgroundColor: tinycolor(palette.green.lightest)
-      .darken(3)
-      .toString()
-  },
-
-  current: {}
-})
+import rowColors from './rowColors'
 
 /**
  * Get the appearance of a `Row`.
  * @param {string} appearance — only one default appearance.
  * @param {string} intent - none, info, success, warning, danger.
+ * @param {object} theme - the theme object
  * @return {string} the appearance object.
  */
-const getRowAppearance = (appearance, intent) => {
-  switch (intent) {
-    case 'danger':
-      return Appearances.danger
-    case 'warning':
-      return Appearances.warning
-    case 'success':
-      return Appearances.success
-    case 'none':
-    default:
-      return Appearances.default
-  }
+const getRowAppearance = (appearance, intent, theme) => {
+  appearance = appearance || 'default' // Only one appearance right now
+
+  // Try the user appearance + intent + type, then check our own set
+  // If that fails, check just appearance + intent
+  // This allows us to shortcut danger, warning, etc
+  const baseBackground =
+    theme?.rowColors?.[appearance]?.[intent]?.base ||
+    rowColors?.[appearance]?.[intent]?.base ||
+    rowColors?.[appearance]?.[intent] ||
+    'inherit'
+
+  const hoverBackground =
+    theme?.rowColors?.[appearance]?.[intent]?.hover ||
+    rowColors?.[appearance]?.[intent]?.hover ||
+    rowColors?.[appearance]?.[intent] ||
+    'inherit'
+
+  const focusBackground =
+    theme?.rowColors?.[appearance]?.[intent]?.focus ||
+    rowColors?.[appearance]?.[intent]?.focus ||
+    rowColors?.[appearance]?.[intent] ||
+    'inherit'
+
+  const activeBackground =
+    theme?.rowColors?.[appearance]?.[intent]?.active ||
+    rowColors?.[appearance]?.[intent]?.active ||
+    rowColors?.[appearance]?.[intent] ||
+    'inherit'
+
+  return Themer.createRowAppearance({
+    base: {
+      backgroundColor: baseBackground || 'initial'
+    },
+
+    hover: {
+      backgroundColor: hoverBackground
+        ? tinycolor(hoverBackground)
+            .darken(1)
+            .toString()
+        : 'initial'
+    },
+
+    focus: {
+      backgroundColor: focusBackground
+        ? tinycolor(focusBackground)
+            .darken(2)
+            .toString()
+        : 'initial'
+    },
+
+    active: {
+      backgroundColor: activeBackground
+        ? tinycolor(activeBackground)
+            .darken(3)
+            .toString()
+        : 'initial'
+    },
+
+    current: {}
+  })
 }
 
 /**

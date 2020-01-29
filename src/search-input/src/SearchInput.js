@@ -22,7 +22,7 @@ class SearchInput extends PureComponent {
     const { theme, appearance, disabled, height, ...props } = this.props
     const { matchedProps, remainingProps } = splitBoxProps(props)
     const { width } = matchedProps
-    const iconSize = theme.getIconSizeForInput(height)
+    const iconSize = theme.getIconSizeForInput(height, theme)
 
     return (
       <Box

@@ -6,7 +6,7 @@ import GitHubButton from 'react-github-button'
 import GitHubIcon from './GitHubIcon'
 import SpectrumIcon from './SpectrumIcon'
 import LogoWordmark from './LogoWordmark'
-// eslint-disable-next-line import/no-unassigned-import
+// eslint-disable-next-line import/no-unassigned-import, import/extensions
 import 'react-github-button/assets/style.css'
 
 // ConsentManager uses a package `@segment/in-regions` that breaks SSR

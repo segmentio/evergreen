@@ -40,7 +40,7 @@ class Paragraph extends PureComponent {
     const {
       marginTop: defaultMarginTop,
       ...textStyle
-    } = theme.getParagraphStyle(size)
+    } = theme.getParagraphStyle(size, theme)
 
     const finalMarginTop =
       marginTop === 'default' ? defaultMarginTop : marginTop
@@ -48,8 +48,8 @@ class Paragraph extends PureComponent {
     return (
       <Box
         is="p"
-        color={theme.getTextColor(color)}
-        fontFamily={theme.getFontFamily(fontFamily)}
+        color={theme.getTextColor(color, theme)}
+        fontFamily={theme.getFontFamily(fontFamily, theme)}
         marginTop={finalMarginTop || 0}
         marginBottom={0}
         {...textStyle}

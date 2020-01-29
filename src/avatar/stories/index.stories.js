@@ -104,7 +104,7 @@ storiesOf('avatar', module).add('Avatar', () => (
       {anonymousIds.map(id => (
         <Avatar
           key={id}
-          hashValue={id}
+          hashValue={`${id}`}
           name="Anonymous User"
           marginRight={12}
           size={40}

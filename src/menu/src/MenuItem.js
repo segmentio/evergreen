@@ -98,7 +98,11 @@ class MenuItem extends React.PureComponent {
       )
     }
 
-    const themedClassName = theme.getMenuItemClassName(appearance, 'none')
+    const themedClassName = theme.getMenuItemClassName(
+      appearance,
+      'none',
+      theme
+    )
 
     return (
       <Pane

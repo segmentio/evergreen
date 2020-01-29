@@ -2,7 +2,7 @@
  * Theme
  * ---
  * The theme object is used to style Evergreen.
- * It is passed into the  `<ThemeProvider theme={theme} />`.
+ * It is passed into the  `<ThemeProvider value={theme} />`.
  * ----
  * You can use this as a template for your own themes.
  */
@@ -37,10 +37,23 @@ import { headings, text, fontFamilies, paragraph } from './typography'
 import {
   avatarColors,
   badgeColors,
+  buttonColors,
+  checkboxColors,
+  codeColors,
+  defaultControlColors,
+  rowColors,
   spinnerColor,
+  switchColors,
+  tabColors,
+  tableColors,
+  tagInputColors,
+  textareaColors,
+  textDropdownColors,
+  textInputColors,
   overlayBackgroundColor,
   getBadgeClassName,
   getButtonClassName,
+  getIcon,
   getLinkClassName,
   getCheckboxClassName,
   getRadioClassName,
@@ -86,7 +99,9 @@ import {
   getTextColor
 } from './theme-helpers'
 
-export default {
+import extend from './utils/extend'
+
+const defaultTheme = {
   // Foundational Styles.
   colors,
   elevations,
@@ -97,10 +112,23 @@ export default {
   // Component Specific.
   avatarColors,
   badgeColors,
+  buttonColors,
+  checkboxColors,
+  codeColors,
+  defaultControlColors,
+  rowColors,
   spinnerColor,
+  switchColors,
+  tabColors,
+  tableColors,
+  tagInputColors,
+  textareaColors,
+  textDropdownColors,
+  textInputColors,
   overlayBackgroundColor,
   getBadgeClassName,
   getButtonClassName,
+  getIcon,
   getLinkClassName,
   getCheckboxClassName,
   getRadioClassName,
@@ -146,3 +174,7 @@ export default {
     paragraph
   }
 }
+
+defaultTheme.extend = () => extend(defaultTheme)
+
+export default defaultTheme

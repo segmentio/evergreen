@@ -233,10 +233,13 @@ class TagInput extends React.Component {
 
     const { inputValue, isFocused } = this.state
 
-    const themedContainerClassName = theme.getTagInputClassName('default')
-    const themedInputClassName = theme.getTextInputClassName('none')
-    const textSize = theme.getTextSizeForControlHeight(height)
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
+    const themedContainerClassName = theme.getTagInputClassName(
+      'default',
+      theme
+    )
+    const themedInputClassName = theme.getTextInputClassName('none', theme)
+    const textSize = theme.getTextSizeForControlHeight(height, theme)
+    const borderRadius = theme.getBorderRadiusForControlHeight(height, theme)
 
     return (
       <Box

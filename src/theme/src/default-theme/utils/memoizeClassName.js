@@ -1,5 +1,18 @@
 import { css } from 'glamor'
 
+let ids = 0
+const idOf = o => {
+  if (typeof o.__evergreen_uniqueid === 'undefined') {
+    Object.defineProperty(o, '__evergreen_uniqueid', {
+      value: ++ids,
+      enumerable: false,
+      writable: false
+    })
+  }
+
+  return o.__evergreen_uniqueid
+}
+
 /**
  * Memoize a function that takes N number of strings as arguments and returns
  * a CSS-in-JS object.
@@ -27,7 +40,9 @@ const memoizeClassName = fn => {
   // Return the wrapped function.
   return (...args) => {
     // Create a key by joining all args.
-    const key = args.join('_') || '__no_args__'
+    const key =
+      args.map(o => (typeof o === 'object' ? idOf(o) : o)).join('_') ||
+      '__no_args__'
 
     // Check if is already memoized, if so return the result.
     if (memo[key]) return memo[key]

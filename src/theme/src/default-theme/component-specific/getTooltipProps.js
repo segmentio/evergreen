@@ -1,7 +1,9 @@
 import tinycolor from 'tinycolor2'
 import palette from '../foundational-styles/palette'
 
-const getTooltipProps = appearance => {
+const getTooltipProps = (appearance, theme) => {
+  const neutralBase = theme?.palette?.neutral?.base || palette.neutral.base
+
   switch (appearance) {
     case 'card':
       return {
@@ -12,7 +14,7 @@ const getTooltipProps = appearance => {
     default:
       return {
         color: 'white',
-        backgroundColor: tinycolor(palette.neutral.base)
+        backgroundColor: tinycolor(neutralBase)
           .setAlpha(0.95)
           .toString()
       }

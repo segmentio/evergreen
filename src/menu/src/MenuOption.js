@@ -72,7 +72,11 @@ class MenuOption extends React.PureComponent {
       isSelected
     } = this.props
 
-    const themedClassName = theme.getMenuItemClassName(appearance, 'none')
+    const themedClassName = theme.getMenuItemClassName(
+      appearance,
+      'none',
+      theme
+    )
 
     const textProps = isSelected
       ? {

@@ -39,7 +39,7 @@ class IconButton extends PureComponent {
      *   This type is supported to simplify usage of this component in other Blueprint components.
      *   As a consumer, you should never use `<Icon icon={<element />}` directly; simply render `<element />` instead.
      */
-    icon: PropTypes.string,
+    icon: PropTypes.node,
 
     /**
      * Specifies an explicit icon size instead of the default value
@@ -97,7 +97,7 @@ class IconButton extends PureComponent {
       intent,
       ...props
     } = this.props
-    const size = iconSize || theme.getIconSizeForIconButton(height)
+    const size = iconSize || theme.getIconSizeForIconButton(height, theme)
 
     return (
       <Button

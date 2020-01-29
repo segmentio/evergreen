@@ -35,7 +35,7 @@ storiesOf('text-input', module)
         <Box key={appearance} padding={40} float="left">
           <Heading marginBottom={24}>Appearance: {appearance}</Heading>
           <Box marginBottom={24} width={360}>
-            <Label htmlFor={32} size={400} display="block">
+            <Label htmlFor={`32-${appearance}`} size={400} display="block">
               Height 32 (default)
             </Label>
             <Description marginBottom={8}>
@@ -44,56 +44,104 @@ storiesOf('text-input', module)
             <TextInput
               appearance={appearance}
               name={32}
-              id={32}
+              id={`32-${appearance}`}
               placeholder="With placeholder"
             />
           </Box>
           <Box marginBottom={24} width={360}>
-            <Label htmlFor="disabled" size={400} display="block">
+            <Label
+              htmlFor={`disabled-${appearance}`}
+              size={400}
+              display="block"
+            >
               Disabled
             </Label>
             <TextInput
               appearance={appearance}
               value="This is disabled"
               name="disabled"
-              id="disabled"
+              id={`disabled-${appearance}`}
               disabled
             />
           </Box>
           <Box marginBottom={24} width={360}>
-            <Label htmlFor="isInvalid" size={400} display="block">
+            <Label
+              htmlFor={`isInvalid-${appearance}`}
+              size={400}
+              display="block"
+            >
               Is Invalid
             </Label>
             <TextInput
               appearance={appearance}
               name="isInvalid"
-              id="isInvalid"
+              id={`isInvalid-${appearance}`}
               isInvalid
             />
           </Box>
           <Box marginBottom={24}>
-            <Label htmlFor={24} size={300} display="block" marginBottom={4}>
+            <Label
+              htmlFor={`24-${appearance}`}
+              size={300}
+              display="block"
+              marginBottom={4}
+            >
               Height 24
             </Label>
-            <TextInput appearance={appearance} height={24} name={24} id={24} />
+            <TextInput
+              appearance={appearance}
+              height={24}
+              name={24}
+              id={`24-${appearance}`}
+            />
           </Box>
           <Box marginBottom={24}>
-            <Label htmlFor={28} size={300} display="block" marginBottom={4}>
+            <Label
+              htmlFor={`28-${appearance}`}
+              size={300}
+              display="block"
+              marginBottom={4}
+            >
               Height 28
             </Label>
-            <TextInput appearance={appearance} height={28} name={28} id={28} />
+            <TextInput
+              appearance={appearance}
+              height={28}
+              name={28}
+              id={`28-${appearance}`}
+            />
           </Box>
           <Box marginBottom={24}>
-            <Label htmlFor={36} size={400} display="block" marginBottom={4}>
+            <Label
+              htmlFor={`36-${appearance}`}
+              size={400}
+              display="block"
+              marginBottom={4}
+            >
               Height 36
             </Label>
-            <TextInput appearance={appearance} height={36} name={36} id={36} />
+            <TextInput
+              appearance={appearance}
+              height={36}
+              name={36}
+              id={`36-${appearance}`}
+            />
           </Box>
           <Box marginBottom={24}>
-            <Label htmlFor={40} size={500} display="block" marginBottom={4}>
+            <Label
+              htmlFor={`40-${appearance}`}
+              size={500}
+              display="block"
+              marginBottom={4}
+            >
               Height 40
             </Label>
-            <TextInput appearance={appearance} height={40} name={40} id={40} />
+            <TextInput
+              appearance={appearance}
+              height={40}
+              name={40}
+              id={`40-${appearance}`}
+            />
           </Box>
         </Box>
       ))}

@@ -54,13 +54,16 @@ class Badge extends PureComponent {
       ...props
     } = this.props
 
-    const { color, backgroundColor } = theme.getBadgeProps({
-      color: propsColor,
-      isSolid
-    })
+    const { color, backgroundColor } = theme.getBadgeProps(
+      {
+        color: propsColor,
+        isSolid
+      },
+      theme
+    )
 
     const appearance = isInteractive ? 'interactive' : 'default'
-    const classNames = cx(className, theme.getBadgeClassName(appearance))
+    const classNames = cx(className, theme.getBadgeClassName(appearance, theme))
 
     return (
       <Strong

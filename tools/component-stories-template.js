@@ -3,13 +3,15 @@
 function storyTemplate(componentName) {
   return `
   .add('${componentName}', () => (
-    <Box padding={40}>
-      {(() => {
-        document.body.style.margin = '0'
-        document.body.style.height = '100vh'
-      })()}
-      <${componentName}>${componentName}</${componentName}>
-    </Box>
+    <ThemeProvider value={defaultTheme}>
+      <Box padding={40}>
+        {(() => {
+          document.body.style.margin = '0'
+          document.body.style.height = '100vh'
+        })()}
+        <${componentName}>${componentName}</${componentName}>
+      </Box>
+    </ThemeProvider>
   ))`
 }
 

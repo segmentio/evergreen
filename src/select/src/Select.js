@@ -108,10 +108,10 @@ class Select extends PureComponent {
       ...props
     } = this.props
 
-    const themedClassName = theme.getSelectClassName(appearance)
-    const textSize = theme.getTextSizeForControlHeight(height)
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
-    const iconSize = theme.getIconSizeForSelect(height)
+    const themedClassName = theme.getSelectClassName(appearance, theme)
+    const textSize = theme.getTextSizeForControlHeight(height, theme)
+    const borderRadius = theme.getBorderRadiusForControlHeight(height, theme)
+    const iconSize = theme.getIconSizeForSelect(height, theme)
     const iconMargin = height >= 36 ? 12 : 8
 
     return (

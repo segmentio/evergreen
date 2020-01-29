@@ -140,7 +140,7 @@ class Checkbox extends PureComponent {
       ...props
     } = this.props
 
-    const themedClassName = theme.getCheckboxClassName(appearance)
+    const themedClassName = theme.getCheckboxClassName(appearance, theme)
 
     return (
       <Box

@@ -1,22 +1,26 @@
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
-import { defaultControlStyles } from '../shared'
+import { getDefaultControlStyles } from '../shared'
 
-const defaultAppearance = Themer.createSegmentedControlRadioAppearance({
-  base: defaultControlStyles.base,
-  disabled: defaultControlStyles.disabled,
-  hover: defaultControlStyles.hover,
-  active: defaultControlStyles.active,
-  focus: defaultControlStyles.focus
-})
+const getDefaultAppearance = theme => {
+  const defaultControlStyles = getDefaultControlStyles(theme)
+  return Themer.createSegmentedControlRadioAppearance({
+    base: defaultControlStyles.base,
+    disabled: defaultControlStyles.disabled,
+    hover: defaultControlStyles.hover,
+    active: defaultControlStyles.active,
+    focus: defaultControlStyles.focus
+  })
+}
 
 /**
  * Get the appearanece of a `SegmentedControlRadio`.
  * @param {string} appearance
+ * @param {object} theme - the current theme
  * @return {string} the appearance object.
  */
-const getSegmentedControlRadioAppearance = () => {
-  return defaultAppearance
+const getSegmentedControlRadioAppearance = theme => {
+  return getDefaultAppearance(theme)
 }
 
 /**

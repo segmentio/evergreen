@@ -53,7 +53,13 @@ class InlineAlert extends PureComponent {
   getIconForIntent = intent => {
     const { theme } = this.props
 
-    return <Icon size={14} marginTop={2} {...theme.getIconForIntent(intent)} />
+    return (
+      <Icon
+        size={14}
+        marginTop={2}
+        {...theme.getIconForIntent(intent, theme)}
+      />
+    )
   }
 
   render() {

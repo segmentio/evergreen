@@ -90,7 +90,7 @@ class Tab extends PureComponent {
       )
     }
 
-    const textSize = theme.getTextSizeForControlHeight(height)
+    const textSize = theme.getTextSizeForControlHeight(height, theme)
 
     let elementBasedProps
     if (disabled) {
@@ -121,7 +121,7 @@ class Tab extends PureComponent {
 
     return (
       <Text
-        className={theme.getTabClassName(appearance)}
+        className={theme.getTabClassName(appearance, theme)}
         is={is}
         size={textSize}
         height={height}

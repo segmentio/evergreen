@@ -105,7 +105,7 @@ class TextDropdownButton extends PureComponent {
       ...props
     } = this.props
 
-    const themedClassName = theme.getTextDropdownButtonClassName()
+    const themedClassName = theme.getTextDropdownButtonClassName(theme)
 
     return (
       <Text

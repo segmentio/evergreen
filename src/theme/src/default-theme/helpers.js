@@ -1,6 +1,7 @@
 import tinycolor from 'tinycolor2'
 import { Intent } from '../../../constants'
 import colors from './foundational-styles/colors'
+import buttonColors from './component-specific/buttonColors'
 
 /**
  * @param {String} top - color.
@@ -13,18 +14,20 @@ const linearGradient = (top, bottom) => {
 
 /**
  * @param {Intent} intent
+ * @param {String} defaultColor
+ * @param {Object} theme
  * @return {String} color
  */
-const getTextColorForIntent = (intent, defaultColor) => {
+const getTextColorForIntent = (intent, defaultColor, theme) => {
   switch (intent) {
     case Intent.SUCCESS:
-      return colors.text.success
+      return theme?.colors?.text?.success || colors.text.success
     case Intent.DANGER:
-      return colors.text.danger
+      return theme?.colors?.text?.danger || colors.text.danger
     case Intent.WARNING:
-      return colors.text.warning
+      return theme?.colors?.text?.warning || colors.text.warning
     default:
-      return defaultColor || colors.text.default
+      return defaultColor || theme?.colors?.text?.default || colors.text.default
   }
 }
 
@@ -64,11 +67,15 @@ const getLinearGradientWithStates = (
  * @param {Intent} intent - intent of the gradient.
  * @return {Object} { base, hover, active }
  */
-const getPrimaryButtonStylesForIntent = intent => {
+const getPrimaryButtonStylesForIntent = (intent, theme) => {
   switch (intent) {
     case Intent.SUCCESS: {
-      const startColor = '#23C277'
-      const endColor = '#399D6C'
+      const startColor =
+        theme?.buttonColors?.primary?.success?.gradientStart ||
+        buttonColors.primary.success.gradientStart
+      const endColor =
+        theme?.buttonColors?.primary?.success?.gradientEnd ||
+        buttonColors.primary.success.gradientEnd
       return {
         linearGradient: getLinearGradientWithStates(startColor, endColor),
         focusColor: tinycolor(startColor)
@@ -78,8 +85,12 @@ const getPrimaryButtonStylesForIntent = intent => {
     }
 
     case Intent.WARNING: {
-      const startColor = '#EE9913'
-      const endColor = '#D9822B'
+      const startColor =
+        theme?.buttonColors?.primary?.warning?.gradientStart ||
+        buttonColors.primary.warning.gradientStart
+      const endColor =
+        theme?.buttonColors?.primary?.warning?.gradientEnd ||
+        buttonColors.primary.warning.gradientEnd
       return {
         linearGradient: getLinearGradientWithStates(startColor, endColor),
         focusColor: tinycolor(startColor)
@@ -89,8 +100,12 @@ const getPrimaryButtonStylesForIntent = intent => {
     }
 
     case Intent.DANGER: {
-      const startColor = '#EC4C47'
-      const endColor = '#D64540'
+      const startColor =
+        theme?.buttonColors?.primary?.danger?.gradientStart ||
+        buttonColors.primary.danger.gradientStart
+      const endColor =
+        theme?.buttonColors?.primary?.danger?.gradientEnd ||
+        buttonColors.primary.danger.gradientEnd
       return {
         linearGradient: getLinearGradientWithStates(startColor, endColor),
         focusColor: tinycolor(startColor)
@@ -100,8 +115,12 @@ const getPrimaryButtonStylesForIntent = intent => {
     }
 
     default: {
-      const startColor = '#0788DE'
-      const endColor = '#116AB8'
+      const startColor =
+        theme?.buttonColors?.primary?.default?.gradientStart ||
+        buttonColors.primary.default.gradientStart
+      const endColor =
+        theme?.buttonColors?.primary?.default?.gradientEnd ||
+        buttonColors.primary.default.gradientEnd
       return {
         linearGradient: getLinearGradientWithStates(startColor, endColor),
         focusColor: tinycolor(startColor)

@@ -35,7 +35,7 @@ class Code extends PureComponent {
     const {
       className: themedClassName = '',
       ...themeProps
-    } = theme.getCodeProps(appearance)
+    } = theme.getCodeProps(appearance, theme)
 
     return (
       <Text

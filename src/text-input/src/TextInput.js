@@ -83,9 +83,9 @@ class TextInput extends PureComponent {
       spellCheck,
       ...props
     } = this.props
-    const themedClassName = theme.getTextInputClassName(appearance)
-    const textSize = theme.getTextSizeForControlHeight(height)
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
+    const themedClassName = theme.getTextInputClassName(appearance, theme)
+    const textSize = theme.getTextSizeForControlHeight(height, theme)
+    const borderRadius = theme.getBorderRadiusForControlHeight(height, theme)
 
     return (
       <Text

@@ -136,7 +136,7 @@ class TableRow extends PureComponent {
       isSelected,
       ...props
     } = this.props
-    const themedClassName = theme.getRowClassName(appearance, intent)
+    const themedClassName = theme.getRowClassName(appearance, intent, theme)
 
     return (
       <TableRowProvider height={height}>

@@ -162,7 +162,7 @@ class TableCell extends PureComponent {
       ...props
     } = this.props
 
-    const themedClassName = theme.getTableCellClassName(appearance)
+    const themedClassName = theme.getTableCellClassName(appearance, theme)
 
     return (
       <TableRowConsumer>

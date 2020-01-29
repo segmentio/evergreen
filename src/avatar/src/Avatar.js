@@ -108,10 +108,10 @@ class Avatar extends PureComponent {
 
     if (color === 'automatic') {
       const hashValue = globalHash(propsHashValue || name)
-      return theme.getAvatarProps({ isSolid, color, hashValue })
+      return theme.getAvatarProps({ isSolid, color, hashValue }, theme)
     }
 
-    return theme.getAvatarProps({ isSolid, color })
+    return theme.getAvatarProps({ isSolid, color }, theme)
   }
 
   render() {
@@ -134,7 +134,8 @@ class Avatar extends PureComponent {
     const imageUnavailable = !src || imageHasFailedLoading
     const initialsFontSize = `${theme.getAvatarInitialsFontSize(
       size,
-      sizeLimitOneCharacter
+      sizeLimitOneCharacter,
+      theme
     )}px`
 
     let initials = getInitials(name)

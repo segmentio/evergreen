@@ -40,7 +40,7 @@ class Heading extends PureComponent {
     const {
       marginTop: defaultMarginTop,
       ...headingStyle
-    } = theme.getHeadingStyle(size)
+    } = theme.getHeadingStyle(size, theme)
 
     let finalMarginTop = marginTop
     if (marginTop === 'default') {

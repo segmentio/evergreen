@@ -1,26 +1,33 @@
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
-import scales from '../foundational-styles/scales'
+import textDropdownColors from './textDropdownColors'
 
-const defaultAppearance = Themer.createTextDropdownButtonAppearance({
-  base: {
-    borderRadius: 3
-  },
-  hover: {},
-  focus: {
-    boxShadow: `0 0 0 3px ${scales.blue.B5A}`
-  },
-  active: {},
-  disabled: {
-    opacity: 0.5
-  }
-})
+const getDefaultAppearance = theme => {
+  const focusShadow =
+    theme?.textDropdownColors?.default?.focus?.shadowColor ||
+    textDropdownColors.default.focus.shadowColor
+
+  return Themer.createTextDropdownButtonAppearance({
+    base: {
+      borderRadius: 3
+    },
+    hover: {},
+    focus: {
+      boxShadow: `0 0 0 3px ${focusShadow}`
+    },
+    active: {},
+    disabled: {
+      opacity: 0.5
+    }
+  })
+}
 
 /**
  * Get the appearance of a `TextDropdownButton`.
+ * @param {object} theme the current theme object
  */
-const getTextDropdownButtonAppearance = () => {
-  return defaultAppearance
+const getTextDropdownButtonAppearance = theme => {
+  return getDefaultAppearance(theme)
 }
 
 /**
