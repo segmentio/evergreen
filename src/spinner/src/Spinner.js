@@ -1,5 +1,5 @@
+import React, { useState, useEffect, forwardRef, memo } from 'react'
 import { css } from 'glamor'
-import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useTheme } from '../../theme'
@@ -38,17 +38,20 @@ const innerClass = color =>
     fill: 'transparent'
   }).toString()
 
-function Spinner({ delay, size, ...props }) {
+function Spinner({
+  delay = 0,
+  size = 40,
+  ...props
+}, ref) {
   const theme = useTheme()
   const [isVisible, setIsVisible] = useState(delay === 0)
-  const [delayTimer, setDelayTimer] = useState(null)
 
   useEffect(() => {
+    let delayTimer = null;
     if (delay > 0) {
-      const newDelayTimer = setTimeout(() => {
+      delayTimer = setTimeout(() => {
         setIsVisible(true)
       }, delay)
-      setDelayTimer(newDelayTimer)
     }
 
     return function() {
@@ -61,7 +64,7 @@ function Spinner({ delay, size, ...props }) {
   }
 
   return (
-    <Box width={size} height={size} lineHeight={0} {...props}>
+    <Box width={size} height={size} lineHeight={0} {...props} innerRef={ref}>
       <Box
         is="svg"
         className={outerClass}
@@ -98,9 +101,4 @@ Spinner.propTypes = {
   size: PropTypes.number.isRequired
 }
 
-Spinner.defaultProps = {
-  size: 40,
-  delay: 0
-}
-
-export default Spinner
+export default memo(forwardRef(Spinner))
