@@ -26,6 +26,7 @@ function getColorProps({ isSolid, theme, color, name, propsHashValue }) {
     const hashValue = globalHash(propsHashValue || name)
     return theme.getAvatarProps({ isSolid, color, hashValue })
   }
+
   return theme.getAvatarProps({ isSolid, color })
 }
 
