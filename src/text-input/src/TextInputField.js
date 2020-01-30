@@ -27,7 +27,7 @@ export default class TextInputField extends PureComponent {
     /**
      * Whether or not to show an asterix after the label.
      */
-    isRequired: PropTypes.bool,
+    required: PropTypes.bool,
 
     /**
      * An optional description of the field under the label, above the input element.
