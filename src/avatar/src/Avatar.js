@@ -1,5 +1,5 @@
+import React, { useState, memo, forwardRef } from 'react'
 import { css } from 'glamor'
-import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Image } from '../../image'
@@ -26,22 +26,21 @@ function getColorProps({ isSolid, theme, color, name, propsHashValue }) {
     const hashValue = globalHash(propsHashValue || name)
     return theme.getAvatarProps({ isSolid, color, hashValue })
   }
-
   return theme.getAvatarProps({ isSolid, color })
 }
 
 function Avatar({
   src,
-  size,
   name,
-  isSolid,
+  size = 24,
+  isSolid = false,
+  color = 'automatic',
+  forceShowInitials = false,
+  sizeLimitOneCharacter = 20,
+  getInitials = globalGetInitials,
   hashValue: propsHashValue,
-  getInitials,
-  color,
-  forceShowInitials,
-  sizeLimitOneCharacter,
   ...props
-}) {
+}, ref) {
   const theme = useTheme()
   const [imageHasFailedLoading, setImageHasFailedLoading] = useState(false)
   const imageUnavailable = !src || imageHasFailedLoading
@@ -74,6 +73,7 @@ function Avatar({
       justifyContent="center"
       backgroundColor={colorProps.backgroundColor}
       title={name}
+      innerRef={ref}
       {...props}
     >
       {(imageUnavailable || forceShowInitials) && (
@@ -153,13 +153,4 @@ Avatar.propTypes = {
   sizeLimitOneCharacter: PropTypes.number
 }
 
-Avatar.defaultProps = {
-  color: 'automatic',
-  size: 24,
-  isSolid: false,
-  getInitials: globalGetInitials,
-  forceShowInitials: false,
-  sizeLimitOneCharacter: 20
-}
-
-export default Avatar
+export default memo(forwardRef(Avatar))
