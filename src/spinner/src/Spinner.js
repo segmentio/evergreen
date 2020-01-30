@@ -38,16 +38,12 @@ const innerClass = color =>
     fill: 'transparent'
   }).toString()
 
-function Spinner({
-  delay = 0,
-  size = 40,
-  ...props
-}, ref) {
+function Spinner({ delay = 0, size = 40, ...props }, ref) {
   const theme = useTheme()
   const [isVisible, setIsVisible] = useState(delay === 0)
 
   useEffect(() => {
-    let delayTimer = null;
+    let delayTimer = null
     if (delay > 0) {
       delayTimer = setTimeout(() => {
         setIsVisible(true)
