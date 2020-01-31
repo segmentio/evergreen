@@ -1,84 +1,34 @@
+import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
-import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 
 const StringAndBoolPropType = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.bool
 ])
 
-class Pane extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Box component as the base.
-     */
-    ...Box.propTypes,
+function Pane({
+  background,
 
-    /**
-     * Background property.
-     * `tint1`, `tint2` etc. from `theme.colors.background` are available.
-     */
-    background: PropTypes.string,
+  elevation,
+  hoverElevation,
+  activeElevation,
 
-    /**
-     * Elevation of the Pane.
-     * Values: 0, 1, 2, 3, 4.
-     */
-    elevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
+  border,
+  borderTop,
+  borderRight,
+  borderBottom,
+  borderLeft,
 
-    /**
-     * Elevation of the Pane on hover. Might get deprecated.
-     * Values: 0, 1, 2, 3, 4.
-     */
-    hoverElevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
+  css = {},
+  ...props
+}, ref) {
+  const theme = useTheme()
 
-    /**
-     * Elevation of the Pane on click. Might get deprecated.
-     * Values: 0, 1, 2, 3, 4.
-     */
-    activeElevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, muted, default.
-     */
-    border: StringAndBoolPropType,
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderTop: StringAndBoolPropType,
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderRight: StringAndBoolPropType,
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderBottom: StringAndBoolPropType,
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderLeft: StringAndBoolPropType,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
-  getHoverElevationStyle = (hoverElevation, css) => {
-    const { theme } = this.props
+  function getHoverElevationStyle(hoverElevation, css) {
     if (!Number.isInteger(hoverElevation)) return {}
 
     return {
@@ -93,8 +43,7 @@ class Pane extends PureComponent {
     }
   }
 
-  getActiveElevationStyle = (activeElevation, css) => {
-    const { theme } = this.props
+  function getActiveElevationStyle(activeElevation, css) {
     if (!Number.isInteger(activeElevation)) return {}
 
     return {
@@ -106,8 +55,7 @@ class Pane extends PureComponent {
     }
   }
 
-  getBorderSideProperty = ({ borderSideProperty, border }) => {
-    const { theme } = this.props
+  function getBorderSideProperty({ borderSideProperty, border }) {
     if (
       Object.prototype.hasOwnProperty.call(
         theme.colors.border,
@@ -136,64 +84,105 @@ class Pane extends PureComponent {
     return borderSideProperty
   }
 
-  render() {
-    const {
-      theme,
+  const elevationStyle = theme.getElevation(elevation)
+  const hoverElevationStyle = getHoverElevationStyle(hoverElevation, css)
+  const activeElevationStyle = getActiveElevationStyle(
+    activeElevation,
+    css
+  )
 
-      background,
+  const [_borderTop, _borderRight, _borderBottom, _borderLeft] = [
+    borderTop,
+    borderRight,
+    borderBottom,
+    borderLeft
+  ].map(borderSideProperty =>
+    getBorderSideProperty({ borderSideProperty, border })
+  )
 
-      elevation,
-      hoverElevation,
-      activeElevation,
+  const className = cx(
+    props.className,
+    glamorCss({
+      ...css,
+      ...hoverElevationStyle,
+      ...activeElevationStyle
+    }).toString()
+  )
 
-      border,
-      borderTop,
-      borderRight,
-      borderBottom,
-      borderLeft,
-
-      css = {},
-      ...props
-    } = this.props
-
-    const elevationStyle = theme.getElevation(elevation)
-    const hoverElevationStyle = this.getHoverElevationStyle(hoverElevation, css)
-    const activeElevationStyle = this.getActiveElevationStyle(
-      activeElevation,
-      css
-    )
-
-    const [_borderTop, _borderRight, _borderBottom, _borderLeft] = [
-      borderTop,
-      borderRight,
-      borderBottom,
-      borderLeft
-    ].map(borderSideProperty =>
-      this.getBorderSideProperty({ borderSideProperty, border })
-    )
-
-    const className = cx(
-      props.className,
-      glamorCss({
-        ...css,
-        ...hoverElevationStyle,
-        ...activeElevationStyle
-      }).toString()
-    )
-
-    return (
-      <Box
-        borderTop={_borderTop}
-        borderRight={_borderRight}
-        borderBottom={_borderBottom}
-        borderLeft={_borderLeft}
-        boxShadow={elevationStyle}
-        background={theme.getBackground(background)}
-        {...props}
-        className={className}
-      />
-    )
-  }
+  return (
+    <Box
+      innerRef={ref}
+      borderTop={_borderTop}
+      borderRight={_borderRight}
+      borderBottom={_borderBottom}
+      borderLeft={_borderLeft}
+      boxShadow={elevationStyle}
+      background={theme.getBackground(background)}
+      {...props}
+      className={className}
+    />
+  )
 }
 
-export default withTheme(Pane)
+Pane.propTypes = {
+  /**
+   * Composes the Box component as the base.
+   */
+  ...Box.propTypes,
+
+  /**
+   * Background property.
+   * `tint1`, `tint2` etc. from `theme.colors.background` are available.
+   */
+  background: PropTypes.string,
+
+  /**
+   * Elevation of the Pane.
+   * Values: 0, 1, 2, 3, 4.
+   */
+  elevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
+
+  /**
+   * Elevation of the Pane on hover. Might get deprecated.
+   * Values: 0, 1, 2, 3, 4.
+   */
+  hoverElevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
+
+  /**
+   * Elevation of the Pane on click. Might get deprecated.
+   * Values: 0, 1, 2, 3, 4.
+   */
+  activeElevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
+
+  /**
+   * Can be a explicit border value or a boolean.
+   * Values: true, muted, default.
+   */
+  border: StringAndBoolPropType,
+
+  /**
+   * Can be a explicit border value or a boolean.
+   * Values: true, extraMuted, muted, default.
+   */
+  borderTop: StringAndBoolPropType,
+
+  /**
+   * Can be a explicit border value or a boolean.
+   * Values: true, extraMuted, muted, default.
+   */
+  borderRight: StringAndBoolPropType,
+
+  /**
+   * Can be a explicit border value or a boolean.
+   * Values: true, extraMuted, muted, default.
+   */
+  borderBottom: StringAndBoolPropType,
+
+  /**
+   * Can be a explicit border value or a boolean.
+   * Values: true, extraMuted, muted, default.
+   */
+  borderLeft: StringAndBoolPropType,
+}
+
+export default memo(forwardRef(Pane))
