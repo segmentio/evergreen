@@ -61,7 +61,4 @@ InlineAlert.propTypes = {
   theme: PropTypes.object.isRequired
 }
 
-const WrappedInlineAlert = memo(forwardRef(InlineAlert))
-WrappedInlineAlert.displayName = 'InlineAlert'
-
-export default WrappedInlineAlert
+export default memo(forwardRef(InlineAlert))

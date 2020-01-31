@@ -151,7 +151,4 @@ Alert.propTypes = {
   theme: PropTypes.object.isRequired
 }
 
-const WrappedAlert = memo(forwardRef(Alert))
-WrappedAlert.displayName = 'Alert'
-
-export default WrappedAlert
+export default memo(forwardRef(Alert))
