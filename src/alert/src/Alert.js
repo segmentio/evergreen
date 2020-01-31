@@ -143,12 +143,7 @@ Alert.propTypes = {
   /**
    * The appearance of the alert.
    */
-  appearance: PropTypes.oneOf(['default', 'card']),
-
-  /**
-   * Theme provided by ThemeProvider.
-   */
-  theme: PropTypes.object.isRequired
+  appearance: PropTypes.oneOf(['default', 'card'])
 }
 
 export default memo(forwardRef(Alert))
