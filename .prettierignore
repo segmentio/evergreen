@@ -1,1 +1,12 @@
 package.json
+*.log
+node_modules
+.DS_Store
+/commonjs/
+/esm/
+/.out/
+/docs/public/
+.cache
+/npm-shrinkwrap.json
+/package-lock.json
+/.idea/
