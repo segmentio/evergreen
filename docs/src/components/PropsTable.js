@@ -110,7 +110,7 @@ export default class PropsTable extends PureComponent {
                         <strong>This component composes </strong>
                         {componentDocs.composes.map(filePath => (
                           <code key={filePath}>
-                            {filePath.substring(filePath.indexOf('/') + 1)}
+                            {filePath.slice(filePath.indexOf('/') + 1)}
                           </code>
                         ))}
                       </p>

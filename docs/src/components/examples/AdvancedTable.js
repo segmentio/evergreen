@@ -55,8 +55,8 @@ export default class AdvancedTable extends React.Component {
       const isMoney = aValue.indexOf('$') === 0
 
       if (isMoney) {
-        aValue = Number(aValue.substr(1))
-        bValue = Number(bValue.substr(1))
+        aValue = Number(aValue.slice(1))
+        bValue = Number(bValue.slice(1))
       }
 
       // Support string comparison
