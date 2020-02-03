@@ -13,7 +13,11 @@ class MenuItem extends React.PureComponent {
      * Element type to use for the menu item.
      * For example: `<MenuItem is={ReactRouterLink}>...</MenuItem>`
      */
-    is: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
+    is: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+      PropTypes.elementType
+    ]).isRequired,
 
     /**
      * Function that is called on click and enter/space keypress.
