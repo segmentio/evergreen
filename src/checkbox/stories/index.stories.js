@@ -3,6 +3,12 @@ import React from 'react'
 import Box from 'ui-box'
 import { Checkbox } from '..'
 
+const innerRef = el => {
+  if (el) {
+    el.disabled = true
+  }
+}
+
 storiesOf('checkbox', module).add('Checkbox', () => (
   <Box padding={40}>
     <Checkbox label="Checkbox default" />
@@ -11,5 +17,11 @@ storiesOf('checkbox', module).add('Checkbox', () => (
     <Checkbox disabled checked label="Checkbox checked disabled" />
     <Checkbox indeterminate label="Checkbox indeterminate" />
     <Checkbox checked indeterminate label="Checkbox checked indeterminate" />
+    <Checkbox
+      checked
+      indeterminate
+      innerRef={innerRef}
+      label="Checkbox checked indeterminate disabled with ref"
+    />
   </Box>
 ))
