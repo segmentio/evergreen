@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Box from 'ui-box'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
@@ -13,11 +14,7 @@ class MenuItem extends React.PureComponent {
      * Element type to use for the menu item.
      * For example: `<MenuItem is={ReactRouterLink}>...</MenuItem>`
      */
-    is: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-      PropTypes.elementType
-    ]).isRequired,
+    is: Box.propTypes.is,
 
     /**
      * Function that is called on click and enter/space keypress.
