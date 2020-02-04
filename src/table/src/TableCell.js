@@ -123,7 +123,7 @@ class TableCell extends PureComponent {
         try {
           // Support arrow key overrides.
           const override =
-            arrowKeysOverrides[key.substr('Arrow'.length).toLowerCase()]
+            arrowKeysOverrides[key.slice('Arrow'.length).toLowerCase()]
           if (override === false) return
           if (override) return executeArrowKeyOverride(override)
 
