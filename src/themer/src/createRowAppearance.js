@@ -10,7 +10,8 @@ const baseStyle = {
   '&[data-isselectable="true"]': {
     cursor: 'pointer'
   },
-  outline: 'none'
+  outline: 'none',
+  textDecoration: 'none'
 }
 
 /**
