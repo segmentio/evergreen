@@ -61,7 +61,12 @@ export default class SegmentedControl extends PureComponent {
     /**
      * The height of the Segmented Control.
      */
-    height: PropTypes.number
+    height: PropTypes.number,
+
+    /**
+     * When true, the Segmented Control is disabled.
+     */
+    disabled: PropTypes.bool
   }
 
   static defaultProps = {
@@ -105,6 +110,7 @@ export default class SegmentedControl extends PureComponent {
       options,
       onChange,
       defaultValue,
+      disabled,
       ...props
     } = this.props
 
@@ -129,6 +135,7 @@ export default class SegmentedControl extends PureComponent {
             appearance="default"
             isFirstItem={index === 0}
             isLastItem={index === options.length - 1}
+            disabled={disabled}
           />
         ))}
       </Box>
