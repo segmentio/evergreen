@@ -129,9 +129,10 @@ export default class OptionsList extends PureComponent {
 
     // Preserve backwards compatibility with allowing custom filters, which accept array of strings
     if (typeof optionsFilter === 'function') {
-      return optionsFilter(options.map(item => item.label), searchValue).map(
-        name => options.find(item => item.label === name)
-      )
+      return optionsFilter(
+        options.map(item => item.label),
+        searchValue
+      ).map(name => options.find(item => item.label === name))
     }
 
     return fuzzyFilter(options, searchValue, { key: 'label' })
@@ -164,6 +165,10 @@ export default class OptionsList extends PureComponent {
     if (e.keyCode === 13) {
       this.handleEnter()
     }
+
+    if (e.keyCode === 27) {
+      this.props.close()
+    }
   }
 
   handleArrowUp = () => {
@@ -174,6 +179,10 @@ export default class OptionsList extends PureComponent {
 
     if (nextIndex < 0) {
       nextIndex = options.length - 1
+    }
+
+    if (this.isSelected(options[nextIndex])) {
+      return
     }
 
     onSelect(options[nextIndex])
@@ -189,6 +198,10 @@ export default class OptionsList extends PureComponent {
       nextIndex = 0
     }
 
+    if (this.isSelected(options[nextIndex])) {
+      return
+    }
+
     onSelect(options[nextIndex])
   }
 
@@ -196,7 +209,9 @@ export default class OptionsList extends PureComponent {
     const isSelected = this.getCurrentIndex() !== -1
 
     if (isSelected) {
-      this.props.close()
+      if (!this.props.isMultiSelect && this.props.closeOnSelect) {
+        this.props.close()
+      }
     }
   }
 
@@ -208,7 +223,12 @@ export default class OptionsList extends PureComponent {
   }
 
   handleSelect = item => {
-    this.props.onSelect(item)
+    if (this.isSelected(item)) {
+      this.props.onDeselect(item)
+    } else {
+      this.props.onSelect(item)
+    }
+
     if (!this.props.isMultiSelect && this.props.closeOnSelect) {
       this.props.close()
     }
@@ -290,7 +310,8 @@ export default class OptionsList extends PureComponent {
                 onDeselect: () => this.handleDeselect(item),
                 isSelectable: !isSelected || isMultiSelect,
                 isSelected,
-                disabled: item.disabled
+                disabled: item.disabled,
+                tabIndex: 0
               })
             }}
           />
