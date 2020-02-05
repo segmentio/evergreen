@@ -7,7 +7,9 @@ import palette from '../foundational-styles/palette'
 const Appearances = {}
 
 Appearances.default = Themer.createRowAppearance({
-  base: {},
+  base: {
+    color: palette.neutral.base
+  },
 
   hover: {
     backgroundColor: scales.neutral.N1A
