@@ -10,22 +10,22 @@ import { withTheme } from '../../theme'
 class Button extends PureComponent {
   static propTypes = {
     /**
-     * Composes the dimensions spec from the Box primitivie.
+     * Composes the dimensions spec from the Box primitive.
      */
     ...dimensions.propTypes,
 
     /**
-     * Composes the spacing spec from the Box primitivie.
+     * Composes the spacing spec from the Box primitive.
      */
     ...spacing.propTypes,
 
     /**
-     * Composes the position spec from the Box primitivie.
+     * Composes the position spec from the Box primitive.
      */
     ...position.propTypes,
 
     /**
-     * Composes the layout spec from the Box primitivie.
+     * Composes the layout spec from the Box primitive.
      */
     ...layout.propTypes,
 
