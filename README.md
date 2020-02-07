@@ -89,7 +89,7 @@ If you don't know how to do so, follow [this](https://help.github.com/en/github/
 
 ### 📖 Step 3. Get storybook up and running
 
-First, `cd` into your local cloned repository and install your `npm` modules with:
+First, `cd` into your local cloned repository and install your `node_modules` with:
 
 ```
 $ yarn
@@ -106,6 +106,10 @@ $ yarn dev
 Once you're done with making your changes, push everything to your local repository's branch.
 
 From here, you can open up a pull request from your forked repository's branch into `segmentio/evergreen`'s `master` branch.
+
+In your PR description, explain the changes you made, why you made them, how to test them, and anything that might be a point of interest.
+
+Once you create your PR, it will be reviewed and hopefully merged quickly!
 
 ### 📖 Step 5. Run evergreen docs locally
 
