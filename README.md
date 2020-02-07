@@ -81,11 +81,42 @@ If you are using Atom, make sure to install the [`prettier-atom`](https://atom.i
 All the configuration for prettier and xo is in the `package.json`.
 You shouldn't have to configure things separately, please file a issue if there's a problem.
 
-### 📖 Step 2. Get storybook up and running
+### 🍴 Step 2. Fork this repository
+
+In order to contribute to Evergreen, you need to fork this repo, and develop on your own local clone.
+
+If you don't know how to do so, follow [this](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) guide
+
+### 📖 Step 3. Get storybook up and running
+
+First, `cd` into your local cloned repository and install your `npm` modules with:
+
+```
+$ yarn
+```
 
 To actually start seeing the components you have to run React Storybook:
 
 ```
+$ yarn dev
+```
+
+### 🏆 Step 4. Making your pull request
+
+Once you're done with making your changes, push everything to your local repository's branch.
+
+From here, you can open up a pull request from your forked repository's branch into `segmentio/evergreen`'s `master` branch.
+
+### 📖 Step 5. Run evergreen docs locally
+
+Evergreen docs depends on main lib built.
+
+Run the following commands to run it in your local:
+
+```
+$ yarn build
+$ cd docs
+$ yarn install
 $ yarn dev
 ```
 
@@ -142,19 +173,6 @@ The following file tree will be generated:
 ├── /stories/
 │   └── index.stories.js
 └── index.js
-```
-
-### 📖 Step 3. Run evergreen docs locally
-
-Evergreen docs depends on main lib built.
-
-Run the following commands to run it in your local:
-
-```
-$ yarn build
-$ cd docs
-$ yarn install
-$ yarn dev
 ```
 
 ## 🎉 Contributors
