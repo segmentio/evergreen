@@ -111,7 +111,7 @@ In your PR description, explain the changes you made, why you made them, how to 
 
 Once you create your PR, it will be reviewed and hopefully merged quickly!
 
-### 📖 Step 5. Run evergreen docs locally
+### 📓 Step 5. Run evergreen docs locally
 
 Evergreen docs depends on main lib built.
 
