@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import Icon from '../Icon'
 
 const svgPaths16 = [
@@ -11,10 +11,6 @@ const svgPaths20 = [
   'M16.6.2c-.4-.3-1.1-.3-1.4.2-.3.4-.3 1.1.2 1.4C17.1 3.1 18 4.9 18 7c0 2-1 4.1-2.6 5.2-.5.3-.6.9-.2 1.4.2.3.5.4.8.4.2 0 .4-.1.6-.2C18.7 12.3 20 9.7 20 7c.09-2.8-1.2-5.1-3.4-6.8z'
 ]
 
-export default class CellTowerIcon extends PureComponent {
-  render() {
-    return (
-      <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} {...this.props} />
-    )
-  }
+export default function CellTowerIcon({ ...props }) {
+  return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} {...props} />
 }

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import Icon from '../Icon'
 
 const svgPaths16 = [
@@ -8,10 +8,6 @@ const svgPaths20 = [
   'M5 7c.28 0 .53-.11.71-.29l5-5A1.003 1.003 0 0 0 9.29.29l-5 5A1.003 1.003 0 0 0 5 7zm6 6a1.003 1.003 0 0 0 1.71.71l5-5a1.003 1.003 0 0 0-1.42-1.42l-5 5c-.18.18-.29.43-.29.71zm8 5h-1c0-.55-.45-1-1-1h-7c-.55 0-1 .45-1 1H8c-.55 0-1 .45-1 1s.45 1 1 1h11c.55 0 1-.45 1-1s-.45-1-1-1zm-9-6l6-6-1.29-1.29a1.003 1.003 0 0 0-1.42-1.42L12 2 6 8l1.29 1.29-7 7a1.003 1.003 0 0 0 1.42 1.42l7-7L10 12z'
 ]
 
-export default class TakeActionIcon extends PureComponent {
-  render() {
-    return (
-      <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} {...this.props} />
-    )
-  }
+export default function TakeActionIcon({ ...props }) {
+  return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} {...props} />
 }

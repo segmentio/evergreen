@@ -22,7 +22,7 @@ async function main() {
     iconNames.push(iconName)
 
     let iconFile = `
-import React, { PureComponent } from 'react'
+import React from 'react'
 import Icon from '../Icon'
 
 const svgPaths16 = [
@@ -32,12 +32,8 @@ const svgPaths20 = [
   '${svgPaths20.join(`',\n  '`)}'
 ]
 
-export default class ${iconName} extends PureComponent {
-  render() {
-    return (
-      <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} {...this.props} />
-    )
-  }
+export default function ${iconName}({ ...props }) {
+  return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} {...props} />
 }
 `
     const iconPath = path.join(iconsPath, `${iconName}.js`)

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import Icon from '../Icon'
 
 const svgPaths16 = [
@@ -8,10 +8,6 @@ const svgPaths20 = [
   'M13.167.512a2.98 2.98 0 0 0-.131.524c-.74.115-1.39.5-1.848 1.052a8 8 0 1 0 6.724 6.724 2.997 2.997 0 0 0 1.052-1.848 2.98 2.98 0 0 0 .524-.13A9.99 9.99 0 0 1 20 10c0 5.523-4.477 10-10 10S0 15.523 0 10 4.477 0 10 0a9.99 9.99 0 0 1 3.167.512zM11 16H9v-2h2v2zm0-3H9V4h2v9zm6-10h1.5a1 1 0 0 1 0 2H17v1.5a1 1 0 0 1-2 0V5h-1.5a1 1 0 0 1 0-2H15V1.5a1 1 0 0 1 2 0V3z'
 ]
 
-export default class IssueNewIcon extends PureComponent {
-  render() {
-    return (
-      <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} {...this.props} />
-    )
-  }
+export default function IssueNewIcon({ ...props }) {
+  return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} {...props} />
 }
