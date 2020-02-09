@@ -20,11 +20,6 @@ export default class TextInputField extends PureComponent {
     label: PropTypes.node.isRequired,
 
     /**
-     * Passed on the label as a htmlFor prop.
-     */
-    labelFor: PropTypes.string,
-
-    /**
      * Whether or not to show an asterix after the label.
      */
     required: PropTypes.bool,
