@@ -63,6 +63,8 @@ ReactDOM.render(
 
 Evergreen v4 supports theming partially. It is still complex to theme Evergreen. We have done exploratory work to make theming more powerful and accessible. The progress is available in the `v4-create-theme` branch.
 
+See these [docs](https://evergreen.segment.com/get-started/theming/) for more information regarding theming in Evergreen.
+
 ### How does Server Side Rendering (SSR) work?
 
 Evergreen offers easy Server Side Rendering (SSR) and automatic hydration.
