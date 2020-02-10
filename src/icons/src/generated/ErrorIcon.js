@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo, forwardRef } from 'react'
 import Icon from '../Icon'
 
 const svgPaths16 = [
@@ -8,6 +8,15 @@ const svgPaths20 = [
   'M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm1 16H9v-2h2v2zm0-3H9V4h2v9z'
 ]
 
-export default function ErrorIcon({ ...props }) {
-  return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} {...props} />
+function ErrorIcon({ ...props }, ref) {
+  return (
+    <Icon
+      svgPaths16={svgPaths16}
+      svgPaths20={svgPaths20}
+      ref={ref}
+      {...props}
+    />
+  )
 }
+
+export default memo(forwardRef(ErrorIcon))

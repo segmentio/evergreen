@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo, forwardRef } from 'react'
 import Icon from '../Icon'
 
 const svgPaths16 = [
@@ -8,6 +8,15 @@ const svgPaths20 = [
   'M19 0H1C.45 0 0 .45 0 1v13c0 .55.45 1 1 1h5.67l-.5 3H5c-.55 0-1 .45-1 1s.45 1 1 1h10c.55 0 1-.45 1-1s-.45-1-1-1h-1.17l-.5-3H19c.55 0 1-.45 1-1V1c0-.55-.45-1-1-1zm-1 13H2V2h16v11z'
 ]
 
-export default function DesktopIcon({ ...props }) {
-  return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} {...props} />
+function DesktopIcon({ ...props }, ref) {
+  return (
+    <Icon
+      svgPaths16={svgPaths16}
+      svgPaths20={svgPaths20}
+      ref={ref}
+      {...props}
+    />
+  )
 }
+
+export default memo(forwardRef(DesktopIcon))

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo, forwardRef } from 'react'
 import Icon from '../Icon'
 
 const svgPaths16 = [
@@ -8,6 +8,15 @@ const svgPaths20 = [
   'M19 1H1c-.6 0-1 .5-1 1v16c0 .5.4 1 1 1h18c.5 0 1-.5 1-1V2c0-.5-.5-1-1-1zm-1 16H2v-3h16v3zm0-4H2v-3h16v3zm0-4H2V6h16v3z'
 ]
 
-export default function ThListIcon({ ...props }) {
-  return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} {...props} />
+function ThListIcon({ ...props }, ref) {
+  return (
+    <Icon
+      svgPaths16={svgPaths16}
+      svgPaths20={svgPaths20}
+      ref={ref}
+      {...props}
+    />
+  )
 }
+
+export default memo(forwardRef(ThListIcon))

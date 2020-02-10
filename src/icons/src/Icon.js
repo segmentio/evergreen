@@ -1,4 +1,4 @@
-import React, { memo, forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useTheme } from '../../theme'
@@ -9,22 +9,24 @@ import { useTheme } from '../../theme'
  * Refer to the LICENSE for BlueprintJS here: https://github.com/palantir/blueprint/blob/develop/LICENSE
  */
 
-function Icon({
-  color = 'currentColor',
-  size = 16,
-  title,
-  style = {},
-  svgPaths16,
-  svgPaths20,
-  ...svgProps
-}, ref) {
+function Icon(
+  {
+    color = 'currentColor',
+    size = 16,
+    title,
+    style = {},
+    svgPaths16,
+    svgPaths20,
+    ...svgProps
+  },
+  ref
+) {
   const theme = useTheme()
   const SIZE_STANDARD = 16
   const SIZE_LARGE = 20
 
   // Choose which pixel grid is most appropriate for given icon size
-  const pixelGridSize =
-    size >= SIZE_LARGE ? SIZE_LARGE : SIZE_STANDARD
+  const pixelGridSize = size >= SIZE_LARGE ? SIZE_LARGE : SIZE_STANDARD
   const pathStrings = SIZE_STANDARD ? svgPaths16 : svgPaths20
   const paths = pathStrings.map((d, i) => (
     // eslint-disable-next-line react/no-array-index-key
@@ -89,4 +91,4 @@ Icon.propTypes = {
   svgPaths20: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
-export default memo(forwardRef(Icon))
+export default forwardRef(Icon)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo, forwardRef } from 'react'
 import Icon from '../Icon'
 
 const svgPaths16 = [
@@ -8,6 +8,15 @@ const svgPaths20 = [
   'M7 8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h2c.55 0 1-.45 1-1s-.45-1-1-1h-2V4c0-.55-.45-1-1-1s-1 .45-1 1v2H7c-.55 0-1 .45-1 1s.45 1 1 1zm12-8H1C.45 0 0 .45 0 1v18c0 .55.45 1 1 1h18c.55 0 1-.45 1-1V1c0-.55-.45-1-1-1zm-1 18H2v-5h16v5zm0-6H2V2h16v10z'
 ]
 
-export default function AddRowTopIcon({ ...props }) {
-  return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} {...props} />
+function AddRowTopIcon({ ...props }, ref) {
+  return (
+    <Icon
+      svgPaths16={svgPaths16}
+      svgPaths20={svgPaths20}
+      ref={ref}
+      {...props}
+    />
+  )
 }
+
+export default memo(forwardRef(AddRowTopIcon))

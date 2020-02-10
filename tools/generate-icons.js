@@ -22,7 +22,7 @@ async function main() {
     iconNames.push(iconName)
 
     let iconFile = `
-import React from 'react'
+import React, { memo, forwardRef } from 'react'
 import Icon from '../Icon'
 
 const svgPaths16 = [
@@ -32,9 +32,11 @@ const svgPaths20 = [
   '${svgPaths20.join(`',\n  '`)}'
 ]
 
-export default function ${iconName}({ ...props }) {
-  return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} {...props} />
+function ${iconName}({ ...props }, ref) {
+  return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} {...props} />
 }
+
+export default memo(forwardRef(${iconName}))
 `
     const iconPath = path.join(iconsPath, `${iconName}.js`)
     iconFile = prettier.format(iconFile, {
