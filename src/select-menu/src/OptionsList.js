@@ -154,20 +154,38 @@ export default class OptionsList extends PureComponent {
   }
 
   handleKeyDown = e => {
-    if (e.keyCode === 38) {
-      this.handleArrowUp()
-    }
+    if (e.key !== undefined) {
+      if (e.key === 'ArrowUp') {
+        this.handleArrowUp()
+      }
 
-    if (e.keyCode === 40) {
-      this.handleArrowDown()
-    }
+      if (e.key === 'ArrowDown') {
+        this.handleArrowDown()
+      }
 
-    if (e.keyCode === 13) {
-      this.handleEnter()
-    }
+      if (e.key === 'Enter') {
+        this.handleEnter()
+      }
 
-    if (e.keyCode === 27) {
-      this.props.close()
+      if (e.key === 'Escape') {
+        this.props.close()
+      }
+    } else if (e.keyCode !== undefined) {
+      if (e.keyCode === 38) {
+        this.handleArrowUp()
+      }
+
+      if (e.keyCode === 40) {
+        this.handleArrowDown()
+      }
+
+      if (e.keyCode === 13) {
+        this.handleEnter()
+      }
+
+      if (e.keyCode === 27) {
+        this.props.close()
+      }
     }
   }
 
@@ -198,11 +216,9 @@ export default class OptionsList extends PureComponent {
       nextIndex = 0
     }
 
-    if (this.isSelected(options[nextIndex])) {
-      return
+    if (!this.isSelected(options[nextIndex])) {
+      onSelect(options[nextIndex])
     }
-
-    onSelect(options[nextIndex])
   }
 
   handleEnter = () => {
