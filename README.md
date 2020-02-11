@@ -88,7 +88,7 @@ First, `cd` into your local cloned repository and install your `node_modules` wi
 $ yarn
 ```
 
-To actually start seeing the components you have to run React Storybook:
+To actually start seeing the components you have to run React Storybook with the command:
 
 ```
 $ yarn dev
@@ -100,7 +100,7 @@ Now go to `localhost:6006` in your browser.
 
 Now you can start developing! All of the components are under the `src` directory and associated code changes will automatically be reflected in StoryBook.
 
-We encourage you to update the documentation so Evergreen users will be aware of these new features/changes.
+If necessary, we encourage you to update the documentation so Evergreen users will be aware of your new features/changes.
 
 In order to run the documentation page locally, run commands to run it in your local:
 
