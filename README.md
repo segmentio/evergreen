@@ -94,7 +94,7 @@ To actually start seeing the components you have to run React Storybook with the
 $ yarn dev
 ```
 
-Now go to `localhost:6006` in your browser.
+Now go to `http://localhost:6006` in your browser.
 
 ### 🛠 Step 3. Make your change
 
@@ -102,7 +102,7 @@ Now you can start developing! All of the components are under the `src` director
 
 If necessary, we encourage you to update the documentation so Evergreen users will be aware of your new features/changes.
 
-In order to run the documentation page locally, run commands to run it in your local:
+In order to run the documentation page locally, run these commands in your terminal:
 
 ```
 $ yarn build
@@ -110,6 +110,8 @@ $ cd docs
 $ yarn install
 $ yarn dev
 ```
+
+Now you can visit `http://localhost:8000/` in your browser.
 
 Documentation code is under the `docs` directory. A big portion of these docs are written in MDX, if you've never used MDX before, check out these [docs](https://mdxjs.com/getting-started).
 
