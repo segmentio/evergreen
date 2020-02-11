@@ -74,20 +74,13 @@ Evergreen bundles 2 CSS-in-JS solutions, from glamor and ui-box. To make it supe
 
 ## Contributing to Evergreen
 
-### ⚙ Step 1. Configuring your editor
-
-If you are using Atom, make sure to install the [`prettier-atom`](https://atom.io/packages/prettier-atom), [`linter`](https://github.com/AtomLinter/linter) and [`linter-xo`](https://github.com/sindresorhus/atom-linter-xo) packages.
-
-All the configuration for prettier and xo is in the `package.json`.
-You shouldn't have to configure things separately, please file a issue if there's a problem.
-
-### 🍴 Step 2. Fork this repository
+### 🍴 Step 1. Fork this repository
 
 In order to contribute to Evergreen, you need to fork this repo, and develop on your own local clone.
 
-If you don't know how to do so, follow [this](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) guide
+If you don't know how to do so, follow this [guide](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)!
 
-### 📖 Step 3. Get storybook up and running
+### 📖 Step 2. Get storybook up and running
 
 First, `cd` into your local cloned repository and install your `node_modules` with:
 
@@ -101,6 +94,25 @@ To actually start seeing the components you have to run React Storybook:
 $ yarn dev
 ```
 
+Now go to `localhost:6006` in your browser.
+
+### 🛠 Step 3. Make your change
+
+Now you can start developing! All of the components are under the `src` directory and associated code changes will automatically be reflected in StoryBook.
+
+We encourage you to update the documentation so Evergreen users will be aware of these new features/changes.
+
+In order to run the documentation page locally, run commands to run it in your local:
+
+```
+$ yarn build
+$ cd docs
+$ yarn install
+$ yarn dev
+```
+
+Documentation code is under the `docs` directory. A big portion of these docs are written in MDX, if you've never used MDX before, check out these [docs](https://mdxjs.com/getting-started).
+
 ### 🏆 Step 4. Making your pull request
 
 Once you're done with making your changes, push everything to your local repository's branch.
@@ -111,18 +123,9 @@ In your PR description, explain the changes you made, why you made them, how to 
 
 Once you create your PR, it will be reviewed and hopefully merged quickly!
 
-### 📓 Step 5. Run evergreen docs locally
+### 🥂 Step 5. Pat yourself on the back
 
-Evergreen docs depends on main lib built.
-
-Run the following commands to run it in your local:
-
-```
-$ yarn build
-$ cd docs
-$ yarn install
-$ yarn dev
-```
+Congrats, you're officially an Evergreen contributor!
 
 ## 🤓 Scripts explained
 
