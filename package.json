@@ -40,7 +40,7 @@
     "postpublish": "yarn deploy-docs",
     "pretty": "prettier --write \"./**/*.{js,json,md}\"",
     "lint": "xo --fix",
-    "pretty-lint": "npm run lint && npm run pretty"
+    "pretty-lint": "yarn lint && yarn pretty"
   },
   "engines": {
     "node": ">=10"
