@@ -192,6 +192,7 @@ We will add you to the list if you make any meaningful contribution!
 - Roland Warmerdam
 - Ben McMahon
 - Matt Shwery
+- Chris Chuck
 - ... many other on the Segment team and open-source contributors
 
 This project is maintained by [Segment](https://segment.com/)
