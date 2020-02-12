@@ -49,7 +49,7 @@ function Icon(
       viewBox={viewBox}
       innerRef={ref}
     >
-      {title ? <title>{title}</title> : null}
+      {title && <title>{title}</title>}
       {paths}
     </Box>
   )
