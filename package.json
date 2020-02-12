@@ -204,11 +204,11 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "212 KB"
+      "limit": "350 KB"
     },
     {
       "path": "umd/evergreen.min.js",
-      "limit": "212 KB"
+      "limit": "350 KB"
     }
   ],
   "husky": {
