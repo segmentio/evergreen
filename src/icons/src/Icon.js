@@ -81,11 +81,6 @@ Icon.propTypes = {
    */
   style: PropTypes.object,
 
-  /**
-   * Theme provided by ThemeProvider.
-   */
-  theme: PropTypes.object.isRequired,
-
   svgPaths16: PropTypes.arrayOf(PropTypes.string).isRequired,
 
   svgPaths20: PropTypes.arrayOf(PropTypes.string).isRequired
