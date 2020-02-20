@@ -199,7 +199,9 @@ storiesOf('dialog', module)
               title="Dialog with Internal Scrolling"
               onCloseComplete={hide}
             >
-              <Box height={1200} width="100%" backgroundColor="#ddd" />
+              <Pane>
+                <Box height={1200} width="100%" backgroundColor="#ddd" />
+              </Pane>
             </Dialog>
             <Button onClick={show}>Show Dialog with Internal Scrolling</Button>
           </Box>
@@ -243,17 +245,28 @@ storiesOf('dialog', module)
             onCloseComplete={hide}
             contentContainerProps={{
               paddingX: 0,
-              overflowY: "hidden"
+              overflowY: 'hidden'
             }}
           >
             <Pane>Header</Pane>
-            <Pane display="flex" background="tint2" height="1800px" justifyContent="center" alignItems="center" overflowY="scroll" flexShrink={1}>
-              Why, hello there!
+            <Pane display="flex" flex={1} overflow="auto">
+              <Pane
+                display="flex"
+                background="tint2"
+                height="1800px"
+                width="100%"
+                justifyContent="center"
+                alignItems="center"
+              >
+                Why, hello there!
+              </Pane>
             </Pane>
             <Pane>Footer</Pane>
           </Dialog>
 
-          <Button onClick={show}>Show Dialog with scrolling and custom header and footer</Button>
+          <Button onClick={show}>
+            Show Dialog with scrolling and custom header and footer
+          </Button>
         </Box>
       )}
     </DialogManager>
