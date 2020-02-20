@@ -333,7 +333,6 @@ class Dialog extends React.Component {
               minHeight={minHeightContent}
               {...contentContainerProps}
             >
-              {/* <Pane>{this.renderChildren(close)}</Pane> */}
               {this.renderChildren(close)}
             </Pane>
 
