@@ -231,6 +231,33 @@ storiesOf('dialog', module)
       </DialogManager>
     </Box>
   ))
+  .add('Dialog with scrolling and custom header and footer', () => (
+    <DialogManager>
+      {({ isShown, show, hide }) => (
+        <Box marginBottom={16}>
+          <Dialog
+            isShown={isShown}
+            hasHeader={false}
+            hasFooter={false}
+            title="Dialog with scrolling and customer header + footer"
+            onCloseComplete={hide}
+            contentContainerProps={{
+              paddingX: 0,
+              overflowY: "hidden"
+            }}
+          >
+            <Pane>Header</Pane>
+            <Pane display="flex" background="tint2" height="1800px" justifyContent="center" alignItems="center" overflowY="scroll" flexShrink={1}>
+              Why, hello there!
+            </Pane>
+            <Pane>Footer</Pane>
+          </Dialog>
+
+          <Button onClick={show}>Show Dialog with scrolling and custom header and footer</Button>
+        </Box>
+      )}
+    </DialogManager>
+  ))
   .add('Dialog with nested Combobox', () => (
     <DialogManager>
       {({ isShown, show, hide }) => (
