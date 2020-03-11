@@ -136,6 +136,10 @@ export default class EditableCellField extends React.PureComponent {
     this.textareaRef = ref
   }
 
+  handleFocus = e => {
+    e.target.selectionStart = e.target.value.length
+  }
+
   handleBlur = () => {
     if (this.textareaRef) this.props.onChangeComplete(this.textareaRef.value)
   }
@@ -167,6 +171,7 @@ export default class EditableCellField extends React.PureComponent {
         innerRef={this.onRef}
         onKeyDown={this.handleKeyDown}
         onBlur={this.handleBlur}
+        onFocus={this.handleFocus}
         appearance="editable-cell"
         size={size}
         style={{
