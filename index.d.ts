@@ -576,7 +576,7 @@ declare module 'evergreen-ui' {
   export class Card extends React.PureComponent<CardProps> {
   }
 
-  export interface CheckboxProps extends BoxProps<'input'> {
+  export interface CheckboxProps extends Omit<BoxProps<'input'>, 'innerRef'> {
     /**
      * The id attribute of the checkbox.
      */
