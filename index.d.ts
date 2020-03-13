@@ -709,9 +709,9 @@ declare module 'evergreen-ui' {
      */
     isShown?: boolean
     /**
-     * Title of the Dialog. Titles should use Title Case.
+     * Title of the Dialog. The text for the title should use Title Case.
      */
-    title?: string
+    title?: string | React.ReactNode
     /**
      * Function that will be called when the exit transition is complete.
      */
