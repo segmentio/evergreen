@@ -3,6 +3,7 @@ import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import Alert from '../../alert/src/Alert'
+import { ToastPosition } from '../../constants'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -40,14 +41,26 @@ const animationStyles = css({
   height: 0,
   transition: `all ${ANIMATION_DURATION}ms ${animationEasing.deceleration}`,
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.spring
-    } both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`
   },
   '&[data-state="exiting"]': {
     animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
   }
 })
+
+const ToastPositionMap = {
+  [ToastPosition.BOTTOM]: { bottom: 0, left: 0, right: 0 },
+  [ToastPosition.BOTTOM_LEFT]: { bottom: 0, left: 0 },
+  [ToastPosition.BOTTOM_RIGHT]: { bottom: 0, right: 0 },
+  [ToastPosition.TOP]: { top: 0, left: 0, right: 0 },
+  [ToastPosition.TOP_RIGHT]: { top: 0, right: 0 },
+  [ToastPosition.TOP_LEFT]: { top: 0, left: 0 }
+}
+
+const getPosition = position => {
+  position = ToastPositionMap[position]
+  return position ? position : ToastPositionMap[ToastPosition.TOP]
+}
 
 export default class Toast extends React.PureComponent {
   static propTypes = {
@@ -90,7 +103,18 @@ export default class Toast extends React.PureComponent {
     /**
      * When false, will close the Toast and call onRemove when finished.
      */
-    isShown: PropTypes.bool
+    isShown: PropTypes.bool,
+    /**
+     * The position where Toast is shown on screen
+     */
+    position: PropTypes.oneOf([
+      'top',
+      'top-left',
+      'top-right',
+      'bottom',
+      'bottom-left',
+      'bottom-right'
+    ])
   }
 
   static defaultProps = {
@@ -175,12 +199,14 @@ export default class Toast extends React.PureComponent {
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
             style={{
+              ...getPosition(this.props.position),
+              position: 'absolute',
               height: this.state.height,
               zIndex: this.props.zIndex,
               marginBottom: this.state.isShown ? 0 : -this.state.height
             }}
           >
-            <div ref={this.onRef} style={{ padding: 8 }}>
+            <div ref={this.onRef} style={{ padding: 8, maxWidth: '560px' }}>
               <Alert
                 flexShrink={0}
                 appearance="card"
