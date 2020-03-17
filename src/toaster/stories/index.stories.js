@@ -137,6 +137,74 @@ storiesOf('toaster', module).add('examples', () => (
           Danger remove notification with id
         </Button>
       </Box>
+      <Box marginBottom={12}>
+        <Button
+          marginRight={8}
+          onClick={() =>
+            toaster.notify('Should show on bottom.', {
+              description: loremIpsum,
+              position: 'bottom'
+            })
+          }
+        >
+          Bottom
+        </Button>
+        <Button
+          marginRight={8}
+          onClick={() =>
+            toaster.notify('Should show on bottom left.', {
+              description: loremIpsum,
+              position: 'bottom-left'
+            })
+          }
+        >
+          Bottom left
+        </Button>
+        <Button
+          marginRight={8}
+          onClick={() =>
+            toaster.notify('Should show on bottom right.', {
+              description: loremIpsum,
+              position: 'bottom-right'
+            })
+          }
+        >
+          Bottom right
+        </Button>
+        <Button
+          marginRight={8}
+          onClick={() =>
+            toaster.notify('Should show on top.', {
+              description: loremIpsum,
+              position: 'top'
+            })
+          }
+        >
+          Top
+        </Button>
+        <Button
+          marginRight={8}
+          onClick={() =>
+            toaster.notify('Should show on top left.', {
+              description: loremIpsum,
+              position: 'top-left'
+            })
+          }
+        >
+          Top left
+        </Button>
+        <Button
+          marginRight={8}
+          onClick={() =>
+            toaster.danger('Should show on top right.', {
+              description: loremIpsum,
+              position: 'top-right'
+            })
+          }
+        >
+          Top right
+        </Button>
+      </Box>
     </Box>
   </Box>
 ))
