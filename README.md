@@ -76,20 +76,60 @@ Evergreen bundles 2 CSS-in-JS solutions, from glamor and ui-box. To make it supe
 
 ## Contributing to Evergreen
 
-### ⚙ Step 1. Configuring your editor
+### 🍴 Step 1. Fork this repository
 
-If you are using Atom, make sure to install the [`prettier-atom`](https://atom.io/packages/prettier-atom), [`linter`](https://github.com/AtomLinter/linter) and [`linter-xo`](https://github.com/sindresorhus/atom-linter-xo) packages.
+In order to contribute to Evergreen, you need to fork this repo, and develop on your own local clone.
 
-All the configuration for prettier and xo is in the `package.json`.
-You shouldn't have to configure things separately, please file a issue if there's a problem.
+If you don't know how to do so, follow this [guide](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)!
 
 ### 📖 Step 2. Get storybook up and running
 
-To actually start seeing the components you have to run React Storybook:
+First, `cd` into your local cloned repository and install your `node_modules` with:
+
+```
+$ yarn
+```
+
+To actually start seeing the components you have to run React Storybook with the command:
 
 ```
 $ yarn dev
 ```
+
+Now go to `http://localhost:6006` in your browser.
+
+### 🛠 Step 3. Make your change
+
+Now you can start developing! All of the components are under the `src` directory and associated code changes will automatically be reflected in StoryBook.
+
+If necessary, we encourage you to update the documentation so Evergreen users will be aware of your new features/changes.
+
+In order to run the documentation page locally, run these commands in your terminal:
+
+```
+$ yarn build
+$ cd docs
+$ yarn install
+$ yarn dev
+```
+
+Now you can visit `http://localhost:8000/` in your browser.
+
+Documentation code is under the `docs` directory. A big portion of these docs are written in MDX, if you've never used MDX before, check out these [docs](https://mdxjs.com/getting-started).
+
+### 🏆 Step 4. Making your pull request
+
+Once you're done with making your changes, push everything to your local repository's branch.
+
+From here, you can open up a pull request from your forked repository's branch into `segmentio/evergreen`'s `master` branch.
+
+In your PR description, explain the changes you made, why you made them, how to test them, and anything that might be a point of interest.
+
+Once you create your PR, it will be reviewed and hopefully merged quickly!
+
+### 🥂 Step 5. Pat yourself on the back
+
+Congrats, you're officially an Evergreen contributor!
 
 ## 🤓 Scripts explained
 
@@ -146,19 +186,6 @@ The following file tree will be generated:
 └── index.js
 ```
 
-### 📖 Step 3. Run evergreen docs locally
-
-Evergreen docs depends on main lib built.
-
-Run the following commands to run it in your local:
-
-```
-$ yarn build
-$ cd docs
-$ yarn install
-$ yarn dev
-```
-
 ## 🎉 Contributors
 
 We will add you to the list if you make any meaningful contribution!
@@ -167,6 +194,7 @@ We will add you to the list if you make any meaningful contribution!
 - Roland Warmerdam
 - Ben McMahon
 - Matt Shwery
+- Chris Chuck
 - ... many other on the Segment team and open-source contributors
 
 This project is maintained by [Segment](https://segment.com/)
