@@ -5,7 +5,7 @@ import { StackingOrder } from '../../constants'
 import Toast from './Toast'
 
 const wrapperClass = css({
-  maxWidth: 560,
+  height: '100%',
   margin: '0 auto',
   top: 0,
   left: 0,
@@ -100,7 +100,8 @@ export default class ToastManager extends React.PureComponent {
       hasCloseButton: settings.hasCloseButton || true,
       duration: settings.duration || 5,
       close: () => this.closeToast(id),
-      intent: settings.intent
+      intent: settings.intent,
+      position: settings.position
     }
   }
 
