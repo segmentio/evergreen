@@ -9,6 +9,7 @@ declare module 'evergreen-ui' {
   import { DownshiftProps, GetInputPropsOptions } from 'downshift'
 
   type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
+  type ToastPositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right'
   type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
   type DefaultAppearance = 'default'
   type AlertAppearance = DefaultAppearance | 'card'
@@ -2214,6 +2215,10 @@ declare module 'evergreen-ui' {
      * Whether to show a close button on the Toast. Defaults to true.
      */
     hasCloseButton?: boolean
+    /**
+     * Position where Toast is shown on screen
+     */
+    position?:ToastPositionTypes
   }
 
   interface Toast {
