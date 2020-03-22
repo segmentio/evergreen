@@ -2316,4 +2316,10 @@ declare module 'evergreen-ui' {
 
   export class Pre extends React.PureComponent<UnknownProps> {
   }
+                                                                      
+  export class ThemeProvider extends React.PureComponent<UnkownProps> {
+  }
+                                                                      
+  export class ThemeConsumer extends React.PureComponent<UnknownProps> {
+  }
 }
