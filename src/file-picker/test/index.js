@@ -3,6 +3,10 @@ import test from 'ava'
 import render from 'react-test-renderer'
 import { shallow } from 'enzyme'
 import sinon from 'sinon'
+import { setClassNamePrefix } from 'ui-box'
+
+setClassNamePrefix('📦')
+
 import FilePicker, { CLASS_PREFIX } from '../src/FilePicker'
 
 test('snapshot', t => {

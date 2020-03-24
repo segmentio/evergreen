@@ -1,6 +1,9 @@
 import test from 'ava'
 import React from 'react'
-import Box from 'ui-box'
+import { default as Box, setClassNamePrefix } from 'ui-box'
+
+setClassNamePrefix('📦')
+
 import { render } from 'enzyme'
 import Button from '../../buttons/src/Button'
 import extractStyles from '../src/extractStyles'

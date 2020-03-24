@@ -2,6 +2,10 @@ import React from 'react'
 import test from 'ava'
 import render from 'react-test-renderer'
 import { shallow } from 'enzyme'
+import { setClassNamePrefix } from 'ui-box'
+
+setClassNamePrefix('📦')
+
 import Alert from '../src/Alert'
 
 test('basic snapshot', t => {
