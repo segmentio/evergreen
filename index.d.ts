@@ -4,9 +4,9 @@ declare module 'evergreen-ui' {
   import { IconName as BlueprintIconName } from '@blueprintjs/icons'
   import * as React from 'react'
   import Box, { extractStyles as boxExtractStyles } from 'ui-box'
-  import { BoxProps, Is } from 'ui-box/dist/types/box-types'
+  import { BoxProps } from 'ui-box/dist/types/box-types'
   import { StyleAttribute, CSSProperties } from 'glamor'
-  import { DownshiftProps, GetInputPropsOptions } from 'downshift'
+  import { DownshiftProps, Actions as DownShiftActions  } from 'downshift'
 
   type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
   type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
@@ -480,9 +480,8 @@ declare module 'evergreen-ui' {
                    'aria-labelledby': string,
                    autoComplete: 'off'
                  },
-                 openMenu: () => any,
                  inputValue: string,
-               }
+               } & DownShiftActions<string>
     ) => React.ReactNode
     itemSize?: number
     position?: PositionTypes
@@ -757,6 +756,10 @@ declare module 'evergreen-ui' {
      * Width of the Dialog.
      */
     width?: string | number
+    /**
+     * Position of the Dialog.
+     */
+    position?: PositionTypes
     /**
      * Props that are passed to the dialog container.
      */
