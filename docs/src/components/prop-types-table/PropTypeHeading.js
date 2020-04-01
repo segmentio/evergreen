@@ -3,10 +3,22 @@ import PropTypes from 'prop-types'
 
 const getSpecificPropTypes = ({ name, value }) => {
   switch (name) {
+    // Enums are treated as just having simple values, so no recursive step needed.
     case 'enum':
       return value.map(val => val.value).join(' | ')
     case 'union':
-      return value.map(val => val.name).join(' | ')
+      return value.map(val => getSpecificPropTypes(val)).join(' | ')
+    case 'arrayOf':
+      return `Array<${getSpecificPropTypes(value)}>`
+    case 'shape':
+      return `{ ${Object.keys(value)
+        .map(
+          key =>
+            `${key}${value[key].required ? '' : '?'}: ${getSpecificPropTypes(
+              value[key]
+            )}`
+        )
+        .join(', ')} }`
     // In the case that the type isn't one of these "nested" types,
     // i.e. it's just a primitive value, just return the name
     default:
