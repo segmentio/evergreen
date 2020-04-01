@@ -1,11 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-/**
- * In some cases, the generated `value` from react-docgen
- * is a nested type -- meaning that proptype information
- * comes in the form of
- */
 const getSpecificPropTypes = ({ name, value }) => {
   switch (name) {
     // Enums are treated as just having simple values, so no recursive step needed.
@@ -16,8 +11,6 @@ const getSpecificPropTypes = ({ name, value }) => {
     case 'arrayOf':
       return `Array<${getSpecificPropTypes(value)}>`
     case 'shape':
-      // In the case of an object type, recurse on the nested types and display
-      // themselves.
       return `{ ${Object.keys(value)
         .map(
           key =>
