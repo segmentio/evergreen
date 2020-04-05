@@ -244,21 +244,19 @@ storiesOf('dialog', module)
             title="Dialog with scrolling and customer header + footer"
             onCloseComplete={hide}
             contentContainerProps={{
-              paddingX: 0,
-              overflowY: 'hidden'
+              padding: 0,
+              overflowY: 'auto'
             }}
           >
-            <Pane display="flex" flex={1} overflow="auto">
-              <Pane
-                display="flex"
-                background="tint2"
-                height="1800px"
-                width="100%"
-                justifyContent="center"
-                alignItems="center"
-              >
-                Why, hello there!
-              </Pane>
+            <Pane
+              display="flex"
+              background="tint2"
+              height="1800px"
+              width="100%"
+              justifyContent="center"
+              alignItems="center"
+            >
+              Why, hello there!
             </Pane>
           </Dialog>
 
