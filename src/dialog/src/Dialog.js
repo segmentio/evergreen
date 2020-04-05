@@ -79,9 +79,21 @@ class Dialog extends React.Component {
     hasHeader: PropTypes.bool,
 
     /**
+     * A custom header to render at the top of the Dialog. If set, this
+     * takes precedence over the default header.
+     */
+    header: PropTypes.element,
+
+    /**
      * When true, the footer with the cancel and confirm button is shown.
      */
     hasFooter: PropTypes.bool,
+
+    /**
+     * A custom footer to render at the bottom of the Dialog. If set, this
+     * takes precedence over the default footer.
+     */
+    footer: PropTypes.element,
 
     /**
      * When true, the cancel button is shown.
@@ -240,9 +252,7 @@ class Dialog extends React.Component {
       isShown,
       topOffset,
       sideOffset,
-      hasHeader,
       hasClose,
-      hasFooter,
       hasCancel,
       onCloseComplete,
       onOpenComplete,
@@ -270,6 +280,54 @@ class Dialog extends React.Component {
       ? `${topOffset}px`
       : topOffset
     const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
+
+    const defaultHeader = (
+      <>
+        <Heading is="h4" size={600} flex="1">
+          {title}
+        </Heading>
+        {hasClose && (
+          <IconButton
+            appearance="minimal"
+            icon="cross"
+            onClick={() => onCancel(close)}
+          />
+        )}
+      </>
+    )
+    const header = this.props.header
+      ? header
+      : this.props.hasHeader
+      ? defaultHeader
+      : undefined
+
+    const defaultFooter = (
+      <>
+        {/* Cancel should be first to make sure focus gets on it first. */}
+        {hasCancel && (
+          <Button tabIndex={0} onClick={() => onCancel(close)}>
+            {cancelLabel}
+          </Button>
+        )}
+
+        <Button
+          tabIndex={0}
+          marginLeft={8}
+          appearance="primary"
+          isLoading={isConfirmLoading}
+          disabled={isConfirmDisabled}
+          onClick={() => onConfirm(close)}
+          intent={intent}
+        >
+          {confirmLabel}
+        </Button>
+      </>
+    )
+    const footer = this.props.footer
+      ? this.props.footer
+      : this.props.hasFooter
+      ? defaultFooter
+      : undefined
 
     return (
       <Overlay
@@ -303,7 +361,7 @@ class Dialog extends React.Component {
             data-state={state}
             {...containerProps}
           >
-            {hasHeader && (
+            {header && (
               <Pane
                 padding={16}
                 flexShrink={0}
@@ -311,16 +369,7 @@ class Dialog extends React.Component {
                 display="flex"
                 alignItems="center"
               >
-                <Heading is="h4" size={600} flex="1">
-                  {title}
-                </Heading>
-                {hasClose && (
-                  <IconButton
-                    appearance="minimal"
-                    icon="cross"
-                    onClick={() => onCancel(close)}
-                  />
-                )}
+                {header}
               </Pane>
             )}
 
@@ -333,30 +382,13 @@ class Dialog extends React.Component {
               minHeight={minHeightContent}
               {...contentContainerProps}
             >
-              {this.renderChildren(close)}
+              <Pane>{this.renderChildren(close)}</Pane>)
             </Pane>
 
-            {hasFooter && (
+            {footer && (
               <Pane borderTop="muted" clearfix>
                 <Pane padding={16} float="right">
-                  {/* Cancel should be first to make sure focus gets on it first. */}
-                  {hasCancel && (
-                    <Button tabIndex={0} onClick={() => onCancel(close)}>
-                      {cancelLabel}
-                    </Button>
-                  )}
-
-                  <Button
-                    tabIndex={0}
-                    marginLeft={8}
-                    appearance="primary"
-                    isLoading={isConfirmLoading}
-                    disabled={isConfirmDisabled}
-                    onClick={() => onConfirm(close)}
-                    intent={intent}
-                  >
-                    {confirmLabel}
-                  </Button>
+                  {footer}
                 </Pane>
               </Pane>
             )}

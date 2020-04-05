@@ -239,8 +239,8 @@ storiesOf('dialog', module)
         <Box marginBottom={16}>
           <Dialog
             isShown={isShown}
-            hasHeader={false}
-            hasFooter={false}
+            header={<Pane>Header</Pane>}
+            footer={<Pane>Footer</Pane>}
             title="Dialog with scrolling and customer header + footer"
             onCloseComplete={hide}
             contentContainerProps={{
@@ -248,7 +248,6 @@ storiesOf('dialog', module)
               overflowY: 'hidden'
             }}
           >
-            <Pane>Header</Pane>
             <Pane display="flex" flex={1} overflow="auto">
               <Pane
                 display="flex"
@@ -261,7 +260,6 @@ storiesOf('dialog', module)
                 Why, hello there!
               </Pane>
             </Pane>
-            <Pane>Footer</Pane>
           </Dialog>
 
           <Button onClick={show}>
