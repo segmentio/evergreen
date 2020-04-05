@@ -199,9 +199,7 @@ storiesOf('dialog', module)
               title="Dialog with Internal Scrolling"
               onCloseComplete={hide}
             >
-              <Pane>
-                <Box height={1200} width="100%" backgroundColor="#ddd" />
-              </Pane>
+              <Box height={1200} width="100%" backgroundColor="#ddd" />
             </Dialog>
             <Button onClick={show}>Show Dialog with Internal Scrolling</Button>
           </Box>
