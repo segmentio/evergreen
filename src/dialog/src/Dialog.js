@@ -248,12 +248,12 @@ class Dialog extends React.Component {
       isShown,
       topOffset,
       sideOffset,
-      hasClose,
-      hasCancel,
       hasHeader,
       header,
+      hasClose,
       hasFooter,
       footer,
+      hasCancel,
       onCloseComplete,
       onOpenComplete,
       onCancel,
@@ -390,7 +390,7 @@ class Dialog extends React.Component {
               minHeight={minHeightContent}
               {...contentContainerProps}
             >
-              <Pane>{this.renderChildren(close)}</Pane>)
+              <Pane>{this.renderChildren(close)}</Pane>
             </Pane>
 
             {renderFooter(close)}
