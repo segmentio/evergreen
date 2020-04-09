@@ -38,14 +38,10 @@ const closeAnimation = css.keyframes('closeAnimation', {
 
 const animationStyles = {
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.deceleration
-    } both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
   },
   '&[data-state="exiting"]': {
-    animation: `${closeAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.acceleration
-    } both`
+    animation: `${closeAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
   }
 }
 
@@ -79,9 +75,21 @@ class Dialog extends React.Component {
     hasHeader: PropTypes.bool,
 
     /**
+     * A custom header to render at the top of the Dialog. If set, this
+     * takes precedence over the default header.
+     */
+    header: PropTypes.element,
+
+    /**
      * When true, the footer with the cancel and confirm button is shown.
      */
     hasFooter: PropTypes.bool,
+
+    /**
+     * A custom footer to render at the bottom of the Dialog. If set, this
+     * takes precedence over the default footer.
+     */
+    footer: PropTypes.element,
 
     /**
      * When true, the cancel button is shown.
@@ -241,8 +249,10 @@ class Dialog extends React.Component {
       topOffset,
       sideOffset,
       hasHeader,
+      header,
       hasClose,
       hasFooter,
+      footer,
       hasCancel,
       onCloseComplete,
       onOpenComplete,
@@ -270,6 +280,72 @@ class Dialog extends React.Component {
       ? `${topOffset}px`
       : topOffset
     const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
+
+    const renderHeader = close => {
+      if (!header && !hasHeader) {
+        return undefined
+      }
+
+      return (
+        <Pane
+          padding={16}
+          flexShrink={0}
+          borderBottom="muted"
+          display="flex"
+          alignItems="center"
+        >
+          {header || (
+            <>
+              <Heading is="h4" size={600} flex="1">
+                {title}
+              </Heading>
+              {hasClose && (
+                <IconButton
+                  appearance="minimal"
+                  icon="cross"
+                  onClick={() => onCancel(close)}
+                />
+              )}
+            </>
+          )}
+        </Pane>
+      )
+    }
+
+    const renderFooter = close => {
+      if (!footer && !hasFooter) {
+        return undefined
+      }
+
+      return (
+        <Pane borderTop="muted" clearfix>
+          <Pane padding={16} float="right">
+            {footer || (
+              <>
+                {/* Cancel should be first to make sure focus gets on it first. */}
+                {hasCancel && (
+                  <Button tabIndex={0} onClick={() => onCancel(close)}>
+                    {cancelLabel}
+                  </Button>
+                )}
+
+                <Button
+                  tabIndex={0}
+                  marginLeft={8}
+                  appearance="primary"
+                  isLoading={isConfirmLoading}
+                  disabled={isConfirmDisabled}
+                  onClick={() => onConfirm(close)}
+                  intent={intent}
+                >
+                  {confirmLabel}
+                </Button>
+              </>
+            )}
+          </Pane>
+        </Pane>
+      )
+    }
 
     return (
       <Overlay
@@ -303,26 +379,7 @@ class Dialog extends React.Component {
             data-state={state}
             {...containerProps}
           >
-            {hasHeader && (
-              <Pane
-                padding={16}
-                flexShrink={0}
-                borderBottom="muted"
-                display="flex"
-                alignItems="center"
-              >
-                <Heading is="h4" size={600} flex="1">
-                  {title}
-                </Heading>
-                {hasClose && (
-                  <IconButton
-                    appearance="minimal"
-                    icon="cross"
-                    onClick={() => onCancel(close)}
-                  />
-                )}
-              </Pane>
-            )}
+            {renderHeader(close)}
 
             <Pane
               data-state={state}
@@ -336,30 +393,7 @@ class Dialog extends React.Component {
               <Pane>{this.renderChildren(close)}</Pane>
             </Pane>
 
-            {hasFooter && (
-              <Pane borderTop="muted" clearfix>
-                <Pane padding={16} float="right">
-                  {/* Cancel should be first to make sure focus gets on it first. */}
-                  {hasCancel && (
-                    <Button tabIndex={0} onClick={() => onCancel(close)}>
-                      {cancelLabel}
-                    </Button>
-                  )}
-
-                  <Button
-                    tabIndex={0}
-                    marginLeft={8}
-                    appearance="primary"
-                    isLoading={isConfirmLoading}
-                    disabled={isConfirmDisabled}
-                    onClick={() => onConfirm(close)}
-                    intent={intent}
-                  >
-                    {confirmLabel}
-                  </Button>
-                </Pane>
-              </Pane>
-            )}
+            {renderFooter(close)}
           </Pane>
         )}
       </Overlay>
