@@ -445,7 +445,7 @@ declare module 'evergreen-ui' {
   interface OptionProps extends TableRowProps {
     height?: number | string
     label: string
-    icon?: string
+    icon?: IconName
     disabled?: boolean
   }
 
@@ -2170,7 +2170,7 @@ declare module 'evergreen-ui' {
      * When passed, adds a icon before each list item in the list
      * You can override this on a individual list item.
      */
-    icon?: string
+    icon?: IconName
     /**
      * The color of the icon in each list item in the list.
      */
