@@ -445,7 +445,7 @@ declare module 'evergreen-ui' {
   interface OptionProps extends TableRowProps {
     height?: number | string
     label: string
-    icon?: string
+    icon?: IconName
     disabled?: boolean
   }
 
@@ -576,7 +576,7 @@ declare module 'evergreen-ui' {
   export class Card extends React.PureComponent<CardProps> {
   }
 
-  export interface CheckboxProps extends BoxProps<'input'> {
+  export interface CheckboxProps extends Omit<BoxProps<'input'>, 'innerRef'> {
     /**
      * The id attribute of the checkbox.
      */
@@ -709,9 +709,9 @@ declare module 'evergreen-ui' {
      */
     isShown?: boolean
     /**
-     * Title of the Dialog. Titles should use Title Case.
+     * Title of the Dialog. The text for the title should use Title Case.
      */
-    title?: string
+    title?: string | React.ReactNode
     /**
      * Function that will be called when the exit transition is complete.
      */
@@ -2170,7 +2170,7 @@ declare module 'evergreen-ui' {
      * When passed, adds a icon before each list item in the list
      * You can override this on a individual list item.
      */
-    icon?: string
+    icon?: IconName
     /**
      * The color of the icon in each list item in the list.
      */

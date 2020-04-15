@@ -6978,9 +6978,9 @@ inline-style-prefixer@^3.0.6:
     css-in-js-utils "^2.0.0"
 
 inline-style-prefixer@^5.0.4:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-5.1.1.tgz#43074a2c6f2cdb7cb2e8116b23fd04c635188501"
-  integrity sha512-l2zxmdGF/QZNfR3b1hnPr0pkTZUSYYOCCO9zz/AAtaw/LNi1PpjzwumMIz+WKmVhqnWpDdaoqan7yOZM9u2ELQ==
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-5.1.2.tgz#e5a5a3515e25600e016b71e39138971228486c33"
+  integrity sha512-PYUF+94gDfhy+LsQxM0g3d6Hge4l1pAqOSOiZuHWzMvQEGsbRQ/ck2WioLqrY2ZkHyPgVUXxn+hrkF7D6QUGbA==
   dependencies:
     css-in-js-utils "^2.0.0"
 
@@ -10680,10 +10680,15 @@ react-inspector@^2.2.2:
     is-dom "^1.0.9"
     prop-types "^15.6.1"
 
-react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.6, react-is@^16.9.0:
+react-is@^16.12.0, react-is@^16.8.4, react-is@^16.8.6, react-is@^16.9.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
+
+react-is@^16.8.1:
+  version "16.13.1"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
+  integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
 react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
@@ -12632,10 +12637,10 @@ uglifyjs-webpack-plugin@^1.2.4:
     webpack-sources "^1.1.0"
     worker-farm "^1.5.2"
 
-ui-box@^2.1.2:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-2.1.3.tgz#f2ef9c549d8c60dfdd7fbdea36d7956b96a814fa"
-  integrity sha512-taaEYH+tKdTXkrv0hVPl6NCGf5XAo+a940+/czsnWR0JYtnS4THMXo7nmzQzD/4MzD9PKG721hlPgTwHQbrBMQ==
+ui-box@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-3.2.0.tgz#113a6b49ee60db2ba16747d7ef40835cc917eff5"
+  integrity sha512-C4wmRn0TKLLEStgMl5HYt+8ngV8ekQgZDS3qS5zQRqu/mGPGLzx1aDakb/GwSwYuREkKeNIhiovwLiZpsmNBjQ==
   dependencies:
     "@emotion/hash" "^0.7.1"
     inline-style-prefixer "^5.0.4"

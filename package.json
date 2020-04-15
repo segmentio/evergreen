@@ -1,6 +1,6 @@
 {
   "name": "evergreen-ui",
-  "version": "4.23.0",
+  "version": "4.24.0",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
@@ -64,7 +64,7 @@
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.5.0",
     "tinycolor2": "^1.4.1",
-    "ui-box": "^2.1.2"
+    "ui-box": "^3.2.0"
   },
   "peerDependencies": {
     "react": "^16.8.0",

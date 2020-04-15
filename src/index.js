@@ -1,7 +1,10 @@
+import { setClassNamePrefix } from 'ui-box'
 import { autoHydrate } from './ssr'
 
+setClassNamePrefix('📦')
 autoHydrate()
 
+export { configureSafeHref } from 'ui-box'
 export { Alert, InlineAlert } from './alert'
 export { Autocomplete, AutocompleteItem } from './autocomplete'
 export { Avatar } from './avatar'

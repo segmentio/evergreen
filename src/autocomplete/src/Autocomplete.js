@@ -91,7 +91,16 @@ export default class Autocomplete extends PureComponent {
     /**
      * The position of the Popover the Autocomplete is rendered in.
      */
-    position: PropTypes.oneOf(Object.keys(Position)),
+    position: PropTypes.oneOf([
+      Position.TOP,
+      Position.TOP_LEFT,
+      Position.TOP_RIGHT,
+      Position.BOTTOM,
+      Position.BOTTOM_LEFT,
+      Position.BOTTOM_RIGHT,
+      Position.LEFT,
+      Position.RIGHT
+    ]),
 
     /**
      * A function that is used to filter the items.

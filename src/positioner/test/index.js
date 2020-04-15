@@ -1,4 +1,8 @@
 import test from 'ava'
+import { setClassNamePrefix } from 'ui-box'
+
+setClassNamePrefix('📦')
+
 import getFittedPosition from '../src/getPosition'
 import { Position } from '../../constants'
 
