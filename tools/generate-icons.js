@@ -133,10 +133,7 @@ export const ${iconName} = memo(forwardRef((props, ref) => (
   // =====================
 
   const iconsExport = `/* Start generated icons */
-    export {
-      IconNames,\n
-      ${iconNames.join(',\n  ')}
-    } from './icons'
+    export * from './icons'
     /* End generated icons */
   `
 
