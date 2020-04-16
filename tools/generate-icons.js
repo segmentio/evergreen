@@ -6,17 +6,17 @@ const { IconSvgPaths16, IconSvgPaths20 } = require('@blueprintjs/icons')
 const camelCase = require('camelcase')
 const prettier = require('prettier')
 
-const iconsPath = path.resolve(__dirname, '../src/icons/src/generated')
+const iconsPath = path.resolve(__dirname, '../src/icons/generated')
 const iconsIndexPath = path.resolve(__dirname, '../src/icons/index.js')
 const indexPath = path.resolve(__dirname, '../src/index.js')
 const typedefPath = path.resolve(__dirname, '../index.d.ts')
 const iconNamesPath = path.resolve(
   __dirname,
-  '../src/icons/src/generated/IconNames.js'
+  '../src/icons/generated/IconNames.js'
 )
 const iconNamesMapperPath = path.resolve(
   __dirname,
-  '../src/icons/src/generated/IconNameMapper.js'
+  '../src/icons/generated/IconNameMapper.js'
 )
 const fileHeader = `// This is a generated file. DO NOT modify directly.\n\n`
 
@@ -38,7 +38,7 @@ async function main() {
 
     let iconFile = `
 import React, { memo, forwardRef } from 'react'
-import Icon from '../Icon'
+import Icon from '../src/Icon'
 
 const svgPaths16 = [
   '${svgPaths16.join(`',\n  '`)}'
@@ -108,14 +108,14 @@ export const ${iconName} = memo(forwardRef((props, ref) => (
 
   let iconsIndexFile = iconNames
     .map(iconName => {
-      return `export { ${iconName} } from './src/generated/${iconName}'`
+      return `export { ${iconName} } from './generated/${iconName}'`
     })
     .join('\n')
 
   const iconNamesExport = `
-    import * as IconNames from './src/generated/IconNames'\n
+    import * as IconNames from './generated/IconNames'
     export { IconNames }\n
-    export { IconNameMapper } from './src/generated/IconNameMapper'\n
+    export { IconNameMapper } from './generated/IconNameMapper'
   `
 
   iconsIndexFile = prettier.format(
