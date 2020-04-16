@@ -4,9 +4,9 @@ import Box from 'ui-box'
 import { Heading, Paragraph, Link, Text } from '../../typography'
 import * as IconExports from '..'
 
-const { IconNames, IconNameMapper, ...icons } = IconExports
+const { IconNames, IconNameMapper, ...Icons } = IconExports
 
-storiesOf('icons', module).add('icons', () => (
+storiesOf('icons', module).add('Icons', () => (
   <div>
     <Box paddingLeft={40}>
       <Heading size={800}>icons</Heading>
@@ -19,12 +19,12 @@ storiesOf('icons', module).add('icons', () => (
       </Paragraph>
     </Box>
 
-    {Object.entries(icons).map(([name, Icon]) => (
+    {Object.entries(Icons).map(([name, Icon]) => (
       <Box
         key={name}
         float="left"
-        width={160}
-        height={80}
+        width={140}
+        height={100}
         display="flex"
         alignItems="center"
         justifyContent="center"

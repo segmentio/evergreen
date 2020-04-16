@@ -9,6 +9,7 @@ const prettier = require('prettier')
 const iconsPath = path.resolve(__dirname, '../src/icons/src/generated')
 const iconsIndexPath = path.resolve(__dirname, '../src/icons/index.js')
 const indexPath = path.resolve(__dirname, '../src/index.js')
+const typedefPath = path.resolve(__dirname, '../index.d.ts')
 const iconNamesPath = path.resolve(
   __dirname,
   '../src/icons/src/generated/IconNames.js'
@@ -24,6 +25,10 @@ async function main() {
   await fs.emptyDir(iconsPath)
   const rawIconNames = Object.keys(IconSvgPaths16)
   const iconNames = []
+
+  // =====================
+  // create individual files for each icon as a React component
+  // =====================
 
   const promises = Object.keys(IconSvgPaths16).map(name => {
     const iconName = camelCase(name, { pascalCase: true }) + 'Icon'
@@ -57,6 +62,10 @@ export const ${iconName} = memo(forwardRef((props, ref) => (
 
   await Promise.all(promises)
 
+  // =====================
+  // create the IconNames file
+  // =====================
+
   let iconNamesFile = rawIconNames
     .map(iconName => {
       return `export const ${iconName
@@ -71,6 +80,10 @@ export const ${iconName} = memo(forwardRef((props, ref) => (
   })
 
   await fs.writeFile(iconNamesPath, iconNamesFile)
+
+  // =====================
+  // create the IconNameMapper file
+  // =====================
 
   const iconNamesMap = rawIconNames.reduce((agg, name) => {
     agg[name] = camelCase(name, { pascalCase: true }) + 'Icon'
@@ -88,6 +101,10 @@ export const ${iconName} = memo(forwardRef((props, ref) => (
   })
 
   await fs.writeFile(iconNamesMapperPath, iconNamesMapperFile)
+
+  // =====================
+  // create the icons/index.js file which exports individual icons, IconNames and the IconNameMapper shim
+  // =====================
 
   let iconsIndexFile = iconNames
     .map(iconName => {
@@ -111,14 +128,18 @@ export const ${iconName} = memo(forwardRef((props, ref) => (
 
   await fs.writeFile(iconsIndexPath, iconsIndexFile)
 
+  // =====================
+  // update the main index.js file to include individual icon exports
+  // =====================
+
   const iconsExport = `
-/* Start generated icons */
-export {
-  IconNames,\n
-  ${iconNames.join(',\n  ')}
-} from './icons'
-/* End generated icons */
-`.trim()
+    /* Start generated icons */
+    export {
+      IconNames,\n
+      ${iconNames.join(',\n  ')}
+    } from './icons'
+    /* End generated icons */
+  `
 
   let indexContent = await fs.readFile(indexPath, 'utf8')
   indexContent = indexContent.replace(
@@ -132,6 +153,27 @@ export {
   })
 
   await fs.writeFile(indexPath, indexContent)
+
+  // =====================
+  // update the typedefs to include icons
+  // =====================
+
+  const iconTypeDefs = iconNames.map(componentName => {
+    return `export type ${componentName} = React.ForwardRefExoticComponent<React.PropsWithoutRef<Omit<IconProps, 'icon'>> & React.RefAttributes<SVGElement>>`
+  })
+
+  const iconsTypeDefs = `
+    /* Start generated icons */
+    ${iconTypeDefs.join('\n    ')}
+    /* End generated icons */`
+
+  let typedefs = await fs.readFile(typedefPath, 'utf8')
+  typedefs = typedefs.replace(
+    /\/\* Start generated icons \*\/[\s\S]*?\/\* End generated icons \*\//i,
+    iconsTypeDefs
+  )
+
+  await fs.writeFile(typedefPath, typedefs)
 }
 
 main().catch(error => {
