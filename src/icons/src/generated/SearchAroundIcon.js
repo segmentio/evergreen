@@ -18,6 +18,7 @@ export const SearchAroundIcon = memo(
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
+      name="search-around"
       {...props}
     />
   ))

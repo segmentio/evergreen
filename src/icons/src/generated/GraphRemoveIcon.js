@@ -14,6 +14,7 @@ export const GraphRemoveIcon = memo(
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
+      name="graph-remove"
       {...props}
     />
   ))

@@ -14,6 +14,7 @@ export const SmallPlusIcon = memo(
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
+      name="small-plus"
       {...props}
     />
   ))

@@ -14,6 +14,7 @@ export const AddRowTopIcon = memo(
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
+      name="add-row-top"
       {...props}
     />
   ))

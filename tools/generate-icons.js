@@ -43,7 +43,7 @@ const svgPaths20 = [
 ]
 
 export const ${iconName} = memo(forwardRef((props, ref) => (
-  <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} {...props} />
+  <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="${name}" {...props} />
 )))
 `
     const iconPath = path.join(iconsPath, `${iconName}.js`)

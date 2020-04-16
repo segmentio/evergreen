@@ -13,6 +13,7 @@ function TreeShakeableIcon(
   {
     color = 'currentColor',
     size = 16,
+    name,
     title,
     style = {},
     svgPaths16,
@@ -43,6 +44,7 @@ function TreeShakeableIcon(
     <Box
       is="svg"
       {...svgProps}
+      data-icon={name}
       style={style}
       width={size}
       height={size}
@@ -67,6 +69,11 @@ TreeShakeableIcon.propTypes = {
    * and chooses the appropriate resolution based on this prop.
    */
   size: PropTypes.number,
+
+  /**
+   * Name of the icon
+   */
+  name: PropTypes.string,
 
   /**
    * Description string.

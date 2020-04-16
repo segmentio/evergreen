@@ -14,6 +14,7 @@ export const HorizontalBarChartAscIcon = memo(
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
+      name="horizontal-bar-chart-asc"
       {...props}
     />
   ))

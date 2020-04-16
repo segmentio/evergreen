@@ -15,6 +15,7 @@ export const SelectionIcon = memo(
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
+      name="selection"
       {...props}
     />
   ))

@@ -14,6 +14,7 @@ export const GitRepoIcon = memo(
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
+      name="git-repo"
       {...props}
     />
   ))

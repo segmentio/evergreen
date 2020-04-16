@@ -14,6 +14,7 @@ export const CircleArrowRightIcon = memo(
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
+      name="circle-arrow-right"
       {...props}
     />
   ))
