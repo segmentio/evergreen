@@ -8,15 +8,13 @@ const svgPaths20 = [
   'M3.5 8a2.5 2.5 0 100 5 2.5 2.5 0 100-5zM17.5 8a2.5 2.5 0 100 5 2.5 2.5 0 100-5zM10.5 8a2.5 2.5 0 100 5 2.5 2.5 0 100-5z'
 ]
 
-function MoreIcon({ ...props }, ref) {
-  return (
+export const MoreIcon = memo(
+  forwardRef((props, ref) => (
     <Icon
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
       {...props}
     />
-  )
-}
-
-export default memo(forwardRef(MoreIcon))
+  ))
+)

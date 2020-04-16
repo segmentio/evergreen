@@ -8,15 +8,13 @@ const svgPaths20 = [
   'M2 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM2 0C.9 0 0 .9 0 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm16 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-8 4c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z'
 ]
 
-function LayoutSortedClustersIcon({ ...props }, ref) {
-  return (
+export const LayoutSortedClustersIcon = memo(
+  forwardRef((props, ref) => (
     <Icon
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
       {...props}
     />
-  )
-}
-
-export default memo(forwardRef(LayoutSortedClustersIcon))
+  ))
+)

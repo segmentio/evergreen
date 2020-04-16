@@ -8,15 +8,13 @@ const svgPaths20 = [
   'M19 16H2V3c0-.55-.45-1-1-1s-1 .45-1 1v14c0 .55.45 1 1 1h18c.55 0 1-.45 1-1s-.45-1-1-1zm0-13.41l-7.07 7.07-4.3-3.44-.01.01A.987.987 0 007 6c-.24 0-.46.1-.63.24l-.01-.01L3 9.03V15h16V2.59z'
 ]
 
-function TimelineAreaChartIcon({ ...props }, ref) {
-  return (
+export const TimelineAreaChartIcon = memo(
+  forwardRef((props, ref) => (
     <Icon
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
       {...props}
     />
-  )
-}
-
-export default memo(forwardRef(TimelineAreaChartIcon))
+  ))
+)

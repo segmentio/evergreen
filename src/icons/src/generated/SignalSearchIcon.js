@@ -11,15 +11,13 @@ const svgPaths20 = [
   'M11.5 0C14.54 0 17 2.46 17 5.5c0 .26-.02.51-.06.75l-.03.17c-.04.25-.1.49-.17.73v.01c-.08.24-.17.47-.28.69-.01.04-.03.07-.05.11-.11.23-.24.44-.38.65l3.68 3.68A1.003 1.003 0 0119 14c-.28 0-.53-.11-.7-.29l-3.68-3.68c-.21.14-.42.27-.65.38-.04.01-.07.03-.11.05-.22.11-.45.2-.69.28h-.01c-.24.07-.48.13-.73.17l-.17.03c-.25.04-.5.06-.76.06C8.46 11 6 8.54 6 5.5S8.46 0 11.5 0zm0 1.5c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z'
 ]
 
-function SignalSearchIcon({ ...props }, ref) {
-  return (
+export const SignalSearchIcon = memo(
+  forwardRef((props, ref) => (
     <Icon
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
       {...props}
     />
-  )
-}
-
-export default memo(forwardRef(SignalSearchIcon))
+  ))
+)

@@ -37,7 +37,7 @@
     "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test' --source-maps inline",
     "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test' --source-maps inline",
     "build-umd": "rollup -c",
-    "build": "concurrently --names 'commonjs,esm,umd' 'yarn build-commonjs' 'yarn build-esm' 'yarn build-umd'",
+    "build": "yarn generate-icons && concurrently --names 'commonjs,esm,umd' 'yarn build-commonjs' 'yarn build-esm' 'yarn build-umd'",
     "size": "size-limit",
     "clean": "git clean -Xdf",
     "release": "np",
@@ -204,11 +204,11 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "350 KB"
+      "limit": "240 KB"
     },
     {
       "path": "umd/evergreen.min.js",
-      "limit": "350 KB"
+      "limit": "220 KB"
     }
   ],
   "husky": {

@@ -12,15 +12,13 @@ const svgPaths20 = [
   'M10 10l-5 5M9.621 9.671l.707.708-5.02 5.02-.707-.707z'
 ]
 
-function SearchAroundIcon({ ...props }, ref) {
-  return (
+export const SearchAroundIcon = memo(
+  forwardRef((props, ref) => (
     <Icon
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
       {...props}
     />
-  )
-}
-
-export default memo(forwardRef(SearchAroundIcon))
+  ))
+)

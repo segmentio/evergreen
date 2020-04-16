@@ -8,7 +8,8 @@ import { Pane } from '../../layers'
 import { Heading, Paragraph, Text } from '../../typography'
 import { Button } from '../../buttons'
 import { Position } from '../../constants'
-import { Icon, IconNames } from '../../icon'
+import { Icon } from '../../icon'
+import { IconNames } from '../../icons'
 import { Popover } from '..'
 
 // eslint-disable-next-line react/prop-types

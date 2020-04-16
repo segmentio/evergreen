@@ -9,15 +9,13 @@ const svgPaths20 = [
   'M16 2h-2v3H5V2H3c-.55 0-1 .45-1 1v16c0 .55.45 1 1 1h13c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1z'
 ]
 
-function ClipboardIcon({ ...props }, ref) {
-  return (
+export const ClipboardIcon = memo(
+  forwardRef((props, ref) => (
     <Icon
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
       {...props}
     />
-  )
-}
-
-export default memo(forwardRef(ClipboardIcon))
+  ))
+)

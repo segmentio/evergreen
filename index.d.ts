@@ -4,9 +4,9 @@ declare module 'evergreen-ui' {
   import { IconName as BlueprintIconName } from '@blueprintjs/icons'
   import * as React from 'react'
   import Box, { extractStyles as boxExtractStyles } from 'ui-box'
-  import { BoxProps, Is } from 'ui-box/dist/types/box-types'
+  import { BoxProps } from 'ui-box/dist/types/box-types'
   import { StyleAttribute, CSSProperties } from 'glamor'
-  import { DownshiftProps, GetInputPropsOptions } from 'downshift'
+  import { DownshiftProps } from 'downshift'
 
   type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
   type IntentTypes = 'none' | 'success' | 'warning' | 'danger'

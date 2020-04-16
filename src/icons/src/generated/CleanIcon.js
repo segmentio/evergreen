@@ -8,15 +8,13 @@ const svgPaths20 = [
   'M7 0L5 5 0 6.998 5 9l2 5 2-5 5-1.995L9 5zM15 10l-1.5 3.496-3.5 1.499 3.5 1.498L15 20l1.5-3.507L20 15l-3.5-1.504z'
 ]
 
-function CleanIcon({ ...props }, ref) {
-  return (
+export const CleanIcon = memo(
+  forwardRef((props, ref) => (
     <Icon
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
       {...props}
     />
-  )
-}
-
-export default memo(forwardRef(CleanIcon))
+  ))
+)

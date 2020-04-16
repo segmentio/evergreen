@@ -1,11 +1,8 @@
-/* eslint react/no-array-index-key: 0, eqeqeq: 0, no-eq-null: 0 */
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
-import { IconNames, IconSvgPaths16, IconSvgPaths20 } from '@blueprintjs/icons'
-import { withTheme } from '../../theme'
+import * as IconExports from '../../icons'
 
-export { IconNames }
+const { IconNameMapper, ...Icons } = IconExports
 
 /**
  * This implementation is a remix of the Icon component in Blueprintjs:
@@ -13,9 +10,8 @@ export { IconNames }
  * Refer to the LICENSE for BlueprintJS here: https://github.com/palantir/blueprint/blob/develop/LICENSE
  */
 
-class Icon extends PureComponent {
+export class Icon extends PureComponent {
   static SIZE_STANDARD = 16
-
   static SIZE_LARGE = 20
 
   static propTypes = {
@@ -36,7 +32,7 @@ class Icon extends PureComponent {
      *   This type is supported to simplify usage of this component in other Blueprint components.
      *   As a consumer, you should never use `<Icon icon={<element />}` directly; simply render `<element />` instead.
      */
-    icon: PropTypes.node.isRequired,
+    icon: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
 
     /**
      * Size of the icon, in pixels.
@@ -56,36 +52,13 @@ class Icon extends PureComponent {
     /**
      * CSS style properties.
      */
-    style: PropTypes.object,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
-  static defaultProps = {
-    size: 16,
-    color: 'currentColor'
-  }
-
-  renderSvgPaths = (pathsSize, iconName) => {
-    const svgPathsRecord =
-      pathsSize === Icon.SIZE_STANDARD ? IconSvgPaths16 : IconSvgPaths20
-    const pathStrings = svgPathsRecord[iconName]
-
-    if (pathStrings == null) {
-      return null
-    }
-
-    return pathStrings.map((d, i) => <path key={i} d={d} fillRule="evenodd" />)
+    style: PropTypes.object
   }
 
   render() {
-    const { theme, color, icon, size, title, ...svgProps } = this.props
-    let { style = {} } = this.props
+    const { icon, ...iconProps } = this.props
 
-    if (icon == null) {
+    if (!icon) {
       return null
     }
 
@@ -93,35 +66,16 @@ class Icon extends PureComponent {
       return icon
     }
 
-    // Choose which pixel grid is most appropriate for given icon size
-    const pixelGridSize =
-      size >= Icon.SIZE_LARGE ? Icon.SIZE_LARGE : Icon.SIZE_STANDARD
-    const paths = this.renderSvgPaths(pixelGridSize, icon)
-    if (paths == null) {
+    const iconName = IconNameMapper[icon]
+    if (!iconName) {
       return null
     }
 
-    const viewBox = `0 0 ${pixelGridSize} ${pixelGridSize}`
-
-    if (color != null) {
-      style = { ...style, fill: theme.getIconColor(color) }
+    const Component = Icons[iconName]
+    if (!Component) {
+      return null
     }
 
-    return (
-      <Box
-        is="svg"
-        {...svgProps}
-        style={style}
-        data-icon={icon}
-        width={size}
-        height={size}
-        viewBox={viewBox}
-      >
-        {title ? <title>{title}</title> : null}
-        {paths}
-      </Box>
-    )
+    return <Component {...iconProps} />
   }
 }
-
-export default withTheme(Icon)

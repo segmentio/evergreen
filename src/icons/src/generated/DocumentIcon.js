@@ -8,15 +8,13 @@ const svgPaths20 = [
   'M11.98 0h-8c-.55 0-1 .45-1 1v18c0 .55.45 1 1 1h13c.55 0 1-.45 1-1V6l-6-6zm4 18h-11V2h6v5h5v11z'
 ]
 
-function DocumentIcon({ ...props }, ref) {
-  return (
+export const DocumentIcon = memo(
+  forwardRef((props, ref) => (
     <Icon
       svgPaths16={svgPaths16}
       svgPaths20={svgPaths20}
       ref={ref}
       {...props}
     />
-  )
-}
-
-export default memo(forwardRef(DocumentIcon))
+  ))
+)

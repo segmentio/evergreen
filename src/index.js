@@ -23,7 +23,7 @@ export {
   FormFieldLabel,
   FormFieldValidationMessage
 } from './form-field'
-export { Icon, IconNames } from './icon'
+export { Icon } from './icon'
 export { Image } from './image'
 export { Pane, Card } from './layers'
 export { Menu } from './menu'
@@ -93,6 +93,7 @@ export {
 
 /* Start generated icons */
 export {
+  IconNames,
   AddIcon,
   AddColumnLeftIcon,
   AddColumnRightIcon,
