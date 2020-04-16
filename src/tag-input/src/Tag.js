@@ -5,7 +5,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Badge } from '../../badges'
-import { Icon } from '../../icon'
+import { CrossIcon } from '../../icons'
 import { minorScale } from '../../scales'
 
 class Tag extends React.PureComponent {
@@ -39,8 +39,7 @@ class Tag extends React.PureComponent {
       <Badge isInteractive {...badgeStyles} {...props}>
         {children}
         {isRemovable && (
-          <Icon
-            icon="cross"
+          <CrossIcon
             marginLeft={minorScale(1)}
             onClick={onRemove}
             size={minorScale(3)}

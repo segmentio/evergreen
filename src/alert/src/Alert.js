@@ -5,7 +5,6 @@ import { withTheme } from '../../theme'
 import { Pane } from '../../layers'
 import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
-import { Icon } from '../../icon'
 
 class Alert extends PureComponent {
   static propTypes = {
@@ -72,12 +71,6 @@ class Alert extends PureComponent {
     appearance: 'default'
   }
 
-  getIconForIntent = intent => {
-    const { theme } = this.props
-
-    return <Icon size={14} {...theme.getIconForIntent(intent)} />
-  }
-
   render() {
     const {
       theme,
@@ -123,7 +116,7 @@ class Alert extends PureComponent {
             display="flex"
             alignItems="center"
           >
-            {this.getIconForIntent(intent)}
+            {theme.getIconForIntent(intent, { size: 14 })}
           </Pane>
         )}
         <Pane display="flex" width="100%">

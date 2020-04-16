@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
-import { Icon } from '../../icon'
+import { TickIcon } from '../../icons'
 import { Image } from '../../image'
 import { TableRow, TextTableCell } from '../../table'
 
@@ -63,7 +63,7 @@ export default class Option extends PureComponent {
           flexGrow={0}
           paddingTop={4}
         >
-          <Icon color="selected" icon="tick" size={14} />
+          <TickIcon color="selected" size={14} />
         </Pane>
         <TextTableCell
           height={height}

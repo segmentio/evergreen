@@ -4,7 +4,6 @@ import { spacing, dimensions, position, layout } from 'ui-box'
 import { withTheme } from '../../theme'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
 
 class InlineAlert extends PureComponent {
   static propTypes = {
@@ -50,12 +49,6 @@ class InlineAlert extends PureComponent {
     size: 400
   }
 
-  getIconForIntent = intent => {
-    const { theme } = this.props
-
-    return <Icon size={14} marginTop={2} {...theme.getIconForIntent(intent)} />
-  }
-
   render() {
     const { theme, children, intent, hasIcon, size, ...props } = this.props
 
@@ -63,7 +56,7 @@ class InlineAlert extends PureComponent {
       <Pane alignItems="center" display="flex" {...props}>
         {hasIcon && (
           <Pane display="inline" marginRight={8}>
-            {this.getIconForIntent(intent)}
+            {theme.getIconForIntent(intent, { size: 14, marginTop: 2 })}
           </Pane>
         )}
         <Text size={size} fontWeight={500}>
