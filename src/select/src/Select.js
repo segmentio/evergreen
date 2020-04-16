@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { dimensions, spacing, position, layout } from 'ui-box'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
+import { CaretDownIcon } from '../../icons'
 import { withTheme } from '../../theme'
 
 class Select extends PureComponent {
@@ -144,8 +144,7 @@ class Select extends PureComponent {
         >
           {children}
         </Text>
-        <Icon
-          icon="caret-down"
+        <CaretDownIcon
           color="default"
           size={iconSize}
           position="absolute"

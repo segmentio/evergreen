@@ -14,7 +14,7 @@ const external = Object.keys(peerDependencies)
 // https://github.com/rollup/plugins/tree/master/packages/commonjs#namedexports
 const namedExports = {
   'node_modules/react-is/index.js': ['isForwardRef'],
-  'node_modules/react-tiny-virtual-list/node_modules/prop-types/index.js': [
+  'node_modules/prop-types/index.js': [
     'array',
     'arrayOf',
     'func',
