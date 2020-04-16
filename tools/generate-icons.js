@@ -154,13 +154,11 @@ export const ${iconName} = memo(forwardRef((props, ref) => (
   // update the typedefs to include icons
   // =====================
 
-  const iconTypeDefs = iconNames.map(componentName => {
-    return `export type ${componentName} = React.ForwardRefExoticComponent<React.PropsWithoutRef<Omit<IconProps, 'icon'>> & React.RefAttributes<SVGElement>>`
-  })
+  const iconTypeDefs = iconNames
+    .map(componentName => `export type ${componentName} = IconComponent`)
+    .join('\n  ')
 
-  const iconsTypeDefs = `/* Start generated icons */\n  ${iconTypeDefs.join(
-    '\n  '
-  )}\n  /* End generated icons */`
+  const iconsTypeDefs = `/* Start generated icons */\n  export type IconComponent = React.ForwardRefExoticComponent<React.PropsWithoutRef<Omit<IconProps, 'icon'>> & React.RefAttributes<SVGElement>>\n  ${iconTypeDefs}\n  /* End generated icons */`
 
   let typedefs = await fs.readFile(typedefPath, 'utf8')
   typedefs = typedefs.replace(
