@@ -66,6 +66,22 @@ export default class FormField extends PureComponent {
     }
   }
 
+  renderValidationMessage = () => {
+    const { validationMessage } = this.props
+
+    if (!validationMessage) {
+      return null
+    }
+
+    return typeof validationMessage === 'string' ? (
+      <FormFieldValidationMessage marginTop={8}>
+        {validationMessage}
+      </FormFieldValidationMessage>
+    ) : (
+      validationMessage
+    )
+  }
+
   render() {
     const {
       hint,
@@ -75,7 +91,6 @@ export default class FormField extends PureComponent {
       isRequired,
       labelProps,
       description,
-      validationMessage,
       ...props
     } = this.props
 
@@ -97,13 +112,7 @@ export default class FormField extends PureComponent {
           description
         )}
         {children}
-        {typeof validationMessage === 'string' ? (
-          <FormFieldValidationMessage marginTop={8}>
-            {validationMessage}
-          </FormFieldValidationMessage>
-        ) : (
-          validationMessage
-        )}
+        {this.renderValidationMessage()}
         {typeof hint === 'string' ? (
           <FormFieldHint marginTop={6}>{hint}</FormFieldHint>
         ) : (
