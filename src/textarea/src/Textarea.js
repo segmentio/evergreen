@@ -10,6 +10,12 @@ class Textarea extends PureComponent {
      * Composes the Text component as the base.
      */
     ...Text.propTypes,
+    
+    /**
+     * Allows resize style of the textarea
+     */
+    
+    resize: PropTypes.string,
 
     /**
      * Makes the textarea element required.
@@ -70,7 +76,8 @@ class Textarea extends PureComponent {
     disabled: false,
     isInvalid: false,
     spellCheck: true,
-    grammarly: false
+    grammarly: false,
+    resize: "vertical"
   }
 
   static styles = {
@@ -83,7 +90,7 @@ class Textarea extends PureComponent {
     const {
       theme,
       className,
-
+      resize,
       width,
       height,
       disabled,
@@ -116,6 +123,9 @@ class Textarea extends PureComponent {
         {...(disabled ? { color: 'muted' } : {})}
         {...Textarea.styles}
         {...props}
+        style={{
+          resize: resize      
+        }}
       />
     )
   }
