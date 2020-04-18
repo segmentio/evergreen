@@ -33,7 +33,7 @@ class Badge extends PureComponent {
   static styles = {
     display: 'inline-block',
     boxSizing: 'border-box',
-    height: 16,
+    minHeight: 16,
     paddingTop: 0,
     paddingRight: 6,
     paddingBottom: 0,
