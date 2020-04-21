@@ -11,121 +11,117 @@ const StringAndBoolPropType = PropTypes.oneOfType([
 ])
 
 const Pane = memo(
-  forwardRef(
-    (
-      {
-        background,
+  forwardRef((props, ref) => {
+    const {
+      background,
 
-        elevation,
-        hoverElevation,
-        activeElevation,
+      elevation,
+      hoverElevation,
+      activeElevation,
 
-        border,
-        borderTop,
-        borderRight,
-        borderBottom,
-        borderLeft,
+      border,
+      borderTop,
+      borderRight,
+      borderBottom,
+      borderLeft,
 
-        css = {},
-        ...props
-      },
-      ref
-    ) => {
-      const theme = useTheme()
+      css = {},
+      ...restProps
+    } = props
+    const theme = useTheme()
 
-      function getHoverElevationStyle(hoverElevation, css) {
-        if (!Number.isInteger(hoverElevation)) return {}
+    function getHoverElevationStyle(hoverElevation, css) {
+      if (!Number.isInteger(hoverElevation)) return {}
 
-        return {
-          transitionDuration: '150ms',
-          transitionProperty: 'box-shadow, transform',
-          transitionTimingFunction: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-          ':hover': {
-            ...(css[':hover'] || {}),
-            transform: 'translateY(-2px)',
-            boxShadow: theme.getElevation(hoverElevation)
-          }
+      return {
+        transitionDuration: '150ms',
+        transitionProperty: 'box-shadow, transform',
+        transitionTimingFunction: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
+        ':hover': {
+          ...(css[':hover'] || {}),
+          transform: 'translateY(-2px)',
+          boxShadow: theme.getElevation(hoverElevation)
         }
       }
-
-      function getActiveElevationStyle(activeElevation, css) {
-        if (!Number.isInteger(activeElevation)) return {}
-
-        return {
-          ':active': {
-            ...(css[':active'] || {}),
-            transform: 'translateY(-1px)',
-            boxShadow: theme.getElevation(activeElevation)
-          }
-        }
-      }
-
-      function getBorderSideProperty({ borderSideProperty, border }) {
-        if (
-          Object.prototype.hasOwnProperty.call(
-            theme.colors.border,
-            borderSideProperty
-          )
-        ) {
-          return `1px solid ${theme.colors.border[borderSideProperty]}`
-        }
-
-        if (borderSideProperty === true) {
-          return `1px solid ${theme.colors.border.default}`
-        }
-
-        if (borderSideProperty === false) {
-          return null
-        }
-
-        if (Object.prototype.hasOwnProperty.call(theme.colors.border, border)) {
-          return `1px solid ${theme.colors.border[border]}`
-        }
-
-        if (border === true) {
-          return `1px solid ${theme.colors.border.default}`
-        }
-
-        return borderSideProperty
-      }
-
-      const elevationStyle = theme.getElevation(elevation)
-      const hoverElevationStyle = getHoverElevationStyle(hoverElevation, css)
-      const activeElevationStyle = getActiveElevationStyle(activeElevation, css)
-
-      const [_borderTop, _borderRight, _borderBottom, _borderLeft] = [
-        borderTop,
-        borderRight,
-        borderBottom,
-        borderLeft
-      ].map(borderSideProperty =>
-        getBorderSideProperty({ borderSideProperty, border })
-      )
-
-      const className = cx(
-        props.className,
-        glamorCss({
-          ...css,
-          ...hoverElevationStyle,
-          ...activeElevationStyle
-        }).toString()
-      )
-
-      return (
-        <Box
-          innerRef={ref}
-          borderTop={_borderTop}
-          borderRight={_borderRight}
-          borderBottom={_borderBottom}
-          borderLeft={_borderLeft}
-          boxShadow={elevationStyle}
-          background={theme.getBackground(background)}
-          {...props}
-          className={className}
-        />
-      )
     }
-  )
+
+    function getActiveElevationStyle(activeElevation, css) {
+      if (!Number.isInteger(activeElevation)) return {}
+
+      return {
+        ':active': {
+          ...(css[':active'] || {}),
+          transform: 'translateY(-1px)',
+          boxShadow: theme.getElevation(activeElevation)
+        }
+      }
+    }
+
+    function getBorderSideProperty({ borderSideProperty, border }) {
+      if (
+        Object.prototype.hasOwnProperty.call(
+          theme.colors.border,
+          borderSideProperty
+        )
+      ) {
+        return `1px solid ${theme.colors.border[borderSideProperty]}`
+      }
+
+      if (borderSideProperty === true) {
+        return `1px solid ${theme.colors.border.default}`
+      }
+
+      if (borderSideProperty === false) {
+        return null
+      }
+
+      if (Object.prototype.hasOwnProperty.call(theme.colors.border, border)) {
+        return `1px solid ${theme.colors.border[border]}`
+      }
+
+      if (border === true) {
+        return `1px solid ${theme.colors.border.default}`
+      }
+
+      return borderSideProperty
+    }
+
+    const elevationStyle = theme.getElevation(elevation)
+    const hoverElevationStyle = getHoverElevationStyle(hoverElevation, css)
+    const activeElevationStyle = getActiveElevationStyle(activeElevation, css)
+
+    const [_borderTop, _borderRight, _borderBottom, _borderLeft] = [
+      borderTop,
+      borderRight,
+      borderBottom,
+      borderLeft
+    ].map(borderSideProperty =>
+      getBorderSideProperty({ borderSideProperty, border })
+    )
+
+    const className = cx(
+      props.className,
+      glamorCss({
+        ...css,
+        ...hoverElevationStyle,
+        ...activeElevationStyle
+      }).toString()
+    )
+
+    return (
+      <Box
+        innerRef={ref}
+        borderTop={_borderTop}
+        borderRight={_borderRight}
+        borderBottom={_borderBottom}
+        borderLeft={_borderLeft}
+        boxShadow={elevationStyle}
+        background={theme.getBackground(background)}
+        {...restProps}
+        className={className}
+      />
+    )
+  })
 )
 
 Pane.propTypes = {
