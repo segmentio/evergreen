@@ -1,8 +1,8 @@
+import React, { useState, useEffect, forwardRef, memo } from 'react'
 import { css } from 'glamor'
-import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 
 const loadingKeyframes = css.keyframes('loading', {
   '0%': {
@@ -38,50 +38,30 @@ const innerClass = color =>
     fill: 'transparent'
   }).toString()
 
-class Spinner extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Box component as the base.
-     */
-    ...Box.propTypes,
+const Spinner = memo(
+  forwardRef(({ delay = 0, size = 40, ...props }, ref) => {
+    const theme = useTheme()
+    const [isVisible, setIsVisible] = useState(delay === 0)
 
-    /**
-     * Delay after which spinner should be visible.
-     */
-    delay: PropTypes.number,
+    useEffect(() => {
+      let delayTimer = null
+      if (delay > 0) {
+        delayTimer = setTimeout(() => {
+          setIsVisible(true)
+        }, delay)
+      }
 
-    /**
-     * The size of the spinner.
-     */
-    size: PropTypes.number.isRequired,
+      return function() {
+        clearTimeout(delayTimer)
+      }
+    }, [])
 
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
-  static defaultProps = {
-    size: 40,
-    delay: 0
-  }
-
-  constructor({ delay }) {
-    super()
-
-    this.state = {
-      isVisible: delay === 0
-    }
-  }
-
-  render() {
-    if (!this.state.isVisible) {
+    if (!isVisible) {
       return null
     }
 
-    const { theme, size, ...props } = this.props
     return (
-      <Box width={size} height={size} lineHeight={0} {...props}>
+      <Box width={size} height={size} lineHeight={0} {...props} innerRef={ref}>
         <Box
           is="svg"
           className={outerClass}
@@ -99,23 +79,24 @@ class Spinner extends PureComponent {
         </Box>
       </Box>
     )
-  }
+  })
+)
 
-  componentDidMount() {
-    const { delay } = this.props
+Spinner.propTypes = {
+  /**
+   * Composes the Box component as the base.
+   */
+  ...Box.propTypes,
 
-    if (delay > 0) {
-      this.delayTimer = setTimeout(() => {
-        this.setState({
-          isVisible: true
-        })
-      }, delay)
-    }
-  }
+  /**
+   * Delay after which spinner should be visible.
+   */
+  delay: PropTypes.number,
 
-  componentWillUnmount() {
-    clearTimeout(this.delayTimer)
-  }
+  /**
+   * The size of the spinner.
+   */
+  size: PropTypes.number.isRequired
 }
 
-export default withTheme(Spinner)
+export default Spinner
