@@ -38,47 +38,49 @@ const innerClass = color =>
     fill: 'transparent'
   }).toString()
 
-function Spinner({ delay = 0, size = 40, ...props }, ref) {
-  const theme = useTheme()
-  const [isVisible, setIsVisible] = useState(delay === 0)
+const Spinner = memo(
+  forwardRef(({ delay = 0, size = 40, ...props }, ref) => {
+    const theme = useTheme()
+    const [isVisible, setIsVisible] = useState(delay === 0)
 
-  useEffect(() => {
-    let delayTimer = null
-    if (delay > 0) {
-      delayTimer = setTimeout(() => {
-        setIsVisible(true)
-      }, delay)
+    useEffect(() => {
+      let delayTimer = null
+      if (delay > 0) {
+        delayTimer = setTimeout(() => {
+          setIsVisible(true)
+        }, delay)
+      }
+
+      return function() {
+        clearTimeout(delayTimer)
+      }
+    }, [])
+
+    if (!isVisible) {
+      return null
     }
 
-    return function() {
-      clearTimeout(delayTimer)
-    }
-  }, [])
-
-  if (!isVisible) {
-    return null
-  }
-
-  return (
-    <Box width={size} height={size} lineHeight={0} {...props} innerRef={ref}>
-      <Box
-        is="svg"
-        className={outerClass}
-        x="0px"
-        y="0px"
-        viewBox="0 0 150 150"
-      >
+    return (
+      <Box width={size} height={size} lineHeight={0} {...props} innerRef={ref}>
         <Box
-          is="circle"
-          className={innerClass(theme.spinnerColor)}
-          cx="75"
-          cy="75"
-          r="60"
-        />
+          is="svg"
+          className={outerClass}
+          x="0px"
+          y="0px"
+          viewBox="0 0 150 150"
+        >
+          <Box
+            is="circle"
+            className={innerClass(theme.spinnerColor)}
+            cx="75"
+            cy="75"
+            r="60"
+          />
+        </Box>
       </Box>
-    </Box>
-  )
-}
+    )
+  })
+)
 
 Spinner.propTypes = {
   /**
@@ -97,4 +99,4 @@ Spinner.propTypes = {
   size: PropTypes.number.isRequired
 }
 
-export default memo(forwardRef(Spinner))
+export default Spinner
