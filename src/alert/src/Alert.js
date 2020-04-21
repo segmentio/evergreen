@@ -52,7 +52,7 @@ const Alert = memo(
             display="flex"
             alignItems="center"
           >
-            <Icon size={14} {...theme.getIconForIntent(intent)} />
+            {theme.getIconForIntent(intent, { size: 14 })}
           </Pane>
         )}
         <Pane display="flex" width="100%">

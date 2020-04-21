@@ -5,25 +5,31 @@ import { useTheme } from '../../theme'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
 
-function InlineAlert(
-  { children, intent = 'none', hasIcon = true, size = 400, ...props },
-  ref
-) {
-  const theme = useTheme()
+const InlineAlert = memo(
+  forwardRef((props, ref) => {
+    const {
+      children,
+      intent = 'none',
+      hasIcon = true,
+      size = 400,
+      ...restProps
+    } = props
+    const theme = useTheme()
 
-  return (
-    <Pane alignItems="center" display="flex" innerRef={ref} {...props}>
-      {hasIcon && (
-        <Pane display="inline" marginRight={8}>
-          <Icon size={14} marginTop={2} {...theme.getIconForIntent(intent)} />
-        </Pane>
-      )}
-      <Text size={size} fontWeight={500}>
-        {children}
-      </Text>
-    </Pane>
-  )
-}
+    return (
+      <Pane alignItems="center" display="flex" innerRef={ref} {...restProps}>
+        {hasIcon && (
+          <Pane display="inline" marginRight={8}>
+            {theme.getIconForIntent(intent, { marginTop: 2, size: 14 })}
+          </Pane>
+        )}
+        <Text size={size} fontWeight={500}>
+          {children}
+        </Text>
+      </Pane>
+    )
+  })
+)
 
 InlineAlert.propTypes = {
   /**
@@ -61,4 +67,4 @@ InlineAlert.propTypes = {
   theme: PropTypes.object.isRequired
 }
 
-export default memo(forwardRef(InlineAlert))
+export default InlineAlert
