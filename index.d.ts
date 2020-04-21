@@ -456,8 +456,6 @@ export class AutocompleteItem extends React.PureComponent<AutocompleteItemProps>
 
 // https://github.com/downshift-js/downshift
 export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'> {
-  // @deprecated
-  defaultSelectedItem?: string
   title?: React.ReactNode
   items: any[]
   renderItem?: (i: AutocompleteItemProps) => JSX.Element | null
@@ -650,10 +648,6 @@ export interface ComboboxProps extends React.ComponentPropsWithoutRef<typeof Box
    * Properties forwarded to the autocomplete component. Use with caution.
    */
   autocompleteProps?: AutocompleteProps
-  /**
-   * Default selected item when uncontrolled.
-   */
-  defaultSelectedItem?: string
   /**
    * When true, open the autocomplete on focus.
    */
