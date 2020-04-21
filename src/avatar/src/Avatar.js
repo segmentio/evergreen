@@ -30,77 +30,81 @@ function getColorProps({ isSolid, theme, color, name, propsHashValue }) {
   return theme.getAvatarProps({ isSolid, color })
 }
 
-function Avatar({
-  src,
-  name,
-  size = 24,
-  isSolid = false,
-  color = 'automatic',
-  forceShowInitials = false,
-  sizeLimitOneCharacter = 20,
-  getInitials = globalGetInitials,
-  hashValue: propsHashValue,
-  ...props
-}, ref) {
-  const theme = useTheme()
-  const [imageHasFailedLoading, setImageHasFailedLoading] = useState(false)
-  const imageUnavailable = !src || imageHasFailedLoading
-  const colorProps = getColorProps({
-    isSolid,
-    theme,
-    color,
-    name,
-    propsHashValue
+const Avatar = memo(
+  forwardRef((props, ref) => {
+    const {
+      src,
+      name,
+      size = 24,
+      isSolid = false,
+      color = 'automatic',
+      forceShowInitials = false,
+      sizeLimitOneCharacter = 20,
+      getInitials = globalGetInitials,
+      hashValue: propsHashValue,
+      ...restProps
+    } = props
+
+    const theme = useTheme()
+    const [imageHasFailedLoading, setImageHasFailedLoading] = useState(false)
+    const imageUnavailable = !src || imageHasFailedLoading
+    const colorProps = getColorProps({
+      isSolid,
+      theme,
+      color,
+      name,
+      propsHashValue
+    })
+    const initialsFontSize = `${theme.getAvatarInitialsFontSize(
+      size,
+      sizeLimitOneCharacter
+    )}px`
+
+    let initials = getInitials(name)
+    if (size <= sizeLimitOneCharacter) {
+      initials = initials.substring(0, 1)
+    }
+
+    return (
+      <Box
+        width={size}
+        height={size}
+        overflow="hidden"
+        borderRadius={9999}
+        position="relative"
+        display="inline-flex"
+        flexShrink={0}
+        justifyContent="center"
+        backgroundColor={colorProps.backgroundColor}
+        title={name}
+        innerRef={ref}
+        {...restProps}
+      >
+        {(imageUnavailable || forceShowInitials) && (
+          <Text
+            className={initialsStyleClass}
+            fontSize={initialsFontSize}
+            lineHeight={initialsFontSize}
+            width={size}
+            height={size}
+            color={colorProps.color}
+          >
+            {initials}
+          </Text>
+        )}
+        {!imageUnavailable && (
+          <Image
+            style={{ objectFit: 'cover' }} // Unsupported by ui-box directly
+            width={isObjectFitSupported ? '100%' : 'auto'} // Fallback to old behaviour on IE
+            height="100%"
+            src={src}
+            onError={() => setImageHasFailedLoading(true)}
+          />
+        )}
+      </Box>
+    )
   })
-  const initialsFontSize = `${theme.getAvatarInitialsFontSize(
-    size,
-    sizeLimitOneCharacter
-  )}px`
-
-  let initials = getInitials(name)
-  if (size <= sizeLimitOneCharacter) {
-    initials = initials.substring(0, 1)
-  }
-
-  return (
-    <Box
-      width={size}
-      height={size}
-      overflow="hidden"
-      borderRadius={9999}
-      position="relative"
-      display="inline-flex"
-      flexShrink={0}
-      justifyContent="center"
-      backgroundColor={colorProps.backgroundColor}
-      title={name}
-      innerRef={ref}
-      {...props}
-    >
-      {(imageUnavailable || forceShowInitials) && (
-        <Text
-          className={initialsStyleClass}
-          fontSize={initialsFontSize}
-          lineHeight={initialsFontSize}
-          width={size}
-          height={size}
-          color={colorProps.color}
-        >
-          {initials}
-        </Text>
-      )}
-      {!imageUnavailable && (
-        <Image
-          style={{ objectFit: 'cover' }} // Unsupported by ui-box directly
-          width={isObjectFitSupported ? '100%' : 'auto'} // Fallback to old behaviour on IE
-          height="100%"
-          src={src}
-          onError={() => setImageHasFailedLoading(true)}
-        />
-      )}
-    </Box>
-  )
-}
+)
 
 Avatar.propTypes = {
   /**
@@ -154,4 +158,4 @@ Avatar.propTypes = {
   sizeLimitOneCharacter: PropTypes.number
 }
 
-export default memo(forwardRef(Avatar))
+export default Avatar
