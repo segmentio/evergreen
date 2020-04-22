@@ -7,6 +7,8 @@ import { BoxProps } from 'ui-box/dist/types/box-types'
 import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
 
+export { configureSafeHref, setClassNamePrefix } from 'ui-box'
+
 type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
 type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
 type DefaultAppearance = 'default'
