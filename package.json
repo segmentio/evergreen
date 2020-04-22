@@ -43,7 +43,7 @@
     "clean": "git clean -Xdf",
     "release": "np",
     "deploy-docs": "cd docs && yarn install && yarn deploy",
-    "postpublish": "yarn deploy-docs"
+    "postpublish": "yarn git-branch-is master && yarn deploy-docs"
   },
   "engines": {
     "node": ">=10"
@@ -103,6 +103,7 @@
     "faker": "^4.1.0",
     "file-loader": "^2.0.0",
     "fs-extra": "^7.0.0",
+    "git-branch-is": "^3.1.0",
     "husky": "^4.0.10",
     "jest": "^25.3.0",
     "jscodeshift": "^0.7.0",
