@@ -1,10 +1,9 @@
-import { setClassNamePrefix } from 'ui-box'
+// eslint-disable-next-line import/no-unassigned-import
+import './backwards-compat-classname'
 import { autoHydrate } from './ssr'
-
-setClassNamePrefix('📦')
 autoHydrate()
 
-export { configureSafeHref } from 'ui-box'
+export { configureSafeHref, setClassNamePrefix } from 'ui-box'
 export { Alert, InlineAlert } from './alert'
 export { Autocomplete, AutocompleteItem } from './autocomplete'
 export { Avatar } from './avatar'

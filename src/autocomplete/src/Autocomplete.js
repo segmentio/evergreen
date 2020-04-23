@@ -151,9 +151,9 @@ export default class Autocomplete extends PureComponent {
     width,
     inputValue,
     highlightedIndex,
-    selectItemAtIndex,
     selectedItem,
-    getItemProps
+    getItemProps,
+    getMenuProps
   }) => {
     const {
       title,
@@ -174,8 +174,13 @@ export default class Autocomplete extends PureComponent {
 
     if (items.length === 0) return null
 
+    // Pass the actual DOM ref to downshift, this fixes touch support
+    const menuProps = getMenuProps()
+    menuProps.innerRef = menuProps.ref
+    delete menuProps.ref
+
     return (
-      <Pane width={width}>
+      <Pane width={width} {...menuProps}>
         {title && (
           <Pane padding={8} borderBottom="muted">
             <Heading size={100}>{title}</Heading>
@@ -193,9 +198,6 @@ export default class Autocomplete extends PureComponent {
             renderItem={({ index, style }) => {
               const item = items[index]
               const itemString = itemToString(item)
-              const onSelect = () => {
-                selectItemAtIndex(index)
-              }
 
               return renderItem(
                 getItemProps({
@@ -204,8 +206,6 @@ export default class Autocomplete extends PureComponent {
                   index,
                   style,
                   children: itemString,
-                  onMouseUp: onSelect,
-                  onTouchEnd: onSelect,
                   isSelected: itemToString(selectedItem) === itemString,
                   isHighlighted: highlightedIndex === index
                 })
@@ -239,9 +239,9 @@ export default class Autocomplete extends PureComponent {
           isOpen: isShown,
           inputValue,
           getItemProps,
+          getMenuProps,
           selectedItem,
           highlightedIndex,
-          selectItemAtIndex,
           getRootProps,
           ...restDownshiftProps
         }) => (
@@ -261,9 +261,9 @@ export default class Autocomplete extends PureComponent {
                   width: Math.max(this.state.targetWidth, popoverMinWidth),
                   inputValue,
                   getItemProps,
+                  getMenuProps,
                   selectedItem,
-                  highlightedIndex,
-                  selectItemAtIndex
+                  highlightedIndex
                 })
               }}
               minHeight={0}
@@ -281,7 +281,6 @@ export default class Autocomplete extends PureComponent {
                   inputValue,
                   selectedItem,
                   highlightedIndex,
-                  selectItemAtIndex,
                   ...restDownshiftProps
                 })
               }
