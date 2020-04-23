@@ -29,7 +29,8 @@ const TreeShakeableIcon = forwardRef(
 
     // Choose which pixel grid is most appropriate for given icon size
     const pixelGridSize = size >= SIZE_LARGE ? SIZE_LARGE : SIZE_STANDARD
-    const pathStrings = SIZE_STANDARD ? svgPaths16 : svgPaths20
+    const pathStrings =
+      pixelGridSize === SIZE_STANDARD ? svgPaths16 : svgPaths20
     const paths = pathStrings.map((d, i) => (
       // eslint-disable-next-line react/no-array-index-key
       <path key={i} d={d} fillRule="evenodd" />
