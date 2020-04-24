@@ -1980,6 +1980,45 @@ export interface TextareaProps extends TextProps {
 export class Textarea extends React.PureComponent<TextareaProps> {
 }
 
+export interface TextareaFieldProps extends TextareaProps {
+  /**
+   * The label used above the input element.
+   */
+  label?: React.ReactNode
+  /**
+   * Passed on the label as a htmlFor prop.
+   */
+  labelFor?: string
+  /**
+   * Wether or not show a asterix after the label.
+   */
+  required?: boolean
+  /**
+   * A optional description of the field under the label, above the input element.
+   */
+  description?: React.ReactNode
+  /**
+   * A optional hint under the input element.
+   */
+  hint?: React.ReactNode
+  /**
+   * If a validation message is passed it is shown under the input element
+   * and above the hint.
+   */
+  validationMessage?: React.ReactNode
+  /**
+   * The height of the input element.
+   */
+  inputHeight?: number
+  /**
+   * The width of the input width.
+   */
+  inputWidth?: number | string
+}
+
+export class TextareaField extends React.PureComponent<TextareaFieldProps> {
+}
+
 export interface TextDropdownButtonProps extends TextProps {
   /**
    * Forcefully set the active state of a button.
