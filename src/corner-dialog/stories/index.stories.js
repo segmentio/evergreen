@@ -93,6 +93,23 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
           <CornerDialog
             title="Please Read License Terms"
             isShown={state.isShown}
+            hasHeader={false}
+            width={492}
+            confirmLabel="View Terms"
+            onCloseComplete={() => setState({ isShown: false })}
+          >
+            MIT License
+          </CornerDialog>
+          <Button onClick={() => setState({ isShown: true })}>No Header</Button>
+        </Box>
+      )}
+    </Manager>
+    <Manager isShown={false}>
+      {({ state, setState }) => (
+        <Box marginTop={24}>
+          <CornerDialog
+            title="Please Read License Terms"
+            isShown={state.isShown}
             hasClose={false}
             hasCancel={false}
             width={492}
