@@ -39,9 +39,7 @@ const closeAnimation = css.keyframes('closeAnimation', {
 
 const animationStyles = {
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.spring
-    } both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`
   },
   '&[data-state="exiting"]': {
     animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
@@ -86,6 +84,11 @@ export default class CornerDialog extends PureComponent {
      * When true, the footer with the cancel and confirm button is shown.
      */
     hasFooter: PropTypes.bool,
+
+    /**
+     * When true, the footer with the title and close button are shown.
+     */
+    hasHeader: PropTypes.bool,
 
     /**
      * Function that will be called when the confirm button is clicked.
@@ -135,6 +138,16 @@ export default class CornerDialog extends PureComponent {
     containerProps: PropTypes.object,
 
     /**
+     * Props that are passed to the dialog content body.
+     */
+    contentProps: PropTypes.object,
+
+    /**
+     * Props that are passed to the dialog header.
+     */
+    headerProps: PropTypes.object,
+
+    /**
      * Props that will set position of corner dialog
      */
     position: PropTypes.oneOf([
@@ -149,6 +162,7 @@ export default class CornerDialog extends PureComponent {
     width: 392,
     intent: 'none',
     hasFooter: true,
+    hasHeader: true,
     confirmLabel: 'Learn More',
     hasCancel: true,
     hasClose: true,
@@ -218,12 +232,15 @@ export default class CornerDialog extends PureComponent {
       intent,
       isShown,
       hasFooter,
+      hasHeader,
       hasCancel,
       hasClose,
       cancelLabel,
       confirmLabel,
       onOpenComplete,
       containerProps = {},
+      contentProps = {},
+      headerProps = {},
       position
     } = this.props
 
@@ -257,21 +274,28 @@ export default class CornerDialog extends PureComponent {
               ]}
               {...containerProps}
             >
-              <Pane display="flex" alignItems="center" marginBottom={12}>
-                <Heading is="h4" size={600} flex="1">
-                  {title}
-                </Heading>
-                {hasClose && (
-                  <IconButton
-                    height={32}
-                    icon="cross"
-                    appearance="minimal"
-                    onClick={this.handleClose}
-                  />
-                )}
-              </Pane>
+              {hasHeader && (
+                <Pane
+                  display="flex"
+                  alignItems="center"
+                  marginBottom={12}
+                  {...headerProps}
+                >
+                  <Heading is="h4" size={600} flex="1">
+                    {title}
+                  </Heading>
+                  {hasClose && (
+                    <IconButton
+                      height={32}
+                      icon="cross"
+                      appearance="minimal"
+                      onClick={this.handleClose}
+                    />
+                  )}
+                </Pane>
+              )}
 
-              <Pane overflowY="auto" data-state={state}>
+              <Pane overflowY="auto" data-state={state} {...contentProps}>
                 {this.renderChildren()}
               </Pane>
 
