@@ -25,15 +25,17 @@ A clear and concise description of what the bug is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
-1. Go to '...'
+1. Use component/props '...'
 2. Click on '....'
-3. Scroll down to '....'
-4. See error
+3. See error
 
 _Links to a codesandbox reproduction are extremely useful here._ You can fork this starter to create a minimal reproduction of the issue: https://codesandbox.io/s/nifty-star-u4ilq?file=/src/App.js
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
+
+**Evergreen Version**
+e.g. v4.24.1
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
