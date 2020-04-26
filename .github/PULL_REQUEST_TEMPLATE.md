@@ -2,7 +2,7 @@
 # 🎉 Thanks for taking the time to contribute to 🌲Evergreen! 🎉
 
 It is highly appreciated that you take the time to help improve Evergreen.
-We apprecia*te* it if you would take the time to document your Pull Request.
+We appreciate it if you would take the time to document your Pull Request.
 
 Sadly, if we don't receive enough information, or the Pull Request doesn't
 align well with our roadmap, we might respectfully
