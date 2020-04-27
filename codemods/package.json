@@ -1,0 +1,20 @@
+{
+  "name": "evergreen-ui-codemods",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest --bail"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "dependencies": {
+    "jest": "^25.4.0",
+    "jscodeshift": "^0.7.0",
+    "lodash.startcase": "^4.4.0"
+  },
+  "devDependencies": {},
+  "babel": {
+    "extends": "../.babelrc"
+  }
+}

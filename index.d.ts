@@ -2443,6 +2443,7 @@ export declare const DeleteIcon: IconComponent
 export declare const DeltaIcon: IconComponent
 export declare const DeriveColumnIcon: IconComponent
 export declare const DesktopIcon: IconComponent
+export declare const DiagnosisIcon: IconComponent
 export declare const DiagramTreeIcon: IconComponent
 export declare const DirectionLeftIcon: IconComponent
 export declare const DirectionRightIcon: IconComponent
@@ -2588,6 +2589,7 @@ export declare const KeyOptionIcon: IconComponent
 export declare const KeyShiftIcon: IconComponent
 export declare const KeyTabIcon: IconComponent
 export declare const KnownVehicleIcon: IconComponent
+export declare const LabTestIcon: IconComponent
 export declare const LabelIcon: IconComponent
 export declare const LayerIcon: IconComponent
 export declare const LayersIcon: IconComponent
@@ -2810,6 +2812,7 @@ export declare const VerticalBarChartAscIcon: IconComponent
 export declare const VerticalBarChartDescIcon: IconComponent
 export declare const VerticalDistributionIcon: IconComponent
 export declare const VideoIcon: IconComponent
+export declare const VirusIcon: IconComponent
 export declare const VolumeDownIcon: IconComponent
 export declare const VolumeOffIcon: IconComponent
 export declare const VolumeUpIcon: IconComponent

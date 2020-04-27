@@ -3,65 +3,55 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useTheme } from '../../theme'
 
-/**
- * This implementation is a remix of the Icon component in Blueprintjs:
- * https://github.com/palantir/blueprint/blob/813e93f2/packages/core/src/components/icon/icon.tsx#L15
- * Refer to the LICENSE for BlueprintJS here: https://github.com/palantir/blueprint/blob/develop/LICENSE
- */
+const IconWithRef = forwardRef((props, ref) => {
+  const theme = useTheme()
+  const SIZE_STANDARD = 16
+  const SIZE_LARGE = 20
 
-const TreeShakeableIcon = forwardRef(
-  (
-    {
-      color = 'currentColor',
-      size = 16,
-      name,
-      title,
-      style = {},
-      svgPaths16,
-      svgPaths20,
-      ...svgProps
-    },
-    ref
-  ) => {
-    const theme = useTheme()
-    const SIZE_STANDARD = 16
-    const SIZE_LARGE = 20
+  const {
+    color = 'currentColor',
+    size = 16,
+    name,
+    title,
+    svgPaths16,
+    svgPaths20,
+    ...svgProps
+  } = props
 
-    // Choose which pixel grid is most appropriate for given icon size
-    const pixelGridSize = size >= SIZE_LARGE ? SIZE_LARGE : SIZE_STANDARD
-    const pathStrings =
-      pixelGridSize === SIZE_STANDARD ? svgPaths16 : svgPaths20
-    const paths = pathStrings.map((d, i) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <path key={i} d={d} fillRule="evenodd" />
-    ))
+  // Choose which pixel grid is most appropriate for given icon size
+  const pixelGridSize = size >= SIZE_LARGE ? SIZE_LARGE : SIZE_STANDARD
+  const pathStrings = pixelGridSize === SIZE_STANDARD ? svgPaths16 : svgPaths20
+  const paths = pathStrings.map((d, i) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <path key={i} d={d} fillRule="evenodd" />
+  ))
 
-    const viewBox = `0 0 ${pixelGridSize} ${pixelGridSize}`
+  const viewBox = `0 0 ${pixelGridSize} ${pixelGridSize}`
 
-    if (color) {
-      style = { ...style, fill: theme.getIconColor(color) }
-    }
-
-    return (
-      <Box
-        is="svg"
-        // To allow innerRef to be passed from the consumer this needs to be before svgProps
-        innerRef={ref}
-        {...svgProps}
-        data-icon={name}
-        style={style}
-        width={size}
-        height={size}
-        viewBox={viewBox}
-      >
-        {title && <title>{title}</title>}
-        {paths}
-      </Box>
-    )
+  const style = svgProps.style || {}
+  if (color) {
+    Object.assign(style, { fill: theme.getIconColor(color) })
   }
-)
 
-TreeShakeableIcon.propTypes = {
+  return (
+    <Box
+      is="svg"
+      // To allow innerRef to be passed from the consumer this needs to be before svgProps
+      innerRef={ref}
+      {...svgProps}
+      data-icon={name}
+      style={style}
+      width={size}
+      height={size}
+      viewBox={viewBox}
+    >
+      {title && <title>{title}</title>}
+      {paths}
+    </Box>
+  )
+})
+
+IconWithRef.propTypes = {
   /**
    * Color of icon. Equivalent to setting CSS `fill` property.
    */
@@ -97,4 +87,4 @@ TreeShakeableIcon.propTypes = {
   svgPaths20: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
-export default TreeShakeableIcon
+export default IconWithRef
