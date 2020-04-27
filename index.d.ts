@@ -6,6 +6,7 @@ import Box, { extractStyles as boxExtractStyles } from 'ui-box'
 import { BoxProps } from 'ui-box/dist/types/box-types'
 import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
+import {TransitionProps, TransitionStatus} from 'react-transition-group/Transition'
 
 export { configureSafeHref, setClassNamePrefix } from 'ui-box'
 
@@ -1330,19 +1331,19 @@ export interface Option {
   disabled?: boolean
 }
 
-export interface OptionsListProps {
+export interface OptionsListProps extends PaneProps {
   options?: Option[]
   close?: () => void
   height?: number
   width?: number
   isMultiSelect?: boolean
-  selected?: string
+  selected?: string | string[]
   onSelect?: (value: Option) => void
   onDeselect?: (value: Option) => void
   onFilterChange?: (value: string) => void
   hasFilter?: boolean
   optionSize?: number
-  renderItem: (props: {
+  renderItem?: (props: {
     key: Option['value']
     label: Option['label']
     style: object,
@@ -2317,6 +2318,26 @@ export const toaster: {
   getToasts: () => Toast[]
 }
 
+interface OverlayProps {
+  children: React.ReactNode | ((props: { state: TransitionStatus, close: () => void }) => JSX.Element);
+
+  isShown?: boolean;
+  containerProps?: BoxProps<'div'>;
+  preventBodyScrolling?: boolean;
+  shouldCloseOnClick?: boolean;
+  shouldCloseOnEscapePress?: boolean;
+  onBeforeClose?: () => void;
+  onExit?: () => void;
+  onExiting?: TransitionProps['onExiting'];
+  onExited?: TransitionProps['onExited'];
+  onEnter?: () => void;
+  onEntering?: TransitionProps['onEntering'];
+  onEntered?: TransitionProps['onEntered'];
+}
+
+export class Overlay extends React.PureComponent<OverlayProps> {
+}
+
 /* Start generated icons */
 type IconComponent = React.ForwardRefExoticComponent<React.PropsWithoutRef<Omit<IconProps, 'icon'>> & React.RefAttributes<SVGElement>>
 export declare const AddIcon: IconComponent
@@ -2812,9 +2833,6 @@ export declare const ZoomToFitIcon: IconComponent
 type UnknownProps = Record<string, any>
 
 export class FilePicker extends React.PureComponent<UnknownProps> {
-}
-
-export class Overlay extends React.PureComponent<UnknownProps> {
 }
 
 export class Portal extends React.PureComponent<UnknownProps> {
