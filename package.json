@@ -26,10 +26,7 @@
     "index.d.ts",
     "codemods"
   ],
-  "sideEffects": [
-    "./commonjs/backwards-compat-classname.js",
-    "./esm/backwards-compat-classname.js"
-  ],
+  "sideEffects": false,
   "scripts": {
     "test": "xo && jest --bail && ava",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",

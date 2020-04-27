@@ -1,5 +1,3 @@
-// eslint-disable-next-line import/no-unassigned-import
-import './backwards-compat-classname'
 import { autoHydrate } from './ssr'
 autoHydrate()
 
