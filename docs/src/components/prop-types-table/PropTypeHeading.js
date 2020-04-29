@@ -11,14 +11,19 @@ const getSpecificPropTypes = ({ name, value }) => {
     case 'arrayOf':
       return `Array<${getSpecificPropTypes(value)}>`
     case 'shape':
-      return `{ ${Object.keys(value)
-        .map(
-          key =>
-            `${key}${value[key].required ? '' : '?'}: ${getSpecificPropTypes(
-              value[key]
-            )}`
-        )
-        .join(', ')} }`
+      if (typeof value === 'object') {
+        return `{ ${Object.keys(value)
+          .map(
+            key =>
+              `${key}${value[key].required ? '' : '?'}: ${getSpecificPropTypes(
+                value[key]
+              )}`
+          )
+          .join(', ')} }`
+      }
+
+      return value
+
     // In the case that the type isn't one of these "nested" types,
     // i.e. it's just a primitive value, just return the name
     default:
