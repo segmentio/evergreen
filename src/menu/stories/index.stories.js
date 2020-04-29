@@ -170,7 +170,32 @@ storiesOf('menu', module)
           </Menu>
         }
       >
-        <Button>Hover menus</Button>
+        <Button marginRight={16}>Hover menus</Button>
+      </Popover>
+
+      <Popover
+        position={Position.BOTTOM_LEFT}
+        content={
+          <Menu>
+            <Menu.Group title="Actions">
+              <Menu.Item icon="people">Share...</Menu.Item>
+              <Menu.Item icon="circle-arrow-right" disabled>
+                Move...
+              </Menu.Item>
+              <Menu.Item icon="edit" secondaryText="⌘R">
+                Rename...
+              </Menu.Item>
+            </Menu.Group>
+            <Menu.Divider />
+            <Menu.Group title="destructive">
+              <Menu.Item icon="trash" intent="danger">
+                Delete...
+              </Menu.Item>
+            </Menu.Group>
+          </Menu>
+        }
+      >
+        <Button>With Disabled Items</Button>
       </Popover>
 
       <UnorderedList marginTop={24}>

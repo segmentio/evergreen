@@ -39,6 +39,9 @@ export default class Menu extends React.PureComponent {
     this.firstItem = this.menuItems[0]
     this.lastItem = this.menuItems[this.menuItems.length - 1]
 
+    const isMenuItemDisabled = menuItem =>
+      menuItem.disabled || menuItem.tabIndex === -1
+
     const focusNext = (currentItem, startItem) => {
       // Determine which item is the startItem (first or last)
       const goingDown = startItem === this.firstItem
@@ -66,7 +69,7 @@ export default class Menu extends React.PureComponent {
       let nextItem = move(currentItem)
 
       // If the menuitem is disabled move on
-      while (nextItem.disabled) {
+      while (isMenuItemDisabled(nextItem)) {
         nextItem = move(nextItem)
       }
 

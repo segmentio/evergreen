@@ -50,13 +50,19 @@ class MenuItem extends React.PureComponent {
     /**
      * Theme provided by ThemeProvider.
      */
-    theme: PropTypes.object.isRequired
+    theme: PropTypes.object.isRequired,
+
+    /**
+     * Flag to indicate whether the menu item is disabled or not
+     */
+    disabled: PropTypes.bool
   }
 
   static defaultProps = {
     is: 'div',
     intent: 'none',
     appearance: 'default',
+    disabled: false,
     onSelect: () => {}
   }
 
@@ -88,6 +94,7 @@ class MenuItem extends React.PureComponent {
       secondaryText,
       intent,
       icon,
+      disabled,
       ...passthroughProps
     } = this.props
 
@@ -102,36 +109,43 @@ class MenuItem extends React.PureComponent {
 
     return (
       <Pane
-        is={is}
-        role="menuitem"
-        className={themedClassName}
-        onClick={this.handleClick}
-        onKeyPress={this.handleKeyPress}
-        height={icon ? 40 : 32}
-        tabIndex={0}
-        data-isselectable="true"
-        display="flex"
-        alignItems="center"
-        {...passthroughProps}
+        is="div"
+        pointerEvents={disabled ? 'none' : 'auto'}
+        opacity={disabled ? 0.4 : 1}
       >
-        {icon && (
-          <Icon
-            color={intent === 'none' ? 'default' : intent}
-            icon={icon}
-            marginLeft={16}
-            marginRight={-4}
-            size={16}
-            flexShrink={0}
-          />
-        )}
-        <Text color={intent} marginLeft={16} marginRight={16} flex={1}>
-          {children}
-        </Text>
-        {secondaryText && (
-          <Text marginRight={16} color="muted">
-            {secondaryText}
+        <Pane
+          is={is}
+          role="menuitem"
+          className={themedClassName}
+          onClick={this.handleClick}
+          onKeyPress={this.handleKeyPress}
+          height={icon ? 40 : 32}
+          tabIndex={disabled ? -1 : 0}
+          data-isselectable="true"
+          display="flex"
+          alignItems="center"
+          disabled={disabled}
+          {...passthroughProps}
+        >
+          {icon && (
+            <Icon
+              color={intent === 'none' ? 'default' : intent}
+              icon={icon}
+              marginLeft={16}
+              marginRight={-4}
+              size={16}
+              flexShrink={0}
+            />
+          )}
+          <Text color={intent} marginLeft={16} marginRight={16} flex={1}>
+            {children}
           </Text>
-        )}
+          {secondaryText && (
+            <Text marginRight={16} color="muted">
+              {secondaryText}
+            </Text>
+          )}
+        </Pane>
       </Pane>
     )
   }
