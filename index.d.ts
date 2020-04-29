@@ -1106,6 +1106,7 @@ export interface MenuItemProps extends PaneProps {
   secondaryText?: JSX.Element
   appearance?: DefaultAppearance
   intent?: IntentTypes
+  disabled?: boolean
 }
 
 export interface MenuGroupProps extends Omit<PaneProps, 'title'> {
