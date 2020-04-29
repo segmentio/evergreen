@@ -11,16 +11,6 @@ export default class PropsTable extends PureComponent {
     rename: PropTypes.string
   }
 
-  getTypeInfo(prop) {
-    if (prop.type && typeof prop.type.value === 'string') {
-      return (
-        <div className="PropTypeTypeValue Content">
-          Value type: <code>{prop.type.value}</code>
-        </div>
-      )
-    }
-  }
-
   isArrayOf = prop => {
     if (
       prop.type &&
@@ -130,7 +120,6 @@ export default class PropsTable extends PureComponent {
                       type={prop.type || {}}
                       isArrayOf={isArrayOf}
                     />
-                    {this.getTypeInfo(prop)}
                     {prop.docblock ? (
                       <PropTypeDescription>{prop.docblock}</PropTypeDescription>
                     ) : null}
