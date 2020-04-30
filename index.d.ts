@@ -791,10 +791,28 @@ export interface DialogProps {
    */
   hasHeader?: boolean
   /**
+   * You can override the default header with your own custom component.
+   *
+   * This is useful if you want to provide a custom header and footer, while
+   * also enabling your Dialog's content to scroll.
+   *
+   * Header can either be a React node or a function accepting `({ close })`.
+   */
+  header?: React.ReactNode | (({ close }: { close: () => void }) => void)
+  /**
    * When true, the footer with the cancel and confirm button is shown.
    * Defaults to true.
    */
   hasFooter?: boolean
+  /**
+   * You can override the default footer with your own custom component.
+   *
+   * This is useful if you want to provide a custom header and footer, while
+   * also enabling your Dialog's content to scroll.
+   *
+   * Footer can either be a React node or a function accepting `({ close })`.
+   */
+  footer?: React.ReactNode | (({ close }: { close: () => void }) => void)
   /**
    * When true, the cancel button is shown. Defaults to true.
    */
