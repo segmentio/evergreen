@@ -226,6 +226,14 @@ class Dialog extends React.Component {
     overlayProps: {}
   }
 
+  renderNode = (node, close) => {
+    if (typeof node === 'function') {
+      return node({ close })
+    }
+
+    return node
+  }
+
   renderChildren = close => {
     const { children } = this.props
 
@@ -294,7 +302,9 @@ class Dialog extends React.Component {
           display="flex"
           alignItems="center"
         >
-          {header || (
+          {header ? (
+            this.renderNode(header, close)
+          ) : (
             <>
               <Heading is="h4" size={600} flex="1">
                 {title}
@@ -320,7 +330,9 @@ class Dialog extends React.Component {
       return (
         <Pane borderTop="muted" clearfix>
           <Pane padding={16} float="right">
-            {footer || (
+            {footer ? (
+              this.renderNode(footer, close)
+            ) : (
               <>
                 {/* Cancel should be first to make sure focus gets on it first. */}
                 {hasCancel && (
