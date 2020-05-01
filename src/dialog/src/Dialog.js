@@ -75,10 +75,14 @@ class Dialog extends React.Component {
     hasHeader: PropTypes.bool,
 
     /**
-     * A custom header to render at the top of the Dialog. If set, this
-     * takes precedence over the default header.
+     * You can override the default header with your own custom component.
+     *
+     * This is useful if you want to provide a custom header and footer, while
+     * also enabling your Dialog's content to scroll.
+     *
+     * Header can either be a React node or a function accepting `({ close })`.
      */
-    header: PropTypes.element,
+    header: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 
     /**
      * When true, the footer with the cancel and confirm button is shown.
@@ -86,10 +90,14 @@ class Dialog extends React.Component {
     hasFooter: PropTypes.bool,
 
     /**
-     * A custom footer to render at the bottom of the Dialog. If set, this
-     * takes precedence over the default footer.
+     * You can override the default footer with your own custom component.
+     *
+     * This is useful if you want to provide a custom header and footer, while
+     * also enabling your Dialog's content to scroll.
+     *
+     * Footer can either be a React node or a function accepting `({ close })`.
      */
-    footer: PropTypes.element,
+    footer: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 
     /**
      * When true, the cancel button is shown.
@@ -226,6 +234,14 @@ class Dialog extends React.Component {
     overlayProps: {}
   }
 
+  renderNode = (node, close) => {
+    if (typeof node === 'function') {
+      return node({ close })
+    }
+
+    return node
+  }
+
   renderChildren = close => {
     const { children } = this.props
 
@@ -294,7 +310,9 @@ class Dialog extends React.Component {
           display="flex"
           alignItems="center"
         >
-          {header || (
+          {header ? (
+            this.renderNode(header, close)
+          ) : (
             <>
               <Heading is="h4" size={600} flex="1">
                 {title}
@@ -320,7 +338,9 @@ class Dialog extends React.Component {
       return (
         <Pane borderTop="muted" clearfix>
           <Pane padding={16} float="right">
-            {footer || (
+            {footer ? (
+              this.renderNode(footer, close)
+            ) : (
               <>
                 {/* Cancel should be first to make sure focus gets on it first. */}
                 {hasCancel && (
