@@ -1590,6 +1590,10 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
     * When true, menu closes on option selection.
     */
   closeOnSelect?: boolean
+  /*
+   * Size of option item.
+   */
+  optionSize?: number
 }
 
 export class SelectMenu extends React.PureComponent<SelectMenuProps> {
