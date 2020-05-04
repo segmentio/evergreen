@@ -110,7 +110,12 @@ export default class SelectMenu extends PureComponent {
     /*
      * When true, menu closes on option selection.
      */
-    closeOnSelect: PropTypes.bool
+    closeOnSelect: PropTypes.bool,
+    
+    /*
+     * Size of option item.
+     */
+    optionSize: PropTypes.number
   }
 
   static defaultProps = {
@@ -170,6 +175,7 @@ export default class SelectMenu extends PureComponent {
       titleView,
       isMultiSelect,
       closeOnSelect,
+      optionSize,
       ...props
     } = this.props
 
@@ -190,6 +196,7 @@ export default class SelectMenu extends PureComponent {
             hasTitle={hasTitle}
             isMultiSelect={isMultiSelect}
             titleView={titleView}
+            optionSize={optionSize}
             listProps={{
               onSelect: item => {
                 this.props.onSelect(item)
