@@ -1,6 +1,6 @@
 {
   "name": "evergreen-ui",
-  "version": "4.23.0",
+  "version": "4.27.4",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
@@ -23,25 +23,30 @@
     "commonjs",
     "esm",
     "umd",
-    "index.d.ts"
+    "index.d.ts",
+    "codemods"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "./commonjs/backwards-compat-classname.js",
+    "./esm/backwards-compat-classname.js"
+  ],
   "scripts": {
-    "test": "xo && ava",
+    "test": "xo && jest --bail && ava",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
+    "generate-icons": "./tools/generate-icons.js",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
     "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test' --source-maps inline",
     "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test' --source-maps inline",
     "build-umd": "rollup -c",
-    "build": "concurrently --names 'commonjs,esm,umd' 'yarn build-commonjs' 'yarn build-esm' 'yarn build-umd'",
+    "build": "yarn generate-icons && concurrently --names 'commonjs,esm,umd' 'yarn build-commonjs' 'yarn build-esm' 'yarn build-umd'",
     "size": "size-limit",
     "clean": "git clean -Xdf",
     "release": "np",
     "deploy-docs": "cd docs && yarn install && yarn deploy",
-    "postpublish": "yarn deploy-docs"
+    "postpublish": "yarn git-branch-is master && yarn deploy-docs"
   },
   "engines": {
     "node": ">=10"
@@ -57,13 +62,13 @@
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
     "lodash.debounce": "^4.0.8",
-    "lodash.mapvalues": "^4.6.0",
+    "lodash.startcase": "^4.4.0",
     "prop-types": "^15.6.2",
     "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.5.0",
     "tinycolor2": "^1.4.1",
-    "ui-box": "^2.1.2"
+    "ui-box": "^3.2.0"
   },
   "peerDependencies": {
     "react": "^16.8.0",
@@ -91,6 +96,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-add-react-displayname": "^0.0.5",
+    "camelcase": "^5.0.0",
     "concurrently": "^4.0.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
@@ -100,7 +106,10 @@
     "faker": "^4.1.0",
     "file-loader": "^2.0.0",
     "fs-extra": "^7.0.0",
+    "git-branch-is": "^3.1.0",
     "husky": "^4.0.10",
+    "jest": "^25.3.0",
+    "jscodeshift": "^0.7.0",
     "lint-staged": "^10.0.1",
     "np": "^5.2.1",
     "prettier": "^1.14.3",
@@ -124,6 +133,9 @@
     ],
     "envs": [
       "browser"
+    ],
+    "ignores": [
+      "codemods/"
     ],
     "space": true,
     "semicolon": false,
@@ -173,7 +185,7 @@
     },
     "settings": {
       "react": {
-        "version": "^16.3.0"
+        "version": "^16.8.0"
       }
     }
   },
@@ -182,7 +194,7 @@
     "singleQuote": true
   },
   "lint-staged": {
-    "*.js": [
+    "!(codemods)/**/*.js": [
       "xo --fix",
       "prettier --write"
     ],
@@ -202,16 +214,21 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "212 KB"
+      "limit": "240 KB"
     },
     {
       "path": "umd/evergreen.min.js",
-      "limit": "212 KB"
+      "limit": "220 KB"
     }
   ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "jest": {
+    "roots": [
+      "codemods"
+    ]
   }
 }

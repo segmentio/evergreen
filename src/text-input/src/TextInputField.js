@@ -9,7 +9,7 @@ let idCounter = 0
 const TextInputField = memo(
   forwardRef((props, ref) => {
     const [id] = useState((props.id || idCounter++).toString())
-
+    
     const {
       // We are using the id from the state
       id: unusedId,

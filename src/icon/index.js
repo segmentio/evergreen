@@ -1,1 +1,1 @@
-export { default as Icon, IconNames } from './src/Icon'
+export { Icon } from './src/Icon'

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
+import { TickIcon } from '../../icons'
 import { withTheme } from '../../theme'
 
 class MenuOption extends React.PureComponent {
@@ -97,10 +97,9 @@ class MenuOption extends React.PureComponent {
         alignItems="center"
       >
         {isSelected && (
-          <Icon
+          <TickIcon
             aria-hidden
             color="selected"
-            icon="tick"
             marginLeft={16}
             marginRight={-4}
             size={16}

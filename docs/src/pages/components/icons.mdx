@@ -18,13 +18,28 @@ If you need a clickable icon, use `IconButton` instead.
 ## Basic icon usage
 
 ```jsx
+<CrossIcon />
+```
+
+## Backwards-compatible icon usage
+
+```jsx
 <Icon icon="cross" />
+```
+
+## Tree Shaking
+
+Due to existing support for IconButton and Icon to pass in icon strings we can't always get tree shaking for icons (which drastically can reduce the bundle size),
+but it is possible to import icons directly – and is in fact the recommended way to use icons.
+
+```jsx
+<CrossIcon />
 ```
 
 ## Resizing the icon
 
 ```jsx
-<Icon icon="ban-circle" size={40} />
+<BanCircleIcon size={40} />
 ```
 
 ## Changing the color
@@ -34,13 +49,13 @@ There are a couple of presets available: `default`, `muted`, `disabled`, `select
 
 ```jsx
 <Pane>
-  <Icon icon="ban-circle" color="danger" marginRight={16} />
-  <Icon icon="tick-circle" color="success" marginRight={16} />
-  <Icon icon="warning-sign" color="warning" marginRight={16} />
-  <Icon icon="info-sign" color="info" marginRight={16} />
-  <Icon icon="edit" color="muted" marginRight={16} />
-  <Icon icon="edit" color="selected" marginRight={16} />
-  <Icon icon="edit" color="disabled" marginRight={16} />
+  <BanCircleIcon color="danger" marginRight={16} />
+  <TickCircleIcon color="success" marginRight={16} />
+  <WarningSignIcon color="warning" marginRight={16} />
+  <InfoSignIcon color="info" marginRight={16} />
+  <EditIcon color="muted" marginRight={16} />
+  <EditIcon color="selected" marginRight={16} />
+  <EditIcon color="disabled" marginRight={16} />
 </Pane>
 ```
 

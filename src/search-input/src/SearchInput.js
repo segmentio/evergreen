@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import Box, { splitBoxProps } from 'ui-box'
-import { Icon } from '../../icon'
+import { SearchIcon } from '../../icons'
 import { TextInput } from '../../text-input'
 import { withTheme } from '../../theme'
 import { StackingOrder } from '../../constants'
@@ -40,8 +40,7 @@ class SearchInput extends PureComponent {
           justifyContent="center"
           alignItems="center"
         >
-          <Icon
-            icon="search"
+          <SearchIcon
             color="default"
             zIndex={StackingOrder.FOCUSED + 1}
             size={iconSize}

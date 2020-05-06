@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
 import { withTheme } from '../../theme'
 import { SelectMenu } from '../../select-menu'
-import { Icon } from '../../icon'
+import { CaretDownIcon } from '../../icons'
 import TextTableCell from './TextTableCell'
 import TableCell from './TableCell'
 
@@ -17,9 +17,9 @@ class SelectMenuCell extends React.PureComponent {
     ...TableCell.propTypes,
 
     /*
-    * Makes the TableCell focusable.
-    * Will add tabIndex={-1 || this.props.tabIndex}.
-    */
+     * Makes the TableCell focusable.
+     * Will add tabIndex={-1 || this.props.tabIndex}.
+     */
     isSelectable: PropTypes.bool.isRequired,
 
     /**
@@ -172,9 +172,7 @@ class SelectMenuCell extends React.PureComponent {
               onFocus={this.handleFocus.bind(null, toggle, isShown)}
               onBlur={this.handleBlur}
               isSelectable={isSelectable && !disabled}
-              rightView={
-                isSelectable ? <Icon icon="caret-down" color="muted" /> : null
-              }
+              rightView={isSelectable ? <CaretDownIcon color="muted" /> : null}
               aria-haspopup
               aria-expanded={isShown}
               cursor={isShown ? 'pointer' : cursor}

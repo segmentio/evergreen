@@ -231,24 +231,62 @@ storiesOf('dialog', module)
       </DialogManager>
     </Box>
   ))
+  .add('Dialog with scrolling and custom header and footer', () => (
+    <Box padding={40}>
+      <DialogManager>
+        {({ isShown, show, hide }) => (
+          <Box marginBottom={16}>
+            <Dialog
+              isShown={isShown}
+              header={<Pane>Header</Pane>}
+              footer={<Pane>Footer</Pane>}
+              title="Dialog with scrolling and customer header + footer"
+              onCloseComplete={hide}
+              contentContainerProps={{
+                padding: 0,
+                overflowY: 'auto'
+              }}
+            >
+              <Pane
+                display="flex"
+                background="tint2"
+                height="1800px"
+                width="100%"
+                justifyContent="center"
+                alignItems="center"
+              >
+                Why, hello there!
+              </Pane>
+            </Dialog>
+
+            <Button onClick={show}>
+              Show Dialog with scrolling and custom header and footer
+            </Button>
+          </Box>
+        )}
+      </DialogManager>
+    </Box>
+  ))
   .add('Dialog with nested Combobox', () => (
-    <DialogManager>
-      {({ isShown, show, hide }) => (
-        <Box marginBottom={16}>
-          <Dialog
-            isShown={isShown}
-            title="Dialog with Combobox"
-            onCloseComplete={hide}
-          >
-            <Combobox openOnFocus items={comboboxItems} />
-          </Dialog>
-          <Button onClick={show}>Show Dialog with Combobox</Button>
-        </Box>
-      )}
-    </DialogManager>
+    <Box padding={40}>
+      <DialogManager>
+        {({ isShown, show, hide }) => (
+          <Box marginBottom={16}>
+            <Dialog
+              isShown={isShown}
+              title="Dialog with Combobox"
+              onCloseComplete={hide}
+            >
+              <Combobox openOnFocus items={comboboxItems} />
+            </Dialog>
+            <Button onClick={show}>Show Dialog with Combobox</Button>
+          </Box>
+        )}
+      </DialogManager>
+    </Box>
   ))
   .add('Dialog with customized content container', () => (
-    <React.Fragment>
+    <Box padding={40}>
       <DialogManager>
         {({ isShown, show, hide }) => (
           <Box marginBottom={16}>
@@ -311,109 +349,116 @@ storiesOf('dialog', module)
           </Box>
         )}
       </DialogManager>
-    </React.Fragment>
+    </Box>
   ))
   .add('Dialog with endless stacking', () => (
-    <DialogManager>
-      {({ isShown, show, hide }) => (
-        <Box marginBottom={16}>
-          <Dialog
-            isShown={isShown}
-            title="Dialog with nested Side Sheet"
-            onCloseComplete={hide}
-          >
-            <Component
-              initialState={{
-                isShown: false
-              }}
+    <Box padding={40}>
+      <DialogManager>
+        {({ isShown, show, hide }) => (
+          <Box marginBottom={16}>
+            <Dialog
+              isShown={isShown}
+              title="Dialog with nested Side Sheet"
+              onCloseComplete={hide}
             >
-              {({ state, setState }) => (
-                <React.Fragment>
-                  <Button onClick={() => setState({ isShown: true })}>
-                    Show Inner Side Sheet
-                  </Button>
-                  <SideSheet
-                    isShown={state.isShown}
-                    onCloseComplete={() => setState({ isShown: false })}
-                  >
-                    <Component
-                      initialState={{
-                        isShown: false
-                      }}
+              <Component
+                initialState={{
+                  isShown: false
+                }}
+              >
+                {({ state, setState }) => (
+                  <React.Fragment>
+                    <Button onClick={() => setState({ isShown: true })}>
+                      Show Inner Side Sheet
+                    </Button>
+                    <SideSheet
+                      isShown={state.isShown}
+                      onCloseComplete={() => setState({ isShown: false })}
                     >
-                      {({ state: innerState, setState: innerSetState }) => {
-                        return (
-                          <React.Fragment>
-                            <Popover
-                              isShown={innerState.isShown}
-                              onCloseComplete={() =>
-                                innerSetState({ isShown: false })
-                              }
-                              content={
-                                <Box
-                                  height={240}
-                                  display="flex"
-                                  alignItems="center"
-                                  justifyContent="center"
-                                  padding={12}
+                      <Component
+                        initialState={{
+                          isShown: false
+                        }}
+                      >
+                        {({ state: innerState, setState: innerSetState }) => {
+                          return (
+                            <React.Fragment>
+                              <Popover
+                                isShown={innerState.isShown}
+                                onCloseComplete={() =>
+                                  innerSetState({ isShown: false })
+                                }
+                                content={
+                                  <Box
+                                    height={240}
+                                    display="flex"
+                                    alignItems="center"
+                                    justifyContent="center"
+                                    padding={12}
+                                  >
+                                    <Combobox
+                                      openOnFocus
+                                      items={comboboxItems}
+                                    />
+                                  </Box>
+                                }
+                              >
+                                <Button
+                                  margin={16}
+                                  onClick={() =>
+                                    innerSetState({ isShown: true })
+                                  }
                                 >
-                                  <Combobox openOnFocus items={comboboxItems} />
-                                </Box>
-                              }
-                            >
+                                  Show Inner Popover
+                                </Button>
+                              </Popover>
+                            </React.Fragment>
+                          )
+                        }}
+                      </Component>
+                      <Component
+                        initialState={{
+                          isShown: false
+                        }}
+                      >
+                        {({ state: innerState, setState: innerSetState }) => {
+                          return (
+                            <React.Fragment>
                               <Button
                                 margin={16}
                                 onClick={() => innerSetState({ isShown: true })}
                               >
-                                Show Inner Popover
+                                Show Inner Dialog
                               </Button>
-                            </Popover>
-                          </React.Fragment>
-                        )
-                      }}
-                    </Component>
-                    <Component
-                      initialState={{
-                        isShown: false
-                      }}
-                    >
-                      {({ state: innerState, setState: innerSetState }) => {
-                        return (
-                          <React.Fragment>
-                            <Button
-                              margin={16}
-                              onClick={() => innerSetState({ isShown: true })}
-                            >
-                              Show Inner Dialog
-                            </Button>
-                            <Combobox
-                              margin={16}
-                              openOnFocus
-                              items={comboboxItems}
-                            />
-                            <Dialog
-                              isShown={innerState.isShown}
-                              onCloseComplete={() =>
-                                innerSetState({ isShown: false })
-                              }
-                              title="Stackity Hackity"
-                            >
-                              <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" />
-                              <Combobox openOnFocus items={comboboxItems} />
-                            </Dialog>
-                          </React.Fragment>
-                        )
-                      }}
-                    </Component>
-                  </SideSheet>
-                </React.Fragment>
-              )}
-            </Component>
-          </Dialog>
-          <Button margin={16} onClick={show}>
-            Show Dialog with Side Sheet
-          </Button>
-        </Box>
-      )}
-    </DialogManager>
+                              <Combobox
+                                margin={16}
+                                openOnFocus
+                                items={comboboxItems}
+                              />
+                              <Dialog
+                                isShown={innerState.isShown}
+                                onCloseComplete={() =>
+                                  innerSetState({ isShown: false })
+                                }
+                                title="Stackity Hackity"
+                              >
+                                <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" />
+                                <Combobox openOnFocus items={comboboxItems} />
+                              </Dialog>
+                            </React.Fragment>
+                          )
+                        }}
+                      </Component>
+                    </SideSheet>
+                  </React.Fragment>
+                )}
+              </Component>
+            </Dialog>
+            <Button margin={16} onClick={show}>
+              Show Dialog with Side Sheet
+            </Button>
+          </Box>
+        )}
+      </DialogManager>
+    </Box>
   ))

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { css } from 'glamor'
-import { Icon } from '../../icon'
+import { CrossIcon } from '../../icons'
 import { Position } from '../../constants'
 
 const animationEasing = {
@@ -30,14 +30,10 @@ const sharedStyles = {
 const withAnimations = (animateIn, animateOut) => {
   return {
     '&[data-state="entering"], &[data-state="entered"]': {
-      animation: `${animateIn} ${ANIMATION_DURATION}ms ${
-        animationEasing.deceleration
-      } both`
+      animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
     },
     '&[data-state="exiting"]': {
-      animation: `${animateOut} ${ANIMATION_DURATION}ms ${
-        animationEasing.acceleration
-      } both`
+      animation: `${animateOut} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
     }
   }
 }
@@ -148,7 +144,7 @@ export default class SheetClose extends PureComponent {
         className={getSheetCloseClassName(position)}
         {...props}
       >
-        <Icon icon="cross" color="#fff" />
+        <CrossIcon color="#fff" />
       </Box>
     )
   }

@@ -8,7 +8,7 @@ import { Pane } from '../../layers'
 import { Heading, Paragraph, Text } from '../../typography'
 import { Button } from '../../buttons'
 import { Position } from '../../constants'
-import { Icon, IconNames } from '../../icon'
+import { CircleArrowDownIcon } from '../../icons'
 import { Popover } from '..'
 
 // eslint-disable-next-line react/prop-types
@@ -224,7 +224,7 @@ storiesOf('popover', module)
       })()}
       <Popover content={<PopoverContentWithTextInput />}>
         <Button marginRight={20}>
-          <Icon icon={IconNames.CIRCLE_ARROW_DOWN} />
+          <CircleArrowDownIcon />
         </Button>
       </Popover>
     </Box>
