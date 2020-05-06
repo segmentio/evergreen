@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { useState, forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
@@ -6,69 +6,10 @@ import TextInput from './TextInput'
 
 let idCounter = 0
 
-export default class TextInputField extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the TextInput component as the base.
-     */
-    ...TextInput.propTypes,
-    ...FormField.propTypes,
+const TextInputField = memo(
+  forwardRef((props, ref) => {
+    const [id] = useState((props.id || idCounter++).toString())
 
-    /**
-     * The label used above the input element.
-     */
-    label: PropTypes.node.isRequired,
-
-    /**
-     * Passed on the label as a htmlFor prop.
-     */
-    labelFor: PropTypes.string,
-
-    /**
-     * Whether or not to show an asterix after the label.
-     */
-    required: PropTypes.bool,
-
-    /**
-     * An optional description of the field under the label, above the input element.
-     */
-    description: PropTypes.node,
-
-    /**
-     * An optional hint under the input element.
-     */
-    hint: PropTypes.node,
-
-    /**
-     * If a validation message is passed it is shown under the input element
-     * and above the hint. This is unaffected by `isInvalid`.
-     */
-    validationMessage: PropTypes.node,
-
-    /**
-     * The height of the input element.
-     */
-    inputHeight: PropTypes.number,
-
-    /**
-     * The width of the input width.
-     */
-    inputWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  }
-
-  static defaultProps = {
-    /**
-     * The input width should be as wide as the form field.
-     */
-    inputWidth: '100%',
-    inputHeight: 32
-  }
-
-  state = {
-    id: (this.props.id || idCounter++).toString()
-  }
-
-  render() {
     const {
       // We are using the id from the state
       id: unusedId,
@@ -80,20 +21,18 @@ export default class TextInputField extends PureComponent {
       validationMessage,
 
       // TextInput props
-      inputHeight,
-      inputWidth,
       disabled,
       required,
       isInvalid,
       appearance,
       placeholder,
       spellCheck,
+      inputHeight = 40,
+      inputWidth = '100%',
 
       // Rest props are spread on the FormField
-      ...props
-    } = this.props
-
-    const id = `TextInputField-${this.state.id}`
+      ...restProps
+    } = props
 
     /**
      * Split the wrapper props from the input props.
@@ -110,6 +49,7 @@ export default class TextInputField extends PureComponent {
         validationMessage={validationMessage}
         labelFor={id}
         {...matchedProps}
+        {...restProps}
       >
         <TextInput
           id={id}
@@ -121,9 +61,61 @@ export default class TextInputField extends PureComponent {
           appearance={appearance}
           placeholder={placeholder}
           spellCheck={spellCheck}
+          ref={ref}
           {...remainingProps}
         />
       </FormField>
     )
-  }
+  })
+)
+
+TextInputField.propTypes = {
+  /**
+   * Composes the TextInput component as the base.
+   */
+  ...TextInput.propTypes,
+  ...FormField.propTypes,
+
+  /**
+   * The label used above the input element.
+   */
+  label: PropTypes.node.isRequired,
+
+  /**
+   * Passed on the label as a htmlFor prop.
+   */
+  labelFor: PropTypes.string,
+
+  /**
+   * Whether or not to show an asterix after the label.
+   */
+  required: PropTypes.bool,
+
+  /**
+   * An optional description of the field under the label, above the input element.
+   */
+  description: PropTypes.node,
+
+  /**
+   * An optional hint under the input element.
+   */
+  hint: PropTypes.node,
+
+  /**
+   * If a validation message is passed it is shown under the input element
+   * and above the hint. This is unaffected by `isInvalid`.
+   */
+  validationMessage: PropTypes.node,
+
+  /**
+   * The height of the input element.
+   */
+  inputHeight: PropTypes.number,
+
+  /**
+   * The width of the input width.
+   */
+  inputWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }
+
+export default TextInputField
