@@ -28,7 +28,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "test": "xo && jest --bail && ava",
+    "test": "xo && ava",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
@@ -59,7 +59,6 @@
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
     "lodash.debounce": "^4.0.8",
-    "lodash.startcase": "^4.4.0",
     "prop-types": "^15.6.2",
     "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
@@ -105,8 +104,6 @@
     "fs-extra": "^7.0.0",
     "git-branch-is": "^3.1.0",
     "husky": "^4.0.10",
-    "jest": "^25.3.0",
-    "jscodeshift": "^0.7.0",
     "lint-staged": "^10.0.1",
     "np": "^5.2.1",
     "prettier": "^1.14.3",
@@ -222,10 +219,5 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "jest": {
-    "roots": [
-      "codemods"
-    ]
   }
 }
