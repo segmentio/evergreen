@@ -78,6 +78,22 @@ storiesOf('tag-input', module).add('TagInput', () => (
     </StorySection>
     <StorySection>
       <StoryHeader>
+        <StoryHeading>Changing tag submit key</StoryHeading>
+      </StoryHeader>
+      <StateManager>
+        {({ values, addValues, removeValue }) => (
+          <TagInput
+            inputProps={{ placeholder: 'Enter something...' }}
+            values={values}
+            onAdd={addValues}
+            tagSubmitKey="space"
+            onRemove={removeValue}
+          />
+        )}
+      </StateManager>
+    </StorySection>
+    <StorySection>
+      <StoryHeader>
         <StoryHeading>With tag values</StoryHeading>
       </StoryHeader>
       <StateManager values={initialValues}>
