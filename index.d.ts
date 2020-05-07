@@ -6,6 +6,7 @@ import Box, { extractStyles as boxExtractStyles } from 'ui-box'
 import { BoxProps } from 'ui-box/dist/types/box-types'
 import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
+import {TransitionProps, TransitionStatus} from 'react-transition-group/Transition'
 
 export { configureSafeHref, setClassNamePrefix } from 'ui-box'
 
@@ -784,10 +785,28 @@ export interface DialogProps {
    */
   hasHeader?: boolean
   /**
+   * You can override the default header with your own custom component.
+   *
+   * This is useful if you want to provide a custom header and footer, while
+   * also enabling your Dialog's content to scroll.
+   *
+   * Header can either be a React node or a function accepting `({ close })`.
+   */
+  header?: React.ReactNode | (({ close }: { close: () => void }) => void)
+  /**
    * When true, the footer with the cancel and confirm button is shown.
    * Defaults to true.
    */
   hasFooter?: boolean
+  /**
+   * You can override the default footer with your own custom component.
+   *
+   * This is useful if you want to provide a custom header and footer, while
+   * also enabling your Dialog's content to scroll.
+   *
+   * Footer can either be a React node or a function accepting `({ close })`.
+   */
+  footer?: React.ReactNode | (({ close }: { close: () => void }) => void)
   /**
    * When true, the cancel button is shown. Defaults to true.
    */
@@ -1324,19 +1343,19 @@ export interface Option {
   disabled?: boolean
 }
 
-export interface OptionsListProps {
+export interface OptionsListProps extends PaneProps {
   options?: Option[]
   close?: () => void
   height?: number
   width?: number
   isMultiSelect?: boolean
-  selected?: string
+  selected?: string | string[]
   onSelect?: (value: Option) => void
   onDeselect?: (value: Option) => void
   onFilterChange?: (value: string) => void
   hasFilter?: boolean
   optionSize?: number
-  renderItem: (props: {
+  renderItem?: (props: {
     key: Option['value']
     label: Option['label']
     style: object,
@@ -1974,6 +1993,45 @@ export interface TextareaProps extends TextProps {
 export class Textarea extends React.PureComponent<TextareaProps> {
 }
 
+export interface TextareaFieldProps extends TextareaProps {
+  /**
+   * The label used above the input element.
+   */
+  label?: React.ReactNode
+  /**
+   * Passed on the label as a htmlFor prop.
+   */
+  labelFor?: string
+  /**
+   * Wether or not show a asterix after the label.
+   */
+  required?: boolean
+  /**
+   * A optional description of the field under the label, above the input element.
+   */
+  description?: React.ReactNode
+  /**
+   * A optional hint under the input element.
+   */
+  hint?: React.ReactNode
+  /**
+   * If a validation message is passed it is shown under the input element
+   * and above the hint.
+   */
+  validationMessage?: React.ReactNode
+  /**
+   * The height of the input element.
+   */
+  inputHeight?: number
+  /**
+   * The width of the input width.
+   */
+  inputWidth?: number | string
+}
+
+export class TextareaField extends React.PureComponent<TextareaFieldProps> {
+}
+
 export interface TextDropdownButtonProps extends TextProps {
   /**
    * Forcefully set the active state of a button.
@@ -2270,6 +2328,26 @@ export const toaster: {
    * Returns all visible Toasts.
    */
   getToasts: () => Toast[]
+}
+
+interface OverlayProps {
+  children: React.ReactNode | ((props: { state: TransitionStatus, close: () => void }) => JSX.Element);
+
+  isShown?: boolean;
+  containerProps?: BoxProps<'div'>;
+  preventBodyScrolling?: boolean;
+  shouldCloseOnClick?: boolean;
+  shouldCloseOnEscapePress?: boolean;
+  onBeforeClose?: () => void;
+  onExit?: () => void;
+  onExiting?: TransitionProps['onExiting'];
+  onExited?: TransitionProps['onExited'];
+  onEnter?: () => void;
+  onEntering?: TransitionProps['onEntering'];
+  onEntered?: TransitionProps['onEntered'];
+}
+
+export class Overlay extends React.PureComponent<OverlayProps> {
 }
 
 /* Start generated icons */
@@ -2767,9 +2845,6 @@ export declare const ZoomToFitIcon: IconComponent
 type UnknownProps = Record<string, any>
 
 export class FilePicker extends React.PureComponent<UnknownProps> {
-}
-
-export class Overlay extends React.PureComponent<UnknownProps> {
 }
 
 export class Portal extends React.PureComponent<UnknownProps> {

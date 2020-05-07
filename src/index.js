@@ -67,7 +67,7 @@ export {
   useTheme,
   defaultTheme
 } from './theme'
-export { Textarea } from './textarea'
+export { Textarea, TextareaField } from './textarea'
 export { toaster } from './toaster'
 export { Tooltip } from './tooltip'
 export {

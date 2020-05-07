@@ -2,7 +2,10 @@ import PropsTable from 'components/PropsTable'
 
 ## Introduction
 
-The `Textarea` components maps directly to a `textarea` element.
+Similar to text inputs, Evergreen exports two components to create text areas:
+
+* **Textarea**: base text area component. Directly maps to a `textarea` element.
+* **TextareaField**: combines a label, textarea  and validation message in one. Used for traditional forms.
 
 
 ```jsx
@@ -33,7 +36,7 @@ The `Textarea` components maps directly to a `textarea` element.
 ## Controlled usage
 
 The `Textarea` component works the same as using `textarea` directly.
-Use `e.target.value` to get the value of the component on change. 
+Use `e.target.value` to get the value of the component on change.
 
 ```jsx
 <Component initialState={{ value: 'Hello'}}>
@@ -47,3 +50,86 @@ Use `e.target.value` to get the value of the component on change.
 ```
 
 <PropsTable of="Textarea" />
+
+# TextareaField
+
+The `TextareaField` component combines a `Textarea` with a label and optional
+`description`, `validationMessage` and `hint`.
+
+
+## Label and description
+
+```jsx
+<TextareaField
+  label="Default textarea field"
+  description="This is a description."
+  placeholder="Placeholder text"
+/>
+```
+
+## A hint is under the textarea
+
+```jsx
+<TextareaField
+  label="Default textarea field"
+  hint="This is a hint."
+  placeholder="Placeholder text"
+/>
+```
+
+## Required textarea field
+
+```jsx
+<TextareaField
+  id="ids-are-optional"
+  label="A required textarea field"
+  required
+  description="This is a description."
+  placeholder="Placeholder text"
+/>
+```
+
+## Invalid field
+
+```jsx
+<TextareaField
+  isInvalid
+  required
+  label="A required textarea field"
+  description="This is a description."
+  validationMessage="This field is required"
+/>
+```
+
+## Validation message without invalid input
+
+```jsx
+<TextareaField
+  isInvalid={false}
+  required
+  label="A required textarea field"
+  description="This is a description."
+  validationMessage="This field is required"
+/>
+```
+
+## Controlled usage
+
+The `TextareaField` component works the same as using `textarea` directly.
+Use `e.target.value` to get the value of the component on change.
+
+```jsx
+<Component initialState={{ value: '' }}>
+  {({ state, setState }) => (
+    <TextareaField
+      label="A controlled text input field"
+      required
+      description="This is a description."
+      value={state.value}
+      onChange={e => setState({ value: e.target.value })}
+    />
+  )}
+</Component>
+```
+
+<PropsTable of="TextareaField" />

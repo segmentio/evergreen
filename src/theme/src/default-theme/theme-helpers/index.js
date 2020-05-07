@@ -1,14 +1,7 @@
-import React from 'react'
 import { Intent } from '../../../../constants'
 import themedProperty from '../utils/themedProperty'
 import { colors, elevations } from '../foundational-styles'
 import { fontFamilies, headings, paragraph, text } from '../typography'
-import {
-  TickCircleIcon,
-  ErrorIcon,
-  WarningSignIcon,
-  InfoSignIcon
-} from '../../../../icons'
 
 /**
  * Controls include:
@@ -108,17 +101,17 @@ const getIconColor = color => {
  * @param {Intent} intent
  * @return {Object} properties
  */
-const getIconForIntent = (intent, props = {}) => {
+const getIconForIntent = intent => {
   switch (intent) {
     case Intent.SUCCESS:
-      return <TickCircleIcon color="success" {...props} />
+      return { icon: 'tick-circle', color: 'success' }
     case Intent.DANGER:
-      return <ErrorIcon color="danger" {...props} />
+      return { icon: 'error', color: 'danger' }
     case Intent.WARNING:
-      return <WarningSignIcon color="warning" {...props} />
+      return { icon: 'warning-sign', color: 'warning' }
     case Intent.NONE:
     default:
-      return <InfoSignIcon color="info" {...props} />
+      return { icon: 'info-sign', color: 'info' }
   }
 }
 
