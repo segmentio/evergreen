@@ -14,6 +14,11 @@ import Tag from './Tag'
 
 let inputId = 1
 
+const GET_KEY_FOR_TAG_DELIMITER = {
+  Enter: 'Enter',
+  Space: ' '
+}
+
 class TagInput extends React.Component {
   static propTypes = {
     /** Whether or not the inputValue should be added to the tags when the input blurs. */
@@ -72,6 +77,8 @@ class TagInput extends React.Component {
     ]),
     /** Provide props to tag component (actually `Badge`, for now). */
     tagProps: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+    /** Key to press in order to create a new tag when typing.  */
+    tagDelimiterKey: PropTypes.oneOf(['Enter', 'Space']),
     /**
      * Theme provided by ThemeProvider.
      */
@@ -86,6 +93,7 @@ class TagInput extends React.Component {
     height: 32,
     separator: /[,\n\r]/,
     values: [],
+    tagDelimiterKey: 'Enter',
     tagProps: {}
   }
 
@@ -158,7 +166,10 @@ class TagInput extends React.Component {
   handleKeyDown = event => {
     const { selectionEnd, value } = event.target
 
-    if (event.key === 'Enter') {
+    const key = GET_KEY_FOR_TAG_DELIMITER[this.props.tagDelimiterKey]
+
+    if (event.key === key) {
+      console.log(event.key)
       // Prevent Enter keypresses from submitting forms since they have special powers inside TagInput
       event.preventDefault()
       this.addTags(value)
