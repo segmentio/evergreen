@@ -4,6 +4,7 @@ import Box, { dimensions, spacing, position, layout } from 'ui-box'
 import { Autocomplete } from '../../autocomplete'
 import { TextInput } from '../../text-input'
 import { IconButton } from '../../buttons'
+import { CaretDownIcon } from '../../icons'
 
 export default class Combobox extends PureComponent {
   static propTypes = {
@@ -175,7 +176,7 @@ export default class Combobox extends PureComponent {
             />
             <IconButton
               color="muted"
-              icon={isLoading ? '' : 'caret-down'}
+              icon={isLoading ? undefined : <CaretDownIcon />}
               appearance="default"
               height={height}
               marginLeft={-1}

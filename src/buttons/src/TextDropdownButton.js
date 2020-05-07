@@ -121,7 +121,7 @@ class TextDropdownButton extends PureComponent {
           />
         )}
         {children}
-        <IconWrapper marginLeft={2} color="default" size={12} />
+        <IconWrapper icon={icon} marginLeft={2} color="default" size={12} />
       </Text>
     )
   }
