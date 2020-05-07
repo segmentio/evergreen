@@ -15,8 +15,8 @@ import Tag from './Tag'
 let inputId = 1
 
 const GET_KEY_FOR_TAG_DELIMITER = {
-  Enter: 'Enter',
-  Space: ' '
+  enter: 'Enter',
+  space: ' '
 }
 
 class TagInput extends React.Component {
@@ -77,8 +77,8 @@ class TagInput extends React.Component {
     ]),
     /** Provide props to tag component (actually `Badge`, for now). */
     tagProps: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-    /** Key to press in order to create a new tag when typing.  */
-    tagDelimiterKey: PropTypes.oneOf(['Enter', 'Space']),
+    /** Key to press in order to submit a new tag while typing.  */
+    tagSubmitKey: PropTypes.oneOf(['enter', 'space']),
     /**
      * Theme provided by ThemeProvider.
      */
@@ -93,7 +93,7 @@ class TagInput extends React.Component {
     height: 32,
     separator: /[,\n\r]/,
     values: [],
-    tagDelimiterKey: 'Enter',
+    tagSubmitKey: 'enter',
     tagProps: {}
   }
 
@@ -166,7 +166,7 @@ class TagInput extends React.Component {
   handleKeyDown = event => {
     const { selectionEnd, value } = event.target
 
-    const key = GET_KEY_FOR_TAG_DELIMITER[this.props.tagDelimiterKey]
+    const key = GET_KEY_FOR_TAG_DELIMITER[this.props.tagSubmitKey]
 
     if (event.key === key) {
       console.log(event.key)
