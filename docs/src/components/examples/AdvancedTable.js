@@ -8,6 +8,7 @@ import {
   Avatar,
   Text,
   IconButton,
+  MoreIcon,
   TextDropdownButton
 } from 'evergreen-ui'
 import profiles from './profiles.json'
@@ -239,7 +240,7 @@ export default class AdvancedTable extends React.Component {
             content={this.renderRowMenu}
             position={Position.BOTTOM_RIGHT}
           >
-            <IconButton icon="more" height={24} appearance="minimal" />
+            <IconButton icon={<MoreIcon />} height={24} appearance="minimal" />
           </Popover>
         </Table.Cell>
       </Table.Row>

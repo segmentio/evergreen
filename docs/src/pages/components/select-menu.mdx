@@ -333,7 +333,7 @@ This example shows how one should use titleView to pass in a custom title.
                 </Tooltip>
             </Pane>
             <IconButton
-              icon="cross"
+              icon={<CrossIcon />}
               appearance="minimal"
               height={24}
               onClick={close}
@@ -374,7 +374,7 @@ Note that the icon can be one found in Segment's various [icons](https://evergre
       selected={state.selected}
       onSelect={item => setState({ selected: item.value })}
       filterPlaceholder={"Choose a genre"}
-      filterIcon={"film"}
+      filterIcon={<FilmIcon />}
     >
       <Button>{state.selected || 'Select name...'}</Button>
     </SelectMenu>

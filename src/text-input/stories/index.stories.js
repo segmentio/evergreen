@@ -2,6 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import { ErrorIcon } from '../../icons'
 import { Text, Label, Heading } from '../../typography'
 import { Pane, Card } from '../../layers'
 import { Button } from '../../buttons'
@@ -196,7 +197,7 @@ storiesOf('text-input', module)
             Save Changes
           </Button>
           <Pane paddingTop={32} marginTop={32} marginBottom={-8} borderTop>
-            <Button intent="danger" iconBefore="error">
+            <Button intent="danger" iconBefore={<ErrorIcon />}>
               Delete Your Workspace...
             </Button>
           </Pane>

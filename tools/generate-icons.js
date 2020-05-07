@@ -10,10 +10,6 @@ const iconsPath = path.resolve(__dirname, '../src/icons/generated')
 const iconsIndexPath = path.resolve(__dirname, '../src/icons/index.js')
 const indexPath = path.resolve(__dirname, '../src/index.js')
 const typedefPath = path.resolve(__dirname, '../index.d.ts')
-const iconNamesPath = path.resolve(
-  __dirname,
-  '../src/icons/generated/IconNames.js'
-)
 const iconNamesMapperPath = path.resolve(
   __dirname,
   '../src/icons/generated/IconNameMapper.js'
@@ -63,25 +59,6 @@ export const ${iconName} = memo(forwardRef((props, ref) => (
   await Promise.all(promises)
 
   // =====================
-  // create the IconNames file
-  // =====================
-
-  let iconNamesFile = rawIconNames
-    .map(iconName => {
-      return `export const ${iconName
-        .toUpperCase()
-        .replace(/-/gi, '_')} = '${iconName}'`
-    })
-    .join('\n')
-
-  iconNamesFile = prettier.format(`${fileHeader}${iconNamesFile}`, {
-    ...prettierConfig,
-    filepath: iconNamesPath
-  })
-
-  await fs.writeFile(iconNamesPath, iconNamesFile)
-
-  // =====================
   // create the IconNameMapper file
   // =====================
 
@@ -103,7 +80,7 @@ export const ${iconName} = memo(forwardRef((props, ref) => (
   await fs.writeFile(iconNamesMapperPath, iconNamesMapperFile)
 
   // =====================
-  // create the icons/index.js file which exports individual icons, IconNames and the IconNameMapper shim
+  // create the icons/index.js file which exports individual icons
   // =====================
 
   let iconsIndexFile = iconNames
@@ -112,19 +89,10 @@ export const ${iconName} = memo(forwardRef((props, ref) => (
     })
     .join('\n')
 
-  const iconNamesExport = `
-    import * as IconNames from './generated/IconNames'
-    export { IconNames }\n
-    export { IconNameMapper } from './generated/IconNameMapper'
-  `
-
-  iconsIndexFile = prettier.format(
-    `${fileHeader}${iconNamesExport}${iconsIndexFile}`,
-    {
-      ...prettierConfig,
-      filepath: iconsIndexPath
-    }
-  )
+  iconsIndexFile = prettier.format(`${fileHeader}${iconsIndexFile}`, {
+    ...prettierConfig,
+    filepath: iconsIndexPath
+  })
 
   await fs.writeFile(iconsIndexPath, iconsIndexFile)
 
@@ -161,7 +129,7 @@ export const ${iconName} = memo(forwardRef((props, ref) => (
     .join('\n')
 
   const iconsTypeDefs = `/* Start generated icons */
-type IconComponent = React.ForwardRefExoticComponent<React.PropsWithoutRef<Omit<IconProps, 'icon'>> & React.RefAttributes<SVGElement>>
+type IconComponent = React.ForwardRefExoticComponent<React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>>
 ${iconTypeDefs}
 /* End generated icons */`
 

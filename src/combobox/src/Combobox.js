@@ -174,7 +174,6 @@ export default class Combobox extends PureComponent {
               })}
             />
             <IconButton
-              iconAim="down"
               color="muted"
               icon={isLoading ? '' : 'caret-down'}
               appearance="default"

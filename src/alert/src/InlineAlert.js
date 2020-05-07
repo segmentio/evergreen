@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { spacing, dimensions, position, layout } from 'ui-box'
-import { withTheme } from '../../theme'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
+import { getIconForIntent } from './getIconForIntent'
 
 class InlineAlert extends PureComponent {
   static propTypes = {
@@ -36,12 +35,7 @@ class InlineAlert extends PureComponent {
     /**
      * The size of the Text.
      */
-    size: PropTypes.number,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
+    size: PropTypes.number
   }
 
   static defaultProps = {
@@ -50,20 +44,14 @@ class InlineAlert extends PureComponent {
     size: 400
   }
 
-  getIconForIntent = intent => {
-    const { theme } = this.props
-
-    return <Icon size={14} marginTop={2} {...theme.getIconForIntent(intent)} />
-  }
-
   render() {
-    const { theme, children, intent, hasIcon, size, ...props } = this.props
+    const { children, intent, hasIcon, size, ...props } = this.props
 
     return (
       <Pane alignItems="center" display="flex" {...props}>
         {hasIcon && (
           <Pane display="inline" marginRight={8}>
-            {this.getIconForIntent(intent)}
+            {getIconForIntent(intent, { size: 14, marginTop: 2 })}
           </Pane>
         )}
         <Text size={size} fontWeight={500}>
@@ -74,4 +62,4 @@ class InlineAlert extends PureComponent {
   }
 }
 
-export default withTheme(InlineAlert)
+export default InlineAlert

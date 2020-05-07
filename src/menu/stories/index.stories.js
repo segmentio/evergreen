@@ -7,6 +7,12 @@ import { Button } from '../../buttons'
 import { UnorderedList, ListItem } from '../../typography'
 import { Popover } from '../../popover'
 import { Position } from '../../constants'
+import {
+  PeopleIcon,
+  CircleArrowRightIcon,
+  TrashIcon,
+  EditIcon
+} from '../../icons'
 
 storiesOf('menu', module)
   .add('dropdown', () => (
@@ -34,15 +40,15 @@ storiesOf('menu', module)
         content={
           <Menu>
             <Menu.Group>
-              <Menu.Item icon="people">Share...</Menu.Item>
-              <Menu.Item icon="circle-arrow-right">Move...</Menu.Item>
-              <Menu.Item icon="edit" secondaryText="⌘R">
+              <Menu.Item icon={<PeopleIcon />}>Share...</Menu.Item>
+              <Menu.Item icon={<CircleArrowRightIcon />}>Move...</Menu.Item>
+              <Menu.Item icon={<EditIcon />} secondaryText="⌘R">
                 Rename...
               </Menu.Item>
             </Menu.Group>
             <Menu.Divider />
             <Menu.Group>
-              <Menu.Item icon="trash" intent="danger">
+              <Menu.Item icon={<TrashIcon />} intent="danger">
                 Delete...
               </Menu.Item>
             </Menu.Group>
@@ -56,15 +62,15 @@ storiesOf('menu', module)
         content={
           <Menu>
             <Menu.Group title="Actions">
-              <Menu.Item icon="people">Share...</Menu.Item>
-              <Menu.Item icon="circle-arrow-right">Move...</Menu.Item>
-              <Menu.Item icon="edit" secondaryText="⌘R">
+              <Menu.Item icon={<PeopleIcon />}>Share...</Menu.Item>
+              <Menu.Item icon={<CircleArrowRightIcon />}>Move...</Menu.Item>
+              <Menu.Item icon={<EditIcon />} secondaryText="⌘R">
                 Rename...
               </Menu.Item>
             </Menu.Group>
             <Menu.Divider />
             <Menu.Group title="destructive">
-              <Menu.Item icon="trash" intent="danger">
+              <Menu.Item icon={<TrashIcon />} intent="danger">
                 Delete...
               </Menu.Item>
             </Menu.Group>

@@ -6,6 +6,7 @@ import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
 import { Button, IconButton } from '../../buttons'
 import { withTheme } from '../../theme'
+import { CrossIcon } from '../../icons'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -320,7 +321,7 @@ class Dialog extends React.Component {
               {hasClose && (
                 <IconButton
                   appearance="minimal"
-                  icon="cross"
+                  icon={<CrossIcon />}
                   onClick={() => onCancel(close)}
                 />
               )}

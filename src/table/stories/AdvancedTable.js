@@ -6,6 +6,7 @@ import { Menu } from '../../menu'
 import { Avatar } from '../../avatar'
 import { Text } from '../../typography'
 import { IconButton, TextDropdownButton } from '../../buttons'
+import { MoreIcon } from '../../icons'
 import profiles from './profiles.json'
 import { Table } from '..'
 
@@ -236,7 +237,7 @@ export default class AdvancedTable extends React.Component {
             content={this.renderRowMenu}
             position={Position.BOTTOM_RIGHT}
           >
-            <IconButton icon="more" height={24} appearance="minimal" />
+            <IconButton icon={<MoreIcon />} height={24} appearance="minimal" />
           </Popover>
         </Table.Cell>
       </Table.Row>

@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { ArrowLeftIcon } from '../../icons'
 import Button from './Button'
 
 export default class BackButton extends PureComponent {
@@ -10,15 +11,11 @@ export default class BackButton extends PureComponent {
   }
 
   static defaultProps = {
-    /**
-     * Composes the Button component as the base.
-     */
     ...Button.defaultProps,
-
     children: 'Back'
   }
 
   render() {
-    return <Button iconBefore="arrow-left" {...this.props} />
+    return <Button iconBefore={<ArrowLeftIcon />} {...this.props} />
   }
 }

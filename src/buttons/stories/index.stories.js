@@ -5,6 +5,7 @@ import Component from '@reactions/component'
 import { Heading } from '../../typography'
 import { Pane } from '../../layers'
 import { SegmentedControl } from '../../segmented-control'
+import * as Icons from '../../icons'
 import { IconButton, Button, BackButton, TextDropdownButton } from '..'
 
 const buttonsStory = storiesOf('buttons', module)
@@ -42,26 +43,46 @@ buttonsStory.add('Common', () => (
             <Button
               height={state.value}
               marginRight={16}
-              iconAfter="caret-down"
+              iconAfter={<Icons.CaretDownIcon />}
             >
               Select event...
             </Button>
-            <Button height={state.value} marginRight={16} iconBefore="add">
+            <Button
+              height={state.value}
+              marginRight={16}
+              iconBefore={<Icons.AddIcon />}
+            >
               New Audience
             </Button>
-            <Button height={state.value} marginRight={16} iconBefore="download">
+            <Button
+              height={state.value}
+              marginRight={16}
+              iconBefore={<Icons.DownloadIcon />}
+            >
               Download
             </Button>
-            <Button height={state.value} marginRight={16} iconBefore="download">
+            <Button
+              height={state.value}
+              marginRight={16}
+              iconBefore={<Icons.DownloadIcon />}
+            >
               Download CSV...
             </Button>
-            <Button height={state.value} marginRight={16} iconBefore="edit">
+            <Button
+              height={state.value}
+              marginRight={16}
+              iconBefore={<Icons.EditIcon />}
+            >
               Edit
             </Button>
-            <Button height={state.value} marginRight={16} iconBefore="manual">
+            <Button
+              height={state.value}
+              marginRight={16}
+              iconBefore={<Icons.ManualIcon />}
+            >
               Docs
             </Button>
-            <Button height={state.value} iconBefore="import">
+            <Button height={state.value} iconBefore={<Icons.ImportIcon />}>
               Import
             </Button>
           </Pane>
@@ -73,7 +94,7 @@ buttonsStory.add('Common', () => (
               height={state.value}
               appearance="primary"
               marginRight={16}
-              iconAfter="arrow-right"
+              iconAfter={<Icons.ArrowRightIcon />}
             >
               Next Step
             </Button>
@@ -81,7 +102,7 @@ buttonsStory.add('Common', () => (
               height={state.value}
               appearance="primary"
               marginRight={16}
-              iconBefore="eye-open"
+              iconBefore={<Icons.EyeOpenIcon />}
             >
               Preview
             </Button>
@@ -100,7 +121,7 @@ buttonsStory.add('Common', () => (
               appearance="primary"
               intent="success"
               marginRight={16}
-              iconBefore="add"
+              iconBefore={<Icons.AddIcon />}
             >
               Add Source
             </Button>
@@ -109,7 +130,7 @@ buttonsStory.add('Common', () => (
               appearance="primary"
               intent="success"
               marginRight={16}
-              iconBefore="add"
+              iconBefore={<Icons.AddIcon />}
             >
               Add Destination
             </Button>
@@ -118,7 +139,7 @@ buttonsStory.add('Common', () => (
               appearance="primary"
               intent="success"
               marginRight={16}
-              iconBefore="add"
+              iconBefore={<Icons.AddIcon />}
             >
               New Audience
             </Button>
@@ -127,7 +148,7 @@ buttonsStory.add('Common', () => (
               appearance="primary"
               intent="success"
               marginRight={16}
-              iconBefore="add"
+              iconBefore={<Icons.AddIcon />}
             >
               New Computed Trait
             </Button>
@@ -137,7 +158,7 @@ buttonsStory.add('Common', () => (
               height={state.value}
               intent="warning"
               marginRight={16}
-              iconBefore="refresh"
+              iconBefore={<Icons.RefreshIcon />}
             >
               Retry
             </Button>
@@ -146,7 +167,7 @@ buttonsStory.add('Common', () => (
               appearance="primary"
               intent="warning"
               marginRight={16}
-              iconBefore="blocked-person"
+              iconBefore={<Icons.BlockedPersonIcon />}
             >
               Disable User
             </Button>
@@ -157,7 +178,7 @@ buttonsStory.add('Common', () => (
               appearance="minimal"
               intent="danger"
               marginRight={16}
-              iconBefore="trash"
+              iconBefore={<Icons.TrashIcon />}
             >
               Delete...
             </Button>
@@ -165,7 +186,7 @@ buttonsStory.add('Common', () => (
               height={state.value}
               intent="danger"
               marginRight={16}
-              iconBefore="trash"
+              iconBefore={<Icons.TrashIcon />}
             >
               Delete...
             </Button>
@@ -174,7 +195,7 @@ buttonsStory.add('Common', () => (
               appearance="primary"
               intent="danger"
               marginRight={16}
-              iconBefore="trash"
+              iconBefore={<Icons.TrashIcon />}
             >
               Permanently Delete Workspace...
             </Button>
@@ -287,67 +308,95 @@ buttonsStory.add('IconButton', () => (
     <Pane borderRight paddingRight={24} marginRight={24} float="left">
       <Heading marginBottom={16}>Height 32</Heading>
       <Box float="left" marginRight={16}>
-        <IconButton marginBottom={16} icon="cog" />
-        <IconButton marginBottom={16} icon="plus" />
-        <IconButton marginBottom={16} icon="filter" />
-        <IconButton marginBottom={16} icon="edit" />
-        <IconButton marginBottom={16} icon="refresh" />
+        <IconButton marginBottom={16} icon={<Icons.CogIcon />} />
+        <IconButton marginBottom={16} icon={<Icons.PlusIcon />} />
+        <IconButton marginBottom={16} icon={<Icons.FilterIcon />} />
+        <IconButton marginBottom={16} icon={<Icons.EditIcon />} />
+        <IconButton marginBottom={16} icon={<Icons.RefreshIcon />} />
       </Box>
       <Box float="left">
-        <IconButton marginBottom={16} appearance="minimal" icon="cross" />
-        <IconButton marginBottom={16} appearance="minimal" icon="more" />
-        <IconButton marginBottom={16} appearance="minimal" icon="plus" />
-        <IconButton marginBottom={16} appearance="minimal" icon="edit" />
-        <IconButton marginBottom={16} appearance="minimal" icon="search" />
+        <IconButton
+          marginBottom={16}
+          appearance="minimal"
+          icon={<Icons.CrossIcon />}
+        />
+        <IconButton
+          marginBottom={16}
+          appearance="minimal"
+          icon={<Icons.MoreIcon />}
+        />
+        <IconButton
+          marginBottom={16}
+          appearance="minimal"
+          icon={<Icons.PlusIcon />}
+        />
+        <IconButton
+          marginBottom={16}
+          appearance="minimal"
+          icon={<Icons.EditIcon />}
+        />
+        <IconButton
+          marginBottom={16}
+          appearance="minimal"
+          icon={<Icons.SearchIcon />}
+        />
       </Box>
     </Pane>
     <Pane float="left">
       <Heading marginBottom={16}>Height 24</Heading>
       <Box float="left" marginRight={16}>
-        <IconButton marginBottom={16} height={24} icon="cog" />
-        <IconButton marginBottom={16} height={24} icon="plus" />
-        <IconButton marginBottom={16} height={24} icon="filter" />
-        <IconButton marginBottom={16} height={24} icon="edit" />
-        <IconButton marginBottom={16} height={24} icon="chevron-left" />
-        <IconButton marginBottom={16} height={24} icon="chevron-right" />
+        <IconButton marginBottom={16} height={24} icon={<Icons.CogIcon />} />
+        <IconButton marginBottom={16} height={24} icon={<Icons.PlusIcon />} />
+        <IconButton marginBottom={16} height={24} icon={<Icons.FilterIcon />} />
+        <IconButton marginBottom={16} height={24} icon={<Icons.EditIcon />} />
+        <IconButton
+          marginBottom={16}
+          height={24}
+          icon={<Icons.ChevronLeftIcon />}
+        />
+        <IconButton
+          marginBottom={16}
+          height={24}
+          icon={<Icons.ChevronRightIcon />}
+        />
       </Box>
       <Box float="left" marginRight={16}>
         <IconButton
           marginBottom={16}
           appearance="minimal"
           height={24}
-          icon="cross"
+          icon={<Icons.CrossIcon />}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
           height={24}
-          icon="more"
+          icon={<Icons.MoreIcon />}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
           height={24}
-          icon="plus"
+          icon={<Icons.PlusIcon />}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
           height={24}
-          icon="trash"
+          icon={<Icons.TrashIcon />}
           intent="danger"
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
           height={24}
-          icon="filter"
+          icon={<Icons.FilterIcon />}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
           height={24}
-          icon="edit"
+          icon={<Icons.EditIcon />}
         />
       </Box>
       <Box float="left">
@@ -355,37 +404,37 @@ buttonsStory.add('IconButton', () => (
           marginBottom={16}
           appearance="minimal"
           height={24}
-          icon="clipboard"
+          icon={<Icons.ClipboardIcon />}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
           height={24}
-          icon="calendar"
+          icon={<Icons.CalendarIcon />}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
           height={24}
-          icon="lock"
+          icon={<Icons.LockIcon />}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
           height={24}
-          icon="unlock"
+          icon={<Icons.UnlockIcon />}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
           height={24}
-          icon="notifications"
+          icon={<Icons.NotificationsIcon />}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
           height={24}
-          icon="manual"
+          icon={<Icons.ManualIcon />}
         />
       </Box>
     </Pane>
