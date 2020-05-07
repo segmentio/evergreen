@@ -169,7 +169,6 @@ class TagInput extends React.Component {
     const key = GET_KEY_FOR_TAG_DELIMITER[this.props.tagSubmitKey]
 
     if (event.key === key) {
-      console.log(event.key)
       // Prevent Enter keypresses from submitting forms since they have special powers inside TagInput
       event.preventDefault()
       this.addTags(value)
