@@ -9,7 +9,7 @@ import { useTheme } from '../../theme'
  * Refer to the LICENSE for BlueprintJS here: https://github.com/palantir/blueprint/blob/develop/LICENSE
  */
 
-const TreeShakeableIcon = forwardRef(
+const Icon = forwardRef(
   (
     {
       color = 'currentColor',
@@ -61,7 +61,7 @@ const TreeShakeableIcon = forwardRef(
   }
 )
 
-TreeShakeableIcon.propTypes = {
+Icon.propTypes = {
   /**
    * Color of icon. Equivalent to setting CSS `fill` property.
    */
@@ -97,4 +97,4 @@ TreeShakeableIcon.propTypes = {
   svgPaths20: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
-export default TreeShakeableIcon
+export default Icon

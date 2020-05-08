@@ -21,7 +21,7 @@ export class IconWrapper extends PureComponent {
      *
      *   As a consumer, you should never use `<IconWrapper icon={<element />}` directly; simply render `<element />` instead.
      */
-    icon: PropTypes.node.isRequired,
+    icon: PropTypes.node,
 
     /**
      * Size of the icon, in pixels.
