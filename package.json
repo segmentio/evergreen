@@ -114,6 +114,7 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-terser": "^5.2.0",
     "sinon": "^8.1.0",
+    "size-limit": "^4.5.0",
     "starwars-names": "^1.6.0",
     "url-loader": "^1.1.2",
     "xo": "^0.25.3"
