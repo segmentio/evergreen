@@ -84,7 +84,8 @@ class IconButton extends PureComponent {
     if (icon && React.isValidElement(icon)) {
       iconWithProps = React.cloneElement(icon, {
         color: intent === 'none' ? 'default' : 'currentColor',
-        size: iconSize || theme.getIconSizeForIconButton(height)
+        size: iconSize || theme.getIconSizeForIconButton(height),
+        ...icon.props
       })
     }
 

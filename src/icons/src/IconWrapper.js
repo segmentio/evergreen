@@ -25,10 +25,10 @@ export class IconWrapper extends PureComponent {
 
     /**
      * Size of the icon, in pixels.
-     * Blueprint contains 16px and 20px SVG icon images,
+     * Icons contains 16px and 20px SVG icon paths,
      * and chooses the appropriate resolution based on this prop.
      */
-    size: PropTypes.number.isRequired,
+    size: PropTypes.number,
 
     /**
      * Description string.
@@ -47,7 +47,12 @@ export class IconWrapper extends PureComponent {
     }
 
     // Used as a short-hand to add props to an icon component. This component should not be used externally.
-    const iconWithProps = React.cloneElement(icon, { size, title, color })
+    const iconWithProps = React.cloneElement(icon, {
+      size,
+      title,
+      color,
+      ...icon.props
+    })
 
     return (
       <Box display="inline-flex" {...boxProps}>

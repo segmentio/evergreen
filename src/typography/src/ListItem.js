@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import { IconWrapper } from '../../icons/src/IconWrapper'
 import { majorScale } from '../../scales'
 import Text from './Text'
 
@@ -40,14 +40,12 @@ export default class ListItem extends PureComponent {
         {...props}
       >
         {icon && (
-          <Box
-            display="flex"
+          <IconWrapper
+            icon={icon}
             position="absolute"
             left={majorScale(-2)}
             top={iconTop}
-          >
-            {icon}
-          </Box>
+          />
         )}
         {children}
       </Text>
