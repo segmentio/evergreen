@@ -1,8 +1,8 @@
 import React from 'react'
 import { filter } from 'fuzzaldrin-plus'
 import { Pane, SearchInput, Text } from 'evergreen-ui'
-import * as Icons from 'evergreen-ui/icons'
-import { IconNameMapper } from 'evergreen-ui/icons/generated/IconNameMapper'
+import * as Icons from '../../../src/icons'
+import { IconNameMapper } from '../../../src/icons/generated/IconNameMapper'
 
 const iconKeys = Object.keys(IconNameMapper)
 
