@@ -415,6 +415,8 @@ export enum Position {
   RIGHT = 'right'
 }
 
+type ForwardRefComponent<P = {}, T = any> = React.ForwardRefExoticComponent<React.PropsWithoutRef<P> & React.RefAttributes<T>>
+
 export interface AlertProps extends Omit<PaneProps, 'title'> {
   intent?: IntentTypes
   title?: React.ReactNode
@@ -437,8 +439,7 @@ export interface AlertProps extends Omit<PaneProps, 'title'> {
   appearance?: AlertAppearance
 }
 
-export class Alert extends React.PureComponent<AlertProps> {
-}
+export declare const Alert: ForwardRefComponent<AlertProps>
 
 interface OptionProps extends TableRowProps {
   height?: number | string
@@ -1026,8 +1027,7 @@ export interface InlineAlertProps extends PaneProps {
   size?: keyof Typography['text']
 }
 
-export class InlineAlert extends React.PureComponent<InlineAlertProps> {
-}
+export declare const InlineAlert: ForwardRefComponent<InlineAlertProps>
 
 export type LabelProps = TextProps
 
