@@ -1,26 +1,13 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Paragraph } from '../../typography'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 
-class TooltipStateless extends PureComponent {
-  static propTypes = {
-    children: PropTypes.node,
-
-    /**
-     * The appearance of the tooltip.
-     */
-    appearance: PropTypes.oneOf(['default', 'card']).isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
-  render() {
-    const { theme, children, appearance, ...props } = this.props
+const TooltipStateless = memo(
+  forwardRef((props, ref) => {
+    const theme = useTheme()
+    const { children, appearance, ...restProps } = props
     const { color, ...themedProps } = theme.getTooltipProps(appearance)
 
     let child
@@ -36,17 +23,27 @@ class TooltipStateless extends PureComponent {
 
     return (
       <Pane
+        ref={ref}
         borderRadius={3}
         paddingX={8}
         paddingY={4}
         maxWidth={240}
         {...themedProps}
-        {...props}
+        {...restProps}
       >
         {child}
       </Pane>
     )
-  }
+  })
+)
+
+TooltipStateless.propTypes = {
+  children: PropTypes.node,
+
+  /**
+   * The appearance of the tooltip.
+   */
+  appearance: PropTypes.oneOf(['default', 'card']).isRequired
 }
 
-export default withTheme(TooltipStateless)
+export default TooltipStateless

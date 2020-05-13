@@ -1,98 +1,14 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box, { dimensions, spacing, position, layout } from 'ui-box'
 import { Text } from '../../typography'
 import { CaretDownIcon } from '../../icons'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 
-class Select extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the dimensions spec from the Box primitive.
-     */
-    ...dimensions.propTypes,
-
-    /**
-     * Composes the spacing spec from the Box primitive.
-     */
-    ...spacing.propTypes,
-
-    /**
-     * Composes the position spec from the Box primitive.
-     */
-    ...position.propTypes,
-
-    /**
-     * Composes the layout spec from the Box primitive.
-     */
-    ...layout.propTypes,
-
-    /**
-     * The id attribute for the select.
-     */
-    id: PropTypes.string,
-
-    /**
-     * The name attribute for the select.
-     */
-    name: PropTypes.string,
-
-    /**
-     * The options that are passed to the select.
-     */
-    children: PropTypes.node,
-
-    /**
-     * The initial value of an uncontrolled select
-     */
-    defaultValue: PropTypes.any,
-
-    /**
-     * Function called when value changes.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * The value of the select.
-     */
-    value: PropTypes.any,
-
-    /**
-     * When true, the select is required.
-     */
-    required: PropTypes.bool,
-
-    /**
-     * When true, the select should auto focus.
-     */
-    autoFocus: PropTypes.bool,
-
-    /**
-     * When true, the select is invalid.
-     */
-    isInvalid: PropTypes.bool,
-
-    /**
-     * The appearance of the select. The default theme only supports default.
-     */
-    appearance: PropTypes.string.isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
-  static defaultProps = {
-    appearance: 'default',
-    height: 32,
-    isInvalid: false
-  }
-
-  render() {
+const Select = memo(
+  forwardRef((props, ref) => {
+    const theme = useTheme()
     const {
-      theme,
-
       id,
       name,
       height,
@@ -105,8 +21,8 @@ class Select extends PureComponent {
       autoFocus,
       isInvalid,
       appearance,
-      ...props
-    } = this.props
+      ...restProps
+    } = props
 
     const themedClassName = theme.getSelectClassName(appearance)
     const textSize = theme.getTextSizeForControlHeight(height)
@@ -116,12 +32,13 @@ class Select extends PureComponent {
 
     return (
       <Box
+        innerRef={ref}
         display="inline-flex"
         flex={1}
         position="relative"
         width="auto"
         height={height}
-        {...props}
+        {...restProps}
       >
         <Text
           is="select"
@@ -155,7 +72,85 @@ class Select extends PureComponent {
         />
       </Box>
     )
-  }
+  })
+)
+
+Select.propTypes = {
+  /**
+   * Composes the dimensions spec from the Box primitive.
+   */
+  ...dimensions.propTypes,
+
+  /**
+   * Composes the spacing spec from the Box primitive.
+   */
+  ...spacing.propTypes,
+
+  /**
+   * Composes the position spec from the Box primitive.
+   */
+  ...position.propTypes,
+
+  /**
+   * Composes the layout spec from the Box primitive.
+   */
+  ...layout.propTypes,
+
+  /**
+   * The id attribute for the select.
+   */
+  id: PropTypes.string,
+
+  /**
+   * The name attribute for the select.
+   */
+  name: PropTypes.string,
+
+  /**
+   * The options that are passed to the select.
+   */
+  children: PropTypes.node,
+
+  /**
+   * The initial value of an uncontrolled select
+   */
+  defaultValue: PropTypes.any,
+
+  /**
+   * Function called when value changes.
+   */
+  onChange: PropTypes.func,
+
+  /**
+   * The value of the select.
+   */
+  value: PropTypes.any,
+
+  /**
+   * When true, the select is required.
+   */
+  required: PropTypes.bool,
+
+  /**
+   * When true, the select should auto focus.
+   */
+  autoFocus: PropTypes.bool,
+
+  /**
+   * When true, the select is invalid.
+   */
+  isInvalid: PropTypes.bool,
+
+  /**
+   * The appearance of the select. The default theme only supports default.
+   */
+  appearance: PropTypes.string.isRequired
 }
 
-export default withTheme(Select)
+Select.defaultProps = {
+  appearance: 'default',
+  height: 32,
+  isInvalid: false
+}
+
+export default Select

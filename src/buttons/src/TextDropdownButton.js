@@ -1,82 +1,17 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { dimensions, spacing, position, layout } from 'ui-box'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { CaretDownIcon } from '../../icons'
 import { Text } from '../../typography'
 import { Spinner } from '../../spinner'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 
-class TextDropdownButton extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the dimensions spec from the Box primitive.
-     */
-    ...dimensions.propTypes,
-
-    /**
-     * Composes the spacing spec from the Box primitive.
-     */
-    ...spacing.propTypes,
-
-    /**
-     * Composes the position spec from the Box primitive.
-     */
-    ...position.propTypes,
-
-    /**
-     * Composes the layout spec from the Box primitive.
-     */
-    ...layout.propTypes,
-
-    /**
-     * Forcefully set the active state of a button.
-     * Useful in conjuction with a Popover.
-     */
-    isActive: PropTypes.bool,
-
-    /**
-     * When true, the button is disabled.
-     * isLoading also sets the button to disabled.
-     */
-    disabled: PropTypes.bool,
-
-    /**
-     * An Evergreen icon or custom icon node. By default it uses <CaretDownIcon />
-     */
-    icon: PropTypes.node,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
-
-    /**
-     * Class name passed to the button.
-     * Only use if you know what you are doing.
-     */
-    className: PropTypes.string
-  }
-
-  static defaultProps = {
-    isActive: false,
-    icon: <CaretDownIcon />
-  }
-
-  static styles = {
-    position: 'relative',
-    fontFamily: 'ui',
-    fontWeight: 500,
-    display: 'inline-flex',
-    alignItems: 'center',
-    flexWrap: 'nowrap'
-  }
-
-  render() {
+const TextDropdownButton = memo(
+  forwardRef((props, ref) => {
+    const theme = useTheme()
     const {
-      theme,
       className,
-
       intent,
       height,
       isActive,
@@ -94,14 +29,15 @@ class TextDropdownButton extends PureComponent {
       // Icons
       icon,
 
-      ...props
-    } = this.props
+      ...restProps
+    } = props
 
     const themedClassName = theme.getTextDropdownButtonClassName()
 
     return (
       <Text
         is="button"
+        ref={ref}
         className={themedClassName}
         paddingX={4}
         marginX={-4}
@@ -110,7 +46,7 @@ class TextDropdownButton extends PureComponent {
         size={300}
         data-active={isActive}
         {...TextDropdownButton.styles}
-        {...props}
+        {...restProps}
         disabled={disabled}
       >
         {isLoading && (
@@ -124,7 +60,66 @@ class TextDropdownButton extends PureComponent {
         <IconWrapper icon={icon} marginLeft={2} color="default" size={12} />
       </Text>
     )
-  }
+  })
+)
+
+TextDropdownButton.propTypes = {
+  /**
+   * Composes the dimensions spec from the Box primitive.
+   */
+  ...dimensions.propTypes,
+
+  /**
+   * Composes the spacing spec from the Box primitive.
+   */
+  ...spacing.propTypes,
+
+  /**
+   * Composes the position spec from the Box primitive.
+   */
+  ...position.propTypes,
+
+  /**
+   * Composes the layout spec from the Box primitive.
+   */
+  ...layout.propTypes,
+
+  /**
+   * Forcefully set the active state of a button.
+   * Useful in conjuction with a Popover.
+   */
+  isActive: PropTypes.bool,
+
+  /**
+   * When true, the button is disabled.
+   * isLoading also sets the button to disabled.
+   */
+  disabled: PropTypes.bool,
+
+  /**
+   * An Evergreen icon or custom icon node. By default it uses <CaretDownIcon />
+   */
+  icon: PropTypes.node,
+
+  /**
+   * Class name passed to the button.
+   * Only use if you know what you are doing.
+   */
+  className: PropTypes.string
 }
 
-export default withTheme(TextDropdownButton)
+TextDropdownButton.defaultProps = {
+  isActive: false,
+  icon: <CaretDownIcon />
+}
+
+TextDropdownButton.styles = {
+  position: 'relative',
+  fontFamily: 'ui',
+  fontWeight: 500,
+  display: 'inline-flex',
+  alignItems: 'center',
+  flexWrap: 'nowrap'
+}
+
+export default TextDropdownButton

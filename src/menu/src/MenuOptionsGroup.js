@@ -1,45 +1,22 @@
-import React from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
-import { withTheme } from '../../theme'
 import MenuOption from './MenuOption'
 
-class MenuOptionsGroup extends React.PureComponent {
-  static propTypes = {
-    /**
-     * Title of the menu group.
-     */
-    title: PropTypes.node,
-
-    /**
-     * The current value of the option group.
-     */
-    selected: PropTypes.any,
-
-    /**
-     * Function called when selection changes.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * List of options rendered in the group.
-     */
-    options: PropTypes.array
-  }
-
-  render() {
-    const { title, options, selected, onChange } = this.props
+const MenuOptionsGroup = memo(
+  forwardRef((props, ref) => {
+    const { title, options, selected, onChange } = props
 
     return (
-      <Pane paddingY={8}>
+      <Pane ref={ref} paddingY={8}>
         {title && (
           <Heading size={100} marginLeft={44} marginRight={16} marginY={8}>
             {title}
           </Heading>
         )}
         <Pane>
-          {options.map((option) => {
+          {options.map(option => {
             return (
               <MenuOption
                 key={option.value}
@@ -53,7 +30,29 @@ class MenuOptionsGroup extends React.PureComponent {
         </Pane>
       </Pane>
     )
-  }
+  })
+)
+
+MenuOptionsGroup.propTypes = {
+  /**
+   * Title of the menu group.
+   */
+  title: PropTypes.node,
+
+  /**
+   * The current value of the option group.
+   */
+  selected: PropTypes.any,
+
+  /**
+   * Function called when selection changes.
+   */
+  onChange: PropTypes.func,
+
+  /**
+   * List of options rendered in the group.
+   */
+  options: PropTypes.array
 }
 
-export default withTheme(MenuOptionsGroup)
+export default MenuOptionsGroup

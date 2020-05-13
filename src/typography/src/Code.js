@@ -1,36 +1,13 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 import Text from './Text'
 
-class Code extends PureComponent {
-  static propTypes = {
-    ...Text.propTypes,
-
-    /**
-     * The appearance of the code.
-     */
-    appearance: PropTypes.oneOf(['default', 'minimal']).isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
-
-    /**
-     * Class name passed to the button.
-     * Only use if you know what you are doing.
-     */
-    className: PropTypes.string
-  }
-
-  static defaultProps = {
-    appearance: 'default'
-  }
-
-  render() {
-    const { theme, className, appearance, ...props } = this.props
+const Code = memo(
+  forwardRef((props, ref) => {
+    const theme = useTheme()
+    const { className, appearance, ...restProps } = props
 
     const {
       className: themedClassName = '',
@@ -40,13 +17,33 @@ class Code extends PureComponent {
     return (
       <Text
         is="code"
+        ref={ref}
         className={cx(className, themedClassName)}
         fontFamily="mono"
         {...themeProps}
-        {...props}
+        {...restProps}
       />
     )
-  }
+  })
+)
+
+Code.propTypes = {
+  ...Text.propTypes,
+
+  /**
+   * The appearance of the code.
+   */
+  appearance: PropTypes.oneOf(['default', 'minimal']),
+
+  /**
+   * Class name passed to the button.
+   * Only use if you know what you are doing.
+   */
+  className: PropTypes.string
 }
 
-export default withTheme(Code)
+Code.defaultProps = {
+  appearance: 'default'
+}
+
+export default Code
