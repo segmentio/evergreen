@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { dimensions, spacing, position, layout } from 'ui-box'
-import { Icon } from '../../icon'
 import { withTheme } from '../../theme'
 import Button from './Button'
 
@@ -28,18 +27,9 @@ class IconButton extends PureComponent {
     ...layout.propTypes,
 
     /**
-     * Name of a Blueprint UI icon, or an icon element, to render.
-     * This prop is required because it determines the content of the component, but it can
-     * be explicitly set to falsy values to render nothing.
-     *
-     * - If `null` or `undefined` or `false`, this component will render nothing.
-     * - If given an `IconName` (a string literal union of all icon names),
-     *   that icon will be rendered as an `<svg>` with `<path>` tags.
-     * - If given a `JSX.Element`, that element will be rendered and _all other props on this component are ignored._
-     *   This type is supported to simplify usage of this component in other Blueprint components.
-     *   As a consumer, you should never use `<Icon icon={<element />}` directly; simply render `<element />` instead.
+     * The Evergreen icon or custom icon to render
      */
-    icon: PropTypes.string,
+    icon: PropTypes.node,
 
     /**
      * Specifies an explicit icon size instead of the default value
@@ -88,16 +78,16 @@ class IconButton extends PureComponent {
   }
 
   render() {
-    const {
-      theme,
-      iconAim,
-      icon,
-      iconSize,
-      height,
-      intent,
-      ...props
-    } = this.props
-    const size = iconSize || theme.getIconSizeForIconButton(height)
+    const { theme, icon, iconSize, height, intent, ...props } = this.props
+
+    let iconWithProps
+    if (icon && React.isValidElement(icon)) {
+      iconWithProps = React.cloneElement(icon, {
+        color: intent === 'none' ? 'default' : 'currentColor',
+        size: iconSize || theme.getIconSizeForIconButton(height),
+        ...icon.props
+      })
+    }
 
     return (
       <Button
@@ -110,11 +100,7 @@ class IconButton extends PureComponent {
         justifyContent="center"
         {...props}
       >
-        <Icon
-          icon={icon}
-          size={size}
-          color={intent === 'none' ? 'default' : 'currentColor'}
-        />
+        {iconWithProps}
       </Button>
     )
   }

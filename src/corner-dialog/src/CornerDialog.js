@@ -8,6 +8,7 @@ import { Paragraph, Heading } from '../../typography'
 import { Button, IconButton } from '../../buttons'
 import absolutePositions from '../../constants/src/AbsolutePosition'
 import positions from '../../constants/src/Position'
+import { CrossIcon } from '../../icons'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -39,9 +40,7 @@ const closeAnimation = css.keyframes('closeAnimation', {
 
 const animationStyles = {
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.spring
-    } both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`
   },
   '&[data-state="exiting"]': {
     animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
@@ -264,7 +263,7 @@ export default class CornerDialog extends PureComponent {
                 {hasClose && (
                   <IconButton
                     height={32}
-                    icon="cross"
+                    icon={<CrossIcon />}
                     appearance="minimal"
                     onClick={this.handleClose}
                   />

@@ -1,9 +1,5 @@
 // This is a generated file. DO NOT modify directly.
 
-import * as IconNames from './generated/IconNames'
-export { IconNames }
-
-export { IconNameMapper } from './generated/IconNameMapper'
 export { AddIcon } from './generated/AddIcon'
 export { AddColumnLeftIcon } from './generated/AddColumnLeftIcon'
 export { AddColumnRightIcon } from './generated/AddColumnRightIcon'

@@ -122,7 +122,7 @@ export default class Playground extends React.Component {
             className="Playground-header"
             onClick={this.handleToggle}
           >
-            <components.Icon icon="code" marginRight={8} />{' '}
+            <components.CodeIcon marginRight={8} />{' '}
             {isCodeCollapsed ? 'Show code' : 'Hide code'}
           </div>
         </div>

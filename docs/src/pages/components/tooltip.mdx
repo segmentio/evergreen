@@ -12,7 +12,7 @@ Each `IconButton` should always be wrapped in a `Tooltip`.
 
 ```jsx
 <Tooltip content="Edit title">
-  <IconButton icon="edit" />
+  <IconButton icon={<EditIcon />} />
 </Tooltip>
 ```
 
@@ -59,16 +59,16 @@ For a `Tooltip` the only really useful sides are `TOP`, `RIGHT`, `BOTTOM` and `L
 ```jsx
 <Pane display="flex" justifyContent="space-between">
   <Tooltip content="Top" position={Position.TOP}>
-    <IconButton icon="arrow-up" />
+    <IconButton icon={<ArrowUpIcon />} />
   </Tooltip>
   <Tooltip content="Right" position={Position.RIGHT}>
-    <IconButton icon="arrow-right" />
+    <IconButton icon={<ArrowRightIcon />} />
   </Tooltip>
   <Tooltip content="Bottom" position={Position.BOTTOM}>
-    <IconButton icon="arrow-down" />
+    <IconButton icon={<ArrowDownIcon />} />
   </Tooltip>
   <Tooltip content="Left" position={Position.LEFT}>
-    <IconButton icon="arrow-left" />
+    <IconButton icon={<ArrowLeftIcon />} />
   </Tooltip>
 </Pane>
 ```

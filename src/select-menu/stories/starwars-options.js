@@ -8,5 +8,6 @@ export default starWarsNames.all.map(name => ({
 export const optionsWithIcons = starWarsNames.all.map(name => ({
   label: name,
   value: name,
-  icon: 'https://cdn.filepicker.io/api/file/nmizXMdSdqKQa9z1JOCC'
+  icon:
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Bananas_white_background_DS.jpg/2560px-Bananas_white_background_DS.jpg'
 }))

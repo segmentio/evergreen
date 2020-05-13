@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
+import { TickIcon, TickCircleIcon, BanCircleIcon } from '../../icons'
 import {
   Text,
   Paragraph,
@@ -19,6 +20,8 @@ import {
 const TextSizes = [300, 400, 500]
 const HeadingSizes = [100, 200, 300, 400, 500, 600, 700, 800, 900]
 const dummyText = 'A red flair silhouetted the jagged edge of a wing.'
+
+const getIconSize = textSize => (textSize < 400 ? 12 : 14)
 
 function previewTextComponent(Comp, sizes = TextSizes, props = {}) {
   return (
@@ -111,16 +114,24 @@ storiesOf('typography', module)
             You can add icons to list items individually.
           </Paragraph>
           <UnorderedList size={size} marginY={16}>
-            <ListItem icon="tick-circle" iconColor="success">
+            <ListItem
+              icon={<TickCircleIcon size={getIconSize(size)} color="success" />}
+            >
               Lorem ipsum dolar set amet
             </ListItem>
-            <ListItem icon="tick-circle" iconColor="success">
+            <ListItem
+              icon={<TickCircleIcon size={getIconSize(size)} color="success" />}
+            >
               Lorem ipsum dolar set amet
             </ListItem>
-            <ListItem icon="ban-circle" iconColor="danger">
+            <ListItem
+              icon={<BanCircleIcon size={getIconSize(size)} color="danger" />}
+            >
               Lorem ipsum dolar set amet
             </ListItem>
-            <ListItem icon="ban-circle" iconColor="danger">
+            <ListItem
+              icon={<BanCircleIcon size={getIconSize(size)} color="danger" />}
+            >
               Lorem ipsum dolar set amet
             </ListItem>
           </UnorderedList>
@@ -130,8 +141,7 @@ storiesOf('typography', module)
           <UnorderedList
             size={size}
             marginY={16}
-            icon="tick"
-            iconColor="success"
+            icon={<TickIcon color="success" size={getIconSize(size)} />}
           >
             <ListItem>Lorem ipsum dolar set amet</ListItem>
             <ListItem>Lorem ipsum dolar set amet</ListItem>

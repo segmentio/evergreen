@@ -8,6 +8,10 @@ import {
   Avatar,
   Text,
   IconButton,
+  ArrowUpIcon,
+  ArrowDownIcon,
+  CaretDownIcon,
+  MoreIcon,
   TextDropdownButton
 } from 'evergreen-ui'
 import profiles from './profiles.json'
@@ -89,11 +93,11 @@ export default class AdvancedTable extends React.Component {
   getIconForOrder = order => {
     switch (order) {
       case Order.ASC:
-        return 'arrow-up'
+        return <ArrowUpIcon />
       case Order.DESC:
-        return 'arrow-down'
+        return <ArrowDownIcon />
       default:
-        return 'caret-down'
+        return <CaretDownIcon />
     }
   }
 
@@ -153,9 +157,11 @@ export default class AdvancedTable extends React.Component {
         >
           <TextDropdownButton
             icon={
-              this.state.orderedColumn === 2
-                ? this.getIconForOrder(this.state.ordering)
-                : 'caret-down'
+              this.state.orderedColumn === 2 ? (
+                this.getIconForOrder(this.state.ordering)
+              ) : (
+                <CaretDownIcon />
+              )
             }
           >
             {capitalize(this.state.column2Show)}
@@ -195,9 +201,11 @@ export default class AdvancedTable extends React.Component {
         >
           <TextDropdownButton
             icon={
-              this.state.orderedColumn === 3
-                ? this.getIconForOrder(this.state.ordering)
-                : 'caret-down'
+              this.state.orderedColumn === 3 ? (
+                this.getIconForOrder(this.state.ordering)
+              ) : (
+                <CaretDownIcon />
+              )
             }
           >
             LTV
@@ -239,7 +247,7 @@ export default class AdvancedTable extends React.Component {
             content={this.renderRowMenu}
             position={Position.BOTTOM_RIGHT}
           >
-            <IconButton icon="more" height={24} appearance="minimal" />
+            <IconButton icon={<MoreIcon />} height={24} appearance="minimal" />
           </Popover>
         </Table.Cell>
       </Table.Row>

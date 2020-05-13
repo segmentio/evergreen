@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from '../../icon'
+import { IconWrapper } from '../../icons/src/IconWrapper'
+import { majorScale } from '../../scales'
 import Text from './Text'
 
 export default class ListItem extends PureComponent {
@@ -8,19 +9,13 @@ export default class ListItem extends PureComponent {
     ...Text.propTypes,
 
     /**
-     * When passed, adds a icon before the list item.
-     * See Evergreen `Icon` for documentation.
+     * When provided, adds a icon before the list item.
      */
-    icon: PropTypes.string,
-
-    /**
-     * The color of the icon.
-     */
-    iconColor: PropTypes.string
+    icon: PropTypes.node
   }
 
   render() {
-    const { children, size, icon, iconColor, ...props } = this.props
+    const { children, size, icon, ...props } = this.props
 
     let paddingLeft
     if (size === 300) paddingLeft = 4
@@ -34,32 +29,21 @@ export default class ListItem extends PureComponent {
     if (size === 500) iconTop = 3
     if (size === 600) iconTop = 4
 
-    let iconSize
-    if (size === 300) iconSize = 12
-    if (size === 400) iconSize = 14
-    if (size === 500) iconSize = 14
-    if (size === 600) iconSize = 16
-
-    let iconLeft = -iconSize - 4
-    if (size === 600) iconLeft = -iconSize
-
     return (
       <Text
         is="li"
         position="relative"
         marginY="0.5em"
         size={size}
-        listStyleType={icon ? 'none' : null}
-        paddingLeft={icon ? paddingLeft : null}
+        listStyleType={icon ? 'none' : undefined}
+        paddingLeft={icon ? paddingLeft : undefined}
         {...props}
       >
         {icon && (
-          <Icon
+          <IconWrapper
             icon={icon}
-            color={iconColor}
             position="absolute"
-            size={iconSize}
-            left={iconLeft}
+            left={majorScale(-2)}
             top={iconTop}
           />
         )}

@@ -55,10 +55,10 @@ It contains a label and optional icons before or after the label.
         <Button height={state.value} marginRight={16} intent="danger">
           Danger
         </Button>
-        <Button height={state.value} marginRight={16} iconBefore="edit">
+        <Button height={state.value} marginRight={16} iconBefore={<EditIcon />}>
           Icon Before
         </Button>
-        <Button height={state.value} iconAfter="arrow-right">
+        <Button height={state.value} iconAfter={<ArrowRightIcon />}>
           Icon After
         </Button>
       </Pane>
@@ -86,10 +86,10 @@ It contains a label and optional icons before or after the label.
         <Button height={state.value} marginRight={16} appearance="primary" intent="danger">
           Danger
         </Button>
-        <Button height={state.value} marginRight={16} appearance="primary" intent="success" iconBefore="add">
+        <Button height={state.value} marginRight={16} appearance="primary" intent="success" iconBefore={<AddIcon />}>
           Icon Before
         </Button>
-        <Button height={state.value} appearance="primary" iconAfter="arrow-right">
+        <Button height={state.value} appearance="primary" iconAfter={<ArrowRightIcon />}>
           Icon After
         </Button>
       </Pane>
@@ -117,10 +117,10 @@ It contains a label and optional icons before or after the label.
         <Button height={state.value} marginRight={16} appearance="minimal" intent="danger">
           Danger
         </Button>
-        <Button height={state.value} marginRight={16} appearance="minimal" iconBefore="edit">
+        <Button height={state.value} marginRight={16} appearance="minimal" iconBefore={<EditIcon />}>
           Icon Before
         </Button>
-        <Button height={state.value} appearance="minimal" iconAfter="caret-down">
+        <Button height={state.value} appearance="minimal" iconAfter={<CaretDownIcon />}>
           Icon After
         </Button>
       </Pane>
@@ -224,16 +224,16 @@ You should only need the following recommended heights.
 Buttons support an icon on either before or after the label. Avoid using two icons in a button.
 
 ```jsx
-<>
-  <Button marginRight={12} iconBefore="cog">Settings</Button>
-  <Button marginRight={12} iconBefore="edit">Edit</Button>
-  <Button marginRight={12} iconBefore="manual">Docs</Button>
-  <Button marginRight={12} iconBefore="arrow-left">Back</Button>
-  <Button marginRight={12} iconBefore="download">Download...</Button>
-  <Button marginRight={12} iconBefore="trash" intent="danger">Delete...</Button>
-  <Button marginRight={12} iconBefore="search">Search</Button>
-  <Button marginRight={12} iconAfter="caret-down">Filter</Button>
-</>
+<Pane display="flex" flexWrap="wrap">
+  <Button marginY={8} marginRight={12} iconBefore={<CogIcon />}>Settings</Button>
+  <Button marginY={8} marginRight={12} iconBefore={<EditIcon />}>Edit</Button>
+  <Button marginY={8} marginRight={12} iconBefore={<ManualIcon />}>Docs</Button>
+  <Button marginY={8} marginRight={12} iconBefore={<ArrowLeftIcon />}>Back</Button>
+  <Button marginY={8} marginRight={12} iconBefore={<DownloadIcon />}>Download...</Button>
+  <Button marginY={8} marginRight={12} iconBefore={<TrashIcon />} intent="danger">Delete...</Button>
+  <Button marginY={8} marginRight={12} iconBefore={<SearchIcon />}>Search</Button>
+  <Button marginY={8} marginRight={12} iconAfter={<CaretDownIcon />}>Filter</Button>
+</Pane>
 ```
 
 <div id="api">
@@ -247,7 +247,7 @@ For the use case of creating a button with a single icon Evergreen exports the `
 ## Simple IconButton example
 
 ```jsx
-<IconButton icon="trash" intent="danger" />
+<IconButton icon={<TrashIcon />} intent="danger" />
 ```
 
 ## Use the height property to resize the icon button
@@ -256,11 +256,11 @@ Use the `height` property on the `IconButton` component to resize the component.
 The icon will automatically resize for the given height.
 
 ```jsx
-<IconButton icon="cross" height={40} />
+<IconButton icon={<CrossIcon />} height={40} />
 ```
 
 ```jsx
-<IconButton icon="cross" height={24} />
+<IconButton icon={<CrossIcon />} height={24} />
 ```
 
 ## Specifically override the icon size
@@ -271,7 +271,7 @@ Use the `iconSize` property to do this.
 This is not a required property, the icon will automatically resize based on the given height.
 
 ```jsx
-<IconButton appearance="minimal" icon="notifications" iconSize={18} />
+<IconButton appearance="minimal" icon={<NotificationsIcon />} iconSize={18} />
 ```
 
 ## Common icon buttons
@@ -281,67 +281,67 @@ This is not a required property, the icon will automatically resize based on the
   <Pane borderRight paddingRight={24} marginRight={24} float="left">
     <Heading marginBottom={16}>Height 32</Heading>
     <Pane float="left" marginRight={16}>
-      <IconButton marginBottom={16} icon="cog" />
-      <IconButton marginBottom={16} icon="plus" />
-      <IconButton marginBottom={16} icon="filter" />
-      <IconButton marginBottom={16} icon="edit" />
-      <IconButton marginBottom={16} icon="refresh" />
+      <IconButton marginBottom={16} icon={<CogIcon />} />
+      <IconButton marginBottom={16} icon={<PlusIcon />} />
+      <IconButton marginBottom={16} icon={<FilterIcon />} />
+      <IconButton marginBottom={16} icon={<EditIcon />} />
+      <IconButton marginBottom={16} icon={<RefreshIcon />} />
     </Pane>
     <Pane float="left">
-      <IconButton marginBottom={16} appearance="minimal" icon="cross" />
-      <IconButton marginBottom={16} appearance="minimal" icon="more" />
-      <IconButton marginBottom={16} appearance="minimal" icon="plus" />
-      <IconButton marginBottom={16} appearance="minimal" icon="edit" />
-      <IconButton marginBottom={16} appearance="minimal" icon="search" />
+      <IconButton marginBottom={16} appearance="minimal" icon={<CrossIcon />} />
+      <IconButton marginBottom={16} appearance="minimal" icon={<MoreIcon />} />
+      <IconButton marginBottom={16} appearance="minimal" icon={<PlusIcon />} />
+      <IconButton marginBottom={16} appearance="minimal" icon={<EditIcon />} />
+      <IconButton marginBottom={16} appearance="minimal" icon={<SearchIcon />} />
     </Pane>
   </Pane>
   <Pane float="left">
     <Heading marginBottom={16}>Height 24</Heading>
     <Pane float="left" marginRight={16}>
-      <IconButton marginBottom={16} height={24} icon="cog" />
-      <IconButton marginBottom={16} height={24} icon="plus" />
-      <IconButton marginBottom={16} height={24} icon="filter" />
-      <IconButton marginBottom={16} height={24} icon="edit" />
-      <IconButton marginBottom={16} height={24} icon="chevron-left" />
-      <IconButton marginBottom={16} height={24} icon="chevron-right" />
+      <IconButton marginBottom={16} height={24} icon={<CogIcon />} />
+      <IconButton marginBottom={16} height={24} icon={<PlusIcon />} />
+      <IconButton marginBottom={16} height={24} icon={<FilterIcon />} />
+      <IconButton marginBottom={16} height={24} icon={<EditIcon />} />
+      <IconButton marginBottom={16} height={24} icon={<ChevronLeftIcon />} />
+      <IconButton marginBottom={16} height={24} icon={<ChevronRightIcon />} />
     </Pane>
     <Pane float="left" marginRight={16}>
       <IconButton
         marginBottom={16}
         appearance="minimal"
         height={24}
-        icon="cross"
+        icon={<CrossIcon />}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
         height={24}
-        icon="more"
+        icon={<MoreIcon />}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
         height={24}
-        icon="plus"
+        icon={<PlusIcon />}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
         height={24}
-        icon="trash"
+        icon={<TrashIcon />}
         intent="danger"
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
         height={24}
-        icon="filter"
+        icon={<FilterIcon />}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
         height={24}
-        icon="edit"
+        icon={<EditIcon />}
       />
     </Pane>
     <Pane float="left">
@@ -349,37 +349,37 @@ This is not a required property, the icon will automatically resize based on the
         marginBottom={16}
         appearance="minimal"
         height={24}
-        icon="clipboard"
+        icon={<CliipboardIcon />}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
         height={24}
-        icon="calendar"
+        icon={<CalendarIcon />}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
         height={24}
-        icon="lock"
+        icon={<LockIcon />}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
         height={24}
-        icon="unlock"
+        icon={<UnlockIcon />}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
         height={24}
-        icon="notifications"
+        icon={<NotificationsIcon />}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
         height={24}
-        icon="manual"
+        icon={<ManualIcon />}
       />
     </Pane>
   </Pane>
@@ -415,8 +415,8 @@ This component is used inside of table header cells.
 ```jsx
 <Pane>
   <TextDropdownButton marginRight={16}>Table Header</TextDropdownButton>
-  <TextDropdownButton marginRight={16} icon="arrow-up">Ascending</TextDropdownButton>
-  <TextDropdownButton icon="arrow-down">Descending</TextDropdownButton>
+  <TextDropdownButton marginRight={16} icon={<ArrowUpIcon />}>Ascending</TextDropdownButton>
+  <TextDropdownButton icon={<ArrowDownIcon />}>Descending</TextDropdownButton>
 </Pane>
 ```
 

@@ -16,12 +16,7 @@ export default class UnorderedList extends PureComponent {
      * When passed, adds a icon before each list item in the list
      * You can override this on a individual list item.
      */
-    icon: PropTypes.string,
-
-    /**
-     * The color of the icon in each list item in the list.
-     */
-    iconColor: PropTypes.string
+    icon: PropTypes.node
   }
 
   static defaultProps = {
@@ -37,26 +32,24 @@ export default class UnorderedList extends PureComponent {
   }
 
   render() {
-    const { children, size, icon, iconColor, ...props } = this.props
+    const { children, size, icon, ...props } = this.props
 
-    // Only pass down icon-related props if specified
-    const inheritedProps = icon ? { size, icon, iconColor } : { size }
-
-    const finalChildren = React.Children.map(children, child => {
+    const enrichedChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {
         return child
       }
 
       return React.cloneElement(child, {
-        ...inheritedProps,
-        // Prefer more granularly defined icon if present
+        icon,
+        size,
+        // Prefer more granularly defined props if present
         ...child.props
       })
     })
 
     return (
       <Box {...UnorderedList.styles} {...props}>
-        {finalChildren}
+        {enrichedChildren}
       </Box>
     )
   }

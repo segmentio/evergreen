@@ -2,7 +2,7 @@ import { css } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
+import { IconWrapper } from '../../icons/src/IconWrapper'
 import TableHeaderCell from './TableHeaderCell'
 
 const invisibleInputClass = css({
@@ -54,9 +54,9 @@ export default class SearchTableHeaderCell extends PureComponent {
     placeholder: PropTypes.string,
 
     /**
-     * Icon to display in the input.
+     * The Evergreen or custom icon before the label.
      */
-    icon: PropTypes.string
+    icon: PropTypes.node
   }
 
   static defaultProps = {
@@ -80,7 +80,7 @@ export default class SearchTableHeaderCell extends PureComponent {
 
     return (
       <TableHeaderCell {...props}>
-        <Icon
+        <IconWrapper
           icon={icon}
           color="muted"
           marginLeft={2}

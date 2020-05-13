@@ -1,6 +1,5 @@
 /* tslint:disable:interface-name max-classes-per-file no-empty-interface */
 
-import { IconName as BlueprintIconName } from '@blueprintjs/icons'
 import * as React from 'react'
 import Box, { extractStyles as boxExtractStyles } from 'ui-box'
 import { BoxProps } from 'ui-box/dist/types/box-types'
@@ -23,8 +22,6 @@ type PositionState = 'exited' | 'entering' | 'entered' | 'exiting'
 type FontFamily = 'ui' | 'display' | 'mono'
 type Elevation = 0 | 1 | 2 | 3 | 4
 type FontSizeSmall = 300 | 400
-
-export type IconName = BlueprintIconName
 
 export interface Colors {
   background: {
@@ -446,7 +443,7 @@ export class Alert extends React.PureComponent<AlertProps> {
 interface OptionProps extends TableRowProps {
   height?: number | string
   label: string
-  icon?: IconName
+  icon?: React.ReactElement
   disabled?: boolean
 }
 
@@ -549,13 +546,13 @@ export interface ButtonProps extends React.ComponentPropsWithoutRef<typeof Text>
    */
   isActive?: boolean
   /**
-   * Sets an icon before the text. Can be any icon from Evergreen.
+   * Sets an icon before the text. Can be any icon from Evergreen or a custom icon library.
    */
-  iconBefore?: IconName | null | false
+  iconBefore?: React.ReactNode | null | false
   /**
-   * Sets an icon after the text. Can be any icon from Evergreen.
+   * Sets an icon after the text. Can be any icon from Evergreen or a custom icon library.
    */
-  iconAfter?: IconName | null | false
+  iconAfter?: React.ReactNode | null | false
   /**
    * When true, the button is disabled.
    * isLoading also sets the button to disabled.
@@ -898,35 +895,6 @@ export interface DialogProps {
 export class Dialog extends React.PureComponent<DialogProps> {
 }
 
-export interface IconProps extends BoxProps<'svg'> {
-  icon: IconName | JSX.Element
-  /**
-   * Color of icon. Equivalent to setting CSS `fill` property.
-   */
-  color?: string
-  /**
-   * Size of the icon, in pixels.
-   * Blueprint contains 16px and 20px SVG icon images,
-   * and chooses the appropriate resolution based on this prop.
-   */
-  size?: number
-  /**
-   * Description string.
-   * Browsers usually render this as a tooltip on hover, whereas screen
-   * readers will use it for aural feedback.
-   * By default, this is set to the icon's name for accessibility.
-   */
-  title?: string
-  /**
-   * CSS style properties.
-   */
-  style?: React.CSSProperties
-  className?: string
-}
-
-export class Icon extends React.PureComponent<IconProps> {
-}
-
 export interface FormFieldProps extends React.ComponentPropsWithoutRef<typeof Box> {
   /**
    * The label used above the input element.
@@ -1005,7 +973,7 @@ export interface IconButtonProps extends ButtonProps {
   /**
    * Name of a Blueprint UI icon, or an icon element, to render.
    */
-  icon?: IconName
+  icon?: React.ReactElement
   /**
    * Specifies an explicit icon size instead of the default value.
    */
@@ -1098,7 +1066,7 @@ export interface ListItemProps extends TextProps {
    * When passed, adds a icon before the list item.
    * See Evergreen `Icon` for documentation.
    */
-  icon?: IconName
+  icon?: React.ReactElement
   /**
    * The color of the icon.
    */
@@ -1114,7 +1082,7 @@ export interface MenuProps {
 
 export interface MenuItemProps extends PaneProps {
   onSelect?: (event: React.SyntheticEvent) => void
-  icon?: JSX.Element | IconName
+  icon?: React.ReactElement
   secondaryText?: JSX.Element
   appearance?: DefaultAppearance
   intent?: IntentTypes
@@ -1367,7 +1335,7 @@ export interface OptionsListProps extends PaneProps {
     disabled: Option['disabled']
   }) => JSX.Element
   filterPlaceholder?: string
-  filterIcon?: string
+  filterIcon?: React.ReactElement
   optionsFilter?: (
     value: Option['label'][],
     filter: NonNullable<OptionsListProps['defaultSearchValue']>
@@ -1409,7 +1377,7 @@ export interface SearchTableHeaderCellProps extends Omit<TableHeaderCellProps, '
   /**
    * Icon to display in the input.
    */
-  icon?: IconProps['icon']
+  icon?: React.ReactElement | null | false
 }
 
 export class SearchTableHeaderCell extends React.PureComponent<SearchTableHeaderCellProps> {
@@ -1579,7 +1547,7 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
   /**
    * The icon of the search filter.
    */
-  filterIcon?: IconName
+  filterIcon?: React.ReactElement
   /*
     * When true, menu closes on option selection.
     */
@@ -2044,18 +2012,9 @@ export interface TextDropdownButtonProps extends TextProps {
    */
   disabled?: boolean
   /**
-   * Name of a Blueprint UI icon, or an icon element, to render.
-   * This prop is required because it determines the content of the component, but it can
-   * be explicitly set to falsy values to render nothing.
-   *
-   * - If `null` or `undefined` or `false`, this component will render nothing.
-   * - If given an `IconName` (a string literal union of all icon names),
-   *   that icon will be rendered as an `<svg>` with `<path>` tags.
-   * - If given a `JSX.Element`, that element will be rendered and _all other props on this component are ignored._
-   *   This type is supported to simplify usage of this component in other Blueprint components.
-   *   As a consumer, you should never use `<Icon icon={<element />}` directly; simply render `<element />` instead.
+   * An Evergreen icon or custom icon node. By default it uses <CaretDownIcon />
    */
-  icon?: IconName | null | false
+  icon?: React.ReactNode | null | false
   /**
    * Class name passed to the button.
    */
@@ -2222,7 +2181,7 @@ export interface UnorderedListProps extends React.ComponentPropsWithoutRef<typeo
    * When passed, adds a icon before each list item in the list
    * You can override this on a individual list item.
    */
-  icon?: IconName
+  icon?: React.ReactElement
   /**
    * The color of the icon in each list item in the list.
    */
@@ -2350,8 +2309,33 @@ interface OverlayProps {
 export class Overlay extends React.PureComponent<OverlayProps> {
 }
 
+export interface IconProps extends BoxProps<'svg'> {
+  /**
+   * Color of icon. Equivalent to setting CSS `fill` property.
+   */
+  color?: string
+  /**
+   * Size of the icon, in pixels.
+   * Blueprint contains 16px and 20px SVG icon images,
+   * and chooses the appropriate resolution based on this prop.
+   */
+  size?: number
+  /**
+   * Description string.
+   * Browsers usually render this as a tooltip on hover, whereas screen
+   * readers will use it for aural feedback.
+   * By default, this is set to the icon's name for accessibility.
+   */
+  title?: string
+  /**
+   * CSS style properties.
+   */
+  style?: React.CSSProperties
+}
+
+
 /* Start generated icons */
-type IconComponent = React.ForwardRefExoticComponent<React.PropsWithoutRef<Omit<IconProps, 'icon'>> & React.RefAttributes<SVGElement>>
+type IconComponent = React.ForwardRefExoticComponent<React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>>
 export declare const AddIcon: IconComponent
 export declare const AddColumnLeftIcon: IconComponent
 export declare const AddColumnRightIcon: IconComponent
