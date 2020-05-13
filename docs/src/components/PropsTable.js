@@ -54,6 +54,7 @@ export default class PropsTable extends PureComponent {
                     id
                   }
                   props {
+                    id
                     name
                     docblock
                     defaultValue {

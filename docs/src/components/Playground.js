@@ -7,6 +7,13 @@ import Component from '@reactions/component'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import profiles from './examples/profiles.json'
 
+const editorTheme = {
+  plain: {
+    fontSize: '14px'
+  },
+  styles: []
+}
+
 export default class Playground extends React.Component {
   static propTypes = {
     codeText: PropTypes.string.isRequired,
@@ -91,10 +98,9 @@ export default class Playground extends React.Component {
     if (hasError) return this.renderError()
     return (
       <LiveProvider
-        theme="evergreen"
+        theme={editorTheme}
         scope={{ ReactDOM, Component, profiles, ...components, ...scope }}
         code={codeText}
-        mountStylesheet={false}
         noInline={noInline}
       >
         <div className="Playground" data-iscodecollapsed={isCodeCollapsed}>
@@ -111,7 +117,10 @@ export default class Playground extends React.Component {
                 {codeText.includes('<Component') &&
                   this.renderComponentNotice()}
                 {codeText.includes('profiles') && this.renderProfilesNotice()}
-                <LiveEditor onChange={this.handleChange} />
+                <LiveEditor
+                  className="prism-code"
+                  onChange={this.handleChange}
+                />
               </div>
             )}
           </div>
