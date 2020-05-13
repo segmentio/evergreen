@@ -1,12 +1,12 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import Badge from './Badge'
 
-export default class Pill extends PureComponent {
-  static propTypes = {
-    ...Badge.propTypes
-  }
+const Pill = memo(
+  forwardRef((props, ref) => {
+    return <Badge borderRadius={999} ref={ref} {...props} />
+  })
+)
 
-  render() {
-    return <Badge borderRadius={999} {...this.props} />
-  }
-}
+Pill.propTypes = Badge.propTypes
+
+export default Pill
