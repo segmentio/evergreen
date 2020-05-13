@@ -530,8 +530,7 @@ export interface BadgeProps extends StrongProps {
   isSolid?: boolean
 }
 
-export class Badge extends React.PureComponent<BadgeProps> {
-}
+export declare const Badge: ForwardRefComponent<BadgeProps>
 
 export interface ButtonProps extends React.ComponentPropsWithoutRef<typeof Text> {
   intent?: IntentTypes
@@ -1143,8 +1142,7 @@ export declare const Pane: ForwardRefComponent<PaneProps>
 
 export type PillProps = BadgeProps
 
-export class Pill extends React.PureComponent<PillProps> {
-}
+export declare const Pill: ForwardRefComponent<PillProps>
 
 export type PopoverStatelessProps = React.ComponentPropsWithoutRef<typeof Box>
 
