@@ -1,92 +1,28 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { spacing, dimensions, position, layout } from 'ui-box'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 import { Pane } from '../../layers'
 import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
 import { CrossIcon } from '../../icons'
 import { getIconForIntent } from './getIconForIntent'
 
-class Alert extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes some Box APIs.
-     */
-    ...spacing.propTypes,
-    ...position.propTypes,
-    ...layout.propTypes,
-    ...dimensions.propTypes,
-
-    /**
-     * The content of the alert. When a string is passed it is wrapped in a `<Text size={400} />` component.
-     */
-    children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-
-    /**
-     * The intent of the alert.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * The title of the alert.
-     */
-    title: PropTypes.node,
-
-    /**
-     * When true, show a border on the left matching the type.
-     */
-    hasTrim: PropTypes.bool,
-
-    /**
-     * When true, show a icon on the left matching the type,
-     */
-    hasIcon: PropTypes.bool,
-
-    /**
-     * When true, show a remove icon button.
-     */
-    isRemoveable: PropTypes.bool,
-
-    /**
-     * Function called when the remove button is clicked.
-     */
-    onRemove: PropTypes.func,
-
-    /**
-     * The appearance of the alert.
-     */
-    appearance: PropTypes.oneOf(['default', 'card']),
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
-  static defaultProps = {
-    intent: 'none',
-    hasTrim: true,
-    hasIcon: true,
-    isRemoveable: false,
-    appearance: 'default'
-  }
-
-  render() {
+const Alert = memo(
+  forwardRef((props, ref) => {
     const {
-      theme,
-
-      title,
-      intent,
-      hasTrim,
-      hasIcon,
+      appearance = 'default',
       children,
-      appearance,
-      isRemoveable,
+      hasIcon = true,
+      hasTrim = true,
+      intent = 'none',
+      isRemoveable = false,
       onRemove,
-      ...props
-    } = this.props
+      title,
+      ...restProps
+    } = props
+
+    const theme = useTheme()
 
     /**
      * Note that Alert return a className and additional properties.
@@ -99,6 +35,7 @@ class Alert extends PureComponent {
 
     return (
       <Pane
+        ref={ref}
         className={className}
         role="alert"
         backgroundColor="white"
@@ -108,7 +45,7 @@ class Alert extends PureComponent {
         paddingY={12}
         paddingX={16}
         {...themeProps}
-        {...props}
+        {...restProps}
       >
         {hasIcon && (
           <Pane
@@ -159,7 +96,57 @@ class Alert extends PureComponent {
         </Pane>
       </Pane>
     )
-  }
+  })
+)
+
+Alert.propTypes = {
+  /**
+   * Composes some Box APIs.
+   */
+  ...spacing.propTypes,
+  ...position.propTypes,
+  ...layout.propTypes,
+  ...dimensions.propTypes,
+
+  /**
+   * The content of the alert. When a string is passed it is wrapped in a `<Text size={400} />` component.
+   */
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+
+  /**
+   * The intent of the alert.
+   */
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+
+  /**
+   * The title of the alert.
+   */
+  title: PropTypes.node,
+
+  /**
+   * When true, show a border on the left matching the type.
+   */
+  hasTrim: PropTypes.bool,
+
+  /**
+   * When true, show a icon on the left matching the type,
+   */
+  hasIcon: PropTypes.bool,
+
+  /**
+   * When true, show a remove icon button.
+   */
+  isRemoveable: PropTypes.bool,
+
+  /**
+   * Function called when the remove button is clicked.
+   */
+  onRemove: PropTypes.func,
+
+  /**
+   * The appearance of the alert.
+   */
+  appearance: PropTypes.oneOf(['default', 'card'])
 }
 
-export default withTheme(Alert)
+export default Alert
