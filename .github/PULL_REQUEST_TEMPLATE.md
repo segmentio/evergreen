@@ -17,7 +17,7 @@ Please respect our Code of Conduct, in short:
 - Gracefully accepting constructive criticism.
 - Focusing on what is best for the community.
 - Showing empathy towards other community members.
- -->
+-->
 
 ## Overview
 

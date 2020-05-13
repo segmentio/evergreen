@@ -2,18 +2,24 @@
 
 module.exports = ({ componentName }) => {
   return `
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 
-export default class ${componentName} extends PureComponent {
-  static propTypes = {}
+const ${componentName} = memo(forwardRef((props, ref) => {
+  const { ...restProps } = props
 
-  render() {
-    const { ...props } = this.props
+  return (
+    <Box innerRef={ref} {...restProps}>
+      ${componentName}
+    </Box>
+  )
+}))
 
-    return <Box {...props}>${componentName}</Box>
-  }
+${componentName}.propTypes = {
+
 }
+
+export default ${componentName}
 `.trim()
 }
