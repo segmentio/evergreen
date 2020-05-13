@@ -1139,8 +1139,7 @@ export type PaneProps = Omit<React.ComponentPropsWithoutRef<typeof Box>, 'border
   activeElevation?: Elevation
 }
 
-export class Pane extends React.PureComponent<PaneProps> {
-}
+export declare const Pane: ForwardRefComponent<PaneProps>
 
 export type PillProps = BadgeProps
 
@@ -1598,8 +1597,7 @@ export interface SpinnerProps extends React.ComponentPropsWithoutRef<typeof Box>
   size?: number
 }
 
-export class Spinner extends React.PureComponent<SpinnerProps> {
-}
+export declare const Spinner: ForwardRefComponent<SpinnerProps>
 
 export interface StackProps {
   children: (zIndex: number) => React.ReactNode
@@ -2089,8 +2087,7 @@ export type TextInputProps = React.ComponentProps<typeof Text> & {
   className?: string
 }
 
-export class TextInput extends React.PureComponent<TextInputProps> {
-}
+export declare const TextInput: ForwardRefComponent<TextInputProps>
 
 export interface TextInputFieldProps extends TextInputProps {
   /**
@@ -2128,8 +2125,7 @@ export interface TextInputFieldProps extends TextInputProps {
   inputWidth?: number | string
 }
 
-export class TextInputField extends React.PureComponent<TextInputFieldProps> {
-}
+export declare const TextInputField: ForwardRefComponent<TextInputFieldProps>
 
 export interface TooltipStatelessProps extends PaneProps {
   /**
