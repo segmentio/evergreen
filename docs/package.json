@@ -23,27 +23,26 @@
     "gatsby-plugin-canonical-urls": "^2.0.12",
     "gatsby-plugin-favicon": "^3.1.4",
     "gatsby-plugin-mdx": "^1.0.53",
-    "gatsby-plugin-postcss": "^1.0.0",
+    "gatsby-plugin-postcss": "^2.3.1",
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-source-filesystem": "^2.0.1",
-    "gatsby-transformer-react-docgen": "^2.1.1",
+    "gatsby-transformer-react-docgen": "^5.2.1",
     "lodash": "^4.17.11",
-    "postcss-browser-reporter": "^0.5.0",
+    "postcss-browser-reporter": "^0.6.0",
     "postcss-cssnext": "^3.1.0",
-    "postcss-import": "^11.1.0",
-    "postcss-reporter": "^5.0.0",
-    "prism-react-renderer": "^0.1.4",
+    "postcss-import": "^12.0.1",
+    "postcss-reporter": "^6.0.1",
+    "prism-react-renderer": "^1.1.0",
     "prop-types": "^15.6.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-github-button": "^0.1.11",
-    "react-helmet": "^5.2.0",
-    "react-live": "1.11.0",
-    "react-syntax-highlighter": "^7.0.2"
+    "react-helmet": "^6.0.0",
+    "react-live": "2.2.2"
   },
   "devDependencies": {
     "gh-pages": "^2.0.0",
-    "prettier": "^1.10.2"
+    "prettier": "^2.0.5"
   },
   "xo": false
 }

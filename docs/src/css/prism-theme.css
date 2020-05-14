@@ -4,28 +4,29 @@
  * @author ericwbailey
  */
 
-pre.prism-code {
-  background: none;
-  padding: 12px;
-  /* -webkit-font-smoothing: antialiased; */
-  font-weight: 400;
-  background-color: color(var(--N10) shade(15%));
+.prism-code {
   color: white;
+  tab-size: 2;
   font-family: var(--font-mono);
   font-size: 14px;
+  font-weight: 400;
   line-height: 1.6em;
+  background-color: color(var(--N10) shade(15%));
+}
+
+.prism-code textarea {
+  outline: none;
+}
+
+.prism-code textarea,
+.prism-code pre,
+pre.prism-code {
+  padding: 10px;
   text-align: left;
-  white-space: pre;
   word-spacing: normal;
   word-break: normal;
   word-wrap: normal;
-  tab-size: 2;
   hyphens: none;
-  overflow: auto;
-
-  &:focus {
-    outline: none;
-  }
 }
 
 /* Code blocks */

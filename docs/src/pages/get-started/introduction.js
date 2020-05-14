@@ -1,5 +1,5 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import TopBar from '../../components/TopBar'
 import GetStartedSidebar from '../../components/GetStartedSidebar'
 import SyntaxHighlighter from '../../components/SyntaxHighlighter'

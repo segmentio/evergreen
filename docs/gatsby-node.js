@@ -1,5 +1,4 @@
 const path = require('path')
-const webpack = require('webpack') // eslint-disable-line import/no-extraneous-dependencies
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
@@ -15,11 +14,6 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         }
       ]
     },
-    plugins: [
-      // See https://github.com/FormidableLabs/react-live/issues/5
-      // eslint-disable-next-line prefer-named-capture-group
-      new webpack.IgnorePlugin(/^(xor|props)$/)
-    ],
     resolve: {
       // Force Gatsby to look for dependencies within the local node_modules from docs.
       modules: ['node_modules'],
