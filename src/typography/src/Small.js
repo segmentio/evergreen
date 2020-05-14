@@ -1,11 +1,10 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import Box from 'ui-box'
 
-/**
- * Small can only be used inside of Text or Paragraph.
- */
-export default class Small extends PureComponent {
-  render() {
-    return <Box is="small" fontSize="85%" {...this.props} />
-  }
-}
+const Small = memo(
+  forwardRef((props, ref) => {
+    return <Box innerRef={ref} is="small" fontSize="85%" {...props} />
+  })
+)
+
+export default Small

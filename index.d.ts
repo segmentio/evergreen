@@ -564,8 +564,7 @@ export interface ButtonProps extends React.ComponentPropsWithoutRef<typeof Text>
   className?: string
 }
 
-export class Button extends React.PureComponent<ButtonProps> {
-}
+export declare const Button: ForwardRefComponent<ButtonProps>
 
 export type CardProps = React.ComponentProps<typeof Pane>
 
@@ -628,8 +627,7 @@ export class Checkbox extends React.PureComponent<CheckboxProps> {
 export type CodeProps = TextProps
 
 
-export class Code extends React.PureComponent<CodeProps> {
-}
+export declare const Code: ForwardRefComponent<CodeProps>
 
 export interface ComboboxProps extends React.ComponentPropsWithoutRef<typeof Box> {
   /**
@@ -959,15 +957,13 @@ export class FormFieldLabel extends React.PureComponent<FormFieldLabelProps> {
 export interface FormFieldValidationMessageProps extends PaneProps {
 }
 
-export class FormFieldValidationMessage extends React.PureComponent<FormFieldValidationMessageProps> {
-}
+export declare const FormFieldValidationMessage: ForwardRefComponent<FormFieldValidationMessageProps>
 
 export interface HeadingProps extends React.ComponentPropsWithoutRef<typeof Box> {
   size?: keyof Typography['headings']
 }
 
-export class Heading extends React.PureComponent<HeadingProps> {
-}
+export declare const Heading: ForwardRefComponent<HeadingProps>
 
 export interface IconButtonProps extends ButtonProps {
   /**
@@ -1002,8 +998,7 @@ export interface IconButtonProps extends ButtonProps {
   className?: string
 }
 
-export class IconButton extends React.PureComponent<IconButtonProps> {
-}
+export declare const IconButton: ForwardRefComponent<IconButtonProps>
 
 export interface ImageProps extends BoxProps<'img'> {
   src?: string
@@ -1057,8 +1052,7 @@ export interface LinkProps extends TextProps {
   className?: string
 }
 
-export class Link extends React.PureComponent<LinkProps> {
-}
+export declare const Link: ForwardRefComponent<LinkProps>
 
 export interface ListItemProps extends TextProps {
   /**
@@ -1176,8 +1170,7 @@ export type ParagraphProps = React.ComponentPropsWithoutRef<typeof Box> & {
   fontFamily?: FontFamily
 }
 
-export class Paragraph extends React.PureComponent<ParagraphProps> {
-}
+export declare const Paragraph: ForwardRefComponent<ParagraphProps>
 
 export interface PositionerProps {
   position?: PositionTypes
@@ -1347,8 +1340,7 @@ export interface SearchInputProps extends TextInputProps {
   height?: number
 }
 
-export class SearchInput extends React.PureComponent<SearchInputProps> {
-}
+export declare const SearchInput: ForwardRefComponent<SearchInputProps>
 
 export interface SearchTableHeaderCellProps extends Omit<TableHeaderCellProps, 'onChange'> {
   /**
@@ -1429,8 +1421,7 @@ export interface SelectProps extends Omit<React.ComponentPropsWithoutRef<typeof 
   onChange?(event: React.ChangeEvent<HTMLSelectElement>): void
 }
 
-export class Select extends React.PureComponent<SelectProps> {
-}
+export declare const Select: ForwardRefComponent<SelectProps>
 
 export type SelectFieldProps = FormFieldProps
 
@@ -1569,8 +1560,7 @@ export interface SideSheetProps {
   preventBodyScrolling?: boolean
 }
 
-export class SideSheet extends React.PureComponent<SideSheetProps> {
-}
+export declare const SideSheet: ForwardRefComponent<SideSheetProps>
 
 export type SidebarTabProps = TabProps
 
@@ -1581,8 +1571,7 @@ export interface SmallProps extends BoxProps<'small'> {
 
 }
 
-export class Small extends React.PureComponent<SmallProps> {
-}
+export declare const Small: ForwardRefComponent<SmallProps>
 
 export interface SpinnerProps extends React.ComponentPropsWithoutRef<typeof Box> {
   /**
@@ -1954,8 +1943,7 @@ export interface TextareaProps extends TextProps {
   className?: string
 }
 
-export class Textarea extends React.PureComponent<TextareaProps> {
-}
+export declare const Textarea: ForwardRefComponent<TextareaProps>
 
 export interface TextareaFieldProps extends TextareaProps {
   /**
@@ -2017,8 +2005,7 @@ export interface TextDropdownButtonProps extends TextProps {
   className?: string
 }
 
-export class TextDropdownButton extends React.PureComponent<TextDropdownButtonProps> {
-}
+export declare const TextDropdownButton: ForwardRefComponent<TextDropdownButtonProps>
 
 export interface TextTableCellProps extends TableCellProps {
   /**
@@ -2046,8 +2033,7 @@ export type TextProps = React.ComponentPropsWithoutRef<typeof Box> & {
   fontFamily?: FontFamily | string
 }
 
-export class Text extends React.PureComponent<TextProps> {
-}
+export declare const Text: ForwardRefComponent<TextProps>
 
 export type TextInputProps = React.ComponentProps<typeof Text> & {
   /**

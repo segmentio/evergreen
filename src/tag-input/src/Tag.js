@@ -1,28 +1,15 @@
 /**
  * @overview TagInput accepts multiple values that can be individually removed
  */
-
-import React from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Badge } from '../../badges'
 import { CrossIcon } from '../../icons'
 import { minorScale } from '../../scales'
 
-class Tag extends React.PureComponent {
-  static propTypes = {
-    /** The badge content */
-    children: PropTypes.node,
-    /**
-     * Callback invoked when the removal icon is clicked.
-     * (event) => void
-     */
-    onRemove: PropTypes.func,
-    /** Whether or not the tag can be removed. */
-    isRemovable: PropTypes.bool
-  }
-
-  render() {
-    const { children, onRemove, isRemovable, ...props } = this.props
+const Tag = memo(
+  forwardRef((props, ref) => {
+    const { children, onRemove, isRemovable, ...restProps } = props
 
     const badgeStyles = {
       alignItems: 'center',
@@ -36,7 +23,7 @@ class Tag extends React.PureComponent {
     }
 
     return (
-      <Badge isInteractive {...badgeStyles} {...props}>
+      <Badge ref={ref} isInteractive {...badgeStyles} {...restProps}>
         {children}
         {isRemovable && (
           <CrossIcon
@@ -47,7 +34,20 @@ class Tag extends React.PureComponent {
         )}
       </Badge>
     )
-  }
+  })
+)
+
+Tag.propTypes = {
+  /** The tag content */
+  children: PropTypes.node,
+
+  /**
+   * Callback invoked when the removal icon is clicked.
+   * (event) => void
+   */
+  onRemove: PropTypes.func,
+  /** Whether or not the tag can be removed. */
+  isRemovable: PropTypes.bool
 }
 
 export default Tag

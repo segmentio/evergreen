@@ -1,26 +1,15 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import Box, { splitBoxProps } from 'ui-box'
 import { SearchIcon } from '../../icons'
 import { TextInput } from '../../text-input'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 import { StackingOrder } from '../../constants'
 
-class SearchInput extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the TextInput component as the base.
-     */
-    ...TextInput.propTypes
-  }
-
-  static defaultProps = {
-    height: 32,
-    appearance: 'default'
-  }
-
-  render() {
-    const { theme, appearance, disabled, height, ...props } = this.props
-    const { matchedProps, remainingProps } = splitBoxProps(props)
+const SearchInput = memo(
+  forwardRef((props, ref) => {
+    const theme = useTheme()
+    const { appearance, disabled, height, ...restProps } = props
+    const { matchedProps, remainingProps } = splitBoxProps(restProps)
     const { width } = matchedProps
     const iconSize = theme.getIconSizeForInput(height)
 
@@ -29,6 +18,7 @@ class SearchInput extends PureComponent {
         position="relative"
         display="inline-flex"
         height={height}
+        innerRef={ref}
         {...matchedProps}
       >
         <Box
@@ -57,7 +47,19 @@ class SearchInput extends PureComponent {
         />
       </Box>
     )
-  }
+  })
+)
+
+SearchInput.propTypes = {
+  /**
+   * Composes the TextInput component as the base.
+   */
+  ...TextInput.propTypes
 }
 
-export default withTheme(SearchInput)
+SearchInput.defaultProps = {
+  height: 32,
+  appearance: 'default'
+}
+
+export default SearchInput
