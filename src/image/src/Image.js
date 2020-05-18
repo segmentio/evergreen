@@ -12,3 +12,5 @@ Image.propTypes = {
   ...Box.propTypes,
   src: PropTypes.string
 }
+
+export default Image
