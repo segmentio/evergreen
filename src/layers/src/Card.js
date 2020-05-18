@@ -1,12 +1,14 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import Pane from './Pane'
 
-export default class Card extends PureComponent {
-  static propTypes = {
-    ...Pane.propTypes
-  }
+const Card = memo(
+  forwardRef((props, ref) => {
+    return <Pane borderRadius={5} {...props} ref={ref} />
+  })
+)
 
-  render() {
-    return <Pane borderRadius={5} {...this.props} />
-  }
+Card.propTypes = {
+  ...Pane.propTypes
 }
+
+export default Card

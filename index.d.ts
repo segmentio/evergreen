@@ -566,8 +566,7 @@ export declare const Button: ForwardRefComponent<ButtonProps>
 
 export type CardProps = React.ComponentProps<typeof Pane>
 
-export class Card extends React.PureComponent<CardProps> {
-}
+export declare const Card: ForwardRefComponent<CardProps>
 
 export interface CheckboxProps extends Omit<BoxProps<'input'>, 'innerRef'> {
   /**
@@ -596,10 +595,6 @@ export interface CheckboxProps extends Omit<BoxProps<'input'>, 'innerRef'> {
    */
   indeterminate?: boolean
   /**
-   * Function that returns the ref of the checkbox.
-   */
-  innerRef?: (ref: React.RefObject<HTMLElement>) => void,
-  /**
    * When true, the radio is disabled.
    */
   disabled?: boolean
@@ -619,8 +614,7 @@ export interface CheckboxProps extends Omit<BoxProps<'input'>, 'innerRef'> {
   onChange?(event: React.ChangeEvent<HTMLInputElement>): void
 }
 
-export class Checkbox extends React.PureComponent<CheckboxProps> {
-}
+export declare const Checkbox: ForwardRefComponent<CheckboxProps>
 
 export type CodeProps = TextProps
 
@@ -1219,9 +1213,9 @@ export interface RadioProps extends Omit<BoxProps<'input'>, 'onChange'> {
    */
   value?: string
   /**
-   * Function called when state changes
+   * Function called when state changes.
    */
-  onChange?(event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void
+  onChange?(event: React.ChangeEvent<HTMLInputElement>): void
   /**
    * When true, the radio is disabled.
    */
@@ -1250,8 +1244,7 @@ export interface RadioProps extends Omit<BoxProps<'input'>, 'onChange'> {
   appearance?: DefaultAppearance
 }
 
-export class Radio extends React.PureComponent<RadioProps> {
-}
+export declare const Radio: ForwardRefComponent<RadioProps>
 
 interface RadioGroupOption {
   label: React.ReactNode
