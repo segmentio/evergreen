@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 
 const CheckIcon = ({ fill = 'currentColor', ...props }) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...props}>
@@ -32,100 +32,9 @@ MinusIcon.propTypes = {
   fill: PropTypes.string
 }
 
-class Checkbox extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes some Box APIs.
-     */
-    ...spacing.propTypes,
-    ...position.propTypes,
-    ...layout.propTypes,
-    ...dimensions.propTypes,
-
-    /**
-     * The id attribute of the checkbox.
-     */
-    id: PropTypes.string,
-
-    /**
-     * The id attribute of the checkbox.
-     */
-    name: PropTypes.string,
-
-    /**
-     * Label of the checkbox.
-     */
-    label: PropTypes.node,
-
-    /**
-     * The value attribute of the checkbox.
-     */
-    value: PropTypes.string,
-
-    /**
-     * The checked attribute of the checkbox.
-     */
-    checked: PropTypes.bool,
-
-    /**
-     * State in addition to "checked" and "unchecked".
-     * When true, the checkbox displays a "minus" icon.
-     */
-    indeterminate: PropTypes.bool,
-
-    /**
-     * Function that returns the ref of the checkbox.
-     */
-    innerRef: PropTypes.func,
-
-    /**
-     * Function called when state changes.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * When true, the checkbox is disabled.
-     */
-    disabled: PropTypes.bool,
-
-    /**
-     * When true, the aria-invalid attribute is true.
-     * Used for accessibility.
-     */
-    isInvalid: PropTypes.bool,
-
-    /**
-     * The appearance of the checkbox.
-     * The default theme only comes with a default style.
-     */
-    appearance: PropTypes.string,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
-  static defaultProps = {
-    checked: false,
-    indeterminate: false,
-    innerRef: () => {},
-    onChange: () => {},
-    appearance: 'default'
-  }
-
-  handleInnerRef = el => {
-    if (el) {
-      el.indeterminate = this.props.indeterminate
-    }
-
-    this.props.innerRef(el)
-  }
-
-  render() {
+const Checkbox = memo(
+  forwardRef((props, ref) => {
     const {
-      theme,
-
       id,
       name,
       label,
@@ -137,8 +46,10 @@ class Checkbox extends PureComponent {
       value,
       indeterminate,
       innerRef,
-      ...props
-    } = this.props
+      ...rest
+    } = props
+
+    const theme = useTheme()
 
     const themedClassName = theme.getCheckboxClassName(appearance)
 
@@ -149,7 +60,7 @@ class Checkbox extends PureComponent {
         position="relative"
         display="flex"
         marginY={16}
-        {...props}
+        {...rest}
       >
         <Box
           className={themedClassName}
@@ -162,7 +73,7 @@ class Checkbox extends PureComponent {
           onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
-          innerRef={this.handleInnerRef}
+          ref={ref}
         />
         <Box
           boxSizing="border-box"
@@ -187,7 +98,83 @@ class Checkbox extends PureComponent {
         )}
       </Box>
     )
-  }
+  })
+)
+
+Checkbox.propTypes = {
+  /**
+   * Composes some Box APIs.
+   */
+  ...spacing.propTypes,
+  ...position.propTypes,
+  ...layout.propTypes,
+  ...dimensions.propTypes,
+
+  /**
+   * The id attribute of the checkbox.
+   */
+  id: PropTypes.string,
+
+  /**
+   * The id attribute of the checkbox.
+   */
+  name: PropTypes.string,
+
+  /**
+   * Label of the checkbox.
+   */
+  label: PropTypes.node,
+
+  /**
+   * The value attribute of the checkbox.
+   */
+  value: PropTypes.string,
+
+  /**
+   * The checked attribute of the checkbox.
+   */
+  checked: PropTypes.bool,
+
+  /**
+   * State in addition to "checked" and "unchecked".
+   * When true, the checkbox displays a "minus" icon.
+   */
+  indeterminate: PropTypes.bool,
+
+  /**
+   * Function that returns the ref of the checkbox.
+   */
+  innerRef: PropTypes.func,
+
+  /**
+   * Function called when state changes.
+   */
+  onChange: PropTypes.func,
+
+  /**
+   * When true, the checkbox is disabled.
+   */
+  disabled: PropTypes.bool,
+
+  /**
+   * When true, the aria-invalid attribute is true.
+   * Used for accessibility.
+   */
+  isInvalid: PropTypes.bool,
+
+  /**
+   * The appearance of the checkbox.
+   * The default theme only comes with a default style.
+   */
+  appearance: PropTypes.string
 }
 
-export default withTheme(Checkbox)
+Checkbox.defaultProps = {
+  checked: false,
+  indeterminate: false,
+  innerRef: () => {},
+  onChange: () => {},
+  appearance: 'default'
+}
+
+export default Checkbox

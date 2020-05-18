@@ -568,8 +568,7 @@ export declare const Button: ForwardRefComponent<ButtonProps>
 
 export type CardProps = React.ComponentProps<typeof Pane>
 
-export class Card extends React.PureComponent<CardProps> {
-}
+export declare const Card: ForwardRefComponent<CardProps>
 
 export interface CheckboxProps extends Omit<BoxProps<'input'>, 'innerRef'> {
   /**
@@ -621,8 +620,7 @@ export interface CheckboxProps extends Omit<BoxProps<'input'>, 'innerRef'> {
   onChange?(event: React.ChangeEvent<HTMLInputElement>): void
 }
 
-export class Checkbox extends React.PureComponent<CheckboxProps> {
-}
+export declare const Checkbox: ForwardRefComponent<CheckboxProps>
 
 export type CodeProps = TextProps
 
@@ -1252,8 +1250,7 @@ export interface RadioProps extends Omit<BoxProps<'input'>, 'onChange'> {
   appearance?: DefaultAppearance
 }
 
-export class Radio extends React.PureComponent<RadioProps> {
-}
+export declare const Radio: ForwardRefComponent<RadioProps>
 
 interface RadioGroupOption {
   label: React.ReactNode
