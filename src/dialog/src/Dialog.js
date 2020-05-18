@@ -1,11 +1,10 @@
+import React, { memo } from 'react'
 import { css } from 'glamor'
-import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
 import { Button, IconButton } from '../../buttons'
-import { withTheme } from '../../theme'
 import { CrossIcon } from '../../icons'
 
 const animationEasing = {
@@ -46,206 +45,49 @@ const animationStyles = {
   }
 }
 
-class Dialog extends React.Component {
-  static propTypes = {
-    /**
-     * Children can be a string, node or a function accepting `({ close })`.
-     * When passing a string, <Paragraph /> is used to wrap the string.
-     */
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+const Dialog = memo(props => {
+  const {
+    title,
+    width,
+    intent,
+    isShown,
+    topOffset,
+    sideOffset,
+    hasHeader,
+    header,
+    hasClose,
+    hasFooter,
+    footer,
+    hasCancel,
+    onCloseComplete,
+    onOpenComplete,
+    onCancel,
+    onConfirm,
+    confirmLabel,
+    isConfirmLoading,
+    isConfirmDisabled,
+    cancelLabel,
+    shouldCloseOnOverlayClick,
+    shouldCloseOnEscapePress,
+    containerProps = {},
+    contentContainerProps,
+    minHeightContent,
+    preventBodyScrolling,
+    overlayProps,
+    children
+  } = props
 
-    /**
-     * The intent of the Dialog. Used for the button.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
+  const sideOffsetWithUnit = Number.isInteger(sideOffset)
+    ? `${sideOffset}px`
+    : sideOffset
+  const maxWidth = `calc(100% - ${sideOffsetWithUnit} * 2)`
 
-    /**
-     * When true, the dialog is shown.
-     */
-    isShown: PropTypes.bool,
+  const topOffsetWithUnit = Number.isInteger(topOffset)
+    ? `${topOffset}px`
+    : topOffset
+  const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
 
-    /**
-     * Title of the Dialog. Titles should use Title Case.
-     */
-    title: PropTypes.node,
-
-    /**
-     * When true, the header with the title and close icon button is shown.
-     */
-    hasHeader: PropTypes.bool,
-
-    /**
-     * You can override the default header with your own custom component.
-     *
-     * This is useful if you want to provide a custom header and footer, while
-     * also enabling your Dialog's content to scroll.
-     *
-     * Header can either be a React node or a function accepting `({ close })`.
-     */
-    header: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-
-    /**
-     * When true, the footer with the cancel and confirm button is shown.
-     */
-    hasFooter: PropTypes.bool,
-
-    /**
-     * You can override the default footer with your own custom component.
-     *
-     * This is useful if you want to provide a custom header and footer, while
-     * also enabling your Dialog's content to scroll.
-     *
-     * Footer can either be a React node or a function accepting `({ close })`.
-     */
-    footer: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-
-    /**
-     * When true, the cancel button is shown.
-     */
-    hasCancel: PropTypes.bool,
-
-    /**
-     * When true, the close button is shown
-     */
-    hasClose: PropTypes.bool,
-
-    /**
-     * Function that will be called when the exit transition is complete.
-     */
-    onCloseComplete: PropTypes.func,
-
-    /**
-     * Function that will be called when the enter transition is complete.
-     */
-    onOpenComplete: PropTypes.func,
-
-    /**
-     * Function that will be called when the confirm button is clicked.
-     * This does not close the Dialog. A close function will be passed
-     * as a paramater you can use to close the dialog.
-     *
-     * `onConfirm={(close) => close()}`
-     */
-    onConfirm: PropTypes.func,
-
-    /**
-     * Label of the confirm button.
-     */
-    confirmLabel: PropTypes.string,
-
-    /**
-     * When true, the confirm button is set to loading.
-     */
-    isConfirmLoading: PropTypes.bool,
-
-    /**
-     * When true, the confirm button is set to disabled.
-     */
-    isConfirmDisabled: PropTypes.bool,
-
-    /**
-     * Function that will be called when the cancel button is clicked.
-     * This closes the Dialog by default.
-     *
-     * `onCancel={(close) => close()}`
-     */
-    onCancel: PropTypes.func,
-
-    /**
-     * Label of the cancel button.
-     */
-    cancelLabel: PropTypes.string,
-
-    /**
-     * Boolean indicating if clicking the overlay should close the overlay.
-     */
-    shouldCloseOnOverlayClick: PropTypes.bool,
-
-    /**
-     * Boolean indicating if pressing the esc key should close the overlay.
-     */
-    shouldCloseOnEscapePress: PropTypes.bool,
-
-    /**
-     * Width of the Dialog.
-     */
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * The space above the dialog.
-     * This offset is also used at the bottom when there is not enough vertical
-     * space available on screen — and the dialog scrolls internally.
-     */
-    topOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * The space on the left/right sides of the dialog when there isn't enough
-     * horizontal space available on screen.
-     */
-    sideOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * The min height of the body content.
-     * Makes it less weird when only showing little content.
-     */
-    minHeightContent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * Props that are passed to the dialog container.
-     */
-    containerProps: PropTypes.object,
-
-    /**
-     * Props that are passed to the content container.
-     */
-    contentContainerProps: PropTypes.object,
-
-    /**
-     * Whether or not to prevent scrolling in the outer body
-     */
-    preventBodyScrolling: PropTypes.bool,
-
-    /**
-     * Props that are passed to the Overlay component.
-     */
-    overlayProps: PropTypes.object
-  }
-
-  static defaultProps = {
-    isShown: false,
-    hasHeader: true,
-    hasClose: true,
-    hasFooter: true,
-    hasCancel: true,
-    intent: 'none',
-    width: 560,
-    topOffset: '12vmin',
-    sideOffset: '16px',
-    minHeightContent: 80,
-    confirmLabel: 'Confirm',
-    isConfirmLoading: false,
-    isConfirmDisabled: false,
-    cancelLabel: 'Cancel',
-    shouldCloseOnOverlayClick: true,
-    shouldCloseOnEscapePress: true,
-    onCancel: close => close(),
-    onConfirm: close => close(),
-    preventBodyScrolling: false,
-    overlayProps: {}
-  }
-
-  renderNode = (node, close) => {
-    if (typeof node === 'function') {
-      return node({ close })
-    }
-
-    return node
-  }
-
-  renderChildren = close => {
-    const { children } = this.props
-
+  const renderChildren = close => {
     if (typeof children === 'function') {
       return children({ close })
     }
@@ -257,169 +99,322 @@ class Dialog extends React.Component {
     return children
   }
 
-  render() {
-    const {
-      title,
-      width,
-      intent,
-      isShown,
-      topOffset,
-      sideOffset,
-      hasHeader,
-      header,
-      hasClose,
-      hasFooter,
-      footer,
-      hasCancel,
-      onCloseComplete,
-      onOpenComplete,
-      onCancel,
-      onConfirm,
-      confirmLabel,
-      isConfirmLoading,
-      isConfirmDisabled,
-      cancelLabel,
-      shouldCloseOnOverlayClick,
-      shouldCloseOnEscapePress,
-      containerProps = {},
-      contentContainerProps,
-      minHeightContent,
-      preventBodyScrolling,
-      overlayProps
-    } = this.props
-
-    const sideOffsetWithUnit = Number.isInteger(sideOffset)
-      ? `${sideOffset}px`
-      : sideOffset
-    const maxWidth = `calc(100% - ${sideOffsetWithUnit} * 2)`
-
-    const topOffsetWithUnit = Number.isInteger(topOffset)
-      ? `${topOffset}px`
-      : topOffset
-    const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
-
-    const renderHeader = close => {
-      if (!header && !hasHeader) {
-        return undefined
-      }
-
-      return (
-        <Pane
-          padding={16}
-          flexShrink={0}
-          borderBottom="muted"
-          display="flex"
-          alignItems="center"
-        >
-          {header ? (
-            this.renderNode(header, close)
-          ) : (
-            <>
-              <Heading is="h4" size={600} flex="1">
-                {title}
-              </Heading>
-              {hasClose && (
-                <IconButton
-                  appearance="minimal"
-                  icon={<CrossIcon />}
-                  onClick={() => onCancel(close)}
-                />
-              )}
-            </>
-          )}
-        </Pane>
-      )
+  const renderNode = (node, close) => {
+    if (typeof node === 'function') {
+      return node({ close })
     }
 
-    const renderFooter = close => {
-      if (!footer && !hasFooter) {
-        return undefined
-      }
+    return node
+  }
 
-      return (
-        <Pane borderTop="muted" clearfix>
-          <Pane padding={16} float="right">
-            {footer ? (
-              this.renderNode(footer, close)
-            ) : (
-              <>
-                {/* Cancel should be first to make sure focus gets on it first. */}
-                {hasCancel && (
-                  <Button tabIndex={0} onClick={() => onCancel(close)}>
-                    {cancelLabel}
-                  </Button>
-                )}
-
-                <Button
-                  tabIndex={0}
-                  marginLeft={8}
-                  appearance="primary"
-                  isLoading={isConfirmLoading}
-                  disabled={isConfirmDisabled}
-                  onClick={() => onConfirm(close)}
-                  intent={intent}
-                >
-                  {confirmLabel}
-                </Button>
-              </>
-            )}
-          </Pane>
-        </Pane>
-      )
+  const renderHeader = close => {
+    if (!header && !hasHeader) {
+      return undefined
     }
 
     return (
-      <Overlay
-        isShown={isShown}
-        shouldCloseOnClick={shouldCloseOnOverlayClick}
-        shouldCloseOnEscapePress={shouldCloseOnEscapePress}
-        onExited={onCloseComplete}
-        onEntered={onOpenComplete}
-        containerProps={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          ...overlayProps
-        }}
-        preventBodyScrolling={preventBodyScrolling}
+      <Pane
+        padding={16}
+        flexShrink={0}
+        borderBottom="muted"
+        display="flex"
+        alignItems="center"
       >
-        {({ state, close }) => (
-          <Pane
-            role="dialog"
-            backgroundColor="white"
-            elevation={4}
-            borderRadius={8}
-            width={width}
-            maxWidth={maxWidth}
-            maxHeight={maxHeight}
-            marginX={sideOffsetWithUnit}
-            marginY={topOffsetWithUnit}
-            display="flex"
-            flexDirection="column"
-            css={animationStyles}
-            data-state={state}
-            {...containerProps}
-          >
-            {renderHeader(close)}
-
-            <Pane
-              data-state={state}
-              display="flex"
-              overflow="auto"
-              padding={16}
-              flexDirection="column"
-              minHeight={minHeightContent}
-              {...contentContainerProps}
-            >
-              <Pane>{this.renderChildren(close)}</Pane>
-            </Pane>
-
-            {renderFooter(close)}
-          </Pane>
+        {header ? (
+          renderNode(header, close)
+        ) : (
+          <>
+            <Heading is="h4" size={600} flex="1">
+              {title}
+            </Heading>
+            {hasClose && (
+              <IconButton
+                appearance="minimal"
+                icon={<CrossIcon />}
+                onClick={() => onCancel(close)}
+              />
+            )}
+          </>
         )}
-      </Overlay>
+      </Pane>
     )
   }
+
+  const renderFooter = close => {
+    if (!footer && !hasFooter) {
+      return undefined
+    }
+
+    return (
+      <Pane borderTop="muted" clearfix>
+        <Pane padding={16} float="right">
+          {footer ? (
+            renderNode(footer, close)
+          ) : (
+            <>
+              {/* Cancel should be first to make sure focus gets on it first. */}
+              {hasCancel && (
+                <Button tabIndex={0} onClick={() => onCancel(close)}>
+                  {cancelLabel}
+                </Button>
+              )}
+
+              <Button
+                tabIndex={0}
+                marginLeft={8}
+                appearance="primary"
+                isLoading={isConfirmLoading}
+                disabled={isConfirmDisabled}
+                onClick={() => onConfirm(close)}
+                intent={intent}
+              >
+                {confirmLabel}
+              </Button>
+            </>
+          )}
+        </Pane>
+      </Pane>
+    )
+  }
+
+  return (
+    <Overlay
+      isShown={isShown}
+      shouldCloseOnClick={shouldCloseOnOverlayClick}
+      shouldCloseOnEscapePress={shouldCloseOnEscapePress}
+      onExited={onCloseComplete}
+      onEntered={onOpenComplete}
+      containerProps={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        ...overlayProps
+      }}
+      preventBodyScrolling={preventBodyScrolling}
+    >
+      {({ state, close }) => (
+        <Pane
+          role="dialog"
+          backgroundColor="white"
+          elevation={4}
+          borderRadius={8}
+          width={width}
+          maxWidth={maxWidth}
+          maxHeight={maxHeight}
+          marginX={sideOffsetWithUnit}
+          marginY={topOffsetWithUnit}
+          display="flex"
+          flexDirection="column"
+          css={animationStyles}
+          data-state={state}
+          {...containerProps}
+        >
+          {renderHeader(close)}
+
+          <Pane
+            data-state={state}
+            display="flex"
+            overflow="auto"
+            padding={16}
+            flexDirection="column"
+            minHeight={minHeightContent}
+            {...contentContainerProps}
+          >
+            <Pane>{renderChildren(close)}</Pane>
+          </Pane>
+
+          {renderFooter(close)}
+        </Pane>
+      )}
+    </Overlay>
+  )
+})
+
+Dialog.propTypes = {
+  /**
+   * Children can be a string, node or a function accepting `({ close })`.
+   * When passing a string, <Paragraph /> is used to wrap the string.
+   */
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+
+  /**
+   * The intent of the Dialog. Used for the button.
+   */
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']).isRequired,
+
+  /**
+   * When true, the dialog is shown.
+   */
+  isShown: PropTypes.bool,
+
+  /**
+   * Title of the Dialog. Titles should use Title Case.
+   */
+  title: PropTypes.node,
+
+  /**
+   * When true, the header with the title and close icon button is shown.
+   */
+  hasHeader: PropTypes.bool,
+
+  /**
+   * You can override the default header with your own custom component.
+   *
+   * This is useful if you want to provide a custom header and footer, while
+   * also enabling your Dialog's content to scroll.
+   *
+   * Header can either be a React node or a function accepting `({ close })`.
+   */
+  header: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+
+  /**
+   * When true, the footer with the cancel and confirm button is shown.
+   */
+  hasFooter: PropTypes.bool,
+
+  /**
+   * You can override the default footer with your own custom component.
+   *
+   * This is useful if you want to provide a custom header and footer, while
+   * also enabling your Dialog's content to scroll.
+   *
+   * Footer can either be a React node or a function accepting `({ close })`.
+   */
+  footer: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+
+  /**
+   * When true, the cancel button is shown.
+   */
+  hasCancel: PropTypes.bool,
+
+  /**
+   * When true, the close button is shown
+   */
+  hasClose: PropTypes.bool,
+
+  /**
+   * Function that will be called when the exit transition is complete.
+   */
+  onCloseComplete: PropTypes.func,
+
+  /**
+   * Function that will be called when the enter transition is complete.
+   */
+  onOpenComplete: PropTypes.func,
+
+  /**
+   * Function that will be called when the confirm button is clicked.
+   * This does not close the Dialog. A close function will be passed
+   * as a paramater you can use to close the dialog.
+   *
+   * `onConfirm={(close) => close()}`
+   */
+  onConfirm: PropTypes.func,
+
+  /**
+   * Label of the confirm button.
+   */
+  confirmLabel: PropTypes.string,
+
+  /**
+   * When true, the confirm button is set to loading.
+   */
+  isConfirmLoading: PropTypes.bool,
+
+  /**
+   * When true, the confirm button is set to disabled.
+   */
+  isConfirmDisabled: PropTypes.bool,
+
+  /**
+   * Function that will be called when the cancel button is clicked.
+   * This closes the Dialog by default.
+   *
+   * `onCancel={(close) => close()}`
+   */
+  onCancel: PropTypes.func,
+
+  /**
+   * Label of the cancel button.
+   */
+  cancelLabel: PropTypes.string,
+
+  /**
+   * Boolean indicating if clicking the overlay should close the overlay.
+   */
+  shouldCloseOnOverlayClick: PropTypes.bool,
+
+  /**
+   * Boolean indicating if pressing the esc key should close the overlay.
+   */
+  shouldCloseOnEscapePress: PropTypes.bool,
+
+  /**
+   * Width of the Dialog.
+   */
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /**
+   * The space above the dialog.
+   * This offset is also used at the bottom when there is not enough vertical
+   * space available on screen — and the dialog scrolls internally.
+   */
+  topOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /**
+   * The space on the left/right sides of the dialog when there isn't enough
+   * horizontal space available on screen.
+   */
+  sideOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /**
+   * The min height of the body content.
+   * Makes it less weird when only showing little content.
+   */
+  minHeightContent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /**
+   * Props that are passed to the dialog container.
+   */
+  containerProps: PropTypes.object,
+
+  /**
+   * Props that are passed to the content container.
+   */
+  contentContainerProps: PropTypes.object,
+
+  /**
+   * Whether or not to prevent scrolling in the outer body
+   */
+  preventBodyScrolling: PropTypes.bool,
+
+  /**
+   * Props that are passed to the Overlay component.
+   */
+  overlayProps: PropTypes.object
 }
 
-export default withTheme(Dialog)
+Dialog.defaultProps = {
+  isShown: false,
+  hasHeader: true,
+  hasClose: true,
+  hasFooter: true,
+  hasCancel: true,
+  intent: 'none',
+  width: 560,
+  topOffset: '12vmin',
+  sideOffset: '16px',
+  minHeightContent: 80,
+  confirmLabel: 'Confirm',
+  isConfirmLoading: false,
+  isConfirmDisabled: false,
+  cancelLabel: 'Cancel',
+  shouldCloseOnOverlayClick: true,
+  shouldCloseOnEscapePress: true,
+  onCancel: close => close(),
+  onConfirm: close => close(),
+  preventBodyScrolling: false,
+  overlayProps: {}
+}
+
+export default Dialog

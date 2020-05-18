@@ -745,8 +745,7 @@ export interface CornerDialogProps {
   containerProps?: CardProps
 }
 
-export class CornerDialog extends React.PureComponent<CornerDialogProps> {
-}
+export declare const CornerDialog: ForwardRefComponent<CornerDialogProps>
 
 export interface DialogProps {
   /**
@@ -882,8 +881,7 @@ export interface DialogProps {
   preventBodyScrolling?: boolean
 }
 
-export class Dialog extends React.PureComponent<DialogProps> {
-}
+export declare const Dialog: ForwardRefComponent<DialogProps>
 
 export interface FormFieldProps extends React.ComponentPropsWithoutRef<typeof Box> {
   /**
