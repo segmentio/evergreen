@@ -1,11 +1,10 @@
+import React, { memo, forwardRef } from 'react'
 import { css } from 'glamor'
-import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
 import { Button, IconButton } from '../../buttons'
-import { withTheme } from '../../theme'
 import { CrossIcon } from '../../icons'
 
 const animationEasing = {
@@ -46,218 +45,8 @@ const animationStyles = {
   }
 }
 
-class Dialog extends React.Component {
-  static propTypes = {
-    /**
-     * Children can be a string, node or a function accepting `({ close })`.
-     * When passing a string, <Paragraph /> is used to wrap the string.
-     */
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
-
-    /**
-     * The intent of the Dialog. Used for the button.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * When true, the dialog is shown.
-     */
-    isShown: PropTypes.bool,
-
-    /**
-     * Title of the Dialog. Titles should use Title Case.
-     */
-    title: PropTypes.node,
-
-    /**
-     * When true, the header with the title and close icon button is shown.
-     */
-    hasHeader: PropTypes.bool,
-
-    /**
-     * You can override the default header with your own custom component.
-     *
-     * This is useful if you want to provide a custom header and footer, while
-     * also enabling your Dialog's content to scroll.
-     *
-     * Header can either be a React node or a function accepting `({ close })`.
-     */
-    header: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-
-    /**
-     * When true, the footer with the cancel and confirm button is shown.
-     */
-    hasFooter: PropTypes.bool,
-
-    /**
-     * You can override the default footer with your own custom component.
-     *
-     * This is useful if you want to provide a custom header and footer, while
-     * also enabling your Dialog's content to scroll.
-     *
-     * Footer can either be a React node or a function accepting `({ close })`.
-     */
-    footer: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-
-    /**
-     * When true, the cancel button is shown.
-     */
-    hasCancel: PropTypes.bool,
-
-    /**
-     * When true, the close button is shown
-     */
-    hasClose: PropTypes.bool,
-
-    /**
-     * Function that will be called when the exit transition is complete.
-     */
-    onCloseComplete: PropTypes.func,
-
-    /**
-     * Function that will be called when the enter transition is complete.
-     */
-    onOpenComplete: PropTypes.func,
-
-    /**
-     * Function that will be called when the confirm button is clicked.
-     * This does not close the Dialog. A close function will be passed
-     * as a paramater you can use to close the dialog.
-     *
-     * `onConfirm={(close) => close()}`
-     */
-    onConfirm: PropTypes.func,
-
-    /**
-     * Label of the confirm button.
-     */
-    confirmLabel: PropTypes.string,
-
-    /**
-     * When true, the confirm button is set to loading.
-     */
-    isConfirmLoading: PropTypes.bool,
-
-    /**
-     * When true, the confirm button is set to disabled.
-     */
-    isConfirmDisabled: PropTypes.bool,
-
-    /**
-     * Function that will be called when the cancel button is clicked.
-     * This closes the Dialog by default.
-     *
-     * `onCancel={(close) => close()}`
-     */
-    onCancel: PropTypes.func,
-
-    /**
-     * Label of the cancel button.
-     */
-    cancelLabel: PropTypes.string,
-
-    /**
-     * Boolean indicating if clicking the overlay should close the overlay.
-     */
-    shouldCloseOnOverlayClick: PropTypes.bool,
-
-    /**
-     * Boolean indicating if pressing the esc key should close the overlay.
-     */
-    shouldCloseOnEscapePress: PropTypes.bool,
-
-    /**
-     * Width of the Dialog.
-     */
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * The space above the dialog.
-     * This offset is also used at the bottom when there is not enough vertical
-     * space available on screen — and the dialog scrolls internally.
-     */
-    topOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * The space on the left/right sides of the dialog when there isn't enough
-     * horizontal space available on screen.
-     */
-    sideOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * The min height of the body content.
-     * Makes it less weird when only showing little content.
-     */
-    minHeightContent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * Props that are passed to the dialog container.
-     */
-    containerProps: PropTypes.object,
-
-    /**
-     * Props that are passed to the content container.
-     */
-    contentContainerProps: PropTypes.object,
-
-    /**
-     * Whether or not to prevent scrolling in the outer body
-     */
-    preventBodyScrolling: PropTypes.bool,
-
-    /**
-     * Props that are passed to the Overlay component.
-     */
-    overlayProps: PropTypes.object
-  }
-
-  static defaultProps = {
-    isShown: false,
-    hasHeader: true,
-    hasClose: true,
-    hasFooter: true,
-    hasCancel: true,
-    intent: 'none',
-    width: 560,
-    topOffset: '12vmin',
-    sideOffset: '16px',
-    minHeightContent: 80,
-    confirmLabel: 'Confirm',
-    isConfirmLoading: false,
-    isConfirmDisabled: false,
-    cancelLabel: 'Cancel',
-    shouldCloseOnOverlayClick: true,
-    shouldCloseOnEscapePress: true,
-    onCancel: close => close(),
-    onConfirm: close => close(),
-    preventBodyScrolling: false,
-    overlayProps: {}
-  }
-
-  renderNode = (node, close) => {
-    if (typeof node === 'function') {
-      return node({ close })
-    }
-
-    return node
-  }
-
-  renderChildren = close => {
-    const { children } = this.props
-
-    if (typeof children === 'function') {
-      return children({ close })
-    }
-
-    if (typeof children === 'string') {
-      return <Paragraph>{children}</Paragraph>
-    }
-
-    return children
-  }
-
-  render() {
+const Dialog = memo(
+  forwardRef((props, ref) => {
     const {
       title,
       width,
@@ -285,8 +74,9 @@ class Dialog extends React.Component {
       contentContainerProps,
       minHeightContent,
       preventBodyScrolling,
-      overlayProps
-    } = this.props
+      overlayProps,
+      children
+    } = props
 
     const sideOffsetWithUnit = Number.isInteger(sideOffset)
       ? `${sideOffset}px`
@@ -297,6 +87,26 @@ class Dialog extends React.Component {
       ? `${topOffset}px`
       : topOffset
     const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
+
+    const renderChildren = close => {
+      if (typeof children === 'function') {
+        return children({ close })
+      }
+
+      if (typeof children === 'string') {
+        return <Paragraph>{children}</Paragraph>
+      }
+
+      return children
+    }
+
+    const renderNode = (node, close) => {
+      if (typeof node === 'function') {
+        return node({ close })
+      }
+
+      return node
+    }
 
     const renderHeader = close => {
       if (!header && !hasHeader) {
@@ -312,7 +122,7 @@ class Dialog extends React.Component {
           alignItems="center"
         >
           {header ? (
-            this.renderNode(header, close)
+            renderNode(header, close)
           ) : (
             <>
               <Heading is="h4" size={600} flex="1">
@@ -340,7 +150,7 @@ class Dialog extends React.Component {
         <Pane borderTop="muted" clearfix>
           <Pane padding={16} float="right">
             {footer ? (
-              this.renderNode(footer, close)
+              renderNode(footer, close)
             ) : (
               <>
                 {/* Cancel should be first to make sure focus gets on it first. */}
@@ -398,6 +208,7 @@ class Dialog extends React.Component {
             flexDirection="column"
             css={animationStyles}
             data-state={state}
+            ref={ref}
             {...containerProps}
           >
             {renderHeader(close)}
@@ -411,7 +222,7 @@ class Dialog extends React.Component {
               minHeight={minHeightContent}
               {...contentContainerProps}
             >
-              <Pane>{this.renderChildren(close)}</Pane>
+              <Pane>{renderChildren(close)}</Pane>
             </Pane>
 
             {renderFooter(close)}
@@ -419,7 +230,194 @@ class Dialog extends React.Component {
         )}
       </Overlay>
     )
-  }
+  })
+)
+
+Dialog.propTypes = {
+  /**
+   * Children can be a string, node or a function accepting `({ close })`.
+   * When passing a string, <Paragraph /> is used to wrap the string.
+   */
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+
+  /**
+   * The intent of the Dialog. Used for the button.
+   */
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']).isRequired,
+
+  /**
+   * When true, the dialog is shown.
+   */
+  isShown: PropTypes.bool,
+
+  /**
+   * Title of the Dialog. Titles should use Title Case.
+   */
+  title: PropTypes.node,
+
+  /**
+   * When true, the header with the title and close icon button is shown.
+   */
+  hasHeader: PropTypes.bool,
+
+  /**
+   * You can override the default header with your own custom component.
+   *
+   * This is useful if you want to provide a custom header and footer, while
+   * also enabling your Dialog's content to scroll.
+   *
+   * Header can either be a React node or a function accepting `({ close })`.
+   */
+  header: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+
+  /**
+   * When true, the footer with the cancel and confirm button is shown.
+   */
+  hasFooter: PropTypes.bool,
+
+  /**
+   * You can override the default footer with your own custom component.
+   *
+   * This is useful if you want to provide a custom header and footer, while
+   * also enabling your Dialog's content to scroll.
+   *
+   * Footer can either be a React node or a function accepting `({ close })`.
+   */
+  footer: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+
+  /**
+   * When true, the cancel button is shown.
+   */
+  hasCancel: PropTypes.bool,
+
+  /**
+   * When true, the close button is shown
+   */
+  hasClose: PropTypes.bool,
+
+  /**
+   * Function that will be called when the exit transition is complete.
+   */
+  onCloseComplete: PropTypes.func,
+
+  /**
+   * Function that will be called when the enter transition is complete.
+   */
+  onOpenComplete: PropTypes.func,
+
+  /**
+   * Function that will be called when the confirm button is clicked.
+   * This does not close the Dialog. A close function will be passed
+   * as a paramater you can use to close the dialog.
+   *
+   * `onConfirm={(close) => close()}`
+   */
+  onConfirm: PropTypes.func,
+
+  /**
+   * Label of the confirm button.
+   */
+  confirmLabel: PropTypes.string,
+
+  /**
+   * When true, the confirm button is set to loading.
+   */
+  isConfirmLoading: PropTypes.bool,
+
+  /**
+   * When true, the confirm button is set to disabled.
+   */
+  isConfirmDisabled: PropTypes.bool,
+
+  /**
+   * Function that will be called when the cancel button is clicked.
+   * This closes the Dialog by default.
+   *
+   * `onCancel={(close) => close()}`
+   */
+  onCancel: PropTypes.func,
+
+  /**
+   * Label of the cancel button.
+   */
+  cancelLabel: PropTypes.string,
+
+  /**
+   * Boolean indicating if clicking the overlay should close the overlay.
+   */
+  shouldCloseOnOverlayClick: PropTypes.bool,
+
+  /**
+   * Boolean indicating if pressing the esc key should close the overlay.
+   */
+  shouldCloseOnEscapePress: PropTypes.bool,
+
+  /**
+   * Width of the Dialog.
+   */
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /**
+   * The space above the dialog.
+   * This offset is also used at the bottom when there is not enough vertical
+   * space available on screen — and the dialog scrolls internally.
+   */
+  topOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /**
+   * The space on the left/right sides of the dialog when there isn't enough
+   * horizontal space available on screen.
+   */
+  sideOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /**
+   * The min height of the body content.
+   * Makes it less weird when only showing little content.
+   */
+  minHeightContent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /**
+   * Props that are passed to the dialog container.
+   */
+  containerProps: PropTypes.object,
+
+  /**
+   * Props that are passed to the content container.
+   */
+  contentContainerProps: PropTypes.object,
+
+  /**
+   * Whether or not to prevent scrolling in the outer body
+   */
+  preventBodyScrolling: PropTypes.bool,
+
+  /**
+   * Props that are passed to the Overlay component.
+   */
+  overlayProps: PropTypes.object
 }
 
-export default withTheme(Dialog)
+Dialog.defaultProps = {
+  isShown: false,
+  hasHeader: true,
+  hasClose: true,
+  hasFooter: true,
+  hasCancel: true,
+  intent: 'none',
+  width: 560,
+  topOffset: '12vmin',
+  sideOffset: '16px',
+  minHeightContent: 80,
+  confirmLabel: 'Confirm',
+  isConfirmLoading: false,
+  isConfirmDisabled: false,
+  cancelLabel: 'Cancel',
+  shouldCloseOnOverlayClick: true,
+  shouldCloseOnEscapePress: true,
+  onCancel: close => close(),
+  onConfirm: close => close(),
+  preventBodyScrolling: false,
+  overlayProps: {}
+}
+
+export default Dialog

@@ -1,5 +1,11 @@
+import React, {
+  memo,
+  forwardRef,
+  useState,
+  useEffect,
+  useCallback
+} from 'react'
 import { css } from 'glamor'
-import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import { Pane, Card } from '../../layers'
@@ -47,173 +53,12 @@ const animationStyles = {
   }
 }
 
-export default class CornerDialog extends PureComponent {
-  static propTypes = {
-    /**
-     * Children can be a string, node or a function accepting `({ close })`.
-     * When passing a string, <Paragraph size={400} color="muted" /> is used to wrap the string.
-     */
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
-
-    /**
-     * The intent of the CornerDialog. Used for the button.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * When true, the dialog is shown.
-     */
-    isShown: PropTypes.bool,
-
-    /**
-     * Title of the Dialog. Titles should use Title Case.
-     */
-    title: PropTypes.node,
-
-    /**
-     * Function that will be called when the exit transition is complete.
-     */
-    onCloseComplete: PropTypes.func,
-
-    /**
-     * Function that will be called when the enter transition is complete.
-     */
-    onOpenComplete: PropTypes.func,
-
-    /**
-     * When true, the footer with the cancel and confirm button is shown.
-     */
-    hasFooter: PropTypes.bool,
-
-    /**
-     * Function that will be called when the confirm button is clicked.
-     * This does not close the Dialog. A close function will be passed
-     * as a paramater you can use to close the dialog.
-     *
-     * `onConfirm={(close) => close()}`
-     */
-    onConfirm: PropTypes.func,
-
-    /**
-     * Label of the confirm button.
-     */
-    confirmLabel: PropTypes.string,
-
-    /**
-     * When true, the cancel button is shown.
-     */
-    hasCancel: PropTypes.bool,
-
-    /**
-     * When true, the close button is shown.
-     */
-    hasClose: PropTypes.bool,
-
-    /**
-     * Function that will be called when the cancel button is clicked.
-     * This closes the Dialog by default.
-     *
-     * `onCancel={(close) => close()}`
-     */
-    onCancel: PropTypes.func,
-
-    /**
-     * Label of the cancel button.
-     */
-    cancelLabel: PropTypes.string,
-
-    /**
-     * Width of the Dialog.
-     */
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * Props that are passed to the dialog container.
-     */
-    containerProps: PropTypes.object,
-
-    /**
-     * Props that will set position of corner dialog
-     */
-    position: PropTypes.oneOf([
-      positions.TOP_LEFT,
-      positions.TOP_RIGHT,
-      positions.BOTTOM_LEFT,
-      positions.BOTTOM_RIGHT
-    ])
-  }
-
-  static defaultProps = {
-    width: 392,
-    intent: 'none',
-    hasFooter: true,
-    confirmLabel: 'Learn More',
-    hasCancel: true,
-    hasClose: true,
-    cancelLabel: 'Close',
-    onCancel: close => close(),
-    onConfirm: close => close(),
-    onCloseComplete: () => {},
-    position: positions.BOTTOM_RIGHT
-  }
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      exiting: false,
-      exited: !props.isShown
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (!prevProps.isShown && this.props.isShown) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({
-        exited: false
-      })
-    }
-  }
-
-  handleExited = () => {
-    this.setState({ exiting: false, exited: true })
-    this.props.onCloseComplete()
-  }
-
-  handleCancel = () => {
-    this.props.onCancel(this.handleClose)
-  }
-
-  handleClose = () => {
-    this.setState({ exiting: true })
-  }
-
-  handleConfirm = () => {
-    this.props.onConfirm(this.handleClose)
-  }
-
-  renderChildren = () => {
-    const { children } = this.props
-    if (typeof children === 'function') {
-      return children({ close: this.handleClose })
-    }
-
-    if (typeof children === 'string') {
-      return (
-        <Paragraph size={400} color="muted">
-          {children}
-        </Paragraph>
-      )
-    }
-
-    return children
-  }
-
-  render() {
+const CornerDialog = memo(
+  forwardRef((props, ref) => {
     const {
       title,
       width,
+      children,
       intent,
       isShown,
       hasFooter,
@@ -222,13 +67,59 @@ export default class CornerDialog extends PureComponent {
       cancelLabel,
       confirmLabel,
       onOpenComplete,
+      onCloseComplete,
+      onCancel,
+      onConfirm,
       containerProps = {},
       position
-    } = this.props
+    } = props
 
-    const { exiting, exited } = this.state
+    const [exiting, setExiting] = useState(false)
+    const [exited, setExited] = useState(!props.isShown)
 
-    if (exited) return null
+    useEffect(() => {
+      if (isShown) {
+        setExited(false)
+      }
+    }, [isShown])
+
+    const handleExited = useCallback(() => {
+      setExiting(false)
+      setExited(true)
+
+      onCloseComplete()
+    }, [onCloseComplete])
+
+    const handleClose = useCallback(() => setExiting(true))
+
+    const handleCancel = useCallback(() => {
+      onConfirm(handleClose)
+    }, [onCancel])
+
+    const handleConfirm = useCallback(() => {
+      onCancel(handleClose)
+    }, [onConfirm])
+
+    const renderChildren = useCallback(() => {
+      if (typeof children === 'function') {
+        return children({ close: handleClose })
+      }
+
+      if (typeof children === 'string') {
+        return (
+          <Paragraph size={400} color="muted">
+            {children}
+          </Paragraph>
+        )
+      }
+
+      return children
+    }, [children])
+
+    if (exited) {
+      return null
+    }
+
     return (
       <Portal>
         <Transition
@@ -236,7 +127,7 @@ export default class CornerDialog extends PureComponent {
           unmountOnExit
           timeout={ANIMATION_DURATION}
           in={isShown && !exiting}
-          onExited={this.handleExited}
+          onExited={handleExited}
           onEntered={onOpenComplete}
         >
           {state => (
@@ -244,6 +135,7 @@ export default class CornerDialog extends PureComponent {
               role="dialog"
               backgroundColor="white"
               elevation={4}
+              ref={ref}
               width={width}
               css={animationStyles}
               data-state={state}
@@ -265,13 +157,13 @@ export default class CornerDialog extends PureComponent {
                     height={32}
                     icon={<CrossIcon />}
                     appearance="minimal"
-                    onClick={this.handleClose}
+                    onClick={handleClose}
                   />
                 )}
               </Pane>
 
               <Pane overflowY="auto" data-state={state}>
-                {this.renderChildren()}
+                {renderChildren()}
               </Pane>
 
               {hasFooter && (
@@ -285,12 +177,12 @@ export default class CornerDialog extends PureComponent {
                     appearance="primary"
                     intent={intent}
                     marginLeft={8}
-                    onClick={this.handleConfirm}
+                    onClick={handleConfirm}
                   >
                     {confirmLabel}
                   </Button>
                   {hasCancel && (
-                    <Button onClick={this.handleCancel}>{cancelLabel}</Button>
+                    <Button onClick={handleCancel}>{cancelLabel}</Button>
                   )}
                 </Pane>
               )}
@@ -299,5 +191,116 @@ export default class CornerDialog extends PureComponent {
         </Transition>
       </Portal>
     )
-  }
+  })
+)
+
+CornerDialog.propTypes = {
+  /**
+   * Children can be a string, node or a function accepting `({ close })`.
+   * When passing a string, <Paragraph size={400} color="muted" /> is used to wrap the string.
+   */
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+
+  /**
+   * The intent of the CornerDialog. Used for the button.
+   */
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']).isRequired,
+
+  /**
+   * When true, the dialog is shown.
+   */
+  isShown: PropTypes.bool,
+
+  /**
+   * Title of the Dialog. Titles should use Title Case.
+   */
+  title: PropTypes.node,
+
+  /**
+   * Function that will be called when the exit transition is complete.
+   */
+  onCloseComplete: PropTypes.func,
+
+  /**
+   * Function that will be called when the enter transition is complete.
+   */
+  onOpenComplete: PropTypes.func,
+
+  /**
+   * When true, the footer with the cancel and confirm button is shown.
+   */
+  hasFooter: PropTypes.bool,
+
+  /**
+   * Function that will be called when the confirm button is clicked.
+   * This does not close the Dialog. A close function will be passed
+   * as a paramater you can use to close the dialog.
+   *
+   * `onConfirm={(close) => close()}`
+   */
+  onConfirm: PropTypes.func,
+
+  /**
+   * Label of the confirm button.
+   */
+  confirmLabel: PropTypes.string,
+
+  /**
+   * When true, the cancel button is shown.
+   */
+  hasCancel: PropTypes.bool,
+
+  /**
+   * When true, the close button is shown.
+   */
+  hasClose: PropTypes.bool,
+
+  /**
+   * Function that will be called when the cancel button is clicked.
+   * This closes the Dialog by default.
+   *
+   * `onCancel={(close) => close()}`
+   */
+  onCancel: PropTypes.func,
+
+  /**
+   * Label of the cancel button.
+   */
+  cancelLabel: PropTypes.string,
+
+  /**
+   * Width of the Dialog.
+   */
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /**
+   * Props that are passed to the dialog container.
+   */
+  containerProps: PropTypes.object,
+
+  /**
+   * Props that will set position of corner dialog
+   */
+  position: PropTypes.oneOf([
+    positions.TOP_LEFT,
+    positions.TOP_RIGHT,
+    positions.BOTTOM_LEFT,
+    positions.BOTTOM_RIGHT
+  ])
 }
+
+CornerDialog.defaultProps = {
+  width: 392,
+  intent: 'none',
+  hasFooter: true,
+  confirmLabel: 'Learn More',
+  hasCancel: true,
+  hasClose: true,
+  cancelLabel: 'Close',
+  onCancel: close => close(),
+  onConfirm: close => close(),
+  onCloseComplete: () => {},
+  position: positions.BOTTOM_RIGHT
+}
+
+export default CornerDialog
