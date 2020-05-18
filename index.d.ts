@@ -994,8 +994,7 @@ export interface ImageProps extends BoxProps<'img'> {
   src?: string
 }
 
-export class Image extends React.PureComponent<ImageProps> {
-}
+export declare const Image: ForwardRefComponent<ImageProps>
 
 export interface InlineAlertProps extends PaneProps {
   intent?: IntentTypes

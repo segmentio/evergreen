@@ -1,14 +1,16 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 
-export default class Image extends PureComponent {
-  static propTypes = {
-    ...Box.propTypes,
-    src: PropTypes.string
-  }
+const Image = memo(
+  forwardRef((props, ref) => {
+    return <Box is="img" {...props} innerRef={ref} />
+  })
+)
 
-  render() {
-    return <Box is="img" {...this.props} />
-  }
+Image.propTypes = {
+  ...Box.propTypes,
+  src: PropTypes.string
 }
+
+export default Image
