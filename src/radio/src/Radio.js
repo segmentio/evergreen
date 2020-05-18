@@ -1,4 +1,4 @@
-import React, { memo, forwardRef, useCallback } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
@@ -31,17 +31,14 @@ const Radio = memo(
       appearance,
       ...rest
     } = props
+
     const theme = useTheme()
     const themedClassName = theme.getRadioClassName(appearance)
 
-    const handleChange = useCallback(
-      event => onChange(event, event.target.checked),
-      [onChange]
-    )
     return (
       <Box
         is="label"
-        ref={ref}
+        innerRef={ref}
         cursor={disabled ? 'not-allowed' : 'pointer'}
         position="relative"
         display="flex"
@@ -56,7 +53,7 @@ const Radio = memo(
           name={name}
           value={value}
           checked={checked}
-          onChange={handleChange}
+          onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
           required={isRequired}

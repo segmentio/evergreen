@@ -597,10 +597,6 @@ export interface CheckboxProps extends Omit<BoxProps<'input'>, 'innerRef'> {
    */
   indeterminate?: boolean
   /**
-   * Function that returns the ref of the checkbox.
-   */
-  innerRef?: (ref: React.RefObject<HTMLElement>) => void,
-  /**
    * When true, the radio is disabled.
    */
   disabled?: boolean
@@ -1219,9 +1215,9 @@ export interface RadioProps extends Omit<BoxProps<'input'>, 'onChange'> {
    */
   value?: string
   /**
-   * Function called when state changes
+   * Function called when state changes.
    */
-  onChange?(event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void
+  onChange?(event: React.ChangeEvent<HTMLInputElement>): void
   /**
    * When true, the radio is disabled.
    */

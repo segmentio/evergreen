@@ -1,4 +1,4 @@
-import React, { memo, forwardRef } from 'react'
+import React, { memo, forwardRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
@@ -45,12 +45,16 @@ const Checkbox = memo(
       onChange,
       value,
       indeterminate,
-      innerRef,
       ...rest
     } = props
 
-    const theme = useTheme()
+    useEffect(() => {
+      if (ref?.current) {
+        ref.current.indeterminate = indeterminate
+      }
+    }, [ref, ref?.current, indeterminate])
 
+    const theme = useTheme()
     const themedClassName = theme.getCheckboxClassName(appearance)
 
     return (
@@ -73,7 +77,7 @@ const Checkbox = memo(
           onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
-          ref={ref}
+          innerRef={ref}
         />
         <Box
           boxSizing="border-box"
