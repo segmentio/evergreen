@@ -10,3 +10,5 @@ const Card = memo(
 Card.propTypes = {
   ...Pane.propTypes
 }
+
+export default Card
