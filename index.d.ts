@@ -452,8 +452,7 @@ export interface AutocompleteItemProps extends OptionProps {
   children?: JSX.Element | null
 }
 
-export class AutocompleteItem extends React.PureComponent<AutocompleteItemProps> {
-}
+export declare const AutocompleteItem: ForwardRefComponent<AutocompleteItemProps>
 
 // https://github.com/downshift-js/downshift
 export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'> {
@@ -491,8 +490,7 @@ export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'>
   onChange: (selectedItem: any) => void
 }
 
-export class Autocomplete extends React.PureComponent<AutocompleteProps> {
-}
+export declare const Autocomplete: ForwardRefComponent<AutocompleteProps>
 
 export interface AvatarProps extends React.ComponentPropsWithoutRef<typeof Box> {
   src?: string
