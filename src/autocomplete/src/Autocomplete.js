@@ -1,4 +1,10 @@
-import React, { PureComponent } from 'react'
+import React, {
+  memo,
+  forwardRef,
+  useState,
+  useEffect,
+  useCallback
+} from 'react'
 import PropTypes from 'prop-types'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import Downshift from 'downshift'
@@ -30,194 +36,74 @@ const noop = () => {}
 
 const autocompleteItemRenderer = props => <AutocompleteItem {...props} />
 
-// https://github.com/paypal/downshift/issues/164
-export default class Autocomplete extends PureComponent {
-  static propTypes = {
-    /**
-     * This prop can be either a string or a Node.
-     * It will provide a title for the items
-     */
-    title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+/* eslint-disable react/prop-types */
+const AutocompleteItems = ({
+  getItemProps,
+  getMenuProps,
+  highlightedIndex,
+  inputValue,
+  isFilterDisabled,
+  itemsFilter = fuzzyFilter(itemToString),
+  itemSize,
+  itemToString,
+  originalItems,
+  popoverMaxHeight,
+  renderItem,
+  selectedItem,
+  title,
+  width
+}) => {
+  const items =
+    isFilterDisabled || inputValue.trim() === ''
+      ? originalItems
+      : itemsFilter(originalItems, inputValue)
 
-    /**
-     * An array of items to be used as options for the select
-     */
-    items: PropTypes.array.isRequired,
+  if (items.length === 0) return null
 
-    /**
-     * The selected Item to be shown on the autocomplete
-     */
-    selectedItem: PropTypes.any,
+  // Pass the actual DOM ref to downshift, this fixes touch support
+  const menuProps = getMenuProps()
 
-    /**
-     * In case the array of items is not an array of strings,
-     * this function is used on each item to return the string that will be shown on the filter
-     */
-    itemToString: PropTypes.func.isRequired,
+  return (
+    <Pane width={width} {...menuProps}>
+      {title && (
+        <Pane padding={8} borderBottom="muted">
+          <Heading size={100}>{title}</Heading>
+        </Pane>
+      )}
+      {items.length > 0 && (
+        <VirtualList
+          width="100%"
+          height={Math.min(items.length * itemSize, popoverMaxHeight)}
+          itemSize={itemSize}
+          itemCount={items.length}
+          scrollToIndex={highlightedIndex || 0}
+          overscanCount={3}
+          scrollToAlignment="auto"
+          renderItem={({ index, style }) => {
+            const item = items[index]
+            const itemString = itemToString(item)
 
-    /**
-     * Function that will render the 'filter' component.
-     */
-    children: PropTypes.func.isRequired,
+            return renderItem(
+              getItemProps({
+                item,
+                key: itemString,
+                index,
+                style,
+                children: itemString,
+                isSelected: itemToString(selectedItem) === itemString,
+                isHighlighted: highlightedIndex === index
+              })
+            )
+          }}
+        />
+      )}
+    </Pane>
+  )
+}
+/* eslint-enable react/prop-types */
 
-    /**
-     * The height of each item in the list
-     * Because the list is virtualized this is required beforehand.
-     */
-    itemSize: PropTypes.number,
-
-    /**
-     * Function that returns a component to render the item
-     */
-    renderItem: PropTypes.func,
-
-    /**
-     * The position of the Popover the Autocomplete is rendered in.
-     */
-    position: PropTypes.oneOf([
-      Position.TOP,
-      Position.TOP_LEFT,
-      Position.TOP_RIGHT,
-      Position.BOTTOM,
-      Position.BOTTOM_LEFT,
-      Position.BOTTOM_RIGHT,
-      Position.LEFT,
-      Position.RIGHT
-    ]),
-
-    /**
-     * A function that is used to filter the items.
-     * It should return a subset of the initial items.
-     * By default the "fuzzaldrin-plus" package is used.
-     */
-    itemsFilter: PropTypes.func,
-
-    /**
-     * Prop that enables and disables filtering
-     * True: Enables Filtering
-     * False: Disables Filtering
-     */
-    isFilterDisabled: PropTypes.bool,
-
-    /**
-     * Defines the minimum height the results container will be
-     */
-    popoverMinWidth: PropTypes.number,
-
-    /**
-     * Defines the maximum height the results container will be
-     */
-    popoverMaxHeight: PropTypes.number,
-
-    ...Downshift.propTypes
-  }
-
-  state = {
-    targetWidth: 0
-  }
-
-  static defaultProps = {
-    itemToString: i => (i ? String(i) : ''),
-    itemSize: 32,
-    isFilterDisabled: false,
-    popoverMinWidth: 240,
-    popoverMaxHeight: 240,
-    renderItem: autocompleteItemRenderer
-  }
-
-  componentDidMount() {
-    this.setState({
-      targetWidth: this.targetRef.getBoundingClientRect().width
-    })
-  }
-
-  stateReducer = (state, changes) => {
-    const { items } = this.props
-
-    if (
-      Object.prototype.hasOwnProperty.call(changes, 'isOpen') &&
-      changes.isOpen
-    ) {
-      return {
-        ...changes,
-        highlightedIndex: items.indexOf(state.selectedItem)
-      }
-    }
-
-    return changes
-  }
-
-  renderResults = ({
-    width,
-    inputValue,
-    highlightedIndex,
-    selectedItem,
-    getItemProps,
-    getMenuProps
-  }) => {
-    const {
-      title,
-      itemSize,
-      itemsFilter,
-      items: originalItems,
-      itemToString,
-      renderItem,
-      popoverMaxHeight,
-      isFilterDisabled
-    } = this.props
-
-    const filter = itemsFilter || fuzzyFilter(itemToString)
-    const items =
-      isFilterDisabled || inputValue.trim() === ''
-        ? originalItems
-        : filter(originalItems, inputValue)
-
-    if (items.length === 0) return null
-
-    // Pass the actual DOM ref to downshift, this fixes touch support
-    const menuProps = getMenuProps()
-    menuProps.innerRef = menuProps.ref
-    delete menuProps.ref
-
-    return (
-      <Pane width={width} {...menuProps}>
-        {title && (
-          <Pane padding={8} borderBottom="muted">
-            <Heading size={100}>{title}</Heading>
-          </Pane>
-        )}
-        {items.length > 0 && (
-          <VirtualList
-            width="100%"
-            height={Math.min(items.length * itemSize, popoverMaxHeight)}
-            itemSize={itemSize}
-            itemCount={items.length}
-            scrollToIndex={highlightedIndex || 0}
-            overscanCount={3}
-            scrollToAlignment="auto"
-            renderItem={({ index, style }) => {
-              const item = items[index]
-              const itemString = itemToString(item)
-
-              return renderItem(
-                getItemProps({
-                  item,
-                  key: itemString,
-                  index,
-                  style,
-                  children: itemString,
-                  isSelected: itemToString(selectedItem) === itemString,
-                  isHighlighted: highlightedIndex === index
-                })
-              )
-            }}
-          />
-        )}
-      </Pane>
-    )
-  }
-
-  render() {
+const Autocomplete = memo(
+  forwardRef((props, ref) => {
     const {
       children,
       itemSize,
@@ -226,14 +112,43 @@ export default class Autocomplete extends PureComponent {
       itemsFilter,
       popoverMaxHeight,
       popoverMinWidth,
-      ...props
-    } = this.props
+      ...restProps
+    } = props
+
+    const [targetWidth, setTargetWidth] = useState(0)
+    const [targetRef, setTargetRef] = useState()
+
+    useEffect(() => {
+      if (targetRef) {
+        setTargetWidth(targetRef.getBoundingClientRect().width)
+      }
+    }, [targetRef])
+
+    const stateReducer = useCallback(
+      (state, changes) => {
+        const { items } = props
+
+        if (
+          Object.prototype.hasOwnProperty.call(changes, 'isOpen') &&
+          changes.isOpen
+        ) {
+          return {
+            ...changes,
+            highlightedIndex: items.indexOf(state.selectedItem)
+          }
+        }
+
+        return changes
+      },
+      [props.items]
+    )
 
     return (
       <Downshift
-        stateReducer={this.stateReducer}
+        stateReducer={stateReducer}
         scrollIntoView={noop}
-        {...props}
+        ref={ref}
+        {...restProps}
       >
         {({
           isOpen: isShown,
@@ -252,20 +167,28 @@ export default class Autocomplete extends PureComponent {
               minWidth={popoverMinWidth}
               position={
                 position ||
-                (this.state.targetWidth < popoverMinWidth
+                (targetWidth < popoverMinWidth
                   ? Position.BOTTOM_LEFT
                   : Position.BOTTOM)
               }
-              content={() => {
-                return this.renderResults({
-                  width: Math.max(this.state.targetWidth, popoverMinWidth),
-                  inputValue,
-                  getItemProps,
-                  getMenuProps,
-                  selectedItem,
-                  highlightedIndex
-                })
-              }}
+              content={() => (
+                <AutocompleteItems
+                  getItemProps={getItemProps}
+                  getMenuProps={getMenuProps}
+                  highlightedIndex={highlightedIndex}
+                  inputValue={inputValue}
+                  isFilterDisabled={props.isFilterDisabled}
+                  itemsFilter={props.itemsFilter}
+                  itemSize={props.itemSize}
+                  itemToString={props.itemToString}
+                  originalItems={props.items}
+                  popoverMaxHeight={props.popoverMaxHeight}
+                  renderItem={props.renderItem}
+                  selectedItem={selectedItem}
+                  title={props.title}
+                  width={Math.max(targetWidth, popoverMinWidth)}
+                />
+              )}
               minHeight={0}
               animationDuration={0}
             >
@@ -275,7 +198,7 @@ export default class Autocomplete extends PureComponent {
                   toggle,
                   getRef: ref => {
                     // Use the ref internally to determine the width
-                    this.targetRef = ref
+                    setTargetRef(ref)
                     getRef(ref)
                   },
                   inputValue,
@@ -289,5 +212,96 @@ export default class Autocomplete extends PureComponent {
         )}
       </Downshift>
     )
-  }
+  })
+)
+
+Autocomplete.propTypes = {
+  /**
+   * This prop can be either a string or a Node.
+   * It will provide a title for the items
+   */
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+
+  /**
+   * An array of items to be used as options for the select
+   */
+  items: PropTypes.array.isRequired,
+
+  /**
+   * The selected Item to be shown on the autocomplete
+   */
+  selectedItem: PropTypes.any,
+
+  /**
+   * In case the array of items is not an array of strings,
+   * this function is used on each item to return the string that will be shown on the filter
+   */
+  itemToString: PropTypes.func.isRequired,
+
+  /**
+   * Function that will render the 'filter' component.
+   */
+  children: PropTypes.func.isRequired,
+
+  /**
+   * The height of each item in the list
+   * Because the list is virtualized this is required beforehand.
+   */
+  itemSize: PropTypes.number,
+
+  /**
+   * Function that returns a component to render the item
+   */
+  renderItem: PropTypes.func,
+
+  /**
+   * The position of the Popover the Autocomplete is rendered in.
+   */
+  position: PropTypes.oneOf([
+    Position.TOP,
+    Position.TOP_LEFT,
+    Position.TOP_RIGHT,
+    Position.BOTTOM,
+    Position.BOTTOM_LEFT,
+    Position.BOTTOM_RIGHT,
+    Position.LEFT,
+    Position.RIGHT
+  ]),
+
+  /**
+   * A function that is used to filter the items.
+   * It should return a subset of the initial items.
+   * By default the "fuzzaldrin-plus" package is used.
+   */
+  itemsFilter: PropTypes.func,
+
+  /**
+   * Prop that enables and disables filtering
+   * True: Enables Filtering
+   * False: Disables Filtering
+   */
+  isFilterDisabled: PropTypes.bool,
+
+  /**
+   * Defines the minimum height the results container will be
+   */
+  popoverMinWidth: PropTypes.number,
+
+  /**
+   * Defines the maximum height the results container will be
+   */
+  popoverMaxHeight: PropTypes.number,
+
+  ...Downshift.propTypes
 }
+
+Autocomplete.defaultProps = {
+  itemToString: i => (i ? String(i) : ''),
+  itemSize: 32,
+  isFilterDisabled: false,
+  popoverMinWidth: 240,
+  popoverMaxHeight: 240,
+  renderItem: autocompleteItemRenderer
+}
+
+export default Autocomplete
