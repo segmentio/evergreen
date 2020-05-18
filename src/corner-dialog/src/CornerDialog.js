@@ -93,11 +93,11 @@ const CornerDialog = memo(
     const handleClose = useCallback(() => setExiting(true))
 
     const handleCancel = useCallback(() => {
-      onConfirm(handleClose)
+      onCancel(handleClose)
     }, [onCancel])
 
     const handleConfirm = useCallback(() => {
-      onCancel(handleClose)
+      onConfirm(handleClose)
     }, [onConfirm])
 
     const renderChildren = useCallback(() => {
