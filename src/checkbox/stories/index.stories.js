@@ -11,10 +11,10 @@ const innerRef = el => {
 
 function IndeterminateWithRefExample() {
   useEffect(() => {
-    if (ref?.current) {
+    if (ref && ref.current) {
       innerRef(ref.current)
     }
-  }, [ref, ref?.current])
+  }, [ref])
 
   const ref = useRef()
 

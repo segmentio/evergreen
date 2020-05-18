@@ -49,10 +49,10 @@ const Checkbox = memo(
     } = props
 
     useEffect(() => {
-      if (ref?.current) {
+      if (ref && ref.current) {
         ref.current.indeterminate = indeterminate
       }
-    }, [ref, ref?.current, indeterminate])
+    }, [ref, indeterminate])
 
     const theme = useTheme()
     const themedClassName = theme.getCheckboxClassName(appearance)
