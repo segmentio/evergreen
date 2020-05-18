@@ -1,10 +1,4 @@
-import React, {
-  memo,
-  forwardRef,
-  useState,
-  useEffect,
-  useCallback
-} from 'react'
+import React, { memo, useState, useEffect, useCallback } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
@@ -53,146 +47,143 @@ const animationStyles = {
   }
 }
 
-const CornerDialog = memo(
-  forwardRef((props, ref) => {
-    const {
-      title,
-      width,
-      children,
-      intent,
-      isShown,
-      hasFooter,
-      hasCancel,
-      hasClose,
-      cancelLabel,
-      confirmLabel,
-      onOpenComplete,
-      onCloseComplete,
-      onCancel,
-      onConfirm,
-      containerProps = {},
-      position
-    } = props
+const CornerDialog = memo(props => {
+  const {
+    title,
+    width,
+    children,
+    intent,
+    isShown,
+    hasFooter,
+    hasCancel,
+    hasClose,
+    cancelLabel,
+    confirmLabel,
+    onOpenComplete,
+    onCloseComplete,
+    onCancel,
+    onConfirm,
+    containerProps = {},
+    position
+  } = props
 
-    const [exiting, setExiting] = useState(false)
-    const [exited, setExited] = useState(!props.isShown)
+  const [exiting, setExiting] = useState(false)
+  const [exited, setExited] = useState(!props.isShown)
 
-    useEffect(() => {
-      if (isShown) {
-        setExited(false)
-      }
-    }, [isShown])
+  useEffect(() => {
+    if (isShown) {
+      setExited(false)
+    }
+  }, [isShown])
 
-    const handleExited = useCallback(() => {
-      setExiting(false)
-      setExited(true)
+  const handleExited = useCallback(() => {
+    setExiting(false)
+    setExited(true)
 
-      onCloseComplete()
-    }, [onCloseComplete])
+    onCloseComplete()
+  }, [onCloseComplete])
 
-    const handleClose = useCallback(() => setExiting(true))
+  const handleClose = useCallback(() => setExiting(true))
 
-    const handleCancel = useCallback(() => {
-      onCancel(handleClose)
-    }, [onCancel])
+  const handleCancel = useCallback(() => {
+    onCancel(handleClose)
+  }, [onCancel])
 
-    const handleConfirm = useCallback(() => {
-      onConfirm(handleClose)
-    }, [onConfirm])
+  const handleConfirm = useCallback(() => {
+    onConfirm(handleClose)
+  }, [onConfirm])
 
-    const renderChildren = useCallback(() => {
-      if (typeof children === 'function') {
-        return children({ close: handleClose })
-      }
-
-      if (typeof children === 'string') {
-        return (
-          <Paragraph size={400} color="muted">
-            {children}
-          </Paragraph>
-        )
-      }
-
-      return children
-    }, [children])
-
-    if (exited) {
-      return null
+  const renderChildren = useCallback(() => {
+    if (typeof children === 'function') {
+      return children({ close: handleClose })
     }
 
-    return (
-      <Portal>
-        <Transition
-          appear
-          unmountOnExit
-          timeout={ANIMATION_DURATION}
-          in={isShown && !exiting}
-          onExited={handleExited}
-          onEntered={onOpenComplete}
-        >
-          {state => (
-            <Card
-              role="dialog"
-              backgroundColor="white"
-              elevation={4}
-              ref={ref}
-              width={width}
-              css={animationStyles}
-              data-state={state}
-              padding={32}
-              position="fixed"
-              {...absolutePositions[
-                Object.keys(absolutePositions).includes(position)
-                  ? position
-                  : positions.BOTTOM_RIGHT
-              ]}
-              {...containerProps}
-            >
-              <Pane display="flex" alignItems="center" marginBottom={12}>
-                <Heading is="h4" size={600} flex="1">
-                  {title}
-                </Heading>
-                {hasClose && (
-                  <IconButton
-                    height={32}
-                    icon={<CrossIcon />}
-                    appearance="minimal"
-                    onClick={handleClose}
-                  />
+    if (typeof children === 'string') {
+      return (
+        <Paragraph size={400} color="muted">
+          {children}
+        </Paragraph>
+      )
+    }
+
+    return children
+  }, [children])
+
+  if (exited) {
+    return null
+  }
+
+  return (
+    <Portal>
+      <Transition
+        appear
+        unmountOnExit
+        timeout={ANIMATION_DURATION}
+        in={isShown && !exiting}
+        onExited={handleExited}
+        onEntered={onOpenComplete}
+      >
+        {state => (
+          <Card
+            role="dialog"
+            backgroundColor="white"
+            elevation={4}
+            width={width}
+            css={animationStyles}
+            data-state={state}
+            padding={32}
+            position="fixed"
+            {...absolutePositions[
+              Object.keys(absolutePositions).includes(position)
+                ? position
+                : positions.BOTTOM_RIGHT
+            ]}
+            {...containerProps}
+          >
+            <Pane display="flex" alignItems="center" marginBottom={12}>
+              <Heading is="h4" size={600} flex="1">
+                {title}
+              </Heading>
+              {hasClose && (
+                <IconButton
+                  height={32}
+                  icon={<CrossIcon />}
+                  appearance="minimal"
+                  onClick={handleClose}
+                />
+              )}
+            </Pane>
+
+            <Pane overflowY="auto" data-state={state}>
+              {renderChildren()}
+            </Pane>
+
+            {hasFooter && (
+              <Pane
+                marginTop={24}
+                flexShrink={0}
+                display="flex"
+                flexDirection="row-reverse"
+              >
+                <Button
+                  appearance="primary"
+                  intent={intent}
+                  marginLeft={8}
+                  onClick={handleConfirm}
+                >
+                  {confirmLabel}
+                </Button>
+                {hasCancel && (
+                  <Button onClick={handleCancel}>{cancelLabel}</Button>
                 )}
               </Pane>
-
-              <Pane overflowY="auto" data-state={state}>
-                {renderChildren()}
-              </Pane>
-
-              {hasFooter && (
-                <Pane
-                  marginTop={24}
-                  flexShrink={0}
-                  display="flex"
-                  flexDirection="row-reverse"
-                >
-                  <Button
-                    appearance="primary"
-                    intent={intent}
-                    marginLeft={8}
-                    onClick={handleConfirm}
-                  >
-                    {confirmLabel}
-                  </Button>
-                  {hasCancel && (
-                    <Button onClick={handleCancel}>{cancelLabel}</Button>
-                  )}
-                </Pane>
-              )}
-            </Card>
-          )}
-        </Transition>
-      </Portal>
-    )
-  })
-)
+            )}
+          </Card>
+        )}
+      </Transition>
+    </Portal>
+  )
+})
 
 CornerDialog.propTypes = {
   /**
