@@ -919,20 +919,19 @@ export interface FormFieldProps extends React.ComponentPropsWithoutRef<typeof Bo
   inputWidth?: number | string
 }
 
-export class FormField extends React.PureComponent<FormFieldProps> {
-}
+export declare const FormField: ForwardRefComponent<FormFieldProps>
 
 export interface FormFieldDescriptionProps extends ParagraphProps {
 }
 
-export class FormFieldDescription extends React.PureComponent<FormFieldDescriptionProps> {
-}
+export declare const FormFieldDescription: ForwardRefComponent<FormFieldDescriptionProps>
+
 
 export interface FormFieldHintProps extends ParagraphProps {
 }
 
-export class FormFieldHint extends React.PureComponent<ParagraphProps> {
-}
+export declare const FormFieldHint: ForwardRefComponent<ParagraphProps>
+
 
 export interface FormFieldLabelProps extends LabelProps {
   /**
@@ -941,8 +940,8 @@ export interface FormFieldLabelProps extends LabelProps {
   isAstrixShown?: boolean
 }
 
-export class FormFieldLabel extends React.PureComponent<FormFieldLabelProps> {
-}
+export declare const FormFieldLabel: ForwardRefComponent<FormFieldLabelProps>
+
 
 export interface FormFieldValidationMessageProps extends PaneProps {
 }
@@ -2796,8 +2795,7 @@ export declare const ZoomToFitIcon: IconComponent
 
 type UnknownProps = Record<string, any>
 
-export class FilePicker extends React.PureComponent<UnknownProps> {
-}
+export declare const FilePicker: ForwardRefComponent<UnknownProps>
 
 export class Portal extends React.PureComponent<UnknownProps> {
 }
