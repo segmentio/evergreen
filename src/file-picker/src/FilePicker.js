@@ -29,11 +29,11 @@ const FilePicker = memo(
     const handleFileChange = useCallback(
       e => {
         // Firefox returns the same array instance each time for some reason
-        const files = [...e.target.files]
+        const filesCopy = [...e.target.files]
 
-        setFiles(files)
+        setFiles(filesCopy)
 
-        safeInvoke(onChange, files)
+        safeInvoke(onChange, filesCopy)
       },
       [onChange]
     )
