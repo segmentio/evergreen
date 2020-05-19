@@ -1,15 +1,19 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import { Paragraph } from '../../typography'
 
-export default class FormFieldHint extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Paragraph component as the base.
-     */
-    ...Paragraph.propTypes
-  }
+const FormFieldHint = memo(
+  forwardRef((props, ref) => {
+    return (
+      <Paragraph marginTop={0} size={300} color="muted" {...props} ref={ref} />
+    )
+  })
+)
 
-  render() {
-    return <Paragraph marginTop={0} size={300} color="muted" {...this.props} />
-  }
+FormFieldHint.propTypes = {
+  /**
+   * Composes the Paragraph component as the base.
+   */
+  ...Paragraph.propTypes
 }
+
+export default FormFieldHint

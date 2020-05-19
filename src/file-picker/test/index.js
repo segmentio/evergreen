@@ -85,7 +85,6 @@ test('calls onBlur', t => {
   component.find(`.${CLASS_PREFIX}-file-input`).simulate('change', e)
   component.find(`.${CLASS_PREFIX}-text-input`).simulate('blur')
   t.true(onBlur.calledOnce)
-  t.deepEqual(component.state().files, e.target.files)
 })
 
 test('handles 1 file selected', t => {
@@ -96,7 +95,6 @@ test('handles 1 file selected', t => {
     }
   }
   component.find(`.${CLASS_PREFIX}-file-input`).simulate('change', e)
-  t.deepEqual(component.state('files'), e.target.files)
   t.is(component.find(`.${CLASS_PREFIX}-text-input`).prop('value'), 'data.json')
   t.true(component.find(`.${CLASS_PREFIX}-button`).contains('Replace file'))
 })
@@ -109,22 +107,8 @@ test('handles 2 files selected', t => {
     }
   }
   component.find(`.${CLASS_PREFIX}-file-input`).simulate('change', e)
-  t.deepEqual(component.state('files'), e.target.files)
   t.is(component.find(`.${CLASS_PREFIX}-text-input`).prop('value'), '2 files')
   t.true(component.find(`.${CLASS_PREFIX}-button`).contains('Replace files'))
-})
-
-// Firefox returns the same array instance in each change event for some reason
-test('clones files array', t => {
-  const component = shallow(<FilePicker />)
-  const e = {
-    target: {
-      files: [{ name: 'data.json' }]
-    }
-  }
-  component.find(`.${CLASS_PREFIX}-file-input`).simulate('change', e)
-  t.deepEqual(component.state('files'), e.target.files)
-  t.not(component.state('files'), e.target.files)
 })
 
 test('sets placeholder', t => {

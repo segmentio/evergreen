@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef, useState, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Button } from '../../buttons'
@@ -7,88 +7,54 @@ import safeInvoke from '../../lib/safe-invoke'
 
 export const CLASS_PREFIX = 'evergreen-file-picker'
 
-export default class FilePicker extends PureComponent {
-  static propTypes = {
-    /**
-     * Name attribute of the input.
-     */
-    name: PropTypes.string,
-
-    /**
-     * The accept attribute of the input.
-     */
-    accept: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.arrayOf(PropTypes.string)
-    ]),
-
-    /**
-     * When true, the file picker is required.
-     */
-    required: PropTypes.bool,
-
-    /**
-     * When true, accept multiple files.
-     */
-    multiple: PropTypes.bool,
-
-    /**
-     * When true, the filepicker is disabled.
-     */
-    disabled: PropTypes.bool,
-
-    /**
-     * The capture attribute of the input.
-     */
-    capture: PropTypes.bool,
-
-    /**
-     * The height of the file picker.
-     */
-    height: PropTypes.number,
-
-    /**
-     * Function called when onChange is fired
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * Function called when onBlur is fired
-     */
-    onBlur: PropTypes.func,
-
-    /**
-     * Placeholder of the text input
-     */
-    placeholder: PropTypes.string
-  }
-
-  static defaultProps = {
-    placeholder: 'Select a file to upload…'
-  }
-
-  constructor() {
-    super()
-
-    this.state = {
-      files: []
-    }
-  }
-
-  render() {
+const FilePicker = memo(
+  forwardRef((props, ref) => {
     const {
       name,
       accept,
       required,
       multiple,
+      onBlur,
       disabled,
       capture,
       height,
       onChange, // Remove onChange from props
       placeholder,
-      ...props
-    } = this.props
-    const { files } = this.state
+      ...rest
+    } = props
+
+    const [files, setFiles] = useState([])
+    const fileInputRef = useRef()
+
+    const handleFileChange = useCallback(
+      e => {
+        // Firefox returns the same array instance each time for some reason
+        const filesCopy = [...e.target.files]
+
+        setFiles(filesCopy)
+
+        safeInvoke(onChange, filesCopy)
+      },
+      [onChange]
+    )
+
+    const handleButtonClick = useCallback(() => {
+      if (fileInputRef && fileInputRef.current) {
+        fileInputRef.current.click()
+      }
+    }, [fileInputRef])
+
+    const handleBlur = useCallback(
+      e => {
+        // Setting e.target.files to an array fails. It must be a FileList
+        if (e && e.target)
+          e.target.files =
+            fileInputRef && fileInputRef.current && fileInputRef.current.files
+
+        safeInvoke(onBlur, e)
+      },
+      [onBlur]
+    )
 
     let inputValue
     if (files.length === 0) {
@@ -109,9 +75,14 @@ export default class FilePicker extends PureComponent {
     }
 
     return (
-      <Box display="flex" className={`${CLASS_PREFIX}-root`} {...props}>
+      <Box
+        display="flex"
+        className={`${CLASS_PREFIX}-root`}
+        innerRef={ref}
+        {...rest}
+      >
         <Box
-          innerRef={this.fileInputRef}
+          innerRef={fileInputRef}
           className={`${CLASS_PREFIX}-file-input`}
           is="input"
           type="file"
@@ -121,7 +92,7 @@ export default class FilePicker extends PureComponent {
           multiple={multiple}
           disabled={disabled}
           capture={capture}
-          onChange={this.handleFileChange}
+          onChange={handleFileChange}
           display="none"
         />
 
@@ -136,47 +107,84 @@ export default class FilePicker extends PureComponent {
           height={height}
           flex={1}
           textOverflow="ellipsis"
-          onBlur={this.handleBlur}
+          onBlur={handleBlur}
         />
 
         <Button
           className={`${CLASS_PREFIX}-button`}
-          onClick={this.handleButtonClick}
+          onClick={handleButtonClick}
           disabled={disabled}
           borderTopLeftRadius={0}
           borderBottomLeftRadius={0}
           height={height}
           flexShrink={0}
           type="button"
-          onBlur={this.handleBlur}
+          onBlur={handleBlur}
         >
           {buttonText}
         </Button>
       </Box>
     )
-  }
+  })
+)
 
-  fileInputRef = node => {
-    this.fileInput = node
-  }
+FilePicker.propTypes = {
+  /**
+   * Name attribute of the input.
+   */
+  name: PropTypes.string,
 
-  handleFileChange = e => {
-    // Firefox returns the same array instance each time for some reason
-    const files = [...e.target.files]
+  /**
+   * The accept attribute of the input.
+   */
+  accept: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
 
-    this.setState({ files })
+  /**
+   * When true, the file picker is required.
+   */
+  required: PropTypes.bool,
 
-    safeInvoke(this.props.onChange, files)
-  }
+  /**
+   * When true, accept multiple files.
+   */
+  multiple: PropTypes.bool,
 
-  handleButtonClick = () => {
-    this.fileInput.click()
-  }
+  /**
+   * When true, the filepicker is disabled.
+   */
+  disabled: PropTypes.bool,
 
-  handleBlur = e => {
-    // Setting e.target.files to an array fails. It must be a FileList
-    if (e && e.target) e.target.files = this.fileInput && this.fileInput.files
+  /**
+   * The capture attribute of the input.
+   */
+  capture: PropTypes.bool,
 
-    safeInvoke(this.props.onBlur, e)
-  }
+  /**
+   * The height of the file picker.
+   */
+  height: PropTypes.number,
+
+  /**
+   * Function called when onChange is fired
+   */
+  onChange: PropTypes.func,
+
+  /**
+   * Function called when onBlur is fired
+   */
+  onBlur: PropTypes.func,
+
+  /**
+   * Placeholder of the text input
+   */
+  placeholder: PropTypes.string
 }
+
+FilePicker.defaultProps = {
+  placeholder: 'Select a file to upload…'
+}
+
+export default FilePicker

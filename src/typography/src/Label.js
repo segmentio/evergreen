@@ -1,12 +1,14 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import Text from './Text'
 
-export default class Label extends PureComponent {
-  static propTypes = {
-    ...Text.propTypes
-  }
+const Label = memo(
+  forwardRef((props, ref) => {
+    return <Text is="label" fontWeight={500} {...props} ref={ref} />
+  })
+)
 
-  render() {
-    return <Text is="label" fontWeight={500} {...this.props} />
-  }
+Label.propTypes = {
+  ...Text.propTypes
 }
+
+export default Label
