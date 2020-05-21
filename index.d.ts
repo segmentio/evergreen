@@ -652,7 +652,7 @@ export interface ComboboxProps extends React.ComponentPropsWithoutRef<typeof Box
   /**
    * Properties forwarded to the autocomplete component. Use with caution.
    */
-  autocompleteProps?: AutocompleteProps
+  autocompleteProps?: Omit<AutocompleteProps, 'items' | 'selectedItem' | 'onChange' | 'itemToString' | 'children'>
   /**
    * Default selected item when uncontrolled.
    */
