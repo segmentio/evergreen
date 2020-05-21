@@ -1437,8 +1437,7 @@ export interface SelectMenuContentProps {
   emptyView?: React.ReactNode
 }
 
-export class SelectMenuContent extends React.PureComponent<SelectMenuContentProps> {
-}
+export declare const SelectMenuContent: React.FC<SelectMenuContentProps>
 
 export interface SelectMenuItem {
   label: string
