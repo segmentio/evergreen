@@ -458,13 +458,13 @@ export class AutocompleteItem extends React.PureComponent<AutocompleteItemProps>
 }
 
 // https://github.com/downshift-js/downshift
-export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'> {
+export interface AutocompleteProps<T> extends Omit<DownshiftProps<T>, 'children'> {
   // @deprecated
-  defaultSelectedItem?: string
+  defaultSelectedItem?: T
   title?: React.ReactNode
-  items: any[]
+  items: T[]
   renderItem?: (i: AutocompleteItemProps) => JSX.Element | null
-  itemsFilter?: (items: string[], input: string) => string[]
+  itemsFilter?: (items: T[], input: string) => T[]
   children: (props: {
                 toggle: () => void,
                 getRef: (ref: React.RefObject<HTMLElement>) => void,
@@ -490,12 +490,12 @@ export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'>
   isFilterDisabled?: boolean
   popoverMinWidth?: number
   popoverMaxHeight?: number
-  selectedItem?: any
+  selectedItem?: T
   buttonProps?: ButtonProps
-  onChange: (selectedItem: any) => void
+  onChange: (selectedItem: T) => void
 }
 
-export class Autocomplete extends React.PureComponent<AutocompleteProps> {
+export class Autocomplete<T> extends React.PureComponent<AutocompleteProps<T>> {
 }
 
 export interface AvatarProps extends React.ComponentPropsWithoutRef<typeof Box> {
@@ -636,27 +636,27 @@ export type CodeProps = TextProps
 export class Code extends React.PureComponent<CodeProps> {
 }
 
-export interface ComboboxProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface ComboboxProps<T> extends React.ComponentPropsWithoutRef<typeof Box> {
   /**
    * The options to show in the menu.
    */
-  items: AutocompleteProps['items']
+  items: AutocompleteProps<T>['items']
   /**
    * The selected item when controlled.
    */
-  selectedItem?: AutocompleteProps['selectedItem']
+  selectedItem?: AutocompleteProps<T>['selectedItem']
   /**
    * Function called when value changes.
    */
-  onChange?: AutocompleteProps['onChange']
+  onChange?: AutocompleteProps<T>['onChange']
   /**
    * Properties forwarded to the autocomplete component. Use with caution.
    */
-  autocompleteProps?: AutocompleteProps
+  autocompleteProps?: AutocompleteProps<T>
   /**
    * Default selected item when uncontrolled.
    */
-  defaultSelectedItem?: string
+  defaultSelectedItem?: T
   /**
    * When true, open the autocomplete on focus.
    */
@@ -664,7 +664,7 @@ export interface ComboboxProps extends React.ComponentPropsWithoutRef<typeof Box
   /**
    * Default selected item when uncontrolled.
    */
-  initialSelectedItem?: any
+  initialSelectedItem?: T
   /**
    * The placeholder text when there is no value present.
    */
@@ -673,7 +673,7 @@ export interface ComboboxProps extends React.ComponentPropsWithoutRef<typeof Box
    * In case the array of items is not an array of strings,
    * this function is used on each item to return the string that will be shown on the filter
    */
-  itemToString?: AutocompleteProps['itemToString']
+  itemToString?: AutocompleteProps<T>['itemToString']
   /**
    * Properties forwarded to the input. Use with caution.
    */
@@ -692,7 +692,7 @@ export interface ComboboxProps extends React.ComponentPropsWithoutRef<typeof Box
   isLoading?: boolean
 }
 
-export class Combobox extends React.PureComponent<ComboboxProps> {
+export class Combobox<T> extends React.PureComponent<ComboboxProps<T>> {
 }
 
 export interface CornerDialogProps {
