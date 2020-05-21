@@ -1437,8 +1437,7 @@ export interface SelectMenuContentProps {
   emptyView?: React.ReactNode
 }
 
-export class SelectMenuContent extends React.PureComponent<SelectMenuContentProps> {
-}
+export declare const SelectMenuContent: React.FC<SelectMenuContentProps>
 
 export interface SelectMenuItem {
   label: string
@@ -1529,8 +1528,7 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
   closeOnSelect?: boolean
 }
 
-export class SelectMenu extends React.PureComponent<SelectMenuProps> {
-}
+export declare const SelectMenu: ForwardRefComponent<SelectMenuProps>
 
 export interface SideSheetProps {
   children: React.ReactNode | (() => React.ReactNode)
@@ -1635,8 +1633,7 @@ export interface SwitchProps extends Omit<BoxProps<'label'>, 'onChange'> {
   defaultChecked?: boolean
 }
 
-export class Switch extends React.PureComponent<SwitchProps> {
-}
+export declare const Switch: ForwardRefComponent<SwitchProps>
 
 export interface TableBodyProps extends PaneProps {
 }
