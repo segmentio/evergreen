@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import arrify from 'arrify'
 import { Popover } from '../../popover'
@@ -36,62 +36,65 @@ const getEmptyView = (close, emptyView) => {
   return {}
 }
 
-const SelectMenu = memo(props => {
-  const {
-    title,
-    width,
-    height,
-    options,
-    onSelect,
-    onDeselect,
-    onFilterChange,
-    selected,
-    position,
-    hasTitle,
-    hasFilter,
-    filterPlaceholder,
-    filterIcon,
-    detailView,
-    emptyView,
-    titleView,
-    isMultiSelect,
-    closeOnSelect,
-    ...rest
-  } = props
+const SelectMenu = memo(
+  forwardRef((props, ref) => {
+    const {
+      title,
+      width,
+      height,
+      options,
+      onSelect,
+      onDeselect,
+      onFilterChange,
+      selected,
+      position,
+      hasTitle,
+      hasFilter,
+      filterPlaceholder,
+      filterIcon,
+      detailView,
+      emptyView,
+      titleView,
+      isMultiSelect,
+      closeOnSelect,
+      ...rest
+    } = props
 
-  return (
-    <Popover
-      minWidth={width}
-      position={position}
-      minHeight={height}
-      content={({ close }) => (
-        <SelectMenuContent
-          width={width}
-          height={height}
-          options={options}
-          title={title}
-          hasFilter={hasFilter}
-          filterPlaceholder={filterPlaceholder}
-          filterIcon={filterIcon}
-          hasTitle={hasTitle}
-          isMultiSelect={isMultiSelect}
-          titleView={titleView}
-          listProps={{
-            onSelect,
-            onDeselect,
-            onFilterChange,
-            selected: arrify(selected)
-          }}
-          close={close}
-          {...getDetailView(close, detailView)}
-          {...getEmptyView(close, emptyView)}
-          closeOnSelect={closeOnSelect}
-        />
-      )}
-      {...rest}
-    />
-  )
-})
+    return (
+      <Popover
+        minWidth={width}
+        position={position}
+        minHeight={height}
+        content={({ close }) => (
+          <SelectMenuContent
+            width={width}
+            height={height}
+            options={options}
+            title={title}
+            hasFilter={hasFilter}
+            filterPlaceholder={filterPlaceholder}
+            filterIcon={filterIcon}
+            hasTitle={hasTitle}
+            isMultiSelect={isMultiSelect}
+            titleView={titleView}
+            listProps={{
+              onSelect,
+              onDeselect,
+              onFilterChange,
+              selected: arrify(selected)
+            }}
+            close={close}
+            {...getDetailView(close, detailView)}
+            {...getEmptyView(close, emptyView)}
+            closeOnSelect={closeOnSelect}
+          />
+        )}
+        {...rest}
+        ref={ref}
+      />
+    )
+  })
+)
 
 SelectMenu.propTypes = {
   /**
