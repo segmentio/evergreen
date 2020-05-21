@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
@@ -33,106 +33,107 @@ DefaultTitleView.propTypes = {
   title: PropTypes.string,
   headerHeight: PropTypes.number
 }
-export default class SelectMenuContent extends PureComponent {
-  static propTypes = {
-    close: PropTypes.func,
-    title: PropTypes.string,
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    headerHeight: PropTypes.number,
-    options: PropTypes.arrayOf(OptionShapePropType),
-    hasTitle: PropTypes.bool,
-    hasFilter: PropTypes.bool,
-    filterPlaceholder: PropTypes.string,
-    filterIcon: PropTypes.node,
-    listProps: PropTypes.shape(OptionsList.propTypes),
 
-    /**
-     * When true, multi select is accounted for.
-     */
-    isMultiSelect: PropTypes.bool,
+const SelectMenuContent = memo(props => {
+  const {
+    title,
+    width,
+    height,
+    options,
+    hasTitle,
+    hasFilter,
+    filterPlaceholder,
+    filterIcon,
+    close,
+    listProps,
+    titleView,
+    detailView,
+    emptyView,
+    isMultiSelect,
+    closeOnSelect
+  } = props
 
-    /*
-     * When true, menu closes on option selection.
-     */
-    closeOnSelect: PropTypes.bool,
+  const headerHeight = 40
+  const optionsListHeight = hasTitle ? height - headerHeight : height
 
-    /**
-     * Node that is placed in the header section, above the options.
-     */
-    titleView: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  const hasDetailView = Boolean(detailView)
+  const hasEmptyView = Boolean(emptyView)
 
-    /**
-     * Node that is placed right next to the options.
-     */
-    detailView: PropTypes.node,
-
-    /**
-     * Node that is displayed instead of options list when there are no options.
-     */
-    emptyView: PropTypes.node
-  }
-
-  static defaultProps = {
-    options: [],
-    hasTitle: true,
-    hasFilter: true,
-    titleView: DefaultTitleView
-  }
-
-  render() {
-    const {
-      title,
-      width,
-      height,
-      options,
-      hasTitle,
-      hasFilter,
-      filterPlaceholder,
-      filterIcon,
-      close,
-      listProps,
-      titleView,
-      detailView,
-      emptyView,
-      isMultiSelect,
-      closeOnSelect
-    } = this.props
-
-    const headerHeight = 40
-    const optionsListHeight = hasTitle ? height - headerHeight : height
-
-    const hasDetailView = Boolean(detailView)
-    const hasEmptyView = Boolean(emptyView)
-
-    return (
-      <Pane display="flex" height={height}>
-        <Pane
-          width={width}
-          height={height}
-          display="flex"
-          flexDirection="column"
-          borderRight={hasDetailView ? 'muted' : null}
-        >
-          {hasTitle && titleView({ close, title, headerHeight })}
-          {options.length === 0 && hasEmptyView ? (
-            <Pane height={optionsListHeight}>{emptyView}</Pane>
-          ) : (
-            <OptionsList
-              height={optionsListHeight}
-              hasFilter={hasFilter}
-              filterPlaceholder={filterPlaceholder}
-              filterIcon={filterIcon}
-              options={options}
-              isMultiSelect={isMultiSelect}
-              close={close}
-              closeOnSelect={closeOnSelect}
-              {...listProps}
-            />
-          )}
-        </Pane>
-        {hasDetailView && detailView}
+  return (
+    <Pane display="flex" height={height}>
+      <Pane
+        width={width}
+        height={height}
+        display="flex"
+        flexDirection="column"
+        borderRight={hasDetailView ? 'muted' : null}
+      >
+        {hasTitle && titleView({ close, title, headerHeight })}
+        {options.length === 0 && hasEmptyView ? (
+          <Pane height={optionsListHeight}>{emptyView}</Pane>
+        ) : (
+          <OptionsList
+            height={optionsListHeight}
+            hasFilter={hasFilter}
+            filterPlaceholder={filterPlaceholder}
+            filterIcon={filterIcon}
+            options={options}
+            isMultiSelect={isMultiSelect}
+            close={close}
+            closeOnSelect={closeOnSelect}
+            {...listProps}
+          />
+        )}
       </Pane>
-    )
-  }
+      {hasDetailView && detailView}
+    </Pane>
+  )
+})
+
+SelectMenuContent.propTypes = {
+  close: PropTypes.func,
+  title: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  headerHeight: PropTypes.number,
+  options: PropTypes.arrayOf(OptionShapePropType),
+  hasTitle: PropTypes.bool,
+  hasFilter: PropTypes.bool,
+  filterPlaceholder: PropTypes.string,
+  filterIcon: PropTypes.node,
+  listProps: PropTypes.shape(OptionsList.propTypes),
+
+  /**
+   * When true, multi select is accounted for.
+   */
+  isMultiSelect: PropTypes.bool,
+
+  /*
+   * When true, menu closes on option selection.
+   */
+  closeOnSelect: PropTypes.bool,
+
+  /**
+   * Node that is placed in the header section, above the options.
+   */
+  titleView: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+
+  /**
+   * Node that is placed right next to the options.
+   */
+  detailView: PropTypes.node,
+
+  /**
+   * Node that is displayed instead of options list when there are no options.
+   */
+  emptyView: PropTypes.node
 }
+
+SelectMenuContent.defaultProps = {
+  options: [],
+  hasTitle: true,
+  hasFilter: true,
+  titleView: DefaultTitleView
+}
+
+export default SelectMenuContent
