@@ -146,11 +146,6 @@ Checkbox.propTypes = {
   indeterminate: PropTypes.bool,
 
   /**
-   * Function that returns the ref of the checkbox.
-   */
-  innerRef: PropTypes.func,
-
-  /**
    * Function called when state changes.
    */
   onChange: PropTypes.func,
@@ -176,7 +171,6 @@ Checkbox.propTypes = {
 Checkbox.defaultProps = {
   checked: false,
   indeterminate: false,
-  innerRef: () => {},
   onChange: () => {},
   appearance: 'default'
 }

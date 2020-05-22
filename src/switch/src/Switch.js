@@ -1,4 +1,4 @@
-import React, { memo, forwardRef, useState, useCallback } from 'react'
+import React, { memo, forwardRef, useCallback } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
@@ -63,7 +63,7 @@ const Switch = memo(
       id,
       name,
       height,
-      checked: checkedProps,
+      checked,
       onChange,
       disabled,
       appearance,
@@ -71,25 +71,11 @@ const Switch = memo(
       defaultChecked,
       ...rest
     } = props
-    const [isChecked, setIsChecked] = useState(
-      checkedProps || defaultChecked || false
-    )
 
     const theme = useTheme()
 
-    const handleChange = useCallback(
-      value => {
-        if (checkedProps) {
-          onChange(value)
-        } else {
-          setIsChecked(checked => !checked)
-          onChange(value)
-        }
-      },
-      [onChange]
-    )
+    const handleChange = useCallback(event => onChange(event), [onChange])
 
-    const checked = checkedProps ? checkedProps : isChecked
     const themedClassName = theme.getSwitchClassName(appearance)
 
     return (
