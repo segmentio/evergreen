@@ -673,8 +673,7 @@ export interface ComboboxProps extends React.ComponentPropsWithoutRef<typeof Box
   isLoading?: boolean
 }
 
-export class Combobox extends React.PureComponent<ComboboxProps> {
-}
+export declare const Combobox: React.FC<ComboboxProps>
 
 export interface CornerDialogProps {
   /**
