@@ -1094,9 +1094,9 @@ declare const MenuItem: React.FC<MenuItemProps>
 declare const MenuDivider: React.FC<{}>
 declare const MenuGroup: React.FC<MenuGroupProps>
 declare const MenuOption: React.FC<MenuOptionProps>
-declare const MenuOptionsGroup: React.FC<MenuOptionsGroupProps<T>>
+declare class MenuOptionsGroup<T> extends React.FC<MenuOptionsGroupProps<T>> {}
 
-export class Menu extends React.PureComponent<MenuProps> {
+export declare class Menu extends React.FC<MenuProps> {
   // @ts-ignore
   public static Item = MenuItem
   // @ts-ignore
