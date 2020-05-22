@@ -1090,22 +1090,23 @@ export interface MenuOptionsGroupProps<T> {
   options: Array<{ value: T, label: string }>
 }
 
+declare const MenuItem: React.FC<MenuItemProps>
+declare const MenuDivider: React.FC<{}>
+declare const MenuGroup: React.FC<MenuGroupProps>
+declare const MenuOption: React.FC<MenuOptionProps>
+declare const MenuOptionsGroup: React.FC<MenuOptionsGroupProps<T>>
+
 export class Menu extends React.PureComponent<MenuProps> {
   // @ts-ignore
-  public static Item = class MenuItem extends React.PureComponent<MenuItemProps> {
-  }
+  public static Item = MenuItem
   // @ts-ignore
-  public static Divider = class MenuDivider extends React.PureComponent {
-  }
+  public static Divider = MenuDivider
   // @ts-ignore
-  public static Group = class MenuGroup extends React.PureComponent<MenuGroupProps> {
-  }
+  public static Group = MenuGroup
   // @ts-ignore
-  public static Option = class Option extends React.PureComponent<MenuOptionProps> {
-  }
+  public static Option = MenuOption
   // @ts-ignore
-  public static OptionsGroup = class MenuOptionsGroup<T extends string | number | null> extends React.PureComponent<MenuOptionsGroupProps<T>> {
-  }
+  public static OptionsGroup = MenuOptionsGroup
 }
 
 export type PaneProps = Omit<React.ComponentPropsWithoutRef<typeof Box>, 'border' | 'borderTop' | 'borderRight' | 'borderBottom' | 'borderLeft'> & {
