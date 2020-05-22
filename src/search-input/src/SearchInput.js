@@ -18,7 +18,7 @@ const SearchInput = memo(
         position="relative"
         display="inline-flex"
         height={height}
-        innerRef={ref}
+        ref={ref}
         {...matchedProps}
       >
         <Box

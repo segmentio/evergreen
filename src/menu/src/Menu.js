@@ -110,7 +110,7 @@ export default class Menu extends React.PureComponent {
   render() {
     const { children } = this.props
     return (
-      <Pane is="nav" innerRef={this.onMenuRef} role="menu" outline="none">
+      <Pane is="nav" ref={this.onMenuRef} role="menu" outline="none">
         {children}
       </Pane>
     )

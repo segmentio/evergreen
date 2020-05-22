@@ -98,7 +98,7 @@ const Switch = memo(
         display="block"
         width={height * 2}
         position="relative"
-        innerRef={ref}
+        ref={ref}
         {...rest}
       >
         <Box

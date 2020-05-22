@@ -110,7 +110,7 @@ const Pane = memo(
 
     return (
       <Box
-        innerRef={ref}
+        ref={ref}
         borderTop={_borderTop}
         borderRight={_borderRight}
         borderBottom={_borderBottom}

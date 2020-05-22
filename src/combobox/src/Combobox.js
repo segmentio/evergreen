@@ -141,7 +141,7 @@ export default class Combobox extends PureComponent {
           clearSelection
         }) => (
           <Box
-            innerRef={ref => getRef(ref)}
+            ref={ref => getRef(ref)}
             display="inline-flex"
             width={width}
             {...props}

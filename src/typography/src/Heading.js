@@ -20,7 +20,7 @@ const Heading = memo(
     return (
       <Box
         is="h2"
-        innerRef={ref}
+        ref={ref}
         marginTop={finalMarginTop || 0}
         marginBottom={0}
         {...headingStyle}

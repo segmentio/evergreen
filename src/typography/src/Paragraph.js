@@ -19,7 +19,7 @@ const Paragraph = memo(
     return (
       <Box
         is="p"
-        innerRef={ref}
+        ref={ref}
         color={theme.getTextColor(color)}
         fontFamily={theme.getFontFamily(fontFamily)}
         marginTop={finalMarginTop || 0}

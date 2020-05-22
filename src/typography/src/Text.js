@@ -28,7 +28,7 @@ const Text = memo(
     return (
       <Box
         is="span"
-        innerRef={ref}
+        ref={ref}
         color={theme.getTextColor(color)}
         fontFamily={theme.getFontFamily(fontFamily)}
         marginTop={finalMarginTop}

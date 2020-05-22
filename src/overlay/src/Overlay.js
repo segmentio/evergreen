@@ -51,14 +51,10 @@ const animationStyles = backgroundColor => ({
     content: '" "'
   },
   '&[data-state="entering"]::before, &[data-state="entered"]::before': {
-    animation: `${fadeInAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.deceleration
-    } both`
+    animation: `${fadeInAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
   },
   '&[data-state="exiting"]::before, &[data-state="exited"]::before': {
-    animation: `${fadeOutAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.acceleration
-    } both`
+    animation: `${fadeOutAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
   }
 })
 
@@ -352,7 +348,7 @@ class Overlay extends React.Component {
               {state => (
                 <Box
                   onClick={this.handleBackdropClick}
-                  innerRef={this.onContainerRef}
+                  ref={this.onContainerRef}
                   position="fixed"
                   top={0}
                   left={0}
@@ -363,7 +359,9 @@ class Overlay extends React.Component {
                   {...containerProps}
                   className={cx(
                     containerProps.className,
-                    css(animationStyles(theme.overlayBackgroundColor)).toString()
+                    css(
+                      animationStyles(theme.overlayBackgroundColor)
+                    ).toString()
                   )}
                 >
                   {typeof children === 'function'

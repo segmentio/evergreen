@@ -1,22 +1,10 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Card } from '../../layers'
 
-export default class PopoverStateless extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Card as the base.
-     */
-    ...Card.propTypes,
-
-    /**
-     * The content of the Popover.
-     */
-    children: PropTypes.node
-  }
-
-  render() {
-    const { children, ...props } = this.props
+const PopoverStateless = memo(
+  forwardRef((props, ref) => {
+    const { children, ...rest } = props
 
     return (
       <Card
@@ -25,10 +13,25 @@ export default class PopoverStateless extends PureComponent {
         overflow="hidden"
         minWidth={200}
         backgroundColor="white"
-        {...props}
+        ref={ref}
+        {...rest}
       >
         {children}
       </Card>
     )
-  }
+  })
+)
+
+PopoverStateless.propTypes = {
+  /**
+   * Composes the Card as the base.
+   */
+  ...Card.propTypes,
+
+  /**
+   * The content of the Popover.
+   */
+  children: PropTypes.node
 }
+
+export default PopoverStateless

@@ -334,7 +334,7 @@ export default class Popover extends Component {
      * With normal usage only popover props end up on the target.
      */
     return React.cloneElement(children, {
-      innerRef: getTargetRef,
+      ref: getTargetRef,
       ...popoverTargetProps
     })
   }
@@ -369,7 +369,7 @@ export default class Popover extends Component {
       >
         {({ css, style, state, getRef }) => (
           <PopoverStateless
-            innerRef={ref => {
+            ref={ref => {
               this.popoverNode = ref
               getRef(ref)
             }}

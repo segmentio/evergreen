@@ -116,7 +116,6 @@ class TableRow extends PureComponent {
 
   render() {
     const {
-      innerRef,
       theme,
       className,
       height,
@@ -141,7 +140,7 @@ class TableRow extends PureComponent {
     return (
       <TableRowProvider height={height}>
         <Pane
-          innerRef={this.onRef}
+          ref={this.onRef}
           className={cx(themedClassName, className)}
           display="flex"
           aria-selected={isHighlighted}

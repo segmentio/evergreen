@@ -78,11 +78,11 @@ const FilePicker = memo(
       <Box
         display="flex"
         className={`${CLASS_PREFIX}-root`}
-        innerRef={ref}
+        ref={ref}
         {...rest}
       >
         <Box
-          innerRef={fileInputRef}
+          ref={fileInputRef}
           className={`${CLASS_PREFIX}-file-input`}
           is="input"
           type="file"

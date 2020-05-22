@@ -4,7 +4,7 @@ import Box from 'ui-box'
 
 const Image = memo(
   forwardRef((props, ref) => {
-    return <Box is="img" {...props} innerRef={ref} />
+    return <Box is="img" {...props} ref={ref} />
   })
 )
 
