@@ -1279,8 +1279,7 @@ export interface RadioGroupProps extends Omit<PaneProps, 'onChange'> {
   onChange?(value: string): void
 }
 
-export class RadioGroup extends React.PureComponent<RadioGroupProps> {
-}
+export declare const RadioGroup: ForwardRefComponent<RadioGroupProps>
 
 export interface Option {
   label?: string
@@ -2136,6 +2135,16 @@ export interface TooltipProps {
 export class Tooltip extends React.PureComponent<TooltipProps> {
 }
 
+export interface OrderedListProps extends React.ComponentPropsWithoutRef<typeof Box> {
+  /**
+   * Size of the text used in a list item.
+   */
+  size?: keyof Typography['text']
+}
+
+export declare const OrderedList: ForwardRefComponent<OrderedListProps>
+export declare const Ol: ForwardRefComponent<OrderedListProps>
+
 export interface UnorderedListProps extends React.ComponentPropsWithoutRef<typeof Box> {
   /**
    * Size of the text used in a list item.
@@ -2152,8 +2161,8 @@ export interface UnorderedListProps extends React.ComponentPropsWithoutRef<typeo
   iconColor?: string
 }
 
-export class UnorderedList extends React.PureComponent<UnorderedListProps> {
-}
+export declare const UnorderedList: ForwardRefComponent<UnorderedListProps>
+export declare const Ul: ForwardRefComponent<UnorderedListProps>
 
 export function majorScale(x: number): number
 
@@ -2804,15 +2813,6 @@ export class SelectedPropType extends React.PureComponent<UnknownProps> {
 }
 
 export class StackingContext extends React.PureComponent<UnknownProps> {
-}
-
-export class Ul extends React.PureComponent<UnknownProps> {
-}
-
-export class OrderedList extends React.PureComponent<UnknownProps> {
-}
-
-export class Ol extends React.PureComponent<UnknownProps> {
 }
 
 export class Li extends React.PureComponent<UnknownProps> {
