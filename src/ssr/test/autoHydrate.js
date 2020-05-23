@@ -1,9 +1,6 @@
 import test from 'ava'
 import React from 'react'
-import { default as Box, setClassNamePrefix } from 'ui-box'
-
-setClassNamePrefix('📦')
-
+import Box from 'ui-box'
 import { render } from 'enzyme'
 import extractStyles from '../src/extractStyles'
 import { hydrate } from '../src/autoHydrate'
