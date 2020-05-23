@@ -498,7 +498,7 @@ export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'>
 export class Autocomplete extends React.PureComponent<AutocompleteProps> {
 }
 
-export interface AvatarProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface AvatarProps extends BoxProps<'div'> {
   src?: string
   size?: number
   /**
@@ -636,7 +636,7 @@ export type CodeProps = TextProps
 export class Code extends React.PureComponent<CodeProps> {
 }
 
-export interface ComboboxProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface ComboboxProps extends BoxProps<'div'> {
   /**
    * The options to show in the menu.
    */
@@ -933,7 +933,7 @@ export interface IconProps extends BoxProps<'svg'> {
 export class Icon extends React.PureComponent<IconProps> {
 }
 
-export interface FormFieldProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface FormFieldProps extends BoxProps<'div'> {
   /**
    * The label used above the input element.
    */
@@ -1000,7 +1000,7 @@ export interface FormFieldValidationMessageProps extends PaneProps {
 export class FormFieldValidationMessage extends React.PureComponent<FormFieldValidationMessageProps> {
 }
 
-export interface HeadingProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface HeadingProps extends BoxProps<'h2'> {
   size?: keyof Typography['headings']
 }
 
@@ -1165,7 +1165,7 @@ export class Menu extends React.PureComponent<MenuProps> {
   }
 }
 
-export type PaneProps = Omit<React.ComponentPropsWithoutRef<typeof Box>, 'border' | 'borderTop' | 'borderRight' | 'borderBottom' | 'borderLeft'> & {
+export type PaneProps = Omit<BoxProps<'div'>, 'border' | 'borderTop' | 'borderRight' | 'borderBottom' | 'borderLeft'> & {
   background?: keyof Colors['background'] | string
   border?: boolean | string
   borderTop?: boolean | string
@@ -1185,7 +1185,7 @@ export type PillProps = BadgeProps
 export class Pill extends React.PureComponent<PillProps> {
 }
 
-export type PopoverStatelessProps = React.ComponentPropsWithoutRef<typeof Box>
+export type PopoverStatelessProps = BoxProps<'div'>
 
 export interface PopoverProps {
   position?: PositionTypes
@@ -1212,7 +1212,7 @@ export interface PopoverProps {
 export class Popover extends React.PureComponent<PopoverProps> {
 }
 
-export type ParagraphProps = React.ComponentPropsWithoutRef<typeof Box> & {
+export type ParagraphProps = BoxProps<'p'> & {
   size?: keyof Typography['paragraph']
   fontFamily?: FontFamily
 }
@@ -1421,7 +1421,7 @@ export interface SearchTableHeaderCellProps extends Omit<TableHeaderCellProps, '
 export class SearchTableHeaderCell extends React.PureComponent<SearchTableHeaderCellProps> {
 }
 
-export interface SegmentedControlProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'defaultValue' | 'onChange'> {
+export interface SegmentedControlProps extends Omit<BoxProps<'div'>, 'defaultValue' | 'onChange'> {
   options: Array<{ label: string, value: NonNullable<SegmentedControlProps['value']> }>
   value?: number | string | boolean
   defaultValue?: number | string | boolean
@@ -1433,7 +1433,7 @@ export interface SegmentedControlProps extends Omit<React.ComponentPropsWithoutR
 export class SegmentedControl extends React.PureComponent<SegmentedControlProps> {
 }
 
-export interface SelectProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'onChange'> {
+export interface SelectProps extends Omit<BoxProps<'div'>, 'onChange'> {
   /**
    * The initial value of an uncontrolled select
    */
@@ -1625,7 +1625,7 @@ export interface SmallProps extends BoxProps<'small'> {
 export class Small extends React.PureComponent<SmallProps> {
 }
 
-export interface SpinnerProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface SpinnerProps extends BoxProps<'div'> {
   /**
    * Delay after which spinner should be visible.
    */
@@ -1952,7 +1952,7 @@ export interface TabProps extends TextProps {
 export class Tab extends React.PureComponent<TabProps> {
 }
 
-export type TablistProps = React.ComponentPropsWithoutRef<typeof Box>
+export type TablistProps = BoxProps<'div'>
 
 export class Tablist extends React.PureComponent<TablistProps> {
 }
@@ -1962,7 +1962,7 @@ export type TabNavigationProps = BoxProps<'nav'>
 export class TabNavigation extends React.PureComponent<TabNavigationProps> {
 }
 
-export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'onChange'> {
+export interface TagInputProps extends Omit<BoxProps<'div'>, 'onChange'> {
   addOnBlur?: boolean
   className?: string
   disabled?: boolean
@@ -2093,7 +2093,7 @@ export interface TextTableHeaderCellProps extends PaneProps {
 export class TextTableHeaderCell extends React.PureComponent<TextTableHeaderCellProps> {
 }
 
-export type TextProps = React.ComponentPropsWithoutRef<typeof Box> & {
+export type TextProps = BoxProps<'span'> & {
   size?: keyof Typography['text']
   fontFamily?: FontFamily | string
 }
@@ -2220,7 +2220,7 @@ export interface TooltipProps {
 export class Tooltip extends React.PureComponent<TooltipProps> {
 }
 
-export interface UnorderedListProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface UnorderedListProps extends BoxProps<'ul'> {
   /**
    * Size of the text used in a list item.
    */
