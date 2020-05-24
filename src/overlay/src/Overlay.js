@@ -171,19 +171,19 @@ const Overlay = memo(props => {
     }
   }
 
-  const handleEnter = node => {
+  const handleEnter = (node, isAppearing) => {
     handleBodyScroll(true)
-    safeInvoke(props.onEnter, node)
+    safeInvoke(props.onEnter, node, isAppearing)
   }
 
-  const handleEntering = node => {
+  const handleEntering = (node, isAppearing) => {
     setStatus('entering')
-    safeInvoke(props.onEntering, node)
+    safeInvoke(props.onEntering, node, isAppearing)
   }
 
-  const handleEntered = node => {
+  const handleEntered = (node, isAppearing) => {
     setStatus('entered')
-    safeInvoke(props.onEntered, node)
+    safeInvoke(props.onEntered, node, isAppearing)
   }
 
   const handleExit = node => {
