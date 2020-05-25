@@ -168,7 +168,7 @@ export default class EditableCellField extends React.PureComponent {
 
     return (
       <Textarea
-        innerRef={this.onRef}
+        ref={this.onRef}
         onKeyDown={this.handleKeyDown}
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}
