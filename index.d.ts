@@ -1094,19 +1094,14 @@ declare const MenuItem: React.FC<MenuItemProps>
 declare const MenuDivider: React.FC<{}>
 declare const MenuGroup: React.FC<MenuGroupProps>
 declare const MenuOption: React.FC<MenuOptionProps>
-declare class MenuOptionsGroup<T> extends React.FC<MenuOptionsGroupProps<T>> {}
+declare const MenuOptionsGroup: React.FC<MenuOptionsGroupProps<any>>
 
-export declare class Menu extends React.FC<MenuProps> {
-  // @ts-ignore
-  public static Item = MenuItem
-  // @ts-ignore
-  public static Divider = MenuDivider
-  // @ts-ignore
-  public static Group = MenuGroup
-  // @ts-ignore
-  public static Option = MenuOption
-  // @ts-ignore
-  public static OptionsGroup = MenuOptionsGroup
+export declare const Menu: React.FC<MenuProps> & {
+  Item: typeof MenuItem
+  Divider: typeof MenuDivider
+  Group: typeof MenuGroup
+  Option: typeof MenuOption
+  OptionsGroup: typeof MenuOptionsGroup
 }
 
 export type PaneProps = Omit<React.ComponentPropsWithoutRef<typeof Box>, 'border' | 'borderTop' | 'borderRight' | 'borderBottom' | 'borderLeft'> & {
