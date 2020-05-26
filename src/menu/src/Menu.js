@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import MenuItem from './MenuItem'
@@ -7,112 +7,114 @@ import MenuGroup from './MenuGroup'
 import MenuOption from './MenuOption'
 import MenuOptionsGroup from './MenuOptionsGroup'
 
-export default class Menu extends React.PureComponent {
-  static Item = MenuItem
+const Menu = memo(props => {
+  const menuRef = useRef()
+  const firstItem = useRef()
+  const lastItem = useRef()
 
-  static Divider = MenuDivider
+  const menuItems = useRef()
 
-  static Group = MenuGroup
+  useEffect(() => {
+    if (menuRef && menuRef.current) {
+      menuItems.current = [
+        ...menuRef.current.querySelectorAll(
+          '[role="menuitemradio"], [role="menuitem"]'
+        )
+      ]
 
-  static Option = MenuOption
+      if (menuItems.current.length === 0) {
+        throw new Error('The menu has no menu items')
+      }
 
-  static OptionsGroup = MenuOptionsGroup
+      firstItem.current = menuItems.current[0]
+      lastItem.current = menuItems.current[menuItems.current.length - 1]
 
-  static propTypes = {
-    /**
-     * The children of the component.
-     */
-    children: PropTypes.node
-  }
+      const focusNext = (currentItem, startItem) => {
+        // Determine which item is the startItem (first or last)
+        const goingDown = startItem === firstItem.current
 
-  componentDidMount() {
-    // Get the menu item buttons
-    // eslint-disable-next-line unicorn/prefer-spread
-    this.menuItems = Array.from(
-      this.menuRef.querySelectorAll('[role="menuitemradio"], [role="menuitem"]')
-    )
+        // Helper function for getting next legitimate element
+        const move = elem => {
+          const indexOfItem = menuItems.current.indexOf(elem)
 
-    if (this.menuItems.length === 0) {
-      throw new Error('The menu has no menu items')
-    }
+          if (goingDown) {
+            if (indexOfItem < menuItems.current.length - 1) {
+              return menuItems.current[indexOfItem + 1]
+            }
 
-    this.firstItem = this.menuItems[0]
-    this.lastItem = this.menuItems[this.menuItems.length - 1]
+            return startItem
+          }
 
-    const focusNext = (currentItem, startItem) => {
-      // Determine which item is the startItem (first or last)
-      const goingDown = startItem === this.firstItem
-
-      // Helper function for getting next legitimate element
-      const move = elem => {
-        const indexOfItem = this.menuItems.indexOf(elem)
-
-        if (goingDown) {
-          if (indexOfItem < this.menuItems.length - 1) {
-            return this.menuItems[indexOfItem + 1]
+          if (indexOfItem - 1 > -1) {
+            return menuItems.current[indexOfItem - 1]
           }
 
           return startItem
         }
 
-        if (indexOfItem - 1 > -1) {
-          return this.menuItems[indexOfItem - 1]
+        // Make first move
+        let nextItem = move(currentItem)
+
+        // If the menuitem is disabled move on
+        while (nextItem.disabled) {
+          nextItem = move(nextItem)
         }
 
-        return startItem
+        // Focus the first one that's not disabled
+        nextItem.focus()
       }
 
-      // Make first move
-      let nextItem = move(currentItem)
+      menuItems.current.forEach(menuItem => {
+        // Handle key presses for menuItem
+        menuItem.addEventListener('keydown', e => {
+          // Go to next/previous item if it exists
+          // or loop around
 
-      // If the menuitem is disabled move on
-      while (nextItem.disabled) {
-        nextItem = move(nextItem)
-      }
+          if (e.key === 'ArrowDown') {
+            e.preventDefault()
+            focusNext(menuItem, firstItem.current)
+          }
 
-      // Focus the first one that's not disabled
-      nextItem.focus()
-    }
+          if (e.key === 'ArrowUp') {
+            e.preventDefault()
+            focusNext(menuItem, lastItem.current)
+          }
 
-    this.menuItems.forEach(menuItem => {
-      // Handle key presses for menuItem
-      menuItem.addEventListener('keydown', e => {
-        // Go to next/previous item if it exists
-        // or loop around
+          if (e.key === 'Home') {
+            e.preventDefault()
+            firstItem.current.focus()
+          }
 
-        if (e.key === 'ArrowDown') {
-          e.preventDefault()
-          focusNext(menuItem, this.firstItem)
-        }
-
-        if (e.key === 'ArrowUp') {
-          e.preventDefault()
-          focusNext(menuItem, this.lastItem)
-        }
-
-        if (e.key === 'Home') {
-          e.preventDefault()
-          this.firstItem.focus()
-        }
-
-        if (e.key === 'End') {
-          e.preventDefault()
-          this.lastItem.focus()
-        }
+          if (e.key === 'End') {
+            e.preventDefault()
+            lastItem.current.focus()
+          }
+        })
       })
-    })
-  }
+    }
+  }, [menuRef])
 
-  onMenuRef = ref => {
-    this.menuRef = ref
-  }
+  const { children } = props
+  return (
+    <Pane is="nav" ref={menuRef} role="menu" outline="none">
+      {children}
+    </Pane>
+  )
+})
 
-  render() {
-    const { children } = this.props
-    return (
-      <Pane is="nav" innerRef={this.onMenuRef} role="menu" outline="none">
-        {children}
-      </Pane>
-    )
-  }
+Menu.Item = MenuItem
+Menu.Divider = MenuDivider
+Menu.Group = MenuGroup
+Menu.Divider = MenuDivider
+Menu.Group = MenuGroup
+Menu.Option = MenuOption
+Menu.OptionsGroup = MenuOptionsGroup
+
+Menu.propTypes = {
+  /**
+   * The children of the component.
+   */
+  children: PropTypes.node
 }
+
+export default Menu
