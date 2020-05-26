@@ -1,4 +1,4 @@
-import React, { memo, forwardRef, useRef, useCallback } from 'react'
+import React, { memo, forwardRef, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { spacing, position, layout, dimensions } from 'ui-box'
 import { Pane } from '../../layers'
@@ -20,9 +20,7 @@ const RadioGroup = memo(
       ...rest
     } = props
 
-    const name = useRef()
-    name.current = `RadioGroup-${radioCount}`
-    radioCount += 1
+    const [name] = useState(`RadioGroup-${radioCount++}`)
 
     const handleChange = useCallback(
       e => {
@@ -44,7 +42,7 @@ const RadioGroup = memo(
           <Radio
             key={item.value}
             size={size}
-            name={name.current}
+            name={name}
             value={item.value}
             label={item.label}
             checked={selected === item.value}
