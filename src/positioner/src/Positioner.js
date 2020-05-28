@@ -216,7 +216,6 @@ export default class Positioner extends PureComponent {
       isShown,
       children,
       initialScale,
-      targetOffset,
       animationDuration
     } = this.props
 
@@ -246,7 +245,6 @@ export default class Positioner extends PureComponent {
                       state,
                       zIndex,
                       css: getCSS({
-                        targetOffset,
                         initialScale,
                         animationDuration
                       }),

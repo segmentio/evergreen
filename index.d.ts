@@ -1145,8 +1145,7 @@ export interface PopoverProps {
   statelessProps?: PopoverStatelessProps
 }
 
-export class Popover extends React.PureComponent<PopoverProps> {
-}
+export declare const Popover: ForwardRefComponent<PopoverProps>
 
 export type ParagraphProps = React.ComponentPropsWithoutRef<typeof Box> & {
   size?: keyof Typography['paragraph']
