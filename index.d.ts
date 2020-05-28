@@ -2265,16 +2265,15 @@ interface OverlayProps {
   shouldCloseOnClick?: boolean;
   shouldCloseOnEscapePress?: boolean;
   onBeforeClose?: () => void;
-  onExit?: () => void;
+  onExit?: TransitionProps['onExit'];
   onExiting?: TransitionProps['onExiting'];
   onExited?: TransitionProps['onExited'];
-  onEnter?: () => void;
+  onEnter?: TransitionProps['onEnter'];
   onEntering?: TransitionProps['onEntering'];
   onEntered?: TransitionProps['onEntered'];
 }
 
-export class Overlay extends React.PureComponent<OverlayProps> {
-}
+export declare const Overlay: ForwardRefComponent<OverlayProps>
 
 export interface IconProps extends BoxProps<'svg'> {
   /**
