@@ -3,12 +3,18 @@ import canUseDom from 'dom-helpers/util/inDOM'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
+let portalContainer
+
 const initializePortal = () => {
   if (!canUseDom) {
     return null
   }
 
-  const portalContainer = document.createElement('div')
+  if (portalContainer) {
+    return portalContainer
+  }
+
+  portalContainer = document.createElement('div')
   portalContainer.setAttribute('evergreen-portal-container', '')
   return portalContainer
 }
@@ -22,8 +28,8 @@ const initializeEl = () => {
 }
 
 const Portal = memo(({ children }) => {
-  const [portalContainer] = useState(initializePortal)
-  const [el] = useState(initializeEl)
+  const [portalContainer] = useState(initializePortal())
+  const [el] = useState(initializeEl())
 
   useEffect(() => {
     if (portalContainer) {
