@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import TableCell from './TableCell'
@@ -9,43 +9,43 @@ const ellipsis = {
   whiteSpace: 'nowrap'
 }
 
-export default class TextTableCell extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the TableCell component as the base.
-     */
-    ...TableCell.propTypes,
+const TextTableCell = memo(props => {
+  const { children, textProps, isNumber, placeholder, ...rest } = props
 
-    /**
-     * Adds fontFamily: mono.
-     */
-    isNumber: PropTypes.bool.isRequired,
+  return (
+    <TableCell {...rest}>
+      <Text
+        size={300}
+        flex="1"
+        {...ellipsis}
+        {...(isNumber ? { fontFamily: 'mono' } : {})}
+        {...textProps}
+      >
+        {children}
+      </Text>
+    </TableCell>
+  )
+})
 
-    /**
-     * Pass additional props to the Text component.
-     */
-    textProps: PropTypes.object
-  }
+TextTableCell.propTypes = {
+  /**
+   * Composes the TableCell component as the base.
+   */
+  ...TableCell.propTypes,
 
-  static defaultProps = {
-    isNumber: false
-  }
+  /**
+   * Adds fontFamily: mono.
+   */
+  isNumber: PropTypes.bool.isRequired,
 
-  render() {
-    const { children, textProps, isNumber, placeholder, ...props } = this.props
-
-    return (
-      <TableCell {...props}>
-        <Text
-          size={300}
-          flex="1"
-          {...ellipsis}
-          {...(isNumber ? { fontFamily: 'mono' } : {})}
-          {...textProps}
-        >
-          {children}
-        </Text>
-      </TableCell>
-    )
-  }
+  /**
+   * Pass additional props to the Text component.
+   */
+  textProps: PropTypes.object
 }
+
+TextTableCell.defaultProps = {
+  isNumber: false
+}
+
+export default TextTableCell

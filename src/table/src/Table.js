@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { memo } from 'react'
 import { Pane } from '../../layers'
 import TableBody from './TableBody'
 import TableVirtualBody from './TableVirtualBody'
@@ -12,38 +12,27 @@ import SearchTableHeaderCell from './SearchTableHeaderCell'
 import EditableCell from './EditableCell'
 import SelectMenuCell from './SelectMenuCell'
 
-export default class Table extends PureComponent {
-  static Body = TableBody
+const Table = memo(props => {
+  const {children, ...rest} = props
+  return (
+    <Pane {...rest}>{children}</Pane>
+  )
+})
 
-  static VirtualBody = TableVirtualBody
+Table.Body = TableBody
+Table.VirtualBody = TableVirtualBody
+Table.Head = TableHead
+Table.HeaderCell = TableHeaderCell
+Table.TextHeaderCell = TextTableHeaderCell
+Table.SearchHeaderCell = SearchTableHeaderCell
+Table.Row = TableRow
+Table.Cell = TableCell
+Table.TextCell = TextTableCell
+Table.EditableCell = EditableCell
+Table.SelectMenuCell = SelectMenuCell
 
-  static Head = TableHead
-
-  static HeaderCell = TableHeaderCell
-
-  static TextHeaderCell = TextTableHeaderCell
-
-  static SearchHeaderCell = SearchTableHeaderCell
-
-  static Row = TableRow
-
-  static Cell = TableCell
-
-  static TextCell = TextTableCell
-
-  static EditableCell = EditableCell
-
-  static SelectMenuCell = SelectMenuCell
-
-  static propTypes = {
-    /**
-     * Composes the Pane component as the base.
-     */
-    ...Pane.propTypes
-  }
-
-  render() {
-    const { children, ...props } = this.props
-    return <Pane {...props}>{children}</Pane>
-  }
+Table.propTypes = {
+  ...Pane.propTypes
 }
+
+export default Table
