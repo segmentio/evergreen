@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import TableCell from './TableCell'
@@ -9,11 +9,11 @@ const ellipsis = {
   whiteSpace: 'nowrap'
 }
 
-const TextTableCell = memo(props => {
+const TextTableCell = memo(forwardRef((props, ref) => {
   const { children, textProps, isNumber, placeholder, ...rest } = props
 
   return (
-    <TableCell {...rest}>
+    <TableCell ref={ref} {...rest}>
       <Text
         size={300}
         flex="1"
@@ -25,7 +25,7 @@ const TextTableCell = memo(props => {
       </Text>
     </TableCell>
   )
-})
+}))
 
 TextTableCell.propTypes = {
   /**

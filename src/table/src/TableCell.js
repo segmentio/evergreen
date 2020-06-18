@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { toaster } from '../../toaster'
@@ -27,9 +27,8 @@ function executeArrowKeyOverride(override) {
   override.focus()
 }
 
-const TableCell = memo(props => {
+const TableCell = memo(forwardRef((props, ref) => {
   const {
-    innerRef,
     children,
     appearance,
     onClick,
@@ -43,8 +42,6 @@ const TableCell = memo(props => {
     ...rest
   } = props
   const theme = useTheme()
-
-  let mainRef
 
   const styles = {
     paddingX: 12,
@@ -75,22 +72,17 @@ const TableCell = memo(props => {
           if (override === false) return
           if (override) return executeArrowKeyOverride(override)
 
-          manageTableCellFocusInteraction(key, mainRef)
+          manageTableCellFocusInteraction(key, ref)
         } catch (error) {
           toaster.danger('Keyboard interaction not possible')
           console.error('Keyboard interaction not possible', error)
         }
       } else if (key === 'Escape') {
-        mainRef.blur()
+        ref.blur()
       }
     }
 
     safeInvoke(onKeyDown, e)
-  }
-
-  const onRef = ref => {
-    mainRef = ref
-    safeInvoke(innerRef, ref)
   }
 
   const themedClassName = theme.getTableCellClassName(appearance)
@@ -100,7 +92,7 @@ const TableCell = memo(props => {
       {height => {
         return (
           <Pane
-            innerRef={onRef}
+            ref={ref}
             height={height}
             className={cx(themedClassName, className)}
             tabIndex={isSelectable ? tabIndex : undefined}
@@ -117,7 +109,7 @@ const TableCell = memo(props => {
       }}
     </TableRowConsumer>
   )
-})
+}))
 
 TableCell.propTypes = {
   /**

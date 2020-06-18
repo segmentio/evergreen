@@ -85,7 +85,7 @@ const EditableCell = memo(props => {
   return (
     <React.Fragment>
       <TextTableCell
-        innerRef={onMainRef}
+        ref={onMainRef}
         isSelectable={isSelectable}
         onClick={handleClick}
         onDoubleClick={handleDoubleClick}
