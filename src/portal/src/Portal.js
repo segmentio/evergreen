@@ -16,6 +16,7 @@ const initializePortal = () => {
 
   portalContainer = document.createElement('div')
   portalContainer.setAttribute('evergreen-portal-container', '')
+  document.body.appendChild(portalContainer)
   return portalContainer
 }
 
@@ -33,7 +34,6 @@ const Portal = memo(({ children }) => {
 
   useEffect(() => {
     if (portalContainer) {
-      document.body.appendChild(portalContainer)
       portalContainer.appendChild(el)
     }
 
