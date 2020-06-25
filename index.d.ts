@@ -1182,7 +1182,7 @@ export interface PositionerProps {
   onOpenComplete?: () => void
 }
 
-export class Positioner extends React.PureComponent<PositionerProps> {
+export declare const Positioner: ForwardRefComponent<PositionerProps> {
 }
 
 export interface RadioProps extends Omit<BoxProps<'input'>, 'onChange'> {
