@@ -39,7 +39,6 @@ const Positioner = memo(forwardRef((props, ref) => {
     position = Position.BOTTOM,
     bodyOffset = 6,
     targetOffset = 6,
-    innerRef,
     onOpenComplete = () => {},
     onCloseComplete = () => {}
   } = props
@@ -71,7 +70,6 @@ const Positioner = memo(forwardRef((props, ref) => {
 
   const getRef = (newRef) => {
     setPositionerRef(newRef)
-    safeInvoke(innerRef, newRef)
     safeInvoke(ref, newRef)
   }
 
@@ -212,11 +210,6 @@ Positioner.propTypes = {
    * Function that returns the element being positioned.
    */
   children: PropTypes.func.isRequired,
-
-  /**
-   * Function that returns the ref of the element being positioned.
-   */
-  innerRef: PropTypes.func,
 
   /**
    * The minimum distance from the body to the element being positioned.
