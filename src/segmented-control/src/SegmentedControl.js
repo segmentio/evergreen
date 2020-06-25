@@ -26,11 +26,11 @@ const SegmentedControl = memo(props => {
   }
 
   const getDefaultValue = () => {
-    if (isControlled) {
+    if (isControlled()) {
       return value
     }
 
-    return defaultValue ?? options[0].value
+    return typeof defaultValue !== 'undefined' && defaultValue !== null ? defaultValue : options[0].value
   }
 
   const [activeValue, setActiveValue] = useState(getDefaultValue())
