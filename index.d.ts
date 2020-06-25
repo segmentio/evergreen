@@ -1349,8 +1349,7 @@ export interface SearchTableHeaderCellProps extends Omit<TableHeaderCellProps, '
   icon?: React.ReactElement | null | false
 }
 
-export class SearchTableHeaderCell extends React.PureComponent<SearchTableHeaderCellProps> {
-}
+export declare const SearchTableHeaderCell: ForwardRefComponent<SearchTableHeaderCellProps>
 
 export interface SegmentedControlProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'defaultValue' | 'onChange'> {
   options: Array<{ label: string, value: NonNullable<SegmentedControlProps['value']> }>
@@ -1631,8 +1630,7 @@ export declare const Switch: ForwardRefComponent<SwitchProps>
 export interface TableBodyProps extends PaneProps {
 }
 
-export class TableBody extends React.PureComponent<TableBodyProps> {
-}
+export declare const TableBody: React.FC<TableBodyProps>
 
 export interface TableCellProps extends PaneProps {
   /**
@@ -1665,8 +1663,7 @@ export interface TableCellProps extends PaneProps {
   className?: string
 }
 
-export class TableCell extends React.PureComponent<TableCellProps> {
-}
+export declare const TableCell: React.FC<TableCellProps>
 
 interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' | 'onChange'> {
   autoFocus?: boolean
@@ -1700,7 +1697,7 @@ interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' 
 export interface TableHeaderCellProps extends TableCellProps {
 }
 
-export class TableHeaderCell extends React.PureComponent<TableHeaderCellProps> {
+export class TableHeaderCell extends React.FC<TableHeaderCellProps> {
 }
 
 export interface TableHeadProps extends PaneProps {
@@ -1708,7 +1705,7 @@ export interface TableHeadProps extends PaneProps {
   accountForScrollbar?: boolean
 }
 
-export class TableHead extends React.PureComponent<TableHeadProps> {
+export class TableHead extends React.FC<TableHeadProps> {
 }
 
 export interface TableRowProps extends PaneProps {
@@ -1755,7 +1752,7 @@ export interface TableRowProps extends PaneProps {
   onDeselect?(): void
 }
 
-export class TableRow extends React.PureComponent<TableRowProps> {
+export class TableRow extends React.FC<TableRowProps> {
 }
 
 export interface TableSelectMenuCellProps extends Omit<TextTableCellProps, 'placeholder'> {
@@ -1825,7 +1822,7 @@ interface TableVirtualBodyProps extends PaneProps {
 export interface TableProps extends PaneProps {
 }
 
-export class Table extends React.PureComponent<TableProps> {
+export class Table extends React.FC<TableProps> {
   // @ts-ignore
   public static Body = TableBody
 
@@ -1995,14 +1992,14 @@ export interface TextTableCellProps extends TableCellProps {
   textProps?: TextProps
 }
 
-export class TextTableCell extends React.PureComponent<TextTableCellProps> {
+export class TextTableCell extends ForwardRefComponent<TextTableCellProps> {
 }
 
 export interface TextTableHeaderCellProps extends PaneProps {
   textProps?: TextProps
 }
 
-export class TextTableHeaderCell extends React.PureComponent<TextTableHeaderCellProps> {
+export class TextTableHeaderCell extends React.FC<TextTableHeaderCellProps> {
 }
 
 export type TextProps = React.ComponentPropsWithoutRef<typeof Box> & {
