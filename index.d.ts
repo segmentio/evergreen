@@ -1182,8 +1182,7 @@ export interface PositionerProps {
   onOpenComplete?: () => void
 }
 
-export declare const Positioner: ForwardRefComponent<PositionerProps> {
-}
+export declare const Positioner: ForwardRefComponent<PositionerProps>
 
 export interface RadioProps extends Omit<BoxProps<'input'>, 'onChange'> {
   /**
