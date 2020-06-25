@@ -25,11 +25,11 @@ const SearchTableHeaderCell = memo(props => {
   const {
     value,
     children,
-    onChange,
+    onChange = () => {},
     autoFocus,
-    spellCheck,
-    placeholder,
-    icon,
+    spellCheck = true,
+    placeholder = 'Filter...',
+    icon = 'search',
     ...rest
   } = props
 
@@ -95,13 +95,6 @@ SearchTableHeaderCell.propTypes = {
    * The Evergreen or custom icon before the label.
    */
   icon: PropTypes.node
-}
-
-SearchTableHeaderCell.defaultProps = {
-  onChange: () => {},
-  spellCheck: true,
-  placeholder: 'Filter...',
-  icon: 'search'
 }
 
 export default SearchTableHeaderCell

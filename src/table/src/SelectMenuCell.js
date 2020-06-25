@@ -15,11 +15,11 @@ const SelectMenuCell = memo(props => {
 
   const {
     children,
-    size,
+    size = 300,
     selectMenuProps,
     disabled,
     placeholder,
-    isSelectable,
+    isSelectable = true,
     textProps = {},
     ...rest
   } = props
@@ -143,7 +143,7 @@ SelectMenuCell.propTypes = {
    * Makes the TableCell focusable.
    * Will add tabIndex={-1 || this.props.tabIndex}.
    */
-  isSelectable: PropTypes.bool.isRequired,
+  isSelectable: PropTypes.bool,
 
   /**
    * When true, the cell can't be edited.
@@ -158,14 +158,9 @@ SelectMenuCell.propTypes = {
   /**
    * The size used for the TextTableCell and Textarea.
    */
-  size: PropTypes.oneOf([300, 400]).isRequired,
+  size: PropTypes.oneOf([300, 400]),
 
   selectMenuProps: PropTypes.object
-}
-
-SelectMenuCell.defaultProps = {
-  size: 300,
-  isSelectable: true
 }
 
 export default SelectMenuCell

@@ -7,11 +7,26 @@ import { Pane } from '../../layers'
 const useForceUpdate = () => useState()[1]
 
 const TableVirtualBody = memo(props => {
+  const {
+    children: inputChildren,
+    height: paneHeight,
+    defaultHeight = 48,
+    allowAutoHeight = false,
+    overscanCount = 5,
+    estimatedItemSize,
+    useAverageAutoHeightEstimation = true,
+    scrollToIndex,
+    scrollOffset,
+    scrollToAlignment,
+    onScroll,
+    ...rest
+  } = props
+
   const forceUpdate = useForceUpdate()
   let autoHeights = []
   let autoHeightRefs = []
   let paneRef
-  let averageAutoHeight = props.defaultHeight
+  let averageAutoHeight = defaultHeight
 
   const onResizeHandler = () => {
     updateOnResize()
@@ -105,7 +120,7 @@ const TableVirtualBody = memo(props => {
   const updateOnResize = () => {
     autoHeights = []
     autoHeightRefs = []
-    averageAutoHeight = props.defaultHeight
+    averageAutoHeight = defaultHeight
 
     // Simply return when we now the height of the pane is fixed.
     if (isIntegerHeight) return
@@ -130,12 +145,6 @@ const TableVirtualBody = memo(props => {
   }
 
   const getItemSize = children => {
-    const {
-      allowAutoHeight,
-      useAverageAutoHeightEstimation,
-      defaultHeight
-    } = props
-
     // Prefer to return a array of all heights.
     if (!allowAutoHeight) {
       return children.map(child => {
@@ -175,21 +184,6 @@ const TableVirtualBody = memo(props => {
 
     return itemSizeFn
   }
-
-  const {
-    children: inputChildren,
-    height: paneHeight,
-    defaultHeight,
-    allowAutoHeight,
-    overscanCount,
-    estimatedItemSize,
-    useAverageAutoHeightEstimation,
-    scrollToIndex,
-    scrollOffset,
-    scrollToAlignment,
-    onScroll,
-    ...rest
-  } = props
 
   // Children always needs to be an array.
   const children = Array.isArray(inputChildren)
@@ -303,7 +297,7 @@ TableVirtualBody.propTypes = {
   /**
    * The overscanCount property passed to react-tiny-virtual-list.
    */
-  overscanCount: PropTypes.number.isRequired,
+  overscanCount: PropTypes.number,
 
   /**
    * When passed, this is used as the `estimatedItemSize` in react-tiny-virtual-list.
@@ -333,13 +327,6 @@ TableVirtualBody.propTypes = {
    * The onScroll callback passed to react-tiny-virtual-list
    */
   onScroll: PropTypes.func
-}
-
-TableVirtualBody.defaultProps = {
-  defaultHeight: 48,
-  allowAutoHeight: false,
-  overscanCount: 5,
-  useAverageAutoHeightEstimation: true
 }
 
 export default TableVirtualBody

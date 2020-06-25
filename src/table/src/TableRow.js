@@ -11,17 +11,17 @@ const TableRow = memo(props => {
   const {
     innerRef,
     className,
-    height,
+    height = 48,
     children,
-    intent,
-    appearance,
+    intent = 'none',
+    appearance = 'default',
     tabIndex = -1,
 
     // Filter out
     onClick,
-    onKeyPress,
-    onSelect,
-    onDeselect,
+    onKeyPress = () => {},
+    onSelect = () => {},
+    onDeselect = () => {},
 
     isHighlighted,
     isSelectable,
@@ -102,8 +102,7 @@ TableRow.propTypes = {
   /**
    * The height of the row. Remember to add paddings when using "auto".
    */
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-    .isRequired,
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
   /**
    * Function that is called on click and enter/space keypress.
@@ -133,33 +132,18 @@ TableRow.propTypes = {
   /**
    * The intent of the alert.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-    .isRequired,
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
 
   /**
    * The appearance of the table row. Default theme only support default.
    */
-  appearance: PropTypes.string.isRequired,
-
-  /**
-   * Theme provided by ThemeProvider.
-   */
-  theme: PropTypes.object.isRequired,
+  appearance: PropTypes.string,
 
   /**
    * Class name passed to the table row.
    * Only use if you know what you are doing.
    */
   className: PropTypes.string
-}
-
-TableRow.defaultProps = {
-  intent: 'none',
-  appearance: 'default',
-  height: 48,
-  onSelect: () => {},
-  onDeselect: () => {},
-  onKeyPress: () => {}
 }
 
 export default TableRow

@@ -10,7 +10,7 @@ const ellipsis = {
 }
 
 const TextTableCell = memo(forwardRef((props, ref) => {
-  const { children, textProps, isNumber, placeholder, ...rest } = props
+  const { children, textProps, isNumber = false, placeholder, ...rest } = props
 
   return (
     <TableCell ref={ref} {...rest}>
@@ -36,16 +36,12 @@ TextTableCell.propTypes = {
   /**
    * Adds fontFamily: mono.
    */
-  isNumber: PropTypes.bool.isRequired,
+  isNumber: PropTypes.bool,
 
   /**
    * Pass additional props to the Text component.
    */
   textProps: PropTypes.object
-}
-
-TextTableCell.defaultProps = {
-  isNumber: false
 }
 
 export default TextTableCell

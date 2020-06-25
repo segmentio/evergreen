@@ -10,11 +10,12 @@ import EditableCellField from './EditableCellField'
 const EditableCell = memo(props => {
   const {
     children,
-    size,
+    size = 300,
     disabled,
     placeholder,
-    isSelectable,
+    isSelectable = true,
     textProps = {},
+    autoFocus = false,
     ...rest
   } = props
 
@@ -22,7 +23,7 @@ const EditableCell = memo(props => {
   let mainRef
 
   const [value, setValue] = useState(children)
-  const [isEditing, setIsEditing] = useState(rest.autoFocus)
+  const [isEditing, setIsEditing] = useState(autoFocus)
 
   const onMainRef = ref => {
     mainRef = ref
@@ -131,7 +132,7 @@ EditableCell.propTypes = {
    * Makes the TableCell focusable.
    * Will add tabIndex={-1 || this.props.tabIndex}.
    */
-  isSelectable: PropTypes.bool.isRequired,
+  isSelectable: PropTypes.bool,
 
   /**
    * When true, the cell can't be edited.
@@ -146,7 +147,7 @@ EditableCell.propTypes = {
   /**
    * The size used for the TextTableCell and Textarea.
    */
-  size: PropTypes.oneOf([300, 400]).isRequired,
+  size: PropTypes.oneOf([300, 400]),
 
   /**
    * This is the value of the cell.
@@ -164,9 +165,4 @@ EditableCell.propTypes = {
   autoFocus: PropTypes.bool
 }
 
-EditableCell.defaultProps = {
-  size: 300,
-  isSelectable: true,
-  autoFocus: false
-}
 export default EditableCell

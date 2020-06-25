@@ -2,6 +2,8 @@ import React, { memo, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 const ScrollbarSize = memo(props => {
+  const {handleScrollbarSize = () => {}} = props
+
   const [innerRef, setInnerRef] = useState()
   const [outerRef, setOuterRef] = useState()
   const [innerWidth, setInnerWidth] = useState(null)
@@ -19,7 +21,7 @@ const ScrollbarSize = memo(props => {
 
   useEffect(() => {
     if (innerWidth && outerWidth) {
-      props.handleScrollbarSize(outerWidth - innerWidth)
+      handleScrollbarSize(outerWidth - innerWidth)
     }
   })
 
@@ -45,10 +47,6 @@ ScrollbarSize.propTypes = {
    * Returns the size of the scrollbar by creating a hidden fixed div.
    */
   handleScrollbarSize: PropTypes.func
-}
-
-ScrollbarSize.defaultProps = {
-  handleScrollbarSize: () => {}
 }
 
 export default ScrollbarSize

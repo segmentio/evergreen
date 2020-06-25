@@ -107,7 +107,7 @@ const EditableCellField = memo(props => {
     }
   }
 
-  const { size, value, minWidth, minHeight, zIndex } = props
+  const { size, value, minWidth = 80, minHeight = 40, zIndex } = props
 
   return (
     <Textarea
@@ -156,13 +156,13 @@ EditableCellField.propTypes = {
    * Min width of the textarea.
    * The textarea can never be smaller than the cell.
    */
-  minWidth: PropTypes.number.isRequired,
+  minWidth: PropTypes.number,
 
   /**
    * Min height of the textarea.
    * The textarea can never be smaller than the cell.
    */
-  minHeight: PropTypes.number.isRequired,
+  minHeight: PropTypes.number,
 
   /**
    * Called when the textarea is blurred, pass the value back to the cell.
@@ -178,11 +178,6 @@ EditableCellField.propTypes = {
    * Text size of the textarea.
    */
   size: PropTypes.number
-}
-
-EditableCellField.defaultProps = {
-  minWidth: 80,
-  minHeight: 40
 }
 
 export default EditableCellField

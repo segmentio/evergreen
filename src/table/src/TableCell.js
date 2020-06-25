@@ -30,7 +30,7 @@ function executeArrowKeyOverride(override) {
 const TableCell = memo(forwardRef((props, ref) => {
   const {
     children,
-    appearance,
+    appearance = 'default',
     onClick,
     onKeyPress,
     onKeyDown,
@@ -126,18 +126,13 @@ TableCell.propTypes = {
   /**
    * The appearance of the table row. Default theme only support default.
    */
-  appearance: PropTypes.string.isRequired,
+  appearance: PropTypes.string,
 
   /**
    * Optional node to be placed on the right side of the table cell.
    * Useful for icons and icon buttons.
    */
   rightView: PropTypes.node,
-
-  /**
-   * Theme provided by ThemeProvider.
-   */
-  theme: PropTypes.object.isRequired,
 
   /**
    * Advanced arrow keys overrides for selectable cells.
@@ -175,10 +170,6 @@ TableCell.propTypes = {
    * Only use if you know what you are doing.
    */
   className: PropTypes.string
-}
-
-TableCell.defaultProps = {
-  appearance: 'default'
 }
 
 export default TableCell

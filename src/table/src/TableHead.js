@@ -6,8 +6,8 @@ import ScrollbarSize from './ScrollbarSize'
 const TableHead = memo(props => {
   const {
     children,
-    height,
-    accountForScrollbar,
+    height = 32,
+    accountForScrollbar = true,
     ...rest
   } = props
   const [scrollbarWidth, setScrollBarWidth] = useState(0)
@@ -43,18 +43,13 @@ TableHead.propTypes = {
   /**
    * The height of the table head.
    */
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
   /**
    * This should always be true if you are using TableHead together with a TableBody.
    * Because TableBody has `overflowY: scroll` by default.
    */
   accountForScrollbar: PropTypes.bool
-}
-
-TableHead.defaultProps = {
-  height: 32,
-  accountForScrollbar: true
 }
 
 export default TableHead
