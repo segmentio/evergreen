@@ -2403,6 +2403,7 @@ export declare const DeleteIcon: IconComponent
 export declare const DeltaIcon: IconComponent
 export declare const DeriveColumnIcon: IconComponent
 export declare const DesktopIcon: IconComponent
+export declare const DiagnosisIcon: IconComponent
 export declare const DiagramTreeIcon: IconComponent
 export declare const DirectionLeftIcon: IconComponent
 export declare const DirectionRightIcon: IconComponent
@@ -2500,6 +2501,7 @@ export declare const HandDownIcon: IconComponent
 export declare const HandLeftIcon: IconComponent
 export declare const HandRightIcon: IconComponent
 export declare const HandUpIcon: IconComponent
+export declare const HatIcon: IconComponent
 export declare const HeaderIcon: IconComponent
 export declare const HeaderOneIcon: IconComponent
 export declare const HeaderTwoIcon: IconComponent
@@ -2528,6 +2530,7 @@ export declare const InboxSearchIcon: IconComponent
 export declare const InboxUpdateIcon: IconComponent
 export declare const InfoSignIcon: IconComponent
 export declare const InheritanceIcon: IconComponent
+export declare const InheritedGroupIcon: IconComponent
 export declare const InnerJoinIcon: IconComponent
 export declare const InsertIcon: IconComponent
 export declare const IntersectionIcon: IconComponent
@@ -2548,6 +2551,7 @@ export declare const KeyOptionIcon: IconComponent
 export declare const KeyShiftIcon: IconComponent
 export declare const KeyTabIcon: IconComponent
 export declare const KnownVehicleIcon: IconComponent
+export declare const LabTestIcon: IconComponent
 export declare const LabelIcon: IconComponent
 export declare const LayerIcon: IconComponent
 export declare const LayersIcon: IconComponent
@@ -2770,6 +2774,7 @@ export declare const VerticalBarChartAscIcon: IconComponent
 export declare const VerticalBarChartDescIcon: IconComponent
 export declare const VerticalDistributionIcon: IconComponent
 export declare const VideoIcon: IconComponent
+export declare const VirusIcon: IconComponent
 export declare const VolumeDownIcon: IconComponent
 export declare const VolumeOffIcon: IconComponent
 export declare const VolumeUpIcon: IconComponent
