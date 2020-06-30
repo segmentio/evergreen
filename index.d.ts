@@ -1361,8 +1361,7 @@ export interface SegmentedControlProps extends Omit<React.ComponentPropsWithoutR
   height?: number
 }
 
-export class SegmentedControl extends React.PureComponent<SegmentedControlProps> {
-}
+export declare const SegmentedControl: ForwardRefComponent<SegmentedControlProps>
 
 export interface SelectProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'onChange'> {
   /**
