@@ -1566,8 +1566,7 @@ export interface StackProps {
   value?: number
 }
 
-export class Stack extends React.PureComponent<StackProps> {
-}
+export declare const Stack: React.FC<StackProps>
 
 export type StrongProps = TextProps
 
