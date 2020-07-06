@@ -508,8 +508,7 @@ export interface AvatarProps extends React.ComponentPropsWithoutRef<typeof Box> 
   sizeLimitOneCharacter?: number
 }
 
-export class Avatar extends React.PureComponent<AvatarProps> {
-}
+export declare const Avatar: ForwardRefComponent<AvatarProps>
 
 export type BackButtonProps = ButtonProps
 
