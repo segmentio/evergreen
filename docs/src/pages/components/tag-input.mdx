@@ -27,6 +27,27 @@ The `TagInput` component is a text input component that adds values as tags.
 </Component>
 ```
 
+## Custom tag submit key
+
+You can customize the key to submit a new tag by either passing in `space` or `enter`.
+This will be the key by which to submit a tag as a user is typing in the input.
+
+```jsx
+<Component initialState={{ values: ['Kauri', 'Willow'] }}>
+  {({ state, setState }) => (
+    <TagInput
+      inputProps={{ placeholder: 'Add a tree...(then press space)' }}
+      width="100%"
+      tagSubmitKey="space"
+      values={state.values}
+      onChange={values => {
+        setState({ values })
+      }}
+    />
+  )}
+</Component>
+```
+
 ## Full width TagInput
 
 Use the `width` property to control the width of the `TagInput`.

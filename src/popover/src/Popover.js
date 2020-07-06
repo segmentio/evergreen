@@ -87,6 +87,20 @@ const Popover = memo(props => {
     props.onClose()
   }
 
+  // If `props.isShown` is a boolean, treat as a controlled component
+  // `open` and `close` should be applied when it changes
+  useEffect(() => {
+    if (typeof props.isShown !== 'boolean' || props.isShown === isShown) {
+      return
+    }
+
+    if (props.isShown) {
+      open()
+    } else {
+      close()
+    }
+  }, [props.isShown])
+
   const toggle = () => (isShown ? close() : open())
   const handleOpenHover = props.trigger === 'hover' ? open : undefined
   const handleCloseHover = props.trigger === 'hover' ? close : undefined
