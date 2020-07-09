@@ -169,5 +169,18 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
     >
       <Button>Empty state</Button>
     </SelectMenu>
+    <Manager>
+      {({ setState, state }) => (
+        <SelectMenu
+          title="Select name"
+          options={optionsWithIcons}
+          selected={state.selected}
+          onSelect={item => setState({ selected: item.value })}
+          optionSize={42}
+        >
+          <Button height={42}>Size large</Button>
+        </SelectMenu>
+      )}
+    </Manager>
   </Box>
 ))
