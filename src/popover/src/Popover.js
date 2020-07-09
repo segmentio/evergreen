@@ -133,6 +133,19 @@ export default class Popover extends Component {
     document.body.removeEventListener('keydown', this.onEsc, false)
   }
 
+  componentDidUpdate(prevProps) {
+    const { isShown } = this.props
+    // If `isShown` is a boolean, popover is controlled manually.
+    // In that case, ensure that `open` or `close` functionality is applied
+    if (typeof isShown === 'boolean' && isShown !== prevProps.isShown) {
+      if (isShown) {
+        this.open()
+      } else {
+        this.close()
+      }
+    }
+  }
+
   /**
    * Methods borrowed from BlueprintJS
    * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx

@@ -1980,6 +1980,7 @@ export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<typeo
   onInputChange?: (event: React.ChangeEvent) => void
   onRemove?: (value: string | React.ReactNode, index: number) => void
   separator?: string
+  tagSubmitKey?: "enter" | "space"
   tagProps?: any
   values?: string[]
 }
