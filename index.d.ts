@@ -1539,8 +1539,7 @@ export declare const SideSheet: ForwardRefComponent<SideSheetProps>
 
 export type SidebarTabProps = TabProps
 
-export class SidebarTab extends React.PureComponent<SidebarTabProps> {
-}
+export declare const SidebarTab: ForwardRefComponent<SidebarTabProps>
 
 export interface SmallProps extends BoxProps<'small'> {
 
@@ -1869,18 +1868,15 @@ export interface TabProps extends TextProps {
   appearance?: DefaultAppearance
 }
 
-export class Tab extends React.PureComponent<TabProps> {
-}
+export declare const Tab: ForwardRefComponent<TabProps>
 
-export type TablistProps = React.ComponentPropsWithoutRef<typeof Box>
+export type TablistProps = BoxProps<'div'>
 
-export class Tablist extends React.PureComponent<TablistProps> {
-}
+export declare const Tablist: ForwardRefComponent<TablistProps>
 
 export type TabNavigationProps = BoxProps<'nav'>
 
-export class TabNavigation extends React.PureComponent<TabNavigationProps> {
-}
+export declare const TabNavigation: ForwardRefComponent<TabNavigationProps>
 
 export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'onChange'> {
   addOnBlur?: boolean

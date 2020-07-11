@@ -1,12 +1,10 @@
-import React, { PureComponent } from 'react'
+import React, { forwardRef } from 'react'
 import Box from 'ui-box'
 
-export default class Tablist extends PureComponent {
-  static propTypes = {
-    ...Box.propTypes
-  }
+const Tablist = forwardRef((props, ref) => {
+  return <Box role="tablist" {...props} ref={ref} />
+})
 
-  render() {
-    return <Box role="tablist" {...this.props} />
-  }
-}
+Tablist.propTypes = Box.propTypes
+
+export default Tablist
