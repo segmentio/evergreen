@@ -1,21 +1,20 @@
-import React, { PureComponent } from 'react'
+import React, { forwardRef, memo } from 'react'
 import { ArrowLeftIcon } from '../../icons'
 import Button from './Button'
 
-export default class BackButton extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Button component as the base.
-     */
-    ...Button.propTypes
-  }
+const BackButton = memo(
+  forwardRef(({ children = 'Back', ...props }, ref) => {
+    return (
+      <Button iconBefore={<ArrowLeftIcon />} {...props} ref={ref}>
+        {children}
+      </Button>
+    )
+  })
+)
 
-  static defaultProps = {
-    ...Button.defaultProps,
-    children: 'Back'
-  }
-
-  render() {
-    return <Button iconBefore={<ArrowLeftIcon />} {...this.props} />
-  }
+BackButton.propTypes = {
+  /** Composes the Button component as the base. */
+  ...Button.propTypes
 }
+
+export default BackButton

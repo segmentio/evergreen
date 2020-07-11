@@ -1,21 +1,12 @@
-import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import React, { forwardRef, memo } from 'react'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { majorScale } from '../../scales'
 import Text from './Text'
 
-export default class ListItem extends PureComponent {
-  static propTypes = {
-    ...Text.propTypes,
-
-    /**
-     * When provided, adds a icon before the list item.
-     */
-    icon: PropTypes.node
-  }
-
-  render() {
-    const { children, size, icon, ...props } = this.props
+const ListItem = memo(
+  forwardRef((props, ref) => {
+    const { children, size, icon, ...rest } = props
 
     let paddingLeft
     if (size === 300) paddingLeft = 4
@@ -37,7 +28,8 @@ export default class ListItem extends PureComponent {
         size={size}
         listStyleType={icon ? 'none' : undefined}
         paddingLeft={icon ? paddingLeft : undefined}
-        {...props}
+        ref={ref}
+        {...rest}
       >
         {icon && (
           <IconWrapper
@@ -50,5 +42,16 @@ export default class ListItem extends PureComponent {
         {children}
       </Text>
     )
-  }
+  })
+)
+
+ListItem.propTypes = {
+  ...Text.propTypes,
+
+  /**
+   * When provided, adds a icon before the list item.
+   */
+  icon: PropTypes.node
 }
+
+export default ListItem

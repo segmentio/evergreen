@@ -512,8 +512,7 @@ export declare const Avatar: ForwardRefComponent<AvatarProps>
 
 export type BackButtonProps = ButtonProps
 
-export class BackButton extends React.PureComponent<BackButtonProps> {
-}
+export declare const BackButton: ForwardRefComponent<BackButtonProps>
 
 export interface BadgeProps extends StrongProps {
   /**
@@ -1011,8 +1010,7 @@ export declare const InlineAlert: ForwardRefComponent<InlineAlertProps>
 
 export type LabelProps = TextProps
 
-export class Label extends React.PureComponent<LabelProps> {
-}
+export declare const Label: ForwardRefComponent<LabelProps>
 
 export interface LinkProps extends TextProps {
   /**
@@ -1052,8 +1050,8 @@ export interface ListItemProps extends TextProps {
   iconColor?: string
 }
 
-export class ListItem extends React.PureComponent<ListItemProps> {
-}
+export declare const ListItem: ForwardRefComponent<ListItemProps>
+export declare const Li: ForwardRefComponent<ListItemProps>
 
 export interface MenuProps {
   children: React.ReactNode[] | React.ReactNode
@@ -1153,6 +1151,8 @@ export type ParagraphProps = React.ComponentPropsWithoutRef<typeof Box> & {
 
 export declare const Paragraph: ForwardRefComponent<ParagraphProps>
 
+export declare const Portal: React.FC
+
 export interface PositionerProps {
   position?: PositionTypes
   isShown?: boolean
@@ -1182,6 +1182,10 @@ export interface PositionerProps {
 }
 
 export declare const Positioner: ForwardRefComponent<PositionerProps>
+
+type PreProps = TextProps
+
+export declare const Pre: ForwardRefComponent<PreProps>
 
 export interface RadioProps extends Omit<BoxProps<'input'>, 'onChange'> {
   /**
@@ -1402,8 +1406,7 @@ export declare const Select: ForwardRefComponent<SelectProps>
 
 export type SelectFieldProps = FormFieldProps
 
-export class SelectField extends React.PureComponent<SelectFieldProps> {
-}
+export declare const SelectField: React.FC<SelectFieldProps>
 
 export interface SelectMenuContentProps {
   close?: OptionsListProps['close']
@@ -1567,10 +1570,11 @@ export interface StackProps {
 
 export declare const Stack: React.FC<StackProps>
 
-export type StrongProps = TextProps
+export declare const StackingContext: React.Context<number>
 
-export class Strong extends React.PureComponent<StrongProps> {
-}
+export type StrongProps = BoxProps<'strong'>
+
+export declare const Strong: ForwardRefComponent<StrongProps>
 
 export interface SwitchProps extends Omit<BoxProps<'label'>, 'onChange'> {
   /**
@@ -1951,8 +1955,7 @@ export interface TextareaFieldProps extends TextareaProps {
   inputWidth?: number | string
 }
 
-export class TextareaField extends React.PureComponent<TextareaFieldProps> {
-}
+export declare const TextareaField: React.FC<TextareaFieldProps>
 
 export interface TextDropdownButtonProps extends TextProps {
   /**
@@ -1998,7 +2001,7 @@ export interface TextTableHeaderCellProps extends PaneProps {
 export class TextTableHeaderCell extends React.PureComponent<TextTableHeaderCellProps> {
 }
 
-export type TextProps = React.ComponentPropsWithoutRef<typeof Box> & {
+export type TextProps = BoxProps<'span'> & {
   size?: keyof Typography['text']
   fontFamily?: FontFamily | string
 }
@@ -2267,6 +2270,11 @@ interface OverlayProps {
 }
 
 export declare const Overlay: ForwardRefComponent<OverlayProps>
+
+export declare const ThemeContext: React.Context<Theme>
+export declare const ThemeProvider: React.Context<Theme>['Provider']
+export declare const ThemeConsumer: React.Context<Theme>['Consumer']
+export declare const useTheme: () => Theme
 
 export interface IconProps extends BoxProps<'svg'> {
   /**
@@ -2791,23 +2799,6 @@ export declare const ZoomToFitIcon: IconComponent
 // ====================================================
 
 type UnknownProps = Record<string, any>
-
 export declare const FilePicker: ForwardRefComponent<UnknownProps>
-
-export class Portal extends React.PureComponent<UnknownProps> {
-}
-
-export class OptionShapePropType extends React.PureComponent<UnknownProps> {
-}
-
-export class SelectedPropType extends React.PureComponent<UnknownProps> {
-}
-
-export class StackingContext extends React.PureComponent<UnknownProps> {
-}
-
-export class Li extends React.PureComponent<UnknownProps> {
-}
-
-export class Pre extends React.PureComponent<UnknownProps> {
-}
+export declare const OptionShapePropType: unknown
+export declare const SelectedPropType: unknown

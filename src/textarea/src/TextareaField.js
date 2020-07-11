@@ -1,124 +1,115 @@
-import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import React, { memo, useState } from 'react'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
 import Textarea from './Textarea'
 
 let idCounter = 0
 
-export default class TextareaField extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Textarea component as the base.
-     */
-    ...Textarea.propTypes,
-    ...FormField.propTypes,
+const TextareaField = memo(props => {
+  const [id] = useState(props.id || idCounter++)
 
-    /**
-     * The label used above the input element.
-     */
-    label: PropTypes.node.isRequired,
+  const {
+    // We are using the id from the state
+    id: unusedId,
 
-    /**
-     * Whether or not to show an asterix after the label.
-     */
-    required: PropTypes.bool,
+    // FormField props
+    hint,
+    label,
+    description,
+    validationMessage,
 
-    /**
-     * An optional description of the field under the label, above the input element.
-     */
-    description: PropTypes.node,
+    // Textarea props
+    inputHeight = 80,
+    /** The input width should be as wide as the form field. */
+    inputWidth = '100%',
+    disabled,
+    required,
+    isInvalid,
+    appearance,
+    placeholder,
+    spellCheck,
 
-    /**
-     * An optional hint under the input element.
-     */
-    hint: PropTypes.node,
+    // Rest props are spread on the FormField
+    ...rest
+  } = props
 
-    /**
-     * If a validation message is passed it is shown under the input element
-     * and above the hint. This is unaffected by `isInvalid`.
-     */
-    validationMessage: PropTypes.node,
+  const inputId = `TextareaField-${id}`
 
-    /**
-     * The height of the input element.
-     */
-    inputHeight: PropTypes.number,
+  /**
+   * Split the wrapper props from the input props.
+   */
+  const { matchedProps, remainingProps } = splitBoxProps(rest)
 
-    /**
-     * The width of the input width.
-     */
-    inputWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  }
+  return (
+    <FormField
+      marginBottom={24}
+      label={label}
+      isRequired={required}
+      hint={hint}
+      description={description}
+      validationMessage={validationMessage}
+      labelFor={inputId}
+      {...matchedProps}
+    >
+      <Textarea
+        id={inputId}
+        width={inputWidth}
+        height={inputHeight}
+        disabled={disabled}
+        required={required}
+        isInvalid={isInvalid}
+        appearance={appearance}
+        placeholder={placeholder}
+        spellCheck={spellCheck}
+        {...remainingProps}
+      />
+    </FormField>
+  )
+})
 
-  static defaultProps = {
-    /**
-     * The input width should be as wide as the form field.
-     */
-    inputWidth: '100%',
-    inputHeight: 80
-  }
+TextareaField.propTypes = {
+  /**
+   * Composes the Textarea component as the base.
+   */
+  ...Textarea.propTypes,
+  ...FormField.propTypes,
 
-  state = {
-    id: (this.props.id || idCounter++).toString()
-  }
+  /**
+   * The label used above the input element.
+   */
+  label: PropTypes.node.isRequired,
 
-  render() {
-    const {
-      // We are using the id from the state
-      id: unusedId,
+  /**
+   * Whether or not to show an asterix after the label.
+   */
+  required: PropTypes.bool,
 
-      // FormField props
-      hint,
-      label,
-      description,
-      validationMessage,
+  /**
+   * An optional description of the field under the label, above the input element.
+   */
+  description: PropTypes.node,
 
-      // Textarea props
-      inputHeight,
-      inputWidth,
-      disabled,
-      required,
-      isInvalid,
-      appearance,
-      placeholder,
-      spellCheck,
+  /**
+   * An optional hint under the input element.
+   */
+  hint: PropTypes.node,
 
-      // Rest props are spread on the FormField
-      ...props
-    } = this.props
+  /**
+   * If a validation message is passed it is shown under the input element
+   * and above the hint. This is unaffected by `isInvalid`.
+   */
+  validationMessage: PropTypes.node,
 
-    const id = `TextareaField-${this.state.id}`
+  /**
+   * The height of the input element.
+   */
+  inputHeight: PropTypes.number,
 
-    /**
-     * Split the wrapper props from the input props.
-     */
-    const { matchedProps, remainingProps } = splitBoxProps(props)
-
-    return (
-      <FormField
-        marginBottom={24}
-        label={label}
-        isRequired={required}
-        hint={hint}
-        description={description}
-        validationMessage={validationMessage}
-        labelFor={id}
-        {...matchedProps}
-      >
-        <Textarea
-          id={id}
-          width={inputWidth}
-          height={inputHeight}
-          disabled={disabled}
-          required={required}
-          isInvalid={isInvalid}
-          appearance={appearance}
-          placeholder={placeholder}
-          spellCheck={spellCheck}
-          {...remainingProps}
-        />
-      </FormField>
-    )
-  }
+  /**
+   * The width of the input width.
+   */
+  inputWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }
+
+export default TextareaField

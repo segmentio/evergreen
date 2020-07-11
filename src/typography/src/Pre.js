@@ -1,12 +1,14 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import Text from './Text'
 
-export default class Pre extends PureComponent {
-  static propTypes = {
-    ...Text.propTypes
-  }
+const Pre = memo(
+  forwardRef((props, ref) => {
+    return <Text is="pre" marginTop={0} marginBottom={0} {...props} ref={ref} />
+  })
+)
 
-  render() {
-    return <Text is="pre" marginTop={0} marginBottom={0} {...this.props} />
-  }
+Pre.propTypes = {
+  ...Text.propTypes
 }
+
+export default Pre

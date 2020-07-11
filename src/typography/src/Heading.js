@@ -1,5 +1,5 @@
-import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import React, { forwardRef, memo } from 'react'
 import Box from 'ui-box'
 import { useTheme } from '../../theme'
 

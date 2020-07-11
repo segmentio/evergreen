@@ -1,12 +1,14 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import Text from './Text'
 
-export default class Strong extends PureComponent {
-  static propTypes = {
-    ...Text.propTypes
-  }
+const Strong = memo(
+  forwardRef((props, ref) => {
+    return <Text is="strong" fontWeight={600} {...props} ref={ref} />
+  })
+)
 
-  render() {
-    return <Text is="strong" fontWeight={600} {...this.props} />
-  }
+Strong.propTypes = {
+  ...Text.propTypes
 }
+
+export default Strong
