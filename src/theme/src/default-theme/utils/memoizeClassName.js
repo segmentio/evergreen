@@ -1,4 +1,4 @@
-import { css } from 'glamor'
+import { css } from 'emotion'
 
 /**
  * Memoize a function that takes N number of strings as arguments and returns
@@ -7,14 +7,14 @@ import { css } from 'glamor'
  * The key of the cache will be the concatenated string arguments,
  * For example: `primary_success` or `regular`
  *
- * The CSS-in-JS object will be passed to `glamor` and the generated className
+ * The CSS-in-JS object will be passed to `emotion` and the generated className
  * will be used as the value in the cache.
  *
  * Why?
- * Glamor, or any CSS-in-JS solution wil have a build-in cache.
- * However, to get the hash/key of this build-in cache a relatively expensive
+ * Emotion, or any CSS-in-JS solution will have a built-in cache.
+ * However, to get the hash/key of this built-in cache a relatively expensive
  * hashing function needs to run on the CSS-in-JS object.
- * This function removes the need for the build-in cache and acts as much
+ * This function removes the need for the built-in cache and acts as much
  * faster alternative.
  *
  * @param {function} fn — function that return an appearance (object).
@@ -33,7 +33,7 @@ const memoizeClassName = fn => {
     if (memo[key]) return memo[key]
 
     // Create a new entry in the memo with the generated className.
-    memo[key] = css(fn(...args)).toString()
+    memo[key] = css(fn(...args))
 
     // Return the newly generated className.
     return memo[key]

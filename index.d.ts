@@ -3,7 +3,6 @@
 import * as React from 'react'
 import Box, { extractStyles as boxExtractStyles } from 'ui-box'
 import { BoxProps } from 'ui-box/dist/types/box-types'
-import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
 import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition'
 
@@ -1160,7 +1159,7 @@ export interface PositionerProps {
     top: number,
     left: number,
     zIndex: NonNullable<StackProps['value']>,
-    css: StyleAttribute | CSSProperties,
+    css: React.CSSProperties,
     style: {
       transformOrigin: string,
       left: number,

@@ -69,7 +69,7 @@ See these [docs](https://evergreen.segment.com/get-started/theming/) for more in
 
 Evergreen offers easy Server Side Rendering (SSR) and automatic hydration.
 
-Evergreen bundles 2 CSS-in-JS solutions, from glamor and ui-box. To make it super easy to do server side rendering and hydration, Evergreen exposes a `extractStyles()` function that will do SSR for both at once.
+Evergreen bundles 2 CSS-in-JS solutions, from emotion and ui-box. To make it super easy to do server side rendering and hydration, Evergreen exposes a `extractStyles()` function that will do SSR for both at once.
 
 - How to use it with Next.js in the [ssr-next example app](examples/ssr-next).
 - [How to use it with GatsbyJS](https://github.com/segmentio/evergreen/issues/154)
