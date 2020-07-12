@@ -39,14 +39,14 @@ const SelectMenuContent = memo(props => {
     title,
     width,
     height,
-    options,
-    hasTitle,
-    hasFilter,
+    options = [],
+    hasTitle = true,
+    hasFilter = true,
     filterPlaceholder,
     filterIcon,
     close,
     listProps,
-    titleView,
+    titleView = DefaultTitleView,
     detailView,
     emptyView,
     isMultiSelect,
@@ -127,13 +127,6 @@ SelectMenuContent.propTypes = {
    * Node that is displayed instead of options list when there are no options.
    */
   emptyView: PropTypes.node
-}
-
-SelectMenuContent.defaultProps = {
-  options: [],
-  hasTitle: true,
-  hasFilter: true,
-  titleView: DefaultTitleView
 }
 
 export default SelectMenuContent

@@ -45,190 +45,190 @@ const animationStyles = {
   }
 }
 
-const Dialog = memo(props => {
-  const {
-    title,
-    width,
-    intent,
-    isShown,
-    topOffset,
-    sideOffset,
-    hasHeader,
-    header,
-    hasClose,
-    hasFooter,
-    footer,
-    hasCancel,
-    onCloseComplete,
-    onOpenComplete,
-    onCancel,
-    onConfirm,
-    confirmLabel,
-    isConfirmLoading,
-    isConfirmDisabled,
-    cancelLabel,
-    shouldCloseOnOverlayClick,
-    shouldCloseOnEscapePress,
+const Dialog = memo(
+  ({
+    children,
+    cancelLabel = 'Cancel',
+    confirmLabel = 'Confirm',
     containerProps = {},
     contentContainerProps,
-    minHeightContent,
-    preventBodyScrolling,
-    overlayProps,
-    children
-  } = props
+    footer,
+    hasCancel = true,
+    hasClose = true,
+    hasFooter = true,
+    hasHeader = true,
+    header,
+    intent = 'none',
+    isConfirmDisabled = false,
+    isConfirmLoading = false,
+    isShown = false,
+    minHeightContent = 80,
+    onCancel = close => close(),
+    onCloseComplete,
+    onConfirm = close => close(),
+    onOpenComplete,
+    overlayProps = {},
+    preventBodyScrolling = false,
+    shouldCloseOnEscapePress = true,
+    shouldCloseOnOverlayClick = true,
+    sideOffset = '16px',
+    title,
+    topOffset = '12vmin',
+    width = 560
+  }) => {
+    const sideOffsetWithUnit = Number.isInteger(sideOffset)
+      ? `${sideOffset}px`
+      : sideOffset
+    const maxWidth = `calc(100% - ${sideOffsetWithUnit} * 2)`
 
-  const sideOffsetWithUnit = Number.isInteger(sideOffset)
-    ? `${sideOffset}px`
-    : sideOffset
-  const maxWidth = `calc(100% - ${sideOffsetWithUnit} * 2)`
+    const topOffsetWithUnit = Number.isInteger(topOffset)
+      ? `${topOffset}px`
+      : topOffset
+    const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
 
-  const topOffsetWithUnit = Number.isInteger(topOffset)
-    ? `${topOffset}px`
-    : topOffset
-  const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
+    const renderChildren = close => {
+      if (typeof children === 'function') {
+        return children({ close })
+      }
 
-  const renderChildren = close => {
-    if (typeof children === 'function') {
-      return children({ close })
+      if (typeof children === 'string') {
+        return <Paragraph>{children}</Paragraph>
+      }
+
+      return children
     }
 
-    if (typeof children === 'string') {
-      return <Paragraph>{children}</Paragraph>
+    const renderNode = (node, close) => {
+      if (typeof node === 'function') {
+        return node({ close })
+      }
+
+      return node
     }
 
-    return children
-  }
+    const renderHeader = close => {
+      if (!header && !hasHeader) {
+        return undefined
+      }
 
-  const renderNode = (node, close) => {
-    if (typeof node === 'function') {
-      return node({ close })
-    }
-
-    return node
-  }
-
-  const renderHeader = close => {
-    if (!header && !hasHeader) {
-      return undefined
-    }
-
-    return (
-      <Pane
-        padding={16}
-        flexShrink={0}
-        borderBottom="muted"
-        display="flex"
-        alignItems="center"
-      >
-        {header ? (
-          renderNode(header, close)
-        ) : (
-          <>
-            <Heading is="h4" size={600} flex="1">
-              {title}
-            </Heading>
-            {hasClose && (
-              <IconButton
-                appearance="minimal"
-                icon={<CrossIcon />}
-                onClick={() => onCancel(close)}
-              />
-            )}
-          </>
-        )}
-      </Pane>
-    )
-  }
-
-  const renderFooter = close => {
-    if (!footer && !hasFooter) {
-      return undefined
-    }
-
-    return (
-      <Pane borderTop="muted" clearfix>
-        <Pane padding={16} float="right">
-          {footer ? (
-            renderNode(footer, close)
+      return (
+        <Pane
+          padding={16}
+          flexShrink={0}
+          borderBottom="muted"
+          display="flex"
+          alignItems="center"
+        >
+          {header ? (
+            renderNode(header, close)
           ) : (
             <>
-              {/* Cancel should be first to make sure focus gets on it first. */}
-              {hasCancel && (
-                <Button tabIndex={0} onClick={() => onCancel(close)}>
-                  {cancelLabel}
-                </Button>
+              <Heading is="h4" size={600} flex="1">
+                {title}
+              </Heading>
+              {hasClose && (
+                <IconButton
+                  appearance="minimal"
+                  icon={<CrossIcon />}
+                  onClick={() => onCancel(close)}
+                />
               )}
-
-              <Button
-                tabIndex={0}
-                marginLeft={8}
-                appearance="primary"
-                isLoading={isConfirmLoading}
-                disabled={isConfirmDisabled}
-                onClick={() => onConfirm(close)}
-                intent={intent}
-              >
-                {confirmLabel}
-              </Button>
             </>
           )}
         </Pane>
-      </Pane>
+      )
+    }
+
+    const renderFooter = close => {
+      if (!footer && !hasFooter) {
+        return undefined
+      }
+
+      return (
+        <Pane borderTop="muted" clearfix>
+          <Pane padding={16} float="right">
+            {footer ? (
+              renderNode(footer, close)
+            ) : (
+              <>
+                {/* Cancel should be first to make sure focus gets on it first. */}
+                {hasCancel && (
+                  <Button tabIndex={0} onClick={() => onCancel(close)}>
+                    {cancelLabel}
+                  </Button>
+                )}
+
+                <Button
+                  tabIndex={0}
+                  marginLeft={8}
+                  appearance="primary"
+                  isLoading={isConfirmLoading}
+                  disabled={isConfirmDisabled}
+                  onClick={() => onConfirm(close)}
+                  intent={intent}
+                >
+                  {confirmLabel}
+                </Button>
+              </>
+            )}
+          </Pane>
+        </Pane>
+      )
+    }
+
+    return (
+      <Overlay
+        isShown={isShown}
+        shouldCloseOnClick={shouldCloseOnOverlayClick}
+        shouldCloseOnEscapePress={shouldCloseOnEscapePress}
+        onExited={onCloseComplete}
+        onEntered={onOpenComplete}
+        containerProps={{
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          ...overlayProps
+        }}
+        preventBodyScrolling={preventBodyScrolling}
+      >
+        {({ state, close }) => (
+          <Pane
+            role="dialog"
+            backgroundColor="white"
+            elevation={4}
+            borderRadius={8}
+            width={width}
+            maxWidth={maxWidth}
+            maxHeight={maxHeight}
+            marginX={sideOffsetWithUnit}
+            marginY={topOffsetWithUnit}
+            display="flex"
+            flexDirection="column"
+            css={animationStyles}
+            data-state={state}
+            {...containerProps}
+          >
+            {renderHeader(close)}
+
+            <Pane
+              data-state={state}
+              display="flex"
+              overflow="auto"
+              padding={16}
+              flexDirection="column"
+              minHeight={minHeightContent}
+              {...contentContainerProps}
+            >
+              <Pane>{renderChildren(close)}</Pane>
+            </Pane>
+
+            {renderFooter(close)}
+          </Pane>
+        )}
+      </Overlay>
     )
   }
-
-  return (
-    <Overlay
-      isShown={isShown}
-      shouldCloseOnClick={shouldCloseOnOverlayClick}
-      shouldCloseOnEscapePress={shouldCloseOnEscapePress}
-      onExited={onCloseComplete}
-      onEntered={onOpenComplete}
-      containerProps={{
-        display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        ...overlayProps
-      }}
-      preventBodyScrolling={preventBodyScrolling}
-    >
-      {({ state, close }) => (
-        <Pane
-          role="dialog"
-          backgroundColor="white"
-          elevation={4}
-          borderRadius={8}
-          width={width}
-          maxWidth={maxWidth}
-          maxHeight={maxHeight}
-          marginX={sideOffsetWithUnit}
-          marginY={topOffsetWithUnit}
-          display="flex"
-          flexDirection="column"
-          css={animationStyles}
-          data-state={state}
-          {...containerProps}
-        >
-          {renderHeader(close)}
-
-          <Pane
-            data-state={state}
-            display="flex"
-            overflow="auto"
-            padding={16}
-            flexDirection="column"
-            minHeight={minHeightContent}
-            {...contentContainerProps}
-          >
-            <Pane>{renderChildren(close)}</Pane>
-          </Pane>
-
-          {renderFooter(close)}
-        </Pane>
-      )}
-    </Overlay>
-  )
-})
+)
 
 Dialog.propTypes = {
   /**
@@ -240,7 +240,7 @@ Dialog.propTypes = {
   /**
    * The intent of the Dialog. Used for the button.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']).isRequired,
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
 
   /**
    * When true, the dialog is shown.
@@ -392,29 +392,6 @@ Dialog.propTypes = {
    * Props that are passed to the Overlay component.
    */
   overlayProps: PropTypes.object
-}
-
-Dialog.defaultProps = {
-  isShown: false,
-  hasHeader: true,
-  hasClose: true,
-  hasFooter: true,
-  hasCancel: true,
-  intent: 'none',
-  width: 560,
-  topOffset: '12vmin',
-  sideOffset: '16px',
-  minHeightContent: 80,
-  confirmLabel: 'Confirm',
-  isConfirmLoading: false,
-  isConfirmDisabled: false,
-  cancelLabel: 'Cancel',
-  shouldCloseOnOverlayClick: true,
-  shouldCloseOnEscapePress: true,
-  onCancel: close => close(),
-  onConfirm: close => close(),
-  preventBodyScrolling: false,
-  overlayProps: {}
 }
 
 export default Dialog

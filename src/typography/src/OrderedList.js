@@ -12,7 +12,7 @@ const styles = {
 
 const OrderedList = memo(
   forwardRef((props, ref) => {
-    const { children, size, ...rest } = props
+    const { children, size = 400, ...rest } = props
 
     const finalChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {
@@ -40,11 +40,7 @@ OrderedList.propTypes = {
    * Size of the text used in a list item.
    * Can be: 300, 400, 500, 600.
    */
-  size: PropTypes.oneOf([300, 400, 500, 600]).isRequired
-}
-
-OrderedList.defaultProps = {
-  size: 400
+  size: PropTypes.oneOf([300, 400, 500, 600])
 }
 
 export default OrderedList

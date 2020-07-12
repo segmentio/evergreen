@@ -31,19 +31,19 @@ const Button = memo(
     const {
       className,
 
-      intent,
-      height,
-      isActive,
+      intent = 'none',
+      height = 32,
+      isActive = false,
       children,
       disabled,
-      appearance,
+      appearance = 'default',
       isLoading,
 
       // Paddings
       paddingRight,
       paddingLeft,
-      paddingTop,
-      paddingBottom,
+      paddingTop = 0,
+      paddingBottom = 0,
 
       // Icons
       iconBefore,
@@ -132,7 +132,7 @@ Button.propTypes = {
   /**
    * The appearance of the button.
    */
-  appearance: PropTypes.oneOf(['default', 'minimal', 'primary']).isRequired,
+  appearance: PropTypes.oneOf(['default', 'minimal', 'primary']),
 
   /**
    * When true, show a loading spinner before the children.
@@ -167,15 +167,6 @@ Button.propTypes = {
    * Only use if you know what you are doing.
    */
   className: PropTypes.string
-}
-
-Button.defaultProps = {
-  appearance: 'default',
-  height: 32,
-  intent: 'none',
-  isActive: false,
-  paddingBottom: 0,
-  paddingTop: 0
 }
 
 Button.styles = {

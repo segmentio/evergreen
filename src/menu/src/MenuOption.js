@@ -9,10 +9,10 @@ const MenuOption = memo(props => {
   const {
     id,
     children,
-    appearance,
-    onSelect,
+    appearance = 'default',
+    onSelect = () => {},
     secondaryText,
-    isSelected
+    isSelected = false
   } = props
 
   const handleClick = useCallback(e => onSelect(e), [onSelect])
@@ -103,15 +103,7 @@ MenuOption.propTypes = {
   /**
    * The default theme only supports one default appearance.
    */
-  appearance: PropTypes.string.isRequired
-}
-
-MenuOption.defaultProps = {
-  appearance: 'default',
-  isSelected: false,
-  onClick: () => {},
-  onSelect: () => {},
-  onKeyPress: () => {}
+  appearance: PropTypes.string
 }
 
 export default MenuOption
