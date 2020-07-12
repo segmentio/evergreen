@@ -63,198 +63,219 @@ const animationStyles = backgroundColor => ({
 /**
  * Overlay is essentially a wrapper around react-transition-group/Transition
  */
-const Overlay = memo(props => {
-  const { containerProps = {}, isShown, children } = props
-  const theme = useTheme()
-  const [previousActiveElement, setPreviousActiveElement] = useState(null)
-  const [status, setStatus] = useState(isShown ? 'entering' : 'exited')
-  const [shouldExit, setShouldExit] = useState(false)
-  const [containerRef, setContainerRef] = useState(null)
+const Overlay = memo(
+  ({
+    children,
+    containerProps = {},
+    preventBodyScrolling = false,
+    shouldCloseOnClick = true,
+    shouldCloseOnEscapePress = true,
+    onBeforeClose,
+    onExit = NOOP,
+    onExiting = NOOP,
+    onExited = NOOP,
+    onEnter = NOOP,
+    onEntering = NOOP,
+    onEntered = NOOP,
+    isShown,
+    ...props
+  }) => {
+    const theme = useTheme()
+    const [previousActiveElement, setPreviousActiveElement] = useState(null)
+    const [status, setStatus] = useState(isShown ? 'entering' : 'exited')
+    const [containerRef, setContainerRef] = useState(null)
 
-  useEffect(() => {
-    if (isShown) {
+    useEffect(() => {
+      if (isShown) {
+        setStatus('entering')
+      }
+    }, [isShown])
+
+    const close = () => {
+      const shouldClose = safeInvoke(props.onBeforeClose)
+      if (shouldClose !== false) {
+        setStatus('exiting')
+      }
+    }
+
+    const onEsc = event => {
+      if (event.key === 'Escape' && shouldCloseOnEscapePress) {
+        close()
+      }
+    }
+
+    useEffect(() => {
+      if (status === 'entered') {
+        setPreviousActiveElement(document.activeElement)
+        bringFocusInsideOverlay()
+      }
+
+      if (status === 'entering') {
+        document.body.addEventListener('keydown', onEsc, false)
+      }
+
+      if (status === 'exiting') {
+        document.body.removeEventListener('keydown', onEsc, false)
+        bringFocusBackToTarget()
+      }
+
+      return () => {
+        handleBodyScroll(false)
+        document.body.removeEventListener('keydown', onEsc, false)
+      }
+    }, [status])
+
+    /**
+     * Methods borrowed from BlueprintJS
+     * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
+     */
+    const bringFocusInsideOverlay = () => {
+      // Always delay focus manipulation to just before repaint to prevent scroll jumping
+      return requestAnimationFrame(() => {
+        // Container ref may be undefined between component mounting and Portal rendering
+        // activeElement may be undefined in some rare cases in IE
+
+        if (
+          containerRef == null || // eslint-disable-line eqeqeq, no-eq-null
+          document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
+          !isShown
+        ) {
+          return
+        }
+
+        const isFocusOutsideModal = !containerRef.contains(
+          document.activeElement
+        )
+        if (isFocusOutsideModal) {
+          // Element marked autofocus has higher priority than the other clowns
+          const autofocusElement = containerRef.querySelector('[autofocus]')
+          const wrapperElement = containerRef.querySelector('[tabindex]')
+          const buttonElement = containerRef.querySelector('button')
+
+          if (autofocusElement) {
+            autofocusElement.focus()
+          } else if (wrapperElement) {
+            wrapperElement.focus()
+          } else if (buttonElement) {
+            buttonElement.focus()
+          }
+        }
+      })
+    }
+
+    const bringFocusBackToTarget = () => {
+      return requestAnimationFrame(() => {
+        if (
+          previousActiveElement == null || // eslint-disable-line eqeqeq, no-eq-null
+          containerRef == null || // eslint-disable-line eqeqeq, no-eq-null
+          document.activeElement == null // eslint-disable-line eqeqeq, no-eq-null
+        ) {
+          return
+        }
+
+        // Bring back focus on the target.
+        const isFocusInsideModal = containerRef.contains(document.activeElement)
+        if (document.activeElement === document.body || isFocusInsideModal) {
+          previousActiveElement.focus()
+        }
+      })
+    }
+
+    const handleBodyScroll = preventScroll => {
+      if (preventBodyScrolling) {
+        preventBodyScroll(preventScroll)
+      }
+    }
+
+    const handleEnter = (node, isAppearing) => {
+      handleBodyScroll(true)
+      safeInvoke(onEnter, node, isAppearing)
+    }
+
+    const handleEntering = (node, isAppearing) => {
       setStatus('entering')
+      safeInvoke(onEntering, node, isAppearing)
     }
-  }, [isShown])
 
-  const close = () => {
-    const shouldClose = safeInvoke(props.onBeforeClose)
-    if (shouldClose !== false) {
-      setShouldExit(true)
+    const handleEntered = (node, isAppearing) => {
+      setStatus('entered')
+      safeInvoke(onEntered, node, isAppearing)
     }
-  }
 
-  const onEsc = event => {
-    if (event.key === 'Escape' && props.shouldCloseOnEscapePress) {
+    const handleExit = node => {
+      handleBodyScroll(false)
+      safeInvoke(onExit, node)
+    }
+
+    const handleExiting = node => {
+      setStatus('exiting')
+      safeInvoke(onExiting, node)
+    }
+
+    const handleExited = node => {
+      setStatus('exited')
+      safeInvoke(onExited, node)
+    }
+
+    const handleBackdropClick = event => {
+      if (event.target !== event.currentTarget || !shouldCloseOnClick) {
+        return
+      }
+
       close()
     }
-  }
 
-  useEffect(() => {
-    if (status === 'entered') {
-      setPreviousActiveElement(document.activeElement)
-      bringFocusInsideOverlay()
+    if (status === 'exited') {
+      return null
     }
 
-    if (status === 'entering') {
-      document.body.addEventListener('keydown', onEsc, false)
-    }
-
-    if (status === 'exiting') {
-      document.body.removeEventListener('keydown', onEsc, false)
-      bringFocusBackToTarget()
-    }
-
-    return () => {
-      handleBodyScroll(false)
-      document.body.removeEventListener('keydown', onEsc, false)
-    }
-  }, [status])
-
-  /**
-   * Methods borrowed from BlueprintJS
-   * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
-   */
-  const bringFocusInsideOverlay = () => {
-    // Always delay focus manipulation to just before repaint to prevent scroll jumping
-    return requestAnimationFrame(() => {
-      // Container ref may be undefined between component mounting and Portal rendering
-      // activeElement may be undefined in some rare cases in IE
-
-      if (
-        containerRef == null || // eslint-disable-line eqeqeq, no-eq-null
-        document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
-        !isShown
-      ) {
-        return
-      }
-
-      const isFocusOutsideModal = !containerRef.contains(document.activeElement)
-      if (isFocusOutsideModal) {
-        // Element marked autofocus has higher priority than the other clowns
-        const autofocusElement = containerRef.querySelector('[autofocus]')
-        const wrapperElement = containerRef.querySelector('[tabindex]')
-        const buttonElement = containerRef.querySelector('button')
-
-        if (autofocusElement) {
-          autofocusElement.focus()
-        } else if (wrapperElement) {
-          wrapperElement.focus()
-        } else if (buttonElement) {
-          buttonElement.focus()
-        }
-      }
-    })
+    return (
+      <Stack value={StackingOrder.OVERLAY}>
+        {zIndex => (
+          <Portal>
+            <Transition
+              appear
+              unmountOnExit
+              timeout={ANIMATION_DURATION}
+              in={isShown && status !== 'exiting'}
+              onExit={handleExit}
+              onExiting={handleExiting}
+              onExited={handleExited}
+              onEnter={handleEnter}
+              onEntering={handleEntering}
+              onEntered={handleEntered}
+            >
+              {state => (
+                <Box
+                  onClick={handleBackdropClick}
+                  innerRef={setContainerRef}
+                  position="fixed"
+                  top={0}
+                  left={0}
+                  right={0}
+                  bottom={0}
+                  zIndex={zIndex}
+                  data-state={state}
+                  {...containerProps}
+                  className={cx(
+                    containerProps.className,
+                    css(
+                      animationStyles(theme.overlayBackgroundColor)
+                    ).toString()
+                  )}
+                >
+                  {typeof children === 'function'
+                    ? children({ state, close })
+                    : children}
+                </Box>
+              )}
+            </Transition>
+          </Portal>
+        )}
+      </Stack>
+    )
   }
-
-  const bringFocusBackToTarget = () => {
-    return requestAnimationFrame(() => {
-      if (
-        previousActiveElement == null || // eslint-disable-line eqeqeq, no-eq-null
-        containerRef == null || // eslint-disable-line eqeqeq, no-eq-null
-        document.activeElement == null // eslint-disable-line eqeqeq, no-eq-null
-      ) {
-        return
-      }
-
-      // Bring back focus on the target.
-      const isFocusInsideModal = containerRef.contains(document.activeElement)
-      if (document.activeElement === document.body || isFocusInsideModal) {
-        previousActiveElement.focus()
-      }
-    })
-  }
-
-  const handleBodyScroll = preventScroll => {
-    if (props.preventBodyScrolling) {
-      preventBodyScroll(preventScroll)
-    }
-  }
-
-  const handleEnter = (node, isAppearing) => {
-    handleBodyScroll(true)
-    safeInvoke(props.onEnter, node, isAppearing)
-  }
-
-  const handleEntering = (node, isAppearing) => {
-    setStatus('entering')
-    safeInvoke(props.onEntering, node, isAppearing)
-  }
-
-  const handleEntered = (node, isAppearing) => {
-    setStatus('entered')
-    safeInvoke(props.onEntered, node, isAppearing)
-  }
-
-  const handleExit = node => {
-    handleBodyScroll(false)
-    safeInvoke(props.onExit, node)
-  }
-
-  const handleExiting = node => {
-    setStatus('exiting')
-    safeInvoke(props.onExiting, node)
-  }
-
-  const handleExited = node => {
-    setStatus('exited')
-    safeInvoke(props.onExited, node)
-  }
-
-  const handleBackdropClick = event => {
-    if (event.target !== event.currentTarget || !props.shouldCloseOnClick) {
-      return
-    }
-
-    close()
-  }
-
-  if (status === 'exited') return null
-
-  return (
-    <Stack value={StackingOrder.OVERLAY}>
-      {zIndex => (
-        <Portal>
-          <Transition
-            appear
-            unmountOnExit
-            timeout={ANIMATION_DURATION}
-            in={isShown && !shouldExit}
-            onExit={handleExit}
-            onExiting={handleExiting}
-            onExited={handleExited}
-            onEnter={handleEnter}
-            onEntering={handleEntering}
-            onEntered={handleEntered}
-          >
-            {state => (
-              <Box
-                onClick={handleBackdropClick}
-                innerRef={setContainerRef}
-                position="fixed"
-                top={0}
-                left={0}
-                right={0}
-                bottom={0}
-                zIndex={zIndex}
-                data-state={state}
-                {...containerProps}
-                className={cx(
-                  containerProps.className,
-                  css(animationStyles(theme.overlayBackgroundColor)).toString()
-                )}
-              >
-                {typeof children === 'function'
-                  ? children({ state, close })
-                  : children}
-              </Box>
-            )}
-          </Transition>
-        </Portal>
-      )}
-    </Stack>
-  )
-})
+)
 
 Overlay.propTypes = {
   /**
@@ -339,19 +360,6 @@ Overlay.propTypes = {
    * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
    */
   onEntered: PropTypes.func
-}
-
-Overlay.defaultProps = {
-  onHide: NOOP,
-  shouldCloseOnClick: true,
-  shouldCloseOnEscapePress: true,
-  preventBodyScrolling: false,
-  onExit: NOOP,
-  onExiting: NOOP,
-  onExited: NOOP,
-  onEnter: NOOP,
-  onEntering: NOOP,
-  onEntered: NOOP
 }
 
 export default Overlay
