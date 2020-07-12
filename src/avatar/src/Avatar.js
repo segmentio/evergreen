@@ -1,5 +1,5 @@
 import React, { useState, memo, forwardRef } from 'react'
-import { css } from 'glamor'
+import { css } from 'emotion'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Image } from '../../image'
@@ -19,7 +19,7 @@ const initialsStyleClass = css({
   alignItems: 'center',
   justifyContent: 'center',
   lineHeight: 1
-}).toString()
+})
 
 function getColorProps({ isSolid, theme, color, name, propsHashValue }) {
   if (color === 'automatic') {

@@ -11,7 +11,7 @@ test.serial('returns styles for a Box', t => {
   t.snapshot(result)
   t.truthy(result.css)
   t.truthy(result.cache.uiBoxCache)
-  t.truthy(result.cache.glamorIds)
+  t.truthy(result.cache.emotionIds)
   t.truthy(result.hydrationScript)
 })
 

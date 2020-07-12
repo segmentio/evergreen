@@ -1,5 +1,5 @@
 import React, { memo, useState, useEffect, useCallback } from 'react'
-import { css } from 'glamor'
+import { keyframes } from 'emotion'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import { Pane, Card } from '../../layers'
@@ -18,7 +18,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const openAnimation = css.keyframes('openAnimation', {
+const openAnimation = keyframes({
   from: {
     transform: 'translateY(100%)'
   },
@@ -27,7 +27,7 @@ const openAnimation = css.keyframes('openAnimation', {
   }
 })
 
-const closeAnimation = css.keyframes('closeAnimation', {
+const closeAnimation = keyframes({
   from: {
     transform: 'scale(1)',
     opacity: 1

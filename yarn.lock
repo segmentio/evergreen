@@ -3109,6 +3109,11 @@ buffer-from@^1.0.0:
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
   integrity sha512-MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO/k9V3hjVUF/zwW7KBVdSK4gIt/bzwS9MbR5qob+F5jusZsb0YQK2A==
 
+buffer-from@~0.1.1:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-0.1.2.tgz#15f4b9bcef012044df31142c14333caf6e0260d0"
+  integrity sha512-RiWIenusJsmI2KcvqQABB83tLxCByE3upSP8QU3rJDMVFGPWLvPQJt/O1Su9moRWeH7d+Q2HYb68f6+v+tw2vg==
+
 buffer-xor@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/buffer-xor/-/buffer-xor-1.0.3.tgz#26e61ed1422fb70dd42e6e36729ed51d855fe8d9"
@@ -3955,6 +3960,16 @@ create-ecdh@^4.0.0:
     bn.js "^4.1.0"
     elliptic "^6.0.0"
 
+create-emotion-server@10.0.27:
+  version "10.0.27"
+  resolved "https://registry.yarnpkg.com/create-emotion-server/-/create-emotion-server-10.0.27.tgz#24b135d9ef3bca32b6812c0b670feb675edd17e3"
+  integrity sha512-1EbZgdjiho9ue1BSTpAez8SIdfbTXomtz0bg+LPOEvf/5OV7xqCGJaoSCDCB+y7kZ73hwoEhLsoPmqKSGIQMXg==
+  dependencies:
+    "@emotion/utils" "0.11.3"
+    html-tokenize "^2.0.0"
+    multipipe "^1.0.2"
+    through "^2.3.8"
+
 create-emotion@^10.0.27:
   version "10.0.27"
   resolved "https://registry.yarnpkg.com/create-emotion/-/create-emotion-10.0.27.tgz#cb4fa2db750f6ca6f9a001a33fbf1f6c46789503"
@@ -4647,6 +4662,13 @@ downshift@^5.2.0:
     prop-types "^15.7.2"
     react-is "^16.13.1"
 
+duplexer2@^0.1.2:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/duplexer2/-/duplexer2-0.1.4.tgz#8b12dab878c0d69e3e7891051662a32fc6bddcc1"
+  integrity sha1-ixLauHjA1p4+eJEFFmKjL8a93ME=
+  dependencies:
+    readable-stream "^2.0.2"
+
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -4731,6 +4753,13 @@ emojis-list@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-3.0.0.tgz#5570662046ad29e2e916e71aae260abdff4f6a78"
   integrity sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==
+
+emotion-server@^10.0.27:
+  version "10.0.27"
+  resolved "https://registry.yarnpkg.com/emotion-server/-/emotion-server-10.0.27.tgz#ea654342fdf9f5d8cd1793f5a6594159485a3806"
+  integrity sha512-ypISBMkgZD7dgP6Y0QhZlqazxffpowcEWlZHKLADVazdxY5iXjZbd1UvovdpfDRjbj4EBxwKkltog3NzuSBavA==
+  dependencies:
+    create-emotion-server "10.0.27"
 
 emotion-theming@^10.0.19:
   version "10.0.27"
@@ -6422,6 +6451,17 @@ html-minifier-terser@^5.0.1:
     param-case "^3.0.3"
     relateurl "^0.2.7"
     terser "^4.6.3"
+
+html-tokenize@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/html-tokenize/-/html-tokenize-2.0.1.tgz#c3b2ea6e2837d4f8c06693393e9d2a12c960be5f"
+  integrity sha512-QY6S+hZ0f5m1WT8WffYN+Hg+xm/w5I8XeUcAq/ZYP5wVC8xbKi4Whhru3FtrAebD5EhBW8rmFzkDI6eCAuFe2w==
+  dependencies:
+    buffer-from "~0.1.1"
+    inherits "~2.0.1"
+    minimist "~1.2.5"
+    readable-stream "~1.0.27-1"
+    through2 "~0.4.1"
 
 html-webpack-plugin@^4.0.0-beta.2:
   version "4.3.0"
@@ -8314,7 +8354,7 @@ minimist-options@^3.0.1:
     arrify "^1.0.1"
     is-plain-obj "^1.1.0"
 
-minimist@^1.1.3, minimist@^1.2.0, minimist@^1.2.5:
+minimist@^1.1.3, minimist@^1.2.0, minimist@^1.2.5, minimist@~1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
@@ -8443,6 +8483,14 @@ multimatch@^4.0.0:
     array-union "^2.1.0"
     arrify "^2.0.1"
     minimatch "^3.0.4"
+
+multipipe@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/multipipe/-/multipipe-1.0.2.tgz#cc13efd833c9cda99f224f868461b8e1a3fd939d"
+  integrity sha1-zBPv2DPJzamfIk+GhGG44aP9k50=
+  dependencies:
+    duplexer2 "^0.1.2"
+    object-assign "^4.1.0"
 
 mute-stream@0.0.7:
   version "0.0.7"
@@ -8764,6 +8812,11 @@ object-keys@^1.0.11, object-keys@^1.0.12, object-keys@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
+
+object-keys@~0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-0.4.0.tgz#28a6aae7428dd2c3a92f3d95f21335dd204e0336"
+  integrity sha1-KKaq50KN0sOpLz2V8hM13SBOAzY=
 
 object-visit@^1.0.0:
   version "1.0.1"
@@ -10423,6 +10476,16 @@ readable-stream@^3.1.1:
     string_decoder "^1.1.1"
     util-deprecate "^1.0.1"
 
+readable-stream@~1.0.17, readable-stream@~1.0.27-1:
+  version "1.0.34"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-1.0.34.tgz#125820e34bc842d2f2aaafafe4c2916ee32c157c"
+  integrity sha1-Elgg40vIQtLyqq+v5MKRbuMsFXw=
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.1"
+    isarray "0.0.1"
+    string_decoder "~0.10.x"
+
 readdirp@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/readdirp/-/readdirp-2.2.1.tgz#0e87622a3325aa33e892285caf8b4e846529a525"
@@ -11581,6 +11644,11 @@ string_decoder@^1.0.0, string_decoder@^1.1.1:
   dependencies:
     safe-buffer "~5.2.0"
 
+string_decoder@~0.10.x:
+  version "0.10.31"
+  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
+  integrity sha1-YuIDvEF2bGwoyfyEMB2rHFMQ+pQ=
+
 string_decoder@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.1.1.tgz#9cf1611ba62685d7030ae9e4ba34149c3af03fc8"
@@ -11898,6 +11966,14 @@ through2@^2.0.0:
   dependencies:
     readable-stream "~2.3.6"
     xtend "~4.0.1"
+
+through2@~0.4.1:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/through2/-/through2-0.4.2.tgz#dbf5866031151ec8352bb6c4db64a2292a840b9b"
+  integrity sha1-2/WGYDEVHsg1K7bE22SiKSqEC5s=
+  dependencies:
+    readable-stream "~1.0.17"
+    xtend "~2.1.1"
 
 through@2, through@^2.3.6, through@^2.3.8:
   version "2.3.8"
@@ -12798,6 +12874,13 @@ xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
+
+xtend@~2.1.1:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/xtend/-/xtend-2.1.2.tgz#6efecc2a4dad8e6962c4901b337ce7ba87b5d28b"
+  integrity sha1-bv7MKk2tjmlixJAbM3znuoe10os=
+  dependencies:
+    object-keys "~0.4.0"
 
 "y18n@^3.2.1 || ^4.0.0", y18n@^4.0.0:
   version "4.0.0"

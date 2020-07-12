@@ -1,6 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
-import { css as glamorCss } from 'glamor'
+import { css as emotionCss } from 'emotion'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useTheme } from '../../theme'
@@ -33,7 +33,7 @@ const Text = memo(
         fontFamily={theme.getFontFamily(fontFamily)}
         marginTop={finalMarginTop}
         {...textStyle}
-        className={cx(className, css ? glamorCss(css).toString() : undefined)}
+        className={cx(className, css ? emotionCss(css) : undefined)}
         {...restProps}
       />
     )

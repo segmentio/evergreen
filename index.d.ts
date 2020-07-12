@@ -2162,7 +2162,7 @@ export function extractStyles(options?: { nonce?: React.ScriptHTMLAttributes<'sc
   css: string
   cache: {
     uiBoxCache: ReturnType<typeof boxExtractStyles>['cache'],
-    glamorIds: string[],
+    emotionIds: string[],
   }
   hydrationScript: JSX.Element
 }

@@ -1,5 +1,5 @@
 import React, { memo, forwardRef } from 'react'
-import { css } from 'glamor'
+import { css } from 'emotion'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
 import { useTheme } from '../../theme'
@@ -11,7 +11,7 @@ const animationEasing = {
 const handleStyleClass = css({
   backgroundColor: '#fff',
   borderRadius: 9999
-}).toString()
+})
 
 const iconContainerStyleClass = css({
   transition: `all 500ms ${animationEasing.spring}`,
@@ -25,14 +25,14 @@ const iconContainerStyleClass = css({
     opacity: 1,
     transform: 'scale(1)'
   },
-  '> svg': {
+  '& > svg': {
     transition: `all 500ms ${animationEasing.spring}`,
     transform: 'scale(0)'
   },
   '&[data-checked="true"] > svg': {
     transform: 'scale(1)'
   }
-}).toString()
+})
 
 const handleContainerStyleClass = css({
   transition: 'transform 200ms ease-in-out',
@@ -40,7 +40,7 @@ const handleContainerStyleClass = css({
   '&[data-checked="true"]': {
     transform: 'translateX(50%)'
   }
-}).toString()
+})
 
 const CheckIcon = memo(({ size, fill = 'currentColor', ...props }) => (
   <svg width={10} height={size} viewBox="0 0 10 7" {...props}>

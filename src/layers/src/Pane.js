@@ -1,6 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
-import { css as glamorCss } from 'glamor'
+import { css as emotionCss } from 'emotion'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useTheme } from '../../theme'
@@ -101,11 +101,11 @@ const Pane = memo(
 
     const className = cx(
       props.className,
-      glamorCss({
+      emotionCss({
         ...css,
         ...hoverElevationStyle,
         ...activeElevationStyle
-      }).toString()
+      })
     )
 
     return (

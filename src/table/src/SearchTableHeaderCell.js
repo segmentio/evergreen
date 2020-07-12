@@ -1,4 +1,4 @@
-import { css } from 'glamor'
+import { css } from 'emotion'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
@@ -19,7 +19,7 @@ const invisibleInputClass = css({
   '&::placeholder': {
     color: `rgba(67, 90, 111, 0.7)`
   }
-}).toString()
+})
 
 export default class SearchTableHeaderCell extends PureComponent {
   static propTypes = {

@@ -1,16 +1,16 @@
 import React from 'react'
 import { extractStyles as boxExtractStyles } from 'ui-box'
-import { renderStatic } from 'glamor/server'
+import { extractCritical } from 'emotion-server'
 
 export default function extractStyles(options = {}) {
   const { styles, cache } = boxExtractStyles()
-  const { ids, css } = renderStatic(
-    () => 'let glamor believe there is some html here'
+  const { ids, css } = extractCritical(
+    'let emotion believe there is some html here'
   )
 
   const evergreenCache = {
     uiBoxCache: cache,
-    glamorIds: ids
+    emotionIds: ids
   }
 
   const scriptProps = {

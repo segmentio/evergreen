@@ -1,5 +1,5 @@
 import { hydrate as boxHydrate } from 'ui-box'
-import { rehydrate } from 'glamor'
+import { hydrate as emotionHydrate } from 'emotion'
 
 /**
  * You shouldn't have to manually run this.
@@ -10,8 +10,8 @@ export function hydrate(hydration) {
     boxHydrate(hydration.uiBoxCache)
   }
 
-  if (hydration.glamorIds) {
-    rehydrate(hydration.glamorIds)
+  if (hydration.emotionIds) {
+    emotionHydrate(hydration.emotionIds)
   }
 }
 

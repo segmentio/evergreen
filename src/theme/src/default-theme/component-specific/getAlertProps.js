@@ -1,18 +1,19 @@
-import { css } from 'glamor'
+import { css } from 'emotion'
 import scales from '../foundational-styles/scales'
 import colors from '../foundational-styles/colors'
 
-const getTrimStyle = intent => ({
-  '&:before': {
-    content: '""',
-    width: 3,
-    height: '100%',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    backgroundColor: colors.intent[intent]
-  }
-})
+const getTrimClassName = intent =>
+  css({
+    '&:before': {
+      content: '""',
+      width: 3,
+      height: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      backgroundColor: colors.intent[intent]
+    }
+  })
 
 /**
  * Get the themed props for the Alert component.
@@ -23,7 +24,7 @@ const getTrimStyle = intent => ({
  * @return {Object} { className, ...themedProps }
  */
 const getAlertProps = ({ appearance, intent, hasTrim }) => {
-  const trimClassName = hasTrim ? css(getTrimStyle(intent)).toString() : ''
+  const trimClassName = hasTrim ? getTrimClassName(intent) : undefined
 
   switch (appearance) {
     case 'card':

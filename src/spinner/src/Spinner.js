@@ -1,10 +1,10 @@
 import React, { useState, useEffect, forwardRef, memo } from 'react'
-import { css } from 'glamor'
+import { css, keyframes } from 'emotion'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useTheme } from '../../theme'
 
-const loadingKeyframes = css.keyframes('loading', {
+const loadingKeyframes = keyframes({
   '0%': {
     transform: 'rotate(0)'
   },
@@ -13,7 +13,7 @@ const loadingKeyframes = css.keyframes('loading', {
   }
 })
 
-const loadingCircleKeyframes = css.keyframes('loading-circle', {
+const loadingCircleKeyframes = keyframes({
   '0%': {
     strokeDashoffset: 600
   },
@@ -24,7 +24,7 @@ const loadingCircleKeyframes = css.keyframes('loading-circle', {
 
 const outerClass = css({
   animation: `${loadingKeyframes} 2s linear infinite`
-}).toString()
+})
 
 const innerClass = color =>
   css({
@@ -36,7 +36,7 @@ const innerClass = color =>
     animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
     stroke: color,
     fill: 'transparent'
-  }).toString()
+  })
 
 const Spinner = memo(
   forwardRef(({ delay = 0, size = 40, ...props }, ref) => {

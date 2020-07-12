@@ -1,5 +1,5 @@
 import React from 'react'
-import { css } from 'glamor'
+import { css, keyframes } from 'emotion'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import Alert from '../../alert/src/Alert'
@@ -12,7 +12,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const openAnimation = css.keyframes('openAnimation', {
+const openAnimation = keyframes({
   from: {
     opacity: 0,
     transform: 'translateY(-120%)'
@@ -22,7 +22,7 @@ const openAnimation = css.keyframes('openAnimation', {
   }
 })
 
-const closeAnimation = css.keyframes('closeAnimation', {
+const closeAnimation = keyframes({
   from: {
     transform: 'scale(1)',
     opacity: 1

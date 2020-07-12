@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react'
 import cx from 'classnames'
-import { css as glamorCss } from 'glamor'
+import { css as emotionCss } from 'emotion'
 import PropTypes from 'prop-types'
 import { Positioner } from '../../positioner'
 import { Tooltip } from '../../tooltip'
@@ -248,7 +248,7 @@ const Popover = memo(
             {...statelessProps}
             className={cx(
               statelessProps.className,
-              glamorCss(css, style, statelessProps.style).toString()
+              emotionCss(css, style, statelessProps.style)
             )}
             // Overwrite `statelessProps.style` since we are including it via className
             style={undefined}

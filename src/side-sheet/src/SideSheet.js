@@ -1,5 +1,5 @@
 import React, { memo, forwardRef } from 'react'
-import { css } from 'glamor'
+import { keyframes } from 'emotion'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
@@ -74,11 +74,11 @@ const animationStylesClass = {
   [Position.LEFT]: {
     transform: `translateX(-100%)`,
     ...withAnimations(
-      css.keyframes('anchoredLeftSlideInAnimation', {
+      keyframes({
         from: { transform: `translateX(-100%)` },
         to: { transform: `translateX(0)` }
       }),
-      css.keyframes('anchoredLeftSlideOutAnimation', {
+      keyframes({
         from: { transform: `translateX(0)` },
         to: { transform: `translateX(-100%)` }
       })
@@ -87,11 +87,11 @@ const animationStylesClass = {
   [Position.RIGHT]: {
     transform: `translateX(100%)`,
     ...withAnimations(
-      css.keyframes('anchoredRightSlideInAnimation', {
+      keyframes({
         from: { transform: `translateX(100%)` },
         to: { transform: `translateX(0)` }
       }),
-      css.keyframes('anchoredRightSlideOutAnimation', {
+      keyframes({
         from: { transform: `translateX(0)` },
         to: { transform: `translateX(100%)` }
       })
@@ -100,11 +100,11 @@ const animationStylesClass = {
   [Position.TOP]: {
     transform: `translateY(-100%)`,
     ...withAnimations(
-      css.keyframes('anchoredTopSlideInAnimation', {
+      keyframes({
         from: { transform: `translateY(-100%)` },
         to: { transform: `translateY(0)` }
       }),
-      css.keyframes('anchoredTopSlideOutAnimation', {
+      keyframes({
         from: { transform: `translateY(0)` },
         to: { transform: `translateY(-100%)` }
       })
@@ -113,11 +113,11 @@ const animationStylesClass = {
   [Position.BOTTOM]: {
     transform: `translateY(100%)`,
     ...withAnimations(
-      css.keyframes('anchoredBottomSlideInAnimation', {
+      keyframes({
         from: { transform: `translateY(100%)` },
         to: { transform: `translateY(0)` }
       }),
-      css.keyframes('anchoredBottomSlideOutAnimation', {
+      keyframes({
         from: { transform: `translateY(0)` },
         to: { transform: `translateY(100%)` }
       })

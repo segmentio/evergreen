@@ -80,7 +80,7 @@ const Button = memo(
         marginTop={0} // Removes weird margins in Safari
         marginBottom={0} // Removes weird margins in Safari
         size={textSize}
-        color={null} // Prevent the Text color overriding the glamor appearanceStyle color
+        color={null} // Prevent the Text color overriding the emotion css appearanceStyle color
         height={height}
         lineHeight={`${height}px`}
         {...(isActive ? { 'data-active': true } : {})}

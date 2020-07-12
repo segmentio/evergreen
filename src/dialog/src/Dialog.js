@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { css } from 'glamor'
+import { keyframes } from 'emotion'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Paragraph, Heading } from '../../typography'
@@ -14,7 +14,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 200
 
-const openAnimation = css.keyframes('openAnimation', {
+const openAnimation = keyframes({
   from: {
     transform: 'scale(0.8)',
     opacity: 0
@@ -25,7 +25,7 @@ const openAnimation = css.keyframes('openAnimation', {
   }
 })
 
-const closeAnimation = css.keyframes('closeAnimation', {
+const closeAnimation = keyframes({
   from: {
     transform: 'scale(1)',
     opacity: 1

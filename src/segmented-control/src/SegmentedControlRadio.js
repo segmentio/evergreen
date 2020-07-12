@@ -1,7 +1,7 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { css } from 'glamor'
+import { css } from 'emotion'
 import cx from 'classnames'
 import { Text } from '../../typography'
 import { useTheme } from '../../theme'
@@ -20,17 +20,17 @@ const wrapperClass = css({
   flex: 1,
   cursor: 'pointer',
   marginLeft: '-1px',
-  [`:first-child .${labelClass}`]: {
+  [`&:first-child .${labelClass}`]: {
     borderTopLeftRadius: 3,
     borderBottomLeftRadius: 3
   },
-  [`:last-child .${labelClass}`]: {
+  [`&:last-child .${labelClass}`]: {
     borderTopRightRadius: 3,
     borderBottomRightRadius: 3
   }
 })
 
-const offscreenCss = css({
+const offscreenClass = css({
   overflow: 'hidden',
   position: 'absolute',
   height: '1px',
@@ -66,7 +66,7 @@ const SegmentedControlRadio = memo(
     return (
       <Box
         innerRef={ref}
-        className={cx(wrapperClass.toString(), themedClassName)}
+        className={cx(wrapperClass, themedClassName)}
         data-active={checked}
         {...(isFirstItem
           ? {
@@ -84,7 +84,7 @@ const SegmentedControlRadio = memo(
         <input
           type="radio"
           id={id}
-          className={`${offscreenCss}`}
+          className={offscreenClass}
           name={name}
           value={value}
           checked={checked}
@@ -97,7 +97,7 @@ const SegmentedControlRadio = memo(
           htmlFor={id}
           fontWeight={500}
           size={textSize}
-          className={`${labelClass}`}
+          className={labelClass}
           disabled={disabled}
         >
           {label}

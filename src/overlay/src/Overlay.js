@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react'
 import cx from 'classnames'
-import { css } from 'glamor'
+import { css, keyframes } from 'emotion'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import Box from 'ui-box'
@@ -23,7 +23,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const fadeInAnimation = css.keyframes('fadeInAnimation', {
+const fadeInAnimation = keyframes({
   from: {
     opacity: 0
   },
@@ -32,7 +32,7 @@ const fadeInAnimation = css.keyframes('fadeInAnimation', {
   }
 })
 
-const fadeOutAnimation = css.keyframes('fadeOutAnimation', {
+const fadeOutAnimation = keyframes({
   from: {
     opacity: 1
   },
@@ -41,24 +41,25 @@ const fadeOutAnimation = css.keyframes('fadeOutAnimation', {
   }
 })
 
-const animationStyles = backgroundColor => ({
-  '&::before': {
-    backgroundColor,
-    left: 0,
-    top: 0,
-    position: 'fixed',
-    display: 'block',
-    width: '100%',
-    height: '100%',
-    content: '" "'
-  },
-  '&[data-state="entering"]::before, &[data-state="entered"]::before': {
-    animation: `${fadeInAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
-  },
-  '&[data-state="exiting"]::before, &[data-state="exited"]::before': {
-    animation: `${fadeOutAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
-  }
-})
+const animationStyles = backgroundColor =>
+  css({
+    '&::before': {
+      backgroundColor,
+      left: 0,
+      top: 0,
+      position: 'fixed',
+      display: 'block',
+      width: '100%',
+      height: '100%',
+      content: '" "'
+    },
+    '&[data-state="entering"]::before, &[data-state="entered"]::before': {
+      animation: `${fadeInAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
+    },
+    '&[data-state="exiting"]::before, &[data-state="exited"]::before': {
+      animation: `${fadeOutAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
+    }
+  })
 
 /**
  * Overlay is essentially a wrapper around react-transition-group/Transition
@@ -259,9 +260,7 @@ const Overlay = memo(
                   {...containerProps}
                   className={cx(
                     containerProps.className,
-                    css(
-                      animationStyles(theme.overlayBackgroundColor)
-                    ).toString()
+                    animationStyles(theme.overlayBackgroundColor)
                   )}
                 >
                   {typeof children === 'function'

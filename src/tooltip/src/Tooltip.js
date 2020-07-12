@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import { css as glamorCss } from 'glamor'
+import { css as emotionCss } from 'emotion'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
@@ -217,7 +217,7 @@ export default class Tooltip extends PureComponent {
             {...statelessProps}
             className={cx(
               statelessProps.className,
-              css ? glamorCss(css).toString() : undefined
+              css ? emotionCss(css) : undefined
             )}
           >
             {content}
