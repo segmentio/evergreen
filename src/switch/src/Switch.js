@@ -62,12 +62,12 @@ const Switch = memo(
     const {
       id,
       name,
-      height,
+      height = 16,
       checked,
-      onChange,
-      disabled,
-      appearance,
-      hasCheckIcon,
+      onChange = () => {},
+      disabled = false,
+      appearance = 'default',
+      hasCheckIcon = true,
       defaultChecked,
       ...rest
     } = props
@@ -176,7 +176,7 @@ Switch.propTypes = {
    * The appearance of the checkbox.
    * The default theme only comes with a default style.
    */
-  appearance: PropTypes.string.isRequired,
+  appearance: PropTypes.string,
 
   /**
    * When true, the switch has a check icon.
@@ -188,14 +188,6 @@ Switch.propTypes = {
    * This is for uncontrolled usage.
    */
   defaultChecked: PropTypes.bool
-}
-
-Switch.defaultProps = {
-  height: 16,
-  onChange: () => {},
-  appearance: 'default',
-  hasCheckIcon: true,
-  disabled: false
 }
 
 export default Switch

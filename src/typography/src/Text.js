@@ -11,9 +11,9 @@ const Text = memo(
     const {
       className,
       css,
-      size,
-      color,
-      fontFamily,
+      size = 400,
+      color = 'default',
+      fontFamily = 'ui',
       marginTop,
       ...restProps
     } = props
@@ -57,12 +57,6 @@ Text.propTypes = {
    * Can be: `ui`, `display` or `mono` or a custom font family.
    */
   fontFamily: PropTypes.string
-}
-
-Text.defaultProps = {
-  size: 400,
-  color: 'default',
-  fontFamily: 'ui'
 }
 
 export default Text

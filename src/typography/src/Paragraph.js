@@ -6,7 +6,13 @@ import { useTheme } from '../../theme'
 const Paragraph = memo(
   forwardRef((props, ref) => {
     const theme = useTheme()
-    const { size, color, fontFamily, marginTop, ...restProps } = props
+    const {
+      size = 400,
+      color = 'default',
+      fontFamily = 'ui',
+      marginTop,
+      ...restProps
+    } = props
 
     const {
       marginTop: defaultMarginTop,
@@ -41,19 +47,13 @@ Paragraph.propTypes = {
    * Size of the text style.
    * Can be: 300, 400, 500.
    */
-  size: PropTypes.oneOf([300, 400, 500]).isRequired,
+  size: PropTypes.oneOf([300, 400, 500]),
 
   /**
    * Font family.
    * Can be: `ui`, `display` or `mono` or a custom font family.
    */
-  fontFamily: PropTypes.string.isRequired
-}
-
-Paragraph.defaultProps = {
-  size: 400,
-  color: 'default',
-  fontFamily: 'ui'
+  fontFamily: PropTypes.string
 }
 
 export default Paragraph

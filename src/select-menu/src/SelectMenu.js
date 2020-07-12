@@ -40,23 +40,23 @@ const SelectMenu = memo(
   forwardRef((props, ref) => {
     const {
       title,
-      width,
-      height,
+      width = 240,
+      height = 248,
       options,
-      onSelect,
-      onDeselect,
+      onSelect = () => {},
+      onDeselect = () => {},
       onFilterChange,
       selected,
-      position,
+      position = Position.BOTTOM_LEFT,
       hasTitle,
       hasFilter,
-      filterPlaceholder,
-      filterIcon,
+      filterPlaceholder = 'Filter...',
+      filterIcon = <SearchIcon />,
       detailView,
       emptyView,
       titleView,
-      isMultiSelect,
-      closeOnSelect,
+      isMultiSelect = false,
+      closeOnSelect = false,
       ...rest
     } = props
 
@@ -199,18 +199,6 @@ SelectMenu.propTypes = {
    * When true, menu closes on option selection.
    */
   closeOnSelect: PropTypes.bool
-}
-
-SelectMenu.defaultProps = {
-  onSelect: () => {},
-  onDeselect: () => {},
-  width: 240,
-  height: 248,
-  position: Position.BOTTOM_LEFT,
-  isMultiSelect: false,
-  filterPlaceholder: 'Filter...',
-  filterIcon: <SearchIcon />,
-  closeOnSelect: false
 }
 
 export default SelectMenu

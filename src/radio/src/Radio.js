@@ -22,13 +22,13 @@ const Radio = memo(
       name,
       label,
       disabled,
-      isInvalid,
+      isInvalid = false,
       checked,
-      onChange,
+      onChange = () => {},
       value,
-      size,
-      isRequired,
-      appearance,
+      size = 12,
+      isRequired = false,
+      appearance = 'default',
       ...rest
     } = props
 
@@ -141,27 +141,19 @@ Radio.propTypes = {
   /**
    * When true, the radio get the required attribute.
    */
-  isRequired: PropTypes.bool.isRequired,
+  isRequired: PropTypes.bool,
 
   /**
    * When true, the aria-invalid attribute is true.
    * Used for accessibility.
    */
-  isInvalid: PropTypes.bool.isRequired,
+  isInvalid: PropTypes.bool,
 
   /**
    * The appearance of the checkbox.
    * The default theme only comes with a default style.
    */
-  appearance: PropTypes.string.isRequired
-}
-
-Radio.defaultProps = {
-  appearance: 'default',
-  onChange: () => {},
-  size: 12,
-  isRequired: false,
-  isInvalid: false
+  appearance: PropTypes.string
 }
 
 export default Radio

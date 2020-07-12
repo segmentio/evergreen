@@ -12,15 +12,15 @@ const Combobox = memo(props => {
     selectedItem,
     initialSelectedItem,
     itemToString,
-    width,
+    width = 240,
     height,
     onChange,
     placeholder,
     inputProps,
     buttonProps,
-    openOnFocus,
+    openOnFocus = false,
     autocompleteProps,
-    isLoading,
+    isLoading = false,
     ...rest
   } = props
 
@@ -184,13 +184,6 @@ Combobox.propTypes = {
    * When true, show a loading spinner. This also disables the button.
    */
   isLoading: PropTypes.bool
-}
-
-Combobox.defaultProps = {
-  width: 240,
-  openOnFocus: false,
-  disabled: false,
-  isLoading: false
 }
 
 export default Combobox

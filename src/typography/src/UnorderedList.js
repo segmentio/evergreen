@@ -12,7 +12,7 @@ const styles = {
 
 const UnorderedList = memo(
   forwardRef((props, ref) => {
-    const { children, size, icon, ...rest } = props
+    const { children, size = 400, icon, ...rest } = props
 
     const enrichedChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {
@@ -42,17 +42,13 @@ UnorderedList.propTypes = {
    * Size of the text used in a list item.
    * Can be: 300, 400, 500, 600.
    */
-  size: PropTypes.oneOf([300, 400, 500, 600]).isRequired,
+  size: PropTypes.oneOf([300, 400, 500, 600]),
 
   /**
    * When passed, adds a icon before each list item in the list
    * You can override this on a individual list item.
    */
   icon: PropTypes.node
-}
-
-UnorderedList.defaultProps = {
-  size: 400
 }
 
 export default UnorderedList

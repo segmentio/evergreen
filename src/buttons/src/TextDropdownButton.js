@@ -14,21 +14,18 @@ const TextDropdownButton = memo(
       className,
       intent,
       height,
-      isActive,
+      isActive = false,
       children,
       disabled,
       appearance,
       isLoading,
 
-      // Paddings
       paddingRight,
       paddingLeft,
       paddingTop,
       paddingBottom,
 
-      // Icons
-      icon,
-
+      icon = <CaretDownIcon />,
       ...restProps
     } = props
 
@@ -106,11 +103,6 @@ TextDropdownButton.propTypes = {
    * Only use if you know what you are doing.
    */
   className: PropTypes.string
-}
-
-TextDropdownButton.defaultProps = {
-  isActive: false,
-  icon: <CaretDownIcon />
 }
 
 TextDropdownButton.styles = {

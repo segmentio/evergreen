@@ -10,13 +10,13 @@ let radioCount = 1 // Used for generating unique input names
 const RadioGroup = memo(
   forwardRef((props, ref) => {
     const {
-      size,
+      size = 12,
       label,
       defaultValue,
       value,
-      options,
-      onChange,
-      isRequired,
+      options = [],
+      onChange = () => {},
+      isRequired = false,
       ...rest
     } = props
 
@@ -89,7 +89,7 @@ RadioGroup.propTypes = {
   /**
    * Function called when state changes.
    */
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 
   /**
    * Label to display above the radio button options.
@@ -99,19 +99,12 @@ RadioGroup.propTypes = {
   /**
    * The size of the radio circle. This also informs the text size and spacing.
    */
-  size: PropTypes.oneOf([12, 16]).isRequired,
+  size: PropTypes.oneOf([12, 16]),
 
   /**
    * When true, the radio get the required attribute.
    */
-  isRequired: PropTypes.bool.isRequired
-}
-
-RadioGroup.defaultProps = {
-  options: [],
-  onChange: () => {},
-  size: 12,
-  isRequired: false
+  isRequired: PropTypes.bool
 }
 
 export default RadioGroup

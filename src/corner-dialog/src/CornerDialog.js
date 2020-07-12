@@ -50,21 +50,21 @@ const animationStyles = {
 const CornerDialog = memo(props => {
   const {
     title,
-    width,
+    width = 392,
     children,
-    intent,
+    intent = 'none',
     isShown,
-    hasFooter,
-    hasCancel,
-    hasClose,
-    cancelLabel,
-    confirmLabel,
+    hasFooter = true,
+    hasCancel = true,
+    hasClose = true,
+    cancelLabel = 'Close',
+    confirmLabel = 'Learn More',
     onOpenComplete,
-    onCloseComplete,
-    onCancel,
-    onConfirm,
+    onCloseComplete = () => {},
+    onCancel = close => close(),
+    onConfirm = close => close(),
     containerProps = {},
-    position
+    position = positions.BOTTOM_RIGHT
   } = props
 
   const [exiting, setExiting] = useState(false)
@@ -195,7 +195,7 @@ CornerDialog.propTypes = {
   /**
    * The intent of the CornerDialog. Used for the button.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']).isRequired,
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
 
   /**
    * When true, the dialog is shown.
@@ -278,20 +278,6 @@ CornerDialog.propTypes = {
     positions.BOTTOM_LEFT,
     positions.BOTTOM_RIGHT
   ])
-}
-
-CornerDialog.defaultProps = {
-  width: 392,
-  intent: 'none',
-  hasFooter: true,
-  confirmLabel: 'Learn More',
-  hasCancel: true,
-  hasClose: true,
-  cancelLabel: 'Close',
-  onCancel: close => close(),
-  onConfirm: close => close(),
-  onCloseComplete: () => {},
-  position: positions.BOTTOM_RIGHT
 }
 
 export default CornerDialog

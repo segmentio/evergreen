@@ -10,13 +10,13 @@ import safeInvoke from '../../lib/safe-invoke'
 const MenuItem = memo(
   forwardRef((props, ref) => {
     const {
-      is,
+      is = 'div',
       children,
-      appearance,
+      appearance = 'default',
       secondaryText,
-      intent,
+      intent = 'none',
       icon,
-      onSelect,
+      onSelect = () => {},
       onKeyPress,
       ...passthroughProps
     } = props
@@ -110,24 +110,17 @@ MenuItem.propTypes = {
   /**
    * The default theme only supports one default appearance.
    */
-  appearance: PropTypes.string.isRequired,
+  appearance: PropTypes.string,
 
   /**
    * The intent of the menu item.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']).isRequired,
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
 
   /**
    * Callback to invoke onkeypress
    */
   onKeyPress: PropTypes.func
-}
-
-MenuItem.defaultProps = {
-  is: 'div',
-  intent: 'none',
-  appearance: 'default',
-  onSelect: () => {}
 }
 
 export default MenuItem
