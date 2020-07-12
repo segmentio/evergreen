@@ -14,7 +14,7 @@ const baseStyle = {
   background: 'none'
 }
 
-const disabledState = `[disabled], [data-disabled]`
+const disabledState = `&:disabled, &[data-disabled]`
 const hoverState = '&:not([disabled]):not([data-disabled]):hover'
 const focusState = '&:not([disabled]):not([data-disabled]):focus'
 const activeState =

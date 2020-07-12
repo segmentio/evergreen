@@ -13,7 +13,7 @@ const baseStyle = {
   cursor: 'pointer'
 }
 
-const disabledState = '[disabled="true"], [data-disabled="true"]'
+const disabledState = '&[disabled="true"], &[data-disabled="true"]'
 const hoverState = '&:not([disabled="true"]):not([data-disabled="true"]):hover'
 const activeState =
   '&:not([disabled="true"]):not([data-disabled="true"]):active, &:not([disabled="true"]):not([data-disabled="true"])[data-popover-opened="true"], &:not([disabled="true"]):not([data-disabled="true"])[data-active="true"]'
