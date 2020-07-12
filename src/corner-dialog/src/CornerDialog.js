@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect, useCallback } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import Transition from 'react-transition-group/Transition'
+import { Transition } from 'react-transition-group'
 import { Pane, Card } from '../../layers'
 import { Portal } from '../../portal'
 import { Paragraph, Heading } from '../../typography'
