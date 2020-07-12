@@ -1,6 +1,6 @@
 import isDev from './isDev'
 
-const whitelist = [
+const allowedProperties = [
   'background',
   'backgroundColor',
   'backgroundImage',
@@ -23,14 +23,14 @@ const whitelist = [
 ]
 
 /**
- * @param {object?} obj - input object that will be filtered against the whitelist.
+ * @param {object?} obj - input object that will be filtered against the allowed properties.
  * @return {object} the result will always be a object
  */
 function createAppearance(obj = {}) {
   const result = {}
 
   Object.keys(obj).forEach(key => {
-    if (whitelist.includes(key)) {
+    if (allowedProperties.includes(key)) {
       if (typeof obj[key] === 'string' || typeof obj[key] === 'number') {
         result[key] = obj[key]
       } else if (isDev) {
@@ -42,8 +42,8 @@ function createAppearance(obj = {}) {
       }
     } else if (isDev) {
       console.error(
-        `createAppearance() only accepts whitelisted properties, key '${key}' is not whitelisted in whitelist:`,
-        whitelist
+        `key '${key}' is not in the allowed properties for createAppearance(): `,
+        allowedProperties
       )
     }
   })
