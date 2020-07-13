@@ -1351,8 +1351,7 @@ export interface SearchTableHeaderCellProps extends Omit<TableHeaderCellProps, '
   icon?: React.ReactElement | null | false
 }
 
-export class SearchTableHeaderCell extends React.PureComponent<SearchTableHeaderCellProps> {
-}
+export declare const SearchTableHeaderCell: ForwardRefComponent<SearchTableHeaderCellProps>
 
 export interface SegmentedControlProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'defaultValue' | 'onChange'> {
   options: Array<{ label: string, value: NonNullable<SegmentedControlProps['value']> }>
@@ -1664,8 +1663,7 @@ export interface TableCellProps extends PaneProps {
   className?: string
 }
 
-export class TableCell extends React.PureComponent<TableCellProps> {
-}
+export declare const TableCell: ForwardRefComponent<TableCellProps>
 
 interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' | 'onChange'> {
   autoFocus?: boolean
@@ -1699,8 +1697,7 @@ interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' 
 export interface TableHeaderCellProps extends TableCellProps {
 }
 
-export class TableHeaderCell extends React.PureComponent<TableHeaderCellProps> {
-}
+export declare const TableHeaderCell: React.FC<TableHeaderCellProps> 
 
 export interface TableHeadProps extends PaneProps {
   height?: number | string
@@ -1848,11 +1845,9 @@ export class Table extends React.PureComponent<TableProps> {
   public static TextCell = TextTableCell
 
   // @ts-ignore
-  public static EditableCell = class EditableCell extends React.PureComponent<TableEditableCellProps> {
-  }
+  public static EditableCell: React.FC<TableEditableCellProps> 
   // @ts-ignore
-  public static SelectMenuCell = class SelectMenuCell extends React.PureComponent<TableSelectMenuCellProps> {
-  }
+  public static SelectMenuCell: React.FC<TableSelectMenuCellProps>
 }
 
 export interface TabProps extends TextProps {
@@ -1991,15 +1986,13 @@ export interface TextTableCellProps extends TableCellProps {
   textProps?: TextProps
 }
 
-export class TextTableCell extends React.PureComponent<TextTableCellProps> {
-}
+export declare const TextTableCell: ForwardRefComponent<TextTableCellProps>
 
 export interface TextTableHeaderCellProps extends PaneProps {
   textProps?: TextProps
 }
 
-export class TextTableHeaderCell extends React.PureComponent<TextTableHeaderCellProps> {
-}
+export declare const TextTableHeaderCell: React.FC<TextTableHeaderCellProps>
 
 export type TextProps = BoxProps<'span'> & {
   size?: keyof Typography['text']
