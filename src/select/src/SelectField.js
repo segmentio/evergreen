@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
 import React, { memo, useState } from 'react'
+import PropTypes from 'prop-types'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
 import Select from './Select'

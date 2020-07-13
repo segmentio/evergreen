@@ -1,6 +1,6 @@
+import React, { forwardRef, memo } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import React, { forwardRef, memo } from 'react'
 import { useTheme } from '../../theme'
 import Text from './Text'
 
