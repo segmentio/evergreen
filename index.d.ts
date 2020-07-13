@@ -1704,8 +1704,7 @@ export interface TableHeadProps extends PaneProps {
   accountForScrollbar?: boolean
 }
 
-export class TableHead extends React.PureComponent<TableHeadProps> {
-}
+export declare const TableHead: React.FC<TableHeadProps>
 
 export interface TableRowProps extends PaneProps {
   /**
