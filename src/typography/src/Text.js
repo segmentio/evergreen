@@ -1,4 +1,4 @@
-import React, { memo, forwardRef } from 'react'
+import React, { forwardRef, memo } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
 import PropTypes from 'prop-types'
