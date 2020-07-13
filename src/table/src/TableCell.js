@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { toaster } from '../../toaster'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
 import { TableRowConsumer } from './TableRowContext'
@@ -27,78 +27,24 @@ function executeArrowKeyOverride(override) {
   override.focus()
 }
 
-class TableCell extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Pane component as the base.
-     */
-    ...Pane.propTypes,
+const TableCell = memo(forwardRef((props, ref) => {
+  const {
+    children,
+    appearance = 'default',
+    onClick,
+    onKeyPress,
+    onKeyDown,
+    isSelectable,
+    tabIndex = -1,
+    className,
+    rightView,
+    arrowKeysOverrides,
+    ...rest
+  } = props
+  const theme = useTheme()
+  const [cellRef, setCellRef] = useState()
 
-    /*
-     * Makes the TableCell focusable. Used by EditableCell.
-     * Will add tabIndex={-1 || this.props.tabIndex}.
-     */
-    isSelectable: PropTypes.bool,
-
-    /**
-     * The appearance of the table row. Default theme only support default.
-     */
-    appearance: PropTypes.string.isRequired,
-
-    /**
-     * Optional node to be placed on the right side of the table cell.
-     * Useful for icons and icon buttons.
-     */
-    rightView: PropTypes.node,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
-
-    /**
-     * Advanced arrow keys overrides for selectable cells.
-     * A string will be used as a selector.
-     */
-    arrowKeysOverrides: PropTypes.shape({
-      up: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-        PropTypes.element,
-        PropTypes.oneOf([false])
-      ]),
-      down: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-        PropTypes.element,
-        PropTypes.oneOf([false])
-      ]),
-      left: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-        PropTypes.element,
-        PropTypes.oneOf([false])
-      ]),
-      right: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-        PropTypes.element,
-        PropTypes.oneOf([false])
-      ])
-    }),
-
-    /**
-     * Class name passed to the table cell.
-     * Only use if you know what you are doing.
-     */
-    className: PropTypes.string
-  }
-
-  static defaultProps = {
-    appearance: 'default'
-  }
-
-  static styles = {
+  const styles = {
     paddingX: 12,
     boxSizing: 'border-box',
     flex: 1,
@@ -108,10 +54,10 @@ class TableCell extends PureComponent {
     overflow: 'hidden'
   }
 
-  handleKeyDown = e => {
-    const { arrowKeysOverrides = {} } = this.props
+  const handleKeyDown = e => {
+    const { arrowKeysOverrides = {} } = props
 
-    if (this.props.isSelectable) {
+    if (isSelectable) {
       const { key } = e
       if (
         key === 'ArrowUp' ||
@@ -127,66 +73,109 @@ class TableCell extends PureComponent {
           if (override === false) return
           if (override) return executeArrowKeyOverride(override)
 
-          manageTableCellFocusInteraction(key, this.mainRef)
+          manageTableCellFocusInteraction(key, cellRef)
         } catch (error) {
           toaster.danger('Keyboard interaction not possible')
           console.error('Keyboard interaction not possible', error)
         }
       } else if (key === 'Escape') {
-        this.mainRef.blur()
+        if (cellRef && cellRef instanceof Node) cellRef.blur()
       }
     }
 
-    safeInvoke(this.props.onKeyDown, e)
+    safeInvoke(onKeyDown, e)
   }
 
-  onRef = ref => {
-    this.mainRef = ref
-    safeInvoke(this.props.innerRef, ref)
+  const handleRef = (newRef) => {
+    setCellRef(newRef)
+    safeInvoke(ref, newRef)
   }
 
-  render() {
-    const {
-      innerRef,
-      theme,
-      children,
-      appearance,
-      onClick,
-      onKeyPress,
-      onKeyDown,
-      isSelectable,
-      tabIndex = -1,
-      className,
-      rightView,
-      arrowKeysOverrides,
-      ...props
-    } = this.props
+  const themedClassName = theme.getTableCellClassName(appearance)
 
-    const themedClassName = theme.getTableCellClassName(appearance)
+  return (
+    <TableRowConsumer>
+      {height => {
+        return (
+          <Pane
+            ref={handleRef}
+            height={height}
+            className={cx(themedClassName, className)}
+            tabIndex={isSelectable ? tabIndex : undefined}
+            data-isselectable={isSelectable}
+            onClick={onClick}
+            onKeyDown={handleKeyDown}
+            {...styles}
+            {...rest}
+          >
+            {children}
+            {rightView ? rightView : null}
+          </Pane>
+        )
+      }}
+    </TableRowConsumer>
+  )
+}))
 
-    return (
-      <TableRowConsumer>
-        {height => {
-          return (
-            <Pane
-              innerRef={this.onRef}
-              height={height}
-              className={cx(themedClassName, className)}
-              tabIndex={isSelectable ? tabIndex : undefined}
-              data-isselectable={isSelectable}
-              onClick={onClick}
-              onKeyDown={this.handleKeyDown}
-              {...TableCell.styles}
-              {...props}
-            >
-              {children}
-              {rightView ? rightView : null}
-            </Pane>
-          )
-        }}
-      </TableRowConsumer>
-    )
-  }
+TableCell.propTypes = {
+  /**
+   * Composes the Pane component as the base.
+   */
+  ...Pane.propTypes,
+
+  /*
+   * Makes the TableCell focusable. Used by EditableCell.
+   * Will add tabIndex={-1 || this.props.tabIndex}.
+   */
+  isSelectable: PropTypes.bool,
+
+  /**
+   * The appearance of the table row. Default theme only support default.
+   */
+  appearance: PropTypes.string,
+
+  /**
+   * Optional node to be placed on the right side of the table cell.
+   * Useful for icons and icon buttons.
+   */
+  rightView: PropTypes.node,
+
+  /**
+   * Advanced arrow keys overrides for selectable cells.
+   * A string will be used as a selector.
+   */
+  arrowKeysOverrides: PropTypes.shape({
+    up: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+      PropTypes.element,
+      PropTypes.oneOf([false])
+    ]),
+    down: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+      PropTypes.element,
+      PropTypes.oneOf([false])
+    ]),
+    left: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+      PropTypes.element,
+      PropTypes.oneOf([false])
+    ]),
+    right: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+      PropTypes.element,
+      PropTypes.oneOf([false])
+    ])
+  }),
+
+  /**
+   * Class name passed to the table cell.
+   * Only use if you know what you are doing.
+   */
+  className: PropTypes.string
 }
 
-export default withTheme(TableCell)
+export default TableCell
