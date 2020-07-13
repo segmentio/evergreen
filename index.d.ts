@@ -1824,8 +1824,7 @@ export class Table extends React.PureComponent<TableProps> {
   public static Body = TableBody
 
   // @ts-ignore
-  public static VirtualBody = class VirtualBody extends React.PureComponent<TableVirtualBodyProps> {
-  }
+  public static VirtualBody: React.FC<TableVirtualBodyProps>
 
   // @ts-ignore
   public static Head = TableHead
