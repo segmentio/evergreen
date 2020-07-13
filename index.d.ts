@@ -1818,7 +1818,7 @@ interface TableVirtualBodyProps extends PaneProps {
 export interface TableProps extends PaneProps {
 }
 
-export class Table extends React.PureComponent<TableProps> {
+export class Table extends React.FC<TableProps> {
   // @ts-ignore
   public static Body = TableBody
 
