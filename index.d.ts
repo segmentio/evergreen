@@ -1629,8 +1629,7 @@ export declare const Switch: ForwardRefComponent<SwitchProps>
 export interface TableBodyProps extends PaneProps {
 }
 
-export class TableBody extends React.PureComponent<TableBodyProps> {
-}
+export declare const TableBody: React.FC<TableBodyProps>
 
 export interface TableCellProps extends PaneProps {
   /**
