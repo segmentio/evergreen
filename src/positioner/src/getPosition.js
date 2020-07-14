@@ -156,11 +156,11 @@ const getTransformOrigin = ({ rect, position, dimensions, targetCenter }) => {
  * Function that takes in numbers and position and gives the final coords.
  * @param {Position} position — the position the positioner should be on.
  * @param {Object} dimensions — the dimensions of the positioner.
- * @param {Object} targetRect — the rect of the target.
+ * @param {Rect} targetRect — the rect of the target.
  * @param {Number} targetOffset - offset from the target.
  * @param {Object} viewport - the width and height of the viewport.
- * @param {Object} viewportOffset - offset from the viewport.
- * @return {Object} - { x: Number, y: Number }
+ * @param {Number} viewportOffset - offset from the viewport.
+ * @return {Object} - { rect: Rect, position: Position, transformOrigin: string }
  */
 export default function getFittedPosition({
   position,
@@ -227,7 +227,7 @@ export default function getFittedPosition({
  * Function that takes in numbers and position and gives the final coords.
  * @param {Position} position — the position the positioner should be on.
  * @param {Object} dimensions — the dimensions of the positioner.
- * @param {Object} targetRect — the rect of the target.
+ * @param {Rect} targetRect — the rect of the target.
  * @param {Number} targetOffset - offset from the target.
  * @param {Object} viewport - the width and height of the viewport.
  * @param {Object} viewportOffset - offset from the viewport.
@@ -407,11 +407,11 @@ function getPosition({
 
 /**
  * Function that takes in numbers and position and gives the final coords.
- * @param {Object} position - the width and height of the viewport.
+ * @param {Position} position
  * @param {Number} targetOffset - offset from the target.
  * @param {Object} dimensions — the dimensions of the positioner.
- * @param {Object} targetRect — the rect of the target.
- * @return {Object} - { x: Number, y: Number }
+ * @param {Rect} targetRect — the rect of the target.
+ * @return {Rect} - Rect { width, height, left, top, right, bottom }
  */
 function getRect({ position, targetOffset, dimensions, targetRect }) {
   const leftRect = targetRect.left + targetRect.width / 2 - dimensions.width / 2
