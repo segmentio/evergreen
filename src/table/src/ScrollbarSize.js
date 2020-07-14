@@ -2,7 +2,7 @@ import React, { memo, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 const ScrollbarSize = memo(props => {
-  const {handleScrollbarSize = () => {}} = props
+  const { handleScrollbarSize = () => {} } = props
 
   const [innerRef, setInnerRef] = useState()
   const [outerRef, setOuterRef] = useState()
@@ -13,7 +13,7 @@ const ScrollbarSize = memo(props => {
     if (innerRef) {
       setInnerWidth(innerRef.getBoundingClientRect().width)
     }
-  
+
     if (outerRef) {
       setOuterWidth(outerRef.getBoundingClientRect().width)
     }

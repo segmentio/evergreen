@@ -279,7 +279,7 @@ export default class OptionsList extends PureComponent {
           <TableHead>
             <SearchTableHeaderCell
               onChange={this.handleChange}
-              innerRef={this.assignSearchRef}
+              ref={this.assignSearchRef}
               borderRight={null}
               height={32}
               placeholder={filterPlaceholder}

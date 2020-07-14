@@ -9,23 +9,31 @@ const ellipsis = {
   whiteSpace: 'nowrap'
 }
 
-const TextTableCell = memo(forwardRef((props, ref) => {
-  const { children, textProps, isNumber = false, placeholder, ...rest } = props
+const TextTableCell = memo(
+  forwardRef((props, ref) => {
+    const {
+      children,
+      textProps,
+      isNumber = false,
+      placeholder,
+      ...rest
+    } = props
 
-  return (
-    <TableCell ref={ref} {...rest}>
-      <Text
-        size={300}
-        flex="1"
-        {...ellipsis}
-        {...(isNumber ? { fontFamily: 'mono' } : {})}
-        {...textProps}
-      >
-        {children}
-      </Text>
-    </TableCell>
-  )
-}))
+    return (
+      <TableCell ref={ref} {...rest}>
+        <Text
+          size={300}
+          flex="1"
+          {...ellipsis}
+          {...(isNumber ? { fontFamily: 'mono' } : {})}
+          {...textProps}
+        >
+          {children}
+        </Text>
+      </TableCell>
+    )
+  })
+)
 
 TextTableCell.propTypes = {
   /**

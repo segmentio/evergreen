@@ -1,15 +1,23 @@
-import React, { memo } from 'react'
+import React, { memo, forwardRef } from 'react'
 import { Pane } from '../../layers'
 
-const TableBody = memo(props => {
-  const {children, ...rest} = props
+const TableBody = memo(
+  forwardRef((props, ref) => {
+    const { children, ...rest } = props
 
-  return (
-    <Pane data-evergreen-table-body flex="1" overflowY="auto" {...rest}>
-      {children}
-    </Pane>
-  )
-})
+    return (
+      <Pane
+        ref={ref}
+        data-evergreen-table-body
+        flex="1"
+        overflowY="auto"
+        {...rest}
+      >
+        {children}
+      </Pane>
+    )
+  })
+)
 
 TableBody.propTypes = {
   /**

@@ -30,7 +30,7 @@ In some cases you might be better off using `Combobox` or `SelectMenu`.
       <TextInput
         placeholder="Fruits"
         value={inputValue}
-        innerRef={getRef}
+        ref={getRef}
         {...getInputProps()}
       />
     )
@@ -53,7 +53,7 @@ There is no difference between using this syntax and the above syntax.
       <TextInput
         placeholder="Fruits"
         value={inputValue}
-        innerRef={getRef}
+        ref={getRef}
         {...getInputProps()}
       />
     )
@@ -77,7 +77,7 @@ Get the `openMenu` prop to manually open the menu on certain events such as `onF
       <TextInput
         placeholder="Open on focus"
         value={inputValue}
-        innerRef={getRef}
+        ref={getRef}
         {...getInputProps({
           onFocus: () => {
             openMenu()
@@ -104,7 +104,7 @@ Get the `openMenu` prop to manually open the menu on certain events such as `onF
     inputValue,
     toggleMenu
   }) => (
-    <Pane innerRef={getRef} display="inline-block">
+    <Pane ref={getRef} display="inline-block">
       <TextInput
         placeholder="Trigger with button"
         value={inputValue}
@@ -141,7 +141,7 @@ Consider using that component before using the `Autocomplete` component directly
   }) => (
     <Pane
       key={key}
-      innerRef={getRef}
+      ref={getRef}
       display="flex"
     >
       <TextInput

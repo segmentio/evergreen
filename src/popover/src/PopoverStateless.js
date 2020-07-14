@@ -3,19 +3,23 @@ import PropTypes from 'prop-types'
 import { Card } from '../../layers'
 
 const PopoverStateless = memo(
-  forwardRef(({ children, ...props }, ref) => (
-    <Card
-      ref={ref}
-      role="dialog"
-      elevation={3}
-      overflow="hidden"
-      minWidth={200}
-      backgroundColor="white"
-      {...props}
-    >
-      {children}
-    </Card>
-  ))
+  forwardRef((props, ref) => {
+    const { children, ...rest } = props
+
+    return (
+      <Card
+        role="dialog"
+        elevation={3}
+        overflow="hidden"
+        minWidth={200}
+        backgroundColor="white"
+        ref={ref}
+        {...rest}
+      >
+        {children}
+      </Card>
+    )
+  })
 )
 
 PopoverStateless.propTypes = {

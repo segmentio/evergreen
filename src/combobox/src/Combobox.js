@@ -56,12 +56,7 @@ const Combobox = memo(props => {
         getToggleButtonProps,
         clearSelection
       }) => (
-        <Box
-          innerRef={ref => getRef(ref)}
-          display="inline-flex"
-          width={width}
-          {...rest}
-        >
+        <Box ref={getRef} display="inline-flex" width={width} {...rest}>
           <TextInput
             width={0}
             flex={1}

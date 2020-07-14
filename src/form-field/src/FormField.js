@@ -21,7 +21,7 @@ const FormField = memo(
     } = props
 
     return (
-      <Box {...rest} innerRef={ref}>
+      <Box {...rest} ref={ref}>
         <FormFieldLabel
           htmlFor={labelFor}
           isAstrixShown={isRequired}

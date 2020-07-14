@@ -77,7 +77,7 @@ const Checkbox = memo(
           onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
-          innerRef={ref}
+          ref={ref}
         />
         <Box
           boxSizing="border-box"

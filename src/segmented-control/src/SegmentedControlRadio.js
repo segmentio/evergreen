@@ -65,7 +65,7 @@ const SegmentedControlRadio = memo(
 
     return (
       <Box
-        innerRef={ref}
+        ref={ref}
         className={cx(wrapperClass.toString(), themedClassName)}
         data-active={checked}
         {...(isFirstItem

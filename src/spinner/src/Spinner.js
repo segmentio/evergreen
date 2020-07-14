@@ -61,7 +61,7 @@ const Spinner = memo(
     }
 
     return (
-      <Box width={size} height={size} lineHeight={0} {...props} innerRef={ref}>
+      <Box width={size} height={size} lineHeight={0} {...props} ref={ref}>
         <Box
           is="svg"
           className={outerClass}

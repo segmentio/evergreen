@@ -45,7 +45,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
           <TextInput
             placeholder="Starwars names"
             value={inputValue}
-            innerRef={ref => getRef(ref)}
+            ref={ref => getRef(ref)}
             {...getInputProps()}
           />
         )}
@@ -62,7 +62,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
             width={160}
             placeholder="Min width in effect"
             value={inputValue}
-            innerRef={ref => getRef(ref)}
+            ref={ref => getRef(ref)}
             {...getInputProps({
               onFocus: () => {
                 openMenu()
@@ -78,7 +78,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
           <TextInput
             placeholder="Open on focus"
             value={inputValue}
-            innerRef={ref => getRef(ref)}
+            ref={ref => getRef(ref)}
             {...getInputProps({
               onFocus: () => {
                 openMenu()
@@ -99,7 +99,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
           <TextInput
             placeholder="Disable filter and open on focus"
             value={inputValue}
-            innerRef={ref => getRef(ref)}
+            ref={ref => getRef(ref)}
             {...getInputProps({
               onFocus: () => {
                 openMenu()
@@ -115,7 +115,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
           <TextInput
             placeholder="Open on focus with title"
             value={inputValue}
-            innerRef={ref => getRef(ref)}
+            ref={ref => getRef(ref)}
             {...getInputProps({
               onFocus: () => {
                 openMenu()
@@ -134,7 +134,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
           inputValue,
           toggleMenu
         }) => (
-          <Box innerRef={ref => getRef(ref)} display="inline-block">
+          <Box ref={ref => getRef(ref)} display="inline-block">
             <TextInput
               placeholder="Trigger with button"
               value={inputValue}

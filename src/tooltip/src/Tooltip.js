@@ -141,7 +141,7 @@ export default class Tooltip extends PureComponent {
         // Add the Tooltip props to the target.
         ...tooltipTargetProps,
 
-        innerRef: ref => {
+        ref: ref => {
           // Get the ref for the Tooltip.
           getRef(ref)
           // Pass the ref to the Popover.
@@ -155,7 +155,7 @@ export default class Tooltip extends PureComponent {
      */
     return React.cloneElement(children, {
       ...tooltipTargetProps,
-      innerRef: ref => {
+      ref: ref => {
         getRef(ref)
       }
     })
@@ -209,7 +209,7 @@ export default class Tooltip extends PureComponent {
           <TooltipStateless
             id={this.state.id}
             appearance={appearance}
-            innerRef={ref => getRef(ref)}
+            ref={ref => getRef(ref)}
             data-state={state}
             style={style}
             onMouseEnter={this.handleMouseEnterTarget}

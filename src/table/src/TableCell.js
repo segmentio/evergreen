@@ -27,95 +27,97 @@ function executeArrowKeyOverride(override) {
   override.focus()
 }
 
-const TableCell = memo(forwardRef((props, ref) => {
-  const {
-    children,
-    appearance = 'default',
-    onClick,
-    onKeyPress,
-    onKeyDown,
-    isSelectable,
-    tabIndex = -1,
-    className,
-    rightView,
-    arrowKeysOverrides,
-    ...rest
-  } = props
-  const theme = useTheme()
-  const [cellRef, setCellRef] = useState()
+const TableCell = memo(
+  forwardRef((props, ref) => {
+    const {
+      children,
+      appearance = 'default',
+      onClick,
+      onKeyPress,
+      onKeyDown,
+      isSelectable,
+      tabIndex = -1,
+      className,
+      rightView,
+      arrowKeysOverrides,
+      ...rest
+    } = props
+    const theme = useTheme()
+    const [cellRef, setCellRef] = useState()
 
-  const styles = {
-    paddingX: 12,
-    boxSizing: 'border-box',
-    flex: 1,
-    display: 'flex',
-    alignItems: 'center',
-    flexShrink: 0,
-    overflow: 'hidden'
-  }
-
-  const handleKeyDown = e => {
-    const { arrowKeysOverrides = {} } = props
-
-    if (isSelectable) {
-      const { key } = e
-      if (
-        key === 'ArrowUp' ||
-        key === 'ArrowDown' ||
-        key === 'ArrowLeft' ||
-        key === 'ArrowRight'
-      ) {
-        e.preventDefault()
-        try {
-          // Support arrow key overrides.
-          const override =
-            arrowKeysOverrides[key.slice('Arrow'.length).toLowerCase()]
-          if (override === false) return
-          if (override) return executeArrowKeyOverride(override)
-
-          manageTableCellFocusInteraction(key, cellRef)
-        } catch (error) {
-          toaster.danger('Keyboard interaction not possible')
-          console.error('Keyboard interaction not possible', error)
-        }
-      } else if (key === 'Escape') {
-        if (cellRef && cellRef instanceof Node) cellRef.blur()
-      }
+    const styles = {
+      paddingX: 12,
+      boxSizing: 'border-box',
+      flex: 1,
+      display: 'flex',
+      alignItems: 'center',
+      flexShrink: 0,
+      overflow: 'hidden'
     }
 
-    safeInvoke(onKeyDown, e)
-  }
+    const handleKeyDown = e => {
+      const { arrowKeysOverrides = {} } = props
 
-  const handleRef = (newRef) => {
-    setCellRef(newRef)
-    safeInvoke(ref, newRef)
-  }
+      if (isSelectable) {
+        const { key } = e
+        if (
+          key === 'ArrowUp' ||
+          key === 'ArrowDown' ||
+          key === 'ArrowLeft' ||
+          key === 'ArrowRight'
+        ) {
+          e.preventDefault()
+          try {
+            // Support arrow key overrides.
+            const override =
+              arrowKeysOverrides[key.slice('Arrow'.length).toLowerCase()]
+            if (override === false) return
+            if (override) return executeArrowKeyOverride(override)
 
-  const themedClassName = theme.getTableCellClassName(appearance)
+            manageTableCellFocusInteraction(key, cellRef)
+          } catch (error) {
+            toaster.danger('Keyboard interaction not possible')
+            console.error('Keyboard interaction not possible', error)
+          }
+        } else if (key === 'Escape') {
+          if (cellRef && cellRef instanceof Node) cellRef.blur()
+        }
+      }
 
-  return (
-    <TableRowConsumer>
-      {height => {
-        return (
-          <Pane
-            ref={handleRef}
-            height={height}
-            className={cx(themedClassName, className)}
-            tabIndex={isSelectable ? tabIndex : undefined}
-            data-isselectable={isSelectable}
-            onClick={onClick}
-            onKeyDown={handleKeyDown}
-            {...styles}
-            {...rest}
-          >
-            {children}
-            {rightView ? rightView : null}
-          </Pane>
-        )
-      }}
-    </TableRowConsumer>
-  )
-}))
+      safeInvoke(onKeyDown, e)
+    }
+
+    const handleRef = newRef => {
+      setCellRef(newRef)
+      safeInvoke(ref, newRef)
+    }
+
+    const themedClassName = theme.getTableCellClassName(appearance)
+
+    return (
+      <TableRowConsumer>
+        {height => {
+          return (
+            <Pane
+              ref={handleRef}
+              height={height}
+              className={cx(themedClassName, className)}
+              tabIndex={isSelectable ? tabIndex : undefined}
+              data-isselectable={isSelectable}
+              onClick={onClick}
+              onKeyDown={handleKeyDown}
+              {...styles}
+              {...rest}
+            >
+              {children}
+              {rightView ? rightView : null}
+            </Pane>
+          )
+        }}
+      </TableRowConsumer>
+    )
+  })
+)
 
 TableCell.propTypes = {
   /**

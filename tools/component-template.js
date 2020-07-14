@@ -10,7 +10,7 @@ const ${componentName} = memo(forwardRef((props, ref) => {
   const { ...restProps } = props
 
   return (
-    <Box innerRef={ref} {...restProps}>
+    <Box ref={ref} {...restProps}>
       ${componentName}
     </Box>
   )

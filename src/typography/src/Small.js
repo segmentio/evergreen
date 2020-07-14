@@ -3,7 +3,7 @@ import Box from 'ui-box'
 
 const Small = memo(
   forwardRef((props, ref) => {
-    return <Box innerRef={ref} is="small" fontSize="85%" {...props} />
+    return <Box ref={ref} is="small" fontSize="85%" {...props} />
   })
 )
 

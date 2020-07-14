@@ -32,7 +32,7 @@ const Select = memo(
 
     return (
       <Box
-        innerRef={ref}
+        ref={ref}
         display="inline-flex"
         flex={1}
         position="relative"

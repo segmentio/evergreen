@@ -283,7 +283,7 @@ export default class TableVirtualBody extends PureComponent {
     return (
       <Pane
         data-evergreen-table-body
-        innerRef={this.onRef}
+        ref={this.onRef}
         height={paneHeight}
         flex="1"
         overflow="hidden"

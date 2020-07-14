@@ -38,7 +38,7 @@ const Radio = memo(
     return (
       <Box
         is="label"
-        innerRef={ref}
+        ref={ref}
         cursor={disabled ? 'not-allowed' : 'pointer'}
         position="relative"
         display="flex"

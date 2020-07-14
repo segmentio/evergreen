@@ -6,70 +6,74 @@ import SegmentedControlRadio from './SegmentedControlRadio'
 
 let radioCount = 1 // Used for generating unique input names
 
-const SegmentedControl = memo(forwardRef((props, ref) => {
-  const {
-    value,
-    name,
-    height = 32,
-    options,
-    onChange,
-    defaultValue,
-    disabled,
-    ...rest
-  } = props
+const SegmentedControl = memo(
+  forwardRef((props, ref) => {
+    const {
+      value,
+      name,
+      height = 32,
+      options,
+      onChange,
+      defaultValue,
+      disabled,
+      ...rest
+    } = props
 
-  const [groupName] = useState(`SegmentedControl-${radioCount++}`)
+    const [groupName] = useState(`SegmentedControl-${radioCount++}`)
 
-  const isControlled = () => {
-    return typeof value !== 'undefined' && value !== null
-  }
-
-  const getDefaultValue = () => {
-    if (isControlled()) {
-      return value
+    const isControlled = () => {
+      return typeof value !== 'undefined' && value !== null
     }
 
-    return typeof defaultValue !== 'undefined' && defaultValue !== null ? defaultValue : options[0].value
-  }
+    const getDefaultValue = () => {
+      if (isControlled()) {
+        return value
+      }
 
-  const [activeValue, setActiveValue] = useState(getDefaultValue())
-
-  useEffect(() => {
-    if (isControlled() && value !== activeValue) {
-      setActiveValue(value)
-    }
-  }, [value])
-
-  const handleChange = newValue => {
-    // Save a render cycle when it's a controlled input
-    if (!isControlled()) {
-      setActiveValue(newValue)
+      return typeof defaultValue !== 'undefined' && defaultValue !== null
+        ? defaultValue
+        : options[0].value
     }
 
-    safeInvoke(onChange, newValue)
-  }
+    const [activeValue, setActiveValue] = useState(getDefaultValue())
 
-  return (
-    <Box display="flex" marginRight={-1} height={height} ref={ref} {...rest}>
-      {options.map((option, index) => (
-        <SegmentedControlRadio
-          key={option.value}
-          id={groupName + index}
-          name={name || groupName}
-          label={option.label}
-          value={String(option.value)}
-          height={height}
-          checked={activeValue === option.value}
-          onChange={handleChange.bind(null, option.value)}
-          appearance="default"
-          isFirstItem={index === 0}
-          isLastItem={index === options.length - 1}
-          disabled={disabled}
-        />
-      ))}
-    </Box>
-  )
-}))
+    useEffect(() => {
+      if (isControlled() && value !== activeValue) {
+        setActiveValue(value)
+      }
+    }, [value])
+
+    const handleChange = newValue => {
+      // Save a render cycle when it's a controlled input
+      if (!isControlled()) {
+        setActiveValue(newValue)
+      }
+
+      safeInvoke(onChange, newValue)
+    }
+
+    return (
+      <Box display="flex" marginRight={-1} height={height} ref={ref} {...rest}>
+        {options.map((option, index) => (
+          <SegmentedControlRadio
+            key={option.value}
+            id={groupName + index}
+            name={name || groupName}
+            label={option.label}
+            value={String(option.value)}
+            height={height}
+            checked={activeValue === option.value}
+            onChange={handleChange.bind(null, option.value)}
+            appearance="default"
+            isFirstItem={index === 0}
+            isLastItem={index === options.length - 1}
+            disabled={disabled}
+          />
+        ))}
+      </Box>
+    )
+  })
+)
 
 SegmentedControl.propTypes = {
   /**

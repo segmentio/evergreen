@@ -248,7 +248,7 @@ const Overlay = memo(
               {state => (
                 <Box
                   onClick={handleBackdropClick}
-                  innerRef={setContainerRef}
+                  ref={setContainerRef}
                   position="fixed"
                   top={0}
                   left={0}

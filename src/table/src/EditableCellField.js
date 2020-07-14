@@ -1,9 +1,9 @@
-import React, {memo, useState, useEffect} from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Textarea } from '../../textarea'
 
 const EditableCellField = memo(props => {
-  const {getTargetRef} = props
+  const { getTargetRef } = props
 
   const getTableBodyRef = () => {
     let ref = getTargetRef()
@@ -74,7 +74,10 @@ const EditableCellField = memo(props => {
     let calculatedTop
     if (tableBodyRef) {
       const bounds = tableBodyRef.getBoundingClientRect()
-      calculatedTop = Math.min(Math.max(targetTop, bounds.top), bounds.bottom - targetHeight)
+      calculatedTop = Math.min(
+        Math.max(targetTop, bounds.top),
+        bounds.bottom - targetHeight
+      )
     } else {
       calculatedTop = targetTop
     }

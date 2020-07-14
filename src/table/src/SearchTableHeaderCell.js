@@ -57,7 +57,7 @@ const SearchTableHeaderCell = memo(props => {
         placeholder={placeholder}
       />
     </TableHeaderCell>
-  )  
+  )
 })
 
 SearchTableHeaderCell.propTypes = {
