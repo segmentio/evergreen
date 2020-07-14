@@ -35,9 +35,7 @@ function createAppearance(obj = {}) {
         result[key] = obj[key]
       } else if (isDev) {
         console.error(
-          `createAppearance() only accepts strings as properties, key '${key}' with value '${
-            obj[key]
-          }' is not a string`
+          `createAppearance() only accepts strings as properties, key '${key}' with value '${obj[key]}' is not a string`
         )
       }
     } else if (isDev) {
