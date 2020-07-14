@@ -1823,7 +1823,6 @@ export class Table extends React.PureComponent<TableProps> {
   // @ts-ignore
   public static Body = TableBody
 
-  // @ts-ignore
   public static VirtualBody: React.FC<TableVirtualBodyProps>
 
   // @ts-ignore
