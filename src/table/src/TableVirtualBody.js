@@ -1,10 +1,16 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import VirtualList from 'react-tiny-virtual-list'
 import debounce from 'lodash.debounce'
 import { Pane } from '../../layers'
 
-const useForceUpdate = () => useState()[1]
+const useForceUpdate = () => {
+  const [_, setValue] = useState()
+
+  return useCallback(() => {
+    setValue({}) // set with a new object instance every time it gets called
+  }, [setValue])
+}
 
 const TableVirtualBody = memo(props => {
   const {
