@@ -130,11 +130,11 @@ const TableVirtualBody = memo(props => {
 
     // Return if we are in a weird edge case in which the ref is no longer valid.
     if (paneRef && paneRef instanceof Node) {
-      const calculatedHeight = paneRef.offsetHeight
+      const tempCalculatedHeight = paneRef.offsetHeight
 
-      if (calculatedHeight > 0) {
+      if (tempCalculatedHeight > 0) {
         // Save the calculated height which is needed for the VirtualList.
-        setCalculatedHeight(calculatedHeight)
+        setCalculatedHeight(tempCalculatedHeight)
 
         // Prevent updateOnResize being called recursively when there is a valid height.
         return
