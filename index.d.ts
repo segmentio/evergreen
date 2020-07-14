@@ -1818,30 +1818,17 @@ interface TableVirtualBodyProps extends PaneProps {
 export interface TableProps extends PaneProps {
 }
 
-export class Table extends React.PureComponent<TableProps> {
-  // @ts-ignore
-  public static Body = TableBody
-
+export declare const Table: React.FC<TableProps> & {
+  public static Body: TableBody
   public static VirtualBody: React.FC<TableVirtualBodyProps>
-
-  // @ts-ignore
-  public static Head = TableHead
-  // @ts-ignore
-  public static HeaderCell = TableHeaderCell
-  // @ts-ignore
-  public static TextHeaderCell = TextTableHeaderCell
-  // @ts-ignore
-  public static SearchHeaderCell = SearchTableHeaderCell
-  // @ts-ignore
-  public static Row = TableRow
-  // @ts-ignore
-  public static Cell = TableCell
-  // @ts-ignore
-  public static TextCell = TextTableCell
-
-  // @ts-ignore
+  public static Head: TableHead
+  public static HeaderCell: TableHeaderCell
+  public static TextHeaderCell: TextTableHeaderCell
+  public static SearchHeaderCell: SearchTableHeaderCell
+  public static Row: TableRow
+  public static Cell: TableCell
+  public static TextCell: TextTableCell
   public static EditableCell: React.FC<TableEditableCellProps> 
-  // @ts-ignore
   public static SelectMenuCell: React.FC<TableSelectMenuCellProps>
 }
 
