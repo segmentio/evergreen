@@ -42,7 +42,7 @@ function createAppearance(obj = {}) {
       }
     } else if (isDev) {
       console.error(
-        `key '${key}' is not in the allowed properties for createAppearance(): `,
+        `key '${key}' is not in the allowed properties for createAppearance():`,
         allowedProperties
       )
     }
