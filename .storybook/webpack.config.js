@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 
-module.exports = storybookBaseConfig => {
+module.exports = ({ config: storybookBaseConfig }) => {
   // Return the altered config
   return {
     ...storybookBaseConfig,
@@ -21,10 +21,6 @@ module.exports = storybookBaseConfig => {
         {
           test: /\.(blob)/,
           loader: 'file-loader'
-        },
-        {
-          test: /\.(json)/,
-          loader: 'json-loader'
         }
       ]
     }

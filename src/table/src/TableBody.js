@@ -2,14 +2,16 @@ import React, { memo, forwardRef } from 'react'
 import { Pane } from '../../layers'
 
 const TableBody = memo(
-  forwardRef(({ children, ...props }, ref) => {
+  forwardRef((props, ref) => {
+    const { children, ...rest } = props
+
     return (
       <Pane
+        ref={ref}
         data-evergreen-table-body
         flex="1"
         overflowY="auto"
-        ref={ref}
-        {...props}
+        {...rest}
       >
         {children}
       </Pane>

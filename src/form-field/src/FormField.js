@@ -14,7 +14,7 @@ const FormField = memo(
       labelFor,
       children,
       isRequired,
-      labelProps,
+      labelProps = { size: 400 },
       description,
       validationMessage,
       ...rest
@@ -106,12 +106,6 @@ FormField.propTypes = {
    * Composes the layout spec from the Box primitive.
    */
   ...layout.propTypes
-}
-
-FormField.defaultProps = {
-  labelProps: {
-    size: 400
-  }
 }
 
 export default FormField

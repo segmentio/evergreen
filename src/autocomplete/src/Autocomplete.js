@@ -106,12 +106,14 @@ const Autocomplete = memo(
   forwardRef((props, ref) => {
     const {
       children,
-      itemSize,
+      itemSize = 32,
       position,
-      renderItem,
+      renderItem = autocompleteItemRenderer,
+      isFilterDisabled = false,
       itemsFilter,
-      popoverMaxHeight,
-      popoverMinWidth,
+      itemToString = i => (i ? String(i) : ''),
+      popoverMaxHeight = 240,
+      popoverMinWidth = 240,
       ...restProps
     } = props
 
@@ -177,13 +179,13 @@ const Autocomplete = memo(
                   getMenuProps={getMenuProps}
                   highlightedIndex={highlightedIndex}
                   inputValue={inputValue}
-                  isFilterDisabled={props.isFilterDisabled}
-                  itemsFilter={props.itemsFilter}
-                  itemSize={props.itemSize}
-                  itemToString={props.itemToString}
+                  isFilterDisabled={isFilterDisabled}
+                  itemsFilter={itemsFilter}
+                  itemSize={itemSize}
+                  itemToString={itemToString}
                   originalItems={props.items}
-                  popoverMaxHeight={props.popoverMaxHeight}
-                  renderItem={props.renderItem}
+                  popoverMaxHeight={popoverMaxHeight}
+                  renderItem={renderItem}
                   selectedItem={selectedItem}
                   title={props.title}
                   width={Math.max(targetWidth, popoverMinWidth)}
@@ -236,7 +238,7 @@ Autocomplete.propTypes = {
    * In case the array of items is not an array of strings,
    * this function is used on each item to return the string that will be shown on the filter
    */
-  itemToString: PropTypes.func.isRequired,
+  itemToString: PropTypes.func,
 
   /**
    * Function that will render the 'filter' component.
@@ -293,15 +295,6 @@ Autocomplete.propTypes = {
   popoverMaxHeight: PropTypes.number,
 
   ...Downshift.propTypes
-}
-
-Autocomplete.defaultProps = {
-  itemToString: i => (i ? String(i) : ''),
-  itemSize: 32,
-  isFilterDisabled: false,
-  popoverMinWidth: 240,
-  popoverMaxHeight: 240,
-  renderItem: autocompleteItemRenderer
 }
 
 export default Autocomplete

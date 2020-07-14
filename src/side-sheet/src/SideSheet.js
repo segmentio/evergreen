@@ -128,16 +128,16 @@ const animationStylesClass = {
 const SideSheet = memo(
   forwardRef((props, ref) => {
     const {
-      width,
+      width = 620,
       isShown,
       children,
       containerProps,
-      onOpenComplete,
-      onCloseComplete,
+      onOpenComplete = () => {},
+      onCloseComplete = () => {},
       onBeforeClose,
-      shouldCloseOnOverlayClick,
-      shouldCloseOnEscapePress,
-      position,
+      shouldCloseOnOverlayClick = true,
+      shouldCloseOnEscapePress = true,
+      position = Position.RIGHT,
       preventBodyScrolling
     } = props
 
@@ -225,7 +225,7 @@ SideSheet.propTypes = {
   /**
    * Width of the SideSheet.
    */
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /**
    * Properties to pass through the SideSheet container Pane.
@@ -240,21 +240,12 @@ SideSheet.propTypes = {
     Position.BOTTOM,
     Position.LEFT,
     Position.RIGHT
-  ]).isRequired,
+  ]),
 
   /**
    * Whether or not to prevent scrolling in the outer body
    */
   preventBodyScrolling: PropTypes.bool
-}
-
-SideSheet.defaultProps = {
-  width: 620,
-  onCloseComplete: () => {},
-  onOpenComplete: () => {},
-  shouldCloseOnOverlayClick: true,
-  shouldCloseOnEscapePress: true,
-  position: Position.RIGHT
 }
 
 export default SideSheet

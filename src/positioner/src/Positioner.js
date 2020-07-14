@@ -1,20 +1,15 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef, useState, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
-import Transition from 'react-transition-group/Transition'
+import { Transition } from 'react-transition-group'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder, Position } from '../../constants'
+import safeInvoke from '../../lib/safe-invoke'
 import getPosition from './getPosition'
 
 const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
 }
-
-const initialState = () => ({
-  top: null,
-  left: null,
-  transformOrigin: null
-})
 
 const getCSS = ({ initialScale, animationDuration }) => ({
   position: 'fixed',
@@ -34,208 +29,132 @@ const getCSS = ({ initialScale, animationDuration }) => ({
   }
 })
 
-export default class Positioner extends PureComponent {
-  static propTypes = {
-    /**
-     * The position the element that is being positioned is on.
-     * Smart positioning might override this.
-     */
-    position: PropTypes.oneOf([
-      Position.TOP,
-      Position.TOP_LEFT,
-      Position.TOP_RIGHT,
-      Position.BOTTOM,
-      Position.BOTTOM_LEFT,
-      Position.BOTTOM_RIGHT,
-      Position.LEFT,
-      Position.RIGHT
-    ]).isRequired,
-
-    /**
-     * When true, show the element being positioned.
-     */
-    isShown: PropTypes.bool,
-
-    /**
-     * Function that returns the element being positioned.
-     */
-    children: PropTypes.func.isRequired,
-
-    /**
-     * Function that returns the ref of the element being positioned.
-     */
-    innerRef: PropTypes.func.isRequired,
-
-    /**
-     * The minimum distance from the body to the element being positioned.
-     */
-    bodyOffset: PropTypes.number.isRequired,
-
-    /**
-     * The minimum distance from the target to the element being positioned.
-     */
-    targetOffset: PropTypes.number.isRequired,
-
-    /**
-     * Function that should return a node for the target.
-     * ({ getRef: () -> Ref, isShown: Bool }) -> React Node
-     */
-    target: PropTypes.func.isRequired,
-
-    /**
-     * Initial scale of the element being positioned.
-     */
-    initialScale: PropTypes.number.isRequired,
-
-    /**
-     * Duration of the animation.
-     */
-    animationDuration: PropTypes.number.isRequired,
-
-    /**
-     * Function that will be called when the exit transition is complete.
-     */
-    onCloseComplete: PropTypes.func.isRequired,
-
-    /**
-     * Function that will be called when the enter transition is complete.
-     */
-    onOpenComplete: PropTypes.func.isRequired
-  }
-
-  static defaultProps = {
-    position: Position.BOTTOM,
-    bodyOffset: 6,
-    targetOffset: 6,
-    initialScale: 0.9,
-    animationDuration: 300,
-    innerRef: () => {},
-    onOpenComplete: () => {},
-    onCloseComplete: () => {}
-  }
-
-  constructor(props, context) {
-    super(props, context)
-    this.state = initialState()
-  }
-
-  componentWillUnmount() {
-    if (this.latestAnimationFrame) {
-      cancelAnimationFrame(this.latestAnimationFrame)
-    }
-  }
-
-  getTargetRef = ref => {
-    this.targetRef = ref
-  }
-
-  getRef = ref => {
-    this.positionerRef = ref
-    this.props.innerRef(ref)
-  }
-
-  handleEnter = () => {
-    this.update()
-  }
-
-  update = (prevHeight = 0, prevWidth = 0) => {
-    if (!this.props.isShown || !this.targetRef || !this.positionerRef) return
-
-    const targetRect = this.targetRef.getBoundingClientRect()
-    const hasEntered =
-      this.positionerRef.getAttribute('data-state') === 'entered'
-
-    const viewportHeight = document.documentElement.clientHeight
-    const viewportWidth = document.documentElement.clientWidth
-
-    let height
-    let width
-    if (hasEntered) {
-      // Only when the animation is done should we opt-in to `getBoundingClientRect`
-      const positionerRect = this.positionerRef.getBoundingClientRect()
-
-      // https://github.com/segmentio/evergreen/issues/255
-      // We need to ceil the width and height to prevent jitter when
-      // the window is zoomed (when `window.devicePixelRatio` is not an integer)
-      height = Math.round(positionerRect.height)
-      width = Math.round(positionerRect.width)
-    } else {
-      // When the animation is in flight use `offsetWidth/Height` which
-      // does not calculate the `transform` property as part of its result.
-      // There is still change on jitter during the animation (although unoticable)
-      // When the browser is zoomed in — we fix this with `Math.max`.
-      height = Math.max(this.positionerRef.offsetHeight, prevHeight)
-      width = Math.max(this.positionerRef.offsetWidth, prevWidth)
-    }
-
-    const { rect, transformOrigin } = getPosition({
-      position: this.props.position,
-      targetRect,
-      targetOffset: this.props.targetOffset,
-      dimensions: {
-        height,
-        width
-      },
-      viewport: {
-        width: viewportWidth,
-        height: viewportHeight
-      },
-      viewportOffset: this.props.bodyOffset
-    })
-
-    this.setState(
-      {
-        left: rect.left,
-        top: rect.top,
-        transformOrigin
-      },
-      () => {
-        this.latestAnimationFrame = requestAnimationFrame(() => {
-          this.update(height, width)
-        })
-      }
-    )
-  }
-
-  handleExited = () => {
-    this.setState(
-      () => {
-        return {
-          ...initialState()
-        }
-      },
-      () => {
-        this.props.onCloseComplete()
-      }
-    )
-  }
-
-  render() {
+const Positioner = memo(
+  forwardRef((props, ref) => {
     const {
       target,
       isShown,
       children,
-      initialScale,
-      targetOffset,
-      animationDuration
-    } = this.props
+      initialScale = 0.9,
+      animationDuration = 300,
+      position = Position.BOTTOM,
+      bodyOffset = 6,
+      targetOffset = 6,
+      onOpenComplete = () => {},
+      onCloseComplete = () => {}
+    } = props
 
-    const { left, top, transformOrigin } = this.state
+    const [top, setTop] = useState(0)
+    const [left, setLeft] = useState(0)
+    const [height, setHeight] = useState(0)
+    const [width, setWidth] = useState(0)
+    const [transformOrigin, setTransformOrigin] = useState(null)
+    const [latestAnimationFrame, setLatestAnimationFrame] = useState()
+    const [targetRef, setTargetRef] = useState()
+    const [positionerRef, setPositionerRef] = useState()
+
+    useLayoutEffect(() => {
+      if (latestAnimationFrame) {
+        cancelAnimationFrame(latestAnimationFrame)
+      }
+
+      setLatestAnimationFrame(
+        requestAnimationFrame(() => {
+          update(height, width)
+        })
+      )
+
+      return () => {
+        if (latestAnimationFrame) {
+          cancelAnimationFrame(latestAnimationFrame)
+        }
+      }
+    }, [left, top, height, width, transformOrigin, positionerRef])
+
+    const getRef = newRef => {
+      setPositionerRef(newRef)
+      safeInvoke(ref, newRef)
+    }
+
+    const handleEnter = () => {
+      update()
+    }
+
+    const update = (prevHeight = 0, prevWidth = 0) => {
+      if (!isShown || !targetRef || !positionerRef) return
+
+      const targetRect = targetRef.getBoundingClientRect()
+
+      const hasEntered = positionerRef.getAttribute('data-state') === 'entered'
+
+      const viewportHeight = document.documentElement.clientHeight
+      const viewportWidth = document.documentElement.clientWidth
+
+      let positionerHeight
+      let positionerWidth
+      if (hasEntered) {
+        // Only when the animation is done should we opt-in to `getBoundingClientRect`
+        const positionerRect = positionerRef.getBoundingClientRect()
+
+        // https://github.com/segmentio/evergreen/issues/255
+        // We need to ceil the width and height to prevent jitter when
+        // the window is zoomed (when `window.devicePixelRatio` is not an integer)
+        positionerHeight = Math.round(positionerRect.height)
+        positionerWidth = Math.round(positionerRect.width)
+      } else {
+        // When the animation is in flight use `offsetWidth/Height` which
+        // does not calculate the `transform` property as part of its result.
+        // There is still change on jitter during the animation (although unoticable)
+        // When the browser is zoomed in — we fix this with `Math.max`.
+        positionerHeight = Math.max(positionerRef.offsetHeight, prevHeight)
+        positionerWidth = Math.max(positionerRef.offsetWidth, prevWidth)
+      }
+
+      const { rect, transformOrigin: updatedTransformOrigin } = getPosition({
+        position,
+        targetRect,
+        targetOffset,
+        dimensions: {
+          height: positionerHeight,
+          width: positionerWidth
+        },
+        viewport: {
+          width: viewportWidth,
+          height: viewportHeight
+        },
+        viewportOffset: bodyOffset
+      })
+
+      setHeight(positionerHeight)
+      setWidth(positionerWidth)
+      setLeft(rect.left)
+      setTop(rect.top)
+      setTransformOrigin(updatedTransformOrigin)
+    }
+
+    const handleExited = () => {
+      setLeft(0)
+      setTop(0)
+      setHeight(0)
+      setWidth(0)
+      setTransformOrigin(null)
+      onCloseComplete()
+    }
 
     return (
       <Stack value={StackingOrder.POSITIONER}>
         {zIndex => {
           return (
             <React.Fragment>
-              {target({ getRef: this.getTargetRef, isShown })}
+              {target({ getRef: setTargetRef, isShown })}
 
               <Transition
                 appear
                 in={isShown}
                 timeout={animationDuration}
-                onEnter={this.handleEnter}
-                onEntered={this.props.onOpenComplete}
-                onExited={this.handleExited}
+                onEnter={handleEnter}
+                onEntered={onOpenComplete}
+                onExited={handleExited}
                 unmountOnExit
               >
                 {state => (
@@ -246,7 +165,6 @@ export default class Positioner extends PureComponent {
                       state,
                       zIndex,
                       css: getCSS({
-                        targetOffset,
                         initialScale,
                         animationDuration
                       }),
@@ -256,7 +174,7 @@ export default class Positioner extends PureComponent {
                         top,
                         zIndex
                       },
-                      getRef: this.getRef,
+                      getRef,
                       animationDuration
                     })}
                   </Portal>
@@ -267,5 +185,70 @@ export default class Positioner extends PureComponent {
         }}
       </Stack>
     )
-  }
+  })
+)
+
+Positioner.propTypes = {
+  /**
+   * The position the element that is being positioned is on.
+   * Smart positioning might override this.
+   */
+  position: PropTypes.oneOf([
+    Position.TOP,
+    Position.TOP_LEFT,
+    Position.TOP_RIGHT,
+    Position.BOTTOM,
+    Position.BOTTOM_LEFT,
+    Position.BOTTOM_RIGHT,
+    Position.LEFT,
+    Position.RIGHT
+  ]),
+
+  /**
+   * When true, show the element being positioned.
+   */
+  isShown: PropTypes.bool,
+
+  /**
+   * Function that returns the element being positioned.
+   */
+  children: PropTypes.func.isRequired,
+
+  /**
+   * The minimum distance from the body to the element being positioned.
+   */
+  bodyOffset: PropTypes.number,
+
+  /**
+   * The minimum distance from the target to the element being positioned.
+   */
+  targetOffset: PropTypes.number,
+
+  /**
+   * Function that should return a node for the target.
+   * ({ getRef: () -> Ref, isShown: Bool }) -> React Node
+   */
+  target: PropTypes.func.isRequired,
+
+  /**
+   * Initial scale of the element being positioned.
+   */
+  initialScale: PropTypes.number,
+
+  /**
+   * Duration of the animation.
+   */
+  animationDuration: PropTypes.number,
+
+  /**
+   * Function that will be called when the exit transition is complete.
+   */
+  onCloseComplete: PropTypes.func,
+
+  /**
+   * Function that will be called when the enter transition is complete.
+   */
+  onOpenComplete: PropTypes.func
 }
+
+export default Positioner

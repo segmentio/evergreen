@@ -5,9 +5,9 @@ import Box, { extractStyles as boxExtractStyles } from 'ui-box'
 import { BoxProps } from 'ui-box/dist/types/box-types'
 import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
-import {TransitionProps, TransitionStatus} from 'react-transition-group/Transition'
+import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition'
 
-export { configureSafeHref, setClassNamePrefix } from 'ui-box'
+export { configureSafeHref } from 'ui-box'
 
 type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
 type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
@@ -508,13 +508,11 @@ export interface AvatarProps extends React.ComponentPropsWithoutRef<typeof Box> 
   sizeLimitOneCharacter?: number
 }
 
-export class Avatar extends React.PureComponent<AvatarProps> {
-}
+export declare const Avatar: ForwardRefComponent<AvatarProps>
 
 export type BackButtonProps = ButtonProps
 
-export class BackButton extends React.PureComponent<BackButtonProps> {
-}
+export declare const BackButton: ForwardRefComponent<BackButtonProps>
 
 export interface BadgeProps extends StrongProps {
   /**
@@ -673,8 +671,7 @@ export interface ComboboxProps extends React.ComponentPropsWithoutRef<typeof Box
   isLoading?: boolean
 }
 
-export class Combobox extends React.PureComponent<ComboboxProps> {
-}
+export declare const Combobox: React.FC<ComboboxProps>
 
 export interface CornerDialogProps {
   /**
@@ -1013,8 +1010,7 @@ export declare const InlineAlert: ForwardRefComponent<InlineAlertProps>
 
 export type LabelProps = TextProps
 
-export class Label extends React.PureComponent<LabelProps> {
-}
+export declare const Label: ForwardRefComponent<LabelProps>
 
 export interface LinkProps extends TextProps {
   /**
@@ -1054,8 +1050,8 @@ export interface ListItemProps extends TextProps {
   iconColor?: string
 }
 
-export class ListItem extends React.PureComponent<ListItemProps> {
-}
+export declare const ListItem: ForwardRefComponent<ListItemProps>
+export declare const Li: ForwardRefComponent<ListItemProps>
 
 export interface MenuProps {
   children: React.ReactNode[] | React.ReactNode
@@ -1090,22 +1086,18 @@ export interface MenuOptionsGroupProps<T> {
   options: Array<{ value: T, label: string }>
 }
 
-export class Menu extends React.PureComponent<MenuProps> {
-  // @ts-ignore
-  public static Item = class MenuItem extends React.PureComponent<MenuItemProps> {
-  }
-  // @ts-ignore
-  public static Divider = class MenuDivider extends React.PureComponent {
-  }
-  // @ts-ignore
-  public static Group = class MenuGroup extends React.PureComponent<MenuGroupProps> {
-  }
-  // @ts-ignore
-  public static Option = class Option extends React.PureComponent<MenuOptionProps> {
-  }
-  // @ts-ignore
-  public static OptionsGroup = class MenuOptionsGroup<T extends string | number | null> extends React.PureComponent<MenuOptionsGroupProps<T>> {
-  }
+declare const MenuItem: React.FC<MenuItemProps>
+declare const MenuDivider: React.FC<{}>
+declare const MenuGroup: React.FC<MenuGroupProps>
+declare const MenuOption: React.FC<MenuOptionProps>
+declare const MenuOptionsGroup: React.FC<MenuOptionsGroupProps<any>>
+
+export declare const Menu: React.FC<MenuProps> & {
+  Item: typeof MenuItem
+  Divider: typeof MenuDivider
+  Group: typeof MenuGroup
+  Option: typeof MenuOption
+  OptionsGroup: typeof MenuOptionsGroup
 }
 
 export type PaneProps = Omit<React.ComponentPropsWithoutRef<typeof Box>, 'border' | 'borderTop' | 'borderRight' | 'borderBottom' | 'borderLeft'> & {
@@ -1150,8 +1142,7 @@ export interface PopoverProps {
   statelessProps?: PopoverStatelessProps
 }
 
-export class Popover extends React.PureComponent<PopoverProps> {
-}
+export declare const Popover: ForwardRefComponent<PopoverProps>
 
 export type ParagraphProps = React.ComponentPropsWithoutRef<typeof Box> & {
   size?: keyof Typography['paragraph']
@@ -1159,6 +1150,8 @@ export type ParagraphProps = React.ComponentPropsWithoutRef<typeof Box> & {
 }
 
 export declare const Paragraph: ForwardRefComponent<ParagraphProps>
+
+export declare const Portal: React.FC
 
 export interface PositionerProps {
   position?: PositionTypes
@@ -1188,8 +1181,11 @@ export interface PositionerProps {
   onOpenComplete?: () => void
 }
 
-export class Positioner extends React.PureComponent<PositionerProps> {
-}
+export declare const Positioner: ForwardRefComponent<PositionerProps>
+
+type PreProps = TextProps
+
+export declare const Pre: ForwardRefComponent<PreProps>
 
 export interface RadioProps extends Omit<BoxProps<'input'>, 'onChange'> {
   /**
@@ -1279,8 +1275,7 @@ export interface RadioGroupProps extends Omit<PaneProps, 'onChange'> {
   onChange?(value: string): void
 }
 
-export class RadioGroup extends React.PureComponent<RadioGroupProps> {
-}
+export declare const RadioGroup: ForwardRefComponent<RadioGroupProps>
 
 export interface Option {
   label?: string
@@ -1356,8 +1351,7 @@ export interface SearchTableHeaderCellProps extends Omit<TableHeaderCellProps, '
   icon?: React.ReactElement | null | false
 }
 
-export class SearchTableHeaderCell extends React.PureComponent<SearchTableHeaderCellProps> {
-}
+export declare const SearchTableHeaderCell: ForwardRefComponent<SearchTableHeaderCellProps>
 
 export interface SegmentedControlProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'defaultValue' | 'onChange'> {
   options: Array<{ label: string, value: NonNullable<SegmentedControlProps['value']> }>
@@ -1368,8 +1362,7 @@ export interface SegmentedControlProps extends Omit<React.ComponentPropsWithoutR
   height?: number
 }
 
-export class SegmentedControl extends React.PureComponent<SegmentedControlProps> {
-}
+export declare const SegmentedControl: ForwardRefComponent<SegmentedControlProps>
 
 export interface SelectProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'onChange'> {
   /**
@@ -1412,8 +1405,7 @@ export declare const Select: ForwardRefComponent<SelectProps>
 
 export type SelectFieldProps = FormFieldProps
 
-export class SelectField extends React.PureComponent<SelectFieldProps> {
-}
+export declare const SelectField: React.FC<SelectFieldProps>
 
 export interface SelectMenuContentProps {
   close?: OptionsListProps['close']
@@ -1549,8 +1541,7 @@ export declare const SideSheet: ForwardRefComponent<SideSheetProps>
 
 export type SidebarTabProps = TabProps
 
-export class SidebarTab extends React.PureComponent<SidebarTabProps> {
-}
+export declare const SidebarTab: ForwardRefComponent<SidebarTabProps>
 
 export interface SmallProps extends BoxProps<'small'> {
 
@@ -1576,13 +1567,13 @@ export interface StackProps {
   value?: number
 }
 
-export class Stack extends React.PureComponent<StackProps> {
-}
+export declare const Stack: React.FC<StackProps>
 
-export type StrongProps = TextProps
+export declare const StackingContext: React.Context<number>
 
-export class Strong extends React.PureComponent<StrongProps> {
-}
+export type StrongProps = BoxProps<'strong'>
+
+export declare const Strong: ForwardRefComponent<StrongProps>
 
 export interface SwitchProps extends Omit<BoxProps<'label'>, 'onChange'> {
   /**
@@ -1638,8 +1629,7 @@ export declare const Switch: ForwardRefComponent<SwitchProps>
 export interface TableBodyProps extends PaneProps {
 }
 
-export class TableBody extends React.PureComponent<TableBodyProps> {
-}
+export declare const TableBody: React.FC<TableBodyProps>
 
 export interface TableCellProps extends PaneProps {
   /**
@@ -1672,8 +1662,7 @@ export interface TableCellProps extends PaneProps {
   className?: string
 }
 
-export class TableCell extends React.PureComponent<TableCellProps> {
-}
+export declare const TableCell: ForwardRefComponent<TableCellProps>
 
 interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' | 'onChange'> {
   autoFocus?: boolean
@@ -1707,16 +1696,14 @@ interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' 
 export interface TableHeaderCellProps extends TableCellProps {
 }
 
-export class TableHeaderCell extends React.PureComponent<TableHeaderCellProps> {
-}
+export declare const TableHeaderCell: React.FC<TableHeaderCellProps> 
 
 export interface TableHeadProps extends PaneProps {
   height?: number | string
   accountForScrollbar?: boolean
 }
 
-export class TableHead extends React.PureComponent<TableHeadProps> {
-}
+export declare const TableHead: React.FC<TableHeadProps>
 
 export interface TableRowProps extends PaneProps {
   /**
@@ -1856,11 +1843,9 @@ export class Table extends React.PureComponent<TableProps> {
   public static TextCell = TextTableCell
 
   // @ts-ignore
-  public static EditableCell = class EditableCell extends React.PureComponent<TableEditableCellProps> {
-  }
+  public static EditableCell: React.FC<TableEditableCellProps> 
   // @ts-ignore
-  public static SelectMenuCell = class SelectMenuCell extends React.PureComponent<TableSelectMenuCellProps> {
-  }
+  public static SelectMenuCell: React.FC<TableSelectMenuCellProps>
 }
 
 export interface TabProps extends TextProps {
@@ -1880,18 +1865,15 @@ export interface TabProps extends TextProps {
   appearance?: DefaultAppearance
 }
 
-export class Tab extends React.PureComponent<TabProps> {
-}
+export declare const Tab: ForwardRefComponent<TabProps>
 
-export type TablistProps = React.ComponentPropsWithoutRef<typeof Box>
+export type TablistProps = BoxProps<'div'>
 
-export class Tablist extends React.PureComponent<TablistProps> {
-}
+export declare const Tablist: ForwardRefComponent<TablistProps>
 
 export type TabNavigationProps = BoxProps<'nav'>
 
-export class TabNavigation extends React.PureComponent<TabNavigationProps> {
-}
+export declare const TabNavigation: ForwardRefComponent<TabNavigationProps>
 
 export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'onChange'> {
   addOnBlur?: boolean
@@ -1907,6 +1889,7 @@ export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<typeo
   onInputChange?: (event: React.ChangeEvent) => void
   onRemove?: (value: string | React.ReactNode, index: number) => void
   separator?: string
+  tagSubmitKey?: "enter" | "space"
   tagProps?: any
   values?: string[]
 }
@@ -1965,8 +1948,7 @@ export interface TextareaFieldProps extends TextareaProps {
   inputWidth?: number | string
 }
 
-export class TextareaField extends React.PureComponent<TextareaFieldProps> {
-}
+export declare const TextareaField: React.FC<TextareaFieldProps>
 
 export interface TextDropdownButtonProps extends TextProps {
   /**
@@ -2002,17 +1984,15 @@ export interface TextTableCellProps extends TableCellProps {
   textProps?: TextProps
 }
 
-export class TextTableCell extends React.PureComponent<TextTableCellProps> {
-}
+export declare const TextTableCell: ForwardRefComponent<TextTableCellProps>
 
 export interface TextTableHeaderCellProps extends PaneProps {
   textProps?: TextProps
 }
 
-export class TextTableHeaderCell extends React.PureComponent<TextTableHeaderCellProps> {
-}
+export declare const TextTableHeaderCell: React.FC<TextTableHeaderCellProps>
 
-export type TextProps = React.ComponentPropsWithoutRef<typeof Box> & {
+export type TextProps = BoxProps<'span'> & {
   size?: keyof Typography['text']
   fontFamily?: FontFamily | string
 }
@@ -2136,6 +2116,16 @@ export interface TooltipProps {
 export class Tooltip extends React.PureComponent<TooltipProps> {
 }
 
+export interface OrderedListProps extends React.ComponentPropsWithoutRef<typeof Box> {
+  /**
+   * Size of the text used in a list item.
+   */
+  size?: keyof Typography['text']
+}
+
+export declare const OrderedList: ForwardRefComponent<OrderedListProps>
+export declare const Ol: ForwardRefComponent<OrderedListProps>
+
 export interface UnorderedListProps extends React.ComponentPropsWithoutRef<typeof Box> {
   /**
    * Size of the text used in a list item.
@@ -2152,8 +2142,8 @@ export interface UnorderedListProps extends React.ComponentPropsWithoutRef<typeo
   iconColor?: string
 }
 
-export class UnorderedList extends React.PureComponent<UnorderedListProps> {
-}
+export declare const UnorderedList: ForwardRefComponent<UnorderedListProps>
+export declare const Ul: ForwardRefComponent<UnorderedListProps>
 
 export function majorScale(x: number): number
 
@@ -2262,16 +2252,20 @@ interface OverlayProps {
   shouldCloseOnClick?: boolean;
   shouldCloseOnEscapePress?: boolean;
   onBeforeClose?: () => void;
-  onExit?: () => void;
+  onExit?: TransitionProps['onExit'];
   onExiting?: TransitionProps['onExiting'];
   onExited?: TransitionProps['onExited'];
-  onEnter?: () => void;
+  onEnter?: TransitionProps['onEnter'];
   onEntering?: TransitionProps['onEntering'];
   onEntered?: TransitionProps['onEntered'];
 }
 
-export class Overlay extends React.PureComponent<OverlayProps> {
-}
+export declare const Overlay: ForwardRefComponent<OverlayProps>
+
+export declare const ThemeContext: React.Context<Theme>
+export declare const ThemeProvider: React.Context<Theme>['Provider']
+export declare const ThemeConsumer: React.Context<Theme>['Consumer']
+export declare const useTheme: () => Theme
 
 export interface IconProps extends BoxProps<'svg'> {
   /**
@@ -2403,6 +2397,7 @@ export declare const DeleteIcon: IconComponent
 export declare const DeltaIcon: IconComponent
 export declare const DeriveColumnIcon: IconComponent
 export declare const DesktopIcon: IconComponent
+export declare const DiagnosisIcon: IconComponent
 export declare const DiagramTreeIcon: IconComponent
 export declare const DirectionLeftIcon: IconComponent
 export declare const DirectionRightIcon: IconComponent
@@ -2500,6 +2495,7 @@ export declare const HandDownIcon: IconComponent
 export declare const HandLeftIcon: IconComponent
 export declare const HandRightIcon: IconComponent
 export declare const HandUpIcon: IconComponent
+export declare const HatIcon: IconComponent
 export declare const HeaderIcon: IconComponent
 export declare const HeaderOneIcon: IconComponent
 export declare const HeaderTwoIcon: IconComponent
@@ -2528,6 +2524,7 @@ export declare const InboxSearchIcon: IconComponent
 export declare const InboxUpdateIcon: IconComponent
 export declare const InfoSignIcon: IconComponent
 export declare const InheritanceIcon: IconComponent
+export declare const InheritedGroupIcon: IconComponent
 export declare const InnerJoinIcon: IconComponent
 export declare const InsertIcon: IconComponent
 export declare const IntersectionIcon: IconComponent
@@ -2548,6 +2545,7 @@ export declare const KeyOptionIcon: IconComponent
 export declare const KeyShiftIcon: IconComponent
 export declare const KeyTabIcon: IconComponent
 export declare const KnownVehicleIcon: IconComponent
+export declare const LabTestIcon: IconComponent
 export declare const LabelIcon: IconComponent
 export declare const LayerIcon: IconComponent
 export declare const LayersIcon: IconComponent
@@ -2770,6 +2768,7 @@ export declare const VerticalBarChartAscIcon: IconComponent
 export declare const VerticalBarChartDescIcon: IconComponent
 export declare const VerticalDistributionIcon: IconComponent
 export declare const VideoIcon: IconComponent
+export declare const VirusIcon: IconComponent
 export declare const VolumeDownIcon: IconComponent
 export declare const VolumeOffIcon: IconComponent
 export declare const VolumeUpIcon: IconComponent
@@ -2791,32 +2790,6 @@ export declare const ZoomToFitIcon: IconComponent
 // ====================================================
 
 type UnknownProps = Record<string, any>
-
 export declare const FilePicker: ForwardRefComponent<UnknownProps>
-
-export class Portal extends React.PureComponent<UnknownProps> {
-}
-
-export class OptionShapePropType extends React.PureComponent<UnknownProps> {
-}
-
-export class SelectedPropType extends React.PureComponent<UnknownProps> {
-}
-
-export class StackingContext extends React.PureComponent<UnknownProps> {
-}
-
-export class Ul extends React.PureComponent<UnknownProps> {
-}
-
-export class OrderedList extends React.PureComponent<UnknownProps> {
-}
-
-export class Ol extends React.PureComponent<UnknownProps> {
-}
-
-export class Li extends React.PureComponent<UnknownProps> {
-}
-
-export class Pre extends React.PureComponent<UnknownProps> {
-}
+export declare const OptionShapePropType: unknown
+export declare const SelectedPropType: unknown

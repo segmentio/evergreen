@@ -1,13 +1,13 @@
-import React, { memo, forwardRef } from 'react'
-import PropTypes from 'prop-types'
+import React, { forwardRef, memo } from 'react'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
 import Text from './Text'
 
 const Link = memo(
   forwardRef((props, ref) => {
     const theme = useTheme()
-    const { className, color, ...restProps } = props
+    const { className, color = 'default', ...restProps } = props
     const themedClassName = theme.getLinkClassName(color)
 
     return (
@@ -52,10 +52,6 @@ Link.propTypes = {
    * Only use if you know what you are doing.
    */
   className: PropTypes.string
-}
-
-Link.defaultProps = {
-  color: 'default'
 }
 
 export default Link

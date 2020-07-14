@@ -8,7 +8,12 @@ import { StackingOrder } from '../../constants'
 const SearchInput = memo(
   forwardRef((props, ref) => {
     const theme = useTheme()
-    const { appearance, disabled, height, ...restProps } = props
+    const {
+      appearance = 'default',
+      disabled,
+      height = 32,
+      ...restProps
+    } = props
     const { matchedProps, remainingProps } = splitBoxProps(restProps)
     const { width } = matchedProps
     const iconSize = theme.getIconSizeForInput(height)
@@ -55,11 +60,6 @@ SearchInput.propTypes = {
    * Composes the TextInput component as the base.
    */
   ...TextInput.propTypes
-}
-
-SearchInput.defaultProps = {
-  height: 32,
-  appearance: 'default'
 }
 
 export default SearchInput

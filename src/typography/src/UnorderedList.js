@@ -1,38 +1,18 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 
-export default class UnorderedList extends PureComponent {
-  static propTypes = {
-    ...Box.propTypes,
+const styles = {
+  is: 'ul',
+  margin: 0,
+  marginLeft: '1.1em',
+  padding: 0,
+  listStyle: 'disc'
+}
 
-    /**
-     * Size of the text used in a list item.
-     * Can be: 300, 400, 500, 600.
-     */
-    size: PropTypes.oneOf([300, 400, 500, 600]).isRequired,
-
-    /**
-     * When passed, adds a icon before each list item in the list
-     * You can override this on a individual list item.
-     */
-    icon: PropTypes.node
-  }
-
-  static defaultProps = {
-    size: 400
-  }
-
-  static styles = {
-    is: 'ul',
-    margin: 0,
-    marginLeft: '1.1em',
-    padding: 0,
-    listStyle: 'disc'
-  }
-
-  render() {
-    const { children, size, icon, ...props } = this.props
+const UnorderedList = memo(
+  forwardRef((props, ref) => {
+    const { children, size = 400, icon, ...rest } = props
 
     const enrichedChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {
@@ -48,9 +28,27 @@ export default class UnorderedList extends PureComponent {
     })
 
     return (
-      <Box {...UnorderedList.styles} {...props}>
+      <Box {...styles} {...rest} innerRef={ref}>
         {enrichedChildren}
       </Box>
     )
-  }
+  })
+)
+
+UnorderedList.propTypes = {
+  ...Box.propTypes,
+
+  /**
+   * Size of the text used in a list item.
+   * Can be: 300, 400, 500, 600.
+   */
+  size: PropTypes.oneOf([300, 400, 500, 600]),
+
+  /**
+   * When passed, adds a icon before each list item in the list
+   * You can override this on a individual list item.
+   */
+  icon: PropTypes.node
 }
+
+export default UnorderedList

@@ -9,17 +9,18 @@ const Textarea = memo(
     const theme = useTheme()
     const {
       className,
-      width,
+      width = '100%',
       height,
-      disabled,
+      disabled = false,
       required,
-      isInvalid,
-      appearance,
+      isInvalid = false,
+      appearance = 'default',
       placeholder,
-      spellCheck,
-      grammarly,
+      spellCheck = true,
+      grammarly = false,
       ...restProps
     } = props
+
     const themedClassName = theme.getTextareaClassName(appearance)
 
     return (
@@ -99,15 +100,6 @@ Textarea.propTypes = {
    * Only use if you know what you are doing.
    */
   className: PropTypes.string
-}
-
-Textarea.defaultProps = {
-  appearance: 'default',
-  width: '100%',
-  disabled: false,
-  isInvalid: false,
-  spellCheck: true,
-  grammarly: false
 }
 
 Textarea.styles = {

@@ -18,8 +18,8 @@ const FilePicker = memo(
       disabled,
       capture,
       height,
-      onChange, // Remove onChange from props
-      placeholder,
+      onChange,
+      placeholder = 'Select a file to upload…',
       ...rest
     } = props
 
@@ -181,10 +181,6 @@ FilePicker.propTypes = {
    * Placeholder of the text input
    */
   placeholder: PropTypes.string
-}
-
-FilePicker.defaultProps = {
-  placeholder: 'Select a file to upload…'
 }
 
 export default FilePicker

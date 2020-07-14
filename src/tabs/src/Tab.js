@@ -1,91 +1,55 @@
-import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import React, { forwardRef, memo } from 'react'
+import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
+import { useTheme } from '../../theme'
+import { Text } from '../../typography'
 
-class Tab extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Text component as the base.
-     */
-    ...Text.propTypes,
+const styles = {
+  display: 'inline-flex',
+  fontWeight: 500,
+  paddingX: 8,
+  marginX: 4,
+  borderRadius: 3,
+  lineHeight: '28px',
+  alignItems: 'center',
+  justifyContent: 'center',
+  textDecoration: 'none',
+  tabIndex: 0
+}
 
-    /**
-     * Function triggered when tab is selected.
-     */
-    onSelect: PropTypes.func,
+const Tab = memo(
+  forwardRef((props, ref) => {
+    const theme = useTheme()
 
-    /**
-     * When true, the tab is selected.
-     */
-    isSelected: PropTypes.bool,
-
-    /**
-     * The appearance of the tab.
-     * The default theme only comes with a default style.
-     */
-    appearance: PropTypes.string,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
-  static defaultProps = {
-    onSelect: () => {},
-    onKeyPress: () => {},
-    is: 'span',
-    height: 28,
-    disabled: false
-  }
-
-  static styles = {
-    display: 'inline-flex',
-    fontWeight: 500,
-    paddingX: 8,
-    marginX: 4,
-    borderRadius: 3,
-    lineHeight: '28px',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textDecoration: 'none',
-    tabIndex: 0
-  }
-
-  handleClick = e => {
-    if (typeof this.props.onClick === 'function') {
-      this.props.onClick(e)
-    }
-
-    this.props.onSelect()
-  }
-
-  handleKeyPress = e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      this.props.onSelect()
-      e.preventDefault()
-    }
-
-    this.props.onKeyPress(e)
-  }
-
-  render() {
     const {
-      theme,
-      is,
-      height,
-      onSelect,
-      isSelected,
       appearance,
-      disabled,
-      ...props
-    } = this.props
+      disabled = false,
+      height = 28,
+      is = 'span',
+      isSelected,
+      onKeyPress = () => {},
+      onSelect = () => {},
+      ...rest
+    } = props
+
+    const handleClick = e => {
+      safeInvoke(props.onClick, e)
+      onSelect()
+    }
+
+    const handleKeyPress = e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        onSelect()
+        e.preventDefault()
+      }
+
+      onKeyPress(e)
+    }
 
     if (process.env.NODE_ENV !== 'production') {
       warning(
-        typeof this.props.onClick === 'function',
+        typeof props.onClick === 'function',
         '<Tab> expects `onSelect` prop, but you passed `onClick`.'
       )
     }
@@ -125,14 +89,38 @@ class Tab extends PureComponent {
         is={is}
         size={textSize}
         height={height}
-        {...Tab.styles}
-        {...props}
-        onClick={this.handleClick}
-        onKeyPress={this.handleKeyPress}
+        ref={ref}
+        {...styles}
+        {...rest}
+        onClick={handleClick}
+        onKeyPress={handleKeyPress}
         {...elementBasedProps}
       />
     )
-  }
+  })
+)
+
+Tab.propTypes = {
+  /**
+   * Composes the Text component as the base.
+   */
+  ...Text.propTypes,
+
+  /**
+   * Function triggered when tab is selected.
+   */
+  onSelect: PropTypes.func,
+
+  /**
+   * When true, the tab is selected.
+   */
+  isSelected: PropTypes.bool,
+
+  /**
+   * The appearance of the tab.
+   * The default theme only comes with a default style.
+   */
+  appearance: PropTypes.string
 }
 
-export default withTheme(Tab)
+export default Tab

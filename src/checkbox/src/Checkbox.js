@@ -38,13 +38,13 @@ const Checkbox = memo(
       id,
       name,
       label,
-      appearance,
+      appearance = 'default',
       disabled,
       isInvalid,
-      checked,
-      onChange,
+      checked = false,
+      onChange = () => {},
       value,
-      indeterminate,
+      indeterminate = false,
       ...rest
     } = props
 
@@ -146,11 +146,6 @@ Checkbox.propTypes = {
   indeterminate: PropTypes.bool,
 
   /**
-   * Function that returns the ref of the checkbox.
-   */
-  innerRef: PropTypes.func,
-
-  /**
    * Function called when state changes.
    */
   onChange: PropTypes.func,
@@ -171,14 +166,6 @@ Checkbox.propTypes = {
    * The default theme only comes with a default style.
    */
   appearance: PropTypes.string
-}
-
-Checkbox.defaultProps = {
-  checked: false,
-  indeterminate: false,
-  innerRef: () => {},
-  onChange: () => {},
-  appearance: 'default'
 }
 
 export default Checkbox

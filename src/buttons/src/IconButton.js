@@ -7,7 +7,7 @@ import Button from './Button'
 const IconButton = memo(
   forwardRef((props, ref) => {
     const theme = useTheme()
-    const { icon, iconSize, height, intent, ...restProps } = props
+    const { icon, iconSize, height, intent = 'none', ...restProps } = props
 
     let iconWithProps
     if (icon && React.isValidElement(icon)) {
@@ -70,12 +70,12 @@ IconButton.propTypes = {
   /**
    * The intent of the button.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']).isRequired,
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
 
   /**
    * The appearance of the button.
    */
-  appearance: PropTypes.oneOf(['default', 'minimal', 'primary']).isRequired,
+  appearance: PropTypes.oneOf(['default', 'minimal', 'primary']),
 
   /**
    * Forcefully set the active state of a button.
@@ -94,12 +94,6 @@ IconButton.propTypes = {
    * Only use if you know what you are doing.
    */
   className: PropTypes.string
-}
-
-IconButton.defaultProps = {
-  intent: 'none',
-  appearance: 'default',
-  height: 32
 }
 
 export default IconButton

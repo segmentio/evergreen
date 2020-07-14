@@ -1,4 +1,4 @@
-import React, { memo, forwardRef, useState, useCallback } from 'react'
+import React, { memo, forwardRef } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
@@ -62,34 +62,17 @@ const Switch = memo(
     const {
       id,
       name,
-      height,
-      checked: checkedProps,
-      onChange,
-      disabled,
-      appearance,
-      hasCheckIcon,
+      height = 16,
+      checked,
+      onChange = () => {},
+      disabled = false,
+      appearance = 'default',
+      hasCheckIcon = true,
       defaultChecked,
       ...rest
     } = props
-    const [isChecked, setIsChecked] = useState(
-      checkedProps || defaultChecked || false
-    )
 
     const theme = useTheme()
-
-    const handleChange = useCallback(
-      value => {
-        if (checkedProps) {
-          onChange(value)
-        } else {
-          setIsChecked(checked => !checked)
-          onChange(value)
-        }
-      },
-      [onChange]
-    )
-
-    const checked = checkedProps ? checkedProps : isChecked
     const themedClassName = theme.getSwitchClassName(appearance)
 
     return (
@@ -110,7 +93,7 @@ const Switch = memo(
           checked={checked}
           disabled={disabled}
           defaultChecked={defaultChecked}
-          onChange={handleChange}
+          onChange={onChange}
         />
         <Box height={height} width={height * 2}>
           <Box
@@ -193,7 +176,7 @@ Switch.propTypes = {
    * The appearance of the checkbox.
    * The default theme only comes with a default style.
    */
-  appearance: PropTypes.string.isRequired,
+  appearance: PropTypes.string,
 
   /**
    * When true, the switch has a check icon.
@@ -205,14 +188,6 @@ Switch.propTypes = {
    * This is for uncontrolled usage.
    */
   defaultChecked: PropTypes.bool
-}
-
-Switch.defaultProps = {
-  height: 16,
-  onChange: () => {},
-  appearance: 'default',
-  hasCheckIcon: true,
-  disabled: false
 }
 
 export default Switch

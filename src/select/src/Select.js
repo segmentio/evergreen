@@ -11,7 +11,7 @@ const Select = memo(
     const {
       id,
       name,
-      height,
+      height = 32,
       children,
       defaultValue,
       disabled,
@@ -19,8 +19,8 @@ const Select = memo(
       value,
       required,
       autoFocus,
-      isInvalid,
-      appearance,
+      isInvalid = false,
+      appearance = 'default',
       ...restProps
     } = props
 
@@ -144,13 +144,7 @@ Select.propTypes = {
   /**
    * The appearance of the select. The default theme only supports default.
    */
-  appearance: PropTypes.string.isRequired
-}
-
-Select.defaultProps = {
-  appearance: 'default',
-  height: 32,
-  isInvalid: false
+  appearance: PropTypes.string
 }
 
 export default Select

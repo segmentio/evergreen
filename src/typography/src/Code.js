@@ -1,13 +1,13 @@
-import React, { memo, forwardRef } from 'react'
-import PropTypes from 'prop-types'
+import React, { forwardRef, memo } from 'react'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
 import Text from './Text'
 
 const Code = memo(
   forwardRef((props, ref) => {
     const theme = useTheme()
-    const { className, appearance, ...restProps } = props
+    const { className, appearance = 'default', ...restProps } = props
 
     const {
       className: themedClassName = '',
@@ -40,10 +40,6 @@ Code.propTypes = {
    * Only use if you know what you are doing.
    */
   className: PropTypes.string
-}
-
-Code.defaultProps = {
-  appearance: 'default'
 }
 
 export default Code
