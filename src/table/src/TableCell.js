@@ -5,6 +5,7 @@ import { toaster } from '../../toaster'
 import { useTheme } from '../../theme'
 import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
+import bubbleRef from '../../lib/bubble-ref'
 import { TableRowConsumer } from './TableRowContext'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
 
@@ -89,7 +90,7 @@ const TableCell = memo(
 
     const handleRef = newRef => {
       setCellRef(newRef)
-      safeInvoke(ref, newRef)
+      bubbleRef(ref, newRef)
     }
 
     const themedClassName = theme.getTableCellClassName(appearance)
