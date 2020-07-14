@@ -5,10 +5,11 @@ import debounce from 'lodash.debounce'
 import { Pane } from '../../layers'
 
 const useForceUpdate = () => {
+  // eslint-disable-next-line no-unused-vars
   const [_, setValue] = useState()
 
   return useCallback(() => {
-    setValue({}) // set with a new object instance every time it gets called
+    setValue({}) // Set with a new object instance every time it gets called
   }, [setValue])
 }
 
