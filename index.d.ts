@@ -1193,7 +1193,7 @@ export interface PopoverProps {
   trigger?: 'click' | 'hover'
   content: React.ReactNode | ((object: { close: () => void }) => React.ReactNode)
   children:
-    ((props: { toggle: () => void, getRef: (ref: React.RefObject<HTMLElement>) => void, isShow: NonNullable<PopoverProps['isShown']> }) => React.ReactNode)
+    ((props: { toggle: () => void, getRef: (ref: React.RefObject<HTMLElement>) => void, isShown: NonNullable<PopoverProps['isShown']> }) => React.ReactNode)
     | React.ReactNode
   display?: string
   minWidth?: number | string
@@ -1241,7 +1241,7 @@ export interface PositionerProps {
   innerRef?: (ref: React.RefObject<HTMLElement>) => void
   bodyOffset?: number
   targetOffset?: number
-  target: (params: { getRef: () => React.RefObject<HTMLElement>, isShow: boolean }) => React.ReactNode
+  target: (params: { getRef: () => React.RefObject<HTMLElement>, isShown: boolean }) => React.ReactNode
   initialScale?: number
   animationDuration?: number
   onCloseComplete?: () => void
