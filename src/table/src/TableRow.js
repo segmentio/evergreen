@@ -1,163 +1,149 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { Pane } from '../../layers'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
 import { TableRowProvider } from './TableRowContext'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 
-class TableRow extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Pane component as the base.
-     */
-    ...Pane.propTypes,
+const TableRow = memo(forwardRef((props, ref) => {
+  const {
+    className,
+    height = 48,
+    children,
+    intent = 'none',
+    appearance = 'default',
+    tabIndex = -1,
 
-    /**
-     * The height of the row. Remember to add paddings when using "auto".
-     */
-    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-      .isRequired,
+    // Filter out
+    onClick,
+    onKeyPress = () => {},
+    onSelect = () => {},
+    onDeselect = () => {},
 
-    /**
-     * Function that is called on click and enter/space keypress.
-     */
-    onSelect: PropTypes.func,
+    isHighlighted,
+    isSelectable,
+    isSelected,
+    ...rest
+  } = props
 
-    /**
-     * Function that is called on click and enter/space keypress.
-     */
-    onDeselect: PropTypes.func,
+  const theme = useTheme()
 
-    /**
-     * Makes the TableRow selectable.
-     */
-    isSelectable: PropTypes.bool,
+  const [mainRef, setMainRef] = useState()
 
-    /**
-     * Makes the TableRow selected.
-     */
-    isSelected: PropTypes.bool,
-
-    /**
-     * Manually set the TableRow to be highlighted.
-     */
-    isHighlighted: PropTypes.bool,
-
-    /**
-     * The intent of the alert.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * The appearance of the table row. Default theme only support default.
-     */
-    appearance: PropTypes.string.isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
-
-    /**
-     * Class name passed to the table row.
-     * Only use if you know what you are doing.
-     */
-    className: PropTypes.string
-  }
-
-  static defaultProps = {
-    intent: 'none',
-    appearance: 'default',
-    height: 48,
-    onSelect: () => {},
-    onDeselect: () => {},
-    onKeyPress: () => {}
-  }
-
-  handleClick = e => {
-    if (typeof this.props.onClick === 'function') {
-      this.props.onClick(e)
+  const handleClick = e => {
+    if (typeof onClick === 'function') {
+      onClick(e)
     }
 
-    if (this.props.isSelectable) {
-      if (this.props.isSelected) {
-        this.props.onDeselect()
+    if (isSelectable) {
+      if (isSelected) {
+        onDeselect()
       } else {
-        this.props.onSelect()
+        onSelect()
       }
     }
   }
 
-  handleKeyDown = e => {
-    if (this.props.isSelectable) {
+  const handleKeyDown = e => {
+    if (isSelectable) {
       const { key } = e
       if (key === 'Enter' || key === ' ') {
-        this.props.onSelect()
+        onSelect()
         e.preventDefault()
       } else if (key === 'ArrowUp' || key === 'ArrowDown') {
         try {
-          manageTableRowFocusInteraction(key, this.mainRef)
+          manageTableRowFocusInteraction(key, mainRef)
         } catch (_) {}
       } else if (key === 'Escape') {
-        if (this.mainRef) this.mainRef.blur()
+        if (mainRef && mainRef instanceof Node) mainRef.blur()
       }
     }
 
-    this.props.onKeyPress(e)
+    onKeyPress(e)
   }
 
-  onRef = ref => {
-    this.mainRef = ref
-    safeInvoke(this.props.innerRef, ref)
+  const onRef = newRef => {
+    setMainRef(newRef)
+    safeInvoke(ref, newRef)
   }
 
-  render() {
-    const {
-      theme,
-      className,
-      height,
-      children,
-      intent,
-      appearance,
-      tabIndex = -1,
+  const themedClassName = theme.getRowClassName(appearance, intent)
 
-      // Filter out
-      onClick,
-      onKeyPress,
-      onSelect,
-      onDeselect,
+  return (
+    <TableRowProvider height={height}>
+      <Pane
+        ref={onRef}
+        className={cx(themedClassName, className)}
+        display="flex"
+        aria-selected={isHighlighted}
+        aria-current={isSelected}
+        data-isselectable={isSelectable}
+        tabIndex={isSelectable ? tabIndex : undefined}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        height={height}
+        borderBottom="muted"
+        {...rest}
+      >
+        {children}
+      </Pane>
+    </TableRowProvider>
+  )
+}))
 
-      isHighlighted,
-      isSelectable,
-      isSelected,
-      ...props
-    } = this.props
-    const themedClassName = theme.getRowClassName(appearance, intent)
+TableRow.propTypes = {
+  /**
+   * Composes the Pane component as the base.
+   */
+  ...Pane.propTypes,
 
-    return (
-      <TableRowProvider height={height}>
-        <Pane
-          ref={this.onRef}
-          className={cx(themedClassName, className)}
-          display="flex"
-          aria-selected={isHighlighted}
-          aria-current={isSelected}
-          data-isselectable={isSelectable}
-          tabIndex={isSelectable ? tabIndex : undefined}
-          onClick={this.handleClick}
-          onKeyDown={this.handleKeyDown}
-          height={height}
-          borderBottom="muted"
-          {...props}
-        >
-          {children}
-        </Pane>
-      </TableRowProvider>
-    )
-  }
+  /**
+   * The height of the row. Remember to add paddings when using "auto".
+   */
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  /**
+   * Function that is called on click and enter/space keypress.
+   */
+  onSelect: PropTypes.func,
+
+  /**
+   * Function that is called on click and enter/space keypress.
+   */
+  onDeselect: PropTypes.func,
+
+  /**
+   * Makes the TableRow selectable.
+   */
+  isSelectable: PropTypes.bool,
+
+  /**
+   * Makes the TableRow selected.
+   */
+  isSelected: PropTypes.bool,
+
+  /**
+   * Manually set the TableRow to be highlighted.
+   */
+  isHighlighted: PropTypes.bool,
+
+  /**
+   * The intent of the alert.
+   */
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+
+  /**
+   * The appearance of the table row. Default theme only support default.
+   */
+  appearance: PropTypes.string,
+
+  /**
+   * Class name passed to the table row.
+   * Only use if you know what you are doing.
+   */
+  className: PropTypes.string
 }
 
-export default withTheme(TableRow)
+export default TableRow

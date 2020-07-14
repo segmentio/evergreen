@@ -1749,8 +1749,7 @@ export interface TableRowProps extends PaneProps {
   onDeselect?(): void
 }
 
-export class TableRow extends React.PureComponent<TableRowProps> {
-}
+export declare const TableRow: ForwardRefComponent<TableRowProps>
 
 export interface TableSelectMenuCellProps extends Omit<TextTableCellProps, 'placeholder'> {
   /**
