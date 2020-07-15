@@ -42,7 +42,6 @@ const TagInput = memo(props => {
   } = props
   const theme = useTheme()
 
-  const [input, setInput] = useState(null)
   const [inputValue, setInputValue] = useState('')
   const [isFocused, setIsFocused] = useState(false)
   const [id] = useState(`TagInput=${inputId++}`)
@@ -150,7 +149,6 @@ const TagInput = memo(props => {
   }
 
   const setRef = node => {
-    setInput(node)
     bubbleRef(inputRef, node)
   }
 
