@@ -1877,8 +1877,7 @@ export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<typeo
   values?: string[]
 }
 
-export class TagInput extends React.PureComponent<TagInputProps> {
-}
+export declare const TagInput: React.FC<TagInputProps>
 
 export interface TextareaProps extends TextProps {
   required?: boolean
