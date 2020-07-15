@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import Box from 'ui-box'
 import { Checkbox } from '..'
 
-const innerRef = el => {
+const refCallback = el => {
   if (el) {
     el.disabled = true
   }
@@ -12,7 +12,7 @@ const innerRef = el => {
 function IndeterminateWithRefExample() {
   useEffect(() => {
     if (ref && ref.current) {
-      innerRef(ref.current)
+      refCallback(ref.current)
     }
   }, [ref])
 

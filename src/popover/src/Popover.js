@@ -218,7 +218,7 @@ const Popover = memo(
        * With normal usage only popover props end up on the target.
        */
       return React.cloneElement(children, {
-        innerRef: getTargetRef,
+        ref: getTargetRef,
         ...popoverTargetProps
       })
     }

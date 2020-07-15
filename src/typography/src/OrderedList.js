@@ -26,7 +26,7 @@ const OrderedList = memo(
     })
 
     return (
-      <Box {...styles} {...rest} innerRef={ref}>
+      <Box {...styles} {...rest} ref={ref}>
         {finalChildren}
       </Box>
     )
