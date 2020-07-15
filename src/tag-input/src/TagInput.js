@@ -55,7 +55,6 @@ const TagInput = memo(props => {
       : [inputValue]
 
   const addTags = (value = '') => {
-    console.log(value)
     const newValues = getValues(value)
     let shouldClearInput = safeInvoke(onAdd, newValues)
 
