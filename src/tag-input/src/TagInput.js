@@ -10,6 +10,7 @@ import { Text } from '../../typography'
 import { withTheme } from '../../theme'
 import { majorScale } from '../../scales'
 import safeInvoke from '../../lib/safe-invoke'
+import bubbleRef from '../../lib/bubble-ref'
 import Tag from './Tag'
 
 let inputId = 1
@@ -219,7 +220,7 @@ class TagInput extends React.Component {
 
   setRef = node => {
     this.input = node
-    safeInvoke(this.props.inputRef, node)
+    bubbleRef(this.props.inputRef, node)
   }
 
   render() {

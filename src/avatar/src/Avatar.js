@@ -77,7 +77,7 @@ const Avatar = memo(
         justifyContent="center"
         backgroundColor={colorProps.backgroundColor}
         title={name}
-        innerRef={ref}
+        ref={ref}
         {...restProps}
       >
         {(imageUnavailable || forceShowInitials) && (
