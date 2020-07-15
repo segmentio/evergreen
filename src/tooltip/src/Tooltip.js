@@ -21,22 +21,19 @@ const Tooltip = memo(props => {
     statelessProps = {}
   } = props
 
-  const [id, setId] = useState(`evergreen-tooltip-${++idCounter}`)
-  const [willShow, setWillShow] = useState(false)
+  const [id] = useState(`evergreen-tooltip-${++idCounter}`)
   const [isShown, setIsShown] = useState(propIsShown || false)
   const [isShownByTarget, setIsShownByTarget] = useState(false)
   const [closeTimeout, setCloseTimeout] = useState(null)
 
   const mouseLeftTarget = () => {
     setIsShownByTarget(false)
-    setWillShow(false)
   }
 
   const handleMouseLeaveTarget = debounce(mouseLeftTarget, hideDelay)
 
   const hide = () => {
     setIsShown(false)
-    setWillShow(false)
   }
 
   const handleHide = debounce(hide, hideDelay)
@@ -58,7 +55,6 @@ const Tooltip = memo(props => {
       return
     }
 
-    setWillShow(true)
     setCloseTimeout(
       setTimeout(() => {
         setIsShown(true)
@@ -69,7 +65,7 @@ const Tooltip = memo(props => {
   const renderTarget = ({ getRef }) => {
     const tooltipTargetProps = {
       onMouseEnter: show,
-      onMouseLeave: hide,
+      onMouseLeave: handleHide,
       'aria-describedby': id
     }
 
@@ -78,11 +74,15 @@ const Tooltip = memo(props => {
      * When a Tooltip is used within a Popover, the Popover passes
      * its props to the Tooltip in a `popoverProps` object.
      */
+    // eslint-disable-next-line react/prop-types
     if (props.popoverProps) {
       const {
+        // eslint-disable-next-line react/prop-types
         getTargetRef,
+        // eslint-disable-next-line react/prop-types
         isShown,
         ...popoverTargetProps
+        // eslint-disable-next-line react/prop-types
       } = props.popoverProps
 
       return React.cloneElement(children, {
@@ -111,6 +111,7 @@ const Tooltip = memo(props => {
     })
   }
 
+  // eslint-disable-next-line react/prop-types
   const isPopoverShown = () => props.popoverProps && props.popoverProps.isShown
 
   const handleMouseEnterTarget = () => {
