@@ -1,4 +1,4 @@
-export default (ref, node) => {
+export default function bubbleRef(ref, node) {
   if (typeof ref === 'function') {
     ref(node)
   } else if (ref && 'current' in ref) {

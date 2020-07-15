@@ -566,7 +566,7 @@ export type CardProps = React.ComponentProps<typeof Pane>
 
 export declare const Card: ForwardRefComponent<CardProps>
 
-export interface CheckboxProps extends Omit<BoxProps<'input'>, 'innerRef'> {
+export interface CheckboxProps extends BoxProps<'input'> {
   /**
    * The id attribute of the checkbox.
    */
@@ -1171,7 +1171,6 @@ export interface PositionerProps {
     animationDuration: PositionerProps['animationDuration'],
     state: PositionState
   }) => React.ReactNode
-  innerRef?: (ref: React.RefObject<HTMLElement>) => void
   bodyOffset?: number
   targetOffset?: number
   target: (params: { getRef: () => React.RefObject<HTMLElement>, isShow: boolean }) => React.ReactNode
@@ -1696,7 +1695,7 @@ interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' 
 export interface TableHeaderCellProps extends TableCellProps {
 }
 
-export declare const TableHeaderCell: React.FC<TableHeaderCellProps> 
+export declare const TableHeaderCell: React.FC<TableHeaderCellProps>
 
 export interface TableHeadProps extends PaneProps {
   height?: number | string
@@ -1828,7 +1827,7 @@ export declare const Table: React.FC<TableProps> & {
   public static Row: TableRow
   public static Cell: TableCell
   public static TextCell: TextTableCell
-  public static EditableCell: React.FC<TableEditableCellProps> 
+  public static EditableCell: React.FC<TableEditableCellProps>
   public static SelectMenuCell: React.FC<TableSelectMenuCellProps>
 }
 

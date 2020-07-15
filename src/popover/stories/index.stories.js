@@ -72,7 +72,7 @@ const controlUsage = (
         onClick={toggle}
         // GetRef is used to get the ref of the element we need to run
         // getBoundingClientRect() on
-        innerRef={ref => getRef(ref)}
+        ref={getRef}
       >
         {isShown ? 'is open' : 'open'}
       </Button>

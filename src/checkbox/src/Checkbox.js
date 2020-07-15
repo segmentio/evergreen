@@ -1,8 +1,9 @@
-import React, { memo, forwardRef, useEffect } from 'react'
+import React, { memo, forwardRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
 import { useTheme } from '../../theme'
+import bubbleRef from '../../lib/bubble-ref'
 
 const CheckIcon = ({ fill = 'currentColor', ...props }) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...props}>
@@ -33,7 +34,7 @@ MinusIcon.propTypes = {
 }
 
 const Checkbox = memo(
-  forwardRef((props, ref) => {
+  forwardRef((props, forwardedRef) => {
     const {
       id,
       name,
@@ -48,9 +49,16 @@ const Checkbox = memo(
       ...rest
     } = props
 
+    const [ref, setRef] = useState(null)
+
+    const callbackRef = node => {
+      setRef(node)
+      bubbleRef(forwardedRef, node)
+    }
+
     useEffect(() => {
-      if (ref && ref.current) {
-        ref.current.indeterminate = indeterminate
+      if (ref) {
+        ref.indeterminate = indeterminate
       }
     }, [ref, indeterminate])
 
@@ -77,7 +85,7 @@ const Checkbox = memo(
           onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
-          ref={ref}
+          ref={callbackRef}
         />
         <Box
           boxSizing="border-box"

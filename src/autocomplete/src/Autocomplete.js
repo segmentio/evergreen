@@ -162,7 +162,7 @@ const Autocomplete = memo(
           getRootProps,
           ...restDownshiftProps
         }) => (
-          <Pane width="100%" {...getRootProps({ refKey: 'innerRef' })}>
+          <Pane width="100%" {...getRootProps()}>
             <Popover
               bringFocusInside={false}
               isShown={isShown}

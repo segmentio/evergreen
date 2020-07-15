@@ -28,7 +28,7 @@ const UnorderedList = memo(
     })
 
     return (
-      <Box {...styles} {...rest} innerRef={ref}>
+      <Box {...styles} {...rest} ref={ref}>
         {enrichedChildren}
       </Box>
     )
