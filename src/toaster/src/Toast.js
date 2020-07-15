@@ -128,8 +128,8 @@ const Toast = memo((props) => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           style={{
-            height: height,
-            zIndex: zIndex,
+            height,
+            zIndex,
             marginBottom: isShown ? 0 : -height
           }}
         >
