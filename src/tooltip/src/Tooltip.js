@@ -117,9 +117,12 @@ const Tooltip = memo(props => {
     setIsShownByTarget(true)
   }
 
-  const shown = typeof propIsShown === 'boolean'
-    ? propIsShown
-    : (isShown || isShownByTarget) && !isPopoverShown()
+  let shown = (propIsShown || isShown || isShownByTarget) && !isPopoverShown()
+
+  // Tooltip was explicitly set to not be shown
+  if (propIsShown === false) {
+    shown = false
+  }
 
   return (
     <Positioner
