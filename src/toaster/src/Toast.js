@@ -64,6 +64,13 @@ const Toast = memo((props) => {
   const [closeTimer, setCloseTimer] = useState(null)
   const [height, setHeight] = useState(0)
 
+  const clearCloseTimer = () => {
+    if (closeTimer) {
+      clearTimeout(closeTimer)
+      setCloseTimer(null)
+    }
+  }
+
   const close = () => {
     clearCloseTimer()
     setIsShown(false)
@@ -74,13 +81,6 @@ const Toast = memo((props) => {
       setCloseTimer(setTimeout(() => {
         close()
       }, duration * 1000))
-    }
-  }
-
-  const clearCloseTimer = () => {
-    if (closeTimer) {
-      clearTimeout(closeTimer)
-      setCloseTimer(null)
     }
   }
 
@@ -172,8 +172,7 @@ Toast.propTypes = {
   /**
    * The type of the alert.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-    .isRequired,
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
 
   /**
    * The title of the alert.
