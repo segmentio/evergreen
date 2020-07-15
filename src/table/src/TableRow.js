@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { Pane } from '../../layers'
 import { useTheme } from '../../theme'
-import safeInvoke from '../../lib/safe-invoke'
+import bubbleRef from '../../lib/bubble-ref'
 import { TableRowProvider } from './TableRowContext'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 
@@ -66,7 +66,7 @@ const TableRow = memo(forwardRef((props, ref) => {
 
   const onRef = newRef => {
     setMainRef(newRef)
-    safeInvoke(ref, newRef)
+    bubbleRef(ref, newRef)
   }
 
   const themedClassName = theme.getRowClassName(appearance, intent)

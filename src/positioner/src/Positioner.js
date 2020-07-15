@@ -4,7 +4,7 @@ import { Transition } from 'react-transition-group'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder, Position } from '../../constants'
-import safeInvoke from '../../lib/safe-invoke'
+import bubbleRef from '../../lib/bubble-ref'
 import getPosition from './getPosition'
 
 const animationEasing = {
@@ -73,7 +73,7 @@ const Positioner = memo(
 
     const getRef = newRef => {
       setPositionerRef(newRef)
-      safeInvoke(ref, newRef)
+      bubbleRef(ref, newRef)
     }
 
     const handleEnter = () => {
