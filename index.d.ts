@@ -2096,8 +2096,7 @@ export interface TooltipProps {
   statelessProps?: TooltipStatelessProps
 }
 
-export class Tooltip extends React.PureComponent<TooltipProps> {
-}
+export declare const Tooltip: React.FC<TooltipProps>
 
 export interface OrderedListProps extends React.ComponentPropsWithoutRef<typeof Box> {
   /**
