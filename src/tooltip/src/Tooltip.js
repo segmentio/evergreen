@@ -42,7 +42,6 @@ const Tooltip = memo(props => {
   useEffect(
     () => () => {
       clearTimeout(closeTimeout)
-      setCloseTimeout(null)
     },
     []
   )
@@ -118,12 +117,9 @@ const Tooltip = memo(props => {
     setIsShownByTarget(true)
   }
 
-  let shown = (propIsShown || isShown || isShownByTarget) && !isPopoverShown()
-
-  // Tooltip was explicitly set to not be shown
-  if (propIsShown === false) {
-    shown = false
-  }
+  const shown = typeof propIsShown === 'boolean'
+    ? propIsShown
+    : (isShown || isShownByTarget) && !isPopoverShown()
 
   return (
     <Positioner
@@ -138,7 +134,7 @@ const Tooltip = memo(props => {
         <TooltipStateless
           id={id}
           appearance={appearance}
-          ref={ref => getRef(ref)}
+          ref={getRef}
           data-state={state}
           style={style}
           onMouseEnter={handleMouseEnterTarget}
@@ -160,7 +156,7 @@ Tooltip.propTypes = {
   /**
    * The appearance of the tooltip.
    */
-  appearance: PropTypes.oneOf(['default', 'card']).isRequired,
+  appearance: PropTypes.oneOf(['default', 'card']),
 
   /**
    * The position the Popover is on.
@@ -179,17 +175,17 @@ Tooltip.propTypes = {
   /**
    * The content of the Popover.
    */
-  content: PropTypes.node.isRequired,
+  content: PropTypes.node,
 
   /**
    * Time in ms before hiding the Tooltip.
    */
-  hideDelay: PropTypes.number.isRequired,
+  hideDelay: PropTypes.number,
 
   /**
    * Time in ms before showing the Tooltip.
    */
-  showDelay: PropTypes.number.isRequired,
+  showDelay: PropTypes.number,
 
   /**
    * When True, manually show the Tooltip.
@@ -199,7 +195,7 @@ Tooltip.propTypes = {
   /**
    * The target button of the Tooltip.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 
   /**
    * Properties passed through to the Tooltip.
