@@ -47,7 +47,7 @@
     "storybook": "start-storybook -p 6006"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=10.18"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
@@ -85,7 +85,7 @@
     "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "@rollup/plugin-replace": "^2.3.0",
-    "@size-limit/preset-small-lib": "^3.0.0",
+    "@size-limit/preset-big-lib": "^4.5.4",
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addon-options": "^3.4.11",
@@ -214,11 +214,19 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "241 KB"
+      "limit": "241 KB",
+      "running": false
     },
     {
       "path": "umd/evergreen.min.js",
-      "limit": "220 KB"
+      "limit": "220 KB",
+      "running": false
+    },
+    {
+      "path": "esm/index.js",
+      "import": "{ Pane, Text, majorScale, SelectMenu, Menu, AddIcon, RemoveIcon }",
+      "limit": "60 KB",
+      "running": false
     }
   ],
   "husky": {
