@@ -9,6 +9,6 @@ let count = 0
  * @returns {string}
  */
 export function useId(prefix, explicitId) {
-  const [value] = useState(() => explicitId || `${prefix}-${++count}`)
+  const [value] = useState(() => explicitId || [prefix, ++count].join('-'))
   return value
 }
