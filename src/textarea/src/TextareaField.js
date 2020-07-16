@@ -1,13 +1,12 @@
-import React, { memo, useState } from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
+import { useId } from '../../hooks'
 import Textarea from './Textarea'
 
-let idCounter = 0
-
 const TextareaField = memo(props => {
-  const [id] = useState(props.id || idCounter++)
+  const id = useId('TextareaField', props.id)
 
   const {
     // We are using the id from the state
@@ -34,8 +33,6 @@ const TextareaField = memo(props => {
     ...rest
   } = props
 
-  const inputId = `TextareaField-${id}`
-
   /**
    * Split the wrapper props from the input props.
    */
@@ -49,11 +46,11 @@ const TextareaField = memo(props => {
       hint={hint}
       description={description}
       validationMessage={validationMessage}
-      labelFor={inputId}
+      labelFor={id}
       {...matchedProps}
     >
       <Textarea
-        id={inputId}
+        id={id}
         width={inputWidth}
         height={inputHeight}
         disabled={disabled}
