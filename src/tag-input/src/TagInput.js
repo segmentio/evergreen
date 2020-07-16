@@ -11,9 +11,8 @@ import { useTheme } from '../../theme'
 import { majorScale } from '../../scales'
 import safeInvoke from '../../lib/safe-invoke'
 import bubbleRef from '../../lib/bubble-ref'
+import { useId } from '../../hooks'
 import Tag from './Tag'
-
-let inputId = 1
 
 const GET_KEY_FOR_TAG_DELIMITER = {
   enter: 'Enter',
@@ -44,7 +43,7 @@ const TagInput = memo(props => {
 
   const [inputValue, setInputValue] = useState('')
   const [isFocused, setIsFocused] = useState(false)
-  const [id] = useState(`TagInput=${inputId++}`)
+  const id = useId('TagInput')
 
   const getValues = (inputValue = '') =>
     separator

@@ -5,9 +5,8 @@ import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
 import { Positioner } from '../../positioner'
 import { Position } from '../../constants'
+import { useId } from '../../hooks'
 import TooltipStateless from './TooltipStateless'
-
-let idCounter = 0
 
 const Tooltip = memo(props => {
   const {
@@ -21,7 +20,7 @@ const Tooltip = memo(props => {
     statelessProps = {}
   } = props
 
-  const [id] = useState(`evergreen-tooltip-${++idCounter}`)
+  const id = useId('evergreen-tooltip')
   const [isShown, setIsShown] = useState(propIsShown || false)
   const [isShownByTarget, setIsShownByTarget] = useState(false)
   const [closeTimeout, setCloseTimeout] = useState(null)

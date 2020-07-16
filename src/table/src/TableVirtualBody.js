@@ -1,17 +1,9 @@
-import React, { memo, useState, useEffect, useCallback } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import VirtualList from 'react-tiny-virtual-list'
 import debounce from 'lodash.debounce'
 import { Pane } from '../../layers'
-
-const useForceUpdate = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [_, setValue] = useState()
-
-  return useCallback(() => {
-    setValue({}) // Set with a new object instance every time it gets called
-  }, [setValue])
-}
+import { useForceUpdate } from '../../hooks'
 
 const TableVirtualBody = memo(props => {
   const {
@@ -35,12 +27,7 @@ const TableVirtualBody = memo(props => {
   let averageAutoHeight = defaultHeight
 
   const [paneRef, setPaneRef] = useState()
-
-  const onResizeHandler = () => {
-    updateOnResize()
-  }
-
-  const onResize = debounce(onResizeHandler, 200)
+  const onResize = debounce(updateOnResize, 200)
 
   const [isIntegerHeight, setIsIntegerHeight] = useState(false)
   const [calculatedHeight, setCalculatedHeight] = useState(0)

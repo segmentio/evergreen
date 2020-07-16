@@ -1,13 +1,12 @@
-import React, { memo, useState } from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
+import { useId } from '../../hooks'
 import Select from './Select'
 
-let idCounter = 0
-
 const TextInputField = memo(props => {
-  const [id] = useState(props.id || idCounter++)
+  const id = useId('SelectField', props.id)
 
   const {
     // We are using the id from the state
@@ -32,8 +31,6 @@ const TextInputField = memo(props => {
     ...rest
   } = props
 
-  const inputId = `SelectField-${id}`
-
   /**
    * Split the wrapper props from the input props.
    */
@@ -47,11 +44,11 @@ const TextInputField = memo(props => {
       hint={hint}
       description={description}
       validationMessage={validationMessage}
-      labelFor={inputId}
+      labelFor={id}
       {...matchedProps}
     >
       <Select
-        id={inputId}
+        id={id}
         width={inputWidth}
         height={inputHeight}
         disabled={disabled}

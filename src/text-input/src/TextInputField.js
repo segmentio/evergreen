@@ -1,14 +1,13 @@
-import React, { useState, forwardRef, memo } from 'react'
+import React, { forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
+import { useId } from '../../hooks'
 import TextInput from './TextInput'
-
-let idCounter = 0
 
 const TextInputField = memo(
   forwardRef((props, ref) => {
-    const [id] = useState(props.id || `TextInputField-${idCounter++}`)
+    const id = useId('TextInputField', props.id)
 
     const {
       // We are using the id from the state
