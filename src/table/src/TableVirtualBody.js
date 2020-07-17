@@ -27,10 +27,37 @@ const TableVirtualBody = memo(props => {
   let averageAutoHeight = defaultHeight
 
   const [paneRef, setPaneRef] = useState()
-  const onResize = debounce(updateOnResize, 200)
-
   const [isIntegerHeight, setIsIntegerHeight] = useState(false)
   const [calculatedHeight, setCalculatedHeight] = useState(0)
+
+  const updateOnResize = () => {
+    autoHeights = []
+    autoHeightRefs = []
+    averageAutoHeight = defaultHeight
+
+    // Simply return when we now the height of the pane is fixed.
+    if (isIntegerHeight) return
+
+    // Return if we are in a weird edge case in which the ref is no longer valid.
+    if (paneRef && paneRef instanceof Node) {
+      const tempCalculatedHeight = paneRef.offsetHeight
+
+      if (tempCalculatedHeight > 0) {
+        // Save the calculated height which is needed for the VirtualList.
+        setCalculatedHeight(tempCalculatedHeight)
+
+        // Prevent updateOnResize being called recursively when there is a valid height.
+        return
+      }
+    }
+
+    // When height is still 0 (or paneRef is not valid) try recursively until success.
+    requestAnimationFrame(() => {
+      updateOnResize()
+    })
+  }
+
+  const onResize = debounce(updateOnResize, 200)
 
   useEffect(() => {
     if (props.height !== calculatedHeight) {
@@ -111,33 +138,6 @@ const TableVirtualBody = memo(props => {
 
     requestAnimationFrame(() => {
       processAutoHeights()
-    })
-  }
-
-  const updateOnResize = () => {
-    autoHeights = []
-    autoHeightRefs = []
-    averageAutoHeight = defaultHeight
-
-    // Simply return when we now the height of the pane is fixed.
-    if (isIntegerHeight) return
-
-    // Return if we are in a weird edge case in which the ref is no longer valid.
-    if (paneRef && paneRef instanceof Node) {
-      const tempCalculatedHeight = paneRef.offsetHeight
-
-      if (tempCalculatedHeight > 0) {
-        // Save the calculated height which is needed for the VirtualList.
-        setCalculatedHeight(tempCalculatedHeight)
-
-        // Prevent updateOnResize being called recursively when there is a valid height.
-        return
-      }
-    }
-
-    // When height is still 0 (or paneRef is not valid) try recursively until success.
-    requestAnimationFrame(() => {
-      updateOnResize()
     })
   }
 

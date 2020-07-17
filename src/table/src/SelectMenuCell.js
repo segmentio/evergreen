@@ -25,11 +25,13 @@ const SelectMenuCell = memo(props => {
     ...rest
   } = props
 
-  const onResizeHandler = () => {
-    updateOnResize()
+  const updateOnResize = () => {
+    if (!mainRef) return
+    const mainRefWidth = mainRef.offsetWidth
+    setTargetWidth(Math.max(MIN_SELECT_MENU_WIDTH, mainRefWidth))
   }
 
-  const onResize = debounce(onResizeHandler, 200)
+  const onResize = debounce(updateOnResize, 200)
 
   useEffect(() => {
     updateOnResize()
@@ -39,12 +41,6 @@ const SelectMenuCell = memo(props => {
       window.removeEventListener('resize', onResize)
     }
   }, [])
-
-  const updateOnResize = () => {
-    if (!mainRef) return
-    const mainRefWidth = mainRef.offsetWidth
-    setTargetWidth(Math.max(MIN_SELECT_MENU_WIDTH, mainRefWidth))
-  }
 
   const onMainRef = (getRef, ref) => {
     setMainRef(ref)
