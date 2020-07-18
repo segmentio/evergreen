@@ -1,8 +1,7 @@
 /* tslint:disable:interface-name max-classes-per-file no-empty-interface */
 
 import * as React from 'react'
-import Box, { extractStyles as boxExtractStyles } from 'ui-box'
-import { BoxProps } from 'ui-box/dist/types/box-types'
+import Box, { extractStyles as boxExtractStyles, BoxProps } from 'ui-box'
 import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
 import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition'
@@ -1818,17 +1817,17 @@ export interface TableProps extends PaneProps {
 }
 
 export declare const Table: React.FC<TableProps> & {
-  public static Body: TableBody
-  public static VirtualBody: React.FC<TableVirtualBodyProps>
-  public static Head: TableHead
-  public static HeaderCell: TableHeaderCell
-  public static TextHeaderCell: TextTableHeaderCell
-  public static SearchHeaderCell: SearchTableHeaderCell
-  public static Row: TableRow
-  public static Cell: TableCell
-  public static TextCell: TextTableCell
-  public static EditableCell: React.FC<TableEditableCellProps>
-  public static SelectMenuCell: React.FC<TableSelectMenuCellProps>
+  Body: typeof TableBody
+  VirtualBody: React.FC<TableVirtualBodyProps>
+  Head: typeof TableHead
+  HeaderCell: typeof TableHeaderCell
+  TextHeaderCell: typeof TextTableHeaderCell
+  SearchHeaderCell: typeof SearchTableHeaderCell
+  Row: typeof TableRow
+  Cell: typeof TableCell
+  TextCell: typeof TextTableCell
+  EditableCell: React.FC<TableEditableCellProps>
+  SelectMenuCell: React.FC<TableSelectMenuCellProps>
 }
 
 export interface TabProps extends TextProps {
@@ -1974,7 +1973,7 @@ export interface TextTableHeaderCellProps extends PaneProps {
 
 export declare const TextTableHeaderCell: React.FC<TextTableHeaderCellProps>
 
-export type TextProps = BoxProps<'span'> & {
+export type TextProps = React.ComponentProps<typeof Box> & {
   size?: keyof Typography['text']
   fontFamily?: FontFamily | string
 }
