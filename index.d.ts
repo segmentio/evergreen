@@ -1,7 +1,7 @@
 /* tslint:disable:interface-name max-classes-per-file no-empty-interface */
 
 import * as React from 'react'
-import Box, { extractStyles as boxExtractStyles, BoxProps } from 'ui-box'
+import { extractStyles as boxExtractStyles, BoxProps } from 'ui-box'
 import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
 import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition'
@@ -445,7 +445,7 @@ export interface AlertProps extends Omit<PaneProps, 'title'> {
   appearance?: AlertAppearance
 }
 
-export declare const Alert: ForwardRefComponent<AlertProps>
+export declare const Alert: BoxComponent<AlertProps, 'div'>
 
 interface OptionProps extends TableRowProps {
   height?: number | string
@@ -1578,7 +1578,7 @@ export type StrongProps = BoxProps<'strong'>
 
 export declare const Strong: ForwardRefComponent<StrongProps>
 
-export interface SwitchProps extends Omit<BoxProps<'label'>, 'onChange'> {
+export interface SwitchProps {
   /**
    * The id attribute of the radio.
    */
@@ -1627,12 +1627,12 @@ export interface SwitchProps extends Omit<BoxProps<'label'>, 'onChange'> {
   defaultChecked?: boolean
 }
 
-export declare const Switch: ForwardRefComponent<SwitchProps>
+export declare const Switch: BoxComponent<SwitchProps, 'label'>
 
 export interface TableBodyProps extends PaneProps {
 }
 
-export declare const TableBody: React.FC<TableBodyProps>
+export declare const TableBody: BoxComponent<TableBodyProps, 'div'>
 
 export interface TableCellProps extends PaneProps {
   /**
@@ -1665,7 +1665,7 @@ export interface TableCellProps extends PaneProps {
   className?: string
 }
 
-export declare const TableCell: ForwardRefComponent<TableCellProps>
+export declare const TableCell: BoxComponent<TableCellProps, 'div'>
 
 interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' | 'onChange'> {
   autoFocus?: boolean
@@ -1821,7 +1821,7 @@ interface TableVirtualBodyProps extends PaneProps {
 export interface TableProps extends PaneProps {
 }
 
-export declare const Table: React.FC<TableProps> & {
+export declare const Table: BoxComponent<TableProps, 'div'> & {
   Body: typeof TableBody
   VirtualBody: React.FC<TableVirtualBodyProps>
   Head: typeof TableHead
@@ -1896,7 +1896,7 @@ export interface TextareaProps extends TextProps {
   className?: string
 }
 
-export declare const Textarea: ForwardRefComponent<TextareaProps>
+export declare const Textarea: BoxComponent<TextareaProps, 'textarea'>
 
 export interface TextareaFieldProps extends TextareaProps {
   /**
@@ -1970,7 +1970,7 @@ export interface TextTableCellProps extends TableCellProps {
   textProps?: TextProps
 }
 
-export declare const TextTableCell: ForwardRefComponent<TextTableCellProps>
+export declare const TextTableCell: BoxComponent<TextTableCellProps, 'div'>
 
 export interface TextTableHeaderCellProps extends PaneProps {
   textProps?: TextProps
