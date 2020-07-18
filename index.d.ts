@@ -1358,7 +1358,7 @@ export interface SearchTableHeaderCellProps extends Omit<TableHeaderCellProps, '
 
 export declare const SearchTableHeaderCell: ForwardRefComponent<SearchTableHeaderCellProps>
 
-export interface SegmentedControlProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'defaultValue' | 'onChange'> {
+export interface SegmentedControlProps {
   options: Array<{ label: string, value: NonNullable<SegmentedControlProps['value']> }>
   value?: number | string | boolean
   defaultValue?: number | string | boolean
@@ -1367,9 +1367,9 @@ export interface SegmentedControlProps extends Omit<React.ComponentPropsWithoutR
   height?: number
 }
 
-export declare const SegmentedControl: ForwardRefComponent<SegmentedControlProps>
+export declare const SegmentedControl: BoxComponent<SegmentedControlProps, 'div'>
 
-export interface SelectProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'onChange'> {
+export interface SelectProps {
   /**
    * The initial value of an uncontrolled select
    */
@@ -1406,7 +1406,7 @@ export interface SelectProps extends Omit<React.ComponentPropsWithoutRef<typeof 
   onChange?(event: React.ChangeEvent<HTMLSelectElement>): void
 }
 
-export declare const Select: ForwardRefComponent<SelectProps>
+export declare const Select: BoxComponent<SelectProps, 'div'>
 
 export type SelectFieldProps = FormFieldProps
 
@@ -1552,7 +1552,7 @@ export interface SmallProps {}
 
 export declare const Small: BoxComponent<SmallProps, 'small'>
 
-export interface SpinnerProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface SpinnerProps {
   /**
    * Delay after which spinner should be visible.
    */
@@ -1563,7 +1563,7 @@ export interface SpinnerProps extends React.ComponentPropsWithoutRef<typeof Box>
   size?: number
 }
 
-export declare const Spinner: ForwardRefComponent<SpinnerProps>
+export declare const Spinner: BoxComponent<SpinnerProps, 'div'>
 
 export interface StackProps {
   children: (zIndex: number) => React.ReactNode
@@ -1862,13 +1862,13 @@ export type TabNavigationProps = BoxProps<'nav'>
 
 export declare const TabNavigation: BoxComponent<{}, 'nav'>
 
-export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'onChange'> {
+export interface TagInputProps {
   addOnBlur?: boolean
   className?: string
   disabled?: boolean
   height?: number
   inputProps?: TextProps
-  inputRef?: (input: HTMLInputElement | null) => void
+  inputRef?: React.Ref<HTMLInputElement>
   onAdd?: (values: string[]) => void | false
   onBlur?: (event: React.FocusEvent) => void
   onChange?: (values: string[]) => void | false
@@ -1881,7 +1881,7 @@ export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<typeo
   values?: string[]
 }
 
-export declare const TagInput: React.FC<TagInputProps>
+export declare const TagInput: BoxComponent<TagInputProps, 'div'>
 
 export interface TextareaProps extends TextProps {
   required?: boolean
@@ -2101,17 +2101,17 @@ export interface TooltipProps {
 
 export declare const Tooltip: React.FC<TooltipProps>
 
-export interface OrderedListProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface OrderedListProps {
   /**
    * Size of the text used in a list item.
    */
   size?: keyof Typography['text']
 }
 
-export declare const OrderedList: ForwardRefComponent<OrderedListProps>
-export declare const Ol: ForwardRefComponent<OrderedListProps>
+export declare const OrderedList: BoxComponent<OrderedListProps, 'ol'>
+export declare const Ol: typeof OrderedList
 
-export interface UnorderedListProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface UnorderedListProps {
   /**
    * Size of the text used in a list item.
    */
@@ -2127,8 +2127,8 @@ export interface UnorderedListProps extends React.ComponentPropsWithoutRef<typeo
   iconColor?: string
 }
 
-export declare const UnorderedList: ForwardRefComponent<UnorderedListProps>
-export declare const Ul: ForwardRefComponent<UnorderedListProps>
+export declare const UnorderedList: BoxComponent<UnorderedListProps, 'ul'>
+export declare const Ul: typeof UnorderedList
 
 export function majorScale(x: number): number
 

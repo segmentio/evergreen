@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 
 const styles = {
-  is: 'ol',
   margin: 0,
   marginLeft: '1.1em',
   padding: 0,
@@ -26,7 +25,7 @@ const OrderedList = memo(
     })
 
     return (
-      <Box {...styles} {...rest} ref={ref}>
+      <Box is="ol" {...styles} {...rest} ref={ref}>
         {finalChildren}
       </Box>
     )
