@@ -1,19 +1,12 @@
 /* tslint:disable:interface-name max-classes-per-file no-empty-interface */
 
 import * as React from 'react'
-import { extractStyles as boxExtractStyles, BoxProps, BoxOwnProps } from 'ui-box'
+import { extractStyles as boxExtractStyles, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps } from 'ui-box'
 import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
 import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition'
 
-export { configureSafeHref, BoxProps } from 'ui-box'
-
-/**
- * Convenience method for defining your own components that extend Box and pass-through props
- */
-export type BoxComponent<P = {}, D extends React.ElementType = React.ElementType> = <
-  E extends React.ElementType = D
->(props: P & Omit<BoxProps<E>, keyof P>) => JSX.Element
+export { configureSafeHref, BoxProps, BoxComponent } from 'ui-box'
 
 type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
 type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
@@ -1352,7 +1345,7 @@ export interface SearchInputProps extends TextInputProps {
   height?: number
 }
 
-export declare const SearchInput: BoxComponent<SearchInputProps, 'div'>
+export declare const SearchInput: BoxComponent<SearchInputProps, 'input'>
 
 export interface SearchTableHeaderCellProps extends TableHeaderCellProps {
   /**
@@ -1381,7 +1374,7 @@ export interface SearchTableHeaderCellProps extends TableHeaderCellProps {
   icon?: React.ReactElement | null | false
 }
 
-export declare const SearchTableHeaderCell: React.FC<SearchTableHeaderCellProps>
+export declare const SearchTableHeaderCell: BoxComponent<SearchTableHeaderCellProps, 'div'>
 
 export interface SegmentedControlProps {
   options: Array<{ label: string, value: NonNullable<SegmentedControlProps['value']> }>
@@ -1404,6 +1397,11 @@ export interface SelectProps {
    * The value of the select.
    */
   value?: string | number | string[]
+
+  /**
+   * Whether or not the field is disabled
+   */
+  disabled?: boolean
 
   /**
    * When true, the select is required.
@@ -1433,7 +1431,9 @@ export interface SelectProps {
 
 export declare const Select: BoxComponent<SelectProps, 'div'>
 
-export type SelectFieldProps = FormFieldProps
+export type SelectFieldProps = FormFieldProps & BoxProps<'div'> & Omit<BoxProps<'input'>, keyof BoxProps<'div'>> & {
+  required?: boolean
+}
 
 export declare const SelectField: React.FC<SelectFieldProps>
 
@@ -1561,7 +1561,7 @@ export interface SideSheetProps {
   shouldCloseOnOverlayClick?: boolean
   shouldCloseOnEscapePress?: boolean
   width?: string | number
-  containerProps?: PaneProps
+  containerProps?: PaneProps & BoxProps<'div'>
   // @ts-ignore
   position?: Pick<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
   preventBodyScrolling?: boolean
@@ -1724,14 +1724,14 @@ interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' 
 export interface TableHeaderCellProps extends TableCellProps {
 }
 
-export declare const TableHeaderCell: React.FC<TableHeaderCellProps>
+export declare const TableHeaderCell: BoxComponent<TableHeaderCellProps, 'div'>
 
 export interface TableHeadProps extends PaneProps {
   height?: number | string
   accountForScrollbar?: boolean
 }
 
-export declare const TableHead: React.FC<TableHeadProps>
+export declare const TableHead: BoxComponent<TableHeadProps, 'div'>
 
 export interface TableRowProps extends PaneProps {
   /**
@@ -1848,7 +1848,7 @@ export interface TableProps extends PaneProps {
 
 export declare const Table: BoxComponent<TableProps, 'div'> & {
   Body: typeof TableBody
-  VirtualBody: React.FC<TableVirtualBodyProps>
+  VirtualBody: BoxComponent<TableVirtualBodyProps, 'div'>
   Head: typeof TableHead
   HeaderCell: typeof TableHeaderCell
   TextHeaderCell: typeof TextTableHeaderCell
@@ -1856,7 +1856,7 @@ export declare const Table: BoxComponent<TableProps, 'div'> & {
   Row: typeof TableRow
   Cell: typeof TableCell
   TextCell: typeof TextTableCell
-  EditableCell: React.FC<TableEditableCellProps>
+  EditableCell: BoxComponent<TableEditableCellProps, 'div'>
   SelectMenuCell: React.FC<TableSelectMenuCellProps>
 }
 
@@ -1892,7 +1892,7 @@ export interface TagInputProps {
   className?: string
   disabled?: boolean
   height?: number
-  inputProps?: TextProps
+  inputProps?: PolymorphicBoxProps<'input', TextProps>
   inputRef?: React.Ref<HTMLInputElement>
   onAdd?: (values: string[]) => void | false
   onBlur?: (event: React.FocusEvent) => void
@@ -1992,16 +1992,16 @@ export interface TextTableCellProps extends TableCellProps {
   /**
    * Pass additional props to the Text component.
    */
-  textProps?: TextProps
+  textProps?: PolymorphicBoxProps<'span', TextProps>
 }
 
 export declare const TextTableCell: BoxComponent<TextTableCellProps, 'div'>
 
-export interface TextTableHeaderCellProps extends PaneProps {
-  textProps?: TextProps
+export type TextTableHeaderCellProps = TableCellProps & {
+  textProps?: PolymorphicBoxProps<'span', TextProps>
 }
 
-export declare const TextTableHeaderCell: React.FC<TextTableHeaderCellProps>
+export declare const TextTableHeaderCell: BoxComponent<TextTableHeaderCellProps, 'div'>
 
 export type TextProps = {
   size?: keyof Typography['text']
@@ -2058,9 +2058,13 @@ export interface TextInputFieldProps extends FormFieldProps {
    */
   labelFor?: string
   /**
-   * Wether or not show a asterix after the label.
+   * Whether or not show a asterix after the label.
    */
   required?: boolean
+  /**
+   * Whether or not the field is invalid
+   */
+  isInvalid?: boolean
   /**
    * A optional description of the field under the label, above the input element.
    */
@@ -2121,7 +2125,7 @@ export interface TooltipProps {
   /**
    * Properties passed through to the Tooltip.
    */
-  statelessProps?: TooltipStatelessProps
+  statelessProps?: PolymorphicBoxProps<'div', TooltipStatelessProps>
 }
 
 export declare const Tooltip: React.FC<TooltipProps>
