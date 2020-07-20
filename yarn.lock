@@ -12699,10 +12699,10 @@ ua-parser-js@^0.7.18:
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.21.tgz#853cf9ce93f642f67174273cc34565ae6f308777"
   integrity sha512-+O8/qh/Qj8CgC6eYBVBykMrNtp5Gebn4dlGD/kKXVkJNDwyrAwSIqwz8CDf+tsAIWVycKcku6gIXJ0qwx/ZXaQ==
 
-ui-box@^4.0.0-0:
-  version "4.0.0-0"
-  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-4.0.0-0.tgz#885c04b71a6f4ab1ccbc5d2204b2b6185380c697"
-  integrity sha512-uW4tPdYILslhhlSbXuamuHKJgLCD8PJJCrcVFs/RIdQPuPXl6i1GIWsd1VhSz/7x/znDIeto9esSDTPmZT7ZqA==
+ui-box@^4.0.0-1:
+  version "4.0.0-1"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-4.0.0-1.tgz#e310a67bbe9015a8b2ecfc3c5c0a9444da256203"
+  integrity sha512-u+W/Rh7BFkvjhGHt6TIh0ZVZrrRaVFz1i/Cka/fLAmQ+UjdDw+xrXSbJ12B0cdYx4RcGU2CE2DtEWMtv9aCK4w==
   dependencies:
     "@emotion/hash" "^0.7.1"
     inline-style-prefixer "^5.0.4"

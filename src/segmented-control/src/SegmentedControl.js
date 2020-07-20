@@ -2,9 +2,8 @@ import React, { memo, forwardRef, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import safeInvoke from '../../lib/safe-invoke'
+import { useId } from '../../hooks'
 import SegmentedControlRadio from './SegmentedControlRadio'
-
-let radioCount = 1 // Used for generating unique input names
 
 const SegmentedControl = memo(
   forwardRef((props, ref) => {
@@ -19,7 +18,7 @@ const SegmentedControl = memo(
       ...rest
     } = props
 
-    const [groupName] = useState(`SegmentedControl-${radioCount++}`)
+    const groupName = useId('SegmentedControl')
 
     const isControlled = () => {
       return typeof value !== 'undefined' && value !== null

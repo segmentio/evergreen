@@ -1,4 +1,4 @@
-import React, { memo, forwardRef } from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import arrify from 'arrify'
 import { Popover } from '../../popover'
@@ -36,65 +36,62 @@ const getEmptyView = (close, emptyView) => {
   return {}
 }
 
-const SelectMenu = memo(
-  forwardRef((props, ref) => {
-    const {
-      title,
-      width = 240,
-      height = 248,
-      options,
-      onSelect = () => {},
-      onDeselect = () => {},
-      onFilterChange,
-      selected,
-      position = Position.BOTTOM_LEFT,
-      hasTitle,
-      hasFilter,
-      filterPlaceholder = 'Filter...',
-      filterIcon = <SearchIcon />,
-      detailView,
-      emptyView,
-      titleView,
-      isMultiSelect = false,
-      closeOnSelect = false,
-      ...rest
-    } = props
+const SelectMenu = memo(props => {
+  const {
+    title,
+    width = 240,
+    height = 248,
+    options,
+    onSelect = () => {},
+    onDeselect = () => {},
+    onFilterChange,
+    selected,
+    position = Position.BOTTOM_LEFT,
+    hasTitle,
+    hasFilter,
+    filterPlaceholder = 'Filter...',
+    filterIcon = <SearchIcon />,
+    detailView,
+    emptyView,
+    titleView,
+    isMultiSelect = false,
+    closeOnSelect = false,
+    ...rest
+  } = props
 
-    return (
-      <Popover
-        minWidth={width}
-        position={position}
-        minHeight={height}
-        content={({ close }) => (
-          <SelectMenuContent
-            width={width}
-            height={height}
-            options={options}
-            title={title}
-            hasFilter={hasFilter}
-            filterPlaceholder={filterPlaceholder}
-            filterIcon={filterIcon}
-            hasTitle={hasTitle}
-            isMultiSelect={isMultiSelect}
-            titleView={titleView}
-            listProps={{
-              onSelect,
-              onDeselect,
-              onFilterChange,
-              selected: arrify(selected)
-            }}
-            close={close}
-            {...getDetailView(close, detailView)}
-            {...getEmptyView(close, emptyView)}
-            closeOnSelect={closeOnSelect}
-          />
-        )}
-        {...rest}
-        ref={ref}
-      />
-    )
-  })
-)
+  return (
+    <Popover
+      minWidth={width}
+      position={position}
+      minHeight={height}
+      content={({ close }) => (
+        <SelectMenuContent
+          width={width}
+          height={height}
+          options={options}
+          title={title}
+          hasFilter={hasFilter}
+          filterPlaceholder={filterPlaceholder}
+          filterIcon={filterIcon}
+          hasTitle={hasTitle}
+          isMultiSelect={isMultiSelect}
+          titleView={titleView}
+          listProps={{
+            onSelect,
+            onDeselect,
+            onFilterChange,
+            selected: arrify(selected)
+          }}
+          close={close}
+          {...getDetailView(close, detailView)}
+          {...getEmptyView(close, emptyView)}
+          closeOnSelect={closeOnSelect}
+        />
+      )}
+      {...rest}
+    />
+  )
+})
 
 SelectMenu.propTypes = {
   /**

@@ -1,4 +1,4 @@
-import React, { memo, forwardRef } from 'react'
+import React, { memo } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
@@ -125,64 +125,61 @@ const animationStylesClass = {
   }
 }
 
-const SideSheet = memo(
-  forwardRef((props, ref) => {
-    const {
-      width = 620,
-      isShown,
-      children,
-      containerProps,
-      onOpenComplete = () => {},
-      onCloseComplete = () => {},
-      onBeforeClose,
-      shouldCloseOnOverlayClick = true,
-      shouldCloseOnEscapePress = true,
-      position = Position.RIGHT,
-      preventBodyScrolling
-    } = props
+const SideSheet = memo(props => {
+  const {
+    width = 620,
+    isShown,
+    children,
+    containerProps,
+    onOpenComplete = () => {},
+    onCloseComplete = () => {},
+    onBeforeClose,
+    shouldCloseOnOverlayClick = true,
+    shouldCloseOnEscapePress = true,
+    position = Position.RIGHT,
+    preventBodyScrolling
+  } = props
 
-    return (
-      <Overlay
-        ref={ref}
-        isShown={isShown}
-        shouldCloseOnClick={shouldCloseOnOverlayClick}
-        shouldCloseOnEscapePress={shouldCloseOnEscapePress}
-        onBeforeClose={onBeforeClose}
-        onExited={onCloseComplete}
-        onEntered={onOpenComplete}
-        preventBodyScrolling={preventBodyScrolling}
-      >
-        {({ state, close }) => (
-          <Pane
-            width={width}
-            {...paneProps[position]}
-            css={animationStylesClass[position]}
+  return (
+    <Overlay
+      isShown={isShown}
+      shouldCloseOnClick={shouldCloseOnOverlayClick}
+      shouldCloseOnEscapePress={shouldCloseOnEscapePress}
+      onBeforeClose={onBeforeClose}
+      onExited={onCloseComplete}
+      onEntered={onOpenComplete}
+      preventBodyScrolling={preventBodyScrolling}
+    >
+      {({ state, close }) => (
+        <Pane
+          width={width}
+          {...paneProps[position]}
+          css={animationStylesClass[position]}
+          data-state={state}
+        >
+          <SheetClose
+            position={position}
             data-state={state}
+            isClosing={false}
+            onClick={close}
+          />
+          <Pane
+            elevation={4}
+            backgroundColor="white"
+            overflowY="auto"
+            maxHeight="100vh"
+            data-state={state}
+            width={width}
+            {...subpaneProps[position]}
+            {...containerProps}
           >
-            <SheetClose
-              position={position}
-              data-state={state}
-              isClosing={false}
-              onClick={close}
-            />
-            <Pane
-              elevation={4}
-              backgroundColor="white"
-              overflowY="auto"
-              maxHeight="100vh"
-              data-state={state}
-              width={width}
-              {...subpaneProps[position]}
-              {...containerProps}
-            >
-              {typeof children === 'function' ? children({ close }) : children}
-            </Pane>
+            {typeof children === 'function' ? children({ close }) : children}
           </Pane>
-        )}
-      </Overlay>
-    )
-  })
-)
+        </Pane>
+      )}
+    </Overlay>
+  )
+})
 
 SideSheet.propTypes = {
   /**

@@ -1,13 +1,19 @@
 /* tslint:disable:interface-name max-classes-per-file no-empty-interface */
 
 import * as React from 'react'
-import Box, { extractStyles as boxExtractStyles } from 'ui-box'
-import { BoxProps } from 'ui-box/dist/types/box-types'
+import { extractStyles as boxExtractStyles, BoxProps, BoxOwnProps } from 'ui-box'
 import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
 import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition'
 
-export { configureSafeHref } from 'ui-box'
+export { configureSafeHref, BoxProps } from 'ui-box'
+
+/**
+ * Convenience method for defining your own components that extend Box and pass-through props
+ */
+export type BoxComponent<P = {}, D extends React.ElementType = React.ElementType> = <
+  E extends React.ElementType = D
+>(props: P & Omit<BoxProps<E>, keyof P>) => JSX.Element
 
 type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
 type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
@@ -439,7 +445,7 @@ export interface AlertProps extends Omit<PaneProps, 'title'> {
   appearance?: AlertAppearance
 }
 
-export declare const Alert: ForwardRefComponent<AlertProps>
+export declare const Alert: BoxComponent<AlertProps, 'div'>
 
 interface OptionProps extends TableRowProps {
   height?: number | string
@@ -492,7 +498,7 @@ export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'>
 
 export declare const Autocomplete: ForwardRefComponent<AutocompleteProps>
 
-export interface AvatarProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface AvatarProps {
   src?: string
   size?: number
   /**
@@ -508,11 +514,11 @@ export interface AvatarProps extends React.ComponentPropsWithoutRef<typeof Box> 
   sizeLimitOneCharacter?: number
 }
 
-export declare const Avatar: ForwardRefComponent<AvatarProps>
+export declare const Avatar: BoxComponent<AvatarProps>
 
 export type BackButtonProps = ButtonProps
 
-export declare const BackButton: ForwardRefComponent<BackButtonProps>
+export declare const BackButton: BoxComponent<BackButtonProps, 'button'>
 
 export interface BadgeProps extends StrongProps {
   /**
@@ -526,9 +532,9 @@ export interface BadgeProps extends StrongProps {
   isSolid?: boolean
 }
 
-export declare const Badge: ForwardRefComponent<BadgeProps>
+export declare const Badge: BoxComponent<BadgeProps, 'strong'>
 
-export interface ButtonProps extends React.ComponentPropsWithoutRef<typeof Text> {
+export interface ButtonProps extends TextProps {
   intent?: IntentTypes
   appearance?: ButtonAppearance
   /**
@@ -560,13 +566,13 @@ export interface ButtonProps extends React.ComponentPropsWithoutRef<typeof Text>
   className?: string
 }
 
-export declare const Button: ForwardRefComponent<ButtonProps>
+export declare const Button: BoxComponent<ButtonProps, 'button'>
 
-export type CardProps = React.ComponentProps<typeof Pane>
+export type CardProps = PaneProps
 
-export declare const Card: ForwardRefComponent<CardProps>
+export declare const Card: BoxComponent<CardProps, 'div'>
 
-export interface CheckboxProps extends BoxProps<'input'> {
+export interface CheckboxProps {
   /**
    * The id attribute of the checkbox.
    */
@@ -612,14 +618,14 @@ export interface CheckboxProps extends BoxProps<'input'> {
   onChange?(event: React.ChangeEvent<HTMLInputElement>): void
 }
 
-export declare const Checkbox: ForwardRefComponent<CheckboxProps>
+export declare const Checkbox: BoxComponent<CheckboxProps, 'input'>
 
 export type CodeProps = TextProps
 
 
-export declare const Code: ForwardRefComponent<CodeProps>
+export declare const Code: BoxComponent<CodeProps, 'code'>
 
-export interface ComboboxProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface ComboboxProps {
   /**
    * The options to show in the menu.
    */
@@ -671,7 +677,7 @@ export interface ComboboxProps extends React.ComponentPropsWithoutRef<typeof Box
   isLoading?: boolean
 }
 
-export declare const Combobox: React.FC<ComboboxProps>
+export declare const Combobox: BoxComponent<ComboboxProps>
 
 export interface CornerDialogProps {
   /**
@@ -739,10 +745,10 @@ export interface CornerDialogProps {
   /**
    * Props that are passed to the dialog container.
    */
-  containerProps?: CardProps
+  containerProps?: CardProps & BoxOwnProps<'div'>
 }
 
-export declare const CornerDialog: ForwardRefComponent<CornerDialogProps>
+export declare const CornerDialog: React.FC<CornerDialogProps>
 
 export interface DialogProps {
   /**
@@ -878,9 +884,34 @@ export interface DialogProps {
   preventBodyScrolling?: boolean
 }
 
-export declare const Dialog: ForwardRefComponent<DialogProps>
+export declare const Dialog: React.FC<DialogProps>
 
-export interface FormFieldProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface FilePickerProps {
+  /** the name attribute of the input */
+  name?: string
+  /** the accept attribute of the input */
+  accept?: string | string[]
+  /** whether or not the field is required */
+  required?: boolean
+  /** whether or not the file input accepts multiple files */
+  multiple?: boolean
+  /** whether or not the filepicker is disabled */
+  disabled?: boolean
+  /** the capture attribute of the input */
+  capture?: boolean
+  /** the height of the filepicker */
+  height?: number
+  /** function called when onChange is fired */
+  onChange?: () => void
+  /** function called when onBlur is fired */
+  onBlur?: () => void
+  /** placeholder of the text input */
+  placeholder?: string
+}
+
+export declare const FilePicker: BoxComponent<FilePickerProps, 'div'>
+
+export interface FormFieldProps {
   /**
    * The label used above the input element.
    */
@@ -916,18 +947,18 @@ export interface FormFieldProps extends React.ComponentPropsWithoutRef<typeof Bo
   inputWidth?: number | string
 }
 
-export declare const FormField: ForwardRefComponent<FormFieldProps>
+export declare const FormField: BoxComponent<FormFieldProps>
 
 export interface FormFieldDescriptionProps extends ParagraphProps {
 }
 
-export declare const FormFieldDescription: ForwardRefComponent<FormFieldDescriptionProps>
+export declare const FormFieldDescription: BoxComponent<FormFieldDescriptionProps, 'p'>
 
 
 export interface FormFieldHintProps extends ParagraphProps {
 }
 
-export declare const FormFieldHint: ForwardRefComponent<ParagraphProps>
+export declare const FormFieldHint: BoxComponent<FormFieldHintProps, 'p'>
 
 
 export interface FormFieldLabelProps extends LabelProps {
@@ -937,19 +968,19 @@ export interface FormFieldLabelProps extends LabelProps {
   isAstrixShown?: boolean
 }
 
-export declare const FormFieldLabel: ForwardRefComponent<FormFieldLabelProps>
+export declare const FormFieldLabel: BoxComponent<FormFieldLabelProps, 'label'>
 
 
 export interface FormFieldValidationMessageProps extends PaneProps {
 }
 
-export declare const FormFieldValidationMessage: ForwardRefComponent<FormFieldValidationMessageProps>
+export declare const FormFieldValidationMessage: BoxComponent<FormFieldValidationMessageProps, 'div'>
 
-export interface HeadingProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface HeadingProps {
   size?: keyof Typography['headings']
 }
 
-export declare const Heading: ForwardRefComponent<HeadingProps>
+export declare const Heading: BoxComponent<HeadingProps, 'h2'>
 
 export interface IconButtonProps extends ButtonProps {
   /**
@@ -984,13 +1015,13 @@ export interface IconButtonProps extends ButtonProps {
   className?: string
 }
 
-export declare const IconButton: ForwardRefComponent<IconButtonProps>
+export declare const IconButton: BoxComponent<IconButtonProps, 'button'>
 
-export interface ImageProps extends BoxProps<'img'> {
+export interface ImageProps {
   src?: string
 }
 
-export declare const Image: ForwardRefComponent<ImageProps>
+export declare const Image: BoxComponent<ImageProps, 'img'>
 
 export interface InlineAlertProps extends PaneProps {
   intent?: IntentTypes
@@ -1006,11 +1037,11 @@ export interface InlineAlertProps extends PaneProps {
   size?: keyof Typography['text']
 }
 
-export declare const InlineAlert: ForwardRefComponent<InlineAlertProps>
+export declare const InlineAlert: BoxComponent<InlineAlertProps, 'div'>
 
 export type LabelProps = TextProps
 
-export declare const Label: ForwardRefComponent<LabelProps>
+export declare const Label: BoxComponent<LabelProps, 'label'>
 
 export interface LinkProps extends TextProps {
   /**
@@ -1036,7 +1067,7 @@ export interface LinkProps extends TextProps {
   className?: string
 }
 
-export declare const Link: ForwardRefComponent<LinkProps>
+export declare const Link: BoxComponent<LinkProps, 'a'>
 
 export interface ListItemProps extends TextProps {
   /**
@@ -1050,8 +1081,8 @@ export interface ListItemProps extends TextProps {
   iconColor?: string
 }
 
-export declare const ListItem: ForwardRefComponent<ListItemProps>
-export declare const Li: ForwardRefComponent<ListItemProps>
+export declare const ListItem: BoxComponent<ListItemProps, 'li'>
+export declare const Li: typeof ListItem
 
 export interface MenuProps {
   children: React.ReactNode[] | React.ReactNode
@@ -1086,7 +1117,7 @@ export interface MenuOptionsGroupProps<T> {
   options: Array<{ value: T, label: string }>
 }
 
-declare const MenuItem: React.FC<MenuItemProps>
+declare const MenuItem: BoxComponent<MenuItemProps, 'div'>
 declare const MenuDivider: React.FC<{}>
 declare const MenuGroup: React.FC<MenuGroupProps>
 declare const MenuOption: React.FC<MenuOptionProps>
@@ -1100,7 +1131,7 @@ export declare const Menu: React.FC<MenuProps> & {
   OptionsGroup: typeof MenuOptionsGroup
 }
 
-export type PaneProps = Omit<React.ComponentPropsWithoutRef<typeof Box>, 'border' | 'borderTop' | 'borderRight' | 'borderBottom' | 'borderLeft'> & {
+export interface PaneProps {
   background?: keyof Colors['background'] | string
   border?: boolean | string
   borderTop?: boolean | string
@@ -1112,13 +1143,13 @@ export type PaneProps = Omit<React.ComponentPropsWithoutRef<typeof Box>, 'border
   activeElevation?: Elevation
 }
 
-export declare const Pane: ForwardRefComponent<PaneProps>
+export declare const Pane: BoxComponent<PaneProps, 'div'>
 
 export type PillProps = BadgeProps
 
-export declare const Pill: ForwardRefComponent<PillProps>
+export declare const Pill: BoxComponent<PillProps, 'strong'>
 
-export type PopoverStatelessProps = React.ComponentPropsWithoutRef<typeof Box>
+export type PopoverStatelessProps = BoxProps<'div'>
 
 export interface PopoverProps {
   position?: PositionTypes
@@ -1142,14 +1173,14 @@ export interface PopoverProps {
   statelessProps?: PopoverStatelessProps
 }
 
-export declare const Popover: ForwardRefComponent<PopoverProps>
+export declare const Popover: React.FC<PopoverProps>
 
-export type ParagraphProps = React.ComponentPropsWithoutRef<typeof Box> & {
+export type ParagraphProps = {
   size?: keyof Typography['paragraph']
   fontFamily?: FontFamily
 }
 
-export declare const Paragraph: ForwardRefComponent<ParagraphProps>
+export declare const Paragraph: BoxComponent<ParagraphProps, 'p'>
 
 export declare const Portal: React.FC
 
@@ -1180,13 +1211,13 @@ export interface PositionerProps {
   onOpenComplete?: () => void
 }
 
-export declare const Positioner: ForwardRefComponent<PositionerProps>
+export declare const Positioner: React.FC<PositionerProps>
 
 type PreProps = TextProps
 
-export declare const Pre: ForwardRefComponent<PreProps>
+export declare const Pre: BoxComponent<PreProps, 'pre'>
 
-export interface RadioProps extends Omit<BoxProps<'input'>, 'onChange'> {
+export interface RadioProps {
   /**
    * The id attribute of the radio.
    */
@@ -1235,7 +1266,7 @@ export interface RadioProps extends Omit<BoxProps<'input'>, 'onChange'> {
   appearance?: DefaultAppearance
 }
 
-export declare const Radio: ForwardRefComponent<RadioProps>
+export declare const Radio: BoxComponent<RadioProps, 'label'>
 
 interface RadioGroupOption {
   label: React.ReactNode
@@ -1243,7 +1274,7 @@ interface RadioGroupOption {
   isDisabled?: boolean
 }
 
-export interface RadioGroupProps extends Omit<PaneProps, 'onChange'> {
+export interface RadioGroupProps extends PaneProps {
   /**
    * The default value of the Radio Group when uncontrolled.
    */
@@ -1271,10 +1302,10 @@ export interface RadioGroupProps extends Omit<PaneProps, 'onChange'> {
   /**
    * Function called when state changes.
    */
-  onChange?(value: string): void
+  onChange?(event: React.ChangeEvent<HTMLInputElement>): void
 }
 
-export declare const RadioGroup: ForwardRefComponent<RadioGroupProps>
+export declare const RadioGroup: BoxComponent<RadioGroupProps, 'div'>
 
 export interface Option {
   label?: string
@@ -1321,9 +1352,9 @@ export interface SearchInputProps extends TextInputProps {
   height?: number
 }
 
-export declare const SearchInput: ForwardRefComponent<SearchInputProps>
+export declare const SearchInput: BoxComponent<SearchInputProps, 'div'>
 
-export interface SearchTableHeaderCellProps extends Omit<TableHeaderCellProps, 'onChange'> {
+export interface SearchTableHeaderCellProps extends TableHeaderCellProps {
   /**
    * The value of the input.
    */
@@ -1350,9 +1381,9 @@ export interface SearchTableHeaderCellProps extends Omit<TableHeaderCellProps, '
   icon?: React.ReactElement | null | false
 }
 
-export declare const SearchTableHeaderCell: ForwardRefComponent<SearchTableHeaderCellProps>
+export declare const SearchTableHeaderCell: React.FC<SearchTableHeaderCellProps>
 
-export interface SegmentedControlProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'defaultValue' | 'onChange'> {
+export interface SegmentedControlProps {
   options: Array<{ label: string, value: NonNullable<SegmentedControlProps['value']> }>
   value?: number | string | boolean
   defaultValue?: number | string | boolean
@@ -1361,9 +1392,9 @@ export interface SegmentedControlProps extends Omit<React.ComponentPropsWithoutR
   height?: number
 }
 
-export declare const SegmentedControl: ForwardRefComponent<SegmentedControlProps>
+export declare const SegmentedControl: BoxComponent<SegmentedControlProps, 'div'>
 
-export interface SelectProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'onChange'> {
+export interface SelectProps {
   /**
    * The initial value of an uncontrolled select
    */
@@ -1400,7 +1431,7 @@ export interface SelectProps extends Omit<React.ComponentPropsWithoutRef<typeof 
   onChange?(event: React.ChangeEvent<HTMLSelectElement>): void
 }
 
-export declare const Select: ForwardRefComponent<SelectProps>
+export declare const Select: BoxComponent<SelectProps, 'div'>
 
 export type SelectFieldProps = FormFieldProps
 
@@ -1519,7 +1550,7 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
   closeOnSelect?: boolean
 }
 
-export declare const SelectMenu: ForwardRefComponent<SelectMenuProps>
+export declare const SelectMenu: React.FC<SelectMenuProps>
 
 export interface SideSheetProps {
   children: React.ReactNode | (() => React.ReactNode)
@@ -1536,19 +1567,17 @@ export interface SideSheetProps {
   preventBodyScrolling?: boolean
 }
 
-export declare const SideSheet: ForwardRefComponent<SideSheetProps>
+export declare const SideSheet: React.FC<SideSheetProps>
 
 export type SidebarTabProps = TabProps
 
-export declare const SidebarTab: ForwardRefComponent<SidebarTabProps>
+export declare const SidebarTab: BoxComponent<SidebarTabProps, 'span'>
 
-export interface SmallProps extends BoxProps<'small'> {
+export interface SmallProps {}
 
-}
+export declare const Small: BoxComponent<SmallProps, 'small'>
 
-export declare const Small: ForwardRefComponent<SmallProps>
-
-export interface SpinnerProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface SpinnerProps {
   /**
    * Delay after which spinner should be visible.
    */
@@ -1559,7 +1588,7 @@ export interface SpinnerProps extends React.ComponentPropsWithoutRef<typeof Box>
   size?: number
 }
 
-export declare const Spinner: ForwardRefComponent<SpinnerProps>
+export declare const Spinner: BoxComponent<SpinnerProps, 'div'>
 
 export interface StackProps {
   children: (zIndex: number) => React.ReactNode
@@ -1570,11 +1599,11 @@ export declare const Stack: React.FC<StackProps>
 
 export declare const StackingContext: React.Context<number>
 
-export type StrongProps = BoxProps<'strong'>
+export type StrongProps = TextProps
 
-export declare const Strong: ForwardRefComponent<StrongProps>
+export declare const Strong: BoxComponent<StrongProps, 'strong'>
 
-export interface SwitchProps extends Omit<BoxProps<'label'>, 'onChange'> {
+export interface SwitchProps {
   /**
    * The id attribute of the radio.
    */
@@ -1623,12 +1652,12 @@ export interface SwitchProps extends Omit<BoxProps<'label'>, 'onChange'> {
   defaultChecked?: boolean
 }
 
-export declare const Switch: ForwardRefComponent<SwitchProps>
+export declare const Switch: BoxComponent<SwitchProps, 'label'>
 
 export interface TableBodyProps extends PaneProps {
 }
 
-export declare const TableBody: React.FC<TableBodyProps>
+export declare const TableBody: BoxComponent<TableBodyProps, 'div'>
 
 export interface TableCellProps extends PaneProps {
   /**
@@ -1661,7 +1690,7 @@ export interface TableCellProps extends PaneProps {
   className?: string
 }
 
-export declare const TableCell: ForwardRefComponent<TableCellProps>
+export declare const TableCell: BoxComponent<TableCellProps, 'div'>
 
 interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' | 'onChange'> {
   autoFocus?: boolean
@@ -1748,7 +1777,7 @@ export interface TableRowProps extends PaneProps {
   onDeselect?(): void
 }
 
-export declare const TableRow: ForwardRefComponent<TableRowProps>
+export declare const TableRow: BoxComponent<TableRowProps, 'div'>
 
 export interface TableSelectMenuCellProps extends Omit<TextTableCellProps, 'placeholder'> {
   /**
@@ -1817,18 +1846,18 @@ interface TableVirtualBodyProps extends PaneProps {
 export interface TableProps extends PaneProps {
 }
 
-export declare const Table: React.FC<TableProps> & {
-  public static Body: TableBody
-  public static VirtualBody: React.FC<TableVirtualBodyProps>
-  public static Head: TableHead
-  public static HeaderCell: TableHeaderCell
-  public static TextHeaderCell: TextTableHeaderCell
-  public static SearchHeaderCell: SearchTableHeaderCell
-  public static Row: TableRow
-  public static Cell: TableCell
-  public static TextCell: TextTableCell
-  public static EditableCell: React.FC<TableEditableCellProps>
-  public static SelectMenuCell: React.FC<TableSelectMenuCellProps>
+export declare const Table: BoxComponent<TableProps, 'div'> & {
+  Body: typeof TableBody
+  VirtualBody: React.FC<TableVirtualBodyProps>
+  Head: typeof TableHead
+  HeaderCell: typeof TableHeaderCell
+  TextHeaderCell: typeof TextTableHeaderCell
+  SearchHeaderCell: typeof SearchTableHeaderCell
+  Row: typeof TableRow
+  Cell: typeof TableCell
+  TextCell: typeof TextTableCell
+  EditableCell: React.FC<TableEditableCellProps>
+  SelectMenuCell: React.FC<TableSelectMenuCellProps>
 }
 
 export interface TabProps extends TextProps {
@@ -1848,23 +1877,23 @@ export interface TabProps extends TextProps {
   appearance?: DefaultAppearance
 }
 
-export declare const Tab: ForwardRefComponent<TabProps>
+export declare const Tab: BoxComponent<TabProps, 'span'>
 
 export type TablistProps = BoxProps<'div'>
 
-export declare const Tablist: ForwardRefComponent<TablistProps>
+export declare const Tablist: BoxComponent<{}>
 
 export type TabNavigationProps = BoxProps<'nav'>
 
-export declare const TabNavigation: ForwardRefComponent<TabNavigationProps>
+export declare const TabNavigation: BoxComponent<{}, 'nav'>
 
-export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<typeof Box>, 'onChange'> {
+export interface TagInputProps {
   addOnBlur?: boolean
   className?: string
   disabled?: boolean
   height?: number
   inputProps?: TextProps
-  inputRef?: (input: HTMLInputElement | null) => void
+  inputRef?: React.Ref<HTMLInputElement>
   onAdd?: (values: string[]) => void | false
   onBlur?: (event: React.FocusEvent) => void
   onChange?: (values: string[]) => void | false
@@ -1877,7 +1906,7 @@ export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<typeo
   values?: string[]
 }
 
-export declare const TagInput: React.FC<TagInputProps>
+export declare const TagInput: BoxComponent<TagInputProps, 'div'>
 
 export interface TextareaProps extends TextProps {
   required?: boolean
@@ -1892,7 +1921,7 @@ export interface TextareaProps extends TextProps {
   className?: string
 }
 
-export declare const Textarea: ForwardRefComponent<TextareaProps>
+export declare const Textarea: BoxComponent<TextareaProps, 'textarea'>
 
 export interface TextareaFieldProps extends TextareaProps {
   /**
@@ -1953,7 +1982,7 @@ export interface TextDropdownButtonProps extends TextProps {
   className?: string
 }
 
-export declare const TextDropdownButton: ForwardRefComponent<TextDropdownButtonProps>
+export declare const TextDropdownButton: BoxComponent<TextDropdownButtonProps, 'button'>
 
 export interface TextTableCellProps extends TableCellProps {
   /**
@@ -1966,7 +1995,7 @@ export interface TextTableCellProps extends TableCellProps {
   textProps?: TextProps
 }
 
-export declare const TextTableCell: ForwardRefComponent<TextTableCellProps>
+export declare const TextTableCell: BoxComponent<TextTableCellProps, 'div'>
 
 export interface TextTableHeaderCellProps extends PaneProps {
   textProps?: TextProps
@@ -1974,14 +2003,14 @@ export interface TextTableHeaderCellProps extends PaneProps {
 
 export declare const TextTableHeaderCell: React.FC<TextTableHeaderCellProps>
 
-export type TextProps = BoxProps<'span'> & {
+export type TextProps = {
   size?: keyof Typography['text']
   fontFamily?: FontFamily | string
 }
 
-export declare const Text: ForwardRefComponent<TextProps>
+export declare const Text: BoxComponent<TextProps, 'span'>
 
-export type TextInputProps = React.ComponentProps<typeof Text> & {
+export interface TextInputProps extends TextProps {
   /**
    * Makes the input element required.
    */
@@ -2017,9 +2046,9 @@ export type TextInputProps = React.ComponentProps<typeof Text> & {
   className?: string
 }
 
-export declare const TextInput: ForwardRefComponent<TextInputProps>
+export declare const TextInput: BoxComponent<TextInputProps, 'input'>
 
-export interface TextInputFieldProps extends TextInputProps {
+export interface TextInputFieldProps extends FormFieldProps {
   /**
    * The label used above the input element.
    */
@@ -2055,7 +2084,7 @@ export interface TextInputFieldProps extends TextInputProps {
   inputWidth?: number | string
 }
 
-export declare const TextInputField: ForwardRefComponent<TextInputFieldProps>
+export declare const TextInputField: BoxComponent<TextInputFieldProps, 'input'>
 
 export interface TooltipStatelessProps extends PaneProps {
   /**
@@ -2097,17 +2126,17 @@ export interface TooltipProps {
 
 export declare const Tooltip: React.FC<TooltipProps>
 
-export interface OrderedListProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface OrderedListProps {
   /**
    * Size of the text used in a list item.
    */
   size?: keyof Typography['text']
 }
 
-export declare const OrderedList: ForwardRefComponent<OrderedListProps>
-export declare const Ol: ForwardRefComponent<OrderedListProps>
+export declare const OrderedList: BoxComponent<OrderedListProps, 'ol'>
+export declare const Ol: typeof OrderedList
 
-export interface UnorderedListProps extends React.ComponentPropsWithoutRef<typeof Box> {
+export interface UnorderedListProps {
   /**
    * Size of the text used in a list item.
    */
@@ -2123,8 +2152,8 @@ export interface UnorderedListProps extends React.ComponentPropsWithoutRef<typeo
   iconColor?: string
 }
 
-export declare const UnorderedList: ForwardRefComponent<UnorderedListProps>
-export declare const Ul: ForwardRefComponent<UnorderedListProps>
+export declare const UnorderedList: BoxComponent<UnorderedListProps, 'ul'>
+export declare const Ul: typeof UnorderedList
 
 export function majorScale(x: number): number
 
@@ -2241,7 +2270,7 @@ interface OverlayProps {
   onEntered?: TransitionProps['onEntered'];
 }
 
-export declare const Overlay: ForwardRefComponent<OverlayProps>
+export declare const Overlay: React.FC<OverlayProps>
 
 export declare const ThemeContext: React.Context<Theme>
 export declare const ThemeProvider: React.Context<Theme>['Provider']
@@ -2770,7 +2799,5 @@ export declare const ZoomToFitIcon: IconComponent
 // The following component types have yet to be defined
 // ====================================================
 
-type UnknownProps = Record<string, any>
-export declare const FilePicker: ForwardRefComponent<UnknownProps>
 export declare const OptionShapePropType: unknown
 export declare const SelectedPropType: unknown
