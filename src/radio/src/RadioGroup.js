@@ -1,11 +1,10 @@
-import React, { memo, forwardRef, useState, useCallback } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { spacing, position, layout, dimensions } from 'ui-box'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
+import { useId } from '../../hooks'
 import Radio from './Radio'
-
-let radioCount = 1 // Used for generating unique input names
 
 const RadioGroup = memo(
   forwardRef((props, ref) => {
@@ -20,15 +19,7 @@ const RadioGroup = memo(
       ...rest
     } = props
 
-    const [name] = useState(`RadioGroup-${radioCount++}`)
-
-    const handleChange = useCallback(
-      e => {
-        onChange(e.target.value)
-      },
-      [onChange]
-    )
-
+    const name = useId(RadioGroup)
     const selected = value || defaultValue || props.options[0].value
 
     return (
@@ -47,7 +38,7 @@ const RadioGroup = memo(
             label={item.label}
             checked={selected === item.value}
             disabled={item.isDisabled}
-            onChange={handleChange}
+            onChange={onChange}
             isRequired={isRequired}
           />
         ))}
