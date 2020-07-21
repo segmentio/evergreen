@@ -1857,7 +1857,7 @@ export declare const Table: BoxComponent<TableProps, 'div'> & {
   Cell: typeof TableCell
   TextCell: typeof TextTableCell
   EditableCell: BoxComponent<TableEditableCellProps, 'div'>
-  SelectMenuCell: React.FC<TableSelectMenuCellProps>
+  SelectMenuCell: BoxComponent<TableSelectMenuCellProps, 'div'>
 }
 
 export interface TabProps extends TextProps {
