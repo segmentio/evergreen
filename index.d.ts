@@ -1431,7 +1431,7 @@ export interface SelectProps {
 
 export declare const Select: BoxComponent<SelectProps, 'div'>
 
-export type SelectFieldProps = FormFieldProps & BoxProps<'div'> & Omit<BoxProps<'input'>, keyof BoxProps<'div'>> & {
+export type SelectFieldProps = FormFieldProps & PolymorphicBoxProps<'div', BoxProps<'input'>> & {
   required?: boolean
 }
 
