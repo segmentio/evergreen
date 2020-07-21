@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, forwardRef, useState, useEffect, useImperativeHandle } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
 import PropTypes from 'prop-types'
@@ -7,8 +7,8 @@ import { Tooltip } from '../../tooltip'
 import { Position } from '../../constants'
 import PopoverStateless from './PopoverStateless'
 
-const Popover = memo(
-  ({
+const Popover = memo(forwardRef
+  (({
     animationDuration = 300,
     bringFocusInside: shouldBringFocusInside = false,
     children,
@@ -26,10 +26,15 @@ const Popover = memo(
     statelessProps = {},
     trigger = 'click',
     ...props
-  }) => {
+  }, forwardedRef) => {
     const [isShown, setIsShown] = useState(props.isShown)
     const [popoverNode, setPopoverNode] = useState(null)
     const [targetRef, setTargetRef] = useState(null)
+
+    useImperativeHandle(forwardedRef, () => ({
+      open,
+      close
+    }), [popoverNode])
 
     /**
      * Methods borrowed from BlueprintJS
@@ -260,7 +265,7 @@ const Popover = memo(
       </Positioner>
     )
   }
-)
+))
 
 Popover.propTypes = {
   /**
