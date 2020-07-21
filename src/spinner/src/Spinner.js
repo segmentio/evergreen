@@ -96,7 +96,7 @@ Spinner.propTypes = {
   /**
    * The size of the spinner.
    */
-  size: PropTypes.number.isRequired
+  size: PropTypes.number
 }
 
 export default Spinner
