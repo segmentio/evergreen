@@ -1,5 +1,5 @@
 import { css } from 'glamor'
-import React, { memo } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import { IconWrapper } from '../../icons/src/IconWrapper'
@@ -21,7 +21,7 @@ const invisibleInputClass = css({
   }
 }).toString()
 
-const SearchTableHeaderCell = memo(props => {
+const SearchTableHeaderCell = memo(forwardRef((props, ref) => {
   const {
     value,
     children,
@@ -55,10 +55,11 @@ const SearchTableHeaderCell = memo(props => {
         marginLeft={-2}
         paddingLeft={0}
         placeholder={placeholder}
+        ref={ref}
       />
     </TableHeaderCell>
   )
-})
+}))
 
 SearchTableHeaderCell.propTypes = {
   /**
