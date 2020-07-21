@@ -139,7 +139,7 @@ Avatar.propTypes = {
    * The color used for the avatar.
    * When the value is `automatic`, use the hash function to determine the color.
    */
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
 
   /**
    * Function to get the initials based on the name.
