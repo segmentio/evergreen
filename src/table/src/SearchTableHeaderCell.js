@@ -21,7 +21,7 @@ const invisibleInputClass = css({
   }
 }).toString()
 
-const SearchTableHeaderCell = memo(forwardRef((props, forwardedRef) => {
+const SearchTableHeaderCell = memo(forwardRef((props, ref) => {
   const {
     value,
     children,
@@ -55,7 +55,7 @@ const SearchTableHeaderCell = memo(forwardRef((props, forwardedRef) => {
         marginLeft={-2}
         paddingLeft={0}
         placeholder={placeholder}
-        ref={forwardedRef}
+        ref={ref}
       />
     </TableHeaderCell>
   )
