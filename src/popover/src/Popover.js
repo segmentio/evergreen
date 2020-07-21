@@ -1,4 +1,4 @@
-import React, { memo, forwardRef, useState, useEffect } from 'react'
+import React, { memo, forwardRef, useState, useEffect, useImperativeHandle } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
 import PropTypes from 'prop-types'
@@ -6,7 +6,6 @@ import { Positioner } from '../../positioner'
 import { Tooltip } from '../../tooltip'
 import { Position } from '../../constants'
 import PopoverStateless from './PopoverStateless'
-import bubbleRef from '../../lib/bubble-ref'
 
 const Popover = memo(forwardRef
   (({
@@ -31,6 +30,11 @@ const Popover = memo(forwardRef
     const [isShown, setIsShown] = useState(props.isShown)
     const [popoverNode, setPopoverNode] = useState(null)
     const [targetRef, setTargetRef] = useState(null)
+
+    useImperativeHandle(forwardedRef, () => ({
+      open,
+      close
+    }), [popoverNode])
 
     /**
      * Methods borrowed from BlueprintJS
@@ -240,7 +244,6 @@ const Popover = memo(forwardRef
           <PopoverStateless
             ref={ref => {
               setPopoverNode(ref)
-              bubbleRef(forwardedRef, ref)
               getRef(ref)
             }}
             data-state={state}
