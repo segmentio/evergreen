@@ -461,7 +461,7 @@ export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'>
   itemsFilter?: (items: string[], input: string) => string[]
   children: (props: {
                 toggle: () => void,
-                getRef: (ref: React.RefObject<HTMLElement>) => void,
+                getRef: React.Ref<any>,
                 isShown: NonNullable<PopoverProps['isShown']>,
                 getInputProps: <T>(options?: T) => T & {
                   onChange: (event: React.ChangeEvent) => void,
@@ -470,8 +470,8 @@ export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'>
                   id: string,
                   value: string,
                   'aria-autocomplete': 'list',
-                  'aria-activedescendant': number | null,
-                  'aria-controls': string | null,
+                  'aria-activedescendant'?: string,
+                  'aria-controls'?: string,
                   'aria-labelledby': string,
                   autoComplete: 'off'
                 },
