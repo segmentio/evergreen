@@ -7,7 +7,7 @@ import Button from './Button'
 const IconButton = memo(
   forwardRef((props, ref) => {
     const theme = useTheme()
-    const { icon, iconSize, height, intent = 'none', ...restProps } = props
+    const { icon, iconSize, height = 32, intent = 'none', ...restProps } = props
 
     let iconWithProps
     if (icon && React.isValidElement(icon)) {
