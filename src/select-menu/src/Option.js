@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { TickIcon } from '../../icons'
 import { Image } from '../../image'
-import { TableRow, TextTableCell } from '../../table'
+import TableRow from '../../table/src/TableRow'
+import TextTableCell from '../../table/src/TextTableCell'
 
 export default class Option extends PureComponent {
   static propTypes = {
