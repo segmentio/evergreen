@@ -10,7 +10,6 @@ import { Text } from '../../typography'
 import { useTheme } from '../../theme'
 import { majorScale } from '../../scales'
 import safeInvoke from '../../lib/safe-invoke'
-import bubbleRef from '../../lib/bubble-ref'
 import { useId } from '../../hooks'
 import Tag from './Tag'
 
@@ -146,10 +145,6 @@ const TagInput = memo(props => {
     )
   }
 
-  const setRef = node => {
-    bubbleRef(inputRef, node)
-  }
-
   const themedContainerClassName = theme.getTagInputClassName('default')
   const themedInputClassName = theme.getTextInputClassName('none')
   const textSize = theme.getTextSizeForControlHeight(height)
@@ -180,7 +175,7 @@ const TagInput = memo(props => {
         value={inputValue}
         {...inputProps}
         className={themedInputClassName}
-        ref={setRef}
+        ref={inputRef}
         onChange={handleInputChange}
         onFocus={handleInputFocus}
         onKeyDown={handleKeyDown}

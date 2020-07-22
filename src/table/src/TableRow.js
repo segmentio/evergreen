@@ -3,95 +3,92 @@ import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { Pane } from '../../layers'
 import { useTheme } from '../../theme'
-import bubbleRef from '../../lib/bubble-ref'
+import { useMergedRef } from '../../hooks'
 import { TableRowProvider } from './TableRowContext'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 
-const TableRow = memo(forwardRef((props, ref) => {
-  const {
-    className,
-    height = 48,
-    children,
-    intent = 'none',
-    appearance = 'default',
-    tabIndex = -1,
+const TableRow = memo(
+  forwardRef((props, forwardedRef) => {
+    const {
+      className,
+      height = 48,
+      children,
+      intent = 'none',
+      appearance = 'default',
+      tabIndex = -1,
 
-    // Filter out
-    onClick,
-    onKeyPress = () => {},
-    onSelect = () => {},
-    onDeselect = () => {},
+      // Filter out
+      onClick,
+      onKeyPress = () => {},
+      onSelect = () => {},
+      onDeselect = () => {},
 
-    isHighlighted,
-    isSelectable,
-    isSelected,
-    ...rest
-  } = props
+      isHighlighted,
+      isSelectable,
+      isSelected,
+      ...rest
+    } = props
 
-  const theme = useTheme()
+    const theme = useTheme()
+    const [mainRef, setMainRef] = useState()
+    const onRef = useMergedRef(setMainRef, forwardedRef)
 
-  const [mainRef, setMainRef] = useState()
-
-  const handleClick = e => {
-    if (typeof onClick === 'function') {
-      onClick(e)
-    }
-
-    if (isSelectable) {
-      if (isSelected) {
-        onDeselect()
-      } else {
-        onSelect()
+    const handleClick = e => {
+      if (typeof onClick === 'function') {
+        onClick(e)
       }
-    }
-  }
 
-  const handleKeyDown = e => {
-    if (isSelectable) {
-      const { key } = e
-      if (key === 'Enter' || key === ' ') {
-        onSelect()
-        e.preventDefault()
-      } else if (key === 'ArrowUp' || key === 'ArrowDown') {
-        try {
-          manageTableRowFocusInteraction(key, mainRef)
-        } catch (_) {}
-      } else if (key === 'Escape') {
-        if (mainRef && mainRef instanceof Node) mainRef.blur()
+      if (isSelectable) {
+        if (isSelected) {
+          onDeselect()
+        } else {
+          onSelect()
+        }
       }
     }
 
-    onKeyPress(e)
-  }
+    const handleKeyDown = e => {
+      if (isSelectable) {
+        const { key } = e
+        if (key === 'Enter' || key === ' ') {
+          onSelect()
+          e.preventDefault()
+        } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+          try {
+            manageTableRowFocusInteraction(key, mainRef)
+          } catch (_) {}
+        } else if (key === 'Escape') {
+          if (mainRef && mainRef instanceof Node) mainRef.blur()
+        }
+      }
 
-  const onRef = newRef => {
-    setMainRef(newRef)
-    bubbleRef(ref, newRef)
-  }
+      onKeyPress(e)
+    }
 
-  const themedClassName = theme.getRowClassName(appearance, intent)
+    const themedClassName = theme.getRowClassName(appearance, intent)
 
-  return (
-    <TableRowProvider height={height}>
-      <Pane
-        ref={onRef}
-        className={cx(themedClassName, className)}
-        display="flex"
-        aria-selected={isHighlighted}
-        aria-current={isSelected}
-        data-isselectable={isSelectable}
-        tabIndex={isSelectable ? tabIndex : undefined}
-        onClick={handleClick}
-        onKeyDown={handleKeyDown}
-        height={height}
-        borderBottom="muted"
-        {...rest}
-      >
-        {children}
-      </Pane>
-    </TableRowProvider>
-  )
-}))
+    return (
+      <TableRowProvider height={height}>
+        <Pane
+          ref={onRef}
+          className={cx(themedClassName, className)}
+          display="flex"
+          aria-selected={isHighlighted}
+          aria-current={isSelected}
+          data-isselectable={isSelectable}
+          tabIndex={isSelectable ? tabIndex : undefined}
+          onClick={handleClick}
+          onKeyDown={handleKeyDown}
+          height={height}
+          borderBottom="muted"
+          {...rest}
+        >
+          {children}
+        </Pane>
+      </TableRowProvider>
+    )
+  })
+)
 
 TableRow.propTypes = {
   /**

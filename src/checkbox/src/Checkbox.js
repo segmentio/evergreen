@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
 import { useTheme } from '../../theme'
-import bubbleRef from '../../lib/bubble-ref'
+import { useMergedRef } from '../../hooks'
 
 const CheckIcon = ({ fill = 'currentColor', ...props }) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...props}>
@@ -50,11 +50,7 @@ const Checkbox = memo(
     } = props
 
     const [ref, setRef] = useState(null)
-
-    const callbackRef = node => {
-      setRef(node)
-      bubbleRef(forwardedRef, node)
-    }
+    const callbackRef = useMergedRef(setRef, forwardedRef)
 
     useEffect(() => {
       if (ref) {
