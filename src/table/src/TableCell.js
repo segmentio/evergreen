@@ -5,7 +5,7 @@ import { toaster } from '../../toaster'
 import { useTheme } from '../../theme'
 import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
-import bubbleRef from '../../lib/bubble-ref'
+import { useMergedRef } from '../../hooks'
 import { TableRowConsumer } from './TableRowContext'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
 
@@ -29,7 +29,7 @@ function executeArrowKeyOverride(override) {
 }
 
 const TableCell = memo(
-  forwardRef((props, ref) => {
+  forwardRef((props, forwardedRef) => {
     const {
       children,
       appearance = 'default',
@@ -44,7 +44,8 @@ const TableCell = memo(
       ...rest
     } = props
     const theme = useTheme()
-    const [cellRef, setCellRef] = useState()
+    const [cellRef, setCellRef] = useState(null)
+    const handleRef = useMergedRef(setCellRef, forwardedRef)
 
     const styles = {
       paddingX: 12,
@@ -86,11 +87,6 @@ const TableCell = memo(
       }
 
       safeInvoke(onKeyDown, e)
-    }
-
-    const handleRef = newRef => {
-      setCellRef(newRef)
-      bubbleRef(ref, newRef)
     }
 
     const themedClassName = theme.getTableCellClassName(appearance)

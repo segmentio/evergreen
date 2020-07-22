@@ -4,7 +4,7 @@ import { Transition } from 'react-transition-group'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder, Position } from '../../constants'
-import bubbleRef from '../../lib/bubble-ref'
+import { useMergedRef } from '../../hooks'
 import getPosition from './getPosition'
 
 const animationEasing = {
@@ -30,7 +30,7 @@ const getCSS = ({ initialScale, animationDuration }) => ({
 })
 
 const Positioner = memo(
-  forwardRef((props, ref) => {
+  forwardRef((props, forwardedRef) => {
     const {
       target,
       isShown,
@@ -52,6 +52,7 @@ const Positioner = memo(
     const [latestAnimationFrame, setLatestAnimationFrame] = useState()
     const [targetRef, setTargetRef] = useState()
     const [positionerRef, setPositionerRef] = useState()
+    const getRef = useMergedRef(setPositionerRef, forwardedRef)
 
     useLayoutEffect(() => {
       if (latestAnimationFrame) {
@@ -70,11 +71,6 @@ const Positioner = memo(
         }
       }
     }, [left, top, height, width, transformOrigin, positionerRef])
-
-    const getRef = newRef => {
-      setPositionerRef(newRef)
-      bubbleRef(ref, newRef)
-    }
 
     const handleEnter = () => {
       update()
