@@ -8,15 +8,22 @@ import MDXPlayground from './MDXPlayground'
  */
 const Components = {}
 
+const generateHeadingId = (props) => {
+  if (props && typeof props.children === 'string') {
+    return `heading_${props.children.toLowerCase().replace(' ', '_')}`
+  }
+  return false
+}
+
 Components.code = MDXPlayground
 Components.inlineCode = props => <code className="code" {...props} />
 Components.wrapper = props => <React.Fragment {...props} />
-Components.h1 = props => <h1 className="heading h1" {...props} />
-Components.h2 = props => <h2 className="heading h2" {...props} />
-Components.h3 = props => <h3 className="heading h3" {...props} />
-Components.h4 = props => <h4 className="heading h4" {...props} />
-Components.h5 = props => <h5 className="heading h5" {...props} />
-Components.h6 = props => <h6 className="heading h6" {...props} />
+Components.h1 = props => <h1 className="heading h1" id={generateHeadingId(props)} {...props} />
+Components.h2 = props => <h2 className="heading h2" id={generateHeadingId(props)} {...props} />
+Components.h3 = props => <h3 className="heading h3" id={generateHeadingId(props)} {...props} />
+Components.h4 = props => <h4 className="heading h4" id={generateHeadingId(props)} {...props} />
+Components.h5 = props => <h5 className="heading h5" id={generateHeadingId(props)} {...props} />
+Components.h6 = props => <h6 className="heading h6" id={generateHeadingId(props)} {...props} />
 Components.p = props => <p className="paragraph" {...props} />
 Components.ul = props => <ul className="ul" {...props} />
 Components.ol = props => <ol className="ol" {...props} />
