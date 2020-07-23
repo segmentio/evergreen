@@ -170,7 +170,7 @@ const Popover = memo(forwardRef
         document.body.removeEventListener('click', handleBodyClick, false)
         document.body.removeEventListener('keydown', onEsc, false)
       }
-    }, [isShown])
+    }, [isShown, handleBodyClick, onEsc])
 
     const renderTarget = ({ getRef, isShown }) => {
       const isTooltipInside = children && children.type === Tooltip
