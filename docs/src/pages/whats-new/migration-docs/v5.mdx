@@ -99,4 +99,14 @@ Migrating to this is not that difficult. Below you can see a quick example.
 ```
 
 ### Downshift
-Sed posuere consectetur est at lobortis. Nulla vitae elit libero, a pharetra augue.
+We upgraded the version of Downshift we use internally in Evergreen from version 3.3.1 to 5.2.0. As part of this some
+component props have been deprecated and are no longer available in the components that use Downshift.
+
+**Components affected:**
+ - `AutoComplete`
+ - `Combobox`
+
+**Props removed:**
+ - `defaultSelectedItem`
+ - `defaultInputValue`
+ - `getButtonProps`
