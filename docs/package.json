@@ -37,7 +37,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-github-button": "^0.1.11",
-    "react-helmet": "^6.0.0",
+    "react-helmet": "^6.1.0",
     "react-live": "2.2.2"
   },
   "devDependencies": {

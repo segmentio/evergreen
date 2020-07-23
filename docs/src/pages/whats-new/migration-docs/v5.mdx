@@ -1,0 +1,102 @@
+import MigrationDocsLayout from '../../../components/MigrationDocsLayout'
+
+export default MigrationDocsLayout
+
+## Evergreen V5 Migration Guide
+Evergreen V5 is a general health check for the framework. We took a look at what makes Evergreen tick
+and compared it to new standards. We made several updates to try and push the DevX of using the framework
+to be a lot more natural and robust. Below you can see some of the changes we made that may require some
+work on your side to to upgrade to v5.
+
+### What's changed
+ - [Ref Support](#heading_ref_support)
+ - [Popover](#heading_popover)
+ - [Icons](#heading_icons)
+ - [Downshift](#heading_downshift)
+
+### Ref Support
+When ui-box and Evergreen were created, the standard was to create and use `innerRef`. Now react has support
+for and created a standard for using ref. We updated ui-box and all Evergreen components to follow this standard.
+In most cases all you will need to do is change `innerRef` to `ref`.
+
+*One note is that if you are using `useRef` or `React.createRef`, you no longer will need to pass a callback for
+the `ref` to be handled correctly.*
+
+```jsx
+  <Component
+    initialState={{
+      ref: null
+    }}
+  >
+    {({ state, setState }) => {
+      const refHandler = (ref) => {
+        if (state.ref !== ref) {
+          setState({ref})
+          console.log('Example Ref', ref)
+        }
+      }
+
+      return (
+          <Button ref={refHandler}>Example ref usage</Button>
+      )
+    }}
+  </Component>
+```
+
+### Popover
+With the removal of `innerRef` in Evergreen, there are some potential changes required with implimentations of `Popover`.
+The direct `child` of a `Popover` is now required to be a component that accepts ref, and returns a node. Part of this
+means that now you can no longer use a class-based component as the trigger for a `Popover`, as these will not return a node
+and instead return a reference to the component itself. There is an easy workaround if you don't want to convert your custom
+components to accept ref. All you need to do is use an Evergreen component, to wrap your component. You can see the example below.
+
+```jsx
+  <Popover content={
+    <Heading size={400} padding={16}>Example Popover</Heading>
+  }>
+    <Pane textAlign="center">
+      {/* Classbased component can go here since Pane is a forward ref function component */}
+      Example Popover
+    </Pane>
+  </Popover>
+```
+
+### Icons
+When looking at our existing implimentation of icons in Evergreen V4 and earlier, we noticed a key issue.
+The icons cause a large amount of bloat in your end bundle size. You end up with every single icon in your
+compiled code. In v4.26.0 we introduced a new path to using icons - treeshakeable icons. In v5 we have removed
+the `Icon` component in favor of this route. We updated all the components that internally were using the 
+`Icon` component and updated the prop to no longer expect a string but a react node. We also removed the `Icon`
+component from Evergreen itself. This means that all places you were using this component, you will need to
+update to use the new exported icons.
+
+Migrating to this is not that difficult. Below you can see a quick example.
+
+```jsx
+  // Evergreen v4 and Earlier
+  // ------------------------
+  // import { Icon } from 'evergreen-ui'
+
+  // <Pane display="flex" flexDirection="column" alignItems="flex-start">
+  //   <Pane display="flex" alignItems="center" marginBottom={majorScale(1)}>
+  //     <Icon icon="ban-circle" color="danger" marginRight={majorScale(1)} />
+  //     <Text>Don't do this anymore</Text>
+  //   </Pane>
+  //   <Button iconBefore="cog">Settings</Button>
+  // </Pane>
+
+  // Evergreen v5
+  // ------------
+  // import { TickCircleIcon, CogIcon } from 'evergreen-ui'
+
+  <Pane display="flex" flexDirection="column" alignItems="flex-start">
+    <Pane display="flex" alignItems="center" marginBottom={majorScale(1)}>
+      <TickCircleIcon color="success" marginRight={majorScale(1)} />
+      <Text>Do this now</Text>
+    </Pane>
+    <Button iconBefore={<CogIcon size={12} marginRight={8} />}>Settings</Button>
+  </Pane>
+```
+
+### Downshift
+Sed posuere consectetur est at lobortis. Nulla vitae elit libero, a pharetra augue.
