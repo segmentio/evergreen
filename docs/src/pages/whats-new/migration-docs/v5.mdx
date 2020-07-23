@@ -37,7 +37,7 @@ Here's an example of how to update your code:
 ### Popover triggers {#popovers}
 With the removal of `innerRef` in Evergreen, there are some potential changes required with implementations of `Popover`.
 The direct `child` of a `Popover` **must be** a component that can forward refs to a DOM node. If you are using class components,
-you'll need to update our code. We've found the easiest path is to use an Evergreen component – which already handle ref forwarding.
+you'll need to update your code. We've found the easiest path is to use an Evergreen component – which already handle ref forwarding.
 You can see an example below:
 
 ```diff static
