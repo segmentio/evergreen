@@ -12,6 +12,7 @@
   font-weight: 400;
   line-height: 1.6em;
   background-color: color(var(--N10) shade(15%));
+  overflow: auto;
 }
 
 .prism-code textarea {
@@ -44,6 +45,14 @@ pre[class*='language-'] {
   white-space: normal;
 }
 
+.token.inserted {
+  color: rgb(69, 255, 165);
+}
+
+.token.deleted {
+	color: color(var(--red-base) tint(40%) saturation(120%));
+}
+
 .token.comment,
 .token.prolog,
 .token.doctype,
@@ -58,8 +67,7 @@ pre[class*='language-'] {
 .token.property,
 .token.tag,
 .token.constant,
-.token.symbol,
-.token.deleted {
+.token.symbol {
   color: color(var(--red-base) tint(40%) saturation(120%));
 }
 
@@ -79,8 +87,7 @@ pre[class*='language-'] {
 .token.selector,
 .token.attr-name,
 .token.char,
-.token.builtin,
-.token.inserted {
+.token.builtin {
   color: var(--yellow-base);
 }
 
