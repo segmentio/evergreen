@@ -5,7 +5,8 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 
 export default class SyntaxHighlighter extends React.PureComponent {
   static propTypes = {
-    children: PropTypes.string
+    children: PropTypes.string,
+    language: PropTypes.string
   }
 
   componentDidCatch() {}
@@ -15,7 +16,7 @@ export default class SyntaxHighlighter extends React.PureComponent {
       <Highlight
         {...defaultProps}
         code={this.props.children.trim()}
-        language="jsx"
+        language={this.props.language || 'jsx'}
         theme={undefined}
       >
         {({ tokens, getLineProps, getTokenProps }) => (

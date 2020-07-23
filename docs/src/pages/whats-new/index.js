@@ -1,6 +1,14 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { Pane, Heading, Card, Text, Paragraph, CalendarIcon, Button } from '../../../../src'
+import {
+  Pane,
+  Heading,
+  Card,
+  Text,
+  Paragraph,
+  CalendarIcon,
+  Button
+} from '../../../../src'
 import TopBar from '../../components/TopBar'
 import Layout from '../../components/Layout'
 import PageFooter from '../../components/PageFooter'
@@ -9,12 +17,11 @@ import WhatsNewHero from '../../components/WhatsNewHero'
 const majorReleases = [
   {
     version: '5',
-    releaseDate: 'comming soon...',
+    releaseDate: 'coming soon...',
     migrationDocs: 'whats-new/migration-docs/v5',
     description: `Evergreen V5 is a general health check for the framework. We took a look at what makes Evergreen tick
     and compared it to new standards. We made several updates to try and push the DevX of using the framework to be
-    a lot more natural and robust. We have also made several steps forward in terms of bundle size, and perfomance, by
-    commiting to treeshakeable icons, and converting components to React Function Components.`
+    a lot more natural and robust. We focused on improving bundle size, performance, tree-shaking support (especially for icons), and better TypeScript definitions.`
   }
 ]
 
@@ -76,16 +83,21 @@ const WhatsNew = () => {
                 </Heading>
                 <Pane display="flex" alignItems="center" marginTop={8}>
                   <CalendarIcon size={12} marginRight={8} color="muted" />
-                  <Text color="muted">
-                    {release.releaseDate}
-                  </Text>
+                  <Text color="muted">{release.releaseDate}</Text>
                 </Pane>
                 <Paragraph marginTop={16}>{release.description}</Paragraph>
-                {release.migrationDocs && <Pane width="100%" display="flex" justifyContent="flex-end">
-                  <Button appearance="minimal" is="a" href={release.migrationDocs} marginTop={8}>
-                    Migration Docs
-                  </Button>
-                </Pane>}
+                {release.migrationDocs && (
+                  <Pane width="100%" display="flex" justifyContent="flex-end">
+                    <Button
+                      appearance="minimal"
+                      is="a"
+                      href={release.migrationDocs}
+                      marginTop={8}
+                    >
+                      Migration Docs
+                    </Button>
+                  </Pane>
+                )}
               </Card>
             ))}
           </Pane>

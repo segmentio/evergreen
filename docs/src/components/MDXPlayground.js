@@ -6,6 +6,7 @@ import SyntaxHighlighter from './SyntaxHighlighter'
 export default class MDXPlayground extends React.Component {
   static propTypes = {
     children: PropTypes.string,
+    className: PropTypes.string,
     collapse: PropTypes.bool,
     static: PropTypes.bool,
     noInline: PropTypes.bool
@@ -16,10 +17,16 @@ export default class MDXPlayground extends React.Component {
   }
 
   render() {
-    const { children, collapse, noInline } = this.props
+    const { children, className, collapse, noInline } = this.props
+    let language = 'jsx'
+    if (className && className.includes('language-')) {
+      language = className.split('-')[1]
+    }
 
     if (this.props.static) {
-      return <SyntaxHighlighter>{children}</SyntaxHighlighter>
+      return (
+        <SyntaxHighlighter language={language}>{children}</SyntaxHighlighter>
+      )
     }
 
     return (

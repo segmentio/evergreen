@@ -3,110 +3,124 @@ import MigrationDocsLayout from '../../../components/MigrationDocsLayout'
 export default MigrationDocsLayout
 
 ## Evergreen V5 Migration Guide
+
 Evergreen V5 is a general health check for the framework. We took a look at what makes Evergreen tick
 and compared it to new standards. We made several updates to try and push the DevX of using the framework
 to be a lot more natural and robust. Below you can see some of the changes we made that may require some
 work on your side to to upgrade to v5.
 
-### What's changed
- - [Ref Support](#heading_ref_support)
- - [Popover](#heading_popover)
- - [Icons](#heading_icons)
- - [Downshift](#heading_downshift)
+### Breaking Changes
 
-### Ref Support
-When ui-box and Evergreen were created, the standard was to create and use `innerRef`. Now react has support
-for and created a standard for using ref. We updated ui-box and all Evergreen components to follow this standard.
-In most cases all you will need to do is change `innerRef` to `ref`.
+ - [innerRef is gone. Use ref](#refs)
+ - [Popover triggers](#popovers)
+ - [Importing and using Icons](#icons)
+ - [Downshift v5](#downshift)
 
-*One note is that if you are using `useRef` or `React.createRef`, you no longer will need to pass a callback for
-the `ref` to be handled correctly.*
+### innerRef no longer supported {#refs}
 
-```jsx
-  <Component
-    initialState={{
-      ref: null
-    }}
-  >
-    {({ state, setState }) => {
-      const refHandler = (ref) => {
-        if (state.ref !== ref) {
-          setState({ref})
-          console.log('Example Ref', ref)
-        }
-      }
+Previous versions of `ui-box` and Evergreen relied on passing around `innerRef` props to forward refs to the underlying components.
+We've centralized on the standard way of using refs in React: passing a `ref` directly on the component. Almost all Evergreen components
+support forwarding refs.
 
-      return (
-          <Button ref={refHandler}>Example ref usage</Button>
-      )
-    }}
-  </Component>
+Note: If you find a component that you think should be forwarding refs and isn't, please open an issue on GitHub!
+
+Here's an example of how to update your code:
+
+```diff static
+ const MyComponent = () => {
+   const inputRef = React.useRef()
+-  return <TextInput innerRef={inputRef} />
++  return <TextInput ref={inputRef} />
+ }
 ```
 
-### Popover
-With the removal of `innerRef` in Evergreen, there are some potential changes required with implimentations of `Popover`.
-The direct `child` of a `Popover` is now required to be a component that accepts ref, and returns a node. Part of this
-means that now you can no longer use a class-based component as the trigger for a `Popover`, as these will not return a node
-and instead return a reference to the component itself. There is an easy workaround if you don't want to convert your custom
-components to accept ref. All you need to do is use an Evergreen component, to wrap your component. You can see the example below.
+### Popover triggers {#popovers}
+With the removal of `innerRef` in Evergreen, there are some potential changes required with implementations of `Popover`.
+The direct `child` of a `Popover` **must be** a component that can forward refs to a DOM node. If you are using class components,
+you'll need to update our code. We've found the easiest path is to use an Evergreen component – which already handle ref forwarding.
+You can see an example below:
 
-```jsx
-  <Popover content={
-    <Heading size={400} padding={16}>Example Popover</Heading>
-  }>
-    <Pane textAlign="center">
-      {/* Classbased component can go here since Pane is a forward ref function component */}
-      Example Popover
-    </Pane>
-  </Popover>
+```diff static
+const MyComponent = () => {
+  return (
+    <Popover content={(<Heading size={400} padding={16}>Example Popover</Heading>)}
++     <Pane display="inline-flex">
+        <MyClassComponent />
++     </Pane>
+    </Popover>
+  )
+}
 ```
 
-### Icons
-When looking at our existing implimentation of icons in Evergreen V4 and earlier, we noticed a key issue.
-The icons cause a large amount of bloat in your end bundle size. You end up with every single icon in your
-compiled code. In v4.26.0 we introduced a new path to using icons - treeshakeable icons. In v5 we have removed
-the `Icon` component in favor of this route. We updated all the components that internally were using the 
-`Icon` component and updated the prop to no longer expect a string but a react node. We also removed the `Icon`
-component from Evergreen itself. This means that all places you were using this component, you will need to
+We recommend using `Button` or `IconButton` as the trigger, because it provides better accessibility:
+
+```diff static
+const MyComponent = () => {
+  return (
+    <Popover content={(<Heading size={400} padding={16}>Example Popover</Heading>)}
+-     <MyClassComponent />
++     <Button>Click me!</Button>
+    </Popover>
+  )
+}
+```
+
+### Importing and using Icons {#icons}
+
+Previously, the way we shipped icons in `evergreen-ui@^4` would significantly bloat bundle sizes. Even if you only
+used 1 icon from Evergreen, you would ship all 400+ icons to your end-users.
+
+In `evergreen-ui@^4.26.0` we introduced a new way to import icons that would lead to _some amount_ of tree-shaking.
+
+Finally, in `evergreen-ui@^5.0.0` we have full tree-shaking support. This does impact the way you import icons (`import { Icon } from 'evergreen-ui'`) and pass
+icons as props to other components like `Button`, `IconButton`, `Menu.Item`, `OrderedList` (and `Ol`), `UnorderedList` (and `Ul`).
+
+We updated all the components that internally were using the `Icon` component and updated the prop to no longer expect a string but a React node.
+We also removed the `Icon` component from Evergreen itself. This means that all places you were using this component, you will need to
 update to use the new exported icons.
 
-Migrating to this is not that difficult. Below you can see a quick example.
+There is also a codemod that can help you with this migration. It can be installed and used from the `codemods` directory. Notably it only
+updates `import { Icon } from 'evergreen-ui'`.
 
-```jsx
-  // Evergreen v4 and Earlier
-  // ------------------------
-  // import { Icon } from 'evergreen-ui'
-
-  // <Pane display="flex" flexDirection="column" alignItems="flex-start">
-  //   <Pane display="flex" alignItems="center" marginBottom={majorScale(1)}>
-  //     <Icon icon="ban-circle" color="danger" marginRight={majorScale(1)} />
-  //     <Text>Don't do this anymore</Text>
-  //   </Pane>
-  //   <Button iconBefore="cog">Settings</Button>
-  // </Pane>
-
-  // Evergreen v5
-  // ------------
-  // import { TickCircleIcon, CogIcon } from 'evergreen-ui'
-
-  <Pane display="flex" flexDirection="column" alignItems="flex-start">
-    <Pane display="flex" alignItems="center" marginBottom={majorScale(1)}>
-      <TickCircleIcon color="success" marginRight={majorScale(1)} />
-      <Text>Do this now</Text>
-    </Pane>
-    <Button iconBefore={<CogIcon size={12} marginRight={8} />}>Settings</Button>
-  </Pane>
+```sh static
+npx jscodeshift -t node_modules/evergreen-ui/codemods/4.25.0-4.26.0/replace-icon-imports.js --parser=tsx --extensions=js,ts,tsx <your file target> --dry --print
 ```
 
-### Downshift
-We upgraded the version of Downshift we use internally in Evergreen from version 3.3.1 to 5.2.0. As part of this some
-component props have been deprecated and are no longer available in the components that use Downshift.
+#### Migration path
 
-**Components affected:**
+Importing an icon:
+
+```diff static
+- import { Icon } from 'evergreen-ui'
++ import { CogIcon } from 'evergreen-ui'
+ 
+- <Icon icon="cog" />
++ <CogIcon />
+```
+
+Passing an icon as a prop:
+
+```diff static
+- import { Button } from 'evergreen-ui'
++ import { Button, CogIcon } from 'evergreen-ui'
+ 
+- <Button iconBefore="cog">
++ <Button iconBefore={<CogIcon />}>
+    Settings
+  </Button>
+```
+
+### Downshift v5 {#downshift}
+
+We upgraded the version of Downshift we use internally in Evergreen from version `3.3.1` to `5.2.0`. As part of this some
+component props have been deprecated and are no longer available in the components that use Downshift.
+See the [diff in #792](https://github.com/segmentio/evergreen/pull/792).
+
+#### Components affected
  - `AutoComplete`
  - `Combobox`
 
-**Props removed:**
- - `defaultSelectedItem`
- - `defaultInputValue`
- - `getButtonProps`
+#### Props removed
+ - `defaultSelectedItem` - use `initialSelectedItem`
+ - `defaultInputValue` - use `initialInputValue`
+ - `getButtonProps` - use `getToggleButtonProps`
