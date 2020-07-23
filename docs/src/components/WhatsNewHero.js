@@ -30,18 +30,6 @@ const WhatsNewHero = () => {
             >
               View Changelog
             </Button>
-            <Button
-              is="a"
-              appearance="minimal"
-              onClick={trackViewChangelog}
-              href="https://github.com/segmentio/evergreen/releases"
-              height={40}
-              target="_blank"
-              rel="noopener noreferrer"
-              marginLeft={8}
-            >
-              View Roadmap
-            </Button>
           </div>
         </div>
       </div>
