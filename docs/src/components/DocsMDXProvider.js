@@ -12,6 +12,7 @@ const generateHeadingId = (props) => {
   if (props && typeof props.children === 'string') {
     return `heading_${props.children.toLowerCase().replace(' ', '_')}`
   }
+
   return false
 }
 
