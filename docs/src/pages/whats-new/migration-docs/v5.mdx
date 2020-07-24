@@ -15,6 +15,7 @@ work on your side to to upgrade to v5.
  - [Popover triggers](#popovers)
  - [Importing and using Icons](#icons)
  - [Downshift v5](#downshift)
+ - [Toggle no longer manages state](#toggle)
 
 ### innerRef no longer supported {#refs}
 
@@ -124,3 +125,19 @@ See the [diff in #792](https://github.com/segmentio/evergreen/pull/792).
  - `defaultSelectedItem` - use `initialSelectedItem`
  - `defaultInputValue` - use `initialInputValue`
  - `getButtonProps` - use `getToggleButtonProps`
+
+### Toggle is uncontrolled {#toggle}
+
+To unify usage of form components across Evergreen, we updated Toggle to more closely match other components, such as `Checkbox`.
+When using the component it is now required that you pass the component an `onChange` callback method when wanting to manage state.
+
+```diff static
+const [switchIsActive, setSwitchActive] = useState(false)
+ 
++ const onChange = (event) => {
++   setSwitchActive(event.target.checked)
++ }
+ 
++ <Switch checked={switchIsActive} onChange={onChange} />
+- <Switch checked={switchIsActive} />
+```
