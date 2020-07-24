@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import iconHelper from '../../icons/src/iconHelper'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
 import { withTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
@@ -100,6 +100,14 @@ class MenuItem extends React.PureComponent {
 
     const themedClassName = theme.getMenuItemClassName(appearance, 'none')
 
+    const IconToRender = iconHelper(icon, {
+      color: intent === 'none' ? 'default' : intent,
+      marginLeft: 16,
+      marginRight: -4,
+      size: 16,
+      flexShrink: 0
+    })
+
     return (
       <Pane
         is={is}
@@ -114,16 +122,7 @@ class MenuItem extends React.PureComponent {
         alignItems="center"
         {...passthroughProps}
       >
-        {icon && (
-          <Icon
-            color={intent === 'none' ? 'default' : intent}
-            icon={icon}
-            marginLeft={16}
-            marginRight={-4}
-            size={16}
-            flexShrink={0}
-          />
-        )}
+        {IconToRender}
         <Text color={intent} marginLeft={16} marginRight={16} flex={1}>
           {children}
         </Text>

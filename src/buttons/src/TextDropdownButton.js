@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { dimensions, spacing, position, layout } from 'ui-box'
+import iconHelper from '../../icons/src/iconHelper'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
@@ -48,11 +49,9 @@ class TextDropdownButton extends PureComponent {
      * - If `null` or `undefined` or `false`, this component will render nothing.
      * - If given an `IconName` (a string literal union of all icon names),
      *   that icon will be rendered as an `<svg>` with `<path>` tags.
-     * - If given a `JSX.Element`, that element will be rendered and _all other props on this component are ignored._
-     *   This type is supported to simplify usage of this component in other Blueprint components.
-     *   As a consumer, you should never use `<Icon icon={<element />}` directly; simply render `<element />` instead.
+     * - If given a `JSX.Element`, that element will be rendered with the expected props passed through._
      */
-    icon: PropTypes.string.isRequired,
+    icon: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
 
     /**
      * Theme provided by ThemeProvider.
@@ -107,6 +106,12 @@ class TextDropdownButton extends PureComponent {
 
     const themedClassName = theme.getTextDropdownButtonClassName()
 
+    const IconToRender = iconHelper(icon, {
+      size: 12,
+      marginLeft: 2,
+      color: 'default'
+    })
+
     return (
       <Text
         is="button"
@@ -129,7 +134,7 @@ class TextDropdownButton extends PureComponent {
           />
         )}
         {children}
-        <Icon color="default" icon={icon} size={12} marginLeft={2} />
+        {IconToRender}
       </Text>
     )
   }

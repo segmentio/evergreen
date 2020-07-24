@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { dimensions, spacing, position, layout } from 'ui-box'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
+import iconHelper from '../../icons/src/iconHelper'
 import { Spinner } from '../../spinner'
 import { withTheme } from '../../theme'
 
@@ -54,12 +54,12 @@ class Button extends PureComponent {
     /**
      * Sets an icon before the text. Can be any icon from Evergreen or a custom element.
      */
-    iconBefore: PropTypes.node,
+    iconBefore: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
 
     /**
      * Sets an icon after the text. Can be any icon from Evergreen or a custom element.
      */
-    iconAfter: PropTypes.node,
+    iconAfter: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
 
     /**
      * When true, the button is disabled.
@@ -117,8 +117,8 @@ class Button extends PureComponent {
       paddingBottom,
 
       // Icons
-      iconBefore: iconBeforeKey,
-      iconAfter: iconAfterKey,
+      iconBefore: iconBeforeProp,
+      iconAfter: iconAfterProp,
 
       ...props
     } = this.props
@@ -134,27 +134,21 @@ class Button extends PureComponent {
     const pl = paddingLeft !== undefined ? paddingLeft : Math.round(height / 2) // eslint-disable-line no-negated-condition
 
     let iconBefore
-    if (iconBeforeKey) {
-      iconBefore = (
-        <Icon
-          icon={iconBeforeKey}
-          size={iconSize}
-          marginLeft={-Math.round(pl * 0.2)}
-          marginRight={Math.round(iconSize * 0.7)}
-        />
-      )
+    if (iconBeforeProp) {
+      iconBefore = iconHelper(iconBeforeProp, {
+        size: iconSize,
+        marginLeft: -Math.round(pl * 0.2),
+        marginRight: Math.round(iconSize * 0.7)
+      })
     }
 
     let iconAfter
-    if (iconAfterKey) {
-      iconAfter = (
-        <Icon
-          icon={iconAfterKey}
-          size={iconSize}
-          marginRight={-Math.round(pl * 0.2)}
-          marginLeft={Math.round(iconSize * 0.7)}
-        />
-      )
+    if (iconAfterProp) {
+      iconAfter = iconHelper(iconAfterProp, {
+        size: iconSize,
+        marginRight: -Math.round(pl * 0.2),
+        marginLeft: Math.round(iconSize * 0.7)
+      })
     }
 
     return (

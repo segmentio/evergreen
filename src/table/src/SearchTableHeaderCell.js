@@ -1,8 +1,8 @@
 import { css } from 'glamor'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import iconHelper from '../../icons/src/iconHelper'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
 import TableHeaderCell from './TableHeaderCell'
 
 const invisibleInputClass = css({
@@ -78,15 +78,16 @@ export default class SearchTableHeaderCell extends PureComponent {
       ...props
     } = this.props
 
+    const IconToRender = iconHelper(icon, {
+      color: 'muted',
+      marginLeft: 2,
+      marginRight: 10,
+      size: 12
+    })
+
     return (
       <TableHeaderCell {...props}>
-        <Icon
-          icon={icon}
-          color="muted"
-          marginLeft={2}
-          marginRight={10}
-          size={12}
-        />
+        {IconToRender}
         <Text
           is="input"
           size={300}
