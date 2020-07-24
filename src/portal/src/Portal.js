@@ -1,56 +1,38 @@
-import { useState, useEffect, memo } from 'react'
+import { Component } from 'react'
 import canUseDom from 'dom-helpers/util/inDOM'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
 let portalContainer
 
-const initializePortal = () => {
-  if (!canUseDom) {
-    return null
-  }
+export default class Portal extends Component {
+  constructor() {
+    super()
 
-  if (portalContainer) {
-    return portalContainer
-  }
+    // This fixes SSR
+    if (!canUseDom) return
 
-  portalContainer = document.createElement('div')
-  portalContainer.setAttribute('evergreen-portal-container', '')
-  document.body.appendChild(portalContainer)
-  return portalContainer
-}
-
-const initializeEl = () => {
-  if (!canUseDom) {
-    return null
-  }
-
-  return document.createElement('div')
-}
-
-const Portal = memo(({ children }) => {
-  const [portalContainer] = useState(initializePortal())
-  const [el] = useState(initializeEl())
-
-  useEffect(() => {
-    if (portalContainer) {
-      portalContainer.appendChild(el)
+    if (!portalContainer) {
+      portalContainer = document.createElement('div')
+      portalContainer.setAttribute('evergreen-portal-container', '')
+      document.body.appendChild(portalContainer)
     }
 
-    return () => {
-      if (portalContainer) {
-        portalContainer.removeChild(el)
-      }
-    }
-  }, [])
+    this.el = document.createElement('div')
+    portalContainer.appendChild(this.el)
+  }
 
-  if (!canUseDom) return null
+  componentWillUnmount() {
+    portalContainer.removeChild(this.el)
+  }
 
-  return ReactDOM.createPortal(children, el)
-})
+  render() {
+    // This fixes SSR
+    if (!canUseDom) return null
+    return ReactDOM.createPortal(this.props.children, this.el)
+  }
+}
 
 Portal.propTypes = {
   children: PropTypes.node.isRequired
 }
-
-export default Portal
