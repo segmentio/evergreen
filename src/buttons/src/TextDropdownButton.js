@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { dimensions, spacing, position, layout } from 'ui-box'
 import iconHelper from '../../icons/src/iconHelper'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
 import { withTheme } from '../../theme'
 
