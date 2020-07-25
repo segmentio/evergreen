@@ -5,6 +5,7 @@ import { Text } from '../../typography'
 import { Position } from '../../constants'
 import { Button } from '../../buttons'
 import { Icon } from '../../icon'
+import { InfoSignIcon } from '../../icons'
 import { Tooltip } from '..'
 
 storiesOf('tooltip', module)
@@ -26,7 +27,7 @@ storiesOf('tooltip', module)
       </Tooltip>
 
       <Tooltip content="My tooltip content">
-        <Icon icon="info-sign" marginX={15} />
+        <Icon icon={InfoSignIcon} marginX={15} />
       </Tooltip>
       <Tooltip isShown={false} content="Should never see it">
         <Text marginLeft={40} display="inline-block" cursor="help">

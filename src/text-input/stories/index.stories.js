@@ -5,6 +5,7 @@ import Box from 'ui-box'
 import { Text, Label, Heading } from '../../typography'
 import { Pane, Card } from '../../layers'
 import { Button } from '../../buttons'
+import { ErrorIcon } from '../../icons'
 import { TextInputField, TextInput } from '..'
 
 const Description = props => (
@@ -196,7 +197,7 @@ storiesOf('text-input', module)
             Save Changes
           </Button>
           <Pane paddingTop={32} marginTop={32} marginBottom={-8} borderTop>
-            <Button intent="danger" iconBefore="error">
+            <Button intent="danger" iconBefore={ErrorIcon}>
               Delete Your Workspace...
             </Button>
           </Pane>

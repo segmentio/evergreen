@@ -1,14 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import * as IconExports from '../../icons'
-
-const { IconNameMapper, ...Icons } = IconExports
-
-/**
- * This implementation is a remix of the Icon component in Blueprintjs:
- * https://github.com/palantir/blueprint/blob/813e93f2/packages/core/src/components/icon/icon.tsx#L15
- * Refer to the LICENSE for BlueprintJS here: https://github.com/palantir/blueprint/blob/develop/LICENSE
- */
+import ReactIs from 'react-is'
 
 export class Icon extends PureComponent {
   static SIZE_STANDARD = 16
@@ -21,18 +13,20 @@ export class Icon extends PureComponent {
     color: PropTypes.string,
 
     /**
-     * Name of a Blueprint UI icon, or an icon element, to render.
+     * Name of the icon, or an icon element to render.
      * This prop is required because it determines the content of the component, but it can
      * be explicitly set to falsy values to render nothing.
      *
      * - If `null` or `undefined` or `false`, this component will render nothing.
-     * - If given an `IconName` (a string literal union of all icon names),
-     *   that icon will be rendered as an `<svg>` with `<path>` tags.
-     * - If given a `JSX.Element`, that element will be rendered and _all other props on this component are ignored._
-     *   This type is supported to simplify usage of this component in other Blueprint components.
-     *   As a consumer, you should never use `<Icon icon={<element />}` directly; simply render `<element />` instead.
+     * - If given an IconName string literal, it will render the corresponding Evergreen icon
+     * - If given a valid React element reference, it will be rendered with the other icon props
+     * - Any other value will be returned as a pass-through (as if you didn't use `<Icon />`)
      */
-    icon: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
+    icon: PropTypes.oneOfType([
+      PropTypes.elementType,
+      PropTypes.element,
+      PropTypes.string
+    ]).isRequired,
 
     /**
      * Size of the icon, in pixels.
@@ -62,20 +56,24 @@ export class Icon extends PureComponent {
       return null
     }
 
-    if (typeof icon !== 'string') {
-      return icon
+    if (typeof icon === 'string') {
+      const { IconNameMapper, ...icons } = require('../../icons')
+      const iconName = IconNameMapper[icon] || ''
+      const Component = icons[iconName]
+      if (Component) {
+        return <Component {...iconProps} />
+      }
     }
 
-    const iconName = IconNameMapper[icon]
-    if (!iconName) {
-      return null
+    if (ReactIs.isValidElementType(icon)) {
+      const Component = icon
+      return <Component {...iconProps} />
     }
 
-    const Component = Icons[iconName]
-    if (!Component) {
-      return null
+    if (React.isValidElement(icon)) {
+      return React.cloneElement(icon, iconProps)
     }
 
-    return <Component {...iconProps} />
+    return icon
   }
 }

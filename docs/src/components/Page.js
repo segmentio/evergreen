@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import { Location, navigate } from '@reach/router'
-import { Button, IconButton, Tooltip } from 'evergreen-ui'
+import { Button, IconButton, Tooltip, ArrowLeftIcon } from 'evergreen-ui'
 import IA from '../IA'
 import DocsMDXProvider from './DocsMDXProvider'
 import TopBar from './TopBar'
@@ -93,7 +93,7 @@ class Page extends React.Component {
                           marginLeft={-54}
                           marginRight={16}
                           display="inline-flex"
-                          icon="arrow-left"
+                          icon={ArrowLeftIcon}
                           height={40}
                         />
                       </Tooltip>
@@ -150,7 +150,7 @@ class Page extends React.Component {
                 is={Link}
                 to="/components"
                 display="inline-flex"
-                iconBefore="arrow-left"
+                iconBefore={ArrowLeftIcon}
                 height={40}
               >
                 Back to Overview

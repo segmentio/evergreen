@@ -24,7 +24,11 @@ class MenuItem extends React.PureComponent {
     /**
      * The icon before the label.
      */
-    icon: PropTypes.node,
+    icon: PropTypes.oneOfType([
+      PropTypes.elementType,
+      PropTypes.element,
+      PropTypes.string
+    ]),
 
     /**
      * The children of the component.

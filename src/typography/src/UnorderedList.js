@@ -16,7 +16,11 @@ export default class UnorderedList extends PureComponent {
      * When passed, adds a icon before each list item in the list
      * You can override this on a individual list item.
      */
-    icon: PropTypes.string,
+    icon: PropTypes.oneOfType([
+      PropTypes.elementType,
+      PropTypes.element,
+      PropTypes.string
+    ]),
 
     /**
      * The color of the icon in each list item in the list.

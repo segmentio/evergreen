@@ -12,7 +12,7 @@ import startCase from 'lodash.startcase'
 
 function matchStringLiteralIconProps(attribute) {
   return (
-    attribute.type === 'JSXAttribute' && attribute.name.name === 'icon' && attribute.value?.type === 'StringLiteral'
+    attribute.type === 'JSXAttribute' && attribute.name.name === 'icon' && attribute.value && attribute.value.type === 'StringLiteral'
   )
 }
 

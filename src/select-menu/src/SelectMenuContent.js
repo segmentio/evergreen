@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
 import { IconButton } from '../../buttons'
+import { CrossIcon } from '../../icons'
 import OptionsList from './OptionsList'
 import OptionShapePropType from './OptionShapePropType'
 
@@ -18,7 +19,12 @@ const DefaultTitleView = ({ close, title, headerHeight }) => (
     <Pane flex="1" display="flex" alignItems="center">
       <Heading size={400}>{title}</Heading>
     </Pane>
-    <IconButton icon="cross" appearance="minimal" height={24} onClick={close} />
+    <IconButton
+      icon={CrossIcon}
+      appearance="minimal"
+      height={24}
+      onClick={close}
+    />
   </Pane>
 )
 

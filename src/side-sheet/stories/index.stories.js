@@ -9,6 +9,12 @@ import { Tab } from '../../tabs'
 import { Dialog } from '../../dialog'
 import { TextInput } from '../../text-input'
 import Menu from '../../menu/src/Menu'
+import {
+  PeopleIcon,
+  CircleArrowRightIcon,
+  EditIcon,
+  TrashIcon
+} from '../../icons'
 import { SideSheet } from '..'
 
 storiesOf('side-sheet', module)
@@ -222,17 +228,17 @@ storiesOf('side-sheet', module)
                     </Pane>
                     <Menu>
                       <Menu.Group title="Actions">
-                        <Menu.Item icon="people">Collaborators</Menu.Item>
-                        <Menu.Item icon="circle-arrow-right">
+                        <Menu.Item icon={PeopleIcon}>Collaborators</Menu.Item>
+                        <Menu.Item icon={CircleArrowRightIcon}>
                           Discover
                         </Menu.Item>
-                        <Menu.Item icon="edit" secondaryText="⌘N">
+                        <Menu.Item icon={EditIcon} secondaryText="⌘N">
                           Compose
                         </Menu.Item>
                       </Menu.Group>
                       <Menu.Divider />
                       <Menu.Group title="destructive">
-                        <Menu.Item icon="trash" intent="danger">
+                        <Menu.Item icon={TrashIcon} intent="danger">
                           Delete
                         </Menu.Item>
                       </Menu.Group>
