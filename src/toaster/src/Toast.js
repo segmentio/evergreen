@@ -63,7 +63,9 @@ const Toast = memo(props => {
   const [isShown, setIsShown] = useState(true)
   const [height, setHeight] = useState(0)
   const closeTimer = useRef(null)
-  const state = useTransition(isShown, duration, { unmountOnExit: true })
+  const state = useTransition(isShown, ANIMATION_DURATION, {
+    unmountOnExit: true
+  })
 
   const clearCloseTimer = () => {
     if (closeTimer.current) {

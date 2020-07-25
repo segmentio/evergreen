@@ -17,6 +17,7 @@ export const TRANSITION_STATES = {
  */
 export function useTransition(isActive, timeout, options = {}) {
   const unmountOnExit = Boolean(options.unmountOnExit)
+  const appear = Boolean(options.appear)
   const onEnter = useRef(options.onEnter || null)
   const onExit = useRef(options.onExit || null)
 
@@ -27,8 +28,7 @@ export function useTransition(isActive, timeout, options = {}) {
 
   const [state, setState] = useState(() => {
     if (isActive) {
-      // Simulates Transition's `appear={true}` prop
-      return TRANSITION_STATES.exited
+      return appear ? TRANSITION_STATES.exited : TRANSITION_STATES.entered
     }
 
     return unmountOnExit
