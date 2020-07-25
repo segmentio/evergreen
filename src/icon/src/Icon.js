@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import ReactIs from 'react-is'
+import * as IconExports from '../../icons'
+
+const { IconNameMapper, ...icons } = IconExports
 
 export class Icon extends PureComponent {
   static SIZE_STANDARD = 16
@@ -57,7 +60,6 @@ export class Icon extends PureComponent {
     }
 
     if (typeof icon === 'string') {
-      const { IconNameMapper, ...icons } = require('../../icons')
       const iconName = IconNameMapper[icon] || ''
       const Component = icons[iconName]
       if (Component) {
