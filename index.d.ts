@@ -4,7 +4,6 @@ import * as React from 'react'
 import { extractStyles as boxExtractStyles, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps } from 'ui-box'
 import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
-import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition'
 
 export { configureSafeHref, BoxProps, BoxComponent } from 'ui-box'
 
@@ -489,7 +488,7 @@ export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'>
   onChange: (selectedItem: any) => void
 }
 
-export declare const Autocomplete: ForwardRefComponent<AutocompleteProps>
+export declare const Autocomplete: React.FC<AutocompleteProps>
 
 export interface AvatarProps {
   src?: string
@@ -1175,7 +1174,7 @@ export type ParagraphProps = {
 
 export declare const Paragraph: BoxComponent<ParagraphProps, 'p'>
 
-export declare const Portal: React.FC
+export class Portal extends React.Component<{}> {}
 
 export interface PositionerProps {
   position?: PositionTypes
@@ -2257,8 +2256,16 @@ export const toaster: {
   getToasts: () => Toast[]
 }
 
+export enum TransitionState {
+  unmounted = 'unmounted',
+  entering = 'entering',
+  entered = 'entered',
+  exiting = 'exiting',
+  exited = 'exited'
+}
+
 interface OverlayProps {
-  children: React.ReactNode | ((props: { state: TransitionStatus, close: () => void }) => JSX.Element);
+  children: React.ReactNode | ((props: { state: TransitionState, close: () => void }) => JSX.Element);
 
   isShown?: boolean;
   containerProps?: BoxProps<'div'>;
@@ -2266,12 +2273,12 @@ interface OverlayProps {
   shouldCloseOnClick?: boolean;
   shouldCloseOnEscapePress?: boolean;
   onBeforeClose?: () => void;
-  onExit?: TransitionProps['onExit'];
-  onExiting?: TransitionProps['onExiting'];
-  onExited?: TransitionProps['onExited'];
-  onEnter?: TransitionProps['onEnter'];
-  onEntering?: TransitionProps['onEntering'];
-  onEntered?: TransitionProps['onEntered'];
+  onExit?: () => void
+  onExiting?: () => void
+  onExited?: () => void
+  onEnter?: () => void
+  onEntering?: () => void
+  onEntered?: () => void
 }
 
 export declare const Overlay: React.FC<OverlayProps>

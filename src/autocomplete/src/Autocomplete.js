@@ -1,10 +1,4 @@
-import React, {
-  memo,
-  forwardRef,
-  useState,
-  useEffect,
-  useCallback
-} from 'react'
+import React, { memo, useState, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import Downshift from 'downshift'
@@ -102,120 +96,113 @@ const AutocompleteItems = ({
 }
 /* eslint-enable react/prop-types */
 
-const Autocomplete = memo(
-  forwardRef((props, ref) => {
-    const {
-      children,
-      itemSize = 32,
-      position,
-      renderItem = autocompleteItemRenderer,
-      isFilterDisabled = false,
-      itemsFilter,
-      itemToString = i => (i ? String(i) : ''),
-      popoverMaxHeight = 240,
-      popoverMinWidth = 240,
-      ...restProps
-    } = props
+const Autocomplete = memo(props => {
+  const {
+    children,
+    itemSize = 32,
+    position,
+    renderItem = autocompleteItemRenderer,
+    isFilterDisabled = false,
+    itemsFilter,
+    itemToString = i => (i ? String(i) : ''),
+    popoverMaxHeight = 240,
+    popoverMinWidth = 240,
+    ...restProps
+  } = props
 
-    const [targetWidth, setTargetWidth] = useState(0)
-    const [targetRef, setTargetRef] = useState()
+  const [targetWidth, setTargetWidth] = useState(0)
+  const [targetRef, setTargetRef] = useState()
 
-    useEffect(() => {
-      if (targetRef) {
-        setTargetWidth(targetRef.getBoundingClientRect().width)
-      }
-    }, [targetRef])
+  useEffect(() => {
+    if (targetRef) {
+      setTargetWidth(targetRef.getBoundingClientRect().width)
+    }
+  }, [targetRef])
 
-    const stateReducer = useCallback(
-      (state, changes) => {
-        const { items } = props
+  const stateReducer = useCallback(
+    (state, changes) => {
+      const { items } = props
 
-        if (
-          Object.prototype.hasOwnProperty.call(changes, 'isOpen') &&
-          changes.isOpen
-        ) {
-          return {
-            ...changes,
-            highlightedIndex: items.indexOf(state.selectedItem)
-          }
+      if (
+        Object.prototype.hasOwnProperty.call(changes, 'isOpen') &&
+        changes.isOpen
+      ) {
+        return {
+          ...changes,
+          highlightedIndex: items.indexOf(state.selectedItem)
         }
+      }
 
-        return changes
-      },
-      [props.items]
-    )
+      return changes
+    },
+    [props.items]
+  )
 
-    return (
-      <Downshift
-        stateReducer={stateReducer}
-        scrollIntoView={noop}
-        ref={ref}
-        {...restProps}
-      >
-        {({
-          isOpen: isShown,
-          inputValue,
-          getItemProps,
-          getMenuProps,
-          selectedItem,
-          highlightedIndex,
-          getRootProps,
-          ...restDownshiftProps
-        }) => (
-          <div style={{ width: '100%' }}>
-            <Popover
-              bringFocusInside={false}
-              isShown={isShown}
-              minWidth={popoverMinWidth}
-              position={
-                position ||
-                (targetWidth < popoverMinWidth
-                  ? Position.BOTTOM_LEFT
-                  : Position.BOTTOM)
-              }
-              content={() => (
-                <AutocompleteItems
-                  getItemProps={getItemProps}
-                  getMenuProps={getMenuProps}
-                  highlightedIndex={highlightedIndex}
-                  inputValue={inputValue}
-                  isFilterDisabled={isFilterDisabled}
-                  itemsFilter={itemsFilter}
-                  itemSize={itemSize}
-                  itemToString={itemToString}
-                  originalItems={props.items}
-                  popoverMaxHeight={popoverMaxHeight}
-                  renderItem={renderItem}
-                  selectedItem={selectedItem}
-                  title={props.title}
-                  width={Math.max(targetWidth, popoverMinWidth)}
-                />
-              )}
-              minHeight={0}
-              animationDuration={0}
-            >
-              {({ isShown: isShownPopover, toggle, getRef }) =>
-                children({
-                  isShown: isShownPopover,
-                  toggle,
-                  getRef: ref => {
-                    // Use the ref internally to determine the width
-                    setTargetRef(ref)
-                    getRef(ref)
-                  },
-                  inputValue,
-                  selectedItem,
-                  highlightedIndex,
-                  ...restDownshiftProps
-                })
-              }
-            </Popover>
-          </div>
-        )}
-      </Downshift>
-    )
-  })
-)
+  return (
+    <Downshift stateReducer={stateReducer} scrollIntoView={noop} {...restProps}>
+      {({
+        isOpen: isShown,
+        inputValue,
+        getItemProps,
+        getMenuProps,
+        selectedItem,
+        highlightedIndex,
+        getRootProps,
+        ...restDownshiftProps
+      }) => (
+        <div style={{ width: '100%' }}>
+          <Popover
+            bringFocusInside={false}
+            isShown={isShown}
+            minWidth={popoverMinWidth}
+            position={
+              position ||
+              (targetWidth < popoverMinWidth
+                ? Position.BOTTOM_LEFT
+                : Position.BOTTOM)
+            }
+            content={() => (
+              <AutocompleteItems
+                getItemProps={getItemProps}
+                getMenuProps={getMenuProps}
+                highlightedIndex={highlightedIndex}
+                inputValue={inputValue}
+                isFilterDisabled={isFilterDisabled}
+                itemsFilter={itemsFilter}
+                itemSize={itemSize}
+                itemToString={itemToString}
+                originalItems={props.items}
+                popoverMaxHeight={popoverMaxHeight}
+                renderItem={renderItem}
+                selectedItem={selectedItem}
+                title={props.title}
+                width={Math.max(targetWidth, popoverMinWidth)}
+              />
+            )}
+            minHeight={0}
+            animationDuration={0}
+          >
+            {({ isShown: isShownPopover, toggle, getRef }) =>
+              children({
+                isShown: isShownPopover,
+                toggle,
+                getRef: ref => {
+                  // Use the ref internally to determine the width
+                  setTargetRef(ref)
+                  getRef(ref)
+                },
+                inputValue,
+                selectedItem,
+                highlightedIndex,
+                ...restDownshiftProps
+              })
+            }
+          </Popover>
+        </div>
+      )}
+    </Downshift>
+  )
+})
 
 Autocomplete.propTypes = {
   /**

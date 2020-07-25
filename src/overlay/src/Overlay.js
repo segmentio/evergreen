@@ -1,8 +1,7 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState, useEffect, useRef } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import { Transition } from 'react-transition-group'
 import Box from 'ui-box'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
@@ -10,6 +9,8 @@ import { StackingOrder } from '../../constants'
 import { useTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
 import preventBodyScroll from '../../lib/prevent-body-scroll'
+import { findTababble } from '../../lib/tababble'
+import { useTransition, TRANSITION_STATES } from '../../hooks'
 
 const NOOP = () => {}
 
@@ -61,7 +62,7 @@ const animationStyles = backgroundColor => ({
 })
 
 /**
- * Overlay is essentially a wrapper around react-transition-group/Transition
+ * Overlay is essentially a wrapper around `use-transition`
  */
 const Overlay = memo(
   ({
@@ -81,20 +82,22 @@ const Overlay = memo(
     ...props
   }) => {
     const theme = useTheme()
-    const [previousActiveElement, setPreviousActiveElement] = useState(null)
-    const [status, setStatus] = useState(isShown ? 'entering' : 'exited')
-    const [containerRef, setContainerRef] = useState(null)
 
-    useEffect(() => {
-      if (isShown) {
-        setStatus('entering')
-      }
-    }, [isShown])
+    // `shouldClose` allows us to control internally even if consumers aren't updating `isShown`
+    const [shouldClose, setShouldClose] = useState(false)
+    const previousActiveElement = useRef(null)
+    const containerRef = useRef(null)
+
+    const state = useTransition(isShown && !shouldClose, ANIMATION_DURATION, {
+      unmountOnExit: true,
+      onEnter: () => safeInvoke(onEnter, containerRef.current),
+      onExit: () => safeInvoke(onExit, containerRef.current)
+    })
 
     const close = () => {
       const shouldClose = safeInvoke(props.onBeforeClose)
       if (shouldClose !== false) {
-        setStatus('exiting')
+        setShouldClose(true)
       }
     }
 
@@ -103,27 +106,6 @@ const Overlay = memo(
         close()
       }
     }
-
-    useEffect(() => {
-      if (status === 'entered') {
-        setPreviousActiveElement(document.activeElement)
-        bringFocusInsideOverlay()
-      }
-
-      if (status === 'entering') {
-        document.body.addEventListener('keydown', onEsc, false)
-      }
-
-      if (status === 'exiting') {
-        document.body.removeEventListener('keydown', onEsc, false)
-        bringFocusBackToTarget()
-      }
-
-      return () => {
-        handleBodyScroll(false)
-        document.body.removeEventListener('keydown', onEsc, false)
-      }
-    }, [status])
 
     /**
      * Methods borrowed from BlueprintJS
@@ -136,28 +118,20 @@ const Overlay = memo(
         // activeElement may be undefined in some rare cases in IE
 
         if (
-          containerRef == null || // eslint-disable-line eqeqeq, no-eq-null
+          containerRef.current == null || // eslint-disable-line eqeqeq, no-eq-null
           document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
           !isShown
         ) {
           return
         }
 
-        const isFocusOutsideModal = !containerRef.contains(
+        const isFocusOutsideModal = !containerRef.current.contains(
           document.activeElement
         )
         if (isFocusOutsideModal) {
-          // Element marked autofocus has higher priority than the other clowns
-          const autofocusElement = containerRef.querySelector('[autofocus]')
-          const wrapperElement = containerRef.querySelector('[tabindex]')
-          const buttonElement = containerRef.querySelector('button')
-
-          if (autofocusElement) {
-            autofocusElement.focus()
-          } else if (wrapperElement) {
-            wrapperElement.focus()
-          } else if (buttonElement) {
-            buttonElement.focus()
+          const element = findTababble(containerRef.current)
+          if (element) {
+            element.focus()
           }
         }
       })
@@ -166,17 +140,19 @@ const Overlay = memo(
     const bringFocusBackToTarget = () => {
       return requestAnimationFrame(() => {
         if (
-          previousActiveElement == null || // eslint-disable-line eqeqeq, no-eq-null
-          containerRef == null || // eslint-disable-line eqeqeq, no-eq-null
+          previousActiveElement.current == null || // eslint-disable-line eqeqeq, no-eq-null
+          containerRef.current == null || // eslint-disable-line eqeqeq, no-eq-null
           document.activeElement == null // eslint-disable-line eqeqeq, no-eq-null
         ) {
           return
         }
 
         // Bring back focus on the target.
-        const isFocusInsideModal = containerRef.contains(document.activeElement)
+        const isFocusInsideModal = containerRef.current.contains(
+          document.activeElement
+        )
         if (document.activeElement === document.body || isFocusInsideModal) {
-          previousActiveElement.focus()
+          previousActiveElement.current.focus()
         }
       })
     }
@@ -187,35 +163,34 @@ const Overlay = memo(
       }
     }
 
-    const handleEnter = (node, isAppearing) => {
-      handleBodyScroll(true)
-      safeInvoke(onEnter, node, isAppearing)
-    }
+    useEffect(() => {
+      if (state === TRANSITION_STATES.entering) {
+        handleBodyScroll(true)
+        previousActiveElement.current = document.activeElement
+        safeInvoke(onEntering, containerRef.current)
+        document.body.addEventListener('keydown', onEsc, false)
+      } else if (state === TRANSITION_STATES.entered) {
+        bringFocusInsideOverlay()
+        safeInvoke(onEntered, containerRef.current)
+      } else if (state === TRANSITION_STATES.exiting) {
+        handleBodyScroll(false)
+        document.body.removeEventListener('keydown', onEsc, false)
+        bringFocusBackToTarget()
+        safeInvoke(onExiting, containerRef.current)
+      } else if (shouldClose && state === TRANSITION_STATES.exited) {
+        safeInvoke(onExited, containerRef.current)
+        setShouldClose(false)
+      }
+    }, [state])
 
-    const handleEntering = (node, isAppearing) => {
-      setStatus('entering')
-      safeInvoke(onEntering, node, isAppearing)
-    }
-
-    const handleEntered = (node, isAppearing) => {
-      setStatus('entered')
-      safeInvoke(onEntered, node, isAppearing)
-    }
-
-    const handleExit = node => {
-      handleBodyScroll(false)
-      safeInvoke(onExit, node)
-    }
-
-    const handleExiting = node => {
-      setStatus('exiting')
-      safeInvoke(onExiting, node)
-    }
-
-    const handleExited = node => {
-      setStatus('exited')
-      safeInvoke(onExited, node)
-    }
+    // Cleanup body scroll + escape key listener
+    useEffect(
+      () => () => {
+        handleBodyScroll(false)
+        document.body.removeEventListener('keydown', onEsc, false)
+      },
+      []
+    )
 
     const handleBackdropClick = event => {
       if (event.target !== event.currentTarget || !shouldCloseOnClick) {
@@ -225,7 +200,7 @@ const Overlay = memo(
       close()
     }
 
-    if (status === 'exited') {
+    if (state === TRANSITION_STATES.unmounted) {
       return null
     }
 
@@ -233,43 +208,26 @@ const Overlay = memo(
       <Stack value={StackingOrder.OVERLAY}>
         {zIndex => (
           <Portal>
-            <Transition
-              appear
-              unmountOnExit
-              timeout={ANIMATION_DURATION}
-              in={isShown && status !== 'exiting'}
-              onExit={handleExit}
-              onExiting={handleExiting}
-              onExited={handleExited}
-              onEnter={handleEnter}
-              onEntering={handleEntering}
-              onEntered={handleEntered}
-            >
-              {state => (
-                <Box
-                  onClick={handleBackdropClick}
-                  ref={setContainerRef}
-                  position="fixed"
-                  top={0}
-                  left={0}
-                  right={0}
-                  bottom={0}
-                  zIndex={zIndex}
-                  data-state={state}
-                  {...containerProps}
-                  className={cx(
-                    containerProps.className,
-                    css(
-                      animationStyles(theme.overlayBackgroundColor)
-                    ).toString()
-                  )}
-                >
-                  {typeof children === 'function'
-                    ? children({ state, close })
-                    : children}
-                </Box>
+            <Box
+              onClick={handleBackdropClick}
+              ref={containerRef}
+              position="fixed"
+              top={0}
+              left={0}
+              right={0}
+              bottom={0}
+              zIndex={zIndex}
+              data-state={state}
+              {...containerProps}
+              className={cx(
+                containerProps.className,
+                css(animationStyles(theme.overlayBackgroundColor)).toString()
               )}
-            </Transition>
+            >
+              {typeof children === 'function'
+                ? children({ state, close })
+                : children}
+            </Box>
           </Portal>
         )}
       </Stack>
@@ -336,28 +294,19 @@ Overlay.propTypes = {
 
   /**
    * Callback fired before the "entering" status is applied.
-   * An extra parameter isAppearing is supplied to indicate if the enter stage
-   * is occurring on the initial mount.
-   *
-   * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
+   * type: `Function(node: HtmlElement) -> void`
    */
   onEnter: PropTypes.func,
 
   /**
    * Callback fired after the "entering" status is applied.
-   * An extra parameter isAppearing is supplied to indicate if the enter stage
-   * is occurring on the initial mount.
-   *
-   * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
+   * type: `Function(node: HtmlElement) -> void`
    */
   onEntering: PropTypes.func,
 
   /**
    * Callback fired after the "entered" status is applied.
-   * An extra parameter isAppearing is supplied to indicate if the enter stage
-   * is occurring on the initial mount.
-   *
-   * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
+   * type: `Function(node: HtmlElement) -> void`
    */
   onEntered: PropTypes.func
 }

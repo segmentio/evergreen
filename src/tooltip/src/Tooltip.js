@@ -125,9 +125,7 @@ const Tooltip = memo(props => {
 
   return (
     <Positioner
-      target={({ getRef }) => {
-        return renderTarget({ getRef })
-      }}
+      target={renderTarget}
       isShown={shown}
       position={position}
       animationDuration={160}

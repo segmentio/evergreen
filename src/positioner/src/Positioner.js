@@ -1,10 +1,9 @@
-import React, { memo, forwardRef, useState, useEffect, useRef } from 'react'
+import React, { memo, useState, useEffect, useRef, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { Transition } from 'react-transition-group'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder, Position } from '../../constants'
-import { useMergedRef } from '../../hooks'
+import { useMergedRef, useTransition, TRANSITION_STATES } from '../../hooks'
 import getPosition from './getPosition'
 
 const animationEasing = {
@@ -29,162 +28,151 @@ const getCSS = ({ initialScale, animationDuration }) => ({
   }
 })
 
-const Positioner = memo(
-  forwardRef((props, forwardedRef) => {
-    const {
-      target,
-      isShown,
-      children,
-      initialScale = 0.9,
-      animationDuration = 300,
-      position = Position.BOTTOM,
-      bodyOffset = 6,
-      targetOffset = 6,
-      onOpenComplete = () => {},
-      onCloseComplete = () => {}
-    } = props
+const initialDimensions = {
+  left: 0,
+  top: 0,
+  height: 0,
+  width: 0,
+  transformOrigin: null
+}
 
-    const [dimensions, setDimensions] = useState({
-      left: 0,
-      top: 0,
-      height: 0,
-      width: 0,
-      transformOrigin: null
-    })
-    const latestAnimationFrame = useRef()
-    const positionerRef = useRef()
-    const targetRef = useRef()
-    const setTargetRef = useMergedRef(targetRef)
-    const getRef = useMergedRef(positionerRef, forwardedRef)
+const Positioner = memo(props => {
+  const {
+    target,
+    isShown,
+    children,
+    initialScale = 0.9,
+    animationDuration = 300,
+    position = Position.BOTTOM,
+    bodyOffset = 6,
+    targetOffset = 6,
+    onOpenComplete = () => {},
+    onCloseComplete = () => {}
+  } = props
 
-    useEffect(() => {
-      return () => {
-        if (latestAnimationFrame.current) {
-          cancelAnimationFrame(latestAnimationFrame.current)
-        }
-      }
-    }, [])
+  const state = useTransition(isShown, animationDuration, {
+    unmountOnExit: true,
+    onEnter: () => update()
+  })
 
-    const handleEnter = () => {
-      update()
-    }
-
-    const update = (prevHeight = 0, prevWidth = 0) => {
-      if (!isShown || !targetRef.current || !positionerRef.current) return
-
-      const targetRect = targetRef.current.getBoundingClientRect()
-
-      const hasEntered =
-        positionerRef.current.getAttribute('data-state') === 'entered'
-
-      const viewportHeight = document.documentElement.clientHeight
-      const viewportWidth = document.documentElement.clientWidth
-
-      let height
-      let width
-      if (hasEntered) {
-        // Only when the animation is done should we opt-in to `getBoundingClientRect`
-        const positionerRect = positionerRef.current.getBoundingClientRect()
-
-        // https://github.com/segmentio/evergreen/issues/255
-        // We need to ceil the width and height to prevent jitter when
-        // the window is zoomed (when `window.devicePixelRatio` is not an integer)
-        height = Math.round(positionerRect.height)
-        width = Math.round(positionerRect.width)
-      } else {
-        // When the animation is in flight use `offsetWidth/Height` which
-        // does not calculate the `transform` property as part of its result.
-        // There is still change on jitter during the animation (although unoticable)
-        // When the browser is zoomed in — we fix this with `Math.max`.
-        height = Math.max(positionerRef.current.offsetHeight, prevHeight)
-        width = Math.max(positionerRef.current.offsetWidth, prevWidth)
-      }
-
-      const { rect, transformOrigin } = getPosition({
-        position,
-        targetRect,
-        targetOffset,
-        dimensions: {
-          height,
-          width
-        },
-        viewport: {
-          width: viewportWidth,
-          height: viewportHeight
-        },
-        viewportOffset: bodyOffset
-      })
-
-      setDimensions({
-        left: rect.left,
-        top: rect.top,
-        height,
-        width,
-        transformOrigin
-      })
-
-      latestAnimationFrame.current = requestAnimationFrame(() => {
-        update(height, width)
-      })
-    }
-
-    const handleExited = () => {
-      setDimensions({
-        left: 0,
-        top: 0,
-        height: 0,
-        width: 0,
-        transformOrigin: null
-      })
+  useEffect(() => {
+    if (state === TRANSITION_STATES.entered) {
+      onOpenComplete()
+    } else if (state === TRANSITION_STATES.exited) {
+      setDimensions(initialDimensions)
       onCloseComplete()
     }
+  }, [state])
 
-    return (
-      <Stack value={StackingOrder.POSITIONER}>
-        {zIndex => {
-          return (
-            <React.Fragment>
-              {target({ getRef: setTargetRef, isShown })}
+  const [dimensions, setDimensions] = useState(initialDimensions)
+  const latestAnimationFrame = useRef()
+  const positionerRef = useRef()
+  const targetRef = useRef()
+  const setTargetRef = useMergedRef(targetRef)
+  const getRef = useMergedRef(positionerRef)
+  const animationCss = useMemo(
+    () => getCSS({ initialScale, animationDuration }),
+    [initialScale, animationDuration]
+  )
 
-              <Transition
-                appear
-                in={isShown}
-                timeout={animationDuration}
-                onEnter={handleEnter}
-                onEntered={onOpenComplete}
-                onExited={handleExited}
-                unmountOnExit
-              >
-                {state => (
-                  <Portal>
-                    {children({
-                      top: dimensions.top,
-                      left: dimensions.left,
-                      state,
-                      zIndex,
-                      css: getCSS({
-                        initialScale,
-                        animationDuration
-                      }),
-                      style: {
-                        transformOrigin: dimensions.transformOrigin,
-                        left: dimensions.left,
-                        top: dimensions.top,
-                        zIndex
-                      },
-                      getRef,
-                      animationDuration
-                    })}
-                  </Portal>
-                )}
-              </Transition>
-            </React.Fragment>
-          )
-        }}
-      </Stack>
-    )
-  })
-)
+  useEffect(() => {
+    return () => {
+      if (latestAnimationFrame.current) {
+        cancelAnimationFrame(latestAnimationFrame.current)
+      }
+    }
+  }, [])
+
+  const update = (prevHeight = 0, prevWidth = 0) => {
+    if (!isShown || !targetRef.current || !positionerRef.current) return
+
+    const targetRect = targetRef.current.getBoundingClientRect()
+
+    const hasEntered =
+      positionerRef.current.getAttribute('data-state') === 'entered'
+    const viewportHeight = document.documentElement.clientHeight
+    const viewportWidth = document.documentElement.clientWidth
+
+    let height
+    let width
+    if (hasEntered) {
+      // Only when the animation is done should we opt-in to `getBoundingClientRect`
+      const positionerRect = positionerRef.current.getBoundingClientRect()
+
+      // https://github.com/segmentio/evergreen/issues/255
+      // We need to ceil the width and height to prevent jitter when
+      // the window is zoomed (when `window.devicePixelRatio` is not an integer)
+      height = Math.round(positionerRect.height)
+      width = Math.round(positionerRect.width)
+    } else {
+      // When the animation is in flight use `offsetWidth/Height` which
+      // does not calculate the `transform` property as part of its result.
+      // There is still change on jitter during the animation (although unoticable)
+      // When the browser is zoomed in — we fix this with `Math.max`.
+      height = Math.max(positionerRef.current.offsetHeight, prevHeight)
+      width = Math.max(positionerRef.current.offsetWidth, prevWidth)
+    }
+
+    const { rect, transformOrigin } = getPosition({
+      position,
+      targetRect,
+      targetOffset,
+      dimensions: {
+        height,
+        width
+      },
+      viewport: {
+        width: viewportWidth,
+        height: viewportHeight
+      },
+      viewportOffset: bodyOffset
+    })
+
+    setDimensions({
+      left: rect.left,
+      top: rect.top,
+      height,
+      width,
+      transformOrigin
+    })
+
+    latestAnimationFrame.current = requestAnimationFrame(() => {
+      update(height, width)
+    })
+  }
+
+  return (
+    <Stack value={StackingOrder.POSITIONER}>
+      {zIndex => {
+        return (
+          <React.Fragment>
+            {target({ getRef: setTargetRef, isShown })}
+
+            {state !== TRANSITION_STATES.unmounted && (
+              <Portal>
+                {children({
+                  top: dimensions.top,
+                  left: dimensions.left,
+                  state,
+                  zIndex,
+                  css: animationCss,
+                  style: {
+                    transformOrigin: dimensions.transformOrigin,
+                    left: dimensions.left,
+                    top: dimensions.top,
+                    zIndex
+                  },
+                  getRef,
+                  animationDuration
+                })}
+              </Portal>
+            )}
+          </React.Fragment>
+        )
+      }}
+    </Stack>
+  )
+})
 
 Positioner.propTypes = {
   /**

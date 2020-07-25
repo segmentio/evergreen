@@ -1,271 +1,300 @@
-import React, { memo, forwardRef, useState, useEffect, useImperativeHandle } from 'react'
+import React, {
+  memo,
+  forwardRef,
+  useRef,
+  useState,
+  useEffect,
+  useImperativeHandle
+} from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
 import PropTypes from 'prop-types'
 import { Positioner } from '../../positioner'
 import { Tooltip } from '../../tooltip'
 import { Position } from '../../constants'
+import { findTababble } from '../../lib/tababble'
+import { useMergedRef } from '../../hooks'
 import PopoverStateless from './PopoverStateless'
 
-const Popover = memo(forwardRef
-  (({
-    animationDuration = 300,
-    bringFocusInside: shouldBringFocusInside = false,
-    children,
-    content,
-    display,
-    minHeight = 40,
-    minWidth = 200,
-    onBodyClick = () => {},
-    onClose = () => {},
-    onCloseComplete = () => {},
-    onOpen = () => {},
-    onOpenComplete = () => {},
-    position = Position.BOTTOM,
-    shouldCloseOnExternalClick = true,
-    statelessProps = {},
-    trigger = 'click',
-    ...props
-  }, forwardedRef) => {
-    const [isShown, setIsShown] = useState(props.isShown)
-    const [popoverNode, setPopoverNode] = useState(null)
-    const [targetRef, setTargetRef] = useState(null)
+const Popover = memo(
+  forwardRef(
+    (
+      {
+        animationDuration = 300,
+        bringFocusInside: shouldBringFocusInside = false,
+        children,
+        content,
+        display,
+        minHeight = 40,
+        minWidth = 200,
+        onBodyClick = () => {},
+        onClose = () => {},
+        onCloseComplete = () => {},
+        onOpen = () => {},
+        onOpenComplete = () => {},
+        position = Position.BOTTOM,
+        shouldCloseOnExternalClick = true,
+        statelessProps = {},
+        trigger = 'click',
+        ...props
+      },
+      forwardedRef
+    ) => {
+      const [isShown, setIsShown] = useState(props.isShown)
 
-    useImperativeHandle(forwardedRef, () => ({
-      open,
-      close
-    }), [popoverNode])
+      const focusInRAF = useRef(null)
+      const focusBackRAF = useRef(null)
+      useEffect(
+        () => () => {
+          if (focusInRAF.current) {
+            cancelAnimationFrame(focusInRAF.current)
+          }
 
-    /**
-     * Methods borrowed from BlueprintJS
-     * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
-     */
-    const bringFocusInside = () => {
-      // Always delay focus manipulation to just before repaint to prevent scroll jumping
-      return requestAnimationFrame(() => {
-        // Container ref may be undefined between component mounting and Portal rendering
-        // activeElement may be undefined in some rare cases in IE
-        if (
-          popoverNode == null || // eslint-disable-line eqeqeq, no-eq-null
-          document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
-          !isShown
-        ) {
-          return
-        }
+          if (focusBackRAF.current) {
+            cancelAnimationFrame(focusBackRAF.current)
+          }
+        },
+        []
+      )
 
-        const isFocusOutsideModal = !popoverNode.contains(
-          document.activeElement
-        )
-        if (isFocusOutsideModal) {
-          // Element marked autofocus has higher priority than the other clowns
-          const autofocusElement = popoverNode.querySelector('[autofocus]')
-          const wrapperElement = popoverNode.querySelector('[tabindex]')
-          const buttonElements = popoverNode.querySelectorAll(
-            'button, a, [role="menuitem"], [role="menuitemradio"]'
+      const popoverNode = useRef()
+      const setPopoverNode = useMergedRef(popoverNode)
+
+      const targetRef = useRef()
+      const setTargetRef = useMergedRef(targetRef)
+
+      useImperativeHandle(
+        forwardedRef,
+        () => ({
+          open,
+          close
+        }),
+        [popoverNode]
+      )
+
+      /**
+       * Methods borrowed from BlueprintJS
+       * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
+       */
+      const bringFocusInside = () => {
+        // Always delay focus manipulation to just before repaint to prevent scroll jumping
+        focusInRAF.current = requestAnimationFrame(() => {
+          // Container ref may be undefined between component mounting and Portal rendering
+          // activeElement may be undefined in some rare cases in IE
+          if (
+            popoverNode.current == null || // eslint-disable-line eqeqeq, no-eq-null
+            document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
+            !isShown
+          ) {
+            return
+          }
+
+          const isFocusOutsideModal = !popoverNode.current.contains(
+            document.activeElement
+          )
+          if (isFocusOutsideModal) {
+            const element = findTababble(popoverNode.current)
+            if (element) {
+              element.focus()
+            }
+          }
+        })
+      }
+
+      const bringFocusBackToTarget = () => {
+        focusBackRAF.current = requestAnimationFrame(() => {
+          if (
+            targetRef.current == null || // eslint-disable-line eqeqeq, no-eq-null
+            popoverNode.current == null || // eslint-disable-line eqeqeq, no-eq-null
+            document.activeElement == null // eslint-disable-line eqeqeq, no-eq-null
+          ) {
+            return
+          }
+
+          const isFocusInsideModal = popoverNode.current.contains(
+            document.activeElement
           )
 
-          if (autofocusElement) {
-            autofocusElement.focus()
-          } else if (wrapperElement) {
-            wrapperElement.focus()
-          } else if (buttonElements.length > 0) {
-            buttonElements[0].focus()
+          // Bring back focus on the target.
+          if (document.activeElement === document.body || isFocusInsideModal) {
+            targetRef.current.focus()
           }
-        }
-      })
-    }
+        })
+      }
 
-    const bringFocusBackToTarget = () => {
-      return requestAnimationFrame(() => {
-        if (
-          targetRef == null || // eslint-disable-line eqeqeq, no-eq-null
-          popoverNode == null || // eslint-disable-line eqeqeq, no-eq-null
-          document.activeElement == null // eslint-disable-line eqeqeq, no-eq-null
-        ) {
+      const open = () => {
+        if (isShown) {
           return
         }
 
-        const isFocusInsideModal = popoverNode.contains(document.activeElement)
+        setIsShown(true)
+        onOpen()
+      }
 
-        // Bring back focus on the target.
-        if (document.activeElement === document.body || isFocusInsideModal) {
-          targetRef.focus()
+      const close = () => {
+        if (!isShown) {
+          return
         }
-      })
-    }
 
-    const open = () => {
-      if (isShown) {
-        return
+        setIsShown(false)
+        bringFocusBackToTarget()
+        onClose()
       }
 
-      setIsShown(true)
-      onOpen()
-    }
+      // If `props.isShown` is a boolean, treat as a controlled component
+      // `open` and `close` should be applied when it changes
+      useEffect(() => {
+        if (typeof props.isShown !== 'boolean' || props.isShown === isShown) {
+          return
+        }
 
-    const close = () => {
-      if (!isShown) {
-        return
+        if (props.isShown) {
+          open()
+        } else {
+          close()
+        }
+      }, [props.isShown])
+
+      const toggle = () => (isShown ? close() : open())
+      const handleOpenHover = trigger === 'hover' ? open : undefined
+      const handleCloseHover = trigger === 'hover' ? close : undefined
+      const handleKeyDown = event =>
+        event.key === 'ArrowDown' ? bringFocusInside() : undefined
+      const onEsc = event => (event.key === 'Escape' ? close() : undefined)
+
+      const handleBodyClick = event => {
+        // Ignore clicks on the popover or button
+        if (targetRef.current && targetRef.current.contains(event.target)) {
+          return
+        }
+
+        if (popoverNode.current && popoverNode.current.contains(event.target)) {
+          return
+        }
+
+        // Notify body click
+        onBodyClick(event)
+
+        if (shouldCloseOnExternalClick !== false) {
+          close()
+        }
       }
 
-      setIsShown(false)
-      bringFocusBackToTarget()
-      onClose()
-    }
-
-    // If `props.isShown` is a boolean, treat as a controlled component
-    // `open` and `close` should be applied when it changes
-    useEffect(() => {
-      if (typeof props.isShown !== 'boolean' || props.isShown === isShown) {
-        return
+      const handleOpenComplete = () => {
+        if (shouldBringFocusInside) bringFocusInside()
+        onOpenComplete()
       }
 
-      if (props.isShown) {
-        open()
-      } else {
-        close()
-      }
-    }, [props.isShown])
+      useEffect(() => {
+        if (isShown) {
+          document.body.addEventListener('click', handleBodyClick, false)
+          document.body.addEventListener('keydown', onEsc, false)
+        } else {
+          document.body.removeEventListener('click', handleBodyClick, false)
+          document.body.removeEventListener('keydown', onEsc, false)
+        }
 
-    const toggle = () => (isShown ? close() : open())
-    const handleOpenHover = trigger === 'hover' ? open : undefined
-    const handleCloseHover = trigger === 'hover' ? close : undefined
-    const handleKeyDown = event =>
-      event.key === 'ArrowDown' ? bringFocusInside() : undefined
-    const onEsc = event => (event.key === 'Escape' ? close() : undefined)
+        return () => {
+          document.body.removeEventListener('click', handleBodyClick, false)
+          document.body.removeEventListener('keydown', onEsc, false)
+        }
+      }, [isShown, handleBodyClick, onEsc])
 
-    const handleBodyClick = event => {
-      // Ignore clicks on the popover or button
-      if (targetRef && targetRef.contains(event.target)) {
-        return
-      }
+      const renderTarget = ({ getRef, isShown }) => {
+        const isTooltipInside = children && children.type === Tooltip
 
-      if (popoverNode && popoverNode.contains(event.target)) {
-        return
-      }
+        const getTargetRef = ref => {
+          setTargetRef(ref)
+          getRef(ref)
+        }
 
-      // Notify body click
-      onBodyClick(event)
-
-      if (shouldCloseOnExternalClick !== false) {
-        close()
-      }
-    }
-
-    const handleOpenComplete = () => {
-      if (shouldBringFocusInside) bringFocusInside()
-      onOpenComplete()
-    }
-
-    useEffect(() => {
-      if (isShown) {
-        document.body.addEventListener('click', handleBodyClick, false)
-        document.body.addEventListener('keydown', onEsc, false)
-      } else {
-        document.body.removeEventListener('click', handleBodyClick, false)
-        document.body.removeEventListener('keydown', onEsc, false)
-      }
-
-      return () => {
-        document.body.removeEventListener('click', handleBodyClick, false)
-        document.body.removeEventListener('keydown', onEsc, false)
-      }
-    }, [isShown, handleBodyClick, onEsc])
-
-    const renderTarget = ({ getRef, isShown }) => {
-      const isTooltipInside = children && children.type === Tooltip
-
-      const getTargetRef = ref => {
-        setTargetRef(ref)
-        getRef(ref)
-      }
-
-      /**
-       * When a function is passed, you can control the Popover manually.
-       */
-      if (typeof children === 'function') {
-        return children({
-          getRef: getTargetRef,
-          isShown,
-          toggle
-        })
-      }
-
-      const popoverTargetProps = {
-        onClick: toggle,
-        onMouseEnter: handleOpenHover,
-        onKeyDown: handleKeyDown,
-        role: 'button',
-        'aria-expanded': isShown,
-        'aria-haspopup': true
-      }
-
-      /**
-       * Tooltips can be used within a Popover (not the other way around)
-       * In this case the children is the Tooltip instead of a button.
-       * Pass the properties to the Tooltip and let the Tooltip
-       * add the properties to the target.
-       */
-      if (isTooltipInside) {
-        return React.cloneElement(children, {
-          popoverProps: {
-            getTargetRef,
+        /**
+         * When a function is passed, you can control the Popover manually.
+         */
+        if (typeof children === 'function') {
+          return children({
+            getRef: getTargetRef,
             isShown,
+            toggle
+          })
+        }
 
-            // These propeties will be spread as `popoverTargetProps`
-            // in the Tooltip component.
-            ...popoverTargetProps
-          }
+        const popoverTargetProps = {
+          onClick: toggle,
+          onMouseEnter: handleOpenHover,
+          onKeyDown: handleKeyDown,
+          role: 'button',
+          'aria-expanded': isShown,
+          'aria-haspopup': true
+        }
+
+        /**
+         * Tooltips can be used within a Popover (not the other way around)
+         * In this case the children is the Tooltip instead of a button.
+         * Pass the properties to the Tooltip and let the Tooltip
+         * add the properties to the target.
+         */
+        if (isTooltipInside) {
+          return React.cloneElement(children, {
+            popoverProps: {
+              getTargetRef,
+              isShown,
+
+              // These propeties will be spread as `popoverTargetProps`
+              // in the Tooltip component.
+              ...popoverTargetProps
+            }
+          })
+        }
+
+        /**
+         * With normal usage only popover props end up on the target.
+         */
+        return React.cloneElement(children, {
+          ref: getTargetRef,
+          ...popoverTargetProps
         })
       }
 
-      /**
-       * With normal usage only popover props end up on the target.
-       */
-      return React.cloneElement(children, {
-        ref: getTargetRef,
-        ...popoverTargetProps
-      })
+      // If `props.isShown` is a boolean, popover is controlled manually, not via mouse events
+      const shown = typeof props.isShown === 'boolean' ? props.isShown : isShown
+
+      return (
+        <Positioner
+          target={renderTarget}
+          isShown={shown}
+          position={position}
+          animationDuration={animationDuration}
+          onOpenComplete={handleOpenComplete}
+          onCloseComplete={onCloseComplete}
+        >
+          {({ css, style, state, getRef }) => (
+            <PopoverStateless
+              ref={ref => {
+                setPopoverNode(ref)
+                getRef(ref)
+              }}
+              data-state={state}
+              display={display}
+              minWidth={minWidth}
+              minHeight={minHeight}
+              {...statelessProps}
+              className={cx(
+                statelessProps.className,
+                glamorCss(css, style, statelessProps.style).toString()
+              )}
+              // Overwrite `statelessProps.style` since we are including it via className
+              style={undefined}
+              onMouseLeave={handleCloseHover}
+            >
+              {typeof content === 'function' ? content({ close }) : content}
+            </PopoverStateless>
+          )}
+        </Positioner>
+      )
     }
-
-    // If `props.isShown` is a boolean, popover is controlled manually, not via mouse events
-    const shown = typeof props.isShown === 'boolean' ? props.isShown : isShown
-
-    return (
-      <Positioner
-        target={renderTarget}
-        isShown={shown}
-        position={position}
-        animationDuration={animationDuration}
-        onOpenComplete={handleOpenComplete}
-        onCloseComplete={onCloseComplete}
-      >
-        {({ css, style, state, getRef }) => (
-          <PopoverStateless
-            ref={ref => {
-              setPopoverNode(ref)
-              getRef(ref)
-            }}
-            data-state={state}
-            display={display}
-            minWidth={minWidth}
-            minHeight={minHeight}
-            {...statelessProps}
-            className={cx(
-              statelessProps.className,
-              glamorCss(css, style, statelessProps.style).toString()
-            )}
-            // Overwrite `statelessProps.style` since we are including it via className
-            style={undefined}
-            onMouseLeave={handleCloseHover}
-          >
-            {typeof content === 'function' ? content({ close }) : content}
-          </PopoverStateless>
-        )}
-      </Positioner>
-    )
-  }
-))
+  )
+)
 
 Popover.propTypes = {
   /**

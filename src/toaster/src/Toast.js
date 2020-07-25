@@ -1,7 +1,7 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState, useEffect, useRef } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import { Transition } from 'react-transition-group'
+import { useTransition, TRANSITION_STATES } from '../../hooks'
 import Alert from '../../alert/src/Alert'
 
 const animationEasing = {
@@ -47,7 +47,7 @@ const animationStyles = css({
   }
 })
 
-const Toast = memo((props) => {
+const Toast = memo(props => {
   const {
     duration,
     onRemove,
@@ -61,13 +61,14 @@ const Toast = memo((props) => {
   } = props
 
   const [isShown, setIsShown] = useState(true)
-  const [closeTimer, setCloseTimer] = useState(null)
   const [height, setHeight] = useState(0)
+  const closeTimer = useRef(null)
+  const state = useTransition(isShown, duration, { unmountOnExit: true })
 
   const clearCloseTimer = () => {
-    if (closeTimer) {
-      clearTimeout(closeTimer)
-      setCloseTimer(null)
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current)
+      closeTimer.current = null
     }
   }
 
@@ -78,9 +79,10 @@ const Toast = memo((props) => {
 
   const startCloseTimer = () => {
     if (duration) {
-      setCloseTimer(setTimeout(() => {
+      clearCloseTimer()
+      closeTimer.current = setTimeout(() => {
         close()
-      }, duration * 1000))
+      }, duration * 1000)
     }
   }
 
@@ -106,50 +108,48 @@ const Toast = memo((props) => {
     startCloseTimer()
   }
 
-  const onRef = (ref) => {
+  const onRef = ref => {
     if (ref === null) return
 
     const { height: rectHeight } = ref.getBoundingClientRect()
     setHeight(rectHeight)
   }
-  
+
+  useEffect(() => {
+    if (state === TRANSITION_STATES.exited) {
+      onRemove()
+    }
+  }, [state])
+
+  if (state === TRANSITION_STATES.unmounted) return null
+
   return (
-    <Transition
-      appear
-      unmountOnExit
-      timeout={ANIMATION_DURATION}
-      in={isShown}
-      onExited={onRemove}
+    <div
+      data-state={state}
+      className={animationStyles}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        height,
+        zIndex,
+        marginBottom: isShown ? 0 : -height
+      }}
     >
-      {state => (
-        <div
-          data-state={state}
-          className={animationStyles}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          style={{
-            height,
-            zIndex,
-            marginBottom: isShown ? 0 : -height
-          }}
+      <div ref={onRef} style={{ padding: 8 }}>
+        <Alert
+          flexShrink={0}
+          appearance="card"
+          elevation={3}
+          intent={intent}
+          title={title}
+          isRemoveable={hasCloseButton}
+          onRemove={() => close()}
+          pointerEvents="all"
         >
-          <div ref={onRef} style={{ padding: 8 }}>
-            <Alert
-              flexShrink={0}
-              appearance="card"
-              elevation={3}
-              intent={intent}
-              title={title}
-              isRemoveable={hasCloseButton}
-              onRemove={() => close()}
-              pointerEvents="all"
-            >
-              {children}
-            </Alert>
-          </div>
-        </div>
-      )}
-    </Transition>
+          {children}
+        </Alert>
+      </div>
+    </div>
   )
 })
 
