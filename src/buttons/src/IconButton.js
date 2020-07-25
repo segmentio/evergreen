@@ -90,15 +90,7 @@ class IconButton extends PureComponent {
   }
 
   render() {
-    const {
-      theme,
-      iconAim,
-      icon,
-      iconSize,
-      height,
-      intent,
-      ...props
-    } = this.props
+    const { theme, icon, iconSize, height, intent, ...props } = this.props
     const size = iconSize || theme.getIconSizeForIconButton(height)
 
     return (

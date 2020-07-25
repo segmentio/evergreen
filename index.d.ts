@@ -905,7 +905,7 @@ export class Dialog extends React.PureComponent<DialogProps> {
 }
 
 export interface IconProps extends BoxProps<'svg'> {
-  icon: IconName | JSX.Element
+  icon: React.ElementType | JSX.Element | IconName
   /**
    * Color of icon. Equivalent to setting CSS `fill` property.
    */
@@ -1373,7 +1373,7 @@ export interface OptionsListProps extends PaneProps {
     disabled: Option['disabled']
   }) => JSX.Element
   filterPlaceholder?: string
-  filterIcon?: string
+  filterIcon?: React.ElementType | JSX.Element | IconName
   optionsFilter?: (
     value: Option['label'][],
     filter: NonNullable<OptionsListProps['defaultSearchValue']>

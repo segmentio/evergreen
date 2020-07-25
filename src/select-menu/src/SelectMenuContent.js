@@ -44,7 +44,11 @@ export default class SelectMenuContent extends PureComponent {
     hasTitle: PropTypes.bool,
     hasFilter: PropTypes.bool,
     filterPlaceholder: PropTypes.string,
-    filterIcon: PropTypes.string,
+    filterIcon: PropTypes.oneOfType([
+      PropTypes.elementType,
+      PropTypes.element,
+      PropTypes.string
+    ]),
     listProps: PropTypes.shape(OptionsList.propTypes),
 
     /**

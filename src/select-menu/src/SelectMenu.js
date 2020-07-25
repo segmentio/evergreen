@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import arrify from 'arrify'
 import { Popover } from '../../popover'
 import { Position } from '../../constants'
+import { SearchIcon } from '../../icons'
 import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
 import SelectedPropType from './SelectedPropType'
@@ -68,7 +69,11 @@ export default class SelectMenu extends PureComponent {
     /**
      * The icon of the search filter.
      */
-    filterIcon: PropTypes.string,
+    filterIcon: PropTypes.oneOfType([
+      PropTypes.elementType,
+      PropTypes.element,
+      PropTypes.string
+    ]),
 
     /**
      * Function that is called as the onChange() event for the filter.
@@ -121,7 +126,7 @@ export default class SelectMenu extends PureComponent {
     position: Position.BOTTOM_LEFT,
     isMultiSelect: false,
     filterPlaceholder: 'Filter...',
-    filterIcon: 'search',
+    filterIcon: SearchIcon,
     closeOnSelect: false
   }
 
