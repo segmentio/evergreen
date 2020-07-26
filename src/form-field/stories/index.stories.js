@@ -15,7 +15,7 @@ storiesOf('form-field', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <FormField>FormField</FormField>
+      <FormField label="FormField Label">FormField Children</FormField>
     </Box>
   ))
   .add('FormFieldDescription', () => (

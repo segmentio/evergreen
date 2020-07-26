@@ -162,7 +162,7 @@ const Autocomplete = memo(
           getRootProps,
           ...restDownshiftProps
         }) => (
-          <Pane width="100%" {...getRootProps()}>
+          <div style={{ width: '100%' }}>
             <Popover
               bringFocusInside={false}
               isShown={isShown}
@@ -210,7 +210,7 @@ const Autocomplete = memo(
                 })
               }
             </Popover>
-          </Pane>
+          </div>
         )}
       </Downshift>
     )
