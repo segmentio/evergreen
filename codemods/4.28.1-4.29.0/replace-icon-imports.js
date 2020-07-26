@@ -1,13 +1,14 @@
 /**
  * Codemode to update icon imports
  * ```
- * npx jscodeshift -t node_modules/evergreen-ui/codemods/4.25.0-4.26.0/replace-icon-imports.js --parser=tsx --extensions=js,ts,tsx <your file target> --dry --print
+ * npx jscodeshift -t node_modules/evergreen-ui/codemods/4.28.1-4.29.0/replace-icon-imports.js --parser=tsx --extensions=js,ts,tsx <your file target> --dry --print
  * ```
  *
  * Converts:
  * <Icon icon="foo" /> to <FooIcon />
  * <IconButton icon="foo" /> to <IconButton icon={FooIcon} />
  * <Button iconAfter="foo" /> to <Button iconAfter={FooIcon} />
+ * ... and more
  */
 
 import startCase from 'lodash.startcase'
