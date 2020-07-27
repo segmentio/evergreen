@@ -70,7 +70,7 @@ const EditableCell = memo(props => {
   }
 
   const handleClick = () => {
-    mainRef.focus()
+    if (mainRef) mainRef.focus()
   }
 
   if (disabled) {

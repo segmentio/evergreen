@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useRef, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Textarea } from '../../textarea'
 
@@ -26,43 +26,43 @@ const EditableCellField = memo(props => {
     return ref
   }
 
-  const [latestAnimationFrame, setLatestAnimationFrame] = useState()
-  const [tableBodyRef, setTableBodyRef] = useState()
-  const [textareaRef, setTextareaRef] = useState()
-  const [top, setTop] = useState(0)
-  const [left, setLeft] = useState(0)
-  const [height, setHeight] = useState(0)
-  const [width, setWidth] = useState(0)
+  const latestAnimationFrame = useRef()
+  const textareaRef = useRef()
+  const tableBodyRef = useRef()
+  const [{ height, width, top, left }, setDimensions] = useState({
+    top: 0,
+    left: 0,
+    height: 0,
+    width: 0
+  })
 
   // Mirrors functionality of componentDidMount and componentWillUnmount.
-  // By passing an empty array, will only run on first render, the function returned
-  // will be called on component unmount
+  // Focus on mount
   useEffect(() => {
     update()
 
+    const requestId = requestAnimationFrame(() => {
+      if (textareaRef.current) {
+        textareaRef.current.focus()
+      }
+    })
+
     return () => {
-      cancelAnimationFrame(latestAnimationFrame)
+      cancelAnimationFrame(requestId)
+
+      if (latestAnimationFrame.current) {
+        cancelAnimationFrame(latestAnimationFrame.current)
+      }
+
       props.onCancel()
     }
   }, [])
-
-  useEffect(() => {
-    update()
-  }, [getTargetRef])
-
-  useEffect(() => {
-    if (textareaRef) {
-      requestAnimationFrame(() => {
-        textareaRef.focus()
-      })
-    }
-  }, [textareaRef])
 
   const update = () => {
     const { getTargetRef } = props
     const targetRef = getTargetRef()
     if (!targetRef) return
-    setTableBodyRef(getTableBodyRef())
+    tableBodyRef.current = getTableBodyRef()
 
     const {
       left: targetLeft,
@@ -72,8 +72,8 @@ const EditableCellField = memo(props => {
     } = targetRef.getBoundingClientRect()
 
     let calculatedTop
-    if (tableBodyRef) {
-      const bounds = tableBodyRef.getBoundingClientRect()
+    if (tableBodyRef.current) {
+      const bounds = tableBodyRef.current.getBoundingClientRect()
       calculatedTop = Math.min(
         Math.max(targetTop, bounds.top),
         bounds.bottom - targetHeight
@@ -82,11 +82,13 @@ const EditableCellField = memo(props => {
       calculatedTop = targetTop
     }
 
-    setLeft(targetLeft)
-    setTop(calculatedTop)
-    setHeight(targetHeight)
-    setWidth(targetWidth)
-    setLatestAnimationFrame(requestAnimationFrame(() => update()))
+    setDimensions({
+      top: calculatedTop,
+      left: targetLeft,
+      height: targetHeight,
+      width: targetWidth
+    })
+    latestAnimationFrame.current = requestAnimationFrame(() => update())
   }
 
   const handleFocus = e => {
@@ -94,21 +96,21 @@ const EditableCellField = memo(props => {
   }
 
   const handleBlur = () => {
-    if (textareaRef) props.onChangeComplete(textareaRef.value)
+    if (textareaRef.current) props.onChangeComplete(textareaRef.current.value)
   }
 
   const handleKeyDown = e => {
     switch (e.key) {
       case 'Escape':
         props.onCancel()
-        textareaRef.blur()
+        if (textareaRef.current) textareaRef.current.blur()
         break
       case 'Enter':
-        textareaRef.blur()
+        if (textareaRef.current) textareaRef.current.blur()
         e.preventDefault()
         break
       case 'Tab':
-        textareaRef.blur()
+        if (textareaRef.current) textareaRef.current.blur()
         break
       default:
         break
@@ -119,7 +121,7 @@ const EditableCellField = memo(props => {
 
   return (
     <Textarea
-      ref={setTextareaRef}
+      ref={textareaRef}
       onKeyDown={handleKeyDown}
       onBlur={handleBlur}
       onFocus={handleFocus}

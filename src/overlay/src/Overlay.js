@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState, useEffect, useRef } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
@@ -83,7 +83,7 @@ const Overlay = memo(
     const theme = useTheme()
     const [previousActiveElement, setPreviousActiveElement] = useState(null)
     const [status, setStatus] = useState(isShown ? 'entering' : 'exited')
-    const [containerRef, setContainerRef] = useState(null)
+    const containerRef = useRef()
 
     useEffect(() => {
       if (isShown) {
@@ -118,12 +118,16 @@ const Overlay = memo(
         document.body.removeEventListener('keydown', onEsc, false)
         bringFocusBackToTarget()
       }
+    }, [status])
 
-      return () => {
+    // ComponentWillUnmount
+    useEffect(
+      () => () => {
         handleBodyScroll(false)
         document.body.removeEventListener('keydown', onEsc, false)
-      }
-    }, [status])
+      },
+      []
+    )
 
     /**
      * Methods borrowed from BlueprintJS
@@ -136,21 +140,25 @@ const Overlay = memo(
         // activeElement may be undefined in some rare cases in IE
 
         if (
-          containerRef == null || // eslint-disable-line eqeqeq, no-eq-null
+          containerRef.current == null || // eslint-disable-line eqeqeq, no-eq-null
           document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
           !isShown
         ) {
           return
         }
 
-        const isFocusOutsideModal = !containerRef.contains(
+        const isFocusOutsideModal = !containerRef.current.contains(
           document.activeElement
         )
         if (isFocusOutsideModal) {
           // Element marked autofocus has higher priority than the other clowns
-          const autofocusElement = containerRef.querySelector('[autofocus]')
-          const wrapperElement = containerRef.querySelector('[tabindex]')
-          const buttonElement = containerRef.querySelector('button')
+          const autofocusElement = containerRef.current.querySelector(
+            '[autofocus]'
+          )
+          const wrapperElement = containerRef.current.querySelector(
+            '[tabindex]'
+          )
+          const buttonElement = containerRef.current.querySelector('button')
 
           if (autofocusElement) {
             autofocusElement.focus()
@@ -167,14 +175,16 @@ const Overlay = memo(
       return requestAnimationFrame(() => {
         if (
           previousActiveElement == null || // eslint-disable-line eqeqeq, no-eq-null
-          containerRef == null || // eslint-disable-line eqeqeq, no-eq-null
+          containerRef.current == null || // eslint-disable-line eqeqeq, no-eq-null
           document.activeElement == null // eslint-disable-line eqeqeq, no-eq-null
         ) {
           return
         }
 
         // Bring back focus on the target.
-        const isFocusInsideModal = containerRef.contains(document.activeElement)
+        const isFocusInsideModal = containerRef.current.contains(
+          document.activeElement
+        )
         if (document.activeElement === document.body || isFocusInsideModal) {
           previousActiveElement.focus()
         }
@@ -248,7 +258,7 @@ const Overlay = memo(
               {state => (
                 <Box
                   onClick={handleBackdropClick}
-                  ref={setContainerRef}
+                  ref={containerRef}
                   position="fixed"
                   top={0}
                   left={0}
