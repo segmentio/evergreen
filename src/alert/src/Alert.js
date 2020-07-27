@@ -9,7 +9,7 @@ import { CrossIcon } from '../../icons'
 import { getIconForIntent } from './getIconForIntent'
 
 const Alert = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Alert(props, ref) {
     const {
       appearance = 'default',
       children,

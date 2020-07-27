@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
 
-const MenuGroup = memo(props => {
+const MenuGroup = memo(function MenuGroup(props) {
   const { title, children } = props
 
   return (

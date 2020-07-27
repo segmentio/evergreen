@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const TimelineEventsIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="timeline-events"
-      {...props}
-    />
-  ))
+  forwardRef(function TimelineEventsIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="timeline-events"
+        {...props}
+      />
+    )
+  })
 )

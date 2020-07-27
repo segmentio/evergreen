@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const MergeColumnsIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="merge-columns"
-      {...props}
-    />
-  ))
+  forwardRef(function MergeColumnsIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="merge-columns"
+        {...props}
+      />
+    )
+  })
 )

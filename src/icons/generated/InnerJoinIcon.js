@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const InnerJoinIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="inner-join"
-      {...props}
-    />
-  ))
+  forwardRef(function InnerJoinIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="inner-join"
+        {...props}
+      />
+    )
+  })
 )

@@ -5,7 +5,7 @@ import { Paragraph } from '../../typography'
 import { useTheme } from '../../theme'
 
 const TooltipStateless = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function TooltipStateless(props, ref) {
     const theme = useTheme()
     const { children, appearance, ...restProps } = props
     const { color, ...themedProps } = theme.getTooltipProps(appearance)

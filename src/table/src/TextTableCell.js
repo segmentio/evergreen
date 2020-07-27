@@ -10,7 +10,7 @@ const ellipsis = {
 }
 
 const TextTableCell = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function TextTableCell(props, ref) {
     const {
       children,
       textProps,

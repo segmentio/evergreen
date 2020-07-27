@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 
 const Image = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Image(props, ref) {
     return <Box is="img" {...props} ref={ref} />
   })
 )

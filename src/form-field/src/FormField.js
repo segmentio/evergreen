@@ -7,7 +7,7 @@ import FormFieldValidationMessage from './FormFieldValidationMessage'
 import FormFieldHint from './FormFieldHint'
 
 const FormField = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function FormField(props, ref) {
     const {
       hint,
       label,

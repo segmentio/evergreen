@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const ArrowTopLeftIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="arrow-top-left"
-      {...props}
-    />
-  ))
+  forwardRef(function ArrowTopLeftIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="arrow-top-left"
+        {...props}
+      />
+    )
+  })
 )

@@ -8,7 +8,7 @@ import { Spinner } from '../../spinner'
 import { useTheme } from '../../theme'
 
 /* eslint-disable-next-line react/prop-types */
-const Icon = memo(({ icon, size, spacing, edge }) => {
+const Icon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
   const edgeMargin = -Math.round(spacing * 0.2)
   const innerMargin = Math.round(size * 0.7)
   const marginLeft = edge === 'start' ? edgeMargin : innerMargin
@@ -25,7 +25,7 @@ const Icon = memo(({ icon, size, spacing, edge }) => {
 })
 
 const Button = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Button(props, ref) {
     const theme = useTheme()
 
     const {

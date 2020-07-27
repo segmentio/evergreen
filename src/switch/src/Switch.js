@@ -42,15 +42,21 @@ const handleContainerStyleClass = css({
   }
 }).toString()
 
-const CheckIcon = memo(({ size, fill = 'currentColor', ...props }) => (
-  <svg width={10} height={size} viewBox="0 0 10 7" {...props}>
-    <path
-      fill={fill}
-      fillRule="evenodd"
-      d="M4 4.586L1.707 2.293A1 1 0 1 0 .293 3.707l3 3a.997.997 0 0 0 1.414 0l5-5A1 1 0 1 0 8.293.293L4 4.586z"
-    />
-  </svg>
-))
+const CheckIcon = memo(function CheckIcon({
+  size,
+  fill = 'currentColor',
+  ...props
+}) {
+  return (
+    <svg width={10} height={size} viewBox="0 0 10 7" {...props}>
+      <path
+        fill={fill}
+        fillRule="evenodd"
+        d="M4 4.586L1.707 2.293A1 1 0 1 0 .293 3.707l3 3a.997.997 0 0 0 1.414 0l5-5A1 1 0 1 0 8.293.293L4 4.586z"
+      />
+    </svg>
+  )
+})
 
 CheckIcon.propTypes = {
   fill: PropTypes.string,
@@ -58,7 +64,7 @@ CheckIcon.propTypes = {
 }
 
 const Switch = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Switch(props, ref) {
     const {
       id,
       name,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Option from '../../select-menu/src/Option'
 
 const AutocompleteItem = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function AutocompleteItem(props, ref) {
     const { isHighlighted, isSelected, style, children, ...restProps } = props
 
     return (

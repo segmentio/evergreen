@@ -6,7 +6,7 @@ import { useTheme } from '../../theme'
 import { StackingOrder } from '../../constants'
 
 const SearchInput = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function SearchInput(props, ref) {
     const theme = useTheme()
     const {
       appearance = 'default',

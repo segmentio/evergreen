@@ -8,7 +8,7 @@ import TableCell from './TableCell'
 
 const MIN_SELECT_MENU_WIDTH = 240
 
-const SelectMenuCell = memo(props => {
+const SelectMenuCell = memo(function SelectMenuCell(props) {
   const [targetWidth, setTargetWidth] = useState(MIN_SELECT_MENU_WIDTH)
   const [shouldClickToggle, setShouldClickToggle] = useState(false)
   const [isFocused, setIsFocused] = useState(false)

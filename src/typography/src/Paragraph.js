@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import { useTheme } from '../../theme'
 
 const Paragraph = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Paragraph(props, ref) {
     const theme = useTheme()
     const {
       size = 400,

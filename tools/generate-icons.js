@@ -43,9 +43,9 @@ const svgPaths20 = [
   '${svgPaths20.join(`',\n  '`)}'
 ]
 
-export const ${iconName} = memo(forwardRef((props, ref) => (
-  <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="${name}" {...props} />
-)))
+export const ${iconName} = memo(forwardRef(function ${iconName}(props, ref) {
+  return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="${name}" {...props} />
+}))
 `
     const iconPath = path.join(iconsPath, `${iconName}.js`)
     iconFile = prettier.format(iconFile, {

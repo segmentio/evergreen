@@ -8,7 +8,7 @@ import { CrossIcon } from '../../icons'
 import { minorScale } from '../../scales'
 
 const Tag = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Tag(props, ref) {
     const { children, onRemove, isRemovable, ...restProps } = props
 
     const badgeStyles = {

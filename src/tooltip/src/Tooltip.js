@@ -8,7 +8,7 @@ import { Position } from '../../constants'
 import { useId } from '../../hooks'
 import TooltipStateless from './TooltipStateless'
 
-const Tooltip = memo(props => {
+const Tooltip = memo(function Tooltip(props) {
   const {
     appearance = 'default',
     position = Position.BOTTOM,

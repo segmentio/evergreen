@@ -8,7 +8,7 @@ import { useTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
 
 const MenuItem = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function MenuItem(props, ref) {
     const {
       is = 'div',
       children,

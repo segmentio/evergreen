@@ -5,7 +5,7 @@ import debounce from 'lodash.debounce'
 import { Pane } from '../../layers'
 import { useForceUpdate } from '../../hooks'
 
-const TableVirtualBody = memo(props => {
+const TableVirtualBody = memo(function TableVirtualBody(props) {
   const {
     children: inputChildren,
     height: paneHeight,

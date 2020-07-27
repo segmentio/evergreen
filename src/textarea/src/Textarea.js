@@ -5,7 +5,7 @@ import { Text } from '../../typography'
 import { useTheme } from '../../theme'
 
 const Textarea = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Textarea(props, ref) {
     const theme = useTheme()
     const {
       className,

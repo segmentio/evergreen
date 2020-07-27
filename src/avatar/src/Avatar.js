@@ -31,7 +31,7 @@ function getColorProps({ isSolid, theme, color, name, propsHashValue }) {
 }
 
 const Avatar = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Avatar(props, ref) {
     const {
       src,
       name,

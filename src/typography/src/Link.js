@@ -5,7 +5,7 @@ import { useTheme } from '../../theme'
 import Text from './Text'
 
 const Link = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Link(props, ref) {
     const theme = useTheme()
     const { className, color = 'default', ...restProps } = props
     const themedClassName = theme.getLinkClassName(color)

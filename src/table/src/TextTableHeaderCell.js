@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import TableHeaderCell from './TableHeaderCell'
 
-const TextTableHeaderCell = memo(props => {
+const TextTableHeaderCell = memo(function TextTableHeaderCell(props) {
   const { children, textProps, isSortable, sortOrder, ...rest } = props
 
   return (

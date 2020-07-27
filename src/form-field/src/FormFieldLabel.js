@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Label } from '../../typography'
 
 const FormFieldLabel = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function FormFieldLabel(props, ref) {
     const { children, isAstrixShown, ...rest } = props
     return (
       <Label display="block" {...rest} ref={ref}>

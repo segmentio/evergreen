@@ -6,7 +6,7 @@ import { useId } from '../../hooks'
 import SegmentedControlRadio from './SegmentedControlRadio'
 
 const SegmentedControl = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function SegmentedControl(props, ref) {
     const {
       value,
       name,

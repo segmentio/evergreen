@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const WaterfallChartIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="waterfall-chart"
-      {...props}
-    />
-  ))
+  forwardRef(function WaterfallChartIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="waterfall-chart"
+        {...props}
+      />
+    )
+  })
 )

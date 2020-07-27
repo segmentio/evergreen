@@ -7,7 +7,7 @@ import { useId } from '../../hooks'
 import Radio from './Radio'
 
 const RadioGroup = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function RadioGroup(props, ref) {
     const {
       size = 12,
       label,

@@ -5,7 +5,7 @@ import { FormField } from '../../form-field'
 import { useId } from '../../hooks'
 import Textarea from './Textarea'
 
-const TextareaField = memo(props => {
+const TextareaField = memo(function TextareaField(props) {
   const id = useId('TextareaField', props.id)
 
   const {

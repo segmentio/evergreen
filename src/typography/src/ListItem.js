@@ -5,7 +5,7 @@ import { majorScale } from '../../scales'
 import Text from './Text'
 
 const ListItem = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function ListItem(props, ref) {
     const { children, size, icon, ...rest } = props
 
     let paddingLeft

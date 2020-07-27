@@ -30,7 +30,7 @@ const getCSS = ({ initialScale, animationDuration }) => ({
 })
 
 const Positioner = memo(
-  forwardRef((props, forwardedRef) => {
+  forwardRef(function Positioner(props, forwardedRef) {
     const {
       target,
       isShown,

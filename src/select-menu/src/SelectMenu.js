@@ -36,7 +36,7 @@ const getEmptyView = (close, emptyView) => {
   return {}
 }
 
-const SelectMenu = memo(props => {
+const SelectMenu = memo(function SelectMenu(props) {
   const {
     title,
     width = 240,

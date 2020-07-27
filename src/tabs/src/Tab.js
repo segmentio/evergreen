@@ -19,7 +19,7 @@ const styles = {
 }
 
 const Tab = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Tab(props, ref) {
     const theme = useTheme()
 
     const {

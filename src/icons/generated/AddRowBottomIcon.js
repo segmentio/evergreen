@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const AddRowBottomIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="add-row-bottom"
-      {...props}
-    />
-  ))
+  forwardRef(function AddRowBottomIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="add-row-bottom"
+        {...props}
+      />
+    )
+  })
 )

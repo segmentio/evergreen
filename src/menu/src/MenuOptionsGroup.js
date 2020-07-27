@@ -5,7 +5,7 @@ import { Heading } from '../../typography'
 import MenuOption from './MenuOption'
 
 const MenuOptionsGroup = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function MenuOptionsGroup(props, ref) {
     const { title, options, selected, onChange } = props
 
     return (

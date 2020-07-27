@@ -18,7 +18,7 @@ const GET_KEY_FOR_TAG_DELIMITER = {
   space: ' '
 }
 
-const TagInput = memo(props => {
+const TagInput = memo(function TagInput(props) {
   const {
     addOnBlur = false,
     disabled = false,

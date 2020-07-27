@@ -12,7 +12,7 @@ const styles = {
 }
 
 const SidebarTab = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function SidebarTab(props, ref) {
     const { children, height = 32, isSelected, ...rest } = props
 
     return (

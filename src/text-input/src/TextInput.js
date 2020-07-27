@@ -5,7 +5,7 @@ import { Text } from '../../typography'
 import { useTheme } from '../../theme'
 
 const TextInput = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function TextInput(props, ref) {
     const {
       className,
       required,

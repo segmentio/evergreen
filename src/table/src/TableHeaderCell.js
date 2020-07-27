@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 import TableCell from './TableCell'
 
-const TableHeaderCell = memo(props => (
-  <TableCell overflow="visible" borderBottom={null} {...props} />
-))
+const TableHeaderCell = memo(function TableHeaderCell(props) {
+  return <TableCell overflow="visible" borderBottom={null} {...props} />
+})
 
 TableHeaderCell.propTypes = {
   /**

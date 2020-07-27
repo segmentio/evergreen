@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Card } from '../../layers'
 
 const PopoverStateless = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function PopoverStateless(props, ref) {
     const { children, ...rest } = props
 
     return (

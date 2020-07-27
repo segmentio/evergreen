@@ -5,7 +5,7 @@ import { useTheme } from '../../theme'
 import Text from './Text'
 
 const Code = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Code(props, ref) {
     const theme = useTheme()
     const { className, appearance = 'default', ...restProps } = props
 

@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const DoubleCaretVerticalIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="double-caret-vertical"
-      {...props}
-    />
-  ))
+  forwardRef(function DoubleCaretVerticalIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="double-caret-vertical"
+        {...props}
+      />
+    )
+  })
 )

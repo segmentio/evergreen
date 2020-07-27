@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const WidgetHeaderIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="widget-header"
-      {...props}
-    />
-  ))
+  forwardRef(function WidgetHeaderIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="widget-header"
+        {...props}
+      />
+    )
+  })
 )

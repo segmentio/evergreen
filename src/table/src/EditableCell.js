@@ -7,7 +7,7 @@ import TextTableCell from './TextTableCell'
 import TableCell from './TableCell'
 import EditableCellField from './EditableCellField'
 
-const EditableCell = memo(props => {
+const EditableCell = memo(function EditableCell(props) {
   const {
     children,
     size = 300,

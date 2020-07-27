@@ -6,7 +6,7 @@ import { CaretDownIcon } from '../../icons'
 import { useTheme } from '../../theme'
 
 const Select = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Select(props, ref) {
     const theme = useTheme()
     const {
       id,

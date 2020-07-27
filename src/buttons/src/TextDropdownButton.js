@@ -8,7 +8,7 @@ import { Spinner } from '../../spinner'
 import { useTheme } from '../../theme'
 
 const TextDropdownButton = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function TextDropdownButton(props, ref) {
     const theme = useTheme()
     const {
       className,

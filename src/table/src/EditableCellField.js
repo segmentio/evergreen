@@ -2,7 +2,7 @@ import React, { memo, useRef, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Textarea } from '../../textarea'
 
-const EditableCellField = memo(props => {
+const EditableCellField = memo(function EditableCellField(props) {
   const { getTargetRef } = props
 
   const getTableBodyRef = () => {
