@@ -4,6 +4,7 @@ import fuzzaldrin from 'fuzzaldrin-plus'
 import VirtualList from 'react-tiny-virtual-list'
 import { Pane } from '../../layers'
 import { TableHead, SearchTableHeaderCell } from '../../table'
+import { SearchIcon } from '../../icons'
 import OptionShapePropType from './OptionShapePropType'
 import Option from './Option'
 
@@ -53,7 +54,11 @@ export default class OptionsList extends PureComponent {
     optionSize: PropTypes.number,
     renderItem: PropTypes.func,
     filterPlaceholder: PropTypes.string,
-    filterIcon: PropTypes.string,
+    filterIcon: PropTypes.oneOfType([
+      PropTypes.elementType,
+      PropTypes.element,
+      PropTypes.string
+    ]),
     optionsFilter: PropTypes.func,
     defaultSearchValue: PropTypes.string
   }
@@ -72,7 +77,7 @@ export default class OptionsList extends PureComponent {
     selected: [],
     renderItem: itemRenderer,
     filterPlaceholder: 'Filter...',
-    filterIcon: 'search',
+    filterIcon: SearchIcon,
     defaultSearchValue: ''
   }
 

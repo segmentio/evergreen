@@ -446,7 +446,7 @@ export class Alert extends React.PureComponent<AlertProps> {
 interface OptionProps extends TableRowProps {
   height?: number | string
   label: string
-  icon?: IconName
+  icon?: string
   disabled?: boolean
 }
 
@@ -553,11 +553,11 @@ export interface ButtonProps extends React.ComponentPropsWithoutRef<typeof Text>
   /**
    * Sets an icon before the text. Can be any icon from Evergreen.
    */
-  iconBefore?: IconName | null | false
+  iconBefore?: React.ElementType | JSX.Element | IconName | null | false
   /**
    * Sets an icon after the text. Can be any icon from Evergreen.
    */
-  iconAfter?: IconName | null | false
+  iconAfter?: React.ElementType | JSX.Element | IconName | null | false
   /**
    * When true, the button is disabled.
    * isLoading also sets the button to disabled.
@@ -905,7 +905,7 @@ export class Dialog extends React.PureComponent<DialogProps> {
 }
 
 export interface IconProps extends BoxProps<'svg'> {
-  icon: IconName | JSX.Element
+  icon: React.ElementType | JSX.Element | IconName
   /**
    * Color of icon. Equivalent to setting CSS `fill` property.
    */
@@ -1011,7 +1011,7 @@ export interface IconButtonProps extends ButtonProps {
   /**
    * Name of a Blueprint UI icon, or an icon element, to render.
    */
-  icon?: IconName
+  icon?: React.ElementType | JSX.Element | IconName | null | false
   /**
    * Specifies an explicit icon size instead of the default value.
    */
@@ -1104,7 +1104,7 @@ export interface ListItemProps extends TextProps {
    * When passed, adds a icon before the list item.
    * See Evergreen `Icon` for documentation.
    */
-  icon?: IconName
+  icon?: React.ElementType | JSX.Element | IconName | null | false
   /**
    * The color of the icon.
    */
@@ -1120,7 +1120,7 @@ export interface MenuProps {
 
 export interface MenuItemProps extends PaneProps {
   onSelect?: (event: React.SyntheticEvent) => void
-  icon?: JSX.Element | IconName
+  icon?: React.ElementType | JSX.Element | IconName | null | false
   secondaryText?: JSX.Element
   appearance?: DefaultAppearance
   intent?: IntentTypes
@@ -1373,7 +1373,7 @@ export interface OptionsListProps extends PaneProps {
     disabled: Option['disabled']
   }) => JSX.Element
   filterPlaceholder?: string
-  filterIcon?: string
+  filterIcon?: React.ElementType | JSX.Element | IconName
   optionsFilter?: (
     value: Option['label'][],
     filter: NonNullable<OptionsListProps['defaultSearchValue']>
@@ -2051,18 +2051,16 @@ export interface TextDropdownButtonProps extends TextProps {
    */
   disabled?: boolean
   /**
-   * Name of a Blueprint UI icon, or an icon element, to render.
+   * Name of the icon, or an icon element to render.
    * This prop is required because it determines the content of the component, but it can
    * be explicitly set to falsy values to render nothing.
    *
    * - If `null` or `undefined` or `false`, this component will render nothing.
-   * - If given an `IconName` (a string literal union of all icon names),
-   *   that icon will be rendered as an `<svg>` with `<path>` tags.
-   * - If given a `JSX.Element`, that element will be rendered and _all other props on this component are ignored._
-   *   This type is supported to simplify usage of this component in other Blueprint components.
-   *   As a consumer, you should never use `<Icon icon={<element />}` directly; simply render `<element />` instead.
+   * - If given an IconName string literal, it will render the corresponding Evergreen icon
+   * - If given a valid React element reference, it will be rendered with the other icon props
+   * - Any other value will be returned as a pass-through (as if you didn't use `<Icon />`)
    */
-  icon?: IconName | null | false
+  icon?: React.ElementType | JSX.Element | IconName | null | false
   /**
    * Class name passed to the button.
    */
@@ -2229,7 +2227,7 @@ export interface UnorderedListProps extends React.ComponentPropsWithoutRef<typeo
    * When passed, adds a icon before each list item in the list
    * You can override this on a individual list item.
    */
-  icon?: IconName
+  icon?: React.ElementType | JSX.Element | IconName
   /**
    * The color of the icon in each list item in the list.
    */

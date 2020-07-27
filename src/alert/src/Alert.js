@@ -6,6 +6,7 @@ import { Pane } from '../../layers'
 import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
 import { Icon } from '../../icon'
+import { CrossIcon } from '../../icons'
 
 class Alert extends PureComponent {
   static propTypes = {
@@ -154,7 +155,7 @@ class Alert extends PureComponent {
               marginRight={-2}
             >
               <IconButton
-                icon="cross"
+                icon={CrossIcon}
                 appearance="minimal"
                 height={24}
                 onClick={onRemove}

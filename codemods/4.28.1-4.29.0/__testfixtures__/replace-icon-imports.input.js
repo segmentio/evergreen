@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pane, Icon } from 'evergreen-ui';
+import { Pane, Icon, Menu, Button, SelectMenu } from 'evergreen-ui';
 
 function MyComponent(_props) {
   return (
@@ -9,6 +9,9 @@ function MyComponent(_props) {
       <Icon icon="airplane" />
       <Icon marginTop={2} icon="arrow-bottom-left" />
       <Icon color="currentColor" icon="annotation" />
+      <Menu.Item icon="notifications" />
+      <Button iconAfter="notifications" />
+      <SelectMenu filterIcon="search" />
     </Pane>
   );
 }

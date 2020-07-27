@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
+import { TickCircleIcon, BanCircleIcon, TickIcon } from '../../icons'
 import {
   Text,
   Paragraph,
@@ -111,16 +112,16 @@ storiesOf('typography', module)
             You can add icons to list items individually.
           </Paragraph>
           <UnorderedList size={size} marginY={16}>
-            <ListItem icon="tick-circle" iconColor="success">
+            <ListItem icon={TickCircleIcon} iconColor="success">
               Lorem ipsum dolar set amet
             </ListItem>
-            <ListItem icon="tick-circle" iconColor="success">
+            <ListItem icon={TickCircleIcon} iconColor="success">
               Lorem ipsum dolar set amet
             </ListItem>
-            <ListItem icon="ban-circle" iconColor="danger">
+            <ListItem icon={BanCircleIcon} iconColor="danger">
               Lorem ipsum dolar set amet
             </ListItem>
-            <ListItem icon="ban-circle" iconColor="danger">
+            <ListItem icon={BanCircleIcon} iconColor="danger">
               Lorem ipsum dolar set amet
             </ListItem>
           </UnorderedList>
@@ -130,7 +131,7 @@ storiesOf('typography', module)
           <UnorderedList
             size={size}
             marginY={16}
-            icon="tick"
+            icon={TickIcon}
             iconColor="success"
           >
             <ListItem>Lorem ipsum dolar set amet</ListItem>

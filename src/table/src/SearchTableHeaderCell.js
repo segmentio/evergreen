@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
+import { SearchIcon } from '../../icons'
 import TableHeaderCell from './TableHeaderCell'
 
 const invisibleInputClass = css({
@@ -56,14 +57,18 @@ export default class SearchTableHeaderCell extends PureComponent {
     /**
      * Icon to display in the input.
      */
-    icon: PropTypes.string
+    icon: PropTypes.oneOfType([
+      PropTypes.elementType,
+      PropTypes.element,
+      PropTypes.string
+    ])
   }
 
   static defaultProps = {
     onChange: () => {},
     spellCheck: true,
     placeholder: 'Filter...',
-    icon: 'search'
+    icon: SearchIcon
   }
 
   render() {

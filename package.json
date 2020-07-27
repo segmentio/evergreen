@@ -67,6 +67,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.startcase": "^4.4.0",
     "prop-types": "^15.6.2",
+    "react-is": "^16.13.1",
     "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.5.0",
