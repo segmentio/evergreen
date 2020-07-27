@@ -95,7 +95,7 @@ export default class OptionsList extends PureComponent {
      * https://github.com/segmentio/evergreen/issues/90
      */
     this.requestId = requestAnimationFrame(() => {
-      this.searchRef.querySelector('input').focus()
+      if (this.searchRef) this.searchRef.focus()
     })
 
     window.addEventListener('keydown', this.handleKeyDown)
