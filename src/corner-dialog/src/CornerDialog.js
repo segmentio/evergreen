@@ -147,7 +147,7 @@ const CornerDialog = memo(props => {
               {hasClose && (
                 <IconButton
                   height={32}
-                  icon={<CrossIcon />}
+                  icon={CrossIcon}
                   appearance="minimal"
                   onClick={handleClose}
                 />

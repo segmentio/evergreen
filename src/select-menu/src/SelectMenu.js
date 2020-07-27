@@ -50,7 +50,7 @@ const SelectMenu = memo(props => {
     hasTitle,
     hasFilter,
     filterPlaceholder = 'Filter...',
-    filterIcon = <SearchIcon />,
+    filterIcon = SearchIcon,
     detailView,
     emptyView,
     titleView,
@@ -153,7 +153,7 @@ SelectMenu.propTypes = {
   /**
    * The icon of the search filter.
    */
-  filterIcon: PropTypes.node,
+  filterIcon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
 
   /**
    * Function that is called as the onChange() event for the filter.

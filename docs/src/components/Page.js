@@ -93,7 +93,7 @@ class Page extends React.Component {
                           marginLeft={-54}
                           marginRight={16}
                           display="inline-flex"
-                          icon={<ArrowLeftIcon />}
+                          icon={ArrowLeftIcon}
                           height={40}
                         />
                       </Tooltip>
@@ -150,7 +150,7 @@ class Page extends React.Component {
                 is={Link}
                 to="/components"
                 display="inline-flex"
-                iconBefore={<ArrowLeftIcon />}
+                iconBefore={ArrowLeftIcon}
                 height={40}
               >
                 Back to Overview

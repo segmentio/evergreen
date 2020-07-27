@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { TickIcon, TickCircleIcon, BanCircleIcon } from '../../icons'
+import { TickCircleIcon, BanCircleIcon, TickIcon } from '../../icons'
 import {
   Text,
   Paragraph,
@@ -20,8 +20,6 @@ import {
 const TextSizes = [300, 400, 500]
 const HeadingSizes = [100, 200, 300, 400, 500, 600, 700, 800, 900]
 const dummyText = 'A red flair silhouetted the jagged edge of a wing.'
-
-const getIconSize = textSize => (textSize < 400 ? 12 : 14)
 
 function previewTextComponent(Comp, sizes = TextSizes, props = {}) {
   return (
@@ -114,24 +112,16 @@ storiesOf('typography', module)
             You can add icons to list items individually.
           </Paragraph>
           <UnorderedList size={size} marginY={16}>
-            <ListItem
-              icon={<TickCircleIcon size={getIconSize(size)} color="success" />}
-            >
+            <ListItem icon={TickCircleIcon} iconColor="success">
               Lorem ipsum dolar set amet
             </ListItem>
-            <ListItem
-              icon={<TickCircleIcon size={getIconSize(size)} color="success" />}
-            >
+            <ListItem icon={TickCircleIcon} iconColor="success">
               Lorem ipsum dolar set amet
             </ListItem>
-            <ListItem
-              icon={<BanCircleIcon size={getIconSize(size)} color="danger" />}
-            >
+            <ListItem icon={BanCircleIcon} iconColor="danger">
               Lorem ipsum dolar set amet
             </ListItem>
-            <ListItem
-              icon={<BanCircleIcon size={getIconSize(size)} color="danger" />}
-            >
+            <ListItem icon={BanCircleIcon} iconColor="danger">
               Lorem ipsum dolar set amet
             </ListItem>
           </UnorderedList>
@@ -141,7 +131,8 @@ storiesOf('typography', module)
           <UnorderedList
             size={size}
             marginY={16}
-            icon={<TickIcon color="success" size={getIconSize(size)} />}
+            icon={TickIcon}
+            iconColor="success"
           >
             <ListItem>Lorem ipsum dolar set amet</ListItem>
             <ListItem>Lorem ipsum dolar set amet</ListItem>

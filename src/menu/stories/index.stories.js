@@ -10,8 +10,8 @@ import { Position } from '../../constants'
 import {
   PeopleIcon,
   CircleArrowRightIcon,
-  TrashIcon,
-  EditIcon
+  EditIcon,
+  TrashIcon
 } from '../../icons'
 
 storiesOf('menu', module)
@@ -40,15 +40,15 @@ storiesOf('menu', module)
         content={
           <Menu>
             <Menu.Group>
-              <Menu.Item icon={<PeopleIcon />}>Share...</Menu.Item>
-              <Menu.Item icon={<CircleArrowRightIcon />}>Move...</Menu.Item>
-              <Menu.Item icon={<EditIcon />} secondaryText="⌘R">
+              <Menu.Item icon={PeopleIcon}>Share...</Menu.Item>
+              <Menu.Item icon={CircleArrowRightIcon}>Move...</Menu.Item>
+              <Menu.Item icon={EditIcon} secondaryText="⌘R">
                 Rename...
               </Menu.Item>
             </Menu.Group>
             <Menu.Divider />
             <Menu.Group>
-              <Menu.Item icon={<TrashIcon />} intent="danger">
+              <Menu.Item icon={TrashIcon} intent="danger">
                 Delete...
               </Menu.Item>
             </Menu.Group>
@@ -62,15 +62,15 @@ storiesOf('menu', module)
         content={
           <Menu>
             <Menu.Group title="Actions">
-              <Menu.Item icon={<PeopleIcon />}>Share...</Menu.Item>
-              <Menu.Item icon={<CircleArrowRightIcon />}>Move...</Menu.Item>
-              <Menu.Item icon={<EditIcon />} secondaryText="⌘R">
+              <Menu.Item icon={PeopleIcon}>Share...</Menu.Item>
+              <Menu.Item icon={CircleArrowRightIcon}>Move...</Menu.Item>
+              <Menu.Item icon={EditIcon} secondaryText="⌘R">
                 Rename...
               </Menu.Item>
             </Menu.Group>
             <Menu.Divider />
             <Menu.Group title="destructive">
-              <Menu.Item icon={<TrashIcon />} intent="danger">
+              <Menu.Item icon={TrashIcon} intent="danger">
                 Delete...
               </Menu.Item>
             </Menu.Group>

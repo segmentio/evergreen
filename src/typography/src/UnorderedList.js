@@ -47,7 +47,7 @@ UnorderedList.propTypes = {
    * When passed, adds a icon before each list item in the list
    * You can override this on a individual list item.
    */
-  icon: PropTypes.node
+  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element])
 }
 
 export default UnorderedList

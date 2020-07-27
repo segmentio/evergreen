@@ -3,6 +3,7 @@ import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import { IconWrapper } from '../../icons/src/IconWrapper'
+import { SearchIcon } from '../../icons'
 import TableHeaderCell from './TableHeaderCell'
 
 const invisibleInputClass = css({
@@ -21,45 +22,47 @@ const invisibleInputClass = css({
   }
 }).toString()
 
-const SearchTableHeaderCell = memo(forwardRef((props, ref) => {
-  const {
-    value,
-    children,
-    onChange = () => {},
-    autoFocus,
-    spellCheck = true,
-    placeholder = 'Filter...',
-    icon = 'search',
-    ...rest
-  } = props
+const SearchTableHeaderCell = memo(
+  forwardRef((props, ref) => {
+    const {
+      value,
+      children,
+      onChange = () => {},
+      autoFocus,
+      spellCheck = true,
+      placeholder = 'Filter...',
+      icon = SearchIcon,
+      ...rest
+    } = props
 
-  return (
-    <TableHeaderCell {...rest}>
-      <IconWrapper
-        icon={icon}
-        color="muted"
-        marginLeft={2}
-        marginRight={10}
-        size={12}
-      />
-      <Text
-        is="input"
-        size={300}
-        flex="1"
-        className={invisibleInputClass}
-        value={value}
-        onChange={e => onChange(e.target.value)}
-        autoFocus={autoFocus}
-        spellCheck={spellCheck}
-        fontWeight={500}
-        marginLeft={-2}
-        paddingLeft={0}
-        placeholder={placeholder}
-        ref={ref}
-      />
-    </TableHeaderCell>
-  )
-}))
+    return (
+      <TableHeaderCell {...rest}>
+        <IconWrapper
+          icon={icon}
+          color="muted"
+          marginLeft={2}
+          marginRight={10}
+          size={12}
+        />
+        <Text
+          is="input"
+          size={300}
+          flex="1"
+          className={invisibleInputClass}
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          autoFocus={autoFocus}
+          spellCheck={spellCheck}
+          fontWeight={500}
+          marginLeft={-2}
+          paddingLeft={0}
+          placeholder={placeholder}
+          ref={ref}
+        />
+      </TableHeaderCell>
+    )
+  })
+)
 
 SearchTableHeaderCell.propTypes = {
   /**
@@ -95,7 +98,7 @@ SearchTableHeaderCell.propTypes = {
   /**
    * The Evergreen or custom icon before the label.
    */
-  icon: PropTypes.node
+  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element])
 }
 
 export default SearchTableHeaderCell

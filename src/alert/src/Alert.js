@@ -86,7 +86,7 @@ const Alert = memo(
               marginRight={-2}
             >
               <IconButton
-                icon={<CrossIcon />}
+                icon={CrossIcon}
                 appearance="minimal"
                 height={24}
                 onClick={onRemove}

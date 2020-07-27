@@ -95,7 +95,7 @@ MenuItem.propTypes = {
   /**
    * The Evergreen or custom icon before the label.
    */
-  icon: PropTypes.node,
+  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
 
   /**
    * The children of the component.

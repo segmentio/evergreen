@@ -197,7 +197,7 @@ storiesOf('text-input', module)
             Save Changes
           </Button>
           <Pane paddingTop={32} marginTop={32} marginBottom={-8} borderTop>
-            <Button intent="danger" iconBefore={<ErrorIcon />}>
+            <Button intent="danger" iconBefore={ErrorIcon}>
               Delete Your Workspace...
             </Button>
           </Pane>
