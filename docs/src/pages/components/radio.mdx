@@ -33,7 +33,7 @@ The `RadioGroup` is the preferred way to create radio groups in most use cases.
       label="Permissions"
       value={state.value}
       options={state.options}
-      onChange={value => setState({ value })}
+      onChange={event => setState({ value: event.target.value })}
     />
   )}
 </Component>
@@ -59,7 +59,7 @@ The `RadioGroup` is the preferred way to create radio groups in most use cases.
       label="Permissions"
       value={state.value}
       options={state.options}
-      onChange={value => setState({ value })}
+      onChange={event => setState({ value: event.target.value })}
     />
   )}
 </Component>

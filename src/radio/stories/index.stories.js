@@ -27,7 +27,7 @@ storiesOf('radio', module)
             label="Permissions"
             value={state.value}
             options={state.options}
-            onChange={value => setState({ value })}
+            onChange={event => setState({ value: event.target.value })}
           />
         )}
       </Component>
@@ -48,7 +48,7 @@ storiesOf('radio', module)
             label="Permissions"
             value={state.value}
             options={state.options}
-            onChange={value => setState({ value })}
+            onChange={event => setState({ value: event.target.value })}
           />
         )}
       </Component>

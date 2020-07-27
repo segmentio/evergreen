@@ -19,7 +19,7 @@ const RadioGroup = memo(
       ...rest
     } = props
 
-    const name = useId(RadioGroup)
+    const name = useId('RadioGroup')
     const selected = value || defaultValue || props.options[0].value
 
     return (
