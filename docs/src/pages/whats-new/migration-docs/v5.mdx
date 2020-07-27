@@ -16,6 +16,7 @@ work on your side to to upgrade to v5.
  - [Importing and using Icons](#icons)
  - [Downshift v5](#downshift)
  - [Toggle no longer manages state](#toggle)
+ - [RadioGroup onChange arguments](#radiogroup)
 
 ### innerRef no longer supported {#refs}
 
@@ -140,4 +141,21 @@ const [switchIsActive, setSwitchActive] = useState(false)
  
 + <Switch checked={switchIsActive} onChange={onChange} />
 - <Switch checked={switchIsActive} />
+```
+
+### RadioGroup onChange arguments {#radiogroup}
+
+`RadioGroup`'s `onChange` handler now bubbles the _event_ directly from children `Radio` inputs instead of bubbling the _value_.
+
+This change was made to help improve the internal consistency with `onChange` handlers and to more closely match `onChange` event signature expecations.
+
+```diff static
+const items = [{ label: 'one', value: '1' }, { label: 'two', value: '2' }]
+const [selected, setSelected] = useState()
+
+<RadioGroup
+  items={items}
+-  onChange={selectedValue => setSelected(selectedValue)}
++  onChange={event => setSelected(event.target.value)}
+/>
 ```
