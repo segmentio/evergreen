@@ -43,7 +43,7 @@
     "clean": "git clean -Xdf",
     "release": "np",
     "deploy-docs": "cd docs && yarn install && yarn deploy",
-    "postpublish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then yarn dev; else echo \"not on main branch, skipping docs deploy\"; fi;",
+    "postpublish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then yarn deploy-docs; else echo \"not on main branch, skipping docs deploy\"; fi;",
     "storybook": "start-storybook -p 6006"
   },
   "engines": {
