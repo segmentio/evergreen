@@ -443,7 +443,7 @@ export declare const Alert: BoxComponent<AlertProps, 'div'>
 interface OptionProps extends TableRowProps {
   height?: number | string
   label: string
-  icon?: React.ReactElement
+  icon?: string
   disabled?: boolean
 }
 
@@ -543,11 +543,11 @@ export interface ButtonProps extends TextProps {
   /**
    * Sets an icon before the text. Can be any icon from Evergreen or a custom icon library.
    */
-  iconBefore?: React.ReactNode | null | false
+  iconBefore?: React.ElementType | JSX.Element | null | false
   /**
    * Sets an icon after the text. Can be any icon from Evergreen or a custom icon library.
    */
-  iconAfter?: React.ReactNode | null | false
+  iconAfter?: React.ElementType | JSX.Element | null | false
   /**
    * When true, the button is disabled.
    * isLoading also sets the button to disabled.
@@ -979,7 +979,7 @@ export interface IconButtonProps extends ButtonProps {
   /**
    * Name of a Blueprint UI icon, or an icon element, to render.
    */
-  icon?: React.ReactElement
+  icon?: React.ElementType | JSX.Element | null | false
   /**
    * Specifies an explicit icon size instead of the default value.
    */
@@ -1067,7 +1067,7 @@ export interface ListItemProps extends TextProps {
    * When passed, adds a icon before the list item.
    * See Evergreen `Icon` for documentation.
    */
-  icon?: React.ReactElement
+  icon?: React.ElementType | JSX.Element | null | false
   /**
    * The color of the icon.
    */
@@ -1083,7 +1083,7 @@ export interface MenuProps {
 
 export interface MenuItemProps extends PaneProps {
   onSelect?: (event: React.SyntheticEvent) => void
-  icon?: React.ReactElement
+  icon?: React.ElementType | JSX.Element | null | false
   secondaryText?: JSX.Element
   appearance?: DefaultAppearance
   intent?: IntentTypes
@@ -1150,7 +1150,7 @@ export interface PopoverProps {
   trigger?: 'click' | 'hover'
   content: React.ReactNode | ((object: { close: () => void }) => React.ReactNode)
   children:
-    ((props: { toggle: () => void, getRef: (ref: React.RefObject<HTMLElement>) => void, isShow: NonNullable<PopoverProps['isShown']> }) => React.ReactNode)
+    ((props: { toggle: () => void, getRef: (ref: React.RefObject<HTMLElement>) => void, isShown: NonNullable<PopoverProps['isShown']> }) => React.ReactNode)
     | React.ReactNode
   display?: string
   minWidth?: number | string
@@ -1197,7 +1197,7 @@ export interface PositionerProps {
   }) => React.ReactNode
   bodyOffset?: number
   targetOffset?: number
-  target: (params: { getRef: () => React.RefObject<HTMLElement>, isShow: boolean }) => React.ReactNode
+  target: (params: { getRef: () => React.RefObject<HTMLElement>, isShown: boolean }) => React.ReactNode
   initialScale?: number
   animationDuration?: number
   onCloseComplete?: () => void
@@ -1330,7 +1330,7 @@ export interface OptionsListProps extends PaneProps {
     disabled: Option['disabled']
   }) => JSX.Element
   filterPlaceholder?: string
-  filterIcon?: React.ReactElement
+  filterIcon?: React.ElementType | JSX.Element
   optionsFilter?: (
     value: Option['label'][],
     filter: NonNullable<OptionsListProps['defaultSearchValue']>
@@ -1371,7 +1371,7 @@ export interface SearchTableHeaderCellProps extends TableHeaderCellProps {
   /**
    * Icon to display in the input.
    */
-  icon?: React.ReactElement | null | false
+  icon?: React.ElementType | JSX.Element | null | false
 }
 
 export declare const SearchTableHeaderCell: BoxComponent<SearchTableHeaderCellProps, 'div'>
@@ -1973,9 +1973,9 @@ export interface TextDropdownButtonProps extends TextProps {
    */
   disabled?: boolean
   /**
-   * An Evergreen icon or custom icon node. By default it uses <CaretDownIcon />
+   * An Evergreen icon or custom icon node. By default it uses CaretDownIcon
    */
-  icon?: React.ReactNode | null | false
+  icon?: React.ElementType | JSX.Element | null | false
   /**
    * Class name passed to the button.
    */
@@ -2149,7 +2149,7 @@ export interface UnorderedListProps {
    * When passed, adds a icon before each list item in the list
    * You can override this on a individual list item.
    */
-  icon?: React.ReactElement
+  icon?: React.ElementType | JSX.Element
   /**
    * The color of the icon in each list item in the list.
    */

@@ -25,7 +25,7 @@ const TextDropdownButton = memo(
       paddingTop,
       paddingBottom,
 
-      icon = <CaretDownIcon />,
+      icon = CaretDownIcon,
       ...restProps
     } = props
 
@@ -94,9 +94,9 @@ TextDropdownButton.propTypes = {
   disabled: PropTypes.bool,
 
   /**
-   * An Evergreen icon or custom icon node. By default it uses <CaretDownIcon />
+   * An Evergreen icon or custom icon node. By default it uses CaretDownIcon
    */
-  icon: PropTypes.node,
+  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
 
   /**
    * Class name passed to the button.

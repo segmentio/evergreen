@@ -51,7 +51,7 @@ ListItem.propTypes = {
   /**
    * When provided, adds a icon before the list item.
    */
-  icon: PropTypes.node
+  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element])
 }
 
 export default ListItem

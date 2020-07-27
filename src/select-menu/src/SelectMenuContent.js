@@ -20,7 +20,7 @@ const DefaultTitleView = ({ close, title, headerHeight }) => (
       <Heading size={400}>{title}</Heading>
     </Pane>
     <IconButton
-      icon={<CrossIcon />}
+      icon={CrossIcon}
       appearance="minimal"
       height={24}
       onClick={close}
@@ -100,7 +100,7 @@ SelectMenuContent.propTypes = {
   hasTitle: PropTypes.bool,
   hasFilter: PropTypes.bool,
   filterPlaceholder: PropTypes.string,
-  filterIcon: PropTypes.node,
+  filterIcon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
   listProps: PropTypes.shape(OptionsList.propTypes),
 
   /**

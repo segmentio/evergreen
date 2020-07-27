@@ -129,7 +129,7 @@ const Dialog = memo(
               {hasClose && (
                 <IconButton
                   appearance="minimal"
-                  icon={<CrossIcon />}
+                  icon={CrossIcon}
                   onClick={() => onCancel(close)}
                 />
               )}

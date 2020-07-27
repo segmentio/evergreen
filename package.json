@@ -5,7 +5,10 @@
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
     "Roland Warmerdam (https://roland.codes)",
-    "Matt Shwery (https://mattshwery.com)"
+    "Matt Shwery (https://mattshwery.com)",
+    "Colin Lohner (https://www.colinlohner.com)",
+    "Allen Kleiner (http://allenk.me/)",
+    "Chris Chuck (https://github.com/Chrischuck)"
   ],
   "keywords": [
     "evergreen",
@@ -61,6 +64,7 @@
     "glamor": "^2.20.40",
     "lodash.debounce": "^4.0.8",
     "prop-types": "^15.6.2",
+    "react-is": "^16.13.1",
     "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^4.4.1",

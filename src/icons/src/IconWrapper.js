@@ -1,5 +1,6 @@
 import React, { forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
+import ReactIs from 'react-is'
 import Box from 'ui-box'
 
 /**
@@ -14,13 +15,15 @@ export const IconWrapper = memo(
       return null
     }
 
-    // Used as a short-hand to add props to an icon component. This component should not be used externally.
-    const iconWithProps = React.cloneElement(icon, {
-      size,
-      title,
-      color,
-      ...icon.props
-    })
+    const iconProps = { color, size, title }
+
+    let iconWithProps = null
+    if (ReactIs.isValidElementType(icon)) {
+      const Component = icon
+      iconWithProps = <Component {...iconProps} />
+    } else if (React.isValidElement(icon)) {
+      iconWithProps = React.cloneElement(icon, { ...iconProps, ...icon.props })
+    }
 
     return (
       <Box display="inline-flex" {...boxProps} ref={ref}>
@@ -41,10 +44,11 @@ IconWrapper.propTypes = {
    *
    * - If `null` or `undefined` or `false`, this component will render nothing.
    * - If given a `JSX.Element`, that element will be rendered, with size/color/title props cloned into it
-   *
+   * - If given a React element type, it will be rendered with the other icon props
    *   As a consumer, you should never use `<IconWrapper icon={<element />}` directly; simply render `<element />` instead.
    */
-  icon: PropTypes.node,
+  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element])
+    .isRequired,
 
   /**
    * Size of the icon, in pixels.

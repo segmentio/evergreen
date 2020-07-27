@@ -55,7 +55,7 @@ export default class OptionsList extends PureComponent {
     optionSize: PropTypes.number,
     renderItem: PropTypes.func,
     filterPlaceholder: PropTypes.string,
-    filterIcon: PropTypes.node,
+    filterIcon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
     optionsFilter: PropTypes.func,
     defaultSearchValue: PropTypes.string
   }
@@ -74,7 +74,7 @@ export default class OptionsList extends PureComponent {
     selected: [],
     renderItem: itemRenderer,
     filterPlaceholder: 'Filter...',
-    filterIcon: <SearchIcon />,
+    filterIcon: SearchIcon,
     defaultSearchValue: ''
   }
 

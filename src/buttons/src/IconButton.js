@@ -2,21 +2,13 @@ import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { dimensions, spacing, position, layout } from 'ui-box'
 import { useTheme } from '../../theme'
+import { IconWrapper } from '../../icons/src/IconWrapper'
 import Button from './Button'
 
 const IconButton = memo(
   forwardRef((props, ref) => {
     const theme = useTheme()
     const { icon, iconSize, height = 32, intent = 'none', ...restProps } = props
-
-    let iconWithProps
-    if (icon && React.isValidElement(icon)) {
-      iconWithProps = React.cloneElement(icon, {
-        color: intent === 'none' ? 'default' : 'currentColor',
-        size: iconSize || theme.getIconSizeForIconButton(height),
-        ...icon.props
-      })
-    }
 
     return (
       <Button
@@ -30,7 +22,11 @@ const IconButton = memo(
         justifyContent="center"
         {...restProps}
       >
-        {iconWithProps}
+        <IconWrapper
+          icon={icon}
+          color={intent === 'none' ? 'default' : 'currentColor'}
+          size={iconSize || theme.getIconSizeForIconButton(height)}
+        />
       </Button>
     )
   })
@@ -60,7 +56,7 @@ IconButton.propTypes = {
   /**
    * The Evergreen icon or custom icon to render
    */
-  icon: PropTypes.node,
+  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
 
   /**
    * Specifies an explicit icon size instead of the default value

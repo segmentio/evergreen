@@ -85,7 +85,7 @@ const Combobox = memo(props => {
           />
           <IconButton
             color="muted"
-            icon={isLoading ? undefined : <CaretDownIcon />}
+            icon={isLoading ? undefined : CaretDownIcon}
             appearance="default"
             height={height}
             marginLeft={-1}

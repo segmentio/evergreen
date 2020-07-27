@@ -228,19 +228,17 @@ storiesOf('side-sheet', module)
                     </Pane>
                     <Menu>
                       <Menu.Group title="Actions">
-                        <Menu.Item icon={<PeopleIcon />}>
-                          Collaborators
-                        </Menu.Item>
-                        <Menu.Item icon={<CircleArrowRightIcon />}>
+                        <Menu.Item icon={PeopleIcon}>Collaborators</Menu.Item>
+                        <Menu.Item icon={CircleArrowRightIcon}>
                           Discover
                         </Menu.Item>
-                        <Menu.Item icon={<EditIcon />} secondaryText="⌘N">
+                        <Menu.Item icon={EditIcon} secondaryText="⌘N">
                           Compose
                         </Menu.Item>
                       </Menu.Group>
                       <Menu.Divider />
                       <Menu.Group title="destructive">
-                        <Menu.Item icon={<TrashIcon />} intent="danger">
+                        <Menu.Item icon={TrashIcon} intent="danger">
                           Delete
                         </Menu.Item>
                       </Menu.Group>
