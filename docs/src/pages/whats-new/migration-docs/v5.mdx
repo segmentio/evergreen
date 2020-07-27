@@ -85,7 +85,7 @@ There is also a codemod that can help you with this migration. It can be instal
 updates `import { Icon } from 'evergreen-ui'`.
 
 ```sh static
-npx jscodeshift -t node_modules/evergreen-ui/codemods/4.25.0-4.26.0/replace-icon-imports.js --parser=tsx --extensions=js,ts,tsx <your file target> --dry --print
+npx jscodeshift -t node_modules/evergreen-ui/codemods/4.28.1.0-4.29.0/replace-icon-imports.js --parser=tsx --extensions=js,ts,tsx <your file target> --dry --print
 ```
 
 #### Migration path
@@ -107,7 +107,7 @@ Passing an icon as a prop:
 + import { Button, CogIcon } from 'evergreen-ui'
  
 - <Button iconBefore="cog">
-+ <Button iconBefore={<CogIcon />}>
++ <Button iconBefore={CogIcon}>
     Settings
   </Button>
 ```
