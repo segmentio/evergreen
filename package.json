@@ -43,7 +43,7 @@
     "clean": "git clean -Xdf",
     "release": "np",
     "deploy-docs": "cd docs && yarn install && yarn deploy",
-    "postpublish": "yarn git-branch-is master && yarn deploy-docs",
+    "postpublish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then yarn dev; else echo \"not on main branch, skipping docs deploy\"; fi;",
     "storybook": "start-storybook -p 6006"
   },
   "engines": {
@@ -106,7 +106,6 @@
     "faker": "^4.1.0",
     "file-loader": "^6.0.0",
     "fs-extra": "^7.0.0",
-    "git-branch-is": "^3.1.0",
     "husky": "^4.0.10",
     "lint-staged": "^10.0.1",
     "np": "^6.3.2",
