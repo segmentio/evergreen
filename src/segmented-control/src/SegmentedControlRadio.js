@@ -42,7 +42,7 @@ const offscreenCss = css({
 })
 
 const SegmentedControlRadio = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function SegmentedControlRadio(props, ref) {
     const theme = useTheme()
 
     const {

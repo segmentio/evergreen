@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import { useTheme } from '../../theme'
 
 const Heading = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Heading(props, ref) {
     const theme = useTheme()
     const { marginTop, size = 500, ...restProps } = props
     const {

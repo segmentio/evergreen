@@ -8,7 +8,7 @@ import safeInvoke from '../../lib/safe-invoke'
 export const CLASS_PREFIX = 'evergreen-file-picker'
 
 const FilePicker = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function FilePicker(props, ref) {
     const {
       name,
       accept,

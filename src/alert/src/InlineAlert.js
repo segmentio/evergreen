@@ -6,7 +6,7 @@ import { Text } from '../../typography'
 import { getIconForIntent } from './getIconForIntent'
 
 const InlineAlert = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function InlineAlert(props, ref) {
     const {
       children,
       intent = 'none',

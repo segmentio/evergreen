@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const SegmentedControlIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="segmented-control"
-      {...props}
-    />
-  ))
+  forwardRef(function SegmentedControlIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="segmented-control"
+        {...props}
+      />
+    )
+  })
 )

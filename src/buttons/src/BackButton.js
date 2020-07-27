@@ -3,7 +3,7 @@ import { ArrowLeftIcon } from '../../icons'
 import Button from './Button'
 
 const BackButton = memo(
-  forwardRef(({ children = 'Back', ...props }, ref) => {
+  forwardRef(function BackButton({ children = 'Back', ...props }, ref) {
     return (
       <Button iconBefore={ArrowLeftIcon} {...props} ref={ref}>
         {children}

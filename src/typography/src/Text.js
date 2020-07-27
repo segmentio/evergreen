@@ -6,7 +6,7 @@ import Box from 'ui-box'
 import { useTheme } from '../../theme'
 
 const Text = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Text(props, ref) {
     const theme = useTheme()
     const {
       className,

@@ -6,7 +6,7 @@ import { IconWrapper } from '../../icons/src/IconWrapper'
 import Button from './Button'
 
 const IconButton = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function IconButton(props, ref) {
     const theme = useTheme()
     const { icon, iconSize, height = 32, intent = 'none', ...restProps } = props
 

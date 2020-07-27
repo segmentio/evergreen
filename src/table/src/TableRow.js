@@ -8,7 +8,7 @@ import { TableRowProvider } from './TableRowContext'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 
 const TableRow = memo(
-  forwardRef((props, forwardedRef) => {
+  forwardRef(function TableRow(props, forwardedRef) {
     const {
       className,
       height = 48,

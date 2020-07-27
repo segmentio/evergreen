@@ -6,7 +6,7 @@ import { TextInput } from '../../text-input'
 import { IconButton } from '../../buttons'
 import { CaretDownIcon } from '../../icons'
 
-const Combobox = memo(props => {
+const Combobox = memo(function Combobox(props) {
   const {
     items,
     selectedItem,

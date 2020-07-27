@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const ScrollbarSize = memo(props => {
+const ScrollbarSize = memo(function ScrollbarSize(props) {
   const { handleScrollbarSize = () => {} } = props
 
   const [innerRef, setInnerRef] = useState()

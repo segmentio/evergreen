@@ -5,7 +5,7 @@ import { Text } from '../../typography'
 import { TickIcon } from '../../icons'
 import { useTheme } from '../../theme'
 
-const MenuOption = memo(props => {
+const MenuOption = memo(function MenuOption(props) {
   const {
     id,
     children,

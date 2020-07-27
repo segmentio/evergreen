@@ -19,7 +19,7 @@ const styles = {
 }
 
 const Badge = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Badge(props, ref) {
     const theme = useTheme()
 
     const {

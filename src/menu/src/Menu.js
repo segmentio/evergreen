@@ -7,7 +7,7 @@ import MenuGroup from './MenuGroup'
 import MenuOption from './MenuOption'
 import MenuOptionsGroup from './MenuOptionsGroup'
 
-const Menu = memo(props => {
+const Menu = memo(function Menu(props) {
   const menuRef = useRef()
   const firstItem = useRef()
   const lastItem = useRef()

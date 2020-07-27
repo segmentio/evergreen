@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const LayoutSkewGridIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="layout-skew-grid"
-      {...props}
-    />
-  ))
+  forwardRef(function LayoutSkewGridIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="layout-skew-grid"
+        {...props}
+      />
+    )
+  })
 )

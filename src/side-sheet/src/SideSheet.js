@@ -125,7 +125,7 @@ const animationStylesClass = {
   }
 }
 
-const SideSheet = memo(props => {
+const SideSheet = memo(function SideSheet(props) {
   const {
     width = 620,
     isShown,

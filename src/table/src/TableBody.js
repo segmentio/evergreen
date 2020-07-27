@@ -2,7 +2,7 @@ import React, { memo, forwardRef } from 'react'
 import { Pane } from '../../layers'
 
 const TableBody = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function TableBody(props, ref) {
     const { children, ...rest } = props
 
     return (

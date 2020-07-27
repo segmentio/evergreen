@@ -5,7 +5,7 @@ import { FormField } from '../../form-field'
 import { useId } from '../../hooks'
 import Select from './Select'
 
-const TextInputField = memo(props => {
+const SelectField = memo(function SelectField(props) {
   const id = useId('SelectField', props.id)
 
   const {
@@ -61,7 +61,7 @@ const TextInputField = memo(props => {
   )
 })
 
-TextInputField.propTypes = {
+SelectField.propTypes = {
   /**
    * Composes the Select component as the base.
    */
@@ -110,4 +110,4 @@ TextInputField.propTypes = {
   inputWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }
 
-export default TextInputField
+export default SelectField

@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const SymbolTriangleUpIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="symbol-triangle-up"
-      {...props}
-    />
-  ))
+  forwardRef(function SymbolTriangleUpIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="symbol-triangle-up"
+        {...props}
+      />
+    )
+  })
 )

@@ -10,7 +10,7 @@ const styles = {
 }
 
 const OrderedList = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function OrderedList(props, ref) {
     const { children, size = 400, ...rest } = props
 
     const finalChildren = React.Children.map(children, child => {

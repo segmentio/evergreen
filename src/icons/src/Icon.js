@@ -9,56 +9,53 @@ import { useTheme } from '../../theme'
  * Refer to the LICENSE for BlueprintJS here: https://github.com/palantir/blueprint/blob/develop/LICENSE
  */
 
-const Icon = forwardRef(
-  (
-    {
-      color = 'currentColor',
-      size = 16,
-      name,
-      title,
-      style = {},
-      svgPaths16,
-      svgPaths20,
-      ...svgProps
-    },
-    ref
-  ) => {
-    const theme = useTheme()
-    const SIZE_STANDARD = 16
-    const SIZE_LARGE = 20
+const Icon = forwardRef(function Icon(
+  {
+    color = 'currentColor',
+    size = 16,
+    name,
+    title,
+    style = {},
+    svgPaths16,
+    svgPaths20,
+    ...svgProps
+  },
+  ref
+) {
+  const theme = useTheme()
+  const SIZE_STANDARD = 16
+  const SIZE_LARGE = 20
 
-    // Choose which pixel grid is most appropriate for given icon size
-    const pixelGridSize = size >= SIZE_LARGE ? SIZE_LARGE : SIZE_STANDARD
-    const pathStrings =
-      pixelGridSize === SIZE_STANDARD ? svgPaths16 : svgPaths20
-    const paths = pathStrings.map((d, i) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <path key={i} d={d} fillRule="evenodd" />
-    ))
+  // Choose which pixel grid is most appropriate for given icon size
+  const pixelGridSize = size >= SIZE_LARGE ? SIZE_LARGE : SIZE_STANDARD
+  const pathStrings = pixelGridSize === SIZE_STANDARD ? svgPaths16 : svgPaths20
+  const paths = pathStrings.map((d, i) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <path key={i} d={d} fillRule="evenodd" />
+  ))
 
-    const viewBox = `0 0 ${pixelGridSize} ${pixelGridSize}`
+  const viewBox = `0 0 ${pixelGridSize} ${pixelGridSize}`
 
-    if (color) {
-      style = { ...style, fill: theme.getIconColor(color) }
-    }
-
-    return (
-      <Box
-        is="svg"
-        ref={ref}
-        {...svgProps}
-        data-icon={name}
-        style={style}
-        width={size}
-        height={size}
-        viewBox={viewBox}
-      >
-        {title && <title>{title}</title>}
-        {paths}
-      </Box>
-    )
+  if (color) {
+    style = { ...style, fill: theme.getIconColor(color) }
   }
-)
+
+  return (
+    <Box
+      is="svg"
+      ref={ref}
+      {...svgProps}
+      data-icon={name}
+      style={style}
+      width={size}
+      height={size}
+      viewBox={viewBox}
+    >
+      {title && <title>{title}</title>}
+      {paths}
+    </Box>
+  )
+})
 
 Icon.propTypes = {
   /**

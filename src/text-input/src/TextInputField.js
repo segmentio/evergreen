@@ -6,7 +6,7 @@ import { useId } from '../../hooks'
 import TextInput from './TextInput'
 
 const TextInputField = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function TextInputField(props, ref) {
     const id = useId('TextInputField', props.id)
 
     const {

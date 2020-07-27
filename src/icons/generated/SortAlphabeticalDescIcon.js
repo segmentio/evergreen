@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const SortAlphabeticalDescIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="sort-alphabetical-desc"
-      {...props}
-    />
-  ))
+  forwardRef(function SortAlphabeticalDescIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="sort-alphabetical-desc"
+        {...props}
+      />
+    )
+  })
 )

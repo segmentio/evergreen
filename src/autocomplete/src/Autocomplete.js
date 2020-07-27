@@ -103,7 +103,7 @@ const AutocompleteItems = ({
 /* eslint-enable react/prop-types */
 
 const Autocomplete = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Autocomplete(props, ref) {
     const {
       children,
       itemSize = 32,

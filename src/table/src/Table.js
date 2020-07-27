@@ -12,11 +12,9 @@ import SearchTableHeaderCell from './SearchTableHeaderCell'
 import EditableCell from './EditableCell'
 import SelectMenuCell from './SelectMenuCell'
 
-const Table = memo(props => {
-  const {children, ...rest} = props
-  return (
-    <Pane {...rest}>{children}</Pane>
-  )
+const Table = memo(function Table(props) {
+  const { children, ...rest } = props
+  return <Pane {...rest}>{children}</Pane>
 })
 
 Table.Body = TableBody

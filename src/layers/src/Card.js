@@ -2,7 +2,7 @@ import React, { memo, forwardRef } from 'react'
 import Pane from './Pane'
 
 const Card = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Card(props, ref) {
     return <Pane borderRadius={5} {...props} ref={ref} />
   })
 )

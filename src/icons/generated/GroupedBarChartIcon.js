@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const GroupedBarChartIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="grouped-bar-chart"
-      {...props}
-    />
-  ))
+  forwardRef(function GroupedBarChartIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="grouped-bar-chart"
+        {...props}
+      />
+    )
+  })
 )

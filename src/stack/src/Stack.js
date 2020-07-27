@@ -3,7 +3,10 @@ import PropTypes from 'prop-types'
 import { StackingOrder } from '../../constants'
 import StackingContext from './StackingContext'
 
-const Stack = memo(({ children, value = StackingOrder.STACKING_CONTEXT }) => {
+const Stack = memo(function Stack({
+  children,
+  value = StackingOrder.STACKING_CONTEXT
+}) {
   const previousValue = useContext(StackingContext)
   const currentValue = Math.max(value, previousValue)
   const nextValue = currentValue + 1

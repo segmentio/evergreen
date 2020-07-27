@@ -47,7 +47,7 @@ const animationStyles = css({
   }
 })
 
-const Toast = memo((props) => {
+const Toast = memo(function Toast(props) {
   const {
     duration,
     onRemove,
@@ -78,9 +78,11 @@ const Toast = memo((props) => {
 
   const startCloseTimer = () => {
     if (duration) {
-      setCloseTimer(setTimeout(() => {
-        close()
-      }, duration * 1000))
+      setCloseTimer(
+        setTimeout(() => {
+          close()
+        }, duration * 1000)
+      )
     }
   }
 
@@ -106,13 +108,13 @@ const Toast = memo((props) => {
     startCloseTimer()
   }
 
-  const onRef = (ref) => {
+  const onRef = ref => {
     if (ref === null) return
 
     const { height: rectHeight } = ref.getBoundingClientRect()
     setHeight(rectHeight)
   }
-  
+
   return (
     <Transition
       appear

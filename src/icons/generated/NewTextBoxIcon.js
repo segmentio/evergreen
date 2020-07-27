@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const NewTextBoxIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="new-text-box"
-      {...props}
-    />
-  ))
+  forwardRef(function NewTextBoxIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="new-text-box"
+        {...props}
+      />
+    )
+  })
 )

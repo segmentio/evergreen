@@ -2,7 +2,7 @@ import React, { memo, forwardRef } from 'react'
 import { Paragraph } from '../../typography'
 
 const FormFieldHint = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function FormFieldHint(props, ref) {
     return (
       <Paragraph marginTop={0} size={300} color="muted" {...props} ref={ref} />
     )

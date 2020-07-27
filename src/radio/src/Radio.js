@@ -4,11 +4,17 @@ import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
 import { useTheme } from '../../theme'
 
-const CircleIcon = memo(({ size, fill = 'currentColor', ...props }) => (
-  <svg width={size} height={size} viewBox="0 0 10 10" {...props}>
-    <circle fill={fill} cx="5" cy="5" r="5" />
-  </svg>
-))
+const CircleIcon = memo(function CircleIcon({
+  size,
+  fill = 'currentColor',
+  ...props
+}) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 10 10" {...props}>
+      <circle fill={fill} cx="5" cy="5" r="5" />
+    </svg>
+  )
+})
 
 CircleIcon.propTypes = {
   fill: PropTypes.string,
@@ -16,7 +22,7 @@ CircleIcon.propTypes = {
 }
 
 const Radio = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Radio(props, ref) {
     const {
       id,
       name,

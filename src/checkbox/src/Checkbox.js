@@ -34,7 +34,7 @@ MinusIcon.propTypes = {
 }
 
 const Checkbox = memo(
-  forwardRef((props, forwardedRef) => {
+  forwardRef(function Checkbox(props, forwardedRef) {
     const {
       id,
       name,

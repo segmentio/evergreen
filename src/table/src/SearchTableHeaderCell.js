@@ -23,7 +23,7 @@ const invisibleInputClass = css({
 }).toString()
 
 const SearchTableHeaderCell = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function SearchTableHeaderCell(props, ref) {
     const {
       value,
       children,

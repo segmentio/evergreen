@@ -39,7 +39,7 @@ const innerClass = color =>
   }).toString()
 
 const Spinner = memo(
-  forwardRef(({ delay = 0, size = 40, ...props }, ref) => {
+  forwardRef(function Spinner({ delay = 0, size = 40, ...props }, ref) {
     const theme = useTheme()
     const [isVisible, setIsVisible] = useState(delay === 0)
 

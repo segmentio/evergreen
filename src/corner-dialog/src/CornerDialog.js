@@ -47,7 +47,7 @@ const animationStyles = {
   }
 }
 
-const CornerDialog = memo(props => {
+const CornerDialog = memo(function CornerDialog(props) {
   const {
     title,
     width = 392,

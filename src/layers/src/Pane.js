@@ -11,7 +11,7 @@ const StringAndBoolPropType = PropTypes.oneOfType([
 ])
 
 const Pane = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function Pane(props, ref) {
     const {
       background,
 

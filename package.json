@@ -146,6 +146,9 @@
       "indent": [
         "off"
       ],
+      "func-names": [
+        "off"
+      ],
       "react/jsx-indent-props": [
         "off"
       ],

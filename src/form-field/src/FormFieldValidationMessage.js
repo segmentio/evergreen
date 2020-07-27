@@ -4,7 +4,7 @@ import { ErrorIcon } from '../../icons'
 import { Pane } from '../../layers'
 
 const FormFieldValidationMessage = memo(
-  forwardRef(({ children, ...props }, ref) => {
+  forwardRef(function FormFieldValidationMessage({ children, ...props }, ref) {
     return (
       <Pane ref={ref} display="flex" {...props}>
         <ErrorIcon color="danger" marginTop={1} size={14} marginRight={8} />

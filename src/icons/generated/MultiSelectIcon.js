@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const MultiSelectIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="multi-select"
-      {...props}
-    />
-  ))
+  forwardRef(function MultiSelectIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="multi-select"
+        {...props}
+      />
+    )
+  })
 )

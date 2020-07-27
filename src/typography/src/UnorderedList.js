@@ -10,7 +10,7 @@ const styles = {
 }
 
 const UnorderedList = memo(
-  forwardRef((props, ref) => {
+  forwardRef(function UnorderedList(props, ref) {
     const { children, size = 400, icon, ...rest } = props
 
     const enrichedChildren = React.Children.map(children, child => {

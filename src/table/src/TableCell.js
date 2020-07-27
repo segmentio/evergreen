@@ -29,7 +29,7 @@ function executeArrowKeyOverride(override) {
 }
 
 const TableCell = memo(
-  forwardRef((props, forwardedRef) => {
+  forwardRef(function TableCell(props, forwardedRef) {
     const {
       children,
       appearance = 'default',
