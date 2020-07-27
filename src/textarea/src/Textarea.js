@@ -4,6 +4,12 @@ import cx from 'classnames'
 import { Text } from '../../typography'
 import { useTheme } from '../../theme'
 
+const styles = {
+  minHeight: 80,
+  paddingX: 10,
+  paddingY: 8
+}
+
 const Textarea = memo(
   forwardRef(function Textarea(props, ref) {
     const theme = useTheme()
@@ -41,7 +47,7 @@ const Textarea = memo(
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
         {...(disabled ? { color: 'muted' } : {})}
-        {...Textarea.styles}
+        {...styles}
         {...restProps}
       />
     )
@@ -100,12 +106,6 @@ Textarea.propTypes = {
    * Only use if you know what you are doing.
    */
   className: PropTypes.string
-}
-
-Textarea.styles = {
-  minHeight: 80,
-  paddingX: 10,
-  paddingY: 8
 }
 
 export default Textarea

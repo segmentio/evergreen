@@ -7,6 +7,15 @@ import { Text } from '../../typography'
 import { Spinner } from '../../spinner'
 import { useTheme } from '../../theme'
 
+const styles = {
+  position: 'relative',
+  fontFamily: 'ui',
+  fontWeight: 500,
+  display: 'inline-flex',
+  alignItems: 'center',
+  flexWrap: 'nowrap'
+}
+
 const TextDropdownButton = memo(
   forwardRef(function TextDropdownButton(props, ref) {
     const theme = useTheme()
@@ -42,7 +51,7 @@ const TextDropdownButton = memo(
         marginY={-2}
         size={300}
         data-active={isActive}
-        {...TextDropdownButton.styles}
+        {...styles}
         {...restProps}
         disabled={disabled}
       >
@@ -103,15 +112,6 @@ TextDropdownButton.propTypes = {
    * Only use if you know what you are doing.
    */
   className: PropTypes.string
-}
-
-TextDropdownButton.styles = {
-  position: 'relative',
-  fontFamily: 'ui',
-  fontWeight: 500,
-  display: 'inline-flex',
-  alignItems: 'center',
-  flexWrap: 'nowrap'
 }
 
 export default TextDropdownButton

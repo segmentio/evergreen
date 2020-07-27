@@ -8,7 +8,7 @@ import { Spinner } from '../../spinner'
 import { useTheme } from '../../theme'
 
 /* eslint-disable-next-line react/prop-types */
-const Icon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
+const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
   const edgeMargin = -Math.round(spacing * 0.2)
   const innerMargin = Math.round(size * 0.7)
   const marginLeft = edge === 'start' ? edgeMargin : innerMargin
@@ -23,6 +23,15 @@ const Icon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
     />
   )
 })
+
+const styles = {
+  position: 'relative',
+  fontFamily: 'ui',
+  fontWeight: 500,
+  display: 'inline-flex',
+  alignItems: 'center',
+  flexWrap: 'nowrap'
+}
 
 const Button = memo(
   forwardRef(function Button(props, ref) {
@@ -84,7 +93,7 @@ const Button = memo(
         height={height}
         lineHeight={`${height}px`}
         {...(isActive ? { 'data-active': true } : {})}
-        {...Button.styles}
+        {...styles}
         {...restProps}
         disabled={disabled || isLoading}
       >
@@ -95,9 +104,14 @@ const Button = memo(
             size={Math.round(height / 2)}
           />
         )}
-        <Icon icon={iconBefore} size={iconSize} spacing={pl} edge="start" />
+        <ButtonIcon
+          icon={iconBefore}
+          size={iconSize}
+          spacing={pl}
+          edge="start"
+        />
         {children}
-        <Icon icon={iconAfter} size={iconSize} spacing={pr} edge="end" />
+        <ButtonIcon icon={iconAfter} size={iconSize} spacing={pr} edge="end" />
       </Text>
     )
   })
@@ -167,15 +181,6 @@ Button.propTypes = {
    * Only use if you know what you are doing.
    */
   className: PropTypes.string
-}
-
-Button.styles = {
-  position: 'relative',
-  fontFamily: 'ui',
-  fontWeight: 500,
-  display: 'inline-flex',
-  alignItems: 'center',
-  flexWrap: 'nowrap'
 }
 
 export default Button
