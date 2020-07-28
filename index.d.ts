@@ -1456,6 +1456,8 @@ export interface SelectOwnProps {
    * Function called when value changes.
    */
   onChange?(event: React.ChangeEvent<HTMLSelectElement>): void
+
+  name?: string
 }
 
 export type SelectProps = PolymorphicBoxProps<'div', SelectOwnProps>

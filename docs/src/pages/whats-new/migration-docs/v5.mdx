@@ -143,7 +143,7 @@ const [switchIsActive, setSwitchActive] = useState(false)
 + <Switch checked={switchIsActive} onChange={onChange} />
 ```
 
-### RadioGroup onChange arguments {#radiogroup}
+### Radio and RadioGroup onChange arguments {#radiogroup}
 
 `RadioGroup`'s `onChange` handler now bubbles the _event_ directly from children `Radio` inputs instead of bubbling the _value_.
 
@@ -158,4 +158,11 @@ const [selected, setSelected] = useState()
 -  onChange={selectedValue => setSelected(selectedValue)}
 +  onChange={event => setSelected(event.target.value)}
 />
+```
+
+Similarly, we removed the second argument from `Radio`'s `onChange` handler:
+
+```diff static
+- <Radio onChange={(event, checked) => console.log(checked)} />
+- <Radio onChange={(event) => console.log(event.target.checked)} />
 ```
