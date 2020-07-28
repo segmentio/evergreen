@@ -7,7 +7,7 @@ import ReactIs from 'react-is'
  * Box props are applied to the outer Box container, and Evergreen icon-specific props are added to the icon element.
  */
 export const IconWrapper = memo(
-  forwardRef(function IconWrapper({ icon, ...props }, ref) {
+  forwardRef(function Icon({ icon, ...props }, ref) {
     if (!icon || typeof icon === 'string') {
       return null
     }
