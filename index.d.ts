@@ -6,7 +6,7 @@ import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
 import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition'
 
-export { configureSafeHref, BoxProps, BoxComponent } from 'ui-box'
+export { configureSafeHref, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps } from 'ui-box'
 
 type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
 type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
@@ -416,7 +416,7 @@ export enum Position {
 
 type ForwardRefComponent<P = {}, T = any> = React.ForwardRefExoticComponent<React.PropsWithoutRef<P> & React.RefAttributes<T>>
 
-export interface AlertProps extends Omit<PaneProps, 'title'> {
+export interface AlertOwnProps extends Omit<PaneOwnProps, 'title'> {
   intent?: IntentTypes
   title?: React.ReactNode
   hasTrim?: boolean
@@ -438,9 +438,10 @@ export interface AlertProps extends Omit<PaneProps, 'title'> {
   appearance?: AlertAppearance
 }
 
-export declare const Alert: BoxComponent<AlertProps, 'div'>
+export type AlertProps = PolymorphicBoxProps<'div', AlertOwnProps>
+export declare const Alert: BoxComponent<AlertOwnProps, 'div'>
 
-interface OptionProps extends TableRowProps {
+interface OptionProps extends TableRowOwnProps {
   height?: number | string
   label: string
   icon?: string
@@ -485,13 +486,13 @@ export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'>
   popoverMinWidth?: number
   popoverMaxHeight?: number
   selectedItem?: any
-  buttonProps?: ButtonProps
+  buttonProps?: ButtonOwnProps
   onChange: (selectedItem: any) => void
 }
 
 export declare const Autocomplete: ForwardRefComponent<AutocompleteProps>
 
-export interface AvatarProps {
+export interface AvatarOwnProps {
   src?: string
   size?: number
   /**
@@ -507,13 +508,14 @@ export interface AvatarProps {
   sizeLimitOneCharacter?: number
 }
 
-export declare const Avatar: BoxComponent<AvatarProps>
+export type AvatarProps = PolymorphicBoxProps<'div', AvatarOwnProps>
+export declare const Avatar: BoxComponent<AvatarOwnProps>
 
-export type BackButtonProps = ButtonProps
+export type BackButtonOwnProps = ButtonOwnProps
+export type BackButtonProps = PolymorphicBoxProps<'button', BackButtonOwnProps>
+export declare const BackButton: BoxComponent<BackButtonOwnProps, 'button'>
 
-export declare const BackButton: BoxComponent<BackButtonProps, 'button'>
-
-export interface BadgeProps extends StrongProps {
+export interface BadgeOwnProps extends StrongOwnProps {
   /**
    * The color used for the badge. When the value is `automatic`, use the hash function to determine the color.
    */
@@ -525,9 +527,10 @@ export interface BadgeProps extends StrongProps {
   isSolid?: boolean
 }
 
-export declare const Badge: BoxComponent<BadgeProps, 'strong'>
+export type BadgeProps = PolymorphicBoxProps<'strong', BadgeOwnProps>
+export declare const Badge: BoxComponent<BadgeOwnProps, 'strong'>
 
-export interface ButtonProps extends TextProps {
+export interface ButtonOwnProps extends TextOwnProps {
   intent?: IntentTypes
   appearance?: ButtonAppearance
   /**
@@ -559,13 +562,14 @@ export interface ButtonProps extends TextProps {
   className?: string
 }
 
-export declare const Button: BoxComponent<ButtonProps, 'button'>
+export type ButtonProps = PolymorphicBoxProps<'button', ButtonOwnProps>
+export declare const Button: BoxComponent<ButtonOwnProps, 'button'>
 
-export type CardProps = PaneProps
+export type CardOwnProps = PaneOwnProps
+export type CardProps = PolymorphicBoxProps<'div', CardOwnProps>
+export declare const Card: BoxComponent<CardOwnProps, 'div'>
 
-export declare const Card: BoxComponent<CardProps, 'div'>
-
-export interface CheckboxProps {
+export interface CheckboxOwnProps {
   /**
    * The id attribute of the checkbox.
    */
@@ -611,14 +615,14 @@ export interface CheckboxProps {
   onChange?(event: React.ChangeEvent<HTMLInputElement>): void
 }
 
-export declare const Checkbox: BoxComponent<CheckboxProps, 'input'>
+export type CheckboxProps = PolymorphicBoxProps<'input', CheckboxOwnProps>
+export declare const Checkbox: BoxComponent<CheckboxOwnProps, 'input'>
 
-export type CodeProps = TextProps
+export type CodeOwnProps = TextOwnProps
+export type CodeProps = PolymorphicBoxProps<'code', CodeOwnProps>
+export declare const Code: BoxComponent<CodeOwnProps, 'code'>
 
-
-export declare const Code: BoxComponent<CodeProps, 'code'>
-
-export interface ComboboxProps {
+export interface ComboboxOwnProps {
   /**
    * The options to show in the menu.
    */
@@ -655,11 +659,11 @@ export interface ComboboxProps {
   /**
    * Properties forwarded to the input. Use with caution.
    */
-  inputProps?: TextInputProps
+  inputProps?: TextInputOwnProps
   /**
    * Properties forwarded to the button. Use with caution.
    */
-  buttonProps?: IconButtonProps
+  buttonProps?: IconButtonOwnProps
   /**
    * Makes the input element disabled.
    */
@@ -670,7 +674,8 @@ export interface ComboboxProps {
   isLoading?: boolean
 }
 
-export declare const Combobox: BoxComponent<ComboboxProps>
+export type ComboboxProps = PolymorphicBoxProps<'div', ComboboxOwnProps>
+export declare const Combobox: BoxComponent<ComboboxOwnProps>
 
 export interface CornerDialogProps {
   /**
@@ -738,7 +743,7 @@ export interface CornerDialogProps {
   /**
    * Props that are passed to the dialog container.
    */
-  containerProps?: CardProps & BoxOwnProps<'div'>
+  containerProps?: React.ComponentProps<typeof Card>
 }
 
 export declare const CornerDialog: React.FC<CornerDialogProps>
@@ -866,11 +871,11 @@ export interface DialogProps {
   /**
    * Props that are passed to the dialog container.
    */
-  containerProps?: object
+  containerProps?: React.ComponentProps<typeof Pane>
   /**
    * Props that are passed to the content container.
    */
-  contentContainerProps?: object
+  contentContainerProps?: React.ComponentProps<typeof Pane>
   /**
    * Whether or not to prevent scrolling in the outer body. Defaults to false.
    */
@@ -879,7 +884,7 @@ export interface DialogProps {
 
 export declare const Dialog: React.FC<DialogProps>
 
-export interface FilePickerProps {
+export interface FilePickerOwnProps {
   /** the name attribute of the input */
   name?: string
   /** the accept attribute of the input */
@@ -902,9 +907,10 @@ export interface FilePickerProps {
   placeholder?: string
 }
 
-export declare const FilePicker: BoxComponent<FilePickerProps, 'div'>
+export type FilePickerProps = PolymorphicBoxProps<'div', FilePickerOwnProps>
+export declare const FilePicker: BoxComponent<FilePickerOwnProps, 'div'>
 
-export interface FormFieldProps {
+export interface FormFieldOwnProps {
   /**
    * The label used above the input element.
    */
@@ -940,42 +946,45 @@ export interface FormFieldProps {
   inputWidth?: number | string
 }
 
-export declare const FormField: BoxComponent<FormFieldProps>
+export type FormFieldProps = PolymorphicBoxProps<'div', FormFieldOwnProps>
+export declare const FormField: BoxComponent<FormFieldOwnProps>
 
-export interface FormFieldDescriptionProps extends ParagraphProps {
+export interface FormFieldDescriptionOwnProps extends ParagraphOwnProps {
 }
 
-export declare const FormFieldDescription: BoxComponent<FormFieldDescriptionProps, 'p'>
+export type FormFieldDescriptionProps = PolymorphicBoxProps<'p', FormFieldDescriptionOwnProps>
+export declare const FormFieldDescription: BoxComponent<FormFieldDescriptionOwnProps, 'p'>
 
 
-export interface FormFieldHintProps extends ParagraphProps {
+export interface FormFieldHintOwnProps extends ParagraphOwnProps {
 }
 
-export declare const FormFieldHint: BoxComponent<FormFieldHintProps, 'p'>
+export type FormFieldHintProps = PolymorphicBoxProps<'p', FormFieldHintOwnProps>
+export declare const FormFieldHint: BoxComponent<FormFieldHintOwnProps, 'p'>
 
 
-export interface FormFieldLabelProps extends LabelProps {
+export interface FormFieldLabelOwnProps extends LabelOwnProps {
   /**
    * Whether or not to show an asterix after the label.
    */
   isAstrixShown?: boolean
 }
 
-export declare const FormFieldLabel: BoxComponent<FormFieldLabelProps, 'label'>
+export type FormFieldLabelProps = PolymorphicBoxProps<'label', FormFieldLabelOwnProps>
+export declare const FormFieldLabel: BoxComponent<FormFieldLabelOwnProps, 'label'>
 
+export interface FormFieldValidationMessageOwnProps extends PaneOwnProps {}
+export type FormFieldValidationMessageProps = PolymorphicBoxProps<'div', FormFieldValidationMessageOwnProps>
+export declare const FormFieldValidationMessage: BoxComponent<FormFieldValidationMessageOwnProps, 'div'>
 
-export interface FormFieldValidationMessageProps extends PaneProps {
-}
-
-export declare const FormFieldValidationMessage: BoxComponent<FormFieldValidationMessageProps, 'div'>
-
-export interface HeadingProps {
+export interface HeadingOwnProps {
   size?: keyof Typography['headings']
 }
 
-export declare const Heading: BoxComponent<HeadingProps, 'h2'>
+export type HeadingProps = PolymorphicBoxProps<'h2', HeadingOwnProps>
+export declare const Heading: BoxComponent<HeadingOwnProps, 'h2'>
 
-export interface IconButtonProps extends ButtonProps {
+export interface IconButtonOwnProps extends ButtonOwnProps {
   /**
    * Name of a Blueprint UI icon, or an icon element, to render.
    */
@@ -1008,15 +1017,17 @@ export interface IconButtonProps extends ButtonProps {
   className?: string
 }
 
-export declare const IconButton: BoxComponent<IconButtonProps, 'button'>
+export type IconButtonProps = PolymorphicBoxProps<'button', IconButtonOwnProps>
+export declare const IconButton: BoxComponent<IconButtonOwnProps, 'button'>
 
-export interface ImageProps {
+export interface ImageOwnProps {
   src?: string
 }
 
-export declare const Image: BoxComponent<ImageProps, 'img'>
+export type ImageProps = PolymorphicBoxProps<'img', ImageOwnProps>
+export declare const Image: BoxComponent<ImageOwnProps, 'img'>
 
-export interface InlineAlertProps extends PaneProps {
+export interface InlineAlertOwnProps extends PaneOwnProps {
   intent?: IntentTypes
 
   /**
@@ -1030,13 +1041,14 @@ export interface InlineAlertProps extends PaneProps {
   size?: keyof Typography['text']
 }
 
-export declare const InlineAlert: BoxComponent<InlineAlertProps, 'div'>
+export type InlineAlertProps = PolymorphicBoxProps<'div', InlineAlertOwnProps>
+export declare const InlineAlert: BoxComponent<InlineAlertOwnProps, 'div'>
 
-export type LabelProps = TextProps
+export type LabelOwnProps = TextOwnProps
+export type LabelProps = PolymorphicBoxProps<'label', LabelOwnProps>
+export declare const Label: BoxComponent<LabelOwnProps, 'label'>
 
-export declare const Label: BoxComponent<LabelProps, 'label'>
-
-export interface LinkProps extends TextProps {
+export interface LinkOwnProps extends TextOwnProps {
   /**
    * This attribute names a relationship of the linked document to the current document.
    * Common use case is: rel="noopener noreferrer".
@@ -1060,9 +1072,10 @@ export interface LinkProps extends TextProps {
   className?: string
 }
 
-export declare const Link: BoxComponent<LinkProps, 'a'>
+export type LinkProps = PolymorphicBoxProps<'a', LinkOwnProps>
+export declare const Link: BoxComponent<LinkOwnProps, 'a'>
 
-export interface ListItemProps extends TextProps {
+export interface ListItemOwnProps extends TextOwnProps {
   /**
    * When passed, adds a icon before the list item.
    * See Evergreen `Icon` for documentation.
@@ -1074,14 +1087,15 @@ export interface ListItemProps extends TextProps {
   iconColor?: string
 }
 
-export declare const ListItem: BoxComponent<ListItemProps, 'li'>
+export type ListItemProps = PolymorphicBoxProps<'li', ListItemOwnProps>
+export declare const ListItem: BoxComponent<ListItemOwnProps, 'li'>
 export declare const Li: typeof ListItem
 
 export interface MenuProps {
   children: React.ReactNode[] | React.ReactNode
 }
 
-export interface MenuItemProps extends PaneProps {
+export interface MenuItemOwnProps extends PaneOwnProps {
   onSelect?: (event: React.SyntheticEvent) => void
   icon?: React.ElementType | JSX.Element | null | false
   secondaryText?: JSX.Element
@@ -1089,7 +1103,9 @@ export interface MenuItemProps extends PaneProps {
   intent?: IntentTypes
 }
 
-export interface MenuGroupProps extends Omit<PaneProps, 'title'> {
+export type MenuItemProps = PolymorphicBoxProps<'div', MenuItemOwnProps>
+
+export interface MenuGroupProps extends Omit<PaneOwnProps, 'title'> {
   title?: React.ReactNode
   children: React.ReactNode[] | React.ReactNode
 }
@@ -1110,7 +1126,7 @@ export interface MenuOptionsGroupProps<T> {
   options: Array<{ value: T, label: string }>
 }
 
-declare const MenuItem: BoxComponent<MenuItemProps, 'div'>
+declare const MenuItem: BoxComponent<MenuItemOwnProps, 'div'>
 declare const MenuDivider: React.FC<{}>
 declare const MenuGroup: React.FC<MenuGroupProps>
 declare const MenuOption: React.FC<MenuOptionProps>
@@ -1124,7 +1140,7 @@ export declare const Menu: React.FC<MenuProps> & {
   OptionsGroup: typeof MenuOptionsGroup
 }
 
-export interface PaneProps {
+export interface PaneOwnProps {
   background?: keyof Colors['background'] | string
   border?: boolean | string
   borderTop?: boolean | string
@@ -1136,11 +1152,12 @@ export interface PaneProps {
   activeElevation?: Elevation
 }
 
-export declare const Pane: BoxComponent<PaneProps, 'div'>
+export type PaneProps = PolymorphicBoxProps<'div', PaneOwnProps>
+export declare const Pane: BoxComponent<PaneOwnProps, 'div'>
 
-export type PillProps = BadgeProps
-
-export declare const Pill: BoxComponent<PillProps, 'strong'>
+export type PillOwnProps = BadgeOwnProps
+export type PillProps = PolymorphicBoxProps<'strong', PillOwnProps>
+export declare const Pill: BoxComponent<PillOwnProps, 'strong'>
 
 export type PopoverStatelessProps = BoxProps<'div'>
 
@@ -1168,14 +1185,15 @@ export interface PopoverProps {
 
 export declare const Popover: React.FC<PopoverProps>
 
-export type ParagraphProps = {
+export type ParagraphOwnProps = {
   size?: keyof Typography['paragraph']
   fontFamily?: FontFamily
 }
 
-export declare const Paragraph: BoxComponent<ParagraphProps, 'p'>
+export type ParagraphProps = PolymorphicBoxProps<'p', ParagraphOwnProps>
+export declare const Paragraph: BoxComponent<ParagraphOwnProps, 'p'>
 
-export declare const Portal: React.FC
+export class Portal extends React.Component {}
 
 export interface PositionerProps {
   position?: PositionTypes
@@ -1206,11 +1224,11 @@ export interface PositionerProps {
 
 export declare const Positioner: React.FC<PositionerProps>
 
-type PreProps = TextProps
+export type PreOwnProps = TextOwnProps
+export type PreProps = PolymorphicBoxProps<'pre', PreOwnProps>
+export declare const Pre: BoxComponent<PreOwnProps, 'pre'>
 
-export declare const Pre: BoxComponent<PreProps, 'pre'>
-
-export interface RadioProps {
+export interface RadioOwnProps {
   /**
    * The id attribute of the radio.
    */
@@ -1259,7 +1277,8 @@ export interface RadioProps {
   appearance?: DefaultAppearance
 }
 
-export declare const Radio: BoxComponent<RadioProps, 'label'>
+export type RadioProps = PolymorphicBoxProps<'label', RadioOwnProps>
+export declare const Radio: BoxComponent<RadioOwnProps, 'label'>
 
 interface RadioGroupOption {
   label: React.ReactNode
@@ -1267,7 +1286,7 @@ interface RadioGroupOption {
   isDisabled?: boolean
 }
 
-export interface RadioGroupProps extends PaneProps {
+export interface RadioGroupOwnProps extends PaneOwnProps {
   /**
    * The default value of the Radio Group when uncontrolled.
    */
@@ -1298,7 +1317,8 @@ export interface RadioGroupProps extends PaneProps {
   onChange?(event: React.ChangeEvent<HTMLInputElement>): void
 }
 
-export declare const RadioGroup: BoxComponent<RadioGroupProps, 'div'>
+export type RadioGroupProps = PolymorphicBoxProps<'div', RadioGroupOwnProps>
+export declare const RadioGroup: BoxComponent<RadioGroupOwnProps, 'div'>
 
 export interface Option {
   label?: string
@@ -1306,7 +1326,7 @@ export interface Option {
   disabled?: boolean
 }
 
-export interface OptionsListProps extends PaneProps {
+export interface OptionsListProps extends PaneOwnProps {
   options?: Option[]
   close?: () => void
   height?: number
@@ -1338,16 +1358,17 @@ export interface OptionsListProps extends PaneProps {
   defaultSearchValue?: string
 }
 
-export class OptionsList extends React.PureComponent<OptionsListProps> {
+export class OptionsList extends React.PureComponent<OptionsListProps & BoxProps<'div'>> {
 }
 
-export interface SearchInputProps extends TextInputProps {
+export interface SearchInputOwnProps extends TextInputOwnProps {
   height?: number
 }
 
-export declare const SearchInput: BoxComponent<SearchInputProps, 'input'>
+export type SearchInputProps = PolymorphicBoxProps<'input', SearchInputOwnProps>
+export declare const SearchInput: BoxComponent<SearchInputOwnProps, 'input'>
 
-export interface SearchTableHeaderCellProps extends TableHeaderCellProps {
+export interface SearchTableHeaderCellOwnProps extends TableHeaderCellOwnProps {
   /**
    * The value of the input.
    */
@@ -1374,20 +1395,22 @@ export interface SearchTableHeaderCellProps extends TableHeaderCellProps {
   icon?: React.ElementType | JSX.Element | null | false
 }
 
-export declare const SearchTableHeaderCell: BoxComponent<SearchTableHeaderCellProps, 'div'>
+export type SearchTableHeaderCellProps = PolymorphicBoxProps<'div', SearchTableHeaderCellOwnProps>
+export declare const SearchTableHeaderCell: BoxComponent<SearchTableHeaderCellOwnProps, 'div'>
 
-export interface SegmentedControlProps {
-  options: Array<{ label: string, value: NonNullable<SegmentedControlProps['value']> }>
+export interface SegmentedControlOwnProps {
+  options: Array<{ label: string, value: NonNullable<SegmentedControlOwnProps['value']> }>
   value?: number | string | boolean
   defaultValue?: number | string | boolean
-  onChange: (value: NonNullable<SegmentedControlProps['value']>) => void
+  onChange: (value: NonNullable<SegmentedControlOwnProps['value']>) => void
   name?: string
   height?: number
 }
 
-export declare const SegmentedControl: BoxComponent<SegmentedControlProps, 'div'>
+export type SegmentedControlProps = PolymorphicBoxProps<'div', SegmentedControlOwnProps>
+export declare const SegmentedControl: BoxComponent<SegmentedControlOwnProps, 'div'>
 
-export interface SelectProps {
+export interface SelectOwnProps {
   /**
    * The initial value of an uncontrolled select
    */
@@ -1429,13 +1452,12 @@ export interface SelectProps {
   onChange?(event: React.ChangeEvent<HTMLSelectElement>): void
 }
 
-export declare const Select: BoxComponent<SelectProps, 'div'>
+export type SelectProps = PolymorphicBoxProps<'div', SelectOwnProps>
+export declare const Select: BoxComponent<SelectOwnProps, 'div'>
 
-export type SelectFieldProps = FormFieldProps & PolymorphicBoxProps<'div', BoxProps<'input'>> & {
-  required?: boolean
-}
-
-export declare const SelectField: React.FC<SelectFieldProps>
+export type SelectFieldOwnProps = FormFieldOwnProps & SelectOwnProps
+export type SelectFieldProps = PolymorphicBoxProps<'div', SelectFieldOwnProps>
+export declare const SelectField: BoxComponent<SelectFieldOwnProps, 'div'>
 
 export interface SelectMenuContentProps {
   close?: OptionsListProps['close']
@@ -1561,7 +1583,7 @@ export interface SideSheetProps {
   shouldCloseOnOverlayClick?: boolean
   shouldCloseOnEscapePress?: boolean
   width?: string | number
-  containerProps?: PaneProps & BoxProps<'div'>
+  containerProps?: PaneOwnProps & BoxProps<'div'>
   // @ts-ignore
   position?: Pick<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
   preventBodyScrolling?: boolean
@@ -1569,15 +1591,15 @@ export interface SideSheetProps {
 
 export declare const SideSheet: React.FC<SideSheetProps>
 
-export type SidebarTabProps = TabProps
+export type SidebarTabOwnProps = TabOwnProps
+export type SidebarTabProps = PolymorphicBoxProps<'span', SidebarTabOwnProps>
+export declare const SidebarTab: BoxComponent<SidebarTabOwnProps, 'span'>
 
-export declare const SidebarTab: BoxComponent<SidebarTabProps, 'span'>
+export interface SmallOwnProps {}
+export type SmallProps = PolymorphicBoxProps<'small', SmallOwnProps>
+export declare const Small: BoxComponent<SmallOwnProps, 'small'>
 
-export interface SmallProps {}
-
-export declare const Small: BoxComponent<SmallProps, 'small'>
-
-export interface SpinnerProps {
+export interface SpinnerOwnProps {
   /**
    * Delay after which spinner should be visible.
    */
@@ -1588,7 +1610,8 @@ export interface SpinnerProps {
   size?: number
 }
 
-export declare const Spinner: BoxComponent<SpinnerProps, 'div'>
+export type SpinnerProps = PolymorphicBoxProps<'div', SpinnerOwnProps>
+export declare const Spinner: BoxComponent<SpinnerOwnProps, 'div'>
 
 export interface StackProps {
   children: (zIndex: number) => React.ReactNode
@@ -1599,11 +1622,11 @@ export declare const Stack: React.FC<StackProps>
 
 export declare const StackingContext: React.Context<number>
 
-export type StrongProps = TextProps
+export type StrongOwnProps = TextOwnProps
+export type StrongProps = PolymorphicBoxProps<'strong', StrongOwnProps>
+export declare const Strong: BoxComponent<StrongOwnProps, 'strong'>
 
-export declare const Strong: BoxComponent<StrongProps, 'strong'>
-
-export interface SwitchProps {
+export interface SwitchOwnProps {
   /**
    * The id attribute of the radio.
    */
@@ -1652,14 +1675,16 @@ export interface SwitchProps {
   defaultChecked?: boolean
 }
 
-export declare const Switch: BoxComponent<SwitchProps, 'label'>
+export type SwitchProps = PolymorphicBoxProps<'label', SwitchOwnProps>
+export declare const Switch: BoxComponent<SwitchOwnProps, 'label'>
 
-export interface TableBodyProps extends PaneProps {
+export interface TableBodyOwnProps extends PaneOwnProps {
 }
 
-export declare const TableBody: BoxComponent<TableBodyProps, 'div'>
+export type TableBodyProps = PolymorphicBoxProps<'div', TableBodyOwnProps>
+export declare const TableBody: BoxComponent<TableBodyOwnProps, 'div'>
 
-export interface TableCellProps extends PaneProps {
+export interface TableCellOwnProps extends PaneOwnProps {
   /**
    * Makes the TableCell focusable. Used by EditableCell.
    * Will add tabIndex={-1 || this.props.tabIndex}.
@@ -1690,9 +1715,10 @@ export interface TableCellProps extends PaneProps {
   className?: string
 }
 
-export declare const TableCell: BoxComponent<TableCellProps, 'div'>
+export type TableCellProps = PolymorphicBoxProps<'div', TableCellOwnProps>
+export declare const TableCell: BoxComponent<TableCellOwnProps, 'div'>
 
-interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' | 'onChange'> {
+interface TableEditableCellProps extends Omit<TextTableCellOwnProps, 'placeholder' | 'onChange'> {
   autoFocus?: boolean
   /**
    * Makes the TableCell focusable.
@@ -1721,19 +1747,21 @@ interface TableEditableCellProps extends Omit<TextTableCellProps, 'placeholder' 
   onChange?(value: string): void
 }
 
-export interface TableHeaderCellProps extends TableCellProps {
+export interface TableHeaderCellOwnProps extends TableCellOwnProps {
 }
 
-export declare const TableHeaderCell: BoxComponent<TableHeaderCellProps, 'div'>
+export type TableHeaderCellProps = PolymorphicBoxProps<'div', TableHeaderCellOwnProps>
+export declare const TableHeaderCell: BoxComponent<TableHeaderCellOwnProps, 'div'>
 
-export interface TableHeadProps extends PaneProps {
+export interface TableHeadOwnProps extends PaneOwnProps {
   height?: number | string
   accountForScrollbar?: boolean
 }
 
-export declare const TableHead: BoxComponent<TableHeadProps, 'div'>
+export type TableHeadProps = PolymorphicBoxProps<'div', TableHeadOwnProps>
+export declare const TableHead: BoxComponent<TableHeadOwnProps, 'div'>
 
-export interface TableRowProps extends PaneProps {
+export interface TableRowOwnProps extends PaneOwnProps {
   /**
    * The height of the row. Remember to add paddings when using "auto".
    */
@@ -1777,9 +1805,10 @@ export interface TableRowProps extends PaneProps {
   onDeselect?(): void
 }
 
-export declare const TableRow: BoxComponent<TableRowProps, 'div'>
+export type TableRowProps = PolymorphicBoxProps<'div', TableRowOwnProps>
+export declare const TableRow: BoxComponent<TableRowOwnProps, 'div'>
 
-export interface TableSelectMenuCellProps extends Omit<TextTableCellProps, 'placeholder'> {
+export interface TableSelectMenuCellProps extends Omit<TextTableCellOwnProps, 'placeholder'> {
   /**
    * Makes the TableCell focusable.
    * Will add tabIndex={-1 || this.props.tabIndex}.
@@ -1803,7 +1832,7 @@ export interface TableSelectMenuCellProps extends Omit<TextTableCellProps, 'plac
   selectMenuProps?: Omit<SelectMenuProps, 'children'>
 }
 
-interface TableVirtualBodyProps extends PaneProps {
+interface TableVirtualBodyProps extends PaneOwnProps {
   children?: React.ReactNode | React.ReactNode[]
   /**
    * Default height of each row.
@@ -1843,10 +1872,12 @@ interface TableVirtualBodyProps extends PaneProps {
   scrollToAlignment?: 'start' | 'center' | 'end' | 'auto'
 }
 
-export interface TableProps extends PaneProps {
+export interface TableOwnProps extends PaneOwnProps {
 }
 
-export declare const Table: BoxComponent<TableProps, 'div'> & {
+export type TableProps = PolymorphicBoxProps<'div', TableOwnProps>
+
+export declare const Table: BoxComponent<TableOwnProps, 'div'> & {
   Body: typeof TableBody
   VirtualBody: BoxComponent<TableVirtualBodyProps, 'div'>
   Head: typeof TableHead
@@ -1860,7 +1891,7 @@ export declare const Table: BoxComponent<TableProps, 'div'> & {
   SelectMenuCell: BoxComponent<TableSelectMenuCellProps, 'div'>
 }
 
-export interface TabProps extends TextProps {
+export interface TabOwnProps extends TextOwnProps {
   /**
    * Function triggered when tab is selected.
    */
@@ -1877,22 +1908,23 @@ export interface TabProps extends TextProps {
   appearance?: DefaultAppearance
 }
 
-export declare const Tab: BoxComponent<TabProps, 'span'>
+export type TabProps = PolymorphicBoxProps<'span', TabOwnProps>
+export declare const Tab: BoxComponent<TabOwnProps, 'span'>
 
-export type TablistProps = BoxProps<'div'>
+export interface TablistOwnProps {}
+export type TablistProps = PolymorphicBoxProps<'div', TablistOwnProps>
+export declare const Tablist: BoxComponent<TablistOwnProps>
 
-export declare const Tablist: BoxComponent<{}>
+export interface TabNavigationOwnProps {}
+export type TabNavigationProps = PolymorphicBoxProps<'nav', TabNavigationOwnProps>
+export declare const TabNavigation: BoxComponent<TabNavigationOwnProps, 'nav'>
 
-export type TabNavigationProps = BoxProps<'nav'>
-
-export declare const TabNavigation: BoxComponent<{}, 'nav'>
-
-export interface TagInputProps {
+export interface TagInputOwnProps {
   addOnBlur?: boolean
   className?: string
   disabled?: boolean
   height?: number
-  inputProps?: PolymorphicBoxProps<'input', TextProps>
+  inputProps?: PolymorphicBoxProps<'input', TextOwnProps>
   inputRef?: React.Ref<HTMLInputElement>
   onAdd?: (values: string[]) => void | false
   onBlur?: (event: React.FocusEvent) => void
@@ -1906,9 +1938,10 @@ export interface TagInputProps {
   values?: string[]
 }
 
-export declare const TagInput: BoxComponent<TagInputProps, 'div'>
+export type TagInputProps = PolymorphicBoxProps<'div', TagInputOwnProps>
+export declare const TagInput: BoxComponent<TagInputOwnProps, 'div'>
 
-export interface TextareaProps extends TextProps {
+export interface TextareaOwnProps extends TextOwnProps {
   required?: boolean
   disabled?: boolean
   isInvalid?: boolean
@@ -1921,9 +1954,10 @@ export interface TextareaProps extends TextProps {
   className?: string
 }
 
-export declare const Textarea: BoxComponent<TextareaProps, 'textarea'>
+export type TextareaProps = PolymorphicBoxProps<'textarea', TextareaOwnProps>
+export declare const Textarea: BoxComponent<TextareaOwnProps, 'textarea'>
 
-export interface TextareaFieldProps extends TextareaProps {
+export interface TextareaFieldOwnProps extends TextareaOwnProps {
   /**
    * The label used above the input element.
    */
@@ -1959,9 +1993,10 @@ export interface TextareaFieldProps extends TextareaProps {
   inputWidth?: number | string
 }
 
-export declare const TextareaField: React.FC<TextareaFieldProps>
+export type TextareaFieldProps = PolymorphicBoxProps<'textarea', TextareaFieldOwnProps>
+export declare const TextareaField: BoxComponent<TextareaFieldOwnProps, 'textarea'>
 
-export interface TextDropdownButtonProps extends TextProps {
+export interface TextDropdownButtonOwnProps extends TextOwnProps {
   /**
    * Forcefully set the active state of a button.
    * Useful in conjuction with a Popover.
@@ -1982,9 +2017,10 @@ export interface TextDropdownButtonProps extends TextProps {
   className?: string
 }
 
-export declare const TextDropdownButton: BoxComponent<TextDropdownButtonProps, 'button'>
+export type TextDropdownButtonProps = PolymorphicBoxProps<'button', TextDropdownButtonOwnProps>
+export declare const TextDropdownButton: BoxComponent<TextDropdownButtonOwnProps, 'button'>
 
-export interface TextTableCellProps extends TableCellProps {
+export interface TextTableCellOwnProps extends TableCellOwnProps {
   /**
    * Adds textAlign: right and fontFamily: mono.
    */
@@ -1992,25 +2028,28 @@ export interface TextTableCellProps extends TableCellProps {
   /**
    * Pass additional props to the Text component.
    */
-  textProps?: PolymorphicBoxProps<'span', TextProps>
+  textProps?: PolymorphicBoxProps<'span', TextOwnProps>
 }
 
-export declare const TextTableCell: BoxComponent<TextTableCellProps, 'div'>
+export type TextTableCellProps = PolymorphicBoxProps<'div', TextTableCellOwnProps>
+export declare const TextTableCell: BoxComponent<TextTableCellOwnProps, 'div'>
 
-export type TextTableHeaderCellProps = TableCellProps & {
-  textProps?: PolymorphicBoxProps<'span', TextProps>
+export type TextTableHeaderCellOwnProps = TableCellOwnProps & {
+  textProps?: PolymorphicBoxProps<'span', TextOwnProps>
 }
 
-export declare const TextTableHeaderCell: BoxComponent<TextTableHeaderCellProps, 'div'>
+export type TextTableHeaderCellProps = PolymorphicBoxProps<'div', TextTableHeaderCellOwnProps>
+export declare const TextTableHeaderCell: BoxComponent<TextTableHeaderCellOwnProps, 'div'>
 
-export type TextProps = {
+export type TextOwnProps = {
   size?: keyof Typography['text']
   fontFamily?: FontFamily | string
 }
 
-export declare const Text: BoxComponent<TextProps, 'span'>
+export type TextProps = PolymorphicBoxProps<'span', TextOwnProps>
+export declare const Text: BoxComponent<TextOwnProps, 'span'>
 
-export interface TextInputProps extends TextProps {
+export interface TextInputOwnProps extends TextOwnProps {
   /**
    * Makes the input element required.
    */
@@ -2046,9 +2085,10 @@ export interface TextInputProps extends TextProps {
   className?: string
 }
 
-export declare const TextInput: BoxComponent<TextInputProps, 'input'>
+export type TextInputProps = PolymorphicBoxProps<'input', TextInputOwnProps>
+export declare const TextInput: BoxComponent<TextInputOwnProps, 'input'>
 
-export interface TextInputFieldProps extends FormFieldProps {
+export interface TextInputFieldOwnProps extends FormFieldOwnProps {
   /**
    * The label used above the input element.
    */
@@ -2088,9 +2128,10 @@ export interface TextInputFieldProps extends FormFieldProps {
   inputWidth?: number | string
 }
 
-export declare const TextInputField: BoxComponent<TextInputFieldProps, 'input'>
+export type TextInputFieldProps = PolymorphicBoxProps<'input', TextInputFieldOwnProps>
+export declare const TextInputField: BoxComponent<TextInputFieldOwnProps, 'input'>
 
-export interface TooltipStatelessProps extends PaneProps {
+export interface TooltipStatelessProps extends PaneOwnProps {
   /**
    * The appearance of the tooltip.
    */
@@ -2130,17 +2171,18 @@ export interface TooltipProps {
 
 export declare const Tooltip: React.FC<TooltipProps>
 
-export interface OrderedListProps {
+export interface OrderedListOwnProps {
   /**
    * Size of the text used in a list item.
    */
   size?: keyof Typography['text']
 }
 
-export declare const OrderedList: BoxComponent<OrderedListProps, 'ol'>
+export type OrderedListProps = PolymorphicBoxProps<'ol', OrderedListOwnProps>
+export declare const OrderedList: BoxComponent<OrderedListOwnProps, 'ol'>
 export declare const Ol: typeof OrderedList
 
-export interface UnorderedListProps {
+export interface UnorderedListOwnProps {
   /**
    * Size of the text used in a list item.
    */
@@ -2156,7 +2198,8 @@ export interface UnorderedListProps {
   iconColor?: string
 }
 
-export declare const UnorderedList: BoxComponent<UnorderedListProps, 'ul'>
+export type UnorderedListProps = PolymorphicBoxProps<'ul', UnorderedListOwnProps>
+export declare const UnorderedList: BoxComponent<UnorderedListOwnProps, 'ul'>
 export declare const Ul: typeof UnorderedList
 
 export function majorScale(x: number): number
@@ -2257,7 +2300,7 @@ export const toaster: {
   getToasts: () => Toast[]
 }
 
-interface OverlayProps {
+export interface OverlayProps {
   children: React.ReactNode | ((props: { state: TransitionStatus, close: () => void }) => JSX.Element);
 
   isShown?: boolean;
