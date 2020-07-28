@@ -8,19 +8,19 @@ import { TransitionProps, TransitionStatus } from 'react-transition-group/Transi
 
 export { configureSafeHref, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps, EnhancerProps } from 'ui-box'
 
-type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
-type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
-type DefaultAppearance = 'default'
-type AlertAppearance = DefaultAppearance | 'card'
-type ButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
-type CheckboxAppearance = DefaultAppearance
-type IconButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
-type TextInputAppearance = DefaultAppearance | 'primary'
-type TooltipAppearance = DefaultAppearance | 'card'
-type PositionState = 'exited' | 'entering' | 'entered' | 'exiting'
-type FontFamily = 'ui' | 'display' | 'mono'
-type Elevation = 0 | 1 | 2 | 3 | 4
-type FontSizeSmall = 300 | 400
+export type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
+export type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
+export type DefaultAppearance = 'default'
+export type AlertAppearance = DefaultAppearance | 'card'
+export type ButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
+export type CheckboxAppearance = DefaultAppearance
+export type IconButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
+export type TextInputAppearance = DefaultAppearance | 'primary'
+export type TooltipAppearance = DefaultAppearance | 'card'
+export type PositionState = 'exited' | 'entering' | 'entered' | 'exiting'
+export type FontFamily = 'ui' | 'display' | 'mono'
+export type Elevation = 0 | 1 | 2 | 3 | 4
+export type FontSizeSmall = 300 | 400
 
 export interface Colors {
   background: {
