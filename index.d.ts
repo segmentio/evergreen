@@ -1571,7 +1571,7 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
   /**
    * The icon of the search filter.
    */
-  filterIcon?: React.ReactElement
+  filterIcon?: React.ElementType | JSX.Element
   /*
     * When true, menu closes on option selection.
     */
