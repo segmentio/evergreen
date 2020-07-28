@@ -984,6 +984,12 @@ export interface HeadingOwnProps {
 export type HeadingProps = PolymorphicBoxProps<'h2', HeadingOwnProps>
 export declare const Heading: BoxComponent<HeadingOwnProps, 'h2'>
 
+export type IconOwnProps = IconProps & {
+  icon: React.ElementType | JSX.Element
+}
+
+export declare const Icon: ForwardRefComponent<IconOwnProps>
+
 export interface IconButtonOwnProps extends ButtonOwnProps {
   /**
    * Name of a Blueprint UI icon, or an icon element, to render.

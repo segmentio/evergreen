@@ -20,6 +20,7 @@ export {
   FormFieldLabel,
   FormFieldValidationMessage
 } from './form-field'
+export { IconWrapper as Icon } from './icons/src/IconWrapper'
 export { Image } from './image'
 export { Pane, Card } from './layers'
 export { Menu } from './menu'
