@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import arrify from 'arrify'
 import { Popover } from '../../popover'
@@ -33,6 +33,8 @@ const SelectMenu = memo(function SelectMenu(props) {
     ...rest
   } = props
 
+  const selectedArray = useMemo(() => arrify(selected), [selected])
+
   return (
     <Popover
       minWidth={width}
@@ -54,7 +56,7 @@ const SelectMenu = memo(function SelectMenu(props) {
             onSelect,
             onDeselect,
             onFilterChange,
-            selected: arrify(selected)
+            selected: selectedArray
           }}
           close={close}
           detailView={

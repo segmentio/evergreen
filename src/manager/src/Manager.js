@@ -16,11 +16,13 @@ export default class Manager extends React.Component {
     }
   }
 
+  _setState = (...args) => {
+    this.setState(...args)
+  }
+
   render() {
     return this.props.children({
-      setState: (...args) => {
-        this.setState(...args)
-      },
+      setState: this._setState,
       state: this.state
     })
   }
