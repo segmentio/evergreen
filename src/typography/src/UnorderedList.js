@@ -11,7 +11,7 @@ const styles = {
 
 const UnorderedList = memo(
   forwardRef(function UnorderedList(props, ref) {
-    const { children, size = 400, icon, ...rest } = props
+    const { children, size = 400, icon, iconColor, ...rest } = props
 
     const enrichedChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {
@@ -21,6 +21,7 @@ const UnorderedList = memo(
       return React.cloneElement(child, {
         icon,
         size,
+        iconColor,
         // Prefer more granularly defined props if present
         ...child.props
       })
@@ -47,7 +48,12 @@ UnorderedList.propTypes = {
    * When passed, adds a icon before each list item in the list
    * You can override this on a individual list item.
    */
-  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element])
+  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
+
+  /**
+   * The color of the icon in each list item in the list.
+   */
+  iconColor: PropTypes.string
 }
 
 export default UnorderedList

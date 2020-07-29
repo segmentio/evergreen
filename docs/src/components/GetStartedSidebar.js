@@ -20,6 +20,10 @@ export default class GetStartedSidebar extends PureComponent {
           {
             to: '/get-started/theming',
             label: 'Theming'
+          },
+          {
+            to: '/get-started/v5-migration-guide',
+            label: 'Migrating to v5'
           }
         ]
       }

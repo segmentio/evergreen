@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types'
 import React, { forwardRef, memo } from 'react'
 import { IconWrapper } from '../../icons/src/IconWrapper'
-import { majorScale } from '../../scales'
 import Text from './Text'
 
 const ListItem = memo(
   forwardRef(function ListItem(props, ref) {
-    const { children, size, icon, ...rest } = props
+    const { children, size, icon, iconColor, ...rest } = props
 
     let paddingLeft
     if (size === 300) paddingLeft = 4
@@ -19,6 +18,15 @@ const ListItem = memo(
     if (size === 400) iconTop = 3
     if (size === 500) iconTop = 3
     if (size === 600) iconTop = 4
+
+    let iconSize
+    if (size === 300) iconSize = 12
+    if (size === 400) iconSize = 14
+    if (size === 500) iconSize = 14
+    if (size === 600) iconSize = 16
+
+    let iconLeft = -iconSize - 4
+    if (size === 600) iconLeft = -iconSize
 
     return (
       <Text
@@ -34,8 +42,10 @@ const ListItem = memo(
         {icon && (
           <IconWrapper
             icon={icon}
+            color={iconColor}
             position="absolute"
-            left={majorScale(-2)}
+            size={iconSize}
+            left={iconLeft}
             top={iconTop}
           />
         )}
@@ -51,7 +61,12 @@ ListItem.propTypes = {
   /**
    * When provided, adds a icon before the list item.
    */
-  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element])
+  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
+
+  /**
+   * The color of the icon.
+   */
+  iconColor: PropTypes.string
 }
 
 export default ListItem

@@ -1,11 +1,11 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
-import { Button, ArrowLeftIcon, Pane } from '../../../src'
 import DocsMDXProvider from './DocsMDXProvider'
 import TopBar from './TopBar'
 import Layout from './Layout'
 import PageFooter from './PageFooter'
+import GetStartedSidebar from './GetStartedSidebar'
 
 const PageLayout = ({ children }) => (
   <Layout>
@@ -14,23 +14,21 @@ const PageLayout = ({ children }) => (
     </Helmet>
     <div className="MainLayout">
       <TopBar />
-      <Pane
-        width={1024}
-        marginX="auto"
-        marginBottom={160}
-        paddingY={24}
-        paddingX={48}>
-        <Button
-          appearance="minimal"
-          is="a"
-          href="/whats-new"
-          iconBefore={<ArrowLeftIcon size={12} marginRight={8} />}
-          marginTop={30}
-        >
-          Back to What&apos;s New
-        </Button>
-        <DocsMDXProvider>{children}</DocsMDXProvider>
-      </Pane>
+      <main className="MainLayout-main">
+        <div className="MainLayout-content">
+          <section className="MainLayout-contentRight">
+            <div
+              className="Container-nextToSidebar"
+              style={{ marginBottom: 160 }}
+            >
+              <div className="Content">
+                <DocsMDXProvider>{children}</DocsMDXProvider>
+              </div>
+            </div>
+          </section>
+        </div>
+        <GetStartedSidebar />
+      </main>
     </div>
     <PageFooter />
   </Layout>
