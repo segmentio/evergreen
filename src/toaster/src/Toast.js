@@ -123,7 +123,7 @@ const Toast = memo(function Toast(props) {
       zIndex,
       marginBottom: isShown ? 0 : -height
     }),
-    [isShown, height]
+    [isShown, height, zIndex]
   )
 
   return (
