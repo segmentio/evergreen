@@ -7,6 +7,7 @@ import TextTableCell from './TextTableCell'
 import TableCell from './TableCell'
 
 const MIN_SELECT_MENU_WIDTH = 240
+const emptyProps = {}
 
 const SelectMenuCell = memo(function SelectMenuCell(props) {
   const [targetWidth, setTargetWidth] = useState(MIN_SELECT_MENU_WIDTH)
@@ -21,7 +22,7 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
     disabled,
     placeholder,
     isSelectable = true,
-    textProps = {},
+    textProps = emptyProps,
     ...rest
   } = props
 

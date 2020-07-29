@@ -7,6 +7,8 @@ import TextTableCell from './TextTableCell'
 import TableCell from './TableCell'
 import EditableCellField from './EditableCellField'
 
+const emptyProps = {}
+
 const EditableCell = memo(function EditableCell(props) {
   const {
     children,
@@ -14,7 +16,7 @@ const EditableCell = memo(function EditableCell(props) {
     disabled,
     placeholder,
     isSelectable = true,
-    textProps = {},
+    textProps = emptyProps,
     autoFocus = false,
     ...rest
   } = props

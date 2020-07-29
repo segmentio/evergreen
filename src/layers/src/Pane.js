@@ -10,6 +10,8 @@ const StringAndBoolPropType = PropTypes.oneOfType([
   PropTypes.bool
 ])
 
+const emptyObject = {}
+
 const Pane = memo(
   forwardRef(function Pane(props, ref) {
     const {
@@ -25,7 +27,7 @@ const Pane = memo(
       borderBottom,
       borderLeft,
 
-      css = {},
+      css = emptyObject,
       ...restProps
     } = props
     const theme = useTheme()

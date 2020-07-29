@@ -47,6 +47,10 @@ const animationStyles = {
   }
 }
 
+const closeHandler = close => close()
+const noop = () => {}
+const emptyProps = {}
+
 const CornerDialog = memo(function CornerDialog(props) {
   const {
     title,
@@ -60,10 +64,10 @@ const CornerDialog = memo(function CornerDialog(props) {
     cancelLabel = 'Close',
     confirmLabel = 'Learn More',
     onOpenComplete,
-    onCloseComplete = () => {},
-    onCancel = close => close(),
-    onConfirm = close => close(),
-    containerProps = {},
+    onCloseComplete = noop,
+    onCancel = closeHandler,
+    onConfirm = closeHandler,
+    containerProps = emptyProps,
     position = positions.BOTTOM_RIGHT
   } = props
 

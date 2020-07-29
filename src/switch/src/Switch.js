@@ -63,6 +63,8 @@ CheckIcon.propTypes = {
   size: PropTypes.number
 }
 
+const noop = () => {}
+
 const Switch = memo(
   forwardRef(function Switch(props, ref) {
     const {
@@ -70,7 +72,7 @@ const Switch = memo(
       name,
       height = 16,
       checked,
-      onChange = () => {},
+      onChange = noop,
       disabled = false,
       appearance = 'default',
       hasCheckIcon = true,

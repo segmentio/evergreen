@@ -25,6 +25,8 @@ const fuzzyFilter = (options, input, { key }) => {
  */
 const itemRenderer = props => <Option {...props} />
 
+const noop = () => {}
+
 export default class OptionsList extends PureComponent {
   static propTypes = {
     options: PropTypes.arrayOf(OptionShapePropType),
@@ -68,9 +70,9 @@ export default class OptionsList extends PureComponent {
      * TODO: fix hacky solution
      */
     optionSize: 33,
-    onSelect: () => {},
-    onDeselect: () => {},
-    onFilterChange: () => {},
+    onSelect: noop,
+    onDeselect: noop,
+    onFilterChange: noop,
     selected: [],
     renderItem: itemRenderer,
     filterPlaceholder: 'Filter...',

@@ -18,6 +18,8 @@ const styles = {
   tabIndex: 0
 }
 
+const noop = () => {}
+
 const Tab = memo(
   forwardRef(function Tab(props, ref) {
     const theme = useTheme()
@@ -28,8 +30,8 @@ const Tab = memo(
       height = 28,
       is = 'span',
       isSelected,
-      onKeyPress = () => {},
-      onSelect = () => {},
+      onKeyPress = noop,
+      onSelect = noop,
       ...rest
     } = props
 

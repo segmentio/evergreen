@@ -7,6 +7,8 @@ import { useMergedRef } from '../../hooks'
 import { TableRowProvider } from './TableRowContext'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 
+const noop = () => {}
+
 const TableRow = memo(
   forwardRef(function TableRow(props, forwardedRef) {
     const {
@@ -19,9 +21,9 @@ const TableRow = memo(
 
       // Filter out
       onClick,
-      onKeyPress = () => {},
-      onSelect = () => {},
-      onDeselect = () => {},
+      onKeyPress = noop,
+      onSelect = noop,
+      onDeselect = noop,
 
       isHighlighted,
       isSelectable,

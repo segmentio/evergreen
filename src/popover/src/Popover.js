@@ -1,6 +1,7 @@
 import React, {
   memo,
   forwardRef,
+  useRef,
   useState,
   useEffect,
   useImperativeHandle
@@ -11,7 +12,11 @@ import PropTypes from 'prop-types'
 import { Positioner } from '../../positioner'
 import { Tooltip } from '../../tooltip'
 import { Position } from '../../constants'
+import { useMergedRef } from '../../hooks'
 import PopoverStateless from './PopoverStateless'
+
+const noop = () => {}
+const emptyProps = {}
 
 const Popover = memo(
   forwardRef(function Popover(
@@ -23,22 +28,24 @@ const Popover = memo(
       display,
       minHeight = 40,
       minWidth = 200,
-      onBodyClick = () => {},
-      onClose = () => {},
-      onCloseComplete = () => {},
-      onOpen = () => {},
-      onOpenComplete = () => {},
+      onBodyClick = noop,
+      onClose = noop,
+      onCloseComplete = noop,
+      onOpen = noop,
+      onOpenComplete = noop,
       position = Position.BOTTOM,
       shouldCloseOnExternalClick = true,
-      statelessProps = {},
+      statelessProps = emptyProps,
       trigger = 'click',
       ...props
     },
     forwardedRef
   ) {
     const [isShown, setIsShown] = useState(props.isShown)
-    const [popoverNode, setPopoverNode] = useState(null)
-    const [targetRef, setTargetRef] = useState(null)
+    const popoverNode = useRef()
+    const setPopoverNode = useMergedRef(popoverNode)
+    const targetRef = useRef()
+    const setTargetRef = useMergedRef(targetRef)
 
     useImperativeHandle(
       forwardedRef,
@@ -46,7 +53,7 @@ const Popover = memo(
         open,
         close
       }),
-      [popoverNode]
+      [popoverNode.current]
     )
 
     /**
@@ -59,21 +66,23 @@ const Popover = memo(
         // Container ref may be undefined between component mounting and Portal rendering
         // activeElement may be undefined in some rare cases in IE
         if (
-          popoverNode == null || // eslint-disable-line eqeqeq, no-eq-null
+          popoverNode.current == null || // eslint-disable-line eqeqeq, no-eq-null
           document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
           !isShown
         ) {
           return
         }
 
-        const isFocusOutsideModal = !popoverNode.contains(
+        const isFocusOutsideModal = !popoverNode.current.contains(
           document.activeElement
         )
         if (isFocusOutsideModal) {
           // Element marked autofocus has higher priority than the other clowns
-          const autofocusElement = popoverNode.querySelector('[autofocus]')
-          const wrapperElement = popoverNode.querySelector('[tabindex]')
-          const buttonElements = popoverNode.querySelectorAll(
+          const autofocusElement = popoverNode.current.querySelector(
+            '[autofocus]'
+          )
+          const wrapperElement = popoverNode.current.querySelector('[tabindex]')
+          const buttonElements = popoverNode.current.querySelectorAll(
             'button, a, [role="menuitem"], [role="menuitemradio"]'
           )
 
@@ -91,18 +100,20 @@ const Popover = memo(
     const bringFocusBackToTarget = () => {
       return requestAnimationFrame(() => {
         if (
-          targetRef == null || // eslint-disable-line eqeqeq, no-eq-null
-          popoverNode == null || // eslint-disable-line eqeqeq, no-eq-null
+          targetRef.current == null || // eslint-disable-line eqeqeq, no-eq-null
+          popoverNode.current == null || // eslint-disable-line eqeqeq, no-eq-null
           document.activeElement == null // eslint-disable-line eqeqeq, no-eq-null
         ) {
           return
         }
 
-        const isFocusInsideModal = popoverNode.contains(document.activeElement)
+        const isFocusInsideModal = popoverNode.current.contains(
+          document.activeElement
+        )
 
         // Bring back focus on the target.
         if (document.activeElement === document.body || isFocusInsideModal) {
-          targetRef.focus()
+          targetRef.current.focus()
         }
       })
     }
@@ -149,11 +160,11 @@ const Popover = memo(
 
     const handleBodyClick = event => {
       // Ignore clicks on the popover or button
-      if (targetRef && targetRef.contains(event.target)) {
+      if (targetRef.current && targetRef.current.contains(event.target)) {
         return
       }
 
-      if (popoverNode && popoverNode.contains(event.target)) {
+      if (popoverNode.current && popoverNode.current.contains(event.target)) {
         return
       }
 

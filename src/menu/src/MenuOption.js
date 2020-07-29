@@ -5,12 +5,14 @@ import { Text } from '../../typography'
 import { TickIcon } from '../../icons'
 import { useTheme } from '../../theme'
 
+const noop = () => {}
+
 const MenuOption = memo(function MenuOption(props) {
   const {
     id,
     children,
     appearance = 'default',
-    onSelect = () => {},
+    onSelect = noop,
     secondaryText,
     isSelected = false
   } = props

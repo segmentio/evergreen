@@ -125,14 +125,16 @@ const animationStylesClass = {
   }
 }
 
+const noop = () => {}
+
 const SideSheet = memo(function SideSheet(props) {
   const {
     width = 620,
     isShown,
     children,
     containerProps,
-    onOpenComplete = () => {},
-    onCloseComplete = () => {},
+    onOpenComplete = noop,
+    onCloseComplete = noop,
     onBeforeClose,
     shouldCloseOnOverlayClick = true,
     shouldCloseOnEscapePress = true,

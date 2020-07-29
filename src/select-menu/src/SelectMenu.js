@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import arrify from 'arrify'
 import { Popover } from '../../popover'
@@ -8,33 +8,7 @@ import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
 import SelectedPropType from './SelectedPropType'
 
-const getDetailView = (close, detailView) => {
-  if (typeof detailView === 'function') {
-    return {
-      detailView: detailView({ close })
-    }
-  }
-
-  if (detailView) {
-    return { detailView }
-  }
-
-  return {}
-}
-
-const getEmptyView = (close, emptyView) => {
-  if (typeof emptyView === 'function') {
-    return {
-      emptyView: emptyView({ close })
-    }
-  }
-
-  if (emptyView) {
-    return { emptyView }
-  }
-
-  return {}
-}
+const noop = () => {}
 
 const SelectMenu = memo(function SelectMenu(props) {
   const {
@@ -42,8 +16,8 @@ const SelectMenu = memo(function SelectMenu(props) {
     width = 240,
     height = 248,
     options,
-    onSelect = () => {},
-    onDeselect = () => {},
+    onSelect = noop,
+    onDeselect = noop,
     onFilterChange,
     selected,
     position = Position.BOTTOM_LEFT,
@@ -58,6 +32,8 @@ const SelectMenu = memo(function SelectMenu(props) {
     closeOnSelect = false,
     ...rest
   } = props
+
+  const selectedArray = useMemo(() => arrify(selected), [selected])
 
   return (
     <Popover
@@ -80,11 +56,17 @@ const SelectMenu = memo(function SelectMenu(props) {
             onSelect,
             onDeselect,
             onFilterChange,
-            selected: arrify(selected)
+            selected: selectedArray
           }}
           close={close}
-          {...getDetailView(close, detailView)}
-          {...getEmptyView(close, emptyView)}
+          detailView={
+            typeof detailView === 'function'
+              ? detailView({ close })
+              : detailView
+          }
+          emptyView={
+            typeof emptyView === 'function' ? emptyView({ close }) : emptyView
+          }
           closeOnSelect={closeOnSelect}
         />
       )}

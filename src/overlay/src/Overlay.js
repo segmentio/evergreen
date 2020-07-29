@@ -11,7 +11,8 @@ import { useTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
 import preventBodyScroll from '../../lib/prevent-body-scroll'
 
-const NOOP = () => {}
+const noop = () => {}
+const emptyProps = {}
 
 const animationEasing = {
   standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
@@ -65,17 +66,17 @@ const animationStyles = backgroundColor => ({
  */
 const Overlay = memo(function Overlay({
   children,
-  containerProps = {},
+  containerProps = emptyProps,
   preventBodyScrolling = false,
   shouldCloseOnClick = true,
   shouldCloseOnEscapePress = true,
   onBeforeClose,
-  onExit = NOOP,
-  onExiting = NOOP,
-  onExited = NOOP,
-  onEnter = NOOP,
-  onEntering = NOOP,
-  onEntered = NOOP,
+  onExit = noop,
+  onExiting = noop,
+  onExited = noop,
+  onEnter = noop,
+  onEntering = noop,
+  onEntered = noop,
   isShown,
   ...props
 }) {

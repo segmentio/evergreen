@@ -18,6 +18,9 @@ const GET_KEY_FOR_TAG_DELIMITER = {
   space: ' '
 }
 
+const emptyProps = {}
+const emptyArray = []
+
 const TagInput = memo(
   forwardRef(function TagInput(props, ref) {
     const {
@@ -25,9 +28,9 @@ const TagInput = memo(
       disabled = false,
       height = 32,
       separator = /[,\n\r]/,
-      values = [],
+      values = emptyArray,
       tagSubmitKey = 'enter',
-      tagProps = {},
+      tagProps = emptyProps,
       onAdd,
       onChange,
       onRemove,
