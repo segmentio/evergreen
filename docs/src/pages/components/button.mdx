@@ -224,16 +224,16 @@ You should only need the following recommended heights.
 Buttons support an icon on either before or after the label. Avoid using two icons in a button.
 
 ```jsx
-<Pane display="flex" flexWrap="wrap">
-  <Button marginY={8} marginRight={12} iconBefore={<CogIcon />}>Settings</Button>
-  <Button marginY={8} marginRight={12} iconBefore={<EditIcon />}>Edit</Button>
-  <Button marginY={8} marginRight={12} iconBefore={<ManualIcon />}>Docs</Button>
-  <Button marginY={8} marginRight={12} iconBefore={<ArrowLeftIcon />}>Back</Button>
-  <Button marginY={8} marginRight={12} iconBefore={<DownloadIcon />}>Download...</Button>
-  <Button marginY={8} marginRight={12} iconBefore={<TrashIcon />} intent="danger">Delete...</Button>
-  <Button marginY={8} marginRight={12} iconBefore={<SearchIcon />}>Search</Button>
-  <Button marginY={8} marginRight={12} iconAfter={<CaretDownIcon />}>Filter</Button>
-</Pane>
+<>
+  <Button marginY={8} marginRight={12} iconBefore={CogIcon}>Settings</Button>
+  <Button marginY={8} marginRight={12} iconBefore={EditIcon}>Edit</Button>
+  <Button marginY={8} marginRight={12} iconBefore={ManualIcon}>Docs</Button>
+  <Button marginY={8} marginRight={12} iconBefore={ArrowLeftIcon}>Back</Button>
+  <Button marginY={8} marginRight={12} iconBefore={DownloadIcon}>Download...</Button>
+  <Button marginY={8} marginRight={12} iconBefore={TrashIcon} intent="danger">Delete...</Button>
+  <Button marginY={8} marginRight={12} iconBefore={SearchIcon}>Search</Button>
+  <Button marginY={8} marginRight={12} iconAfter={CaretDownIcon}>Filter</Button>
+</>
 ```
 
 <div id="api">

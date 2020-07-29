@@ -84,7 +84,7 @@ If you don't know how to do so, follow this [guide](https://help.github.com/en/g
 
 ### 📖 Step 2. Get storybook up and running
 
-First, `cd` into your local cloned repository and install your `node_modules` with:
+First, move into your local cloned repository with the help of `cd`, after that install your `node_modules` with:
 
 ```
 $ yarn
