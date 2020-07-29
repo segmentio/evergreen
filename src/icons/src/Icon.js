@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useTheme } from '../../theme'
@@ -9,13 +9,15 @@ import { useTheme } from '../../theme'
  * Refer to the LICENSE for BlueprintJS here: https://github.com/palantir/blueprint/blob/develop/LICENSE
  */
 
+const emptyObject = {}
+
 const Icon = forwardRef(function Icon(
   {
     color = 'currentColor',
     size = 16,
     name,
     title,
-    style = {},
+    style = emptyObject,
     svgPaths16,
     svgPaths20,
     ...svgProps
@@ -36,9 +38,9 @@ const Icon = forwardRef(function Icon(
 
   const viewBox = `0 0 ${pixelGridSize} ${pixelGridSize}`
 
-  if (color) {
-    style = { ...style, fill: theme.getIconColor(color) }
-  }
+  const styles = useMemo(() => {
+    return color ? { ...style, fill: theme.getIconColor(color) } : style
+  }, [style, color])
 
   return (
     <Box
@@ -46,7 +48,7 @@ const Icon = forwardRef(function Icon(
       ref={ref}
       {...svgProps}
       data-icon={name}
-      style={style}
+      style={styles}
       width={size}
       height={size}
       viewBox={viewBox}

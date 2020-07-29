@@ -33,6 +33,8 @@ MinusIcon.propTypes = {
   fill: PropTypes.string
 }
 
+const noop = () => {}
+
 const Checkbox = memo(
   forwardRef(function Checkbox(props, forwardedRef) {
     const {
@@ -43,7 +45,7 @@ const Checkbox = memo(
       disabled,
       isInvalid,
       checked = false,
-      onChange = () => {},
+      onChange = noop,
       value,
       indeterminate = false,
       ...rest

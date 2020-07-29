@@ -7,6 +7,8 @@ import { Text } from '../../typography'
 import { useTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
 
+const noop = () => {}
+
 const MenuItem = memo(
   forwardRef(function MenuItem(props, ref) {
     const {
@@ -16,7 +18,7 @@ const MenuItem = memo(
       secondaryText,
       intent = 'none',
       icon,
-      onSelect = () => {},
+      onSelect = noop,
       onKeyPress,
       ...passthroughProps
     } = props

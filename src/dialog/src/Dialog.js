@@ -45,11 +45,14 @@ const animationStyles = {
   }
 }
 
+const closeHandler = close => close()
+const emptyProps = {}
+
 const Dialog = memo(function Dialog({
   children,
   cancelLabel = 'Cancel',
   confirmLabel = 'Confirm',
-  containerProps = {},
+  containerProps = emptyProps,
   contentContainerProps,
   footer,
   hasCancel = true,
@@ -62,11 +65,11 @@ const Dialog = memo(function Dialog({
   isConfirmLoading = false,
   isShown = false,
   minHeightContent = 80,
-  onCancel = close => close(),
+  onCancel = closeHandler,
   onCloseComplete,
-  onConfirm = close => close(),
+  onConfirm = closeHandler,
   onOpenComplete,
-  overlayProps = {},
+  overlayProps = emptyProps,
   preventBodyScrolling = false,
   shouldCloseOnEscapePress = true,
   shouldCloseOnOverlayClick = true,

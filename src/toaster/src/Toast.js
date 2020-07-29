@@ -1,7 +1,15 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, {
+  memo,
+  useMemo,
+  useRef,
+  useState,
+  useEffect,
+  useCallback
+} from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
+import Box from 'ui-box'
 import Alert from '../../alert/src/Alert'
 
 const animationEasing = {
@@ -61,30 +69,29 @@ const Toast = memo(function Toast(props) {
   } = props
 
   const [isShown, setIsShown] = useState(true)
-  const [closeTimer, setCloseTimer] = useState(null)
   const [height, setHeight] = useState(0)
+  const closeTimer = useRef(null)
 
-  const clearCloseTimer = () => {
-    if (closeTimer) {
-      clearTimeout(closeTimer)
-      setCloseTimer(null)
+  const clearCloseTimer = useCallback(() => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current)
+      closeTimer.current = null
     }
-  }
+  })
 
-  const close = () => {
+  const close = useCallback(() => {
     clearCloseTimer()
     setIsShown(false)
-  }
+  })
 
-  const startCloseTimer = () => {
+  const startCloseTimer = useCallback(() => {
     if (duration) {
-      setCloseTimer(
-        setTimeout(() => {
-          close()
-        }, duration * 1000)
-      )
+      clearCloseTimer()
+      closeTimer.current = setTimeout(() => {
+        close()
+      }, duration * 1000)
     }
-  }
+  })
 
   useEffect(() => {
     startCloseTimer()
@@ -100,20 +107,24 @@ const Toast = memo(function Toast(props) {
     }
   }, [isShownProp])
 
-  const handleMouseEnter = () => {
-    clearCloseTimer()
-  }
+  const handleMouseEnter = useCallback(() => clearCloseTimer())
+  const handleMouseLeave = useCallback(() => startCloseTimer())
 
-  const handleMouseLeave = () => {
-    startCloseTimer()
-  }
-
-  const onRef = ref => {
+  const onRef = useCallback(ref => {
     if (ref === null) return
 
     const { height: rectHeight } = ref.getBoundingClientRect()
     setHeight(rectHeight)
-  }
+  })
+
+  const styles = useMemo(
+    () => ({
+      height,
+      zIndex,
+      marginBottom: isShown ? 0 : -height
+    }),
+    [isShown, height]
+  )
 
   return (
     <Transition
@@ -129,13 +140,9 @@ const Toast = memo(function Toast(props) {
           className={animationStyles}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          style={{
-            height,
-            zIndex,
-            marginBottom: isShown ? 0 : -height
-          }}
+          style={styles}
         >
-          <div ref={onRef} style={{ padding: 8 }}>
+          <Box ref={onRef} padding={8}>
             <Alert
               flexShrink={0}
               appearance="card"
@@ -143,12 +150,12 @@ const Toast = memo(function Toast(props) {
               intent={intent}
               title={title}
               isRemoveable={hasCloseButton}
-              onRemove={() => close()}
+              onRemove={close}
               pointerEvents="all"
             >
               {children}
             </Alert>
-          </div>
+          </Box>
         </div>
       )}
     </Transition>

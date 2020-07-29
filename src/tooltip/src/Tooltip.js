@@ -8,6 +8,8 @@ import { Position } from '../../constants'
 import { useId } from '../../hooks'
 import TooltipStateless from './TooltipStateless'
 
+const emptyProps = {}
+
 const Tooltip = memo(function Tooltip(props) {
   const {
     appearance = 'default',
@@ -17,7 +19,7 @@ const Tooltip = memo(function Tooltip(props) {
     showDelay = 0,
     isShown: propIsShown,
     children,
-    statelessProps = {}
+    statelessProps = emptyProps
   } = props
 
   const id = useId('evergreen-tooltip')
@@ -125,9 +127,7 @@ const Tooltip = memo(function Tooltip(props) {
 
   return (
     <Positioner
-      target={({ getRef }) => {
-        return renderTarget({ getRef })
-      }}
+      target={renderTarget}
       isShown={shown}
       position={position}
       animationDuration={160}

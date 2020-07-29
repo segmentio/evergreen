@@ -34,12 +34,14 @@ DefaultTitleView.propTypes = {
   headerHeight: PropTypes.number
 }
 
+const emptyArray = []
+
 const SelectMenuContent = memo(function SelectMenuContent(props) {
   const {
     title,
     width,
     height,
-    options = [],
+    options = emptyArray,
     hasTitle = true,
     hasFilter = true,
     filterPlaceholder,

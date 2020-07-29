@@ -6,6 +6,9 @@ import { Text } from '../../typography'
 import { useId } from '../../hooks'
 import Radio from './Radio'
 
+const noop = () => {}
+const emptyArray = []
+
 const RadioGroup = memo(
   forwardRef(function RadioGroup(props, ref) {
     const {
@@ -13,8 +16,8 @@ const RadioGroup = memo(
       label,
       defaultValue,
       value,
-      options = [],
-      onChange = () => {},
+      options = emptyArray,
+      onChange = noop,
       isRequired = false,
       ...rest
     } = props

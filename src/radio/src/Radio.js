@@ -21,6 +21,8 @@ CircleIcon.propTypes = {
   size: PropTypes.number
 }
 
+const noop = () => {}
+
 const Radio = memo(
   forwardRef(function Radio(props, ref) {
     const {
@@ -30,7 +32,7 @@ const Radio = memo(
       disabled,
       isInvalid = false,
       checked,
-      onChange = () => {},
+      onChange = noop,
       value,
       size = 12,
       isRequired = false,

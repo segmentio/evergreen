@@ -6,6 +6,10 @@ import { Image } from '../../image'
 import TableRow from '../../table/src/TableRow'
 import TextTableCell from '../../table/src/TextTableCell'
 
+const disableProps = { color: 'muted' }
+const selectedProps = { color: 'selected' }
+const emptyProps = {}
+
 export default class Option extends PureComponent {
   static propTypes = {
     label: PropTypes.string,
@@ -35,13 +39,13 @@ export default class Option extends PureComponent {
       ...props
     } = this.props
 
-    const textProps = {}
+    let textProps = emptyProps
     if (disabled) {
-      textProps.color = 'muted'
+      textProps = disableProps
     }
 
     if (isSelected) {
-      textProps.color = 'selected'
+      textProps = selectedProps
     }
 
     return (

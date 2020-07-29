@@ -29,6 +29,8 @@ const getCSS = ({ initialScale, animationDuration }) => ({
   }
 })
 
+const noop = () => {}
+
 const Positioner = memo(
   forwardRef(function Positioner(props, forwardedRef) {
     const {
@@ -40,8 +42,8 @@ const Positioner = memo(
       position = Position.BOTTOM,
       bodyOffset = 6,
       targetOffset = 6,
-      onOpenComplete = () => {},
-      onCloseComplete = () => {}
+      onOpenComplete = noop,
+      onCloseComplete = noop
     } = props
 
     const [dimensions, setDimensions] = useState({

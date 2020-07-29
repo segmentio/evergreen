@@ -1,5 +1,5 @@
 import { css } from 'glamor'
-import React, { memo, forwardRef } from 'react'
+import React, { memo, forwardRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import { IconWrapper } from '../../icons/src/IconWrapper'
@@ -22,18 +22,22 @@ const invisibleInputClass = css({
   }
 }).toString()
 
+const noop = () => {}
+
 const SearchTableHeaderCell = memo(
   forwardRef(function SearchTableHeaderCell(props, ref) {
     const {
       value,
       children,
-      onChange = () => {},
+      onChange = noop,
       autoFocus,
       spellCheck = true,
       placeholder = 'Filter...',
       icon = SearchIcon,
       ...rest
     } = props
+
+    const handleChange = useCallback(e => onChange(e.target.value), [onChange])
 
     return (
       <TableHeaderCell {...rest}>
@@ -50,7 +54,7 @@ const SearchTableHeaderCell = memo(
           flex="1"
           className={invisibleInputClass}
           value={value}
-          onChange={e => onChange(e.target.value)}
+          onChange={handleChange}
           autoFocus={autoFocus}
           spellCheck={spellCheck}
           fontWeight={500}

@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import ScrollbarSize from './ScrollbarSize'
@@ -7,9 +7,9 @@ const TableHead = memo(function TableHead(props) {
   const { children, height = 32, accountForScrollbar = true, ...rest } = props
   const [scrollbarWidth, setScrollBarWidth] = useState(0)
 
-  const handleScrollbarSize = width => {
+  const handleScrollbarSize = useCallback(width => {
     setScrollBarWidth(width)
-  }
+  })
 
   return (
     <Pane

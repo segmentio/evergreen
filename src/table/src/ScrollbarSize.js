@@ -1,33 +1,38 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useRef, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const ScrollbarSize = memo(function ScrollbarSize(props) {
-  const { handleScrollbarSize = () => {} } = props
+const noop = () => {}
 
-  const [innerRef, setInnerRef] = useState()
-  const [outerRef, setOuterRef] = useState()
-  const [innerWidth, setInnerWidth] = useState(null)
-  const [outerWidth, setOuterWidth] = useState(null)
-
-  useEffect(() => {
-    if (innerRef) {
-      setInnerWidth(innerRef.getBoundingClientRect().width)
-    }
-
-    if (outerRef) {
-      setOuterWidth(outerRef.getBoundingClientRect().width)
-    }
-  }, [innerRef, outerRef])
+const ScrollbarSize = memo(function ScrollbarSize({
+  handleScrollbarSize = noop
+}) {
+  const innerRef = useRef()
+  const outerRef = useRef()
+  const [widths, setWidths] = useState({ innerWidth: null, outerWidth: null })
 
   useEffect(() => {
-    if (innerWidth && outerWidth) {
-      handleScrollbarSize(outerWidth - innerWidth)
+    const newWidths = { innerWidth: null, outerWidth: null }
+
+    if (innerRef.current) {
+      newWidths.innerWidth = innerRef.current.getBoundingClientRect().width
+    }
+
+    if (outerRef.current) {
+      newWidths.outerWidth = outerRef.current.getBoundingClientRect().width
+    }
+
+    setWidths(newWidths)
+  }, [])
+
+  useEffect(() => {
+    if (widths.innerWidth && widths.outerWidth) {
+      handleScrollbarSize(widths.outerWidth - widths.innerWidth)
     }
   })
 
   return (
     <div
-      ref={setOuterRef}
+      ref={outerRef}
       aria-hidden
       style={{
         position: 'fixed',
@@ -37,7 +42,7 @@ const ScrollbarSize = memo(function ScrollbarSize(props) {
         overflowY: 'scroll'
       }}
     >
-      <div ref={setInnerRef} />
+      <div ref={innerRef} />
     </div>
   )
 })
