@@ -9,6 +9,8 @@ import { useTheme } from '../../theme'
 
 /* eslint-disable-next-line react/prop-types */
 const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
+  if (!icon) return null
+
   const edgeMargin = -Math.round(spacing * 0.2)
   const innerMargin = Math.round(size * 0.7)
   const marginLeft = edge === 'start' ? edgeMargin : innerMargin

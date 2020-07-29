@@ -38,8 +38,7 @@ IconWrapper.propTypes = {
    * - If given a React element type, it will be rendered with the other icon props
    *   As a consumer, you should never use `<IconWrapper icon={<element />}` directly; simply render `<element />` instead.
    */
-  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element])
-    .isRequired,
+  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
 
   /**
    * Size of the icon, in pixels.
