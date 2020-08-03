@@ -24,7 +24,7 @@ const Combobox = memo(function Combobox(props) {
     ...rest
   } = props
 
-  const disabled = disabled || isLoading
+  const disabled = props.disabled || isLoading
 
   const [isOpenedByButton, setIsOpenedByButton] = useState(false)
 
