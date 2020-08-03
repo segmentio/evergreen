@@ -1,106 +1,48 @@
-import React from 'react'
+import React, { memo, forwardRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
-import warning from '../../lib/warning'
 
-class MenuItem extends React.PureComponent {
-  static propTypes = {
-    /**
-     * Element type to use for the menu item.
-     * For example: `<MenuItem is={ReactRouterLink}>...</MenuItem>`
-     */
-    is: Box.propTypes.is,
+const noop = () => {}
 
-    /**
-     * Function that is called on click and enter/space keypress.
-     */
-    onSelect: PropTypes.func,
-
-    /**
-     * The icon before the label.
-     */
-    icon: PropTypes.oneOfType([
-      PropTypes.elementType,
-      PropTypes.element,
-      PropTypes.string
-    ]),
-
-    /**
-     * The children of the component.
-     */
-    children: PropTypes.node,
-
-    /**
-     * Secondary text shown on the right.
-     */
-    secondaryText: PropTypes.node,
-
-    /**
-     * The default theme only supports one default appearance.
-     */
-    appearance: PropTypes.string.isRequired,
-
-    /**
-     * The intent of the menu item.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
-  static defaultProps = {
-    is: 'div',
-    intent: 'none',
-    appearance: 'default',
-    onSelect: () => {}
-  }
-
-  handleClick = event => {
-    this.props.onSelect(event)
-
-    /* eslint-disable react/prop-types */
-    safeInvoke(this.props.onClick, event)
-    /* eslint-enable react/prop-types */
-  }
-
-  handleKeyPress = event => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      this.props.onSelect(event)
-      event.preventDefault()
-    }
-
-    /* eslint-disable react/prop-types */
-    safeInvoke(this.props.onKeyPress, event)
-    /* eslint-enable react/prop-types */
-  }
-
-  render() {
+const MenuItem = memo(
+  forwardRef(function MenuItem(props, ref) {
     const {
-      is,
+      is = 'div',
       children,
-      theme,
-      appearance,
+      appearance = 'default',
       secondaryText,
-      intent,
+      intent = 'none',
       icon,
+      onSelect = noop,
+      onKeyPress,
       ...passthroughProps
-    } = this.props
+    } = props
 
-    if (process.env.NODE_ENV !== 'production') {
-      warning(
-        'onClick' in this.props,
-        '<Menu.Item> expects `onSelect` prop, but you passed `onClick`.'
-      )
-    }
+    const theme = useTheme()
+
+    const handleClick = useCallback(
+      event => {
+        onSelect(event)
+      },
+      [onSelect]
+    )
+
+    const handleKeyPress = useCallback(
+      event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          onSelect(event)
+          event.preventDefault()
+        }
+
+        safeInvoke(onKeyPress, event)
+      },
+      [onSelect, onKeyPress]
+    )
 
     const themedClassName = theme.getMenuItemClassName(appearance, 'none')
 
@@ -109,25 +51,24 @@ class MenuItem extends React.PureComponent {
         is={is}
         role="menuitem"
         className={themedClassName}
-        onClick={this.handleClick}
-        onKeyPress={this.handleKeyPress}
+        onClick={handleClick}
+        onKeyPress={handleKeyPress}
         height={icon ? 40 : 32}
         tabIndex={0}
         data-isselectable="true"
         display="flex"
         alignItems="center"
+        ref={ref}
         {...passthroughProps}
       >
-        {icon && (
-          <Icon
-            color={intent === 'none' ? 'default' : intent}
-            icon={icon}
-            marginLeft={16}
-            marginRight={-4}
-            size={16}
-            flexShrink={0}
-          />
-        )}
+        <IconWrapper
+          icon={icon}
+          color={intent === 'none' ? 'default' : intent}
+          marginLeft={16}
+          marginRight={-4}
+          size={16}
+          flexShrink={0}
+        />
         <Text color={intent} marginLeft={16} marginRight={16} flex={1}>
           {children}
         </Text>
@@ -138,7 +79,50 @@ class MenuItem extends React.PureComponent {
         )}
       </Pane>
     )
-  }
+  })
+)
+
+MenuItem.propTypes = {
+  /**
+   * Element type to use for the menu item.
+   * For example: `<MenuItem is={ReactRouterLink}>...</MenuItem>`
+   */
+  is: Box.propTypes.is,
+
+  /**
+   * Function that is called on click and enter/space keypress.
+   */
+  onSelect: PropTypes.func,
+
+  /**
+   * The Evergreen or custom icon before the label.
+   */
+  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
+
+  /**
+   * The children of the component.
+   */
+  children: PropTypes.node,
+
+  /**
+   * Secondary text shown on the right.
+   */
+  secondaryText: PropTypes.node,
+
+  /**
+   * The default theme only supports one default appearance.
+   */
+  appearance: PropTypes.string,
+
+  /**
+   * The intent of the menu item.
+   */
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+
+  /**
+   * Callback to invoke onkeypress
+   */
+  onKeyPress: PropTypes.func
 }
 
-export default withTheme(MenuItem)
+export default MenuItem

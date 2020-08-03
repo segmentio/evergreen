@@ -8,15 +8,40 @@ import MDXPlayground from './MDXPlayground'
  */
 const Components = {}
 
+// eslint-disable-next-line prefer-named-capture-group
+const regex = /\{#([a-zA-Z][\w\-_]*)\}/g
+
+const extractId = value => {
+  if (!value || typeof value !== 'string') {
+    return value
+  }
+
+  let [heading, id] = value.split(regex)
+  if (!id) {
+    id = `heading_${value.toLowerCase().replace(/\s/g, '_')}`
+  }
+
+  return [heading, id]
+}
+
+const heading = Component => ({ children, ...props }) => {
+  const [heading, id] = extractId(children)
+  return (
+    <Component className={`heading ${Component}`} {...props} id={id}>
+      {heading}
+    </Component>
+  )
+}
+
 Components.code = MDXPlayground
 Components.inlineCode = props => <code className="code" {...props} />
 Components.wrapper = props => <React.Fragment {...props} />
-Components.h1 = props => <h1 className="heading h1" {...props} />
-Components.h2 = props => <h2 className="heading h2" {...props} />
-Components.h3 = props => <h3 className="heading h3" {...props} />
-Components.h4 = props => <h4 className="heading h4" {...props} />
-Components.h5 = props => <h5 className="heading h5" {...props} />
-Components.h6 = props => <h6 className="heading h6" {...props} />
+Components.h1 = heading('h1')
+Components.h2 = heading('h2')
+Components.h3 = heading('h3')
+Components.h4 = heading('h4')
+Components.h5 = heading('h5')
+Components.h6 = heading('h6')
 Components.p = props => <p className="paragraph" {...props} />
 Components.ul = props => <ul className="ul" {...props} />
 Components.ol = props => <ol className="ol" {...props} />
@@ -41,9 +66,9 @@ export default class DocsMDXProvider extends React.PureComponent {
     super(props)
 
     // This feels hacky...
-    Components.code = newProps => (
-      <MDXPlayground {...newProps} noInline={props.noInline} />
-    )
+    Components.code = newProps => {
+      return <MDXPlayground {...newProps} noInline={props.noInline} />
+    }
   }
 
   render() {

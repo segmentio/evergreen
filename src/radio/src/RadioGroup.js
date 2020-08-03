@@ -1,112 +1,32 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { spacing, position, layout, dimensions } from 'ui-box'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
+import { useId } from '../../hooks'
 import Radio from './Radio'
 
-let radioCount = 1 // Used for generating unique input names
+const noop = () => {}
+const emptyArray = []
 
-export default class RadioGroup extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes some Box APIs.
-     */
-    ...spacing.propTypes,
-    ...position.propTypes,
-    ...layout.propTypes,
-    ...dimensions.propTypes,
-
-    /**
-     * The options for the radios of the Radio Group.
-     */
-    options: PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.node.isRequired,
-        value: PropTypes.string.isRequired,
-        isDisabled: PropTypes.bool
-      })
-    ).isRequired,
-
-    /**
-     * The selected item value when controlled.
-     */
-    value: PropTypes.string,
-
-    /**
-     * The default value of the Radio Group when uncontrolled.
-     */
-    defaultValue: PropTypes.string,
-
-    /**
-     * Function called when state changes.
-     */
-    onChange: PropTypes.func.isRequired,
-
-    /**
-     * Label to display above the radio button options.
-     */
-    label: PropTypes.string,
-
-    /**
-     * The size of the radio circle. This also informs the text size and spacing.
-     */
-    size: PropTypes.oneOf([12, 16]).isRequired,
-
-    /**
-     * When true, the radio get the required attribute.
-     */
-    isRequired: PropTypes.bool.isRequired
-  }
-
-  static defaultProps = {
-    options: [],
-    onChange: () => {},
-    size: 12,
-    isRequired: false
-  }
-
-  constructor(props, context) {
-    super(props, context)
-
-    this.state = {
-      value: props.defaultValue || props.options[0].value
-    }
-
-    this.name = `RadioGroup-${radioCount}`
-    radioCount += 1
-  }
-
-  handleChange = event => {
-    const { value } = event.target
-
-    // Save a render cycle when it's a controlled input
-    if (!this.props.value) {
-      this.setState({ value })
-    }
-
-    if (this.props.onChange) {
-      this.props.onChange(value)
-    }
-  }
-
-  render() {
+const RadioGroup = memo(
+  forwardRef(function RadioGroup(props, ref) {
     const {
-      size,
+      size = 12,
       label,
       defaultValue,
       value,
-      options,
-      onChange,
-      isRequired,
-      ...props
-    } = this.props
+      options = emptyArray,
+      onChange = noop,
+      isRequired = false,
+      ...rest
+    } = props
 
-    // Allows it to behave like a controlled input
-    const selected = value || this.state.value
+    const name = useId('RadioGroup')
+    const selected = value || defaultValue || props.options[0].value
 
     return (
-      <Pane role="group" aria-label={label} {...props}>
+      <Pane role="group" aria-label={label} {...rest} ref={ref}>
         {label && (
           <Text color="muted" fontWeight={500}>
             {label}
@@ -116,16 +36,69 @@ export default class RadioGroup extends PureComponent {
           <Radio
             key={item.value}
             size={size}
-            name={this.name}
+            name={name}
             value={item.value}
             label={item.label}
             checked={selected === item.value}
             disabled={item.isDisabled}
-            onChange={this.handleChange}
+            onChange={onChange}
             isRequired={isRequired}
           />
         ))}
       </Pane>
     )
-  }
+  })
+)
+
+RadioGroup.propTypes = {
+  /**
+   * Composes some Box APIs.
+   */
+  ...spacing.propTypes,
+  ...position.propTypes,
+  ...layout.propTypes,
+  ...dimensions.propTypes,
+
+  /**
+   * The options for the radios of the Radio Group.
+   */
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.node.isRequired,
+      value: PropTypes.string.isRequired,
+      isDisabled: PropTypes.bool
+    })
+  ).isRequired,
+
+  /**
+   * The selected item value when controlled.
+   */
+  value: PropTypes.string,
+
+  /**
+   * The default value of the Radio Group when uncontrolled.
+   */
+  defaultValue: PropTypes.string,
+
+  /**
+   * Function called when state changes.
+   */
+  onChange: PropTypes.func,
+
+  /**
+   * Label to display above the radio button options.
+   */
+  label: PropTypes.string,
+
+  /**
+   * The size of the radio circle. This also informs the text size and spacing.
+   */
+  size: PropTypes.oneOf([12, 16]),
+
+  /**
+   * When true, the radio get the required attribute.
+   */
+  isRequired: PropTypes.bool
 }
+
+export default RadioGroup

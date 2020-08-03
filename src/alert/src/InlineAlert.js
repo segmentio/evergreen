@@ -1,69 +1,25 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { spacing, dimensions, position, layout } from 'ui-box'
-import { withTheme } from '../../theme'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
+import { getIconForIntent } from './getIconForIntent'
 
-class InlineAlert extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes some Box APIs.
-     */
-    ...spacing.propTypes,
-    ...position.propTypes,
-    ...layout.propTypes,
-    ...dimensions.propTypes,
-
-    /**
-     * The content of the alert.
-     */
-    children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-
-    /**
-     * The intent of the alert. This should always be set explicitly.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * When true, show a icon on the left matching the type.
-     * There is no point not showing this.
-     */
-    hasIcon: PropTypes.bool,
-
-    /**
-     * The size of the Text.
-     */
-    size: PropTypes.number,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
-  static defaultProps = {
-    intent: 'none',
-    hasIcon: true,
-    size: 400
-  }
-
-  getIconForIntent = intent => {
-    const { theme } = this.props
-
-    return <Icon size={14} marginTop={2} {...theme.getIconForIntent(intent)} />
-  }
-
-  render() {
-    const { theme, children, intent, hasIcon, size, ...props } = this.props
+const InlineAlert = memo(
+  forwardRef(function InlineAlert(props, ref) {
+    const {
+      children,
+      intent = 'none',
+      hasIcon = true,
+      size = 400,
+      ...restProps
+    } = props
 
     return (
-      <Pane alignItems="center" display="flex" {...props}>
+      <Pane ref={ref} alignItems="center" display="flex" {...restProps}>
         {hasIcon && (
           <Pane display="inline" marginRight={8}>
-            {this.getIconForIntent(intent)}
+            {getIconForIntent(intent, { size: 14, marginTop: 2 })}
           </Pane>
         )}
         <Text size={size} fontWeight={500}>
@@ -71,7 +27,38 @@ class InlineAlert extends PureComponent {
         </Text>
       </Pane>
     )
-  }
+  })
+)
+
+InlineAlert.propTypes = {
+  /**
+   * Composes some Box APIs.
+   */
+  ...spacing.propTypes,
+  ...position.propTypes,
+  ...layout.propTypes,
+  ...dimensions.propTypes,
+
+  /**
+   * The content of the alert.
+   */
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+
+  /**
+   * The intent of the alert. This should always be set explicitly.
+   */
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+
+  /**
+   * When true, show a icon on the left matching the type.
+   * There is no point not showing this.
+   */
+  hasIcon: PropTypes.bool,
+
+  /**
+   * The size of the Text.
+   */
+  size: PropTypes.number
 }
 
-export default withTheme(InlineAlert)
+export default InlineAlert

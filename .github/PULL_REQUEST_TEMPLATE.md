@@ -1,4 +1,4 @@
-<!-- 
+<!--
 # 🎉 Thanks for taking the time to contribute to 🌲Evergreen! 🎉
 
 It is highly appreciated that you take the time to help improve Evergreen.
@@ -17,13 +17,14 @@ Please respect our Code of Conduct, in short:
 - Gracefully accepting constructive criticism.
 - Focusing on what is best for the community.
 - Showing empathy towards other community members.
- -->
- 
-## Overview 
- 
-## Screenshots (if applicable) 
+-->
+
+## Overview
+
+## Screenshots (if applicable)
 
 ## Testing
-- [ ] Updated Typescript types and/or component PropTypes 
-- [ ] Added / modified component docs 
+
+- [ ] Updated Typescript types and/or component PropTypes
+- [ ] Added / modified component docs
 - [ ] Added / modified Storybook stories

@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const HorizontalBarChartAscIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="horizontal-bar-chart-asc"
-      {...props}
-    />
-  ))
+  forwardRef(function HorizontalBarChartAscIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="horizontal-bar-chart-asc"
+        {...props}
+      />
+    )
+  })
 )

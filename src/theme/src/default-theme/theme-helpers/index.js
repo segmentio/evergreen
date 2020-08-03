@@ -1,4 +1,3 @@
-import { Intent } from '../../../../constants'
 import themedProperty from '../utils/themedProperty'
 import { colors, elevations } from '../foundational-styles'
 import { fontFamilies, headings, paragraph, text } from '../typography'
@@ -97,25 +96,6 @@ const getIconColor = color => {
 }
 
 /**
- * Get the properties for an icon based on the intent.
- * @param {Intent} intent
- * @return {Object} properties
- */
-const getIconForIntent = intent => {
-  switch (intent) {
-    case Intent.SUCCESS:
-      return { icon: 'tick-circle', color: 'success' }
-    case Intent.DANGER:
-      return { icon: 'error', color: 'danger' }
-    case Intent.WARNING:
-      return { icon: 'warning-sign', color: 'warning' }
-    case Intent.NONE:
-    default:
-      return { icon: 'info-sign', color: 'info' }
-  }
-}
-
-/**
  * Heading styles.
  * @param {number} size - 100–900. 500 is default.
  * @return {Object} heading style.
@@ -183,7 +163,6 @@ export {
   getBackground,
   getElevation,
   getIconColor,
-  getIconForIntent,
   getHeadingStyle,
   getTextStyle,
   getParagraphStyle,

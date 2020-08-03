@@ -1,67 +1,59 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 
-export default class UnorderedList extends PureComponent {
-  static propTypes = {
-    ...Box.propTypes,
+const styles = {
+  margin: 0,
+  marginLeft: '1.1em',
+  padding: 0,
+  listStyle: 'disc'
+}
 
-    /**
-     * Size of the text used in a list item.
-     * Can be: 300, 400, 500, 600.
-     */
-    size: PropTypes.oneOf([300, 400, 500, 600]).isRequired,
+const UnorderedList = memo(
+  forwardRef(function UnorderedList(props, ref) {
+    const { children, size = 400, icon, iconColor, ...rest } = props
 
-    /**
-     * When passed, adds a icon before each list item in the list
-     * You can override this on a individual list item.
-     */
-    icon: PropTypes.oneOfType([
-      PropTypes.elementType,
-      PropTypes.element,
-      PropTypes.string
-    ]),
-
-    /**
-     * The color of the icon in each list item in the list.
-     */
-    iconColor: PropTypes.string
-  }
-
-  static defaultProps = {
-    size: 400
-  }
-
-  static styles = {
-    is: 'ul',
-    margin: 0,
-    marginLeft: '1.1em',
-    padding: 0,
-    listStyle: 'disc'
-  }
-
-  render() {
-    const { children, size, icon, iconColor, ...props } = this.props
-
-    // Only pass down icon-related props if specified
-    const inheritedProps = icon ? { size, icon, iconColor } : { size }
-
-    const finalChildren = React.Children.map(children, child => {
+    const enrichedChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {
         return child
       }
 
       return React.cloneElement(child, {
-        ...inheritedProps,
-        // Prefer more granularly defined icon if present
+        icon,
+        size,
+        iconColor,
+        // Prefer more granularly defined props if present
         ...child.props
       })
     })
 
     return (
-      <Box {...UnorderedList.styles} {...props}>
-        {finalChildren}
+      <Box is="ul" {...styles} {...rest} ref={ref}>
+        {enrichedChildren}
       </Box>
     )
-  }
+  })
+)
+
+UnorderedList.propTypes = {
+  ...Box.propTypes,
+
+  /**
+   * Size of the text used in a list item.
+   * Can be: 300, 400, 500, 600.
+   */
+  size: PropTypes.oneOf([300, 400, 500, 600]),
+
+  /**
+   * When passed, adds a icon before each list item in the list
+   * You can override this on a individual list item.
+   */
+  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
+
+  /**
+   * The color of the icon in each list item in the list.
+   */
+  iconColor: PropTypes.string
 }
+
+export default UnorderedList

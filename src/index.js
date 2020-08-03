@@ -1,9 +1,7 @@
-// eslint-disable-next-line import/no-unassigned-import
-import './backwards-compat-classname'
 import { autoHydrate } from './ssr'
 autoHydrate()
 
-export { configureSafeHref, setClassNamePrefix } from 'ui-box'
+export { configureSafeHref } from 'ui-box'
 export { Alert, InlineAlert } from './alert'
 export { Autocomplete, AutocompleteItem } from './autocomplete'
 export { Avatar } from './avatar'
@@ -22,7 +20,7 @@ export {
   FormFieldLabel,
   FormFieldValidationMessage
 } from './form-field'
-export { Icon } from './icon'
+export { IconWrapper as Icon } from './icons/src/IconWrapper'
 export { Image } from './image'
 export { Pane, Card } from './layers'
 export { Menu } from './menu'

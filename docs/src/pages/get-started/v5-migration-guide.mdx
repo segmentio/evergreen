@@ -1,0 +1,168 @@
+import MigrationDocsLayout from '../../components/MigrationDocsLayout'
+
+export default MigrationDocsLayout
+
+## Evergreen v5 Migration Guide
+
+Evergreen v5 is a general health check for the framework. We took a look at what makes Evergreen tick
+and compared it to new standards. We made several updates to try and push the DevX of using the framework
+to be a lot more natural and robust. Below you can see some of the changes we made that may require some
+work on your side to to upgrade to v5.
+
+### Breaking Changes
+
+ - [innerRef is gone. Use ref](#refs)
+ - [Popover triggers](#popovers)
+ - [Importing and using Icons](#icons)
+ - [Downshift v5](#downshift)
+ - [Switch no longer manages state](#switch)
+ - [RadioGroup onChange arguments](#radiogroup)
+
+### innerRef no longer supported {#refs}
+
+Previous versions of `ui-box` and Evergreen relied on passing around `innerRef` props to forward refs to the underlying components.
+We've centralized on the standard way of using refs in React: passing a `ref` directly on the component. Almost all Evergreen components
+support forwarding refs.
+
+Note: If you find a component that you think should be forwarding refs and isn't, please open an issue on GitHub!
+
+Here's an example of how to update your code:
+
+```diff static
+ const MyComponent = () => {
+   const inputRef = React.useRef()
+-  return <TextInput innerRef={inputRef} />
++  return <TextInput ref={inputRef} />
+ }
+```
+
+### Popover triggers {#popovers}
+With the removal of `innerRef` in Evergreen, there are some potential changes required with implementations of `Popover`.
+The direct `child` of a `Popover` **must be** a component that can forward refs to a DOM node. If you are using class components,
+you'll need to update your code. We've found the easiest path is to use an Evergreen component – which already handle ref forwarding.
+You can see an example below:
+
+```diff static
+const MyComponent = () => {
+  return (
+    <Popover content={(<Heading size={400} padding={16}>Example Popover</Heading>)}
++     <Pane display="inline-flex">
+        <MyClassComponent />
++     </Pane>
+    </Popover>
+  )
+}
+```
+
+We recommend using `Button` or `IconButton` as the trigger, because it provides better accessibility:
+
+```diff static
+const MyComponent = () => {
+  return (
+    <Popover content={(<Heading size={400} padding={16}>Example Popover</Heading>)}
+-     <MyClassComponent />
++     <Button>Click me!</Button>
+    </Popover>
+  )
+}
+```
+
+### Importing and using Icons {#icons}
+
+Previously, the way we shipped icons in `evergreen-ui@^4` would significantly bloat bundle sizes. Even if you only
+used 1 icon from Evergreen, you would ship all 400+ icons to your end-users.
+
+In `evergreen-ui@^4.26.0` we introduced a new way to import icons that would lead to _some amount_ of tree-shaking.
+
+Finally, in `evergreen-ui@^5.0.0` we have full tree-shaking support. This does impact the way you import icons (`import { Icon } from 'evergreen-ui'`) and pass
+icons as props to other components like `Button`, `IconButton`, `Menu.Item`, `OrderedList` (and `Ol`), `UnorderedList` (and `Ul`).
+
+We updated all the components that internally were using the `Icon` component and updated the prop to no longer expect a string but a React node.
+We also removed the `Icon` component from Evergreen itself. This means that all places you were using this component, you will need to
+update to use the new exported icons.
+
+There is also a codemod that can help you with this migration. It can be installed and used from the `codemods` directory. Notably it only
+updates `import { Icon } from 'evergreen-ui'`.
+
+```sh static
+npx jscodeshift -t node_modules/evergreen-ui/codemods/4.28.1.0-4.29.0/replace-icon-imports.js --parser=tsx --extensions=js,ts,tsx <your file target> --dry --print
+```
+
+#### Migration path
+
+Importing an icon:
+
+```diff static
+- import { Icon } from 'evergreen-ui'
++ import { CogIcon } from 'evergreen-ui'
+ 
+- <Icon icon="cog" />
++ <CogIcon />
+```
+
+Passing an icon as a prop:
+
+```diff static
+- import { Button } from 'evergreen-ui'
++ import { Button, CogIcon } from 'evergreen-ui'
+ 
+- <Button iconBefore="cog">
++ <Button iconBefore={CogIcon}>
+    Settings
+  </Button>
+```
+
+### Downshift v5 {#downshift}
+
+We upgraded the version of Downshift we use internally in Evergreen from version `3.3.1` to `5.2.0`. As part of this some
+component props have been deprecated and are no longer available in the components that use Downshift.
+See the [diff in #792](https://github.com/segmentio/evergreen/pull/792).
+
+#### Components affected
+ - `AutoComplete`
+ - `Combobox`
+
+#### Props removed
+ - `defaultSelectedItem` - use `initialSelectedItem`
+ - `defaultInputValue` - use `initialInputValue`
+ - `getButtonProps` - use `getToggleButtonProps`
+
+### Switch is uncontrolled {#switch}
+
+To unify usage of form components across Evergreen, we updated `Switch` to more closely match other components, such as `Checkbox`.
+When using the component it is now required that you pass the component an `onChange` callback method when wanting to manage state.
+
+```diff static
+const [switchIsActive, setSwitchActive] = useState(false)
+ 
++ const onChange = (event) => {
++   setSwitchActive(event.target.checked)
++ }
+ 
+- <Switch checked={switchIsActive} />
++ <Switch checked={switchIsActive} onChange={onChange} />
+```
+
+### Radio and RadioGroup onChange arguments {#radiogroup}
+
+`RadioGroup`'s `onChange` handler now bubbles the _event_ directly from children `Radio` inputs instead of bubbling the _value_.
+
+This change was made to help improve the internal consistency with `onChange` handlers and to more closely match `onChange` event signature expecations.
+
+```diff static
+const items = [{ label: 'one', value: '1' }, { label: 'two', value: '2' }]
+const [selected, setSelected] = useState()
+
+<RadioGroup
+  items={items}
+-  onChange={selectedValue => setSelected(selectedValue)}
++  onChange={event => setSelected(event.target.value)}
+/>
+```
+
+Similarly, we removed the second argument from `Radio`'s `onChange` handler:
+
+```diff static
+- <Radio onChange={(event, checked) => console.log(checked)} />
+- <Radio onChange={(event) => console.log(event.target.checked)} />
+```

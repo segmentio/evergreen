@@ -10,3 +10,4 @@ node_modules
 /npm-shrinkwrap.json
 /package-lock.json
 /.idea/
+/storybook-static/

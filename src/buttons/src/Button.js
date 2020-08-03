@@ -1,135 +1,67 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { dimensions, spacing, position, layout } from 'ui-box'
+import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 
-class Button extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the dimensions spec from the Box primitive.
-     */
-    ...dimensions.propTypes,
+/* eslint-disable-next-line react/prop-types */
+const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
+  if (!icon) return null
 
-    /**
-     * Composes the spacing spec from the Box primitive.
-     */
-    ...spacing.propTypes,
+  const edgeMargin = -Math.round(spacing * 0.2)
+  const innerMargin = Math.round(size * 0.7)
+  const marginLeft = edge === 'start' ? edgeMargin : innerMargin
+  const marginRight = edge === 'end' ? edgeMargin : innerMargin
 
-    /**
-     * Composes the position spec from the Box primitive.
-     */
-    ...position.propTypes,
+  return (
+    <IconWrapper
+      icon={icon}
+      size={size}
+      marginLeft={marginLeft}
+      marginRight={marginRight}
+    />
+  )
+})
 
-    /**
-     * Composes the layout spec from the Box primitive.
-     */
-    ...layout.propTypes,
+const styles = {
+  position: 'relative',
+  fontFamily: 'ui',
+  fontWeight: 500,
+  display: 'inline-flex',
+  alignItems: 'center',
+  flexWrap: 'nowrap'
+}
 
-    /**
-     * The intent of the button.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+const Button = memo(
+  forwardRef(function Button(props, ref) {
+    const theme = useTheme()
 
-    /**
-     * The appearance of the button.
-     */
-    appearance: PropTypes.oneOf(['default', 'minimal', 'primary']).isRequired,
-
-    /**
-     * When true, show a loading spinner before the children.
-     * This also disables the button.
-     */
-    isLoading: PropTypes.bool,
-
-    /**
-     * Forcefully set the active state of a button.
-     * Useful in conjuction with a Popover.
-     */
-    isActive: PropTypes.bool,
-
-    /**
-     * Sets an icon before the text. Can be any icon from Evergreen or a custom element.
-     */
-    iconBefore: PropTypes.oneOfType([
-      PropTypes.elementType,
-      PropTypes.element,
-      PropTypes.string
-    ]),
-
-    /**
-     * Sets an icon after the text. Can be any icon from Evergreen or a custom element.
-     */
-    iconAfter: PropTypes.oneOfType([
-      PropTypes.elementType,
-      PropTypes.element,
-      PropTypes.string
-    ]),
-
-    /**
-     * When true, the button is disabled.
-     * isLoading also sets the button to disabled.
-     */
-    disabled: PropTypes.bool,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
-
-    /**
-     * Class name passed to the button.
-     * Only use if you know what you are doing.
-     */
-    className: PropTypes.string
-  }
-
-  static defaultProps = {
-    appearance: 'default',
-    height: 32,
-    intent: 'none',
-    isActive: false,
-    paddingBottom: 0,
-    paddingTop: 0
-  }
-
-  static styles = {
-    position: 'relative',
-    fontFamily: 'ui',
-    fontWeight: 500,
-    display: 'inline-flex',
-    alignItems: 'center',
-    flexWrap: 'nowrap'
-  }
-
-  render() {
     const {
-      theme,
       className,
 
-      intent,
-      height,
-      isActive,
+      intent = 'none',
+      height = 32,
+      isActive = false,
       children,
       disabled,
-      appearance,
+      appearance = 'default',
       isLoading,
 
       // Paddings
       paddingRight,
       paddingLeft,
-      paddingTop,
-      paddingBottom,
+      paddingTop = 0,
+      paddingBottom = 0,
 
       // Icons
-      iconBefore: iconBeforeKey,
-      iconAfter: iconAfterKey,
+      iconBefore,
+      iconAfter,
 
-      ...props
-    } = this.props
+      ...restProps
+    } = props
 
     const themedClassName = theme.getButtonClassName(appearance, intent)
     const textSize = theme.getTextSizeForControlHeight(height)
@@ -137,37 +69,14 @@ class Button extends PureComponent {
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
     const iconSize = theme.getIconSizeForButton(height)
 
-    const pr =
-      paddingRight !== undefined ? paddingRight : Math.round(height / 2) // eslint-disable-line no-negated-condition
-    const pl = paddingLeft !== undefined ? paddingLeft : Math.round(height / 2) // eslint-disable-line no-negated-condition
-
-    let iconBefore
-    if (iconBeforeKey) {
-      iconBefore = (
-        <Icon
-          icon={iconBeforeKey}
-          size={iconSize}
-          marginLeft={-Math.round(pl * 0.2)}
-          marginRight={Math.round(iconSize * 0.7)}
-        />
-      )
-    }
-
-    let iconAfter
-    if (iconAfterKey) {
-      iconAfter = (
-        <Icon
-          icon={iconAfterKey}
-          size={iconSize}
-          marginRight={-Math.round(pl * 0.2)}
-          marginLeft={Math.round(iconSize * 0.7)}
-        />
-      )
-    }
+    const padding = Math.round(height / 2)
+    const pr = paddingRight !== undefined ? paddingRight : padding // eslint-disable-line no-negated-condition
+    const pl = paddingLeft !== undefined ? paddingLeft : padding // eslint-disable-line no-negated-condition
 
     return (
       <Text
         is="button"
+        ref={ref}
         className={cx(themedClassName, className)}
         borderTopRightRadius={borderRadius}
         borderBottomRightRadius={borderRadius}
@@ -186,8 +95,8 @@ class Button extends PureComponent {
         height={height}
         lineHeight={`${height}px`}
         {...(isActive ? { 'data-active': true } : {})}
-        {...Button.styles}
-        {...props}
+        {...styles}
+        {...restProps}
         disabled={disabled || isLoading}
       >
         {isLoading && (
@@ -197,12 +106,83 @@ class Button extends PureComponent {
             size={Math.round(height / 2)}
           />
         )}
-        {iconBefore || null}
+        <ButtonIcon
+          icon={iconBefore}
+          size={iconSize}
+          spacing={pl}
+          edge="start"
+        />
         {children}
-        {iconAfter || null}
+        <ButtonIcon icon={iconAfter} size={iconSize} spacing={pr} edge="end" />
       </Text>
     )
-  }
+  })
+)
+
+Button.propTypes = {
+  /**
+   * Composes the dimensions spec from the Box primitive.
+   */
+  ...dimensions.propTypes,
+
+  /**
+   * Composes the spacing spec from the Box primitive.
+   */
+  ...spacing.propTypes,
+
+  /**
+   * Composes the position spec from the Box primitive.
+   */
+  ...position.propTypes,
+
+  /**
+   * Composes the layout spec from the Box primitive.
+   */
+  ...layout.propTypes,
+
+  /**
+   * The intent of the button.
+   */
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+
+  /**
+   * The appearance of the button.
+   */
+  appearance: PropTypes.oneOf(['default', 'minimal', 'primary']),
+
+  /**
+   * When true, show a loading spinner before the children.
+   * This also disables the button.
+   */
+  isLoading: PropTypes.bool,
+
+  /**
+   * Forcefully set the active state of a button.
+   * Useful in conjuction with a Popover.
+   */
+  isActive: PropTypes.bool,
+
+  /**
+   * Sets an icon before the text. Can be any icon from Evergreen or a custom element.
+   */
+  iconBefore: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
+
+  /**
+   * Sets an icon after the text. Can be any icon from Evergreen or a custom element.
+   */
+  iconAfter: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
+
+  /**
+   * When true, the button is disabled.
+   * isLoading also sets the button to disabled.
+   */
+  disabled: PropTypes.bool,
+
+  /**
+   * Class name passed to the button.
+   * Only use if you know what you are doing.
+   */
+  className: PropTypes.string
 }
 
-export default withTheme(Button)
+export default Button

@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const CloudUploadIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="cloud-upload"
-      {...props}
-    />
-  ))
+  forwardRef(function CloudUploadIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="cloud-upload"
+        {...props}
+      />
+    )
+  })
 )

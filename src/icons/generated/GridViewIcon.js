@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const GridViewIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="grid-view"
-      {...props}
-    />
-  ))
+  forwardRef(function GridViewIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="grid-view"
+        {...props}
+      />
+    )
+  })
 )

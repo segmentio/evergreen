@@ -1,12 +1,10 @@
-import React, { PureComponent } from 'react'
+import React, { forwardRef } from 'react'
 import Box from 'ui-box'
 
-export default class TabNavigation extends PureComponent {
-  static propTypes = {
-    ...Box.propTypes
-  }
+const TabNavigation = forwardRef(function TabNavigation(props, ref) {
+  return <Box is="nav" role="navigation" {...props} ref={ref} />
+})
 
-  render() {
-    return <Box is="nav" role="navigation" {...this.props} />
-  }
-}
+TabNavigation.propTypes = Box.propTypes
+
+export default TabNavigation

@@ -49,7 +49,7 @@ storiesOf('toaster', module).add('examples', () => (
         <Button
           marginRight={8}
           onClick={() =>
-            toaster.notify('A simple general message', {
+            toaster.notify('Custom ID, Should only show once', {
               id: 'general-message'
             })
           }

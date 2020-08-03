@@ -1,33 +1,27 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import Box from 'ui-box'
 import Tab from './Tab'
 
-export default class SidebarTab extends PureComponent {
-  static propTypes = {
-    ...Tab.propTypes
-  }
+const styles = {
+  width: '100%',
+  paddingX: 0,
+  paddingLeft: 8,
+  marginX: 0,
+  marginBottom: 4,
+  justifyContent: 'auto'
+}
 
-  static defaultProps = {
-    height: 32
-  }
+const SidebarTab = memo(
+  forwardRef(function SidebarTab(props, ref) {
+    const { children, height = 32, isSelected, ...rest } = props
 
-  static styles = {
-    width: '100%',
-    paddingX: 0,
-    paddingLeft: 8,
-    marginX: 0,
-    marginBottom: 4,
-    justifyContent: 'auto'
-  }
-
-  render() {
-    const { children, height, isSelected, ...props } = this.props
     return (
       <Tab
         isSelected={isSelected}
         height={height}
-        {...SidebarTab.styles}
-        {...props}
+        {...styles}
+        {...rest}
+        ref={ref}
         display="flex"
       >
         <Box is="span" flex="1">
@@ -35,5 +29,9 @@ export default class SidebarTab extends PureComponent {
         </Box>
       </Tab>
     )
-  }
-}
+  })
+)
+
+SidebarTab.propTypes = Tab.propTypes
+
+export default SidebarTab

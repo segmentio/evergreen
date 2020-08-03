@@ -1,122 +1,72 @@
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
-import React, { PureComponent } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
 import { Positioner } from '../../positioner'
 import { Position } from '../../constants'
+import { useId } from '../../hooks'
 import TooltipStateless from './TooltipStateless'
 
-let idCounter = 0
+const emptyProps = {}
 
-export default class Tooltip extends PureComponent {
-  static propTypes = {
-    /**
-     * The appearance of the tooltip.
-     */
-    appearance: PropTypes.oneOf(['default', 'card']).isRequired,
+const Tooltip = memo(function Tooltip(props) {
+  const {
+    appearance = 'default',
+    position = Position.BOTTOM,
+    content,
+    hideDelay = 120,
+    showDelay = 0,
+    isShown: propIsShown,
+    children,
+    statelessProps = emptyProps
+  } = props
 
-    /**
-     * The position the Popover is on.
-     */
-    position: PropTypes.oneOf([
-      Position.TOP,
-      Position.TOP_LEFT,
-      Position.TOP_RIGHT,
-      Position.BOTTOM,
-      Position.BOTTOM_LEFT,
-      Position.BOTTOM_RIGHT,
-      Position.LEFT,
-      Position.RIGHT
-    ]),
+  const id = useId('evergreen-tooltip')
+  const [isShown, setIsShown] = useState(propIsShown || false)
+  const [isShownByTarget, setIsShownByTarget] = useState(false)
+  const [closeTimeout, setCloseTimeout] = useState(null)
 
-    /**
-     * The content of the Popover.
-     */
-    content: PropTypes.node.isRequired,
-
-    /**
-     * Time in ms before hiding the Tooltip.
-     */
-    hideDelay: PropTypes.number.isRequired,
-
-    /**
-     * Time in ms before showing the Tooltip.
-     */
-    showDelay: PropTypes.number.isRequired,
-
-    /**
-     * When True, manually show the Tooltip.
-     */
-    isShown: PropTypes.bool,
-
-    /**
-     * The target button of the Tooltip.
-     */
-    children: PropTypes.node.isRequired,
-
-    /**
-     * Properties passed through to the Tooltip.
-     */
-    statelessProps: PropTypes.object
+  const mouseLeftTarget = () => {
+    setIsShownByTarget(false)
   }
 
-  static defaultProps = {
-    appearance: 'default',
-    position: Position.BOTTOM,
-    hideDelay: 120,
-    showDelay: 0
+  const handleMouseLeaveTarget = debounce(mouseLeftTarget, hideDelay)
+
+  const hide = () => {
+    setIsShown(false)
   }
 
-  constructor(props, context) {
-    super(props, context)
+  const handleHide = debounce(hide, hideDelay)
 
-    this.state = {
-      id: `evergreen-tooltip-${++idCounter}`,
-      willShow: false,
-      isShown: props.isShown,
-      isShownByTarget: false
+  // Component will unmount
+  useEffect(
+    () => () => {
+      clearTimeout(closeTimeout)
+    },
+    []
+  )
+
+  const show = () => {
+    if (isShown) return
+
+    if (!showDelay) {
+      setIsShown(true)
+      return
     }
 
-    this.handleMouseLeaveTarget = debounce(
-      this.handleMouseLeaveTarget,
-      this.props.hideDelay
+    setCloseTimeout(
+      setTimeout(() => {
+        setIsShown(true)
+      }, showDelay)
     )
-
-    this.hide = debounce(this.hide, this.props.hideDelay)
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.timeout)
-  }
-
-  show = () => {
-    if (this.state.isShown) return
-    this.setState({
-      willShow: true
-    })
-    this.timeout = setTimeout(() => {
-      if (!this.state.willShow) return
-      this.setState({
-        isShown: true
-      })
-    }, this.props.showDelay)
-  }
-
-  hide = () => {
-    this.setState({
-      isShown: false,
-      willShow: false
-    })
-  }
-
-  renderTarget = ({ getRef }) => {
-    const { children } = this.props
-
+  const renderTarget = ({ getRef }) => {
     const tooltipTargetProps = {
-      onMouseEnter: this.show,
-      onMouseLeave: this.hide,
-      'aria-describedby': this.state.id
+      onMouseEnter: show,
+      onMouseLeave: handleHide,
+      'aria-describedby': id
     }
 
     /**
@@ -125,7 +75,7 @@ export default class Tooltip extends PureComponent {
      * its props to the Tooltip in a `popoverProps` object.
      */
     // eslint-disable-next-line react/prop-types
-    if (this.props.popoverProps) {
+    if (props.popoverProps) {
       const {
         // eslint-disable-next-line react/prop-types
         getTargetRef,
@@ -133,7 +83,7 @@ export default class Tooltip extends PureComponent {
         isShown,
         ...popoverTargetProps
         // eslint-disable-next-line react/prop-types
-      } = this.props.popoverProps
+      } = props.popoverProps
 
       return React.cloneElement(children, {
         // Add the Popover props to the target.
@@ -141,7 +91,7 @@ export default class Tooltip extends PureComponent {
         // Add the Tooltip props to the target.
         ...tooltipTargetProps,
 
-        innerRef: ref => {
+        ref: ref => {
           // Get the ref for the Tooltip.
           getRef(ref)
           // Pass the ref to the Popover.
@@ -155,75 +105,104 @@ export default class Tooltip extends PureComponent {
      */
     return React.cloneElement(children, {
       ...tooltipTargetProps,
-      innerRef: ref => {
+      ref: ref => {
         getRef(ref)
       }
     })
   }
 
-  isPopoverShown = () =>
-    // eslint-disable-next-line react/prop-types
-    this.props.popoverProps && this.props.popoverProps.isShown
+  // eslint-disable-next-line react/prop-types
+  const isPopoverShown = () => props.popoverProps && props.popoverProps.isShown
 
-  handleMouseEnterTarget = () => {
-    this.setState({
-      isShownByTarget: true
-    })
+  const handleMouseEnterTarget = () => {
+    setIsShownByTarget(true)
   }
 
-  handleMouseLeaveTarget = () => {
-    this.setState({
-      isShownByTarget: false,
-      willShow: false
-    })
+  let shown = (propIsShown || isShown || isShownByTarget) && !isPopoverShown()
+
+  // Tooltip was explicitly set to not be shown
+  if (propIsShown === false) {
+    shown = false
   }
 
-  render() {
-    const {
-      appearance,
-      isShown,
-      content,
-      position,
-      statelessProps = {}
-    } = this.props
-    const { isShown: stateIsShown, isShownByTarget } = this.state
+  return (
+    <Positioner
+      target={renderTarget}
+      isShown={shown}
+      position={position}
+      animationDuration={160}
+    >
+      {({ css, style, state, getRef }) => (
+        <TooltipStateless
+          id={id}
+          appearance={appearance}
+          ref={getRef}
+          data-state={state}
+          style={style}
+          onMouseEnter={handleMouseEnterTarget}
+          onMouseLeave={handleMouseLeaveTarget}
+          {...statelessProps}
+          className={cx(
+            statelessProps.className,
+            css ? glamorCss(css).toString() : undefined
+          )}
+        >
+          {content}
+        </TooltipStateless>
+      )}
+    </Positioner>
+  )
+})
 
-    let shown =
-      (isShown || stateIsShown || isShownByTarget) && !this.isPopoverShown()
+Tooltip.propTypes = {
+  /**
+   * The appearance of the tooltip.
+   */
+  appearance: PropTypes.oneOf(['default', 'card']),
 
-    // Tooltip was explicitly set to not be shown
-    if (isShown === false) {
-      shown = false
-    }
+  /**
+   * The position the Popover is on.
+   */
+  position: PropTypes.oneOf([
+    Position.TOP,
+    Position.TOP_LEFT,
+    Position.TOP_RIGHT,
+    Position.BOTTOM,
+    Position.BOTTOM_LEFT,
+    Position.BOTTOM_RIGHT,
+    Position.LEFT,
+    Position.RIGHT
+  ]),
 
-    return (
-      <Positioner
-        target={({ getRef }) => {
-          return this.renderTarget({ getRef })
-        }}
-        isShown={shown}
-        position={position}
-        animationDuration={160}
-      >
-        {({ css, style, state, getRef }) => (
-          <TooltipStateless
-            id={this.state.id}
-            appearance={appearance}
-            innerRef={ref => getRef(ref)}
-            data-state={state}
-            style={style}
-            onMouseEnter={this.handleMouseEnterTarget}
-            onMouseLeave={this.handleMouseLeaveTarget}
-            {...statelessProps}
-            className={cx(
-              statelessProps.className,
-              css ? glamorCss(css).toString() : undefined
-            )}
-          >
-            {content}
-          </TooltipStateless>
-        )}
-      </Positioner>
-    )
-  }
+  /**
+   * The content of the Popover.
+   */
+  content: PropTypes.node,
+
+  /**
+   * Time in ms before hiding the Tooltip.
+   */
+  hideDelay: PropTypes.number,
+
+  /**
+   * Time in ms before showing the Tooltip.
+   */
+  showDelay: PropTypes.number,
+
+  /**
+   * When True, manually show the Tooltip.
+   */
+  isShown: PropTypes.bool,
+
+  /**
+   * The target button of the Tooltip.
+   */
+  children: PropTypes.node,
+
+  /**
+   * Properties passed through to the Tooltip.
+   */
+  statelessProps: PropTypes.object
 }
+
+export default Tooltip

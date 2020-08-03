@@ -21,21 +21,6 @@ If you need a clickable icon, use `IconButton` instead.
 <CrossIcon />
 ```
 
-## Backwards-compatible icon usage
-
-```jsx
-<Icon icon={CrossIcon} />
-```
-
-## Tree Shaking
-
-Due to existing support for IconButton and Icon to pass in icon strings we can't always get tree shaking for icons (which drastically can reduce the bundle size),
-but it is possible to import icons directly – and is in fact the recommended way to use icons.
-
-```jsx
-<CrossIcon />
-```
-
 ## Resizing the icon
 
 ```jsx
@@ -59,6 +44,13 @@ There are a couple of presets available: `default`, `muted`, `disabled`, `select
 </Pane>
 ```
 
+## Convenience component
+
+There is an exported `Icon` component which acts as a convenient wrapper around icons so you can dynamically pass icons to it:
+
+```jsx
+<Icon icon={someCondition ? CogIcon : NotificationsIcon} size={12} />
+```
 
 
 ## All icons
@@ -68,4 +60,4 @@ Evergreen will choose the most appropriate size based on the `size` passed to th
 
 <IconSearch />
 
-<PropsTable of="Icon" />
+<PropsTable of="AddIcon" />

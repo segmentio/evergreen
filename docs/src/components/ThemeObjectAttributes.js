@@ -10,6 +10,13 @@ const TYPES = {
   objectOf: type => `${TYPES.OBJECT} of ${type}s`
 }
 
+const editorTheme = {
+  plain: {
+    fontSize: '14px'
+  },
+  styles: []
+}
+
 const attributes = [
   {
     name: 'avatarColors',
@@ -41,6 +48,7 @@ const attributes = [
       <div>
         Object that looks like the following:{' '}
         <LiveProvider
+          theme={editorTheme}
           noInline
           disabled
           code={`const fills = {
@@ -60,7 +68,7 @@ const attributes = [
 
 render(null)`}
         >
-          <LiveEditor />
+          <LiveEditor className="prism-code" />
           <LiveError />
           <LivePreview />
         </LiveProvider>

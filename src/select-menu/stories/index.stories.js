@@ -6,6 +6,7 @@ import { Button } from '../../buttons'
 import { Text } from '../../typography'
 import { Pane } from '../../layers'
 import { TextInput } from '../../text-input'
+import { PeopleIcon } from '../../icons'
 import options, { optionsWithIcons } from './starwars-options'
 import Manager from './Manager'
 import { SelectMenu } from '..'
@@ -100,29 +101,18 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
                   display="inline-block"
                 />
               </Box>
-              <Box marginBottom={12}>
-                <Text display="block">Icon: {state.placeholderIcon}</Text>
-                <TextInput
-                  onChange={event =>
-                    setState({ placeholderIcon: event.target.value })
-                  }
-                  width={100}
-                  height={20}
-                  display="inline-block"
-                />
-              </Box>
             </Box>
             <SelectMenu
-              title="Select w/ changeable filter placeholder and icon"
+              title="Select w/ custom filter placeholder and icon"
               options={options}
               selected={state.selected}
               filterPlaceholder={state.placeholderText}
-              filterIcon={state.placeholderIcon}
+              filterIcon={<PeopleIcon />}
               onFilterChange={filterText => setState({ filterText })}
               onSelect={item => setState({ selected: item.value })}
             >
               <Button width={300}>
-                Select w/ changeable filter placeholder and icon
+                Select w/ custom filter placeholder and icon
               </Button>
             </SelectMenu>
           </Pane>

@@ -1,7 +1,15 @@
-import React from 'react'
+import React, {
+  memo,
+  useMemo,
+  useRef,
+  useState,
+  useEffect,
+  useCallback
+} from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import Transition from 'react-transition-group/Transition'
+import { Transition } from 'react-transition-group'
+import Box from 'ui-box'
 import Alert from '../../alert/src/Alert'
 
 const animationEasing = {
@@ -40,163 +48,160 @@ const animationStyles = css({
   height: 0,
   transition: `all ${ANIMATION_DURATION}ms ${animationEasing.deceleration}`,
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.spring
-    } both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`
   },
   '&[data-state="exiting"]': {
     animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
   }
 })
 
-export default class Toast extends React.PureComponent {
-  static propTypes = {
-    /**
-     * The z-index of the toast.
-     */
-    zIndex: PropTypes.number,
+const Toast = memo(function Toast(props) {
+  const {
+    duration,
+    onRemove,
+    isShown: isShownProp,
+    // Template props
+    intent = 'none',
+    zIndex,
+    title,
+    children,
+    hasCloseButton
+  } = props
 
-    /**
-     * Duration of the toast.
-     */
-    duration: PropTypes.number,
+  const [isShown, setIsShown] = useState(true)
+  const [height, setHeight] = useState(0)
+  const closeTimer = useRef(null)
 
-    /**
-     * Function called when the toast is all the way closed.
-     */
-    onRemove: PropTypes.func,
-
-    /**
-     * The type of the alert.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * The title of the alert.
-     */
-    title: PropTypes.node,
-
-    /**
-     * Description of the alert.
-     */
-    children: PropTypes.node,
-
-    /**
-     * When true, show a close icon button inside of the toast.
-     */
-    hasCloseButton: PropTypes.bool,
-
-    /**
-     * When false, will close the Toast and call onRemove when finished.
-     */
-    isShown: PropTypes.bool
-  }
-
-  static defaultProps = {
-    intent: 'none'
-  }
-
-  state = {
-    isShown: true,
-    height: 0
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.isShown !== this.props.isShown) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({
-        isShown: this.props.isShown
-      })
+  const clearCloseTimer = useCallback(() => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current)
+      closeTimer.current = null
     }
-  }
+  })
 
-  componentDidMount() {
-    this.startCloseTimer()
-  }
+  const close = useCallback(() => {
+    clearCloseTimer()
+    setIsShown(false)
+  })
 
-  componentWillUnmount() {
-    this.clearCloseTimer()
-  }
-
-  close = () => {
-    this.clearCloseTimer()
-    this.setState({
-      isShown: false
-    })
-  }
-
-  startCloseTimer = () => {
-    if (this.props.duration) {
-      this.closeTimer = setTimeout(() => {
-        this.close()
-      }, this.props.duration * 1000)
+  const startCloseTimer = useCallback(() => {
+    if (duration) {
+      clearCloseTimer()
+      closeTimer.current = setTimeout(() => {
+        close()
+      }, duration * 1000)
     }
-  }
+  })
 
-  clearCloseTimer = () => {
-    if (this.closeTimer) {
-      clearTimeout(this.closeTimer)
-      this.closeTimer = null
+  useEffect(() => {
+    startCloseTimer()
+
+    return () => {
+      clearCloseTimer()
     }
-  }
+  }, [])
 
-  handleMouseEnter = () => {
-    this.clearCloseTimer()
-  }
+  useEffect(() => {
+    if (isShownProp !== isShown && typeof isShownProp === 'boolean') {
+      setIsShown(isShownProp)
+    }
+  }, [isShownProp])
 
-  handleMouseLeave = () => {
-    this.startCloseTimer()
-  }
+  const handleMouseEnter = useCallback(() => clearCloseTimer())
+  const handleMouseLeave = useCallback(() => startCloseTimer())
 
-  onRef = ref => {
+  const onRef = useCallback(ref => {
     if (ref === null) return
 
-    const { height } = ref.getBoundingClientRect()
+    const { height: rectHeight } = ref.getBoundingClientRect()
+    setHeight(rectHeight)
+  })
 
-    this.setState({
-      height
-    })
-  }
+  const styles = useMemo(
+    () => ({
+      height,
+      zIndex,
+      marginBottom: isShown ? 0 : -height
+    }),
+    [isShown, height, zIndex]
+  )
 
-  render() {
-    return (
-      <Transition
-        appear
-        unmountOnExit
-        timeout={ANIMATION_DURATION}
-        in={this.state.isShown}
-        onExited={this.props.onRemove}
-      >
-        {state => (
-          <div
-            data-state={state}
-            className={animationStyles}
-            onMouseEnter={this.handleMouseEnter}
-            onMouseLeave={this.handleMouseLeave}
-            style={{
-              height: this.state.height,
-              zIndex: this.props.zIndex,
-              marginBottom: this.state.isShown ? 0 : -this.state.height
-            }}
-          >
-            <div ref={this.onRef} style={{ padding: 8 }}>
-              <Alert
-                flexShrink={0}
-                appearance="card"
-                elevation={3}
-                intent={this.props.intent}
-                title={this.props.title}
-                isRemoveable={this.props.hasCloseButton}
-                onRemove={() => this.close()}
-                pointerEvents="all"
-              >
-                {this.props.children}
-              </Alert>
-            </div>
-          </div>
-        )}
-      </Transition>
-    )
-  }
+  return (
+    <Transition
+      appear
+      unmountOnExit
+      timeout={ANIMATION_DURATION}
+      in={isShown}
+      onExited={onRemove}
+    >
+      {state => (
+        <div
+          data-state={state}
+          className={animationStyles}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          style={styles}
+        >
+          <Box ref={onRef} padding={8}>
+            <Alert
+              flexShrink={0}
+              appearance="card"
+              elevation={3}
+              intent={intent}
+              title={title}
+              isRemoveable={hasCloseButton}
+              onRemove={close}
+              pointerEvents="all"
+            >
+              {children}
+            </Alert>
+          </Box>
+        </div>
+      )}
+    </Transition>
+  )
+})
+
+Toast.propTypes = {
+  /**
+   * The z-index of the toast.
+   */
+  zIndex: PropTypes.number,
+
+  /**
+   * Duration of the toast.
+   */
+  duration: PropTypes.number,
+
+  /**
+   * Function called when the toast is all the way closed.
+   */
+  onRemove: PropTypes.func,
+
+  /**
+   * The type of the alert.
+   */
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+
+  /**
+   * The title of the alert.
+   */
+  title: PropTypes.node,
+
+  /**
+   * Description of the alert.
+   */
+  children: PropTypes.node,
+
+  /**
+   * When true, show a close icon button inside of the toast.
+   */
+  hasCloseButton: PropTypes.bool,
+
+  /**
+   * When false, will close the Toast and call onRemove when finished.
+   */
+  isShown: PropTypes.bool
 }
+
+export default Toast

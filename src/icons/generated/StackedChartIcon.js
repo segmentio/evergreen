@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const StackedChartIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="stacked-chart"
-      {...props}
-    />
-  ))
+  forwardRef(function StackedChartIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="stacked-chart"
+        {...props}
+      />
+    )
+  })
 )

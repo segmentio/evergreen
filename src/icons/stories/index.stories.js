@@ -2,9 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import { Heading, Paragraph, Link, Text } from '../../typography'
-import * as IconExports from '..'
-
-const { IconNames, IconNameMapper, ...Icons } = IconExports
+import * as Icons from '..'
 
 storiesOf('icons', module).add('Icons', () => (
   <div>

@@ -1,8 +1,10 @@
 import React from 'react'
 import { filter } from 'fuzzaldrin-plus'
-import { Pane, SearchInput, IconNames, Text, Icon } from 'evergreen-ui'
+import { Pane, SearchInput, Text } from 'evergreen-ui'
+import * as Icons from '../../../src/icons'
+import { IconNameMapper } from '../../../src/icons/generated/IconNameMapper'
 
-const iconKeys = Object.keys(IconNames)
+const iconKeys = Object.keys(IconNameMapper)
 
 export default class IconSearch extends React.PureComponent {
   state = {
@@ -35,6 +37,8 @@ export default class IconSearch extends React.PureComponent {
         />
         <Pane clearfix background="tint1">
           {this.search().map(iconKey => {
+            const iconName = IconNameMapper[iconKey]
+            const Icon = Icons[iconName]
             return (
               <Pane
                 key={iconKey}
@@ -47,9 +51,9 @@ export default class IconSearch extends React.PureComponent {
                 flexDirection="column"
                 textAlign="center"
               >
-                <Icon icon={IconNames[iconKey]} color="default" />
+                <Icon color="default" />
                 <Text is="p" size={300} marginTop={9}>
-                  {IconNames[iconKey]}
+                  {iconName}
                 </Text>
               </Pane>
             )

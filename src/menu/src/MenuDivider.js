@@ -1,8 +1,8 @@
 import React from 'react'
 import { Pane } from '../../layers'
 
-export default class MenuDivider extends React.PureComponent {
-  render() {
-    return <Pane borderBottom />
-  }
+const MenuDivider = () => {
+  return <Pane borderBottom />
 }
+
+export default MenuDivider

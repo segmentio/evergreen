@@ -4,28 +4,30 @@
  * @author ericwbailey
  */
 
-pre.prism-code {
-  background: none;
-  padding: 12px;
-  /* -webkit-font-smoothing: antialiased; */
-  font-weight: 400;
-  background-color: color(var(--N10) shade(15%));
+.prism-code {
   color: white;
+  tab-size: 2;
   font-family: var(--font-mono);
   font-size: 14px;
+  font-weight: 400;
   line-height: 1.6em;
+  background-color: color(var(--N10) shade(15%));
+  overflow: auto;
+}
+
+.prism-code textarea {
+  outline: none;
+}
+
+.prism-code textarea,
+.prism-code pre,
+pre.prism-code {
+  padding: 10px;
   text-align: left;
-  white-space: pre;
   word-spacing: normal;
   word-break: normal;
   word-wrap: normal;
-  tab-size: 2;
   hyphens: none;
-  overflow: auto;
-
-  &:focus {
-    outline: none;
-  }
 }
 
 /* Code blocks */
@@ -43,6 +45,14 @@ pre[class*='language-'] {
   white-space: normal;
 }
 
+.token.inserted {
+  color: rgb(69, 255, 165);
+}
+
+.token.deleted {
+	color: color(var(--red-base) tint(40%) saturation(120%));
+}
+
 .token.comment,
 .token.prolog,
 .token.doctype,
@@ -57,8 +67,7 @@ pre[class*='language-'] {
 .token.property,
 .token.tag,
 .token.constant,
-.token.symbol,
-.token.deleted {
+.token.symbol {
   color: color(var(--red-base) tint(40%) saturation(120%));
 }
 
@@ -78,8 +87,7 @@ pre[class*='language-'] {
 .token.selector,
 .token.attr-name,
 .token.char,
-.token.builtin,
-.token.inserted {
+.token.builtin {
   color: var(--yellow-base);
 }
 

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import VirtualList from 'react-tiny-virtual-list'
 import { Pane } from '../../layers'
-import { TableHead, SearchTableHeaderCell } from '../../table'
 import { SearchIcon } from '../../icons'
+import TableHead from '../../table/src/TableHead'
+import SearchTableHeaderCell from '../../table/src/SearchTableHeaderCell'
 import OptionShapePropType from './OptionShapePropType'
 import Option from './Option'
 
@@ -23,6 +24,8 @@ const fuzzyFilter = (options, input, { key }) => {
  * you can pass custom renderers as long as they work the same as the Option
  */
 const itemRenderer = props => <Option {...props} />
+
+const noop = () => {}
 
 export default class OptionsList extends PureComponent {
   static propTypes = {
@@ -54,11 +57,7 @@ export default class OptionsList extends PureComponent {
     optionSize: PropTypes.number,
     renderItem: PropTypes.func,
     filterPlaceholder: PropTypes.string,
-    filterIcon: PropTypes.oneOfType([
-      PropTypes.elementType,
-      PropTypes.element,
-      PropTypes.string
-    ]),
+    filterIcon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
     optionsFilter: PropTypes.func,
     defaultSearchValue: PropTypes.string
   }
@@ -71,9 +70,9 @@ export default class OptionsList extends PureComponent {
      * TODO: fix hacky solution
      */
     optionSize: 33,
-    onSelect: () => {},
-    onDeselect: () => {},
-    onFilterChange: () => {},
+    onSelect: noop,
+    onDeselect: noop,
+    onFilterChange: noop,
     selected: [],
     renderItem: itemRenderer,
     filterPlaceholder: 'Filter...',
@@ -98,7 +97,7 @@ export default class OptionsList extends PureComponent {
      * https://github.com/segmentio/evergreen/issues/90
      */
     this.requestId = requestAnimationFrame(() => {
-      this.searchRef.querySelector('input').focus()
+      if (this.searchRef) this.searchRef.focus()
     })
 
     window.addEventListener('keydown', this.handleKeyDown)
@@ -283,7 +282,7 @@ export default class OptionsList extends PureComponent {
           <TableHead>
             <SearchTableHeaderCell
               onChange={this.handleChange}
-              innerRef={this.assignSearchRef}
+              ref={this.assignSearchRef}
               borderRight={null}
               height={32}
               placeholder={filterPlaceholder}

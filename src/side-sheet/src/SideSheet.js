@@ -1,5 +1,5 @@
+import React, { memo } from 'react'
 import { css } from 'glamor'
-import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
@@ -62,14 +62,10 @@ const ANIMATION_DURATION = 240
 const withAnimations = (animateIn, animateOut) => {
   return {
     '&[data-state="entering"], &[data-state="entered"]': {
-      animation: `${animateIn} ${ANIMATION_DURATION}ms ${
-        animationEasing.deceleration
-      } both`
+      animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
     },
     '&[data-state="exiting"]': {
-      animation: `${animateOut} ${ANIMATION_DURATION}ms ${
-        animationEasing.acceleration
-      } both`
+      animation: `${animateOut} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
     }
   }
 }
@@ -129,135 +125,126 @@ const animationStylesClass = {
   }
 }
 
-class SideSheet extends React.Component {
-  static propTypes = {
-    /**
-     * Children can be a string, node or a function accepting `({ close })`.
-     */
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+const noop = () => {}
 
-    /**
-     * When true, the Side Sheet is shown.
-     */
-    isShown: PropTypes.bool,
+const SideSheet = memo(function SideSheet(props) {
+  const {
+    width = 620,
+    isShown,
+    children,
+    containerProps,
+    onOpenComplete = noop,
+    onCloseComplete = noop,
+    onBeforeClose,
+    shouldCloseOnOverlayClick = true,
+    shouldCloseOnEscapePress = true,
+    position = Position.RIGHT,
+    preventBodyScrolling
+  } = props
 
-    /**
-     * Function that will be called when the exit transition is complete.
-     */
-    onCloseComplete: PropTypes.func,
-
-    /**
-     * Function that will be called when the enter transition is complete.
-     */
-    onOpenComplete: PropTypes.func,
-
-    /**
-     * Function called when overlay is about to close.
-     * Return `false` to prevent the sheet from closing.
-     * type: `Function -> Boolean`
-     */
-    onBeforeClose: PropTypes.func,
-
-    /**
-     * Boolean indicating if clicking the overlay should close the overlay.
-     */
-    shouldCloseOnOverlayClick: PropTypes.bool,
-
-    /**
-     * Boolean indicating if pressing the esc key should close the overlay.
-     */
-    shouldCloseOnEscapePress: PropTypes.bool,
-
-    /**
-     * Width of the SideSheet.
-     */
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-
-    /**
-     * Properties to pass through the SideSheet container Pane.
-     */
-    containerProps: PropTypes.object,
-
-    /**
-     * Positions the sheet to the top, left, right, or bottom of the screen.
-     */
-    position: PropTypes.oneOf([
-      Position.TOP,
-      Position.BOTTOM,
-      Position.LEFT,
-      Position.RIGHT
-    ]).isRequired,
-
-    /**
-     * Whether or not to prevent scrolling in the outer body
-     */
-    preventBodyScrolling: PropTypes.bool
-  }
-
-  static defaultProps = {
-    width: 620,
-    onCloseComplete: () => {},
-    onOpenComplete: () => {},
-    shouldCloseOnOverlayClick: true,
-    shouldCloseOnEscapePress: true,
-    position: Position.RIGHT
-  }
-
-  render() {
-    const {
-      width,
-      isShown,
-      children,
-      containerProps,
-      onOpenComplete,
-      onCloseComplete,
-      onBeforeClose,
-      shouldCloseOnOverlayClick,
-      shouldCloseOnEscapePress,
-      position,
-      preventBodyScrolling
-    } = this.props
-
-    return (
-      <Overlay
-        isShown={isShown}
-        shouldCloseOnClick={shouldCloseOnOverlayClick}
-        shouldCloseOnEscapePress={shouldCloseOnEscapePress}
-        onBeforeClose={onBeforeClose}
-        onExited={onCloseComplete}
-        onEntered={onOpenComplete}
-        preventBodyScrolling={preventBodyScrolling}
-      >
-        {({ state, close }) => (
-          <Pane
-            width={width}
-            {...paneProps[position]}
-            css={animationStylesClass[position]}
+  return (
+    <Overlay
+      isShown={isShown}
+      shouldCloseOnClick={shouldCloseOnOverlayClick}
+      shouldCloseOnEscapePress={shouldCloseOnEscapePress}
+      onBeforeClose={onBeforeClose}
+      onExited={onCloseComplete}
+      onEntered={onOpenComplete}
+      preventBodyScrolling={preventBodyScrolling}
+    >
+      {({ state, close }) => (
+        <Pane
+          width={width}
+          {...paneProps[position]}
+          css={animationStylesClass[position]}
+          data-state={state}
+        >
+          <SheetClose
+            position={position}
             data-state={state}
+            isClosing={false}
+            onClick={close}
+          />
+          <Pane
+            elevation={4}
+            backgroundColor="white"
+            overflowY="auto"
+            maxHeight="100vh"
+            data-state={state}
+            width={width}
+            {...subpaneProps[position]}
+            {...containerProps}
           >
-            <SheetClose
-              position={position}
-              data-state={state}
-              isClosing={false}
-              onClick={close}
-            />
-            <Pane
-              elevation={4}
-              backgroundColor="white"
-              overflowY="auto"
-              maxHeight="100vh"
-              data-state={state}
-              width={width}
-              {...subpaneProps[position]}
-              {...containerProps}
-            >
-              {typeof children === 'function' ? children({ close }) : children}
-            </Pane>
+            {typeof children === 'function' ? children({ close }) : children}
           </Pane>
-        )}
-      </Overlay>
-    )
-  }
+        </Pane>
+      )}
+    </Overlay>
+  )
+})
+
+SideSheet.propTypes = {
+  /**
+   * Children can be a string, node or a function accepting `({ close })`.
+   */
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+
+  /**
+   * When true, the Side Sheet is shown.
+   */
+  isShown: PropTypes.bool,
+
+  /**
+   * Function that will be called when the exit transition is complete.
+   */
+  onCloseComplete: PropTypes.func,
+
+  /**
+   * Function that will be called when the enter transition is complete.
+   */
+  onOpenComplete: PropTypes.func,
+
+  /**
+   * Function called when overlay is about to close.
+   * Return `false` to prevent the sheet from closing.
+   * type: `Function -> Boolean`
+   */
+  onBeforeClose: PropTypes.func,
+
+  /**
+   * Boolean indicating if clicking the overlay should close the overlay.
+   */
+  shouldCloseOnOverlayClick: PropTypes.bool,
+
+  /**
+   * Boolean indicating if pressing the esc key should close the overlay.
+   */
+  shouldCloseOnEscapePress: PropTypes.bool,
+
+  /**
+   * Width of the SideSheet.
+   */
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /**
+   * Properties to pass through the SideSheet container Pane.
+   */
+  containerProps: PropTypes.object,
+
+  /**
+   * Positions the sheet to the top, left, right, or bottom of the screen.
+   */
+  position: PropTypes.oneOf([
+    Position.TOP,
+    Position.BOTTOM,
+    Position.LEFT,
+    Position.RIGHT
+  ]),
+
+  /**
+   * Whether or not to prevent scrolling in the outer body
+   */
+  preventBodyScrolling: PropTypes.bool
 }
 
 export default SideSheet

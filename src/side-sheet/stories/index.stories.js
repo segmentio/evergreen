@@ -7,14 +7,14 @@ import { Card, Pane } from '../../layers'
 import { Button } from '../../buttons'
 import { Tab } from '../../tabs'
 import { Dialog } from '../../dialog'
-import { TextInput } from '../../text-input'
-import Menu from '../../menu/src/Menu'
 import {
   PeopleIcon,
   CircleArrowRightIcon,
-  EditIcon,
-  TrashIcon
+  TrashIcon,
+  EditIcon
 } from '../../icons'
+import { TextInput } from '../../text-input'
+import Menu from '../../menu/src/Menu'
 import { SideSheet } from '..'
 
 storiesOf('side-sheet', module)

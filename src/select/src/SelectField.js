@@ -1,125 +1,113 @@
-import React, { PureComponent } from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
+import { useId } from '../../hooks'
 import Select from './Select'
 
-let idCounter = 0
+const SelectField = memo(function SelectField(props) {
+  const id = useId('SelectField', props.id)
 
-export default class TextInputField extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Select component as the base.
-     */
-    ...Select.propTypes,
-    ...FormField.propTypes,
+  const {
+    // We are using the id from the state
+    id: unusedId,
 
-    /**
-     * The label used above the input element.
-     */
-    label: PropTypes.node.isRequired,
+    // FormField props
+    hint,
+    label,
+    description,
+    validationMessage,
 
-    /**
-     * Passed on the label as a htmlFor prop.
-     */
-    labelFor: PropTypes.string,
+    // TextInput props
+    inputHeight = 32,
+    /** The input width should be as wide as the form field. */
+    inputWidth = '100%',
+    disabled,
+    required,
+    isInvalid,
+    appearance,
 
-    /**
-     * Whether or not to show an asterix after the label.
-     */
-    isRequired: PropTypes.bool,
+    // Rest props are spread on the FormField
+    ...rest
+  } = props
 
-    /**
-     * An optional description of the field under the label, above the input element.
-     */
-    description: PropTypes.node,
+  /**
+   * Split the wrapper props from the input props.
+   */
+  const { matchedProps, remainingProps } = splitBoxProps(rest)
 
-    /**
-     * An optional hint under the input element.
-     */
-    hint: PropTypes.node,
+  return (
+    <FormField
+      marginBottom={24}
+      label={label}
+      isRequired={required}
+      hint={hint}
+      description={description}
+      validationMessage={validationMessage}
+      labelFor={id}
+      {...matchedProps}
+    >
+      <Select
+        id={id}
+        width={inputWidth}
+        height={inputHeight}
+        disabled={disabled}
+        required={required}
+        isInvalid={isInvalid}
+        appearance={appearance}
+        {...remainingProps}
+      />
+    </FormField>
+  )
+})
 
-    /**
-     * If a validation message is passed it is shown under the input element
-     * and above the hint. This is unaffected by `isInvalid`.
-     */
-    validationMessage: PropTypes.node,
+SelectField.propTypes = {
+  /**
+   * Composes the Select component as the base.
+   */
+  ...Select.propTypes,
+  ...FormField.propTypes,
 
-    /**
-     * The height of the input element.
-     */
-    inputHeight: PropTypes.number,
+  /**
+   * The label used above the input element.
+   */
+  label: PropTypes.node.isRequired,
 
-    /**
-     * The width of the input width.
-     */
-    inputWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  }
+  /**
+   * Passed on the label as a htmlFor prop.
+   */
+  labelFor: PropTypes.string,
 
-  static defaultProps = {
-    /**
-     * The input width should be as wide as the form field.
-     */
-    inputWidth: '100%',
-    inputHeight: 32
-  }
+  /**
+   * Whether or not to show an asterix after the label.
+   */
+  required: PropTypes.bool,
 
-  state = {
-    id: (this.props.id || idCounter++).toString()
-  }
+  /**
+   * An optional description of the field under the label, above the input element.
+   */
+  description: PropTypes.node,
 
-  render() {
-    const {
-      // We are using the id from the state
-      id: unusedId,
+  /**
+   * An optional hint under the input element.
+   */
+  hint: PropTypes.node,
 
-      // FormField props
-      hint,
-      label,
-      description,
-      validationMessage,
+  /**
+   * If a validation message is passed it is shown under the input element
+   * and above the hint. This is unaffected by `isInvalid`.
+   */
+  validationMessage: PropTypes.node,
 
-      // TextInput props
-      inputHeight,
-      inputWidth,
-      disabled,
-      required,
-      isInvalid,
-      appearance,
+  /**
+   * The height of the input element.
+   */
+  inputHeight: PropTypes.number,
 
-      // Rest props are spread on the FormField
-      ...props
-    } = this.props
-
-    const id = `SelectField-${this.state.id}`
-
-    /**
-     * Split the wrapper props from the input props.
-     */
-    const { matchedProps, remainingProps } = splitBoxProps(props)
-
-    return (
-      <FormField
-        marginBottom={24}
-        label={label}
-        isRequired={required}
-        hint={hint}
-        description={description}
-        validationMessage={validationMessage}
-        labelFor={id}
-        {...matchedProps}
-      >
-        <Select
-          id={id}
-          width={inputWidth}
-          height={inputHeight}
-          disabled={disabled}
-          required={required}
-          isInvalid={isInvalid}
-          appearance={appearance}
-          {...remainingProps}
-        />
-      </FormField>
-    )
-  }
+  /**
+   * The width of the input width.
+   */
+  inputWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }
+
+export default SelectField

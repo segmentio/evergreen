@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
 import TableCell from './TableCell'
@@ -9,33 +9,18 @@ const ellipsis = {
   whiteSpace: 'nowrap'
 }
 
-export default class TextTableCell extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the TableCell component as the base.
-     */
-    ...TableCell.propTypes,
-
-    /**
-     * Adds fontFamily: mono.
-     */
-    isNumber: PropTypes.bool.isRequired,
-
-    /**
-     * Pass additional props to the Text component.
-     */
-    textProps: PropTypes.object
-  }
-
-  static defaultProps = {
-    isNumber: false
-  }
-
-  render() {
-    const { children, textProps, isNumber, placeholder, ...props } = this.props
+const TextTableCell = memo(
+  forwardRef(function TextTableCell(props, ref) {
+    const {
+      children,
+      textProps,
+      isNumber = false,
+      placeholder,
+      ...rest
+    } = props
 
     return (
-      <TableCell {...props}>
+      <TableCell ref={ref} {...rest}>
         <Text
           size={300}
           flex="1"
@@ -47,5 +32,24 @@ export default class TextTableCell extends PureComponent {
         </Text>
       </TableCell>
     )
-  }
+  })
+)
+
+TextTableCell.propTypes = {
+  /**
+   * Composes the TableCell component as the base.
+   */
+  ...TableCell.propTypes,
+
+  /**
+   * Adds fontFamily: mono.
+   */
+  isNumber: PropTypes.bool,
+
+  /**
+   * Pass additional props to the Text component.
+   */
+  textProps: PropTypes.object
 }
+
+export default TextTableCell

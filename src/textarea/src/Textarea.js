@@ -1,105 +1,38 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 
-class Textarea extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Text component as the base.
-     */
-    ...Text.propTypes,
+const styles = {
+  minHeight: 80,
+  paddingX: 10,
+  paddingY: 8
+}
 
-    /**
-     * Makes the textarea element required.
-     */
-    required: PropTypes.bool,
-
-    /**
-     * Makes the textarea element disabled.
-     */
-    disabled: PropTypes.bool,
-
-    /**
-     * Sets visual styling of _only_ the text area to be "invalid".
-     * Note that this does not effect any `validationMessage`.
-     */
-    isInvalid: PropTypes.bool,
-
-    /**
-     * Use the native spell check functionality of the browser.
-     */
-    spellCheck: PropTypes.bool,
-
-    /**
-     * Allow the Grammarly browser extension to attach to the backing textarea.
-     */
-    grammarly: PropTypes.bool,
-
-    /**
-     * The placeholder text when there is no value present.
-     */
-    placeholder: PropTypes.string,
-
-    /**
-     * The appearance of the TextInput.
-     */
-    appearance: PropTypes.string,
-
-    /**
-     * The width of the TextInput.
-     */
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
-
-    /**
-     * Class name passed to the button.
-     * Only use if you know what you are doing.
-     */
-    className: PropTypes.string
-  }
-
-  static defaultProps = {
-    appearance: 'default',
-    width: '100%',
-    disabled: false,
-    isInvalid: false,
-    spellCheck: true,
-    grammarly: false
-  }
-
-  static styles = {
-    minHeight: 80,
-    paddingX: 10,
-    paddingY: 8
-  }
-
-  render() {
+const Textarea = memo(
+  forwardRef(function Textarea(props, ref) {
+    const theme = useTheme()
     const {
-      theme,
       className,
-
-      width,
+      width = '100%',
       height,
-      disabled,
+      disabled = false,
       required,
-      isInvalid,
-      appearance,
+      isInvalid = false,
+      appearance = 'default',
       placeholder,
-      spellCheck,
-      grammarly,
-      ...props
-    } = this.props
+      spellCheck = true,
+      grammarly = false,
+      ...restProps
+    } = props
+
     const themedClassName = theme.getTextareaClassName(appearance)
 
     return (
       <Text
         is="textarea"
+        ref={ref}
         className={cx(themedClassName, className)}
         size={400}
         width={width}
@@ -114,11 +47,65 @@ class Textarea extends PureComponent {
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
         {...(disabled ? { color: 'muted' } : {})}
-        {...Textarea.styles}
-        {...props}
+        {...styles}
+        {...restProps}
       />
     )
-  }
+  })
+)
+
+Textarea.propTypes = {
+  /**
+   * Composes the Text component as the base.
+   */
+  ...Text.propTypes,
+
+  /**
+   * Makes the textarea element required.
+   */
+  required: PropTypes.bool,
+
+  /**
+   * Makes the textarea element disabled.
+   */
+  disabled: PropTypes.bool,
+
+  /**
+   * Sets visual styling of _only_ the text area to be "invalid".
+   * Note that this does not effect any `validationMessage`.
+   */
+  isInvalid: PropTypes.bool,
+
+  /**
+   * Use the native spell check functionality of the browser.
+   */
+  spellCheck: PropTypes.bool,
+
+  /**
+   * Allow the Grammarly browser extension to attach to the backing textarea.
+   */
+  grammarly: PropTypes.bool,
+
+  /**
+   * The placeholder text when there is no value present.
+   */
+  placeholder: PropTypes.string,
+
+  /**
+   * The appearance of the TextInput.
+   */
+  appearance: PropTypes.string,
+
+  /**
+   * The width of the TextInput.
+   */
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /**
+   * Class name passed to the button.
+   * Only use if you know what you are doing.
+   */
+  className: PropTypes.string
 }
 
-export default withTheme(Textarea)
+export default Textarea

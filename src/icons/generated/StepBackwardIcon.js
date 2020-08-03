@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const StepBackwardIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="step-backward"
-      {...props}
-    />
-  ))
+  forwardRef(function StepBackwardIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="step-backward"
+        {...props}
+      />
+    )
+  })
 )

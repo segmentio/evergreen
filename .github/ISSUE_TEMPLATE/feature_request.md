@@ -4,10 +4,7 @@ about: Suggest an idea for Evergreen
 title: ''
 labels: 'Type: Improvement'
 assignees: ''
-
----
-
-<!---
+---<!---
 
 Hello! And thanks for contributing to Evergreen 🎉
 

@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const MobilePhoneIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="mobile-phone"
-      {...props}
-    />
-  ))
+  forwardRef(function MobilePhoneIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="mobile-phone"
+        {...props}
+      />
+    )
+  })
 )

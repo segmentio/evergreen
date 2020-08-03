@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const FeedSubscribedIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="feed-subscribed"
-      {...props}
-    />
-  ))
+  forwardRef(function FeedSubscribedIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="feed-subscribed"
+        {...props}
+      />
+    )
+  })
 )

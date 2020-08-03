@@ -2,246 +2,153 @@
  * @overview TagInput accepts multiple values that can be individually removed
  */
 
-import React from 'react'
+import React, { memo, forwardRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import cx from 'classnames'
 import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import { useTheme } from '../../theme'
 import { majorScale } from '../../scales'
 import safeInvoke from '../../lib/safe-invoke'
+import { useId } from '../../hooks'
 import Tag from './Tag'
-
-let inputId = 1
 
 const GET_KEY_FOR_TAG_DELIMITER = {
   enter: 'Enter',
   space: ' '
 }
 
-class TagInput extends React.Component {
-  static propTypes = {
-    /** Whether or not the inputValue should be added to the tags when the input blurs. */
-    addOnBlur: PropTypes.bool,
-    /** The class name to apply to the container component. */
-    className: PropTypes.string,
-    /** Whether or not the input should be disabled. */
-    disabled: PropTypes.bool,
-    /** The vertical size of the input */
-    height: PropTypes.number,
-    /** Props to pass to the input component. Note that `ref` and `key` are not supported. See `inputRef`. */
-    inputProps: PropTypes.object,
-    /**
-     * Ref handler for the input element.
-     * (input: HTMLInputElement | null) => void
-     */
-    inputRef: PropTypes.func,
-    /**
-     * Callback invoked when new tags are added.
-     * Returning `false` will prevent clearing the input.
-     * (values: Array) => void | false
-     */
-    onAdd: PropTypes.func,
-    /**
-     * Callback invoked when focus on the input blurs.
-     * (event) => void
-     */
-    onBlur: PropTypes.func,
-    /**
-     * Callback invoked when the tag values change.
-     * Returning `false` will prevent clearing the input.
-     * (values: Array) => void | false
-     */
-    onChange: PropTypes.func,
-    /**
-     * Callback invoked when the input receives focus.
-     * (event) => void
-     */
-    onFocus: PropTypes.func,
-    /**
-     * Callback invoked when the value of the input is changed. Shorthand for `inputProps={{ onChange }}`.
-     * (event) => void
-     */
-    onInputChange: PropTypes.func,
-    /**
-     * Callback invoked when a tag is removed.
-     * Receives value and index of removed tag.
-     * (value: string | node, index: number) => void
-     */
-    onRemove: PropTypes.func,
-    /** Value or RegExp to split on pasted text or on enter keypress */
-    separator: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.instanceOf(RegExp),
-      PropTypes.oneOf([false])
-    ]),
-    /** Provide props to tag component (actually `Badge`, for now). */
-    tagProps: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-    /** Key to press in order to submit a new tag while typing.  */
-    tagSubmitKey: PropTypes.oneOf(['enter', 'space']),
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired,
-    /** Controlled tag values. Each value is rendered inside a tag. */
-    values: PropTypes.arrayOf(PropTypes.node)
-  }
+const emptyProps = {}
+const emptyArray = []
 
-  static defaultProps = {
-    addOnBlur: false,
-    disabled: false,
-    height: 32,
-    separator: /[,\n\r]/,
-    values: [],
-    tagSubmitKey: 'enter',
-    tagProps: {}
-  }
-
-  state = {
-    inputValue: '',
-    isFocused: false
-  }
-
-  id = `TagInput-${inputId++}`
-
-  addTags = (value = '') => {
-    const { onAdd, onChange, values } = this.props
-    const newValues = this.getValues(value)
-    let shouldClearInput = safeInvoke(onAdd, newValues)
-
-    if (typeof onChange === 'function') {
-      shouldClearInput = shouldClearInput || onChange(values.concat(newValues))
-    }
-
-    if (shouldClearInput !== false) {
-      this.setState({ inputValue: '' })
-    }
-  }
-
-  getValues = (inputValue = '') => {
-    const { separator } = this.props
-
-    return separator
-      ? inputValue
-          .split(separator)
-          .map(v => v.trim())
-          .filter(v => v.length > 0)
-      : [inputValue]
-  }
-
-  handleBackspaceToRemove = () => {
-    const { values } = this.props
-
-    // Delete last item in values
-    this.removeTagAtIndex(values.length - 1)
-  }
-
-  handleBlur = event => {
-    const container = event.target
-
-    // Use raf so that the dom has time to update `activeElement`
-    requestAnimationFrame(() => {
-      if (!container.contains(document.activeElement)) {
-        if (this.props.addOnBlur && this.state.inputValue) {
-          this.addTags(this.state.inputValue)
-        }
-
-        this.setState({ isFocused: false })
-      }
-    })
-
-    safeInvoke(this.props.onBlur, event)
-  }
-
-  handleInputChange = event => {
-    this.setState({ inputValue: event.target.value })
-    safeInvoke(this.props.onInputChange, event)
-  }
-
-  handleInputFocus = event => {
-    this.setState({ isFocused: true })
-    safeInvoke(this.props.onFocus, event)
-  }
-
-  handleKeyDown = event => {
-    const { selectionEnd, value } = event.target
-
-    const key = GET_KEY_FOR_TAG_DELIMITER[this.props.tagSubmitKey]
-
-    if (event.key === key) {
-      // Prevent Enter keypresses from submitting forms since they have special powers inside TagInput
-      event.preventDefault()
-      this.addTags(value)
-    } else if (event.key === 'Backspace' && selectionEnd === 0) {
-      this.handleBackspaceToRemove(event)
-    }
-  }
-
-  handleRemoveTag = event => {
-    // Using data attribute to simplify callback logic -- one handler for all children
-    const index = Number(
-      event.currentTarget.parentElement.getAttribute('data-tag-index')
-    )
-    this.removeTagAtIndex(index)
-  }
-
-  maybeRenderTag = (tag, index) => {
-    if (!tag) {
-      return null
-    }
-
-    const { disabled, tagProps } = this.props
-    const props = safeInvoke(tagProps, tag, index) || tagProps
-
-    return (
-      <Tag
-        key={`${tag}:${index}`}
-        data-tag-index={index}
-        marginRight={majorScale(1)}
-        marginY="6px"
-        onRemove={disabled ? null : this.handleRemoveTag}
-        isRemovable={!disabled}
-        {...props}
-      >
-        {tag}
-      </Tag>
-    )
-  }
-
-  removeTagAtIndex = index => {
-    const { onChange, onRemove, values } = this.props
-    safeInvoke(onRemove, values[index], index)
-
-    // Remove item at index as a new array
-    const newValues = values.filter((_, i) => i !== index)
-    safeInvoke(onChange, newValues)
-  }
-
-  setRef = node => {
-    this.input = node
-    safeInvoke(this.props.inputRef, node)
-  }
-
-  render() {
+const TagInput = memo(
+  forwardRef(function TagInput(props, ref) {
     const {
-      addOnBlur,
-      className,
-      disabled,
-      height,
-      inputProps,
-      inputRef,
+      addOnBlur = false,
+      disabled = false,
+      height = 32,
+      separator = /[,\n\r]/,
+      values = emptyArray,
+      tagSubmitKey = 'enter',
+      tagProps = emptyProps,
       onAdd,
       onChange,
-      onInputChange,
       onRemove,
-      separator,
-      tagProps,
-      theme,
-      values,
-      ...props
-    } = this.props
+      onBlur,
+      onFocus,
+      onInputChange,
+      className,
+      inputProps,
+      inputRef,
+      ...rest
+    } = props
+    const theme = useTheme()
 
-    const { inputValue, isFocused } = this.state
+    const [inputValue, setInputValue] = useState('')
+    const [isFocused, setIsFocused] = useState(false)
+    const id = useId('TagInput')
+
+    const getValues = (inputValue = '') =>
+      separator
+        ? inputValue
+            .split(separator)
+            .map(v => v.trim())
+            .filter(v => v.length > 0)
+        : [inputValue]
+
+    const addTags = (value = '') => {
+      const newValues = getValues(value)
+      let shouldClearInput = safeInvoke(onAdd, newValues)
+
+      if (typeof onChange === 'function') {
+        shouldClearInput =
+          shouldClearInput || onChange(values.concat(newValues))
+      }
+
+      if (shouldClearInput !== false) {
+        setInputValue('')
+      }
+    }
+
+    const removeTagAtIndex = index => {
+      safeInvoke(onRemove, values[index], index)
+
+      // Remove item at index as a new array
+      const newValues = values.filter((_, i) => i !== index)
+      safeInvoke(onChange, newValues)
+    }
+
+    const handleBackspaceToRemove = () => {
+      removeTagAtIndex(values.length - 1)
+    }
+
+    const handleBlur = event => {
+      const container = event.target
+
+      requestAnimationFrame(() => {
+        if (!container.contains(document.activeElement)) {
+          if (addOnBlur && inputValue) {
+            addTags(inputValue)
+          }
+
+          setIsFocused(false)
+        }
+      })
+
+      safeInvoke(onBlur, event)
+    }
+
+    const handleInputChange = event => {
+      setInputValue(event.target.value)
+      safeInvoke(onInputChange, event)
+    }
+
+    const handleInputFocus = event => {
+      setIsFocused(true)
+      safeInvoke(onFocus, event)
+    }
+
+    const handleKeyDown = event => {
+      const { selectionEnd, value } = event.target
+      const key = GET_KEY_FOR_TAG_DELIMITER[tagSubmitKey]
+
+      if (event.key === key) {
+        event.preventDefault()
+        addTags(value)
+      } else if (event.key === 'Backspace' && selectionEnd === 0) {
+        handleBackspaceToRemove(event)
+      }
+    }
+
+    const handleRemoveTag = event => {
+      // Using data attribute to simplify callback logic -- one handler for all children
+      const index = Number(
+        event.currentTarget.parentElement.getAttribute('data-tag-index')
+      )
+      removeTagAtIndex(index)
+    }
+
+    const maybeRenderTag = (tag, index) => {
+      if (!tag) {
+        return null
+      }
+
+      const propsForElement = safeInvoke(tagProps, tag, index) || tagProps
+
+      return (
+        <Tag
+          key={`${tag}:${index}`}
+          data-tag-index={index}
+          marginRight={majorScale(1)}
+          marginY="6px"
+          onRemove={disabled ? null : handleRemoveTag}
+          isRemovable={!disabled}
+          {...propsForElement}
+        >
+          {tag}
+        </Tag>
+      )
+    }
 
     const themedContainerClassName = theme.getTagInputClassName('default')
     const themedInputClassName = theme.getTextInputClassName('none')
@@ -251,19 +158,20 @@ class TagInput extends React.Component {
     return (
       <Box
         aria-disabled={disabled || undefined}
-        aria-activedescendant={isFocused ? this.id : undefined}
+        aria-activedescendant={isFocused ? id : undefined}
         borderRadius={borderRadius}
         className={cx(themedContainerClassName, className)}
         paddingLeft={Math.round(height / 3.2)}
         paddingRight={Math.round(height / 3.2)}
         paddingY="2px"
-        {...props}
-        onBlur={this.handleBlur}
+        ref={ref}
+        {...rest}
+        onBlur={handleBlur}
       >
-        {values.map(this.maybeRenderTag)}
+        {values.map(maybeRenderTag)}
         <Text
           is="input"
-          id={this.id}
+          id={id}
           color={disabled ? 'muted' : undefined}
           disabled={disabled}
           flexGrow="1"
@@ -273,14 +181,77 @@ class TagInput extends React.Component {
           value={inputValue}
           {...inputProps}
           className={themedInputClassName}
-          ref={this.setRef}
-          onChange={this.handleInputChange}
-          onFocus={this.handleInputFocus}
-          onKeyDown={this.handleKeyDown}
+          ref={inputRef}
+          onChange={handleInputChange}
+          onFocus={handleInputFocus}
+          onKeyDown={handleKeyDown}
         />
       </Box>
     )
-  }
+  })
+)
+
+TagInput.propTypes = {
+  /** Whether or not the inputValue should be added to the tags when the input blurs. */
+  addOnBlur: PropTypes.bool,
+  /** The class name to apply to the container component. */
+  className: PropTypes.string,
+  /** Whether or not the input should be disabled. */
+  disabled: PropTypes.bool,
+  /** The vertical size of the input */
+  height: PropTypes.number,
+  /** Props to pass to the input component. Note that `ref` and `key` are not supported. See `inputRef`. */
+  inputProps: PropTypes.object,
+  /**
+   * Ref handler for the input element.
+   * (input: HTMLInputElement | null) => void
+   */
+  inputRef: PropTypes.func,
+  /**
+   * Callback invoked when new tags are added.
+   * Returning `false` will prevent clearing the input.
+   * (values: Array) => void | false
+   */
+  onAdd: PropTypes.func,
+  /**
+   * Callback invoked when focus on the input blurs.
+   * (event) => void
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Callback invoked when the tag values change.
+   * Returning `false` will prevent clearing the input.
+   * (values: Array) => void | false
+   */
+  onChange: PropTypes.func,
+  /**
+   * Callback invoked when the input receives focus.
+   * (event) => void
+   */
+  onFocus: PropTypes.func,
+  /**
+   * Callback invoked when the value of the input is changed. Shorthand for `inputProps={{ onChange }}`.
+   * (event) => void
+   */
+  onInputChange: PropTypes.func,
+  /**
+   * Callback invoked when a tag is removed.
+   * Receives value and index of removed tag.
+   * (value: string | node, index: number) => void
+   */
+  onRemove: PropTypes.func,
+  /** Value or RegExp to split on pasted text or on enter keypress */
+  separator: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.instanceOf(RegExp),
+    PropTypes.oneOf([false])
+  ]),
+  /** Provide props to tag component (actually `Badge`, for now). */
+  tagProps: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  /** Key to press in order to submit a new tag while typing.  */
+  tagSubmitKey: PropTypes.oneOf(['enter', 'space']),
+  /** Controlled tag values. Each value is rendered inside a tag. */
+  values: PropTypes.arrayOf(PropTypes.node)
 }
 
-export default withTheme(TagInput)
+export default TagInput

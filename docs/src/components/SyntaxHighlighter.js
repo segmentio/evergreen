@@ -3,9 +3,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 
-export default class SyntaxHighlighter2 extends React.PureComponent {
+export default class SyntaxHighlighter extends React.PureComponent {
   static propTypes = {
-    children: PropTypes.string
+    children: PropTypes.string,
+    language: PropTypes.string
   }
 
   componentDidCatch() {}
@@ -15,11 +16,11 @@ export default class SyntaxHighlighter2 extends React.PureComponent {
       <Highlight
         {...defaultProps}
         code={this.props.children.trim()}
-        language="jsx"
+        language={this.props.language || 'jsx'}
         theme={undefined}
       >
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre className={className} style={style}>
+        {({ tokens, getLineProps, getTokenProps }) => (
+          <pre className="prism-code">
             {tokens.map((line, i) => (
               <div {...getLineProps({ line, key: i })}>
                 {line.map((token, key) => (

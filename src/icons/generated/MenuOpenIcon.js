@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const MenuOpenIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="menu-open"
-      {...props}
-    />
-  ))
+  forwardRef(function MenuOpenIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="menu-open"
+        {...props}
+      />
+    )
+  })
 )

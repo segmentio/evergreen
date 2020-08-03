@@ -7,7 +7,7 @@ export default ThemeLayout
 In order to style your app, you must wrap it in the `ThemeProvider` component.
 This component uses the `React.Context` API under the hood.
 
-In order to use the `ThemeProvider` component, you must pass it a value prop that is a `Theme` object. 
+In order to use the `ThemeProvider` component, you must pass it a value prop that is a `Theme` object.
 
 Please note: at this moment in time, theming isn't fully supported yet! There are certain attributes of the `Theme` object that are required so please be sure you have them when providing a custom theme.
 
@@ -23,16 +23,12 @@ const newTheme = {
 }
 
 const ThemedApp = () => (
-  <ThemeProvider
-    value={newTheme}
-  >
+  <ThemeProvider value={newTheme}>
     <Spinner />
   </ThemeProvider>
 )
 
-render(
-  <ThemedApp />
-)
+render(<ThemedApp />)
 ```
 
 ## Nested theming

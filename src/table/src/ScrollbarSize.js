@@ -1,63 +1,57 @@
-import React, { PureComponent } from 'react'
+import React, { memo, useRef, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-export default class ScrollbarSize extends PureComponent {
-  static propTypes = {
-    /**
-     * Returns the size of the scrollbar by creating a hidden fixed div.
-     */
-    handleScrollbarSize: PropTypes.func
-  }
+const noop = () => {}
 
-  static defaultProps = {
-    handleScrollbarSize: () => {}
-  }
+const ScrollbarSize = memo(function ScrollbarSize({
+  handleScrollbarSize = noop
+}) {
+  const innerRef = useRef()
+  const outerRef = useRef()
+  const [widths, setWidths] = useState({ innerWidth: null, outerWidth: null })
 
-  state = {
-    innerWidth: null,
-    outerWidth: null
-  }
+  useEffect(() => {
+    const newWidths = { innerWidth: null, outerWidth: null }
 
-  componentDidMount() {
-    const innerWidth = this.innerRef.getBoundingClientRect().width
-    const outerWidth = this.outerRef.getBoundingClientRect().width
-    this.setState({
-      innerWidth,
-      outerWidth
-    })
-  }
-
-  componentDidUpdate() {
-    if (this.state.innerWidth && this.state.outerWidth) {
-      this.props.handleScrollbarSize(
-        this.state.outerWidth - this.state.innerWidth
-      )
+    if (innerRef.current) {
+      newWidths.innerWidth = innerRef.current.getBoundingClientRect().width
     }
-  }
 
-  handleOuterRef = ref => {
-    this.outerRef = ref
-  }
+    if (outerRef.current) {
+      newWidths.outerWidth = outerRef.current.getBoundingClientRect().width
+    }
 
-  handleInnerRef = ref => {
-    this.innerRef = ref
-  }
+    setWidths(newWidths)
+  }, [])
 
-  render() {
-    return (
-      <div
-        ref={this.handleOuterRef}
-        aria-hidden
-        style={{
-          position: 'fixed',
-          top: -500,
-          left: -500,
-          width: 100,
-          overflowY: 'scroll'
-        }}
-      >
-        <div ref={this.handleInnerRef} />
-      </div>
-    )
-  }
+  useEffect(() => {
+    if (widths.innerWidth && widths.outerWidth) {
+      handleScrollbarSize(widths.outerWidth - widths.innerWidth)
+    }
+  })
+
+  return (
+    <div
+      ref={outerRef}
+      aria-hidden
+      style={{
+        position: 'fixed',
+        top: -500,
+        left: -500,
+        width: 100,
+        overflowY: 'scroll'
+      }}
+    >
+      <div ref={innerRef} />
+    </div>
+  )
+})
+
+ScrollbarSize.propTypes = {
+  /**
+   * Returns the size of the scrollbar by creating a hidden fixed div.
+   */
+  handleScrollbarSize: PropTypes.func
 }
+
+export default ScrollbarSize

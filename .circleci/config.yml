@@ -3,7 +3,7 @@ jobs:
   test:
     working_directory: ~/evergreen
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:10.18
     steps:
       - checkout
 

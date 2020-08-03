@@ -1,5 +1,5 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 import DocsMDXProvider from './DocsMDXProvider'
 import TopBar from './TopBar'
@@ -22,7 +22,7 @@ const PageLayout = ({ children }) => (
               style={{ marginBottom: 160 }}
             >
               <div className="Content">
-                <DocsMDXProvider noInline>{children}</DocsMDXProvider>
+                <DocsMDXProvider>{children}</DocsMDXProvider>
               </div>
             </div>
           </section>

@@ -9,13 +9,15 @@ const svgPaths20 = [
 ]
 
 export const DeriveColumnIcon = memo(
-  forwardRef((props, ref) => (
-    <Icon
-      svgPaths16={svgPaths16}
-      svgPaths20={svgPaths20}
-      ref={ref}
-      name="derive-column"
-      {...props}
-    />
-  ))
+  forwardRef(function DeriveColumnIcon(props, ref) {
+    return (
+      <Icon
+        svgPaths16={svgPaths16}
+        svgPaths20={svgPaths20}
+        ref={ref}
+        name="derive-column"
+        {...props}
+      />
+    )
+  })
 )

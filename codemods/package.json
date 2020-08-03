@@ -1,0 +1,17 @@
+{
+  "name": "evergreen-ui-codemods",
+  "version": "5.0.0",
+  "description": "Codemods for evergreen-ui",
+  "repository": "segmentio/evergreen",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --bail"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "jscodeshift": "^0.9.0"
+  },
+  "dependencies": {
+    "lodash.startcase": "^4.4.0"
+  }
+}

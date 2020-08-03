@@ -1,30 +1,11 @@
-import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from '../../icon'
+import React, { forwardRef, memo } from 'react'
+import { IconWrapper } from '../../icons/src/IconWrapper'
 import Text from './Text'
 
-export default class ListItem extends PureComponent {
-  static propTypes = {
-    ...Text.propTypes,
-
-    /**
-     * When passed, adds a icon before the list item.
-     * See Evergreen `Icon` for documentation.
-     */
-    icon: PropTypes.oneOfType([
-      PropTypes.elementType,
-      PropTypes.element,
-      PropTypes.string
-    ]),
-
-    /**
-     * The color of the icon.
-     */
-    iconColor: PropTypes.string
-  }
-
-  render() {
-    const { children, size, icon, iconColor, ...props } = this.props
+const ListItem = memo(
+  forwardRef(function ListItem(props, ref) {
+    const { children, size, icon, iconColor, ...rest } = props
 
     let paddingLeft
     if (size === 300) paddingLeft = 4
@@ -53,12 +34,13 @@ export default class ListItem extends PureComponent {
         position="relative"
         marginY="0.5em"
         size={size}
-        listStyleType={icon ? 'none' : null}
-        paddingLeft={icon ? paddingLeft : null}
-        {...props}
+        listStyleType={icon ? 'none' : undefined}
+        paddingLeft={icon ? paddingLeft : undefined}
+        ref={ref}
+        {...rest}
       >
         {icon && (
-          <Icon
+          <IconWrapper
             icon={icon}
             color={iconColor}
             position="absolute"
@@ -70,5 +52,21 @@ export default class ListItem extends PureComponent {
         {children}
       </Text>
     )
-  }
+  })
+)
+
+ListItem.propTypes = {
+  ...Text.propTypes,
+
+  /**
+   * When provided, adds a icon before the list item.
+   */
+  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
+
+  /**
+   * The color of the icon.
+   */
+  iconColor: PropTypes.string
 }
+
+export default ListItem
