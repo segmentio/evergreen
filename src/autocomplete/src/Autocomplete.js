@@ -149,6 +149,7 @@ const Autocomplete = memo(
       <Downshift
         stateReducer={stateReducer}
         scrollIntoView={noop}
+        itemToString={itemToString}
         ref={ref}
         {...restProps}
       >
