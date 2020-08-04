@@ -21,9 +21,9 @@
 - [Documentation](https://evergreen.segment.com/)
 - [Spectrum Chat](https://spectrum.chat/evergreen)
 
-## Evergreen v3 to v4 Migration guide
+## Evergreen v4 to v5 Migration guide
 
-Evergreen v3 to v4 [migration guide](https://github.com/segmentio/evergreen/pull/200)
+Evergreen v4 to v5 [migration guide](https://evergreen.segment.com/get-started/v5-migration-guide)
 
 ## Install and use components
 
@@ -61,7 +61,7 @@ ReactDOM.render(
 
 ### Theming support?
 
-Evergreen v4 supports theming partially. It is still complex to theme Evergreen. We have done exploratory work to make theming more powerful and accessible. The progress is available in the `v4-create-theme` branch.
+Evergreen v5 supports theming partially. It is still complex to theme Evergreen. We have done exploratory work to make theming more powerful and accessible, and hope to release a new theming api in Evergreen v6.
 
 See these [docs](https://evergreen.segment.com/get-started/theming/) for more information regarding theming in Evergreen.
 
@@ -194,6 +194,8 @@ We will add you to the list if you make any meaningful contribution!
 - Roland Warmerdam
 - Ben McMahon
 - Matt Shwery
+- Colin Lohner
+- Allen Kleiner
 - Chris Chuck
 - ... many other on the Segment team and open-source contributors
 
