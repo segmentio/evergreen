@@ -6,6 +6,7 @@ import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Text } from '../../typography'
 import { Spinner } from '../../spinner'
 import { useTheme } from '../../theme'
+import useButtonApperance from '../../theme/src/hooks/useButtonAppearance'
 
 /* eslint-disable-next-line react/prop-types */
 const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
@@ -63,7 +64,14 @@ const Button = memo(
       ...restProps
     } = props
 
-    const themedClassName = theme.getButtonClassName(appearance, intent)
+    const themedClassName =
+      appearance === 'primary' ||
+      appearance === 'secondary' ||
+      appearance === 'tertiary' ||
+      appearance === 'destructive'
+        ? useButtonApperance(appearance)
+        : theme.getButtonClassName(appearance, intent)
+
     const textSize = theme.getTextSizeForControlHeight(height)
 
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
