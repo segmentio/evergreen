@@ -1,7 +1,7 @@
+import useTheme from '../useTheme'
 import memoizeClassName from '../default-theme/utils/memoizeClassName'
 import { defaultControlStyles } from '../default-theme/shared'
 import tokens from '../default-theme/foundational-styles/tokens'
-import withTheme from '../withTheme'
 
 const { disabled } = defaultControlStyles
 
@@ -27,25 +27,49 @@ const focusAndActiveState =
 const activeState =
   '&:not([disabled]):not([data-disabled]):active, &:not([disabled]):not([data-disabled])[aria-expanded="true"], &:not([disabled]):not([data-disabled])[data-active]'
 
+// Make `useButtonAppearance` "theme-aware" (calling `useTheme`)
+
+/**
+ *
+ * theme.tokens = {
+ *  cta: {
+ *    primary: {
+ *      base: blue500,
+ *      }
+ *  }
+ * }
+ */
+
+// 'appearance' / 'intent'
+
+// 1. Make `useButtonApperance` theme-aware
+// 2. Token-ify `blue500` as `primary: base, focus, focusAndActive, hover, etc`
+// 3. Hook-ify things (`useInputStates` -> { [ '[disabled], :disabled']}), useFocusRing(), etc
+// 4. Start up v6 doc (AYO)
+
 function useButtonAppearance(appearance) {
+  const {
+    tokens: { primary }
+  } = useTheme()
+
   switch (appearance) {
     case 'primary': {
       return {
         ...base,
-        backgroundColor: tokens.blue500,
+        backgroundColor: primary.base,
         color: 'white',
         [disabledState]: {
           ...disabled
         },
         [hoverState]: {
-          backgroundColor: tokens.blue600
+          backgroundColor: primary.hover
         },
         [focusState]: {
-          backgroundColor: tokens.blue600,
+          backgroundColor: primary.hover,
           boxShadow: `0 0 0 2px ${tokens.blue100}`
         },
         [activeState]: {
-          backgroundColor: tokens.blue700
+          backgroundColor: primary.active
         },
         [focusAndActiveState]: {}
       }
@@ -55,8 +79,8 @@ function useButtonAppearance(appearance) {
       return {
         ...base,
         backgroundColor: 'white',
-        border: `1px solid ${tokens.blue500}`,
-        color: tokens.blue500,
+        border: `1px solid ${primary.base}`,
+        color: primary.base,
         [disabledState]: {
           ...disabled
         },
@@ -119,6 +143,32 @@ function useButtonAppearance(appearance) {
         },
         [activeState]: {
           backgroundColor: tokens.red700
+        },
+        [focusAndActiveState]: {}
+      }
+    }
+
+    default: {
+      return {
+        ...base,
+        backgroundColor: 'transparent',
+        border: `1px solid ${tokens.gray400}`,
+        color: tokens.gray700,
+        [disabledState]: {
+          ...disabled,
+          color: tokens.gray500,
+          border: `1px solid ${tokens.gray300}`
+        },
+        [hoverState]: {
+          border: `1px solid ${tokens.gray600}`,
+          color: tokens.gray800
+        },
+        [focusState]: {
+          boxShadow: `0 0 0 2px ${tokens.blue100}`,
+          color: tokens.gray800
+        },
+        [activeState]: {
+          backgroundColor: tokens.gray100
         },
         [focusAndActiveState]: {}
       }

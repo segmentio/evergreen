@@ -1,4 +1,4 @@
-export default {
+const colors = {
   // Grays / neutrals
   gray900: '#101840',
   gray800: '#474d66',
@@ -30,4 +30,14 @@ export default {
   red600: '#A73636',
   red500: '#D14343',
   red100: '#F9DADA'
+}
+
+export default {
+  ...colors,
+
+  primary: {
+    base: colors.blue500,
+    hover: colors.blue600,
+    active: colors.blue700
+  }
 }

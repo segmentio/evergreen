@@ -18,7 +18,8 @@ import {
   elevations,
   fills,
   palette,
-  scales
+  scales,
+  tokens
 } from './foundational-styles'
 
 /**
@@ -92,6 +93,7 @@ export default {
   fills,
   palette,
   scales,
+  tokens,
 
   // Component Specific.
   avatarColors,

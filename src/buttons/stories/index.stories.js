@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
+import { ThemeProvider, defaultTheme } from '../../theme'
 import Component from '@reactions/component'
 import { Heading } from '../../typography'
 import { Pane } from '../../layers'
@@ -10,200 +11,218 @@ import { IconButton, Button, BackButton, TextDropdownButton } from '..'
 
 const buttonsStory = storiesOf('buttons', module)
 
+const theme = {
+  ...defaultTheme,
+  tokens: {
+    ...defaultTheme.tokens,
+    primary: {
+      base: 'purple',
+      hover: 'yellow',
+      active: 'red'
+    }
+  }
+}
+
 buttonsStory.add('Common', () => (
-  <Box padding={40}>
-    <Component
-      initialState={{
-        options: [
-          { label: 'Height 24', value: 24 },
-          { label: 'Height 32', value: 32 },
-          { label: 'Height 40', value: 40 }
-        ],
-        value: 32
-      }}
-    >
-      {({ state, setState }) => (
-        <React.Fragment>
-          <SegmentedControl
-            width={280}
-            options={state.options}
-            value={state.value}
-            onChange={value => setState({ value: Number(value) })}
-          />
-          <Pane marginTop={16}>
-            <Button height={state.value} marginRight={16}>
-              Close
-            </Button>
-            <Button height={state.value} marginRight={16}>
-              Cancel
-            </Button>
-            <BackButton height={state.value} marginRight={16}>
-              Back
-            </BackButton>
-            <Button
-              height={state.value}
-              marginRight={16}
-              iconAfter={Icons.CaretDownIcon}
-            >
-              Select event...
-            </Button>
-            <Button
-              height={state.value}
-              marginRight={16}
-              iconBefore={Icons.AddIcon}
-            >
-              New Audience
-            </Button>
-            <Button
-              height={state.value}
-              marginRight={16}
-              iconBefore={Icons.DownloadIcon}
-            >
-              Download
-            </Button>
-            <Button
-              height={state.value}
-              marginRight={16}
-              iconBefore={Icons.DownloadIcon}
-            >
-              Download CSV...
-            </Button>
-            <Button
-              height={state.value}
-              marginRight={16}
-              iconBefore={Icons.EditIcon}
-            >
-              Edit
-            </Button>
-            <Button
-              height={state.value}
-              marginRight={16}
-              iconBefore={Icons.ManualIcon}
-            >
-              Docs
-            </Button>
-            <Button height={state.value} iconBefore={Icons.ImportIcon}>
-              Import
-            </Button>
-          </Pane>
-          <Pane marginTop={16}>
-            <Button height={state.value} appearance="primary" marginRight={16}>
-              Confirm
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              marginRight={16}
-              iconAfter={Icons.ArrowRightIcon}
-            >
-              Next Step
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              marginRight={16}
-              iconBefore={Icons.EyeOpenIcon}
-            >
-              Preview
-            </Button>
-          </Pane>
-          <Pane marginTop={16}>
-            <Button
-              height={state.value}
-              appearance="primary"
-              intent="success"
-              marginRight={16}
-            >
-              Got It
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              intent="success"
-              marginRight={16}
-              iconBefore={Icons.AddIcon}
-            >
-              Add Source
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              intent="success"
-              marginRight={16}
-              iconBefore={Icons.AddIcon}
-            >
-              Add Destination
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              intent="success"
-              marginRight={16}
-              iconBefore={Icons.AddIcon}
-            >
-              New Audience
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              intent="success"
-              marginRight={16}
-              iconBefore={Icons.AddIcon}
-            >
-              New Computed Trait
-            </Button>
-          </Pane>
-          <Pane marginTop={16}>
-            <Button
-              height={state.value}
-              intent="warning"
-              marginRight={16}
-              iconBefore={Icons.RefreshIcon}
-            >
-              Retry
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              intent="warning"
-              marginRight={16}
-              iconBefore={Icons.BlockedPersonIcon}
-            >
-              Disable User
-            </Button>
-          </Pane>
-          <Pane marginTop={16}>
-            <Button
-              height={state.value}
-              appearance="minimal"
-              intent="danger"
-              marginRight={16}
-              iconBefore={Icons.TrashIcon}
-            >
-              Delete...
-            </Button>
-            <Button
-              height={state.value}
-              intent="danger"
-              marginRight={16}
-              iconBefore={Icons.TrashIcon}
-            >
-              Delete...
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              intent="danger"
-              marginRight={16}
-              iconBefore={Icons.TrashIcon}
-            >
-              Permanently Delete Workspace...
-            </Button>
-          </Pane>
-        </React.Fragment>
-      )}
-    </Component>
-  </Box>
+  <ThemeProvider value={theme}>
+    <Box padding={40}>
+      <Component
+        initialState={{
+          options: [
+            { label: 'Height 24', value: 24 },
+            { label: 'Height 32', value: 32 },
+            { label: 'Height 40', value: 40 }
+          ],
+          value: 32
+        }}
+      >
+        {({ state, setState }) => (
+          <React.Fragment>
+            <SegmentedControl
+              width={280}
+              options={state.options}
+              value={state.value}
+              onChange={value => setState({ value: Number(value) })}
+            />
+            <Pane marginTop={16}>
+              <Button height={state.value} marginRight={16}>
+                Close
+              </Button>
+              <Button height={state.value} marginRight={16}>
+                Cancel
+              </Button>
+              <BackButton height={state.value} marginRight={16}>
+                Back
+              </BackButton>
+              <Button
+                height={state.value}
+                marginRight={16}
+                iconAfter={Icons.CaretDownIcon}
+              >
+                Select event...
+              </Button>
+              <Button
+                height={state.value}
+                marginRight={16}
+                iconBefore={Icons.AddIcon}
+              >
+                New Audience
+              </Button>
+              <Button
+                height={state.value}
+                marginRight={16}
+                iconBefore={Icons.DownloadIcon}
+              >
+                Download
+              </Button>
+              <Button
+                height={state.value}
+                marginRight={16}
+                iconBefore={Icons.DownloadIcon}
+              >
+                Download CSV...
+              </Button>
+              <Button
+                height={state.value}
+                marginRight={16}
+                iconBefore={Icons.EditIcon}
+              >
+                Edit
+              </Button>
+              <Button
+                height={state.value}
+                marginRight={16}
+                iconBefore={Icons.ManualIcon}
+              >
+                Docs
+              </Button>
+              <Button height={state.value} iconBefore={Icons.ImportIcon}>
+                Import
+              </Button>
+            </Pane>
+            <Pane marginTop={16}>
+              <Button
+                height={state.value}
+                appearance="primary"
+                marginRight={16}
+              >
+                Confirm
+              </Button>
+              <Button
+                height={state.value}
+                appearance="primary"
+                marginRight={16}
+                iconAfter={Icons.ArrowRightIcon}
+              >
+                Next Step
+              </Button>
+              <Button
+                height={state.value}
+                appearance="primary"
+                marginRight={16}
+                iconBefore={Icons.EyeOpenIcon}
+              >
+                Preview
+              </Button>
+            </Pane>
+            <Pane marginTop={16}>
+              <Button
+                height={state.value}
+                appearance="primary"
+                intent="success"
+                marginRight={16}
+              >
+                Got It
+              </Button>
+              <Button
+                height={state.value}
+                appearance="primary"
+                intent="success"
+                marginRight={16}
+                iconBefore={Icons.AddIcon}
+              >
+                Add Source
+              </Button>
+              <Button
+                height={state.value}
+                appearance="primary"
+                intent="success"
+                marginRight={16}
+                iconBefore={Icons.AddIcon}
+              >
+                Add Destination
+              </Button>
+              <Button
+                height={state.value}
+                appearance="primary"
+                intent="success"
+                marginRight={16}
+                iconBefore={Icons.AddIcon}
+              >
+                New Audience
+              </Button>
+              <Button
+                height={state.value}
+                appearance="primary"
+                intent="success"
+                marginRight={16}
+                iconBefore={Icons.AddIcon}
+              >
+                New Computed Trait
+              </Button>
+            </Pane>
+            <Pane marginTop={16}>
+              <Button
+                height={state.value}
+                intent="warning"
+                marginRight={16}
+                iconBefore={Icons.RefreshIcon}
+              >
+                Retry
+              </Button>
+              <Button
+                height={state.value}
+                appearance="primary"
+                intent="warning"
+                marginRight={16}
+                iconBefore={Icons.BlockedPersonIcon}
+              >
+                Disable User
+              </Button>
+            </Pane>
+            <Pane marginTop={16}>
+              <Button
+                height={state.value}
+                appearance="minimal"
+                intent="danger"
+                marginRight={16}
+                iconBefore={Icons.TrashIcon}
+              >
+                Delete...
+              </Button>
+              <Button
+                height={state.value}
+                intent="danger"
+                marginRight={16}
+                iconBefore={Icons.TrashIcon}
+              >
+                Delete...
+              </Button>
+              <Button
+                height={state.value}
+                appearance="primary"
+                intent="danger"
+                marginRight={16}
+                iconBefore={Icons.TrashIcon}
+              >
+                Permanently Delete Workspace...
+              </Button>
+            </Pane>
+          </React.Fragment>
+        )}
+      </Component>
+    </Box>
+  </ThemeProvider>
 ))
 
 buttonsStory.add('Button types', () => (

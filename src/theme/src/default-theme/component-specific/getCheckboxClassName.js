@@ -1,72 +1,45 @@
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
-import scales from '../foundational-styles/scales'
-import { getPrimaryButtonStylesForIntent } from '../helpers'
-
-const primaryStyle = getPrimaryButtonStylesForIntent()
+import tokens from '../foundational-styles/tokens'
 
 const defaultAppearance = Themer.createCheckboxAppearance({
   base: {
     color: 'white',
     backgroundColor: 'white',
-    backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, white)`,
-    boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${
-      scales.neutral.N3A
-    }`
+    boxShadow: `inset 0 0 0 1px ${tokens.gray400}`
   },
   disabled: {
     cursor: 'not-allowed',
-    boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
-    backgroundColor: scales.neutral.N2A,
-    backgroundImage: 'none'
+    backgroundColor: tokens.gray100,
+    boxShadow: `inset 0 0 0 1px ${tokens.gray100}`
   },
   hover: {
-    backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, ${
-      scales.neutral.N1A
-    })`,
-    boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${
-      scales.neutral.N2A
-    }`
+    boxShadow: `inset 0 0 0 1px ${tokens.gray600}`
   },
   focus: {
-    boxShadow: `0 0 0 2px ${scales.blue.B4A}, inset 0 0 0 1px ${
-      scales.neutral.N5A
-    }, inset 0 -1px 1px 0 ${scales.neutral.N3A}`
+    boxShadow: `0 0 0 2px ${tokens.blue100}, inset 0 0 0 1px ${tokens.gray600}`
   },
   active: {
-    backgroundImage: 'none',
-    backgroundColor: scales.blue.B3A,
-    boxShadow: `inset 0 0 0 1px ${scales.blue.B5A}`
+    backgroundColor: tokens.gray100,
+    boxShadow: `inset 0 0 0 1px ${tokens.gray500}`
   },
   checked: {
     color: 'white',
-    backgroundImage: primaryStyle.linearGradient.base,
-    boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 -1px 1px 0 ${
-      scales.neutral.N2A
-    }`
+    backgroundColor: tokens.blue500
   },
   checkedHover: {
     color: 'white',
-    backgroundImage: primaryStyle.linearGradient.hover,
-    boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 -1px 1px 0 ${
-      scales.neutral.N2A
-    }`
+    backgroundColor: tokens.blue600,
+    boxShadow: `inset 0 0 0 1px ${tokens.blue600}`
   },
   checkedDisabled: {
-    color: scales.neutral.N6A,
-    backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, ${
-      scales.neutral.N1A
-    })`,
-    boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${
-      scales.neutral.N2A
-    }`
+    color: tokens.gray600,
+    backgroundColor: tokens.gray100
   },
   checkedActive: {
     color: 'white',
-    backgroundImage: primaryStyle.linearGradient.active,
-    boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${
-      scales.neutral.N2A
-    }`
+    boxShadow: `inset 0 0 0 -1px ${tokens.blue700}`,
+    backgroundColor: tokens.blue700
   }
 })
 

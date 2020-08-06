@@ -1,12 +1,12 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import cx from 'classnames'
-import { dimensions, spacing, position, layout } from 'ui-box'
-import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Text } from '../../typography'
-import { Spinner } from '../../spinner'
+import cx from 'classnames'
 import { useTheme } from '../../theme'
-import useButtonApperance from '../../theme/src/hooks/useButtonAppearance'
+import { IconWrapper } from '../../icons/src/IconWrapper'
+import { spacing, dimensions, position, layout } from 'ui-box'
+import { Spinner } from '../../spinner'
+import useButtonAppearance from '../../theme/src/hooks/useButtonAppearance'
 
 /* eslint-disable-next-line react/prop-types */
 const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
@@ -38,8 +38,6 @@ const styles = {
 
 const Button = memo(
   forwardRef(function Button(props, ref) {
-    const theme = useTheme()
-
     const {
       className,
 
@@ -64,13 +62,8 @@ const Button = memo(
       ...restProps
     } = props
 
-    const themedClassName =
-      appearance === 'primary' ||
-      appearance === 'secondary' ||
-      appearance === 'tertiary' ||
-      appearance === 'destructive'
-        ? useButtonApperance(appearance)
-        : theme.getButtonClassName(appearance, intent)
+    const theme = useTheme()
+    const themedClassName = useButtonAppearance(appearance)
 
     const textSize = theme.getTextSizeForControlHeight(height)
 
