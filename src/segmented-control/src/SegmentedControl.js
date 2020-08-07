@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import safeInvoke from '../../lib/safe-invoke'
 import { useId } from '../../hooks'
+import { majorScale } from '../../scales'
+import tokens from '../../theme/src/default-theme/foundational-styles/tokens'
 import SegmentedControlRadio from './SegmentedControlRadio'
 
 const SegmentedControl = memo(
@@ -52,7 +54,15 @@ const SegmentedControl = memo(
     }
 
     return (
-      <Box display="flex" marginRight={-1} height={height} ref={ref} {...rest}>
+      <Box
+        display="flex"
+        boxShadow={`inset 0 0 0 1px ${tokens.gray500}`}
+        borderRadius={majorScale(1)}
+        marginRight={-1}
+        height={height}
+        ref={ref}
+        {...rest}
+      >
         {options.map((option, index) => (
           <SegmentedControlRadio
             key={option.value}

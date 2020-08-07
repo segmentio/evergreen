@@ -4,6 +4,7 @@ import Box from 'ui-box'
 import { css } from 'glamor'
 import cx from 'classnames'
 import { Text } from '../../typography'
+import useSegmentControlAppearance from '../../theme/src/hooks/useSegmentedControlAppearance'
 import { useTheme } from '../../theme'
 
 const labelClass = css({
@@ -21,12 +22,12 @@ const wrapperClass = css({
   cursor: 'pointer',
   marginLeft: '-1px',
   [`:first-child .${labelClass}`]: {
-    borderTopLeftRadius: 3,
-    borderBottomLeftRadius: 3
+    borderTopLeftRadius: 8,
+    borderBottomLeftRadius: 8
   },
   [`:last-child .${labelClass}`]: {
-    borderTopRightRadius: 3,
-    borderBottomRightRadius: 3
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8
   }
 })
 
@@ -54,32 +55,17 @@ const SegmentedControlRadio = memo(
       checked,
       onChange,
       appearance,
-      isFirstItem,
-      isLastItem,
       disabled
     } = props
 
-    const themedClassName = theme.getSegmentedControlRadioClassName(appearance)
+    const themedClassName = useSegmentControlAppearance(appearance)
     const textSize = theme.getTextSizeForControlHeight(height)
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
 
     return (
       <Box
         ref={ref}
         className={cx(wrapperClass.toString(), themedClassName)}
         data-active={checked}
-        {...(isFirstItem
-          ? {
-              borderTopLeftRadius: borderRadius,
-              borderBottomLeftRadius: borderRadius
-            }
-          : {})}
-        {...(isLastItem
-          ? {
-              borderTopRightRadius: borderRadius,
-              borderBottomRightRadius: borderRadius
-            }
-          : {})}
       >
         <input
           type="radio"
@@ -142,16 +128,6 @@ SegmentedControlRadio.propTypes = {
    * The appearance of the control. Currently only `default` is possible.
    */
   appearance: PropTypes.string.isRequired,
-
-  /**
-   * When true, this item is the first item.
-   */
-  isFirstItem: PropTypes.bool,
-
-  /**
-   * When true, this item is the last item.
-   */
-  isLastItem: PropTypes.bool,
 
   /**
    * The unique id of the radio option.
