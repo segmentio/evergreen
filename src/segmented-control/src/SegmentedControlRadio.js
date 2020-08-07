@@ -4,6 +4,7 @@ import Box from 'ui-box'
 import { css } from 'glamor'
 import cx from 'classnames'
 import { Text } from '../../typography'
+import useSegmentControlAppearance from '../../theme/src/hooks/useSegmentedControlAppearance'
 import { useTheme } from '../../theme'
 
 const labelClass = css({
@@ -59,7 +60,7 @@ const SegmentedControlRadio = memo(
       disabled
     } = props
 
-    const themedClassName = theme.getSegmentedControlRadioClassName(appearance)
+    const themedClassName = useSegmentControlAppearance(appearance)
     const textSize = theme.getTextSizeForControlHeight(height)
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
 
