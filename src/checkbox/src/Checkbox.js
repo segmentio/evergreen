@@ -2,7 +2,7 @@ import React, { memo, forwardRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
-import { useTheme } from '../../theme'
+import useCheckboxAppearance from '../../theme/src/hooks/useCheckboxAppearance'
 import { useMergedRef } from '../../hooks'
 
 const CheckIcon = ({ fill = 'currentColor', ...props }) => (
@@ -60,8 +60,7 @@ const Checkbox = memo(
       }
     }, [ref, indeterminate])
 
-    const theme = useTheme()
-    const themedClassName = theme.getCheckboxClassName(appearance)
+    const themedClassName = useCheckboxAppearance(appearance)
 
     return (
       <Box

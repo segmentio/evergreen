@@ -27,21 +27,6 @@ const focusAndActiveState =
 const activeState =
   '&:not([disabled]):not([data-disabled]):active, &:not([disabled]):not([data-disabled])[aria-expanded="true"], &:not([disabled]):not([data-disabled])[data-active]'
 
-// Make `useButtonAppearance` "theme-aware" (calling `useTheme`)
-
-/**
- *
- * theme.tokens = {
- *  cta: {
- *    primary: {
- *      base: blue500,
- *      }
- *  }
- * }
- */
-
-// 'appearance' / 'intent'
-
 // 1. Make `useButtonApperance` theme-aware
 // 2. Token-ify `blue500` as `primary: base, focus, focusAndActive, hover, etc`
 // 3. Hook-ify things (`useInputStates` -> { [ '[disabled], :disabled']}), useFocusRing(), etc

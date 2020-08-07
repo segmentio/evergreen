@@ -6,6 +6,7 @@ import { useTheme } from '../../theme'
 const Heading = memo(
   forwardRef(function Heading(props, ref) {
     const theme = useTheme()
+    console.log(theme)
     const { marginTop, size = 500, ...restProps } = props
     const {
       marginTop: defaultMarginTop,

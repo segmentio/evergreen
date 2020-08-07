@@ -2,7 +2,7 @@ import React, { memo, forwardRef } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
-import { useTheme } from '../../theme'
+import useSwitchAppearance from '../../theme/src/hooks/useSwitchAppearance'
 
 const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
@@ -80,8 +80,7 @@ const Switch = memo(
       ...rest
     } = props
 
-    const theme = useTheme()
-    const themedClassName = theme.getSwitchClassName(appearance)
+    const themedClassName = useSwitchAppearance(appearance)
 
     return (
       <Box

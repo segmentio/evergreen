@@ -6,7 +6,7 @@ const colors = {
   gray600: '#8f95b2',
   gray500: '#c1c4d6',
   gray400: '#d8dae5',
-  gray300: '#101840',
+  gray300: '#E6E8F0',
   gray200: '#edeff5',
   gray100: '#F4F5F9',
   gray90: '#F4F6FA',

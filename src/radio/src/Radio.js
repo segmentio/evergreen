@@ -2,7 +2,7 @@ import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
-import { useTheme } from '../../theme'
+import useCheckboxAppearance from '../../theme/src/hooks/useCheckboxAppearance'
 
 const CircleIcon = memo(function CircleIcon({
   size,
@@ -40,8 +40,7 @@ const Radio = memo(
       ...rest
     } = props
 
-    const theme = useTheme()
-    const themedClassName = theme.getRadioClassName(appearance)
+    const themedClassName = useCheckboxAppearance(appearance)
 
     return (
       <Box

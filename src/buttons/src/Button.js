@@ -1,10 +1,10 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import { Text } from '../../typography'
 import cx from 'classnames'
+import { spacing, dimensions, position, layout } from 'ui-box'
+import { Text } from '../../typography'
 import { useTheme } from '../../theme'
 import { IconWrapper } from '../../icons/src/IconWrapper'
-import { spacing, dimensions, position, layout } from 'ui-box'
 import { Spinner } from '../../spinner'
 import useButtonAppearance from '../../theme/src/hooks/useButtonAppearance'
 
@@ -41,7 +41,7 @@ const Button = memo(
     const {
       className,
 
-      intent = 'none',
+      // Intent = 'none',
       height = 32,
       isActive = false,
       children,
