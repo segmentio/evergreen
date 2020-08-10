@@ -63,5 +63,13 @@ IconWrapper.propTypes = {
    * readers will use it for aural feedback.
    * By default, this is set to the icon's name for accessibility.
    */
-  title: PropTypes.string
+  title: PropTypes.string,
+
+  /**
+   * Allows for positioning of the icon via Box
+   */
+  marginLeft: PropTypes.number,
+  marginRight: PropTypes.number,
+  marginTop: PropTypes.number,
+  marginBottom: PropTypes.number
 }
