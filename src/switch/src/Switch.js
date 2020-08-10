@@ -71,7 +71,7 @@ const Switch = memo(
       id,
       name,
       height = 16,
-      checked,
+      checked = false,
       onChange = noop,
       disabled = false,
       appearance = 'default',
