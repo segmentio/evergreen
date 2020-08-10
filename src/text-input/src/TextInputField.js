@@ -36,7 +36,7 @@ const TextInputField = memo(
     /**
      * Split the wrapper props from the input props.
      */
-    const { matchedProps, remainingProps } = splitBoxProps(props)
+    const { matchedProps, remainingProps } = splitBoxProps(restProps)
 
     return (
       <FormField
@@ -48,7 +48,6 @@ const TextInputField = memo(
         validationMessage={validationMessage}
         labelFor={id}
         {...matchedProps}
-        {...restProps}
       >
         <TextInput
           id={id}
