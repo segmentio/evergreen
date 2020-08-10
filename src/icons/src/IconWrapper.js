@@ -8,26 +8,30 @@ import Box from 'ui-box'
  * Box props are applied to the outer Box container, and Evergreen icon-specific props are added to the icon element.
  */
 export const IconWrapper = memo(
-  forwardRef(function Icon({ icon, marginLeft, marginRight, marginTop, marginBottom, ...props }, ref) {
+  forwardRef(function Icon(
+    { icon, color, size, title, ...props },
+    ref
+  ) {
     if (!icon || typeof icon === 'string') {
       return null
+    }
+
+    const iconProps = {
+      color,
+      size,
+      title,
     }
 
     let iconWithProps = null
     if (ReactIs.isValidElementType(icon)) {
       const Component = icon
-      iconWithProps = <Component ref={ref} {...props} />
+      iconWithProps = <Component ref={ref} {...iconProps} />
     } else if (React.isValidElement(icon)) {
-      iconWithProps = React.cloneElement(icon, { ...props, ...icon.props, ref })
+      iconWithProps = React.cloneElement(icon, { ...iconProps, ...icon.props, ref })
     }
 
     return (
-      <Box
-        display="flex"
-        marginLeft={marginLeft}
-        marginRight={marginRight}
-        marginTop={marginTop}
-        marginBottom={marginBottom}>
+      <Box display="inline-flex" {...props}>
         {iconWithProps}
       </Box>
     )
@@ -64,12 +68,4 @@ IconWrapper.propTypes = {
    * By default, this is set to the icon's name for accessibility.
    */
   title: PropTypes.string,
-
-  /**
-   * Allows for positioning of the icon via Box
-   */
-  marginLeft: PropTypes.number,
-  marginRight: PropTypes.number,
-  marginTop: PropTypes.number,
-  marginBottom: PropTypes.number
 }
