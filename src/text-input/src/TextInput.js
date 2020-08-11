@@ -15,7 +15,6 @@ const TextInput = memo(
       height = 32,
       disabled = false,
       isInvalid = false,
-      appearance = 'default',
       spellCheck = true,
       ...restProps
     } = props

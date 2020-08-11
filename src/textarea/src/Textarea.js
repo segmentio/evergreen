@@ -20,7 +20,6 @@ const Textarea = memo(
       disabled = false,
       required,
       isInvalid = false,
-      appearance = 'default',
       placeholder,
       spellCheck = true,
       grammarly = false,
