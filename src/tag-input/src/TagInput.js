@@ -10,6 +10,7 @@ import { Text } from '../../typography'
 import { useTheme } from '../../theme'
 import { majorScale } from '../../scales'
 import safeInvoke from '../../lib/safe-invoke'
+import useInputAppearance from '../../theme/src/hooks/useInputAppearance'
 import { useId } from '../../hooks'
 import Tag from './Tag'
 
@@ -150,8 +151,8 @@ const TagInput = memo(
       )
     }
 
-    const themedContainerClassName = theme.getTagInputClassName('default')
-    const themedInputClassName = theme.getTextInputClassName('none')
+    const themedContainerClassName = useInputAppearance()
+    const themedInputClassName = useInputAppearance('none')
     const textSize = theme.getTextSizeForControlHeight(height)
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
 

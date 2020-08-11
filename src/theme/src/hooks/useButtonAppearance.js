@@ -149,6 +149,7 @@ function useButtonAppearance(appearance) {
         },
         [focusState]: {
           boxShadow: `0 0 0 2px ${colors.blue100}`,
+          border: `1px solid ${colors.blue200}`,
           color: colors.gray800
         },
         [activeState]: {

@@ -8,7 +8,7 @@ function useTextStyle(size, color) {
   return {
     ...text[size],
     color: colors[color] || color,
-    fontFamily: fontFamilies.ui
+    fontFamily: fontFamilies['ui']
   }
 }
 

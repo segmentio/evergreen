@@ -2,7 +2,8 @@ import React, { forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { Text } from '../../typography'
-import { useTheme } from '../../theme'
+import useInputAppearance from '../../theme/src/hooks/useInputAppearance'
+import { minorScale } from '../../scales'
 
 const TextInput = memo(
   forwardRef(function TextInput(props, ref) {
@@ -18,18 +19,15 @@ const TextInput = memo(
       spellCheck = true,
       ...restProps
     } = props
-    const theme = useTheme()
 
-    const themedClassName = theme.getTextInputClassName(appearance)
-    const textSize = theme.getTextSizeForControlHeight(height)
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
+    const themedClassName = useInputAppearance()
 
     return (
       <Text
         is="input"
         className={cx(themedClassName, className)}
         type="text"
-        size={textSize}
+        size={300}
         width={width}
         height={height}
         required={required}
@@ -37,7 +35,7 @@ const TextInput = memo(
         placeholder={placeholder}
         paddingLeft={Math.round(height / 3.2)}
         paddingRight={Math.round(height / 3.2)}
-        borderRadius={borderRadius}
+        borderRadius={minorScale(1)}
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         {...(disabled ? { color: 'muted' } : {})}

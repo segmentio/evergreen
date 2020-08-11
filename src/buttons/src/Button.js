@@ -29,7 +29,6 @@ const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
 
 const styles = {
   position: 'relative',
-  fontFamily: 'ui',
   fontWeight: 500,
   display: 'inline-flex',
   alignItems: 'center',

@@ -18,6 +18,8 @@ const Text = memo(
 
     const textStyle = useTextStyle(size, color)
 
+    console.log(textStyle)
+
     return (
       <Box
         is="span"

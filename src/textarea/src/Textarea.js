@@ -2,7 +2,8 @@ import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { Text } from '../../typography'
-import { useTheme } from '../../theme'
+import { minorScale } from '../../scales'
+import useInputAppearance from '../../theme/src/hooks/useInputAppearance'
 
 const styles = {
   minHeight: 80,
@@ -12,7 +13,6 @@ const styles = {
 
 const Textarea = memo(
   forwardRef(function Textarea(props, ref) {
-    const theme = useTheme()
     const {
       className,
       width = '100%',
@@ -27,14 +27,14 @@ const Textarea = memo(
       ...restProps
     } = props
 
-    const themedClassName = theme.getTextareaClassName(appearance)
+    const themedClassName = useInputAppearance()
 
     return (
       <Text
         is="textarea"
         ref={ref}
         className={cx(themedClassName, className)}
-        size={400}
+        size={300}
         width={width}
         height={height}
         required={required}
@@ -42,7 +42,7 @@ const Textarea = memo(
         placeholder={placeholder}
         paddingLeft={Math.round(height / 3.2)}
         paddingRight={Math.round(height / 3.2)}
-        borderRadius={3}
+        borderRadius={minorScale(1)}
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
