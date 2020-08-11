@@ -33,8 +33,15 @@ const colorTokens = {
   red50: '#FCF5F5',
 
   // Greens
+  green900: '#10261E',
+  green800: '#214C3C',
   green700: '#317159',
+  green600: '#429777',
   green500: '#52BD95',
+  green400: '#75CAAA',
+  green300: '#97D7BF',
+  green200: '#BAE5D5',
+  green100: '#DCF2EA',
   green50: '#F6FBF9',
 
   // Oranges
