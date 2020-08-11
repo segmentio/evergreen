@@ -12,6 +12,7 @@ import { majorScale } from '../../scales'
 import safeInvoke from '../../lib/safe-invoke'
 import useInputAppearance from '../../theme/src/hooks/useInputAppearance'
 import { useId } from '../../hooks'
+import useTagInputAppearance from '../../theme/src/hooks/useTagInputAppearance'
 import Tag from './Tag'
 
 const GET_KEY_FOR_TAG_DELIMITER = {
@@ -151,7 +152,7 @@ const TagInput = memo(
       )
     }
 
-    const themedContainerClassName = useInputAppearance()
+    const themedContainerClassName = useTagInputAppearance()
     const themedInputClassName = useInputAppearance('none')
     const textSize = theme.getTextSizeForControlHeight(height)
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
