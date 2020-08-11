@@ -7,6 +7,7 @@ import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
 import { CrossIcon } from '../../icons'
 import { getIconForIntent } from './getIconForIntent'
+import useAlertApperance from '../../theme/src/hooks/useAlertApperance'
 
 const Alert = memo(
   forwardRef(function Alert(props, ref) {
@@ -15,23 +16,19 @@ const Alert = memo(
       children,
       hasIcon = true,
       hasTrim = true,
-      intent = 'none',
+      intent = 'info',
       isRemoveable = false,
       onRemove,
       title,
       ...restProps
     } = props
 
-    const theme = useTheme()
+    const {
+      tokens: { intents }
+    } = useTheme()
 
-    /**
-     * Note that Alert return a className and additional properties.
-     */
-    const { className, ...themeProps } = theme.getAlertProps({
-      appearance,
-      intent,
-      hasTrim
-    })
+    const intentToken = intent === 'none' ? 'info' : intent
+    const className = useAlertApperance(intentToken)
 
     return (
       <Pane
@@ -44,33 +41,33 @@ const Alert = memo(
         display="flex"
         paddingY={12}
         paddingX={16}
-        {...themeProps}
         {...restProps}
       >
         {hasIcon && (
           <Pane
-            marginRight={10}
+            marginRight={16}
             marginLeft={2}
             height={20}
             display="flex"
             alignItems="center"
           >
-            {getIconForIntent(intent, { size: 14 })}
+            {getIconForIntent(intentToken, { size: 16 })}
           </Pane>
         )}
         <Pane display="flex" width="100%">
           <Pane flex={1}>
             <Heading
               is="h4"
-              fontWeight={600}
               size={400}
               marginTop={0}
               marginBottom={0}
+              fontWeight={500}
+              color={intents[intentToken].text}
             >
               {title}
             </Heading>
             {typeof children === 'string' ? (
-              <Paragraph size={400} color="muted">
+              <Paragraph size={400} color="muted" marginTop={8}>
                 {children}
               </Paragraph>
             ) : (
@@ -90,6 +87,7 @@ const Alert = memo(
                 appearance="minimal"
                 height={24}
                 onClick={onRemove}
+                intent={intentToken}
               />
             </Pane>
           )}
