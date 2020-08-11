@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { useTheme } from '../../theme'
+import useIconColor from '../../theme/src/hooks/useIconColor'
 
 /**
  * This implementation is a remix of the Icon component in Blueprintjs:
@@ -24,7 +24,7 @@ const Icon = forwardRef(function Icon(
   },
   ref
 ) {
-  const theme = useTheme()
+  const iconColor = useIconColor(color)
   const SIZE_STANDARD = 16
   const SIZE_LARGE = 20
 
@@ -39,7 +39,7 @@ const Icon = forwardRef(function Icon(
   const viewBox = `0 0 ${pixelGridSize} ${pixelGridSize}`
 
   const styles = useMemo(() => {
-    return color ? { ...style, fill: theme.getIconColor(color) } : style
+    return color ? { ...style, fill: iconColor } : style
   }, [style, color])
 
   return (
