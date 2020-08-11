@@ -1,6 +1,5 @@
 import useTheme from '../useTheme'
 import memoizeClassName from '../default-theme/utils/memoizeClassName'
-import tokens from '../default-theme/foundational-styles/tokens'
 
 const defaultState = '& + div'
 const disabledState = '&[disabled] + div'
@@ -49,7 +48,7 @@ const checkedStyles = {
  */
 const useCheckboxAppearance = () => {
   const {
-    tokens: { primary }
+    tokens: { primary, colors }
   } = useTheme()
 
   return {
@@ -59,22 +58,22 @@ const useCheckboxAppearance = () => {
       ...baseStyle,
       color: 'white',
       backgroundColor: 'white',
-      boxShadow: `inset 0 0 0 1px ${tokens.gray400}`
+      boxShadow: `inset 0 0 0 1px ${colors.gray400}`
     },
     [disabledState]: {
       cursor: 'not-allowed',
-      backgroundColor: tokens.gray100,
-      boxShadow: `inset 0 0 0 1px ${tokens.gray100}`
+      backgroundColor: colors.gray100,
+      boxShadow: `inset 0 0 0 1px ${colors.gray100}`
     },
     [hoverState]: {
-      boxShadow: `inset 0 0 0 1px ${tokens.gray600}`
+      boxShadow: `inset 0 0 0 1px ${colors.gray600}`
     },
     [focusState]: {
-      boxShadow: `0 0 0 2px ${tokens.blue100}, inset 0 0 0 1px ${tokens.gray600}`
+      boxShadow: `0 0 0 2px ${colors.blue100}, inset 0 0 0 1px ${colors.gray600}`
     },
     [activeState]: {
-      backgroundColor: tokens.gray100,
-      boxShadow: `inset 0 0 0 1px ${tokens.gray500}`
+      backgroundColor: colors.gray100,
+      boxShadow: `inset 0 0 0 1px ${colors.gray500}`
     },
     [checkedState]: {
       ...checkedStyles,
@@ -89,8 +88,8 @@ const useCheckboxAppearance = () => {
     },
     [checkedDisabledState]: {
       ...checkedStyles,
-      color: tokens.gray600,
-      backgroundColor: tokens.gray100
+      color: colors.gray600,
+      backgroundColor: colors.gray100
     },
     [checkedActiveState]: {
       ...checkedStyles,

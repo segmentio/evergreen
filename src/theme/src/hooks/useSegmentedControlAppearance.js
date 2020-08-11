@@ -1,6 +1,5 @@
 import useTheme from '../useTheme'
 import memoizeClassName from '../default-theme/utils/memoizeClassName'
-import tokens from '../default-theme/foundational-styles/tokens'
 
 const baseStyle = {
   WebkitFontSmoothing: 'antialiased',
@@ -21,34 +20,34 @@ const focusState = '& input:focus + label'
 
 const useSegmentedControlAppearance = () => {
   const {
-    tokens: { primary }
+    tokens: { primary, colors }
   } = useTheme()
 
   return {
     ...baseStyle,
-    color: tokens.gray700,
+    color: colors.gray700,
     backgroundColor: 'transparent',
     borderRadius: '8px',
     [disabledState]: {
       opacity: 0.8,
-      backgroundColor: tokens.gray500,
+      backgroundColor: colors.gray500,
       boxShadow: 'none',
-      color: tokens.gray600,
+      color: colors.gray600,
       pointerEvents: 'none'
     },
     [hoverState]: {
       color: primary.base,
-      backgroundColor: tokens.blue100
+      backgroundColor: colors.blue100
     },
     [focusState]: {
       borderRadius: '8px',
-      boxShadow: `0 0 0 1px ${tokens.blue100}`
+      boxShadow: `0 0 0 1px ${colors.blue100}`
     },
     [activeState]: {
-      backgroundColor: tokens.blue50,
+      backgroundColor: colors.blue50,
       borderRadius: '8px',
       color: primary.base,
-      boxShadow: `inset 0 0 0 1px ${tokens.gray300}, inset 0 1px 1px 0 ${tokens.gray200}`
+      boxShadow: `inset 0 0 0 1px ${colors.gray300}, inset 0 1px 1px 0 ${colors.gray200}`
     }
   }
 }

@@ -34,7 +34,8 @@ const colorTokens = {
 
 const colors = {
   ...colorTokens,
-  muted: colorTokens.gray500
+  muted: colorTokens.gray700,
+  default: colorTokens.gray800
 }
 
 const fontFamilies = {
@@ -63,37 +64,26 @@ const text = {
     fontSize: '20px',
     fontWeight: 400,
     lineHeight: '24px',
-    letterSpacing: '-0.07px',
-    marginTop: 28,
-    /**
-     * Use font family display because the font-size is 20px.
-     */
-    fontFamily: fontFamilies.display
+    letterSpacing: '-0.07px'
   },
   '500': {
     fontSize: '16px',
     fontWeight: 400,
     lineHeight: '20px',
-    fontFamily: fontFamilies.ui,
-    letterSpacing: '-0.05px',
-    marginTop: 16
+    letterSpacing: '-0.05px'
   },
   '400': {
     // Default
     fontSize: '14px',
     fontWeight: 400,
     lineHeight: '20px',
-    fontFamily: fontFamilies.ui,
-    letterSpacing: '-0.05px',
-    marginTop: 12
+    letterSpacing: '-0.05px'
   },
   '300': {
     fontSize: '12px',
     fontWeight: 400,
-    fontFamily: fontFamilies.ui,
     lineHeight: '16px',
-    letterSpacing: '0',
-    marginTop: 12
+    letterSpacing: '0'
   }
 }
 
@@ -117,7 +107,6 @@ const headings = {
     lineHeight: '40px',
     letterSpacing: '-0.2px',
     marginTop: 52,
-    fontFamily: fontFamilies.display,
     color: colors.gray800
   },
   '800': {
@@ -126,7 +115,6 @@ const headings = {
     lineHeight: '32px',
     letterSpacing: '-0.2px',
     marginTop: 40,
-    fontFamily: fontFamilies.display,
     color: colors.gray800
   },
   '700': {
@@ -135,7 +123,6 @@ const headings = {
     lineHeight: '28px',
     letterSpacing: '-0.07px',
     marginTop: 40,
-    fontFamily: fontFamilies.display,
     color: colors.gray800
   },
   '600': {
@@ -195,10 +182,26 @@ const headings = {
   }
 }
 
+const paragraph = {
+  '500': {
+    ...text['500'],
+    lineHeight: '24px'
+  },
+  '400': {
+    ...text['400'],
+    lineHeight: '21px'
+  },
+  '300': {
+    ...text['300'],
+    lineHeight: '18px'
+  }
+}
+
 export default {
-  ...colors,
+  colors,
   fontFamilies,
   text,
+  paragraph,
   headings,
   primary: {
     base: colors.blue500,

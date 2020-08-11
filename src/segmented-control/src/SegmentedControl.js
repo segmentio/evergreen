@@ -4,7 +4,7 @@ import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import safeInvoke from '../../lib/safe-invoke'
 import { useId } from '../../hooks'
 import { majorScale } from '../../scales'
-import tokens from '../../theme/src/default-theme/foundational-styles/tokens'
+import { useTheme } from '../../theme'
 import SegmentedControlRadio from './SegmentedControlRadio'
 
 const SegmentedControl = memo(
@@ -21,6 +21,10 @@ const SegmentedControl = memo(
     } = props
 
     const groupName = useId('SegmentedControl')
+
+    const {
+      tokens: { colors }
+    } = useTheme()
 
     const isControlled = () => {
       return typeof value !== 'undefined' && value !== null
@@ -56,7 +60,7 @@ const SegmentedControl = memo(
     return (
       <Box
         display="flex"
-        boxShadow={`inset 0 0 0 1px ${tokens.gray500}`}
+        boxShadow={`inset 0 0 0 1px ${colors.gray500}`}
         borderRadius={majorScale(1)}
         marginRight={-1}
         height={height}

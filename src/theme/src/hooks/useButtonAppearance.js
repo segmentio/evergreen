@@ -1,7 +1,6 @@
 import useTheme from '../useTheme'
 import memoizeClassName from '../default-theme/utils/memoizeClassName'
 import { defaultControlStyles } from '../default-theme/shared'
-import tokens from '../default-theme/foundational-styles/tokens'
 
 const { disabled } = defaultControlStyles
 
@@ -34,7 +33,7 @@ const activeState =
 
 function useButtonAppearance(appearance) {
   const {
-    tokens: { primary }
+    tokens: { primary, colors }
   } = useTheme()
 
   switch (appearance) {
@@ -51,7 +50,7 @@ function useButtonAppearance(appearance) {
         },
         [focusState]: {
           backgroundColor: primary.hover,
-          boxShadow: `0 0 0 2px ${tokens.blue100}`
+          boxShadow: `0 0 0 2px ${colors.blue100}`
         },
         [activeState]: {
           backgroundColor: primary.active
@@ -70,17 +69,17 @@ function useButtonAppearance(appearance) {
           ...disabled
         },
         [hoverState]: {
-          backgroundColor: tokens.blue50
+          backgroundColor: colors.blue50
         },
         [focusState]: {
-          backgroundColor: tokens.blue100,
-          boxShadow: `0 0 0 2px ${tokens.blue100}`
+          backgroundColor: colors.blue100,
+          boxShadow: `0 0 0 2px ${colors.blue100}`
         },
         [activeState]: {
-          backgroundColor: tokens.blue50
+          backgroundColor: colors.blue50
         },
         [focusAndActiveState]: {
-          backgroundColor: tokens.blue50
+          backgroundColor: colors.blue50
         }
       }
     }
@@ -89,23 +88,23 @@ function useButtonAppearance(appearance) {
       return {
         ...base,
         backgroundColor: 'transparent',
-        border: `1px solid ${tokens.gray400}`,
-        color: tokens.gray700,
+        border: `1px solid ${colors.gray400}`,
+        color: colors.gray700,
         [disabledState]: {
           ...disabled,
-          color: tokens.gray500,
-          border: `1px solid ${tokens.gray300}`
+          color: colors.gray500,
+          border: `1px solid ${colors.gray300}`
         },
         [hoverState]: {
-          border: `1px solid ${tokens.gray600}`,
-          color: tokens.gray800
+          border: `1px solid ${colors.gray600}`,
+          color: colors.gray800
         },
         [focusState]: {
-          boxShadow: `0 0 0 2px ${tokens.blue100}`,
-          color: tokens.gray800
+          boxShadow: `0 0 0 2px ${colors.blue100}`,
+          color: colors.gray800
         },
         [activeState]: {
-          backgroundColor: tokens.gray100
+          backgroundColor: colors.gray100
         },
         [focusAndActiveState]: {}
       }
@@ -114,20 +113,20 @@ function useButtonAppearance(appearance) {
     case 'destructive': {
       return {
         ...base,
-        backgroundColor: tokens.red500,
+        backgroundColor: colors.red500,
         color: 'white',
         [disabledState]: {
           ...disabled
         },
         [hoverState]: {
-          backgroundColor: tokens.red600
+          backgroundColor: colors.red600
         },
         [focusState]: {
-          backgroundColor: tokens.red600,
-          boxShadow: `0 0 0 2px ${tokens.red100}`
+          backgroundColor: colors.red600,
+          boxShadow: `0 0 0 2px ${colors.red100}`
         },
         [activeState]: {
-          backgroundColor: tokens.red700
+          backgroundColor: colors.red700
         },
         [focusAndActiveState]: {}
       }
@@ -137,23 +136,23 @@ function useButtonAppearance(appearance) {
       return {
         ...base,
         backgroundColor: 'transparent',
-        border: `1px solid ${tokens.gray400}`,
-        color: tokens.gray700,
+        border: `1px solid ${colors.gray400}`,
+        color: colors.gray700,
         [disabledState]: {
           ...disabled,
-          color: tokens.gray500,
-          border: `1px solid ${tokens.gray300}`
+          color: colors.gray500,
+          border: `1px solid ${colors.gray300}`
         },
         [hoverState]: {
-          border: `1px solid ${tokens.gray600}`,
-          color: tokens.gray800
+          border: `1px solid ${colors.gray600}`,
+          color: colors.gray800
         },
         [focusState]: {
-          boxShadow: `0 0 0 2px ${tokens.blue100}`,
-          color: tokens.gray800
+          boxShadow: `0 0 0 2px ${colors.blue100}`,
+          color: colors.gray800
         },
         [activeState]: {
-          backgroundColor: tokens.gray100
+          backgroundColor: colors.gray100
         },
         [focusAndActiveState]: {}
       }
