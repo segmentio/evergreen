@@ -1,6 +1,5 @@
 import useTheme from '../useTheme'
 import memoizeClassName from '../default-theme/utils/memoizeClassName'
-import { StackingOrder } from '../../../constants'
 
 const baseStyle = {
   WebkitAppearance: 'none',
