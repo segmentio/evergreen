@@ -140,6 +140,7 @@ function useButtonAppearance(appearance) {
         color: colors.gray700,
         [disabledState]: {
           ...disabled,
+          cursor: 'not-allowed',
           color: colors.gray500,
           border: `1px solid ${colors.gray300}`
         },

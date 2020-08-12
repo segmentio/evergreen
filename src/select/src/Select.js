@@ -4,6 +4,7 @@ import Box, { dimensions, spacing, position, layout } from 'ui-box'
 import { Text } from '../../typography'
 import { CaretDownIcon } from '../../icons'
 import { useTheme } from '../../theme'
+import useButtonAppearance from '../../theme/src/hooks/useButtonAppearance'
 
 const Select = memo(
   forwardRef(function Select(props, ref) {
@@ -24,7 +25,7 @@ const Select = memo(
       ...restProps
     } = props
 
-    const themedClassName = theme.getSelectClassName(appearance)
+    const themedClassName = useButtonAppearance(appearance)
     const textSize = theme.getTextSizeForControlHeight(height)
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
     const iconSize = theme.getIconSizeForSelect(height)
