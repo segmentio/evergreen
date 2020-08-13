@@ -82,7 +82,7 @@ function useButtonAppearance(appearance) {
     case 'tertiary': {
       return {
         ...base,
-        backgroundColor: 'transparent',
+        backgroundColor: 'white',
         border: `1px solid ${colors.gray400}`,
         color: colors.gray700,
         [disabledState]: {
