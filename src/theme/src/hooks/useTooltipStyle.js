@@ -1,7 +1,8 @@
 import useTheme from '../useTheme'
 
 const baseStyle = {
-  padding: 12,
+  paddingY: 8,
+  paddingX: 16,
   elevation: 3
 }
 

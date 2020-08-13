@@ -12,7 +12,8 @@ const invalidState = '&[aria-invalid="true"]'
 const placeholder = '&::placeholder'
 const focusState = '&:focus'
 const disabledState = '&:disabled'
-const focusPlaceholderState = '&:disabled::placeholder'
+const hoverPlaceholderState = '&:hover::placeholder'
+const focusPlaceholderState = '&:focus::placeholder'
 
 const useInputAppearance = appearance => {
   const {
@@ -44,6 +45,9 @@ const useInputAppearance = appearance => {
         border: `1px solid ${colors.gray400}`,
         [placeholder]: {
           color: colors.gray600
+        },
+        [hoverPlaceholderState]: {
+          color: colors.gray700
         },
         [invalidState]: {
           border: `1px solid ${colors.red500}`

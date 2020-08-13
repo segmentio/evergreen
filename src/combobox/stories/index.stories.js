@@ -35,7 +35,13 @@ storiesOf('combobox', module).add('Combobox', () => (
     })()}
     <Box marginBottom={16}>
       <Heading>Default usage</Heading>
-      <Combobox items={items} onChange={handleChange} />
+      <Combobox
+        autocompleteProps={{
+          title: 'Hello World'
+        }}
+        items={items}
+        onChange={handleChange}
+      />
     </Box>
     <Box marginBottom={16}>
       <Heading>Custom width</Heading>

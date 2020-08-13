@@ -6,6 +6,7 @@ import { Pane } from '../../layers'
 import { SearchIcon } from '../../icons'
 import TableHead from '../../table/src/TableHead'
 import SearchTableHeaderCell from '../../table/src/SearchTableHeaderCell'
+import tokens from '../../theme/src/default-theme/foundational-styles/tokens'
 import OptionShapePropType from './OptionShapePropType'
 import Option from './Option'
 
@@ -279,7 +280,7 @@ export default class OptionsList extends PureComponent {
         {...props}
       >
         {hasFilter && (
-          <TableHead>
+          <TableHead backgroundColor={tokens.colors.gray50}>
             <SearchTableHeaderCell
               onChange={this.handleChange}
               ref={this.assignSearchRef}

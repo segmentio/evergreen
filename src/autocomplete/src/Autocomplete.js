@@ -11,7 +11,7 @@ import Downshift from 'downshift'
 import VirtualList from 'react-tiny-virtual-list'
 import { Popover } from '../../popover'
 import { Position } from '../../constants'
-import { Heading } from '../../typography'
+import { Text } from '../../typography'
 import { Pane } from '../../layers'
 import AutocompleteItem from './AutocompleteItem'
 
@@ -67,7 +67,9 @@ const AutocompleteItems = ({
     <Pane width={width} {...menuProps}>
       {title && (
         <Pane padding={8} borderBottom="muted">
-          <Heading size={100}>{title}</Heading>
+          <Text size={300} textTransform="uppercase">
+            {title}
+          </Text>
         </Pane>
       )}
       {items.length > 0 && (

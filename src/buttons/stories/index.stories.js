@@ -225,7 +225,7 @@ buttonsStory.add('Button types', () => (
             value={state.value}
             onChange={value => setState({ value: Number(value) })}
           />
-          <Heading marginTop="default">Default Appearance</Heading>
+          <Heading marginTop={24}>Default Appearance</Heading>
           <Box marginTop={12}>
             <Button height={state.value} marginRight={16}>
               Default
@@ -240,7 +240,7 @@ buttonsStory.add('Button types', () => (
               Danger
             </Button>
           </Box>
-          <Heading marginTop="default">Primary Appearance</Heading>
+          <Heading marginTop={24}>Primary Appearance</Heading>
           <Box marginTop={12}>
             <Button height={state.value} appearance="primary" marginRight={16}>
               Default

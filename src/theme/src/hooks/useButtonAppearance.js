@@ -26,11 +26,6 @@ const focusAndActiveState =
 const activeState =
   '&:not([disabled]):not([data-disabled]):active, &:not([disabled]):not([data-disabled])[aria-expanded="true"], &:not([disabled]):not([data-disabled])[data-active]'
 
-// 1. Make `useButtonApperance` theme-aware
-// 2. Token-ify `blue500` as `primary: base, focus, focusAndActive, hover, etc`
-// 3. Hook-ify things (`useInputStates` -> { [ '[disabled], :disabled']}), useFocusRing(), etc
-// 4. Start up v6 doc (AYO)
-
 function useButtonAppearance(appearance) {
   const {
     tokens: { primary, colors }
