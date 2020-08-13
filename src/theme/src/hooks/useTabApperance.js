@@ -13,7 +13,6 @@ const baseStyles = {
 const hoverState = '&:hover'
 const currentState = '&[aria-current="page"], &[aria-selected="true"]'
 const focusState = '&:focus'
-const disabledState = '&[aria-disabled="true"]'
 
 const useTabApperance = (apperance, direction) => {
   const {
@@ -22,8 +21,12 @@ const useTabApperance = (apperance, direction) => {
 
   const display = direction === 'horizontal' ? 'inline-flex' : 'flex'
   const width = direction === 'horizontal' ? 'auto' : '100%'
+  const spacing =
+    direction === 'horizontal'
+      ? { marginRight: '8px' }
+      : { marginBottom: '8px' }
 
-  switch(apperance) {
+  switch (apperance) {
     case 'primary':
       return {
         ...baseStyles,
@@ -37,7 +40,7 @@ const useTabApperance = (apperance, direction) => {
         width,
 
         ':not(:last-child)': {
-          marginRight: '20px',
+          marginRight: '20px'
         },
 
         ':before': {
@@ -76,7 +79,6 @@ const useTabApperance = (apperance, direction) => {
         }
       }
     default:
-      const spacing = direction === 'horizontal' ? { marginRight: '8px' } : { marginBottom: '8px' }
       return {
         ...baseStyles,
         padding: '8px 16px',
