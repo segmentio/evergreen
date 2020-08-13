@@ -2,7 +2,6 @@ import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { css } from 'glamor'
-import cx from 'classnames'
 import { Text } from '../../typography'
 import useSegmentControlAppearance from '../../theme/src/hooks/useSegmentedControlAppearance'
 import { useTheme } from '../../theme'
@@ -38,11 +37,7 @@ const SegmentedControlRadio = memo(
     const textSize = theme.getTextSizeForControlHeight(height)
 
     return (
-      <Box
-        ref={ref}
-        className={themedClassName}
-        data-active={checked}
-      >
+      <Box ref={ref} className={themedClassName} data-active={checked}>
         <input
           type="radio"
           id={id}
