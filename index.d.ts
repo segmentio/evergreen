@@ -1910,6 +1910,7 @@ export interface TabOwnProps extends TextOwnProps {
    * The default theme only comes with a default style.
    */
   appearance?: DefaultAppearance
+  direction?: "vertical" | "horizontal"
 }
 
 export type TabProps = PolymorphicBoxProps<'span', TabOwnProps>
