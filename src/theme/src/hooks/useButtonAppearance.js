@@ -105,15 +105,16 @@ function useButtonAppearance(appearance) {
       return  {
         ...base,
         backgroundColor: 'white',
-        border: `1px solid ${colors.gray600}`,
+        border: `1px solid ${colors.gray500}`,
         color: colors.gray800,
         [disabledState]: {
           ...disabled,
           color: colors.gray500,
-          border: `1px solid ${colors.gray300}`
+          borderColor: colors.gray300
         },
         [hoverState]: {
-          backgroundColor: colors.gray100
+          borderColor: colors.gray600,
+          backgroundColor: colors.gray50
         },
         [focusState]: {
           boxShadow: `0 0 0 2px ${colors.blue100}`,
