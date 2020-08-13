@@ -23,14 +23,15 @@ const colorTokens = {
   blue300: '#85A3FF',
   blue200: '#ADC2FF',
   blue100: '#D6E0FF',
-  blue50: '#F5F8FF',
+  blue50: '#EBF0FF',
+  blue25: '#F3F6FF',
 
   // Reds
   red700: '#7D2828',
   red600: '#A73636',
   red500: '#D14343',
   red100: '#F9DADA',
-  red50: '#FCF5F5',
+  red25: '#FDF4F4',
 
   // Greens
   green900: '#10261E',
@@ -42,12 +43,12 @@ const colorTokens = {
   green300: '#97D7BF',
   green200: '#BAE5D5',
   green100: '#DCF2EA',
-  green50: '#F6FBF9',
+  green25: '#F5FBF8',
 
   // Oranges
   orange700: '#996A13',
   orange500: '#FFB020',
-  orange50: '#FFFBF4'
+  orange25: '#FFFAF2'
 }
 
 const colors = {
@@ -228,25 +229,25 @@ export default {
   },
   intents: {
     info: {
-      background: colors.blue50,
+      background: colors.blue25,
       border: colors.blue500,
       text: colors.blue600,
       icon: colors.blue500
     },
     success: {
-      background: colors.green50,
+      background: colors.green25,
       border: colors.green500,
       text: colors.green700,
       icon: colors.green500
     },
     warning: {
-      background: colors.orange50,
+      background: colors.orange25,
       border: colors.orange500,
       text: colors.orange700,
       icon: colors.orange500
     },
     danger: {
-      background: colors.red50,
+      background: colors.red25,
       border: colors.red500,
       text: colors.red600,
       icon: colors.red500

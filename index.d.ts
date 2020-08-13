@@ -1599,10 +1599,6 @@ export interface SideSheetProps {
 
 export declare const SideSheet: React.FC<SideSheetProps>
 
-export type SidebarTabOwnProps = TabOwnProps
-export type SidebarTabProps = PolymorphicBoxProps<'span', SidebarTabOwnProps>
-export declare const SidebarTab: BoxComponent<SidebarTabOwnProps, 'span'>
-
 export interface SmallOwnProps {}
 export type SmallProps = PolymorphicBoxProps<'small', SmallOwnProps>
 export declare const Small: BoxComponent<SmallOwnProps, 'small'>

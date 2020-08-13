@@ -56,7 +56,7 @@ export {
   TableCell,
   TextTableCell
 } from './table'
-export { SidebarTab, Tab, Tablist, TabNavigation } from './tabs'
+export { Tab, Tablist, TabNavigation } from './tabs'
 export { TagInput } from './tag-input'
 export { TextInput, TextInputField } from './text-input'
 export {
