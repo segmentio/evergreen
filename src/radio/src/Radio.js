@@ -76,7 +76,7 @@ const Radio = memo(
           width={size}
           height={size}
         >
-          <CircleIcon size={size === 12 ? 4 : 4} />
+          <CircleIcon size={size/2} />
         </Box>
         {label && (
           <Text

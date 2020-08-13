@@ -78,6 +78,7 @@ const useCheckboxAppearance = () => {
     [checkedState]: {
       ...checkedStyles,
       color: 'white',
+      boxShadow: `inset 0 0 0 -1px ${primary.active}`,
       backgroundColor: primary.base
     },
     [checkedHoverState]: {
