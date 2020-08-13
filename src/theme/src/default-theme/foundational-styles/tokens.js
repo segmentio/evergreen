@@ -48,7 +48,20 @@ const colorTokens = {
   // Oranges
   orange700: '#996A13',
   orange500: '#FFB020',
-  orange25: '#FFFAF2'
+  orange100: '#F8E3DA',
+  orange25: '#FFFAF2',
+
+  // Purple
+  purple600: '#6E62B6',
+  purple100: '#E7E4F9',
+
+  // Teals
+  teal800: '#0F5156',
+  teal100: '#D3F5F7',
+
+  // Yellows
+  yellow800: '#66460D',
+  yellow100: '#FFEFD2'
 }
 
 const colors = {
@@ -216,12 +229,48 @@ const paragraph = {
   }
 }
 
+const fills = {
+  neutral: {
+    color: colors.gray800,
+    backgroundColor: colors.gray500
+  },
+  blue: {
+    color: colors.blue600,
+    backgroundColor: colors.blue100
+  },
+  red: {
+    color: colors.red700,
+    backgroundColor: colors.red100
+  },
+  orange: {
+    color: colors.orange700,
+    backgroundColor: colors.orange100
+  },
+  yellow: {
+    color: colors.yellow800,
+    backgroundColor: colors.yellow100
+  },
+  green: {
+    color: colors.green700,
+    backgroundColor: colors.green100
+  },
+  teal: {
+    color: colors.teal800,
+    backgroundColor: colors.teal100
+  },
+  purple: {
+    color: colors.purple600,
+    backgroundColor: colors.purple100
+  }
+}
+
 export default {
   colors,
   fontFamilies,
   text,
   paragraph,
   headings,
+  fills,
   primary: {
     base: colors.blue500,
     hover: colors.blue600,

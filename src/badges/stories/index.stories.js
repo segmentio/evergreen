@@ -23,7 +23,7 @@ storiesOf('badges', module)
               <Badge color={color} {...baseStyles}>
                 {color}
               </Badge>
-              <Badge color={color} {...baseStyles} isSolid>
+              <Badge color={color} {...baseStyles} isInteractive>
                 {color}
               </Badge>
             </Box>

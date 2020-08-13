@@ -4,9 +4,8 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Image } from '../../image'
 import { Text } from '../../typography'
-import { useTheme } from '../../theme'
+import useBadgeAppearance from '../../theme/src/hooks/useBadgeAppearance'
 import globalGetInitials from './utils/getInitials'
-import globalHash from './utils/hash'
 
 const isObjectFitSupported =
   typeof document !== 'undefined' &&
@@ -21,13 +20,12 @@ const initialsStyleClass = css({
   lineHeight: 1
 }).toString()
 
-function getColorProps({ isSolid, theme, color, name, propsHashValue }) {
-  if (color === 'automatic') {
-    const hashValue = globalHash(propsHashValue || name)
-    return theme.getAvatarProps({ isSolid, color, hashValue })
+const getAvatarInitialsFontSize = (size, sizeLimitOneCharacter) => {
+  if (size <= sizeLimitOneCharacter) {
+    return Math.ceil(size / 2.2)
   }
 
-  return theme.getAvatarProps({ isSolid, color })
+  return Math.ceil(size / 2.6)
 }
 
 const Avatar = memo(
@@ -36,7 +34,6 @@ const Avatar = memo(
       src,
       name,
       size = 24,
-      isSolid = false,
       color = 'automatic',
       forceShowInitials = false,
       sizeLimitOneCharacter = 20,
@@ -45,17 +42,13 @@ const Avatar = memo(
       ...restProps
     } = props
 
-    const theme = useTheme()
+    const styles = useBadgeAppearance({ color })
+
+    console.log(color, styles)
     const [imageHasFailedLoading, setImageHasFailedLoading] = useState(false)
     const imageUnavailable = !src || imageHasFailedLoading
-    const colorProps = getColorProps({
-      isSolid,
-      theme,
-      color,
-      name,
-      propsHashValue
-    })
-    const initialsFontSize = `${theme.getAvatarInitialsFontSize(
+
+    const initialsFontSize = `${getAvatarInitialsFontSize(
       size,
       sizeLimitOneCharacter
     )}px`
@@ -75,7 +68,7 @@ const Avatar = memo(
         display="inline-flex"
         flexShrink={0}
         justifyContent="center"
-        backgroundColor={colorProps.backgroundColor}
+        backgroundColor={styles.backgroundColor}
         title={name}
         ref={ref}
         {...restProps}
@@ -87,7 +80,7 @@ const Avatar = memo(
             lineHeight={initialsFontSize}
             width={size}
             height={size}
-            color={colorProps.color}
+            color={styles.color}
           >
             {initials}
           </Text>
