@@ -115,9 +115,10 @@ const Dialog = memo(function Dialog({
 
     return (
       <Pane
-        padding={16}
+        paddingX={32}
+        paddingTop={32}
+        paddingBottom={24}
         flexShrink={0}
-        borderBottom="muted"
         display="flex"
         alignItems="center"
       >
@@ -147,15 +148,19 @@ const Dialog = memo(function Dialog({
     }
 
     return (
-      <Pane borderTop="muted" clearfix>
-        <Pane padding={16} float="right">
+      <Pane clearfix>
+        <Pane
+          paddingX={32}
+          paddingBottom={32}
+          paddingTop={24}
+          float="right">
           {footer ? (
             renderNode(footer, close)
           ) : (
             <>
               {/* Cancel should be first to make sure focus gets on it first. */}
               {hasCancel && (
-                <Button tabIndex={0} onClick={() => onCancel(close)}>
+                <Button appearance="secondary" tabIndex={0} onClick={() => onCancel(close)}>
                   {cancelLabel}
                 </Button>
               )}
@@ -216,7 +221,8 @@ const Dialog = memo(function Dialog({
             data-state={state}
             display="flex"
             overflow="auto"
-            padding={16}
+            paddingY={8}
+            paddingX={32}
             flexDirection="column"
             minHeight={minHeightContent}
             {...contentContainerProps}
