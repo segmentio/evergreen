@@ -24,10 +24,28 @@ const useSegmentedControlAppearance = () => {
   } = useTheme()
 
   return {
-    ...baseStyle,
-    color: colors.gray700,
-    backgroundColor: 'transparent',
-    borderRadius: '8px',
+    display: 'flex',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    '&:not(:last-child)': {
+      marginRight: '4px'
+    },
+
+    '& label': {
+      ...baseStyle,
+      position: 'relative',
+      color: colors.gray700,
+      backgroundColor: 'transparent',
+      borderRadius: '4px',
+      padding: '4px 12px',
+      flex: 1,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+
     [disabledState]: {
       opacity: 0.8,
       backgroundColor: colors.gray500,
@@ -36,18 +54,19 @@ const useSegmentedControlAppearance = () => {
       pointerEvents: 'none'
     },
     [hoverState]: {
-      color: primary.base,
-      backgroundColor: colors.blue100
+      '& label': {
+        color: colors.gray800,
+        backgroundColor: colors.gray100
+      }
     },
     [focusState]: {
-      borderRadius: '8px',
       boxShadow: `0 0 0 1px ${colors.blue100}`
     },
     [activeState]: {
-      backgroundColor: colors.blue50,
-      borderRadius: '8px',
-      color: primary.base,
-      boxShadow: `inset 0 0 0 1px ${colors.gray300}, inset 0 1px 1px 0 ${colors.gray200}`
+      '& label': {
+        backgroundColor: colors.blue50,
+        color: primary.base
+      }
     }
   }
 }

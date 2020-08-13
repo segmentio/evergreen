@@ -7,30 +7,6 @@ import { Text } from '../../typography'
 import useSegmentControlAppearance from '../../theme/src/hooks/useSegmentedControlAppearance'
 import { useTheme } from '../../theme'
 
-const labelClass = css({
-  display: 'flex',
-  flex: 1,
-  alignItems: 'center',
-  justifyContent: 'center',
-  position: 'relative'
-})
-
-const wrapperClass = css({
-  position: 'relative',
-  display: 'flex',
-  flex: 1,
-  cursor: 'pointer',
-  marginLeft: '-1px',
-  [`:first-child .${labelClass}`]: {
-    borderTopLeftRadius: 8,
-    borderBottomLeftRadius: 8
-  },
-  [`:last-child .${labelClass}`]: {
-    borderTopRightRadius: 8,
-    borderBottomRightRadius: 8
-  }
-})
-
 const offscreenCss = css({
   overflow: 'hidden',
   position: 'absolute',
@@ -64,7 +40,7 @@ const SegmentedControlRadio = memo(
     return (
       <Box
         ref={ref}
-        className={cx(wrapperClass.toString(), themedClassName)}
+        className={themedClassName}
         data-active={checked}
       >
         <input
@@ -83,7 +59,6 @@ const SegmentedControlRadio = memo(
           htmlFor={id}
           fontWeight={500}
           size={textSize}
-          className={`${labelClass}`}
           disabled={disabled}
         >
           {label}
