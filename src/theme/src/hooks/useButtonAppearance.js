@@ -79,32 +79,6 @@ function useButtonAppearance(appearance) {
       }
     }
 
-    case 'tertiary': {
-      return {
-        ...base,
-        backgroundColor: 'white',
-        border: `1px solid ${colors.gray400}`,
-        color: colors.gray700,
-        [disabledState]: {
-          ...disabled,
-          color: colors.gray500,
-          border: `1px solid ${colors.gray300}`
-        },
-        [hoverState]: {
-          border: `1px solid ${colors.gray600}`,
-          color: colors.gray800
-        },
-        [focusState]: {
-          boxShadow: `0 0 0 2px ${colors.blue100}`,
-          color: colors.gray800
-        },
-        [activeState]: {
-          backgroundColor: colors.gray100
-        },
-        [focusAndActiveState]: {}
-      }
-    }
-
     case 'destructive': {
       return {
         ...base,
@@ -128,25 +102,21 @@ function useButtonAppearance(appearance) {
     }
 
     default: {
-      return {
+      return  {
         ...base,
-        backgroundColor: 'transparent',
-        border: `1px solid ${colors.gray400}`,
-        color: colors.gray700,
+        backgroundColor: 'white',
+        border: `1px solid ${colors.gray600}`,
+        color: colors.gray800,
         [disabledState]: {
           ...disabled,
-          cursor: 'not-allowed',
           color: colors.gray500,
           border: `1px solid ${colors.gray300}`
         },
         [hoverState]: {
-          border: `1px solid ${colors.gray600}`,
-          color: colors.gray800
+          backgroundColor: colors.gray100
         },
         [focusState]: {
           boxShadow: `0 0 0 2px ${colors.blue100}`,
-          border: `1px solid ${colors.blue200}`,
-          color: colors.gray800
         },
         [activeState]: {
           backgroundColor: colors.gray100
