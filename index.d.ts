@@ -1909,7 +1909,7 @@ export interface TabOwnProps extends TextOwnProps {
    * The appearance of the tab.
    * The default theme only comes with a default style.
    */
-  appearance?: DefaultAppearance
+  appearance?: "primary" | "secondary"
   direction?: "vertical" | "horizontal"
 }
 
