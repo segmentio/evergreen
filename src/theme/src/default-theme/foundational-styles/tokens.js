@@ -232,7 +232,7 @@ const paragraph = {
 const fills = {
   neutral: {
     color: colors.gray800,
-    backgroundColor: colors.gray500
+    backgroundColor: colors.gray200
   },
   blue: {
     color: colors.blue600,

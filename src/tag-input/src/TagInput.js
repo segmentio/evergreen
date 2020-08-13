@@ -142,7 +142,6 @@ const TagInput = memo(
           key={`${tag}:${index}`}
           data-tag-index={index}
           marginRight={majorScale(1)}
-          marginY="6px"
           onRemove={disabled ? null : handleRemoveTag}
           isRemovable={!disabled}
           {...propsForElement}
