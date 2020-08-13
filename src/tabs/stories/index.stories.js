@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Heading, Paragraph } from '../../typography'
-import { Tab, SidebarTab, Tablist, TabNavigation } from '..'
+import { Tab, Tablist, TabNavigation } from '..'
 
 const StorySection = props => <Box marginBottom={40} {...props} />
 
@@ -68,6 +68,7 @@ storiesOf('tabs', module)
                   <Tab
                     key={tab}
                     id={tab}
+                    appearance="primary"
                     onSelect={() => onSelect(index)}
                     isSelected={index === selectedIndex}
                     aria-controls={`panel-${tab}`}
@@ -189,15 +190,16 @@ storiesOf('tabs', module)
             <Box display="flex">
               <Tablist marginBottom={16} flexBasis={240} marginRight={24}>
                 {tabs.map((tab, index) => (
-                  <SidebarTab
+                  <Tab
                     key={tab}
                     id={tab}
                     onSelect={() => onSelect(index)}
                     isSelected={index === selectedIndex}
                     aria-controls={`panel-${tab}`}
+                    direction="vertical"
                   >
                     {tab}
-                  </SidebarTab>
+                  </Tab>
                 ))}
               </Tablist>
               <Box padding={16} backgroundColor="#eee" flex="1">
@@ -230,15 +232,16 @@ storiesOf('tabs', module)
         <Box>
           <TabNavigation marginX={-4} marginBottom={16} width={240}>
             {tabs.map((tab, index) => (
-              <SidebarTab
+              <Tab
                 key={tab}
                 is="a"
                 href="#"
                 id={tab}
                 isSelected={index === 0}
+                direction="vertical"
               >
                 {tab}
-              </SidebarTab>
+              </Tab>
             ))}
           </TabNavigation>
         </Box>

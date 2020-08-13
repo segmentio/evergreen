@@ -3,20 +3,8 @@ import React, { forwardRef, memo } from 'react'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
 import { useTheme } from '../../theme'
+import useTabApperance from '../../theme/src/hooks/useTabApperance'
 import { Text } from '../../typography'
-
-const styles = {
-  display: 'inline-flex',
-  fontWeight: 500,
-  paddingX: 8,
-  marginX: 4,
-  borderRadius: 3,
-  lineHeight: '28px',
-  alignItems: 'center',
-  justifyContent: 'center',
-  textDecoration: 'none',
-  tabIndex: 0
-}
 
 const noop = () => {}
 
@@ -25,7 +13,8 @@ const Tab = memo(
     const theme = useTheme()
 
     const {
-      appearance,
+      appearance='secondary',
+      direction='horizontal',
       disabled = false,
       height = 28,
       is = 'span',
@@ -34,6 +23,8 @@ const Tab = memo(
       onSelect = noop,
       ...rest
     } = props
+
+    const tabClassName = useTabApperance(appearance, direction)
 
     const handleClick = e => {
       safeInvoke(props.onClick, e)
@@ -87,12 +78,12 @@ const Tab = memo(
 
     return (
       <Text
-        className={theme.getTabClassName(appearance)}
+        className={tabClassName}
         is={is}
         size={textSize}
         height={height}
         ref={ref}
-        {...styles}
+        tabIndex={0}
         {...rest}
         onClick={handleClick}
         onKeyPress={handleKeyPress}
@@ -120,9 +111,15 @@ Tab.propTypes = {
 
   /**
    * The appearance of the tab.
-   * The default theme only comes with a default style.
+   * The default theme has primary, and secondary. The default is secondary
    */
-  appearance: PropTypes.string
+  appearance: PropTypes.string,
+
+  /**
+   * The directionality of the tab.
+   * If the tab is apart of a vertical or horizontal list
+   */
+  direction: PropTypes.oneOf('horizontal', 'vertical')
 }
 
 export default Tab
