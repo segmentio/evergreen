@@ -147,20 +147,22 @@ const Dialog = memo(function Dialog({
       return undefined
     }
 
+    let appearance = 'primary'
+
+    if (intent === 'danger') {
+      appearance = 'destructive'
+    }
+
     return (
       <Pane clearfix>
-        <Pane
-          paddingX={32}
-          paddingBottom={32}
-          paddingTop={24}
-          float="right">
+        <Pane paddingX={32} paddingBottom={32} paddingTop={24} float="right">
           {footer ? (
             renderNode(footer, close)
           ) : (
             <>
               {/* Cancel should be first to make sure focus gets on it first. */}
               {hasCancel && (
-                <Button appearance="secondary" tabIndex={0} onClick={() => onCancel(close)}>
+                <Button tabIndex={0} onClick={() => onCancel(close)}>
                   {cancelLabel}
                 </Button>
               )}
@@ -168,11 +170,10 @@ const Dialog = memo(function Dialog({
               <Button
                 tabIndex={0}
                 marginLeft={8}
-                appearance="primary"
+                appearance={appearance}
                 isLoading={isConfirmLoading}
                 disabled={isConfirmDisabled}
                 onClick={() => onConfirm(close)}
-                intent={intent}
               >
                 {confirmLabel}
               </Button>
