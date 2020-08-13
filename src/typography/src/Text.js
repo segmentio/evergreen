@@ -12,13 +12,12 @@ const Text = memo(
       css,
       size = 400,
       color = 'default',
+      fontFamily = 'ui',
       marginTop,
       ...restProps
     } = props
 
-    const textStyle = useTextStyle(size, color)
-
-    console.log(textStyle)
+    const textStyle = useTextStyle({ size, color, fontFamily })
 
     return (
       <Box

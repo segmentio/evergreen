@@ -1,6 +1,6 @@
 import useTheme from '../useTheme'
 
-function useTextStyle(size, color) {
+function useParagraphStyle(size, color) {
   const {
     tokens: { paragraph, fontFamilies, colors }
   } = useTheme()
@@ -12,4 +12,4 @@ function useTextStyle(size, color) {
   }
 }
 
-export default useTextStyle
+export default useParagraphStyle
