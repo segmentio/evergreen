@@ -101,8 +101,31 @@ function useButtonAppearance(appearance) {
       }
     }
 
+    case 'minimal': {
+      return {
+        ...base,
+        backgroundColor: 'transparent',
+        color: colors.gray800,
+        [focusState]: {
+          boxShadow: `0 0 0 2px ${colors.blue100}`
+        },
+        [disabledState]: {
+          ...disabled,
+          color: colors.gray500,
+          borderColor: colors.gray300
+        },
+        [hoverState]: {
+          backgroundColor: colors.gray100
+        },
+        [activeState]: {
+          backgroundColor: colors.gray200
+        },
+        [focusAndActiveState]: {}
+      }
+    }
+
     default: {
-      return  {
+      return {
         ...base,
         backgroundColor: 'white',
         border: `1px solid ${colors.gray500}`,
