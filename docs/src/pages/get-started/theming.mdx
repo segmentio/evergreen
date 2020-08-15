@@ -16,7 +16,7 @@ Please note: at this moment in time, theming isn't fully supported yet! There ar
 The `ThemeProvider` Component, you can either override the default styles(shown below) or use your own theme completely.
 You can add anything you want to the theme object, as long as you have required properties.
 
-```jsx
+```jsx static
 const newTheme = {
   ...defaultTheme,
   spinnerColor: 'hotpink'
@@ -35,7 +35,7 @@ render(<ThemedApp />)
 
 You can theme certain parts of your app differently by nesting the `ThemeProvider` components.
 
-```jsx
+```jsx static
 const parentTheme = {
   ...defaultTheme,
   spinnerColor: 'hotpink'
@@ -70,7 +70,7 @@ render(
 
 The `withTheme` HOC allows you to easily pass the theme object down to your components.
 
-```jsx
+```jsx static
 const theme = {
   ...defaultTheme,
   myNewButtonStyles: {
@@ -106,7 +106,7 @@ render(
 
 The `useTheme` hook provides the same functionalities as the `withTheme` HOC.
 
-```jsx
+```jsx static
 const theme = {
   ...defaultTheme,
   myNewButtonStyles: {
