@@ -32,6 +32,7 @@ jobs:
     docker:
       - image: circleci/node:10.18
     steps:
+      - checkout
       - run: yarn chromatic
 
 
