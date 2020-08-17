@@ -6,6 +6,7 @@ import { Image } from '../../image'
 import { Text } from '../../typography'
 import useBadgeAppearance from '../../theme/src/hooks/useBadgeAppearance'
 import globalGetInitials from './utils/getInitials'
+import globalHash from './utils/hash'
 
 const isObjectFitSupported =
   typeof document !== 'undefined' &&
@@ -42,9 +43,12 @@ const Avatar = memo(
       ...restProps
     } = props
 
-    const styles = useBadgeAppearance({ color })
+    const hashValue = globalHash(propsHashValue || name)
+    const styles = useBadgeAppearance({
+      color,
+      hashValue
+    })
 
-    console.log(color, styles)
     const [imageHasFailedLoading, setImageHasFailedLoading] = useState(false)
     const imageUnavailable = !src || imageHasFailedLoading
 
