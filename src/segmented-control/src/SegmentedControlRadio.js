@@ -55,6 +55,7 @@ const SegmentedControlRadio = memo(
           fontWeight={500}
           size={textSize}
           disabled={disabled}
+          height={height}
         >
           {label}
         </Text>

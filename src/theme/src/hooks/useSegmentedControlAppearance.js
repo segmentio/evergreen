@@ -39,7 +39,7 @@ const useSegmentedControlAppearance = () => {
       color: colors.gray700,
       backgroundColor: 'transparent',
       borderRadius: '4px',
-      padding: '4px 12px',
+      padding: '4px',
       flex: 1,
       display: 'flex',
       alignItems: 'center',
