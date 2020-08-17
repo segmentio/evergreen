@@ -48,7 +48,7 @@ jobs:
           key: docs-dependency-cache-{{ checksum "docs/yarn.lock" }}
           paths:
             - ./docs/node_modules
-      - run: yarn chromatic
+      - run: yarn chromatic --exit-zero-on-changes
 
 
 workflows:
