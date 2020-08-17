@@ -26,8 +26,14 @@ jobs:
       - run: yarn run build
       - run: yarn run test
       - run: yarn run size-limit
-      
+  
+  chromatic:
+    working_directory: ~/evergreen
+    docker:
+      - image: circleci/node:10.18
+    steps:
       - run: yarn chromatic
+
 
 workflows:
   version: 2
