@@ -47,7 +47,8 @@
     "release": "np",
     "deploy-docs": "cd docs && yarn install && yarn deploy",
     "postpublish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then yarn deploy-docs; else echo \"not on main branch, skipping docs deploy\"; fi;",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6006",
+    "chromatic": "npx chromatic"
   },
   "engines": {
     "node": ">=10.18"
@@ -101,6 +102,7 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-add-react-displayname": "^0.0.5",
     "camelcase": "^5.0.0",
+    "chromatic": "^5.1.0",
     "concurrently": "^4.0.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",

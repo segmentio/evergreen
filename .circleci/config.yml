@@ -26,6 +26,8 @@ jobs:
       - run: yarn run build
       - run: yarn run test
       - run: yarn run size-limit
+      
+      - run: yarn chromatic
 
 workflows:
   version: 2
