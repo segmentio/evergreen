@@ -8,6 +8,7 @@ import { Table } from '..'
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
 // Generate a bunch of users.
+faker.seed(100)
 const users = range(100).map(index => {
   const options = range(20).map(i => {
     const item = faker.commerce.productName()
