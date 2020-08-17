@@ -54,6 +54,7 @@ const useInputAppearance = appearance => {
         },
         [focusState]: {
           outline: 'none',
+          transition: 'box-shadow 80ms ease-in-out',
           border: `1px solid ${colors.blue200}`,
           boxShadow: `0 0 0 2px ${colors.blue100}`
         },
