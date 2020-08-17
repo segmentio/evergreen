@@ -168,12 +168,14 @@ FilePicker.propTypes = {
   height: PropTypes.number,
 
   /**
-   * Function called when onChange is fired
+   * Function called when onChange is fired.
+   * (files: FileList) => void
    */
   onChange: PropTypes.func,
 
   /**
-   * Function called when onBlur is fired
+   * Function called when onBlur is fired.
+   * (event: React.FocusEvent) => void
    */
   onBlur: PropTypes.func,
 
