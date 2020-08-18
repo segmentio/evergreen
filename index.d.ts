@@ -900,9 +900,9 @@ export interface FilePickerOwnProps {
   /** the height of the filepicker */
   height?: number
   /** function called when onChange is fired */
-  onChange?: () => void
+  onChange?: (files: FileList) => void
   /** function called when onBlur is fired */
-  onBlur?: () => void
+  onBlur?: (event: React.FocusEvent) => void
   /** placeholder of the text input */
   placeholder?: string
 }
