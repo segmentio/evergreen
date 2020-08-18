@@ -121,13 +121,6 @@ export default {
             related: ['tag-input']
           },
           {
-            id: 'status-indicator',
-            github: githubLink('status-indicator'),
-            name: 'Status Indicator',
-            tags: ['status', 'indicator', 'inline'],
-            image: Spinner
-          },
-          {
             id: 'avatar',
             github: githubLink('avatar'),
             name: 'Avatar',
@@ -260,6 +253,13 @@ export default {
             github: githubLink('alert'),
             name: 'Alert',
             tags: ['banners', 'notification', 'messages', 'inline alert'],
+            image: Alert
+          },
+          {
+            id: 'status-indicator',
+            github: githubLink('status-indicator'),
+            name: 'Status Indicator',
+            tags: ['status', 'indicator', 'inline'],
             image: Alert
           },
           {
