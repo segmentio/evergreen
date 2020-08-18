@@ -42,6 +42,7 @@ export {
 } from './select-menu'
 export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
+export { StatusIndicator } from './status-indicator'
 export { Switch } from './switch'
 export { extractStyles } from './ssr'
 export { Stack, StackingContext } from './stack'

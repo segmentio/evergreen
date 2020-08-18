@@ -9,7 +9,7 @@ import { TransitionProps, TransitionStatus } from 'react-transition-group/Transi
 export { configureSafeHref, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps, EnhancerProps } from 'ui-box'
 
 export type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
-export type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
+export type IntentTypes = 'none' | 'info' | 'success' | 'warning' | 'danger'
 export type DefaultAppearance = 'default'
 export type AlertAppearance = DefaultAppearance | 'card'
 export type ButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
@@ -1625,6 +1625,15 @@ export interface StackProps {
 export declare const Stack: React.FC<StackProps>
 
 export declare const StackingContext: React.Context<number>
+
+export interface StatusIndicatorOwnProps extends TextOwnProps {
+  children?: React.ReactNode
+  disabled?: boolean
+  intent?: IntentTypes
+}
+
+export type StatusIndicatorProps = PolymorphicBoxProps<'span', StatusIndicatorOwnProps>
+export declare const StatusIndicator: BoxComponent<StatusIndicatorOwnProps, 'span'>
 
 export type StrongOwnProps = TextOwnProps
 export type StrongProps = PolymorphicBoxProps<'strong', StrongOwnProps>
