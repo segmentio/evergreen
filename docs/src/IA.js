@@ -23,6 +23,7 @@ import SelectMenu from './images/illustrations/Select Menu.png'
 import Select from './images/illustrations/Select.png'
 import SideSheet from './images/illustrations/Side Sheet.png'
 import Spinner from './images/illustrations/Spinner.png'
+import StatusIndicator from './images/illustrations/StatusIndicator.png'
 import Switch from './images/illustrations/Switch.png'
 import Tab from './images/illustrations/Tab.png'
 import Table from './images/illustrations/Table.png'
@@ -260,7 +261,7 @@ export default {
             github: githubLink('status-indicator'),
             name: 'Status Indicator',
             tags: ['status', 'indicator', 'inline'],
-            image: Alert
+            image: StatusIndicator
           },
           {
             id: 'spinner',
