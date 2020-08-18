@@ -2,19 +2,12 @@ import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Text } from '../../typography'
-import useTheme from '../../theme/src/useTheme'
+import useIconColor from '../../theme/src/hooks/useIconColor'
 
 const StatusIndicator = memo(
   forwardRef(function StatusIndicator(props, ref) {
-    const { children, disabled, intent = 'info', ...rest } = props
-    const { tokens } = useTheme()
-
-    const intentKey = intent === 'none' ? 'info' : intent
-    let dotColor = tokens.intents[intentKey].icon
-
-    if (disabled) {
-      dotColor = tokens.states.disabled.icon
-    }
+    const { children, disabled, color = 'info', ...rest } = props
+    const dotColor = useIconColor(color === 'none' ? 'info' : color)
 
     return (
       <Text display="inline-flex" alignItems="center" ref={ref} {...rest}>
@@ -44,14 +37,9 @@ StatusIndicator.propTypes = {
   children: PropTypes.node,
 
   /**
-   * When true, the status hint is disabled.
+   * The color of the status hint. Can be an intent or hex value.
    */
-  disabled: PropTypes.bool,
-
-  /**
-   * The intent of the status hint.
-   */
-  intent: PropTypes.oneOf(['none', 'info', 'success', 'warning', 'danger'])
+  color: PropTypes.string
 }
 
 export default StatusIndicator

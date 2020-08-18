@@ -15,13 +15,26 @@ storiesOf('status-indicator', module).add('Status Indicator', () => (
     })()}
     <Box marginBottom={40} display="flex" flexDirection="column">
       <StoryHeader>
-        <StoryHeading>Status Indicator</StoryHeading>
+        <StoryHeading>Intent Colors</StoryHeading>
       </StoryHeader>
-      <StatusIndicator intent="success">Success</StatusIndicator>
-      <StatusIndicator intent="warning">Warning</StatusIndicator>
-      <StatusIndicator intent="danger">Danger</StatusIndicator>
-      <StatusIndicator>Info</StatusIndicator>
-      <StatusIndicator disabled>Disabled</StatusIndicator>
+      <StatusIndicator color="success">Success</StatusIndicator>
+      <StatusIndicator color="warning">Warning</StatusIndicator>
+      <StatusIndicator color="danger">Danger</StatusIndicator>
+      <StatusIndicator>None</StatusIndicator>
+
+      <StoryHeader marginTop={32}>
+        <StoryHeading>State Colors</StoryHeading>
+      </StoryHeader>
+      <StatusIndicator color="default">Default</StatusIndicator>
+      <StatusIndicator color="muted">Muted</StatusIndicator>
+      <StatusIndicator color="dark">Dark</StatusIndicator>
+      <StatusIndicator color="disabled">Disabled</StatusIndicator>
+      <StatusIndicator color="selected">Selected</StatusIndicator>
+
+      <StoryHeader marginTop={32}>
+        <StoryHeading>Custom Color</StoryHeading>
+      </StoryHeader>
+      <StatusIndicator color="#ED55C2">#ED55C2</StatusIndicator>
     </Box>
   </Box>
 ))
