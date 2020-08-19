@@ -2,21 +2,22 @@ import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Text } from '../../typography'
+import { majorScale } from '../../scales'
 import useIconColor from '../../theme/src/hooks/useIconColor'
 
 const StatusIndicator = memo(
   forwardRef(function StatusIndicator(props, ref) {
-    const { children, disabled, color = 'info', ...rest } = props
+    const { children, disabled, color = 'info', dotSize = 6, ...rest } = props
     const dotColor = useIconColor(color === 'none' ? 'info' : color)
 
     return (
       <Text display="inline-flex" alignItems="center" ref={ref} {...rest}>
         <Box
           flexShrink={0}
-          marginRight={8}
+          marginRight={majorScale(1)}
           borderRadius="50%"
-          height={7}
-          width={7}
+          height={dotSize}
+          width={dotSize}
           background={dotColor}
         />
         {children}
@@ -39,7 +40,12 @@ StatusIndicator.propTypes = {
   /**
    * The color of the status hint. Can be an intent or hex value.
    */
-  color: PropTypes.string
+  color: PropTypes.string,
+
+  /**
+   * The size of the dot to the left of the text
+   */
+  dotSize: PropTypes.number
 }
 
 export default StatusIndicator

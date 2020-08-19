@@ -1627,9 +1627,9 @@ export declare const Stack: React.FC<StackProps>
 export declare const StackingContext: React.Context<number>
 
 export interface StatusIndicatorOwnProps extends TextOwnProps {
-  children?: React.ReactNode
   disabled?: boolean
   color?: IntentTypes | string
+  dotSize?: number
 }
 
 export type StatusIndicatorProps = PolymorphicBoxProps<'span', StatusIndicatorOwnProps>
