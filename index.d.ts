@@ -1626,6 +1626,15 @@ export declare const Stack: React.FC<StackProps>
 
 export declare const StackingContext: React.Context<number>
 
+export interface StatusIndicatorOwnProps extends TextOwnProps {
+  disabled?: boolean
+  color?: IntentTypes | string
+  dotSize?: number
+}
+
+export type StatusIndicatorProps = PolymorphicBoxProps<'span', StatusIndicatorOwnProps>
+export declare const StatusIndicator: BoxComponent<StatusIndicatorOwnProps, 'span'>
+
 export type StrongOwnProps = TextOwnProps
 export type StrongProps = PolymorphicBoxProps<'strong', StrongOwnProps>
 export declare const Strong: BoxComponent<StrongOwnProps, 'strong'>
