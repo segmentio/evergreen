@@ -501,8 +501,8 @@ export interface AvatarOwnProps {
    */
   name?: string | null
   hashValue?: string
-  isSolid?: boolean
   color?: string
+  shape?: 'round' | 'square'
   getInitials?: (name: string) => string
   forceShowInitials?: boolean
   sizeLimitOneCharacter?: number
