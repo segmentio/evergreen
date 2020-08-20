@@ -261,7 +261,7 @@ const fills = {
     backgroundColor: colors.teal100
   },
   purple: {
-    color: colors.purple600,
+    color: colors.purple700,
     backgroundColor: colors.purple100
   }
 }
