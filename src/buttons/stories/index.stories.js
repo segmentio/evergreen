@@ -265,60 +265,6 @@ buttonsStory.add('Button types', () => (
               Danger
             </Button>
           </Box>
-          <Heading marginTop="default">Secondary Appearance</Heading>
-          <Box marginTop={12}>
-            <Button
-              appearance="secondary"
-              height={state.value}
-              marginRight={16}
-            >
-              Default
-            </Button>
-            <Button
-              appearance="secondary"
-              height={state.value}
-              marginRight={16}
-              intent="success"
-            >
-              Success
-            </Button>
-            <Button
-              appearance="secondary"
-              height={state.value}
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button appearance="secondary" height={state.value} intent="danger">
-              Danger
-            </Button>
-          </Box>
-          <Heading marginTop="default">Secondary Appearance</Heading>
-          <Box marginTop={12}>
-            <Button appearance="tertiary" height={state.value} marginRight={16}>
-              Default
-            </Button>
-            <Button
-              appearance="tertiary"
-              height={state.value}
-              marginRight={16}
-              intent="success"
-            >
-              Success
-            </Button>
-            <Button
-              appearance="tertiary"
-              height={state.value}
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button appearance="tertiary" height={state.value} intent="danger">
-              Danger
-            </Button>
-          </Box>
           <Heading marginTop="default">Destructive Appearance</Heading>
           <Box marginTop={12}>
             <Button

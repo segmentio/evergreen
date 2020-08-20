@@ -13,7 +13,8 @@ const styles = {
   paddingRight: 6,
   paddingBottom: 0,
   paddingLeft: 6,
-  borderRadius: 2,
+  borderRadius: 4,
+  fontSize: 11,
   textAlign: 'center',
   textDecoration: 'none',
   textTransform: 'uppercase'

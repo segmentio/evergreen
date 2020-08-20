@@ -162,8 +162,7 @@ const TagInput = memo(
         aria-activedescendant={isFocused ? id : undefined}
         borderRadius={borderRadius}
         className={cx(themedContainerClassName, className)}
-        paddingLeft={Math.round(height / 3.2)}
-        paddingRight={Math.round(height / 3.2)}
+        paddingX={Math.round(height / 2.6)}
         paddingY="2px"
         ref={ref}
         {...rest}

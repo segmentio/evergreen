@@ -7,8 +7,8 @@ import useIconColor from '../../theme/src/hooks/useIconColor'
 
 const StatusIndicator = memo(
   forwardRef(function StatusIndicator(props, ref) {
-    const { children, disabled, color = 'info', dotSize = 6, ...rest } = props
-    const dotColor = useIconColor(color === 'none' ? 'info' : color)
+    const { children, disabled, color = 'disabled', dotSize = 6, ...rest } = props
+    const dotColor = useIconColor(color === 'none' ? 'disabled' : color)
 
     return (
       <Text display="inline-flex" alignItems="center" ref={ref} {...rest}>

@@ -32,6 +32,9 @@ const useInputAppearance = appearance => {
         [focusState]: {
           outline: 'none'
         },
+        [hoverPlaceholderState]: {
+          color: colors.gray700
+        },
         [disabledState]: {
           cursor: 'not-allowed',
           backgroundColor: colors.gray100
@@ -63,7 +66,8 @@ const useInputAppearance = appearance => {
         },
         [disabledState]: {
           cursor: 'not-allowed',
-          backgroundColor: colors.gray100
+          backgroundColor: colors.gray100,
+          borderColor: colors.gray300
         }
       }
   }

@@ -20,6 +20,7 @@ storiesOf('status-indicator', module).add('Status Indicator', () => (
       <StatusIndicator color="success">Success</StatusIndicator>
       <StatusIndicator color="warning">Warning</StatusIndicator>
       <StatusIndicator color="danger">Danger</StatusIndicator>
+      <StatusIndicator color="info">Info</StatusIndicator>
       <StatusIndicator>None</StatusIndicator>
 
       <StoryHeader marginTop={32}>

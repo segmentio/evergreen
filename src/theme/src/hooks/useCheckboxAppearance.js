@@ -89,7 +89,7 @@ const useCheckboxAppearance = () => {
     },
     [checkedDisabledState]: {
       ...checkedStyles,
-      color: colors.gray600,
+      color: colors.gray500,
       backgroundColor: colors.gray100
     },
     [checkedActiveState]: {

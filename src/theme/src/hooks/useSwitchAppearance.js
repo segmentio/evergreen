@@ -37,7 +37,7 @@ function useSwitchAppearance(appearance) {
           transition: 'all 120ms ease-in-out',
           cursor: 'pointer',
           color: 'white',
-          backgroundColor: tokens.gray200,
+          backgroundColor: tokens.colors.gray400,
           borderRadius: 9999
         },
         [disabledState]: {
@@ -45,13 +45,13 @@ function useSwitchAppearance(appearance) {
           opacity: 0.5
         },
         [hoverState]: {
-          backgroundColor: tokens.gray300
+          backgroundColor: tokens.colors.gray500
         },
         [focusState]: {
-          boxShadow: `0 0 0 3px ${tokens.blue100}`
+          boxShadow: `0 0 0 3px ${tokens.colors.blue100}`
         },
         [activeState]: {
-          backgroundColor: tokens.gray400
+          backgroundColor: tokens.colors.gray600
         },
         [checkedState]: {
           backgroundColor: primary.base,

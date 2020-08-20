@@ -9,7 +9,7 @@ import { TransitionProps, TransitionStatus } from 'react-transition-group/Transi
 export { configureSafeHref, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps, EnhancerProps } from 'ui-box'
 
 export type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
-export type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
+export type IntentTypes = 'none' | 'info' | 'success' | 'warning' | 'danger'
 export type DefaultAppearance = 'default'
 export type AlertAppearance = DefaultAppearance | 'card'
 export type ButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
@@ -501,8 +501,8 @@ export interface AvatarOwnProps {
    */
   name?: string | null
   hashValue?: string
-  isSolid?: boolean
   color?: string
+  shape?: 'round' | 'square'
   getInitials?: (name: string) => string
   forceShowInitials?: boolean
   sizeLimitOneCharacter?: number

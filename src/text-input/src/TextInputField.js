@@ -26,7 +26,7 @@ const TextInputField = memo(
       appearance,
       placeholder,
       spellCheck,
-      inputHeight = 40,
+      inputHeight = 32,
       inputWidth = '100%',
 
       // Rest props are spread on the FormField
