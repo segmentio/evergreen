@@ -28,53 +28,47 @@ const activeState =
 
 function useButtonAppearance(appearance) {
   const {
-    tokens: { primary, colors }
+    tokens: { primary, colors },
+    buttons
   } = useTheme()
+
+  console.log('re-render')
 
   switch (appearance) {
     case 'primary': {
+      const {
+        base: baseStyles = {},
+        disabled: disabledStyles = {},
+        hover: hoverStyles = {},
+        focus: focusStyles = {},
+        active: activeStyles = {},
+        focusAndActive: focusAndActiveStyles = {}
+      } = (buttons || {}).primary || {}
+
       return {
         ...base,
         backgroundColor: primary.base,
         color: 'white',
+        ...baseStyles,
         [disabledState]: {
-          ...disabled
+          ...disabled,
+          ...disabledStyles
         },
         [hoverState]: {
-          backgroundColor: primary.hover
+          backgroundColor: primary.hover,
+          ...hoverStyles
         },
         [focusState]: {
           backgroundColor: primary.hover,
-          boxShadow: `0 0 0 2px ${colors.blue100}`
+          boxShadow: `0 0 0 2px ${colors.blue100}`,
+          ...focusStyles
         },
         [activeState]: {
-          backgroundColor: primary.active
-        },
-        [focusAndActiveState]: {}
-      }
-    }
-
-    case 'secondary': {
-      return {
-        ...base,
-        backgroundColor: 'white',
-        border: `1px solid ${primary.base}`,
-        color: primary.base,
-        [disabledState]: {
-          ...disabled
-        },
-        [hoverState]: {
-          backgroundColor: colors.blue50
-        },
-        [focusState]: {
-          backgroundColor: colors.blue100,
-          boxShadow: `0 0 0 2px ${colors.blue100}`
-        },
-        [activeState]: {
-          backgroundColor: colors.blue50
+          backgroundColor: primary.active,
+          ...activeStyles
         },
         [focusAndActiveState]: {
-          backgroundColor: colors.blue50
+          ...focusAndActiveStyles
         }
       }
     }
@@ -124,6 +118,7 @@ function useButtonAppearance(appearance) {
       }
     }
 
+    case 'default':
     default: {
       return {
         ...base,

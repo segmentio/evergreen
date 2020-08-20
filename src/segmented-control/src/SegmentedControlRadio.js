@@ -19,8 +19,6 @@ const offscreenCss = css({
 
 const SegmentedControlRadio = memo(
   forwardRef(function SegmentedControlRadio(props, ref) {
-    const theme = useTheme()
-
     const {
       id,
       name,
@@ -34,7 +32,6 @@ const SegmentedControlRadio = memo(
     } = props
 
     const themedClassName = useSegmentControlAppearance(appearance)
-    const textSize = theme.getTextSizeForControlHeight(height)
 
     return (
       <Box ref={ref} className={themedClassName} data-active={checked}>
@@ -53,7 +50,7 @@ const SegmentedControlRadio = memo(
           cursor="pointer"
           htmlFor={id}
           fontWeight={500}
-          size={textSize}
+          size={300}
           disabled={disabled}
           height={height}
         >

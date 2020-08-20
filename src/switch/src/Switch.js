@@ -93,9 +93,9 @@ const Switch = memo(
       >
         <Box
           is="input"
-          className={themedClassName}
           id={id}
           name={name}
+          className={themedClassName}
           type="checkbox"
           checked={checked}
           disabled={disabled}

@@ -4,6 +4,10 @@ import Box from 'ui-box'
 import Component from '@reactions/component'
 import { Heading } from '../../typography'
 import { Pane } from '../../layers'
+import { Checkbox } from '../../checkbox'
+import { ThemeProvider } from '../../theme'
+import { getPrimaryButtonStylesForIntent } from '../../theme/src/default-theme/helpers'
+import { defaultTheme } from '../../theme'
 import { SegmentedControl } from '../../segmented-control'
 import * as Icons from '../../icons'
 import { IconButton, Button, BackButton, TextDropdownButton } from '..'
@@ -205,6 +209,27 @@ buttonsStory.add('Common', () => (
   </Box>
 ))
 
+const v5ButtonTheme = {
+  ...defaultTheme,
+  buttons: {
+    primary: {
+      base: {
+        color: 'white',
+        backgroundColor: 'white',
+        backgroundImage: getPrimaryButtonStylesForIntent().linearGradient.base,
+        boxShadow: `inset 0 0 0 1px ${defaultTheme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${defaultTheme.scales.neutral.N2A}`
+      },
+      hover: {
+        backgroundImage: getPrimaryButtonStylesForIntent().linearGradient.hover
+      },
+      active: {
+        backgroundImage: getPrimaryButtonStylesForIntent().linearGradient.active
+      },
+      focusAndActive: {}
+    }
+  }
+}
+
 buttonsStory.add('Button types', () => (
   <Box padding={40}>
     <Component
@@ -214,171 +239,152 @@ buttonsStory.add('Button types', () => (
           { label: 'Height 32', value: 32 },
           { label: 'Height 40', value: 40 }
         ],
-        value: 32
+        value: 32,
+        themeValue: 'v5'
       }}
     >
-      {({ state, setState }) => (
-        <React.Fragment>
-          <SegmentedControl
-            width={280}
-            options={state.options}
-            value={state.value}
-            onChange={value => setState({ value: Number(value) })}
-          />
-          <Heading marginTop={24}>Default Appearance</Heading>
-          <Box marginTop={12}>
-            <Button height={state.value} marginRight={16}>
-              Default
-            </Button>
-            <Button height={state.value} marginRight={16} intent="success">
-              Success
-            </Button>
-            <Button height={state.value} marginRight={16} intent="warning">
-              Warning
-            </Button>
-            <Button height={state.value} intent="danger">
-              Danger
-            </Button>
-          </Box>
-          <Heading marginTop={24}>Primary Appearance</Heading>
-          <Box marginTop={12}>
-            <Button height={state.value} appearance="primary" marginRight={16}>
-              Default
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              marginRight={16}
-              intent="success"
+      {({ state, setState }) => {
+        return (
+          <React.Fragment>
+            <ThemeProvider
+              key={state.themeValue}
+              value={
+                state.themeValue === 'v5'
+                  ? { ...v5ButtonTheme }
+                  : { ...defaultTheme }
+              }
             >
-              Success
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button height={state.value} appearance="primary" intent="danger">
-              Danger
-            </Button>
-          </Box>
-          <Heading marginTop="default">Secondary Appearance</Heading>
-          <Box marginTop={12}>
-            <Button
-              appearance="secondary"
-              height={state.value}
-              marginRight={16}
-            >
-              Default
-            </Button>
-            <Button
-              appearance="secondary"
-              height={state.value}
-              marginRight={16}
-              intent="success"
-            >
-              Success
-            </Button>
-            <Button
-              appearance="secondary"
-              height={state.value}
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button appearance="secondary" height={state.value} intent="danger">
-              Danger
-            </Button>
-          </Box>
-          <Heading marginTop="default">Secondary Appearance</Heading>
-          <Box marginTop={12}>
-            <Button appearance="tertiary" height={state.value} marginRight={16}>
-              Default
-            </Button>
-            <Button
-              appearance="tertiary"
-              height={state.value}
-              marginRight={16}
-              intent="success"
-            >
-              Success
-            </Button>
-            <Button
-              appearance="tertiary"
-              height={state.value}
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button appearance="tertiary" height={state.value} intent="danger">
-              Danger
-            </Button>
-          </Box>
-          <Heading marginTop="default">Destructive Appearance</Heading>
-          <Box marginTop={12}>
-            <Button
-              appearance="destructive"
-              height={state.value}
-              marginRight={16}
-            >
-              Default
-            </Button>
-            <Button
-              appearance="destructive"
-              height={state.value}
-              marginRight={16}
-              intent="success"
-            >
-              Success
-            </Button>
-            <Button
-              appearance="destructive"
-              height={state.value}
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button
-              appearance="destructive"
-              height={state.value}
-              intent="danger"
-            >
-              Danger
-            </Button>
-          </Box>
-          <Heading marginTop="default">Minimal Appearance</Heading>
-          <Box marginTop={12}>
-            <Button height={state.value} appearance="minimal" marginRight={16}>
-              Default
-            </Button>
-            <Button
-              height={state.value}
-              appearance="minimal"
-              marginRight={16}
-              intent="success"
-            >
-              Success
-            </Button>
-            <Button
-              height={state.value}
-              appearance="minimal"
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button height={state.value} appearance="minimal" intent="danger">
-              Danger
-            </Button>
-          </Box>
-        </React.Fragment>
-      )}
+              <Checkbox
+                onChange={e => {
+                  setState({ themeValue: e.target.checked ? 'v5' : 'v6' })
+                }}
+                checked={state.themeValue === 'v5'}
+              />
+              <SegmentedControl
+                width={280}
+                options={state.options}
+                value={state.value}
+                onChange={value => setState({ value: Number(value) })}
+              />
+              <Heading>Default Appearance</Heading>
+              <Box marginTop={12}>
+                <Button height={state.value} marginRight={16}>
+                  Default
+                </Button>
+                <Button height={state.value} marginRight={16} intent="success">
+                  Success
+                </Button>
+                <Button height={state.value} marginRight={16} intent="warning">
+                  Warning
+                </Button>
+                <Button height={state.value} intent="danger">
+                  Danger
+                </Button>
+              </Box>
+              <Heading marginTop={24}>Primary Appearance</Heading>
+              <Box marginTop={12}>
+                <Button
+                  height={state.value}
+                  key={state.themeValue}
+                  appearance="primary"
+                  marginRight={16}
+                >
+                  Default
+                </Button>
+                <Button
+                  height={state.value}
+                  appearance="primary"
+                  marginRight={16}
+                  intent="success"
+                >
+                  Success
+                </Button>
+                <Button
+                  height={state.value}
+                  appearance="primary"
+                  marginRight={16}
+                  intent="warning"
+                >
+                  Warning
+                </Button>
+                <Button
+                  height={state.value}
+                  appearance="primary"
+                  intent="danger"
+                >
+                  Danger
+                </Button>
+              </Box>
+              <Heading marginTop="24px">Destructive Appearance</Heading>
+              <Box marginTop={12}>
+                <Button
+                  appearance="destructive"
+                  height={state.value}
+                  marginRight={16}
+                >
+                  Default
+                </Button>
+                <Button
+                  appearance="destructive"
+                  height={state.value}
+                  marginRight={16}
+                  intent="success"
+                >
+                  Success
+                </Button>
+                <Button
+                  appearance="destructive"
+                  height={state.value}
+                  marginRight={16}
+                  intent="warning"
+                >
+                  Warning
+                </Button>
+                <Button
+                  appearance="destructive"
+                  height={state.value}
+                  intent="danger"
+                >
+                  Danger
+                </Button>
+              </Box>
+              <Heading marginTop={24}>Minimal Appearance</Heading>
+              <Box marginTop={12}>
+                <Button
+                  height={state.value}
+                  appearance="minimal"
+                  marginRight={16}
+                >
+                  Default
+                </Button>
+                <Button
+                  height={state.value}
+                  appearance="minimal"
+                  marginRight={16}
+                  intent="success"
+                >
+                  Success
+                </Button>
+                <Button
+                  height={state.value}
+                  appearance="minimal"
+                  marginRight={16}
+                  intent="warning"
+                >
+                  Warning
+                </Button>
+                <Button
+                  height={state.value}
+                  appearance="minimal"
+                  intent="danger"
+                >
+                  Danger
+                </Button>
+              </Box>
+            </ThemeProvider>
+          </React.Fragment>
+        )
+      }}
     </Component>
   </Box>
 ))
