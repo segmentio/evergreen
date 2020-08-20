@@ -6,9 +6,6 @@ import { SearchInput } from '..'
 
 const StoryHeader = props => <Box marginBottom={16} {...props} />
 const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
-const StoryDescription = props => (
-  <Paragraph size={400} color="muted" {...props} />
-)
 const StorySection = props => <Box marginBottom={40} {...props} />
 
 storiesOf('search-input', module).add('SearchInput', () => (

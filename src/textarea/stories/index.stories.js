@@ -22,10 +22,6 @@ class Manager extends React.Component {
   }
 }
 
-const Description = props => (
-  <Text is="p" marginTop={0} size={300} color="muted" {...props} />
-)
-
 storiesOf('textarea', module)
   .add('overview', () => (
     <Box padding={48}>
