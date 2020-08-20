@@ -225,10 +225,7 @@ const paragraph = {
     ...text['400'],
     lineHeight: '21px'
   },
-  '300': {
-    ...text['300'],
-    lineHeight: '18px'
-  }
+  '300': text['300'],
 }
 
 const fills = {
