@@ -36,13 +36,13 @@ storiesOf('badges', module)
     <ThemeConsumer>
       {theme => (
         <Box style={{ ...wrapperStyles }}>
-          {theme.badgeColors.map(color => (
-            <Box key={color}>
+          {theme.badgeColors.map((color, index) => (
+            <Box key={color} display="flex" flexDirection="column" alignItems="center">
               <Pill color={color} {...baseStyles}>
                 {color}
               </Pill>
-              <Pill color={color} {...baseStyles} isSolid>
-                {color}
+              <Pill color={color} {...baseStyles}>
+                {index + 1}
               </Pill>
             </Box>
           ))}
