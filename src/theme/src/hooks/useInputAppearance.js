@@ -63,7 +63,8 @@ const useInputAppearance = appearance => {
         },
         [disabledState]: {
           cursor: 'not-allowed',
-          backgroundColor: colors.gray100
+          backgroundColor: colors.gray100,
+          borderColor: colors.gray300
         }
       }
   }
