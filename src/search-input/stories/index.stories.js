@@ -19,36 +19,15 @@ storiesOf('search-input', module).add('SearchInput', () => (
     })()}
     <StorySection>
       <StoryHeader>
-        <StoryHeading>Default usage (height 36)</StoryHeading>
+        <StoryHeading>Default usage (height 32)</StoryHeading>
       </StoryHeader>
       <SearchInput placeholder="Filter traits..." />
-    </StorySection>
-    <StorySection>
-      <StoryHeader>
-        <StoryHeading>Height 40</StoryHeading>
-      </StoryHeader>
-      <SearchInput height={40} placeholder="Filter traits..." />
-    </StorySection>
-    <StorySection>
-      <StoryHeader>
-        <StoryHeading>Height 32</StoryHeading>
-      </StoryHeader>
-      <SearchInput height={32} placeholder="Filter traits..." />
     </StorySection>
     <StorySection>
       <StoryHeader>
         <StoryHeading>Height 32 and Width 100%</StoryHeading>
       </StoryHeader>
       <SearchInput height={32} width="100%" placeholder="Long Input" />
-    </StorySection>
-    <StorySection>
-      <StoryHeader>
-        <StoryHeading>Appearance: neutral</StoryHeading>
-        <StoryDescription>
-          Use this on top of a white background
-        </StoryDescription>
-      </StoryHeader>
-      <SearchInput appearance="neutral" placeholder="Filter traits..." />
     </StorySection>
   </Box>
 ))
