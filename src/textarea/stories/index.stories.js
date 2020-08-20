@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Label, Text, Heading } from '../../typography'
+import { Label, Heading } from '../../typography'
 import { Textarea, TextareaField } from '..'
 
 class Manager extends React.Component {

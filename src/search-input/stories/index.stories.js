@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
-import { Heading, Paragraph } from '../../typography'
+import { Heading } from '../../typography'
 import { SearchInput } from '..'
 
 const StoryHeader = props => <Box marginBottom={16} {...props} />
