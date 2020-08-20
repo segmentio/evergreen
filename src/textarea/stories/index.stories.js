@@ -30,16 +30,13 @@ storiesOf('textarea', module)
   .add('overview', () => (
     <Box padding={48}>
       <Box marginBottom={24} width={360}>
-        <Label htmlFor="32" size={400} display="block">
+        <Label marginBottom={8} htmlFor="32" size={400} display="block">
           Default
         </Label>
-        <Description marginBottom={8}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.
-        </Description>
         <Textarea name="32" id="32" placeholder="With placeholder" />
       </Box>
       <Box marginBottom={24} width={360}>
-        <Label htmlFor="disabled" size={400} display="block">
+        <Label marginBottom={8} htmlFor="disabled" size={400} display="block">
           Disabled
         </Label>
         <Textarea
@@ -50,7 +47,7 @@ storiesOf('textarea', module)
         />
       </Box>
       <Box marginBottom={24} width={360}>
-        <Label htmlFor="isInvalid" size={400} display="block">
+        <Label marginBottom={8} htmlFor="isInvalid" size={400} display="block">
           Is Invalid
         </Label>
         <Textarea name="isInvalid" id="isInvalid" isInvalid />
