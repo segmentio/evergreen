@@ -1,13 +1,6 @@
 import useTheme from '../useTheme'
 import memoizeClassName from '../default-theme/utils/memoizeClassName'
 
-const baseStyle = {
-  WebkitAppearance: 'none',
-  MozAppearance: 'none',
-  lineHeight: '12px',
-  border: 'none'
-}
-
 const invalidState = '&[aria-invalid="true"]'
 const placeholder = '&::placeholder'
 const focusState = '&:focus'
@@ -19,6 +12,13 @@ const useInputAppearance = appearance => {
   const {
     tokens: { colors }
   } = useTheme()
+
+  const baseStyle = {
+    WebkitAppearance: 'none',
+    MozAppearance: 'none',
+    lineHeight: appearance !== 'textarea' ?? '12px',
+    border: 'none'
+  }
 
   switch (appearance) {
     case 'none':
