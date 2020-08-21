@@ -4,7 +4,9 @@ import React, {
   useRef,
   useState,
   useEffect,
-  useImperativeHandle
+  useImperativeHandle,
+  useCallback,
+  useMemo
 } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
@@ -60,7 +62,7 @@ const Popover = memo(
      * Methods borrowed from BlueprintJS
      * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
      */
-    const bringFocusInside = () => {
+    const bringFocusInside = useCallback(() => {
       // Always delay focus manipulation to just before repaint to prevent scroll jumping
       return requestAnimationFrame(() => {
         // Container ref may be undefined between component mounting and Portal rendering
@@ -95,9 +97,9 @@ const Popover = memo(
           }
         }
       })
-    }
+    }, [popoverNode.current])
 
-    const bringFocusBackToTarget = () => {
+    const bringFocusBackToTarget = useCallback(() => {
       return requestAnimationFrame(() => {
         if (
           targetRef.current == null || // eslint-disable-line eqeqeq, no-eq-null
@@ -116,18 +118,18 @@ const Popover = memo(
           targetRef.current.focus()
         }
       })
-    }
+    }, [popoverNode.current, targetRef.current])
 
-    const open = () => {
+    const open = useCallback(() => {
       if (isShown) {
         return
       }
 
       setIsShown(true)
       onOpen()
-    }
+    }, [setIsShown, onOpen, isShown])
 
-    const close = () => {
+    const close = useCallback(() => {
       if (!isShown) {
         return
       }
@@ -135,7 +137,7 @@ const Popover = memo(
       setIsShown(false)
       bringFocusBackToTarget()
       onClose()
-    }
+    }, [setIsShown, bringFocusBackToTarget, onClose, isShown])
 
     // If `props.isShown` is a boolean, treat as a controlled component
     // `open` and `close` should be applied when it changes
@@ -149,16 +151,29 @@ const Popover = memo(
       } else {
         close()
       }
-    }, [props.isShown])
+    }, [props.isShown, isShown])
 
-    const toggle = () => (isShown ? close() : open())
-    const handleOpenHover = trigger === 'hover' ? open : undefined
-    const handleCloseHover = trigger === 'hover' ? close : undefined
-    const handleKeyDown = event =>
-      event.key === 'ArrowDown' ? bringFocusInside() : undefined
-    const onEsc = event => (event.key === 'Escape' ? close() : undefined)
+    const toggle = useCallback(() => {
+      return isShown ? close() : open()
+    }, [isShown, close, open])
 
-    const handleBodyClick = event => {
+    const handleOpenHover = useMemo(() => {
+      return trigger === 'hover' ? open : undefined
+    }, [trigger, open])
+
+    const handleCloseHover = useMemo(() => {
+      return trigger === 'hover' ? close : undefined
+    }, [trigger, close])
+
+    const handleKeyDown = useCallback((event) => {
+      return event.key === 'ArrowDown' ? bringFocusInside() : undefined
+    }, [bringFocusInside])
+
+    const onEsc = useCallback((event) => {
+      return event.key === 'Escape' ? close() : undefined
+    }, [close])
+
+    const handleBodyClick = useCallback((event) => {
       // Ignore clicks on the popover or button
       if (targetRef.current && targetRef.current.contains(event.target)) {
         return
@@ -174,12 +189,12 @@ const Popover = memo(
       if (shouldCloseOnExternalClick !== false) {
         close()
       }
-    }
+    }, [onBodyClick, shouldCloseOnExternalClick, close, targetRef.current, popoverNode.current])
 
-    const handleOpenComplete = () => {
+    const handleOpenComplete = useCallback(() => {
       if (shouldBringFocusInside) bringFocusInside()
       onOpenComplete()
-    }
+    }, [shouldBringFocusInside, bringFocusInside, onOpenComplete])
 
     useEffect(() => {
       if (isShown) {
@@ -196,7 +211,7 @@ const Popover = memo(
       }
     }, [isShown, handleBodyClick, onEsc])
 
-    const renderTarget = ({ getRef, isShown }) => {
+    const renderTarget = useCallback(({ getRef, isShown }) => {
       const isTooltipInside = children && children.type === Tooltip
 
       const getTargetRef = ref => {
@@ -250,10 +265,14 @@ const Popover = memo(
         ref: getTargetRef,
         ...popoverTargetProps
       })
-    }
+    }, [children, setTargetRef, toggle, handleOpenHover, handleKeyDown])
 
     // If `props.isShown` is a boolean, popover is controlled manually, not via mouse events
     const shown = typeof props.isShown === 'boolean' ? props.isShown : isShown
+
+    const contentToRender = useMemo(() => {
+      return typeof content === 'function' ? content({ close }) : content
+    }, [content, close])
 
     return (
       <Positioner
@@ -283,7 +302,7 @@ const Popover = memo(
             style={undefined}
             onMouseLeave={handleCloseHover}
           >
-            {typeof content === 'function' ? content({ close }) : content}
+            {contentToRender}
           </PopoverStateless>
         )}
       </Positioner>
