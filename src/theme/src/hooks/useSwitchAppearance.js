@@ -7,7 +7,7 @@ const hoverState = '&:not([disabled]):hover + div'
 const focusState = '&:not([disabled]):focus + div'
 const activeState = '&:not([disabled]):active + div'
 const checkedState = '&:checked + div'
-const checkedHoverState = '&:checked:hover + div'
+const checkedHoverState = '&:not([disabled]):checked:hover + div'
 const checkedActiveState = '&:not([disabled]):checked:active + div'
 const checkedDisabledState = '&[disabled]:checked + div'
 
@@ -23,10 +23,12 @@ const hiddenCheckboxStyle = {
   opacity: '0'
 }
 
-function useSwitchAppearance(appearance) {
+function useSwitchAppearance(appearance, handleClassName) {
   const {
     tokens: { primary }
   } = useTheme()
+
+  const handleSelector = `& .${handleClassName}`
 
   switch (appearance) {
     default:
@@ -39,10 +41,6 @@ function useSwitchAppearance(appearance) {
           color: 'white',
           backgroundColor: tokens.colors.gray400,
           borderRadius: 9999
-        },
-        [disabledState]: {
-          cursor: 'not-allowed',
-          opacity: 0.5
         },
         [hoverState]: {
           backgroundColor: tokens.colors.gray500
@@ -69,7 +67,15 @@ function useSwitchAppearance(appearance) {
           '& > svg': { display: 'block' }
         },
         [checkedDisabledState]: {
-          '& > svg': { display: 'block' }
+          '& > svg': { display: 'block' },
+        },
+        [disabledState]: {
+          cursor: 'not-allowed',
+          backgroundColor: tokens.colors.gray100,
+
+          [handleSelector]: {
+            backgroundColor: tokens.colors.gray400
+          }
         }
       }
   }

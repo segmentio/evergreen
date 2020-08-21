@@ -80,7 +80,7 @@ const Switch = memo(
       ...rest
     } = props
 
-    const themedClassName = useSwitchAppearance(appearance)
+    const themedClassName = useSwitchAppearance(appearance, handleStyleClass)
 
     return (
       <Box
