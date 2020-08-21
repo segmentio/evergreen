@@ -10,7 +10,7 @@ const base = {
   MozAppearance: 'none',
   verticalAlign: 'middle',
   textDecoration: 'none',
-  border: 'none',
+  border: '1px solid',
   outline: 'none',
   cursor: 'pointer',
   '&::-moz-focus-inner ': {
@@ -36,19 +36,23 @@ function useButtonAppearance(appearance) {
       return {
         ...base,
         backgroundColor: primary.base,
+        borderColor: primary.base,
         color: 'white',
         [disabledState]: {
           ...disabled
         },
         [hoverState]: {
-          backgroundColor: primary.hover
+          backgroundColor: primary.hover,
+          borderColor: primary.hover,
         },
         [focusState]: {
           backgroundColor: primary.hover,
+          borderColor: primary.hover,
           boxShadow: `0 0 0 2px ${colors.blue100}`
         },
         [activeState]: {
-          backgroundColor: primary.active
+          backgroundColor: primary.active,
+          borderColor: primary.active,
         },
         [focusAndActiveState]: {}
       }
@@ -83,19 +87,23 @@ function useButtonAppearance(appearance) {
       return {
         ...base,
         backgroundColor: colors.red500,
+        borderColor: colors.red500,
         color: 'white',
         [disabledState]: {
           ...disabled
         },
         [hoverState]: {
-          backgroundColor: colors.red600
+          backgroundColor: colors.red600,
+          borderColor: colors.red600,
         },
         [focusState]: {
           backgroundColor: colors.red600,
+          borderColor: colors.red600,
           boxShadow: `0 0 0 2px ${colors.red100}`
         },
         [activeState]: {
-          backgroundColor: colors.red700
+          backgroundColor: colors.red700,
+          borderColor: colors.red700,
         },
         [focusAndActiveState]: {}
       }
@@ -105,6 +113,7 @@ function useButtonAppearance(appearance) {
       return {
         ...base,
         backgroundColor: 'transparent',
+        borderColor: 'transparent',
         color: colors.gray800,
         [focusState]: {
           boxShadow: `0 0 0 2px ${colors.blue100}`
@@ -128,7 +137,7 @@ function useButtonAppearance(appearance) {
       return {
         ...base,
         backgroundColor: 'white',
-        border: `1px solid ${colors.gray500}`,
+        borderColor: colors.gray500,
         color: colors.gray800,
         [disabledState]: {
           ...disabled,
