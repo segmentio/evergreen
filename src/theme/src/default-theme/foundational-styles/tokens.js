@@ -58,6 +58,7 @@ const colorTokens = {
   orange100: '#F8E3DA',
 
   // Purple
+  purple700: '#524988',
   purple600: '#6E62B6',
   purple100: '#E7E4F9',
 
