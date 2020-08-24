@@ -57,7 +57,7 @@ function getButtonStyles(theme, appearance) {
   }
 }
 
-function useButtonAppearance(appearance) {
+function useButtonAppearance(appearance = 'default') {
   const theme = useTheme()
   const className = useMemo(
     () => css(getButtonStyles(theme, appearance)).toString(),
