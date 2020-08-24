@@ -45,11 +45,17 @@ const colorTokens = {
   green100: '#DCF2EA',
   green25: '#F5FBF8',
 
+  // Yellows
+  yellow800: '#66460D',
+  yellow700: '#996A13',
+  yellow500: '#FFB020',
+  yellow100: '#FFEFD2',
+  yellow25: '#FFFAF2',
+
   // Oranges
-  orange700: '#996A13',
-  orange500: '#FFB020',
+  orange700: '#85462B',
+  orange500: '#DE7548',
   orange100: '#F8E3DA',
-  orange25: '#FFFAF2',
 
   // Purple
   purple600: '#6E62B6',
@@ -57,11 +63,7 @@ const colorTokens = {
 
   // Teals
   teal800: '#0F5156',
-  teal100: '#D3F5F7',
-
-  // Yellows
-  yellow800: '#66460D',
-  yellow100: '#FFEFD2'
+  teal100: '#D3F5F7'
 }
 
 const colors = {
@@ -223,10 +225,7 @@ const paragraph = {
     ...text['400'],
     lineHeight: '21px'
   },
-  '300': {
-    ...text['300'],
-    lineHeight: '18px'
-  }
+  '300': text['300']
 }
 
 const fills = {
@@ -259,7 +258,7 @@ const fills = {
     backgroundColor: colors.teal100
   },
   purple: {
-    color: colors.purple600,
+    color: colors.purple700,
     backgroundColor: colors.purple100
   }
 }
@@ -290,10 +289,10 @@ export default {
       icon: colors.green500
     },
     warning: {
-      background: colors.orange25,
-      border: colors.orange500,
-      text: colors.orange700,
-      icon: colors.orange500
+      background: colors.yellow25,
+      border: colors.yellow500,
+      text: colors.yellow700,
+      icon: colors.yellow500
     },
     danger: {
       background: colors.red25,

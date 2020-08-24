@@ -7,7 +7,7 @@ import useInputAppearance from '../../theme/src/hooks/useInputAppearance'
 
 const styles = {
   minHeight: 80,
-  paddingX: 10,
+  paddingX: 12,
   paddingY: 8
 }
 
@@ -39,8 +39,6 @@ const Textarea = memo(
         required={required}
         disabled={disabled}
         placeholder={placeholder}
-        paddingLeft={Math.round(height / 3.2)}
-        paddingRight={Math.round(height / 3.2)}
         borderRadius={minorScale(1)}
         spellCheck={spellCheck}
         aria-invalid={isInvalid}

@@ -36,7 +36,7 @@ const SearchInput = memo(
           alignItems="center"
         >
           <SearchIcon
-            color="default"
+            color="gray600"
             zIndex={StackingOrder.FOCUSED + 1}
             size={iconSize}
           />

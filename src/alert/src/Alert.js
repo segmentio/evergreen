@@ -41,55 +41,61 @@ const Alert = memo(
         paddingX={16}
         {...restProps}
       >
-        {hasIcon && (
-          <Pane
-            marginRight={16}
-            marginLeft={2}
-            height={20}
-            display="flex"
-            alignItems="center"
-          >
-            {getIconForIntent(intentToken, { size: 16 })}
-          </Pane>
-        )}
-        <Pane display="flex" width="100%">
-          <Pane flex={1}>
+        <Pane flex={1}>
+          <Pane display="flex" alignItems="center">
+            {hasIcon && (
+              <Pane
+                marginRight={16}
+                marginLeft={2}
+                display="flex"
+                alignItems="center"
+              >
+                {getIconForIntent(intentToken, { size: 16 })}
+              </Pane>
+            )}
             <Heading
               is="h4"
               size={400}
               marginTop={0}
               marginBottom={0}
               fontWeight={500}
+              lineHeight={1}
               color={intents[intentToken].text}
             >
               {title}
             </Heading>
-            {typeof children === 'string' ? (
-              <Paragraph size={400} color="muted" marginTop={8}>
-                {children}
-              </Paragraph>
-            ) : (
-              children
-            )}
           </Pane>
-          {isRemoveable && (
-            <Pane
-              marginLeft={24}
-              flexShrink={0}
-              marginBottom={-2}
-              marginTop={-2}
-              marginRight={-2}
+          {typeof children === 'string' ? (
+            <Paragraph
+              size={400}
+              color="muted"
+              marginTop={8}
+              lineHeight={1}
+              paddingLeft={hasIcon ? 34 : 0}
             >
-              <IconButton
-                icon={CrossIcon}
-                appearance="minimal"
-                height={24}
-                onClick={onRemove}
-                intent={intentToken}
-              />
-            </Pane>
+              {children}
+            </Paragraph>
+          ) : (
+            children
           )}
         </Pane>
+        {isRemoveable && (
+          <Pane
+            marginLeft={24}
+            flexShrink={0}
+            marginBottom={-2}
+            marginTop={-2}
+            marginRight={-2}
+          >
+            <IconButton
+              icon={CrossIcon}
+              appearance="minimal"
+              height={24}
+              onClick={onRemove}
+              intent={intentToken}
+            />
+          </Pane>
+        )}
       </Pane>
     )
   })

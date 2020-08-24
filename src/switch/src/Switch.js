@@ -75,7 +75,7 @@ const Switch = memo(
       onChange = noop,
       disabled = false,
       appearance = 'default',
-      hasCheckIcon = true,
+      hasCheckIcon = false,
       defaultChecked,
       ...rest
     } = props

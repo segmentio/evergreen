@@ -5,7 +5,9 @@ const base = {
   borderRadius: '8px',
   borderWidth: '1px',
   borderStyle: 'solid',
-  padding: '16px'
+  // 15 instead of 16 in order to maintain height with 1px border
+  padding: '15px',
+  boxSizing: 'border-box'
 }
 
 function useAlertApperance(intent) {

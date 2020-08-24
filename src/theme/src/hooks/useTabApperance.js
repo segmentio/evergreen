@@ -13,6 +13,7 @@ const baseStyles = {
 const hoverState = '&:hover'
 const currentState = '&[aria-current="page"], &[aria-selected="true"]'
 const focusState = '&:focus'
+const activeState = '&:active'
 
 const useTabApperance = (apperance, direction) => {
   const {
@@ -52,7 +53,7 @@ const useTabApperance = (apperance, direction) => {
           borderRadius: '2px 2px 0px 0px',
           backgroundColor: primary.base,
           width: '100%',
-          transition: '0.25s cubic-bezier(0.8, 0.1, 0.38, 1.88)',
+          transition: '0.25s',
           transform: 'scaleY(0)',
           transformOrigin: 'bottom center'
         },
@@ -89,14 +90,18 @@ const useTabApperance = (apperance, direction) => {
 
         ':not(:last-child)': spacing,
 
+        [hoverState]: {
+          backgroundColor: colors.gray100,
+          color: colors.gray800
+        },
+
+        [activeState]: {
+          backgroundColor: colors.gray200
+        },
+
         [currentState]: {
           backgroundColor: colors.blue50,
           color: colors.blue500
-        },
-
-        [hoverState]: {
-          backgroundColor: colors.blue100,
-          color: colors.blue600
         },
 
         [focusState]: {

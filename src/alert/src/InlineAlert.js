@@ -26,11 +26,11 @@ const InlineAlert = memo(
     return (
       <Pane ref={ref} alignItems="center" display="flex" {...restProps}>
         {hasIcon && (
-          <Pane display="inline" marginRight={16}>
-            {getIconForIntent(intent, { size: 16, marginTop: 2 })}
+          <Pane display="flex" marginRight={16}>
+            {getIconForIntent(intent, { size: 16 })}
           </Pane>
         )}
-        <Text size={size} fontWeight={500} color={textColor}>
+        <Text size={size} lineHeight={1} fontWeight={500} color={textColor}>
           {children}
         </Text>
       </Pane>

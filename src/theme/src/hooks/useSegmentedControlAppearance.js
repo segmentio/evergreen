@@ -16,8 +16,10 @@ const baseStyle = {
 const baseState = '& label'
 const disabledState = '[disabled="true"], [data-disabled="true"]'
 const hoverState = '&:not([disabled="true"]):not([data-disabled="true"]):hover'
+const selectedState =
+  '&:not([disabled="true"]):not([data-disabled="true"])[data-popover-opened="true"], &:not([disabled="true"]):not([data-disabled="true"])[data-active="true"]'
 const activeState =
-  '&:not([disabled="true"]):not([data-disabled="true"]):active, &:not([disabled="true"]):not([data-disabled="true"])[data-popover-opened="true"], &:not([disabled="true"]):not([data-disabled="true"])[data-active="true"]'
+  '&:not([disabled="true"]):not([data-disabled="true"]):active'
 const focusState = '& input:focus + label'
 
 const getSegmentedControlStyles = theme => {
@@ -75,10 +77,16 @@ const getSegmentedControlStyles = theme => {
       }
     },
     [focusState]: {
-      boxShadow: `0 0 0 1px ${colors.blue100}`,
+      boxShadow: `0 0 0 2px ${colors.blue100}`,
       ...focusStyles
     },
     [activeState]: {
+      '& label': {
+        backgroundColor: colors.gray200,
+        color: colors.gray800
+      }
+    },
+    [selectedState]: {
       '& label': {
         backgroundColor: colors.blue50,
         color: primary.base,
