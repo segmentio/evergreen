@@ -1,5 +1,6 @@
+import { useMemo } from 'react'
+import { css } from 'glamor'
 import useTheme from '../useTheme'
-import memoizeClassName from '../default-theme/utils/memoizeClassName'
 import { defaultControlStyles } from '../default-theme/shared'
 
 const { disabled } = defaultControlStyles
@@ -26,13 +27,11 @@ const focusAndActiveState =
 const activeState =
   '&:not([disabled]):not([data-disabled]):active, &:not([disabled]):not([data-disabled])[aria-expanded="true"], &:not([disabled]):not([data-disabled])[data-active]'
 
-function useButtonAppearance(appearance) {
+function getButtonStyles(theme, appearance) {
   const {
     tokens: { primary, colors },
     buttons
-  } = useTheme()
-
-  console.log('re-render')
+  } = theme
 
   switch (appearance) {
     case 'primary': {
@@ -74,24 +73,39 @@ function useButtonAppearance(appearance) {
     }
 
     case 'destructive': {
+      const {
+        base: baseStyles = {},
+        disabled: disabledStyles = {},
+        hover: hoverStyles = {},
+        focus: focusStyles = {},
+        active: activeStyles = {},
+        focusAndActive: focusAndActiveStyles = {}
+      } = (buttons || {}).destructive || {}
       return {
         ...base,
         backgroundColor: colors.red500,
         color: 'white',
+        ...baseStyles,
         [disabledState]: {
-          ...disabled
+          ...disabled,
+          ...disabledStyles
         },
         [hoverState]: {
-          backgroundColor: colors.red600
+          backgroundColor: colors.red600,
+          ...hoverStyles
         },
         [focusState]: {
           backgroundColor: colors.red600,
-          boxShadow: `0 0 0 2px ${colors.red100}`
+          boxShadow: `0 0 0 2px ${colors.red100}`,
+          ...focusStyles
         },
         [activeState]: {
-          backgroundColor: colors.red700
+          backgroundColor: colors.red700,
+          ...activeStyles
         },
-        [focusAndActiveState]: {}
+        [focusAndActiveState]: {
+          ...focusAndActiveStyles
+        }
       }
     }
 
@@ -120,30 +134,55 @@ function useButtonAppearance(appearance) {
 
     case 'default':
     default: {
+      const {
+        base: baseStyles = {},
+        disabled: disabledStyles = {},
+        hover: hoverStyles = {},
+        focus: focusStyles = {},
+        active: activeStyles = {},
+        focusAndActive: focusAndActiveStyles = {}
+      } = (buttons || {}).default || {}
+
       return {
         ...base,
         backgroundColor: 'white',
         border: `1px solid ${colors.gray500}`,
         color: colors.gray800,
+        ...baseStyles,
         [disabledState]: {
           ...disabled,
           color: colors.gray500,
-          borderColor: colors.gray300
+          borderColor: colors.gray300,
+          ...disabledStyles
         },
         [hoverState]: {
           borderColor: colors.gray600,
-          backgroundColor: colors.gray50
+          backgroundColor: colors.gray50,
+          ...hoverStyles
         },
         [focusState]: {
-          boxShadow: `0 0 0 2px ${colors.blue100}`
+          boxShadow: `0 0 0 2px ${colors.blue100}`,
+          ...focusStyles
         },
         [activeState]: {
-          backgroundColor: colors.gray100
+          backgroundColor: colors.gray100,
+          ...activeStyles
         },
-        [focusAndActiveState]: {}
+        [focusAndActiveState]: {
+          ...focusAndActiveStyles
+        }
       }
     }
   }
 }
 
-export default memoizeClassName(useButtonAppearance)
+function useButtonAppearance(appearance) {
+  const theme = useTheme()
+  const className = useMemo(
+    () => css(getButtonStyles(theme, appearance)).toString(),
+    [appearance, theme]
+  )
+  return className
+}
+
+export default useButtonAppearance

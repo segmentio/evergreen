@@ -1,5 +1,6 @@
+import { useMemo } from 'react'
+import { css } from 'glamor'
 import useTheme from '../useTheme'
-import memoizeClassName from '../default-theme/utils/memoizeClassName'
 
 const defaultState = '& + div'
 const disabledState = '&[disabled] + div'
@@ -36,7 +37,7 @@ const baseStyle = {
   cursor: 'pointer'
 }
 
-const checkedStyles = {
+const checkedStyle = {
   '& > svg': {
     display: 'block'
   }
@@ -46,10 +47,23 @@ const checkedStyles = {
  * @param {String} appearance.
  * @return {Object} the appearance of the checkbox.
  */
-const useCheckboxAppearance = () => {
+const getCheckboxStyles = theme => {
   const {
-    tokens: { primary, colors }
-  } = useTheme()
+    tokens: { primary, colors },
+    checkbox
+  } = theme
+
+  const {
+    base: baseStyles = {},
+    disabled: disabledStyles = {},
+    hover: hoverStyles = {},
+    focus: focusStyles = {},
+    active: activeStyles = {},
+    checked: checkedStyles = {},
+    checkedHover: checkedHoverStyles = {},
+    checkedDisabled: checkedDisabledStyles = {},
+    checkedActive: checkedActiveStyles = {}
+  } = checkbox || {}
 
   return {
     ...hiddenCheckboxStyle,
@@ -58,45 +72,54 @@ const useCheckboxAppearance = () => {
       ...baseStyle,
       color: 'white',
       backgroundColor: 'white',
-      boxShadow: `inset 0 0 0 1px ${colors.gray400}`
+      boxShadow: `inset 0 0 0 1px ${colors.gray400}`,
+      ...baseStyles
     },
     [disabledState]: {
       cursor: 'not-allowed',
       backgroundColor: colors.gray100,
-      boxShadow: `inset 0 0 0 1px ${colors.gray100}`
+      boxShadow: `inset 0 0 0 1px ${colors.gray100}`,
+      ...disabledStyles
     },
     [hoverState]: {
-      boxShadow: `inset 0 0 0 1px ${colors.gray600}`
+      boxShadow: `inset 0 0 0 1px ${colors.gray600}`,
+      ...hoverStyles
     },
     [focusState]: {
-      boxShadow: `0 0 0 2px ${colors.blue100}, inset 0 0 0 1px ${colors.gray600}`
+      boxShadow: `0 0 0 2px ${colors.blue100}`,
+      ...focusStyles
     },
     [activeState]: {
       backgroundColor: colors.gray100,
-      boxShadow: `inset 0 0 0 1px ${colors.gray500}`
+      boxShadow: `inset 0 0 0 1px ${colors.gray500}`,
+      ...activeStyles
     },
     [checkedState]: {
-      ...checkedStyles,
+      ...checkedStyle,
       color: 'white',
       boxShadow: `inset 0 0 0 -1px ${primary.active}`,
-      backgroundColor: primary.base
+      backgroundColor: primary.base,
+      ...checkedStyles
     },
     [checkedHoverState]: {
-      ...checkedStyles,
+      ...checkedStyle,
       color: 'white',
       backgroundColor: primary.hover,
-      boxShadow: `inset 0 0 0 1px ${primary.hover}`
+      boxShadow: `inset 0 0 0 1px ${primary.hover}`,
+      ...checkedHoverStyles
     },
     [checkedDisabledState]: {
-      ...checkedStyles,
+      ...checkedStyle,
       color: colors.gray600,
-      backgroundColor: colors.gray100
+      backgroundColor: colors.gray100,
+      ...checkedDisabledStyles
     },
     [checkedActiveState]: {
-      ...checkedStyles,
+      ...checkedStyle,
       color: 'white',
       boxShadow: `inset 0 0 0 -1px ${primary.active}`,
-      backgroundColor: primary.active
+      backgroundColor: primary.active,
+      ...checkedActiveStyles
     }
   }
 }
@@ -106,4 +129,11 @@ const useCheckboxAppearance = () => {
  * @param {string} appearance
  * @return {string} the appearance class name.
  */
-export default memoizeClassName(useCheckboxAppearance)
+function useCheckboxAppearance() {
+  const theme = useTheme()
+  const className = useMemo(() => css(getCheckboxStyles(theme)).toString(), [
+    theme
+  ])
+  return className
+}
+export default useCheckboxAppearance
