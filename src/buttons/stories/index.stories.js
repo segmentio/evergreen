@@ -5,15 +5,14 @@ import Component from '@reactions/component'
 import { Heading } from '../../typography'
 import { Pane } from '../../layers'
 import { Checkbox } from '../../checkbox'
-import { ThemeProvider } from '../../theme'
-import { getPrimaryButtonStylesForIntent } from '../../theme/src/default-theme/helpers'
-import { defaultTheme } from '../../theme'
+import { ThemeProvider, defaultTheme } from '../../theme'
+import v5Theme from '../../theme/src/themes/v5'
 import { SegmentedControl } from '../../segmented-control'
-import { defaultControlStyles } from '../../theme/src/default-theme/shared'
+
 import * as Icons from '../../icons'
-import { IconButton, Button, BackButton, TextDropdownButton } from '..'
 import { TextInput } from '../../text-input'
 import { Textarea } from '../../textarea'
+import { IconButton, Button, BackButton, TextDropdownButton } from '..'
 
 const buttonsStory = storiesOf('buttons', module)
 buttonsStory.add('Common', () => (
@@ -212,132 +211,6 @@ buttonsStory.add('Common', () => (
   </Box>
 ))
 
-const v5ButtonTheme = {
-  ...defaultTheme,
-  buttons: {
-    primary: {
-      base: {
-        color: 'white',
-        backgroundColor: 'white',
-        backgroundImage: getPrimaryButtonStylesForIntent().linearGradient.base,
-        boxShadow: `inset 0 0 0 1px ${defaultTheme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${defaultTheme.scales.neutral.N2A}`
-      },
-      hover: {
-        backgroundImage: getPrimaryButtonStylesForIntent().linearGradient.hover
-      },
-      active: {
-        backgroundImage: getPrimaryButtonStylesForIntent().linearGradient.active
-      },
-      focusAndActive: {}
-    },
-    destructive: {
-      base: {
-        color: 'white',
-        backgroundColor: 'white',
-        backgroundImage: getPrimaryButtonStylesForIntent('danger')
-          .linearGradient.base,
-        boxShadow: `inset 0 0 0 1px ${defaultTheme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${defaultTheme.scales.neutral.N2A}`
-      },
-      hover: {
-        backgroundImage: getPrimaryButtonStylesForIntent('danger')
-          .linearGradient.hover
-      },
-      active: {
-        backgroundImage: getPrimaryButtonStylesForIntent('danger')
-          .linearGradient.active
-      },
-      focusAndActive: {}
-    },
-    default: {
-      base: {
-        ...defaultControlStyles.base,
-        border: 'none'
-      },
-      hover: defaultControlStyles.hover,
-      focus: defaultControlStyles.focus,
-      active: defaultControlStyles.active,
-      focusAndActive: defaultControlStyles.focusAndActive
-    }
-  },
-  segmentedControl: {
-    base: {
-      ...defaultControlStyles.base
-    },
-    active: defaultControlStyles.active,
-    disabled: defaultControlStyles.disabled,
-    focus: defaultControlStyles.focus,
-    hover: defaultControlStyles.hover
-  },
-  checkbox: {
-    base: {
-      color: 'white',
-      backgroundColor: 'white',
-      backgroundImage: `linear-gradient(to top, ${defaultTheme.scales.neutral.N2A}, white)`,
-      boxShadow: `inset 0 0 0 1px ${defaultTheme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${defaultTheme.scales.neutral.N3A}`
-    },
-    disabled: {
-      cursor: 'not-allowed',
-      boxShadow: `inset 0 0 0 1px ${defaultTheme.scales.neutral.N4A}`,
-      backgroundColor: defaultTheme.scales.neutral.N2A,
-      backgroundImage: 'none'
-    },
-    hover: {
-      backgroundImage: `linear-gradient(to top, ${defaultTheme.scales.neutral.N2A}, ${defaultTheme.scales.neutral.N1A})`,
-      boxShadow: `inset 0 0 0 1px ${defaultTheme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${defaultTheme.scales.neutral.N2A}`
-    },
-    focus: {
-      boxShadow: `0 0 0 2px ${defaultTheme.scales.blue.B4A}, inset 0 0 0 1px ${defaultTheme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${defaultTheme.scales.neutral.N3A}`
-    },
-    active: {
-      backgroundImage: 'none',
-      backgroundColor: defaultTheme.scales.blue.B3A,
-      boxShadow: `inset 0 0 0 1px ${defaultTheme.scales.blue.B5A}`
-    },
-    checked: {
-      color: 'white',
-      backgroundImage: getPrimaryButtonStylesForIntent().linearGradient.base,
-      boxShadow: `inset 0 0 0 1px ${defaultTheme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${defaultTheme.scales.neutral.N2A}`
-    },
-    checkedHover: {
-      color: 'white',
-      backgroundImage: getPrimaryButtonStylesForIntent().linearGradient.hover,
-      boxShadow: `inset 0 0 0 1px ${defaultTheme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${defaultTheme.scales.neutral.N2A}`
-    },
-    checkedDisabled: {
-      color: defaultTheme.scales.neutral.N6A,
-      backgroundImage: `linear-gradient(to top, ${defaultTheme.scales.neutral.N2A}, ${defaultTheme.scales.neutral.N1A})`,
-      boxShadow: `inset 0 0 0 1px ${defaultTheme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${defaultTheme.scales.neutral.N2A}`
-    },
-    checkedActive: {
-      color: 'white',
-      backgroundImage: getPrimaryButtonStylesForIntent().linearGradient.active,
-      boxShadow: `inset 0 0 0 1px ${defaultTheme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${defaultTheme.scales.neutral.N2A}`
-    }
-  },
-  inputs: {
-    base: {
-      backgroundColor: 'white',
-      border: 'none',
-      boxShadow: `inset 0 0 0 1px ${defaultTheme.scales.neutral.N5A}, inset 0 1px 2px ${defaultTheme.scales.neutral.N4A}`
-    },
-    invalid: {
-      boxShadow: `inset 0 0 0 1px ${defaultTheme.palette.red.base}, inset 0 1px 2px ${defaultTheme.scales.neutral.N4A}`
-    },
-    placeholder: {
-      color: defaultTheme.scales.neutral.N6A
-    },
-    focus: {
-      outline: 'none',
-      border: 'none',
-      boxShadow: `inset 0 0 2px ${defaultTheme.scales.neutral.N4A}, inset 0 0 0 1px ${defaultTheme.scales.blue.B7}, 0 0 0 3px ${defaultTheme.scales.blue.B4A}`
-    },
-    disabled: {
-      boxShadow: `inset 0 0 0 1px ${defaultTheme.scales.neutral.N4A}`,
-      backgroundColor: defaultTheme.scales.neutral.N2
-    }
-  }
-}
-
 buttonsStory.add('Button types', () => (
   <Box padding={40}>
     <Component
@@ -357,9 +230,7 @@ buttonsStory.add('Button types', () => (
             <ThemeProvider
               key={state.themeValue}
               value={
-                state.themeValue === 'v5'
-                  ? { ...v5ButtonTheme }
-                  : { ...defaultTheme }
+                state.themeValue === 'v5' ? { ...v5Theme } : { ...defaultTheme }
               }
             >
               <Checkbox

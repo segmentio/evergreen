@@ -45,6 +45,22 @@ const buttons = {
     focus: defaultControlStyles.focus,
     active: defaultControlStyles.active,
     focusAndActive: defaultControlStyles.focusAndActive
+  },
+  minimal: {
+    base: {
+      backgroundColor: 'transparent'
+    },
+    hover: {
+      backgroundColor: scales.neutral.N2A
+    },
+    focus: {
+      boxShadow: `0 0 0 3px ${scales.blue.B5A}`
+    },
+    active: {
+      backgroundImage: 'none',
+      backgroundColor: scales.blue.B3A
+    },
+    focusAndActive: {}
   }
 }
 
