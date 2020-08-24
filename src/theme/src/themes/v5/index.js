@@ -63,6 +63,8 @@ import {
   getBadgeProps,
   getAvatarInitialsFontSize,
   buttons,
+  checkbox,
+  inputs,
   segmentedControl
 } from './component-specific'
 
@@ -143,7 +145,9 @@ export default {
 
   // Component-specific
   buttons,
+  checkbox,
   segmentedControl,
+  inputs,
 
   typography: {
     headings,
