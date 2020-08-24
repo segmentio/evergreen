@@ -16,7 +16,7 @@ const disabledState = '&:disabled'
 const hoverPlaceholderState = '&:hover::placeholder'
 const focusPlaceholderState = '&:focus::placeholder'
 
-const getInputStyles = (theme, appearance = 'default') => {
+const getInputStyles = (theme, appearance) => {
   const { inputs } = theme
 
   const {
@@ -59,7 +59,7 @@ const getInputStyles = (theme, appearance = 'default') => {
  * @return {string} the appearance class name.
  */
 
-function useInputAppearance(appearance) {
+function useInputAppearance(appearance = 'default') {
   const theme = useTheme()
   const className = useMemo(
     () => css(getInputStyles(theme, appearance)).toString(),

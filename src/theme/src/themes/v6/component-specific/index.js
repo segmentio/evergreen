@@ -31,3 +31,6 @@ export { default as getBadgeProps } from './getBadgeProps'
 
 // Single Prop Getters.
 export { default as getAvatarInitialsFontSize } from './getAvatarInitialsFontSize'
+
+export { default as buttons } from './buttons'
+export { default as inputs } from './inputs'

@@ -61,7 +61,9 @@ import {
   getCodeProps,
   getAvatarProps,
   getBadgeProps,
-  getAvatarInitialsFontSize
+  getAvatarInitialsFontSize,
+  buttons,
+  inputs
 } from './component-specific'
 
 /**
@@ -138,6 +140,9 @@ export default {
   getParagraphStyle,
   getFontFamily,
   getTextColor,
+
+  buttons,
+  inputs,
 
   typography: {
     headings,

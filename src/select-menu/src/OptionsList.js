@@ -6,6 +6,7 @@ import { Pane } from '../../layers'
 import { SearchIcon } from '../../icons'
 import TableHead from '../../table/src/TableHead'
 import SearchTableHeaderCell from '../../table/src/SearchTableHeaderCell'
+// TODO - move to the actual theme
 import tokens from '../../theme/src/default-theme/foundational-styles/tokens'
 import OptionShapePropType from './OptionShapePropType'
 import Option from './Option'
