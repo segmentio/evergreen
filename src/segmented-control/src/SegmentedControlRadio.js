@@ -4,7 +4,6 @@ import Box from 'ui-box'
 import { css } from 'glamor'
 import { Text } from '../../typography'
 import useSegmentControlAppearance from '../../theme/src/hooks/useSegmentedControlAppearance'
-import { useTheme } from '../../theme'
 
 const offscreenCss = css({
   overflow: 'hidden',

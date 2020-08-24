@@ -136,4 +136,5 @@ function useCheckboxAppearance() {
   ])
   return className
 }
+
 export default useCheckboxAppearance

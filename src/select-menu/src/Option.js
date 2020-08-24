@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Image } from '../../image'
 import TableRow from '../../table/src/TableRow'
-// TODO - move into the theme object
+// Move into the theme object itself
 import tokens from '../../theme/src/themes/v6/foundational-styles/tokens'
 import TextTableCell from '../../table/src/TextTableCell'
 
