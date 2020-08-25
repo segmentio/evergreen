@@ -25,6 +25,21 @@ const inputs = {
       cursor: 'not-allowed',
       backgroundColor: tokens.colors.gray100
     }
+  },
+  none: {
+    base: {
+      backgroundColor: 'white'
+    },
+    invalid: {},
+    placeholder: {
+      color: tokens.colors.gray600
+    },
+    focus: {
+      outline: 'none'
+    },
+    disabled: {
+      backgroundColor: tokens.colors.gray100
+    }
   }
 }
 
