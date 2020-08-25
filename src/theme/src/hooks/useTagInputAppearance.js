@@ -26,6 +26,7 @@ const useTagInputAppearance = appearance => {
           outline: 'none',
           zIndex: StackingOrder.FOCUSED,
           border: `1px solid ${colors.blue200}`,
+          transition: 'box-shadow 80ms ease-in-out',
           boxShadow: `0 0 0 2px ${colors.blue100}`
         },
         [disabledState]: {
