@@ -63,7 +63,6 @@ const SegmentedControl = memo(
         boxShadow={`inset 0 0 0 1px ${colors.gray400}`}
         backgroundColor="white"
         borderRadius={minorScale(1)}
-        padding={minorScale(1)}
         marginRight={-1}
         height={height}
         ref={ref}

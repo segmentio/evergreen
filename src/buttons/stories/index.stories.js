@@ -5,6 +5,7 @@ import Component from '@reactions/component'
 import { Heading } from '../../typography'
 import { Pane } from '../../layers'
 import { SegmentedControl } from '../../segmented-control'
+
 import * as Icons from '../../icons'
 import { IconButton, Button, BackButton, TextDropdownButton } from '..'
 
@@ -207,125 +208,62 @@ buttonsStory.add('Common', () => (
 
 buttonsStory.add('Button types', () => (
   <Box padding={40}>
-    <Component
-      initialState={{
-        options: [
-          { label: 'Height 24', value: 24 },
-          { label: 'Height 32', value: 32 },
-          { label: 'Height 40', value: 40 }
-        ],
-        value: 32
-      }}
-    >
-      {({ state, setState }) => (
-        <React.Fragment>
-          <SegmentedControl
-            width={280}
-            options={state.options}
-            value={state.value}
-            onChange={value => setState({ value: Number(value) })}
-          />
-          <Heading marginTop={24}>Default Appearance</Heading>
-          <Box marginTop={12}>
-            <Button height={state.value} marginRight={16}>
-              Default
-            </Button>
-            <Button height={state.value} marginRight={16} intent="success">
-              Success
-            </Button>
-            <Button height={state.value} marginRight={16} intent="warning">
-              Warning
-            </Button>
-            <Button height={state.value} intent="danger">
-              Danger
-            </Button>
-          </Box>
-          <Heading marginTop={24}>Primary Appearance</Heading>
-          <Box marginTop={12}>
-            <Button height={state.value} appearance="primary" marginRight={16}>
-              Default
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              marginRight={16}
-              intent="success"
-            >
-              Success
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button height={state.value} appearance="primary" intent="danger">
-              Danger
-            </Button>
-          </Box>
-          <Heading marginTop="default">Destructive Appearance</Heading>
-          <Box marginTop={12}>
-            <Button
-              appearance="destructive"
-              height={state.value}
-              marginRight={16}
-            >
-              Default
-            </Button>
-            <Button
-              appearance="destructive"
-              height={state.value}
-              marginRight={16}
-              intent="success"
-            >
-              Success
-            </Button>
-            <Button
-              appearance="destructive"
-              height={state.value}
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button
-              appearance="destructive"
-              height={state.value}
-              intent="danger"
-            >
-              Danger
-            </Button>
-          </Box>
-          <Heading marginTop="default">Minimal Appearance</Heading>
-          <Box marginTop={12}>
-            <Button height={state.value} appearance="minimal" marginRight={16}>
-              Default
-            </Button>
-            <Button
-              height={state.value}
-              appearance="minimal"
-              marginRight={16}
-              intent="success"
-            >
-              Success
-            </Button>
-            <Button
-              height={state.value}
-              appearance="minimal"
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button height={state.value} appearance="minimal" intent="danger">
-              Danger
-            </Button>
-          </Box>
-        </React.Fragment>
-      )}
-    </Component>
+    <Heading>Default Appearance</Heading>
+    <Box marginTop={12}>
+      <Button marginRight={16}>Default</Button>
+      <Button marginRight={16} intent="success">
+        Success
+      </Button>
+      <Button marginRight={16} intent="warning">
+        Warning
+      </Button>
+      <Button intent="danger">Danger</Button>
+    </Box>
+    <Heading marginTop={24}>Primary Appearance</Heading>
+    <Box marginTop={12}>
+      <Button appearance="primary" marginRight={16}>
+        Default
+      </Button>
+      <Button appearance="primary" marginRight={16} intent="success">
+        Success
+      </Button>
+      <Button appearance="primary" marginRight={16} intent="warning">
+        Warning
+      </Button>
+      <Button appearance="primary" intent="danger">
+        Danger
+      </Button>
+    </Box>
+    <Heading marginTop="24px">Destructive Appearance</Heading>
+    <Box marginTop={12}>
+      <Button appearance="destructive" marginRight={16}>
+        Default
+      </Button>
+      <Button appearance="destructive" marginRight={16} intent="success">
+        Success
+      </Button>
+      <Button appearance="destructive" marginRight={16} intent="warning">
+        Warning
+      </Button>
+      <Button appearance="destructive" intent="danger">
+        Danger
+      </Button>
+    </Box>
+    <Heading marginTop={24}>Minimal Appearance</Heading>
+    <Box marginTop={12}>
+      <Button appearance="minimal" marginRight={16}>
+        Default
+      </Button>
+      <Button appearance="minimal" marginRight={16} intent="success">
+        Success
+      </Button>
+      <Button appearance="minimal" marginRight={16} intent="warning">
+        Warning
+      </Button>
+      <Button appearance="minimal" intent="danger">
+        Danger
+      </Button>
+    </Box>
   </Box>
 ))
 

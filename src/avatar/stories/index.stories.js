@@ -88,10 +88,18 @@ storiesOf('avatar', module).add('Avatar', () => (
     <Box marginBottom={40}>
       <StoryHeader>
         <StoryHeading>Square Avatars</StoryHeading>
-        <StoryDescription>Colors are based on the name, shape is square.</StoryDescription>
+        <StoryDescription>
+          Colors are based on the name, shape is square.
+        </StoryDescription>
       </StoryHeader>
       {names.map(name => (
-        <Avatar key={name} shape="square" name={name} marginRight={12} size={32} />
+        <Avatar
+          key={name}
+          shape="square"
+          name={name}
+          marginRight={12}
+          size={32}
+        />
       ))}
     </Box>
     <Box marginBottom={40}>

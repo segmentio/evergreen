@@ -71,7 +71,8 @@ const Alert = memo(
               color="muted"
               marginTop={8}
               lineHeight={1}
-              paddingLeft={hasIcon ? 34 : 0}>
+              paddingLeft={hasIcon ? 34 : 0}
+            >
               {children}
             </Paragraph>
           ) : (

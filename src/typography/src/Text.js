@@ -13,7 +13,6 @@ const Text = memo(
       size = 400,
       color = 'default',
       fontFamily = 'ui',
-      marginTop,
       ...restProps
     } = props
 

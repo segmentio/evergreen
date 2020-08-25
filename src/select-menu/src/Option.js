@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Image } from '../../image'
 import TableRow from '../../table/src/TableRow'
-import tokens from '../../theme/src/default-theme/foundational-styles/tokens'
+// Move into the theme object itself
+import tokens from '../../theme/src/themes/v6/foundational-styles/tokens'
 import TextTableCell from '../../table/src/TextTableCell'
 
 const disableProps = { color: 'muted' }

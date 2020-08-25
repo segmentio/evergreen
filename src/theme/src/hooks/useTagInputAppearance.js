@@ -1,5 +1,6 @@
+import { useMemo } from 'react'
+import { css } from 'glamor'
 import useTheme from '../useTheme'
-import memoizeClassName from '../default-theme/utils/memoizeClassName'
 import { StackingOrder } from '../../../constants'
 
 const baseStyle = {
@@ -11,10 +12,10 @@ const baseStyle = {
 const focusState = '&[aria-activedescendant]'
 const disabledState = '&[aria-disabled="true"]'
 
-const useTagInputAppearance = appearance => {
+const getTagInputStyles = (appearance, theme) => {
   const {
     tokens: { colors }
-  } = useTheme()
+  } = theme
 
   switch (appearance) {
     default:
@@ -26,6 +27,7 @@ const useTagInputAppearance = appearance => {
           outline: 'none',
           zIndex: StackingOrder.FOCUSED,
           border: `1px solid ${colors.blue200}`,
+          transition: 'box-shadow 80ms ease-in-out',
           boxShadow: `0 0 0 2px ${colors.blue100}`
         },
         [disabledState]: {
@@ -41,4 +43,14 @@ const useTagInputAppearance = appearance => {
  * @param {string} appearance
  * @return {string} the appearance class name.
  */
-export default memoizeClassName(useTagInputAppearance)
+function useTagInputAppearance(appearance = 'default') {
+  const theme = useTheme()
+  const className = useMemo(
+    () => css(getTagInputStyles(appearance, theme)).toString(),
+    [theme, appearance]
+  )
+
+  return className
+}
+
+export default useTagInputAppearance

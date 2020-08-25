@@ -62,7 +62,7 @@ const Avatar = memo(
 
     let initials = getInitials(name)
     if (size <= sizeLimitOneCharacter) {
-      initials = initials.substring(0, 1)
+      initials = initials.slice(0, 1)
     }
 
     return (

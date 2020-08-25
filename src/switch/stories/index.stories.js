@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import { Heading } from '../../typography'
 import { Switch } from '..'
 
-storiesOf('switch', module).add('Switch', () =>{
+storiesOf('switch', module).add('Switch', () => {
   const [testOneChecked, setTestOneChecked] = useState(false)
   const [testTwoChecked, setTestTwoChecked] = useState(false)
 
@@ -16,7 +16,11 @@ storiesOf('switch', module).add('Switch', () =>{
       })()}
       <Box>
         <Heading>Default usage, height 16</Heading>
-        <Switch marginBottom={24} checked={testOneChecked} onChange={(event) => setTestOneChecked(event.target.checked)} />
+        <Switch
+          marginBottom={24}
+          checked={testOneChecked}
+          onChange={event => setTestOneChecked(event.target.checked)}
+        />
         <Switch marginBottom={24} disabled />
         <Switch marginBottom={24} disabled checked />
       </Box>
@@ -26,7 +30,7 @@ storiesOf('switch', module).add('Switch', () =>{
           height={20}
           marginBottom={24}
           checked={testTwoChecked}
-          onChange={(event) => setTestTwoChecked(event.target.checked)}
+          onChange={event => setTestTwoChecked(event.target.checked)}
         />
         <Switch height={20} marginBottom={24} disabled />
         <Switch height={20} marginBottom={24} disabled checked />

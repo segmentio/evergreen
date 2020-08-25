@@ -31,9 +31,7 @@ const FormField = memo(
             {label}
           </FormFieldLabel>
           {typeof description === 'string' ? (
-            <FormFieldDescription>
-              {description}
-            </FormFieldDescription>
+            <FormFieldDescription>{description}</FormFieldDescription>
           ) : (
             description
           )}

@@ -7,7 +7,13 @@ import useIconColor from '../../theme/src/hooks/useIconColor'
 
 const StatusIndicator = memo(
   forwardRef(function StatusIndicator(props, ref) {
-    const { children, disabled, color = 'disabled', dotSize = 6, ...rest } = props
+    const {
+      children,
+      disabled,
+      color = 'disabled',
+      dotSize = 6,
+      ...rest
+    } = props
     const dotColor = useIconColor(color === 'none' ? 'disabled' : color)
 
     return (

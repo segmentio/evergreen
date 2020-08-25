@@ -6,17 +6,15 @@ import useHeadingStyle from '../../theme/src/hooks/useHeadingStyle'
 const Heading = memo(
   forwardRef(function Heading(props, ref) {
     const { marginTop, size = 500, ...restProps } = props
-    const { marginTop: defaultMarginTop, ...headingStyle } = useHeadingStyle(
-      size
-    )
+    const { ...headingStyle } = useHeadingStyle(size)
 
     return (
       <Box
         is="h2"
         ref={ref}
+        {...headingStyle}
         marginTop={0}
         marginBottom={0}
-        {...headingStyle}
         {...restProps}
       />
     )

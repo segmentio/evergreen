@@ -1,4 +1,4 @@
-export { default as defaultTheme } from './src/default-theme'
+export { default as defaultTheme } from './src/themes/v6'
 export {
   default as ThemeContext,
   ThemeProvider,
