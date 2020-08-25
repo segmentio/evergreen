@@ -1,14 +1,16 @@
+import { useMemo } from 'react'
+import { css } from 'glamor'
 import useTheme from '../useTheme'
-import memoizeClassName from '../default-theme/utils/memoizeClassName'
 
 const hoverState = '&:hover'
 const activeState = '&:active'
 const focusState = '&:focus'
 
-function useLinkAppearance(color) {
+function getLinkStyle(color, theme) {
   const {
     tokens: { primary, colors }
-  } = useTheme()
+  } = theme
+
   switch (color) {
     case 'neutral':
       return {
@@ -56,4 +58,13 @@ function useLinkAppearance(color) {
   }
 }
 
-export default memoizeClassName(useLinkAppearance)
+function useLinkAppearance(color) {
+  const theme = useTheme()
+  const className = useMemo(() => css(getLinkStyle(color, theme)).toString(), [
+    color,
+    theme
+  ])
+  return className
+}
+
+export default useLinkAppearance

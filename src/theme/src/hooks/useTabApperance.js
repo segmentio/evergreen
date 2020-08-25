@@ -1,5 +1,6 @@
+import { useMemo } from 'react'
+import { css } from 'glamor'
 import useTheme from '../useTheme'
-import memoizeClassName from '../default-theme/utils/memoizeClassName'
 
 const baseStyles = {
   fontWeight: 500,
@@ -15,10 +16,10 @@ const currentState = '&[aria-current="page"], &[aria-selected="true"]'
 const focusState = '&:focus'
 const activeState = '&:active'
 
-const useTabApperance = (apperance, direction) => {
+const getTabStyles = (apperance, direction, theme) => {
   const {
     tokens: { primary, colors }
-  } = useTheme()
+  } = theme
 
   const display = direction === 'horizontal' ? 'inline-flex' : 'flex'
   const width = direction === 'horizontal' ? 'auto' : '100%'
@@ -112,4 +113,14 @@ const useTabApperance = (apperance, direction) => {
   }
 }
 
-export default memoizeClassName(useTabApperance)
+function useTabAppearance(appearance, direction) {
+  const theme = useTheme()
+  const className = useMemo(
+    () => css(getTabStyles(appearance, direction, theme)).toString(),
+    [appearance, direction, theme]
+  )
+
+  return className
+}
+
+export default useTabAppearance

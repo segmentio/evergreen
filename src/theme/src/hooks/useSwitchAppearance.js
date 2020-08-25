@@ -1,6 +1,6 @@
+import { useMemo } from 'react'
+import { css } from 'glamor'
 import useTheme from '../useTheme'
-import memoizeClassName from '../default-theme/utils/memoizeClassName'
-import tokens from '../default-theme/foundational-styles/tokens'
 
 const disabledState = '&[disabled] + div'
 const hoverState = '&:not([disabled]):hover + div'
@@ -23,12 +23,13 @@ const hiddenCheckboxStyle = {
   opacity: '0'
 }
 
-function useSwitchAppearance(appearance) {
-  const {
-    tokens: { primary }
-  } = useTheme()
+function getSwitchStyles(appearance, theme) {
+  const { tokens } = theme
+
+  const { primary } = tokens
 
   switch (appearance) {
+    case 'default':
     default:
       return {
         ...hiddenCheckboxStyle,
@@ -75,4 +76,13 @@ function useSwitchAppearance(appearance) {
   }
 }
 
-export default memoizeClassName(useSwitchAppearance)
+function useSwitchAppearance(appearance = 'default') {
+  const theme = useTheme()
+  const className = useMemo(() => css(getSwitchStyles(appearance, theme)), [
+    appearance,
+    theme
+  ])
+  return className
+}
+
+export default useSwitchAppearance

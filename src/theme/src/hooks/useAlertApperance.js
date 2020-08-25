@@ -1,5 +1,6 @@
+import { useMemo } from 'react'
+import { css } from 'glamor'
 import useTheme from '../useTheme'
-import memoizeClassName from '../default-theme/utils/memoizeClassName'
 
 const base = {
   borderRadius: '8px',
@@ -10,10 +11,10 @@ const base = {
   boxSizing: 'border-box'
 }
 
-function useAlertApperance(intent) {
+function getAlertStyles(intent, theme) {
   const {
     tokens: { intents }
-  } = useTheme()
+  } = theme
 
   const borderColor = intents[intent].border
   const backgroundColor = intents[intent].background
@@ -25,4 +26,13 @@ function useAlertApperance(intent) {
   }
 }
 
-export default memoizeClassName(useAlertApperance)
+function useAlertApperance(intent) {
+  const theme = useTheme()
+  const className = useMemo(
+    () => css(getAlertStyles(intent, theme)).toString(),
+    [intent, theme]
+  )
+  return className
+}
+
+export default useAlertApperance
