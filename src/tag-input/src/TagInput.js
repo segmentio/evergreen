@@ -38,7 +38,7 @@ const TagInput = memo(
       onFocus,
       onInputChange,
       className,
-      inputProps,
+      inputProps = {},
       inputRef,
       ...rest
     } = props
@@ -151,9 +151,9 @@ const TagInput = memo(
     }
 
     const themedContainerClassName = theme.getTagInputClassName('default')
-    const themedInputClassName = theme.getTextInputClassName('none')
     const textSize = theme.getTextSizeForControlHeight(height)
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
+    const themedInputClassName = cx(theme.getTextInputClassName('none'), inputProps.className)
 
     return (
       <Box
