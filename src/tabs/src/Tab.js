@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import React, { forwardRef, memo } from 'react'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
-import { useTheme } from '../../theme'
 import useTabApperance from '../../theme/src/hooks/useTabApperance'
 import { Text } from '../../typography'
 
@@ -10,11 +9,9 @@ const noop = () => {}
 
 const Tab = memo(
   forwardRef(function Tab(props, ref) {
-    const theme = useTheme()
-
     const {
-      appearance='secondary',
-      direction='horizontal',
+      appearance = 'secondary',
+      direction = 'horizontal',
       disabled = false,
       height = 28,
       is = 'span',
@@ -47,8 +44,6 @@ const Tab = memo(
       )
     }
 
-    const textSize = theme.getTextSizeForControlHeight(height)
-
     let elementBasedProps
     if (disabled) {
       elementBasedProps = {
@@ -80,7 +75,7 @@ const Tab = memo(
       <Text
         className={tabClassName}
         is={is}
-        size={textSize}
+        size={300}
         height={height}
         ref={ref}
         tabIndex={0}

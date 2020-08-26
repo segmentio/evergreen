@@ -6,9 +6,16 @@ import { CaretDownIcon } from '../../icons'
 import { useTheme } from '../../theme'
 import useButtonAppearance from '../../theme/src/hooks/useButtonAppearance'
 
+const getIconSizeForSelect = height => {
+  if (height <= 28) return 12
+  if (height <= 32) return 14 // Slightly bigger than getIconSizeForButton
+  if (height <= 40) return 16
+  if (height <= 48) return 18
+  return 20
+}
+
 const Select = memo(
   forwardRef(function Select(props, ref) {
-    const theme = useTheme()
     const {
       id,
       name,
@@ -25,10 +32,10 @@ const Select = memo(
       ...restProps
     } = props
 
+    const theme = useTheme()
+    const { tokens } = theme
     const themedClassName = useButtonAppearance(appearance)
-    const textSize = theme.getTextSizeForControlHeight(height)
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
-    const iconSize = theme.getIconSizeForSelect(height)
+    const iconSize = getIconSizeForSelect(height)
     const iconMargin = height >= 36 ? 12 : 8
 
     return (
@@ -53,8 +60,8 @@ const Select = memo(
           autoFocus={autoFocus}
           disabled={disabled}
           aria-invalid={String(isInvalid)}
-          size={textSize}
-          borderRadius={borderRadius}
+          size={300}
+          borderRadius={tokens.borderRadius}
           textTransform="default"
           paddingLeft={Math.round(height / 3.2)}
           // Provide enough space for auto-sizing select including the icon

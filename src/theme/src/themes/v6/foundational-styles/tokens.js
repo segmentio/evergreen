@@ -271,6 +271,8 @@ export default {
   paragraph,
   headings,
   fills,
+  // Border radius used across input components
+  borderRadius: 4,
   primary: {
     base: colors.blue500,
     hover: colors.blue600,
