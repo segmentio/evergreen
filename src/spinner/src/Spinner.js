@@ -41,6 +41,7 @@ const innerClass = color =>
 const Spinner = memo(
   forwardRef(function Spinner({ delay = 0, size = 40, ...props }, ref) {
     const theme = useTheme()
+    const { tokens } = theme
     const [isVisible, setIsVisible] = useState(delay === 0)
 
     useEffect(() => {
@@ -71,7 +72,7 @@ const Spinner = memo(
         >
           <Box
             is="circle"
-            className={innerClass(theme.spinnerColor)}
+            className={innerClass(tokens.spinnerColor)}
             cx="75"
             cy="75"
             r="60"

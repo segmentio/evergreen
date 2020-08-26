@@ -38,8 +38,6 @@ import { headings, text, fontFamilies, paragraph } from './typography'
 import {
   avatarColors,
   badgeColors,
-  spinnerColor,
-  overlayBackgroundColor,
   getTextDropdownButtonClassName,
   getTableCellClassName,
   getRowClassName,
@@ -70,8 +68,6 @@ export default {
   // Component Specific.
   avatarColors,
   badgeColors,
-  spinnerColor,
-  overlayBackgroundColor,
   getTextDropdownButtonClassName,
   getTableCellClassName,
   getRowClassName,

@@ -264,12 +264,18 @@ const fills = {
   }
 }
 
+// Lifted from v5 scales
+const spinnerColor = 'rgba(67, 90, 111, 0.47)'
+const overlayBackgroundColor = 'rgba(67, 90, 111, 0.7)'
+
 export default {
   colors,
   fontFamilies,
   text,
   paragraph,
   headings,
+  spinnerColor,
+  overlayBackgroundColor,
   fills,
   // Border radius used across input components
   borderRadius: 4,
