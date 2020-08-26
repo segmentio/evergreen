@@ -44,8 +44,6 @@ const TagInput = memo(
       inputRef,
       ...rest
     } = props
-    const theme = useTheme()
-
     const [inputValue, setInputValue] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const id = useId('TagInput')
@@ -151,16 +149,15 @@ const TagInput = memo(
       )
     }
 
+    const { tokens } = useTheme()
     const themedContainerClassName = useTagInputAppearance()
     const themedInputClassName = useInputAppearance('none')
-    const textSize = theme.getTextSizeForControlHeight(height)
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
 
     return (
       <Box
         aria-disabled={disabled || undefined}
         aria-activedescendant={isFocused ? id : undefined}
-        borderRadius={borderRadius}
+        borderRadius={tokens.borderRadius}
         className={cx(themedContainerClassName, className)}
         paddingX={Math.round(height / 2.6)}
         paddingY="2px"
@@ -176,7 +173,7 @@ const TagInput = memo(
           disabled={disabled}
           flexGrow="1"
           height={height - 4}
-          size={textSize}
+          size={300}
           type="text"
           value={inputValue}
           {...inputProps}

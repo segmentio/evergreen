@@ -42,7 +42,7 @@ const Pane = memo(
         ':hover': {
           ...(css[':hover'] || {}),
           transform: 'translateY(-2px)',
-          boxShadow: theme.getElevation(hoverElevation)
+          boxShadow: theme.elevations[hoverElevation]
         }
       }
     }
@@ -54,7 +54,7 @@ const Pane = memo(
         ':active': {
           ...(css[':active'] || {}),
           transform: 'translateY(-1px)',
-          boxShadow: theme.getElevation(activeElevation)
+          boxShadow: theme.elevations[activeElevation]
         }
       }
     }
@@ -101,6 +101,14 @@ const Pane = memo(
       getBorderSideProperty({ borderSideProperty, border })
     )
 
+    // NOTE: Move to tokens - otherwise, this is a breaking change
+    const themedBackground = Object.prototype.hasOwnProperty.call(
+      theme.colors.background,
+      background
+    )
+      ? theme.colors.background[background]
+      : background
+
     const className = cx(
       props.className,
       glamorCss({
@@ -118,7 +126,7 @@ const Pane = memo(
         borderBottom={_borderBottom}
         borderLeft={_borderLeft}
         boxShadow={elevationStyle}
-        background={theme.getBackground(background)}
+        background={themedBackground}
         {...restProps}
         className={className}
       />

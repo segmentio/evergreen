@@ -56,22 +56,7 @@ import {
  * ---
  * These ARE REQUIRED for Evergreen to work.
  */
-import {
-  getBorderRadiusForControlHeight,
-  getTextSizeForControlHeight,
-  getIconSizeForButton,
-  getIconSizeForInput,
-  getIconSizeForSelect,
-  getIconSizeForIconButton,
-  getBackground,
-  getElevation,
-  getIconColor,
-  getHeadingStyle,
-  getTextStyle,
-  getParagraphStyle,
-  getFontFamily,
-  getTextColor
-} from './theme-helpers'
+import { getIconSizeForIconButton, getElevation } from './theme-helpers'
 
 export default {
   // Foundational Styles.
@@ -94,20 +79,8 @@ export default {
   getCodeProps,
 
   // Theme Helpers.
-  getBorderRadiusForControlHeight,
-  getTextSizeForControlHeight,
-  getIconSizeForButton,
-  getIconSizeForInput,
-  getIconSizeForSelect,
   getIconSizeForIconButton,
-  getBackground,
   getElevation,
-  getIconColor,
-  getHeadingStyle,
-  getTextStyle,
-  getParagraphStyle,
-  getFontFamily,
-  getTextColor,
 
   // Component-specific
   buttons,

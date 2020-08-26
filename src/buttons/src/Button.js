@@ -35,6 +35,14 @@ const styles = {
   flexWrap: 'nowrap'
 }
 
+const getIconSizeForButton = height => {
+  if (height <= 28) return 12
+  if (height <= 32) return 14
+  if (height <= 40) return 16
+  if (height <= 48) return 18
+  return 20
+}
+
 const Button = memo(
   forwardRef(function Button(props, ref) {
     const {
@@ -62,12 +70,9 @@ const Button = memo(
     } = props
 
     const theme = useTheme()
+    const { tokens } = theme
     const themedClassName = useButtonAppearance(appearance)
-
-    const textSize = theme.getTextSizeForControlHeight(height)
-
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
-    const iconSize = theme.getIconSizeForButton(height)
+    const iconSize = getIconSizeForButton(height)
 
     const padding = Math.round(height / 2)
     const pr = paddingRight !== undefined ? paddingRight : padding // eslint-disable-line no-negated-condition
@@ -78,10 +83,10 @@ const Button = memo(
         is="button"
         ref={ref}
         className={cx(themedClassName, className)}
-        borderTopRightRadius={borderRadius}
-        borderBottomRightRadius={borderRadius}
-        borderTopLeftRadius={borderRadius}
-        borderBottomLeftRadius={borderRadius}
+        borderTopRightRadius={tokens.borderRadius}
+        borderBottomRightRadius={tokens.borderRadius}
+        borderTopLeftRadius={tokens.borderRadius}
+        borderBottomLeftRadius={tokens.borderRadius}
         paddingTop={paddingTop}
         paddingBottom={paddingBottom}
         paddingRight={pr}
@@ -90,7 +95,7 @@ const Button = memo(
         marginRight={0} // Removes weird margins in Safari
         marginTop={0} // Removes weird margins in Safari
         marginBottom={0} // Removes weird margins in Safari
-        size={textSize}
+        size={300}
         color={null} // Prevent the Text color overriding the glamor appearanceStyle color
         height={height}
         lineHeight={`${height}px`}
