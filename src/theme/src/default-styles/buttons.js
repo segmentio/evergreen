@@ -1,5 +1,8 @@
+import { getDefaultControlStyles } from './shared'
+
 export default function getDefaultStyles(theme) {
   const { tokens } = theme
+  const { disabled } = getDefaultControlStyles()
 
   return {
     primary: {
@@ -46,6 +49,7 @@ export default function getDefaultStyles(theme) {
     destructive: {
       base: {
         backgroundColor: tokens.colors.red500,
+        borderColor: tokens.colors.red500,
         color: 'white'
       },
       disabled: {

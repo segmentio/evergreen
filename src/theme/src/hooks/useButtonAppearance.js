@@ -9,7 +9,7 @@ const base = {
   MozAppearance: 'none',
   verticalAlign: 'middle',
   textDecoration: 'none',
-  border: 'none',
+  border: '1px solid transparent',
   outline: 'none',
   cursor: 'pointer',
   '&::-moz-focus-inner ': {
