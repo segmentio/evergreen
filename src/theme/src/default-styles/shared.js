@@ -1,7 +1,8 @@
 const getDefaultControlStyles = () => ({
   disabled: {
     boxShadow: 'none',
-    pointerEvents: 'none'
+    pointerEvents: 'none',
+    cursor: 'not-allowed'
   }
 })
 
