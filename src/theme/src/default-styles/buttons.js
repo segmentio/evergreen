@@ -11,7 +11,11 @@ export default function getDefaultStyles(theme) {
         borderColor: tokens.primary.base,
         color: 'white'
       },
-      disabled: { ...disabled },
+      disabled: {
+        ...disabled,
+        backgroundColor: tokens.primary.disabled,
+        borderColor: tokens.primary.disabled
+      },
       hover: {
         backgroundColor: tokens.primary.hover
       },
@@ -53,7 +57,9 @@ export default function getDefaultStyles(theme) {
         color: 'white'
       },
       disabled: {
-        ...disabled
+        ...disabled,
+        backgroundColor: tokens.colors.red100,
+        borderColor: tokens.colors.red100
       },
       hover: {
         backgroundColor: tokens.colors.red600,

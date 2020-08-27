@@ -41,117 +41,32 @@ themeStory.add('Theming components', () => (
               <Textarea placeholder="Enter something else..." marginY={24} />
               <Heading>Default Appearance</Heading>
               <Box marginTop={12}>
-                <Button height={state.value} marginRight={16}>
-                  Default
+                <Button appearance="primary" height={state.value} marginRight={16}>
+                  Primary
                 </Button>
                 <Button height={state.value} marginRight={16} intent="success">
-                  Success
-                </Button>
-                <Button height={state.value} marginRight={16} intent="warning">
-                  Warning
-                </Button>
-                <Button height={state.value} intent="danger">
-                  Danger
-                </Button>
-              </Box>
-              <Heading marginTop={24}>Primary Appearance</Heading>
-              <Box marginTop={12}>
-                <Button
-                  height={state.value}
-                  key={state.themeValue}
-                  appearance="primary"
-                  marginRight={16}
-                >
                   Default
                 </Button>
-                <Button
-                  height={state.value}
-                  appearance="primary"
-                  marginRight={16}
-                  intent="success"
-                >
-                  Success
+                <Button appearance="destructive" height={state.value} marginRight={16} intent="danger">
+                  Destructive
                 </Button>
-                <Button
-                  height={state.value}
-                  appearance="primary"
-                  marginRight={16}
-                  intent="warning"
-                >
-                  Warning
-                </Button>
-                <Button
-                  height={state.value}
-                  appearance="primary"
-                  intent="danger"
-                >
-                  Danger
+                <Button appearance="minimal" height={state.value} marginRight={16} intent="warning">
+                  Minimal
                 </Button>
               </Box>
-              <Heading marginTop="24px">Destructive Appearance</Heading>
+              <Heading marginTop={24}>Disabled Appearance</Heading>
               <Box marginTop={12}>
-                <Button
-                  appearance="destructive"
-                  height={state.value}
-                  marginRight={16}
-                >
+                <Button disabled appearance="primary" height={state.value} marginRight={16}>
+                  Primary
+                </Button>
+                <Button disabled height={state.value} marginRight={16} intent="success">
                   Default
                 </Button>
-                <Button
-                  appearance="destructive"
-                  height={state.value}
-                  marginRight={16}
-                  intent="success"
-                >
-                  Success
+                <Button disabled appearance="destructive" height={state.value} marginRight={16} intent="danger">
+                  Destructive
                 </Button>
-                <Button
-                  appearance="destructive"
-                  height={state.value}
-                  marginRight={16}
-                  intent="warning"
-                >
-                  Warning
-                </Button>
-                <Button
-                  appearance="destructive"
-                  height={state.value}
-                  intent="danger"
-                >
-                  Danger
-                </Button>
-              </Box>
-              <Heading marginTop={24}>Minimal Appearance</Heading>
-              <Box marginTop={12}>
-                <Button
-                  height={state.value}
-                  appearance="minimal"
-                  marginRight={16}
-                >
-                  Default
-                </Button>
-                <Button
-                  height={state.value}
-                  appearance="minimal"
-                  marginRight={16}
-                  intent="success"
-                >
-                  Success
-                </Button>
-                <Button
-                  height={state.value}
-                  appearance="minimal"
-                  marginRight={16}
-                  intent="warning"
-                >
-                  Warning
-                </Button>
-                <Button
-                  height={state.value}
-                  appearance="minimal"
-                  intent="danger"
-                >
-                  Danger
+                <Button disabled appearance="minimal" height={state.value} marginRight={16} intent="warning">
+                  Minimal
                 </Button>
               </Box>
             </ThemeProvider>
