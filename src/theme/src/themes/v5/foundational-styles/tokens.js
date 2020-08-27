@@ -271,6 +271,7 @@ export default {
   paragraph,
   headings,
   fills,
+  selectedOptionColor: colors.blue500,
   // Border radius used across input components
   borderRadius: 4,
   primary: {
