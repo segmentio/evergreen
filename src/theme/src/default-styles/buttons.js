@@ -62,6 +62,9 @@ export default function getDefaultStyles(theme) {
         borderColor: tokens.colors.red100
       },
       hover: {
+        backgroundColor: tokens.colors.red600
+      },
+      focus: {
         backgroundColor: tokens.colors.red600,
         boxShadow: `0 0 0 2px ${tokens.colors.red100}`
       },
