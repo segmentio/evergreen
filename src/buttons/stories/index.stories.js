@@ -210,58 +210,32 @@ buttonsStory.add('Button types', () => (
   <Box padding={40}>
     <Heading>Default Appearance</Heading>
     <Box marginTop={12}>
-      <Button marginRight={16}>Default</Button>
-      <Button marginRight={16} intent="success">
-        Success
+      <Button appearance="primary" height={state.value} marginRight={16}>
+        Primary
       </Button>
-      <Button marginRight={16} intent="warning">
-        Warning
-      </Button>
-      <Button intent="danger">Danger</Button>
-    </Box>
-    <Heading marginTop={24}>Primary Appearance</Heading>
-    <Box marginTop={12}>
-      <Button appearance="primary" marginRight={16}>
+      <Button height={state.value} marginRight={16} intent="success">
         Default
       </Button>
-      <Button appearance="primary" marginRight={16} intent="success">
-        Success
+      <Button appearance="destructive" height={state.value} marginRight={16} intent="danger">
+        Destructive
       </Button>
-      <Button appearance="primary" marginRight={16} intent="warning">
-        Warning
-      </Button>
-      <Button appearance="primary" intent="danger">
-        Danger
+      <Button appearance="minimal" height={state.value} marginRight={16} intent="warning">
+        Minimal
       </Button>
     </Box>
-    <Heading marginTop="24px">Destructive Appearance</Heading>
+    <Heading marginTop={24}>Disabled Appearance</Heading>
     <Box marginTop={12}>
-      <Button appearance="destructive" marginRight={16}>
+      <Button disabled appearance="primary" height={state.value} marginRight={16}>
+        Primary
+      </Button>
+      <Button disabled height={state.value} marginRight={16} intent="success">
         Default
       </Button>
-      <Button appearance="destructive" marginRight={16} intent="success">
-        Success
+      <Button disabled appearance="destructive" height={state.value} marginRight={16} intent="danger">
+        Destructive
       </Button>
-      <Button appearance="destructive" marginRight={16} intent="warning">
-        Warning
-      </Button>
-      <Button appearance="destructive" intent="danger">
-        Danger
-      </Button>
-    </Box>
-    <Heading marginTop={24}>Minimal Appearance</Heading>
-    <Box marginTop={12}>
-      <Button appearance="minimal" marginRight={16}>
-        Default
-      </Button>
-      <Button appearance="minimal" marginRight={16} intent="success">
-        Success
-      </Button>
-      <Button appearance="minimal" marginRight={16} intent="warning">
-        Warning
-      </Button>
-      <Button appearance="minimal" intent="danger">
-        Danger
+      <Button disabled appearance="minimal" height={state.value} marginRight={16} intent="warning">
+        Minimal
       </Button>
     </Box>
   </Box>
