@@ -1,13 +1,7 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-
-const styles = {
-  margin: 0,
-  marginLeft: '1.1em',
-  padding: 0,
-  listStyle: 'disc'
-}
+import removeUndefined from '../../lib/remove-undefined'
 
 const UnorderedList = memo(
   forwardRef(function UnorderedList(props, ref) {
@@ -18,17 +12,34 @@ const UnorderedList = memo(
         return child
       }
 
-      return React.cloneElement(child, {
-        icon,
-        size,
-        iconColor,
-        // Prefer more granularly defined props if present
-        ...child.props
-      })
+      return React.cloneElement(
+        child,
+        removeUndefined({
+          icon,
+          size,
+          iconColor,
+          // Prefer more granularly defined props if present
+          ...child.props
+        })
+      )
     })
 
+    let marginLeft
+    if (size === 300) marginLeft = 16
+    if (size === 400) marginLeft = 18
+    if (size === 500) marginLeft = 18
+    if (size === 600) marginLeft = 20
+
     return (
-      <Box is="ul" {...styles} {...rest} ref={ref}>
+      <Box
+        is="ul"
+        listStyle="disc"
+        padding={0}
+        margin={0}
+        marginLeft={marginLeft}
+        {...rest}
+        ref={ref}
+      >
         {enrichedChildren}
       </Box>
     )

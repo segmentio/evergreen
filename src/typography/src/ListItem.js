@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { forwardRef, memo } from 'react'
 import { IconWrapper } from '../../icons/src/IconWrapper'
+import { minorScale } from '../../scales'
 import Text from './Text'
 
 const ListItem = memo(
@@ -8,10 +9,10 @@ const ListItem = memo(
     const { children, size, icon, iconColor, ...rest } = props
 
     let paddingLeft
-    if (size === 300) paddingLeft = 4
-    if (size === 400) paddingLeft = 8
-    if (size === 500) paddingLeft = 8
-    if (size === 600) paddingLeft = 12
+    if (size === 300) paddingLeft = minorScale(1)
+    if (size === 400) paddingLeft = minorScale(2)
+    if (size === 500) paddingLeft = minorScale(2)
+    if (size === 600) paddingLeft = minorScale(3)
 
     let iconTop
     if (size === 300) iconTop = 1
