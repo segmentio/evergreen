@@ -16,7 +16,8 @@ const buttons = {
     active: {
       backgroundImage: getPrimaryButtonStylesForIntent().linearGradient.active
     },
-    focusAndActive: {}
+    focusAndActive: {},
+    disabled: defaultControlStyles.disabled
   },
   destructive: {
     base: {
@@ -34,7 +35,8 @@ const buttons = {
       backgroundImage: getPrimaryButtonStylesForIntent('danger').linearGradient
         .active
     },
-    focusAndActive: {}
+    focusAndActive: {},
+    disabled: defaultControlStyles.disabled
   },
   default: {
     base: {
@@ -44,7 +46,8 @@ const buttons = {
     hover: defaultControlStyles.hover,
     focus: defaultControlStyles.focus,
     active: defaultControlStyles.active,
-    focusAndActive: defaultControlStyles.focusAndActive
+    focusAndActive: defaultControlStyles.focusAndActive,
+    disabled: defaultControlStyles.disabled
   },
   minimal: {
     base: {
@@ -60,7 +63,8 @@ const buttons = {
       backgroundImage: 'none',
       backgroundColor: scales.blue.B3A
     },
-    focusAndActive: {}
+    focusAndActive: {},
+    disabled: defaultControlStyles.disabled
   }
 }
 

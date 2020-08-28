@@ -283,7 +283,8 @@ export default {
   primary: {
     base: colors.blue500,
     hover: colors.blue600,
-    active: colors.blue700
+    active: colors.blue700,
+    disabled: colors.blue100
   },
   intents: {
     info: {

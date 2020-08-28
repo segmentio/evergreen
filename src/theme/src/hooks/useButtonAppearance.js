@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { css } from 'glamor'
+import getDefaultStyles from '../default-styles/buttons'
 import useTheme from '../useTheme'
 
 const base = {
@@ -8,7 +9,7 @@ const base = {
   MozAppearance: 'none',
   verticalAlign: 'middle',
   textDecoration: 'none',
-  border: 'none',
+  border: '1px solid transparent',
   outline: 'none',
   cursor: 'pointer',
   '&::-moz-focus-inner ': {
@@ -25,7 +26,9 @@ const activeState =
   '&:not([disabled]):not([data-disabled]):active, &:not([disabled]):not([data-disabled])[aria-expanded="true"], &:not([disabled]):not([data-disabled])[data-active]'
 
 function getButtonStyles(theme, appearance) {
-  const { buttons } = theme
+  const { buttons: themeStyles } = theme
+  const defaultStyles = getDefaultStyles(theme)
+  const buttonStyles = {...defaultStyles, ...themeStyles}
 
   const {
     base: baseStyles = {},
@@ -34,7 +37,7 @@ function getButtonStyles(theme, appearance) {
     focus = {},
     active = {},
     focusAndActive = {}
-  } = (buttons || {})[appearance] || {}
+  } = (buttonStyles || {})[appearance] || {}
 
   return {
     ...base,

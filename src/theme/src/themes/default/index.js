@@ -43,7 +43,6 @@ import {
   getRowClassName,
   getMenuItemClassName,
   getCodeProps,
-  buttons,
   inputs
 } from './component-specific'
 
@@ -76,7 +75,6 @@ export default {
   getIconSizeForIconButton,
   getElevation,
 
-  buttons,
   inputs,
 
   typography: {
