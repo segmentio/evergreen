@@ -42,8 +42,7 @@ import {
   getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
-  getCodeProps,
-  inputs
+  getCodeProps
 } from './component-specific'
 
 /**
@@ -74,8 +73,6 @@ export default {
   // Theme Helpers.
   getIconSizeForIconButton,
   getElevation,
-
-  inputs,
 
   typography: {
     headings,

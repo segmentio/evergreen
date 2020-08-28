@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { css } from 'glamor'
+import getDefaultStyles from '../default-styles/inputs'
 import useTheme from '../useTheme'
 
 const baseStyle = {
@@ -17,7 +18,9 @@ const hoverPlaceholderState = '&:hover::placeholder'
 const focusPlaceholderState = '&:focus::placeholder'
 
 const getInputStyles = (theme, appearance) => {
-  const { inputs } = theme
+  const { inputs: themeStyles } = theme
+  const defaultStyles = getDefaultStyles(theme)
+  const inputStyles = { ...defaultStyles, ...themeStyles }
 
   const {
     base: baseStyles = {},
@@ -27,7 +30,7 @@ const getInputStyles = (theme, appearance) => {
     disabled: disabledStyles = {},
     hoverPlaceholder: hoverPlaceholderStyles = {},
     focusPlaceholder: focusPlaceholderStyles = {}
-  } = (inputs || {})[appearance]
+  } = (inputStyles || {})[appearance]
 
   return {
     ...baseStyle,

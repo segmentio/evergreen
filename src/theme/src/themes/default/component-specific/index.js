@@ -15,5 +15,3 @@ export { default as getCodeProps } from './getCodeProps'
 
 // Single Prop Getters.
 export { default as getAvatarInitialsFontSize } from './getAvatarInitialsFontSize'
-
-export { default as inputs } from './inputs'
