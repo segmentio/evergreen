@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
 import { useId } from '../../hooks'
+import { majorScale } from '../../scales'
 import TextInput from './TextInput'
 
 const TextInputField = memo(
@@ -26,7 +27,7 @@ const TextInputField = memo(
       appearance,
       placeholder,
       spellCheck,
-      inputHeight = 40,
+      inputHeight = majorScale(4),
       inputWidth = '100%',
 
       // Rest props are spread on the FormField
