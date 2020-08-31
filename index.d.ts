@@ -13,6 +13,7 @@ export type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
 export type DefaultAppearance = 'default'
 export type AlertAppearance = DefaultAppearance | 'card'
 export type ButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
+export type CodeAppearance = DefaultAppearance | 'minimal'
 export type CheckboxAppearance = DefaultAppearance
 export type IconButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
 export type TextInputAppearance = DefaultAppearance | 'primary'
@@ -618,7 +619,7 @@ export interface CheckboxOwnProps {
 export type CheckboxProps = PolymorphicBoxProps<'input', CheckboxOwnProps>
 export declare const Checkbox: BoxComponent<CheckboxOwnProps, 'input'>
 
-export type CodeOwnProps = TextOwnProps & { appearance?: 'default' | 'minimal' }
+export type CodeOwnProps = TextOwnProps & { appearance?: CodeAppearance }
 export type CodeProps = PolymorphicBoxProps<'code', CodeOwnProps>
 export declare const Code: BoxComponent<CodeOwnProps, 'code'>
 
