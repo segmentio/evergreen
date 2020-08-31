@@ -13,6 +13,7 @@ export type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
 export type DefaultAppearance = 'default'
 export type AlertAppearance = DefaultAppearance | 'card'
 export type ButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
+export type CodeAppearance = DefaultAppearance | 'minimal'
 export type CheckboxAppearance = DefaultAppearance
 export type IconButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
 export type TextInputAppearance = DefaultAppearance | 'primary'
@@ -618,7 +619,7 @@ export interface CheckboxOwnProps {
 export type CheckboxProps = PolymorphicBoxProps<'input', CheckboxOwnProps>
 export declare const Checkbox: BoxComponent<CheckboxOwnProps, 'input'>
 
-export type CodeOwnProps = TextOwnProps
+export type CodeOwnProps = TextOwnProps & { appearance?: CodeAppearance }
 export type CodeProps = PolymorphicBoxProps<'code', CodeOwnProps>
 export declare const Code: BoxComponent<CodeOwnProps, 'code'>
 
@@ -1629,6 +1630,14 @@ export interface StackProps {
 export declare const Stack: React.FC<StackProps>
 
 export declare const StackingContext: React.Context<number>
+
+export const StackingOrder: {
+  FOCUSED: number
+  STACKING_CONTEXT: number
+  POSITIONER: number
+  OVERLAY: number
+  TOASTER: number
+}
 
 export type StrongOwnProps = TextOwnProps
 export type StrongProps = PolymorphicBoxProps<'strong', StrongOwnProps>
