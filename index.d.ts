@@ -1107,6 +1107,7 @@ export interface MenuItemOwnProps extends PaneOwnProps {
   secondaryText?: JSX.Element
   appearance?: DefaultAppearance
   intent?: IntentTypes
+  disabled?: boolean
 }
 
 export type MenuItemProps = PolymorphicBoxProps<'div', MenuItemOwnProps>
