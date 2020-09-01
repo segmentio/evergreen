@@ -1,4 +1,4 @@
-import React, { memo, forwardRef, useCallback } from 'react'
+import React, { memo, forwardRef, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { IconWrapper } from '../../icons/src/IconWrapper'
@@ -20,6 +20,7 @@ const MenuItem = memo(
       icon,
       onSelect = noop,
       onKeyPress,
+      disabled,
       ...passthroughProps
     } = props
 
@@ -46,6 +47,29 @@ const MenuItem = memo(
 
     const themedClassName = theme.getMenuItemClassName(appearance, 'none')
 
+    let iconColor = intent === 'none' ? 'default' : intent
+
+    if(disabled) {
+      iconColor = 'disabled'
+    }
+
+    const textColor = disabled ? theme.colors.icon.disabled : intent
+
+    const secondaryTextColor = disabled ? textColor : 'muted'
+
+    const disabledProps = useMemo(() => {
+      return disabled ? {
+        backgroundColor: theme.colors.background.tint1,
+        cursor: 'not-allowed',
+        disabled: true,
+        onClick: null,
+        onKeyPress: null,
+        tabIndex: -1,
+        'aria-disabled': 'true',
+        'data-isselectable': 'false'
+      } : {}
+    }, [disabled])
+
     return (
       <Pane
         is={is}
@@ -59,21 +83,22 @@ const MenuItem = memo(
         display="flex"
         alignItems="center"
         ref={ref}
+        {...disabledProps}
         {...passthroughProps}
       >
         <IconWrapper
           icon={icon}
-          color={intent === 'none' ? 'default' : intent}
+          color={iconColor}
           marginLeft={16}
           marginRight={-4}
           size={16}
           flexShrink={0}
         />
-        <Text color={intent} marginLeft={16} marginRight={16} flex={1}>
+        <Text color={textColor} marginLeft={16} marginRight={16} flex={1}>
           {children}
         </Text>
         {secondaryText && (
-          <Text marginRight={16} color="muted">
+          <Text marginRight={16} color={secondaryTextColor}>
             {secondaryText}
           </Text>
         )}
@@ -122,7 +147,12 @@ MenuItem.propTypes = {
   /**
    * Callback to invoke onkeypress
    */
-  onKeyPress: PropTypes.func
+  onKeyPress: PropTypes.func,
+
+  /**
+   * Flag to indicate whether the menu item is disabled or not
+   */
+  disabled: PropTypes.bool
 }
 
 export default MenuItem

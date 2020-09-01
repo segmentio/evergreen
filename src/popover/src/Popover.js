@@ -77,13 +77,13 @@ const Popover = memo(
           document.activeElement
         )
         if (isFocusOutsideModal) {
-          // Element marked autofocus has higher priority than the other clowns
+          // Element marked autofocus has higher priority than the other elements
           const autofocusElement = popoverNode.current.querySelector(
-            '[autofocus]'
+            '[autofocus]:not([disabled])'
           )
-          const wrapperElement = popoverNode.current.querySelector('[tabindex]')
+          const wrapperElement = popoverNode.current.querySelector('[tabindex]:not([disabled])')
           const buttonElements = popoverNode.current.querySelectorAll(
-            'button, a, [role="menuitem"], [role="menuitemradio"]'
+            'button:not([disabled]), a:not([disabled]), [role="menuitem"]:not([disabled]), [role="menuitemradio"]:not([disabled])'
           )
 
           if (autofocusElement) {
