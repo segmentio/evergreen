@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 import React, { forwardRef, memo } from 'react'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
@@ -32,6 +33,7 @@ const Tab = memo(
       isSelected,
       onKeyPress = noop,
       onSelect = noop,
+      className,
       ...rest
     } = props
 
@@ -85,9 +87,11 @@ const Tab = memo(
       }
     }
 
+    const classNames = cx(theme.getTabClassName(appearance), className)
+
     return (
       <Text
-        className={theme.getTabClassName(appearance)}
+        className={classNames}
         is={is}
         size={textSize}
         height={height}
@@ -122,7 +126,13 @@ Tab.propTypes = {
    * The appearance of the tab.
    * The default theme only comes with a default style.
    */
-  appearance: PropTypes.string
+  appearance: PropTypes.string,
+
+  /**
+   * Class name passed to the Tab.
+   * Only use this if you know what you are doing.
+   */
+  className: PropTypes.string
 }
 
 export default Tab

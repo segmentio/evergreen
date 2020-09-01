@@ -1,5 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 import { dimensions, spacing, position, layout } from 'ui-box'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { CaretDownIcon } from '../../icons'
@@ -38,7 +39,7 @@ const TextDropdownButton = memo(
       ...restProps
     } = props
 
-    const themedClassName = theme.getTextDropdownButtonClassName()
+    const themedClassName = cx(theme.getTextDropdownButtonClassName(), className)
 
     return (
       <Text
