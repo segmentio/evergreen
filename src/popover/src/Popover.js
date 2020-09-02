@@ -62,11 +62,17 @@ const Popover = memo(
      * Methods borrowed from BlueprintJS
      * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
      */
-    const bringFocusInside = useCallback(() => {
+    const bringFocusInside = useCallback((e) => {
+      if(isShown) {
+        e.preventDefault()
+      }
       // Always delay focus manipulation to just before repaint to prevent scroll jumping
+
       return requestAnimationFrame(() => {
         // Container ref may be undefined between component mounting and Portal rendering
-        // activeElement may be undefined in some rare cases in IE
+
+        // ActiveElement may be undefined in some rare cases in IE
+
         if (
           popoverNode.current == null || // eslint-disable-line eqeqeq, no-eq-null
           document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
@@ -83,21 +89,26 @@ const Popover = memo(
           const autofocusElement = popoverNode.current.querySelector(
             '[autofocus]:not([disabled])'
           )
+          if (autofocusElement) {
+            // Return early to avoid unnecessary dom queries
+            return autofocusElement.focus()
+          }
+
           const wrapperElement = popoverNode.current.querySelector('[tabindex]:not([disabled])')
+          if (wrapperElement) {
+            return wrapperElement.focus()
+          }
+
           const buttonElements = popoverNode.current.querySelectorAll(
             'button:not([disabled]), a:not([disabled]), [role="menuitem"]:not([disabled]), [role="menuitemradio"]:not([disabled])'
           )
-
-          if (autofocusElement) {
-            autofocusElement.focus()
-          } else if (wrapperElement) {
-            wrapperElement.focus()
-          } else if (buttonElements.length > 0) {
-            buttonElements[0].focus()
+          if (buttonElements.length > 0) {
+            return buttonElements[0].focus()
           }
+
         }
       })
-    }, [popoverNode.current])
+    }, [isShown, popoverNode.current])
 
     const bringFocusBackToTarget = useCallback(() => {
       return requestAnimationFrame(() => {
@@ -166,7 +177,7 @@ const Popover = memo(
     }, [trigger, close])
 
     const handleKeyDown = useCallback((event) => {
-      return event.key === 'ArrowDown' ? bringFocusInside() : undefined
+      return event.key === 'ArrowDown' ? bringFocusInside(event) : undefined
     }, [bringFocusInside])
 
     const onEsc = useCallback((event) => {
