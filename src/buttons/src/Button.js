@@ -43,15 +43,14 @@ export const sizes = {
 }
 
 export const styles = {
-  appearance: 'none',
+  position: 'relative',
+  fontWeight: 500,
   display: 'inline-flex',
   alignItems: 'center',
+  flexWrap: 'nowrap',
   justifyContent: 'center',
   textDecoration: 'none',
   verticalAlign: 'middle',
-  position: 'relative',
-  fontWeight: 500,
-  flexWrap: 'nowrap',
   outline: 'none',
   userSelect: 'none',
   whiteSpace: 'nowrap'
