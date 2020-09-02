@@ -14,11 +14,11 @@ const baseStyle = {
   background: 'none'
 }
 
-const disabledState = `[disabled], [data-disabled]`
-const hoverState = '&:not([disabled]):not([data-disabled]):hover'
-const focusState = '&:not([disabled]):not([data-disabled]):focus'
+const disabledState = `&[disabled]`
+const hoverState = '&:not([disabled]):hover'
+const focusState = '&:not([disabled]):focus'
 const activeState =
-  '&:not([disabled]):not([data-disabled]):active, &:not([disabled]):not([data-disabled])[aria-expanded="true"], &:not([disabled]):not([data-disabled])[data-active]'
+  '&:not([disabled]):active, &:not([disabled])[aria-expanded="true"], &:not([disabled])[data-active]'
 
 /**
  * @param {object} items - object with a set of items.
