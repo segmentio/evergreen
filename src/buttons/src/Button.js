@@ -27,12 +27,34 @@ const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
   )
 })
 
-const styles = {
-  position: 'relative',
-  fontWeight: 500,
+export const sizes = {
+  small: {
+    height: 24,
+    textSize: 300
+  },
+  medium: {
+    height: 32,
+    textSize: 300
+  },
+  large: {
+    height: 40,
+    textSize: 400
+  }
+}
+
+export const styles = {
+  appearance: 'none',
   display: 'inline-flex',
   alignItems: 'center',
-  flexWrap: 'nowrap'
+  justifyContent: 'center',
+  textDecoration: 'none',
+  verticalAlign: 'middle',
+  position: 'relative',
+  fontWeight: 500,
+  flexWrap: 'nowrap',
+  outline: 'none',
+  userSelect: 'none',
+  whiteSpace: 'nowrap'
 }
 
 const getIconSizeForButton = height => {
@@ -49,7 +71,7 @@ const Button = memo(
       className,
 
       // Intent = 'none',
-      height = 32,
+      size = 'default',
       isActive = false,
       children,
       disabled,
@@ -66,12 +88,17 @@ const Button = memo(
       iconBefore,
       iconAfter,
 
+      is = 'button',
+
       ...restProps
     } = props
 
     const theme = useTheme()
     const { tokens } = theme
     const themedClassName = useButtonAppearance(appearance)
+
+    const buttonSize = sizes[size] || sizes.medium
+    const height = restProps.height || buttonSize.height
     const iconSize = getIconSizeForButton(height)
 
     const padding = Math.round(height / 2)
@@ -80,8 +107,9 @@ const Button = memo(
 
     return (
       <Text
-        is="button"
+        is={is}
         ref={ref}
+        type={is === 'button' ? 'button' : undefined}
         className={cx(themedClassName, className)}
         borderTopRightRadius={tokens.borderRadius}
         borderBottomRightRadius={tokens.borderRadius}
@@ -95,7 +123,7 @@ const Button = memo(
         marginRight={0} // Removes weird margins in Safari
         marginTop={0} // Removes weird margins in Safari
         marginBottom={0} // Removes weird margins in Safari
-        size={300}
+        size={buttonSize.textSize}
         color={null} // Prevent the Text color overriding the glamor appearanceStyle color
         height={height}
         lineHeight={`${height}px`}
@@ -154,6 +182,11 @@ Button.propTypes = {
    * The appearance of the button.
    */
   appearance: PropTypes.oneOf(['default', 'minimal', 'primary']),
+
+  /**
+   * The size of the button
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 
   /**
    * When true, show a loading spinner before the children.

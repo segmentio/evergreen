@@ -3,12 +3,19 @@ import PropTypes from 'prop-types'
 import { dimensions, spacing, position, layout } from 'ui-box'
 import { useTheme } from '../../theme'
 import { IconWrapper } from '../../icons/src/IconWrapper'
-import Button from './Button'
+import Button, { sizes } from './Button'
 
 const IconButton = memo(
   forwardRef(function IconButton(props, ref) {
     const theme = useTheme()
-    const { icon, iconSize, height = 32, intent = 'none', ...restProps } = props
+    const {
+      icon,
+      iconSize,
+      intent = 'none',
+      size = 'medium',
+      ...restProps
+    } = props
+    const height = restProps.height || (sizes[size] || sizes.medium).height
 
     return (
       <Button
@@ -16,6 +23,7 @@ const IconButton = memo(
         intent={intent}
         height={height}
         width={height}
+        size={size}
         paddingLeft={0}
         paddingRight={0}
         display="flex"
@@ -52,6 +60,11 @@ IconButton.propTypes = {
    * Composes the layout spec from the Box primitive.
    */
   ...layout.propTypes,
+
+  /**
+   * The size of the button
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 
   /**
    * The Evergreen icon or custom icon to render

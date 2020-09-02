@@ -77,6 +77,7 @@ const getSegmentedControlStyles = theme => {
       }
     },
     [focusState]: {
+      zIndex: 1,
       boxShadow: `0 0 0 2px ${colors.blue100}`,
       ...focusStyles
     },

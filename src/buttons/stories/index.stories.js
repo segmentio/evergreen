@@ -15,83 +15,83 @@ buttonsStory.add('Common', () => (
     <Component
       initialState={{
         options: [
-          { label: 'Height 24', value: 24 },
-          { label: 'Height 32', value: 32 },
-          { label: 'Height 40', value: 40 }
+          { label: 'Small (24px)', value: 'small' },
+          { label: 'Medium (32px)', value: 'medium' },
+          { label: 'Large (40px)', value: 'large' }
         ],
-        value: 32
+        value: 'medium'
       }}
     >
       {({ state, setState }) => (
         <React.Fragment>
           <SegmentedControl
-            width={280}
+            width={350}
             options={state.options}
             value={state.value}
-            onChange={value => setState({ value: Number(value) })}
+            onChange={value => setState({ value })}
           />
           <Pane marginTop={16}>
-            <Button height={state.value} marginRight={16}>
+            <Button size={state.value} marginRight={16}>
               Close
             </Button>
-            <Button height={state.value} marginRight={16}>
+            <Button size={state.value} marginRight={16}>
               Cancel
             </Button>
-            <BackButton height={state.value} marginRight={16}>
+            <BackButton size={state.value} marginRight={16}>
               Back
             </BackButton>
             <Button
-              height={state.value}
+              size={state.value}
               marginRight={16}
               iconAfter={Icons.CaretDownIcon}
             >
               Select event...
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               marginRight={16}
               iconBefore={Icons.AddIcon}
             >
               New Audience
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               marginRight={16}
               iconBefore={Icons.DownloadIcon}
             >
               Download
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               marginRight={16}
               iconBefore={Icons.DownloadIcon}
             >
               Download CSV...
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               marginRight={16}
               iconBefore={Icons.EditIcon}
             >
               Edit
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               marginRight={16}
               iconBefore={Icons.ManualIcon}
             >
               Docs
             </Button>
-            <Button height={state.value} iconBefore={Icons.ImportIcon}>
+            <Button size={state.value} iconBefore={Icons.ImportIcon}>
               Import
             </Button>
           </Pane>
           <Pane marginTop={16}>
-            <Button height={state.value} appearance="primary" marginRight={16}>
+            <Button size={state.value} appearance="primary" marginRight={16}>
               Confirm
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               marginRight={16}
               iconAfter={Icons.ArrowRightIcon}
@@ -99,7 +99,7 @@ buttonsStory.add('Common', () => (
               Next Step
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               marginRight={16}
               iconBefore={Icons.EyeOpenIcon}
@@ -109,7 +109,7 @@ buttonsStory.add('Common', () => (
           </Pane>
           <Pane marginTop={16}>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               intent="success"
               marginRight={16}
@@ -117,7 +117,7 @@ buttonsStory.add('Common', () => (
               Got It
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               intent="success"
               marginRight={16}
@@ -126,7 +126,7 @@ buttonsStory.add('Common', () => (
               Add Source
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               intent="success"
               marginRight={16}
@@ -135,7 +135,7 @@ buttonsStory.add('Common', () => (
               Add Destination
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               intent="success"
               marginRight={16}
@@ -144,7 +144,7 @@ buttonsStory.add('Common', () => (
               New Audience
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               intent="success"
               marginRight={16}
@@ -155,7 +155,7 @@ buttonsStory.add('Common', () => (
           </Pane>
           <Pane marginTop={16}>
             <Button
-              height={state.value}
+              size={state.value}
               intent="warning"
               marginRight={16}
               iconBefore={Icons.RefreshIcon}
@@ -163,7 +163,7 @@ buttonsStory.add('Common', () => (
               Retry
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               intent="warning"
               marginRight={16}
@@ -174,7 +174,7 @@ buttonsStory.add('Common', () => (
           </Pane>
           <Pane marginTop={16}>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="minimal"
               intent="danger"
               marginRight={16}
@@ -183,7 +183,7 @@ buttonsStory.add('Common', () => (
               Delete...
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               intent="danger"
               marginRight={16}
               iconBefore={Icons.TrashIcon}
@@ -191,7 +191,7 @@ buttonsStory.add('Common', () => (
               Delete...
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               intent="danger"
               marginRight={16}
@@ -231,7 +231,12 @@ buttonsStory.add('Button types', () => (
       <Button disabled marginRight={16} intent="success">
         Default
       </Button>
-      <Button disabled appearance="destructive" marginRight={16} intent="danger">
+      <Button
+        disabled
+        appearance="destructive"
+        marginRight={16}
+        intent="danger"
+      >
         Destructive
       </Button>
       <Button disabled appearance="minimal" marginRight={16} intent="warning">
@@ -250,7 +255,7 @@ buttonsStory.add('TextDropdownButton', () => (
 buttonsStory.add('IconButton', () => (
   <Box padding={40} clearfix>
     <Pane borderRight paddingRight={24} marginRight={24} float="left">
-      <Heading marginBottom={16}>Height 32</Heading>
+      <Heading marginBottom={16}>Size &quot;medium&quot;</Heading>
       <Box float="left" marginRight={16}>
         <IconButton marginBottom={16} icon={Icons.CogIcon} />
         <IconButton marginBottom={16} icon={Icons.PlusIcon} />
@@ -287,20 +292,20 @@ buttonsStory.add('IconButton', () => (
       </Box>
     </Pane>
     <Pane float="left">
-      <Heading marginBottom={16}>Height 24</Heading>
+      <Heading marginBottom={16}>Size &quot;small&quot;</Heading>
       <Box float="left" marginRight={16}>
-        <IconButton marginBottom={16} height={24} icon={Icons.CogIcon} />
-        <IconButton marginBottom={16} height={24} icon={Icons.PlusIcon} />
-        <IconButton marginBottom={16} height={24} icon={Icons.FilterIcon} />
-        <IconButton marginBottom={16} height={24} icon={Icons.EditIcon} />
+        <IconButton marginBottom={16} size="small" icon={Icons.CogIcon} />
+        <IconButton marginBottom={16} size="small" icon={Icons.PlusIcon} />
+        <IconButton marginBottom={16} size="small" icon={Icons.FilterIcon} />
+        <IconButton marginBottom={16} size="small" icon={Icons.EditIcon} />
         <IconButton
           marginBottom={16}
-          height={24}
+          size="small"
           icon={Icons.ChevronLeftIcon}
         />
         <IconButton
           marginBottom={16}
-          height={24}
+          size="small"
           icon={Icons.ChevronRightIcon}
         />
       </Box>
@@ -308,38 +313,38 @@ buttonsStory.add('IconButton', () => (
         <IconButton
           marginBottom={16}
           appearance="minimal"
-          height={24}
+          size="small"
           icon={Icons.CrossIcon}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
-          height={24}
+          size="small"
           icon={Icons.MoreIcon}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
-          height={24}
+          size="small"
           icon={Icons.PlusIcon}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
-          height={24}
+          size="small"
           icon={Icons.TrashIcon}
           intent="danger"
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
-          height={24}
+          size="small"
           icon={Icons.FilterIcon}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
-          height={24}
+          size="small"
           icon={Icons.EditIcon}
         />
       </Box>
@@ -347,37 +352,37 @@ buttonsStory.add('IconButton', () => (
         <IconButton
           marginBottom={16}
           appearance="minimal"
-          height={24}
+          size="small"
           icon={Icons.ClipboardIcon}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
-          height={24}
+          size="small"
           icon={Icons.CalendarIcon}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
-          height={24}
+          size="small"
           icon={Icons.LockIcon}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
-          height={24}
+          size="small"
           icon={Icons.UnlockIcon}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
-          height={24}
+          size="small"
           icon={Icons.NotificationsIcon}
         />
         <IconButton
           marginBottom={16}
           appearance="minimal"
-          height={24}
+          size="small"
           icon={Icons.ManualIcon}
         />
       </Box>
