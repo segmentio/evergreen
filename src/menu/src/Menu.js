@@ -17,10 +17,12 @@ const Menu = memo(function Menu(props) {
 
   useEffect(() => {
 
-    menuItems.current = menuRef.current ? [
-      ...menuRef.current.querySelectorAll(
-        '[role="menuitemradio"], [role="menuitem"]'
-     )].filter(el => el.getAttribute('disabled') === null)
+    const currentMenuRef = menuRef.current
+
+    menuItems.current = currentMenuRef ? [
+      ...currentMenuRef.querySelectorAll(
+        '[role="menuitemradio"]:not([disabled]), [role="menuitem"]:not([disabled])'
+     )]
     : []
 
     if (menuItems.current.length === 0) {
@@ -30,6 +32,8 @@ const Menu = memo(function Menu(props) {
     firstItem.current = menuItems.current[0]
     lastItem.current = menuItems.current[menuItems.current.length - 1]
 
+    // Go to next/previous item if it exists
+    // or loop around
     const focusNext = (currentItem, startItem) => {
 
       // Determine which item is the startItem (first or last)
@@ -62,10 +66,14 @@ const Menu = memo(function Menu(props) {
     }
 
     function onKeyPressListener(e) {
-      // Go to next/previous item if it exists
-      // or loop around
 
-      const menuItem = e.target
+      const { target } = e
+      const menuItem = menuItems.current && menuItems.current.find((item) => item === target)
+
+      if(!menuItem) {
+        return
+      }
+
       if (e.key === 'ArrowDown') {
         e.preventDefault()
         focusNext(menuItem, firstItem.current)
@@ -87,10 +95,10 @@ const Menu = memo(function Menu(props) {
       }
     }
 
-    menuItems.current.forEach(menuItem => menuItem.addEventListener('keydown', onKeyPressListener))
+    currentMenuRef.addEventListener('keydown', onKeyPressListener)
 
     return () => {
-      menuItems.current.forEach(menuItem => menuItem.removeEventListener('keydown', onKeyPressListener))
+      currentMenuRef.removeEventListener('keydown', onKeyPressListener)
     }
   }, [menuRef])
 
