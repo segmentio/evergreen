@@ -13,6 +13,7 @@ export default function getButtonStyles(theme) {
       verticalAlign: 'middle',
       textDecoration: 'none',
       border: '1px solid transparent',
+      borderRadius: tokens.borderRadius,
       outline: 'none',
       cursor: 'pointer',
       '&::-moz-focus-inner ': {
