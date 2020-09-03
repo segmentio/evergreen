@@ -253,139 +253,102 @@ buttonsStory.add('TextDropdownButton', () => (
 ))
 
 buttonsStory.add('IconButton', () => (
-  <Box padding={40} clearfix>
-    <Pane borderRight paddingRight={24} marginRight={24} float="left">
+  <Box display="flex" padding={40}>
+    <Pane borderRight paddingRight={24} marginRight={24}>
       <Heading marginBottom={16}>Size &quot;medium&quot;</Heading>
-      <Box float="left" marginRight={16}>
-        <IconButton marginBottom={16} icon={Icons.CogIcon} />
-        <IconButton marginBottom={16} icon={Icons.PlusIcon} />
-        <IconButton marginBottom={16} icon={Icons.FilterIcon} />
-        <IconButton marginBottom={16} icon={Icons.EditIcon} />
-        <IconButton marginBottom={16} icon={Icons.RefreshIcon} />
-      </Box>
-      <Box float="left">
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          icon={Icons.CrossIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          icon={Icons.MoreIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          icon={Icons.PlusIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          icon={Icons.EditIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          icon={Icons.SearchIcon}
-        />
-      </Box>
+      <Pane display="flex">
+        <Box
+          display="grid"
+          gridTemplateColumns="32px"
+          gridRowGap={16}
+          marginRight={16}
+        >
+          <IconButton icon={Icons.CogIcon} />
+          <IconButton icon={Icons.PlusIcon} />
+          <IconButton icon={Icons.FilterIcon} />
+          <IconButton icon={Icons.EditIcon} />
+          <IconButton icon={Icons.RefreshIcon} />
+        </Box>
+        <Box display="grid" gridTemplateColumns="32px" gridRowGap={16}>
+          <IconButton appearance="minimal" icon={Icons.CrossIcon} />
+          <IconButton appearance="minimal" icon={Icons.MoreIcon} />
+          <IconButton appearance="minimal" icon={Icons.PlusIcon} />
+          <IconButton appearance="minimal" icon={Icons.EditIcon} />
+          <IconButton appearance="minimal" icon={Icons.SearchIcon} />
+        </Box>
+      </Pane>
     </Pane>
-    <Pane float="left">
+    <Pane>
       <Heading marginBottom={16}>Size &quot;small&quot;</Heading>
-      <Box float="left" marginRight={16}>
-        <IconButton marginBottom={16} size="small" icon={Icons.CogIcon} />
-        <IconButton marginBottom={16} size="small" icon={Icons.PlusIcon} />
-        <IconButton marginBottom={16} size="small" icon={Icons.FilterIcon} />
-        <IconButton marginBottom={16} size="small" icon={Icons.EditIcon} />
-        <IconButton
-          marginBottom={16}
-          size="small"
-          icon={Icons.ChevronLeftIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          size="small"
-          icon={Icons.ChevronRightIcon}
-        />
-      </Box>
-      <Box float="left" marginRight={16}>
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          size="small"
-          icon={Icons.CrossIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          size="small"
-          icon={Icons.MoreIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          size="small"
-          icon={Icons.PlusIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          size="small"
-          icon={Icons.TrashIcon}
-          intent="danger"
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          size="small"
-          icon={Icons.FilterIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          size="small"
-          icon={Icons.EditIcon}
-        />
-      </Box>
-      <Box float="left">
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          size="small"
-          icon={Icons.ClipboardIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          size="small"
-          icon={Icons.CalendarIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          size="small"
-          icon={Icons.LockIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          size="small"
-          icon={Icons.UnlockIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          size="small"
-          icon={Icons.NotificationsIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          size="small"
-          icon={Icons.ManualIcon}
-        />
-      </Box>
+      <Pane display="flex">
+        <Box
+          display="grid"
+          gridTemplateColumns="24px"
+          gridRowGap={16}
+          marginRight={16}
+        >
+          <IconButton size="small" icon={Icons.CogIcon} />
+          <IconButton size="small" icon={Icons.PlusIcon} />
+          <IconButton size="small" icon={Icons.FilterIcon} />
+          <IconButton size="small" icon={Icons.EditIcon} />
+          <IconButton size="small" icon={Icons.ChevronLeftIcon} />
+          <IconButton size="small" icon={Icons.ChevronRightIcon} />
+        </Box>
+        <Box
+          display="grid"
+          gridTemplateColumns="24px"
+          gridRowGap={16}
+          marginRight={16}
+        >
+          <IconButton
+            appearance="minimal"
+            size="small"
+            icon={Icons.CrossIcon}
+          />
+          <IconButton appearance="minimal" size="small" icon={Icons.MoreIcon} />
+          <IconButton appearance="minimal" size="small" icon={Icons.PlusIcon} />
+          <IconButton
+            appearance="minimal"
+            size="small"
+            icon={Icons.TrashIcon}
+            intent="danger"
+          />
+          <IconButton
+            appearance="minimal"
+            size="small"
+            icon={Icons.FilterIcon}
+          />
+          <IconButton appearance="minimal" size="small" icon={Icons.EditIcon} />
+        </Box>
+        <Box display="grid" gridTemplateColumns="24px" gridRowGap={16}>
+          <IconButton
+            appearance="minimal"
+            size="small"
+            icon={Icons.ClipboardIcon}
+          />
+          <IconButton
+            appearance="minimal"
+            size="small"
+            icon={Icons.CalendarIcon}
+          />
+          <IconButton appearance="minimal" size="small" icon={Icons.LockIcon} />
+          <IconButton
+            appearance="minimal"
+            size="small"
+            icon={Icons.UnlockIcon}
+          />
+          <IconButton
+            appearance="minimal"
+            size="small"
+            icon={Icons.NotificationsIcon}
+          />
+          <IconButton
+            appearance="minimal"
+            size="small"
+            icon={Icons.ManualIcon}
+          />
+        </Box>
+      </Pane>
     </Pane>
   </Box>
 ))

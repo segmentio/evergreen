@@ -1,9 +1,26 @@
 import tokens from '../foundational-styles/tokens'
 import { defaultControlStyles } from '../shared'
+import { majorScale, minorScale } from '../../../../../scales'
 
 const { disabled } = defaultControlStyles
 
 const buttons = {
+  baseStyle: {
+    WebkitFontSmoothing: 'antialiased',
+    WebkitAppearance: 'none',
+    MozAppearance: 'none',
+    verticalAlign: 'middle',
+    textDecoration: 'none',
+    border: '1px solid transparent',
+    outline: 'none',
+    cursor: 'pointer',
+    fontFamily: tokens.fontFamilies.ui,
+    borderRadius: tokens.borderRadius,
+    margin: 0,
+    '&::-moz-focus-inner ': {
+      border: 0
+    }
+  },
   appearances: {
     primary: {
       backgroundColor: tokens.primary.base,
@@ -89,6 +106,32 @@ const buttons = {
       _active: {
         backgroundColor: tokens.colors.gray200
       }
+    }
+  },
+  sizes: {
+    small: {
+      ...tokens.text[300],
+      height: 24,
+      minWidth: 24,
+      lineHeight: '24px',
+      paddingLeft: minorScale(3),
+      paddingRight: minorScale(3)
+    },
+    medium: {
+      ...tokens.text[300],
+      height: 32,
+      minWidth: 32,
+      lineHeight: '32px',
+      paddingLeft: majorScale(2),
+      paddingRight: majorScale(2)
+    },
+    large: {
+      ...tokens.text[400],
+      height: 40,
+      minWidth: 40,
+      lineHeight: '40px',
+      paddingLeft: minorScale(5),
+      paddingRight: minorScale(5)
     }
   }
 }

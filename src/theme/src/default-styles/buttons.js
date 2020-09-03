@@ -1,3 +1,4 @@
+import { majorScale, minorScale } from '../../../scales'
 import { getDefaultControlStyles } from './shared'
 
 export default function getDefaultStyles(theme) {
@@ -113,6 +114,33 @@ export default function getDefaultStyles(theme) {
         _active: {
           backgroundColor: tokens.colors.gray200
         }
+      }
+    },
+
+    sizes: {
+      small: {
+        ...tokens.text[300],
+        height: 24,
+        minWidth: 24,
+        lineHeight: '24px',
+        paddingLeft: minorScale(3),
+        paddingRight: minorScale(3)
+      },
+      medium: {
+        ...tokens.text[300],
+        height: 32,
+        minWidth: 32,
+        lineHeight: '32px',
+        paddingLeft: majorScale(2),
+        paddingRight: majorScale(2)
+      },
+      large: {
+        ...tokens.text[400],
+        height: 40,
+        minWidth: 40,
+        lineHeight: '40px',
+        paddingLeft: minorScale(5),
+        paddingRight: minorScale(5)
       }
     }
   }

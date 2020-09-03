@@ -1,40 +1,22 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { dimensions, spacing, position, layout } from 'ui-box'
-import { useTheme } from '../../theme'
 import { IconWrapper } from '../../icons/src/IconWrapper'
-import Button, { sizes } from './Button'
+import Button from './Button'
 
 const IconButton = memo(
   forwardRef(function IconButton(props, ref) {
-    const theme = useTheme()
-    const {
-      icon,
-      iconSize,
-      intent = 'none',
-      size = 'medium',
-      ...restProps
-    } = props
-    const height = restProps.height || (sizes[size] || sizes.medium).height
+    const { icon, iconSize, ...restProps } = props
 
     return (
       <Button
         ref={ref}
-        intent={intent}
-        height={height}
-        width={height}
-        size={size}
         paddingLeft={0}
         paddingRight={0}
-        display="flex"
-        justifyContent="center"
+        flex="none"
         {...restProps}
       >
-        <IconWrapper
-          icon={icon}
-          color={intent === 'none' ? 'default' : 'currentColor'}
-          size={iconSize || theme.getIconSizeForIconButton(height)}
-        />
+        <IconWrapper icon={icon} color="currentColor" size={iconSize} />
       </Button>
     )
   })
