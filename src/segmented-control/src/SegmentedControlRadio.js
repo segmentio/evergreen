@@ -33,7 +33,11 @@ const SegmentedControlRadio = memo(
     const themedClassName = useSegmentControlAppearance(appearance)
 
     return (
-      <Box ref={ref} className={themedClassName} data-active={checked}>
+      <Box
+        ref={ref}
+        className={themedClassName}
+        data-active={checked || undefined}
+      >
         <input
           type="radio"
           id={id}

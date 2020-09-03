@@ -17,3 +17,4 @@ export { default as getCodeProps } from './getCodeProps'
 export { default as getAvatarInitialsFontSize } from './getAvatarInitialsFontSize'
 
 export { default as inputs } from './inputs'
+export { default as buttons } from './buttons'

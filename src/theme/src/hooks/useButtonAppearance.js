@@ -1,72 +1,29 @@
 import { useMemo } from 'react'
-import { css } from 'glamor'
-import getDefaultStyles from '../default-styles/buttons'
+import useStyleConfig from '../../../hooks/use-style-config'
+import getButtonStyles from '../components/button'
 import useTheme from '../useTheme'
 
-const base = {
-  WebkitFontSmoothing: 'antialiased',
-  WebkitAppearance: 'none',
-  MozAppearance: 'none',
-  verticalAlign: 'middle',
-  textDecoration: 'none',
-  border: '1px solid transparent',
-  outline: 'none',
-  cursor: 'pointer',
-  '&::-moz-focus-inner ': {
-    border: 0
-  }
+// TODO evaluate making selectors consistent across all components?
+const pseudoSelectors = {
+  _active:
+    '&:not([disabled]):active, &:not([disabled])[aria-expanded="true"], &:not([disabled])[data-active]',
+  _disabled: '&[disabled]',
+  _focus: '&:not([disabled]):focus',
+  _focusAndActive:
+    '&:not([disabled]):focus:active, &:not([disabled])[aria-expanded="true"]:focus, &:not([disabled])[data-active]:focus',
+  _hover: '&:not([disabled]):hover'
 }
 
-const disabledState = `[disabled]`
-const hoverState = '&:not([disabled]):hover'
-const focusState = '&:not([disabled]):focus'
-const focusAndActiveState =
-  '&:not([disabled]):focus:active, &:not([disabled])[aria-expanded="true"]:focus, &:not([disabled])[data-active]:focus'
-const activeState =
-  '&:not([disabled]):active, &:not([disabled])[aria-expanded="true"], &:not([disabled])[data-active]'
-
-function getButtonStyles(theme, appearance) {
-  const { buttons: themeStyles } = theme
-  const defaultStyles = getDefaultStyles(theme)
-  const buttonStyles = { ...defaultStyles, ...themeStyles }
-
-  const {
-    base: baseStyles = {},
-    disabled = {},
-    hover = {},
-    focus = {},
-    active = {},
-    focusAndActive = {}
-  } = (buttonStyles || {})[appearance] || {}
-
-  return {
-    ...base,
-    ...baseStyles,
-    [disabledState]: {
-      ...disabled
-    },
-    [hoverState]: {
-      ...hover
-    },
-    [focusState]: {
-      ...focus
-    },
-    [activeState]: {
-      ...active
-    },
-    [focusAndActiveState]: {
-      ...focusAndActive
-    }
-  }
-}
-
-function useButtonAppearance(appearance = 'default') {
+function useButtonAppearance(modifiers, internalStyles) {
   const theme = useTheme()
-  const className = useMemo(
-    () => css(getButtonStyles(theme, appearance)).toString(),
-    [appearance, theme]
+  const buttonStyles = useMemo(() => getButtonStyles(theme), [theme])
+
+  return useStyleConfig(
+    buttonStyles,
+    modifiers,
+    pseudoSelectors,
+    internalStyles
   )
-  return className
 }
 
 export default useButtonAppearance

@@ -15,8 +15,7 @@ const baseStyle = {
 
 const disabledState = '&[disabled]'
 const hoverState = '&:not([disabled]):hover'
-const activeState =
-  '&:not([disabled]):active, &:not([disabled])[data-active="true"]'
+const activeState = '&:not([disabled]):active, &:not([disabled])[data-active]'
 const focusState = '& input:focus + label'
 
 /**
@@ -48,7 +47,7 @@ const createSegmentedControlRadioAppearance = (items = {}) => {
       ...createAppearance(items.focus)
     },
     [activeState]: createAppearance(items.active),
-    '&[data-active="true"]': {
+    '&[data-active]': {
       cursor: 'default'
     }
   }

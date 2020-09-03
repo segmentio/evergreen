@@ -6,7 +6,7 @@ import { CaretDownIcon } from '../../icons'
 import { Text } from '../../typography'
 import { Spinner } from '../../spinner'
 import { useTheme } from '../../theme'
-import { styles } from './Button'
+import { internalStyles as styles } from './Button'
 
 const TextDropdownButton = memo(
   forwardRef(function TextDropdownButton(props, ref) {
@@ -42,7 +42,7 @@ const TextDropdownButton = memo(
         paddingY={2}
         marginY={-2}
         size={300}
-        data-active={isActive}
+        data-active={isActive || undefined}
         {...styles}
         {...restProps}
         disabled={disabled}
