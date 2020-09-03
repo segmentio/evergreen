@@ -1,6 +1,6 @@
 {
   "name": "evergreen-ui",
-  "version": "5.0.2",
+  "version": "6.0.0-7",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
@@ -47,7 +47,8 @@
     "release": "np",
     "deploy-docs": "cd docs && yarn install && yarn deploy",
     "postpublish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then yarn deploy-docs; else echo \"not on main branch, skipping docs deploy\"; fi;",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6006",
+    "chromatic": "npx chromatic"
   },
   "engines": {
     "node": ">=10.18"
@@ -63,7 +64,9 @@
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
     "lodash.debounce": "^4.0.8",
+    "lodash.merge": "^4.6.2",
     "prop-types": "^15.6.2",
+    "react-fast-compare": "^3.2.0",
     "react-is": "^16.13.1",
     "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
@@ -92,6 +95,7 @@
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addon-options": "^3.4.11",
+    "@storybook/addon-storysource": "^5.3.19",
     "@storybook/addons": "^5.3.19",
     "@storybook/react": "^5.3.19",
     "@storybook/theming": "^5.3.19",
@@ -101,6 +105,7 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-add-react-displayname": "^0.0.5",
     "camelcase": "^5.0.0",
+    "chromatic": "^5.1.0",
     "concurrently": "^4.0.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
@@ -231,7 +236,7 @@
     {
       "path": "esm/index.js",
       "import": "{ Pane, Text, majorScale, SelectMenu, Menu, AddIcon, RemoveIcon }",
-      "limit": "60 KB",
+      "limit": "62 KB",
       "running": false
     }
   ],

@@ -2,33 +2,8 @@ import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { css } from 'glamor'
-import cx from 'classnames'
 import { Text } from '../../typography'
-import { useTheme } from '../../theme'
-
-const labelClass = css({
-  display: 'flex',
-  flex: 1,
-  alignItems: 'center',
-  justifyContent: 'center',
-  position: 'relative'
-})
-
-const wrapperClass = css({
-  position: 'relative',
-  display: 'flex',
-  flex: 1,
-  cursor: 'pointer',
-  marginLeft: '-1px',
-  [`:first-child .${labelClass}`]: {
-    borderTopLeftRadius: 3,
-    borderBottomLeftRadius: 3
-  },
-  [`:last-child .${labelClass}`]: {
-    borderTopRightRadius: 3,
-    borderBottomRightRadius: 3
-  }
-})
+import useSegmentControlAppearance from '../../theme/src/hooks/useSegmentedControlAppearance'
 
 const offscreenCss = css({
   overflow: 'hidden',
@@ -43,8 +18,6 @@ const offscreenCss = css({
 
 const SegmentedControlRadio = memo(
   forwardRef(function SegmentedControlRadio(props, ref) {
-    const theme = useTheme()
-
     const {
       id,
       name,
@@ -54,32 +27,16 @@ const SegmentedControlRadio = memo(
       checked,
       onChange,
       appearance,
-      isFirstItem,
-      isLastItem,
       disabled
     } = props
 
-    const themedClassName = theme.getSegmentedControlRadioClassName(appearance)
-    const textSize = theme.getTextSizeForControlHeight(height)
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
+    const themedClassName = useSegmentControlAppearance(appearance)
 
     return (
       <Box
         ref={ref}
-        className={cx(wrapperClass.toString(), themedClassName)}
-        data-active={checked}
-        {...(isFirstItem
-          ? {
-              borderTopLeftRadius: borderRadius,
-              borderBottomLeftRadius: borderRadius
-            }
-          : {})}
-        {...(isLastItem
-          ? {
-              borderTopRightRadius: borderRadius,
-              borderBottomRightRadius: borderRadius
-            }
-          : {})}
+        className={themedClassName}
+        data-active={checked || undefined}
       >
         <input
           type="radio"
@@ -96,9 +53,9 @@ const SegmentedControlRadio = memo(
           cursor="pointer"
           htmlFor={id}
           fontWeight={500}
-          size={textSize}
-          className={`${labelClass}`}
+          size={300}
           disabled={disabled}
+          height={height}
         >
           {label}
         </Text>
@@ -142,16 +99,6 @@ SegmentedControlRadio.propTypes = {
    * The appearance of the control. Currently only `default` is possible.
    */
   appearance: PropTypes.string.isRequired,
-
-  /**
-   * When true, this item is the first item.
-   */
-  isFirstItem: PropTypes.bool,
-
-  /**
-   * When true, this item is the last item.
-   */
-  isLastItem: PropTypes.bool,
 
   /**
    * The unique id of the radio option.

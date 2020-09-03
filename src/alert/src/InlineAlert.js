@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { spacing, dimensions, position, layout } from 'ui-box'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
+import { useTheme } from '../../theme'
 import { getIconForIntent } from './getIconForIntent'
 
 const InlineAlert = memo(
@@ -15,14 +16,21 @@ const InlineAlert = memo(
       ...restProps
     } = props
 
+    const {
+      tokens: { intents }
+    } = useTheme()
+
+    const intentToken = intent === 'none' ? 'info' : intent
+    const textColor = intents[intentToken].text
+
     return (
       <Pane ref={ref} alignItems="center" display="flex" {...restProps}>
         {hasIcon && (
-          <Pane display="inline" marginRight={8}>
-            {getIconForIntent(intent, { size: 14, marginTop: 2 })}
+          <Pane display="flex" marginRight={16}>
+            {getIconForIntent(intent, { size: 16 })}
           </Pane>
         )}
-        <Text size={size} fontWeight={500}>
+        <Text size={size} lineHeight={1} fontWeight={500} color={textColor}>
           {children}
         </Text>
       </Pane>

@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
+import faker from 'faker'
 import { ThemeConsumer } from '../../theme'
 import { Badge, Pill } from '..'
 
@@ -13,6 +14,16 @@ const baseStyles = {
   display: 'block'
 }
 
+const range = N => Array.from({ length: N }, (v, k) => k + 1)
+
+faker.seed(7816)
+const randomNumbers = range(8).map(() => {
+  return faker.random.number({
+    min: 1,
+    max: 100
+  })
+})
+
 storiesOf('badges', module)
   .add('Badge', () => (
     <ThemeConsumer>
@@ -23,7 +34,7 @@ storiesOf('badges', module)
               <Badge color={color} {...baseStyles}>
                 {color}
               </Badge>
-              <Badge color={color} {...baseStyles} isSolid>
+              <Badge color={color} {...baseStyles} isInteractive>
                 {color}
               </Badge>
             </Box>
@@ -36,16 +47,20 @@ storiesOf('badges', module)
     <ThemeConsumer>
       {theme => (
         <Box style={{ ...wrapperStyles }}>
-          {theme.badgeColors.map(color => (
-            <Box key={color}>
-              <Pill color={color} {...baseStyles}>
-                {color}
-              </Pill>
-              <Pill color={color} {...baseStyles} isSolid>
-                {color}
-              </Pill>
-            </Box>
-          ))}
+          {theme.badgeColors.map((color, index) => {
+            return (
+              <Box
+                key={color}
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+              >
+                <Pill color={color} {...baseStyles}>
+                  {randomNumbers[index]}
+                </Pill>
+              </Box>
+            )
+          })}
         </Box>
       )}
     </ThemeConsumer>

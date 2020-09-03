@@ -12,7 +12,7 @@ storiesOf('alert', module)
           document.body.style.margin = '0'
           document.body.style.height = '100vh'
         })()}
-        {['default', 'card'].map(appearance => (
+        {['default'].map(appearance => (
           <Box key={appearance} float="left" marginRight={40}>
             <Heading marginBottom={16}>{appearance}</Heading>
             <Alert
@@ -42,7 +42,7 @@ storiesOf('alert', module)
         ))}
       </Box>
       <Box padding={40}>
-        {['default', 'card'].map(appearance => (
+        {['default'].map(appearance => (
           <Box key={appearance} float="left" marginRight={40}>
             <Heading marginBottom={16}>{appearance}</Heading>
             <Alert

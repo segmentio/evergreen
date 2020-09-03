@@ -15,6 +15,7 @@ const randomLengthContent = [
   `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
 ]
 
+faker.seed(1000)
 // Generate a bunch of users.
 const users = range(1000)
   .map((user, index) => ({

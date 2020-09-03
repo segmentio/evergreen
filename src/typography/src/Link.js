@@ -1,14 +1,13 @@
 import React, { forwardRef, memo } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import { useTheme } from '../../theme'
+import useLinkAppearance from '../../theme/src/hooks/useLinkAppearance'
 import Text from './Text'
 
 const Link = memo(
   forwardRef(function Link(props, ref) {
-    const theme = useTheme()
     const { className, color = 'default', ...restProps } = props
-    const themedClassName = theme.getLinkClassName(color)
+    const themedClassName = useLinkAppearance(color)
 
     return (
       <Text

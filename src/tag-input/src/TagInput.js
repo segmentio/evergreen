@@ -10,7 +10,9 @@ import { Text } from '../../typography'
 import { useTheme } from '../../theme'
 import { majorScale } from '../../scales'
 import safeInvoke from '../../lib/safe-invoke'
+import useInputAppearance from '../../theme/src/hooks/useInputAppearance'
 import { useId } from '../../hooks'
+import useTagInputAppearance from '../../theme/src/hooks/useTagInputAppearance'
 import Tag from './Tag'
 
 const GET_KEY_FOR_TAG_DELIMITER = {
@@ -42,8 +44,6 @@ const TagInput = memo(
       inputRef,
       ...rest
     } = props
-    const theme = useTheme()
-
     const [inputValue, setInputValue] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const id = useId('TagInput')
@@ -140,7 +140,6 @@ const TagInput = memo(
           key={`${tag}:${index}`}
           data-tag-index={index}
           marginRight={majorScale(1)}
-          marginY="6px"
           onRemove={disabled ? null : handleRemoveTag}
           isRemovable={!disabled}
           {...propsForElement}
@@ -150,19 +149,17 @@ const TagInput = memo(
       )
     }
 
-    const themedContainerClassName = theme.getTagInputClassName('default')
-    const themedInputClassName = theme.getTextInputClassName('none')
-    const textSize = theme.getTextSizeForControlHeight(height)
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
+    const { tokens } = useTheme()
+    const themedContainerClassName = useTagInputAppearance()
+    const themedInputClassName = useInputAppearance('none')
 
     return (
       <Box
         aria-disabled={disabled || undefined}
         aria-activedescendant={isFocused ? id : undefined}
-        borderRadius={borderRadius}
+        borderRadius={tokens.borderRadius}
         className={cx(themedContainerClassName, className)}
-        paddingLeft={Math.round(height / 3.2)}
-        paddingRight={Math.round(height / 3.2)}
+        paddingX={Math.round(height / 2.6)}
         paddingY="2px"
         ref={ref}
         {...rest}
@@ -176,7 +173,7 @@ const TagInput = memo(
           disabled={disabled}
           flexGrow="1"
           height={height - 4}
-          size={textSize}
+          size={300}
           type="text"
           value={inputValue}
           {...inputProps}

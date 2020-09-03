@@ -22,21 +22,20 @@ const FormField = memo(
 
     return (
       <Box {...rest} ref={ref}>
-        <FormFieldLabel
-          htmlFor={labelFor}
-          isAstrixShown={isRequired}
-          marginBottom={description ? 0 : 4}
-          {...labelProps}
-        >
-          {label}
-        </FormFieldLabel>
-        {typeof description === 'string' ? (
-          <FormFieldDescription marginBottom={4}>
-            {description}
-          </FormFieldDescription>
-        ) : (
-          description
-        )}
+        <Box display="flex" flexDirection="column" marginBottom={8}>
+          <FormFieldLabel
+            htmlFor={labelFor}
+            isAstrixShown={isRequired}
+            {...labelProps}
+          >
+            {label}
+          </FormFieldLabel>
+          {typeof description === 'string' ? (
+            <FormFieldDescription>{description}</FormFieldDescription>
+          ) : (
+            description
+          )}
+        </Box>
         {children}
         {typeof validationMessage === 'string' ? (
           <FormFieldValidationMessage marginTop={8}>

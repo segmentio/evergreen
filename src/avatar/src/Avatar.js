@@ -4,7 +4,8 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Image } from '../../image'
 import { Text } from '../../typography'
-import { useTheme } from '../../theme'
+import { minorScale } from '../../scales'
+import useBadgeAppearance from '../../theme/src/hooks/useBadgeAppearance'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
 
@@ -21,13 +22,12 @@ const initialsStyleClass = css({
   lineHeight: 1
 }).toString()
 
-function getColorProps({ isSolid, theme, color, name, propsHashValue }) {
-  if (color === 'automatic') {
-    const hashValue = globalHash(propsHashValue || name)
-    return theme.getAvatarProps({ isSolid, color, hashValue })
+const getAvatarInitialsFontSize = (size, sizeLimitOneCharacter) => {
+  if (size <= sizeLimitOneCharacter) {
+    return Math.floor(size / 2.2)
   }
 
-  return theme.getAvatarProps({ isSolid, color })
+  return Math.floor(size / 2.6)
 }
 
 const Avatar = memo(
@@ -36,7 +36,7 @@ const Avatar = memo(
       src,
       name,
       size = 24,
-      isSolid = false,
+      shape = 'round',
       color = 'automatic',
       forceShowInitials = false,
       sizeLimitOneCharacter = 20,
@@ -45,24 +45,24 @@ const Avatar = memo(
       ...restProps
     } = props
 
-    const theme = useTheme()
+    const hashValue = globalHash(propsHashValue || name)
+    const styles = useBadgeAppearance({
+      color,
+      hashValue
+    })
+    const borderRadius = shape === 'round' ? '100%' : minorScale(1)
+
     const [imageHasFailedLoading, setImageHasFailedLoading] = useState(false)
     const imageUnavailable = !src || imageHasFailedLoading
-    const colorProps = getColorProps({
-      isSolid,
-      theme,
-      color,
-      name,
-      propsHashValue
-    })
-    const initialsFontSize = `${theme.getAvatarInitialsFontSize(
+
+    const initialsFontSize = `${getAvatarInitialsFontSize(
       size,
       sizeLimitOneCharacter
     )}px`
 
     let initials = getInitials(name)
     if (size <= sizeLimitOneCharacter) {
-      initials = initials.substring(0, 1)
+      initials = initials.slice(0, 1)
     }
 
     return (
@@ -70,12 +70,12 @@ const Avatar = memo(
         width={size}
         height={size}
         overflow="hidden"
-        borderRadius={9999}
+        borderRadius={borderRadius}
         position="relative"
         display="inline-flex"
         flexShrink={0}
         justifyContent="center"
-        backgroundColor={colorProps.backgroundColor}
+        backgroundColor={styles.backgroundColor}
         title={name}
         ref={ref}
         {...restProps}
@@ -87,7 +87,7 @@ const Avatar = memo(
             lineHeight={initialsFontSize}
             width={size}
             height={size}
-            color={colorProps.color}
+            color={styles.color}
           >
             {initials}
           </Text>
@@ -131,11 +131,6 @@ Avatar.propTypes = {
   hashValue: PropTypes.string,
 
   /**
-   * When true, render a solid avatar.
-   */
-  isSolid: PropTypes.bool,
-
-  /**
    * The color used for the avatar.
    * When the value is `automatic`, use the hash function to determine the color.
    */
@@ -155,7 +150,12 @@ Avatar.propTypes = {
   /**
    * When the size is smaller than this number, use a single initial for the avatar.
    */
-  sizeLimitOneCharacter: PropTypes.number
+  sizeLimitOneCharacter: PropTypes.number,
+
+  /**
+   * Allows for the shape of the avatar component to either be round or square
+   */
+  shape: PropTypes.oneOf(['round', 'square'])
 }
 
 export default Avatar

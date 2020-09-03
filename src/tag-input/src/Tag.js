@@ -15,6 +15,11 @@ const Tag = memo(
       alignItems: 'center',
       display: 'inline-flex',
       fontWeight: 400,
+      borderRadius: 4,
+      paddingX: 8,
+      paddingY: 6,
+      marginTop: 0,
+      marginBottom: 0,
       textTransform: 'none'
     }
 

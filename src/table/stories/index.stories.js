@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
+import faker from 'faker'
 import { Portal } from '../../portal'
 import { Pane } from '../../layers'
 import AdvancedTable from './AdvancedTable'
@@ -10,8 +11,12 @@ import { Table } from '..'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
+faker.seed(500)
 const dynamicHeights = range(500).map(() => {
-  return Math.max(Math.ceil(Math.random() * 100), 32)
+  return faker.random.number({
+    min: 32,
+    max: 100
+  })
 })
 
 storiesOf('table', module)

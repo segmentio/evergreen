@@ -42,6 +42,7 @@ export {
 } from './select-menu'
 export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
+export { StatusIndicator } from './status-indicator'
 export { Switch } from './switch'
 export { extractStyles } from './ssr'
 export { Stack, StackingContext } from './stack'
@@ -56,7 +57,7 @@ export {
   TableCell,
   TextTableCell
 } from './table'
-export { SidebarTab, Tab, Tablist, TabNavigation } from './tabs'
+export { Tab, Tablist, TabNavigation } from './tabs'
 export { TagInput } from './tag-input'
 export { TextInput, TextInputField } from './text-input'
 export {

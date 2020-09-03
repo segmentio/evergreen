@@ -1,32 +1,22 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { dimensions, spacing, position, layout } from 'ui-box'
-import { useTheme } from '../../theme'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import Button from './Button'
 
 const IconButton = memo(
   forwardRef(function IconButton(props, ref) {
-    const theme = useTheme()
-    const { icon, iconSize, height = 32, intent = 'none', ...restProps } = props
+    const { icon, iconSize, ...restProps } = props
 
     return (
       <Button
         ref={ref}
-        intent={intent}
-        height={height}
-        width={height}
         paddingLeft={0}
         paddingRight={0}
-        display="flex"
-        justifyContent="center"
+        flex="none"
         {...restProps}
       >
-        <IconWrapper
-          icon={icon}
-          color={intent === 'none' ? 'default' : 'currentColor'}
-          size={iconSize || theme.getIconSizeForIconButton(height)}
-        />
+        <IconWrapper icon={icon} color="currentColor" size={iconSize} />
       </Button>
     )
   })
@@ -52,6 +42,11 @@ IconButton.propTypes = {
    * Composes the layout spec from the Box primitive.
    */
   ...layout.propTypes,
+
+  /**
+   * The size of the button
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 
   /**
    * The Evergreen icon or custom icon to render

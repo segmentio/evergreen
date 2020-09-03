@@ -1,29 +1,20 @@
 import React, { forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { useTheme } from '../../theme'
+import useHeadingStyle from '../../theme/src/hooks/useHeadingStyle'
 
 const Heading = memo(
   forwardRef(function Heading(props, ref) {
-    const theme = useTheme()
     const { marginTop, size = 500, ...restProps } = props
-    const {
-      marginTop: defaultMarginTop,
-      ...headingStyle
-    } = theme.getHeadingStyle(size)
-
-    let finalMarginTop = marginTop
-    if (marginTop === 'default') {
-      finalMarginTop = defaultMarginTop
-    }
+    const { ...headingStyle } = useHeadingStyle(size)
 
     return (
       <Box
         is="h2"
         ref={ref}
-        marginTop={finalMarginTop || 0}
-        marginBottom={0}
         {...headingStyle}
+        marginTop={0}
+        marginBottom={0}
         {...restProps}
       />
     )

@@ -6,32 +6,27 @@ import { Pane } from '../../layers'
 import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
 import { CrossIcon } from '../../icons'
+import useAlertApperance from '../../theme/src/hooks/useAlertApperance'
 import { getIconForIntent } from './getIconForIntent'
 
 const Alert = memo(
   forwardRef(function Alert(props, ref) {
     const {
-      appearance = 'default',
       children,
       hasIcon = true,
-      hasTrim = true,
-      intent = 'none',
+      intent = 'info',
       isRemoveable = false,
       onRemove,
       title,
       ...restProps
     } = props
 
-    const theme = useTheme()
+    const {
+      tokens: { intents }
+    } = useTheme()
 
-    /**
-     * Note that Alert return a className and additional properties.
-     */
-    const { className, ...themeProps } = theme.getAlertProps({
-      appearance,
-      intent,
-      hasTrim
-    })
+    const intentToken = intent === 'none' ? 'info' : intent
+    const className = useAlertApperance(intentToken)
 
     return (
       <Pane
@@ -44,56 +39,63 @@ const Alert = memo(
         display="flex"
         paddingY={12}
         paddingX={16}
-        {...themeProps}
         {...restProps}
       >
-        {hasIcon && (
-          <Pane
-            marginRight={10}
-            marginLeft={2}
-            height={20}
-            display="flex"
-            alignItems="center"
-          >
-            {getIconForIntent(intent, { size: 14 })}
-          </Pane>
-        )}
-        <Pane display="flex" width="100%">
-          <Pane flex={1}>
+        <Pane flex={1}>
+          <Pane display="flex" alignItems="center">
+            {hasIcon && (
+              <Pane
+                marginRight={16}
+                marginLeft={2}
+                display="flex"
+                alignItems="center"
+              >
+                {getIconForIntent(intentToken, { size: 16 })}
+              </Pane>
+            )}
             <Heading
               is="h4"
-              fontWeight={600}
               size={400}
               marginTop={0}
               marginBottom={0}
+              fontWeight={500}
+              lineHeight={1}
+              color={intents[intentToken].text}
             >
               {title}
             </Heading>
-            {typeof children === 'string' ? (
-              <Paragraph size={400} color="muted">
-                {children}
-              </Paragraph>
-            ) : (
-              children
-            )}
           </Pane>
-          {isRemoveable && (
-            <Pane
-              marginLeft={24}
-              flexShrink={0}
-              marginBottom={-2}
-              marginTop={-2}
-              marginRight={-2}
+          {typeof children === 'string' ? (
+            <Paragraph
+              size={400}
+              color="muted"
+              marginTop={8}
+              lineHeight={1}
+              paddingLeft={hasIcon ? 34 : 0}
             >
-              <IconButton
-                icon={CrossIcon}
-                appearance="minimal"
-                height={24}
-                onClick={onRemove}
-              />
-            </Pane>
+              {children}
+            </Paragraph>
+          ) : (
+            children
           )}
         </Pane>
+        {isRemoveable && (
+          <Pane
+            marginLeft={24}
+            flexShrink={0}
+            marginBottom={-2}
+            marginTop={-2}
+            marginRight={-2}
+          >
+            <IconButton
+              icon={CrossIcon}
+              appearance="minimal"
+              height={24}
+              onClick={onRemove}
+              intent={intentToken}
+            />
+          </Pane>
+        )}
       </Pane>
     )
   })
@@ -122,12 +124,6 @@ Alert.propTypes = {
    * The title of the alert.
    */
   title: PropTypes.node,
-
-  /**
-   * When true, show a border on the left matching the type.
-   */
-  hasTrim: PropTypes.bool,
-
   /**
    * When true, show a icon on the left matching the type,
    */

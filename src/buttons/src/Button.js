@@ -1,17 +1,17 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { dimensions, spacing, position, layout } from 'ui-box'
+import Box, { spacing, dimensions, position, layout } from 'ui-box'
 import { IconWrapper } from '../../icons/src/IconWrapper'
-import { Text } from '../../typography'
 import { Spinner } from '../../spinner'
-import { useTheme } from '../../theme'
+import useButtonAppearance from '../../theme/src/hooks/useButtonAppearance'
 
 /* eslint-disable-next-line react/prop-types */
 const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
   if (!icon) return null
 
-  const edgeMargin = -Math.round(spacing * 0.2)
+  const relativeSpace = typeof spacing === 'number' ? spacing : size
+  const edgeMargin = -Math.round(relativeSpace * 0.25)
   const innerMargin = Math.round(size * 0.7)
   const marginLeft = edge === 'start' ? edgeMargin : innerMargin
   const marginRight = edge === 'end' ? edgeMargin : innerMargin
@@ -26,76 +26,61 @@ const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
   )
 })
 
-const styles = {
+export const internalStyles = {
   position: 'relative',
-  fontFamily: 'ui',
   fontWeight: 500,
   display: 'inline-flex',
   alignItems: 'center',
-  flexWrap: 'nowrap'
+  flexWrap: 'nowrap',
+  justifyContent: 'center',
+  textDecoration: 'none',
+  verticalAlign: 'middle',
+  outline: 'none',
+  userSelect: 'none',
+  whiteSpace: 'nowrap'
+}
+
+const getIconSizeForButton = height => {
+  if (height <= 28) return 12
+  if (height <= 32) return 14
+  if (height <= 40) return 16
+  if (height <= 48) return 18
+  return 20
 }
 
 const Button = memo(
   forwardRef(function Button(props, ref) {
-    const theme = useTheme()
-
     const {
-      className,
-
-      intent = 'none',
-      height = 32,
-      isActive = false,
-      children,
-      disabled,
       appearance = 'default',
-      isLoading,
-
-      // Paddings
-      paddingRight,
-      paddingLeft,
-      paddingTop = 0,
-      paddingBottom = 0,
-
-      // Icons
-      iconBefore,
+      children,
+      className,
+      disabled,
       iconAfter,
-
+      iconBefore,
+      intent, // Unused for now... tbd
+      is = 'button',
+      isActive = false,
+      isLoading,
+      size = 'medium',
       ...restProps
     } = props
 
-    const themedClassName = theme.getButtonClassName(appearance, intent)
-    const textSize = theme.getTextSizeForControlHeight(height)
+    const { className: themedClassName, boxProps } = useButtonAppearance(
+      { appearance, size },
+      internalStyles
+    )
 
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
-    const iconSize = theme.getIconSizeForButton(height)
-
-    const padding = Math.round(height / 2)
-    const pr = paddingRight !== undefined ? paddingRight : padding // eslint-disable-line no-negated-condition
-    const pl = paddingLeft !== undefined ? paddingLeft : padding // eslint-disable-line no-negated-condition
+    const height = restProps.height || boxProps.height
+    const iconSize = getIconSizeForButton(height)
 
     return (
-      <Text
-        is="button"
+      <Box
+        is={is}
         ref={ref}
+        type={is === 'button' ? 'button' : undefined}
         className={cx(themedClassName, className)}
-        borderTopRightRadius={borderRadius}
-        borderBottomRightRadius={borderRadius}
-        borderTopLeftRadius={borderRadius}
-        borderBottomLeftRadius={borderRadius}
-        paddingTop={paddingTop}
-        paddingBottom={paddingBottom}
-        paddingRight={pr}
-        paddingLeft={pl}
-        marginLeft={0} // Removes weird margins in Safari
-        marginRight={0} // Removes weird margins in Safari
-        marginTop={0} // Removes weird margins in Safari
-        marginBottom={0} // Removes weird margins in Safari
-        size={textSize}
-        color={null} // Prevent the Text color overriding the glamor appearanceStyle color
-        height={height}
-        lineHeight={`${height}px`}
-        {...(isActive ? { 'data-active': true } : {})}
-        {...styles}
+        data-active={isActive || undefined}
+        {...boxProps}
         {...restProps}
         disabled={disabled || isLoading}
       >
@@ -109,12 +94,17 @@ const Button = memo(
         <ButtonIcon
           icon={iconBefore}
           size={iconSize}
-          spacing={pl}
+          spacing={restProps.paddingLeft}
           edge="start"
         />
         {children}
-        <ButtonIcon icon={iconAfter} size={iconSize} spacing={pr} edge="end" />
-      </Text>
+        <ButtonIcon
+          icon={iconAfter}
+          size={iconSize}
+          spacing={restProps.paddingRight}
+          edge="end"
+        />
+      </Box>
     )
   })
 )
@@ -141,14 +131,14 @@ Button.propTypes = {
   ...layout.propTypes,
 
   /**
-   * The intent of the button.
-   */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
-
-  /**
    * The appearance of the button.
    */
   appearance: PropTypes.oneOf(['default', 'minimal', 'primary']),
+
+  /**
+   * The size of the button
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 
   /**
    * When true, show a loading spinner before the children.

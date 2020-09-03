@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import safeInvoke from '../../lib/safe-invoke'
 import { useId } from '../../hooks'
+import { minorScale } from '../../scales'
+import { useTheme } from '../../theme'
 import SegmentedControlRadio from './SegmentedControlRadio'
 
 const SegmentedControl = memo(
@@ -19,6 +21,10 @@ const SegmentedControl = memo(
     } = props
 
     const groupName = useId('SegmentedControl')
+
+    const {
+      tokens: { colors }
+    } = useTheme()
 
     const isControlled = () => {
       return typeof value !== 'undefined' && value !== null
@@ -52,7 +58,16 @@ const SegmentedControl = memo(
     }
 
     return (
-      <Box display="flex" marginRight={-1} height={height} ref={ref} {...rest}>
+      <Box
+        display="flex"
+        boxShadow={`inset 0 0 0 1px ${colors.gray400}`}
+        backgroundColor="white"
+        borderRadius={minorScale(1)}
+        marginRight={-1}
+        height={height}
+        ref={ref}
+        {...rest}
+      >
         {options.map((option, index) => (
           <SegmentedControlRadio
             key={option.value}
@@ -60,7 +75,7 @@ const SegmentedControl = memo(
             name={name || groupName}
             label={option.label}
             value={String(option.value)}
-            height={height}
+            height={height - minorScale(2)}
             checked={activeValue === option.value}
             onChange={handleChange.bind(null, option.value)}
             appearance="default"

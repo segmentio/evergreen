@@ -1,10 +1,11 @@
-import React, { PureComponent } from 'react'
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import VirtualList from 'react-tiny-virtual-list'
 import { Pane } from '../../layers'
 import { SearchIcon } from '../../icons'
 import TableHead from '../../table/src/TableHead'
+import { useTheme } from '../../theme'
 import SearchTableHeaderCell from '../../table/src/SearchTableHeaderCell'
 import OptionShapePropType from './OptionShapePropType'
 import Option from './Option'
@@ -27,298 +28,277 @@ const itemRenderer = props => <Option {...props} />
 
 const noop = () => {}
 
-export default class OptionsList extends PureComponent {
-  static propTypes = {
-    options: PropTypes.arrayOf(OptionShapePropType),
-    close: PropTypes.func,
-    height: PropTypes.number,
-    width: PropTypes.number,
+const OptionsList = memo(function OptionsList(props) {
+  const {
+    options: originalOptions = [],
+    optionSize = 33,
+    close,
+    closeOnSelect,
+    onSelect = noop,
+    onDeselect = noop,
+    onFilterChange = noop,
+    hasFilter,
+    selected = [],
+    optionsFilter,
+    isMultiSelect,
+    height,
+    width,
+    renderItem = itemRenderer,
+    filterPlaceholder = 'Filter...',
+    filterIcon = SearchIcon,
+    defaultSearchValue = '',
+    ...rest
+  } = props
 
-    /**
-     * When true, multi select is accounted for.
-     */
-    isMultiSelect: PropTypes.bool,
+  const [searchValue, setSearchValue] = useState(defaultSearchValue)
+  const [selectedOptions, setSelectedOptions] = useState(selected)
+  const [searchRef, setSearchRef] = useState(null)
+  const requestId = useRef()
+  const theme = useTheme()
+  const { tokens } = theme
 
-    /**
-     * When true, menu closes on option selection.
-     */
-    closeOnSelect: PropTypes.bool,
+  const isSelected = useCallback(
+    item => {
+      return Boolean(
+        selectedOptions.find(selectedItem => selectedItem === item.value)
+      )
+    },
+    [selectedOptions]
+  )
 
-    /**
-     * This holds the values of the options
-     */
-    selected: PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    ),
-    onSelect: PropTypes.func,
-    onDeselect: PropTypes.func,
-    onFilterChange: PropTypes.func,
-    hasFilter: PropTypes.bool,
-    optionSize: PropTypes.number,
-    renderItem: PropTypes.func,
-    filterPlaceholder: PropTypes.string,
-    filterIcon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
-    optionsFilter: PropTypes.func,
-    defaultSearchValue: PropTypes.string
-  }
+  const search = useCallback(
+    options => {
+      if (searchValue.trim() === '') {
+        return options
+      }
 
-  static defaultProps = {
-    options: [],
-    /**
-     * Including border bottom
-     * For some reason passing height to TableRow doesn't work
-     * TODO: fix hacky solution
-     */
-    optionSize: 33,
-    onSelect: noop,
-    onDeselect: noop,
-    onFilterChange: noop,
-    selected: [],
-    renderItem: itemRenderer,
-    filterPlaceholder: 'Filter...',
-    filterIcon: SearchIcon,
-    defaultSearchValue: ''
-  }
+      // Preserve backwards compatibility with allowing custom filters, which accept array of strings
+      if (typeof optionsFilter === 'function') {
+        return optionsFilter(
+          options.map(item => item.label),
+          searchValue
+        ).map(name => options.find(item => item.label === name))
+      }
 
-  constructor(props, context) {
-    super(props, context)
+      return fuzzyFilter(options, searchValue, { key: 'label' })
+    },
+    [optionsFilter, searchValue]
+  )
 
-    this.state = {
-      searchValue: props.defaultSearchValue,
-      selected: props.selected
-    }
-  }
+  const getFilteredOptions = useCallback(() => {
+    return search(options)
+  }, [options])
 
-  componentDidMount() {
-    const { hasFilter } = this.props
-    if (!hasFilter) return
-    /**
-     * Hacky solution for broken autoFocus
-     * https://github.com/segmentio/evergreen/issues/90
-     */
-    this.requestId = requestAnimationFrame(() => {
-      if (this.searchRef) this.searchRef.focus()
-    })
-
-    window.addEventListener('keydown', this.handleKeyDown)
-  }
-
-  componentWillUnmount() {
-    cancelAnimationFrame(this.requestId)
-    window.removeEventListener('keydown', this.handleKeyDown)
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.selected !== this.props.selected) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({
-        selected: this.props.selected
-      })
-    }
-  }
-
-  isSelected = item => {
-    const { selected } = this.state
-
-    return Boolean(selected.find(selectedItem => selectedItem === item.value))
-  }
-
-  search = options => {
-    const { optionsFilter } = this.props
-    const { searchValue } = this.state
-
-    if (searchValue.trim() === '') {
-      return options
-    }
-
-    // Preserve backwards compatibility with allowing custom filters, which accept array of strings
-    if (typeof optionsFilter === 'function') {
-      return optionsFilter(
-        options.map(item => item.label),
-        searchValue
-      ).map(name => options.find(item => item.label === name))
-    }
-
-    return fuzzyFilter(options, searchValue, { key: 'label' })
-  }
-
-  getCurrentIndex = () => {
-    const { selected } = this.props
-    const options = this.getFilteredOptions()
+  const getCurrentIndex = useCallback(() => {
+    const options = getFilteredOptions()
 
     return options.findIndex(
       option => option.value === selected[selected.length - 1]
     )
-  }
+  }, [selected])
 
-  getFilteredOptions() {
-    const { options } = this.props
+  const handleArrowUp = useCallback(() => {
+    const options = getFilteredOptions()
 
-    return this.search(options)
-  }
-
-  handleKeyDown = e => {
-    if (e.key === 'ArrowUp') {
-      this.handleArrowUp()
-    }
-
-    if (e.key === 'ArrowDown') {
-      this.handleArrowDown()
-    }
-
-    if (e.key === 'Enter') {
-      this.handleEnter()
-    }
-
-    if (e.key === 'Escape') {
-      this.props.close()
-    }
-  }
-
-  handleArrowUp = () => {
-    const { onSelect } = this.props
-    const options = this.getFilteredOptions()
-
-    let nextIndex = this.getCurrentIndex() - 1
+    let nextIndex = getCurrentIndex() - 1
 
     if (nextIndex < 0) {
       nextIndex = options.length - 1
     }
 
-    if (this.isSelected(options[nextIndex])) {
+    if (isSelected(options[nextIndex])) {
       return
     }
 
     onSelect(options[nextIndex])
-  }
+  }, [onSelect])
 
-  handleArrowDown = () => {
-    const { onSelect } = this.props
-    const options = this.getFilteredOptions()
+  const handleArrowDown = useCallback(() => {
+    const options = getFilteredOptions()
 
-    let nextIndex = this.getCurrentIndex() + 1
+    let nextIndex = getCurrentIndex() + 1
 
     if (nextIndex === options.length) {
       nextIndex = 0
     }
 
-    if (!this.isSelected(options[nextIndex])) {
+    if (!isSelected(options[nextIndex])) {
       onSelect(options[nextIndex])
     }
-  }
+  }, [onSelect])
 
-  handleEnter = () => {
-    const isSelected = this.getCurrentIndex() !== -1
+  const handleChange = useCallback(
+    searchValue => {
+      setSearchValue(searchValue)
+      onFilterChange(searchValue)
+    },
+    [onFilterChange]
+  )
+
+  const handleSelect = useCallback(
+    item => {
+      if (isSelected(item)) {
+        onDeselect(item)
+      } else {
+        onSelect(item)
+      }
+
+      if (!isMultiSelect && closeOnSelect) {
+        close()
+      }
+    },
+    [onDeselect, isMultiSelect, closeOnSelect]
+  )
+
+  const handleEnter = useCallback(() => {
+    const isSelected = getCurrentIndex() !== -1
 
     if (isSelected) {
-      if (!this.props.isMultiSelect && this.props.closeOnSelect) {
-        this.props.close()
+      if (!isMultiSelect && closeOnSelect) {
+        close()
       }
     }
-  }
+  }, [isMultiSelect, close, closeOnSelect])
 
-  handleChange = searchValue => {
-    this.setState({
-      searchValue
-    })
-    this.props.onFilterChange(searchValue)
-  }
+  const handleDeselect = useCallback(
+    item => {
+      onDeselect(item)
+    },
+    [onDeselect]
+  )
 
-  handleSelect = item => {
-    if (this.isSelected(item)) {
-      this.props.onDeselect(item)
-    } else {
-      this.props.onSelect(item)
+  const handleKeyDown = useCallback(
+    e => {
+      if (e.key === 'ArrowUp') {
+        handleArrowUp()
+      }
+
+      if (e.key === 'ArrowDown') {
+        handleArrowDown()
+      }
+
+      if (e.key === 'Enter') {
+        handleEnter()
+      }
+
+      if (e.key === 'Escape') {
+        close()
+      }
+    },
+    [close]
+  )
+
+  useEffect(() => {
+    if (hasFilter) {
+      requestId.current = requestAnimationFrame(() => {
+        if (searchRef) {
+          searchRef.focus()
+        }
+      })
+
+      window.addEventListener('keydown', handleKeyDown)
+      return () => {
+        cancelAnimationFrame(requestId.current)
+        window.removeEventListener('keydown', handleKeyDown)
+      }
     }
+  }, [hasFilter, searchRef, handleKeyDown])
 
-    if (!this.props.isMultiSelect && this.props.closeOnSelect) {
-      this.props.close()
+  useEffect(() => {
+    if (selected !== selectedOptions) {
+      setSelectedOptions(selected)
     }
-  }
+  }, [selected])
 
-  handleDeselect = item => {
-    this.props.onDeselect(item)
-  }
+  const options = search(originalOptions)
+  const listHeight = height - (hasFilter ? 32 : 0)
+  const currentIndex = getCurrentIndex()
+  const scrollToIndex = currentIndex === -1 ? 0 : currentIndex
 
-  assignSearchRef = ref => {
-    this.searchRef = ref
-  }
-
-  render() {
-    const {
-      options: originalOptions,
-      close,
-      closeOnSelect,
-      width,
-      height,
-      onSelect,
-      onDeselect,
-      onFilterChange,
-      selected,
-      hasFilter,
-      filterPlaceholder,
-      filterIcon,
-      optionSize,
-      renderItem,
-      optionsFilter,
-      isMultiSelect,
-      defaultSearchValue,
-      ...props
-    } = this.props
-    const options = this.search(originalOptions)
-    const listHeight = height - (hasFilter ? 32 : 0)
-    const currentIndex = this.getCurrentIndex()
-    const scrollToIndex = currentIndex === -1 ? 0 : currentIndex
-
-    return (
-      <Pane
-        height={height}
-        width={width}
-        display="flex"
-        flexDirection="column"
-        {...props}
-      >
-        {hasFilter && (
-          <TableHead>
-            <SearchTableHeaderCell
-              onChange={this.handleChange}
-              ref={this.assignSearchRef}
-              borderRight={null}
-              height={32}
-              placeholder={filterPlaceholder}
-              icon={filterIcon}
-            />
-          </TableHead>
-        )}
-        <Pane flex={1}>
-          <VirtualList
-            height={listHeight}
-            width="100%"
-            itemSize={optionSize}
-            itemCount={options.length}
-            overscanCount={20}
-            scrollToAlignment="auto"
-            scrollToIndex={scrollToIndex || undefined}
-            renderItem={({ index, style }) => {
-              const item = options[index]
-              const isSelected = this.isSelected(item)
-              return renderItem({
-                key: item.value,
-                label: item.label,
-                icon: item.icon,
-                style,
-                height: optionSize,
-                onSelect: () => this.handleSelect(item),
-                onDeselect: () => this.handleDeselect(item),
-                isSelectable: !isSelected || isMultiSelect,
-                isSelected,
-                disabled: item.disabled,
-                tabIndex: 0
-              })
-            }}
+  return (
+    <Pane
+      height={height}
+      width={width}
+      display="flex"
+      flexDirection="column"
+      {...rest}
+    >
+      {hasFilter && (
+        <TableHead backgroundColor={tokens.colors.gray50}>
+          <SearchTableHeaderCell
+            onChange={handleChange}
+            ref={setSearchRef}
+            borderRight={null}
+            height={32}
+            placeholder={filterPlaceholder}
+            icon={filterIcon}
           />
-        </Pane>
+        </TableHead>
+      )}
+      <Pane flex={1}>
+        <VirtualList
+          height={listHeight}
+          width="100%"
+          itemSize={optionSize}
+          itemCount={options.length}
+          overscanCount={20}
+          scrollToAlignment="auto"
+          scrollToIndex={scrollToIndex || undefined}
+          renderItem={({ index, style }) => {
+            const item = options[index]
+            const isItemSelected = isSelected(item)
+            return renderItem({
+              key: item.value,
+              label: item.label,
+              icon: item.icon,
+              style,
+              height: optionSize,
+              onSelect: () => handleSelect(item),
+              onDeselect: () => handleDeselect(item),
+              isSelectable: !isItemSelected || isMultiSelect,
+              isSelected: isItemSelected,
+              disabled: item.disabled,
+              tabIndex: 0
+            })
+          }}
+        />
       </Pane>
-    )
-  }
+    </Pane>
+  )
+})
+
+OptionsList.propTypes = {
+  options: PropTypes.arrayOf(OptionShapePropType),
+  close: PropTypes.func,
+  height: PropTypes.number,
+  width: PropTypes.number,
+
+  /**
+   * When true, multi select is accounted for.
+   */
+  isMultiSelect: PropTypes.bool,
+
+  /**
+   * When true, menu closes on option selection.
+   */
+  closeOnSelect: PropTypes.bool,
+
+  /**
+   * This holds the values of the options
+   */
+  selected: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  ),
+  onSelect: PropTypes.func,
+  onDeselect: PropTypes.func,
+  onFilterChange: PropTypes.func,
+  hasFilter: PropTypes.bool,
+  optionSize: PropTypes.number,
+  renderItem: PropTypes.func,
+  filterPlaceholder: PropTypes.string,
+  filterIcon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
+  optionsFilter: PropTypes.func,
+  defaultSearchValue: PropTypes.string
 }
+
+export default OptionsList

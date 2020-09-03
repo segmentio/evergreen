@@ -8,7 +8,7 @@ const FormFieldValidationMessage = memo(
     return (
       <Pane ref={ref} display="flex" {...props}>
         <ErrorIcon color="danger" marginTop={1} size={14} marginRight={8} />
-        <Paragraph marginTop={0} size={300} color="danger" role="alert">
+        <Paragraph marginTop={0} size={300} color="red500" role="alert">
           {children}
         </Paragraph>
       </Pane>
