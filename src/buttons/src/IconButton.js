@@ -2,11 +2,17 @@ import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { dimensions, spacing, position, layout } from 'ui-box'
 import { IconWrapper } from '../../icons/src/IconWrapper'
-import Button from './Button'
+import useButtonAppearance from '../../theme/src/hooks/useButtonAppearance'
+import Button, { getIconSizeForButton } from './Button'
 
 const IconButton = memo(
   forwardRef(function IconButton(props, ref) {
-    const { icon, iconSize, ...restProps } = props
+    const { icon, iconSize, size = 'medium', ...restProps } = props
+    // TODO figure out a better solution for dynamically relative values
+    const { boxProps } = useButtonAppearance({ size })
+    const relativeIconSize = getIconSizeForButton(
+      restProps.height || boxProps.height
+    )
 
     return (
       <Button
@@ -14,9 +20,14 @@ const IconButton = memo(
         paddingLeft={0}
         paddingRight={0}
         flex="none"
+        size={size}
         {...restProps}
       >
-        <IconWrapper icon={icon} color="currentColor" size={iconSize} />
+        <IconWrapper
+          icon={icon}
+          color="currentColor"
+          size={iconSize || relativeIconSize}
+        />
       </Button>
     )
   })

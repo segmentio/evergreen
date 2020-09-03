@@ -36,8 +36,6 @@ import { headings, text, fontFamilies, paragraph } from './typography'
  * These ARE REQUIRED for Evergreen to work.
  */
 import {
-  avatarColors,
-  badgeColors,
   getTextDropdownButtonClassName,
   getTableCellClassName,
   getRowClassName,
@@ -54,7 +52,7 @@ import {
  * ---
  * These ARE REQUIRED for Evergreen to work.
  */
-import { getIconSizeForIconButton, getElevation } from './theme-helpers'
+import { getElevation } from './theme-helpers'
 
 export default {
   // Foundational Styles.
@@ -65,9 +63,6 @@ export default {
   scales,
   tokens,
 
-  // Component Specific.
-  avatarColors,
-  badgeColors,
   getTextDropdownButtonClassName,
   getTableCellClassName,
   getRowClassName,
@@ -75,7 +70,7 @@ export default {
   getCodeProps,
 
   // Theme Helpers.
-  getIconSizeForIconButton,
+
   getElevation,
 
   // Component-specific

@@ -40,7 +40,7 @@ export const internalStyles = {
   whiteSpace: 'nowrap'
 }
 
-const getIconSizeForButton = height => {
+export const getIconSizeForButton = height => {
   if (height <= 28) return 12
   if (height <= 32) return 14
   if (height <= 40) return 16
