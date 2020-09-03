@@ -16,7 +16,7 @@ const baseStyle = {
 const baseState = '& label'
 const disabledState = '&[disabled]'
 const hoverState = '&:not([disabled]):hover'
-const selectedState = '&:not([disabled])[data-active="true"]'
+const selectedState = '&:not([disabled])[data-active]'
 const activeState = '&:not([disabled]):active'
 const focusState = '& input:focus + label'
 

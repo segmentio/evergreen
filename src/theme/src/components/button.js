@@ -1,9 +1,9 @@
 import { majorScale, minorScale } from '../../../scales'
-import { getDefaultControlStyles } from './shared'
+import { controlStyles } from '../shared'
 
-export default function getDefaultStyles(theme) {
+export default function getButtonStyles(theme) {
   const { tokens } = theme
-  const { disabled } = getDefaultControlStyles()
+  const disabled = controlStyles._disabled
 
   return {
     baseStyle: {
