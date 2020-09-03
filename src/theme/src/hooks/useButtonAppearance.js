@@ -1,72 +1,37 @@
 import { useMemo } from 'react'
-import { css } from 'glamor'
+import useStyleConfig from '../../../hooks/use-style-config'
 import getDefaultStyles from '../default-styles/buttons'
 import useTheme from '../useTheme'
 
-const base = {
-  WebkitFontSmoothing: 'antialiased',
-  WebkitAppearance: 'none',
-  MozAppearance: 'none',
-  verticalAlign: 'middle',
-  textDecoration: 'none',
-  border: '1px solid transparent',
-  outline: 'none',
-  cursor: 'pointer',
-  '&::-moz-focus-inner ': {
-    border: 0
-  }
+const pseudoSelectors = {
+  _active:
+    '&:not([disabled]):active, &:not([disabled])[aria-expanded="true"], &:not([disabled])[data-active]',
+  _disabled: '&[disabled]',
+  _focus: '&:not([disabled]):focus',
+  _focusAndActive:
+    '&:not([disabled]):focus:active, &:not([disabled])[aria-expanded="true"]:focus, &:not([disabled])[data-active]:focus',
+  _hover: '&:not([disabled]):hover'
 }
 
-const disabledState = `[disabled]`
-const hoverState = '&:not([disabled]):hover'
-const focusState = '&:not([disabled]):focus'
-const focusAndActiveState =
-  '&:not([disabled]):focus:active, &:not([disabled])[aria-expanded="true"]:focus, &:not([disabled])[data-active]:focus'
-const activeState =
-  '&:not([disabled]):active, &:not([disabled])[aria-expanded="true"], &:not([disabled])[data-active]'
-
-function getButtonStyles(theme, appearance) {
-  const { buttons: themeStyles } = theme
+function getButtonStyles(theme) {
+  const themeStyles = theme.buttons
   const defaultStyles = getDefaultStyles(theme)
+  // The way this merge happens means we always are shallowing picking themeStyles every time
+  // TODO consolidate this behavior, do we want component styles in the theme? or not?
   const buttonStyles = { ...defaultStyles, ...themeStyles }
-
-  const {
-    base: baseStyles = {},
-    disabled = {},
-    hover = {},
-    focus = {},
-    active = {},
-    focusAndActive = {}
-  } = (buttonStyles || {})[appearance] || {}
-
-  return {
-    ...base,
-    ...baseStyles,
-    [disabledState]: {
-      ...disabled
-    },
-    [hoverState]: {
-      ...hover
-    },
-    [focusState]: {
-      ...focus
-    },
-    [activeState]: {
-      ...active
-    },
-    [focusAndActiveState]: {
-      ...focusAndActive
-    }
-  }
+  return buttonStyles
 }
 
-function useButtonAppearance(appearance = 'default') {
+function useButtonAppearance(modifiers, internalStyles) {
   const theme = useTheme()
-  const className = useMemo(
-    () => css(getButtonStyles(theme, appearance)).toString(),
-    [appearance, theme]
+  const buttonStyleConfig = useMemo(() => getButtonStyles(theme), [theme])
+
+  return useStyleConfig(
+    buttonStyleConfig,
+    modifiers,
+    pseudoSelectors,
+    internalStyles
   )
-  return className
 }
 
 export default useButtonAppearance

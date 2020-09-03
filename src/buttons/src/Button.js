@@ -42,7 +42,7 @@ export const sizes = {
   }
 }
 
-export const styles = {
+export const internalStyles = {
   position: 'relative',
   fontWeight: 500,
   display: 'inline-flex',
@@ -94,7 +94,10 @@ const Button = memo(
 
     const theme = useTheme()
     const { tokens } = theme
-    const themedClassName = useButtonAppearance(appearance)
+    const { className: themedClassName, boxProps } = useButtonAppearance(
+      { appearance, size },
+      internalStyles
+    )
 
     const buttonSize = sizes[size] || sizes.medium
     const height = restProps.height || buttonSize.height
@@ -127,7 +130,7 @@ const Button = memo(
         height={height}
         lineHeight={`${height}px`}
         {...(isActive ? { 'data-active': true } : {})}
-        {...styles}
+        {...boxProps}
         {...restProps}
         disabled={disabled || isLoading}
       >

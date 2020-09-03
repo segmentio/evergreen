@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'
 import Box, { dimensions, spacing, position, layout } from 'ui-box'
 import { Text } from '../../typography'
 import { CaretDownIcon } from '../../icons'
-import { useTheme } from '../../theme'
 import useButtonAppearance from '../../theme/src/hooks/useButtonAppearance'
+
+const internalStyles = {
+  textTransform: 'default'
+}
 
 const getIconSizeForSelect = height => {
   if (height <= 28) return 12
@@ -32,9 +35,11 @@ const Select = memo(
       ...restProps
     } = props
 
-    const theme = useTheme()
-    const { tokens } = theme
-    const themedClassName = useButtonAppearance(appearance)
+    // TODO useSelectAppearance!
+    const { className: themedClassName, boxProps } = useButtonAppearance(
+      { appearance },
+      internalStyles
+    )
     const iconSize = getIconSizeForSelect(height)
     const iconMargin = height >= 36 ? 12 : 8
 
@@ -61,11 +66,12 @@ const Select = memo(
           disabled={disabled}
           aria-invalid={String(isInvalid)}
           size={300}
-          borderRadius={tokens.borderRadius}
-          textTransform="default"
+          // TODO move this into the `sizes` part of the style config object?
           paddingLeft={Math.round(height / 3.2)}
           // Provide enough space for auto-sizing select including the icon
+          // TODO move this into the `sizes` part of the style config object?
           paddingRight={iconMargin * 2 + iconSize}
+          {...boxProps}
         >
           {children}
         </Text>
