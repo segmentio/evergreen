@@ -151,7 +151,7 @@ const TagInput = memo(
 
     const { tokens } = useTheme()
     const themedContainerClassName = useTagInputAppearance()
-    const themedInputClassName = useInputAppearance('none')
+    const { className: themedInputClassName, boxProps } = useInputAppearance({ appearance: 'none' })
 
     return (
       <Box
@@ -176,6 +176,7 @@ const TagInput = memo(
           size={300}
           type="text"
           value={inputValue}
+          {...boxProps}
           {...inputProps}
           className={themedInputClassName}
           ref={inputRef}

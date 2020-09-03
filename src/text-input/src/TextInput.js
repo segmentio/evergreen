@@ -1,9 +1,8 @@
 import React, { forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { Text } from '../../typography'
+import Box from 'ui-box'
 import useInputAppearance from '../../theme/src/hooks/useInputAppearance'
-import { minorScale } from '../../scales'
 
 const TextInput = memo(
   forwardRef(function TextInput(props, ref) {
@@ -12,33 +11,30 @@ const TextInput = memo(
       required,
       placeholder,
       width = 280,
-      height = 32,
       disabled = false,
       isInvalid = false,
       spellCheck = true,
+      appearance = 'default',
+      size = 'medium',
       ...restProps
     } = props
 
-    const themedClassName = useInputAppearance()
+    const { className: themedClassName, boxProps } = useInputAppearance({ appearance, size })
 
     return (
-      <Text
+      <Box
         is="input"
         className={cx(themedClassName, className)}
         type="text"
-        size={300}
         width={width}
-        height={height}
         required={required}
         disabled={disabled}
         placeholder={placeholder}
-        paddingLeft={Math.round(height / 2.6)}
-        paddingRight={Math.round(height / 2.6)}
-        borderRadius={minorScale(1)}
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         {...(disabled ? { color: 'muted' } : {})}
         ref={ref}
+        {...boxProps}
         {...restProps}
       />
     )
