@@ -12,6 +12,7 @@ export default function getButtonStyles(theme) {
       MozAppearance: 'none',
       verticalAlign: 'middle',
       textDecoration: 'none',
+      fontFamily: tokens.fontFamilies.ui,
       border: '1px solid transparent',
       borderRadius: tokens.borderRadius,
       outline: 'none',
