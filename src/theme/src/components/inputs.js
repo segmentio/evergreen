@@ -1,4 +1,4 @@
-import { majorScale, minorScale } from '../../../scales'
+import { minorScale } from '../../../scales'
 
 export default function getInputStyles(theme) {
   const { tokens } = theme
