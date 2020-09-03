@@ -51,21 +51,17 @@ const getIconSizeForButton = height => {
 const Button = memo(
   forwardRef(function Button(props, ref) {
     const {
-      className,
-
-      size = 'medium',
-      isActive = false,
-      children,
-      disabled,
       appearance = 'default',
-      isLoading,
-
-      // Icons
-      iconBefore,
+      children,
+      className,
+      disabled,
       iconAfter,
-
+      iconBefore,
+      intent, // Unused for now... tbd
       is = 'button',
-
+      isActive = false,
+      isLoading,
+      size = 'medium',
       ...restProps
     } = props
 
