@@ -6,11 +6,10 @@ import React, { memo, forwardRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import cx from 'classnames'
-import { Text } from '../../typography'
+import { TextInput } from '../../text-input'
 import { useTheme } from '../../theme'
 import { majorScale } from '../../scales'
 import safeInvoke from '../../lib/safe-invoke'
-import useInputAppearance from '../../theme/src/hooks/useInputAppearance'
 import { useId } from '../../hooks'
 import useTagInputAppearance from '../../theme/src/hooks/useTagInputAppearance'
 import Tag from './Tag'
@@ -151,7 +150,6 @@ const TagInput = memo(
 
     const { tokens } = useTheme()
     const themedContainerClassName = useTagInputAppearance()
-    const { className: themedInputClassName, boxProps } = useInputAppearance({ appearance: 'none' })
 
     return (
       <Box
@@ -166,19 +164,16 @@ const TagInput = memo(
         onBlur={handleBlur}
       >
         {values.map(maybeRenderTag)}
-        <Text
-          is="input"
+        <TextInput
+          appearance="none"
           id={id}
-          color={disabled ? 'muted' : undefined}
           disabled={disabled}
           flexGrow="1"
           height={height - 4}
-          size={300}
+          width="auto"
           type="text"
           value={inputValue}
-          {...boxProps}
           {...inputProps}
-          className={themedInputClassName}
           ref={inputRef}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
