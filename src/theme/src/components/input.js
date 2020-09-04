@@ -9,7 +9,7 @@ export default function getInputStyles(theme) {
       MozAppearance: 'none',
       lineHeight: '12px',
       border: 'none',
-      borderRadius: '4px',
+      borderRadius: tokens.borderRadius,
       fontFamily: tokens.fontFamilies.ui
     },
 
@@ -43,7 +43,7 @@ export default function getInputStyles(theme) {
         }
       },
       none: {
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
 
         _invalid: {},
 
