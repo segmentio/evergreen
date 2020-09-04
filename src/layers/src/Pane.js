@@ -14,7 +14,7 @@ const Pane = memo(
     const {
       className,
 
-      // pulled out of props because we'll get them from the style hook
+      // Pulled out of props because we'll get them from the style hook
       background,
       elevation,
       hoverElevation,
