@@ -40,7 +40,6 @@ import {
   getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
-  getCodeProps,
   buttons,
   checkbox,
   inputs,
@@ -67,7 +66,6 @@ export default {
   getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
-  getCodeProps,
 
   // Theme Helpers.
 

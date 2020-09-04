@@ -40,7 +40,6 @@ import {
   getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
-  getCodeProps,
   buttons,
   inputs
 } from './component-specific'
@@ -65,7 +64,6 @@ export default {
   getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
-  getCodeProps,
 
   getElevation,
 
