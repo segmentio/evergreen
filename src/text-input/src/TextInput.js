@@ -20,6 +20,7 @@ const TextInput = memo(
     } = props
 
     const { className: themedClassName, boxProps } = useInputAppearance({ appearance, size })
+    const height = restProps.height || boxProps.height
 
     return (
       <Box
@@ -27,6 +28,7 @@ const TextInput = memo(
         className={cx(themedClassName, className)}
         type="text"
         width={width}
+        height={height}
         required={required}
         disabled={disabled}
         placeholder={placeholder}
