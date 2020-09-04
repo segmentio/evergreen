@@ -6,10 +6,10 @@ import { splitBoxProps } from 'ui-box'
 
 /**
  * @typedef {object} StateStyles
+ * @property {import('csstype').Properties} [_hover]
  * @property {import('csstype').Properties} [_active]
  * @property {import('csstype').Properties} [_disabled]
  * @property {import('csstype').Properties} [_focus]
- * @property {import('csstype').Properties} [_hover]
  * @property {import('csstype').Properties} [_invalid]
  */
 
@@ -79,20 +79,17 @@ export default function useStyleConfig(
   const classNameRef = useRef()
 
   return useMemo(() => {
+    // Split the resulting style object into ui-box-compatible props and the rest
+    const { matchedProps, remainingProps } = splitBoxProps(styles)
+
     /** @type {GlamorAndBoxStyle} */
-    const computedStyles = {}
+    const glamorStyles = {}
 
     // Swap out pseudo selector placeholders for their actual css selector strings
-    for (const k of Object.keys(styles)) {
+    for (const k of Object.keys(remainingProps)) {
       const key = k in pseudoSelectors ? pseudoSelectors[k] : k
-      computedStyles[key] = styles[k]
+      glamorStyles[key] = remainingProps[k]
     }
-
-    // Split the resulting style object into ui-box-compatible props and the rest
-    const {
-      matchedProps: boxProps,
-      remainingProps: glamorStyles
-    } = splitBoxProps(computedStyles)
 
     // Take all the "non-compatible" props and give those to glamor (since ui-box doesn't know how to handle them yet)
     if (!isEqual(glamorStylesRef.current, glamorStyles)) {
@@ -102,7 +99,7 @@ export default function useStyleConfig(
 
     return {
       className: classNameRef.current,
-      boxProps
+      boxProps: matchedProps
     }
   }, [styles, pseudoSelectors])
 }

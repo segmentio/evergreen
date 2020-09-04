@@ -1,9 +1,8 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
-import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { useTheme } from '../../theme'
+import usePaneAppearance from '../../theme/src/hooks/usePaneAppearance'
 
 const StringAndBoolPropType = PropTypes.oneOfType([
   PropTypes.string,
@@ -13,12 +12,13 @@ const StringAndBoolPropType = PropTypes.oneOfType([
 const Pane = memo(
   forwardRef(function Pane(props, ref) {
     const {
-      background,
+      className,
 
+      // Pulled out of props because we'll get them from the style hook
+      background,
       elevation,
       hoverElevation,
       activeElevation,
-
       border,
       borderTop,
       borderRight,
@@ -27,104 +27,15 @@ const Pane = memo(
 
       ...restProps
     } = props
-    const theme = useTheme()
 
-    function getHoverElevationStyle(hoverElevation, css) {
-      if (!Number.isInteger(hoverElevation)) return {}
-
-      return {
-        transitionDuration: '150ms',
-        transitionProperty: 'box-shadow, transform',
-        transitionTimingFunction: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-        ':hover': {
-          ...(css[':hover'] || {}),
-          transform: 'translateY(-2px)',
-          boxShadow: theme.elevations[hoverElevation]
-        }
-      }
-    }
-
-    function getActiveElevationStyle(activeElevation, css) {
-      if (!Number.isInteger(activeElevation)) return {}
-
-      return {
-        ':active': {
-          ...(css[':active'] || {}),
-          transform: 'translateY(-1px)',
-          boxShadow: theme.elevations[activeElevation]
-        }
-      }
-    }
-
-    function getBorderSideProperty({ borderSideProperty, border }) {
-      if (
-        Object.prototype.hasOwnProperty.call(
-          theme.colors.border,
-          borderSideProperty
-        )
-      ) {
-        return `1px solid ${theme.colors.border[borderSideProperty]}`
-      }
-
-      if (borderSideProperty === true) {
-        return `1px solid ${theme.colors.border.default}`
-      }
-
-      if (borderSideProperty === false) {
-        return null
-      }
-
-      if (Object.prototype.hasOwnProperty.call(theme.colors.border, border)) {
-        return `1px solid ${theme.colors.border[border]}`
-      }
-
-      if (border === true) {
-        return `1px solid ${theme.colors.border.default}`
-      }
-
-      return borderSideProperty
-    }
-
-    const elevationStyle = theme.getElevation(elevation)
-    const hoverElevationStyle = getHoverElevationStyle(hoverElevation, css)
-    const activeElevationStyle = getActiveElevationStyle(activeElevation, css)
-
-    const [_borderTop, _borderRight, _borderBottom, _borderLeft] = [
-      borderTop,
-      borderRight,
-      borderBottom,
-      borderLeft
-    ].map(borderSideProperty =>
-      getBorderSideProperty({ borderSideProperty, border })
-    )
-
-    // NOTE: Move to tokens - otherwise, this is a breaking change
-    const themedBackground = Object.prototype.hasOwnProperty.call(
-      theme.colors.background,
-      background
-    )
-      ? theme.colors.background[background]
-      : background
-
-    const className = cx(
-      props.className,
-      css({
-        ...hoverElevationStyle,
-        ...activeElevationStyle
-      }).toString()
-    )
+    const { className: themedClassName, boxProps } = usePaneAppearance(props)
 
     return (
       <Box
         ref={ref}
-        borderTop={_borderTop}
-        borderRight={_borderRight}
-        borderBottom={_borderBottom}
-        borderLeft={_borderLeft}
-        boxShadow={elevationStyle}
-        background={themedBackground}
+        className={cx(className, themedClassName)}
+        {...boxProps}
         {...restProps}
-        className={className}
       />
     )
   })
