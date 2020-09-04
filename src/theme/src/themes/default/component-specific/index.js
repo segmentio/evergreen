@@ -1,7 +1,5 @@
 // Simple Properties.
 export { default as overlayBackgroundColor } from './overlayBackgroundColor'
-export { default as avatarColors } from './avatarColors'
-export { default as badgeColors } from './badgeColors'
 export { default as spinnerColor } from './spinnerColor'
 
 export { default as getTextDropdownButtonClassName } from './getTextDropdownButtonClassName'

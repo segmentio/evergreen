@@ -29,7 +29,7 @@ storiesOf('badges', module)
     <ThemeConsumer>
       {theme => (
         <Box style={{ ...wrapperStyles }}>
-          {theme.badgeColors.map(color => (
+          {Object.keys(theme.tokens.fills).map(color => (
             <Box key={color}>
               <Badge color={color} {...baseStyles}>
                 {color}
@@ -47,7 +47,7 @@ storiesOf('badges', module)
     <ThemeConsumer>
       {theme => (
         <Box style={{ ...wrapperStyles }}>
-          {theme.badgeColors.map((color, index) => {
+          {Object.keys(theme.tokens.fills).map((color, index) => {
             return (
               <Box
                 key={color}
