@@ -32,7 +32,7 @@ class Manager extends React.Component {
 storiesOf('text-input', module)
   .add('TextInput', () => (
     <div>
-      {['default', 'neutral'].map(appearance => (
+      {['default', 'none'].map(appearance => (
         <Box key={appearance} padding={40} float="left">
           <Heading marginBottom={24}>Appearance: {appearance}</Heading>
           <Box marginBottom={24} width={360}>
@@ -73,28 +73,22 @@ storiesOf('text-input', module)
             />
           </Box>
           <Box marginBottom={24}>
-            <Label htmlFor="24" size={300} display="block" marginBottom={4}>
-              Height 24
+            <Label htmlFor="small" size={300} display="block" marginBottom={4}>
+              Small
             </Label>
-            <TextInput appearance={appearance} height={24} name="24" id="24" />
+            <TextInput appearance={appearance} size="small" name="small" id="small" />
           </Box>
           <Box marginBottom={24}>
-            <Label htmlFor="28" size={300} display="block" marginBottom={4}>
-              Height 28
+            <Label htmlFor="medium" size={300} display="block" marginBottom={4}>
+              Medium
             </Label>
-            <TextInput appearance={appearance} height={28} name="28" id="28" />
+            <TextInput appearance={appearance} name="medium" id="medium" />
           </Box>
           <Box marginBottom={24}>
-            <Label htmlFor="36" size={400} display="block" marginBottom={4}>
-              Height 36
+            <Label htmlFor="large" size={400} display="block" marginBottom={4}>
+              Large
             </Label>
-            <TextInput appearance={appearance} height={36} name="36" id="36" />
-          </Box>
-          <Box marginBottom={24}>
-            <Label htmlFor="40" size={500} display="block" marginBottom={4}>
-              Height 40
-            </Label>
-            <TextInput appearance={appearance} height={40} name="40" id="40" />
+            <TextInput appearance={appearance} size="large" name="large" id="large" />
           </Box>
         </Box>
       ))}

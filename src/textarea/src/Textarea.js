@@ -1,7 +1,7 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { Text } from '../../typography'
+import Box from 'ui-box'
 import { minorScale } from '../../scales'
 import useInputAppearance from '../../theme/src/hooks/useInputAppearance'
 
@@ -26,14 +26,13 @@ const Textarea = memo(
       ...restProps
     } = props
 
-    const themedClassName = useInputAppearance()
+    const { className: themedClassName, boxProps } = useInputAppearance()
 
     return (
-      <Text
+      <Box
         is="textarea"
         ref={ref}
         className={cx(themedClassName, className)}
-        size={300}
         width={width}
         height={height}
         required={required}
@@ -44,6 +43,7 @@ const Textarea = memo(
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
         {...(disabled ? { color: 'muted' } : {})}
+        {...boxProps}
         {...styles}
         {...restProps}
       />
