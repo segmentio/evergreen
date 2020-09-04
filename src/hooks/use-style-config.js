@@ -80,7 +80,7 @@ export default function useStyleConfig(
 
   return useMemo(() => {
     // Split the resulting style object into ui-box-compatible props and the rest
-    const { matchedProps: boxProps, remainingProps } = splitBoxProps(styles)
+    const { matchedProps, remainingProps } = splitBoxProps(styles)
 
     /** @type {GlamorAndBoxStyle} */
     const glamorStyles = {}
@@ -99,7 +99,7 @@ export default function useStyleConfig(
 
     return {
       className: classNameRef.current,
-      boxProps
+      boxProps: matchedProps
     }
   }, [styles, pseudoSelectors])
 }
