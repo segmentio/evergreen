@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import useStyleConfig from '../../../hooks/use-style-config'
-import getInputStyles from '../components/inputs'
+import getInputStyles from '../components/input'
 import useTheme from '../useTheme'
 
 const pseudoSelectors = {
