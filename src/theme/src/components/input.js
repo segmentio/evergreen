@@ -5,12 +5,15 @@ export default function getInputStyles(theme) {
 
   return {
     baseStyle: {
-      WebkitAppearance: 'none',
-      MozAppearance: 'none',
-      lineHeight: '12px',
       border: 'none',
       borderRadius: tokens.borderRadius,
-      fontFamily: tokens.fontFamilies.ui
+      fontFamily: tokens.fontFamilies.ui,
+      lineHeight: '12px',
+      MozAppearance: 'none',
+      outline: 'none',
+      textDecoration: 'none',
+      WebkitAppearance: 'none',
+      WebkitFontSmoothing: 'antialiased'
     },
 
     appearances: {
@@ -31,7 +34,8 @@ export default function getInputStyles(theme) {
 
         _disabled: {
           cursor: 'not-allowed',
-          backgroundColor: tokens.colors.gray100
+          backgroundColor: tokens.colors.gray100,
+          color: tokens.colors.muted
         },
 
         _placeholder: {
@@ -56,7 +60,8 @@ export default function getInputStyles(theme) {
         },
 
         _disabled: {
-          backgroundColor: tokens.colors.gray100
+          backgroundColor: tokens.colors.gray100,
+          color: tokens.colors.muted
         }
       }
     },
