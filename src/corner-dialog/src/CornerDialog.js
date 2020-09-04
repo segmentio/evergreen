@@ -1,5 +1,6 @@
 import React, { memo, useState, useEffect, useCallback } from 'react'
 import { css } from 'glamor'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import { Pane, Card } from '../../layers'
@@ -117,6 +118,11 @@ const CornerDialog = memo(function CornerDialog(props) {
     return null
   }
 
+  const {
+    className: containerClassName,
+    ...remainingContainerProps
+  } = containerProps
+
   return (
     <Portal>
       <Transition
@@ -133,7 +139,7 @@ const CornerDialog = memo(function CornerDialog(props) {
             backgroundColor="white"
             elevation={4}
             width={width}
-            css={animationStyles}
+            className={cx(css(animationStyles).toString(), containerClassName)}
             data-state={state}
             padding={32}
             position="fixed"
@@ -142,7 +148,7 @@ const CornerDialog = memo(function CornerDialog(props) {
                 ? position
                 : positions.BOTTOM_RIGHT
             ]}
-            {...containerProps}
+            {...remainingContainerProps}
           >
             <Pane display="flex" alignItems="center" marginBottom={12}>
               <Heading is="h4" size={600} flex="1">

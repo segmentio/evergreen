@@ -1,0 +1,27 @@
+import MigrationDocsLayout from '../../components/MigrationDocsLayout'
+
+export default MigrationDocsLayout
+
+## Evergreen v6 Migration Guide
+
+Evergreen v6 is one of the biggest releases of Evergreen yet. We've spent a lot of timing thinking about how to let consumers extend Evergreen,
+and as a result have made quite a few changes to how you might use it. Please follow the guide below, and reach out via GitHub Issues if there's anything
+that you're seeing that we might have missed!
+
+### Breaking Changes
+
+- [No more `css` prop on `<Pane />`](#css-pane)
+
+No more `css` prop on `<Pane />` {#css-pane}
+
+Previously, `<Pane />` had a `css` prop, which allowed consumers to write arbitrary css styles (including composing pseudoselectors) and pass those
+through to the underlying `<Pane />` element.
+
+With this removed, we encourage either using the standard Evergreen components directly, or taking a CSS-in-JS route to adding those styles previously.
+
+```diff static
+ const MyComponent = () => {
+-  return <Pane css={ {':hover': { backgroundColor: 'red' }}} />
++  return <Pane className={backgroundRedClass} />
+ }
+```

@@ -156,7 +156,7 @@ const SideSheet = memo(function SideSheet(props) {
         <Pane
           width={width}
           {...paneProps[position]}
-          css={animationStylesClass[position]}
+          className={css(animationStylesClass[position]).toString()}
           data-state={state}
         >
           <SheetClose

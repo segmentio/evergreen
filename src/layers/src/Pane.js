@@ -1,6 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
-import { css as glamorCss } from 'glamor'
+import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useTheme } from '../../theme'
@@ -9,8 +9,6 @@ const StringAndBoolPropType = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.bool
 ])
-
-const emptyObject = {}
 
 const Pane = memo(
   forwardRef(function Pane(props, ref) {
@@ -27,7 +25,6 @@ const Pane = memo(
       borderBottom,
       borderLeft,
 
-      css = emptyObject,
       ...restProps
     } = props
     const theme = useTheme()
@@ -111,8 +108,7 @@ const Pane = memo(
 
     const className = cx(
       props.className,
-      glamorCss({
-        ...css,
+      css({
         ...hoverElevationStyle,
         ...activeElevationStyle
       }).toString()
