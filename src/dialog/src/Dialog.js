@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
@@ -184,6 +185,11 @@ const Dialog = memo(function Dialog({
     )
   }
 
+  const {
+    className: containerClassName,
+    remainingContainerProps
+  } = containerProps
+
   return (
     <Overlay
       isShown={isShown}
@@ -212,9 +218,9 @@ const Dialog = memo(function Dialog({
           marginY={topOffsetWithUnit}
           display="flex"
           flexDirection="column"
-          css={animationStyles}
+          className={cx(css(animationStyles).toString(), containerClassName)}
           data-state={state}
-          {...containerProps}
+          {...remainingContainerProps}
         >
           {renderHeader(close)}
 
