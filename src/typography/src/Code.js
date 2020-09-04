@@ -1,26 +1,21 @@
 import React, { forwardRef, memo } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
-import { useTheme } from '../../theme'
+import useCodeAppearance from '../../theme/src/hooks/useCodeAppearance'
 import Text from './Text'
 
 const Code = memo(
   forwardRef(function Code(props, ref) {
-    const theme = useTheme()
     const { className, appearance = 'default', ...restProps } = props
 
-    const {
-      className: themedClassName = '',
-      ...themeProps
-    } = theme.getCodeProps(appearance)
+    const { boxProps } = useCodeAppearance({ appearance })
 
     return (
       <Text
         is="code"
         ref={ref}
-        className={cx(className, themedClassName)}
+        className={className}
         fontFamily="mono"
-        {...themeProps}
+        {...boxProps}
         {...restProps}
       />
     )

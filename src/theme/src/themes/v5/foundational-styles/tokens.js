@@ -267,6 +267,8 @@ const fills = {
 // Lifted from v5 scales
 const spinnerColor = 'rgba(67, 90, 111, 0.47)'
 const overlayBackgroundColor = 'rgba(67, 90, 111, 0.7)'
+const codeBackgroundColor = 'rgba(16, 112, 202, 0.06)'
+const codeBorderColor = 'rgba(16, 112, 202, 0.14)'
 
 export default {
   colors,
@@ -276,6 +278,8 @@ export default {
   headings,
   spinnerColor,
   overlayBackgroundColor,
+  codeBackgroundColor,
+  codeBorderColor,
   fills,
   selectedOptionColor: colors.blue500,
   // Border radius used across input components
