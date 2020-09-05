@@ -1,49 +1,42 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import { dimensions, spacing, position, layout } from 'ui-box'
+import cx from 'classnames'
+import Box, { dimensions, spacing, position, layout } from 'ui-box'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { CaretDownIcon } from '../../icons'
-import { Text } from '../../typography'
 import { Spinner } from '../../spinner'
-import { useTheme } from '../../theme'
+import useTextDropdownButtonAppearance from '../../theme/src/hooks/useTextDropdownButtonApperance'
 import { internalStyles as styles } from './Button'
 
 const TextDropdownButton = memo(
   forwardRef(function TextDropdownButton(props, ref) {
-    const theme = useTheme()
     const {
       className,
-      intent,
-      height,
+      size = 'medium',
       isActive = false,
       children,
       disabled,
       appearance,
       isLoading,
 
-      paddingRight,
-      paddingLeft,
-      paddingTop,
-      paddingBottom,
-
       icon = CaretDownIcon,
       ...restProps
     } = props
 
-    const themedClassName = theme.getTextDropdownButtonClassName()
+    const {
+      boxProps,
+      className: themedClassName
+    } = useTextDropdownButtonAppearance({ appearance: 'default', size }, styles)
+
+    const { height } = boxProps
 
     return (
-      <Text
+      <Box
         is="button"
         ref={ref}
-        className={themedClassName}
-        paddingX={4}
-        marginX={-4}
-        paddingY={2}
-        marginY={-2}
-        size={300}
+        className={cx(themedClassName, className)}
         data-active={isActive || undefined}
-        {...styles}
+        {...boxProps}
         {...restProps}
         disabled={disabled}
       >
@@ -56,7 +49,7 @@ const TextDropdownButton = memo(
         )}
         {children}
         <IconWrapper icon={icon} marginLeft={2} color="default" size={12} />
-      </Text>
+      </Box>
     )
   })
 )

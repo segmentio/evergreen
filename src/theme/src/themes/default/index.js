@@ -36,7 +36,6 @@ import { headings, text, fontFamilies, paragraph } from './typography'
  * These ARE REQUIRED for Evergreen to work.
  */
 import {
-  getTextDropdownButtonClassName,
   getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
@@ -60,7 +59,6 @@ export default {
   scales,
   tokens,
 
-  getTextDropdownButtonClassName,
   getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
