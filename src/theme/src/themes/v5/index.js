@@ -36,7 +36,6 @@ import { headings, text, fontFamilies, paragraph } from './typography'
  * These ARE REQUIRED for Evergreen to work.
  */
 import {
-  getTextDropdownButtonClassName,
   getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
@@ -45,13 +44,6 @@ import {
   inputs,
   segmentedControl
 } from './component-specific'
-
-/**
- * Theme Helpers.
- * ---
- * These ARE REQUIRED for Evergreen to work.
- */
-import { getElevation } from './theme-helpers'
 
 export default {
   // Foundational Styles.
@@ -62,14 +54,9 @@ export default {
   scales,
   tokens,
 
-  getTextDropdownButtonClassName,
   getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
-
-  // Theme Helpers.
-
-  getElevation,
 
   // Component-specific
   buttons,

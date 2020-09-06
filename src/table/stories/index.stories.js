@@ -75,7 +75,7 @@ storiesOf('table', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Table.Cell>Table.Cell</Table.Cell>
+      <Table.Cell isSelectable>Table.Cell</Table.Cell>
     </Box>
   ))
   .add('Table.TextCell', () => (

@@ -36,19 +36,11 @@ import { headings, text, fontFamilies, paragraph } from './typography'
  * These ARE REQUIRED for Evergreen to work.
  */
 import {
-  getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
   buttons,
   inputs
 } from './component-specific'
-
-/**
- * Theme Helpers.
- * ---
- * These ARE REQUIRED for Evergreen to work.
- */
-import { getElevation } from './theme-helpers'
 
 export default {
   // Foundational Styles.
@@ -59,11 +51,8 @@ export default {
   scales,
   tokens,
 
-  getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
-
-  getElevation,
 
   inputs,
   buttons,
