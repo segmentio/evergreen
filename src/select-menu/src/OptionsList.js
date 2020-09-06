@@ -140,15 +140,23 @@ export default class OptionsList extends PureComponent {
     }
 
     return fuzzyFilter(options, searchValue, { key: 'label' })
+
   }
 
   getCurrentIndex = () => {
     const { selected } = this.props
+
+    if(selected.length <= 0) {
+      return -1
+    }
+
     const options = this.getFilteredOptions()
 
-    return options.findIndex(
+    const currentIndex = options.findIndex(
       option => option.value === selected[selected.length - 1]
     )
+
+    return currentIndex
   }
 
   getFilteredOptions() {
@@ -159,18 +167,22 @@ export default class OptionsList extends PureComponent {
 
   handleKeyDown = e => {
     if (e.key === 'ArrowUp') {
+      e.preventDefault()
       this.handleArrowUp()
     }
 
     if (e.key === 'ArrowDown') {
+      e.preventDefault()
       this.handleArrowDown()
     }
 
     if (e.key === 'Enter') {
+      e.preventDefault()
       this.handleEnter()
     }
 
     if (e.key === 'Escape') {
+      e.preventDefault()
       this.props.close()
     }
   }
@@ -179,27 +191,63 @@ export default class OptionsList extends PureComponent {
     const { onSelect } = this.props
     const options = this.getFilteredOptions()
 
-    let nextIndex = this.getCurrentIndex() - 1
+    const currentIndex = this.getCurrentIndex()
+    let nextIndex = currentIndex - 1
 
     if (nextIndex < 0) {
       nextIndex = options.length - 1
     }
 
-    if (this.isSelected(options[nextIndex])) {
+    let loopCount = 0
+
+    // Loop to skip disabled items
+    while(loopCount <= options.length && options[nextIndex] && options[nextIndex].disabled) {
+      loopCount++
+      nextIndex--
+      if (nextIndex < 0) {
+        nextIndex = options.length - 1
+      }
+    }
+
+    // Quit if the only item left in the list is disabled
+    if(options[nextIndex] && options[nextIndex].disabled) {
       return
     }
 
-    onSelect(options[nextIndex])
+    if (!this.isSelected(options[nextIndex])) {
+      onSelect(options[nextIndex])
+    }
   }
 
   handleArrowDown = () => {
     const { onSelect } = this.props
     const options = this.getFilteredOptions()
 
-    let nextIndex = this.getCurrentIndex() + 1
+    const currentIndex = this.getCurrentIndex()
+    let nextIndex = currentIndex + 1
+
+    if (currentIndex === -1) {
+      nextIndex = 0
+    }
 
     if (nextIndex === options.length) {
       nextIndex = 0
+    }
+
+    let loopCount = 0
+
+    // Loop to skip disabled items
+    while(loopCount <= options.length && options[nextIndex] && options[nextIndex].disabled) {
+      loopCount++
+      nextIndex++
+      if (nextIndex === options.length) {
+        nextIndex = 0
+      }
+    }
+
+    // Quit if the only item left in the list is disabled
+    if(options[nextIndex] && options[nextIndex].disabled) {
+      return
     }
 
     if (!this.isSelected(options[nextIndex])) {
@@ -268,7 +316,12 @@ export default class OptionsList extends PureComponent {
     const options = this.search(originalOptions)
     const listHeight = height - (hasFilter ? 32 : 0)
     const currentIndex = this.getCurrentIndex()
-    const scrollToIndex = currentIndex === -1 ? 0 : currentIndex
+    let scrollToIndex = currentIndex === -1 ? 0 : currentIndex
+
+    // VirtualList complains if options is [] and scrollIndex is defined
+    if(options.length === 0 && scrollToIndex <= 0) {
+      scrollToIndex = undefined
+    }
 
     return (
       <Pane
@@ -298,7 +351,7 @@ export default class OptionsList extends PureComponent {
             itemCount={options.length}
             overscanCount={20}
             scrollToAlignment="auto"
-            scrollToIndex={scrollToIndex || undefined}
+            scrollToIndex={scrollToIndex}
             renderItem={({ index, style }) => {
               const item = options[index]
               const isSelected = this.isSelected(item)

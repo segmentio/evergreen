@@ -7,7 +7,7 @@ import { Text } from '../../typography'
 import { Pane } from '../../layers'
 import { TextInput } from '../../text-input'
 import { PeopleIcon } from '../../icons'
-import options, { optionsWithIcons } from './starwars-options'
+import options, { optionsWithIcons, disabledOptions } from './starwars-options'
 import Manager from './Manager'
 import { SelectMenu } from '..'
 
@@ -56,6 +56,20 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             onSelect={item => setState({ selected: item.value })}
           >
             <Button>Options with icons</Button>
+          </SelectMenu>
+        )}
+      </Manager>
+    </Box>
+    <Box marginBottom={24}>
+      <Manager>
+        {({ setState, state }) => (
+          <SelectMenu
+            title="Select name"
+            options={disabledOptions}
+            selected={state.selected}
+            onSelect={item => setState({ selected: item.value })}
+          >
+            <Button>Disabled Options</Button>
           </SelectMenu>
         )}
       </Manager>
