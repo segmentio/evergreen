@@ -2,6 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Box from 'ui-box'
 import Component from '@reactions/component'
+import { majorScale } from '../../scales'
 import { Heading } from '../../typography'
 import { Pane } from '../../layers'
 import { SegmentedControl } from '../../segmented-control'
@@ -247,9 +248,15 @@ buttonsStory.add('Button types', () => (
 ))
 
 buttonsStory.add('TextDropdownButton', () => (
-  <Box padding={40}>
-    <TextDropdownButton>Table Header</TextDropdownButton>
-  </Box>
+  <>
+    <Box padding={40}>
+      <Heading marginY={majorScale(2)}> Default props </Heading>
+      <TextDropdownButton>Table Header</TextDropdownButton>
+
+      <Heading marginY={majorScale(2)}> Is Loading </Heading>
+      <TextDropdownButton isLoading>Table Header</TextDropdownButton>
+    </Box>
+  </>
 ))
 
 buttonsStory.add('IconButton', () => (
