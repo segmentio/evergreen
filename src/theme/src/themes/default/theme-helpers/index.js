@@ -1,5 +1,5 @@
 import themedProperty from '../utils/themedProperty'
-import { colors, elevations } from '../foundational-styles'
+import { colors } from '../foundational-styles'
 import { fontFamilies, headings, paragraph, text } from '../typography'
 
 /**
@@ -69,18 +69,6 @@ const getBackground = background => {
    * Return one of theme presets or the original value.
    */
   return themedProperty(colors.background, background)
-}
-
-/**
- * Get box-shadow (elevation).
- * @param {string} level — level of elevation.
- * @return {string} elevation box-shadow.
- */
-const getElevation = level => {
-  /**
-   * There is no fallback, undefined will be returned.
-   */
-  return elevations[level]
 }
 
 /**
@@ -161,7 +149,6 @@ export {
   getIconSizeForSelect,
   getIconSizeForIconButton,
   getBackground,
-  getElevation,
   getIconColor,
   getHeadingStyle,
   getTextStyle,

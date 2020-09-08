@@ -43,13 +43,6 @@ import {
   inputs
 } from './component-specific'
 
-/**
- * Theme Helpers.
- * ---
- * These ARE REQUIRED for Evergreen to work.
- */
-import { getElevation } from './theme-helpers'
-
 export default {
   // Foundational Styles.
   colors,
@@ -62,8 +55,6 @@ export default {
   getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
-
-  getElevation,
 
   inputs,
   buttons,
