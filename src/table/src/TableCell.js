@@ -2,10 +2,10 @@ import React, { memo, forwardRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { toaster } from '../../toaster'
-import { useTheme } from '../../theme'
 import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
 import { useMergedRef } from '../../hooks'
+import useTableCellAppearance from '../../theme/src/hooks/useTableCellAppearance'
 import { TableRowConsumer } from './TableRowContext'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
 
@@ -43,19 +43,9 @@ const TableCell = memo(
       arrowKeysOverrides,
       ...rest
     } = props
-    const theme = useTheme()
+
     const [cellRef, setCellRef] = useState(null)
     const handleRef = useMergedRef(setCellRef, forwardedRef)
-
-    const styles = {
-      paddingX: 12,
-      boxSizing: 'border-box',
-      flex: 1,
-      display: 'flex',
-      alignItems: 'center',
-      flexShrink: 0,
-      overflow: 'hidden'
-    }
 
     const handleKeyDown = e => {
       const { arrowKeysOverrides = {} } = props
@@ -89,7 +79,9 @@ const TableCell = memo(
       safeInvoke(onKeyDown, e)
     }
 
-    const themedClassName = theme.getTableCellClassName(appearance)
+    const { boxProps, className: themedClassName } = useTableCellAppearance({
+      appearance
+    })
 
     return (
       <TableRowConsumer>
@@ -103,7 +95,7 @@ const TableCell = memo(
               data-isselectable={isSelectable}
               onClick={onClick}
               onKeyDown={handleKeyDown}
-              {...styles}
+              {...boxProps}
               {...rest}
             >
               {children}
