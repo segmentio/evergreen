@@ -13,6 +13,7 @@ export default function getCodeStyles(theme) {
         paddingRight: 6,
         paddingTop: 3,
         paddingBottom: 3,
+        // TODO source from radii token?
         borderRadius: 2
       }
     }

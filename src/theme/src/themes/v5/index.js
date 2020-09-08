@@ -24,16 +24,11 @@ import {
 
 /**
  * Typography.
- * ---
- * The following properties are NOT REQUIRED by Evergreen.
- * It's exposed for convenience and documentation.
  */
 import { headings, text, fontFamilies, paragraph } from './typography'
 
 /**
  * Component Specific.
- * ---
- * These ARE REQUIRED for Evergreen to work.
  */
 import {
   getTableCellClassName,

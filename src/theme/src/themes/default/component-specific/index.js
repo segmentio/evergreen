@@ -1,4 +1,3 @@
-export { default as getTextDropdownButtonClassName } from './getTextDropdownButtonClassName'
 export { default as getTabClassName } from './getTabClassName'
 export { default as getRowClassName } from './getRowClassName'
 export { default as getMenuItemClassName } from './getMenuItemClassName'
