@@ -83,8 +83,6 @@ const TableCell = memo(
       appearance
     })
 
-    console.log(boxProps, themedClassName)
-
     return (
       <TableRowConsumer>
         {height => {
