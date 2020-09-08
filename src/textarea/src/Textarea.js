@@ -1,7 +1,7 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import Box from 'ui-box'
+import Box, { spacing, dimensions, position, layout } from 'ui-box'
 import { minorScale } from '../../scales'
 import useInputAppearance from '../../theme/src/hooks/useInputAppearance'
 
@@ -53,9 +53,24 @@ const Textarea = memo(
 
 Textarea.propTypes = {
   /**
-   * Composes the Text component as the base.
+   * Composes the dimensions spec from the Box primitive.
    */
-  ...Text.propTypes,
+  ...dimensions.propTypes,
+
+  /**
+   * Composes the spacing spec from the Box primitive.
+   */
+  ...spacing.propTypes,
+
+  /**
+   * Composes the position spec from the Box primitive.
+   */
+  ...position.propTypes,
+
+  /**
+   * Composes the layout spec from the Box primitive.
+   */
+  ...layout.propTypes,
 
   /**
    * Makes the textarea element required.
