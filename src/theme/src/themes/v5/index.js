@@ -31,7 +31,6 @@ import { headings, text, fontFamilies, paragraph } from './typography'
  * Component Specific.
  */
 import {
-  getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
   buttons,
@@ -49,7 +48,6 @@ export default {
   scales,
   tokens,
 
-  getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
 
