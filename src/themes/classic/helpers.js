@@ -1,5 +1,5 @@
 import tinycolor from 'tinycolor2'
-import { Intent } from '../../../../constants'
+import { Intent } from '../../constants'
 import colors from './foundational-styles/colors'
 
 /**
