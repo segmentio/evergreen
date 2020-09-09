@@ -65,9 +65,9 @@ export {
   ThemeProvider,
   ThemeConsumer,
   withTheme,
-  useTheme,
-  defaultTheme
+  useTheme
 } from './theme'
+export { defaultTheme, classicTheme } from './themes'
 export { Textarea, TextareaField } from './textarea'
 export { toaster } from './toaster'
 export { Tooltip } from './tooltip'
