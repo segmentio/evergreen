@@ -1,4 +1,3 @@
-export { default as defaultTheme } from './src/themes/default'
 export {
   default as ThemeContext,
   ThemeProvider,
