@@ -1,9 +1,8 @@
 import useTheme from '../useTheme'
 
 function useBadgeAppearance({ color, hashValue }) {
-  const {
-    tokens: { fills }
-  } = useTheme()
+  const theme = useTheme()
+  const { fills } = theme.tokens
 
   if (color === 'automatic') {
     const fillKeys = Object.keys(fills)
