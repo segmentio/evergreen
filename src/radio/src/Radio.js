@@ -40,7 +40,7 @@ const Radio = memo(
       ...rest
     } = props
 
-    const themedClassName = useCheckboxAppearance(appearance)
+    const { className: themedClassName, boxProps } = useCheckboxAppearance({ appearance })
 
     return (
       <Box
@@ -64,6 +64,7 @@ const Radio = memo(
           disabled={disabled}
           aria-invalid={isInvalid}
           required={isRequired}
+          {...boxProps}
         />
         <Box
           boxSizing="border-box"

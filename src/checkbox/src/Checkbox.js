@@ -60,7 +60,7 @@ const Checkbox = memo(
       }
     }, [ref, indeterminate])
 
-    const themedClassName = useCheckboxAppearance(appearance)
+    const { className: themedClassName, boxProps } = useCheckboxAppearance({ appearance })
 
     return (
       <Box
@@ -83,6 +83,7 @@ const Checkbox = memo(
           disabled={disabled}
           aria-invalid={isInvalid}
           ref={callbackRef}
+          {...boxProps}
         />
         <Box
           boxSizing="border-box"

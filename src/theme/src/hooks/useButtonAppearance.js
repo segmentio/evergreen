@@ -17,7 +17,7 @@ const pseudoSelectors = {
 function useButtonAppearance(modifiers, internalStyles) {
   const theme = useTheme()
   const buttonStyles = useMemo(() => getButtonStyles(theme), [theme])
-
+  
   return useStyleConfig(
     buttonStyles,
     modifiers,
