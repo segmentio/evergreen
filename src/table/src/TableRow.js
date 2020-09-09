@@ -15,7 +15,6 @@ const TableRow = memo(
       className,
       height = 64,
       children,
-      intent = 'none',
       appearance = 'default',
       tabIndex = -1,
 
@@ -127,11 +126,6 @@ TableRow.propTypes = {
    * Manually set the TableRow to be highlighted.
    */
   isHighlighted: PropTypes.bool,
-
-  /**
-   * The intent of the alert.
-   */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
 
   /**
    * The appearance of the table row. Default theme only support default.
