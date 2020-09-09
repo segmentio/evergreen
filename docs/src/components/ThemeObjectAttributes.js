@@ -19,28 +19,6 @@ const editorTheme = {
 
 const attributes = [
   {
-    name: 'avatarColors',
-    required: true,
-    type: TYPES.arrayOf(TYPES.STRING),
-    description: () => (
-      <span>
-        Array of colors that correleate to the keys in the <code>fills</code>{' '}
-        attribute. These colors will color the <code>Avatar</code> component.
-      </span>
-    )
-  },
-  {
-    name: 'badgeColors',
-    required: true,
-    type: TYPES.arrayOf(TYPES.STRING),
-    description: () => (
-      <span>
-        Array of colors that correleate to the keys in the <code>fills</code>{' '}
-        attribute. These colors will color the <code>Badge</code> component.
-      </span>
-    )
-  },
-  {
     name: 'fills',
     required: true,
     type: TYPES.objectOf(TYPES.OBJECT),
@@ -88,31 +66,7 @@ render(null)`}
     )
   }
 ]
-/*
-OverlayBackgroundColor,
-getBadgeClassName,
-getButtonClassName,
-getLinkClassName,
-getCheckboxClassName,
-getRadioClassName,
-getTagInputClassName,
-getTextInputClassName,
-getTextareaClassName,
-getTextDropdownButtonClassName,
-getTabClassName,
-getTableCellClassName,
-getTooltipProps,
-getRowClassName,
-getMenuItemClassName,
-getSelectClassName,
-getSegmentedControlRadioClassName,
-getSwitchClassName,
-getAlertProps,
-getCodeProps,
-getAvatarProps,
-getBadgeProps,
-getAvatarInitialsFontSize
-*/
+
 const Attribute = ({ name, required, type, description }) => (
   <div className="PropTypeWrapper">
     <div className="PropTypeHeading">
