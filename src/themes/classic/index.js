@@ -31,8 +31,6 @@ import { headings, text, fontFamilies, paragraph } from './typography'
  * Component Specific.
  */
 import {
-  getRowClassName,
-  getMenuItemClassName,
   buttons,
   checkbox,
   inputs,
@@ -48,10 +46,6 @@ export default {
   scales,
   tokens,
 
-  getRowClassName,
-  getMenuItemClassName,
-
-  // Component-specific
   buttons,
   checkbox,
   segmentedControl,

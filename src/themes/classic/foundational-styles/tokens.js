@@ -33,7 +33,7 @@ const colorTokens = {
   red600: '#A73636',
   red500: '#D14343',
   red100: '#F9DADA',
-  red25: '#FDF4F4',
+  red50: '#FDF4F4',
 
   // Greens
   green900: '#10261E',
@@ -277,7 +277,7 @@ export default {
       icon: colors.orange500
     },
     danger: {
-      background: colors.red25,
+      background: colors.red50,
       border: colors.red500,
       text: colors.red600,
       icon: colors.red500

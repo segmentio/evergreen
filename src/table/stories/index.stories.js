@@ -108,13 +108,22 @@ storiesOf('table', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      {['none', 'danger', 'warning', 'success'].map(intent => {
+      {['default', 'destructive', 'warning', 'success'].map(intent => {
         return (
-          <Table.Row key={intent} isSelectable intent={intent}>
+          <Table.Row key={intent} isSelectable appearance={intent}>
             <Table.TextCell>{intent}</Table.TextCell>
           </Table.Row>
         )
       })}
+      <Pane marginY={16} />
+      {['default', 'destructive', 'warning', 'success'].map(intent => {
+        return (
+          <Table.Row key={intent} isSelectable isSelected appearance={intent}>
+            <Table.TextCell>{intent} Selected</Table.TextCell>
+          </Table.Row>
+        )
+      })}
+      <Pane marginY={16} />
       <Table.Row height={32}>
         <Table.TextCell>Height 32</Table.TextCell>
       </Table.Row>
@@ -139,7 +148,7 @@ storiesOf('table', module)
       <Table.Body>
         {range(10).map(item => {
           return (
-            <Table.Row key={item} isSelectable>
+            <Table.Row key={item} isSelectable isSelected={item === 1}>
               <Table.TextCell>{item}</Table.TextCell>
             </Table.Row>
           )

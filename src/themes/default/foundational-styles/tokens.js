@@ -31,7 +31,7 @@ const colorTokens = {
   red600: '#A73636',
   red500: '#D14343',
   red100: '#F9DADA',
-  red25: '#FDF4F4',
+  red50: '#FDF4F4',
 
   // Greens
   green900: '#10261E',
@@ -61,7 +61,9 @@ const colorTokens = {
 
   // Yellows
   yellow800: '#66460D',
-  yellow100: '#FFEFD2'
+  yellow500: '#996A13',
+  yellow100: '#FFEFD2',
+  yellow25: '#FFFAF1'
 }
 
 const colors = {
@@ -304,13 +306,13 @@ export default {
       icon: colors.green500
     },
     warning: {
-      background: colors.orange25,
-      border: colors.orange500,
-      text: colors.orange700,
-      icon: colors.orange500
+      background: colors.yellow25,
+      border: colors.yellow500,
+      text: colors.yellow700,
+      icon: colors.yellow500
     },
     danger: {
-      background: colors.red25,
+      background: colors.red50,
       border: colors.red500,
       text: colors.red600,
       icon: colors.red500

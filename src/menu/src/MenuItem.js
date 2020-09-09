@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import { useTheme } from '../../theme'
+import useRowApperance from '../../theme/src/hooks/useRowApperance'
 import safeInvoke from '../../lib/safe-invoke'
 
 const noop = () => {}
@@ -22,8 +22,6 @@ const MenuItem = memo(
       onKeyPress,
       ...passthroughProps
     } = props
-
-    const theme = useTheme()
 
     const handleClick = useCallback(
       event => {
@@ -44,7 +42,7 @@ const MenuItem = memo(
       [onSelect, onKeyPress]
     )
 
-    const themedClassName = theme.getMenuItemClassName(appearance, 'none')
+    const { className: themedClassName, boxProps } = useRowApperance({appearance})
 
     return (
       <Pane
@@ -59,6 +57,7 @@ const MenuItem = memo(
         display="flex"
         alignItems="center"
         ref={ref}
+        {...boxProps}
         {...passthroughProps}
       >
         <IconWrapper

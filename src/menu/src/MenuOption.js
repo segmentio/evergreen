@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
 import { TickIcon } from '../../icons'
-import { useTheme } from '../../theme'
+import useRowApperance from '../../theme/src/hooks/useRowApperance'
 
 const noop = () => {}
 
@@ -29,8 +29,7 @@ const MenuOption = memo(function MenuOption(props) {
     [onSelect]
   )
 
-  const theme = useTheme()
-  const themedClassName = theme.getMenuItemClassName(appearance, 'none')
+  const { className: themedClassName, boxProps } = useRowApperance({ appearance })
 
   const textProps = isSelected
     ? {
@@ -53,6 +52,7 @@ const MenuOption = memo(function MenuOption(props) {
       height={40}
       display="flex"
       alignItems="center"
+      {...boxProps}
     >
       {isSelected && (
         <TickIcon

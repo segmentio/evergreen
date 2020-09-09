@@ -30,8 +30,6 @@ import { headings, text, fontFamilies, paragraph } from './typography'
  * These ARE REQUIRED for Evergreen to work.
  */
 import {
-  getRowClassName,
-  getMenuItemClassName,
   buttons,
   inputs
 } from './component-specific'
@@ -44,9 +42,6 @@ export default {
   palette,
   scales,
   tokens,
-
-  getRowClassName,
-  getMenuItemClassName,
 
   inputs,
   buttons,

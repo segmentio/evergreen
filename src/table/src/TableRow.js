@@ -2,7 +2,7 @@ import React, { memo, forwardRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { Pane } from '../../layers'
-import { useTheme } from '../../theme'
+import useRowApperance from '../../theme/src/hooks/useRowApperance'
 import { useMergedRef } from '../../hooks'
 import { TableRowProvider } from './TableRowContext'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
@@ -13,7 +13,7 @@ const TableRow = memo(
   forwardRef(function TableRow(props, forwardedRef) {
     const {
       className,
-      height = 48,
+      height = 64,
       children,
       intent = 'none',
       appearance = 'default',
@@ -31,7 +31,6 @@ const TableRow = memo(
       ...rest
     } = props
 
-    const theme = useTheme()
     const [mainRef, setMainRef] = useState()
     const onRef = useMergedRef(setMainRef, forwardedRef)
 
@@ -67,7 +66,7 @@ const TableRow = memo(
       onKeyPress(e)
     }
 
-    const themedClassName = theme.getRowClassName(appearance, intent)
+    const { className: themedClassName, boxProps } = useRowApperance({ appearance })
 
     return (
       <TableRowProvider height={height}>
@@ -83,6 +82,7 @@ const TableRow = memo(
           onKeyDown={handleKeyDown}
           height={height}
           borderBottom="muted"
+          {...boxProps}
           {...rest}
         >
           {children}
