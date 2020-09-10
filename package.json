@@ -155,7 +155,9 @@
     ],
     "modulePathIgnorePatterns":[
       "<rootDir>/docs/",
-      "<rootDir>/codemods/"
+      "<rootDir>/codemods/",
+      "<rootDir>/esm/",
+      "<rootDir>/commonjs/"
     ]
   },
   "size-limit": [
