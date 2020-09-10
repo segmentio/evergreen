@@ -4,7 +4,7 @@ import {
   fills,
   palette,
   scales,
-  tokens
+  tokens as ogTokens
 } from './deprecated/foundational-styles'
 
 import {
@@ -19,17 +19,16 @@ import {
   getMenuItemClassName
 } from './deprecated/component-specific'
 
-// Import tokens from './tokens'
+import tokens from './tokens'
 import components from './components'
 
 export default {
   /* DEPRECATED */
-  colors,
   elevations,
   fills,
   palette,
   scales,
-  tokens,
+  tokens: ogTokens,
 
   getRowClassName,
   getMenuItemClassName,
@@ -43,7 +42,12 @@ export default {
   /* END DEPRECATED */
 
   // Once we are done using the above ^ we can switch to this:
-  // ...tokens, (import tokens from './tokens')
+  ...tokens,
+
+  colors: {
+    ...colors,
+    ...tokens.colors
+  },
 
   // Component-specific theming
   components

@@ -118,18 +118,6 @@ const colors = {
   neutralAlpha,
   blueAlpha,
 
-  // TODO add `intent` object?
-  // TODO add `text` object?
-  // TODO add `borders` object?
-  // TODO add `icon` object?
-  // Thinking these should be additional scales in `...tokens`
-  // so we do a lookup like
-  // `borderColor: get(theme, [borders, propValue]) ?? get(theme, [colors, propValue])`
-  // borders: {
-  //   default: neutral.N4,
-  //   muted: neutral.N3
-  // },
-
   tint1: neutral.N1,
   tint2: neutral.N2,
   overlay: neutralAlpha.N7A,
