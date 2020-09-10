@@ -3,7 +3,12 @@
   "env": {
     "browser": true
   },
-  "extends": ["plugin:react/recommended", "standard"],
+  "extends": [
+    "plugin:react/recommended",
+    "standard",
+    "prettier",
+    "prettier/react"
+  ],
   "settings": {
     "react": {
       "version": "detect"
@@ -20,7 +25,6 @@
   "rules": {
     "space-before-function-paren": "off",
     "no-unused-vars": "error",
-    "indent": "off",
     "react/display-name": "off"
   }
 }
