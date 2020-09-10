@@ -31,11 +31,10 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "test": "yarn run eslint && yarn run jest",
+    "test": "yarn eslint && yarn jest",
     "eslint": "eslint 'src/**/*.js'",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "dev": "start-storybook -p 6006",
-    "jest": "jest",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
     "generate-icons": "./tools/generate-icons.js",
