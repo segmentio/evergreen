@@ -128,7 +128,12 @@ const colors = {
   redTint: palette.red.lightest,
   blueTint: palette.blue.lightest,
   purpleTint: palette.purple.lightest,
-  tealTint: palette.teal.lightest
+  tealTint: palette.teal.lightest,
+
+  border: {
+    default: neutral.N4,
+    muted: neutral.N3
+  }
 }
 
 export default colors

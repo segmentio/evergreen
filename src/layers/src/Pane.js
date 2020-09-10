@@ -2,12 +2,18 @@ import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import usePaneAppearance from '../../theme/src/hooks/usePaneAppearance'
+import useStyleConfig from '../../hooks/use-style-config'
 
-const StringAndBoolPropType = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.bool
-])
+const pseudoSelectors = {
+  _hover: '&:hover',
+  _active: '&:active'
+}
+
+const internalStyles = {
+  transitionDuration: '150ms',
+  transitionProperty: 'box-shadow, transform',
+  transitionTimingFunction: 'cubic-bezier(0.0, 0.0, 0.2, 1)'
+}
 
 const Pane = memo(
   forwardRef(function Pane(props, ref) {
@@ -28,18 +34,28 @@ const Pane = memo(
       ...restProps
     } = props
 
-    const { className: themedClassName, boxProps } = usePaneAppearance(props)
+    const { className: themedClassName, ...styleProps } = useStyleConfig(
+      'Pane',
+      props,
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Box
         ref={ref}
         className={cx(className, themedClassName)}
-        {...boxProps}
+        {...styleProps}
         {...restProps}
       />
     )
   })
 )
+
+const StringAndBoolPropType = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.bool
+])
 
 Pane.propTypes = {
   /**
@@ -49,7 +65,7 @@ Pane.propTypes = {
 
   /**
    * Background property.
-   * `tint1`, `tint2` etc. from `theme.colors.background` are available.
+   * `tint1`, `tint2` etc. from `theme.colors` are available.
    */
   background: PropTypes.string,
 

@@ -384,14 +384,12 @@ interface Typography {
 
 export interface Theme {
   colors: Colors
-  elevations: Elevation[]
   fills: Fills
   overlayBackgroundColor: string
   palette: Palette
   scales: ColorScales
   spinnerColor: string
   typography: Typography
-  getIconColor(color: string): string
 }
 
 export const defaultTheme: Theme

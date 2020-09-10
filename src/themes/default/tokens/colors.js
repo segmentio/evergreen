@@ -67,7 +67,24 @@ const colorScales = {
 const colors = {
   ...colorScales,
   muted: colorScales.gray700,
-  default: colorScales.gray800
+  default: colorScales.gray800,
+
+  tint1: colorScales.gray50,
+  tint2: colorScales.gray75,
+  overlay: 'rgba(67, 90, 111, 0.7)',
+
+  yellowTint: colorScales.yellow100,
+  greenTint: colorScales.green25,
+  orangeTint: colorScales.orange25,
+  redTint: colorScales.red25,
+  blueTint: colorScales.blue25,
+  purpleTint: colorScales.purple100,
+  tealTint: colorScales.teal100,
+
+  border: {
+    default: colorScales.gray300,
+    muted: colorScales.gray200
+  }
 }
 
 export default colors
