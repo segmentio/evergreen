@@ -99,7 +99,7 @@ const TableCell = memo(
               {...rest}
             >
               {children}
-              {rightView ? rightView : null}
+              {rightView || null}
             </Pane>
           )
         }}

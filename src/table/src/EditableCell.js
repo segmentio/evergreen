@@ -97,7 +97,7 @@ const EditableCell = memo(function EditableCell(props) {
         }}
         {...rest}
       >
-        {children ? children : placeholder}
+        {children || placeholder}
       </TextTableCell>
       {isEditing && (
         <Portal>

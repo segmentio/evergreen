@@ -18,7 +18,7 @@ const invisibleInputClass = css({
   },
 
   '&::placeholder': {
-    color: `rgba(67, 90, 111, 0.7)`
+    color: 'rgba(67, 90, 111, 0.7)'
   }
 }).toString()
 

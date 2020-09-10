@@ -76,17 +76,20 @@ const fontFamilies = {
   /**
    * @property {string} display - Used for headings larger than 20px.
    */
-  display: `"SF UI Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+  display:
+    '"SF UI Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 
   /**
    * @property {string} ui - Used for text and UI (which includes almost anything).
    */
-  ui: `"SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+  ui:
+    '"SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 
   /**
    * @property {string} mono - Used for code and sometimes numbers in tables.
    */
-  mono: `"SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace`
+  mono:
+    '"SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace'
 }
 
 const text = {
@@ -94,26 +97,26 @@ const text = {
    * It's useful to have 600 because `Link` uses the `Text` component.
    * A `Link` could be used as 600 in the context of a breadcrumb.
    */
-  '600': {
+  600: {
     fontSize: '20px',
     fontWeight: 400,
     lineHeight: '24px',
     letterSpacing: '-0.07px'
   },
-  '500': {
+  500: {
     fontSize: '16px',
     fontWeight: 400,
     lineHeight: '20px',
     letterSpacing: '-0.05px'
   },
-  '400': {
+  400: {
     // Default
     fontSize: '14px',
     fontWeight: 400,
     lineHeight: '20px',
     letterSpacing: '-0.05px'
   },
-  '300': {
+  300: {
     fontSize: '12px',
     fontWeight: 400,
     lineHeight: '16px',
@@ -135,7 +138,7 @@ const headings = {
    * @property {Object} headings.100
    */
 
-  '900': {
+  900: {
     fontSize: '35px',
     fontWeight: 500,
     lineHeight: '40px',
@@ -143,7 +146,7 @@ const headings = {
     marginTop: 52,
     color: colors.gray800
   },
-  '800': {
+  800: {
     fontSize: '29px',
     fontWeight: 500,
     lineHeight: '32px',
@@ -151,7 +154,7 @@ const headings = {
     marginTop: 40,
     color: colors.gray800
   },
-  '700': {
+  700: {
     fontSize: '24px',
     fontWeight: 500,
     lineHeight: '28px',
@@ -159,7 +162,7 @@ const headings = {
     marginTop: 40,
     color: colors.gray800
   },
-  '600': {
+  600: {
     fontSize: '20px',
     fontWeight: 500,
     lineHeight: '24px',
@@ -168,7 +171,7 @@ const headings = {
     fontFamily: fontFamilies.display,
     color: colors.gray800
   },
-  '500': {
+  500: {
     fontSize: '16px',
     fontWeight: 500,
     lineHeight: '20px',
@@ -177,7 +180,7 @@ const headings = {
     fontFamily: fontFamilies.ui,
     color: colors.gray800
   },
-  '400': {
+  400: {
     fontSize: '14px',
     fontWeight: 600,
     lineHeight: '20px',
@@ -186,7 +189,7 @@ const headings = {
     fontFamily: fontFamilies.ui,
     color: colors.gray800
   },
-  '300': {
+  300: {
     fontSize: '12px',
     fontWeight: 600,
     lineHeight: '16px',
@@ -195,7 +198,7 @@ const headings = {
     fontFamily: fontFamilies.ui,
     color: colors.gray800
   },
-  '200': {
+  200: {
     fontSize: '12px',
     fontWeight: 600,
     lineHeight: '16px',
@@ -204,7 +207,7 @@ const headings = {
     fontFamily: fontFamilies.ui,
     color: colors.muted
   },
-  '100': {
+  100: {
     fontSize: '11px',
     fontWeight: 400,
     textTransform: 'uppercase',
@@ -217,15 +220,15 @@ const headings = {
 }
 
 const paragraph = {
-  '500': {
+  500: {
     ...text['500'],
     lineHeight: '24px'
   },
-  '400': {
+  400: {
     ...text['400'],
     lineHeight: '21px'
   },
-  '300': {
+  300: {
     ...text['300'],
     lineHeight: '18px'
   }

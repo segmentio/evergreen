@@ -85,6 +85,8 @@ const OptionsList = memo(function OptionsList(props) {
     [optionsFilter, searchValue]
   )
 
+  const options = search(originalOptions)
+
   const getFilteredOptions = useCallback(() => {
     return search(options)
   }, [options])
@@ -210,7 +212,6 @@ const OptionsList = memo(function OptionsList(props) {
     }
   }, [selected])
 
-  const options = search(originalOptions)
   const listHeight = height - (hasFilter ? 32 : 0)
   const currentIndex = getCurrentIndex()
   const scrollToIndex = currentIndex === -1 ? 0 : currentIndex

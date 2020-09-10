@@ -8,7 +8,7 @@ import { useMergedRef, usePrevious } from '../../hooks'
 import getPosition from './getPosition'
 
 const animationEasing = {
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
 const getCSS = ({ initialScale, animationDuration }) => ({
@@ -21,7 +21,7 @@ const getCSS = ({ initialScale, animationDuration }) => ({
   '&[data-state="entering"], &[data-state="entered"]': {
     opacity: 1,
     visibility: 'visible',
-    transform: `scale(1)`
+    transform: 'scale(1)'
   },
   '&[data-state="exiting"]': {
     opacity: 0,

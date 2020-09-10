@@ -8,15 +8,15 @@ import text from './text'
  * @property {Object} text.300 - Required property.
  */
 export default {
-  '500': {
+  500: {
     ...text['500'],
     lineHeight: '24px'
   },
-  '400': {
+  400: {
     ...text['400'],
     lineHeight: '21px'
   },
-  '300': {
+  300: {
     ...text['300'],
     lineHeight: '18px'
   }
