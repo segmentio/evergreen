@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import useStyleConfig from '../../../hooks/use-style-config'
+import { deprecatedUseStyleConfig } from '../../../hooks/use-style-config'
 import getCodeStyles from '../components/code'
 import useTheme from '../useTheme'
 
@@ -10,7 +10,12 @@ function useCodeAppearance(modifiers, internalStyles = {}) {
   const theme = useTheme()
   const codeStyles = useMemo(() => getCodeStyles(theme), [theme])
 
-  return useStyleConfig(codeStyles, modifiers, pseudoSelectors, internalStyles)
+  return deprecatedUseStyleConfig(
+    codeStyles,
+    modifiers,
+    pseudoSelectors,
+    internalStyles
+  )
 }
 
 export default useCodeAppearance

@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import useStyleConfig from '../../../hooks/use-style-config'
+import { deprecatedUseStyleConfig } from '../../../hooks/use-style-config'
 import getTextDropdownButtonStyles from '../components/text-dropdown-button'
 import useTheme from '../useTheme'
 
@@ -18,7 +18,7 @@ function useTextDropdownButtonAppearance(modifiers, internalStyles) {
     [theme]
   )
 
-  return useStyleConfig(
+  return deprecatedUseStyleConfig(
     textDropdownButtonStyles,
     modifiers,
     pseudoSelectors,

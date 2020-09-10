@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import useStyleConfig from '../../../hooks/use-style-config'
+import { deprecatedUseStyleConfig } from '../../../hooks/use-style-config'
 import getInputStyles from '../components/input'
 import useTheme from '../useTheme'
 
@@ -27,7 +27,7 @@ function useInputAppearance(modifiers, internalStyles) {
     size: 'medium'
   }
 
-  return useStyleConfig(
+  return deprecatedUseStyleConfig(
     inputStyles,
     { ...defaultModifiers, ...modifiers },
     pseudoSelectors,
