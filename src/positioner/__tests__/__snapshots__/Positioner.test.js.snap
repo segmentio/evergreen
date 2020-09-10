@@ -1,0 +1,192 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Positioner /> All positions work 1`] = `
+Array [
+  Object {
+    "position": "top",
+    "rect": Object {
+      "bottom": 144,
+      "height": 100,
+      "left": 225,
+      "right": 325,
+      "top": 44,
+      "width": 100,
+    },
+    "transformOrigin": "50px 100px ",
+  },
+  Object {
+    "position": "top-left",
+    "rect": Object {
+      "bottom": 144,
+      "height": 100,
+      "left": 250,
+      "right": 350,
+      "top": 44,
+      "width": 100,
+    },
+    "transformOrigin": "25px 100px ",
+  },
+  Object {
+    "position": "top-right",
+    "rect": Object {
+      "bottom": 144,
+      "height": 100,
+      "left": 100,
+      "right": 200,
+      "top": 44,
+      "width": 100,
+    },
+    "transformOrigin": "175px 100px ",
+  },
+  Object {
+    "position": "bottom",
+    "rect": Object {
+      "bottom": 226,
+      "height": 100,
+      "left": 225,
+      "right": 325,
+      "top": 126,
+      "width": 100,
+    },
+    "transformOrigin": "50px 0px ",
+  },
+  Object {
+    "position": "bottom-left",
+    "rect": Object {
+      "bottom": 226,
+      "height": 100,
+      "left": 250,
+      "right": 350,
+      "top": 126,
+      "width": 100,
+    },
+    "transformOrigin": "25px 0px ",
+  },
+  Object {
+    "position": "bottom-right",
+    "rect": Object {
+      "bottom": 226,
+      "height": 100,
+      "left": 100,
+      "right": 200,
+      "top": 126,
+      "width": 100,
+    },
+    "transformOrigin": "175px 0px ",
+  },
+  Object {
+    "position": "left",
+    "rect": Object {
+      "bottom": 215,
+      "height": 100,
+      "left": 144,
+      "right": 244,
+      "top": 115,
+      "width": 100,
+    },
+    "transformOrigin": "100px 50px",
+  },
+  Object {
+    "position": "right",
+    "rect": Object {
+      "bottom": 215,
+      "height": 100,
+      "left": 206,
+      "right": 306,
+      "top": 115,
+      "width": 100,
+    },
+    "transformOrigin": "0px 50px",
+  },
+]
+`;
+
+exports[`<Positioner /> It pushes the rect to the right if overflowing on the left side 1`] = `
+Object {
+  "position": "bottom",
+  "rect": Object {
+    "bottom": 136,
+    "height": 110,
+    "left": 8,
+    "right": 258,
+    "top": 26,
+    "width": 250,
+  },
+  "transformOrigin": "27px 0px ",
+}
+`;
+
+exports[`<Positioner /> It pushes the rect to the top if overflowing on the bottom side 1`] = `
+Object {
+  "position": "top",
+  "rect": Object {
+    "bottom": 492,
+    "height": 100,
+    "left": 100,
+    "right": 150,
+    "top": 392,
+    "width": 50,
+  },
+  "transformOrigin": "25px 100px ",
+}
+`;
+
+exports[`<Positioner /> Position.BOTTOM repositions to the top 1`] = `
+Object {
+  "position": "top",
+  "rect": Object {
+    "bottom": 284,
+    "height": 250,
+    "left": 225,
+    "right": 325,
+    "top": 34,
+    "width": 100,
+  },
+  "transformOrigin": "50px 250px ",
+}
+`;
+
+exports[`<Positioner /> Position.LEFT and Position.RIGHT will use the side with the most space 1`] = `
+Object {
+  "position": "right",
+  "rect": Object {
+    "bottom": 215,
+    "height": 100,
+    "left": 42,
+    "right": 292,
+    "top": 115,
+    "width": 250,
+  },
+  "transformOrigin": "0px 50px",
+}
+`;
+
+exports[`<Positioner /> Position.RIGHT repositions to the left 1`] = `
+Object {
+  "position": "left",
+  "rect": Object {
+    "bottom": 215,
+    "height": 100,
+    "left": 544,
+    "right": 794,
+    "top": 115,
+    "width": 250,
+  },
+  "transformOrigin": "250px 50px",
+}
+`;
+
+exports[`<Positioner /> Position.TOP repositions to the bottom 1`] = `
+Object {
+  "position": "bottom",
+  "rect": Object {
+    "bottom": 242,
+    "height": 250,
+    "left": 225,
+    "right": 325,
+    "top": -8,
+    "width": 100,
+  },
+  "transformOrigin": "50px 0px ",
+}
+`;

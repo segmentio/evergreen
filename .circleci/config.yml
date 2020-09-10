@@ -26,7 +26,7 @@ jobs:
       - run: yarn run build
       - run: yarn run test
       - run: yarn run size-limit
-  
+
   chromatic:
     working_directory: ~/evergreen
     docker:
@@ -49,7 +49,6 @@ jobs:
           paths:
             - ./docs/node_modules
       - run: yarn chromatic --exit-zero-on-changes
-
 
 workflows:
   version: 2

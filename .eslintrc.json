@@ -26,5 +26,13 @@
     "space-before-function-paren": "off",
     "no-unused-vars": "error",
     "react/display-name": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.test.js"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }
