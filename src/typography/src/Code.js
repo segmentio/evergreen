@@ -1,13 +1,21 @@
 import React, { forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
-import useCodeAppearance from '../../theme/src/hooks/useCodeAppearance'
+import useStyleConfig from '../../hooks/use-style-config'
 import Text from './Text'
+
+const pseudoSelectors = {}
+const internalStyles = {}
 
 const Code = memo(
   forwardRef(function Code(props, ref) {
     const { className, appearance = 'default', ...restProps } = props
 
-    const { boxProps } = useCodeAppearance({ appearance })
+    const styleProps = useStyleConfig(
+      'Code',
+      { appearance },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Text
@@ -15,7 +23,7 @@ const Code = memo(
         ref={ref}
         className={className}
         fontFamily="mono"
-        {...boxProps}
+        {...styleProps}
         {...restProps}
       />
     )

@@ -4,7 +4,7 @@ import {
   fills,
   palette,
   scales,
-  tokens
+  tokens as ogTokens
 } from './deprecated/foundational-styles'
 
 import {
@@ -21,7 +21,7 @@ import {
   segmentedControl
 } from './deprecated/component-specific'
 
-// Import tokens from './tokens'
+import tokens from './tokens'
 import components from './components'
 
 export default {
@@ -31,7 +31,7 @@ export default {
   fills,
   palette,
   scales,
-  tokens,
+  tokens: ogTokens,
 
   getRowClassName,
   getMenuItemClassName,
@@ -49,7 +49,7 @@ export default {
   /* END DEPRECATED */
 
   // Once we are done using the above ^ we can switch to this:
-  // ...tokens, (import tokens from './tokens')
+  ...tokens,
 
   // Component-specific theming
   components
