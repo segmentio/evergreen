@@ -31,7 +31,8 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "test": "xo && ava",
+    "test": "yarn run eslint && ava",
+    "eslint": "eslint src/**/*.js --fix",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
@@ -108,9 +109,14 @@
     "concurrently": "^4.0.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
+    "eslint": "6.2.2",
     "eslint-config-prettier": "^3.1.0",
-    "eslint-config-xo-react": "^0.17.0",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "2.18.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-standard": "4.0.0",
     "faker": "^4.1.0",
     "file-loader": "^6.0.0",
     "fs-extra": "^7.0.0",
@@ -128,76 +134,7 @@
     "size-limit": "^4.5.0",
     "starwars-names": "^1.6.0",
     "url-loader": "^1.1.2",
-    "webpack": "^4.43.0",
-    "xo": "^0.25.3"
-  },
-  "xo": {
-    "parser": "babel-eslint",
-    "extends": [
-      "xo-react",
-      "prettier",
-      "prettier/react"
-    ],
-    "envs": [
-      "browser"
-    ],
-    "ignores": [
-      "codemods/"
-    ],
-    "space": true,
-    "semicolon": false,
-    "rules": {
-      "indent": [
-        "off"
-      ],
-      "func-names": [
-        "off"
-      ],
-      "react/jsx-indent-props": [
-        "off"
-      ],
-      "react/jsx-indent": [
-        "off"
-      ],
-      "react/require-default-props": [
-        "off"
-      ],
-      "react/default-props-match-prop-types": [
-        "off"
-      ],
-      "react/forbid-component-props": [
-        "off"
-      ],
-      "react/jsx-no-bind": [
-        "off"
-      ],
-      "react/jsx-sort-props": [
-        "off"
-      ],
-      "unicorn/filename-case": [
-        "off"
-      ],
-      "unicorn/prefer-node-append": [
-        "off"
-      ],
-      "unicorn/prefer-string-slice": [
-        "warn"
-      ],
-      "unicorn/prefer-node-remove": [
-        "off"
-      ],
-      "unicorn/prefer-dataset": [
-        "off"
-      ],
-      "unicorn/catch-error-name": [
-        "off"
-      ]
-    },
-    "settings": {
-      "react": {
-        "version": "^16.8.0"
-      }
-    }
+    "webpack": "^4.43.0"
   },
   "prettier": {
     "semi": false,
@@ -205,7 +142,7 @@
   },
   "lint-staged": {
     "!(codemods)/**/*.js": [
-      "xo --fix",
+      "yarn run eslint",
       "prettier --write"
     ],
     "*.{json,md}": [
