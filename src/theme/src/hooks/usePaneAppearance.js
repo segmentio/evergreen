@@ -1,4 +1,4 @@
-import useStyleConfig from '../../../hooks/use-style-config'
+import { deprecatedUseStyleConfig } from '../../../hooks/use-style-config'
 import getPaneStyles from '../components/pane'
 import useTheme from '../useTheme'
 
@@ -11,7 +11,12 @@ function usePaneAppearance(props, internalStyles) {
   const theme = useTheme()
   const paneStyles = getPaneStyles(theme, props)
 
-  return useStyleConfig(paneStyles, props, pseudoSelectors, internalStyles)
+  return deprecatedUseStyleConfig(
+    paneStyles,
+    props,
+    pseudoSelectors,
+    internalStyles
+  )
 }
 
 export default usePaneAppearance

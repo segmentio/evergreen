@@ -3,6 +3,7 @@ import { css } from 'glamor'
 import merge from 'lodash.merge'
 import isEqual from 'react-fast-compare'
 import { splitBoxProps } from 'ui-box'
+import { useTheme, get, resolveThemeTokens } from '../theme'
 
 /**
  * @typedef {object} StateStyles
@@ -33,48 +34,76 @@ import { splitBoxProps } from 'ui-box'
  * @property {{ [size: string]: Style }} [sizes]
  */
 
+function maybeRun(value, ...args) {
+  return typeof value === 'function' ? value(...args) : value
+}
+
+function maybeRunDeep(raw, ...args) {
+  if (raw && typeof raw === 'object') {
+    const result = {}
+
+    for (const key of Object.keys(raw)) {
+      result[key] = maybeRunDeep(raw[key], ...args)
+    }
+
+    return result
+  }
+
+  return maybeRun(raw, ...args)
+}
+
 /**
  * Combines styles from a styleConfig, with the given style modifiers (appearance, size, etc) and internal styles
+ * @param {object} theme
+ * @param {StyleModifiers} props
  * @param {StyleConfig} styleConfig
- * @param {StyleModifiers} modifiers
  * @param {GlamorAndBoxStyle} [internalStyles]
+ * @returns {StyleConfig}
  */
-function combineStyles(styleConfig, modifiers, internalStyles = {}) {
-  const { baseStyle } = styleConfig
-  const sizeStyle = styleConfig.sizes ? styleConfig.sizes[modifiers.size] : {}
-  const appearanceStyle = styleConfig.appearances
-    ? styleConfig.appearances[modifiers.appearance]
-    : {}
+function combineStyles(theme, props, styleConfig, internalStyles = {}) {
+  const config = maybeRun(styleConfig, theme, props)
+  const baseStyle = maybeRunDeep(config.baseStyle, theme, props)
+  const sizeStyle = maybeRunDeep(
+    get(config, `sizes.${props.size}`, {}),
+    theme,
+    props
+  )
+  const appearanceStyle = maybeRunDeep(
+    get(config, `appearances.${props.appearance}`, {}),
+    theme,
+    props
+  )
 
   return merge({}, internalStyles, baseStyle, sizeStyle, appearanceStyle)
 }
 
 /**
- * Takes a styleConfig object and outputs a `className` and `boxProps` that can be spread on a Box component
- * @param {StyleConfig} styleConfig the style config object for a given component
- * @param {StyleModifiers} modifiers props that modify the resulting visual style (e.g. `size` or `appearance`)
- * @param {PseudoSelectors} pseudoSelectors mapping for the component between states and actual pseudo selectors
- * @param {GlamorAndBoxStyle} [internalStyles] additional styles that are specified internally, separate from the visual styles
- * @returns {{ className: string; boxProps: import('ui-box').EnhancerProps }}
+ * Combines a styleConfig object with internal styles based on the theme + style modifiers (props)
+ * and returns a memoized style object
+ * @returns {StyleConfig}
  */
-export default function useStyleConfig(
-  styleConfig,
-  modifiers,
-  pseudoSelectors,
-  internalStyles
-) {
-  const stylesRef = useRef({})
+function useMergedStyles(theme, props, styleConfig, internalStyles) {
+  const styleRef = useRef({})
 
-  // Distill a styleConfig object into the resulting Style
-  const styles = useMemo(() => {
-    const combinedStyles = combineStyles(styleConfig, modifiers, internalStyles)
-    if (!isEqual(stylesRef.current, combinedStyles)) {
-      stylesRef.current = combinedStyles
+  return useMemo(() => {
+    const combinedStyles = combineStyles(
+      theme,
+      props,
+      styleConfig,
+      internalStyles
+    )
+    if (!isEqual(styleRef.current, combinedStyles)) {
+      styleRef.current = combinedStyles
     }
 
-    return stylesRef.current
-  }, [styleConfig, modifiers.appearance, modifiers.size, internalStyles])
+    return styleRef.current
+  }, [theme, props, styleConfig, internalStyles])
+}
 
+/**
+ * Split up the style props into glamor-ready and box-ready props (className + spreadable props)
+ */
+function useGlamorAndBox(styles, pseudoSelectors) {
   const glamorStylesRef = useRef({})
   const classNameRef = useRef()
 
@@ -99,7 +128,63 @@ export default function useStyleConfig(
 
     return {
       className: classNameRef.current,
-      boxProps: matchedProps
+      ...matchedProps
     }
   }, [styles, pseudoSelectors])
+}
+
+/**
+ * Takes a styleConfig object and outputs a `className` and `boxProps` that can be spread on a Box component
+ * @param {string} componentKey the name of the component in the theme
+ * @param {StyleModifiers} props props that modify the resulting visual style (e.g. `size` or `appearance`)
+ * @param {PseudoSelectors} pseudoSelectors mapping for the component between states and actual pseudo selectors
+ * @param {GlamorAndBoxStyle} [internalStyles] additional styles that are specified internally, separate from the visual styles
+ * @returns {{ className: string; boxProps: import('ui-box').EnhancerProps }}
+ */
+export default function useStyleConfig(
+  componentKey,
+  props,
+  pseudoSelectors,
+  internalStyles
+) {
+  const theme = useTheme()
+
+  // Get the component style object from the theme
+  const componentStyles = get(theme, `components.${componentKey}`) || {}
+
+  // Merges the theme styles with the modifiers/props (appearance, size, etc)
+  const mergedStyles = useMergedStyles(
+    theme,
+    props,
+    componentStyles,
+    internalStyles
+  )
+
+  // Resolve theme token strings found throughout the style object
+  const styles = useMemo(() => resolveThemeTokens(theme, mergedStyles), [
+    theme,
+    mergedStyles
+  ])
+
+  // Finally, split up the styles based which ones Box supports and the rest construct a glamor className
+  return useGlamorAndBox(styles, pseudoSelectors)
+}
+
+export function deprecatedUseStyleConfig(
+  styleConfig,
+  props,
+  pseudoSelectors,
+  internalStyles
+) {
+  const theme = useTheme()
+
+  // Merges the theme styles with the modifiers/props (appearance, size, etc)
+  const styles = useMergedStyles(theme, props, styleConfig, internalStyles)
+
+  const { className, ...boxProps } = useGlamorAndBox(styles, pseudoSelectors)
+
+  return {
+    className,
+    boxProps
+  }
 }
