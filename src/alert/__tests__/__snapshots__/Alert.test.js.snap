@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Alert /> appearance snapshot 1`] = `
+<div
+  appearance="card"
+  className="css-1utm4li css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-bg-clr_white ub-ovflw-x_hidden ub-ovflw-y_hidden ub-pst_relative ub-dspl_flex ub-pb_12px ub-pt_12px ub-pl_16px ub-pr_16px ub-box-szg_border-box"
+  role="alert"
+>
+  <div
+    className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-flx_1 ub-box-szg_border-box"
+  >
+    <div
+      className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+    >
+      <div
+        className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+      >
+        <svg
+          className="ub-w_16px ub-h_16px ub-box-szg_border-box"
+          data-icon="info-sign"
+          style={
+            Object {
+              "fill": "#3366FF",
+            }
+          }
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </div>
+      <h4
+        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_2952CC ub-box-szg_border-box"
+      >
+        Test title
+      </h4>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Alert /> basic snapshot 1`] = `
+<div
+  className="css-1utm4li css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-bg-clr_white ub-ovflw-x_hidden ub-ovflw-y_hidden ub-pst_relative ub-dspl_flex ub-pb_12px ub-pt_12px ub-pl_16px ub-pr_16px ub-box-szg_border-box"
+  role="alert"
+>
+  <div
+    className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-flx_1 ub-box-szg_border-box"
+  >
+    <div
+      className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+    >
+      <div
+        className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+      >
+        <svg
+          className="ub-w_16px ub-h_16px ub-box-szg_border-box"
+          data-icon="info-sign"
+          style={
+            Object {
+              "fill": "#3366FF",
+            }
+          }
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </div>
+      <h4
+        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_2952CC ub-box-szg_border-box"
+      >
+        A simple general message
+      </h4>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Alert /> hasTrim=false snapshot 1`] = `
+<div
+  className="css-1utm4li css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-bg-clr_white ub-ovflw-x_hidden ub-ovflw-y_hidden ub-pst_relative ub-dspl_flex ub-pb_12px ub-pt_12px ub-pl_16px ub-pr_16px ub-box-szg_border-box"
+  hasTrim={false}
+  role="alert"
+>
+  <div
+    className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-flx_1 ub-box-szg_border-box"
+  >
+    <div
+      className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+    >
+      <div
+        className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+      >
+        <svg
+          className="ub-w_16px ub-h_16px ub-box-szg_border-box"
+          data-icon="info-sign"
+          style={
+            Object {
+              "fill": "#3366FF",
+            }
+          }
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </div>
+      <h4
+        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_2952CC ub-box-szg_border-box"
+      >
+        Test title
+      </h4>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Alert /> hasTrim=true snapshot 1`] = `
+<div
+  className="css-1utm4li css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-bg-clr_white ub-ovflw-x_hidden ub-ovflw-y_hidden ub-pst_relative ub-dspl_flex ub-pb_12px ub-pt_12px ub-pl_16px ub-pr_16px ub-box-szg_border-box"
+  hasTrim={true}
+  role="alert"
+>
+  <div
+    className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-flx_1 ub-box-szg_border-box"
+  >
+    <div
+      className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+    >
+      <div
+        className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+      >
+        <svg
+          className="ub-w_16px ub-h_16px ub-box-szg_border-box"
+          data-icon="info-sign"
+          style={
+            Object {
+              "fill": "#3366FF",
+            }
+          }
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </div>
+      <h4
+        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_2952CC ub-box-szg_border-box"
+      >
+        Test title
+      </h4>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Alert /> type snapshot 1`] = `
+<div
+  className="css-1utm4li css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-bg-clr_white ub-ovflw-x_hidden ub-ovflw-y_hidden ub-pst_relative ub-dspl_flex ub-pb_12px ub-pt_12px ub-pl_16px ub-pr_16px ub-box-szg_border-box"
+  role="alert"
+  type="danger"
+>
+  <div
+    className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-flx_1 ub-box-szg_border-box"
+  >
+    <div
+      className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+    >
+      <div
+        className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+      >
+        <svg
+          className="ub-w_16px ub-h_16px ub-box-szg_border-box"
+          data-icon="info-sign"
+          style={
+            Object {
+              "fill": "#3366FF",
+            }
+          }
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </div>
+      <h4
+        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_2952CC ub-box-szg_border-box"
+      >
+        Test title
+      </h4>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FilePicker /> snapshot 1`] = `
+<div
+  className="evergreen-file-picker-root ub-dspl_flex ub-box-szg_border-box"
+>
+  <input
+    className="evergreen-file-picker-file-input ub-dspl_none ub-box-szg_border-box"
+    onChange={[Function]}
+    type="file"
+  />
+  <input
+    aria-invalid={false}
+    className="css-fbzndp evergreen-file-picker-text-input ub-w_280px ub-b-btm_1px-solid-d8dae5 ub-b-lft_1px-solid-d8dae5 ub-b-rgt_1px-solid-d8dae5 ub-b-top_1px-solid-d8dae5 ub-bblr_4px ub-bbrr_0-important ub-btlr_4px ub-btrr_0-important ub-fnt-fam_b77syt ub-ln-ht_16px ub-otln_iu2jf4 ub-txt-deco_none ub-fnt-sze_12px ub-f-wght_400 ub-ltr-spc_0 ub-pl_12px ub-pr_12px ub-bg-clr_white ub-flx_1 ub-txt-ovrf_ellipsis ub-box-szg_border-box"
+    disabled={false}
+    onBlur={[Function]}
+    placeholder="Select a file to upload…"
+    readOnly={true}
+    spellCheck={true}
+    type="text"
+    value=""
+  />
+  <button
+    className="css-7f5rre evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-otln_iu2jf4 ub-usr-slct_none ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-crsr_pointer ub-fnt-sze_12px ub-ln-ht_32px ub-ltr-spc_0 ub-min-w_32px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-color_474d66 ub-flx-srnk_0 ub-box-szg_border-box"
+    onBlur={[Function]}
+    onClick={[Function]}
+    type="button"
+  >
+    Select file
+  </button>
+</div>
+`;
