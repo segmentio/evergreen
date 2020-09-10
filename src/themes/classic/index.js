@@ -26,7 +26,6 @@ import components from './components'
 
 export default {
   /* DEPRECATED */
-  colors,
   elevations,
   fills,
   palette,
@@ -50,6 +49,11 @@ export default {
 
   // Once we are done using the above ^ we can switch to this:
   ...tokens,
+
+  colors: {
+    ...colors,
+    ...tokens.colors
+  },
 
   // Component-specific theming
   components
