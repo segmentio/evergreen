@@ -1,8 +1,7 @@
 {
   "parser": "babel-eslint",
   "env": {
-    "browser": true,
-    "jest": true
+    "browser": true
   },
   "extends": [
     "plugin:react/recommended",
@@ -27,5 +26,13 @@
     "space-before-function-paren": "off",
     "no-unused-vars": "error",
     "react/display-name": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.test.js"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }
