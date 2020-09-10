@@ -1,18 +1,3 @@
-/**
- * Theme
- * ---
- * The theme object is used to style Evergreen.
- * It is passed into the  `<ThemeProvider theme={theme} />`.
- * ----
- * You can use this as a template for your own themes.
- */
-
-/**
- * Foundational Styles.
- * ---
- * The following properties are NOT REQUIRED by Evergreen.
- * It's exposed for convenience and documentation.
- */
 import {
   colors,
   elevations,
@@ -20,27 +5,27 @@ import {
   palette,
   scales,
   tokens
-} from './foundational-styles'
+} from './deprecated/foundational-styles'
 
-/**
- * Typography.
- */
-import { headings, text, fontFamilies, paragraph } from './typography'
+import {
+  headings,
+  text,
+  fontFamilies,
+  paragraph
+} from './deprecated/typography'
 
-/**
- * Component Specific.
- */
 import {
   getRowClassName,
   getMenuItemClassName,
-  buttons,
   checkbox,
-  inputs,
   segmentedControl
-} from './component-specific'
+} from './deprecated/component-specific'
+
+// Import tokens from './tokens'
+import components from './components'
 
 export default {
-  // Foundational Styles.
+  /* DEPRECATED */
   colors,
   elevations,
   fills,
@@ -52,15 +37,20 @@ export default {
   getMenuItemClassName,
 
   // Component-specific
-  buttons,
   checkbox,
   segmentedControl,
-  inputs,
 
   typography: {
     headings,
     text,
     fontFamilies,
     paragraph
-  }
+  },
+  /* END DEPRECATED */
+
+  // Once we are done using the above ^ we can switch to this:
+  // ...tokens, (import tokens from './tokens')
+
+  // Component-specific theming
+  components
 }

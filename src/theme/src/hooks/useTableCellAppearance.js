@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import useStyleConfig from '../../../hooks/use-style-config'
+import { deprecatedUseStyleConfig } from '../../../hooks/use-style-config'
 import getTableCellStyles from '../components/table-cell'
 import useTheme from '../useTheme'
 
@@ -12,7 +12,7 @@ function useTableCellAppearance(modifiers, internalStyles = {}) {
   const theme = useTheme()
   const tableCellStyles = useMemo(() => getTableCellStyles(theme), [theme])
 
-  return useStyleConfig(
+  return deprecatedUseStyleConfig(
     tableCellStyles,
     modifiers,
     pseudoSelectors,

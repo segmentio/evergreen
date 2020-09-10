@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import useStyleConfig from '../../../hooks/use-style-config'
+import { deprecatedUseStyleConfig } from '../../../hooks/use-style-config'
 import getButtonStyles from '../components/button'
 import useTheme from '../useTheme'
 
@@ -18,7 +18,7 @@ function useButtonAppearance(modifiers, internalStyles) {
   const theme = useTheme()
   const buttonStyles = useMemo(() => getButtonStyles(theme), [theme])
 
-  return useStyleConfig(
+  return deprecatedUseStyleConfig(
     buttonStyles,
     modifiers,
     pseudoSelectors,
