@@ -122,7 +122,7 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
             onDoubleClick={handleDoubleClick.bind(null, toggle, isShown)}
             {...rest}
           >
-            {children ? children : placeholder}
+            {children || placeholder}
           </TextTableCell>
         )
       }}

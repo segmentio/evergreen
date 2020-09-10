@@ -29,7 +29,7 @@ function useInputAppearance(modifiers, internalStyles) {
 
   return useStyleConfig(
     inputStyles,
-    {...defaultModifiers, ...modifiers},
+    { ...defaultModifiers, ...modifiers },
     pseudoSelectors,
     internalStyles
   )

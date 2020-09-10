@@ -6,7 +6,7 @@ import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Spinner } from '../../spinner'
 import useButtonAppearance from '../../theme/src/hooks/useButtonAppearance'
 
-/* eslint-disable-next-line react/prop-types */
+/* eslint-disable react/prop-types */
 const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
   if (!icon) return null
 
@@ -25,6 +25,7 @@ const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
     />
   )
 })
+/* eslint-enable react/prop-types */
 
 export const internalStyles = {
   position: 'relative',

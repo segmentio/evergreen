@@ -17,12 +17,7 @@ function getActiveElevationStyles(theme, activeElevation) {
 }
 
 function borderProperty(theme, { value, border }) {
-  if (
-    Object.prototype.hasOwnProperty.call(
-      theme.colors.border,
-      value
-    )
-  ) {
+  if (Object.prototype.hasOwnProperty.call(theme.colors.border, value)) {
     return `1px solid ${theme.colors.border[value]}`
   }
 
@@ -52,11 +47,23 @@ export default function getPaneStyles(theme, props) {
       boxShadow: theme.elevations[props.elevation],
       transitionDuration: '150ms',
       transitionProperty: 'box-shadow, transform',
-      transitionTimingFunction: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-      borderTop: borderProperty(theme, { border: props.border, value: props.borderTop }),
-      borderRight: borderProperty(theme, { border: props.border, value: props.borderRight }),
-      borderBottom: borderProperty(theme, { border: props.border, value: props.borderBottom }),
-      borderLeft: borderProperty(theme, { border: props.border, value: props.borderLeft }),
+      transitionTimingFunction: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+      borderTop: borderProperty(theme, {
+        border: props.border,
+        value: props.borderTop
+      }),
+      borderRight: borderProperty(theme, {
+        border: props.border,
+        value: props.borderRight
+      }),
+      borderBottom: borderProperty(theme, {
+        border: props.border,
+        value: props.borderBottom
+      }),
+      borderLeft: borderProperty(theme, {
+        border: props.border,
+        value: props.borderLeft
+      }),
 
       _hover: getHoverElevationStyles(theme, props.hoverElevation),
       _active: getActiveElevationStyles(theme, props.activeElevation)

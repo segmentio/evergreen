@@ -47,9 +47,10 @@ const FilePicker = memo(
     const handleBlur = useCallback(
       e => {
         // Setting e.target.files to an array fails. It must be a FileList
-        if (e && e.target)
+        if (e && e.target) {
           e.target.files =
             fileInputRef && fileInputRef.current && fileInputRef.current.files
+        }
 
         safeInvoke(onBlur, e)
       },

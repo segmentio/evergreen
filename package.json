@@ -32,7 +32,7 @@
   "sideEffects": false,
   "scripts": {
     "test": "yarn run eslint && ava",
-    "eslint": "eslint src/**/*.js --fix",
+    "eslint": "eslint 'src/**/*.js'",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
@@ -142,7 +142,7 @@
   },
   "lint-staged": {
     "!(codemods)/**/*.js": [
-      "yarn run eslint",
+      "yarn run eslint --fix",
       "prettier --write"
     ],
     "*.{json,md}": [

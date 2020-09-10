@@ -5,7 +5,7 @@ import Box, { spacing, position, layout } from 'ui-box'
 import useSwitchAppearance from '../../theme/src/hooks/useSwitchAppearance'
 
 const animationEasing = {
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
 const handleStyleClass = css({

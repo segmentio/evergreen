@@ -10,13 +10,13 @@ const refCallback = el => {
 }
 
 function IndeterminateWithRefExample() {
+  const ref = useRef()
+
   useEffect(() => {
     if (ref && ref.current) {
       refCallback(ref.current)
     }
   }, [ref])
-
-  const ref = useRef()
 
   return (
     <Checkbox

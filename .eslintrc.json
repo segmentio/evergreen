@@ -18,6 +18,9 @@
   },
   "plugins": ["react"],
   "rules": {
-    "space-before-function-paren": "off"
+    "space-before-function-paren": "off",
+    "no-unused-vars": "error",
+    "indent": "off",
+    "react/display-name": "off"
   }
 }

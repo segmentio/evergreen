@@ -6,8 +6,8 @@ import { CrossIcon } from '../../icons'
 import { Position } from '../../constants'
 
 const animationEasing = {
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`
+  deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)'
 }
 
 const ANIMATION_DURATION = 240
@@ -17,13 +17,13 @@ const sharedStyles = {
   borderRadius: 9999,
   position: 'absolute',
   cursor: 'pointer',
-  backgroundColor: `rgba(255, 255, 255, 0.4)`,
-  transition: `background-color 120ms`,
+  backgroundColor: 'rgba(255, 255, 255, 0.4)',
+  transition: 'background-color 120ms',
   '&:hover': {
-    backgroundColor: `rgba(255, 255, 255, 0.6)`
+    backgroundColor: 'rgba(255, 255, 255, 0.6)'
   },
   '&:active': {
-    backgroundColor: `rgba(255, 255, 255, 0.4)`
+    backgroundColor: 'rgba(255, 255, 255, 0.4)'
   }
 }
 
@@ -43,15 +43,15 @@ const sheetCloseStyles = {
     left: 0,
     marginLeft: -12,
     marginTop: 12,
-    transform: `translateX(-100%)`,
+    transform: 'translateX(-100%)',
     ...withAnimations(
       css.keyframes('rotate360InAnimation', {
-        from: { transform: `translateX(100%) rotate(0deg)` },
-        to: { transform: `translateX(-100%) rotate(-360deg)` }
+        from: { transform: 'translateX(100%) rotate(0deg)' },
+        to: { transform: 'translateX(-100%) rotate(-360deg)' }
       }),
       css.keyframes('rotate360OutAnimation', {
-        from: { transform: `translateX(-100%) rotate(0deg)` },
-        to: { transform: `translateX(100%) rotate(360deg)` }
+        from: { transform: 'translateX(-100%) rotate(0deg)' },
+        to: { transform: 'translateX(100%) rotate(360deg)' }
       })
     )
   },
@@ -59,15 +59,15 @@ const sheetCloseStyles = {
     marginRight: -12,
     right: 0,
     marginTop: 12,
-    transform: `translateX(100%)`,
+    transform: 'translateX(100%)',
     ...withAnimations(
       css.keyframes('leftRotate360InAnimation', {
-        from: { transform: `translateX(-100%) rotate(0deg)` },
-        to: { transform: `translateX(100%), rotate(360deg)` }
+        from: { transform: 'translateX(-100%) rotate(0deg)' },
+        to: { transform: 'translateX(100%), rotate(360deg)' }
       }),
       css.keyframes('leftRotate360OutAnimation', {
-        from: { transform: `translateX(100%) rotate(0deg)` },
-        to: { transform: `translateX(-100%), rotate(360deg)` }
+        from: { transform: 'translateX(100%) rotate(0deg)' },
+        to: { transform: 'translateX(-100%), rotate(360deg)' }
       })
     )
   },
@@ -76,15 +76,15 @@ const sheetCloseStyles = {
     marginRight: 12,
     top: '100%',
     marginTop: 12,
-    transform: `translateY(0)`,
+    transform: 'translateY(0)',
     ...withAnimations(
       css.keyframes('topRotate360InAnimation', {
-        from: { transform: `translateY(-200%) rotate(0deg)` },
-        to: { transform: `translateY(0%), rotate(360deg)` }
+        from: { transform: 'translateY(-200%) rotate(0deg)' },
+        to: { transform: 'translateY(0%), rotate(360deg)' }
       }),
       css.keyframes('topRotate360OutAnimation', {
-        from: { transform: `translateY(0%) rotate(0deg)` },
-        to: { transform: `translateY(-200%), rotate(360deg)` }
+        from: { transform: 'translateY(0%) rotate(0deg)' },
+        to: { transform: 'translateY(-200%), rotate(360deg)' }
       })
     )
   },
@@ -93,15 +93,15 @@ const sheetCloseStyles = {
     marginRight: 12,
     bottom: '100%',
     marginBottom: 12,
-    transform: `translateY(0)`,
+    transform: 'translateY(0)',
     ...withAnimations(
       css.keyframes('bottomRotate360InAnimation', {
-        from: { transform: `translateY(200%) rotate(0deg)` },
-        to: { transform: `translateY(0%), rotate(360deg)` }
+        from: { transform: 'translateY(200%) rotate(0deg)' },
+        to: { transform: 'translateY(0%), rotate(360deg)' }
       }),
       css.keyframes('bottomRotate360OutAnimation', {
-        from: { transform: `translateY(0%) rotate(0deg)` },
-        to: { transform: `translateY(200%), rotate(360deg)` }
+        from: { transform: 'translateY(0%) rotate(0deg)' },
+        to: { transform: 'translateY(200%), rotate(360deg)' }
       })
     )
   }

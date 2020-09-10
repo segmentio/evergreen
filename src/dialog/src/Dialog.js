@@ -9,8 +9,8 @@ import { Button, IconButton } from '../../buttons'
 import { CrossIcon } from '../../icons'
 
 const animationEasing = {
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`
+  deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)'
 }
 
 const ANIMATION_DURATION = 200
