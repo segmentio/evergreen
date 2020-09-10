@@ -31,7 +31,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "test": "xo && ava",
+    "test": "yarn run eslint && ava",
     "eslint": "eslint src/**/*.js --fix",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "dev": "start-storybook -p 6006",
