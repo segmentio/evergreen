@@ -15,13 +15,8 @@ exports[`<Alert /> appearance snapshot 1`] = `
         className="css-nil ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
       >
         <svg
-          className="ub-w_16px ub-h_16px ub-box-szg_border-box"
+          className="css-1ffn9ia ub-w_16px ub-h_16px ub-box-szg_border-box"
           data-icon="info-sign"
-          style={
-            Object {
-              "fill": "#3366FF",
-            }
-          }
           viewBox="0 0 16 16"
         >
           <path
@@ -55,13 +50,8 @@ exports[`<Alert /> basic snapshot 1`] = `
         className="css-nil ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
       >
         <svg
-          className="ub-w_16px ub-h_16px ub-box-szg_border-box"
+          className="css-1ffn9ia ub-w_16px ub-h_16px ub-box-szg_border-box"
           data-icon="info-sign"
-          style={
-            Object {
-              "fill": "#3366FF",
-            }
-          }
           viewBox="0 0 16 16"
         >
           <path
@@ -95,13 +85,8 @@ exports[`<Alert /> intent snapshot 1`] = `
         className="css-nil ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
       >
         <svg
-          className="ub-w_16px ub-h_16px ub-box-szg_border-box"
+          className="css-tn1wco ub-w_16px ub-h_16px ub-box-szg_border-box"
           data-icon="error"
-          style={
-            Object {
-              "fill": "#D14343",
-            }
-          }
           viewBox="0 0 16 16"
         >
           <path
