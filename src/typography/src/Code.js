@@ -8,7 +8,7 @@ const internalStyles = {}
 
 const Code = memo(
   forwardRef(function Code(props, ref) {
-    const { className, appearance = 'default', ...restProps } = props
+    const { appearance = 'default', className, ...restProps } = props
 
     const styleProps = useStyleConfig(
       'Code',

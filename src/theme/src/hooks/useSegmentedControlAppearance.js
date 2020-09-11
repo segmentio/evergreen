@@ -22,8 +22,8 @@ const focusState = '& input:focus + label'
 
 const getSegmentedControlStyles = theme => {
   const {
-    tokens: { primary, colors },
-    segmentedControl
+    segmentedControl,
+    tokens: { colors, primary }
   } = theme
 
   const {

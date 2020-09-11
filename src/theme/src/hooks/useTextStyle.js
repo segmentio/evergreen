@@ -1,8 +1,8 @@
 import useTheme from '../useTheme'
 
-function useTextStyle({ size, color, fontFamily }) {
+function useTextStyle({ color, fontFamily, size }) {
   const {
-    tokens: { text, fontFamilies, colors }
+    tokens: { colors, fontFamilies, text }
   } = useTheme()
 
   return {

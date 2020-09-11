@@ -88,7 +88,7 @@ storiesOf('menu', module)
                 selected: 'asc'
               }}
             >
-              {({ state, setState }) => {
+              {({ setState, state }) => {
                 return (
                   <Menu.OptionsGroup
                     title="Order"
@@ -110,7 +110,7 @@ storiesOf('menu', module)
                 selected: 'email'
               }}
             >
-              {({ state, setState }) => {
+              {({ setState, state }) => {
                 return (
                   <Menu.OptionsGroup
                     title="Show"

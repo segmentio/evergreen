@@ -101,7 +101,7 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
 
   return (
     <SelectMenu width={targetWidth} {...selectMenuProps}>
-      {({ toggle, getRef, isShown }) => {
+      {({ getRef, isShown, toggle }) => {
         return (
           <TextTableCell
             ref={onMainRef.bind(null, getRef)}

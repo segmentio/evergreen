@@ -26,15 +26,15 @@ const internalStyles = {
 const TextInput = memo(
   forwardRef(function TextInput(props, ref) {
     const {
+      appearance = 'default',
       className,
-      required,
-      placeholder,
-      width = 280,
       disabled = false,
       isInvalid = false,
-      spellCheck = true,
-      appearance = 'default',
+      placeholder,
+      required,
       size = 'medium',
+      spellCheck = true,
+      width = 280,
       ...restProps
     } = props
 

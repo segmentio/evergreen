@@ -62,7 +62,7 @@ const controlUsage = (
     content={({ close }) => <ClosablePopoverContent close={close} />}
     display="inline-block"
   >
-    {({ isShown, toggle, getRef }) => (
+    {({ getRef, isShown, toggle }) => (
       <Button
         // You can use `isShown` to set a properties
         // Use with caution, calculations are based on the width

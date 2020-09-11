@@ -22,8 +22,8 @@ const internalStyles = {
 const Alert = memo(
   forwardRef(function Alert(props, ref) {
     const {
-      children,
       appearance = 'default',
+      children,
       className,
       hasIcon = true,
       intent = 'info',

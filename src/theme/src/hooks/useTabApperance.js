@@ -18,7 +18,7 @@ const activeState = '&:active'
 
 const getTabStyles = (apperance, direction, theme) => {
   const {
-    tokens: { primary, colors }
+    tokens: { colors, primary }
   } = theme
 
   const display = direction === 'horizontal' ? 'inline-flex' : 'flex'

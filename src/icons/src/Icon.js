@@ -11,11 +11,11 @@ const Icon = forwardRef(function Icon(
   {
     className,
     color = 'currentColor',
-    size = 16,
     name,
-    title,
+    size = 16,
     svgPaths16,
     svgPaths20,
+    title,
     ...svgProps
   },
   ref

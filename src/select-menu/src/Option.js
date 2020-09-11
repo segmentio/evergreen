@@ -9,16 +9,16 @@ import TextTableCell from '../../table/src/TextTableCell'
 const Option = memo(
   forwardRef(function Option(props, ref) {
     const {
-      label,
-      onSelect,
-      onDeselect,
-      isHighlighted,
-      isSelected,
-      isSelectable,
       disabled,
-      style,
       height,
       icon,
+      isHighlighted,
+      isSelectable,
+      isSelected,
+      label,
+      onDeselect,
+      onSelect,
+      style,
       ...rest
     } = props
 

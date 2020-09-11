@@ -12,11 +12,11 @@ import Button, {
 const IconButton = memo(
   forwardRef(function IconButton(props, ref) {
     const {
+      appearance,
       icon,
       iconSize,
-      size = 'medium',
       intent,
-      appearance,
+      size = 'medium',
       ...restProps
     } = props
 

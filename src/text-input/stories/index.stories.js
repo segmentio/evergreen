@@ -76,7 +76,12 @@ storiesOf('text-input', module)
             <Label htmlFor="small" size={300} display="block" marginBottom={4}>
               Small
             </Label>
-            <TextInput appearance={appearance} size="small" name="small" id="small" />
+            <TextInput
+              appearance={appearance}
+              size="small"
+              name="small"
+              id="small"
+            />
           </Box>
           <Box marginBottom={24}>
             <Label htmlFor="medium" size={300} display="block" marginBottom={4}>
@@ -88,7 +93,12 @@ storiesOf('text-input', module)
             <Label htmlFor="large" size={400} display="block" marginBottom={4}>
               Large
             </Label>
-            <TextInput appearance={appearance} size="large" name="large" id="large" />
+            <TextInput
+              appearance={appearance}
+              size="large"
+              name="large"
+              id="large"
+            />
           </Box>
         </Box>
       ))}
@@ -119,7 +129,7 @@ storiesOf('text-input', module)
         validationMessage="This field is required"
       />
       <Manager>
-        {({ state, setState }) => {
+        {({ setState, state }) => {
           return (
             <TextInputField
               label="A controlled text input field"

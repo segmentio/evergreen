@@ -11,7 +11,7 @@ const animationEasing = {
   spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
-const getCSS = ({ initialScale, animationDuration }) => ({
+const getCSS = ({ animationDuration, initialScale }) => ({
   position: 'fixed',
   opacity: 0,
   transitionTimingFunction: animationEasing.spring,

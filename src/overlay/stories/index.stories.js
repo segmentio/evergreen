@@ -37,7 +37,7 @@ storiesOf('overlay', module)
         document.body.style.height = '100vh'
       })()}
       <OverlayManager>
-        {({ hide, show, isShown }) => (
+        {({ hide, isShown, show }) => (
           <Box>
             <Overlay isShown={isShown} onExited={hide}>
               Overlay children
@@ -56,7 +56,7 @@ storiesOf('overlay', module)
         document.body.style.background = 'gray'
       })()}
       <OverlayManager>
-        {({ hide, show, isShown }) => (
+        {({ hide, isShown, show }) => (
           <Box>
             <Overlay isShown={isShown} onExited={hide} preventBodyScrolling>
               Overlay children

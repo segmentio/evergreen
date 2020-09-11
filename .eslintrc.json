@@ -21,11 +21,12 @@
     "ecmaVersion": 2015,
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "sort-destructure-keys"],
   "rules": {
     "space-before-function-paren": "off",
     "no-unused-vars": "error",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "sort-destructure-keys/sort-destructure-keys": "error"
   },
   "overrides": [
     {

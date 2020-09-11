@@ -9,7 +9,7 @@ import { minorScale } from '../../scales'
 
 const Tag = memo(
   forwardRef(function Tag(props, ref) {
-    const { children, onRemove, isRemovable, ...restProps } = props
+    const { children, isRemovable, onRemove, ...restProps } = props
 
     const badgeStyles = {
       alignItems: 'center',

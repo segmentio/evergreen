@@ -3,8 +3,8 @@ import { extractStyles as boxExtractStyles } from 'ui-box'
 import { renderStatic } from 'glamor/server'
 
 export default function extractStyles(options = {}) {
-  const { styles, cache } = boxExtractStyles()
-  const { ids, css } = renderStatic(
+  const { cache, styles } = boxExtractStyles()
+  const { css, ids } = renderStatic(
     () => 'let glamor believe there is some html here'
   )
 
