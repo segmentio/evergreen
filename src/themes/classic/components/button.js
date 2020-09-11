@@ -1,4 +1,7 @@
-import { getPrimaryButtonStylesForIntent } from '../deprecated/helpers'
+import {
+  getTextColorForIntent,
+  getPrimaryButtonStylesForIntent
+} from '../deprecated/helpers'
 import { defaultControlStyles } from '../deprecated/shared'
 
 const baseStyle = {
@@ -20,8 +23,7 @@ const appearances = {
         getPrimaryButtonStylesForIntent(props.intent).linearGradient.focus,
       boxShadow: (theme, props) =>
         `0 0 0 3px ${
-          getPrimaryButtonStylesForIntent(props.intent).linearGradient
-            .focusColor
+          getPrimaryButtonStylesForIntent(props.intent).focusColor
         }, inset 0 0 0 1px ${theme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${
           theme.scales.neutral.N5A
         }`
@@ -39,17 +41,25 @@ const appearances = {
 
   default: {
     ...defaultControlStyles.base,
+    color: (_, props) => getTextColorForIntent(props.intent),
+    _hover: defaultControlStyles.hover,
+    _active: defaultControlStyles.active,
+    _focus: defaultControlStyles.focus,
+    _disabled: defaultControlStyles.disabled
+  },
+  minimal: {
+    color: (_, props) => getTextColorForIntent(props.intent),
+    background: 'transparent',
     _hover: {
-      ...defaultControlStyles.hover
+      background: 'scales.neutral.N2A'
+    },
+    _focus: {
+      boxShadow: theme => `0 0 0 3px ${theme.scales.blue.B5A}`
     },
     _active: {
-      ...defaultControlStyles.active
-    },
-    _disabled: {
-      ...defaultControlStyles.disabled
+      background: 'scales.blue.B3A'
     }
-  },
-  minimal: {}
+  }
 }
 
 const sizes = {
