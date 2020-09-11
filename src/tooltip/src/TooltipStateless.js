@@ -4,10 +4,18 @@ import { Pane } from '../../layers'
 import { Paragraph } from '../../typography'
 import useStyleConfig from '../../hooks/use-style-config'
 
+const pseudoSelectors = {}
+const internalStyles = {}
+
 const TooltipStateless = memo(
   forwardRef(function TooltipStateless(props, ref) {
     const { children, appearance, ...restProps } = props
-    const { ...boxProps } = useStyleConfig('Tooltip', { appearance }, {}, {})
+    const { ...boxProps } = useStyleConfig(
+      'Tooltip',
+      { appearance },
+      pseudoSelectors,
+      internalStyles
+    )
 
     const { color, ...themedProps } = boxProps
 
