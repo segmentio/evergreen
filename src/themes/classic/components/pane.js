@@ -19,7 +19,7 @@ function borderProperty(theme, { value, border }) {
     return `1px solid ${theme.colors.border.default}`
   }
 
-  return value
+  return value || border
 }
 
 const baseStyle = (theme, props) => ({
@@ -41,6 +41,14 @@ const baseStyle = (theme, props) => ({
     border: props.border,
     value: props.borderLeft
   }),
+
+  ...('hoverElevation' in props || 'activeElevation' in props
+    ? {
+        transitionDuration: '150ms',
+        transitionProperty: 'box-shadow, transform',
+        transitionTimingFunction: 'cubic-bezier(0.0, 0.0, 0.2, 1)'
+      }
+    : {}),
 
   _hover: Number.isInteger(props.hoverElevation)
     ? {

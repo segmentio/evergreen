@@ -1,19 +1,21 @@
+import colors from './colors'
+
 const intents = {
   danger: {
-    border: '',
-    background: ''
+    border: colors.red.base,
+    background: colors.red.base
   },
   warning: {
-    border: '',
-    background: ''
+    border: colors.orange.base,
+    background: colors.orange.base
   },
   info: {
-    border: '',
-    background: ''
+    border: colors.blue.base,
+    background: colors.blue.base
   },
   success: {
-    border: '',
-    background: ''
+    border: colors.green.base,
+    background: colors.green.base
   }
 }
 

@@ -1,6 +1,8 @@
-const baseStyle = (_theme, { intent = 'info' }) => ({
-  borderColor: `intents.${intent}.border`,
-  backgroundColor: `intents.${intent}.background`
+const baseStyle = (theme, { intent = 'info' }) => ({
+  backgroundColor: `intents.${intent}.background`,
+  border: `1px solid ${theme.intents[intent].border}`,
+  borderRadius: 'radii.2',
+  color: theme.intents[intent].text
 })
 
 const appearances = {}
