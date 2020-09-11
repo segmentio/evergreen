@@ -407,10 +407,9 @@ export enum Position {
 
 type ForwardRefComponent<P = {}, T = any> = React.ForwardRefExoticComponent<React.PropsWithoutRef<P> & React.RefAttributes<T>>
 
-export interface AlertOwnProps extends Omit<PaneOwnProps, 'title'> {
+export interface AlertOwnProps extends PaneOwnProps {
   intent?: IntentTypes
   title?: React.ReactNode
-  hasTrim?: boolean
   /**
    * When true, show a icon on the left matching the type,
    */

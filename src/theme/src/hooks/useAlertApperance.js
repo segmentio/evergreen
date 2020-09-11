@@ -12,9 +12,7 @@ const base = {
 }
 
 function getAlertStyles(intent, theme) {
-  const {
-    tokens: { intents }
-  } = theme
+  const { intents } = theme
 
   const borderColor = intents[intent].border
   const backgroundColor = intents[intent].background
