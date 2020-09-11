@@ -21,7 +21,7 @@ exports[`<FilePicker /> snapshot 1`] = `
     value=""
   />
   <button
-    className="css-7f5rre evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-otln_iu2jf4 ub-usr-slct_none ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-crsr_pointer ub-fnt-sze_12px ub-ln-ht_32px ub-ltr-spc_0 ub-min-w_32px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-color_474d66 ub-flx-srnk_0 ub-box-szg_border-box"
+    className="css-1ix1itz evergreen-file-picker-button ub-pst_relative ub-f-wght_500 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-min-w_32px ub-ln-ht_32px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-color_474d66 ub-flx-srnk_0 ub-box-szg_border-box"
     onBlur={[Function]}
     onClick={[Function]}
     type="button"
