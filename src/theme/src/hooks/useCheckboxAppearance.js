@@ -49,8 +49,8 @@ const checkedStyle = {
  */
 const getCheckboxStyles = theme => {
   const {
-    tokens: { primary, colors },
-    checkbox
+    checkbox,
+    tokens: { colors, primary }
   } = theme
 
   const {

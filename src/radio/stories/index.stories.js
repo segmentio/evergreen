@@ -22,7 +22,7 @@ storiesOf('radio', module)
           value: 'restricted'
         }}
       >
-        {({ state, setState }) => (
+        {({ setState, state }) => (
           <RadioGroup
             label="Permissions"
             value={state.value}
@@ -41,7 +41,7 @@ storiesOf('radio', module)
           value: 'restricted'
         }}
       >
-        {({ state, setState }) => (
+        {({ setState, state }) => (
           <RadioGroup
             marginTop={40}
             size={16}

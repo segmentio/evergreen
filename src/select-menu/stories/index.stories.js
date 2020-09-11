@@ -126,7 +126,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
           selected: []
         }}
       >
-        {({ state, setState }) => (
+        {({ setState, state }) => (
           <SelectMenu
             isMultiSelect
             title="Select multiple names"

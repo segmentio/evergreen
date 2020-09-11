@@ -38,7 +38,7 @@ export default class AdvancedTable extends React.Component {
   }
 
   sort = profiles => {
-    const { ordering, orderedColumn } = this.state
+    const { orderedColumn, ordering } = this.state
     // Return if there's no ordering.
     if (ordering === Order.NONE) return profiles
 

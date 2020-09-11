@@ -65,7 +65,7 @@ storiesOf('tag-input', module).add('TagInput', () => (
         <StoryHeading>Default usage (height 32)</StoryHeading>
       </StoryHeader>
       <StateManager>
-        {({ values, addValues, removeValue }) => (
+        {({ addValues, removeValue, values }) => (
           <TagInput
             inputProps={{ placeholder: 'Enter something...' }}
             values={values}
@@ -80,7 +80,7 @@ storiesOf('tag-input', module).add('TagInput', () => (
         <StoryHeading>Changing tag submit key</StoryHeading>
       </StoryHeader>
       <StateManager>
-        {({ values, addValues, removeValue }) => (
+        {({ addValues, removeValue, values }) => (
           <TagInput
             inputProps={{ placeholder: 'Enter something...' }}
             values={values}
@@ -96,7 +96,7 @@ storiesOf('tag-input', module).add('TagInput', () => (
         <StoryHeading>With tag values</StoryHeading>
       </StoryHeader>
       <StateManager values={initialValues}>
-        {({ values, addValues, removeValue }) => (
+        {({ addValues, removeValue, values }) => (
           <TagInput
             inputProps={{ placeholder: 'Enter something...' }}
             values={values}
@@ -111,7 +111,7 @@ storiesOf('tag-input', module).add('TagInput', () => (
         <StoryHeading>Disabled</StoryHeading>
       </StoryHeader>
       <StateManager values={initialValues}>
-        {({ values, addValues, removeValue }) => (
+        {({ addValues, removeValue, values }) => (
           <TagInput
             disabled
             inputProps={{ placeholder: 'Enter something...' }}
@@ -127,7 +127,7 @@ storiesOf('tag-input', module).add('TagInput', () => (
         <StoryHeading>With `tagProps`</StoryHeading>
       </StoryHeader>
       <StateManager values={['valid', 'invalid']}>
-        {({ values, addValues, removeValue, tagProps }) => (
+        {({ addValues, removeValue, tagProps, values }) => (
           <TagInput
             inputProps={{ placeholder: 'Enter something...' }}
             values={values}
@@ -143,7 +143,7 @@ storiesOf('tag-input', module).add('TagInput', () => (
         <StoryHeading>Prevent input clearing on even values</StoryHeading>
       </StoryHeader>
       <StateManager values={initialValues}>
-        {({ values, addValues, removeValue, handleChange }) => (
+        {({ addValues, handleChange, removeValue, values }) => (
           <TagInput
             addOnBlur
             inputProps={{ placeholder: 'Enter something...' }}

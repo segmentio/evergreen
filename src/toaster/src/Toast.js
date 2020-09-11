@@ -57,15 +57,15 @@ const animationStyles = css({
 
 const Toast = memo(function Toast(props) {
   const {
+    children,
     duration,
-    onRemove,
-    isShown: isShownProp,
+    hasCloseButton,
     // Template props
     intent = 'none',
-    zIndex,
+    isShown: isShownProp,
+    onRemove,
     title,
-    children,
-    hasCloseButton
+    zIndex
   } = props
 
   const [isShown, setIsShown] = useState(true)

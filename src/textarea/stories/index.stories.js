@@ -46,7 +46,12 @@ storiesOf('textarea', module)
         <Label marginBottom={8} htmlFor="isInvalid" size={400} display="block">
           Is Invalid
         </Label>
-        <Textarea name="isInvalid" id="isInvalid" isInvalid placeholder="This is invalid" />
+        <Textarea
+          name="isInvalid"
+          id="isInvalid"
+          isInvalid
+          placeholder="This is invalid"
+        />
       </Box>
     </Box>
   ))
@@ -75,7 +80,7 @@ storiesOf('textarea', module)
         validationMessage="This field is required"
       />
       <Manager>
-        {({ state, setState }) => {
+        {({ setState, state }) => {
           return (
             <TextareaField
               label="A controlled textarea field"

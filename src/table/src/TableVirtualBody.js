@@ -7,17 +7,17 @@ import { useForceUpdate } from '../../hooks'
 
 const TableVirtualBody = memo(function TableVirtualBody(props) {
   const {
-    children: inputChildren,
-    height: paneHeight,
-    defaultHeight = 48,
     allowAutoHeight = false,
-    overscanCount = 5,
+    children: inputChildren,
+    defaultHeight = 48,
     estimatedItemSize,
-    useAverageAutoHeightEstimation = true,
-    scrollToIndex,
+    height: paneHeight,
+    onScroll,
+    overscanCount = 5,
     scrollOffset,
     scrollToAlignment,
-    onScroll,
+    scrollToIndex,
+    useAverageAutoHeightEstimation = true,
     ...rest
   } = props
 

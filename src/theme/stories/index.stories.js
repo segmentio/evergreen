@@ -20,7 +20,7 @@ themeStory.add('Theming components', () => (
         themeValue: 'v5'
       }}
     >
-      {({ state, setState }) => {
+      {({ setState, state }) => {
         return (
           <React.Fragment>
             <ThemeProvider

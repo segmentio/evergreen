@@ -43,8 +43,8 @@ const handleContainerStyleClass = css({
 }).toString()
 
 const CheckIcon = memo(function CheckIcon({
-  size,
   fill = 'currentColor',
+  size,
   ...props
 }) {
   return (

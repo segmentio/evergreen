@@ -2,7 +2,7 @@ import useTheme from '../useTheme'
 
 function useParagraphStyle(size, color) {
   const {
-    tokens: { paragraph, fontFamilies, colors }
+    tokens: { colors, fontFamilies, paragraph }
   } = useTheme()
 
   return {

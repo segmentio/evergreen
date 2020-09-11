@@ -30,14 +30,14 @@ const Textarea = memo(
   forwardRef(function Textarea(props, ref) {
     const {
       className,
-      width = '100%',
-      height,
       disabled = false,
-      required,
+      grammarly = false,
+      height,
       isInvalid = false,
       placeholder,
+      required,
       spellCheck = true,
-      grammarly = false,
+      width = '100%',
       ...restProps
     } = props
 

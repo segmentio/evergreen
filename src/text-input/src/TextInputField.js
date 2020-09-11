@@ -11,23 +11,23 @@ const TextInputField = memo(
 
     const {
       // We are using the id from the state
-      id: unusedId,
+      appearance,
 
       // FormField props
-      hint,
-      label,
       description,
-      validationMessage,
+      disabled,
+      hint,
+      id: unusedId,
 
       // TextInput props
-      disabled,
-      required,
-      isInvalid,
-      appearance,
-      placeholder,
-      spellCheck,
       inputHeight = 32,
       inputWidth = '100%',
+      isInvalid,
+      label,
+      placeholder,
+      required,
+      spellCheck,
+      validationMessage,
 
       // Rest props are spread on the FormField
       ...restProps

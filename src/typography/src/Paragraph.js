@@ -5,7 +5,7 @@ import useParagraphStyle from '../../theme/src/hooks/useParagraphStyle'
 
 const Paragraph = memo(
   forwardRef(function Paragraph(props, ref) {
-    const { size = 400, color = 'default', marginTop, ...restProps } = props
+    const { color = 'default', marginTop, size = 400, ...restProps } = props
 
     const { marginTop: defaultMarginTop, ...textStyle } = useParagraphStyle(
       size,

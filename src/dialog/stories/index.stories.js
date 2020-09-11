@@ -35,7 +35,7 @@ storiesOf('dialog', module)
         document.body.style.height = '100vh'
       })()}
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -51,7 +51,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -68,7 +68,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, isLoading, confirmLoading, show, hide }) => (
+        {({ confirmLoading, hide, isLoading, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -88,7 +88,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -104,7 +104,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -121,7 +121,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -145,7 +145,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -169,7 +169,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -192,7 +192,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -206,7 +206,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -234,7 +234,7 @@ storiesOf('dialog', module)
   .add('Dialog with scrolling and custom header and footer', () => (
     <Box padding={40}>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -270,7 +270,7 @@ storiesOf('dialog', module)
   .add('Dialog with nested Combobox', () => (
     <Box padding={40}>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -288,7 +288,7 @@ storiesOf('dialog', module)
   .add('Dialog with customized content container', () => (
     <Box padding={40}>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -321,7 +321,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -354,7 +354,7 @@ storiesOf('dialog', module)
   .add('Dialog with endless stacking', () => (
     <Box padding={40}>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({ hide, isShown, show }) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -366,7 +366,7 @@ storiesOf('dialog', module)
                   isShown: false
                 }}
               >
-                {({ state, setState }) => (
+                {({ setState, state }) => (
                   <React.Fragment>
                     <Button onClick={() => setState({ isShown: true })}>
                       Show Inner Side Sheet
@@ -380,7 +380,7 @@ storiesOf('dialog', module)
                           isShown: false
                         }}
                       >
-                        {({ state: innerState, setState: innerSetState }) => {
+                        {({ setState: innerSetState, state: innerState }) => {
                           return (
                             <React.Fragment>
                               <Popover
@@ -421,7 +421,7 @@ storiesOf('dialog', module)
                           isShown: false
                         }}
                       >
-                        {({ state: innerState, setState: innerSetState }) => {
+                        {({ setState: innerSetState, state: innerState }) => {
                           return (
                             <React.Fragment>
                               <Button

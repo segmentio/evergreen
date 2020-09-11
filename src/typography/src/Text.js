@@ -7,9 +7,9 @@ const Text = memo(
   forwardRef(function Text(props, ref) {
     const {
       className,
-      size = 400,
       color = 'default',
       fontFamily = 'ui',
+      size = 400,
       ...restProps
     } = props
 

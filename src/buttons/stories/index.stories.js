@@ -23,7 +23,7 @@ buttonsStory.add('Common', () => (
         value: 'medium'
       }}
     >
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <React.Fragment>
           <SegmentedControl
             width={350}
@@ -373,7 +373,7 @@ buttonsStory.add('Button isLoading', () => (
         isShown: false
       }}
     >
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <Button
           marginRight={16}
           isLoading={state.isLoading}

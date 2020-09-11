@@ -7,7 +7,7 @@ import { Spinner } from '../../spinner'
 import useStyleConfig from '../../hooks/use-style-config'
 
 /* eslint-disable react/prop-types */
-const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
+const ButtonIcon = memo(function ButtonIcon({ edge, icon, size, spacing }) {
   if (!icon) return null
 
   const relativeSpace = typeof spacing === 'number' ? spacing : size

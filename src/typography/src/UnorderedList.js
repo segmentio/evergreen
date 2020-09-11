@@ -11,7 +11,7 @@ const styles = {
 
 const UnorderedList = memo(
   forwardRef(function UnorderedList(props, ref) {
-    const { children, size = 400, icon, iconColor, ...rest } = props
+    const { children, icon, iconColor, size = 400, ...rest } = props
 
     const enrichedChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {

@@ -29,7 +29,7 @@ const EditableCellField = memo(function EditableCellField(props) {
   const latestAnimationFrame = useRef()
   const textareaRef = useRef()
   const tableBodyRef = useRef()
-  const [{ height, width, top, left }, setDimensions] = useState({
+  const [{ height, left, top, width }, setDimensions] = useState({
     top: 0,
     left: 0,
     height: 0,
@@ -65,9 +65,9 @@ const EditableCellField = memo(function EditableCellField(props) {
     tableBodyRef.current = getTableBodyRef()
 
     const {
+      height: targetHeight,
       left: targetLeft,
       top: targetTop,
-      height: targetHeight,
       width: targetWidth
     } = targetRef.getBoundingClientRect()
 
@@ -117,7 +117,7 @@ const EditableCellField = memo(function EditableCellField(props) {
     }
   }
 
-  const { size, value, minWidth = 80, minHeight = 40, zIndex } = props
+  const { minHeight = 40, minWidth = 80, size, value, zIndex } = props
 
   return (
     <Textarea

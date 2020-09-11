@@ -25,7 +25,7 @@ storiesOf('side-sheet', module)
         document.body.style.height = '100vh'
       })()}
       <Component initialState={{ isShown: false }}>
-        {({ state, setState }) => (
+        {({ setState, state }) => (
           <Box>
             <SideSheet
               isShown={state.isShown}
@@ -89,7 +89,7 @@ storiesOf('side-sheet', module)
         document.body.style.height = '100vh'
       })()}
       <Component initialState={{ isShown: false }}>
-        {({ state, setState }) => (
+        {({ setState, state }) => (
           <Box>
             <SideSheet
               isShown={state.isShown}
@@ -136,7 +136,7 @@ storiesOf('side-sheet', module)
         document.body.style.height = '100vh'
       })()}
       <Component initialState={{ isShown: false }}>
-        {({ state, setState }) => (
+        {({ setState, state }) => (
           <Box>
             <SideSheet
               isShown={state.isShown}
@@ -180,7 +180,7 @@ storiesOf('side-sheet', module)
         document.body.style.height = '100vh'
       })()}
       <Component initialState={{ isShown: false }}>
-        {({ state, setState }) => (
+        {({ setState, state }) => (
           <Box>
             <SideSheet
               isShown={state.isShown}
@@ -209,7 +209,7 @@ storiesOf('side-sheet', module)
         document.body.style.height = '100vh'
       })()}
       <Component initialState={{ isShown: false, position: 'left' }}>
-        {({ state, setState }) => (
+        {({ setState, state }) => (
           <Box>
             <SideSheet
               position={state.position}
@@ -268,7 +268,7 @@ storiesOf('side-sheet', module)
         document.body.style.height = '100vh'
       })()}
       <Component initialState={{ isShown: false }}>
-        {({ state, setState }) => (
+        {({ setState, state }) => (
           <Box>
             <SideSheet
               isShown={state.isShown}
@@ -300,7 +300,7 @@ storiesOf('side-sheet', module)
           isConfirmationShown: false
         }}
       >
-        {({ state, setState }) => (
+        {({ setState, state }) => (
           <Box>
             <SideSheet
               isShown={state.isShown}

@@ -19,8 +19,8 @@ const InlineAlert = memo(
     const {
       children,
       className,
-      intent = 'info',
       hasIcon = true,
+      intent = 'info',
       size = 400,
       ...restProps
     } = props

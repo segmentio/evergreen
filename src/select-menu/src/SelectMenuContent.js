@@ -7,7 +7,7 @@ import { CrossIcon } from '../../icons'
 import OptionsList from './OptionsList'
 import OptionShapePropType from './OptionShapePropType'
 
-const DefaultTitleView = ({ close, title, headerHeight }) => (
+const DefaultTitleView = ({ close, headerHeight, title }) => (
   <Pane
     display="flex"
     alignItems="center"
