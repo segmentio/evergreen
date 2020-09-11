@@ -11,7 +11,7 @@ exports[`<FilePicker /> snapshot 1`] = `
   />
   <input
     aria-invalid={false}
-    className="css-fbzndp evergreen-file-picker-text-input ub-w_280px ub-b-btm_1px-solid-d8dae5 ub-b-lft_1px-solid-d8dae5 ub-b-rgt_1px-solid-d8dae5 ub-b-top_1px-solid-d8dae5 ub-bblr_4px ub-bbrr_0-important ub-btlr_4px ub-btrr_0-important ub-fnt-fam_b77syt ub-ln-ht_16px ub-otln_iu2jf4 ub-txt-deco_none ub-fnt-sze_12px ub-f-wght_400 ub-ltr-spc_0 ub-pl_12px ub-pr_12px ub-bg-clr_white ub-flx_1 ub-txt-ovrf_ellipsis ub-box-szg_border-box"
+    className="css-kkuc82 evergreen-file-picker-text-input ub-w_280px ub-b-btm_1px-solid-transparent ub-b-lft_1px-solid-transparent ub-b-rgt_1px-solid-transparent ub-b-top_1px-solid-transparent ub-otln_iu2jf4 ub-txt-deco_none ub-pl_12px ub-pr_12px ub-bblr_4px ub-bbrr_0-important ub-btlr_4px ub-btrr_0-important ub-fnt-fam_b77syt ub-ln-ht_12px ub-bg-clr_white ub-b-btm-clr_d8dae5 ub-b-lft-clr_d8dae5 ub-b-rgt-clr_d8dae5 ub-b-top-clr_d8dae5 ub-flx_1 ub-txt-ovrf_ellipsis ub-box-szg_border-box"
     disabled={false}
     onBlur={[Function]}
     placeholder="Select a file to upload…"

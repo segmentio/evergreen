@@ -5,6 +5,7 @@ import Pane from './pane'
 import Select from './select'
 import Tooltip from './tooltip'
 import Input from './input'
+import TagInput from './tag-input'
 
 export default {
   Alert,
@@ -13,5 +14,6 @@ export default {
   Pane,
   Select,
   Tooltip,
-  Input
+  Input,
+  TagInput
 }
