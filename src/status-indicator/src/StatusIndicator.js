@@ -1,7 +1,7 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '../../typography'
-import { minorScale, majorScale } from '../../scales'
+import { majorScale } from '../../scales'
 import { SymbolCircleIcon } from '../../icons'
 
 const StatusIndicator = memo(
@@ -10,7 +10,7 @@ const StatusIndicator = memo(
       children,
       disabled,
       color = 'disabled',
-      dotSize = minorScale(3),
+      dotSize = 10,
       ...rest
     } = props
 
