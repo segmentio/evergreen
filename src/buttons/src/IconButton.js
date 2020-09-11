@@ -11,19 +11,21 @@ import Button, {
 
 const IconButton = memo(
   forwardRef(function IconButton(props, ref) {
-    const { icon, iconSize, size = 'medium', ...restProps } = props
+    const { icon, iconSize, ...restProps } = props
+
+    // modifiers
+    const { appearance, intent, size = 'medium' } = props
 
     // Composes the exact same styles as button
     const styleProps = useStyleConfig(
       'Button',
-      { appearance: restProps.appearance, intent: restProps.intent, size },
+      { appearance, intent, size },
       pseudoSelectors,
       internalStyles
     )
 
-    const relativeIconSize = getIconSizeForButton(
-      restProps.height || styleProps.height
-    )
+    const height = restProps.height || styleProps.height
+    const relativeIconSize = getIconSizeForButton(height)
 
     return (
       <Button
@@ -31,7 +33,9 @@ const IconButton = memo(
         paddingLeft={0}
         paddingRight={0}
         flex="none"
-        size={size}
+        height={height}
+        width={height}
+        minWidth={height}
         {...restProps}
       >
         <IconWrapper
