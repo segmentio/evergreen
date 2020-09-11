@@ -1,12 +1,33 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box, { dimensions, spacing, position, layout } from 'ui-box'
-import { Text } from '../../typography'
 import { CaretDownIcon } from '../../icons'
-import useButtonAppearance from '../../theme/src/hooks/useButtonAppearance'
+import useStyleConfig from '../../hooks/use-style-config'
 
 const internalStyles = {
-  textTransform: 'default'
+  textTransform: 'default',
+  WebkitAppearance: 'none',
+  MozAppearance: 'none',
+  border: 'none',
+  flex: 1,
+  background: 'none',
+  width: '100%',
+  WebkitFontSmoothing: 'antialiased',
+  textDecoration: 'none',
+  outline: 'none',
+  cursor: 'pointer',
+  ':-moz-focusring': {
+    color: 'transparent',
+    textShadow: '0 0 0 #000'
+  }
+}
+
+const pseudoSelectors = {
+  _disabled: '[disabled]',
+  _invalid: '&[aria-invalid="true"]',
+  _hover: '&:not([disabled]):hover',
+  _focus: '&:not([disabled]):focus',
+  _active: '&:not([disabled]):active'
 }
 
 const getIconSizeForSelect = height => {
@@ -22,7 +43,6 @@ const Select = memo(
     const {
       id,
       name,
-      height = 32,
       children,
       defaultValue,
       disabled,
@@ -31,15 +51,21 @@ const Select = memo(
       required,
       autoFocus,
       isInvalid = false,
+      height: heightProp,
+      size = 'medium',
       appearance = 'default',
       ...restProps
     } = props
 
-    // TODO useSelectAppearance!
-    const { className: themedClassName, boxProps } = useButtonAppearance(
-      { appearance },
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Select',
+      { appearance, size },
+      pseudoSelectors,
       internalStyles
     )
+
+    const height = boxProps.height || heightProp
+
     const iconSize = getIconSizeForSelect(height)
     const iconMargin = height >= 36 ? 12 : 8
 
@@ -53,7 +79,7 @@ const Select = memo(
         height={height}
         {...restProps}
       >
-        <Text
+        <Box
           is="select"
           className={themedClassName}
           id={id}
@@ -65,16 +91,10 @@ const Select = memo(
           autoFocus={autoFocus}
           disabled={disabled}
           aria-invalid={String(isInvalid)}
-          size={300}
-          // TODO move this into the `sizes` part of the style config object?
-          paddingLeft={Math.round(height / 3.2)}
-          // Provide enough space for auto-sizing select including the icon
-          // TODO move this into the `sizes` part of the style config object?
-          paddingRight={iconMargin * 2 + iconSize}
           {...boxProps}
         >
           {children}
-        </Text>
+        </Box>
         <CaretDownIcon
           color="default"
           size={iconSize}

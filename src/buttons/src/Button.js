@@ -48,7 +48,7 @@ export const internalStyles = {
   }
 }
 
-const pseudoSelectors = {
+export const pseudoSelectors = {
   _active:
     '&:not([disabled]):active, &:not([disabled])[aria-expanded="true"], &:not([disabled])[data-active]',
   _disabled: '&[disabled]',
