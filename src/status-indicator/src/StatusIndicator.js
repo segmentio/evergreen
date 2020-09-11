@@ -20,7 +20,7 @@ const StatusIndicator = memo(
           flexShrink={0}
           marginRight={majorScale(1)}
           size={dotSize}
-          color={color === 'none' ? 'disabled' : color}
+          color={color}
         />
         {children}
       </Text>
