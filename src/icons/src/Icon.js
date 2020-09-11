@@ -20,7 +20,7 @@ const Icon = forwardRef(function Icon(
   },
   ref
 ) {
-  const { className: themedClassName, styleProps } = useStyleConfig(
+  const { className: themedClassName, ...styleProps } = useStyleConfig(
     'Icon',
     { color },
     pseudoSelectors,
