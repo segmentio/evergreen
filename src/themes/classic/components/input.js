@@ -1,8 +1,7 @@
 const baseStyle = {
   borderRadius: 'radii.1',
   fontFamily: 'fontFamilies.ui',
-  lineHeight: '12px',
-  border: '1px solid transparent'
+  lineHeight: '12px'
 }
 
 const appearances = {
