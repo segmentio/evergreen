@@ -2,13 +2,28 @@ import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
-import { minorScale } from '../../scales'
-import useInputAppearance from '../../theme/src/hooks/useInputAppearance'
+import useStyleConfig from '../../hooks/use-style-config'
 
-const styles = {
+const pseudoSelectors = {
+  _focus: '&:focus',
+  _disabled: '&:disabled',
+  _invalid: '&[aria-invalid="true"]',
+  _placeholder: '&::placeholder',
+  _placeholderHover: '&:hover::placeholder',
+  _placeholderFocus: '&:focus::placeholder'
+}
+
+const internalStyles = {
+  border: 'none',
+  MozAppearance: 'none',
+  outline: 'none',
+  textDecoration: 'none',
+  WebkitAppearance: 'none',
+  WebkitFontSmoothing: 'antialiased',
   minHeight: 80,
   paddingX: 12,
-  paddingY: 8
+  paddingY: 8,
+  borderRadius: 4
 }
 
 const Textarea = memo(
@@ -26,7 +41,12 @@ const Textarea = memo(
       ...restProps
     } = props
 
-    const { className: themedClassName, boxProps } = useInputAppearance()
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Input',
+      { appearance: 'default' },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Box
@@ -38,13 +58,10 @@ const Textarea = memo(
         required={required}
         disabled={disabled}
         placeholder={placeholder}
-        borderRadius={minorScale(1)}
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
-        {...(disabled ? { color: 'muted' } : {})}
         {...boxProps}
-        {...styles}
         {...restProps}
       />
     )

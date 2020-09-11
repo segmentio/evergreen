@@ -2,7 +2,26 @@ import React, { forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
-import useInputAppearance from '../../theme/src/hooks/useInputAppearance'
+import useStyleConfig from '../../hooks/use-style-config'
+
+const pseudoSelectors = {
+  _focus: '&:focus',
+  _disabled: '&:disabled',
+  _invalid: '&[aria-invalid="true"]',
+  _placeholder: '&::placeholder',
+  _placeholderHover: '&:hover::placeholder',
+  _placeholderFocus: '&:focus::placeholder'
+}
+
+const internalStyles = {
+  border: 'none',
+  MozAppearance: 'none',
+  outline: 'none',
+  textDecoration: 'none',
+  WebkitAppearance: 'none',
+  WebkitFontSmoothing: 'antialiased',
+  paddingX: 12
+}
 
 const TextInput = memo(
   forwardRef(function TextInput(props, ref) {
@@ -19,7 +38,12 @@ const TextInput = memo(
       ...restProps
     } = props
 
-    const { className: themedClassName, boxProps } = useInputAppearance({ appearance, size })
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Input',
+      { appearance, size },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Box
