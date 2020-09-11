@@ -96,8 +96,7 @@ This is useful in cases when you want to create red tags for example.
   {({ state, setState }) => (
     <TagInput
       tagProps={{
-        color: 'red',
-        isSolid: true
+        color: 'red'
       }}
       inputProps={{ placeholder: 'Add red items...' }}
       values={state.values}
@@ -119,7 +118,7 @@ Pass a function to the `tagProps` to achieve this.
   {({ state, setState }) => (
     <TagInput
       tagProps={value => {
-        if (!value.includes('@')) return { color: 'red', isSolid: true }
+        if (!value.includes('@')) return { color: 'red' }
         return {}
       }}
       inputProps={{ placeholder: 'Add email...' }}

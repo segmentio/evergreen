@@ -1,4 +1,6 @@
 import Alert from './alert'
+import Avatar from './avatar'
+import Badge from './badge'
 import Button from './button'
 import Code from './code'
 import Icon from './icon'
@@ -11,6 +13,8 @@ import TagInput from './tag-input'
 
 export default {
   Alert,
+  Avatar,
+  Badge,
   Button,
   Code,
   Icon,

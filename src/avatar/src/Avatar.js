@@ -1,13 +1,22 @@
 import React, { useState, memo, forwardRef } from 'react'
+import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Image } from '../../image'
 import { Text } from '../../typography'
-import { minorScale } from '../../scales'
-import useBadgeAppearance from '../../theme/src/hooks/useBadgeAppearance'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
+import useStyleConfig from '../../hooks/use-style-config'
+
+const pseudoSelectors = {}
+const internalStyles = {
+  overflow: 'hidden',
+  position: 'relative',
+  display: 'inline-flex',
+  flexShrink: 0,
+  justifyContent: 'center'
+}
 
 const isObjectFitSupported =
   typeof document !== 'undefined' &&
@@ -33,24 +42,26 @@ const getAvatarInitialsFontSize = (size, sizeLimitOneCharacter) => {
 const Avatar = memo(
   forwardRef(function Avatar(props, ref) {
     const {
-      src,
-      name,
-      size = 24,
-      shape = 'round',
+      className,
       color = 'automatic',
       forceShowInitials = false,
-      sizeLimitOneCharacter = 20,
       getInitials = globalGetInitials,
       hashValue: propsHashValue,
+      name,
+      shape = 'round',
+      size = 24,
+      sizeLimitOneCharacter = 20,
+      src,
       ...restProps
     } = props
 
     const hashValue = globalHash(propsHashValue || name)
-    const styles = useBadgeAppearance({
-      color,
-      hashValue
-    })
-    const borderRadius = shape === 'round' ? '100%' : minorScale(1)
+    const { className: themedClassName, ...styleProps } = useStyleConfig(
+      'Avatar',
+      { color, hashValue, shape },
+      pseudoSelectors,
+      internalStyles
+    )
 
     const [imageHasFailedLoading, setImageHasFailedLoading] = useState(false)
     const imageUnavailable = !src || imageHasFailedLoading
@@ -69,15 +80,10 @@ const Avatar = memo(
       <Box
         width={size}
         height={size}
-        overflow="hidden"
-        borderRadius={borderRadius}
-        position="relative"
-        display="inline-flex"
-        flexShrink={0}
-        justifyContent="center"
-        backgroundColor={styles.backgroundColor}
         title={name}
         ref={ref}
+        className={cx(className, themedClassName)}
+        {...styleProps}
         {...restProps}
       >
         {(imageUnavailable || forceShowInitials) && (
@@ -87,7 +93,7 @@ const Avatar = memo(
             lineHeight={initialsFontSize}
             width={size}
             height={size}
-            color={styles.color}
+            color="inherit"
           >
             {initials}
           </Text>
@@ -107,6 +113,8 @@ const Avatar = memo(
 )
 
 Avatar.propTypes = {
+  className: PropTypes.string,
+
   /**
    * The src attribute of the image.
    * When it's not available, render initials instead.

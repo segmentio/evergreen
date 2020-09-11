@@ -41,7 +41,7 @@ const fills = {
 
   subtle: {
     neutral: {
-      color: colors.neutral.N4,
+      color: colors.neutral.dark,
       backgroundColor: colors.neutral.light
     },
     blue: {

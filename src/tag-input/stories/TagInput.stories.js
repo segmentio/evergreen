@@ -40,8 +40,7 @@ class StateManager extends React.PureComponent {
 
   tagProps = value => {
     const color = value === 'invalid' ? 'red' : undefined
-    const isSolid = value === 'invalid'
-    return { color, isSolid }
+    return { color }
   }
 
   render() {

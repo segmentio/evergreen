@@ -12,6 +12,7 @@ that you're seeing that we might have missed!
 
 - [No more `css` prop on `<Pane />` or `<Text />`](#css-prop)
 - [No more `hasTrim` prop on `<Alert />`](#has-trim)
+- [No more `isSolid` prop on `<Badge />` or `<Pill />` or `<Avatar />`](#is-solid)
 
 #### No more `css` prop {#css-prop}
 
@@ -35,3 +36,16 @@ Previously, `<Alert />` had a `hasTrim` boolean prop to control the left border 
 -<Alert hasTrim={false} />
 +<Alert border="none" />
 ```
+
+#### No more `isSolid` prop on `<Badge />` or `<Pill />` or `<Avatar />` {#is-solid}
+
+Previously, `<Badge />`, `<Pill />`, and `<Avatar />` had an `isSolid` boolean prop to control the color appearance (which was `false` by default).
+
+For `<Badge />` and `<Pill />` you can use `appearance="solid"` or `appearance="subtle"` (default) instead. Note that the defaultTheme in v6 does not have a `solid` appearance included, so you'll have to style that yourself via theming if you want it! The classicTheme will include both appearances out of the box.
+
+```diff static
+-<Badge isSolid />
++<Badge appearance="solid" />
+```
+
+For `<Avatar />` you can supplement this behavior through custom theming.
