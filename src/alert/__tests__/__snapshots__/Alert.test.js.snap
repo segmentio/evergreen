@@ -81,10 +81,9 @@ exports[`<Alert /> basic snapshot 1`] = `
 </div>
 `;
 
-exports[`<Alert /> hasTrim=false snapshot 1`] = `
+exports[`<Alert /> intent snapshot 1`] = `
 <div
-  className="css-1utm4li css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-bg-clr_white ub-ovflw-x_hidden ub-ovflw-y_hidden ub-pst_relative ub-dspl_flex ub-pb_12px ub-pt_12px ub-pl_16px ub-pr_16px ub-box-szg_border-box"
-  hasTrim={false}
+  className="css-1p96nzd css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-bg-clr_white ub-ovflw-x_hidden ub-ovflw-y_hidden ub-pst_relative ub-dspl_flex ub-pb_12px ub-pt_12px ub-pl_16px ub-pr_16px ub-box-szg_border-box"
   role="alert"
 >
   <div
@@ -98,104 +97,22 @@ exports[`<Alert /> hasTrim=false snapshot 1`] = `
       >
         <svg
           className="ub-w_16px ub-h_16px ub-box-szg_border-box"
-          data-icon="info-sign"
+          data-icon="error"
           style={
             Object {
-              "fill": "#3366FF",
+              "fill": "#D14343",
             }
           }
           viewBox="0 0 16 16"
         >
           <path
-            d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
+            d="M7.99-.01c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm1 13h-2v-2h2v2zm0-3h-2v-7h2v7z"
             fillRule="evenodd"
           />
         </svg>
       </div>
       <h4
-        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_2952CC ub-box-szg_border-box"
-      >
-        Test title
-      </h4>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`<Alert /> hasTrim=true snapshot 1`] = `
-<div
-  className="css-1utm4li css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-bg-clr_white ub-ovflw-x_hidden ub-ovflw-y_hidden ub-pst_relative ub-dspl_flex ub-pb_12px ub-pt_12px ub-pl_16px ub-pr_16px ub-box-szg_border-box"
-  hasTrim={true}
-  role="alert"
->
-  <div
-    className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-flx_1 ub-box-szg_border-box"
-  >
-    <div
-      className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
-    >
-      <div
-        className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
-      >
-        <svg
-          className="ub-w_16px ub-h_16px ub-box-szg_border-box"
-          data-icon="info-sign"
-          style={
-            Object {
-              "fill": "#3366FF",
-            }
-          }
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
-            fillRule="evenodd"
-          />
-        </svg>
-      </div>
-      <h4
-        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_2952CC ub-box-szg_border-box"
-      >
-        Test title
-      </h4>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`<Alert /> type snapshot 1`] = `
-<div
-  className="css-1utm4li css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-bg-clr_white ub-ovflw-x_hidden ub-ovflw-y_hidden ub-pst_relative ub-dspl_flex ub-pb_12px ub-pt_12px ub-pl_16px ub-pr_16px ub-box-szg_border-box"
-  role="alert"
-  type="danger"
->
-  <div
-    className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-flx_1 ub-box-szg_border-box"
-  >
-    <div
-      className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
-    >
-      <div
-        className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
-      >
-        <svg
-          className="ub-w_16px ub-h_16px ub-box-szg_border-box"
-          data-icon="info-sign"
-          style={
-            Object {
-              "fill": "#3366FF",
-            }
-          }
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
-            fillRule="evenodd"
-          />
-        </svg>
-      </div>
-      <h4
-        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_2952CC ub-box-szg_border-box"
+        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_A73636 ub-box-szg_border-box"
       >
         Test title
       </h4>

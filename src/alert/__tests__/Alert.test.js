@@ -21,20 +21,8 @@ describe('<Alert />', () => {
     expect(component.html()).toEqual(expect.stringContaining('Test content'))
   })
 
-  it('type snapshot', () => {
-    const component = <Alert title="Test title" type="danger" />
-    const tree = render.create(component).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-
-  it('hasTrim=true snapshot', () => {
-    const component = <Alert title="Test title" hasTrim />
-    const tree = render.create(component).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-
-  it('hasTrim=false snapshot', () => {
-    const component = <Alert title="Test title" hasTrim={false} />
+  it('intent snapshot', () => {
+    const component = <Alert title="Test title" intent="danger" />
     const tree = render.create(component).toJSON()
     expect(tree).toMatchSnapshot()
   })

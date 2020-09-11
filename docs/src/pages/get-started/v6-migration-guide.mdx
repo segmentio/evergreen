@@ -10,18 +10,28 @@ that you're seeing that we might have missed!
 
 ### Breaking Changes
 
-- [No more `css` prop on `<Pane />`](#css-pane)
+- [No more `css` prop on `<Pane />` or `<Text />`](#css-prop)
+- [No more `hasTrim` prop on `<Alert />`](#has-trim)
 
-No more `css` prop on `<Pane />` {#css-pane}
+#### No more `css` prop {#css-prop}
 
-Previously, `<Pane />` had a `css` prop, which allowed consumers to write arbitrary css styles (including composing pseudoselectors) and pass those
-through to the underlying `<Pane />` element.
+Previously, `<Pane />` and `<Text />` had a `css` prop, which allowed consumers to write arbitrary css styles (including composing pseudoselectors) and pass those
+through to the underlying `<Pane />` and `<Text />` components.
 
-With this removed, we encourage either using the standard Evergreen components directly, or taking a CSS-in-JS route to adding those styles previously.
+With this removed, we encourage either using the standard Evergreen components directly, or taking a CSS-in-JS route to adding those styles (via className for instance).
 
 ```diff static
  const MyComponent = () => {
 -  return <Pane css={ {':hover': { backgroundColor: 'red' }}} />
 +  return <Pane className={backgroundRedClass} />
  }
+```
+
+#### No more `hasTrim` prop on `<Alert />` {#has-trim}
+
+Previously, `<Alert />` had a `hasTrim` boolean prop to control the left border appearance (which was provided by default). Now you can override this directly through props or via theming instead, if you so choose:
+
+```diff static
+-<Alert hasTrim={false} />
++<Alert border="none" />
 ```

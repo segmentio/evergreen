@@ -1,7 +1,4 @@
 import {
-  colors,
-  elevations,
-  fills,
   palette,
   scales,
   tokens as ogTokens
@@ -24,8 +21,6 @@ import components from './components'
 
 export default {
   /* DEPRECATED */
-  elevations,
-  fills,
   palette,
   scales,
   tokens: ogTokens,
@@ -43,11 +38,6 @@ export default {
 
   // Once we are done using the above ^ we can switch to this:
   ...tokens,
-
-  colors: {
-    ...colors,
-    ...tokens.colors
-  },
 
   // Component-specific theming
   components

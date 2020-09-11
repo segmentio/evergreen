@@ -19,16 +19,18 @@ storiesOf('layers', module)
       {theme => (
         <div>
           <Pane overflow="auto">
-            {theme.elevations.map((style, index) => (
+            {theme.shadows.map((style, index) => (
               <Pane key={style} {...cardStyle} elevation={index}>
                 Elevation {index}
               </Pane>
             ))}
-            {Object.keys(theme.colors.background).map(background => (
-              <Pane key={background} {...cardStyle} background={background}>
-                Background: {background}
-              </Pane>
-            ))}
+            {Object.keys(theme.colors)
+              .filter(c => typeof theme.colors[c] === 'string')
+              .map(background => (
+                <Pane key={background} {...cardStyle} background={background}>
+                  Background: {background}
+                </Pane>
+              ))}
           </Pane>
           <Pane overflow="auto">
             <Pane
@@ -65,17 +67,19 @@ storiesOf('layers', module)
       {theme => (
         <div>
           <Pane overflow="auto">
-            {theme.elevations.map((style, index) => (
+            {theme.shadows.map((style, index) => (
               <Card key={style} {...cardStyle} elevation={index}>
                 Elevation {index}
               </Card>
             ))}
 
-            {Object.keys(theme.colors.background).map(background => (
-              <Card key={background} {...cardStyle} background={background}>
-                Background: {background}
-              </Card>
-            ))}
+            {Object.keys(theme.colors)
+              .filter(c => typeof theme.colors[c] === 'string')
+              .map(background => (
+                <Card key={background} {...cardStyle} background={background}>
+                  Background: {background}
+                </Card>
+              ))}
           </Pane>
 
           <Pane overflow="auto">
