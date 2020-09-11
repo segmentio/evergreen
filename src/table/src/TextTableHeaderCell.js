@@ -4,7 +4,7 @@ import { Text } from '../../typography'
 import TableHeaderCell from './TableHeaderCell'
 
 const TextTableHeaderCell = memo(function TextTableHeaderCell(props) {
-  const { children, textProps, isSortable, sortOrder, ...rest } = props
+  const { children, isSortable, sortOrder, textProps, ...rest } = props
 
   return (
     <TableHeaderCell {...rest}>

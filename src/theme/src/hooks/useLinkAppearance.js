@@ -8,7 +8,7 @@ const focusState = '&:focus'
 
 function getLinkStyle(color, theme) {
   const {
-    tokens: { primary, colors }
+    tokens: { colors, primary }
   } = theme
 
   switch (color) {

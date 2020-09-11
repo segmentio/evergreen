@@ -1,7 +1,7 @@
 import isDev from './isDev'
 import hasOwnProperty from './hasOwnProperty'
 
-function missingStateWarning({ items, props, cb }) {
+function missingStateWarning({ cb, items, props }) {
   if (!isDev) return
   props.forEach(prop => {
     if (!hasOwnProperty(items, prop)) {

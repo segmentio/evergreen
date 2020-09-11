@@ -41,19 +41,19 @@ const getIconSizeForSelect = height => {
 const Select = memo(
   forwardRef(function Select(props, ref) {
     const {
-      id,
-      name,
+      appearance = 'default',
+      autoFocus,
       children,
       defaultValue,
       disabled,
-      onChange,
-      value,
-      required,
-      autoFocus,
-      isInvalid = false,
       height: heightProp,
+      id,
+      isInvalid = false,
+      name,
+      onChange,
+      required,
       size = 'medium',
-      appearance = 'default',
+      value,
       ...restProps
     } = props
 

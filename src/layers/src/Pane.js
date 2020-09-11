@@ -14,18 +14,18 @@ const internalStyles = {}
 const Pane = memo(
   forwardRef(function Pane(props, ref) {
     const {
-      className,
+      activeElevation,
 
       // Pulled out of props because we'll get them from the style hook
       background,
-      elevation,
-      hoverElevation,
-      activeElevation,
       border,
-      borderTop,
-      borderRight,
       borderBottom,
       borderLeft,
+      borderRight,
+      borderTop,
+      className,
+      elevation,
+      hoverElevation,
 
       ...restProps
     } = props

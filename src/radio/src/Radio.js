@@ -5,8 +5,8 @@ import { Text } from '../../typography'
 import useCheckboxAppearance from '../../theme/src/hooks/useCheckboxAppearance'
 
 const CircleIcon = memo(function CircleIcon({
-  size,
   fill = 'currentColor',
+  size,
   ...props
 }) {
   return (

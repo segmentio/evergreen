@@ -13,9 +13,9 @@ const TextTableCell = memo(
   forwardRef(function TextTableCell(props, ref) {
     const {
       children,
-      textProps,
       isNumber = false,
       placeholder,
+      textProps,
       ...rest
     } = props
 

@@ -1,4 +1,4 @@
-function borderProperty(theme, { value, border }) {
+function borderProperty(theme, { border, value }) {
   if (Object.prototype.hasOwnProperty.call(theme.colors.border, value)) {
     return `1px solid ${theme.colors.border[value]}`
   }

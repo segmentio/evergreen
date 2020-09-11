@@ -152,7 +152,7 @@ const SideSheet = memo(function SideSheet(props) {
       onEntered={onOpenComplete}
       preventBodyScrolling={preventBodyScrolling}
     >
-      {({ state, close }) => (
+      {({ close, state }) => (
         <Pane
           width={width}
           {...paneProps[position]}

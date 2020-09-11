@@ -13,7 +13,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
       document.body.style.height = '100vh'
     })()}
     <Manager isShown={false}>
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <Box>
           <CornerDialog
             title="Welcome to This New Feature"
@@ -30,7 +30,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
       )}
     </Manager>
     <Manager isShown={false}>
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <Box marginTop={24}>
           <CornerDialog
             title="We’d Love to Hear from You!"
@@ -48,7 +48,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
       )}
     </Manager>
     <Manager isShown={false}>
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <Box marginTop={24}>
           <CornerDialog
             title="GDPR Data Processing Agreement Available"
@@ -68,7 +68,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
       )}
     </Manager>
     <Manager isShown={false}>
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <Box marginTop={24}>
           <CornerDialog
             title="Please Read License Terms"
@@ -88,7 +88,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
       )}
     </Manager>
     <Manager isShown={false}>
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <Box marginTop={24}>
           <CornerDialog
             title="Please Read License Terms"
@@ -107,7 +107,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
       )}
     </Manager>
     <Manager isShown={false}>
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <Box marginTop={24}>
           <CornerDialog
             title="Please Read License Terms"
@@ -126,7 +126,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
       )}
     </Manager>
     <Manager isShown={false}>
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <Box marginTop={24}>
           <CornerDialog
             title="Please Read License Terms"
@@ -147,7 +147,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
       )}
     </Manager>
     <Manager isShown={false}>
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <Box marginTop={24}>
           <CornerDialog
             title="Please Read License Terms"

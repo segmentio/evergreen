@@ -19,15 +19,15 @@ const offscreenCss = css({
 const SegmentedControlRadio = memo(
   forwardRef(function SegmentedControlRadio(props, ref) {
     const {
-      id,
-      name,
-      label,
-      value,
-      height,
-      checked,
-      onChange,
       appearance,
-      disabled
+      checked,
+      disabled,
+      height,
+      id,
+      label,
+      name,
+      onChange,
+      value
     } = props
 
     const themedClassName = useSegmentControlAppearance(appearance)

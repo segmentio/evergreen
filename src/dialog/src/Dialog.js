@@ -205,7 +205,7 @@ const Dialog = memo(function Dialog({
       }}
       preventBodyScrolling={preventBodyScrolling}
     >
-      {({ state, close }) => (
+      {({ close, state }) => (
         <Pane
           role="dialog"
           backgroundColor="white"

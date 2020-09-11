@@ -61,7 +61,7 @@ storiesOf('tabs', module)
           </StoryDescription>
         </StoryHeader>
         <TabManager>
-          {({ selectedIndex, onSelect }) => (
+          {({ onSelect, selectedIndex }) => (
             <Box>
               <Tablist marginX={-4} marginBottom={16}>
                 {tabs.map((tab, index) => (
@@ -125,7 +125,7 @@ storiesOf('tabs', module)
 
         <Box>
           <TabManager>
-            {({ selectedIndex, onSelect }) => (
+            {({ onSelect, selectedIndex }) => (
               <Box>
                 <Tablist marginX={-4} marginBottom={16}>
                   {tabs.map((tab, index) => (
@@ -186,7 +186,7 @@ storiesOf('tabs', module)
           </StoryDescription>
         </StoryHeader>
         <TabManager>
-          {({ selectedIndex, onSelect }) => (
+          {({ onSelect, selectedIndex }) => (
             <Box display="flex">
               <Tablist marginBottom={16} flexBasis={240} marginRight={24}>
                 {tabs.map((tab, index) => (

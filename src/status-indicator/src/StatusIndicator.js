@@ -8,8 +8,8 @@ const StatusIndicator = memo(
   forwardRef(function StatusIndicator(props, ref) {
     const {
       children,
-      disabled,
       color = 'disabled',
+      disabled,
       dotSize = 10,
       ...rest
     } = props

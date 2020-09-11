@@ -18,7 +18,7 @@ const wrapperClass = css({
 const hasCustomId = settings => Object.hasOwnProperty.call(settings, 'id')
 
 const ToastManager = memo(function ToastManager(props) {
-  const { bindNotify, bindRemove, bindGetToasts, bindCloseAll } = props
+  const { bindCloseAll, bindGetToasts, bindNotify, bindRemove } = props
 
   const [toasts, setToasts] = useState([])
   const [idCounter, setIdCounter] = useState(0)
@@ -97,7 +97,7 @@ const ToastManager = memo(function ToastManager(props) {
 
   return (
     <span className={wrapperClass}>
-      {toasts.map(({ id, description, ...rest }) => {
+      {toasts.map(({ description, id, ...rest }) => {
         return (
           <Toast key={id} onRemove={() => removeToast(id)} {...rest}>
             {description}

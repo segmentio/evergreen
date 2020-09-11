@@ -74,7 +74,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
     </Box>
     <Box padding={40}>
       <Autocomplete onChange={handleChange} items={items}>
-        {({ getInputProps, getRef, openMenu, inputValue }) => (
+        {({ getInputProps, getRef, inputValue, openMenu }) => (
           <TextInput
             placeholder="Open on focus"
             value={inputValue}
@@ -95,7 +95,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
         onChange={handleChange}
         items={items}
       >
-        {({ getInputProps, openMenu, getRef, inputValue }) => (
+        {({ getInputProps, getRef, inputValue, openMenu }) => (
           <TextInput
             placeholder="Disable filter and open on focus"
             value={inputValue}
@@ -111,7 +111,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
     </Box>
     <Box padding={40}>
       <Autocomplete title="Suggestions" onChange={handleChange} items={items}>
-        {({ getInputProps, getRef, openMenu, inputValue }) => (
+        {({ getInputProps, getRef, inputValue, openMenu }) => (
           <TextInput
             placeholder="Open on focus with title"
             value={inputValue}
@@ -129,8 +129,8 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
       <Autocomplete onChange={handleChange} items={items}>
         {({
           getInputProps,
-          getToggleButtonProps,
           getRef,
+          getToggleButtonProps,
           inputValue,
           toggleMenu
         }) => (

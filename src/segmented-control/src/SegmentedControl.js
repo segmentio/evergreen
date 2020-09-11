@@ -10,13 +10,13 @@ import SegmentedControlRadio from './SegmentedControlRadio'
 const SegmentedControl = memo(
   forwardRef(function SegmentedControl(props, ref) {
     const {
-      value,
-      name,
-      height = 32,
-      options,
-      onChange,
       defaultValue,
       disabled,
+      height = 32,
+      name,
+      onChange,
+      options,
+      value,
       ...rest
     } = props
 

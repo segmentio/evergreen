@@ -132,7 +132,7 @@ const Tooltip = memo(function Tooltip(props) {
       position={position}
       animationDuration={160}
     >
-      {({ css, style, state, getRef }) => (
+      {({ css, getRef, state, style }) => (
         <TooltipStateless
           id={id}
           appearance={appearance}
