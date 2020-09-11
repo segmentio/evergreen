@@ -2346,10 +2346,6 @@ export interface IconProps extends BoxProps<'svg'> {
    * By default, this is set to the icon's name for accessibility.
    */
   title?: string
-  /**
-   * CSS style properties.
-   */
-  style?: React.CSSProperties
 }
 
 

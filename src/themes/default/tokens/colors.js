@@ -66,8 +66,11 @@ const colorScales = {
 
 const colors = {
   ...colorScales,
+
   muted: colorScales.gray700,
   default: colorScales.gray800,
+  dark: colorScales.gray900,
+  selected: colorScales.blue500,
 
   tint1: colorScales.gray50,
   tint2: colorScales.gray75,
@@ -84,6 +87,13 @@ const colors = {
   border: {
     default: colorScales.gray300,
     muted: colorScales.gray200
+  },
+
+  icon: {
+    default: colorScales.gray700,
+    muted: colorScales.gray600,
+    disabled: colorScales.gray400,
+    selected: colorScales.blue500
   }
 }
 

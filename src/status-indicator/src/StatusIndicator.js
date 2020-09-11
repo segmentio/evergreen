@@ -1,9 +1,8 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
 import { Text } from '../../typography'
 import { majorScale } from '../../scales'
-import useIconColor from '../../theme/src/hooks/useIconColor'
+import { SymbolCircleIcon } from '../../icons'
 
 const StatusIndicator = memo(
   forwardRef(function StatusIndicator(props, ref) {
@@ -11,20 +10,17 @@ const StatusIndicator = memo(
       children,
       disabled,
       color = 'disabled',
-      dotSize = 6,
+      dotSize = 10,
       ...rest
     } = props
-    const dotColor = useIconColor(color === 'none' ? 'disabled' : color)
 
     return (
       <Text display="inline-flex" alignItems="center" ref={ref} {...rest}>
-        <Box
+        <SymbolCircleIcon
           flexShrink={0}
           marginRight={majorScale(1)}
-          borderRadius="50%"
-          height={dotSize}
-          width={dotSize}
-          background={dotColor}
+          size={dotSize}
+          color={color}
         />
         {children}
       </Text>

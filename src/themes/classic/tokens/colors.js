@@ -138,6 +138,13 @@ const colors = {
   border: {
     default: neutral.N4,
     muted: neutral.N3
+  },
+
+  icon: {
+    default: palette.neutral.N8,
+    muted: palette.neutral.N7,
+    disabled: neutralAlpha.N5A,
+    selected: palette.blue.base
   }
 }
 
