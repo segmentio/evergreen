@@ -7,11 +7,10 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import cx from 'classnames'
 import { TextInput } from '../../text-input'
-import { useTheme } from '../../theme'
 import { majorScale } from '../../scales'
 import safeInvoke from '../../lib/safe-invoke'
 import { useId } from '../../hooks'
-import useTagInputAppearance from '../../theme/src/hooks/useTagInputAppearance'
+import useStyleConfig from '../../hooks/use-style-config'
 import Tag from './Tag'
 
 const GET_KEY_FOR_TAG_DELIMITER = {
@@ -21,6 +20,17 @@ const GET_KEY_FOR_TAG_DELIMITER = {
 
 const emptyProps = {}
 const emptyArray = []
+
+const internalStyles = {
+  alignItems: 'center',
+  display: 'inline-flex',
+  flexWrap: 'wrap'
+}
+
+const pseudoSelectors = {
+  _focused: '&[aria-activedescendant]',
+  _disabled: '&[aria-disabled="true"]'
+}
 
 const TagInput = memo(
   forwardRef(function TagInput(props, ref) {
@@ -138,7 +148,7 @@ const TagInput = memo(
         <Tag
           key={`${tag}:${index}`}
           data-tag-index={index}
-          marginRight={majorScale(1)}
+          marginX={majorScale(1)}
           onRemove={disabled ? null : handleRemoveTag}
           isRemovable={!disabled}
           {...propsForElement}
@@ -148,20 +158,22 @@ const TagInput = memo(
       )
     }
 
-    const { tokens } = useTheme()
-    const themedContainerClassName = useTagInputAppearance()
+    const { className: themedContainerClassName, ...boxProps } = useStyleConfig(
+      'TagInput',
+      { appearance: 'default', height },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Box
         aria-disabled={disabled || undefined}
         aria-activedescendant={isFocused ? id : undefined}
-        borderRadius={tokens.borderRadius}
         className={cx(themedContainerClassName, className)}
-        paddingX={Math.round(height / 2.6)}
-        paddingY="2px"
         ref={ref}
-        {...rest}
         onBlur={handleBlur}
+        {...boxProps}
+        {...rest}
       >
         {values.map(maybeRenderTag)}
         <TextInput

@@ -6,6 +6,8 @@ import InlineAlert from './inline-alert'
 import Pane from './pane'
 import Select from './select'
 import Tooltip from './tooltip'
+import Input from './input'
+import TagInput from './tag-input'
 
 export default {
   Alert,
@@ -15,5 +17,7 @@ export default {
   InlineAlert,
   Pane,
   Select,
-  Tooltip
+  Tooltip,
+  Input,
+  TagInput
 }
