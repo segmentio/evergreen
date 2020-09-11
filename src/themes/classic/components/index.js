@@ -1,4 +1,5 @@
 import Alert from './alert'
+import Avatar from './avatar'
 import Badge from './badge'
 import Button from './button'
 import Code from './code'
@@ -10,6 +11,7 @@ import Tooltip from './tooltip'
 
 export default {
   Alert,
+  Avatar,
   Badge,
   Button,
   Code,
