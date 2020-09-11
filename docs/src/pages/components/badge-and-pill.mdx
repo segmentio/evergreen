@@ -18,23 +18,6 @@ Not for numbers.
 
 ## Color options
 
-### Solid badges
-
-```jsx collapse
-<Pane>
-  <Badge color="neutral" isSolid marginRight={8}>neutral</Badge>
-  <Badge color="green" isSolid marginRight={8}>green</Badge>
-  <Badge color="blue" isSolid marginRight={8}>blue</Badge>
-  <Badge color="red" isSolid marginRight={8}>red</Badge>
-  <Badge color="orange" isSolid marginRight={8}>orange</Badge>
-  <Badge color="purple" isSolid marginRight={8}>purple</Badge>
-  <Badge color="yellow" isSolid marginRight={8}>yellow</Badge>
-  <Badge color="teal" isSolid marginRight={8}>teal</Badge>
-</Pane>
-```
-
-### Subtle badges
-
 ```jsx collapse
 <Pane>
   <Badge color="neutral" marginRight={8}>neutral</Badge>
@@ -55,9 +38,6 @@ Not for numbers.
   <Pane flexBasis={120}>
     <Badge color="green">Success</Badge>
   </Pane>
-  <Pane flexBasis={120}>
-    <Badge color="green" isSolid>Success</Badge>
-  </Pane>
   <Pane>
     <Strong>Operational, available, done, approved, added</Strong>
   </Pane>
@@ -68,9 +48,6 @@ Not for numbers.
 <Pane display="flex">
   <Pane flexBasis={120}>
     <Badge color="red">Removed</Badge>
-  </Pane>
-  <Pane flexBasis={120}>
-    <Badge color="red" isSolid>Removed</Badge>
   </Pane>
   <Pane>
     <Strong>Errors, declined, failed, removed, critical</Strong>
@@ -83,9 +60,6 @@ Not for numbers.
   <Pane flexBasis={120}>
     <Badge color="blue">In progress</Badge>
   </Pane>
-  <Pane flexBasis={120}>
-    <Badge color="blue" isSolid>In progress</Badge>
-  </Pane>
   <Pane>
     <Strong>In progress, open, modified</Strong>
   </Pane>
@@ -96,9 +70,6 @@ Not for numbers.
 <Pane display="flex">
   <Pane flexBasis={120}>
     <Badge color="purple">Trial</Badge>
-  </Pane>
-  <Pane flexBasis={120}>
-    <Badge color="purple" isSolid>Trial</Badge>
   </Pane>
   <Pane>
     <Strong>Trial, new, information, help</Strong>
@@ -111,9 +82,6 @@ Not for numbers.
   <Pane flexBasis={120}>
     <Badge color="yellow">Moved</Badge>
   </Pane>
-  <Pane flexBasis={120}>
-    <Badge color="yellow" isSolid>Moved</Badge>
-  </Pane>
   <Pane>
     <Strong>Busy, blocked, missing, warning</Strong>
   </Pane>
@@ -124,9 +92,6 @@ Not for numbers.
 <Pane display="flex">
   <Pane flexBasis={120}>
     <Badge color="neutral">Beta</Badge>
-  </Pane>
-  <Pane flexBasis={120}>
-    <Badge color="neutral" isSolid>Beta</Badge>
   </Pane>
   <Pane>
     <Strong>Betag</Strong>
@@ -143,7 +108,7 @@ The `Pill` component should only be used for numbers.
 ```jsx
 <Pane>
   <Pill display="inline-flex" margin={8}>0</Pill>
-  <Pill display="inline-flex" margin={8} color="red" isSolid>24</Pill>
+  <Pill display="inline-flex" margin={8} color="red">24</Pill>
 </Pane>
 ```
 
