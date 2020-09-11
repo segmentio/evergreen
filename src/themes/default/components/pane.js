@@ -24,7 +24,7 @@ function borderProperty(theme, { value, border }) {
 
 const baseStyle = (theme, props) => ({
   background: theme.colors[props.background] || props.background,
-  boxShadow: `shadows.${props.elevation}`,
+  boxShadow: theme.shadows[props.elevation],
   borderTop: borderProperty(theme, {
     border: props.border,
     value: props.borderTop
