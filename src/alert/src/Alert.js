@@ -36,7 +36,7 @@ const Alert = memo(
     const intentToken = intent === 'none' ? 'info' : intent
     const { className: themedClassName, ...styleProps } = useStyleConfig(
       'Alert',
-      { ...props, appearance, intent: intentToken },
+      { appearance, intent: intentToken },
       pseudoSelectors,
       internalStyles
     )

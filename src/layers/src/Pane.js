@@ -32,7 +32,16 @@ const Pane = memo(
 
     const { className: themedClassName, ...styleProps } = useStyleConfig(
       'Pane',
-      props,
+      {
+        elevation,
+        hoverElevation,
+        activeElevation,
+        border,
+        borderTop,
+        borderRight,
+        borderBottom,
+        borderLeft
+      },
       pseudoSelectors,
       internalStyles
     )
