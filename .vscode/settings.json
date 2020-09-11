@@ -1,5 +1,5 @@
 {
-  "eslint.enable": false,
+  "eslint.enable": true,
   "files.associations": {
     "**/src/*.js": "javascriptreact"
   }
