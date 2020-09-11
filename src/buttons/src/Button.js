@@ -4,7 +4,7 @@ import cx from 'classnames'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Spinner } from '../../spinner'
-import useButtonAppearance from '../../theme/src/hooks/useButtonAppearance'
+import useStyleConfig from '../../hooks/use-style-config'
 
 /* eslint-disable react/prop-types */
 const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
@@ -38,7 +38,24 @@ export const internalStyles = {
   verticalAlign: 'middle',
   outline: 'none',
   userSelect: 'none',
-  whiteSpace: 'nowrap'
+  cursor: 'pointer',
+  whiteSpace: 'nowrap',
+  WebkitFontSmoothing: 'antialiased',
+  WebkitAppearance: 'none',
+  MozAppearance: 'none',
+  '&::-moz-focus-inner ': {
+    border: 0
+  }
+}
+
+export const pseudoSelectors = {
+  _active:
+    '&:not([disabled]):active, &:not([disabled])[aria-expanded="true"], &:not([disabled])[data-active]',
+  _disabled: '&[disabled]',
+  _focus: '&:not([disabled]):focus',
+  _focusAndActive:
+    '&:not([disabled]):focus:active, &:not([disabled])[aria-expanded="true"]:focus, &:not([disabled])[data-active]:focus',
+  _hover: '&:not([disabled]):hover'
 }
 
 export const getIconSizeForButton = height => {
@@ -66,8 +83,10 @@ const Button = memo(
       ...restProps
     } = props
 
-    const { className: themedClassName, boxProps } = useButtonAppearance(
-      { appearance, size },
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Button',
+      { appearance, intent, size },
+      pseudoSelectors,
       internalStyles
     )
 
