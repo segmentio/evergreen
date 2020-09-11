@@ -9,11 +9,7 @@ const pseudoSelectors = {
   _active: '&:active'
 }
 
-const internalStyles = {
-  transitionDuration: '150ms',
-  transitionProperty: 'box-shadow, transform',
-  transitionTimingFunction: 'cubic-bezier(0.0, 0.0, 0.2, 1)'
-}
+const internalStyles = {}
 
 const Pane = memo(
   forwardRef(function Pane(props, ref) {
@@ -36,7 +32,16 @@ const Pane = memo(
 
     const { className: themedClassName, ...styleProps } = useStyleConfig(
       'Pane',
-      props,
+      {
+        elevation,
+        hoverElevation,
+        activeElevation,
+        border,
+        borderTop,
+        borderRight,
+        borderBottom,
+        borderLeft
+      },
       pseudoSelectors,
       internalStyles
     )

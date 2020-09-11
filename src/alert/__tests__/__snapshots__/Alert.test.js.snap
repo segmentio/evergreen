@@ -2,18 +2,17 @@
 
 exports[`<Alert /> appearance snapshot 1`] = `
 <div
-  appearance="card"
-  className="css-1utm4li css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-bg-clr_white ub-ovflw-x_hidden ub-ovflw-y_hidden ub-pst_relative ub-dspl_flex ub-pb_12px ub-pt_12px ub-pl_16px ub-pr_16px ub-box-szg_border-box"
+  className="css-nil ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
   role="alert"
 >
   <div
-    className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-flx_1 ub-box-szg_border-box"
+    className="css-nil ub-flx_1 ub-box-szg_border-box"
   >
     <div
-      className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+      className="css-nil ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
     >
       <div
-        className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+        className="css-nil ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
       >
         <svg
           className="ub-w_16px ub-h_16px ub-box-szg_border-box"
@@ -32,7 +31,7 @@ exports[`<Alert /> appearance snapshot 1`] = `
         </svg>
       </div>
       <h4
-        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_2952CC ub-box-szg_border-box"
+        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_inherit ub-box-szg_border-box"
       >
         Test title
       </h4>
@@ -43,17 +42,17 @@ exports[`<Alert /> appearance snapshot 1`] = `
 
 exports[`<Alert /> basic snapshot 1`] = `
 <div
-  className="css-1utm4li css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-bg-clr_white ub-ovflw-x_hidden ub-ovflw-y_hidden ub-pst_relative ub-dspl_flex ub-pb_12px ub-pt_12px ub-pl_16px ub-pr_16px ub-box-szg_border-box"
+  className="css-nil ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
   role="alert"
 >
   <div
-    className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-flx_1 ub-box-szg_border-box"
+    className="css-nil ub-flx_1 ub-box-szg_border-box"
   >
     <div
-      className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+      className="css-nil ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
     >
       <div
-        className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+        className="css-nil ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
       >
         <svg
           className="ub-w_16px ub-h_16px ub-box-szg_border-box"
@@ -72,7 +71,7 @@ exports[`<Alert /> basic snapshot 1`] = `
         </svg>
       </div>
       <h4
-        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_2952CC ub-box-szg_border-box"
+        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_inherit ub-box-szg_border-box"
       >
         A simple general message
       </h4>
@@ -83,17 +82,17 @@ exports[`<Alert /> basic snapshot 1`] = `
 
 exports[`<Alert /> intent snapshot 1`] = `
 <div
-  className="css-1p96nzd css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-bg-clr_white ub-ovflw-x_hidden ub-ovflw-y_hidden ub-pst_relative ub-dspl_flex ub-pb_12px ub-pt_12px ub-pl_16px ub-pr_16px ub-box-szg_border-box"
+  className="css-nil ub-b-top_1px-solid-D14343 ub-b-rgt_1px-solid-D14343 ub-b-btm_1px-solid-D14343 ub-b-lft_1px-solid-D14343 ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_FDF4F4 ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_A73636 ub-box-szg_border-box"
   role="alert"
 >
   <div
-    className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-flx_1 ub-box-szg_border-box"
+    className="css-nil ub-flx_1 ub-box-szg_border-box"
   >
     <div
-      className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+      className="css-nil ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
     >
       <div
-        className="css-nil ub-tstn-drn_h9f75h ub-tstn-pty_1pf6seu ub-tstn-tf_4nrifk ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+        className="css-nil ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
       >
         <svg
           className="ub-w_16px ub-h_16px ub-box-szg_border-box"
@@ -112,7 +111,7 @@ exports[`<Alert /> intent snapshot 1`] = `
         </svg>
       </div>
       <h4
-        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_A73636 ub-box-szg_border-box"
+        className="ub-mt_0px ub-mb_0px ub-fnt-sze_14px ub-f-wght_500 ub-ln-ht_1 ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_inherit ub-box-szg_border-box"
       >
         Test title
       </h4>

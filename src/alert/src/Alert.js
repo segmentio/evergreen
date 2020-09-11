@@ -1,18 +1,30 @@
 import React, { memo, forwardRef } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { spacing, dimensions, position, layout } from 'ui-box'
-import { useTheme } from '../../theme'
 import { Pane } from '../../layers'
 import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
 import { CrossIcon } from '../../icons'
-import useAlertApperance from '../../theme/src/hooks/useAlertApperance'
+import useStyleConfig from '../../hooks/use-style-config'
 import { getIconForIntent } from './getIconForIntent'
+
+const pseudoSelectors = {}
+
+const internalStyles = {
+  position: 'relative',
+  overflow: 'hidden',
+  display: 'flex',
+  // 15 instead of 16 in order to maintain height with 1px border
+  padding: '15px'
+}
 
 const Alert = memo(
   forwardRef(function Alert(props, ref) {
     const {
       children,
+      appearance = 'default',
+      className,
       hasIcon = true,
       intent = 'info',
       isRemoveable = false,
@@ -21,24 +33,20 @@ const Alert = memo(
       ...restProps
     } = props
 
-    const {
-      tokens: { intents }
-    } = useTheme()
-
     const intentToken = intent === 'none' ? 'info' : intent
-    const className = useAlertApperance(intentToken)
+    const { className: themedClassName, ...styleProps } = useStyleConfig(
+      'Alert',
+      { appearance, intent: intentToken },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Pane
         ref={ref}
-        className={className}
+        className={cx(className, themedClassName)}
         role="alert"
-        backgroundColor="white"
-        overflow="hidden"
-        position="relative"
-        display="flex"
-        paddingY={12}
-        paddingX={16}
+        {...styleProps}
         {...restProps}
       >
         <Pane flex={1}>
@@ -60,7 +68,8 @@ const Alert = memo(
               marginBottom={0}
               fontWeight={500}
               lineHeight={1}
-              color={intents[intentToken].text}
+              // Get this from the theme / props on the Alert
+              color="inherit"
             >
               {title}
             </Heading>

@@ -118,6 +118,11 @@ const colors = {
   neutralAlpha,
   blueAlpha,
 
+  muted: palette.neutral.N8,
+  default: palette.neutral.N9,
+  dark: palette.neutral.N10,
+  selected: palette.blue.base,
+
   tint1: neutral.N1,
   tint2: neutral.N2,
   overlay: neutralAlpha.N7A,

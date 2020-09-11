@@ -19,43 +19,63 @@ function borderProperty(theme, { value, border }) {
     return `1px solid ${theme.colors.border.default}`
   }
 
-  return value
+  return value || border
 }
 
-const baseStyle = (theme, props) => ({
-  background: theme.colors[props.background] || props.background,
-  boxShadow: theme.shadows[props.elevation],
-  borderTop: borderProperty(theme, {
-    border: props.border,
-    value: props.borderTop
-  }),
-  borderRight: borderProperty(theme, {
-    border: props.border,
-    value: props.borderRight
-  }),
-  borderBottom: borderProperty(theme, {
-    border: props.border,
-    value: props.borderBottom
-  }),
-  borderLeft: borderProperty(theme, {
-    border: props.border,
-    value: props.borderLeft
-  }),
+const baseStyle = (theme, props) => {
+  const transitionStyles = {}
+  if (
+    theme.shadows[props.hoverElevation] ||
+    theme.shadows[props.activeElevation]
+  ) {
+    Object.assign(transitionStyles, {
+      transitionDuration: '150ms',
+      transitionProperty: 'box-shadow, transform',
+      transitionTimingFunction: 'cubic-bezier(0.0, 0.0, 0.2, 1)'
+    })
+  }
 
-  _hover: Number.isInteger(props.hoverElevation)
-    ? {
-        transform: 'translateY(-2px)',
-        boxShadow: `shadows.${props.hoverElevation}`
-      }
-    : undefined,
+  let hoverStyles
+  if (theme.shadows[props.hoverElevation]) {
+    hoverStyles = {
+      transform: 'translateY(-2px)',
+      boxShadow: `shadows.${props.hoverElevation}`
+    }
+  }
 
-  _active: Number.isInteger(props.activeElevation)
-    ? {
-        transform: 'translateY(-1px)',
-        boxShadow: `shadows.${props.activeElevation}`
-      }
-    : undefined
-})
+  let activeStyles
+  if (theme.shadows[props.activeElevation]) {
+    activeStyles = {
+      transform: 'translateY(-1px)',
+      boxShadow: `shadows.${props.activeElevation}`
+    }
+  }
+
+  return {
+    background: theme.colors[props.background] || props.background,
+    boxShadow: theme.shadows[props.elevation],
+    borderTop: borderProperty(theme, {
+      border: props.border,
+      value: props.borderTop
+    }),
+    borderRight: borderProperty(theme, {
+      border: props.border,
+      value: props.borderRight
+    }),
+    borderBottom: borderProperty(theme, {
+      border: props.border,
+      value: props.borderBottom
+    }),
+    borderLeft: borderProperty(theme, {
+      border: props.border,
+      value: props.borderLeft
+    }),
+
+    ...transitionStyles,
+    _hover: hoverStyles,
+    _active: activeStyles
+  }
+}
 
 const appearances = {}
 const sizes = {}
