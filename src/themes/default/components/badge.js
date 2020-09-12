@@ -6,7 +6,7 @@ const baseStyle = {
   paddingY: 0,
   paddingX: 6,
   borderRadius: 'radii.1',
-  fontSize: 'fontSizes.1',
+  fontSize: 'fontSizes.0',
   textAlign: 'center',
   textDecoration: 'none',
   textTransform: 'uppercase'

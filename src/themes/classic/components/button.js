@@ -66,6 +66,7 @@ const sizes = {
   small: {
     height: 24,
     minWidth: 24,
+    fontSize: 'fontSizes.1',
     lineHeight: '24px',
     paddingLeft: 12,
     paddingRight: 12
@@ -73,6 +74,7 @@ const sizes = {
   medium: {
     height: 32,
     minWidth: 32,
+    fontSize: 'fontSizes.1',
     lineHeight: '32px',
     paddingLeft: 16,
     paddingRight: 16
@@ -80,6 +82,7 @@ const sizes = {
   large: {
     height: 40,
     minWidth: 40,
+    fontSize: 'fontSizes.2',
     lineHeight: '40px',
     paddingLeft: 20,
     paddingRight: 20
