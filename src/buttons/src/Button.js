@@ -1,10 +1,10 @@
 import React, { memo, forwardRef } from 'react'
-import PropTypes from 'prop-types'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
+import useStyleConfig from '../../hooks/use-style-config'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Spinner } from '../../spinner'
-import useStyleConfig from '../../hooks/use-style-config'
 
 /* eslint-disable react/prop-types */
 const ButtonIcon = memo(function ButtonIcon({ edge, icon, size, spacing }) {

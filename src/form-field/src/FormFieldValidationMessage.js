@@ -1,7 +1,7 @@
 import React, { memo, forwardRef } from 'react'
-import { Paragraph } from '../../typography'
 import { ErrorIcon } from '../../icons'
 import { Pane } from '../../layers'
+import { Paragraph } from '../../typography'
 
 const FormFieldValidationMessage = memo(
   forwardRef(function FormFieldValidationMessage({ children, ...props }, ref) {

@@ -1,6 +1,6 @@
 import React, { forwardRef, memo } from 'react'
-import PropTypes from 'prop-types'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
 import useStyleConfig from '../../hooks/use-style-config'
 

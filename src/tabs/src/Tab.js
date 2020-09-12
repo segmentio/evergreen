@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
 import React, { forwardRef, memo } from 'react'
+import PropTypes from 'prop-types'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
 import useTabApperance from '../../theme/src/hooks/useTabApperance'

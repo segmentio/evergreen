@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
-import { Heading, Text, Code } from '../../typography'
 import { Popover } from '../../popover'
+import { Heading, Text, Code } from '../../typography'
 
 function uppercaseColor(color) {
   if (color[0] === '#') return color.toUpperCase()

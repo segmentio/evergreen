@@ -1,10 +1,10 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box, { dimensions, spacing, position, layout } from 'ui-box'
-import FormFieldLabel from './FormFieldLabel'
 import FormFieldDescription from './FormFieldDescription'
-import FormFieldValidationMessage from './FormFieldValidationMessage'
 import FormFieldHint from './FormFieldHint'
+import FormFieldLabel from './FormFieldLabel'
+import FormFieldValidationMessage from './FormFieldValidationMessage'
 
 const FormField = memo(
   forwardRef(function FormField(props, ref) {

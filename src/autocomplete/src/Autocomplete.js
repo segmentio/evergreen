@@ -5,14 +5,14 @@ import React, {
   useEffect,
   useCallback
 } from 'react'
-import PropTypes from 'prop-types'
-import fuzzaldrin from 'fuzzaldrin-plus'
 import Downshift from 'downshift'
+import fuzzaldrin from 'fuzzaldrin-plus'
+import PropTypes from 'prop-types'
 import VirtualList from 'react-tiny-virtual-list'
-import { Popover } from '../../popover'
 import { Position } from '../../constants'
-import { Text } from '../../typography'
 import { Pane } from '../../layers'
+import { Popover } from '../../popover'
+import { Text } from '../../typography'
 import AutocompleteItem from './AutocompleteItem'
 
 const fuzzyFilter = itemToString => {

@@ -1,9 +1,9 @@
-import { css } from 'glamor'
 import React, { memo, forwardRef, useCallback } from 'react'
+import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import { Text } from '../../typography'
-import { IconWrapper } from '../../icons/src/IconWrapper'
 import { SearchIcon } from '../../icons'
+import { IconWrapper } from '../../icons/src/IconWrapper'
+import { Text } from '../../typography'
 import TableHeaderCell from './TableHeaderCell'
 
 const invisibleInputClass = css({

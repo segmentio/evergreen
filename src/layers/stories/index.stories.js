@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
-import { ThemeConsumer } from '../../theme'
+import { storiesOf } from '@storybook/react'
 import { Pane, Card } from '..'
+import { ThemeConsumer } from '../../theme'
 
 const cardStyle = {
   float: 'left',

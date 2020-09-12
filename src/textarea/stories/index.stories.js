@@ -1,9 +1,9 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Label, Heading } from '../../typography'
 import { Textarea, TextareaField } from '..'
+import { Label, Heading } from '../../typography'
 
 class Manager extends React.Component {
   static propTypes = {

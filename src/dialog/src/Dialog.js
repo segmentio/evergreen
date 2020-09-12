@@ -2,11 +2,11 @@ import React, { memo } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import { Pane } from '../../layers'
-import { Paragraph, Heading } from '../../typography'
-import { Overlay } from '../../overlay'
 import { Button, IconButton } from '../../buttons'
 import { CrossIcon } from '../../icons'
+import { Pane } from '../../layers'
+import { Overlay } from '../../overlay'
+import { Paragraph, Heading } from '../../typography'
 
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pane } from '../../layers'
-import { Heading } from '../../typography'
 import { ThemeConsumer } from '../../theme'
+import { Heading } from '../../typography'
 import ColorGroup from './ColorGroup'
 
 function capitalize(string) {

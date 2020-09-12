@@ -1,8 +1,8 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import { Text } from '../../typography'
-import { majorScale } from '../../scales'
 import { SymbolCircleIcon } from '../../icons'
+import { majorScale } from '../../scales'
+import { Text } from '../../typography'
 
 const StatusIndicator = memo(
   forwardRef(function StatusIndicator(props, ref) {

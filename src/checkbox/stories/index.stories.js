@@ -1,5 +1,5 @@
-import { storiesOf } from '@storybook/react'
 import React, { useEffect, useRef } from 'react'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
 import { Checkbox } from '..'
 

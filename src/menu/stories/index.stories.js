@@ -1,11 +1,8 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Component from '@reactions/component'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import Menu from '../src/Menu'
 import { Button } from '../../buttons'
-import { UnorderedList, ListItem } from '../../typography'
-import { Popover } from '../../popover'
 import { Position } from '../../constants'
 import {
   PeopleIcon,
@@ -13,6 +10,9 @@ import {
   EditIcon,
   TrashIcon
 } from '../../icons'
+import { Popover } from '../../popover'
+import { UnorderedList, ListItem } from '../../typography'
+import Menu from '../src/Menu'
 
 storiesOf('menu', module)
   .add('dropdown', () => (

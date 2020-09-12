@@ -1,5 +1,5 @@
-import { linearGradient } from './helpers'
 import scales from './foundational-styles/scales'
+import { linearGradient } from './helpers'
 
 const defaultControlStyles = {
   disabled: {

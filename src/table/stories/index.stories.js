@@ -1,13 +1,13 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
+import { storiesOf } from '@storybook/react'
 import faker from 'faker'
-import { Portal } from '../../portal'
-import { Pane } from '../../layers'
-import AdvancedTable from './AdvancedTable'
-import VirtualTable from './VirtualTable'
-import EditableTable from './EditableTable'
+import Box from 'ui-box'
 import { Table } from '..'
+import { Pane } from '../../layers'
+import { Portal } from '../../portal'
+import AdvancedTable from './AdvancedTable'
+import EditableTable from './EditableTable'
+import VirtualTable from './VirtualTable'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
 

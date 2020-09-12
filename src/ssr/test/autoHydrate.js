@@ -1,9 +1,9 @@
-import test from 'ava'
 import React from 'react'
-import Box from 'ui-box'
+import test from 'ava'
 import { render } from 'enzyme'
-import extractStyles from '../src/extractStyles'
+import Box from 'ui-box'
 import { hydrate } from '../src/autoHydrate'
+import extractStyles from '../src/extractStyles'
 
 test.serial('should hydrate', t => {
   render(<Box height={16} />)

@@ -1,16 +1,16 @@
 import React, { memo } from 'react'
 import { Pane } from '../../layers'
+import EditableCell from './EditableCell'
+import SearchTableHeaderCell from './SearchTableHeaderCell'
+import SelectMenuCell from './SelectMenuCell'
 import TableBody from './TableBody'
-import TableVirtualBody from './TableVirtualBody'
 import TableCell from './TableCell'
 import TableHead from './TableHead'
 import TableHeaderCell from './TableHeaderCell'
 import TableRow from './TableRow'
+import TableVirtualBody from './TableVirtualBody'
 import TextTableCell from './TextTableCell'
 import TextTableHeaderCell from './TextTableHeaderCell'
-import SearchTableHeaderCell from './SearchTableHeaderCell'
-import EditableCell from './EditableCell'
-import SelectMenuCell from './SelectMenuCell'
 
 const Table = memo(function Table(props) {
   const { children, ...rest } = props

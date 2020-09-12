@@ -1,10 +1,10 @@
 import React, { memo, useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
-import { Portal } from '../../portal'
-import { Stack } from '../../stack'
 import { StackingOrder, Position } from '../../constants'
 import { useMergedRef, usePrevious } from '../../hooks'
+import { Portal } from '../../portal'
+import { Stack } from '../../stack'
 import getPosition from './getPosition'
 
 const animationEasing = {

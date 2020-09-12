@@ -9,10 +9,10 @@ import React, {
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
 import PropTypes from 'prop-types'
-import { Positioner } from '../../positioner'
-import { Tooltip } from '../../tooltip'
 import { Position } from '../../constants'
 import { useMergedRef } from '../../hooks'
+import { Positioner } from '../../positioner'
+import { Tooltip } from '../../tooltip'
 import PopoverStateless from './PopoverStateless'
 
 const noop = () => {}

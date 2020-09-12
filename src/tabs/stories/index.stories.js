@@ -1,9 +1,9 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Heading, Paragraph } from '../../typography'
 import { Tab, Tablist, TabNavigation } from '..'
+import { Heading, Paragraph } from '../../typography'
 
 const StorySection = props => <Box marginBottom={40} {...props} />
 

@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from '../../layers'
-import { Text } from '../../typography'
 import { IconButton } from '../../buttons'
 import { CrossIcon } from '../../icons'
-import OptionsList from './OptionsList'
+import { Pane } from '../../layers'
+import { Text } from '../../typography'
 import OptionShapePropType from './OptionShapePropType'
+import OptionsList from './OptionsList'
 
 const DefaultTitleView = ({ close, headerHeight, title }) => (
   <Pane

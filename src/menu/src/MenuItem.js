@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Pane } from '../../layers'
-import { Text } from '../../typography'
-import { useTheme } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
+import { useTheme } from '../../theme'
+import { Text } from '../../typography'
 
 const noop = () => {}
 

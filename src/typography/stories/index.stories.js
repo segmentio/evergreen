@@ -1,7 +1,6 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import { TickCircleIcon, BanCircleIcon, TickIcon } from '../../icons'
 import {
   Text,
   Paragraph,
@@ -16,6 +15,7 @@ import {
   OrderedList,
   ListItem
 } from '..'
+import { TickCircleIcon, BanCircleIcon, TickIcon } from '../../icons'
 
 const TextSizes = [300, 400, 500]
 const HeadingSizes = [100, 200, 300, 400, 500, 600, 700, 800, 900]

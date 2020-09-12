@@ -1,10 +1,10 @@
 import React, { memo, useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
-import { SelectMenu } from '../../select-menu'
+import PropTypes from 'prop-types'
 import { CaretDownIcon } from '../../icons'
-import TextTableCell from './TextTableCell'
+import { SelectMenu } from '../../select-menu'
 import TableCell from './TableCell'
+import TextTableCell from './TextTableCell'
 
 const MIN_SELECT_MENU_WIDTH = 240
 const emptyProps = {}

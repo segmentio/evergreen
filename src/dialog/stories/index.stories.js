@@ -1,16 +1,16 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
 import Component from '@reactions/component'
+import { storiesOf } from '@storybook/react'
 import starWarsNames from 'starwars-names'
-import { Strong, Paragraph } from '../../typography'
+import Box from 'ui-box'
+import { Dialog } from '..'
 import { Button } from '../../buttons'
 import { Combobox } from '../../combobox'
-import { SideSheet } from '../../side-sheet'
 import { Pane } from '../../layers'
 import { Popover } from '../../popover'
+import { SideSheet } from '../../side-sheet'
+import { Strong, Paragraph } from '../../typography'
 import DialogManager from './DialogManager'
-import { Dialog } from '..'
 
 // Generate a big list of items
 const comboboxItems = starWarsNames.all.sort((a, b) => {

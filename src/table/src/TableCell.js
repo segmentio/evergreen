@@ -1,13 +1,13 @@
 import React, { memo, forwardRef, useState } from 'react'
-import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { toaster } from '../../toaster'
+import PropTypes from 'prop-types'
+import { useMergedRef } from '../../hooks'
 import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
-import { useMergedRef } from '../../hooks'
 import useTableCellAppearance from '../../theme/src/hooks/useTableCellAppearance'
-import { TableRowConsumer } from './TableRowContext'
+import { toaster } from '../../toaster'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
+import { TableRowConsumer } from './TableRowContext'
 
 function executeArrowKeyOverride(override) {
   if (!override) {

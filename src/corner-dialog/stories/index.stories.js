@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import { Button } from '../../buttons'
-import { Manager } from '../../manager'
-import positions from '../../constants/src/Position'
 import { CornerDialog } from '..'
+import { Button } from '../../buttons'
+import positions from '../../constants/src/Position'
+import { Manager } from '../../manager'
 
 storiesOf('corner-dialog', module).add('CornerDialog', () => (
   <Box padding={40}>

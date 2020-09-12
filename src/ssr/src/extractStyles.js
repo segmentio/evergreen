@@ -1,6 +1,6 @@
 import React from 'react'
-import { extractStyles as boxExtractStyles } from 'ui-box'
 import { renderStatic } from 'glamor/server'
+import { extractStyles as boxExtractStyles } from 'ui-box'
 
 export default function extractStyles(options = {}) {
   const { cache, styles } = boxExtractStyles()

@@ -1,9 +1,9 @@
 import React, { memo, useState, useEffect } from 'react'
+import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import VirtualList from 'react-tiny-virtual-list'
-import debounce from 'lodash.debounce'
-import { Pane } from '../../layers'
 import { useForceUpdate } from '../../hooks'
+import { Pane } from '../../layers'
 
 const TableVirtualBody = memo(function TableVirtualBody(props) {
   const {

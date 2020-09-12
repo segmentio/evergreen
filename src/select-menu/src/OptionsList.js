@@ -1,14 +1,14 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
-import PropTypes from 'prop-types'
 import fuzzaldrin from 'fuzzaldrin-plus'
+import PropTypes from 'prop-types'
 import VirtualList from 'react-tiny-virtual-list'
-import { Pane } from '../../layers'
 import { SearchIcon } from '../../icons'
+import { Pane } from '../../layers'
+import SearchTableHeaderCell from '../../table/src/SearchTableHeaderCell'
 import TableHead from '../../table/src/TableHead'
 import { useTheme } from '../../theme'
-import SearchTableHeaderCell from '../../table/src/SearchTableHeaderCell'
-import OptionShapePropType from './OptionShapePropType'
 import Option from './Option'
+import OptionShapePropType from './OptionShapePropType'
 
 /**
  * Fuzzaldrin-plus is the default filter, but you can use your own

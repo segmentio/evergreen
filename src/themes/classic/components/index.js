@@ -5,11 +5,11 @@ import Button from './button'
 import Code from './code'
 import Icon from './icon'
 import InlineAlert from './inline-alert'
+import Input from './input'
 import Pane from './pane'
 import Select from './select'
-import Tooltip from './tooltip'
-import Input from './input'
 import TagInput from './tag-input'
+import Tooltip from './tooltip'
 
 export default {
   Alert,

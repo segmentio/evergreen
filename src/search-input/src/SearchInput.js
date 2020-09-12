@@ -1,8 +1,8 @@
 import React, { memo, forwardRef } from 'react'
 import Box, { splitBoxProps } from 'ui-box'
+import { StackingOrder } from '../../constants'
 import { SearchIcon } from '../../icons'
 import { TextInput } from '../../text-input'
-import { StackingOrder } from '../../constants'
 
 const getIconSizeForInput = height => {
   if (height <= 28) return 12

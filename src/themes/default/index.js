@@ -1,3 +1,8 @@
+import components from './components'
+import {
+  getRowClassName,
+  getMenuItemClassName
+} from './deprecated/component-specific'
 import {
   palette,
   scales,
@@ -11,13 +16,7 @@ import {
   paragraph
 } from './deprecated/typography'
 
-import {
-  getRowClassName,
-  getMenuItemClassName
-} from './deprecated/component-specific'
-
 import tokens from './tokens'
-import components from './components'
 
 export default {
   /* DEPRECATED */

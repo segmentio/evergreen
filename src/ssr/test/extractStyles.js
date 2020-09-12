@@ -1,7 +1,7 @@
-import test from 'ava'
 import React from 'react'
-import Box from 'ui-box'
+import test from 'ava'
 import { render } from 'enzyme'
+import Box from 'ui-box'
 import Button from '../../buttons/src/Button'
 import extractStyles from '../src/extractStyles'
 

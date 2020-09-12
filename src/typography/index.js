@@ -1,6 +1,6 @@
-import UnorderedList from './src/UnorderedList'
-import OrderedList from './src/OrderedList'
 import ListItem from './src/ListItem'
+import OrderedList from './src/OrderedList'
+import UnorderedList from './src/UnorderedList'
 
 export {
   UnorderedList,

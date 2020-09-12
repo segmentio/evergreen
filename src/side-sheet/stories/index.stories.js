@@ -1,11 +1,9 @@
-import { storiesOf } from '@storybook/react'
-import Component from '@reactions/component'
 import React from 'react'
+import Component from '@reactions/component'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import { Heading, Paragraph } from '../../typography'
-import { Card, Pane } from '../../layers'
+import { SideSheet } from '..'
 import { Button } from '../../buttons'
-import { Tab } from '../../tabs'
 import { Dialog } from '../../dialog'
 import {
   PeopleIcon,
@@ -13,9 +11,11 @@ import {
   TrashIcon,
   EditIcon
 } from '../../icons'
-import { TextInput } from '../../text-input'
+import { Card, Pane } from '../../layers'
 import Menu from '../../menu/src/Menu'
-import { SideSheet } from '..'
+import { Tab } from '../../tabs'
+import { TextInput } from '../../text-input'
+import { Heading, Paragraph } from '../../typography'
 
 storiesOf('side-sheet', module)
   .add('title + sub title + tabs', () => (

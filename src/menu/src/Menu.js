@@ -1,9 +1,9 @@
 import React, { memo, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
-import MenuItem from './MenuItem'
 import MenuDivider from './MenuDivider'
 import MenuGroup from './MenuGroup'
+import MenuItem from './MenuItem'
 import MenuOption from './MenuOption'
 import MenuOptionsGroup from './MenuOptionsGroup'
 

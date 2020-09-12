@@ -1,9 +1,9 @@
 import React, { memo, forwardRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
-import { Text } from '../../typography'
-import useCheckboxAppearance from '../../theme/src/hooks/useCheckboxAppearance'
 import { useMergedRef } from '../../hooks'
+import useCheckboxAppearance from '../../theme/src/hooks/useCheckboxAppearance'
+import { Text } from '../../typography'
 
 const CheckIcon = ({ fill = 'currentColor', ...props }) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...props}>

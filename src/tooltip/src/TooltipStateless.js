@@ -1,8 +1,8 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import useStyleConfig from '../../hooks/use-style-config'
 import { Pane } from '../../layers'
 import { Paragraph } from '../../typography'
-import useStyleConfig from '../../hooks/use-style-config'
 
 const pseudoSelectors = {}
 const internalStyles = {}

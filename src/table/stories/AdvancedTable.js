@@ -1,19 +1,19 @@
 import React from 'react'
 import { filter } from 'fuzzaldrin-plus'
-import { Popover } from '../../popover'
-import { Position } from '../../constants'
-import { Menu } from '../../menu'
+import { Table } from '..'
 import { Avatar } from '../../avatar'
-import { Text } from '../../typography'
 import { IconButton, TextDropdownButton } from '../../buttons'
+import { Position } from '../../constants'
 import {
   CaretDownIcon,
   ArrowDownIcon,
   ArrowUpIcon,
   MoreIcon
 } from '../../icons'
+import { Menu } from '../../menu'
+import { Popover } from '../../popover'
+import { Text } from '../../typography'
 import profiles from './profiles.json'
-import { Table } from '..'
 
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
