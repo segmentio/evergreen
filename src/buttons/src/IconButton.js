@@ -11,26 +11,21 @@ import Button, {
 
 const IconButton = memo(
   forwardRef(function IconButton(props, ref) {
-    const {
-      appearance,
-      icon,
-      iconSize,
-      intent,
-      size = 'medium',
-      ...restProps
-    } = props
+    const { icon, iconSize, ...restProps } = props
+
+    // modifiers
+    const { appearance, intent, size = 'medium' } = props
 
     // Composes the exact same styles as button
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
+    const styleProps = useStyleConfig(
       'Button',
       { appearance, intent, size },
       pseudoSelectors,
       internalStyles
     )
 
-    const relativeIconSize = getIconSizeForButton(
-      restProps.height || boxProps.height
-    )
+    const height = restProps.height || styleProps.height
+    const relativeIconSize = getIconSizeForButton(height)
 
     return (
       <Button
@@ -38,7 +33,9 @@ const IconButton = memo(
         paddingLeft={0}
         paddingRight={0}
         flex="none"
-        size={size}
+        height={height}
+        width={height}
+        minWidth={height}
         {...restProps}
       >
         <IconWrapper
@@ -99,7 +96,7 @@ IconButton.propTypes = {
 
   /**
    * Forcefully set the active state of a button.
-   * Useful in conjuction with a Popover.
+   * Useful in conjunction with a Popover.
    */
   isActive: PropTypes.bool,
 

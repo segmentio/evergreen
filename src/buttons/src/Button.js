@@ -168,7 +168,7 @@ Button.propTypes = {
 
   /**
    * Forcefully set the active state of a button.
-   * Useful in conjuction with a Popover.
+   * Useful in conjunction with a Popover.
    */
   isActive: PropTypes.bool,
 
