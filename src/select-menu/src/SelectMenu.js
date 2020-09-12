@@ -1,12 +1,12 @@
 import React, { memo, useMemo } from 'react'
-import PropTypes from 'prop-types'
 import arrify from 'arrify'
-import { Popover } from '../../popover'
+import PropTypes from 'prop-types'
 import { Position } from '../../constants'
 import { SearchIcon } from '../../icons'
-import SelectMenuContent from './SelectMenuContent'
+import { Popover } from '../../popover'
 import OptionShapePropType from './OptionShapePropType'
 import SelectedPropType from './SelectedPropType'
+import SelectMenuContent from './SelectMenuContent'
 
 const noop = () => {}
 

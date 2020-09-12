@@ -3,11 +3,11 @@ import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import useStyleConfig from '../../hooks/use-style-config'
 import { Image } from '../../image'
 import { Text } from '../../typography'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
-import useStyleConfig from '../../hooks/use-style-config'
 
 const pseudoSelectors = {}
 const internalStyles = {

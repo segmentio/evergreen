@@ -2,8 +2,8 @@ import React, { memo, forwardRef, useState, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Button } from '../../buttons'
-import { TextInput } from '../../text-input'
 import safeInvoke from '../../lib/safe-invoke'
+import { TextInput } from '../../text-input'
 
 export const CLASS_PREFIX = 'evergreen-file-picker'
 

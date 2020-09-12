@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import { Text, Label } from '../../typography'
 import { Select } from '..'
+import { Text, Label } from '../../typography'
 
 const Description = props => (
   <Text is="p" marginTop={0} size={300} color="muted" {...props} />

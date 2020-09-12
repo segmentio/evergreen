@@ -1,6 +1,6 @@
 import React from 'react'
-import render from 'react-test-renderer'
 import { shallow } from 'enzyme'
+import render from 'react-test-renderer'
 
 import Alert from '../src/Alert'
 

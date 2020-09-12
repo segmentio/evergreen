@@ -1,14 +1,13 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
 import Component from '@reactions/component'
-import { majorScale } from '../../scales'
-import { Heading } from '../../typography'
-import { Pane } from '../../layers'
-import { SegmentedControl } from '../../segmented-control'
-
-import * as Icons from '../../icons'
+import { storiesOf } from '@storybook/react'
+import Box from 'ui-box'
 import { IconButton, Button, BackButton, TextDropdownButton } from '..'
+import * as Icons from '../../icons'
+import { Pane } from '../../layers'
+import { majorScale } from '../../scales'
+import { SegmentedControl } from '../../segmented-control'
+import { Heading } from '../../typography'
 
 const buttonsStory = storiesOf('buttons', module)
 buttonsStory.add('Common', () => (

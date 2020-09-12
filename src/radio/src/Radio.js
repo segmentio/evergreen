@@ -1,8 +1,8 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
-import { Text } from '../../typography'
 import useCheckboxAppearance from '../../theme/src/hooks/useCheckboxAppearance'
+import { Text } from '../../typography'
 
 const CircleIcon = memo(function CircleIcon({
   fill = 'currentColor',

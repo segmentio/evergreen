@@ -1,9 +1,9 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
 import Component from '@reactions/component'
-import { Heading } from '../../typography'
+import { storiesOf } from '@storybook/react'
+import Box from 'ui-box'
 import { Radio, RadioGroup } from '..'
+import { Heading } from '../../typography'
 
 storiesOf('radio', module)
   .add('RadioGroup', () => (

@@ -1,9 +1,9 @@
 import React from 'react'
 import faker from 'faker'
-import { Stack } from '../../stack'
+import { Table } from '..'
 import { Pane } from '../../layers'
 import { SegmentedControl } from '../../segmented-control'
-import { Table } from '..'
+import { Stack } from '../../stack'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
 

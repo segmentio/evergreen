@@ -1,11 +1,11 @@
 import React, { memo, useState } from 'react'
 import PropTypes from 'prop-types'
+import safeInvoke from '../../lib/safe-invoke'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
-import safeInvoke from '../../lib/safe-invoke'
-import TextTableCell from './TextTableCell'
-import TableCell from './TableCell'
 import EditableCellField from './EditableCellField'
+import TableCell from './TableCell'
+import TextTableCell from './TextTableCell'
 
 const emptyProps = {}
 

@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
+import { Position } from '../../constants'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
-import { Position } from '../../constants'
 import SheetClose from './SheetClose'
 
 const paneProps = {

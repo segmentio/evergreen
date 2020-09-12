@@ -3,14 +3,14 @@
  */
 
 import React, { memo, forwardRef, useState } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import cx from 'classnames'
-import { TextInput } from '../../text-input'
-import { majorScale } from '../../scales'
-import safeInvoke from '../../lib/safe-invoke'
 import { useId } from '../../hooks'
 import useStyleConfig from '../../hooks/use-style-config'
+import safeInvoke from '../../lib/safe-invoke'
+import { majorScale } from '../../scales'
+import { TextInput } from '../../text-input'
 import Tag from './Tag'
 
 const GET_KEY_FOR_TAG_DELIMITER = {

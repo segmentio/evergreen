@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from '../../layers'
-import { Text } from '../../typography'
 import { TickIcon } from '../../icons'
+import { Pane } from '../../layers'
 import { useTheme } from '../../theme'
+import { Text } from '../../typography'
 
 const noop = () => {}
 

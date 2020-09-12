@@ -26,7 +26,25 @@
     "space-before-function-paren": "off",
     "no-unused-vars": "error",
     "react/display-name": "off",
-    "sort-destructure-keys/sort-destructure-keys": "error"
+    "sort-destructure-keys/sort-destructure-keys": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal"],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
   },
   "overrides": [
     {

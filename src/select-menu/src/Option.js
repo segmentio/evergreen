@@ -1,10 +1,10 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from '../../layers'
 import { Image } from '../../image'
+import { Pane } from '../../layers'
 import TableRow from '../../table/src/TableRow'
-import { useTheme } from '../../theme'
 import TextTableCell from '../../table/src/TextTableCell'
+import { useTheme } from '../../theme'
 
 const Option = memo(
   forwardRef(function Option(props, ref) {

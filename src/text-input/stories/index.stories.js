@@ -1,12 +1,12 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { ErrorIcon } from '../../icons'
-import { Text, Label, Heading } from '../../typography'
-import { Pane, Card } from '../../layers'
-import { Button } from '../../buttons'
 import { TextInputField, TextInput } from '..'
+import { Button } from '../../buttons'
+import { ErrorIcon } from '../../icons'
+import { Pane, Card } from '../../layers'
+import { Text, Label, Heading } from '../../typography'
 
 const Description = props => (
   <Text is="p" marginTop={0} size={300} color="muted" {...props} />

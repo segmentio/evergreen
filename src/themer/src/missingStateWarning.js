@@ -1,5 +1,5 @@
-import isDev from './isDev'
 import hasOwnProperty from './hasOwnProperty'
+import isDev from './isDev'
 
 function missingStateWarning({ cb, items, props }) {
   if (!isDev) return

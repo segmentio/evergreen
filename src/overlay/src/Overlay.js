@@ -4,12 +4,12 @@ import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import Box from 'ui-box'
+import { StackingOrder } from '../../constants'
+import preventBodyScroll from '../../lib/prevent-body-scroll'
+import safeInvoke from '../../lib/safe-invoke'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
-import { StackingOrder } from '../../constants'
 import { useTheme } from '../../theme'
-import safeInvoke from '../../lib/safe-invoke'
-import preventBodyScroll from '../../lib/prevent-body-scroll'
 
 const noop = () => {}
 const emptyProps = {}

@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
 import faker from 'faker'
-import { Pane } from '../../layers'
-import { Paragraph } from '../../typography'
-import { TextInputField } from '../../text-input'
-import { SelectField } from '../../select'
-import { minorScale } from '../../scales'
 import { Table } from '..'
+import { Pane } from '../../layers'
+import { minorScale } from '../../scales'
+import { SelectField } from '../../select'
+import { TextInputField } from '../../text-input'
+import { Paragraph } from '../../typography'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
 

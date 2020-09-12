@@ -2,9 +2,9 @@ import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { spacing, dimensions, position, layout } from 'ui-box'
+import useStyleConfig from '../../hooks/use-style-config'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import useStyleConfig from '../../hooks/use-style-config'
 import { getIconForIntent } from './getIconForIntent'
 
 const pseudoSelectors = {}

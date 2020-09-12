@@ -2,8 +2,8 @@ import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import { Strong } from '../../typography'
 import useStyleConfig from '../../hooks/use-style-config'
+import { Strong } from '../../typography'
 
 const pseudoSelectors = {}
 

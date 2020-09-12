@@ -1,8 +1,8 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box, { dimensions, spacing, position, layout } from 'ui-box'
-import { CaretDownIcon } from '../../icons'
 import useStyleConfig from '../../hooks/use-style-config'
+import { CaretDownIcon } from '../../icons'
 
 const internalStyles = {
   textTransform: 'default',

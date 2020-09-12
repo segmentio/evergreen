@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
+import { storiesOf } from '@storybook/react'
 import starWarsNames from 'starwars-names'
-import { Heading } from '../../typography'
-import { Pane } from '../../layers'
+import Box from 'ui-box'
 import { Combobox } from '..'
+import { Pane } from '../../layers'
+import { Heading } from '../../typography'
 
 // Generate a big list of items
 const items = starWarsNames.all.sort((a, b) => {

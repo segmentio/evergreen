@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
+import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { css } from 'glamor'
-import { CrossIcon } from '../../icons'
 import { Position } from '../../constants'
+import { CrossIcon } from '../../icons'
 
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',

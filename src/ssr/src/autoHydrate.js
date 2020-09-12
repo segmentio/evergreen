@@ -1,5 +1,5 @@
-import { hydrate as boxHydrate } from 'ui-box'
 import { rehydrate } from 'glamor'
+import { hydrate as boxHydrate } from 'ui-box'
 
 /**
  * You shouldn't have to manually run this.

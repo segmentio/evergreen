@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react'
 import React, { useState } from 'react'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import { Heading } from '../../typography'
 import { Switch } from '..'
+import { Heading } from '../../typography'
 
 storiesOf('switch', module).add('Switch', () => {
   const [testOneChecked, setTestOneChecked] = useState(false)

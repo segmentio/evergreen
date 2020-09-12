@@ -1,5 +1,5 @@
-import getFittedPosition from '../src/getPosition'
 import { Position } from '../../constants'
+import getFittedPosition from '../src/getPosition'
 
 const dimensions = overrides => ({
   height: 100,

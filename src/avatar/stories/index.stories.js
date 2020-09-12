@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import { Heading, Paragraph } from '../../typography'
 import { Avatar } from '..'
+import { Heading, Paragraph } from '../../typography'
 
 const names = [
   'Cheryl Carter',

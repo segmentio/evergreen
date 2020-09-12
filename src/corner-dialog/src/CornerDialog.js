@@ -1,15 +1,15 @@
 import React, { memo, useState, useEffect, useCallback } from 'react'
-import { css } from 'glamor'
 import cx from 'classnames'
+import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
-import { Pane, Card } from '../../layers'
-import { Portal } from '../../portal'
-import { Paragraph, Heading } from '../../typography'
 import { Button, IconButton } from '../../buttons'
 import absolutePositions from '../../constants/src/AbsolutePosition'
 import positions from '../../constants/src/Position'
 import { CrossIcon } from '../../icons'
+import { Pane, Card } from '../../layers'
+import { Portal } from '../../portal'
+import { Paragraph, Heading } from '../../typography'
 
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',

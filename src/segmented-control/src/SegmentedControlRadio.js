@@ -1,9 +1,9 @@
 import React, { memo, forwardRef } from 'react'
+import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { css } from 'glamor'
-import { Text } from '../../typography'
 import useSegmentControlAppearance from '../../theme/src/hooks/useSegmentedControlAppearance'
+import { Text } from '../../typography'
 
 const offscreenCss = css({
   overflow: 'hidden',

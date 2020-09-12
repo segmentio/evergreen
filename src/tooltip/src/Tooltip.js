@@ -1,11 +1,11 @@
+import React, { memo, useState, useEffect } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
-import React, { memo, useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
-import { Positioner } from '../../positioner'
+import PropTypes from 'prop-types'
 import { Position } from '../../constants'
 import { useId } from '../../hooks'
+import { Positioner } from '../../positioner'
 import TooltipStateless from './TooltipStateless'
 
 const emptyProps = {}
