@@ -1,8 +1,7 @@
 import React, { memo, forwardRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
-import { useMergedRef } from '../../hooks'
-import useCheckboxAppearance from '../../theme/src/hooks/useCheckboxAppearance'
+import { useMergedRef, useStyleConfig } from '../../hooks'
 import { Text } from '../../typography'
 
 const CheckIcon = ({ fill = 'currentColor', ...props }) => (
@@ -35,6 +34,43 @@ MinusIcon.propTypes = {
 
 const noop = () => {}
 
+const pseudoSelectors = {
+  _base: '& + div',
+  _disabled: '&[disabled] + div',
+  _hover: '&:not([disabled]):hover + div',
+  _focus: '&:not([disabled]):focus + div',
+  _active: '&:not([disabled]):active + div',
+  _checked: '&:checked + div, &[type=checkbox]:indeterminate + div',
+  _checkedHover:
+    '&:not([disabled]):checked:hover + div, &[type=checkbox]:not([disabled]):indeterminate:hover + div',
+  _checkedActive:
+    '&:not([disabled]):checked:active + div, &[type=checkbox]:not([disabled]):indeterminate:active + div',
+  _checkedDisabled:
+    '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div'
+}
+
+const internalStyles = {
+  border: '0',
+  clip: 'rect(1px, 1px, 1px, 1px)',
+  height: '1px',
+  overflow: 'hidden',
+  padding: '0',
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  width: '1px',
+  opacity: '0',
+
+  [pseudoSelectors._base]: {
+    WebkitFontSmoothing: 'antialiased',
+    textDecoration: 'none',
+    WebkitAppearance: 'none',
+    MozAppearance: 'none',
+    border: 'none',
+    outline: 'none',
+    cursor: 'pointer'
+  }
+}
+
 const Checkbox = memo(
   forwardRef(function Checkbox(props, forwardedRef) {
     const {
@@ -60,7 +96,12 @@ const Checkbox = memo(
       }
     }, [ref, indeterminate])
 
-    const themedClassName = useCheckboxAppearance(appearance)
+    const { themedClassName, ...boxProps } = useStyleConfig(
+      'Checkbox',
+      { appearance },
+      pseudoSelectors,
+      { ...internalStyles }
+    )
 
     return (
       <Box
@@ -82,6 +123,7 @@ const Checkbox = memo(
           onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
+          {...boxProps}
           ref={callbackRef}
         />
         <Box
