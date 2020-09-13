@@ -4,8 +4,7 @@ const appearances = {
   default: {
     _base: {
       color: 'white',
-      backgroundColor: 'colors.gray400',
-      borderRadius: 9999
+      backgroundColor: 'colors.gray400'
     },
     _disabled: {
       cursor: 'not-allowed',

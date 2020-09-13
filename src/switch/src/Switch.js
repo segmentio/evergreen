@@ -3,7 +3,6 @@ import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
-import useSwitchAppearance from '../../theme/src/hooks/useSwitchAppearance'
 
 const animationEasing = {
   spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
@@ -91,8 +90,7 @@ const internalStyles = {
   '& + div > svg': { display: 'none' },
 
   [pseudoSelectors._base]: {
-    transition: 'all 120ms ease-in-out',
-    cursor: 'pointer'
+    transition: 'all 120ms ease-in-out'
   }
 }
 
@@ -111,7 +109,7 @@ const Switch = memo(
       ...rest
     } = props
 
-    const themedClassName = useStyleConfig(
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Switch',
       { appearance },
       pseudoSelectors,
@@ -131,6 +129,7 @@ const Switch = memo(
           is="input"
           id={id}
           name={name}
+          {...boxProps}
           className={themedClassName}
           type="checkbox"
           checked={checked}
@@ -138,7 +137,12 @@ const Switch = memo(
           defaultChecked={defaultChecked}
           onChange={onChange}
         />
-        <Box height={height} width={height * 2}>
+        <Box
+          height={height}
+          width={height * 2}
+          borderRadius={9999}
+          cursor="pointer"
+        >
           <Box
             height={height}
             width={height}
