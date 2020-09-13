@@ -19,7 +19,7 @@ const appearances = {
       transition: 'box-shadow 80ms ease-in-out',
       zIndex: 'zIndices.focused',
       borderColor: 'colors.blue200',
-      boxShadow: theme => `0 0 0 2px ${theme.colors.blue100}`
+      boxShadow: 'shadows.focusRing'
     },
 
     _disabled: {

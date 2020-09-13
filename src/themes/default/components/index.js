@@ -9,6 +9,7 @@ import Input from './input'
 import Pane from './pane'
 import Select from './select'
 import TagInput from './tag-input'
+import TextDropdownButton from './text-dropdown-button'
 import Tooltip from './tooltip'
 
 export default {
@@ -19,9 +20,10 @@ export default {
   Code,
   Icon,
   InlineAlert,
+  Input,
   Pane,
   Select,
-  Tooltip,
-  Input,
-  TagInput
+  TagInput,
+  TextDropdownButton,
+  Tooltip
 }

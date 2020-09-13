@@ -2,51 +2,46 @@ import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box, { dimensions, spacing, position, layout } from 'ui-box'
+import useStyleConfig from '../../hooks/use-style-config'
 import { CaretDownIcon } from '../../icons'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Spinner } from '../../spinner'
-import useTextDropdownButtonAppearance from '../../theme/src/hooks/useTextDropdownButtonApperance'
-import { internalStyles as styles } from './Button'
+import { internalStyles, pseudoSelectors } from './Button'
 
 const TextDropdownButton = memo(
   forwardRef(function TextDropdownButton(props, ref) {
     const {
-      className,
-      size = 'medium',
-      isActive = false,
-      children,
-      disabled,
       appearance,
-      isLoading,
-
+      children,
+      className,
+      disabled,
       icon = CaretDownIcon,
+      is = 'button',
+      isActive = false,
+      isLoading,
+      size = 'medium',
       ...restProps
     } = props
 
-    const {
-      boxProps,
-      className: themedClassName
-    } = useTextDropdownButtonAppearance({ appearance: 'default', size }, styles)
-
-    const { height } = boxProps
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'TextDropdownButton',
+      { size },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Box
-        is="button"
+        is={is}
         ref={ref}
+        type={is === 'button' ? 'button' : undefined}
         className={cx(themedClassName, className)}
         data-active={isActive || undefined}
         {...boxProps}
         {...restProps}
-        disabled={disabled}
+        disabled={disabled || isLoading}
       >
-        {isLoading && (
-          <Spinner
-            marginLeft={-Math.round(height / 8)}
-            marginRight={Math.round(height / 4)}
-            size={Math.round(height / 2)}
-          />
-        )}
+        {isLoading && <Spinner marginLeft={-2} marginRight={4} size={12} />}
         {children}
         <IconWrapper icon={icon} marginLeft={2} color="default" size={12} />
       </Box>

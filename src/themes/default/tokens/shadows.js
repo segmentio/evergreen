@@ -1,3 +1,5 @@
+import colors from './colors'
+
 const borderShadowColor = 'rgba(67, 90, 111, 0.3)'
 const blurryShadowColor = 'rgba(67, 90, 111, 0.47)'
 
@@ -12,5 +14,7 @@ const shadows = [
   `0 0 1px ${borderShadowColor}, 0 8px 10px -4px ${blurryShadowColor}`,
   `0 0 1px ${borderShadowColor}, 0 16px 24px -8px ${blurryShadowColor}`
 ]
+
+shadows.focusRing = `0 0 0 2px ${colors.blue100}`
 
 export default shadows

@@ -54,7 +54,7 @@ const appearances = {
       background: 'scales.neutral.N2A'
     },
     _focus: {
-      boxShadow: theme => `0 0 0 3px ${theme.scales.blue.B5A}`
+      boxShadow: 'shadows.focusRing'
     },
     _active: {
       background: 'scales.blue.B3A'

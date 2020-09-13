@@ -22,7 +22,7 @@ const appearances = {
     },
 
     _focus: {
-      boxShadow: theme => `0 0 0 2px ${theme.colors.blue100}`
+      boxShadow: 'shadows.focusRing'
     },
 
     _active: {
