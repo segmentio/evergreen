@@ -21,22 +21,17 @@ const appearances = {
     },
     _checked: {
       backgroundColor: 'colors.blue500',
-      color: 'white',
-      '& > svg': { display: 'block' }
+      color: 'white'
     },
     _checkedHover: {
       backgroundColor: 'colors.blue600',
-      color: 'white',
-      '& > svg': { display: 'block' }
+      color: 'white'
     },
     _checkedActive: {
       backgroundColor: 'colors.blue700',
-      color: 'white',
-      '& > svg': { display: 'block' }
+      color: 'white'
     },
-    _checkedDisabled: {
-      '& > svg': { display: 'block' }
-    }
+    _checkedDisabled: {}
   }
 }
 
