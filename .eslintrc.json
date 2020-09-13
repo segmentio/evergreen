@@ -27,6 +27,7 @@
     "no-unused-vars": "error",
     "react/display-name": "off",
     "sort-destructure-keys/sort-destructure-keys": "error",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
     "import/order": [
       "error",
       {

@@ -24,6 +24,7 @@ const items = starWarsNames.all.sort((a, b) => {
 const customItems = items.map(i => ({ label: i }))
 
 const handleChange = selectedItem => {
+  // eslint-disable-next-line no-console
   console.log(selectedItem)
 }
 
