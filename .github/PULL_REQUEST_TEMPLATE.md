@@ -25,6 +25,6 @@ Please respect our [Code of Conduct](https://github.com/segmentio/evergreen/blob
 
 <!-- If your change impacts component behavior or usage please be sure to include appropriate documentation and types! -->
 
-- [ ] Updated Typescript types and/or component PropTypes ()
+- [ ] Updated Typescript types and/or component PropTypes
 - [ ] Added / modified component docs
 - [ ] Added / modified Storybook stories
