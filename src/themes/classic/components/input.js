@@ -20,7 +20,7 @@ const appearances = {
     _focus: {
       outline: 'none',
       boxShadow: theme =>
-        `inset 0 0 2px ${theme.scales.neutral.N4A}, inset 0 0 0 1px ${theme.scales.blue.B7}, 0 0 0 3px ${theme.scales.blue.B4A}`
+        `inset 0 0 2px ${theme.scales.neutral.N4A}, inset 0 0 0 1px ${theme.scales.blue.B7}, ${theme.shadows.focusRing}`
     },
     _disabled: {
       cursor: 'not-allowed',

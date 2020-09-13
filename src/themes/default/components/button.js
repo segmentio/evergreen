@@ -1,7 +1,17 @@
 const baseStyle = {
   fontFamily: 'fontFamilies.ui',
   border: '1px solid transparent',
-  borderRadius: 'radii.1'
+  borderRadius: 'radii.1',
+  transition: 'box-shadow 80ms ease-in-out',
+
+  _focus: {
+    boxShadow: 'shadows.focusRing'
+  },
+
+  _disabled: {
+    cursor: 'not-allowed',
+    pointerEvents: 'none'
+  }
 }
 
 const colorKeyForAppearance = appearance =>
@@ -19,7 +29,6 @@ const getPrimaryButtonAppearance = appearance => {
     },
     _disabled: {
       backgroundColor: `colors.${color}100`,
-      cursor: 'not-allowed',
       borderColor: `colors.${color}100`
     },
     _focus: {
@@ -42,7 +51,6 @@ const appearances = {
     color: 'colors.gray800',
 
     _disabled: {
-      cursor: 'not-allowed',
       color: 'colors.gray500',
       borderColor: 'colors.gray300'
     },
@@ -50,10 +58,6 @@ const appearances = {
     _hover: {
       borderColor: 'colors.gray600',
       backgroundColor: 'colors.gray50'
-    },
-
-    _focus: {
-      boxShadow: theme => `0 0 0 2px ${theme.colors.blue100}`
     },
 
     _active: {
@@ -64,12 +68,7 @@ const appearances = {
     backgroundColor: 'transparent',
     color: 'colors.gray800',
 
-    _focus: {
-      boxShadow: theme => `0 0 0 2px ${theme.colors.blue100}`
-    },
-
     _disabled: {
-      cursor: 'not-allowed',
       color: 'colors.gray500',
       borderColor: 'colors.gray300'
     },

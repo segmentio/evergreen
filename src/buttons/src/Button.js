@@ -36,6 +36,7 @@ export const internalStyles = {
   justifyContent: 'center',
   textDecoration: 'none',
   verticalAlign: 'middle',
+  border: 'none',
   outline: 'none',
   userSelect: 'none',
   cursor: 'pointer',
