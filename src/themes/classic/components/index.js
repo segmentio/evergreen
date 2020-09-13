@@ -10,6 +10,7 @@ import Input from './input'
 import Pane from './pane'
 import Radio from './radio'
 import Select from './select'
+import Switch from './switch'
 import TagInput from './tag-input'
 import Tooltip from './tooltip'
 
@@ -27,5 +28,6 @@ export default {
   Tooltip,
   Input,
   Radio,
+  Switch,
   TagInput
 }

@@ -5,7 +5,7 @@ const baseStyle = {}
 const appearances = {
   default: {
     _base: {
-      color: 'white',
+      color: 'transparent',
       background: theme =>
         `linear-gradient(to top, ${theme.scales.neutral.N2A}, white)`,
       boxShadow: theme =>

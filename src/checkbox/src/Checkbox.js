@@ -57,15 +57,14 @@ const internalStyles = {
   padding: '0',
   position: 'absolute',
   whiteSpace: 'nowrap',
+  WebkitFontSmoothing: 'antialiased',
+  textDecoration: 'none',
+  WebkitAppearance: 'none',
+  MozAppearance: 'none',
   width: '1px',
   opacity: '0',
 
   [pseudoSelectors._base]: {
-    WebkitFontSmoothing: 'antialiased',
-    textDecoration: 'none',
-    WebkitAppearance: 'none',
-    MozAppearance: 'none',
-    border: 'none',
     outline: 'none',
     cursor: 'pointer'
   }
@@ -96,11 +95,11 @@ const Checkbox = memo(
       }
     }, [ref, indeterminate])
 
-    const { themedClassName, ...boxProps } = useStyleConfig(
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Checkbox',
       { appearance },
       pseudoSelectors,
-      { ...internalStyles }
+      internalStyles
     )
 
     return (

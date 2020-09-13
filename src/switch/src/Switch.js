@@ -2,6 +2,7 @@ import React, { memo, forwardRef } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
+import { useStyleConfig } from '../../hooks'
 import useSwitchAppearance from '../../theme/src/hooks/useSwitchAppearance'
 
 const animationEasing = {
@@ -65,6 +66,36 @@ CheckIcon.propTypes = {
 
 const noop = () => {}
 
+const pseudoSelectors = {
+  _base: '& + div',
+  _disabled: '&[disabled] + div',
+  _hover: '&:not([disabled]):hover + div',
+  _focus: '&:not([disabled]):focus + div',
+  _active: '&:not([disabled]):active + div',
+  _checked: '&:checked + div',
+  _checkedHover: '&:checked:hover + div',
+  _checkedActive: '&:not([disabled]):checked:active + div',
+  _checkedDisabled: '&[disabled]:checked + div'
+}
+
+const internalStyles = {
+  border: '0',
+  clip: 'rect(1px, 1px, 1px, 1px)',
+  height: '1px',
+  overflow: 'hidden',
+  padding: '0',
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  width: '1px',
+  opacity: '0',
+  '& + div > svg': { display: 'none' },
+
+  [pseudoSelectors._base]: {
+    transition: 'all 120ms ease-in-out',
+    cursor: 'pointer'
+  }
+}
+
 const Switch = memo(
   forwardRef(function Switch(props, ref) {
     const {
@@ -80,7 +111,12 @@ const Switch = memo(
       ...rest
     } = props
 
-    const themedClassName = useSwitchAppearance(appearance)
+    const themedClassName = useStyleConfig(
+      'Switch',
+      { appearance },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Box
