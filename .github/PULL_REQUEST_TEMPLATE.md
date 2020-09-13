@@ -15,9 +15,11 @@ Please respect our [Code of Conduct](https://github.com/segmentio/evergreen/blob
 
 <!-- A clear description of the what and *why* of this code change. -->
 
+
 **Screenshots (if applicable)**
 
 <!-- Please provide screenshots or gifs showing the change in action -->
+
 
 **Documentation**
 
