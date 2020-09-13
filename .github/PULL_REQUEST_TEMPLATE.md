@@ -1,30 +1,28 @@
-<!--
-# 🎉 Thanks for taking the time to contribute to 🌲Evergreen! 🎉
+<!---
 
-It is highly appreciated that you take the time to help improve Evergreen.
-We appreciate it if you would take the time to document your Pull Request.
+Hello! And thanks for contributing to Evergreen 🎉
 
-Sadly, if we don't receive enough information, or the Pull Request doesn't
-align well with our roadmap, we might respectfully
-thank you for your time, and close the issue.
+We appreciate the time you took to open this pull request.
+Please take a couple more minutes to document your pull request to ensure we can quickly review it and provide you feedback.
 
-## Respect earns Respect 👏
+Unfortunately, if we do not have enough information or the feature doesn't align with our roadmap, we might respectfully thank you for your time and close the issue.
 
-Please respect our Code of Conduct, in short:
+Please respect our [Code of Conduct](https://github.com/segmentio/evergreen/blob/master/.github/CODE_OF_CONDUCT.md).
 
-- Using welcoming and inclusive language.
-- Being respectful of differing viewpoints and experiences.
-- Gracefully accepting constructive criticism.
-- Focusing on what is best for the community.
-- Showing empathy towards other community members.
--->
+--->
 
-## Overview
+**Overview**
 
-## Screenshots (if applicable)
+<!-- A clear description of the what and *why* of this code change. -->
 
-## Testing
+**Screenshots (if applicable)**
 
-- [ ] Updated Typescript types and/or component PropTypes
+<!-- Please provide screenshots or gifs showing the change in action -->
+
+**Documentation**
+
+<!-- If your change impacts component behavior or usage please be sure to include appropriate documentation and types! -->
+
+- [ ] Updated Typescript types and/or component PropTypes ()
 - [ ] Added / modified component docs
 - [ ] Added / modified Storybook stories
