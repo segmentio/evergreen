@@ -215,6 +215,7 @@ storiesOf('dialog', module)
               title="Dialog with overlay and escape key disabled"
               onCloseComplete={hide}
               onCancel={close => {
+                // eslint-disable-next-line no-console
                 console.log('You canceled')
                 close()
               }}

@@ -14,6 +14,7 @@ storiesOf('file-picker', module).add('FilePicker', () => (
       multiple
       width={250}
       marginBottom={32}
+      // eslint-disable-next-line no-console
       onChange={files => console.log(files)}
     />
 
@@ -21,6 +22,7 @@ storiesOf('file-picker', module).add('FilePicker', () => (
       multiple
       width={250}
       marginBottom={32}
+      // eslint-disable-next-line no-console
       onChange={files => console.log(files)}
       placeholder="Placeholder dynamic here!"
     />
