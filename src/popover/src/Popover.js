@@ -63,7 +63,7 @@ const Popover = memo(
      * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
      */
     const bringFocusInside = useCallback((e) => {
-      if(isShown) {
+      if(isShown && e) {
         e.preventDefault()
       }
       // Always delay focus manipulation to just before repaint to prevent scroll jumping
