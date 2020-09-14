@@ -1,11 +1,36 @@
 import React, { forwardRef, memo } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
+import useStyleConfig from '../../hooks/use-style-config'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
-import useTabApperance from '../../theme/src/hooks/useTabApperance'
 import { Text } from '../../typography'
 
 const noop = () => {}
+
+const getInternalStyles = (direction) => ({
+  alignItems: 'center',
+  textDecoration: 'none',
+  cursor: 'pointer',
+  outline: 'none',
+  WebkitFontSmoothing: 'antialiased',
+  WebkitAppearance: 'none',
+  MozAppearance: 'none',
+  '&::-moz-focus-inner ': {
+    border: 0
+  },
+  display: direction === 'horizontal' ? 'inline-flex' : 'flex',
+  width: direction === 'horizontal' ? 'auto' : '100%'
+})
+
+const pseudoSelectors = {
+  _hover: '&:hover',
+  _current: '&[aria-current="page"], &[aria-selected="true"]',
+  _focus: '&:focus',
+  _active: '&:active',
+  _before: '&:before',
+  _after: '&:after'
+}
 
 const Tab = memo(
   forwardRef(function Tab(props, ref) {
@@ -13,15 +38,26 @@ const Tab = memo(
       appearance = 'secondary',
       direction = 'horizontal',
       disabled = false,
-      height = 28,
       is = 'span',
       isSelected,
       onKeyPress = noop,
       onSelect = noop,
+      height = 28,
+      className,
       ...rest
     } = props
 
-    const tabClassName = useTabApperance(appearance, direction)
+   const { className: themedClassName, ...boxProps } = useStyleConfig(
+     'Tab',
+     { appearance },
+     pseudoSelectors,
+     getInternalStyles(direction)
+   )
+
+   const spacing =
+    direction === 'horizontal'
+      ? { marginRight: '8px' }
+      : { marginBottom: '8px' }
 
     const handleClick = e => {
       safeInvoke(props.onClick, e)
@@ -73,12 +109,14 @@ const Tab = memo(
 
     return (
       <Text
-        className={tabClassName}
+        className={cx(className, themedClassName)}
         is={is}
         size={300}
         height={height}
         ref={ref}
         tabIndex={0}
+        {...spacing}
+        {...boxProps}
         {...rest}
         onClick={handleClick}
         onKeyPress={handleKeyPress}
