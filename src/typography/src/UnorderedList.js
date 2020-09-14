@@ -1,8 +1,12 @@
 import React, { memo, forwardRef } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import useStyleConfig from '../../hooks/use-style-config'
 
-const styles = {
+const emptyObject = {}
+
+const internalStyles = {
   margin: 0,
   marginLeft: '1.1em',
   padding: 0,
@@ -11,7 +15,14 @@ const styles = {
 
 const UnorderedList = memo(
   forwardRef(function UnorderedList(props, ref) {
-    const { children, icon, iconColor, size = 400, ...rest } = props
+    const { children, className, icon, iconColor, size = 400, ...rest } = props
+
+    const { className: themedClassName, ...styleProps } = useStyleConfig(
+      'List',
+      { size },
+      emptyObject,
+      internalStyles
+    )
 
     const enrichedChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {
@@ -28,7 +39,13 @@ const UnorderedList = memo(
     })
 
     return (
-      <Box is="ul" {...styles} {...rest} ref={ref}>
+      <Box
+        is="ul"
+        className={cx(className, themedClassName)}
+        {...styleProps}
+        {...rest}
+        ref={ref}
+      >
         {enrichedChildren}
       </Box>
     )

@@ -1,8 +1,12 @@
 import React, { memo, forwardRef } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import useStyleConfig from '../../hooks/use-style-config'
 
-const styles = {
+const emptyObject = {}
+
+const internalStyles = {
   margin: 0,
   marginLeft: '1.1em',
   padding: 0,
@@ -11,7 +15,14 @@ const styles = {
 
 const OrderedList = memo(
   forwardRef(function OrderedList(props, ref) {
-    const { children, size = 400, ...rest } = props
+    const { children, className, size = 400, ...rest } = props
+
+    const { className: themedClassName, ...styleProps } = useStyleConfig(
+      'List',
+      { size },
+      emptyObject,
+      internalStyles
+    )
 
     const finalChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {
@@ -25,7 +36,13 @@ const OrderedList = memo(
     })
 
     return (
-      <Box is="ol" {...styles} {...rest} ref={ref}>
+      <Box
+        is="ol"
+        className={cx(className, themedClassName)}
+        {...styleProps}
+        {...rest}
+        ref={ref}
+      >
         {finalChildren}
       </Box>
     )
