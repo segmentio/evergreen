@@ -13,6 +13,12 @@ storiesOf('spinner', module)
       <Spinner />
     </Box>
   ))
+  .add('Spinner with custom sizes', () => (
+    <Box padding={40}>
+      <Spinner size="medium" />
+      <Spinner size={60} />
+    </Box>
+  ))
   .add('Spinner with 300ms delay', () => (
     <Box padding={40}>
       <Spinner delay={300} />

@@ -68,13 +68,22 @@ function combineStyles(theme, props, styleConfig, internalStyles = {}) {
     theme,
     props
   )
+
   const appearanceStyle = maybeRunDeep(
     get(config, `appearances.${props.appearance}`, {}),
     theme,
     props
   )
 
-  return merge({}, internalStyles, baseStyle, sizeStyle, appearanceStyle)
+  const merged = merge(
+    {},
+    internalStyles,
+    baseStyle,
+    sizeStyle,
+    appearanceStyle
+  )
+
+  return merged
 }
 
 /**
