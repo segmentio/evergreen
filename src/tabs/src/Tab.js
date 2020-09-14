@@ -27,7 +27,9 @@ const pseudoSelectors = {
   _hover: '&:hover',
   _current: '&[aria-current="page"], &[aria-selected="true"]',
   _focus: '&:focus',
-  _active: '&:active'
+  _active: '&:active',
+  _before: '&:before',
+  _after: '&:after'
 }
 
 const Tab = memo(

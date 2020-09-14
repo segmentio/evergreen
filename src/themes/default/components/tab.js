@@ -16,7 +16,7 @@ const appearances = {
       marginRight: '20px'
     },
     
-    ':before': {
+    _before: {
       content: '""',
       position: 'absolute',
       bottom: 0,
