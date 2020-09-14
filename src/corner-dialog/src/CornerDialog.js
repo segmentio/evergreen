@@ -55,7 +55,7 @@ const emptyProps = {}
 const CornerDialog = memo(function CornerDialog(props) {
   const {
     title,
-    width = 392,
+    width = 448,
     children,
     intent = 'none',
     isShown,
