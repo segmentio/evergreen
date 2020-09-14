@@ -12,7 +12,7 @@ const appearances = {
       zIndex: 'zIndices.focused',
       border: theme => `1px solid ${theme.colors.blue200}`,
       transition: 'box-shadow 80ms ease-in-out',
-      boxShadow: theme => `0 0 0 2px ${theme.colors.blue100}`
+      boxShadow: 'shadows.focusRing'
     },
     _disabled: {
       cursor: 'not-allowed',
