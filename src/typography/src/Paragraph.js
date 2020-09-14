@@ -1,30 +1,22 @@
 import React, { forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import useParagraphStyle from '../../theme/src/hooks/useParagraphStyle'
+import useStyleConfig from '../../hooks/use-style-config'
+
+const emptyObject = {}
 
 const Paragraph = memo(
   forwardRef(function Paragraph(props, ref) {
-    const { color = 'default', marginTop, size = 400, ...restProps } = props
+    const { marginTop, size = 400, ...restProps } = props
 
-    const { marginTop: defaultMarginTop, ...textStyle } = useParagraphStyle(
-      size,
-      color
+    const textStyle = useStyleConfig(
+      'Paragraph',
+      { size },
+      emptyObject,
+      emptyObject
     )
 
-    const finalMarginTop =
-      marginTop === 'default' ? defaultMarginTop : marginTop
-
-    return (
-      <Box
-        is="p"
-        ref={ref}
-        marginTop={finalMarginTop || 0}
-        marginBottom={0}
-        {...textStyle}
-        {...restProps}
-      />
-    )
+    return <Box is="p" ref={ref} {...textStyle} {...restProps} />
   })
 )
 
