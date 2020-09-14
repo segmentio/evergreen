@@ -3,6 +3,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
 import useStyleConfig from '../../hooks/use-style-config'
+import { useTheme } from '../../theme'
 
 const pseudoSelectors = {
   _focus: '&:focus',
@@ -31,6 +32,7 @@ const Textarea = memo(
     const {
       className,
       disabled = false,
+      fontFamily = 'ui',
       grammarly = false,
       height,
       isInvalid = false,
@@ -40,6 +42,10 @@ const Textarea = memo(
       width = '100%',
       ...restProps
     } = props
+
+    const theme = useTheme()
+    const { fontFamilies } = theme
+    const themedFontFamily = fontFamilies[fontFamily] || fontFamily
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Input',
@@ -61,6 +67,7 @@ const Textarea = memo(
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
+        fontFamily={themedFontFamily}
         {...boxProps}
         {...restProps}
       />

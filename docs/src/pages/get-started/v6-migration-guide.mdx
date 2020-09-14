@@ -82,12 +82,10 @@ If you consume `<BackButton />` in your own application, please feel free to re-
 
 #### No more `marginTop="default"` on `<Paragraph />` or `<Heading />` {#no-more-default-margin-top}
 
-The default theme (and even classic themes) exported by Evergreen no longer support `marginTop="default"` as a computed property. In order to be able to add this
-to your theme, you can extend the existing Evergreen themes as such:
+The default theme (and even classic themes) exported by Evergreen no longer support `marginTop="default"` as a "special" property. We recommend defining your own
+margin and applying that as standard in your codebase.
 
 ```diff static
-+ // copy over Evergreen's default theme
-+ const theme = { ...defaultTheme }
-+ // add a special case for `marginTop` for the theme
-+ theme.components.Paragraph.baseStyle.marginTop = (_, { marginTop }) => marginTop === 'default' ? 24 /* or some other value */ : marginTop
+- <Heading marginTop="default"> ... </Heading>
++ <Heading marginTop={majorScale(3)}> ... </Heading>
 ```
