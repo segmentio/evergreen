@@ -35,6 +35,8 @@ const Tooltip = memo(function Tooltip(props) {
 
   const hide = () => {
     setIsShown(false)
+    // Clean up any timeouts that may have been triggered from `showDelay`
+    clearTimeout(closeTimeout)
   }
 
   const handleHide = debounce(hide, hideDelay)
