@@ -1,7 +1,7 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
-import useCheckboxAppearance from '../../theme/src/hooks/useCheckboxAppearance'
+import { useStyleConfig } from '../../hooks'
 import { Text } from '../../typography'
 
 const CircleIcon = memo(function CircleIcon({
@@ -23,6 +23,43 @@ CircleIcon.propTypes = {
 
 const noop = () => {}
 
+const pseudoSelectors = {
+  _base: '& + div',
+  _disabled: '&[disabled] + div',
+  _hover: '&:not([disabled]):hover + div',
+  _focus: '&:not([disabled]):focus + div',
+  _active: '&:not([disabled]):active + div',
+  _checked: '&:checked + div, &[type=checkbox]:indeterminate + div',
+  _checkedHover:
+    '&:not([disabled]):checked:hover + div, &[type=checkbox]:not([disabled]):indeterminate:hover + div',
+  _checkedActive:
+    '&:not([disabled]):checked:active + div, &[type=checkbox]:not([disabled]):indeterminate:active + div',
+  _checkedDisabled:
+    '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div'
+}
+
+const internalStyles = {
+  border: '0',
+  clip: 'rect(1px, 1px, 1px, 1px)',
+  height: '1px',
+  overflow: 'hidden',
+  padding: '0',
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  width: '1px',
+  opacity: '0',
+
+  [pseudoSelectors._base]: {
+    WebkitFontSmoothing: 'antialiased',
+    textDecoration: 'none',
+    WebkitAppearance: 'none',
+    MozAppearance: 'none',
+    border: 'none',
+    outline: 'none',
+    cursor: 'pointer'
+  }
+}
+
 const Radio = memo(
   forwardRef(function Radio(props, ref) {
     const {
@@ -40,7 +77,12 @@ const Radio = memo(
       ...rest
     } = props
 
-    const themedClassName = useCheckboxAppearance(appearance)
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Radio',
+      { appearance },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Box
@@ -63,6 +105,7 @@ const Radio = memo(
           onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
+          {...boxProps}
           required={isRequired}
         />
         <Box
