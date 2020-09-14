@@ -13,7 +13,7 @@ storiesOf('alert', module)
           document.body.style.height = '100vh'
         })()}
         {['default', 'card'].map(appearance => (
-          <Box key={appearance} float="left" marginRight={40}>
+          <Box key={appearance}>
             <Heading marginBottom={16}>{appearance}</Heading>
             <Alert
               appearance={appearance}
@@ -43,7 +43,7 @@ storiesOf('alert', module)
       </Box>
       <Box padding={40}>
         {['default'].map(appearance => (
-          <Box key={appearance} float="left" marginRight={40}>
+          <Box key={appearance}>
             <Heading marginBottom={16}>{appearance}</Heading>
             <Alert
               appearance={appearance}
@@ -92,7 +92,7 @@ storiesOf('alert', module)
         document.body.style.height = '100vh'
       })()}
 
-      <Box float="left" marginRight={40}>
+      <Box>
         <Heading size={600} marginBottom={16}>
           InlineAlert component
         </Heading>
