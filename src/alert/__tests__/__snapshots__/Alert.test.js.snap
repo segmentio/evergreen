@@ -26,7 +26,7 @@ exports[`<Alert /> appearance snapshot 1`] = `
         </svg>
       </div>
       <h4
-        className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_16px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
+        className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
       >
         Test title
       </h4>
@@ -61,7 +61,7 @@ exports[`<Alert /> basic snapshot 1`] = `
         </svg>
       </div>
       <h4
-        className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_16px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
+        className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
       >
         A simple general message
       </h4>
@@ -96,7 +96,7 @@ exports[`<Alert /> intent snapshot 1`] = `
         </svg>
       </div>
       <h4
-        className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_16px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
+        className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
       >
         Test title
       </h4>
