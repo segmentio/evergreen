@@ -52,7 +52,7 @@ const Spinner = memo(
     )
 
     const { height, width, ...rest } =
-      typeof sizeProp === 'string' ? boxProps : { width: size, height: size }
+      typeof size === 'string' ? boxProps : { width: size, height: size }
 
     useEffect(() => {
       let delayTimer = null
