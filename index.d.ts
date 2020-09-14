@@ -243,89 +243,6 @@ interface Typography {
     mono: string
     ui: string
   }
-  headings: {
-    100: {
-      color: string
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-      textTransform: string
-    }
-    200: {
-      color: string
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      lineHeight: string
-      marginTop: number
-    }
-    300: {
-      color: string
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    400: {
-      color: string
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    500: {
-      color: string
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    600: {
-      color: string
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    700: {
-      color: string
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    800: {
-      color: string
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    900: {
-      color: string
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-  }
   paragraph: {
     300: {
       fontSize: string
@@ -383,13 +300,6 @@ interface Typography {
 }
 
 export interface Theme {
-  colors: Colors
-  fills: Fills
-  overlayBackgroundColor: string
-  palette: Palette
-  scales: ColorScales
-  spinnerColor: string
-  typography: Typography
 }
 
 export const defaultTheme: Theme

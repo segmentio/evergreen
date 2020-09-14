@@ -122,101 +122,6 @@ const text = {
   }
 }
 
-const headings = {
-  /**
-   * Heading styles.
-   * @property {Object} headings.900
-   * @property {Object} headings.800
-   * @property {Object} headings.700
-   * @property {Object} headings.600
-   * @property {Object} headings.500 - Default.
-   * @property {Object} headings.400
-   * @property {Object} headings.300
-   * @property {Object} headings.200
-   * @property {Object} headings.100
-   */
-
-  900: {
-    fontSize: '35px',
-    fontWeight: 500,
-    lineHeight: '40px',
-    letterSpacing: '-0.2px',
-    marginTop: 52,
-    color: colors.gray800
-  },
-  800: {
-    fontSize: '29px',
-    fontWeight: 500,
-    lineHeight: '32px',
-    letterSpacing: '-0.2px',
-    marginTop: 40,
-    color: colors.gray800
-  },
-  700: {
-    fontSize: '24px',
-    fontWeight: 500,
-    lineHeight: '28px',
-    letterSpacing: '-0.07px',
-    marginTop: 40,
-    color: colors.gray800
-  },
-  600: {
-    fontSize: '20px',
-    fontWeight: 500,
-    lineHeight: '24px',
-    letterSpacing: '-0.07px',
-    marginTop: 28,
-    fontFamily: fontFamilies.display,
-    color: colors.gray800
-  },
-  500: {
-    fontSize: '16px',
-    fontWeight: 500,
-    lineHeight: '20px',
-    letterSpacing: '-0.05px',
-    marginTop: 24,
-    fontFamily: fontFamilies.ui,
-    color: colors.gray800
-  },
-  400: {
-    fontSize: '14px',
-    fontWeight: 600,
-    lineHeight: '20px',
-    letterSpacing: '-0.05px',
-    marginTop: 16,
-    fontFamily: fontFamilies.ui,
-    color: colors.gray800
-  },
-  300: {
-    fontSize: '12px',
-    fontWeight: 600,
-    lineHeight: '16px',
-    letterSpacing: '0',
-    marginTop: 16,
-    fontFamily: fontFamilies.ui,
-    color: colors.gray800
-  },
-  200: {
-    fontSize: '12px',
-    fontWeight: 600,
-    lineHeight: '16px',
-    letterSpacing: '0',
-    marginTop: 16,
-    fontFamily: fontFamilies.ui,
-    color: colors.muted
-  },
-  100: {
-    fontSize: '11px',
-    fontWeight: 400,
-    textTransform: 'uppercase',
-    lineHeight: '16px',
-    letterSpacing: '0.6px',
-    marginTop: 16,
-    fontFamily: fontFamilies.ui,
-    color: colors.muted
-  }
-}
-
 const paragraph = {
   500: {
     ...text['500'],
@@ -268,7 +173,6 @@ const fills = {
 }
 
 // Lifted from foundational scales
-const spinnerColor = 'rgba(67, 90, 111, 0.47)'
 const overlayBackgroundColor = 'rgba(67, 90, 111, 0.7)'
 const codeBackgroundColor = 'rgba(16, 112, 202, 0.06)'
 const codeBorderColor = 'rgba(16, 112, 202, 0.14)'
@@ -278,8 +182,6 @@ export default {
   fontFamilies,
   text,
   paragraph,
-  headings,
-  spinnerColor,
   overlayBackgroundColor,
   codeBackgroundColor,
   codeBorderColor,

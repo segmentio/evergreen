@@ -1,20 +1,30 @@
 import React, { forwardRef, memo } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import useHeadingStyle from '../../theme/src/hooks/useHeadingStyle'
+import useStyleConfig from '../../hooks/use-style-config'
+
+const pseudoSelectors = {}
+const internalStyles = {}
 
 const Heading = memo(
   forwardRef(function Heading(props, ref) {
-    const { size = 500, ...restProps } = props
-    const headingStyles = useHeadingStyle(size)
+    const { className, size = 500, ...restProps } = props
+    const { className: themedClassName, ...styleProps } = useStyleConfig(
+      'Heading',
+      { size },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Box
         is="h2"
         ref={ref}
+        className={cx(themedClassName, className)}
         marginTop={0}
         marginBottom={0}
-        {...headingStyles}
+        {...styleProps}
         {...restProps}
       />
     )
@@ -30,16 +40,7 @@ Heading.propTypes = {
   /**
    * The size of the heading.
    */
-  size: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900]),
-
-  /**
-   * Pass `default` to use the default margin top for that size.
-   */
-  marginTop: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.number,
-    PropTypes.string
-  ])
+  size: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900])
 }
 
 export default Heading
