@@ -11,6 +11,7 @@ import Input from './input'
 import Pane from './pane'
 import Radio from './radio'
 import Select from './select'
+import Spinner from './spinner'
 import Switch from './switch'
 import TagInput from './tag-input'
 import TextDropdownButton from './text-dropdown-button'
@@ -30,6 +31,7 @@ export default {
   Pane,
   Radio,
   Select,
+  Spinner,
   Switch,
   Tooltip,
   TagInput,

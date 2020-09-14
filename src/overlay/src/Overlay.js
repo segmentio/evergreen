@@ -81,7 +81,7 @@ const Overlay = memo(function Overlay({
   ...props
 }) {
   const theme = useTheme()
-  const { tokens } = theme
+  const { colors } = theme
   const [previousActiveElement, setPreviousActiveElement] = useState(null)
   const [status, setStatus] = useState(isShown ? 'entering' : 'exited')
   const containerRef = useRef()
@@ -268,7 +268,7 @@ const Overlay = memo(function Overlay({
                 {...containerProps}
                 className={cx(
                   containerProps.className,
-                  css(animationStyles(tokens.overlayBackgroundColor)).toString()
+                  css(animationStyles(colors.overlay)).toString()
                 )}
               >
                 {typeof children === 'function'
