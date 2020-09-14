@@ -1,65 +1,56 @@
 const baseStyle = {
   borderRadius: 'radii.1',
   fontFamily: 'fontFamilies.ui',
-  lineHeight: '12px'
+  lineHeight: '12px',
+  color: 'colors.default',
+
+  _placeholder: {
+    color: 'colors.neutralAlpha.N6A'
+  },
+
+  _disabled: {
+    cursor: 'not-allowed',
+    backgroundColor: 'colors.neutralAlpha.N2'
+  },
+
+  _focus: {
+    zIndex: 'zIndices.focused'
+  }
 }
 
 const appearances = {
   default: {
     backgroundColor: 'white',
     boxShadow: theme =>
-      `inset 0 0 0 1px ${theme.scales.neutral.N5A}, inset 0 1px 2px ${theme.scales.neutral.N4A}`,
+      `inset 0 0 0 1px ${theme.colors.neutralAlpha.N5A}, inset 0 1px 2px ${theme.colors.neutralAlpha.N4A}`,
 
     _invalid: {
       boxShadow: theme =>
-        `inset 0 0 0 1px ${theme.palette.red.base}, inset 0 1px 2px ${theme.scales.neutral.N4A}`
-    },
-    _placeholder: {
-      color: 'scales.neutral.N6A'
+        `inset 0 0 0 1px ${theme.colors.red.base}, inset 0 1px 2px ${theme.colors.neutralAlpha.N4A}`
     },
     _focus: {
-      outline: 'none',
       boxShadow: theme =>
-        `inset 0 0 2px ${theme.scales.neutral.N4A}, inset 0 0 0 1px ${theme.scales.blue.B7}, ${theme.shadows.focusRing}`
+        `inset 0 0 2px ${theme.colors.neutralAlpha.N4A}, inset 0 0 0 1px ${theme.colors.blue.B7}, ${theme.shadows.focusRing}`
     },
     _disabled: {
-      cursor: 'not-allowed',
-      boxShadow: theme => `inset 0 0 0 1px ${theme.scales.neutral.N4A}`,
-      backgroundColor: 'scales.neutral.N2'
+      boxShadow: theme => `inset 0 0 0 1px ${theme.colors.neutralAlpha.N4A}`
     }
   },
   neutral: {
-    backgroundColor: 'scales.neutral.N2A',
+    backgroundColor: 'colors.neutralAlpha.N2A',
     _invalid: {
-      boxShadow: theme => `inset 0 0 0 1px ${theme.palette.red.base}`
-    },
-    _placeholder: {
-      color: 'scales.neutral.N6A'
+      boxShadow: theme => `inset 0 0 0 1px ${theme.colors.red.base}`
     },
     _focus: {
-      outline: 'none',
       backgroundColor: 'white',
-      boxShadow: theme => `0 0 0 2px ${theme.scales.blue.B6A}`
+      boxShadow: theme => `0 0 0 2px ${theme.colors.blueAlpha.B6A}`
     },
     _disabled: {
-      cursor: 'not-allowed',
-      boxShadow: theme => `inset 0 0 0 1px ${theme.scales.neutral.N4A}`,
-      backgroundColor: 'scales.neutral.N2'
+      boxShadow: theme => `inset 0 0 0 1px ${theme.colors.neutralAlpha.N4A}`
     }
   },
   none: {
-    backgroundColor: 'white',
-    _invalid: {},
-    _placeholder: {
-      color: 'scales.neutral.N6A'
-    },
-    _focus: {
-      outline: 'none'
-    },
-    _disabled: {
-      cursor: 'not-allowed',
-      backgroundColor: 'scales.neutral.N2'
-    }
+    backgroundColor: 'white'
   }
 }
 
