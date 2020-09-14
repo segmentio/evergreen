@@ -9,6 +9,7 @@ import Heading from './heading'
 import Icon from './icon'
 import InlineAlert from './inline-alert'
 import Input from './input'
+import Link from './link'
 import List from './list'
 import Pane from './pane'
 import Paragraph from './paragraph'
@@ -34,6 +35,7 @@ export default {
   InlineAlert,
   Input,
   List,
+  Link,
   Pane,
   Paragraph,
   Radio,
