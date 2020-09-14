@@ -1,6 +1,5 @@
 const baseStyle = {
   borderRadius: 'radii.1',
-  fontFamily: 'fontFamilies.ui',
   lineHeight: '12px',
   color: 'colors.default',
 
