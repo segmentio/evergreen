@@ -1,4 +1,5 @@
 import React, { forwardRef, memo } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import useStyleConfig from '../../hooks/use-style-config'
 import safeInvoke from '../../lib/safe-invoke'
@@ -8,7 +9,6 @@ import { Text } from '../../typography'
 const noop = () => {}
 
 const getInternalStyles = (direction) => ({
-  fontWeight: 500,
   alignItems: 'center',
   textDecoration: 'none',
   cursor: 'pointer',
@@ -41,6 +41,7 @@ const Tab = memo(
       onKeyPress = noop,
       onSelect = noop,
       height = 28,
+      className,
       ...rest
     } = props
 
@@ -106,7 +107,7 @@ const Tab = memo(
 
     return (
       <Text
-        className={themedClassName}
+        className={cx(className, themedClassName)}
         is={is}
         size={300}
         height={height}

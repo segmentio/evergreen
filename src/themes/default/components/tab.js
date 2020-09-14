@@ -1,5 +1,6 @@
 const baseStyle = {
-  fontFamily: 'fontFamilies.ui'
+  fontFamily: 'fontFamilies.ui',
+  fontWeight: 500
 }
 
 const appearances = {

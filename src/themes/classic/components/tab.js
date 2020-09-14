@@ -1,8 +1,6 @@
 const baseStyle = {
-  fontFamily: 'fontFamilies.ui'
-}
-
-const tabStyles = {
+  fontFamily: 'fontFamilies.ui',
+  fontWeight: 500,
   paddingX: '16px',
   paddingY: '8px',
   borderRadius: 'radii.1',
@@ -26,12 +24,6 @@ const tabStyles = {
   }
 }
 
-const appearances = {
-  primary: tabStyles,
-  secondary: tabStyles,
-}
-
 export default {
-  baseStyle,
-  appearances
+  baseStyle
 }
