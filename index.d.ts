@@ -501,10 +501,6 @@ export interface AvatarOwnProps {
 export type AvatarProps = PolymorphicBoxProps<'div', AvatarOwnProps>
 export declare const Avatar: BoxComponent<AvatarOwnProps>
 
-export type BackButtonOwnProps = ButtonOwnProps
-export type BackButtonProps = PolymorphicBoxProps<'button', BackButtonOwnProps>
-export declare const BackButton: BoxComponent<BackButtonOwnProps, 'button'>
-
 export interface BadgeOwnProps extends StrongOwnProps {
   /**
    * The color used for the badge. When the value is `automatic`, use the hash function to determine the color.

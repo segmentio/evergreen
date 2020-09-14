@@ -13,6 +13,7 @@ that you're seeing that we might have missed!
 - [No more `css` prop on `<Pane />` or `<Text />`](#css-prop)
 - [No more `hasTrim` prop on `<Alert />`](#has-trim)
 - [No more `isSolid` prop on `<Badge />` or `<Pill />` or `<Avatar />`](#is-solid)
+- [No more `<BackButton />` component](#back-button)
 
 #### No more `css` prop {#css-prop}
 
@@ -49,3 +50,33 @@ For `<Badge />` and `<Pill />` you can use `appearance="solid"` or `appearance="
 ```
 
 For `<Avatar />` you can supplement this behavior through custom theming.
+
+#### No more `<BackButton />` component {#back-button}
+
+For v6, we decided to remove the `<BackButton />` component as it expanded our surface area without adding a ton of value under the hood.
+
+If you consume `<BackButton />` in your own application, please feel free to re-consume `<BackButton />` and its types as following:
+
+```diff static
++import React, { forwardRef, memo } from 'react'
++import { ArrowLeftIcon, Button } from 'evergreen-ui'
++
++const BackButton = memo(
++  forwardRef(function BackButton({ children = 'Back', ...props }, ref) {
++    return (
++      <Button iconBefore={ArrowLeftIcon} {...props} ref={ref}>
++        {children}
++      </Button>
++    )
++  })
++)
+
++BackButton.propTypes = {
++  /** Composes the Button component as the base. */
++  ...Button.propTypes
++}
++
++export default BackButton
+```
+
+

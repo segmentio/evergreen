@@ -2,7 +2,7 @@ import React from 'react'
 import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import { IconButton, Button, BackButton, TextDropdownButton } from '..'
+import { IconButton, Button, TextDropdownButton } from '..'
 import * as Icons from '../../icons'
 import { Pane } from '../../layers'
 import { majorScale } from '../../scales'
@@ -37,9 +37,6 @@ buttonsStory.add('Common', () => (
             <Button size={state.value} marginRight={16}>
               Cancel
             </Button>
-            <BackButton size={state.value} marginRight={16}>
-              Back
-            </BackButton>
             <Button
               size={state.value}
               marginRight={16}
@@ -356,12 +353,6 @@ buttonsStory.add('IconButton', () => (
         </Box>
       </Pane>
     </Pane>
-  </Box>
-))
-
-buttonsStory.add('Button presets', () => (
-  <Box padding={40}>
-    <BackButton>Back</BackButton>
   </Box>
 ))
 
