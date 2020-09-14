@@ -36,6 +36,7 @@ const Pane = memo(
         elevation,
         hoverElevation,
         activeElevation,
+        background,
         border,
         borderTop,
         borderRight,
