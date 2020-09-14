@@ -41,23 +41,18 @@ const innerClass = color =>
 const emptyObject = {}
 
 const Spinner = memo(
-  forwardRef(function Spinner(
-    { delay = 0, size: sizeProp = 'medium', ...props },
-    ref
-  ) {
+  forwardRef(function Spinner({ delay = 0, size = 'medium', ...props }, ref) {
     const [isVisible, setIsVisible] = useState(delay === 0)
 
     const boxProps = useStyleConfig(
       'Spinner',
-      { size: sizeProp },
+      { size },
       emptyObject,
       emptyObject
     )
 
     const { height, width, ...rest } =
-      typeof sizeProp === 'string'
-        ? boxProps
-        : { width: sizeProp, height: sizeProp }
+      typeof sizeProp === 'string' ? boxProps : { width: size, height: size }
 
     useEffect(() => {
       let delayTimer = null
