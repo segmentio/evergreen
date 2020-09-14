@@ -2,7 +2,7 @@ import React, { memo, forwardRef } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
-import useSwitchAppearance from '../../theme/src/hooks/useSwitchAppearance'
+import { useStyleConfig } from '../../hooks'
 
 const animationEasing = {
   spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
@@ -65,6 +65,35 @@ CheckIcon.propTypes = {
 
 const noop = () => {}
 
+const pseudoSelectors = {
+  _base: '& + div',
+  _disabled: '&[disabled] + div',
+  _hover: '&:not([disabled]):hover + div',
+  _focus: '&:not([disabled]):focus + div',
+  _active: '&:not([disabled]):active + div',
+  _checked: '&:checked + div',
+  _checkedHover: '&:checked:hover + div',
+  _checkedActive: '&:not([disabled]):checked:active + div',
+  _checkedDisabled: '&[disabled]:checked + div'
+}
+
+const internalStyles = {
+  border: '0',
+  clip: 'rect(1px, 1px, 1px, 1px)',
+  height: '1px',
+  overflow: 'hidden',
+  padding: '0',
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  width: '1px',
+  opacity: '0',
+  '& + div > svg': { display: 'none' },
+
+  [pseudoSelectors._base]: {
+    transition: 'all 120ms ease-in-out'
+  }
+}
+
 const Switch = memo(
   forwardRef(function Switch(props, ref) {
     const {
@@ -80,7 +109,12 @@ const Switch = memo(
       ...rest
     } = props
 
-    const themedClassName = useSwitchAppearance(appearance)
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Switch',
+      { appearance },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Box
@@ -95,6 +129,7 @@ const Switch = memo(
           is="input"
           id={id}
           name={name}
+          {...boxProps}
           className={themedClassName}
           type="checkbox"
           checked={checked}
@@ -102,7 +137,12 @@ const Switch = memo(
           defaultChecked={defaultChecked}
           onChange={onChange}
         />
-        <Box height={height} width={height * 2}>
+        <Box
+          height={height}
+          width={height * 2}
+          borderRadius={9999}
+          cursor="pointer"
+        >
           <Box
             height={height}
             width={height}
