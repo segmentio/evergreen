@@ -4,20 +4,20 @@ import { ThemeConsumer, Pane, Heading, Text, Paragraph } from 'evergreen-ui'
 
 ## Text components
 
-- [**Heading**](#heading_heading_component): used for headings. A `h2` element by default.
-- [**Text**](#heading_text_component): used for single line text. A `span` element by default.
-- [**Paragraph**](#heading_paragraph_component): used for multiline text. A `p` element by default.
-- [**Link**](#heading_link_component): used for links. A `a` element by default.
-- [**Strong**](#heading_strong_component): used to make text strong. A `strong` element by default.
-- [**Small**](#heading_small_component): used for inline small text. A `small` element by default.
-- [**Pre**](#heading_pre_component): used for preformatted content. A `pre` element by default.
-- [**Code**](#heading_code_component): used for inline code. A `code` element by default.
+* [**Heading**](#heading_heading_component): used for headings. A `h2` element by default.
+* [**Text**](#heading_text_component): used for single line text. A `span` element by default.
+* [**Paragraph**](#heading_paragraph_component): used for multiline text. A `p` element by default.
+* [**Link**](#heading_link_component): used for links. A `a` element by default.
+* [**Strong**](#heading_strong_component): used to make text strong. A `strong` element by default.
+* [**Small**](#heading_small_component): used for inline small text. A `small` element by default.
+* [**Pre**](#heading_pre_component): used for preformatted content. A `pre` element by default.
+* [**Code**](#heading_code_component): used for inline code. A `code` element by default.
 
 ## List components
 
-- [**OrderedList**](#heading_orderedlist_component): used for ordered lists. A `ol` element.
-- [**UnorderedList**](#heading_unorderedlist_component): used for unordered lists. A `ul` element.
-- [**ListItem**](#heading_listitem_component): used as the list item in either an unordered list, or ordered list. A `li` element.
+* [**OrderedList**](#heading_orderedlist_component): used for ordered lists. A `ol` element.
+* [**UnorderedList**](#heading_unorderedlist_component): used for unordered lists. A `ul` element.
+* [**ListItem**](#heading_listitem_component): used as the list item in either an unordered list, or ordered list. A `li` element.
 
 ## Font families
 
@@ -25,14 +25,15 @@ Evergreen uses three font family stacks, `ui`, `display` and `mono`.
 Text components will set the font family accordingly to their use case.
 There is not need for you to override this on a component level.
 
+
 <ThemeConsumer>
-  {(theme) => (
+  {theme => (
     <div>
       <Pane marginTop={48}>
         <h2 className="heading h2">Heading Styles</h2>
       </Pane>
       <Pane borderBottom paddingBottom={24}>
-        {Object.keys(theme.typography.headings).map((size) => {
+        {Object.keys(theme.typography.headings).map(size => {
           return (
             <TextStylePreview
               key={size}
@@ -50,7 +51,7 @@ There is not need for you to override this on a component level.
         <h2 className="heading h2">Text Styles</h2>
       </Pane>
       <Pane borderBottom paddingBottom={24}>
-        {Object.keys(theme.typography.text).map((size) => {
+        {Object.keys(theme.typography.text).map(size => {
           return (
             <TextStylePreview
               key={size}
@@ -69,7 +70,7 @@ There is not need for you to override this on a component level.
         <h2 className="heading h2">Paragraph Styles</h2>
       </Pane>
       <Pane borderBottom paddingBottom={24}>
-        {[300, 400, 500].map((size) => {
+        {[300, 400, 500].map(size => {
           return (
             <TextStylePreview
               key={size}
@@ -78,8 +79,8 @@ There is not need for you to override this on a component level.
                 return (
                   <Paragraph size={size}>
                     Paragraph {size}. Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.
+                    adipiscing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua.
                   </Paragraph>
                 )
               }}
@@ -102,15 +103,15 @@ The size options are: `100`, `200`, `300`, `400`, `500` (default), `600`, `700`,
 
 ```jsx
 <Pane>
-  <Heading size={100}>100: The quick brown fox jumps over the lazy dog</Heading>
-  <Heading size={200}>200: The quick brown fox jumps over the lazy dog</Heading>
-  <Heading size={300}>300: The quick brown fox jumps over the lazy dog</Heading>
-  <Heading size={400}>400: The quick brown fox jumps over the lazy dog</Heading>
-  <Heading size={500}>500: The quick brown fox jumps over the lazy dog</Heading>
-  <Heading size={600}>600: The quick brown fox jumps over the lazy dog</Heading>
-  <Heading size={700}>700: The quick brown fox jumps over the lazy dog</Heading>
-  <Heading size={800}>800: The quick brown fox jumps over the lazy dog</Heading>
-  <Heading size={900}>900: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={100} marginTop="default">100: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={200} marginTop="default">200: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={300} marginTop="default">300: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={400} marginTop="default">400: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={500} marginTop="default">500: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={600} marginTop="default">600: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={700} marginTop="default">700: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={800} marginTop="default">800: The quick brown fox jumps over the lazy dog</Heading>
+  <Heading size={900} marginTop="default">900: The quick brown fox jumps over the lazy dog</Heading>
 </Pane>
 ```
 
@@ -125,13 +126,14 @@ It’s important to realize that the style of a heading is independent from the 
 
 <PropsTable of="Heading" />
 
+
 # Text component
 
 The `Text` component is used for single line text.
 The component renders a `span` element by default.
 If you need a multiline paragraph use the `Paragraph` component.
 
-The size options are: `300`, `400` (default), `500`
+The size options are:  `300`, `400` (default), `500`
 
 ```jsx
 <div>
@@ -153,41 +155,24 @@ The size options are: `300`, `400` (default), `500`
 <Text color="muted">The quick brown fox jumps over the lazy dog</Text>
 ```
 
+
 # Paragraph component
 
 The `Paragraph` component is used for multiline text.
 This renders a `p` element by default.
 
-The size options are: `300`, `400` (default), `500`
+The size options are:  `300`, `400` (default), `500`
 
 ```jsx
 <div>
   <Paragraph size={300} marginTop="default">
-    Size 300. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-    est laborum.
+    Size 300. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   </Paragraph>
   <Paragraph size={400} marginTop="default">
-    Size 400. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-    est laborum.
+    Size 400. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   </Paragraph>
   <Paragraph marginTop="default">
-    Size 500. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-    est laborum.
+    Size 500. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   </Paragraph>
 </div>
 ```
@@ -196,38 +181,26 @@ The size options are: `300`, `400` (default), `500`
 
 ```jsx
 <Paragraph color="muted">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-  in culpa qui officia deserunt mollit anim id est laborum.
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </Paragraph>
 ```
 
 <PropsTable of="Paragraph" />
+
 
 # Link component
 
 The `Link` component is used for anchor links.
 This component renders a `a` element by default.
 
-The size options are: `300`, `400` (default), `500`
+The size options are:  `300`, `400` (default), `500`
 
 ```jsx
 <div>
-  <Link href="#" marginRight={12}>
-    Default
-  </Link>
-  <Link href="#" marginRight={12} color="green">
-    Green
-  </Link>
-  <Link href="#" marginRight={12} color="blue">
-    Blue
-  </Link>
-  <Link href="#" marginRight={12} color="neutral">
-    Neutral
-  </Link>
+  <Link href="#" marginRight={12}>Default</Link>
+  <Link href="#" marginRight={12} color="green">Green</Link>
+  <Link href="#" marginRight={12} color="blue">Blue</Link>
+  <Link href="#" marginRight={12} color="neutral">Neutral</Link>
 </div>
 ```
 
@@ -254,6 +227,7 @@ Make sure to set the `size` property if you are using this within a other text c
 ```
 
 <PropsTable of="Strong" />
+
 
 # Small component
 
@@ -283,19 +257,13 @@ The `Code` component is based on the `Text` component but renders a `code` eleme
     <Code size={500}>The quick brown fox jumps over the lazy dog</Code>
   </div>
   <div>
-    <Code size={300} appearance="minimal">
-      The quick brown fox jumps over the lazy dog
-    </Code>
+    <Code size={300} appearance="minimal">The quick brown fox jumps over the lazy dog</Code>
   </div>
   <div>
-    <Code size={400} appearance="minimal">
-      The quick brown fox jumps over the lazy dog
-    </Code>
+    <Code size={400} appearance="minimal">The quick brown fox jumps over the lazy dog</Code>
   </div>
   <div>
-    <Code size={500} appearance="minimal">
-      The quick brown fox jumps over the lazy dog
-    </Code>
+    <Code size={500} appearance="minimal">The quick brown fox jumps over the lazy dog</Code>
   </div>
 </div>
 ```
@@ -307,8 +275,11 @@ The `Code` component is based on the `Text` component but renders a `code` eleme
 The `Pre` component renders a chunk of preformatted text.
 This component renders a `pre` element by default.
 
+
 ```jsx
-<Pre>Preformatted text.</Pre>
+<Pre>
+  Preformatted text.
+</Pre>
 ```
 
 <PropsTable of="Pre" />
@@ -336,6 +307,7 @@ This component renders a `pre` element by default.
 </UnorderedList>
 ```
 
+
 ## Adding icons to a list
 
 The icon property has access to all available icons.
@@ -343,7 +315,10 @@ The icon property has access to all available icons.
 ### Set icons for all list items on the list
 
 ```jsx
-<UnorderedList icon={TickIcon} iconColor="success">
+<UnorderedList
+  icon={TickIcon}
+  iconColor="success"
+>
   <ListItem>Lorem ipsum dolar set amet</ListItem>
   <ListItem>Lorem ipsum dolar set amet</ListItem>
   <ListItem>Lorem ipsum dolar set amet</ListItem>
@@ -396,6 +371,7 @@ The icon property has access to all available icons.
 ```
 
 <PropsTable of="OrderedList" />
+
 
 # ListItem component
 
