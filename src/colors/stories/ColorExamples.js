@@ -27,7 +27,7 @@ const ColorExamples = props => {
             })}
           </Pane>
           <Pane clearfix>
-            <Heading size={800} marginTop="default">
+            <Heading size={800} marginTop={24}>
               Functional Colors
             </Heading>
             {Object.keys(theme.colors).map(key => {
@@ -42,7 +42,7 @@ const ColorExamples = props => {
             })}
           </Pane>
           <Pane clearfix>
-            <Heading size={800} marginTop="default">
+            <Heading size={800} marginTop={24}>
               Scales
             </Heading>
             {Object.keys(theme.scales).map(key => {

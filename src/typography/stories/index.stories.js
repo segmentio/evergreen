@@ -55,14 +55,10 @@ storiesOf('typography', module)
     </Box>
   ))
   .add('Paragraph', () => (
-    <div>
-      {previewTextComponent(Paragraph, TextSizes, { marginTop: 'default' })}
-    </div>
+    <div>{previewTextComponent(Paragraph, TextSizes, { marginTop: 24 })}</div>
   ))
   .add('Heading', () => (
-    <div>
-      {previewTextComponent(Heading, HeadingSizes, { marginTop: 'default' })}
-    </div>
+    <div>{previewTextComponent(Heading, HeadingSizes, { marginTop: 24 })}</div>
   ))
   .add('Code', () => <div>{previewTextComponent(Code)}</div>)
   .add('Pre', () => <div>{previewTextComponent(Pre)}</div>)
@@ -80,10 +76,10 @@ storiesOf('typography', module)
     <Box padding={40}>
       {[300, 400, 500].map(size => (
         <Box key={size}>
-          <Heading size={700} marginTop="default">
+          <Heading size={700} marginTop={24}>
             Size {size}
           </Heading>
-          <Paragraph size={size} marginTop="default">
+          <Paragraph size={size} marginTop={24}>
             A paragraph before a list. You have to manually set the margins on a
             list.
           </Paragraph>
@@ -94,7 +90,7 @@ storiesOf('typography', module)
             <ListItem>Lorem ipsum dolar set amet</ListItem>
             <ListItem>Lorem ipsum dolar set amet</ListItem>
           </OrderedList>
-          <Paragraph size={size} marginTop="default">
+          <Paragraph size={size} marginTop={24}>
             A paragraph after a list.
           </Paragraph>
         </Box>
@@ -105,10 +101,10 @@ storiesOf('typography', module)
     <Box padding={40}>
       {[300, 400, 500].map(size => (
         <Box key={size}>
-          <Heading size={700} marginTop="default">
+          <Heading size={700} marginTop={24}>
             Size {size}
           </Heading>
-          <Paragraph size={size} marginTop="default">
+          <Paragraph size={size} marginTop={24}>
             You can add icons to list items individually.
           </Paragraph>
           <UnorderedList size={size} marginY={16}>
@@ -147,10 +143,10 @@ storiesOf('typography', module)
     <Box padding={40}>
       {[300, 400, 500].map(size => (
         <Box key={size}>
-          <Heading size={700} marginTop="default">
+          <Heading size={700} marginTop={24}>
             Size {size}
           </Heading>
-          <Paragraph size={size} marginTop="default">
+          <Paragraph size={size} marginTop={24}>
             A paragraph before a list. You have to manually set the margins on a
             list.
           </Paragraph>
@@ -161,7 +157,7 @@ storiesOf('typography', module)
             <ListItem>Lorem ipsum dolar set amet</ListItem>
             <ListItem>Lorem ipsum dolar set amet</ListItem>
           </UnorderedList>
-          <Paragraph size={size} marginTop="default">
+          <Paragraph size={size} marginTop={24}>
             A paragraph after a list.
           </Paragraph>
         </Box>
