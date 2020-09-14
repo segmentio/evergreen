@@ -39,9 +39,9 @@ const sizes = {
     marginTop: 24
   },
   400: {
-    fontSize: 'fontSizes.3',
+    fontSize: 'fontSizes.2',
     fontWeight: 'fontWeights.bold',
-    lineHeight: 'lineHeights.2',
+    lineHeight: 'lineHeights.1',
     letterSpacing: 'letterSpacings.tight',
     marginTop: 16,
     fontFamily: 'fontFamilies.ui'

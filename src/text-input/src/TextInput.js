@@ -3,6 +3,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
 import useStyleConfig from '../../hooks/use-style-config'
+import { useTheme } from '../../theme'
 
 const pseudoSelectors = {
   _focus: '&:focus',
@@ -29,6 +30,7 @@ const TextInput = memo(
       appearance = 'default',
       className,
       disabled = false,
+      fontFamily = 'ui',
       isInvalid = false,
       placeholder,
       required,
@@ -38,6 +40,9 @@ const TextInput = memo(
       ...restProps
     } = props
 
+    const theme = useTheme()
+    const { fontFamilies } = theme
+    const themedFontFamily = fontFamilies[fontFamily] || fontFamily
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Input',
       { appearance, size },
@@ -57,6 +62,7 @@ const TextInput = memo(
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         ref={ref}
+        fontFamily={themedFontFamily}
         {...boxProps}
         {...restProps}
       />

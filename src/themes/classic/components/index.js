@@ -9,6 +9,7 @@ import Heading from './heading'
 import Icon from './icon'
 import InlineAlert from './inline-alert'
 import Input from './input'
+import List from './list'
 import Pane from './pane'
 import Paragraph from './paragraph'
 import Radio from './radio'
@@ -33,15 +34,16 @@ export default {
   Icon,
   InlineAlert,
   Input,
+  List,
   Pane,
   Paragraph,
+  Radio,
   Select,
   Spinner,
-  Tooltip,
-  Radio,
   Switch,
   Tab,
   TagInput,
   Text,
-  TextDropdownButton
+  TextDropdownButton,
+  Tooltip
 }

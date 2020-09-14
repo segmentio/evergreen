@@ -1,8 +1,4 @@
-const baseStyle = {
-  fontFamily: (theme, { fontFamily = 'ui' }) =>
-    theme.fontFamilies[fontFamily] ? `fontFamilies.${fontFamily}` : fontFamily,
-  color: (theme, { color }) => (theme.colors[color] ? `colors.${color}` : color)
-}
+const baseStyle = {}
 
 const appearances = {}
 

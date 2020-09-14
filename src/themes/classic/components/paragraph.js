@@ -1,8 +1,4 @@
 const baseStyle = {
-  fontFamily: (theme, { fontFamily = 'ui' }) =>
-    theme.fontFamilies[fontFamily] ? `fontFamilies.${fontFamily}` : fontFamily,
-  color: (theme, { color = 'default' }) =>
-    theme.colors[color] ? `colors.${color}` : color,
   marginTop: 0,
   marginBottom: 0
 }

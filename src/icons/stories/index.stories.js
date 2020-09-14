@@ -9,7 +9,7 @@ storiesOf('icons', module)
     <div>
       <Box paddingLeft={40}>
         <Heading size={800}>icons</Heading>
-        <Paragraph marginTop="default">
+        <Paragraph marginTop={24}>
           Evergreen uses the amazing{' '}
           <Link href="https://blueprintjs.com/docs/#icons">
             @blueprintjs/icons

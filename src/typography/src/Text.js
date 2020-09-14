@@ -2,12 +2,25 @@ import React, { forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import useStyleConfig from '../../hooks/use-style-config'
+import { useTheme } from '../../theme'
 
 const emptyObject = {}
 
 const Text = memo(
   forwardRef(function Text(props, ref) {
-    const { className, size = 400, ...restProps } = props
+    const {
+      className,
+      color = 'default',
+      fontFamily = 'ui',
+      size = 400,
+      ...restProps
+    } = props
+
+    const theme = useTheme()
+    const { colors, fontFamilies } = theme
+
+    const themedFontFamily = fontFamilies[fontFamily] || fontFamily
+    const themedColor = colors[color] || color
 
     const textStyle = useStyleConfig('Text', { size }, emptyObject, emptyObject)
 
@@ -16,6 +29,8 @@ const Text = memo(
         is="span"
         ref={ref}
         {...textStyle}
+        fontFamily={themedFontFamily}
+        color={themedColor}
         className={className}
         {...restProps}
       />
