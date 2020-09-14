@@ -2,6 +2,7 @@ import Alert from './alert'
 import Avatar from './avatar'
 import Badge from './badge'
 import Button from './button'
+import Card from './card'
 import Checkbox from './checkbox'
 import Code from './code'
 import Icon from './icon'
@@ -20,6 +21,7 @@ export default {
   Avatar,
   Badge,
   Button,
+  Card,
   Checkbox,
   Code,
   Icon,
