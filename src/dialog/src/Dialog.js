@@ -155,8 +155,8 @@ const Dialog = memo(function Dialog({
     }
 
     return (
-      <Pane clearfix>
-        <Pane paddingX={32} paddingBottom={32} paddingTop={24} float="right">
+      <Pane display="flex" justifyContent="flex-end">
+        <Pane paddingX={32} paddingBottom={32} paddingTop={24}>
           {footer ? (
             renderNode(footer, close)
           ) : (

@@ -10,40 +10,34 @@ const sizes = {
   900: {
     fontSize: 'fontSizes.7',
     lineHeight: 'lineHeights.6',
-    letterSpacing: 'letterSpacings.tightest',
-    marginTop: 52
+    letterSpacing: 'letterSpacings.tightest'
   },
   800: {
     fontSize: 'fontSizes.6',
     lineHeight: 'lineHeights.5',
-    letterSpacing: 'letterSpacings.tightest',
-    marginTop: 40
+    letterSpacing: 'letterSpacings.tightest'
   },
   700: {
     fontSize: 'fontSizes.5',
     lineHeight: 'lineHeights.3',
-    letterSpacing: 'letterSpacings.tighter',
-    marginTop: 40
+    letterSpacing: 'letterSpacings.tighter'
   },
   600: {
     fontSize: 'fontSizes.4',
     lineHeight: 'lineHeights.3',
-    letterSpacing: 'letterSpacings.tighter',
-    marginTop: 28
+    letterSpacing: 'letterSpacings.tighter'
   },
   500: {
     fontFamily: 'fontFamilies.ui',
     fontSize: 'fontSizes.3',
     letterSpacing: 'letterSpacings.tight',
-    lineHeight: 'lineHeights.2',
-    marginTop: 24
+    lineHeight: 'lineHeights.2'
   },
   400: {
     fontSize: 'fontSizes.2',
     fontWeight: 'fontWeights.bold',
     lineHeight: 'lineHeights.1',
     letterSpacing: 'letterSpacings.tight',
-    marginTop: 16,
     fontFamily: 'fontFamilies.ui'
   },
   300: {
@@ -51,7 +45,6 @@ const sizes = {
     fontWeight: 'fontWeights.bold',
     lineHeight: 'lineHeights.0',
     letterSpacing: 'letterSpacings.normal',
-    marginTop: 16,
     fontFamily: 'fontFamilies.ui'
   },
   200: {
@@ -59,7 +52,6 @@ const sizes = {
     fontWeight: 'fontWeights.bold',
     lineHeight: 'lineHeights.0',
     letterSpacing: 'letterSpacings.normal',
-    marginTop: 16,
     fontFamily: 'fontFamilies.ui',
     color: 'colors.muted'
   },
@@ -69,7 +61,6 @@ const sizes = {
     textTransform: 'uppercase',
     lineHeight: 'lineHeights.0',
     letterSpacing: 'letterSpacings.wide',
-    marginTop: 16,
     fontFamily: 'fontFamilies.ui',
     color: 'colors.muted'
   }
