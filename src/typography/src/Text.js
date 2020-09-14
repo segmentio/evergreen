@@ -1,19 +1,15 @@
 import React, { forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import useTextStyle from '../../theme/src/hooks/useTextStyle'
+import useStyleConfig from '../../hooks/use-style-config'
+
+const emptyObject = {}
 
 const Text = memo(
   forwardRef(function Text(props, ref) {
-    const {
-      className,
-      color = 'default',
-      fontFamily = 'ui',
-      size = 400,
-      ...restProps
-    } = props
+    const { className, size = 400, ...restProps } = props
 
-    const textStyle = useTextStyle({ size, color, fontFamily })
+    const textStyle = useStyleConfig('Text', { size }, emptyObject, emptyObject)
 
     return (
       <Box
