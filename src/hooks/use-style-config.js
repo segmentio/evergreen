@@ -75,15 +75,7 @@ function combineStyles(theme, props, styleConfig, internalStyles = {}) {
     props
   )
 
-  const merged = merge(
-    {},
-    internalStyles,
-    baseStyle,
-    sizeStyle,
-    appearanceStyle
-  )
-
-  return merged
+  return merge({}, internalStyles, baseStyle, sizeStyle, appearanceStyle)
 }
 
 /**
