@@ -2,18 +2,29 @@ import React, { memo, forwardRef, useState } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { useMergedRef } from '../../hooks'
+import useStyleConfig from '../../hooks/use-style-config'
 import { Pane } from '../../layers'
-import { useTheme } from '../../theme'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 import { TableRowProvider } from './TableRowContext'
 
 const noop = () => {}
 
+export const pseudoSelectors = {
+  _hover: '&[data-isselectable="true"]:not(:active):not([aria-current="true"]):not([aria-checked="true"]):not(:focus):not(:active):hover',
+  _focus: '&[data-isselectable="true"]:not([aria-checked="true"]):not([aria-current="true"]):focus, &[aria-selected="true"]',
+  _active: '&[aria-current="true"], &[data-isselectable="true"]:active',
+  _current: '&[aria-current="true"], &[aria-checked="true"]',
+  _isSelectable: '&[data-isselectable="true"]'
+}
+
+const internalStyles = {
+  display: 'flex'
+}
+
 const TableRow = memo(
   forwardRef(function TableRow(props, forwardedRef) {
     const {
       className,
-      height = 48,
       children,
       intent = 'none',
       appearance = 'default',
@@ -31,7 +42,6 @@ const TableRow = memo(
       ...rest
     } = props
 
-    const theme = useTheme()
     const [mainRef, setMainRef] = useState()
     const onRef = useMergedRef(setMainRef, forwardedRef)
 
@@ -67,22 +77,29 @@ const TableRow = memo(
       onKeyPress(e)
     }
 
-    const themedClassName = theme.getRowClassName(appearance, intent)
+    const { className: themedClassName, height: themeHeight, ...boxProps } = useStyleConfig(
+      'TableRow',
+      { appearance, intent },
+      pseudoSelectors,
+      internalStyles
+    )
+
+    const height = rest.height || themeHeight
 
     return (
       <TableRowProvider height={height}>
         <Pane
           ref={onRef}
           className={cx(themedClassName, className)}
-          display="flex"
           aria-selected={isHighlighted}
           aria-current={isSelected}
           data-isselectable={isSelectable}
           tabIndex={isSelectable ? tabIndex : undefined}
           onClick={handleClick}
           onKeyDown={handleKeyDown}
-          height={height}
           borderBottom="muted"
+          height={height}
+          {...boxProps}
           {...rest}
         >
           {children}

@@ -1,13 +1,19 @@
 import React, { memo, forwardRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import useStyleConfig from '../../hooks/use-style-config'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
-import { useTheme } from '../../theme'
+import { pseudoSelectors } from '../../table/src/TableRow'
 import { Text } from '../../typography'
 
 const noop = () => {}
+
+const internalStyles = {
+  display: 'flex',
+  alignItems: 'center',
+}
 
 const MenuItem = memo(
   forwardRef(function MenuItem(props, ref) {
@@ -22,8 +28,6 @@ const MenuItem = memo(
       onKeyPress,
       ...passthroughProps
     } = props
-
-    const theme = useTheme()
 
     const handleClick = useCallback(
       event => {
@@ -44,7 +48,12 @@ const MenuItem = memo(
       [onSelect, onKeyPress]
     )
 
-    const themedClassName = theme.getMenuItemClassName(appearance, 'none')
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'MenuItem',
+      { appearance },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Pane
@@ -53,12 +62,11 @@ const MenuItem = memo(
         className={themedClassName}
         onClick={handleClick}
         onKeyPress={handleKeyPress}
-        height={icon ? 40 : 32}
         tabIndex={0}
         data-isselectable="true"
-        display="flex"
-        alignItems="center"
         ref={ref}
+        height={icon ? 40 : 32}
+        {...boxProps}
         {...passthroughProps}
       >
         <IconWrapper
