@@ -91,6 +91,8 @@ const Select = memo(
           autoFocus={autoFocus}
           disabled={disabled}
           aria-invalid={String(isInvalid)}
+          paddingLeft={Math.round(height / 3.2)}
+          paddingRight={iconMargin * 2 + iconSize}
           {...boxProps}
         >
           {children}
