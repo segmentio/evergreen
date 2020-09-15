@@ -5,6 +5,7 @@ import Button from './button'
 import Card from './card'
 import Checkbox from './checkbox'
 import Code from './code'
+import Group from './group'
 import Heading from './heading'
 import Icon from './icon'
 import InlineAlert from './inline-alert'
@@ -33,6 +34,7 @@ export default {
   Card,
   Checkbox,
   Code,
+  Group,
   Heading,
   Icon,
   InlineAlert,
