@@ -8,6 +8,7 @@ const baseStyle = {
 
 const appearances = {
   default: {
+    color: 'colors.neutralAlpha.N8A',
     ...defaultControlStyles.base,
     _disabled: defaultControlStyles.disabled,
     _hover: defaultControlStyles.hover,
@@ -20,23 +21,17 @@ const sizes = {
   small: {
     height: 24,
     minWidth: 24,
-    lineHeight: '24px',
-    paddingLeft: 12,
-    paddingRight: 12
+    lineHeight: '24px'
   },
   medium: {
     height: 32,
     minWidth: 32,
-    lineHeight: '32px',
-    paddingLeft: 16,
-    paddingRight: 16
+    lineHeight: '32px'
   },
   large: {
     height: 40,
     minWidth: 40,
-    lineHeight: '40px',
-    paddingLeft: 20,
-    paddingRight: 20
+    lineHeight: '40px'
   }
 }
 
