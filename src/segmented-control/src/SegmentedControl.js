@@ -74,7 +74,7 @@ const SegmentedControl = memo(
     )
 
     return (
-      <Group ref={ref} display="flex" size={size} {...rest}>
+      <Group ref={ref} display="flex" {...rest}>
         {options.map((option, index) => (
           <Button
             key={option.value}
@@ -82,6 +82,8 @@ const SegmentedControl = memo(
             name={name || groupName}
             value={String(option.value)}
             disabled={disabled}
+            size={size}
+            height={height}
             isActive={activeValue === String(option.value)}
             onClick={handleChange}
             flex="1"

@@ -1307,16 +1307,20 @@ export interface SearchTableHeaderCellOwnProps extends TableHeaderCellOwnProps {
 export type SearchTableHeaderCellProps = PolymorphicBoxProps<'div', SearchTableHeaderCellOwnProps>
 export declare const SearchTableHeaderCell: BoxComponent<SearchTableHeaderCellOwnProps, 'div'>
 
+/** @deprecated This component will be removed in the next major version of Evergreen */
 export interface SegmentedControlOwnProps {
   options: Array<{ label: string, value: NonNullable<SegmentedControlOwnProps['value']> }>
   value?: number | string | boolean
   defaultValue?: number | string | boolean
   onChange: (value: NonNullable<SegmentedControlOwnProps['value']>) => void
   name?: string
-  height?: number
+  size?: 'small' | 'medium' | 'large'
 }
 
+/** @deprecated This component will be removed in the next major version of Evergreen */
 export type SegmentedControlProps = PolymorphicBoxProps<'div', SegmentedControlOwnProps>
+
+/** @deprecated This component will be removed in the next major version of Evergreen */
 export declare const SegmentedControl: BoxComponent<SegmentedControlOwnProps, 'div'>
 
 export interface SelectOwnProps {

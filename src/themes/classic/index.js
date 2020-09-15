@@ -1,8 +1,7 @@
 import components from './components'
 import {
   getRowClassName,
-  getMenuItemClassName,
-  segmentedControl
+  getMenuItemClassName
 } from './deprecated/component-specific'
 import {
   palette,
@@ -19,7 +18,6 @@ export default {
   tokens: ogTokens,
   getRowClassName,
   getMenuItemClassName,
-  segmentedControl,
   /* END DEPRECATED */
 
   // Once we are done using the above ^ we can switch to this:
