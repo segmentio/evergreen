@@ -456,6 +456,10 @@ export interface ButtonOwnProps extends TextOwnProps {
    * Class name passed to the button.
    */
   className?: string
+  /**
+   * Size of the button
+   */
+  size?: 'small' | 'medium' | 'large'
 }
 
 export type ButtonProps = PolymorphicBoxProps<'button', ButtonOwnProps>
@@ -1369,6 +1373,10 @@ export interface SelectOwnProps {
   onChange?(event: React.ChangeEvent<HTMLSelectElement>): void
 
   name?: string
+  /**
+   * Size of the input
+   */
+  size?: 'small' | 'medium' | 'large'
 }
 
 export type SelectProps = PolymorphicBoxProps<'div', SelectOwnProps>
@@ -1921,12 +1929,17 @@ export interface TextareaFieldOwnProps extends TextareaOwnProps {
 export type TextareaFieldProps = PolymorphicBoxProps<'textarea', TextareaFieldOwnProps>
 export declare const TextareaField: BoxComponent<TextareaFieldOwnProps, 'textarea'>
 
-export interface TextDropdownButtonOwnProps extends TextOwnProps {
+export interface TextDropdownButtonOwnProps {
   /**
    * Forcefully set the active state of a button.
    * Useful in conjuction with a Popover.
    */
   isActive?: boolean
+  /**
+   * Whether or not the button is loading.
+   * Automatically sets `disabled` when `isLoading={true}`
+   */
+  isLoading?: boolean
   /**
    * When true, the button is disabled.
    * isLoading also sets the button to disabled.
@@ -1940,6 +1953,10 @@ export interface TextDropdownButtonOwnProps extends TextOwnProps {
    * Class name passed to the button.
    */
   className?: string
+  /**
+   * Size of the button
+   */
+  size?: 'small' | 'medium' | 'large'
 }
 
 export type TextDropdownButtonProps = PolymorphicBoxProps<'button', TextDropdownButtonOwnProps>
@@ -2008,6 +2025,10 @@ export interface TextInputOwnProps extends TextOwnProps {
    * Class name passed to the button.
    */
   className?: string
+  /**
+   * Size of the input
+   */
+  size?: 'small' | 'medium' | 'large'
 }
 
 export type TextInputProps = PolymorphicBoxProps<'input', TextInputOwnProps>
