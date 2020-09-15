@@ -2,7 +2,7 @@ import React from 'react'
 import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import { IconButton, Button, TextDropdownButton } from '..'
+import { IconButton, Button, ButtonGroup, TextDropdownButton } from '..'
 import * as Icons from '../../icons'
 import { Pane } from '../../layers'
 import { majorScale } from '../../scales'
@@ -390,3 +390,25 @@ buttonsStory.add('Button margin top', () => (
     <Button marginTop={400}>Debug margin top</Button>
   </Box>
 ))
+
+buttonsStory.add('ButtonGroup', () => {
+  return (
+    <Pane display="grid" gridRowGap={16}>
+      <ButtonGroup appearance="default" size="small">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup appearance="primary" size="medium">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup appearance="minimal" size="large">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+    </Pane>
+  )
+})
