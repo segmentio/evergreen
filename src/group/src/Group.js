@@ -3,25 +3,28 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useStyleConfig } from '../../hooks'
-import Button from './Button'
 
 const pseudoSelectors = {
   _child: '& > *',
-  _firstChild: '& > *:first-child',
-  _middleChild: '& > *:not(:first-child):not(:last-child)',
-  _lastChild: '& > *:last-child'
+  _firstChild: '& > :first-child:not(:last-child)',
+  _middleChild: '& > :not(:first-child):not(:last-child)',
+  _lastChild: '& > :last-child:not(:first-child)'
 }
 
 const internalStyles = {
   display: 'inline-block'
 }
 
-const ButtonGroup = memo(function ButtonGroup(props) {
-  const { appearance, children, className, size, ...restProps } = props
+/**
+ * Accessible `Group` component to identify a set of inputs/elements. Implements the WAI-ARIA Group Role
+ * @see {@link https://www.w3.org/TR/wai-aria-1.1/#group}
+ */
+const Group = memo(function Group(props) {
+  const { children, className, size, ...restProps } = props
 
   const { className: themedClassName, ...styleProps } = useStyleConfig(
-    'ButtonGroup',
-    { appearance, size },
+    'Group',
+    { size },
     pseudoSelectors,
     internalStyles
   )
@@ -32,16 +35,15 @@ const ButtonGroup = memo(function ButtonGroup(props) {
     }
 
     return React.cloneElement(child, {
-      appearance,
-      size,
       // Prefer more granularly defined props if present
-      ...child.props
+      size: child.props.size || size
     })
   })
 
   return (
     <Box
       className={cx(className, themedClassName)}
+      role="group"
       {...styleProps}
       {...restProps}
     >
@@ -50,11 +52,14 @@ const ButtonGroup = memo(function ButtonGroup(props) {
   )
 })
 
-ButtonGroup.propTypes = {
+Group.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  appearance: Button.propTypes.appearance,
-  size: Button.propTypes.size
+
+  /**
+   * The size passed down to children (for consistency)
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large'])
 }
 
-export default ButtonGroup
+export default Group

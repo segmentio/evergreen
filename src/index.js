@@ -6,7 +6,7 @@ export { Alert, InlineAlert } from './alert'
 export { Autocomplete, AutocompleteItem } from './autocomplete'
 export { Avatar } from './avatar'
 export { Badge, Pill } from './badges'
-export { Button, ButtonGroup, IconButton, TextDropdownButton } from './buttons'
+export { Button, IconButton, TextDropdownButton } from './buttons'
 export { Checkbox } from './checkbox'
 export { Combobox } from './combobox'
 export { StackingOrder, Intent, Position } from './constants'
@@ -20,6 +20,7 @@ export {
   FormFieldLabel,
   FormFieldValidationMessage
 } from './form-field'
+export { Group } from './group'
 export { IconWrapper as Icon } from './icons/src/IconWrapper'
 export { Image } from './image'
 export { Pane, Card } from './layers'

@@ -2,10 +2,10 @@ import Alert from './alert'
 import Avatar from './avatar'
 import Badge from './badge'
 import Button from './button'
-import ButtonGroup from './button-group'
 import Card from './card'
 import Checkbox from './checkbox'
 import Code from './code'
+import Group from './group'
 import Heading from './heading'
 import Icon from './icon'
 import InlineAlert from './inline-alert'
@@ -27,10 +27,10 @@ export default {
   Avatar,
   Badge,
   Button,
-  ButtonGroup,
   Card,
   Checkbox,
   Code,
+  Group,
   Heading,
   Icon,
   InlineAlert,
