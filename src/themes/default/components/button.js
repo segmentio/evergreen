@@ -2,6 +2,7 @@ const baseStyle = {
   fontFamily: 'fontFamilies.ui',
   border: '1px solid transparent',
   borderRadius: 'radii.1',
+  color: (theme, { color }) => theme.colors[color] || color || 'colors.default',
   transition: 'box-shadow 80ms ease-in-out',
 
   _focus: {

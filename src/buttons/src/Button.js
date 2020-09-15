@@ -73,6 +73,7 @@ const Button = memo(
       appearance = 'default',
       children,
       className,
+      color,
       disabled,
       iconAfter,
       iconBefore,
@@ -86,7 +87,7 @@ const Button = memo(
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Button',
-      { appearance, intent, size },
+      { appearance, color, intent, size },
       pseudoSelectors,
       internalStyles
     )

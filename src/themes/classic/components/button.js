@@ -7,7 +7,8 @@ import { defaultControlStyles } from '../deprecated/shared'
 const baseStyle = {
   fontFamily: 'fontFamilies.ui',
   borderRadius: 'radii.1',
-  border: 0
+  border: 0,
+  color: (theme, { color }) => theme.colors[color] || color || 'colors.default'
 }
 
 const appearances = {
