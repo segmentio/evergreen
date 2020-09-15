@@ -21,20 +21,20 @@ const sizes = {
   small: {
     height: 24,
     minWidth: 24,
-    fontSize: '12px',
-    lineHeight: '16px'
+    fontSize: 'fontSizes.1',
+    lineHeight: 'lineHeights.0'
   },
   medium: {
     height: 32,
     minWidth: 32,
-    fontSize: '12px',
-    lineHeight: '16px'
+    fontSize: 'fontSizes.1',
+    lineHeight: 'lineHeights.0'
   },
   large: {
     height: 40,
     minWidth: 40,
-    fontSize: '14px',
-    lineHeight: '20px'
+    fontSize: 'fontSizes.2',
+    lineHeight: 'lineHeights.2'
   }
 }
 
