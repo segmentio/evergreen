@@ -3,6 +3,7 @@
   "env": {
     "browser": true
   },
+  "ignorePatterns": ["docs/**/*.js"],
   "extends": [
     "plugin:react/recommended",
     "standard",
