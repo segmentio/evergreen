@@ -2,6 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Button } from '../../buttons'
 import { Pane } from '../../layers'
+import { TextInput } from '../../text-input'
 import { Group } from '../index'
 
 const groupStory = storiesOf('group', module)
@@ -22,6 +23,10 @@ groupStory.add('Group', () => {
         <Button appearance="minimal">One</Button>
         <Button appearance="minimal">Two</Button>
         <Button appearance="minimal">Three</Button>
+      </Group>
+      <Group>
+        <TextInput />
+        <Button appearance="primary">Click</Button>
       </Group>
     </Pane>
   )

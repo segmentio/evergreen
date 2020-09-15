@@ -12,7 +12,7 @@ const pseudoSelectors = {
 }
 
 const internalStyles = {
-  display: 'inline-block'
+  display: 'inline-flex'
 }
 
 /**
