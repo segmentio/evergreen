@@ -39,7 +39,7 @@ const baseStyle = {
   textDecoration: 'none',
   height: 48,
 
-  '&[data-isselectable="true"]': {
+  _isSelectable: {
     cursor: 'pointer'
   }
 }

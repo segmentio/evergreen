@@ -55,8 +55,6 @@ const MenuItem = memo(
       internalStyles
     )
 
-    const { height: themeHeight, ...restBoxProps } = boxProps
-
     return (
       <Pane
         is={is}
@@ -68,7 +66,7 @@ const MenuItem = memo(
         data-isselectable="true"
         ref={ref}
         height={icon ? 40 : 32}
-        {...restBoxProps}
+        {...boxProps}
         {...passthroughProps}
       >
         <IconWrapper

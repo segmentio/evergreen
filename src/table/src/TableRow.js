@@ -13,7 +13,12 @@ export const pseudoSelectors = {
   _hover: '&[data-isselectable="true"]:not(:active):not([aria-current="true"]):not([aria-checked="true"]):not(:focus):not(:active):hover',
   _focus: '&[data-isselectable="true"]:not([aria-checked="true"]):not([aria-current="true"]):focus, &[aria-selected="true"]',
   _active: '&[aria-current="true"], &[data-isselectable="true"]:active',
-  _current: '&[aria-current="true"], &[aria-checked="true"]'
+  _current: '&[aria-current="true"], &[aria-checked="true"]',
+  _isSelectable: '&[data-isselectable="true"]'
+}
+
+const internalStyles = {
+  display: 'flex'
 }
 
 const TableRow = memo(
@@ -72,16 +77,13 @@ const TableRow = memo(
       onKeyPress(e)
     }
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
+    const { className: themedClassName, height: themeHeight, ...boxProps } = useStyleConfig(
       'TableRow',
       { appearance, intent },
       pseudoSelectors,
-      {
-        display: 'flex'
-      }
+      internalStyles
     )
 
-    const { height: themeHeight, ...restBoxProps } = boxProps
     const height = rest.height || themeHeight
 
     return (
@@ -97,7 +99,7 @@ const TableRow = memo(
           onKeyDown={handleKeyDown}
           borderBottom="muted"
           height={height}
-          {...restBoxProps}
+          {...boxProps}
           {...rest}
         >
           {children}

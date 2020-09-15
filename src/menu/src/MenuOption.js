@@ -10,8 +10,7 @@ const noop = () => {}
 
 const internalStyles = {
   display: 'flex',
-  alignItems: 'center',
-  height: 40,
+  alignItems: 'center'
 }
 
 const MenuOption = memo(function MenuOption(props) {
@@ -61,6 +60,7 @@ const MenuOption = memo(function MenuOption(props) {
       onKeyPress={handleKeyPress}
       data-isselectable="true"
       aria-checked={isSelected}
+      height={40}
       {...boxProps}
     >
       {isSelected && (

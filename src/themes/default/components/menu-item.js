@@ -4,7 +4,7 @@ const baseStyle = {
   display: 'flex',
   position: 'relative',
 
-  '&[data-isselectable="true"]': {
+  _isSelectable: {
     cursor: 'pointer'
   }
 }
