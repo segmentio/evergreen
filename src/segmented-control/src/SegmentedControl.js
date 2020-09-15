@@ -1,30 +1,40 @@
-import React, { memo, forwardRef, useState, useEffect } from 'react'
+import React, {
+  memo,
+  forwardRef,
+  useState,
+  useEffect,
+  useCallback
+} from 'react'
 import PropTypes from 'prop-types'
-import Box, { spacing, position, layout, dimensions } from 'ui-box'
+import { spacing, position, layout, dimensions } from 'ui-box'
+import { Button } from '../../buttons'
+import { Group } from '../../group'
 import { useId } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
-import { minorScale } from '../../scales'
-import { useTheme } from '../../theme'
-import SegmentedControlRadio from './SegmentedControlRadio'
+import warning from '../../lib/warning'
 
 const SegmentedControl = memo(
   forwardRef(function SegmentedControl(props, ref) {
     const {
       defaultValue,
       disabled,
-      height = 32,
+      height,
       name,
       onChange,
       options,
+      size,
       value,
       ...rest
     } = props
 
     const groupName = useId('SegmentedControl')
 
-    const {
-      tokens: { colors }
-    } = useTheme()
+    if (process.env.NODE_ENV !== 'production') {
+      warning(
+        true,
+        '<SegmentedControl> is deprecated and will be removed in the next major verison of Evergreen. Prefer Tabs for navigational elements, or form components / button groups for other use cases.'
+      )
+    }
 
     const isControlled = () => {
       return typeof value !== 'undefined' && value !== null
@@ -48,43 +58,40 @@ const SegmentedControl = memo(
       }
     }, [value])
 
-    const handleChange = newValue => {
-      // Save a render cycle when it's a controlled input
-      if (!isControlled()) {
-        setActiveValue(newValue)
-      }
+    const handleChange = useCallback(
+      event => {
+        event.preventDefault()
+        const newValue = event.target.value
 
-      safeInvoke(onChange, newValue)
-    }
+        // Save a render cycle when it's a controlled input
+        if (!isControlled()) {
+          setActiveValue(newValue)
+        }
+
+        safeInvoke(onChange, newValue)
+      },
+      [onChange]
+    )
 
     return (
-      <Box
-        display="flex"
-        boxShadow={`inset 0 0 0 1px ${colors.gray400}`}
-        backgroundColor="white"
-        borderRadius={minorScale(1)}
-        marginRight={-1}
-        height={height}
-        ref={ref}
-        {...rest}
-      >
+      <Group ref={ref} display="flex" {...rest}>
         {options.map((option, index) => (
-          <SegmentedControlRadio
+          <Button
             key={option.value}
             id={groupName + index}
             name={name || groupName}
-            label={option.label}
             value={String(option.value)}
-            height={height - minorScale(2)}
-            checked={activeValue === option.value}
-            onChange={handleChange.bind(null, option.value)}
-            appearance="default"
-            isFirstItem={index === 0}
-            isLastItem={index === options.length - 1}
             disabled={disabled}
-          />
+            size={size}
+            height={height}
+            isActive={activeValue === String(option.value)}
+            onClick={handleChange}
+            flex="1"
+          >
+            {option.label}
+          </Button>
         ))}
-      </Box>
+      </Group>
     )
   })
 )
@@ -141,9 +148,9 @@ SegmentedControl.propTypes = {
   name: PropTypes.string,
 
   /**
-   * The height of the Segmented Control.
+   * The size of the Segmented Control.
    */
-  height: PropTypes.number,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 
   /**
    * When true, the Segmented Control is disabled.
