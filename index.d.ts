@@ -21,6 +21,7 @@ export type PositionState = 'exited' | 'entering' | 'entered' | 'exiting'
 export type FontFamily = 'ui' | 'display' | 'mono'
 export type Elevation = 0 | 1 | 2 | 3 | 4
 export type FontSizeSmall = 300 | 400
+export type HeadingSize = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
 
 export interface Colors {
   background: {
@@ -455,6 +456,10 @@ export interface ButtonOwnProps extends TextOwnProps {
    * Class name passed to the button.
    */
   className?: string
+  /**
+   * Size of the button
+   */
+  size?: 'small' | 'medium' | 'large'
 }
 
 export type ButtonProps = PolymorphicBoxProps<'button', ButtonOwnProps>
@@ -567,6 +572,10 @@ export interface ComboboxOwnProps {
    * When true, show a loading spinner. This also disables the button.
    */
   isLoading?: boolean
+  /**
+   * Size of the component
+   */
+  size?: 'small' | 'medium' | 'large'
 }
 
 export type ComboboxProps = PolymorphicBoxProps<'div', ComboboxOwnProps>
@@ -872,8 +881,15 @@ export interface FormFieldValidationMessageOwnProps extends PaneOwnProps {}
 export type FormFieldValidationMessageProps = PolymorphicBoxProps<'div', FormFieldValidationMessageOwnProps>
 export declare const FormFieldValidationMessage: BoxComponent<FormFieldValidationMessageOwnProps, 'div'>
 
+export interface GroupOwnProps {
+  size?: 'small' | 'medium' | 'large'
+}
+
+export type GroupProps = PolymorphicBoxProps<'div', GroupOwnProps>
+export declare const Group: BoxComponent<GroupOwnProps, 'div'>
+
 export interface HeadingOwnProps {
-  size?: keyof Typography['headings']
+  size?: HeadingSize
 }
 
 export type HeadingProps = PolymorphicBoxProps<'h2', HeadingOwnProps>
@@ -1299,16 +1315,20 @@ export interface SearchTableHeaderCellOwnProps extends TableHeaderCellOwnProps {
 export type SearchTableHeaderCellProps = PolymorphicBoxProps<'div', SearchTableHeaderCellOwnProps>
 export declare const SearchTableHeaderCell: BoxComponent<SearchTableHeaderCellOwnProps, 'div'>
 
+/** @deprecated This component will be removed in the next major version of Evergreen */
 export interface SegmentedControlOwnProps {
   options: Array<{ label: string, value: NonNullable<SegmentedControlOwnProps['value']> }>
   value?: number | string | boolean
   defaultValue?: number | string | boolean
   onChange: (value: NonNullable<SegmentedControlOwnProps['value']>) => void
   name?: string
-  height?: number
+  size?: 'small' | 'medium' | 'large'
 }
 
+/** @deprecated This component will be removed in the next major version of Evergreen */
 export type SegmentedControlProps = PolymorphicBoxProps<'div', SegmentedControlOwnProps>
+
+/** @deprecated This component will be removed in the next major version of Evergreen */
 export declare const SegmentedControl: BoxComponent<SegmentedControlOwnProps, 'div'>
 
 export interface SelectOwnProps {
@@ -1353,6 +1373,10 @@ export interface SelectOwnProps {
   onChange?(event: React.ChangeEvent<HTMLSelectElement>): void
 
   name?: string
+  /**
+   * Size of the input
+   */
+  size?: 'small' | 'medium' | 'large'
 }
 
 export type SelectProps = PolymorphicBoxProps<'div', SelectOwnProps>
@@ -1905,12 +1929,17 @@ export interface TextareaFieldOwnProps extends TextareaOwnProps {
 export type TextareaFieldProps = PolymorphicBoxProps<'textarea', TextareaFieldOwnProps>
 export declare const TextareaField: BoxComponent<TextareaFieldOwnProps, 'textarea'>
 
-export interface TextDropdownButtonOwnProps extends TextOwnProps {
+export interface TextDropdownButtonOwnProps {
   /**
    * Forcefully set the active state of a button.
    * Useful in conjuction with a Popover.
    */
   isActive?: boolean
+  /**
+   * Whether or not the button is loading.
+   * Automatically sets `disabled` when `isLoading={true}`
+   */
+  isLoading?: boolean
   /**
    * When true, the button is disabled.
    * isLoading also sets the button to disabled.
@@ -1924,6 +1953,10 @@ export interface TextDropdownButtonOwnProps extends TextOwnProps {
    * Class name passed to the button.
    */
   className?: string
+  /**
+   * Size of the button
+   */
+  size?: 'small' | 'medium' | 'large'
 }
 
 export type TextDropdownButtonProps = PolymorphicBoxProps<'button', TextDropdownButtonOwnProps>
@@ -1992,6 +2025,10 @@ export interface TextInputOwnProps extends TextOwnProps {
    * Class name passed to the button.
    */
   className?: string
+  /**
+   * Size of the input
+   */
+  size?: 'small' | 'medium' | 'large'
 }
 
 export type TextInputProps = PolymorphicBoxProps<'input', TextInputOwnProps>

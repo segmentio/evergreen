@@ -5,6 +5,7 @@ import Button from './button'
 import Card from './card'
 import Checkbox from './checkbox'
 import Code from './code'
+import Group from './group'
 import Heading from './heading'
 import Icon from './icon'
 import InlineAlert from './inline-alert'
@@ -18,6 +19,8 @@ import Select from './select'
 import Spinner from './spinner'
 import Switch from './switch'
 import Tab from './tab'
+import TableCell from './table-cell'
+import TableHead from './table-head'
 import TagInput from './tag-input'
 import Text from './text'
 import TextDropdownButton from './text-dropdown-button'
@@ -31,6 +34,7 @@ export default {
   Card,
   Checkbox,
   Code,
+  Group,
   Heading,
   Icon,
   InlineAlert,
@@ -44,6 +48,8 @@ export default {
   Spinner,
   Switch,
   Tab,
+  TableCell,
+  TableHead,
   TagInput,
   Text,
   TextDropdownButton,

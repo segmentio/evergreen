@@ -2,9 +2,9 @@ import React, { memo, forwardRef, useState } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { useMergedRef } from '../../hooks'
+import useStyleConfig from '../../hooks/use-style-config'
 import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
-import useTableCellAppearance from '../../theme/src/hooks/useTableCellAppearance'
 import { toaster } from '../../toaster'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
 import { TableRowConsumer } from './TableRowContext'
@@ -26,6 +26,20 @@ function executeArrowKeyOverride(override) {
 
   // This needs to be the node, not a React ref.
   override.focus()
+}
+
+const pseudoSelectors = {
+  _focus:
+    '&[data-isselectable="true"]:focus, &[aria-expanded="true"][aria-haspopup="true"]'
+}
+
+const internalStyles = {
+  boxSizing: 'border-box',
+  flex: 1,
+  display: 'flex',
+  alignItems: 'center',
+  flexShrink: 0,
+  overflow: 'hidden'
 }
 
 const TableCell = memo(
@@ -79,9 +93,12 @@ const TableCell = memo(
       safeInvoke(onKeyDown, e)
     }
 
-    const { boxProps, className: themedClassName } = useTableCellAppearance({
-      appearance
-    })
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'TableCell',
+      { appearance },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <TableRowConsumer>

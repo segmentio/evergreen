@@ -34,21 +34,18 @@ const appearances = {
 const sizes = {
   small: {
     height: 24,
-    lineHeight: '24px',
-    paddingLeft: 12,
-    paddingRight: 12
+    fontSize: 'fontSizes.1',
+    lineHeight: 'lineHeights.0'
   },
   medium: {
     height: 32,
-    lineHeight: '32px',
-    paddingLeft: 16,
-    paddingRight: 16
+    fontSize: 'fontSizes.1',
+    lineHeight: 'lineHeights.0'
   },
   large: {
     height: 40,
-    lineHeight: '40px',
-    paddingLeft: 20,
-    paddingRight: 20
+    fontSize: 'fontSizes.2',
+    lineHeight: 'lineHeights.2'
   }
 }
 

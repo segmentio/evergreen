@@ -64,7 +64,7 @@ const Select = memo(
       internalStyles
     )
 
-    const height = boxProps.height || heightProp
+    const height = heightProp || boxProps.height
 
     const iconSize = getIconSizeForSelect(height)
     const iconMargin = height >= 36 ? 12 : 8
@@ -91,7 +91,10 @@ const Select = memo(
           autoFocus={autoFocus}
           disabled={disabled}
           aria-invalid={String(isInvalid)}
+          paddingLeft={Math.round(height / 3.2)}
+          paddingRight={iconMargin * 2 + iconSize}
           {...boxProps}
+          height="100%"
         >
           {children}
         </Box>

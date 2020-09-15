@@ -15,6 +15,7 @@ that you're seeing that we might have missed!
 - [No more `isSolid` prop on `<Badge />` or `<Pill />` or `<Avatar />`](#is-solid)
 - [No more `<BackButton />` component](#back-button)
 - [No more `marginTop="default"` on `<Paragraph />` or `<Heading />`](#no-more-default-margin-top)
+- [`<SegmentedControl />`](#segmented-control)
 
 #### No more `css` prop {#css-prop}
 
@@ -89,3 +90,13 @@ margin and applying that as standard in your codebase.
 - <Heading marginTop="default"> ... </Heading>
 + <Heading marginTop={majorScale(3)}> ... </Heading>
 ```
+
+#### `<SegmentedControl />` {#segmented-control}
+
+We're deprecating the `SegmentedControl` in the next major version of Evergreen as we've seen it cause confusion for when to use it instead of other form controls or navigation components.
+
+The internals have been slightly modified to make use of the new low-level `Group` component that implements the [WAI-ARIA Group role](https://www.w3.org/TR/wai-aria-1.1/#group).
+
+This means that each option is represented as `Button`. If you were extracting values from form submission that included this component you may have changes to make.
+
+Additionally, we've unified the sizing API so SegmentedControl also accepts a `size` prop just like Button, TextInput, Group, etc.

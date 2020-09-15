@@ -7,7 +7,8 @@ import { defaultControlStyles } from '../deprecated/shared'
 const baseStyle = {
   fontFamily: 'fontFamilies.ui',
   borderRadius: 'radii.1',
-  border: 0
+  border: 0,
+  color: (theme, { color }) => theme.colors[color] || color || 'colors.default'
 }
 
 const appearances = {
@@ -54,7 +55,7 @@ const appearances = {
       background: 'scales.neutral.N2A'
     },
     _focus: {
-      boxShadow: 'shadows.focusRing'
+      boxShadow: theme => `0 0 0 3px ${theme.colors.blueAlpha.B5A}`
     },
     _active: {
       background: 'scales.blue.B3A'

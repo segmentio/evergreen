@@ -2,14 +2,15 @@ import PropsTable from 'components/PropsTable'
 
 ## Evergreen exports multiple button components
 
-* **Button**: most commonly used, can have a icon on the left or right side.
-* **IconButton**: a button that holds a single icon.
-* **TextDropdownButton**: a bare-bones button that is used primarily in table headers.
+* [**Button**](#button): most commonly used, can have a icon on the left or right side.
+* [**IconButton**](#icon-button): a button that holds a single icon.
+* [**TextDropdownButton**](#text-dropdown-button): a bare-bones button that is used primarily in table headers.
+* [**Group**](#group): a low-level component to group buttons or inputs based on the WAI-ARIA Group role.
 
 `Button`, `IconButton` and `BackButton` all share a very similar API and look.
 `TextDropdownButton` is a bit different.
 
-# Button
+# Button {#button}
 
 The `Button` component is the most common button component.
 It contains a label and optional icons before or after the label.
@@ -24,11 +25,11 @@ It contains a label and optional icons before or after the label.
 <Component
   initialState={{
     options: [
-      { label: 'Height 24', value: 24 },
-      { label: 'Height 32', value: 32 },
-      { label: 'Height 40', value: 40 }
+      { label: 'Height 24', value: "small" },
+      { label: 'Height 32', value: "medium" },
+      { label: 'Height 40', value: "large" }
     ],
-    value: 32
+    value: "medium"
   }}
 >
   {({ state, setState }) => (
@@ -38,36 +39,36 @@ It contains a label and optional icons before or after the label.
         width={280}
         options={state.options}
         value={state.value}
-        onChange={value => setState({ value: Number(value) })}
+        onChange={value => setState({ value })}
       />
       <Heading marginTop="default">Default Appearance</Heading>
       <Pane marginTop={12}>
-        <Button height={state.value} marginRight={16}>
+        <Button size={state.value} marginRight={16}>
           Default
         </Button>
-        <Button height={state.value} marginRight={16} intent="success">
+        <Button size={state.value} marginRight={16} intent="success">
           Success
         </Button>
-        <Button height={state.value} marginRight={16} intent="warning">
+        <Button size={state.value} marginRight={16} intent="warning">
           Warning
         </Button>
-        <Button height={state.value} marginRight={16} intent="danger">
+        <Button size={state.value} marginRight={16} intent="danger">
           Danger
         </Button>
-        <Button height={state.value} marginRight={16} iconBefore={EditIcon}>
+        <Button size={state.value} marginRight={16} iconBefore={EditIcon}>
           Icon Before
         </Button>
-        <Button height={state.value} iconAfter={ArrowRightIcon}>
+        <Button size={state.value} iconAfter={ArrowRightIcon}>
           Icon After
         </Button>
       </Pane>
       <Heading marginTop="default">Primary Appearance</Heading>
       <Pane marginTop={12}>
-        <Button height={state.value} appearance="primary" marginRight={16}>
+        <Button size={state.value} appearance="primary" marginRight={16}>
           Default
         </Button>
         <Button
-          height={state.value}
+          size={state.value}
           appearance="primary"
           marginRight={16}
           intent="success"
@@ -75,30 +76,30 @@ It contains a label and optional icons before or after the label.
           Success
         </Button>
         <Button
-          height={state.value}
+          size={state.value}
           appearance="primary"
           marginRight={16}
           intent="warning"
         >
           Warning
         </Button>
-        <Button height={state.value} marginRight={16} appearance="primary" intent="danger">
+        <Button size={state.value} marginRight={16} appearance="primary" intent="danger">
           Danger
         </Button>
-        <Button height={state.value} marginRight={16} appearance="primary" intent="success" iconBefore={AddIcon}>
+        <Button size={state.value} marginRight={16} appearance="primary" intent="success" iconBefore={AddIcon}>
           Icon Before
         </Button>
-        <Button height={state.value} appearance="primary" iconAfter={ArrowRightIcon}>
+        <Button size={state.value} appearance="primary" iconAfter={ArrowRightIcon}>
           Icon After
         </Button>
       </Pane>
       <Heading marginTop="default">Minimal Appearance</Heading>
       <Pane marginTop={12}>
-        <Button height={state.value} appearance="minimal" marginRight={16}>
+        <Button size={state.value} appearance="minimal" marginRight={16}>
           Default
         </Button>
         <Button
-          height={state.value}
+          size={state.value}
           appearance="minimal"
           marginRight={16}
           intent="success"
@@ -106,20 +107,20 @@ It contains a label and optional icons before or after the label.
           Success
         </Button>
         <Button
-          height={state.value}
+          size={state.value}
           appearance="minimal"
           marginRight={16}
           intent="warning"
         >
           Warning
         </Button>
-        <Button height={state.value} marginRight={16} appearance="minimal" intent="danger">
+        <Button size={state.value} marginRight={16} appearance="minimal" intent="danger">
           Danger
         </Button>
-        <Button height={state.value} marginRight={16} appearance="minimal" iconBefore={EditIcon}>
+        <Button size={state.value} marginRight={16} appearance="minimal" iconBefore={EditIcon}>
           Icon Before
         </Button>
-        <Button height={state.value} appearance="minimal" iconAfter={CaretDownIcon}>
+        <Button size={state.value} appearance="minimal" iconAfter={CaretDownIcon}>
           Icon After
         </Button>
       </Pane>
@@ -195,23 +196,19 @@ The `intent` property works with any `appearance`.
 
 ## Button Sizes
 
-By default buttons and controls have a height of `32px`.
-It is possible to change this to any height and the text style and spacing will adjust.
-You should however keep the height on the `8px` or in some cases the `4px` grid.
-You should only need the following recommended heights.
+By default buttons and controls have a height of `32px` based on the default theme. Out of the box there are three sizes: `'small'`, `'medium'`, and `'large'`.
+It is possible to change this to any height by directly providing a `height` prop.
 
-### Recommended heights
-
-* `24`
-* `32` — default height
-* `40`
+* `small` (24px)
+* `medium` (32px, default size)
+* `large` (40px)
 
 ```jsx
 <>
   <Button marginRight={12} height={20}>Height 20</Button>
-  <Button marginRight={12} height={24}>Height 24</Button>
-  <Button marginRight={12} height={32}>Height 32</Button>
-  <Button marginRight={12} height={40}>Height 40</Button>
+  <Button marginRight={12} size="small">Height 24</Button>
+  <Button marginRight={12} size="medium">Height 32</Button>
+  <Button marginRight={12} size="large">Height 40</Button>
   <Button marginRight={12} height={48}>Height 48</Button>
   <Button marginRight={12} height={56}>Height 56</Button>
 </>
@@ -239,7 +236,7 @@ Buttons support an icon on either before or after the label. Avoid using two ico
   <PropsTable of="Button" />
 </div>
 
-# IconButton
+# IconButton {#icon-button}
 
 For the use case of creating a button with a single icon Evergreen exports the `IconButton` component.
 
@@ -251,15 +248,15 @@ For the use case of creating a button with a single icon Evergreen exports the `
 
 ## Use the height property to resize the icon button
 
-Use the `height` property on the `IconButton` component to resize the component.
+Use the `size` or `height` property on the `IconButton` component to resize the component.
 The icon will automatically resize for the given height.
 
 ```jsx
-<IconButton icon={CrossIcon} height={40} />
+<IconButton icon={CrossIcon} size="large" />
 ```
 
 ```jsx
-<IconButton icon={CrossIcon} height={24} />
+<IconButton icon={CrossIcon} size="small" />
 ```
 
 ## Specifically override the icon size
@@ -297,49 +294,49 @@ This is not a required property, the icon will automatically resize based on the
   <Pane float="left">
     <Heading marginBottom={16}>Height 24</Heading>
     <Pane float="left" marginRight={16}>
-      <IconButton marginBottom={16} height={24} icon={CogIcon} />
-      <IconButton marginBottom={16} height={24} icon={PlusIcon} />
-      <IconButton marginBottom={16} height={24} icon={FilterIcon} />
-      <IconButton marginBottom={16} height={24} icon={EditIcon} />
-      <IconButton marginBottom={16} height={24} icon={ChevronLeftIcon} />
-      <IconButton marginBottom={16} height={24} icon={ChevronRightIcon} />
+      <IconButton marginBottom={16} size="small" icon={CogIcon} />
+      <IconButton marginBottom={16} size="small" icon={PlusIcon} />
+      <IconButton marginBottom={16} size="small" icon={FilterIcon} />
+      <IconButton marginBottom={16} size="small" icon={EditIcon} />
+      <IconButton marginBottom={16} size="small" icon={ChevronLeftIcon} />
+      <IconButton marginBottom={16} size="small" icon={ChevronRightIcon} />
     </Pane>
     <Pane float="left" marginRight={16}>
       <IconButton
         marginBottom={16}
         appearance="minimal"
-        height={24}
+        size="small"
         icon={CrossIcon}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
-        height={24}
+        size="small"
         icon={MoreIcon}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
-        height={24}
+        size="small"
         icon={PlusIcon}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
-        height={24}
+        size="small"
         icon={TrashIcon}
         intent="danger"
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
-        height={24}
+        size="small"
         icon={FilterIcon}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
-        height={24}
+        size="small"
         icon={EditIcon}
       />
     </Pane>
@@ -347,37 +344,37 @@ This is not a required property, the icon will automatically resize based on the
       <IconButton
         marginBottom={16}
         appearance="minimal"
-        height={24}
+        size="small"
         icon={ClipboardIcon}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
-        height={24}
+        size="small"
         icon={CalendarIcon}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
-        height={24}
+        size="small"
         icon={LockIcon}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
-        height={24}
+        size="small"
         icon={UnlockIcon}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
-        height={24}
+        size="small"
         icon={NotificationsIcon}
       />
       <IconButton
         marginBottom={16}
         appearance="minimal"
-        height={24}
+        size="small"
         icon={ManualIcon}
       />
     </Pane>
@@ -396,7 +393,7 @@ Buttons can be used as links by using the optional `is` property with a value su
 <Button is="a" href="#">Link</Button>
 ```
 
-# TextDropdownButton component
+# TextDropdownButton component {#text-dropdown-button}
 
 The `TextDropdownButton` is different from the other types of buttons.
 It doesn’t work with a height, instead the dimensions are based on the text size.
@@ -411,3 +408,15 @@ This component is used inside of table header cells.
 ```
 
 <PropsTable of="TextDropdownButton" />
+
+# Group {#group}
+
+The `Group` component is useful for grouping form controls or elements, including groups of buttons. It implements the [WAI-ARIA Group Role](https://www.w3.org/TR/wai-aria-1.1/#group).
+
+```jsx
+<Group size="medium">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Group>
+```
