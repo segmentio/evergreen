@@ -568,6 +568,10 @@ export interface ComboboxOwnProps {
    * When true, show a loading spinner. This also disables the button.
    */
   isLoading?: boolean
+  /**
+   * Size of the component
+   */
+  size?: 'small' | 'medium' | 'large'
 }
 
 export type ComboboxProps = PolymorphicBoxProps<'div', ComboboxOwnProps>
