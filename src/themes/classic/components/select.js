@@ -8,6 +8,7 @@ const baseStyle = {
 
 const appearances = {
   default: {
+    color: 'colors.neutralAlpha.N8A',
     ...defaultControlStyles.base,
     _disabled: defaultControlStyles.disabled,
     _hover: defaultControlStyles.hover,
