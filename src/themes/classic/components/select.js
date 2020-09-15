@@ -2,7 +2,7 @@ import { defaultControlStyles } from '../deprecated/shared'
 
 const baseStyle = {
   fontFamily: 'fontFamilies.ui',
-  border: '1px solid transparent',
+  border: 'none',
   borderRadius: 'radii.1'
 }
 
@@ -21,17 +21,20 @@ const sizes = {
   small: {
     height: 24,
     minWidth: 24,
-    lineHeight: '24px'
+    fontSize: 'fontSizes.1',
+    lineHeight: 'lineHeights.0'
   },
   medium: {
     height: 32,
     minWidth: 32,
-    lineHeight: '32px'
+    fontSize: 'fontSizes.1',
+    lineHeight: 'lineHeights.0'
   },
   large: {
     height: 40,
     minWidth: 40,
-    lineHeight: '40px'
+    fontSize: 'fontSizes.2',
+    lineHeight: 'lineHeights.2'
   }
 }
 

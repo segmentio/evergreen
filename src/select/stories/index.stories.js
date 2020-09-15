@@ -56,20 +56,9 @@ storiesOf('select', module).add('Select', () => (
     </Box>
     <Box marginBottom={24}>
       <Label htmlFor="24" size={300} display="block" marginBottom={4}>
-        Height 24
+        Small
       </Label>
-      <Select appearance={appearance} height={24} name="24" id="24">
-        <option>Apple</option>
-        <option>Pear</option>
-        <option>Banana</option>
-        <option>Kiwi</option>
-      </Select>
-    </Box>
-    <Box marginBottom={24}>
-      <Label htmlFor="28" size={300} display="block" marginBottom={4}>
-        Height 28
-      </Label>
-      <Select appearance={appearance} height={28} name="28" id="28">
+      <Select appearance={appearance} size="small" name="24" id="24">
         <option>Apple</option>
         <option>Pear</option>
         <option>Banana</option>
@@ -78,9 +67,9 @@ storiesOf('select', module).add('Select', () => (
     </Box>
     <Box marginBottom={24}>
       <Label htmlFor="36" size={400} display="block" marginBottom={4}>
-        Height 36
+        Medium (32px)
       </Label>
-      <Select appearance={appearance} height={36} name="36" id="36">
+      <Select appearance={appearance} size="medium" name="36" id="36">
         <option>Apple</option>
         <option>Pear</option>
         <option>Banana</option>
@@ -89,9 +78,9 @@ storiesOf('select', module).add('Select', () => (
     </Box>
     <Box marginBottom={24}>
       <Label htmlFor="40" size={500} display="block" marginBottom={4}>
-        Height 40
+        Large
       </Label>
-      <Select appearance={appearance} height={40} name="40" id="40">
+      <Select appearance={appearance} size="large" name="40" id="40">
         <option>Apple</option>
         <option>Pear</option>
         <option>Banana</option>
