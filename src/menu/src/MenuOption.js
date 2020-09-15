@@ -1,11 +1,18 @@
 import React, { memo, useCallback } from 'react'
 import PropTypes from 'prop-types'
+import useStyleConfig from '../../hooks/use-style-config'
 import { TickIcon } from '../../icons'
 import { Pane } from '../../layers'
-import { useTheme } from '../../theme'
+import { pseudoSelectors } from '../../table/src/TableRow'
 import { Text } from '../../typography'
 
 const noop = () => {}
+
+const internalStyles = {
+  display: 'flex',
+  alignItems: 'center',
+  height: 40,
+}
 
 const MenuOption = memo(function MenuOption(props) {
   const {
@@ -29,8 +36,12 @@ const MenuOption = memo(function MenuOption(props) {
     [onSelect]
   )
 
-  const theme = useTheme()
-  const themedClassName = theme.getMenuItemClassName(appearance, 'none')
+  const { className: themedClassName, ...boxProps } = useStyleConfig(
+    'MenuItem',
+    { appearance },
+    pseudoSelectors,
+    internalStyles
+  )
 
   const textProps = isSelected
     ? {
@@ -50,9 +61,7 @@ const MenuOption = memo(function MenuOption(props) {
       onKeyPress={handleKeyPress}
       data-isselectable="true"
       aria-checked={isSelected}
-      height={40}
-      display="flex"
-      alignItems="center"
+      {...boxProps}
     >
       {isSelected && (
         <TickIcon

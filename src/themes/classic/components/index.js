@@ -12,6 +12,7 @@ import InlineAlert from './inline-alert'
 import Input from './input'
 import Link from './link'
 import List from './list'
+import MenuItem from './menu-item'
 import Pane from './pane'
 import Paragraph from './paragraph'
 import Radio from './radio'
@@ -21,6 +22,7 @@ import Switch from './switch'
 import Tab from './tab'
 import TableCell from './table-cell'
 import TableHead from './table-head'
+import TableRow from './table-row'
 import TagInput from './tag-input'
 import Text from './text'
 import TextDropdownButton from './text-dropdown-button'
@@ -41,6 +43,7 @@ export default {
   Input,
   List,
   Link,
+  MenuItem,
   Pane,
   Paragraph,
   Radio,
@@ -50,6 +53,7 @@ export default {
   Tab,
   TableCell,
   TableHead,
+  TableRow,
   TagInput,
   Text,
   TextDropdownButton,

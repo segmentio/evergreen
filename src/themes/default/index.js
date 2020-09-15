@@ -1,9 +1,5 @@
 import components from './components'
 import {
-  getRowClassName,
-  getMenuItemClassName
-} from './deprecated/component-specific'
-import {
   palette,
   scales,
   tokens as ogTokens
@@ -16,8 +12,6 @@ export default {
   palette,
   scales,
   tokens: ogTokens,
-  getRowClassName,
-  getMenuItemClassName,
   /* END DEPRECATED */
 
   // Once we are done using the above ^ we can switch to this:
