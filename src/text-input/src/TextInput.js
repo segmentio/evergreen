@@ -50,6 +50,8 @@ const TextInput = memo(
       internalStyles
     )
 
+    const height = restProps.height || boxProps.height
+
     return (
       <Box
         is="input"
@@ -65,6 +67,7 @@ const TextInput = memo(
         fontFamily={themedFontFamily}
         {...boxProps}
         {...restProps}
+        height={height}
       />
     )
   })

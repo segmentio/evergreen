@@ -1,8 +1,9 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import Box, { dimensions, spacing, position, layout } from 'ui-box'
+import { dimensions, spacing, position, layout } from 'ui-box'
 import { Autocomplete } from '../../autocomplete'
 import { IconButton } from '../../buttons'
+import { Group } from '../../group'
 import { CaretDownIcon } from '../../icons'
 import { TextInput } from '../../text-input'
 
@@ -20,6 +21,7 @@ const Combobox = memo(function Combobox(props) {
     openOnFocus = false,
     placeholder,
     selectedItem,
+    size = 'medium',
     width = 240,
     ...rest
   } = props
@@ -28,13 +30,13 @@ const Combobox = memo(function Combobox(props) {
 
   const [isOpenedByButton, setIsOpenedByButton] = useState(false)
 
-  const handleStateChange = changes => {
+  const handleStateChange = useCallback(changes => {
     if (Object.prototype.hasOwnProperty.call(changes, 'isOpen')) {
       if (!changes.isOpen) {
         setIsOpenedByButton(false)
       }
     }
-  }
+  }, [])
 
   return (
     <Autocomplete
@@ -56,7 +58,7 @@ const Combobox = memo(function Combobox(props) {
         isShown,
         openMenu
       }) => (
-        <Box ref={getRef} display="inline-flex" width={width} {...rest}>
+        <Group ref={getRef} size={size} width={width} {...rest}>
           <TextInput
             width={0}
             flex={1}
@@ -104,7 +106,7 @@ const Combobox = memo(function Combobox(props) {
               }
             })}
           />
-        </Box>
+        </Group>
       )}
     </Autocomplete>
   )
@@ -178,7 +180,9 @@ Combobox.propTypes = {
   /**
    * When true, show a loading spinner. This also disables the button.
    */
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
+
+  size: PropTypes.oneOf(['small', 'medium', 'large'])
 }
 
 export default Combobox
