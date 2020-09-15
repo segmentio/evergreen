@@ -1,4 +1,4 @@
-const baseStyles = {
+const baseStyle = {
   paddingX: 12,
   boxSizing: 'border-box',
   flex: 1,
@@ -21,7 +21,7 @@ const appearances = {
 const sizes = {}
 
 export default {
-  baseStyles,
+  baseStyle,
   appearances,
   sizes
 }
