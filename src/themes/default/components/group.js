@@ -3,9 +3,6 @@ const baseStyle = {
     '&:focus': {
       zIndex: 'zIndices.focused'
     },
-    '&:hover': {
-      zIndex: 'zIndices.focused'
-    },
     '&:active': {
       zIndex: 'zIndices.focused'
     }
