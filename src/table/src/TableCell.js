@@ -33,7 +33,14 @@ const pseudoSelectors = {
     '&[data-isselectable="true"]:focus, &[aria-expanded="true"][aria-haspopup="true"]'
 }
 
-const emptyObject = {}
+const internalStyles = {
+  boxSizing: 'border-box',
+  flex: 1,
+  display: 'flex',
+  alignItems: 'center',
+  flexShrink: 0,
+  overflow: 'hidden'
+}
 
 const TableCell = memo(
   forwardRef(function TableCell(props, forwardedRef) {
@@ -90,7 +97,7 @@ const TableCell = memo(
       'TableCell',
       { appearance },
       pseudoSelectors,
-      emptyObject
+      internalStyles
     )
 
     return (
