@@ -21,6 +21,7 @@ export type PositionState = 'exited' | 'entering' | 'entered' | 'exiting'
 export type FontFamily = 'ui' | 'display' | 'mono'
 export type Elevation = 0 | 1 | 2 | 3 | 4
 export type FontSizeSmall = 300 | 400
+export type HeadingSize = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
 
 export interface Colors {
   background: {
@@ -872,8 +873,15 @@ export interface FormFieldValidationMessageOwnProps extends PaneOwnProps {}
 export type FormFieldValidationMessageProps = PolymorphicBoxProps<'div', FormFieldValidationMessageOwnProps>
 export declare const FormFieldValidationMessage: BoxComponent<FormFieldValidationMessageOwnProps, 'div'>
 
+export interface GroupOwnProps {
+  size?: 'small' | 'medium' | 'large'
+}
+
+export type GroupProps = PolymorphicBoxProps<'div', GroupOwnProps>
+export declare const Group: BoxComponent<GroupOwnProps, 'div'>
+
 export interface HeadingOwnProps {
-  size?: keyof Typography['headings']
+  size?: HeadingSize
 }
 
 export type HeadingProps = PolymorphicBoxProps<'h2', HeadingOwnProps>
