@@ -1,7 +1,15 @@
 import React, { memo, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
+import useStyleConfig from '../../hooks/use-style-config'
 import { Pane } from '../../layers'
 import ScrollbarSize from './ScrollbarSize'
+
+const emptyObject = {}
+
+const internalStyles = {
+  display: 'flex',
+  flexShrink: 0
+}
 
 const TableHead = memo(function TableHead(props) {
   const { accountForScrollbar = true, children, height = 32, ...rest } = props
@@ -11,16 +19,15 @@ const TableHead = memo(function TableHead(props) {
     setScrollBarWidth(width)
   })
 
+  const styles = useStyleConfig(
+    'TableHead',
+    emptyObject,
+    emptyObject,
+    internalStyles
+  )
+
   return (
-    <Pane
-      display="flex"
-      flexShrink={0}
-      paddingRight={scrollbarWidth}
-      borderBottom="default"
-      background="tint2"
-      height={height}
-      {...rest}
-    >
+    <Pane paddingRight={scrollbarWidth} height={height} {...styles} {...rest}>
       {children}{' '}
       {accountForScrollbar && (
         <ScrollbarSize handleScrollbarSize={handleScrollbarSize} />
