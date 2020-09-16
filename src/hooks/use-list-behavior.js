@@ -50,13 +50,22 @@ export function useListBehavior({
     [ref, disabled]
   )
 
+  const clickHandler = useCallback(
+    e => {
+      if (!disabled && onSelect) {
+        onSelect(e)
+      }
+    },
+    [onSelect, disabled]
+  )
+
   return {
     'aria-selected': isHighlighted,
     'aria-current': isSelected,
     'data-isselectable': isSelectable && !disabled,
     tabIndex: isSelectable && !disabled ? 0 : undefined,
     onKeyDown: keyDownHandler,
-    onClick: keyDownHandler,
+    onClick: clickHandler,
     getRef: setRef,
     ...resetStyles
   }
