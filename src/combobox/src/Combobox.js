@@ -43,7 +43,7 @@ const Combobox = memo(function Combobox(props) {
     ) {
       autocompleteProps.onStateChange(changes, stateAndHelpers)
     }
-  }, [])
+  }, [autocompleteProps])
 
   return (
     <Autocomplete

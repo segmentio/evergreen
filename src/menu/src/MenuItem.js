@@ -62,19 +62,13 @@ const MenuItem = memo(
       iconColor = 'disabled'
     }
 
-    const textColor = intent
-
-    const secondaryTextColor = disabled ? textColor : 'muted'
-
     const disabledProps = useMemo(() => {
       return disabled ? {
         cursor: 'not-allowed',
         disabled: true,
-        onClick: null,
-        onKeyPress: null,
-        tabIndex: -1,
-        'aria-disabled': 'true',
-        'data-isselectable': 'false'
+        onClick: undefined,
+        onKeyPress: undefined,
+        tabIndex: -1
       } : {}
     }, [disabled])
 
@@ -86,7 +80,8 @@ const MenuItem = memo(
         onClick={handleClick}
         onKeyPress={handleKeyPress}
         tabIndex={0}
-        data-isselectable="true"
+        data-isselectable={!disabled}
+        aria-disabled={disabled}
         ref={ref}
         height={icon ? 40 : 32}
         {...boxProps}
@@ -101,11 +96,11 @@ const MenuItem = memo(
           size={16}
           flexShrink={0}
         />
-        <Text color={textColor} marginLeft={16} marginRight={16} flex={1}>
+        <Text color={intent} marginLeft={16} marginRight={16} flex={1}>
           {children}
         </Text>
         {secondaryText && (
-          <Text marginRight={16} color={secondaryTextColor}>
+          <Text marginRight={16} color="muted">
             {secondaryText}
           </Text>
         )}
