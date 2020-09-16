@@ -1,4 +1,4 @@
-import React, { memo, forwardRef, useCallback } from 'react'
+import React, { memo, forwardRef, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -26,6 +26,7 @@ const MenuItem = memo(
       icon,
       onSelect = noop,
       onKeyPress,
+      disabled,
       ...passthroughProps
     } = props
 
@@ -55,6 +56,22 @@ const MenuItem = memo(
       internalStyles
     )
 
+    let iconColor = intent === 'none' ? 'default' : intent
+
+    if(disabled) {
+      iconColor = 'disabled'
+    }
+
+    const disabledProps = useMemo(() => {
+      return disabled ? {
+        cursor: 'not-allowed',
+        disabled: true,
+        onClick: undefined,
+        onKeyPress: undefined,
+        tabIndex: -1
+      } : {}
+    }, [disabled])
+
     return (
       <Pane
         is={is}
@@ -63,15 +80,17 @@ const MenuItem = memo(
         onClick={handleClick}
         onKeyPress={handleKeyPress}
         tabIndex={0}
-        data-isselectable="true"
+        data-isselectable={!disabled}
+        aria-disabled={disabled}
         ref={ref}
         height={icon ? 40 : 32}
         {...boxProps}
+        {...disabledProps}
         {...passthroughProps}
       >
         <IconWrapper
           icon={icon}
-          color={intent === 'none' ? 'default' : intent}
+          color={iconColor}
           marginLeft={16}
           marginRight={-4}
           size={16}
@@ -130,7 +149,12 @@ MenuItem.propTypes = {
   /**
    * Callback to invoke onkeypress
    */
-  onKeyPress: PropTypes.func
+  onKeyPress: PropTypes.func,
+
+  /**
+   * Flag to indicate whether the menu item is disabled or not
+   */
+  disabled: PropTypes.bool
 }
 
 export default MenuItem

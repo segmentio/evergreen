@@ -1,69 +1,72 @@
-import React, { memo } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
 import { useId } from '../../hooks'
 import Textarea from './Textarea'
 
-const TextareaField = memo(function TextareaField(props) {
-  const id = useId('TextareaField', props.id)
+const TextareaField = memo(
+  forwardRef(function TextareaField(props, ref) {
+    const id = useId('TextareaField', props.id)
 
-  const {
-    // We are using the id from the state
-    appearance,
+    const {
+      // We are using the id from the state
+      appearance,
 
-    // FormField props
-    description,
-    disabled,
-    hint,
-    id: unusedId,
+      // FormField props
+      description,
+      disabled,
+      hint,
+      id: unusedId,
 
-    // Textarea props
-    inputHeight = 80,
-    /** The input width should be as wide as the form field. */
-    inputWidth = '100%',
-    isInvalid,
-    label,
-    placeholder,
-    required,
-    spellCheck,
-    validationMessage,
+      // Textarea props
+      inputHeight = 80,
+      /** The input width should be as wide as the form field. */
+      inputWidth = '100%',
+      isInvalid,
+      label,
+      placeholder,
+      required,
+      spellCheck,
+      validationMessage,
 
-    // Rest props are spread on the FormField
-    ...rest
-  } = props
+      // Rest props are spread on the FormField
+      ...rest
+    } = props
 
-  /**
-   * Split the wrapper props from the input props.
-   */
-  const { matchedProps, remainingProps } = splitBoxProps(rest)
+    /**
+     * Split the wrapper props from the input props.
+     */
+    const { matchedProps, remainingProps } = splitBoxProps(rest)
 
-  return (
-    <FormField
-      marginBottom={24}
-      label={label}
-      isRequired={required}
-      hint={hint}
-      description={description}
-      validationMessage={validationMessage}
-      labelFor={id}
-      {...matchedProps}
-    >
-      <Textarea
-        id={id}
-        width={inputWidth}
-        height={inputHeight}
-        disabled={disabled}
-        required={required}
-        isInvalid={isInvalid}
-        appearance={appearance}
-        placeholder={placeholder}
-        spellCheck={spellCheck}
-        {...remainingProps}
-      />
-    </FormField>
-  )
-})
+    return (
+      <FormField
+        marginBottom={24}
+        label={label}
+        isRequired={required}
+        hint={hint}
+        description={description}
+        validationMessage={validationMessage}
+        labelFor={id}
+        {...matchedProps}
+      >
+        <Textarea
+          id={id}
+          ref={ref}
+          width={inputWidth}
+          height={inputHeight}
+          disabled={disabled}
+          required={required}
+          isInvalid={isInvalid}
+          appearance={appearance}
+          placeholder={placeholder}
+          spellCheck={spellCheck}
+          {...remainingProps}
+        />
+      </FormField>
+    )
+  })
+)
 
 TextareaField.propTypes = {
   /**

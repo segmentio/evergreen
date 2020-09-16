@@ -3,6 +3,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useStyleConfig } from '../../hooks'
+import removeUndefined from '../../lib/remove-undefined'
 
 const emptyObject = {}
 
@@ -29,13 +30,16 @@ const UnorderedList = memo(
         return child
       }
 
-      return React.cloneElement(child, {
-        icon,
-        size,
-        iconColor,
-        // Prefer more granularly defined props if present
-        ...child.props
-      })
+      return React.cloneElement(
+        child,
+        removeUndefined({
+          icon,
+          size,
+          iconColor,
+          // Prefer more granularly defined props if present
+          ...child.props
+        })
+      )
     })
 
     return (
