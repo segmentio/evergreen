@@ -1,10 +1,23 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import useListBehavior from '../../hooks/use-list-behavior'
+import useStyleConfig from '../../hooks/use-style-config'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
-import TableRow from '../../table/src/TableRow'
 import TextTableCell from '../../table/src/TextTableCell'
 import { useTheme } from '../../theme'
+
+const pseudoSelectors = {
+  _focus: ':focus',
+  _active: '&[aria-current="true"], &[data-isselectable="true"]:active'
+}
+
+const internalStyles = {
+  display: 'flex',
+  alignItems: 'center'
+}
+
+const emptyObject = {}
 
 const Option = memo(
   forwardRef(function Option(props, ref) {
@@ -37,22 +50,28 @@ const Option = memo(
       textProps = selectedProps
     }
 
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Option',
+      emptyObject,
+      pseudoSelectors,
+      internalStyles
+    )
+
+    const { getRef, ...listBehaviorProps } = useListBehavior({
+      isSelectable,
+      isSelected,
+      disabled,
+      onSelect
+    })
+
     return (
-      <TableRow
-        isSelectable={isSelectable && !disabled}
-        isHighlighted={isHighlighted}
-        onSelect={onSelect}
-        onDeselect={onDeselect}
-        isSelected={isSelected}
+      <Pane
         style={style}
-        display="flex"
-        alignItems="center"
-        borderBottom="muted"
-        {...(isSelected
-          ? { boxShadow: `inset 2px 0 0 ${tokens.selectedOptionColor}` }
-          : {})}
+        className={themedClassName}
+        {...boxProps}
+        {...listBehaviorProps}
         {...rest}
-        ref={ref}
+        ref={getRef}
       >
         <TextTableCell
           height={height}
@@ -68,7 +87,7 @@ const Option = memo(
             {label}
           </Pane>
         </TextTableCell>
-      </TableRow>
+      </Pane>
     )
   })
 )

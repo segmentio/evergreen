@@ -99,36 +99,6 @@ const OptionsList = memo(function OptionsList(props) {
     )
   }, [selected])
 
-  const handleArrowUp = useCallback(() => {
-    const options = getFilteredOptions()
-
-    let nextIndex = getCurrentIndex() - 1
-
-    if (nextIndex < 0) {
-      nextIndex = options.length - 1
-    }
-
-    if (isSelected(options[nextIndex])) {
-      return
-    }
-
-    onSelect(options[nextIndex])
-  }, [onSelect])
-
-  const handleArrowDown = useCallback(() => {
-    const options = getFilteredOptions()
-
-    let nextIndex = getCurrentIndex() + 1
-
-    if (nextIndex === options.length) {
-      nextIndex = 0
-    }
-
-    if (!isSelected(options[nextIndex])) {
-      onSelect(options[nextIndex])
-    }
-  }, [onSelect])
-
   const handleChange = useCallback(
     searchValue => {
       setSearchValue(searchValue)
@@ -171,17 +141,17 @@ const OptionsList = memo(function OptionsList(props) {
 
   const handleKeyDown = useCallback(
     e => {
-      if (e.key === 'ArrowUp') {
-        handleArrowUp()
-      }
+      // if (e.key === 'ArrowUp') {
+      //   handleArrowUp()
+      // }
 
-      if (e.key === 'ArrowDown') {
-        handleArrowDown()
-      }
+      // if (e.key === 'ArrowDown') {
+      //   handleArrowDown()
+      // }
 
-      if (e.key === 'Enter') {
-        handleEnter()
-      }
+      // if (e.key === 'Enter') {
+      //   handleEnter()
+      // }
 
       if (e.key === 'Escape') {
         close()
@@ -198,13 +168,11 @@ const OptionsList = memo(function OptionsList(props) {
         }
       })
 
-      window.addEventListener('keydown', handleKeyDown)
       return () => {
         cancelAnimationFrame(requestId.current)
-        window.removeEventListener('keydown', handleKeyDown)
       }
     }
-  }, [hasFilter, searchRef, handleKeyDown])
+  }, [hasFilter, searchRef])
 
   useEffect(() => {
     if (selected !== selectedOptions) {

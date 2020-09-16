@@ -10,8 +10,10 @@ import { TableRowProvider } from './TableRowContext'
 const noop = () => {}
 
 export const pseudoSelectors = {
-  _hover: '&[data-isselectable="true"]:not(:active):not([aria-current="true"]):not([aria-checked="true"]):not(:focus):not(:active):hover',
-  _focus: '&[data-isselectable="true"]:not([aria-checked="true"]):not([aria-current="true"]):focus, &[aria-selected="true"]',
+  _hover:
+    '&[data-isselectable="true"]:not(:active):not([aria-current="true"]):not([aria-checked="true"]):not(:focus):not(:active):hover',
+  _focus:
+    '&[data-isselectable="true"]:not([aria-checked="true"]):not([aria-current="true"]):focus, &[aria-selected="true"]',
   _active: '&[aria-current="true"], &[data-isselectable="true"]:active',
   _current: '&[aria-current="true"], &[aria-checked="true"]',
   _isSelectable: '&[data-isselectable="true"]'
@@ -77,7 +79,11 @@ const TableRow = memo(
       onKeyPress(e)
     }
 
-    const { className: themedClassName, height: themeHeight, ...boxProps } = useStyleConfig(
+    const {
+      className: themedClassName,
+      height: themeHeight,
+      ...boxProps
+    } = useStyleConfig(
       'TableRow',
       { appearance, intent },
       pseudoSelectors,
