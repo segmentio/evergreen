@@ -11,7 +11,6 @@ const resetStyles = {
 
 function useListBehavior({
   disabled,
-  handleKeyDown,
   isHighlighted,
   isSelectable,
   isSelected,
@@ -57,6 +56,7 @@ function useListBehavior({
     'data-isselectable': isSelectable && !disabled,
     tabIndex: isSelectable && !disabled ? 0 : undefined,
     onKeyDown: keyDownHandler,
+    onClick: keyDownHandler,
     getRef: setRef,
     ...resetStyles
   }
