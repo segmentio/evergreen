@@ -58,6 +58,7 @@ export default {
   Select,
   Spinner,
   Switch,
+  Option,
   Tab,
   TableCell,
   TableHead,

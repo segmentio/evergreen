@@ -1,9 +1,8 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import { useStyleConfig } from '../../hooks'
+import { useListBehavior, useStyleConfig } from '../../hooks'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
-import TableRow from '../../table/src/TableRow'
 import TextTableCell from '../../table/src/TextTableCell'
 
 export const pseudoSelectors = {
@@ -46,18 +45,21 @@ const Option = memo(
       internalStyles
     )
 
+    const { getRef, ...listBehaviorProps } = useListBehavior({
+      isSelectable,
+      isSelected,
+      disabled,
+      onSelect
+    })
+
     return (
-      <TableRow
-        className={themedClassName}
-        isSelectable={isSelectable && !disabled}
-        isHighlighted={isHighlighted}
-        onSelect={onSelect}
-        onDeselect={onDeselect}
-        isSelected={isSelected}
+      <Pane
         style={style}
+        className={themedClassName}
         {...boxProps}
         {...rest}
-        ref={ref}
+        {...listBehaviorProps}
+        ref={getRef}
       >
         <TextTableCell
           borderRight={null}
@@ -71,7 +73,7 @@ const Option = memo(
             {label}
           </Pane>
         </TextTableCell>
-      </TableRow>
+      </Pane>
     )
   })
 )

@@ -4,7 +4,7 @@ const baseStyle = {
   display: 'flex',
   position: 'relative',
   backgroundColor: 'white',
-  borderBottom: (theme) => `1px solid ${theme.colors.border.muted}`,
+  borderBottom: theme => `1px solid ${theme.colors.border.muted}`,
 
   _before: {
     content: '""',
@@ -29,11 +29,12 @@ const baseStyle = {
   },
 
   _focus: {
-    backgroundColor: 'colors.gray75'
+    backgroundColor: 'colors.blue50'
   },
 
   _active: {
-    backgroundColor: 'intents.info.background',
+    color: 'colors.blue500',
+    boxShadow: theme => `inset 2px 0 0 ${theme.colors.blue500}`
   },
 
   _selected: {
