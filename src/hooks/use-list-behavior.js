@@ -9,7 +9,7 @@ const resetStyles = {
   outline: 'none'
 }
 
-function useListBehavior({
+export function useListBehavior({
   disabled,
   isHighlighted,
   isSelectable,
@@ -61,5 +61,3 @@ function useListBehavior({
     ...resetStyles
   }
 }
-
-export default useListBehavior

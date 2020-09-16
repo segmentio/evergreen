@@ -1,6 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import { useListBehavior, useStyleConfig } from '../../hooks'
+import { useStyleConfig, useListBehavior, useMergedRef } from '../../hooks/'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
 import TextTableCell from '../../table/src/TextTableCell'
@@ -23,7 +23,7 @@ const internalStyles = {
 const emptyObject = {}
 
 const Option = memo(
-  forwardRef(function Option(props, ref) {
+  forwardRef(function Option(props, forwardedRef) {
     const {
       disabled,
       height,
@@ -52,6 +52,8 @@ const Option = memo(
       onSelect
     })
 
+    const callbackRef = useMergedRef(getRef, forwardedRef)
+
     return (
       <Pane
         style={style}
@@ -59,7 +61,7 @@ const Option = memo(
         {...boxProps}
         {...rest}
         {...listBehaviorProps}
-        ref={getRef}
+        ref={callbackRef}
       >
         <TextTableCell
           borderRight={null}
