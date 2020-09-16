@@ -1,6 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useStyleConfig } from '../../hooks'
 import Pane from './Pane'
 
 const emptyObject = {}

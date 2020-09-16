@@ -8,89 +8,97 @@ import MenuOption from './MenuOption'
 import MenuOptionsGroup from './MenuOptionsGroup'
 
 const Menu = memo(function Menu(props) {
-  const menuRef = useRef()
+
+  const menuRef = useRef(null)
   const firstItem = useRef()
   const lastItem = useRef()
 
   const menuItems = useRef()
 
   useEffect(() => {
-    if (menuRef && menuRef.current) {
-      menuItems.current = [
-        ...menuRef.current.querySelectorAll(
-          '[role="menuitemradio"], [role="menuitem"]'
-        )
-      ]
 
-      if (menuItems.current.length === 0) {
-        throw new Error('The menu has no menu items')
-      }
+    const currentMenuRef = menuRef.current
 
-      firstItem.current = menuItems.current[0]
-      lastItem.current = menuItems.current[menuItems.current.length - 1]
+    menuItems.current = currentMenuRef ? [
+      ...currentMenuRef.querySelectorAll(
+        '[role="menuitemradio"]:not([disabled]), [role="menuitem"]:not([disabled])'
+     )]
+    : []
 
-      const focusNext = (currentItem, startItem) => {
-        // Determine which item is the startItem (first or last)
-        const goingDown = startItem === firstItem.current
+    if (menuItems.current.length === 0) {
+      throw new Error('The menu has no menu items')
+    }
 
-        // Helper function for getting next legitimate element
-        const move = elem => {
-          const indexOfItem = menuItems.current.indexOf(elem)
+    firstItem.current = menuItems.current[0]
+    lastItem.current = menuItems.current[menuItems.current.length - 1]
 
-          if (goingDown) {
-            if (indexOfItem < menuItems.current.length - 1) {
-              return menuItems.current[indexOfItem + 1]
-            }
+    // Go to next/previous item if it exists
+    // or loop around
+    const focusNext = (currentItem, startItem) => {
 
-            return startItem
-          }
+      // Determine which item is the startItem (first or last)
+      const goingDown = startItem === firstItem.current
 
-          if (indexOfItem - 1 > -1) {
-            return menuItems.current[indexOfItem - 1]
+      // Helper function for getting next legitimate element
+      const move = elem => {
+        const indexOfItem = menuItems.current.indexOf(elem)
+
+        if (goingDown) {
+          if (indexOfItem < menuItems.current.length - 1) {
+            return menuItems.current[indexOfItem + 1]
           }
 
           return startItem
         }
 
-        // Make first move
-        let nextItem = move(currentItem)
-
-        // If the menuitem is disabled move on
-        while (nextItem.disabled) {
-          nextItem = move(nextItem)
+        if (indexOfItem - 1 > -1) {
+          return menuItems.current[indexOfItem - 1]
         }
 
-        // Focus the first one that's not disabled
-        nextItem.focus()
+        return startItem
       }
 
-      menuItems.current.forEach(menuItem => {
-        // Handle key presses for menuItem
-        menuItem.addEventListener('keydown', e => {
-          // Go to next/previous item if it exists
-          // or loop around
+      // Make first move
+      const nextItem = move(currentItem)
 
-          if (e.key === 'ArrowDown') {
-            e.preventDefault()
-            focusNext(menuItem, firstItem.current)
-          }
+      // Focus the first one that's not disabled
+      nextItem.focus()
+    }
 
-          if (e.key === 'ArrowUp') {
-            e.preventDefault()
-            focusNext(menuItem, lastItem.current)
-          }
+    function onKeyPressListener(e) {
 
-          if (e.key === 'Home') {
-            e.preventDefault()
-            firstItem.current.focus()
-          }
+      const { target } = e
+      const menuItem = menuItems.current && menuItems.current.find((item) => item === target)
 
-          if (e.key === 'End') {
-            e.preventDefault()
-            lastItem.current.focus()
-          }
-        })
-      })
+      if(!menuItem) {
+        return
+      }
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault()
+        focusNext(menuItem, firstItem.current)
+      }
+
+      if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        focusNext(menuItem, lastItem.current)
+      }
+
+      if (e.key === 'Home') {
+        e.preventDefault()
+        firstItem.current.focus()
+      }
+
+      if (e.key === 'End') {
+        e.preventDefault()
+        lastItem.current.focus()
+      }
+    }
+
+    currentMenuRef.addEventListener('keydown', onKeyPressListener)
+
+    return () => {
+      currentMenuRef.removeEventListener('keydown', onKeyPressListener)
     }
   }, [menuRef])
 

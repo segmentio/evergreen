@@ -13,6 +13,7 @@ export type IntentTypes = 'none' | 'info' | 'success' | 'warning' | 'danger'
 export type DefaultAppearance = 'default'
 export type AlertAppearance = DefaultAppearance | 'card'
 export type ButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
+export type CodeAppearance = DefaultAppearance | 'minimal'
 export type CheckboxAppearance = DefaultAppearance
 export type IconButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
 export type TextInputAppearance = DefaultAppearance | 'primary'
@@ -518,7 +519,7 @@ export interface CheckboxOwnProps {
 export type CheckboxProps = PolymorphicBoxProps<'input', CheckboxOwnProps>
 export declare const Checkbox: BoxComponent<CheckboxOwnProps, 'input'>
 
-export type CodeOwnProps = TextOwnProps
+export type CodeOwnProps = TextOwnProps & { appearance?: CodeAppearance }
 export type CodeProps = PolymorphicBoxProps<'code', CodeOwnProps>
 export declare const Code: BoxComponent<CodeOwnProps, 'code'>
 
@@ -669,7 +670,7 @@ export interface DialogProps {
   /**
    * Title of the Dialog. Titles should use Title Case.
    */
-  title?: string
+  title?: React.ReactNode
   /**
    * When true, the header with the title and close icon button is shown.
    * Defaults to true.
@@ -804,9 +805,9 @@ export interface FilePickerOwnProps {
   /** the height of the filepicker */
   height?: number
   /** function called when onChange is fired */
-  onChange?: () => void
+  onChange?: (files: FileList) => void
   /** function called when onBlur is fired */
-  onBlur?: () => void
+  onBlur?: (event: React.FocusEvent) => void
   /** placeholder of the text input */
   placeholder?: string
 }
@@ -1018,6 +1019,7 @@ export interface MenuItemOwnProps extends PaneOwnProps {
   secondaryText?: JSX.Element
   appearance?: DefaultAppearance
   intent?: IntentTypes
+  disabled?: boolean
 }
 
 export type MenuItemProps = PolymorphicBoxProps<'div', MenuItemOwnProps>
@@ -1317,12 +1319,37 @@ export declare const SearchTableHeaderCell: BoxComponent<SearchTableHeaderCellOw
 
 /** @deprecated This component will be removed in the next major version of Evergreen */
 export interface SegmentedControlOwnProps {
+  /**
+   * The options (elements) displayed by the segmented control
+   */
   options: Array<{ label: string, value: NonNullable<SegmentedControlOwnProps['value']> }>
+  
+  /**
+   * The value of the segmented control
+   */
   value?: number | string | boolean
+  
+  /**
+   * The initial value of an uncontrolled segmented control
+   */
   defaultValue?: number | string | boolean
+  
+  /**
+   * Function called when value changes.
+   */
   onChange: (value: NonNullable<SegmentedControlOwnProps['value']>) => void
+
+  /**
+   * The name attribute of the segmented control
+   */
   name?: string
+
   size?: 'small' | 'medium' | 'large'
+
+  /**
+   * Whether or not the component is disabled
+   */
+  disabled?: boolean
 }
 
 /** @deprecated This component will be removed in the next major version of Evergreen */
@@ -1544,6 +1571,14 @@ export interface StackProps {
 export declare const Stack: React.FC<StackProps>
 
 export declare const StackingContext: React.Context<number>
+
+export const StackingOrder: {
+  FOCUSED: number
+  STACKING_CONTEXT: number
+  POSITIONER: number
+  OVERLAY: number
+  TOASTER: number
+}
 
 export interface StatusIndicatorOwnProps extends TextOwnProps {
   disabled?: boolean

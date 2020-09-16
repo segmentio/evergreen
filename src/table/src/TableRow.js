@@ -1,8 +1,8 @@
 import React, { memo, forwardRef, useState } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import { useMergedRef } from '../../hooks'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useMergedRef, useStyleConfig } from '../../hooks'
+
 import { Pane } from '../../layers'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 import { TableRowProvider } from './TableRowContext'

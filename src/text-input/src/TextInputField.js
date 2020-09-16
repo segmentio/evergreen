@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
 import { useId } from '../../hooks'
+import { majorScale } from '../../scales'
 import TextInput from './TextInput'
 
 const TextInputField = memo(
@@ -20,7 +21,7 @@ const TextInputField = memo(
       id: unusedId,
 
       // TextInput props
-      inputHeight = 32,
+      inputHeight = majorScale(4),
       inputWidth = '100%',
       isInvalid,
       label,
@@ -36,7 +37,7 @@ const TextInputField = memo(
     /**
      * Split the wrapper props from the input props.
      */
-    const { matchedProps, remainingProps } = splitBoxProps(props)
+    const { matchedProps, remainingProps } = splitBoxProps(restProps)
 
     return (
       <FormField
@@ -48,7 +49,6 @@ const TextInputField = memo(
         validationMessage={validationMessage}
         labelFor={id}
         {...matchedProps}
-        {...restProps}
       >
         <TextInput
           id={id}

@@ -2,7 +2,7 @@ import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useStyleConfig } from '../../hooks'
 import { Strong } from '../../typography'
 
 const pseudoSelectors = {}

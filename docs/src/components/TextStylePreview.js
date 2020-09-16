@@ -9,7 +9,6 @@ export default class TextStylePreview extends React.Component {
     fontWeight: PropTypes.string,
     lineHeight: PropTypes.string,
     letterSpacing: PropTypes.string,
-    marginTop: PropTypes.number,
     fontFamilies: PropTypes.object,
     fontFamily: PropTypes.string,
     color: PropTypes.string
@@ -44,16 +43,6 @@ export default class TextStylePreview extends React.Component {
             {this.props.color && (
               <React.Fragment>
                 color: <strong>{this.props.color}</strong>
-                <br />
-              </React.Fragment>
-            )}
-            {this.props.marginTop && (
-              <React.Fragment>
-                Default margin top:{' '}
-                <strong>
-                  {this.props.marginTop}
-                  px
-                </strong>
                 <br />
               </React.Fragment>
             )}

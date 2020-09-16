@@ -1,7 +1,7 @@
 import React, { forwardRef, memo } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useStyleConfig } from '../../hooks'
 import Text from './Text'
 
 const internalStyles = {

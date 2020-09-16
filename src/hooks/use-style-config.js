@@ -142,7 +142,7 @@ function useGlamorAndBox(styles, pseudoSelectors) {
  * @param {GlamorAndBoxStyle} [internalStyles] additional styles that are specified internally, separate from the visual styles
  * @returns {{ className: string; boxProps: import('ui-box').EnhancerProps }}
  */
-export default function useStyleConfig(
+export function useStyleConfig(
   componentKey,
   props,
   pseudoSelectors,
@@ -169,23 +169,4 @@ export default function useStyleConfig(
 
   // Finally, split up the styles based which ones Box supports and the rest construct a glamor className
   return useGlamorAndBox(styles, pseudoSelectors)
-}
-
-export function deprecatedUseStyleConfig(
-  styleConfig,
-  props,
-  pseudoSelectors,
-  internalStyles
-) {
-  const theme = useTheme()
-
-  // Merges the theme styles with the modifiers/props (appearance, size, etc)
-  const styles = useMergedStyles(theme, props, styleConfig, internalStyles)
-
-  const { className, ...boxProps } = useGlamorAndBox(styles, pseudoSelectors)
-
-  return {
-    className,
-    boxProps
-  }
 }

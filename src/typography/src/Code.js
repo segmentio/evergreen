@@ -1,6 +1,6 @@
 import React, { forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useStyleConfig } from '../../hooks'
 import Text from './Text'
 
 const pseudoSelectors = {}

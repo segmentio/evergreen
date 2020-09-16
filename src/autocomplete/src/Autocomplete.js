@@ -43,9 +43,9 @@ const AutocompleteItems = ({
   highlightedIndex,
   inputValue,
   isFilterDisabled,
-  itemToString,
-  itemsFilter = fuzzyFilter(itemToString),
   itemSize,
+  itemToString,
+  itemsFilter,
   originalItems,
   popoverMaxHeight,
   renderItem,
@@ -53,6 +53,7 @@ const AutocompleteItems = ({
   title,
   width
 }) => {
+  itemsFilter = itemsFilter || fuzzyFilter(itemToString)
   const items =
     isFilterDisabled || inputValue.trim() === ''
       ? originalItems
