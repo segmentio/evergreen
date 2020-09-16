@@ -57,11 +57,9 @@ export default function transformer(file, api) {
       const sizeAttribute = attributes.find((attr) => attr.name.name === "size");
       const marginTopAttribute = attributes.find((attr) => attr.name.name === "marginTop");
 
-      if (marginTopAttribute.value.value === "default") {
-        const componentSize = (sizeAttribute && sizeAttribute.value && sizeAttribute.value.value) || SIZE_TO_MARGIN_TOP_MAPPING[elementName].defaultSize;
-        marginTopAttribute.value = j.jsxExpressionContainer(
-          j.literal(SIZE_TO_MARGIN_TOP_MAPPING[elementName].sizes[sizeAttribute.value.expression.value])
-        );
+      if (marginTopAttribute && marginTopAttribute.value && marginTopAttribute.value.value === "default") {
+        const componentSize = (sizeAttribute && sizeAttribute.value && sizeAttribute.value.expression && sizeAttribute.value.expression.value) || SIZE_TO_MARGIN_TOP_MAPPING[elementName].defaultSize;
+        marginTopAttribute.value = j.jsxExpressionContainer(j.literal(SIZE_TO_MARGIN_TOP_MAPPING[elementName].sizes[componentSize]));
       }
     });
   });
