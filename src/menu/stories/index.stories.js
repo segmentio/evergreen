@@ -83,6 +83,28 @@ storiesOf('menu', module)
         position={Position.BOTTOM_LEFT}
         content={
           <Menu>
+            <Menu.Group title="Actions">
+              <Menu.Item icon={PeopleIcon}>Share...</Menu.Item>
+              <Menu.Item icon={CircleArrowRightIcon}>Move...</Menu.Item>
+              <Menu.Item disabled icon={EditIcon} secondaryText="⌘R">
+                Rename...
+              </Menu.Item>
+            </Menu.Group>
+            <Menu.Divider />
+            <Menu.Group title="destructive">
+              <Menu.Item disabled icon={TrashIcon} intent="danger">
+                Delete...
+              </Menu.Item>
+            </Menu.Group>
+          </Menu>
+        }
+      >
+        <Button marginRight={16}>With Disabled Items</Button>
+      </Popover>
+      <Popover
+        position={Position.BOTTOM_LEFT}
+        content={
+          <Menu>
             <Component
               initialState={{
                 selected: 'asc'

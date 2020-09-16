@@ -5,21 +5,20 @@ import PropsTable from 'components/PropsTable'
 Evergreen exports multiple component to help create menus.
 All components are accessible through the `Menu` component.
 
-* **Menu**: menu wrapper, helps with focus management.
-* **Menu.Item**: single menu item button. Contains labels and icons.
-* **Menu.Group**: group menu items together.
-* **Menu.Divider**: menu divider to divide menu groups visually.
-* **Menu.OptionsGroup**: menu group which works like a radio group.
+- **Menu**: menu wrapper, helps with focus management.
+- **Menu.Item**: single menu item button. Contains labels and icons.
+- **Menu.Group**: group menu items together.
+- **Menu.Divider**: menu divider to divide menu groups visually.
+- **Menu.OptionsGroup**: menu group which works like a radio group.
 
 ## Focus management
 
 The `Menu` component is used to help with focus management.
 
-* Arrow down on a button will bring focus inside the popover.
-* Arrow keys within the menu will cycle through all of the menu items and skip `disabled` items.
-* The `Home` key (fn + arrow left) will go to the first item.
-* The `End` key (fn + arrow right) will go to the last item.
-
+- Arrow down on a button will bring focus inside the popover.
+- Arrow keys within the menu will cycle through all of the menu items and skip `disabled` items.
+- The `Home` key (fn + arrow left) will go to the first item.
+- The `End` key (fn + arrow right) will go to the last item.
 
 ## Menu without icons
 
@@ -45,11 +44,7 @@ It is important to understand the `Menu` component by itself does not manage a d
 Menu items support a `onSelect` handler that is triggered on click and `enter` + `space` key down.
 
 ```jsx
-<Menu.Item
-  onSelect={() => toaster.notify('Hello world')}
->
-  Say hello
-</Menu.Item>
+<Menu.Item onSelect={() => toaster.notify('Hello world')}>Say hello</Menu.Item>
 ```
 
 ## Dropdown menu
@@ -60,29 +55,15 @@ Menu items support a `onSelect` handler that is triggered on click and `enter` +
   content={
     <Menu>
       <Menu.Group>
-        <Menu.Item
-          onSelect={() => toaster.notify('Share')}
-        >
-          Share...
-        </Menu.Item>
-        <Menu.Item
-          onSelect={() => toaster.notify('Move')}
-        >
-          Move...
-        </Menu.Item>
-        <Menu.Item
-          onSelect={() => toaster.notify('Rename')}
-          secondaryText="⌘R"
-        >
+        <Menu.Item onSelect={() => toaster.notify('Share')}>Share...</Menu.Item>
+        <Menu.Item onSelect={() => toaster.notify('Move')}>Move...</Menu.Item>
+        <Menu.Item onSelect={() => toaster.notify('Rename')} secondaryText="⌘R">
           Rename...
         </Menu.Item>
       </Menu.Group>
       <Menu.Divider />
       <Menu.Group>
-        <Menu.Item
-          onSelect={() => toaster.danger('Delete')}
-          intent="danger"
-        >
+        <Menu.Item onSelect={() => toaster.danger('Delete')} intent="danger">
           Delete...
         </Menu.Item>
       </Menu.Group>
@@ -122,6 +103,34 @@ The `onSelect` handlers are omitted for brevity.
 </Popover>
 ```
 
+## Menu with disabled items
+
+```jsx
+<Popover
+  position={Position.BOTTOM_LEFT}
+  content={
+    <Menu>
+      <Menu.Group>
+        <Menu.Item disabled icon={PeopleIcon}>
+          Share...
+        </Menu.Item>
+        <Menu.Item icon={CircleArrowRightIcon}>Move...</Menu.Item>
+        <Menu.Item icon={EditIcon} secondaryText="⌘R">
+          Rename...
+        </Menu.Item>
+      </Menu.Group>
+      <Menu.Divider />
+      <Menu.Group>
+        <Menu.Item disabled icon={TrashIcon} intent="danger">
+          Delete...
+        </Menu.Item>
+      </Menu.Group>
+    </Menu>
+  }
+>
+  <Button marginRight={16}>With Disabled Items</Button>
+</Popover>
+```
 
 ## Groups with titles
 
@@ -134,7 +143,7 @@ The `onSelect` handlers are omitted for brevity.
     <Menu>
       <Menu.Group title="Actions">
         <Menu.Item icon={PeopleIcon}>Share...</Menu.Item>
-        <Menu.Item icon={CircleArrowRight}>Move...</Menu.Item>
+        <Menu.Item icon={CircleArrowRightIcon}>Move...</Menu.Item>
         <Menu.Item icon={EditIcon} secondaryText="⌘R">
           Rename...
         </Menu.Item>

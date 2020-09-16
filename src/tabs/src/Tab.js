@@ -152,7 +152,17 @@ Tab.propTypes = {
    * The directionality of the tab.
    * If the tab is apart of a vertical or horizontal list
    */
+<<<<<<< HEAD
   direction: PropTypes.oneOf(['horizontal', 'vertical'])
+=======
+  appearance: PropTypes.string,
+
+  /**
+   * Class name passed to the Tab.
+   * Only use this if you know what you are doing.
+   */
+  className: PropTypes.string
+>>>>>>> 55549dfe173d2beeb6e0861a8fba70f54813f3df
 }
 
 export default Tab

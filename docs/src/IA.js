@@ -178,7 +178,7 @@ export default {
       {
         title: 'Selects & Dropdown Menus',
         items: [
-          { id: 'select', name: 'Select', image: Select },
+          { id: 'select', name: 'Select', image: Select, github: githubLink('select') },
           {
             id: 'combobox',
             github: githubLink('combobox'),

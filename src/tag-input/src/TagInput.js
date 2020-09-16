@@ -48,7 +48,7 @@ const TagInput = memo(
       onFocus,
       onInputChange,
       className,
-      inputProps,
+      inputProps = {},
       inputRef,
       ...rest
     } = props
