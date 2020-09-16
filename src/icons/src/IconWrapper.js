@@ -9,7 +9,7 @@ import Box from 'ui-box'
  */
 export const IconWrapper = memo(
   forwardRef(function Icon(
-    { icon, color, size, title, ...props },
+    { color, icon, size, title, ...props },
     ref
   ) {
     if (!icon || typeof icon === 'string') {

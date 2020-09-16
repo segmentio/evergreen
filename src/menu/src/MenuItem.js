@@ -68,7 +68,6 @@ const MenuItem = memo(
 
     const disabledProps = useMemo(() => {
       return disabled ? {
-        backgroundColor: theme.colors.background.tint1,
         cursor: 'not-allowed',
         disabled: true,
         onClick: null,

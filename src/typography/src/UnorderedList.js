@@ -42,12 +42,6 @@ const UnorderedList = memo(
       )
     })
 
-    let marginLeft
-    if (size === 300) marginLeft = 16
-    if (size === 400) marginLeft = 18
-    if (size === 500) marginLeft = 18
-    if (size === 600) marginLeft = 20
-
     return (
       <Box
         is="ul"
