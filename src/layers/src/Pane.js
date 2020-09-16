@@ -2,7 +2,7 @@ import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useStyleConfig } from '../../hooks'
 
 const pseudoSelectors = {
   _hover: '&:hover',

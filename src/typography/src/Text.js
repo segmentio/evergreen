@@ -1,7 +1,7 @@
 import React, { forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useStyleConfig } from '../../hooks'
 import { useTheme } from '../../theme'
 
 const emptyObject = {}

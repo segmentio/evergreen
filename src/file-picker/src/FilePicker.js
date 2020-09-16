@@ -1,4 +1,5 @@
 import React, { memo, forwardRef, useState, useRef, useCallback } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Button } from '../../buttons'
@@ -12,6 +13,7 @@ const FilePicker = memo(
     const {
       accept,
       capture,
+      className,
       disabled,
       height,
       multiple,
@@ -75,10 +77,12 @@ const FilePicker = memo(
       buttonText = 'Replace files'
     }
 
+    const rootClassNames = cx(`${CLASS_PREFIX}-root`, className)
+
     return (
       <Box
         display="flex"
-        className={`${CLASS_PREFIX}-root`}
+        className={rootClassNames}
         ref={ref}
         {...rest}
       >
@@ -169,19 +173,27 @@ FilePicker.propTypes = {
   height: PropTypes.number,
 
   /**
-   * Function called when onChange is fired
+   * Function called when onChange is fired.
+   * (files: FileList) => void
    */
   onChange: PropTypes.func,
 
   /**
-   * Function called when onBlur is fired
+   * Function called when onBlur is fired.
+   * (event: React.FocusEvent) => void
    */
   onBlur: PropTypes.func,
 
   /**
    * Placeholder of the text input
    */
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+
+  /**
+   * Class name passed to the FilePicker.
+   * Only use this if you know what you are doing.
+   */
+  className: PropTypes.string
 }
 
 export default FilePicker

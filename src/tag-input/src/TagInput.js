@@ -6,8 +6,7 @@ import React, { memo, forwardRef, useState } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { useId } from '../../hooks'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useId, useStyleConfig } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
 import { majorScale } from '../../scales'
 import { TextInput } from '../../text-input'
@@ -49,7 +48,7 @@ const TagInput = memo(
       onFocus,
       onInputChange,
       className,
-      inputProps,
+      inputProps = emptyProps,
       inputRef,
       ...rest
     } = props

@@ -28,16 +28,6 @@ export default {
   },
 
   /**
-   * Available on Pane as `<Pane borderBottom borderRight="muted" />`
-   * @property {string} text.default - Required property.
-   * @property {string} text.muted - Slightly lighter color than default. Required property.
-   */
-  border: {
-    default: scales.neutral.N4, // Was BorderColors.muted in v3 and under.
-    muted: scales.neutral.N3 // Was BorderColors.extraMuted in v3 and under
-  },
-
-  /**
    * Text colors available on Text as `<Text color="muted" />`.
    * @property {string} text.muted - Required property.
    * @property {string} text.default - Required property. Default for text.
