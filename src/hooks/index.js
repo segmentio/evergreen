@@ -1,5 +1,6 @@
 export * from './use-force-update'
 export * from './use-id'
+export * from './use-list-behavior'
 export * from './use-merged-ref'
 export * from './use-previous'
 export * from './use-style-config'
