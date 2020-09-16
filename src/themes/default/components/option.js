@@ -29,7 +29,7 @@ const baseStyle = {
   },
 
   _focus: {
-    backgroundColor: 'colors.blue50'
+    backgroundColor: 'colors.gray75'
   },
 
   _active: {

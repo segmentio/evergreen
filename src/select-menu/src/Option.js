@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useStyleConfig, useListBehavior, useMergedRef } from '../../hooks/'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
-import TextTableCell from '../../table/src/TextTableCell'
+import { Text } from '../../typography'
 
 export const pseudoSelectors = {
   _active: '&[aria-current="true"]:active, &[data-isselectable="true"]:active',
@@ -63,18 +63,20 @@ const Option = memo(
         {...listBehaviorProps}
         ref={callbackRef}
       >
-        <TextTableCell
+        <Text
+          height={height}
+          display="flex"
+          alignItems="center"
+          paddingX={16}
           borderRight={null}
           flex={1}
-          alignSelf="stretch"
-          height={height}
           cursor={disabled ? 'default' : 'pointer'}
         >
           <Pane alignItems="center" display="flex">
             {icon && <Image src={icon} width={24} marginRight={8} />}
             {label}
           </Pane>
-        </TextTableCell>
+        </Text>
       </Pane>
     )
   })

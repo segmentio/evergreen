@@ -1,7 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import useListBehavior from '../../hooks/use-list-behavior'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useListBehavior, useStyleConfig } from '../../hooks'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
 import TextTableCell from '../../table/src/TextTableCell'
@@ -11,9 +10,11 @@ const selectedProps = { color: 'selected' }
 const emptyProps = {}
 
 const pseudoSelectors = {
-  _focus:
-    '&[data-isselectable="true"]:not([aria-checked="true"]):not([aria-current="true"]):focus, &[aria-selected="true"]',
-  _active: '&[aria-current="true"]'
+  _focus: ':focus',
+  _hover: ':hover',
+  _active: '&[aria-current="true"]:active, &[data-isselectable="true"]:active',
+  _current: '&[aria-current="true"]',
+  _isSelectable: '&[data-isselectable="true"]'
 }
 
 const internalStyles = {
