@@ -11,46 +11,62 @@
  */
 
 // Press ctrl+space for code completion
+// Press ctrl+space for code completion
 const SIZE_TO_MARGIN_TOP_MAPPING = {
-  100: 16,
-  200: 16,
-  300: 16,
-  400: 16,
-  500: 24,
-  600: 28,
-  700: 40,
-  800: 40,
-  900: 52
-}
-
-const DEFAULT_HEADING_SIZE = 500
+  Heading: {
+    defaultSize: 500,
+    sizes: {
+      100: 16,
+      200: 16,
+      300: 16,
+      400: 16,
+      500: 24,
+      600: 28,
+      700: 40,
+      800: 40,
+      900: 52
+    }
+  },
+  Paragraph: {
+    defaultSize: 400,
+    sizes: {
+      300: 12,
+      400: 12,
+      500: 16
+    }
+  },
+  Text: {
+    defaultSize: 400,
+    sizes: {
+      300: 12,
+      400: 12,
+      500: 16,
+      600: 28
+    }
+  }
+};
 
 export default function transformer(file, api) {
-  const j = api.jscodeshift
+  const j = api.jscodeshift;
 
-  const root = j(file.source)
+  const root = j(file.source);
 
-  const elements = root.findJSXElements('Heading')
+  ["Heading", "Text", "Paragraph"].forEach((elementName) => {
+    const elements = root.findJSXElements(elementName);
 
-  elements.forEach(el => {
-    const attributes = el.node.openingElement.attributes
-    const sizeAttribute = attributes.find(attr => attr.name.name === 'size')
-    const marginTopAttribute = attributes.find(
-      attr => attr.name && attr.name.name && attr.name.name === 'marginTop'
-    )
+    elements.forEach((el) => {
+      const attributes = el.node.openingElement.attributes;
+      const sizeAttribute = attributes.find((attr) => attr.name.name === "size");
+      const marginTopAttribute = attributes.find((attr) => attr.name.name === "marginTop");
 
-    if (marginTopAttribute && marginTopAttribute.value && marginTopAttribute.value.value === 'default') {
-      const headingSize =
-        (sizeAttribute &&
-          sizeAttribute.value &&
-          sizeAttribute.value.expression &&
-          sizeAttribute.value.expression.value) ||
-        DEFAULT_HEADING_SIZE
-      marginTopAttribute.value = j.jsxExpressionContainer(
-        j.literal(SIZE_TO_MARGIN_TOP_MAPPING[headingSize])
-      )
-    }
-  })
+      if (marginTopAttribute.value.value === "default") {
+        const componentSize = (sizeAttribute && sizeAttribute.value && sizeAttribute.value.value) || SIZE_TO_MARGIN_TOP_MAPPING[elementName].defaultSize;
+        marginTopAttribute.value = j.jsxExpressionContainer(
+          j.literal(SIZE_TO_MARGIN_TOP_MAPPING[elementName].sizes[sizeAttribute.value.expression.value])
+        );
+      }
+    });
+  });
 
-  return root.toSource()
+  return root.toSource();
 }
