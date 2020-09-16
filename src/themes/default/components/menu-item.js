@@ -6,6 +6,11 @@ const baseStyle = {
 
   _isSelectable: {
     cursor: 'pointer'
+  },
+
+  _disabled: {
+    cursor: 'not-allowed',
+    pointerEvents: 'none'
   }
 }
 

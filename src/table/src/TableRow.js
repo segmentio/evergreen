@@ -1,9 +1,9 @@
-import React, { memo, forwardRef, useState } from 'react'
+import React, { memo, forwardRef, useRef, useCallback } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import { useMergedRef, useStyleConfig } from '../../hooks'
-
+import { useClickable, useLatest, useMergedRef, useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
+import safeInvoke from '../../lib/safe-invoke'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 import { TableRowProvider } from './TableRowContext'
 
@@ -32,9 +32,8 @@ const TableRow = memo(
       appearance = 'default',
       tabIndex = -1,
 
-      // Filter out
       onClick,
-      onKeyPress = noop,
+      onKeyDown = noop,
       onSelect = noop,
       onDeselect = noop,
 
@@ -44,40 +43,41 @@ const TableRow = memo(
       ...rest
     } = props
 
-    const [mainRef, setMainRef] = useState()
-    const onRef = useMergedRef(setMainRef, forwardedRef)
+    const mainRef = useRef()
+    const onRef = useMergedRef(mainRef, forwardedRef)
 
-    const handleClick = e => {
-      if (typeof onClick === 'function') {
-        onClick(e)
-      }
+    const onClickRef = useLatest(onClick)
+    const onKeyDownRef = useLatest(onKeyDown)
+    const onDeselectRef = useLatest(onDeselect)
+    const onSelectRef = useLatest(onSelect)
+
+    const handleClick = useCallback((event) => {
+      safeInvoke(onClickRef.current, event)
 
       if (isSelectable) {
         if (isSelected) {
-          onDeselect()
+          safeInvoke(onDeselectRef.current)
         } else {
-          onSelect()
+          safeInvoke(onSelectRef.current)
         }
       }
-    }
+    }, [isSelected, isSelectable])
 
-    const handleKeyDown = e => {
+    const handleKeyDown = useCallback((event) => {
+      safeInvoke(onKeyDownRef.current, event)
+
       if (isSelectable) {
-        const { key } = e
-        if (key === 'Enter' || key === ' ') {
-          onSelect()
-          e.preventDefault()
-        } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+        if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
           try {
-            manageTableRowFocusInteraction(key, mainRef)
+            manageTableRowFocusInteraction(event.key, mainRef.current)
           } catch (_) {}
-        } else if (key === 'Escape') {
-          if (mainRef && mainRef instanceof Node) mainRef.blur()
+        } else if (event.key === 'Escape') {
+          if (mainRef.current && mainRef.current instanceof Node) mainRef.blur()
         }
       }
+    }, [isSelectable])
 
-      onKeyPress(e)
-    }
+    const clickable = useClickable({ onKeyDown: handleKeyDown, tabIndex })
 
     const {
       className: themedClassName,
@@ -100,9 +100,9 @@ const TableRow = memo(
           aria-selected={isHighlighted}
           aria-current={isSelected}
           data-isselectable={isSelectable}
-          tabIndex={isSelectable ? tabIndex : undefined}
+          tabIndex={isSelectable ? clickable.tabIndex : undefined}
           onClick={handleClick}
-          onKeyDown={handleKeyDown}
+          onKeyDown={clickable.onKeyDown}
           borderBottom="muted"
           height={height}
           {...boxProps}
