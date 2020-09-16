@@ -10,8 +10,6 @@
  * ...etc
  */
 
-// Press ctrl+space for code completion
-// Press ctrl+space for code completion
 const SIZE_TO_MARGIN_TOP_MAPPING = {
   Heading: {
     defaultSize: 500,
