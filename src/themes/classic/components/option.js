@@ -13,8 +13,7 @@ const baseStyle = {
     top: 0,
     bottom: 0,
     width: 2,
-    borderRadius: '0px 2px 2px 0px',
-    backgroundColor: 'colors.blue500',
+    backgroundColor: 'colors.blue.base',
     transition: '0.25s',
     transformOrigin: 'left center',
     transform: 'scaleX(0)'
@@ -25,19 +24,19 @@ const baseStyle = {
   },
 
   _hover: {
-    backgroundColor: 'colors.gray75'
+    backgroundColor: 'colors.neutral.lightest'
   },
 
   _focus: {
-    backgroundColor: 'colors.gray75'
+    backgroundColor: 'colors.neutral.lightest'
   },
 
   _active: {
-    backgroundColor: 'intents.info.background',
+    backgroundColor: 'colors.blue.lightest',
   },
 
   _current: {
-    backgroundColor: 'intents.info.background',
+    backgroundColor: 'colors.blue.lightest',
 
     '&:before': {
       transform: 'scaleX(1)'

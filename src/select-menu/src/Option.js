@@ -3,13 +3,15 @@ import PropTypes from 'prop-types'
 import { useStyleConfig, useListBehavior, useMergedRef } from '../../hooks/'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
-import TextTableCell from '../../table/src/TextTableCell'
 import { useTheme } from '../../theme'
+import { Text } from '../../typography'
 
 const pseudoSelectors = {
   _focus: ':focus',
   _hover: ':hover',
-  _active: '&[aria-current="true"], &[data-isselectable="true"]:active'
+  _active: '&[aria-current="true"]:active, &[data-isselectable="true"]:active',
+  _current: '&[aria-current="true"]',
+  _isSelectable: '&[data-isselectable="true"]'
 }
 
 const internalStyles = {
@@ -75,20 +77,21 @@ const Option = memo(
         {...rest}
         ref={callbackRef}
       >
-        <TextTableCell
+        <Text
           height={height}
-          textProps={textProps}
+          display="flex"
+          alignItems="center"
+          {...textProps}
           paddingX={16}
           borderRight={null}
           flex={1}
-          alignSelf="stretch"
           cursor={disabled ? 'default' : 'pointer'}
         >
           <Pane alignItems="center" display="flex">
             {icon && <Image src={icon} width={24} marginRight={8} />}
             {label}
           </Pane>
-        </TextTableCell>
+        </Text>
       </Pane>
     )
   })
