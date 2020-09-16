@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useStyleConfig } from '../../hooks'
 import { TickIcon } from '../../icons'
 import { Pane } from '../../layers'
 import { pseudoSelectors } from '../../table/src/TableRow'

@@ -2,7 +2,7 @@ import React, { useState, useEffect, forwardRef, memo } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useStyleConfig } from '../../hooks'
 
 const loadingKeyframes = css.keyframes('loading', {
   '0%': {
