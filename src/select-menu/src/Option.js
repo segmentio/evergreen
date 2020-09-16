@@ -9,6 +9,7 @@ import { useTheme } from '../../theme'
 
 const pseudoSelectors = {
   _focus: ':focus',
+  _hover: ':hover',
   _active: '&[aria-current="true"], &[data-isselectable="true"]:active'
 }
 
