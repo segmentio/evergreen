@@ -52,6 +52,7 @@ const TextareaField = memo(
       >
         <Textarea
           id={id}
+          ref={ref}
           width={inputWidth}
           height={inputHeight}
           disabled={disabled}
