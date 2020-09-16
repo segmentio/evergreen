@@ -1,6 +1,6 @@
 import React, { memo, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
 import ScrollbarSize from './ScrollbarSize'
 

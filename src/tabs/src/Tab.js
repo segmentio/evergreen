@@ -1,14 +1,14 @@
 import React, { forwardRef, memo } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useStyleConfig } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
 import { Text } from '../../typography'
 
 const noop = () => {}
 
-const getInternalStyles = (direction) => ({
+const getInternalStyles = direction => ({
   alignItems: 'center',
   textDecoration: 'none',
   cursor: 'pointer',
@@ -47,17 +47,17 @@ const Tab = memo(
       ...rest
     } = props
 
-   const { className: themedClassName, ...boxProps } = useStyleConfig(
-     'Tab',
-     { appearance },
-     pseudoSelectors,
-     getInternalStyles(direction)
-   )
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Tab',
+      { appearance },
+      pseudoSelectors,
+      getInternalStyles(direction)
+    )
 
-   const spacing =
-    direction === 'horizontal'
-      ? { marginRight: '8px' }
-      : { marginBottom: '8px' }
+    const spacing =
+      direction === 'horizontal'
+        ? { marginRight: '8px' }
+        : { marginBottom: '8px' }
 
     const handleClick = e => {
       safeInvoke(props.onClick, e)

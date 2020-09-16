@@ -1,7 +1,7 @@
 import React, { memo, forwardRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import useStyleConfig from '../../hooks/use-style-config'
+import { useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
@@ -12,7 +12,7 @@ const noop = () => {}
 
 const internalStyles = {
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'center'
 }
 
 const MenuItem = memo(
