@@ -1,4 +1,5 @@
-import React, { memo, forwardRef, useCallback, useMemo } from 'react'
+import React, { memo, forwardRef, useCallback } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useClickable, useStyleConfig } from '../../hooks'
@@ -24,6 +25,7 @@ const MenuItem = memo(
     const {
       is = 'div',
       children,
+      className,
       appearance = 'default',
       disabled,
       secondaryText,
@@ -54,24 +56,17 @@ const MenuItem = memo(
 
     const iconColor = intent === 'none' ? 'default' : intent
 
-    const disabledProps = useMemo(() => {
-      return disabled ? {
-        cursor: 'not-allowed',
-      } : {}
-    }, [disabled])
-
     return (
       <Pane
         is={is}
         role="menuitem"
-        className={themedClassName}
+        className={cx(themedClassName, className)}
         onClick={handleClick}
         data-isselectable={!disabled || undefined}
         aria-disabled={disabled}
         ref={ref}
         height={icon ? 40 : 32}
         {...boxProps}
-        {...disabledProps}
         {...passthroughProps}
         tabIndex={tabIndex}
         onKeyDown={onKeyDown}
@@ -103,6 +98,8 @@ MenuItem.propTypes = {
    * For example: `<MenuItem is={ReactRouterLink}>...</MenuItem>`
    */
   is: Box.propTypes.is,
+
+  className: PropTypes.string,
 
   /**
    * Function that is called on click and enter/space keypress.
