@@ -1,7 +1,12 @@
 import React, { memo, forwardRef, useRef, useCallback } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import { useClickable, useLatest, useMergedRef, useStyleConfig } from '../../hooks'
+import {
+  useClickable,
+  useLatest,
+  useMergedRef,
+  useStyleConfig
+} from '../../hooks'
 import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
@@ -11,7 +16,7 @@ const noop = () => {}
 
 export const pseudoSelectors = {
   _hover:
-    '&[data-isselectable="true"]:not(:active):not([aria-current="true"]):not([aria-checked="true"]):not(:focus):not(:active):hover',
+    '&[data-isselectable="true"]:not([aria-current="true"]):not([aria-checked="true"]):not(:focus):not(:active):hover',
   _focus:
     '&[data-isselectable="true"]:not([aria-checked="true"]):not([aria-current="true"]):focus, &[aria-selected="true"]',
   _active: '&[aria-current="true"], &[data-isselectable="true"]:active',
@@ -51,31 +56,38 @@ const TableRow = memo(
     const onDeselectRef = useLatest(onDeselect)
     const onSelectRef = useLatest(onSelect)
 
-    const handleClick = useCallback((event) => {
-      safeInvoke(onClickRef.current, event)
+    const handleClick = useCallback(
+      event => {
+        safeInvoke(onClickRef.current, event)
 
-      if (isSelectable) {
-        if (isSelected) {
-          safeInvoke(onDeselectRef.current)
-        } else {
-          safeInvoke(onSelectRef.current)
+        if (isSelectable) {
+          if (isSelected) {
+            safeInvoke(onDeselectRef.current)
+          } else {
+            safeInvoke(onSelectRef.current)
+          }
         }
-      }
-    }, [isSelected, isSelectable])
+      },
+      [isSelected, isSelectable]
+    )
 
-    const handleKeyDown = useCallback((event) => {
-      safeInvoke(onKeyDownRef.current, event)
+    const handleKeyDown = useCallback(
+      event => {
+        safeInvoke(onKeyDownRef.current, event)
 
-      if (isSelectable) {
-        if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-          try {
-            manageTableRowFocusInteraction(event.key, mainRef.current)
-          } catch (_) {}
-        } else if (event.key === 'Escape') {
-          if (mainRef.current && mainRef.current instanceof Node) mainRef.blur()
+        if (isSelectable) {
+          if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+            try {
+              manageTableRowFocusInteraction(event.key, mainRef.current)
+            } catch (_) {}
+          } else if (event.key === 'Escape') {
+            if (mainRef.current && mainRef.current instanceof Node)
+              mainRef.blur()
+          }
         }
-      }
-    }, [isSelectable])
+      },
+      [isSelectable]
+    )
 
     const clickable = useClickable({ onKeyDown: handleKeyDown, tabIndex })
 
