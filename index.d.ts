@@ -267,7 +267,75 @@ interface Typography {
       lineHeight: string
       marginTop: number
     }
-  }
+  },
+  headings: {
+    100: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    200: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    300: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    400: {
+      fontFamily: string
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    },
+    500: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    600: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    700: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    800: {
+      fontFamily: string
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    },
+    900: {
+      fontFamily: string
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+  },
   text: {
     300: {
       fontSize: string
@@ -305,6 +373,17 @@ export interface Theme {
 }
 
 export const defaultTheme: Theme
+export const classicTheme: Theme
+
+interface DeprecatedDefaultTheme {
+  colors: Colors,
+  scales: ColorScales,
+  typography: Typography,
+  fills: Fills,
+  palette: Palette
+}
+
+export const deprecatedDefaultTheme: DeprecatedDefaultTheme
 
 export enum Position {
   TOP = 'top',
@@ -1323,17 +1402,17 @@ export interface SegmentedControlOwnProps {
    * The options (elements) displayed by the segmented control
    */
   options: Array<{ label: string, value: NonNullable<SegmentedControlOwnProps['value']> }>
-  
+
   /**
    * The value of the segmented control
    */
   value?: number | string | boolean
-  
+
   /**
    * The initial value of an uncontrolled segmented control
    */
   defaultValue?: number | string | boolean
-  
+
   /**
    * Function called when value changes.
    */
