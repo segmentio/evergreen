@@ -1615,6 +1615,12 @@ export declare const SegmentedControl: BoxComponent<
   'div'
 >
 
+/** @deprecated This component will be removed in the next major version of Evergreen */
+export type SidebarTabProps = PolymorphicBoxProps<'span', TabOwnProps>
+
+/** @deprecated This component will be removed in the next major version of Evergreen */
+export declare const SidebarTab: BoxComponent<TabOwnProps, 'span'>
+
 export interface SelectOwnProps {
   /**
    * The initial value of an uncontrolled select
