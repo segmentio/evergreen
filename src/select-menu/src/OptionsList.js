@@ -122,42 +122,11 @@ const OptionsList = memo(function OptionsList(props) {
     [onDeselect, isMultiSelect, closeOnSelect]
   )
 
-  const handleEnter = useCallback(() => {
-    const isSelected = getCurrentIndex() !== -1
-
-    if (isSelected) {
-      if (!isMultiSelect && closeOnSelect) {
-        close()
-      }
-    }
-  }, [isMultiSelect, close, closeOnSelect])
-
   const handleDeselect = useCallback(
     item => {
       onDeselect(item)
     },
     [onDeselect]
-  )
-
-  const handleKeyDown = useCallback(
-    e => {
-      // if (e.key === 'ArrowUp') {
-      //   handleArrowUp()
-      // }
-
-      // if (e.key === 'ArrowDown') {
-      //   handleArrowDown()
-      // }
-
-      // if (e.key === 'Enter') {
-      //   handleEnter()
-      // }
-
-      if (e.key === 'Escape') {
-        close()
-      }
-    },
-    [close]
   )
 
   useEffect(() => {
