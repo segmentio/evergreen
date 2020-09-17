@@ -305,6 +305,17 @@ export interface Theme {
 }
 
 export const defaultTheme: Theme
+export const classicTheme: Theme
+
+interface DeprecatedDefaultTheme {
+  colors: Colors,
+  scales: ColorScales,
+  typography: Typography,
+  fills: Fills,
+  palette: Palette
+}
+
+export const deprecatedDefaultTheme: DeprecatedDefaultTheme
 
 export enum Position {
   TOP = 'top',
@@ -1323,17 +1334,17 @@ export interface SegmentedControlOwnProps {
    * The options (elements) displayed by the segmented control
    */
   options: Array<{ label: string, value: NonNullable<SegmentedControlOwnProps['value']> }>
-  
+
   /**
    * The value of the segmented control
    */
   value?: number | string | boolean
-  
+
   /**
    * The initial value of an uncontrolled segmented control
    */
   defaultValue?: number | string | boolean
-  
+
   /**
    * Function called when value changes.
    */
