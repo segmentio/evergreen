@@ -104,6 +104,10 @@ MenuItem.propTypes = {
    */
   is: Box.propTypes.is,
 
+  /**
+   * Class name passed to the component.
+   * Only use if you know what you are doing.
+   */
   className: PropTypes.string,
 
   /**
