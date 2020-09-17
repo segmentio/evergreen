@@ -78,30 +78,29 @@ type Components =
   | 'TextDropdownButton'
   | 'Tooltip'
 
-const ButtonPseudoSelectors = [
-  '_active',
-  '_disabled',
-  '_focus',
-  '_focusAndActive',
-  '_hover',
-  '_disabled'
-] as const
+type ButtonPseudoSelectors =
+  | '_active'
+  | '_disabled'
+  | '_focus'
+  | '_focusAndActive'
+  | '_hover'
+  | '_disabled'
 
-const AlertPropsModifiers = ['appearance', 'intent'] as const
-const ButtonPropsModifiers = ['appearance', 'color', 'intent', 'size'] as const
+type AlertPropsModifiers = 'appearance' | 'intent'
+type ButtonPropsModifiers = 'appearance' | 'color' | 'intent' | 'size'
 
-type ComponentToPseudoSelectors = {
-  Alert: {}
-  Button: typeof ButtonPseudoSelectors[number]
-}
+type ComponentToPseudoSelectors<C> = C extends 'Button'
+  ? ButtonPseudoSelectors
+  : ''
 
-type ComponentToPossibleModifiers = {
-  Alert: typeof AlertPropsModifiers[number]
-  Button: typeof ButtonPropsModifiers[number]
-}
+type ComponentToPossibleModifiers<C> = C extends 'Alert'
+  ? AlertPropsModifiers
+  : C extends 'Button'
+  ? ButtonPropsModifiers
+  : {}
 
 type PropOrThemeFunction<C extends Components, T = {}> = (
-  props: ComponentToPossibleModifiers[C],
+  props: ComponentToPossibleModifiers<C>,
   theme: Omit<T, Components>
 ) => string | number
 
@@ -122,14 +121,14 @@ type BaseHTMLElement<T> = T extends
 
 type BaseStyle<T extends Components> = {
   [k in
-    | ComponentToPseudoSelectors[T]
-    | PolymorphicBoxProps<
+    | ComponentToPseudoSelectors<T>
+    | keyof PolymorphicBoxProps<
         BaseHTMLElement<T>
-      >]: k extends ComponentToPseudoSelectors[T]
+      >]: k extends ComponentToPseudoSelectors<T>
     ? {
-        [prop in PolymorphicBoxProps[BaseHTMLElement<T>]]: PropOrThemeFunction<
-          T
-        >
+        [prop in keyof PolymorphicBoxProps<
+          BaseHTMLElement<T>
+        >]: PropOrThemeFunction<T>
       }
     : PropOrThemeFunction<T>
 }
@@ -144,7 +143,7 @@ type BaseThemeObject<T extends Components> = {
   }
 }
 
-type Theme = {
+type ThemeBuilder = {
   [Component in Components]: BaseThemeObject<Component>
 }
 
@@ -391,7 +390,7 @@ interface Typography {
       lineHeight: string
       marginTop: number
     }
-  },
+  }
   headings: {
     100: {
       fontSize: string
@@ -421,7 +420,7 @@ interface Typography {
       letterSpacing: string
       lineHeight: string
       marginTop: number
-    },
+    }
     500: {
       fontSize: string
       fontWeight: number
@@ -450,7 +449,7 @@ interface Typography {
       letterSpacing: string
       lineHeight: string
       marginTop: number
-    },
+    }
     900: {
       fontFamily: string
       fontSize: string
@@ -459,7 +458,7 @@ interface Typography {
       lineHeight: string
       marginTop: number
     }
-  },
+  }
   text: {
     300: {
       fontSize: string
@@ -499,10 +498,10 @@ export const defaultTheme: Theme
 export const classicTheme: Theme
 
 interface DeprecatedDefaultTheme {
-  colors: Colors,
-  scales: ColorScales,
-  typography: Typography,
-  fills: Fills,
+  colors: Colors
+  scales: ColorScales
+  typography: Typography
+  fills: Fills
   palette: Palette
 }
 
@@ -646,7 +645,7 @@ export interface BadgeOwnProps extends StrongOwnProps {
 export type BadgeProps = PolymorphicBoxProps<'strong', BadgeOwnProps>
 export declare const Badge: BoxComponent<BadgeOwnProps, 'strong'>
 
-export interface ButtonOwnProps extends TextOwnProps {
+export interface ButtonOwnProps {
   intent?: IntentTypes
   appearance?: ButtonAppearance
   /**
@@ -2329,7 +2328,7 @@ export type TextOwnProps = {
 export type TextProps = PolymorphicBoxProps<'span', TextOwnProps>
 export declare const Text: BoxComponent<TextOwnProps, 'span'>
 
-export interface TextInputOwnProps extends TextOwnProps {
+export interface TextInputOwnProps {
   /**
    * Makes the input element required.
    */
