@@ -2,8 +2,13 @@ const baseStyle = {
   outline: 'none',
   textDecoration: 'none',
 
-  '&[data-isselectable="true"]': {
+  _isSelectable: {
     cursor: 'pointer'
+  },
+
+  _disabled: {
+    cursor: 'not-allowed',
+    pointerEvents: 'none'
   }
 }
 

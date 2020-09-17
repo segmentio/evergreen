@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState, useEffect, useCallback } from 'react'
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import { CaretDownIcon } from '../../icons'
@@ -48,6 +48,7 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
     getRef(ref)
   }
 
+  // TODO consider `useClickable`
   const handleKeyDown = (toggle, isShown, e) => {
     if (e.key === 'Enter') {
       e.preventDefault()
@@ -77,14 +78,14 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
     }
   }
 
-  const handleFocus = () => {
+  const handleFocus = useCallback(() => {
     setIsFocused(true)
-  }
+  }, [])
 
-  const handleBlur = () => {
+  const handleBlur = useCallback(() => {
     setShouldClickToggle(false)
     setIsFocused(false)
-  }
+  }, [])
 
   let cursor = 'default'
   if (disabled) {
@@ -106,7 +107,7 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
           <TextTableCell
             ref={onMainRef.bind(null, getRef)}
             onClick={handleClick.bind(null, toggle, isShown)}
-            onFocus={handleFocus.bind(null, toggle, isShown)}
+            onFocus={handleFocus}
             onBlur={handleBlur}
             isSelectable={isSelectable && !disabled}
             rightView={isSelectable ? <CaretDownIcon color="muted" /> : null}
