@@ -267,7 +267,75 @@ interface Typography {
       lineHeight: string
       marginTop: number
     }
-  }
+  },
+  headings: {
+    100: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    200: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    300: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    400: {
+      fontFamily: string
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    },
+    500: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    600: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    700: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    800: {
+      fontFamily: string
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    },
+    900: {
+      fontFamily: string
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+  },
   text: {
     300: {
       fontSize: string
