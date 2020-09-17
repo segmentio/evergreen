@@ -5,13 +5,18 @@ import Box from 'ui-box'
 import { useClickable, useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Pane } from '../../layers'
-import { pseudoSelectors as rowPseudos } from '../../table/src/TableRow'
 import { Text } from '../../typography'
 
 const noop = () => {}
 
 const pseudoSelectors = {
-  ...rowPseudos,
+  _hover:
+    '&[data-isselectable="true"]:not([aria-current="true"]):not([aria-checked="true"]):not(:focus):not(:active):hover',
+  _focus:
+    '&[data-isselectable="true"]:not([aria-current="true"]):not([aria-checked="true"]):focus, &[aria-selected="true"]',
+  _active: '&[aria-current="true"], &[data-isselectable="true"]:active',
+  _current: '&[aria-current="true"], &[aria-checked="true"]',
+  _isSelectable: '&[data-isselectable="true"]',
   _disabled: '&:disabled, &[aria-disabled="true"]'
 }
 
