@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import { useStyleConfig } from '../../hooks'
+import { useClickable, useStyleConfig } from '../../hooks'
 import { TickIcon } from '../../icons'
 import { Pane } from '../../layers'
 import { pseudoSelectors } from '../../table/src/TableRow'
@@ -25,15 +25,7 @@ const MenuOption = memo(function MenuOption(props) {
 
   const handleClick = useCallback(e => onSelect(e), [onSelect])
 
-  const handleKeyPress = useCallback(
-    e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        onSelect(e)
-        e.preventDefault()
-      }
-    },
-    [onSelect]
-  )
+  const { onKeyDown, tabIndex } = useClickable()
 
   const { className: themedClassName, ...boxProps } = useStyleConfig(
     'MenuItem',
@@ -54,10 +46,10 @@ const MenuOption = memo(function MenuOption(props) {
     <Pane
       id={id}
       role="menuitemradio"
-      tabIndex={0}
+      tabIndex={tabIndex}
       className={themedClassName}
       onClick={handleClick}
-      onKeyPress={handleKeyPress}
+      onKeyDown={onKeyDown}
       data-isselectable="true"
       aria-checked={isSelected}
       height={40}

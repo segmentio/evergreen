@@ -16,6 +16,7 @@ that you're seeing that we might have missed!
 - [No more `<BackButton />` component](#back-button)
 - [No more `marginTop="default"` on `<Paragraph />` or `<Heading />`](#no-more-default-margin-top)
 - [`<SegmentedControl />`](#segmented-control)
+- [`<Table.Row />` switched `onKeyPress` to `onKeyDown`](#table-row)
 
 #### No more `css` prop {#css-prop}
 
@@ -100,3 +101,14 @@ The internals have been slightly modified to make use of the new low-level `Grou
 This means that each option is represented as `Button`. If you were extracting values from form submission that included this component you may have changes to make.
 
 Additionally, we've unified the sizing API so SegmentedControl also accepts a `size` prop just like Button, TextInput, Group, etc.
+
+#### `<Table.Row />` switched `onKeyPress` to `onKeyDown` {#table-row}
+
+`onKeyPress` is [no longer recommended](https://developer.mozilla.org/en-US/docs/Web/API/Document/keypress_event) and should be subbed out with `onKeyDown`.
+
+Previously, `Table.Row` accepted and bubbled the `onKeyPress` even during `onKeyDown` – this behavior has now been normalized to do the expected thing. If you pass `onKeyPress` it will only be invoked during `onKeyPress` (it's passed down to the container component blindly). This may result in a behavior change if you were previously using `onKeyPress` on table rows. 
+
+```diff static
+- <Table.Row onKeyPress={() => {}} />
++ <Table.Row onKeyDown={() => {}} />
+```
