@@ -139,7 +139,7 @@ storiesOf('table', module)
       <Table.Body>
         {range(10).map(item => {
           return (
-            <Table.Row key={item} isSelectable>
+            <Table.Row key={item} isSelectable onSelect={() => alert('selected!')} onDeselect={() => alert('deselected!')}>
               <Table.TextCell>{item}</Table.TextCell>
             </Table.Row>
           )

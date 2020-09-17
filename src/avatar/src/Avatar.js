@@ -113,6 +113,10 @@ const Avatar = memo(
 )
 
 Avatar.propTypes = {
+  /**
+   * Class name passed to the component.
+   * Only use if you know what you are doing.
+   */
   className: PropTypes.string,
 
   /**
