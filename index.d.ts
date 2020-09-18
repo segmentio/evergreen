@@ -1622,8 +1622,7 @@ export interface SideSheetProps {
   shouldCloseOnEscapePress?: boolean
   width?: string | number
   containerProps?: PaneOwnProps & BoxProps<'div'>
-  // @ts-ignore
-  position?: Pick<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
+  position?: Extract<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
   preventBodyScrolling?: boolean
 }
 
