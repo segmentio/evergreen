@@ -8,8 +8,7 @@ const baseStyle = {
   },
 
   _disabled: {
-    cursor: 'not-allowed',
-    backgroundColor: 'colors.neutralAlpha.N2'
+    cursor: 'not-allowed'
   },
 
   _focus: {
@@ -32,7 +31,8 @@ const appearances = {
         `inset 0 0 2px ${theme.colors.neutralAlpha.N4A}, inset 0 0 0 1px ${theme.colors.blue.B7}, ${theme.shadows.focusRing}`
     },
     _disabled: {
-      boxShadow: theme => `inset 0 0 0 1px ${theme.colors.neutralAlpha.N4A}`
+      boxShadow: theme => `inset 0 0 0 1px ${theme.colors.neutralAlpha.N4A}`,
+      backgroundColor: 'colors.neutralAlpha.N2A'
     }
   },
   neutral: {
@@ -49,7 +49,10 @@ const appearances = {
     }
   },
   none: {
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    _disabled: {
+      backgroundColor: 'colors.neutral.N2'
+    }
   }
 }
 
