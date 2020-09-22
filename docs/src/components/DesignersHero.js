@@ -1,8 +1,9 @@
 import React from 'react'
 import { withPrefix } from 'gatsby'
-import { Button } from '../../../src'
+import { Button, Pane } from '../../../src'
 import spotIllustration from '../images/sketch-hero.png'
 import sketchIcon from '../images/sketch-icon.png'
+import figmaIcon from '../images/figma-logo.png'
 
 const NativeLink = ({ ...props }) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
@@ -23,11 +24,29 @@ export default class DesignersHero extends React.PureComponent {
               Design products and side-projects with our official design
               resource for the Evergreen community.
             </p>
-            <div>
+            <Pane display="flex" alignItems="flex-start" flexDirection="column">
+              <Button
+                height={40}
+                appearance="primary"
+                flexShrink={0}
+                is={NativeLink}
+                marginBottom={16}
+                href="https://www.figma.com/community/file/873000372046493812"
+                iconBefore={
+                  <img
+                    src={figmaIcon}
+                    height="16"
+                    style={{ marginRight: 10, marginLeft: -2 }}
+                  />
+                }
+              >
+                Download Figma File
+              </Button>
               <Button
                 is="a"
                 onClick={this.trackDownload}
                 href={withPrefix('/Evergreen v4 Community.sketch')}
+                flexShrink={0}
                 iconBefore={
                   <img
                     src={sketchIcon}
@@ -42,7 +61,7 @@ export default class DesignersHero extends React.PureComponent {
               >
                 Download Sketch UI Kit
               </Button>
-            </div>
+            </Pane>
             <div style={{ marginTop: 24, marginBottom: -32 }}>
               <a
                 rel="license"
