@@ -39,7 +39,7 @@ Code.propTypes = {
   appearance: PropTypes.oneOf(['default', 'minimal']),
 
   /**
-   * Class name passed to the button.
+   * Class name passed to the Code component.
    * Only use if you know what you are doing.
    */
   className: PropTypes.string

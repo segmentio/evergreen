@@ -1,7 +1,7 @@
-import React, { forwardRef, memo } from 'react'
+import React, { forwardRef, memo, useCallback } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import { useStyleConfig } from '../../hooks'
+import { useClickable, useLatest, useStyleConfig } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
 import { Text } from '../../typography'
@@ -40,10 +40,11 @@ const Tab = memo(
       disabled = false,
       is = 'span',
       isSelected,
-      onKeyPress = noop,
+      onKeyDown = noop,
       onSelect = noop,
       height = 28,
       className,
+      tabIndex,
       ...rest
     } = props
 
@@ -59,19 +60,18 @@ const Tab = memo(
         ? { marginRight: '8px' }
         : { marginBottom: '8px' }
 
-    const handleClick = e => {
-      safeInvoke(props.onClick, e)
-      onSelect()
-    }
+    const onClickRef = useLatest(props.onClick)
+    const handleClick = useCallback(
+      event => {
+        safeInvoke(onClickRef.current, event)
+        if (!disabled) {
+          onSelect()
+        }
+      },
+      [disabled, onSelect]
+    )
 
-    const handleKeyPress = e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        onSelect()
-        e.preventDefault()
-      }
-
-      onKeyPress(e)
-    }
+    const clickableProps = useClickable({ disabled, onKeyDown, tabIndex })
 
     if (process.env.NODE_ENV !== 'production') {
       warning(
@@ -119,7 +119,7 @@ const Tab = memo(
         {...boxProps}
         {...rest}
         onClick={handleClick}
-        onKeyPress={handleKeyPress}
+        {...clickableProps}
         {...elementBasedProps}
       />
     )

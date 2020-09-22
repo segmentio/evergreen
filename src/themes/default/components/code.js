@@ -1,13 +1,15 @@
 const baseStyle = {}
 
+const codeBackgroundColor = 'rgba(16, 112, 202, 0.06)'
+const codeBorderColor = 'rgba(16, 112, 202, 0.14)'
+
 const appearances = {
   default: {
-    backgroundColor: 'tokens.codeBackgroundColor',
-    boxShadow: (theme, _props) =>
-      `inset 0 0 0 1px ${theme.tokens.codeBorderColor}`,
+    backgroundColor: codeBackgroundColor,
+    boxShadow: `inset 0 0 0 1px ${codeBorderColor}`,
     paddingX: 6,
     paddingY: 3,
-    borderRadius: 'tokens.borderRadius'
+    borderRadius: 'radii.1'
   }
 }
 

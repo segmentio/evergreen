@@ -57,6 +57,11 @@ const Group = memo(
 
 Group.propTypes = {
   children: PropTypes.node.isRequired,
+
+  /**
+   * Class name passed to the component.
+   * Only use if you know what you are doing.
+   */
   className: PropTypes.string,
 
   /**
