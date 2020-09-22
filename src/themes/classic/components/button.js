@@ -8,7 +8,10 @@ const baseStyle = {
   fontFamily: 'fontFamilies.ui',
   borderRadius: 'radii.1',
   border: 0,
-  color: (theme, { color }) => theme.colors[color] || color || 'colors.default'
+  color: (theme, { color }) => theme.colors[color] || color || 'colors.default',
+  _disabled: {
+    ...defaultControlStyles.disabled
+  }
 }
 
 const appearances = {

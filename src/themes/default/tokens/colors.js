@@ -30,6 +30,7 @@ const colorScales = {
   red700: '#7D2828',
   red600: '#A73636',
   red500: '#D14343',
+  red300: '#EE9191',
   red100: '#F9DADA',
   red25: '#FDF4F4',
 

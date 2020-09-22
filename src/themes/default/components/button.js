@@ -15,11 +15,33 @@ const baseStyle = {
   }
 }
 
-const colorKeyForAppearance = appearance =>
-  appearance === 'destructive' ? 'red' : 'blue'
+const colorKeyForAppearanceOrIntent = (appearance, intent) => {
+  if (appearance === 'destructive') {
+    return 'red'
+  }
 
-const getPrimaryButtonAppearance = appearance => {
-  const color = colorKeyForAppearance(appearance)
+  switch (intent) {
+    case 'success':
+      return 'green'
+    case 'danger':
+      return 'red'
+    default:
+      return 'blue'
+  }
+}
+
+const colorKeyForIntent = (intent, isBorder) => {
+  if (intent === 'danger') {
+    return `red${isBorder ? 300 : 500}`
+  } else if (intent === 'success') {
+    return `green${isBorder ? 300 : 500}`
+  } else {
+    return `gray${isBorder ? 500 : 800}`
+  }
+}
+
+const getPrimaryButtonAppearance = (appearance, intent) => {
+  const color = colorKeyForAppearanceOrIntent(appearance, intent)
   return {
     backgroundColor: `colors.${color}500`,
     borderColor: `colors.${color}500`,
@@ -45,11 +67,13 @@ const getPrimaryButtonAppearance = appearance => {
 }
 
 const appearances = {
-  primary: getPrimaryButtonAppearance(),
+  primary: (_, { appearance, intent }) =>
+    getPrimaryButtonAppearance(appearance, intent),
   default: {
     backgroundColor: 'white',
-    border: theme => `1px solid ${theme.colors.gray500}`,
-    color: 'colors.gray800',
+    border: (theme, props) =>
+      `1px solid ${theme.colors[colorKeyForIntent(props.intent, true)]}`,
+    color: (theme, props) => theme.colors[colorKeyForIntent(props.intent)],
 
     _disabled: {
       color: 'colors.gray500',
@@ -67,7 +91,7 @@ const appearances = {
   },
   minimal: {
     backgroundColor: 'transparent',
-    color: 'colors.gray800',
+    color: (theme, props) => theme.colors[colorKeyForIntent(props.intent)],
 
     _disabled: {
       color: 'colors.gray500',
