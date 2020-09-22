@@ -1,72 +1,49 @@
-import { useState, useCallback } from 'react'
-
-/**
- * Hook that returns bind props + accessibility props for
- * "selectable" elements
- */
-
-const resetStyles = {
-  outline: 'none'
-}
+import { useCallback } from 'react'
+import safeInvoke from '../lib/safe-invoke'
+import { useRovingTabindex } from '../roving-tabindex'
+import { useClickable } from './use-clickable'
 
 export function useListBehavior({
   disabled,
-  isHighlighted,
   isSelectable,
   isSelected,
   onSelect,
-  ref: inputRef
+  ref
 }) {
-  const [ref, setRef] = useState(inputRef)
+  const { onClick: rovingTabIndexClick, onKeyDown: rovingTabIndexKeyDown, tabIndex: rovingTabIndex, ...rovingProps } = useRovingTabindex({
+    disabled,
+    isSelectable,
+    isSelected,
+    onSelect,
+    ref
+  })
+
+  const { onKeyDown: useClickableOnKeyDown, tabIndex: useClickableTabIndex } = useClickable({
+    disabled,
+    ref,
+    tabIndex: rovingTabIndex
+  })
 
   const keyDownHandler = useCallback(
-    e => {
-      const { key } = e
-      if (ref) {
-        let nextItemToFocus
-        const tableBodyChildren = Array.from(ref.parentElement.children)
-        const rowIndex = tableBodyChildren.indexOf(ref)
-
-        if (key === 'ArrowUp' && rowIndex - 1 >= 0) {
-          nextItemToFocus = tableBodyChildren[rowIndex - 1]
-        } else if (
-          key === 'ArrowDown' &&
-          rowIndex + 1 < tableBodyChildren.length
-        ) {
-          nextItemToFocus = tableBodyChildren[rowIndex + 1]
-        }
-
-        if (nextItemToFocus && nextItemToFocus.hasAttribute('tabindex')) {
-          nextItemToFocus.focus()
-        }
-
-        if (key === 'Enter' || key === ' ' || key === 'Spacebar') {
-          e.preventDefault()
-          e.currentTarget.click()
-          onSelect(e)
-        }
-      }
+    event => {
+      safeInvoke(useClickableOnKeyDown, event)
+      safeInvoke(rovingTabIndexKeyDown, event)
     },
-    [ref, disabled]
+    [ rovingTabIndexKeyDown, useClickableOnKeyDown ]
   )
 
   const clickHandler = useCallback(
-    e => {
-      if (!disabled && onSelect) {
-        onSelect(e)
-      }
+    event => {
+      safeInvoke(rovingTabIndexClick, event)
+      safeInvoke(onSelect, event)
     },
-    [onSelect, disabled]
+    [ onSelect, rovingTabIndexClick ]
   )
 
   return {
-    'aria-selected': isHighlighted,
-    'aria-current': isSelected,
-    'data-isselectable': isSelectable && !disabled,
-    tabIndex: isSelectable && !disabled ? 0 : undefined,
+    tabIndex: useClickableTabIndex,
     onKeyDown: keyDownHandler,
     onClick: clickHandler,
-    getRef: setRef,
-    ...resetStyles
+    ...rovingProps
   }
 }

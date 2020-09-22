@@ -1,6 +1,7 @@
-import React, { memo, forwardRef } from 'react'
+import React, { memo, forwardRef, useRef } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
-import { useStyleConfig, useListBehavior, useMergedRef } from '../../hooks/'
+import { useListBehavior , useStyleConfig, useMergedRef } from '../../hooks'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
@@ -25,6 +26,7 @@ const emptyObject = {}
 const Option = memo(
   forwardRef(function Option(props, forwardedRef) {
     const {
+      className,
       disabled,
       height,
       icon,
@@ -34,9 +36,10 @@ const Option = memo(
       label,
       onDeselect,
       onSelect,
-      style,
       ...rest
     } = props
+    const ref = useRef(null)
+
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Option',
@@ -45,19 +48,19 @@ const Option = memo(
       internalStyles
     )
 
-    const { getRef, ...listBehaviorProps } = useListBehavior({
+    const listBehaviorProps = useListBehavior({
+      disabled,
       isSelectable,
       isSelected,
-      disabled,
-      onSelect
+      onSelect,
+      ref
     })
 
-    const callbackRef = useMergedRef(getRef, forwardedRef)
+    const callbackRef = useMergedRef(ref, forwardedRef)
 
     return (
       <Pane
-        style={style}
-        className={themedClassName}
+        className={cx(themedClassName, className)}
         {...boxProps}
         {...rest}
         {...listBehaviorProps}
@@ -83,9 +86,9 @@ const Option = memo(
 )
 
 Option.propTypes = {
+  className: PropTypes.string,
   label: PropTypes.string,
   icon: PropTypes.string,
-  style: PropTypes.any,
   height: PropTypes.number,
   onSelect: PropTypes.func,
   onDeselect: PropTypes.func,
