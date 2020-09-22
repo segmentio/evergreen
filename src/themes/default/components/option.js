@@ -6,7 +6,7 @@ const baseStyle = {
   backgroundColor: 'white',
   borderBottom: (theme) => `1px solid ${theme.colors.border.muted}`,
 
-  '&:before': {
+  _before: {
     content: '""',
     position: 'absolute',
     left: 0,

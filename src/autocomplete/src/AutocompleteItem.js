@@ -4,7 +4,7 @@ import { Option } from '../../select-menu'
 
 const AutocompleteItem = memo(
   forwardRef(function AutocompleteItem(props, ref) {
-    const { children, isHighlighted, isSelected, style, ...restProps } = props
+    const { children, isHighlighted, isSelected, ...restProps } = props
 
     return (
       <Option
@@ -12,7 +12,6 @@ const AutocompleteItem = memo(
         isHighlighted={isHighlighted}
         isSelected={isSelected}
         label={children}
-        style={style}
         {...restProps}
       />
     )

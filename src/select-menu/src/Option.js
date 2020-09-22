@@ -1,6 +1,7 @@
-import React, { memo, forwardRef } from 'react'
+import React, { memo, forwardRef, useRef } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
-import { useStyleConfig, useListBehavior, useMergedRef } from '../../hooks/'
+import { useListBehavior , useStyleConfig, useMergedRef } from '../../hooks'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
 import { useTheme } from '../../theme'
@@ -11,7 +12,8 @@ const pseudoSelectors = {
   _hover: ':hover',
   _active: '&[aria-current="true"]:active, &[data-isselectable="true"]:active',
   _current: '&[aria-current="true"]',
-  _isSelectable: '&[data-isselectable="true"]'
+  _isSelectable: '&[data-isselectable="true"]',
+  _before: '&:before'
 }
 
 const internalStyles = {
@@ -24,6 +26,7 @@ const emptyObject = {}
 const Option = memo(
   forwardRef(function Option(props, forwardedRef) {
     const {
+      className,
       disabled,
       height,
       icon,
@@ -33,10 +36,9 @@ const Option = memo(
       label,
       onDeselect,
       onSelect,
-      style,
       ...rest
     } = props
-
+    const ref = useRef(null)
     const { tokens } = useTheme()
 
     const disableProps = { color: 'muted' }
@@ -59,22 +61,22 @@ const Option = memo(
       internalStyles
     )
 
-    const { getRef, ...listBehaviorProps } = useListBehavior({
+    const listBehaviorProps = useListBehavior({
+      disabled,
       isSelectable,
       isSelected,
-      disabled,
-      onSelect
+      onSelect,
+      ref
     })
 
-    const callbackRef = useMergedRef(getRef, forwardedRef)
+    const callbackRef = useMergedRef(ref, forwardedRef)
 
     return (
       <Pane
-        style={style}
-        className={themedClassName}
+        className={cx(themedClassName, className)}
         {...boxProps}
-        {...listBehaviorProps}
         {...rest}
+        {...listBehaviorProps}
         ref={callbackRef}
       >
         <Text
@@ -98,9 +100,9 @@ const Option = memo(
 )
 
 Option.propTypes = {
+  className: PropTypes.string,
   label: PropTypes.string,
   icon: PropTypes.string,
-  style: PropTypes.any,
   height: PropTypes.number,
   onSelect: PropTypes.func,
   onDeselect: PropTypes.func,
