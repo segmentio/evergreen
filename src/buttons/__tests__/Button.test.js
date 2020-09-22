@@ -5,9 +5,9 @@ import { classicTheme, defaultTheme } from '../../themes'
 import Button from '../src/Button'
 
 describe.each([
-  [defaultTheme, 'default'],
-  [classicTheme, 'classic']
-])('<Button /> %% %s', theme => {
+  ['default', defaultTheme],
+  ['classic', classicTheme]
+])('<Button /> % %s', (_, theme) => {
   it('snapshots with the rendered output', () => {
     const component = (
       <ThemeProvider value={theme}>
