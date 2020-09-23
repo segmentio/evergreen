@@ -1,5 +1,5 @@
 import { useRef, useContext, useLayoutEffect, useCallback } from 'react'
-import { uniqueId } from 'lodash'
+import uniqueId from 'lodash.uniqueId'
 import { RovingTabIndexContext, ActionTypes } from './tabindex-provider'
 
 const TabDirection = {
