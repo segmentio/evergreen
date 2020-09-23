@@ -14,7 +14,6 @@ export function useListBehavior({
     disabled,
     isSelectable,
     isSelected,
-    onSelect,
     ref
   })
 
