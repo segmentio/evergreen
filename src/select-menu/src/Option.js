@@ -31,6 +31,7 @@ const Option = memo(
       height,
       icon,
       isHighlighted,
+      isMultiSelect = false,
       isSelectable,
       isSelected,
       label,
@@ -39,7 +40,6 @@ const Option = memo(
       ...rest
     } = props
     const ref = useRef(null)
-
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Option',
@@ -50,6 +50,7 @@ const Option = memo(
 
     const listBehaviorProps = useListBehavior({
       disabled,
+      isMultiSelect,
       isSelectable,
       isSelected,
       onSelect,
@@ -93,6 +94,7 @@ Option.propTypes = {
   onSelect: PropTypes.func,
   onDeselect: PropTypes.func,
   isHighlighted: PropTypes.bool,
+  isMultiSelect: PropTypes.bool,
   isSelected: PropTypes.bool,
   isSelectable: PropTypes.bool,
   disabled: PropTypes.bool

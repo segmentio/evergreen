@@ -197,6 +197,7 @@ const OptionsList = memo(function OptionsList(props) {
                 onDeselect: () => handleDeselect(item),
                 isSelectable: !isItemSelected || isMultiSelect,
                 isSelected: isItemSelected,
+                isMultiSelect,
                 disabled: item.disabled,
                 tabIndex: 0
               })

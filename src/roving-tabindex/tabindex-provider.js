@@ -27,6 +27,10 @@ const sortTabStops = (tabStops) => {
   return tabStops.sort(compareTabStops)
 }
 
+const getFirstSelectedId = (tabStops) => {
+  return tabStops.find(tabStop => tabStop.ref.current.getAttribute('aria-checked')).id
+}
+
 const reducer = (state, action) => {
   switch (action.type) {
     case ActionTypes.REGISTER: {
@@ -48,6 +52,7 @@ const reducer = (state, action) => {
 
       return {
         ...state,
+        selectedId: getFirstSelectedId(tabStops) || null,
         tabStops: sortTabStops([ ...tabStops, newTabStop ])
       }
     }
