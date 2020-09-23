@@ -1,6 +1,12 @@
 import { useRef, useContext, useLayoutEffect, useCallback } from 'react'
-import uniqueId from 'lodash.uniqueId'
 import { RovingTabIndexContext, ActionTypes } from './tabindex-provider'
+
+let idCounter = 0
+
+const uniqueId = (prefix) => {
+  const id = ++idCounter
+  return `prefix_${id}`
+}
 
 const TabDirection = {
   Next: 'Next',
