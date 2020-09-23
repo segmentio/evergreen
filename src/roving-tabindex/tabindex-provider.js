@@ -17,7 +17,7 @@ const sortTabStops = (tabStops) => {
     }
 
     const DOCUMENT_POSITION_PRECEDING = 2
-    return !!(
+    return (
       a.ref.current.compareDocumentPosition(
         b.ref.current
       ) & DOCUMENT_POSITION_PRECEDING
