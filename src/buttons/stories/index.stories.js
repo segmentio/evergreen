@@ -203,6 +203,15 @@ buttonsStory.add('Common', () => (
   </Box>
 ))
 
+buttonsStory.add('Button height vs. size', () => (
+  <Box padding={40}>
+    <Button marginRight={16} height={40}>
+      With Height
+    </Button>
+    <Button size="large">With size</Button>
+  </Box>
+))
+
 buttonsStory.add('Button types', () => (
   <Box padding={40}>
     <Heading>Default Appearance</Heading>

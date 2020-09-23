@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Box, { dimensions, spacing, position, layout } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { CaretDownIcon } from '../../icons'
+import { getTextPropsForControlHeight } from '../../lib/deprecated-theme-helpers'
 
 const internalStyles = {
   textTransform: 'default',
@@ -52,19 +53,23 @@ const Select = memo(
       name,
       onChange,
       required,
-      size = 'medium',
       value,
       ...restProps
     } = props
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Select',
-      { appearance, size },
+      { appearance, size: restProps.size || 'medium' },
       pseudoSelectors,
       internalStyles
     )
 
     const height = heightProp || boxProps.height
+
+    const textProps =
+      !restProps.size && restProps.height
+        ? getTextPropsForControlHeight(restProps.height)
+        : {}
 
     const iconSize = getIconSizeForSelect(height)
     const iconMargin = height >= 36 ? 12 : 8
@@ -78,6 +83,7 @@ const Select = memo(
         width="auto"
         height={height}
         {...restProps}
+        {...textProps}
       >
         <Box
           is="select"
