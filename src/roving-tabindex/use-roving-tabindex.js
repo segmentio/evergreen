@@ -91,6 +91,7 @@ export default function useRovingTabIndex({
     tabIndex,
     'aria-selected': isFocused,
     'aria-current': isSelected,
+    'aria-checked': isSelected,
     'data-isselectable': isSelectable,
     onKeyDown: handleKeyDown,
     onClick: handleClick

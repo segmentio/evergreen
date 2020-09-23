@@ -38,6 +38,10 @@ const baseStyle = {
   _current: {
     backgroundColor: 'colors.blue.lightest',
 
+    ' span': {
+      color: 'colors.blue.base'
+    },
+
     '&:before': {
       transform: 'scaleX(1)'
     },

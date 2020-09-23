@@ -5,6 +5,7 @@ import { useClickable } from './use-clickable'
 
 export function useListBehavior({
   disabled,
+  isMultiSelect,
   isSelectable,
   isSelected,
   onSelect,
@@ -39,10 +40,16 @@ export function useListBehavior({
     [ onSelect, rovingTabIndexClick ]
   )
 
+  const checkboxProps = {
+    role: isMultiSelect ? 'checkbox' : 'radio',
+    'aria-label': ref.current?.textContent
+  }
+
   return {
     tabIndex: useClickableTabIndex,
     onKeyDown: keyDownHandler,
     onClick: clickHandler,
+    ...checkboxProps,
     ...rovingProps
   }
 }

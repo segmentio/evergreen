@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { useListBehavior , useStyleConfig, useMergedRef } from '../../hooks'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
-import { useTheme } from '../../theme'
 import { Text } from '../../typography'
 
 const pseudoSelectors = {
@@ -31,6 +30,7 @@ const Option = memo(
       height,
       icon,
       isHighlighted,
+      isMultiSelect = false,
       isSelectable,
       isSelected,
       label,
@@ -39,20 +39,6 @@ const Option = memo(
       ...rest
     } = props
     const ref = useRef(null)
-    const { tokens } = useTheme()
-
-    const disableProps = { color: 'muted' }
-    const selectedProps = { color: tokens.selectedOptionColor }
-    const emptyProps = {}
-
-    let textProps = emptyProps
-    if (disabled) {
-      textProps = disableProps
-    }
-
-    if (isSelected) {
-      textProps = selectedProps
-    }
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Option',
@@ -63,6 +49,7 @@ const Option = memo(
 
     const listBehaviorProps = useListBehavior({
       disabled,
+      isMultiSelect,
       isSelectable,
       isSelected,
       onSelect,
@@ -83,7 +70,6 @@ const Option = memo(
           height={height}
           display="flex"
           alignItems="center"
-          {...textProps}
           paddingX={16}
           borderRight={null}
           flex={1}
@@ -107,6 +93,7 @@ Option.propTypes = {
   onSelect: PropTypes.func,
   onDeselect: PropTypes.func,
   isHighlighted: PropTypes.bool,
+  isMultiSelect: PropTypes.bool,
   isSelected: PropTypes.bool,
   isSelectable: PropTypes.bool,
   disabled: PropTypes.bool
