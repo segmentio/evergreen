@@ -1,8 +1,6 @@
 import React, { createContext, useReducer, useMemo, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const DOCUMENT_POSITION_PRECEDING = 2
-
 export const ActionTypes = {
   REGISTER: 'REGISTER',
   UNREGISTER: 'UNREGISTER',
@@ -17,7 +15,8 @@ const sortTabStops = (tabStops) => {
     if (!a.ref.current || !b.ref.current) {
       return
     }
-    
+
+    const DOCUMENT_POSITION_PRECEDING = 2
     return !!(
       a.ref.current.compareDocumentPosition(
         b.ref.current
@@ -28,11 +27,12 @@ const sortTabStops = (tabStops) => {
   return tabStops.sort(compareTabStops)
 }
 
-export function reducer(state, action) {
+const reducer = (state, action) => {
   switch (action.type) {
     case ActionTypes.REGISTER: {
       const { tabStops } = state
       const newTabStop = action.payload
+
       if (tabStops.length === 0) {
         return {
           ...state,
@@ -42,21 +42,16 @@ export function reducer(state, action) {
       }
 
       const index = tabStops.findIndex(tabStop => tabStop.id === newTabStop.id)
-
       if (index >= 0) {
         return state
       }
 
-      const newTabStops = [
-        ...tabStops,
-        newTabStop
-      ]
-
       return {
         ...state,
-        tabStops: sortTabStops(newTabStops)
+        tabStops: sortTabStops([ ...tabStops, newTabStop ])
       }
     }
+
     case ActionTypes.UNREGISTER: {
       const id = action.payload.id
 
@@ -78,6 +73,7 @@ export function reducer(state, action) {
         tabStops: filteredTabStops
       }
     }
+
     case ActionTypes.TAB_TO_PREVIOUS:
     case ActionTypes.TAB_TO_NEXT: {
       const id = action.payload.id
@@ -104,6 +100,7 @@ export function reducer(state, action) {
         selectedId: state.tabStops[newIndex].id
       }
     }
+
     case ActionTypes.CLICKED: {
       return {
         ...state,
@@ -111,12 +108,14 @@ export function reducer(state, action) {
         selectedId: action.payload.id
       }
     }
+
     case ActionTypes.CHANGE_DIRECTION: {
       return {
         ...state,
         direction: action.payload.direction
       }
     }
+
     default:
       return state
   }
