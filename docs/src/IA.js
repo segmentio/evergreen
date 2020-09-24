@@ -83,7 +83,7 @@ export default {
       },
       {
         id: 'icons',
-        github: githubLink('icon'),
+        github: githubLink('icons'),
         name: 'Icons',
         tags: ['icon'],
         image: Icons,
@@ -177,7 +177,12 @@ export default {
       {
         title: 'Selects & Dropdown Menus',
         items: [
-          { id: 'select', name: 'Select', image: Select, github: githubLink('select') },
+          {
+            id: 'select',
+            name: 'Select',
+            image: Select,
+            github: githubLink('select')
+          },
           {
             id: 'combobox',
             github: githubLink('combobox'),
