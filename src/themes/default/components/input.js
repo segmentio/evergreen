@@ -1,7 +1,7 @@
 const baseStyle = {
   borderRadius: 'radii.1',
   fontFamily: 'fontFamilies.ui',
-  lineHeight: '12px',
+  lineHeight: 'lineHeights.0',
   border: '1px solid transparent',
   color: 'colors.default',
   transition: 'box-shadow 80ms ease-in-out',
@@ -55,7 +55,8 @@ const sizes = {
     height: 32
   },
   large: {
-    height: 40
+    height: 40,
+    lineHeight: 'lineHeights.1'
   }
 }
 

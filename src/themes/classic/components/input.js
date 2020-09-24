@@ -1,6 +1,6 @@
 const baseStyle = {
   borderRadius: 'radii.1',
-  lineHeight: '12px',
+  lineHeight: 'lineHeights.1',
   color: 'colors.default',
 
   _placeholder: {
@@ -65,7 +65,7 @@ const sizes = {
   },
   large: {
     height: 40,
-    lineHeight: '14px'
+    lineHeight: 'lineHeights.2'
   }
 }
 
