@@ -19,6 +19,7 @@ storiesOf('switch', module).add('Switch', () => {
         <Switch
           marginBottom={24}
           checked={testOneChecked}
+          hasCheckIcon
           onChange={event => setTestOneChecked(event.target.checked)}
         />
         <Switch marginBottom={24} disabled />
