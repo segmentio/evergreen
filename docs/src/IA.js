@@ -83,7 +83,7 @@ export default {
       },
       {
         id: 'icons',
-        github: githubLink('icon'),
+        github: githubLink('icons'),
         name: 'Icons',
         tags: ['icon'],
         image: Icons,
