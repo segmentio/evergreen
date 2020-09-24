@@ -3,6 +3,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
+import { getTextPropsForControlHeight } from '../../lib/deprecated-theme-helpers'
 import { useTheme } from '../../theme'
 
 const pseudoSelectors = {
@@ -34,7 +35,6 @@ const TextInput = memo(
       isInvalid = false,
       placeholder,
       required,
-      size = 'medium',
       spellCheck = true,
       width = 280,
       ...restProps
@@ -45,12 +45,16 @@ const TextInput = memo(
     const themedFontFamily = fontFamilies[fontFamily] || fontFamily
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Input',
-      { appearance, size },
+      { appearance, size: restProps.size || 'medium' },
       pseudoSelectors,
       internalStyles
     )
 
     const height = restProps.height || boxProps.height
+    const textProps =
+      !restProps.size && restProps.height
+        ? getTextPropsForControlHeight(restProps.height)
+        : {}
 
     return (
       <Box
@@ -67,6 +71,7 @@ const TextInput = memo(
         fontFamily={themedFontFamily}
         {...boxProps}
         {...restProps}
+        {...textProps}
         height={height}
       />
     )

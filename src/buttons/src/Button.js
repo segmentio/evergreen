@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
+import { getTextPropsForControlHeight } from '../../lib/deprecated-theme-helpers'
 import { Spinner } from '../../spinner'
 
 /* eslint-disable react/prop-types */
@@ -81,18 +82,22 @@ const Button = memo(
       is = 'button',
       isActive = false,
       isLoading,
-      size = 'medium',
       ...restProps
     } = props
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Button',
-      { appearance, color, intent, size },
+      { appearance, color, intent, size: restProps.size || 'medium' },
       pseudoSelectors,
       internalStyles
     )
 
     const height = restProps.height || boxProps.height
+    // Keep backwards compat font sizing if an explicit height was passed in.
+    const textProps =
+      !restProps.size && restProps.height
+        ? getTextPropsForControlHeight(restProps.height)
+        : {}
     const iconSize = getIconSizeForButton(height)
 
     return (
@@ -104,6 +109,7 @@ const Button = memo(
         data-active={isActive || undefined}
         {...boxProps}
         {...restProps}
+        {...textProps}
         disabled={disabled || isLoading}
       >
         {isLoading && (
