@@ -78,7 +78,7 @@ const Button = memo(
       disabled,
       iconAfter,
       iconBefore,
-      intent,
+      intent = 'none',
       is = 'button',
       isActive = false,
       isLoading,

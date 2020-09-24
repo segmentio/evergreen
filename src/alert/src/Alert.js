@@ -85,7 +85,7 @@ const Alert = memo(
               {children}
             </Paragraph>
           ) : (
-            children
+            <Pane paddingLeft={hasIcon ? 34 : 0}>{children}</Pane>
           )}
         </Pane>
         {isRemoveable && (

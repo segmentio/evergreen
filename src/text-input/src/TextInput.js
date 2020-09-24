@@ -21,8 +21,7 @@ const internalStyles = {
   outline: 'none',
   textDecoration: 'none',
   WebkitAppearance: 'none',
-  WebkitFontSmoothing: 'antialiased',
-  paddingX: 12
+  WebkitFontSmoothing: 'antialiased'
 }
 
 const TextInput = memo(

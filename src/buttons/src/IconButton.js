@@ -14,7 +14,7 @@ const IconButton = memo(
     const { icon, iconSize, ...restProps } = props
 
     // modifiers
-    const { appearance, intent, size = 'medium' } = props
+    const { appearance, intent = 'none', size = 'medium' } = props
 
     // Composes the exact same styles as button
     const styleProps = useStyleConfig(
@@ -40,7 +40,7 @@ const IconButton = memo(
       >
         <IconWrapper
           icon={icon}
-          color="currentColor"
+          color={intent === 'none' ? 'default' : 'currentColor'}
           size={iconSize || relativeIconSize}
         />
       </Button>

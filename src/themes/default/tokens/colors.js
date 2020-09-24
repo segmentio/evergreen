@@ -95,6 +95,12 @@ const colors = {
     muted: colorScales.gray600,
     disabled: colorScales.gray400,
     selected: colorScales.blue500
+  },
+
+  text: {
+    danger: colorScales.red500,
+    success: colorScales.green500,
+    info: colorScales.blue500
   }
 }
 

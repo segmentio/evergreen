@@ -140,6 +140,12 @@ const colors = {
     muted: neutral.N3
   },
 
+  text: {
+    success: palette.green.dark,
+    info: palette.blue.dark,
+    danger: palette.red.dark
+  },
+
   icon: {
     default: palette.neutral.N8,
     muted: palette.neutral.N7,

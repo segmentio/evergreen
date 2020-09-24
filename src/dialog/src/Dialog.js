@@ -148,12 +148,6 @@ const Dialog = memo(function Dialog({
       return undefined
     }
 
-    let appearance = 'primary'
-
-    if (intent === 'danger') {
-      appearance = 'destructive'
-    }
-
     return (
       <Pane display="flex" justifyContent="flex-end">
         <Pane paddingX={32} paddingBottom={32} paddingTop={24}>
@@ -171,7 +165,8 @@ const Dialog = memo(function Dialog({
               <Button
                 tabIndex={0}
                 marginLeft={8}
-                appearance={appearance}
+                appearance="primary"
+                intent={intent}
                 isLoading={isConfirmLoading}
                 disabled={isConfirmDisabled}
                 onClick={() => onConfirm(close)}

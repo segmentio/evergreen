@@ -7,7 +7,7 @@ import { useLatest } from './use-latest'
  * When the component has focus, Enter and space activate it
  */
 export function useClickable({
-  disabled,
+  disabled = false,
   onKeyDown: onKeyDownHandler,
   tabIndex = 0
 }) {
