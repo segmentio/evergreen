@@ -36,7 +36,7 @@ storiesOf('text-input', module)
         <Box key={appearance} padding={40} float="left">
           <Heading marginBottom={24}>Appearance: {appearance}</Heading>
           <Box marginBottom={24} width={360}>
-            <Label htmlFor="32" size={400} display="block">
+            <Label htmlFor={`${appearance}-32`} size={400} display="block">
               Height 32 (default)
             </Label>
             <Description marginBottom={8}>
@@ -45,29 +45,38 @@ storiesOf('text-input', module)
             <TextInput
               appearance={appearance}
               name="32"
-              id="32"
+              id={`${appearance}-32`}
               placeholder="With placeholder"
             />
           </Box>
           <Box marginBottom={24} width={360}>
-            <Label htmlFor="disabled" size={400} display="block">
+            <Label
+              htmlFor={`${appearance}-disabled`}
+              size={400}
+              display="block"
+            >
               Disabled
             </Label>
             <TextInput
               appearance={appearance}
               value="This is disabled"
               name="disabled"
+              id={`${appearance}-disabled`}
               disabled
             />
           </Box>
           <Box marginBottom={24} width={360}>
-            <Label htmlFor="isInvalid" size={400} display="block">
+            <Label
+              htmlFor={`${appearance}-disabled`}
+              size={400}
+              display="block"
+            >
               Is Invalid
             </Label>
             <TextInput
               appearance={appearance}
               name="isInvalid"
-              id="isInvalid"
+              id={`${appearance}-isInvalid`}
               isInvalid
             />
           </Box>
@@ -84,14 +93,19 @@ storiesOf('text-input', module)
             <TextInput appearance={appearance} name="medium" />
           </Box>
           <Box marginBottom={24}>
-            <Label htmlFor="large" size={400} display="block" marginBottom={4}>
+            <Label
+              htmlFor={`${appearance}-large`}
+              size={400}
+              display="block"
+              marginBottom={4}
+            >
               Large
             </Label>
             <TextInput
               appearance={appearance}
               size="large"
               name="large"
-              id="large"
+              id={`${appearance}-large`}
             />
           </Box>
         </Box>

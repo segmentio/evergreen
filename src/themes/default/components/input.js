@@ -10,6 +10,12 @@ const baseStyle = {
     color: 'colors.gray600'
   },
 
+  _focus: {
+    zIndex: 'zIndices.focused',
+    boxShadow: 'shadows.focusRing',
+    borderColor: 'colors.blue200'
+  },
+
   _disabled: {
     cursor: 'not-allowed',
     backgroundColor: 'colors.gray100',
@@ -21,12 +27,6 @@ const appearances = {
   default: {
     backgroundColor: 'white',
     borderColor: 'colors.gray400',
-
-    _focus: {
-      zIndex: 'zIndices.focused',
-      boxShadow: 'shadows.focusRing',
-      borderColor: 'colors.blue200'
-    },
 
     _invalid: {
       borderColor: 'colors.red500'
