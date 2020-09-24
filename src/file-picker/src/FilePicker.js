@@ -15,7 +15,7 @@ const FilePicker = memo(
       capture,
       className,
       disabled,
-      height,
+      height = 32,
       multiple,
       name,
       onBlur,
@@ -80,12 +80,7 @@ const FilePicker = memo(
     const rootClassNames = cx(`${CLASS_PREFIX}-root`, className)
 
     return (
-      <Box
-        display="flex"
-        className={rootClassNames}
-        ref={ref}
-        {...rest}
-      >
+      <Box display="flex" className={rootClassNames} ref={ref} {...rest}>
         <Box
           ref={fileInputRef}
           className={`${CLASS_PREFIX}-file-input`}
