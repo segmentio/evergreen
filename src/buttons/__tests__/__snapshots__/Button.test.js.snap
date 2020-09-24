@@ -2,7 +2,7 @@
 
 exports[`<Button /> % classic snapshots with the rendered output 1`] = `
 <button
-  className="css-15cxcpy ub-pst_relative ub-f-wght_500 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_0px ub-b-lft_0px ub-b-rgt_0px ub-b-top_0px ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_3px ub-bbrr_3px ub-btlr_3px ub-btrr_3px ub-color_425A70 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_32px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-bg-img_zk1eut ub-bs_ruftdn ub-box-szg_border-box"
+  className="css-15cxcpy ub-pst_relative ub-f-wght_500 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_0 ub-b-lft_0 ub-b-rgt_0 ub-b-top_0 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_3px ub-bbrr_3px ub-btlr_3px ub-btrr_3px ub-color_425A70 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_32px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-bg-img_zk1eut ub-bs_ruftdn ub-box-szg_border-box"
   type="button"
 />
 `;
