@@ -7,6 +7,7 @@ import { defaultControlStyles } from '../deprecated/shared'
 const baseStyle = {
   fontFamily: 'fontFamilies.ui',
   borderRadius: 'radii.1',
+  fontWeight: 500,
   border: '0',
   color: (theme, { color }) => theme.colors[color] || color || 'colors.default',
   _disabled: {
@@ -52,7 +53,8 @@ const appearances = {
     _disabled: defaultControlStyles.disabled
   },
   minimal: {
-    color: (_, props) => getTextColorForIntent(props.intent),
+    color: (theme, props) =>
+      getTextColorForIntent(props.intent, theme.colors.blue.base),
     background: 'transparent',
     _hover: {
       background: 'scales.neutral.N2A'

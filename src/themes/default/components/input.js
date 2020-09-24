@@ -4,6 +4,7 @@ const baseStyle = {
   lineHeight: 'lineHeights.0',
   border: '1px solid transparent',
   color: 'colors.default',
+  paddingX: 12,
   transition: 'box-shadow 80ms ease-in-out',
 
   _placeholder: {
@@ -30,10 +31,6 @@ const appearances = {
 
     _invalid: {
       borderColor: 'colors.red500'
-    },
-
-    _placeholderHover: {
-      color: 'colors.gray700'
     }
   },
   none: {

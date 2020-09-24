@@ -1,8 +1,21 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import { InlineAlert, Alert } from '..'
+import { InlineAlert, Alert, Button, majorScale, Paragraph } from '../..'
 import { Heading } from '../../typography'
+
+/* eslint-disable react/prop-types */
+const ErrorMessage = ({ cta, messaging, title }) => (
+  <Alert appearance="card" intent="danger" title={title}>
+    <Paragraph>{messaging}</Paragraph>
+    {cta && (
+      <Button appearance="primary" marginTop={majorScale(1)} onClick={() => {}}>
+        {cta}
+      </Button>
+    )}
+  </Alert>
+)
+/* eslint-enable react/prop-types */
 
 storiesOf('alert', module)
   .add('Alert', () => (
@@ -37,6 +50,11 @@ storiesOf('alert', module)
               marginBottom={32}
               intent="danger"
               title="We weren’t able to save your changes."
+            />
+            <ErrorMessage
+              title="This is broken"
+              messaging="You need to fix this"
+              cta="Try again"
             />
           </Box>
         ))}

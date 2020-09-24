@@ -2,6 +2,8 @@ const baseStyle = {
   borderRadius: 'radii.1',
   lineHeight: 'lineHeights.1',
   color: 'colors.default',
+  fontSize: 'fontSizes.1',
+  paddingX: 10,
 
   _placeholder: {
     color: 'colors.neutralAlpha.N6A'

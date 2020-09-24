@@ -3,6 +3,7 @@ const baseStyle = {
   textDecoration: 'none',
   display: 'flex',
   position: 'relative',
+  paddingX: 12,
 
   _isSelectable: {
     cursor: 'pointer'
@@ -45,7 +46,7 @@ const appearances = {
 
       '&:before': {
         transform: 'scaleX(1)'
-      },
+      }
     },
 
     _current: {
@@ -53,12 +54,12 @@ const appearances = {
 
       '&:before': {
         transform: 'scaleX(1)'
-      },
-    },
+      }
+    }
   }
 }
 
 export default {
   baseStyle,
-  appearances,
+  appearances
 }

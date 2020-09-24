@@ -149,7 +149,12 @@ const Switch = memo(
             data-checked={checked}
             className={iconContainerStyleClass}
           >
-            {hasCheckIcon && <CheckIcon size={height / 2 - 3} />}
+            {hasCheckIcon && (
+              <CheckIcon
+                display={checked ? 'block' : undefined}
+                size={height / 2 - 3}
+              />
+            )}
           </Box>
           <Box
             width={height * 2}
