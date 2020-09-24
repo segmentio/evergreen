@@ -1,5 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
+import merge from 'lodash.merge'
 import PropTypes from 'prop-types'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -92,6 +93,9 @@ const Button = memo(
       internalStyles
     )
 
+    // Merge boxProps and restProps. Initialize the undefined value in `restProps` according to `boxProps`
+    const otherProps = merge({}, boxProps, restProps)
+
     const height = restProps.height || boxProps.height
     // Keep backwards compat font sizing if an explicit height was passed in.
     const textProps =
@@ -107,8 +111,7 @@ const Button = memo(
         type={is === 'button' ? 'button' : undefined}
         className={cx(themedClassName, className)}
         data-active={isActive || undefined}
-        {...boxProps}
-        {...restProps}
+        {...otherProps}
         {...textProps}
         disabled={disabled || isLoading}
       >
