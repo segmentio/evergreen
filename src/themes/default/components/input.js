@@ -14,11 +14,6 @@ const baseStyle = {
     cursor: 'not-allowed',
     backgroundColor: 'colors.gray100',
     color: 'colors.muted'
-  },
-
-  _focus: {
-    zIndex: 'zIndices.focused',
-    boxShadow: 'shadows.focusRing'
   }
 }
 
@@ -27,15 +22,14 @@ const appearances = {
     backgroundColor: 'white',
     borderColor: 'colors.gray400',
 
-    _invalid: {
-      borderColor: 'colors.red500'
+    _focus: {
+      zIndex: 'zIndices.focused',
+      boxShadow: 'shadows.focusRing',
+      borderColor: 'colors.blue200'
     },
 
-    _focus: {
-      transition: 'box-shadow 80ms ease-in-out',
-      zIndex: 'zIndices.focused',
-      borderColor: 'colors.blue200',
-      boxShadow: 'shadows.focusRing'
+    _invalid: {
+      borderColor: 'colors.red500'
     },
 
     _placeholderHover: {

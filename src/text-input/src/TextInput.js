@@ -9,7 +9,7 @@ import { useTheme } from '../../theme'
 const pseudoSelectors = {
   _focus: '&:focus',
   _disabled: '&:disabled',
-  _invalid: '&[aria-invalid="true"]',
+  _invalid: '&[aria-invalid="true"]:not(:focus)',
   _placeholder: '&::placeholder',
   _placeholderHover: '&:hover::placeholder',
   _placeholderFocus: '&:focus::placeholder'

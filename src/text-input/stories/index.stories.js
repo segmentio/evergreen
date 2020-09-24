@@ -57,7 +57,6 @@ storiesOf('text-input', module)
               appearance={appearance}
               value="This is disabled"
               name="disabled"
-              id="disabled"
               disabled
             />
           </Box>
@@ -76,18 +75,13 @@ storiesOf('text-input', module)
             <Label htmlFor="small" size={300} display="block" marginBottom={4}>
               Small
             </Label>
-            <TextInput
-              appearance={appearance}
-              size="small"
-              name="small"
-              id="small"
-            />
+            <TextInput appearance={appearance} size="small" name="small" />
           </Box>
           <Box marginBottom={24}>
             <Label htmlFor="medium" size={300} display="block" marginBottom={4}>
               Medium
             </Label>
-            <TextInput appearance={appearance} name="medium" id="medium" />
+            <TextInput appearance={appearance} name="medium" />
           </Box>
           <Box marginBottom={24}>
             <Label htmlFor="large" size={400} display="block" marginBottom={4}>
