@@ -11,33 +11,25 @@ export function useListBehavior({
   onSelect,
   ref
 }) {
-  const { onClick: rovingTabIndexClick, onKeyDown: rovingTabIndexKeyDown, tabIndex: rovingTabIndex, ...rovingProps } = useRovingTabindex({
+  const { onClick: rovingTabIndexOnClick, onKeyDown: rovingTabIndexOnKeyDown, tabIndex: rovingTabIndex, ...rovingProps } = useRovingTabindex({
     disabled,
     isSelectable,
     isSelected,
     ref
   })
 
-  const { onKeyDown: useClickableOnKeyDown, tabIndex: useClickableTabIndex } = useClickable({
+  const { onKeyDown, tabIndex: useClickableTabIndex } = useClickable({
     disabled,
-    ref,
+    onKeyDown: rovingTabIndexOnKeyDown,
     tabIndex: rovingTabIndex
   })
 
-  const keyDownHandler = useCallback(
-    event => {
-      safeInvoke(useClickableOnKeyDown, event)
-      safeInvoke(rovingTabIndexKeyDown, event)
-    },
-    [ rovingTabIndexKeyDown, useClickableOnKeyDown ]
-  )
-
   const clickHandler = useCallback(
     event => {
-      safeInvoke(rovingTabIndexClick, event)
+      safeInvoke(rovingTabIndexOnClick, event)
       safeInvoke(onSelect, event)
     },
-    [ onSelect, rovingTabIndexClick ]
+    [ onSelect, rovingTabIndexOnClick ]
   )
 
   const checkboxProps = {
@@ -47,8 +39,9 @@ export function useListBehavior({
 
   return {
     tabIndex: useClickableTabIndex,
-    onKeyDown: keyDownHandler,
+    onKeyDown,
     onClick: clickHandler,
+    disabled,
     ...checkboxProps,
     ...rovingProps
   }

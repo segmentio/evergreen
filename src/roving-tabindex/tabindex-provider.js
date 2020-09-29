@@ -4,14 +4,14 @@ import PropTypes from 'prop-types'
 export const ActionTypes = {
   REGISTER: 'REGISTER',
   UNREGISTER: 'UNREGISTER',
-  TAB_TO_PREVIOUS: 'TAB_TO_PREVIOUS',
-  TAB_TO_NEXT: 'TAB_TO_NEXT',
+  MOVE_TO_PREVIOUS: 'MOVE_TO_PREVIOUS',
+  MOVE_TO_NEXT: 'MOVE_TO_NEXT',
   CLICKED: 'CLICKED',
   CHANGE_DIRECTION: 'CHANGE_DIRECTION'
 }
 
-const sortTabStops = (tabStops) => {
-  const compareTabStops = (a, b) => {
+const sortStopItems = (stopItems) => {
+  const compareStopItems = (a, b) => {
     if (!a.ref.current || !b.ref.current) {
       return
     }
@@ -24,85 +24,85 @@ const sortTabStops = (tabStops) => {
     ) ? 1 : -1
   }
 
-  return tabStops.sort(compareTabStops)
+  return stopItems.sort(compareStopItems)
 }
 
-const getFirstSelectedId = (tabStops) => {
-  return tabStops.find(tabStop => tabStop.ref.current.getAttribute('aria-checked')).id
+const getFirstSelectedId = (stopItems) => {
+  return stopItems.find(stopItem => stopItem.ref.current.getAttribute('aria-checked')).id
 }
 
 const reducer = (state, action) => {
   switch (action.type) {
     case ActionTypes.REGISTER: {
-      const { tabStops } = state
-      const newTabStop = action.payload
+      const { stopItems } = state
+      const newStopItem = action.payload
 
-      if (tabStops.length === 0) {
+      if (stopItems.length === 0) {
         return {
           ...state,
-          selectedId: newTabStop.id,
-          tabStops: [newTabStop]
+          selectedId: newStopItem.id,
+          stopItems: [newStopItem]
         }
       }
 
-      const index = tabStops.findIndex(tabStop => tabStop.id === newTabStop.id)
+      const index = stopItems.findIndex(stopItem => stopItem.id === newStopItem.id)
       if (index >= 0) {
         return state
       }
 
       return {
         ...state,
-        selectedId: getFirstSelectedId(tabStops) || null,
-        tabStops: sortTabStops([ ...tabStops, newTabStop ])
+        selectedId: getFirstSelectedId(stopItems) || null,
+        stopItems: sortStopItems([ ...stopItems, newStopItem ])
       }
     }
 
     case ActionTypes.UNREGISTER: {
       const id = action.payload.id
 
-      let filteredTabStops = state.tabStops.filter(
-        tabStop => tabStop.id !== id
+      let filteredStopItems = state.stopItems.filter(
+        stopItem => stopItem.id !== id
       )
 
-      if (filteredTabStops.length === state.tabStops.length) {
+      if (filteredStopItems.length === state.stopItems.length) {
         return state
       }
 
-      filteredTabStops = sortTabStops(filteredTabStops)
+      filteredStopItems = sortStopItems(filteredStopItems)
 
       return {
         ...state,
-        selectedId:filteredTabStops.length === 0
+        selectedId:filteredStopItems.length === 0
           ? null
-          : filteredTabStops[0].id,
-        tabStops: filteredTabStops
+          : filteredStopItems[0].id,
+        stopItems: filteredStopItems
       }
     }
 
-    case ActionTypes.TAB_TO_PREVIOUS:
-    case ActionTypes.TAB_TO_NEXT: {
+    case ActionTypes.MOVE_TO_PREVIOUS:
+    case ActionTypes.MOVE_TO_NEXT: {
       const id = action.payload.id
-      const index = state.tabStops.findIndex(tabStop => tabStop.id === id)
+      const index = state.stopItems.findIndex(stopItem => stopItem.id === id)
 
       if (index === -1) {
         return state
       }
 
       const newIndex =
-        action.type === ActionTypes.TAB_TO_PREVIOUS
+        action.type === ActionTypes.MOVE_TO_PREVIOUS
           ? index <= 0
             ? 0
             : index - 1
-          : index >= state.tabStops.length - 1
-          ? state.tabStops.length - 1
+          : index >= state.stopItems.length - 1
+          ? state.stopItems.length - 1
           : index + 1
 
-      state.tabStops[newIndex].ref.current.focus()
+      state.stopItems[newIndex].ref.current.focus()
 
       return {
         ...state,
         lastActionOrigin: 'keyboard',
-        selectedId: state.tabStops[newIndex].id
+        selectedId: state.stopItems[newIndex].id
       }
     }
 
@@ -131,7 +131,7 @@ export const RovingTabIndexContext = createContext({
     direction: 'vertical',
     selectedId: null,
     lastActionOrigin: null,
-    tabStops: []
+    stopItems: []
   },
   dispatch: () => {}
 })
@@ -141,7 +141,7 @@ const Provider = ({ children, direction = 'vertical' }) => {
     direction: 'vertical',
     selectedId: null,
     lastActionOrigin: null,
-    tabStops: []
+    stopItems: []
   })
 
   const context = useMemo(
