@@ -34,7 +34,7 @@ const ColorExamples = props => {
             }
 
             return (
-              <Pane clearfix key={item.key}>
+              <Pane clearfix key={item.key} marginTop={32}>
                 <Heading size={800}>{item.name}</Heading>
                 {Object.keys(theme[item.key]).map(key => {
                   return (
