@@ -35,7 +35,7 @@ const baseStyle = {
     backgroundColor: 'colors.blue.lightest',
   },
 
-  _current: {
+  _selected: {
     backgroundColor: 'colors.blue.lightest',
 
     ' span': {
@@ -46,6 +46,12 @@ const baseStyle = {
       transform: 'scaleX(1)'
     },
   },
+
+  _disabled: {
+    opacity: 0.5,
+    pointerEvents: 'none',
+    cursor: 'not-allowed'
+  }
 }
 
 export default {

@@ -36,7 +36,7 @@ const baseStyle = {
     backgroundColor: 'intents.info.background',
   },
 
-  _current: {
+  _selected: {
     backgroundColor: 'intents.info.background',
 
     ' span': {
@@ -47,6 +47,12 @@ const baseStyle = {
       transform: 'scaleX(1)'
     },
   },
+
+  _disabled: {
+    opacity: 0.5,
+    pointerEvents: 'none',
+    cursor: 'not-allowed'
+  }
 }
 
 export default {

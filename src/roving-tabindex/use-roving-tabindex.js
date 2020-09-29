@@ -1,14 +1,8 @@
 import { useRef, useContext, useLayoutEffect, useCallback } from 'react'
+import { useId } from '../hooks'
 import { RovingTabIndexContext, ActionTypes } from './tabindex-provider'
 
-let idCounter = 0
-
-const uniqueId = (prefix) => {
-  const id = ++idCounter
-  return `prefix_${id}`
-}
-
-const TabDirection = {
+const MoveDirection = {
   Next: 'Next',
   Previous: 'Previous'
 }
@@ -19,7 +13,8 @@ export default function useRovingTabIndex({
   isSelected,
   ref = null
 }) {
-  const tabIndexId = useRef(uniqueId('eg-roving-tabindex_'))
+  const stopElementId = useId('eg-roving-tabindex_')
+  const stopElementRef = useRef(stopElementId)
   const context = useContext(RovingTabIndexContext)
 
   useLayoutEffect(() => {
@@ -28,12 +23,12 @@ export default function useRovingTabIndex({
     }
     context.dispatch({
       type: ActionTypes.REGISTER,
-      payload: { id: tabIndexId.current, ref }
+      payload: { id: stopElementRef.current, ref }
     })
     return () => {
       context.dispatch({
         type: ActionTypes.UNREGISTER,
-        payload: { id: tabIndexId.current }
+        payload: { id: stopElementRef.current }
       })
     }
   }, [disabled])
@@ -45,18 +40,18 @@ export default function useRovingTabIndex({
       context.state.direction === 'horizontal'
     ) {
       if (event.key === 'ArrowLeft') {
-        return TabDirection.Previous
+        return MoveDirection.Previous
       } else if (event.key === 'ArrowRight') {
-        return TabDirection.Next
+        return MoveDirection.Next
       }
     }
     if (
       context.state.direction === 'vertical'
     ) {
       if (event.key === 'ArrowUp') {
-        return TabDirection.Previous
+        return MoveDirection.Previous
       } else if (event.key === 'ArrowDown') {
-        return TabDirection.Next
+        return MoveDirection.Next
       }
     }
     return null
@@ -64,17 +59,17 @@ export default function useRovingTabIndex({
 
   const handleKeyDown = useCallback(
     (event) => {
-      const payload = { id: tabIndexId.current }
+      const payload = { id: stopElementRef.current }
       const direction = getDirection(event)
-      if (direction === TabDirection.Previous) {
+      if (direction === MoveDirection.Previous) {
         context.dispatch({
-          type: ActionTypes.TAB_TO_PREVIOUS,
+          type: ActionTypes.MOVE_TO_PREVIOUS,
           payload
         })
         event.preventDefault()
-      } else if (direction === TabDirection.Next) {
+      } else if (direction === MoveDirection.Next) {
         context.dispatch({
-          type: ActionTypes.TAB_TO_NEXT,
+          type: ActionTypes.MOVE_TO_NEXT,
           payload
         })
         event.preventDefault()
@@ -86,11 +81,11 @@ export default function useRovingTabIndex({
   const handleClick = useCallback(() => {
     context.dispatch({
       type: ActionTypes.CLICKED,
-      payload: { id: tabIndexId.current }
+      payload: { id: stopElementRef.current }
     })
-  }, [ tabIndexId ])
+  }, [])
 
-  const isFocused = !disabled && tabIndexId.current === context.state.selectedId
+  const isFocused = !disabled && stopElementRef.current === context.state.selectedId
   const tabIndex = isFocused ? 0 : -1
 
   return { 

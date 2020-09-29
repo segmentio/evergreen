@@ -6,18 +6,19 @@ import { Image } from '../../image'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
 
-const pseudoSelectors = {
+export const pseudoSelectors = {
+  _active: '&[aria-current="true"]:active, &[data-isselectable="true"]:active',
+  _before: '&:before',
+  _disabled: '&[disabled]',
   _focus: ':focus',
   _hover: ':hover',
-  _active: '&[aria-current="true"]:active, &[data-isselectable="true"]:active',
-  _current: '&[aria-current="true"]',
   _isSelectable: '&[data-isselectable="true"]',
-  _before: '&:before'
+  _selected: '&[aria-current="true"]'
 }
 
 const internalStyles = {
-  display: 'flex',
-  alignItems: 'center'
+  alignItems: 'center',
+  display: 'flex'
 }
 
 const emptyObject = {}

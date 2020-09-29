@@ -3,16 +3,9 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { useStyleConfig, useMergedRef } from '../../hooks'
 import { Pane } from '../../layers'
+import { pseudoSelectors } from '../../select-menu/src/Option'
 import { Text } from '../../typography'
 
-const pseudoSelectors = {
-  _focus: ':focus',
-  _hover: ':hover',
-  _active: '&[aria-current="true"]:active, &[data-isselectable="true"]:active',
-  _current: '&[aria-current="true"]',
-  _isSelectable: '&[data-isselectable="true"]',
-  _before: '&:before'
-}
 
 const internalStyles = {
   display: 'flex',
