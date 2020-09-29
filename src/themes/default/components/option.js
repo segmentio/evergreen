@@ -39,11 +39,11 @@ const baseStyle = {
   _selected: {
     backgroundColor: 'intents.info.background',
 
-    ' span': {
+    _textElement: {
       color: 'intents.info.text'
     },
 
-    '&:before': {
+    _before: {
       transform: 'scaleX(1)'
     },
   },

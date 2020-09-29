@@ -14,7 +14,8 @@ export const pseudoSelectors = {
   _focus: ':focus',
   _hover: ':hover',
   _isSelectable: '&[data-isselectable="true"]',
-  _selected: '&[aria-current="true"]'
+  _selected: '&[aria-current="true"]',
+  _textElement: '& span'
 }
 
 const internalStyles = {

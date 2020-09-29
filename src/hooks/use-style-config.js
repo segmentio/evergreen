@@ -118,7 +118,21 @@ function useGlamorAndBox(styles, pseudoSelectors) {
     // Swap out pseudo selector placeholders for their actual css selector strings
     for (const k of Object.keys(remainingProps)) {
       const key = k in pseudoSelectors ? pseudoSelectors[k] : k
-      glamorStyles[key] = remainingProps[k]
+
+      const propsObject = remainingProps[k]
+
+      if (typeof propsObject !== 'object') {
+        glamorStyles[key] = propsObject
+      } else {
+        const tempProps = {}
+
+        for (const sk of Object.keys(propsObject)) {
+          const subKey = sk in pseudoSelectors ? pseudoSelectors[sk] : sk
+          tempProps[subKey] = propsObject[sk]
+        }
+
+        glamorStyles[key] = tempProps
+      }
     }
 
     // Take all the "non-compatible" props and give those to glamor (since ui-box doesn't know how to handle them yet)

@@ -38,11 +38,11 @@ const baseStyle = {
   _selected: {
     backgroundColor: 'colors.blue.lightest',
 
-    ' span': {
+    _textElement: {
       color: 'colors.blue.base'
     },
 
-    '&:before': {
+    _before: {
       transform: 'scaleX(1)'
     },
   },
