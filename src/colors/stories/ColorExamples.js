@@ -15,7 +15,7 @@ const colorKeys = [
   },
   {
     key: 'colors',
-    name: 'Function colors'
+    name: 'Functional colors'
   },
   {
     key: 'scales',
