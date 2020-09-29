@@ -13,7 +13,7 @@ const ColorExamples = props => {
     <ThemeConsumer>
       {theme => (
         <Pane {...props}>
-          <Pane clearfix>
+          {theme.palette && <Pane clearfix>
             <Heading size={800}>Palette</Heading>
             {Object.keys(theme.palette).map(key => {
               return (
@@ -25,8 +25,8 @@ const ColorExamples = props => {
                 />
               )
             })}
-          </Pane>
-          <Pane clearfix>
+          </Pane>}
+          {theme.colors && <Pane clearfix>
             <Heading size={800} marginTop={24}>
               Functional Colors
             </Heading>
@@ -40,8 +40,8 @@ const ColorExamples = props => {
                 />
               )
             })}
-          </Pane>
-          <Pane clearfix>
+          </Pane>}
+          {theme.scales && <Pane clearfix>
             <Heading size={800} marginTop={24}>
               Scales
             </Heading>
@@ -55,7 +55,7 @@ const ColorExamples = props => {
                 />
               )
             })}
-          </Pane>
+          </Pane>}
         </Pane>
       )}
     </ThemeConsumer>

@@ -5,17 +5,18 @@ import { Heading } from '../../typography'
 import Swatch from './Swatch'
 
 const ColorGroup = props => {
+  const colorGroup = typeof props.colorGroup === 'object' ? props.colorGroup : { [props.title]: props.colorGroup }
   return (
     <Pane marginTop={32} minWidth={160}>
       <Pane borderBottom paddingBottom={8}>
         <Heading>{props.title}</Heading>
       </Pane>
       <Pane>
-        {Object.keys(props.colorGroup).map(key => {
+        {Object.keys(colorGroup).map(key => {
           return (
             <Swatch
               key={key}
-              color={props.colorGroup[key]}
+              color={colorGroup[key]}
               name={key}
               property={props.name(key)}
             />
