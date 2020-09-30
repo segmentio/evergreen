@@ -1,5 +1,4 @@
 import React, { memo, forwardRef, useRef } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useListBehavior , useStyleConfig, useMergedRef } from '../../hooks'
@@ -26,7 +25,6 @@ const emptyObject = {}
 const Option = memo(
   forwardRef(function Option(props, forwardedRef) {
     const {
-      className,
       disabled,
       height,
       icon,
@@ -62,7 +60,7 @@ const Option = memo(
 
     return (
       <Pane
-        className={cx(themedClassName, className)}
+        className={themedClassName}
         {...boxProps}
         {...rest}
         {...listBehaviorProps}
@@ -89,7 +87,6 @@ const Option = memo(
 )
 
 Option.propTypes = {
-  className: PropTypes.string,
   label: PropTypes.string,
   icon: PropTypes.string,
   height: PropTypes.number,
