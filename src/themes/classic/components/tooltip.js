@@ -1,6 +1,6 @@
 const baseStyle = {
-  paddingY: 8,
-  paddingX: 16,
+  paddingX: 8,
+  paddingY: 4,
   borderRadius: 'radii.1',
   maxWidth: 240,
   elevation: 'shadows.3'
