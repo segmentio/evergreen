@@ -10,7 +10,7 @@ export const pseudoSelectors = {
   _active: '&[aria-current="true"]:active, &[data-isselectable="true"]:active',
   _before: '&:before',
   _disabled: '&[disabled]',
-  _focus: ':focus',
+  _focus: ':focus, &[aria-selected="true"]',
   _hover: ':hover',
   _isSelectable: '&[data-isselectable="true"]',
   _selected: '&[aria-current="true"]'
@@ -50,6 +50,7 @@ const Option = memo(
 
     const listBehaviorProps = useListBehavior({
       disabled,
+      isHighlighted,
       isMultiSelect,
       isSelectable,
       isSelected,

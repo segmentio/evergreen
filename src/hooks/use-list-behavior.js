@@ -5,13 +5,14 @@ import { useClickable } from './use-clickable'
 
 export function useListBehavior({
   disabled,
+  isHighlighted,
   isMultiSelect,
   isSelectable,
   isSelected,
   onSelect,
   ref
 }) {
-  const { onClick: rovingTabIndexOnClick, onKeyDown: rovingTabIndexOnKeyDown, tabIndex: rovingTabIndex, ...rovingProps } = useRovingTabindex({
+  const { 'aria-selected': ariaSelected, onClick: rovingTabIndexOnClick, onKeyDown: rovingTabIndexOnKeyDown, tabIndex: rovingTabIndex, ...rovingProps } = useRovingTabindex({
     disabled,
     isSelectable,
     isSelected,
@@ -42,6 +43,7 @@ export function useListBehavior({
     onKeyDown,
     onClick: clickHandler,
     disabled,
+    'aria-selected': isHighlighted || ariaSelected,
     ...checkboxProps,
     ...rovingProps
   }
