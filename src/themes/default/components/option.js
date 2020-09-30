@@ -33,8 +33,7 @@ const baseStyle = {
   },
 
   _active: {
-    color: 'colors.blue500',
-    boxShadow: theme => `inset 2px 0 0 ${theme.colors.blue500}`
+    color: 'colors.blue500'
   },
 
   _selected: {
