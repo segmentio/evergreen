@@ -1,10 +1,10 @@
 import React, { memo, forwardRef, useRef } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
+import Box from 'ui-box'
 import { useListBehavior , useStyleConfig, useMergedRef } from '../../hooks'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
-import { Text } from '../../typography'
 
 export const pseudoSelectors = {
   _active: '&[aria-current="true"]:active, &[data-isselectable="true"]:active',
@@ -68,7 +68,8 @@ const Option = memo(
         {...listBehaviorProps}
         ref={callbackRef}
       >
-        <Text
+        <Box
+          is="span"
           height={height}
           display="flex"
           alignItems="center"
@@ -81,7 +82,7 @@ const Option = memo(
             {icon && <Image src={icon} width={24} marginRight={8} />}
             {label}
           </Pane>
-        </Text>
+        </Box>
       </Pane>
     )
   })

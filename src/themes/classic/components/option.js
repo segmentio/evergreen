@@ -5,6 +5,12 @@ const baseStyle = {
   position: 'relative',
   backgroundColor: 'white',
   borderBottom: (theme) => `1px solid ${theme.colors.border.muted}`,
+  fontFamily: 'fontFamilies.ui',
+  color: 'colors.default',
+  fontSize: 'fontSizes.2',
+  fontWeight: 'fontWeights.normal',
+  lineHeight: 'lineHeights.2',
+  letterSpacing: 'letterSpacings.tight',
 
   _before: {
     content: '""',
@@ -33,14 +39,12 @@ const baseStyle = {
 
   _active: {
     backgroundColor: 'colors.blue.lightest',
+    color: 'colors.dark'
   },
 
   _selected: {
     backgroundColor: 'colors.blue.lightest',
-
-    ' span': {
-      color: 'colors.blue.base'
-    },
+    color: 'colors.blue.base',
 
     '&:before': {
       transform: 'scaleX(1)'
