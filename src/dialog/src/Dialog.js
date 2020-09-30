@@ -3,6 +3,7 @@ import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { Button, IconButton } from '../../buttons'
+import { useStyleConfig } from '../../hooks'
 import { CrossIcon } from '../../icons'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
@@ -109,6 +110,25 @@ const Dialog = memo(function Dialog({
     return node
   }
 
+  const themedHeaderProps = useStyleConfig(
+    'DialogHeader',
+    emptyProps,
+    emptyProps,
+    emptyProps
+  )
+  const themedBodyProps = useStyleConfig(
+    'DialogBody',
+    emptyProps,
+    emptyProps,
+    emptyProps
+  )
+  const themedFooterProps = useStyleConfig(
+    'DialogFooter',
+    emptyProps,
+    emptyProps,
+    emptyProps
+  )
+
   const renderHeader = close => {
     if (!header && !hasHeader) {
       return undefined
@@ -116,12 +136,10 @@ const Dialog = memo(function Dialog({
 
     return (
       <Pane
-        paddingX={32}
-        paddingTop={32}
-        paddingBottom={24}
         flexShrink={0}
         display="flex"
         alignItems="center"
+        {...themedHeaderProps}
       >
         {header ? (
           renderNode(header, close)
@@ -149,8 +167,8 @@ const Dialog = memo(function Dialog({
     }
 
     return (
-      <Pane display="flex" justifyContent="flex-end">
-        <Pane paddingX={32} paddingBottom={32} paddingTop={24}>
+      <Pane display="flex" justifyContent="flex-end" {...themedFooterProps}>
+        <Pane>
           {footer ? (
             renderNode(footer, close)
           ) : (
@@ -223,10 +241,9 @@ const Dialog = memo(function Dialog({
             data-state={state}
             display="flex"
             overflow="auto"
-            paddingY={8}
-            paddingX={32}
             flexDirection="column"
             minHeight={minHeightContent}
+            {...themedBodyProps}
             {...contentContainerProps}
           >
             <Pane>{renderChildren(close)}</Pane>
