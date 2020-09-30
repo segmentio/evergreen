@@ -16,6 +16,7 @@ import Input from './input'
 import Link from './link'
 import List from './list'
 import MenuItem from './menu-item'
+import Option from './option'
 import Pane from './pane'
 import Paragraph from './paragraph'
 import Radio from './radio'
@@ -39,6 +40,9 @@ export default {
   Card,
   Checkbox,
   Code,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
   Group,
   Heading,
   Icon,
@@ -47,9 +51,7 @@ export default {
   List,
   Link,
   MenuItem,
-  DialogBody,
-  DialogFooter,
-  DialogHeader,
+  Option,
   Pane,
   Paragraph,
   Radio,

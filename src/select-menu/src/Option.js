@@ -1,10 +1,27 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import { useStyleConfig } from '../../hooks'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
 import TableRow from '../../table/src/TableRow'
 import TextTableCell from '../../table/src/TextTableCell'
-import { useTheme } from '../../theme'
+
+export const pseudoSelectors = {
+  _active: '&[aria-current="true"]:active, &[data-isselectable="true"]:active',
+  _before: '&:before',
+  _disabled: '&[disabled]',
+  _focus: ':focus',
+  _hover: ':hover',
+  _isSelectable: '&[data-isselectable="true"]',
+  _selected: '&[aria-current="true"]'
+}
+
+const internalStyles = {
+  alignItems: 'center',
+  display: 'flex'
+}
+
+const emptyObject = {}
 
 const Option = memo(
   forwardRef(function Option(props, ref) {
@@ -22,45 +39,31 @@ const Option = memo(
       ...rest
     } = props
 
-    const { tokens } = useTheme()
-
-    const disableProps = { color: 'muted' }
-    const selectedProps = { color: tokens.selectedOptionColor }
-    const emptyProps = {}
-
-    let textProps = emptyProps
-    if (disabled) {
-      textProps = disableProps
-    }
-
-    if (isSelected) {
-      textProps = selectedProps
-    }
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Option',
+      emptyObject,
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <TableRow
+        className={themedClassName}
         isSelectable={isSelectable && !disabled}
         isHighlighted={isHighlighted}
         onSelect={onSelect}
         onDeselect={onDeselect}
         isSelected={isSelected}
         style={style}
-        display="flex"
-        alignItems="center"
-        borderBottom="muted"
-        {...(isSelected
-          ? { boxShadow: `inset 2px 0 0 ${tokens.selectedOptionColor}` }
-          : {})}
+        {...boxProps}
         {...rest}
         ref={ref}
       >
         <TextTableCell
-          height={height}
-          textProps={textProps}
-          paddingX={16}
           borderRight={null}
           flex={1}
           alignSelf="stretch"
+          height={height}
           cursor={disabled ? 'default' : 'pointer'}
         >
           <Pane alignItems="center" display="flex">
