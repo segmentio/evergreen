@@ -5,6 +5,9 @@ import Button from './button'
 import Card from './card'
 import Checkbox from './checkbox'
 import Code from './code'
+import DialogBody from './dialog-body'
+import DialogFooter from './dialog-footer'
+import DialogHeader from './dialog-header'
 import Group from './group'
 import Heading from './heading'
 import Icon from './icon'
@@ -44,6 +47,9 @@ export default {
   List,
   Link,
   MenuItem,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
   Pane,
   Paragraph,
   Radio,
