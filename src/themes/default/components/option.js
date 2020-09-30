@@ -33,7 +33,7 @@ const baseStyle = {
   },
 
   _active: {
-    color: 'colors.blue500'
+    backgroundColor: 'intents.info.background',
   },
 
   _selected: {
