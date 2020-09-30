@@ -1,5 +1,4 @@
 import React, { memo, forwardRef } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { useStyleConfig } from '../../hooks'
 import { Image } from '../../image'
@@ -27,7 +26,6 @@ const emptyObject = {}
 const Option = memo(
   forwardRef(function Option(props, ref) {
     const {
-      className,
       disabled,
       height,
       icon,
@@ -50,7 +48,7 @@ const Option = memo(
 
     return (
       <TableRow
-        className={cx(themedClassName, className)}
+        className={themedClassName}
         isSelectable={isSelectable && !disabled}
         isHighlighted={isHighlighted}
         onSelect={onSelect}
@@ -79,7 +77,6 @@ const Option = memo(
 )
 
 Option.propTypes = {
-  className: PropTypes.string,
   label: PropTypes.string,
   icon: PropTypes.string,
   style: PropTypes.any,
