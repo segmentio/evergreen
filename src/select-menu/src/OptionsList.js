@@ -139,7 +139,7 @@ const OptionsList = memo(function OptionsList(props) {
 
   const handleSelect = useCallback(
     item => {
-      if (isSelected(item)) {
+      if (isSelected(item) && isMultiSelect) {
         onDeselect(item)
       } else {
         onSelect(item)
