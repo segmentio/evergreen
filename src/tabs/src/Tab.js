@@ -50,15 +50,10 @@ const Tab = memo(
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Tab',
-      { appearance },
+      { appearance, direction },
       pseudoSelectors,
       getInternalStyles(direction)
     )
-
-    const spacing =
-      direction === 'horizontal'
-        ? { marginRight: '8px' }
-        : { marginBottom: '8px' }
 
     const onClickRef = useLatest(props.onClick)
     const handleClick = useCallback(
@@ -115,7 +110,6 @@ const Tab = memo(
         height={height}
         ref={ref}
         tabIndex={0}
-        {...spacing}
         {...boxProps}
         {...rest}
         onClick={handleClick}

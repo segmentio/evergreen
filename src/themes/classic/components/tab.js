@@ -1,10 +1,11 @@
 const baseStyle = {
   fontFamily: 'fontFamilies.ui',
   fontWeight: 500,
-  paddingX: '16px',
-  paddingY: '8px',
+  padding: '8px',
   borderRadius: 'radii.1',
   color: 'colors.default',
+  marginX: (_, props) => props.direction === 'horizontal' ? '4px' : null,
+  marginY: (_, props) => props.direction === 'vertical' ? '4px' : null,
 
   _hover: {
     backgroundColor: 'colors.neutralAlpha.N2A',
