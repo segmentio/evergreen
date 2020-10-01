@@ -22,6 +22,16 @@ const baseStyle = {
 
   _focus: {
     boxShadow: 'shadows.focusRing'
+  },
+
+  _disabled: {
+    pointerEvents: 'none',
+    cursor: 'not-allowed',
+    color: 'colors.neutralAlpha.N7A',
+
+    '&[aria-current="page"], &[aria-selected="true"]': {
+      backgroundColor: 'colors.neutralAlpha.N2A'
+    }
   }
 }
 

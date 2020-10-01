@@ -49,6 +49,16 @@ const appearances = {
 
     _focus: {
       color: 'colors.default'
+    },
+
+    _disabled: {
+      pointerEvents: 'none',
+      cursor: 'not-allowed',
+      color: 'colors.gray500',
+
+      '&:before': {
+        backgroundColor: 'colors.gray500'
+      }
     }
   },
 
@@ -78,6 +88,16 @@ const appearances = {
 
     _focus: {
       boxShadow: 'shadows.focusRing'
+    },
+
+    _disabled: {
+      pointerEvents: 'none',
+      cursor: 'not-allowed',
+      color: 'colors.gray500',
+
+      '&[aria-current="page"], &[aria-selected="true"]': {
+        backgroundColor: 'colors.gray100'
+      }
     }
   }
 }

@@ -130,7 +130,43 @@ storiesOf('tabs', module)
                 <Tablist marginX={-4} marginBottom={16}>
                   {tabs.map((tab, index) => (
                     <Tab
-                      disabled={index === 2}
+                      appearance="primary"
+                      disabled={true}
+                      key={tab}
+                      id={tab}
+                      onSelect={() => onSelect(index)}
+                      isSelected={index === selectedIndex}
+                      aria-controls={`panel-${tab}`}
+                    >
+                      {tab}
+                    </Tab>
+                  ))}
+                </Tablist>
+                <Box padding={16} backgroundColor="#eee">
+                  {tabs.map((tab, index) => (
+                    <Box
+                      key={tab}
+                      id={`panel-${tab}`}
+                      role="tabpanel"
+                      aria-labelledby={tab}
+                      aria-hidden={index !== selectedIndex}
+                      display={index === selectedIndex ? 'block' : 'none'}
+                    >
+                      <Paragraph>Panel {tab}</Paragraph>
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+            )}
+          </TabManager>
+
+          <TabManager>
+            {({ onSelect, selectedIndex }) => (
+              <Box marginTop={32}>
+                <Tablist marginX={-4} marginBottom={16}>
+                  {tabs.map((tab, index) => (
+                    <Tab
+                      disabled={true}
                       key={tab}
                       id={tab}
                       onSelect={() => onSelect(index)}

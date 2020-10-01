@@ -24,12 +24,13 @@ const getInternalStyles = direction => ({
 })
 
 const pseudoSelectors = {
-  _hover: '&:hover',
-  _current: '&[aria-current="page"], &[aria-selected="true"]',
-  _focus: '&:focus',
   _active: '&:active',
+  _after: '&:after',
   _before: '&:before',
-  _after: '&:after'
+  _current: '&[aria-current="page"], &[aria-selected="true"]',
+  _disabled: '&[aria-disabled="true"]',
+  _focus: '&:focus',
+  _hover: '&:hover'
 }
 
 const Tab = memo(
