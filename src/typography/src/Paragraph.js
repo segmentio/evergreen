@@ -20,7 +20,8 @@ const Paragraph = memo(
     const { colors, fontFamilies } = theme
 
     const themedFontFamily = fontFamilies[fontFamily] || fontFamily
-    const themedColor = colors[color] || color
+    const themedColor =
+      colors[color] || (colors.text && colors.text[color]) || color
 
     const textStyle = useStyleConfig(
       'Paragraph',

@@ -10,7 +10,7 @@ export function useClickable({
   disabled = false,
   onKeyDown: onKeyDownHandler,
   tabIndex = 0
-}) {
+} = {}) {
   const onKeyDownRef = useLatest(onKeyDownHandler)
 
   const onKeyDown = useCallback(

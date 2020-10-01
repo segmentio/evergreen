@@ -237,32 +237,34 @@ const OptionsList = memo(function OptionsList(props) {
         </TableHead>
       )}
       <Pane flex={1}>
-        <VirtualList
-          height={listHeight}
-          width="100%"
-          itemSize={optionSize}
-          itemCount={options.length}
-          overscanCount={20}
-          scrollToAlignment="auto"
-          scrollToIndex={scrollToIndex || undefined}
-          renderItem={({ index, style }) => {
-            const item = options[index]
-            const isItemSelected = isSelected(item)
-            return renderItem({
-              key: item.value,
-              label: item.label,
-              icon: item.icon,
-              style,
-              height: optionSize,
-              onSelect: () => handleSelect(item),
-              onDeselect: () => handleDeselect(item),
-              isSelectable: !isItemSelected || isMultiSelect,
-              isSelected: isItemSelected,
-              disabled: item.disabled,
-              tabIndex: 0
-            })
-          }}
-        />
+        {options.length > 0 && (
+          <VirtualList
+            height={listHeight}
+            width="100%"
+            itemSize={optionSize}
+            itemCount={options.length}
+            overscanCount={20}
+            scrollToAlignment="auto"
+            scrollToIndex={scrollToIndex || undefined}
+            renderItem={({ index, style }) => {
+              const item = options[index]
+              const isItemSelected = isSelected(item)
+              return renderItem({
+                key: item.value,
+                label: item.label,
+                icon: item.icon,
+                style,
+                height: optionSize,
+                onSelect: () => handleSelect(item),
+                onDeselect: () => handleDeselect(item),
+                isSelectable: !isItemSelected || isMultiSelect,
+                isSelected: isItemSelected,
+                disabled: item.disabled,
+                tabIndex: 0
+              })
+            }}
+          />
+        )}
       </Pane>
     </Pane>
   )
