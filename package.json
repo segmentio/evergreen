@@ -175,7 +175,7 @@
     {
       "path": "esm/index.js",
       "import": "{ Pane, Text, majorScale, SelectMenu, Menu, AddIcon, RemoveIcon }",
-      "limit": "62 KB",
+      "limit": "65 KB",
       "running": false
     }
   ],
