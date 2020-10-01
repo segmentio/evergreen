@@ -24,12 +24,13 @@ const getInternalStyles = direction => ({
 })
 
 const pseudoSelectors = {
-  _hover: '&:hover',
-  _current: '&[aria-current="page"], &[aria-selected="true"]',
-  _focus: '&:focus',
   _active: '&:active',
+  _after: '&:after',
   _before: '&:before',
-  _after: '&:after'
+  _current: '&[aria-current="page"], &[aria-selected="true"]',
+  _disabled: '&[aria-disabled="true"]',
+  _focus: '&:focus',
+  _hover: '&:hover'
 }
 
 const Tab = memo(
@@ -50,15 +51,10 @@ const Tab = memo(
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Tab',
-      { appearance },
+      { appearance, direction },
       pseudoSelectors,
       getInternalStyles(direction)
     )
-
-    const spacing =
-      direction === 'horizontal'
-        ? { marginRight: '8px' }
-        : { marginBottom: '8px' }
 
     const onClickRef = useLatest(props.onClick)
     const handleClick = useCallback(
@@ -115,7 +111,6 @@ const Tab = memo(
         height={height}
         ref={ref}
         tabIndex={0}
-        {...spacing}
         {...boxProps}
         {...rest}
         onClick={handleClick}

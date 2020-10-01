@@ -1,6 +1,7 @@
 const baseStyle = {
   fontFamily: 'fontFamilies.ui',
-  fontWeight: 500
+  fontWeight: 500,
+  marginBottom: (_, props) => props.direction === 'vertical' ? '8px' : null,
 }
 
 const appearances = {
@@ -13,7 +14,7 @@ const appearances = {
     position: 'relative',
 
     ':not(:last-child)': {
-      marginRight: '20px'
+      marginRight: (_, props) => props.direction === 'horizontal' ? '20px' : null,
     },
     
     _before: {
@@ -48,6 +49,16 @@ const appearances = {
 
     _focus: {
       color: 'colors.default'
+    },
+
+    _disabled: {
+      pointerEvents: 'none',
+      cursor: 'not-allowed',
+      color: 'colors.gray500',
+
+      '&:before': {
+        backgroundColor: 'colors.gray500'
+      }
     }
   },
 
@@ -56,6 +67,10 @@ const appearances = {
     paddingY: '8px',
     borderRadius: 'radii.1',
     color: 'colors.default',
+
+    ':not(:last-child)': {
+      marginRight: (_, props) => props.direction === 'horizontal' ? '8px' : null,
+    },
 
     _hover: {
       backgroundColor: 'colors.gray100',
@@ -73,6 +88,16 @@ const appearances = {
 
     _focus: {
       boxShadow: 'shadows.focusRing'
+    },
+
+    _disabled: {
+      pointerEvents: 'none',
+      cursor: 'not-allowed',
+      color: 'colors.gray500',
+
+      '&[aria-current="page"], &[aria-selected="true"]': {
+        backgroundColor: 'colors.gray100'
+      }
     }
   }
 }
