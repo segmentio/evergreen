@@ -40,7 +40,7 @@ const colorKeyForIntent = (intent, isBorder) => {
   }
 }
 
-const getPrimaryButtonAppearance = (appearance, intent) => {
+const getPrimaryButtonAppearance = (appearance, intent, theme) => {
   const color = colorKeyForAppearanceOrIntent(appearance, intent)
   return {
     backgroundColor: `colors.${color}500`,
@@ -56,7 +56,7 @@ const getPrimaryButtonAppearance = (appearance, intent) => {
     },
     _focus: {
       backgroundColor: `colors.${color}500`,
-      boxShadow: theme => `0 0 0 2px ${theme.colors[`${color}100`]}`,
+      boxShadow: `0 0 0 2px ${theme && theme.colors[`${color}100`]}`,
       borderColor: `colors.${color}500`
     },
     _active: {
@@ -67,8 +67,8 @@ const getPrimaryButtonAppearance = (appearance, intent) => {
 }
 
 const appearances = {
-  primary: (_, { appearance, intent }) =>
-    getPrimaryButtonAppearance(appearance, intent),
+  primary: (theme, { appearance, intent }) =>
+    getPrimaryButtonAppearance(appearance, intent, theme),
   default: {
     backgroundColor: 'white',
     border: (theme, props) =>
