@@ -8,7 +8,6 @@ import MenuOption from './MenuOption'
 import MenuOptionsGroup from './MenuOptionsGroup'
 
 const Menu = memo(function Menu(props) {
-
   const menuRef = useRef(null)
   const firstItem = useRef()
   const lastItem = useRef()
@@ -16,14 +15,15 @@ const Menu = memo(function Menu(props) {
   const menuItems = useRef()
 
   useEffect(() => {
-
     const currentMenuRef = menuRef.current
 
-    menuItems.current = currentMenuRef ? [
-      ...currentMenuRef.querySelectorAll(
-        '[role="menuitemradio"]:not([disabled]), [role="menuitem"]:not([disabled])'
-     )]
-    : []
+    menuItems.current = currentMenuRef
+      ? [
+          ...currentMenuRef.querySelectorAll(
+            '[role="menuitemradio"]:not([disabled]), [role="menuitem"]:not([disabled])'
+          )
+        ]
+      : []
 
     if (menuItems.current.length === 0) {
       throw new Error('The menu has no menu items')
@@ -35,7 +35,6 @@ const Menu = memo(function Menu(props) {
     // Go to next/previous item if it exists
     // or loop around
     const focusNext = (currentItem, startItem) => {
-
       // Determine which item is the startItem (first or last)
       const goingDown = startItem === firstItem.current
 
@@ -66,11 +65,11 @@ const Menu = memo(function Menu(props) {
     }
 
     function onKeyPressListener(e) {
-
       const { target } = e
-      const menuItem = menuItems.current && menuItems.current.find((item) => item === target)
+      const menuItem =
+        menuItems.current && menuItems.current.find(item => item === target)
 
-      if(!menuItem) {
+      if (!menuItem) {
         return
       }
 

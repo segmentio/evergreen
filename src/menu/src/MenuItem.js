@@ -62,6 +62,8 @@ const MenuItem = memo(
     const iconColor = intent === 'none' ? 'default' : intent
     const textColor = disabled ? 'muted' : iconColor
 
+    const secondaryTextColor = disabled ? textColor : 'muted'
+
     return (
       <Pane
         is={is}
@@ -89,7 +91,7 @@ const MenuItem = memo(
           {children}
         </Text>
         {secondaryText && (
-          <Text marginRight={16} color="muted">
+          <Text marginRight={16} color={secondaryTextColor}>
             {secondaryText}
           </Text>
         )}

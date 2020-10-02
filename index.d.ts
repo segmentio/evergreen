@@ -1578,12 +1578,10 @@ export interface SegmentedControlOwnProps {
    * The value of the segmented control
    */
   value?: number | string | boolean
-
   /**
    * The initial value of an uncontrolled segmented control
    */
   defaultValue?: number | string | boolean
-
   /**
    * Function called when value changes.
    */
@@ -1805,8 +1803,7 @@ export interface SideSheetProps {
   shouldCloseOnEscapePress?: boolean
   width?: string | number
   containerProps?: PaneOwnProps & BoxProps<'div'>
-  // @ts-ignore
-  position?: Pick<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
+  position?: Extract<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
   preventBodyScrolling?: boolean
 }
 

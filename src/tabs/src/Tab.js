@@ -105,8 +105,8 @@ const Tab = memo(
 
     return (
       <Text
-        className={cx(className, themedClassName)}
         is={is}
+        className={cx(className, themedClassName)}
         size={300}
         height={height}
         ref={ref}

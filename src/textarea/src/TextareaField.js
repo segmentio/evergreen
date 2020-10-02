@@ -52,7 +52,6 @@ const TextareaField = memo(
       >
         <Textarea
           id={id}
-          ref={ref}
           width={inputWidth}
           height={inputHeight}
           disabled={disabled}
@@ -61,6 +60,7 @@ const TextareaField = memo(
           appearance={appearance}
           placeholder={placeholder}
           spellCheck={spellCheck}
+          ref={ref}
           {...remainingProps}
         />
       </FormField>

@@ -30,20 +30,23 @@ const Combobox = memo(function Combobox(props) {
 
   const [isOpenedByButton, setIsOpenedByButton] = useState(false)
 
-  const handleStateChange = useCallback((changes, stateAndHelpers) => {
-    if (Object.prototype.hasOwnProperty.call(changes, 'isOpen')) {
-      if (!changes.isOpen) {
-        setIsOpenedByButton(false)
+  const handleStateChange = useCallback(
+    (changes, stateAndHelpers) => {
+      if (Object.prototype.hasOwnProperty.call(changes, 'isOpen')) {
+        if (!changes.isOpen) {
+          setIsOpenedByButton(false)
+        }
       }
-    }
 
-    if (
-      autocompleteProps &&
-      typeof autocompleteProps.onStateChange === 'function'
-    ) {
-      autocompleteProps.onStateChange(changes, stateAndHelpers)
-    }
-  }, [autocompleteProps])
+      if (
+        autocompleteProps &&
+        typeof autocompleteProps.onStateChange === 'function'
+      ) {
+        autocompleteProps.onStateChange(changes, stateAndHelpers)
+      }
+    },
+    [autocompleteProps]
+  )
 
   return (
     <Autocomplete

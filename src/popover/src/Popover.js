@@ -62,53 +62,57 @@ const Popover = memo(
      * Methods borrowed from BlueprintJS
      * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
      */
-    const bringFocusInside = useCallback((e) => {
-      if(isShown && e) {
-        e.preventDefault()
-      }
-      // Always delay focus manipulation to just before repaint to prevent scroll jumping
-
-      return requestAnimationFrame(() => {
-        // Container ref may be undefined between component mounting and Portal rendering
-
-        // ActiveElement may be undefined in some rare cases in IE
-
-        if (
-          popoverNode.current == null || // eslint-disable-line eqeqeq, no-eq-null
-          document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
-          !isShown
-        ) {
-          return
+    const bringFocusInside = useCallback(
+      e => {
+        if (isShown && e) {
+          e.preventDefault()
         }
+        // Always delay focus manipulation to just before repaint to prevent scroll jumping
 
-        const isFocusOutsideModal = !popoverNode.current.contains(
-          document.activeElement
-        )
-        if (isFocusOutsideModal) {
-          // Element marked autofocus has higher priority than the other elements
-          const autofocusElement = popoverNode.current.querySelector(
-            '[autofocus]:not([disabled])'
+        return requestAnimationFrame(() => {
+          // Container ref may be undefined between component mounting and Portal rendering
+
+          // ActiveElement may be undefined in some rare cases in IE
+
+          if (
+            popoverNode.current == null || // eslint-disable-line eqeqeq, no-eq-null
+            document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
+            !isShown
+          ) {
+            return
+          }
+
+          const isFocusOutsideModal = !popoverNode.current.contains(
+            document.activeElement
           )
-          if (autofocusElement) {
-            // Return early to avoid unnecessary dom queries
-            return autofocusElement.focus()
-          }
+          if (isFocusOutsideModal) {
+            // Element marked autofocus has higher priority than the other elements
+            const autofocusElement = popoverNode.current.querySelector(
+              '[autofocus]:not([disabled])'
+            )
+            if (autofocusElement) {
+              // Return early to avoid unnecessary dom queries
+              return autofocusElement.focus()
+            }
 
-          const wrapperElement = popoverNode.current.querySelector('[tabindex]:not([disabled])')
-          if (wrapperElement) {
-            return wrapperElement.focus()
-          }
+            const wrapperElement = popoverNode.current.querySelector(
+              '[tabindex]:not([disabled])'
+            )
+            if (wrapperElement) {
+              return wrapperElement.focus()
+            }
 
-          const buttonElements = popoverNode.current.querySelectorAll(
-            'button:not([disabled]), a:not([disabled]), [role="menuitem"]:not([disabled]), [role="menuitemradio"]:not([disabled])'
-          )
-          if (buttonElements.length > 0) {
-            return buttonElements[0].focus()
+            const buttonElements = popoverNode.current.querySelectorAll(
+              'button:not([disabled]), a:not([disabled]), [role="menuitem"]:not([disabled]), [role="menuitemradio"]:not([disabled])'
+            )
+            if (buttonElements.length > 0) {
+              return buttonElements[0].focus()
+            }
           }
-
-        }
-      })
-    }, [isShown, popoverNode.current])
+        })
+      },
+      [isShown, popoverNode.current]
+    )
 
     const bringFocusBackToTarget = useCallback(() => {
       return requestAnimationFrame(() => {
@@ -176,31 +180,46 @@ const Popover = memo(
       return trigger === 'hover' ? close : undefined
     }, [trigger, close])
 
-    const handleKeyDown = useCallback((event) => {
-      return event.key === 'ArrowDown' ? bringFocusInside(event) : undefined
-    }, [bringFocusInside])
+    const handleKeyDown = useCallback(
+      event => {
+        return event.key === 'ArrowDown' ? bringFocusInside(event) : undefined
+      },
+      [bringFocusInside]
+    )
 
-    const onEsc = useCallback((event) => {
-      return event.key === 'Escape' ? close() : undefined
-    }, [close])
+    const onEsc = useCallback(
+      event => {
+        return event.key === 'Escape' ? close() : undefined
+      },
+      [close]
+    )
 
-    const handleBodyClick = useCallback((event) => {
-      // Ignore clicks on the popover or button
-      if (targetRef.current && targetRef.current.contains(event.target)) {
-        return
-      }
+    const handleBodyClick = useCallback(
+      event => {
+        // Ignore clicks on the popover or button
+        if (targetRef.current && targetRef.current.contains(event.target)) {
+          return
+        }
 
-      if (popoverNode.current && popoverNode.current.contains(event.target)) {
-        return
-      }
+        if (popoverNode.current && popoverNode.current.contains(event.target)) {
+          return
+        }
 
-      // Notify body click
-      onBodyClick(event)
+        // Notify body click
+        onBodyClick(event)
 
-      if (shouldCloseOnExternalClick !== false) {
-        close()
-      }
-    }, [onBodyClick, shouldCloseOnExternalClick, close, targetRef.current, popoverNode.current])
+        if (shouldCloseOnExternalClick !== false) {
+          close()
+        }
+      },
+      [
+        onBodyClick,
+        shouldCloseOnExternalClick,
+        close,
+        targetRef.current,
+        popoverNode.current
+      ]
+    )
 
     const handleOpenComplete = useCallback(() => {
       if (shouldBringFocusInside) bringFocusInside()
@@ -222,61 +241,64 @@ const Popover = memo(
       }
     }, [isShown, handleBodyClick, onEsc])
 
-    const renderTarget = useCallback(({ getRef, isShown }) => {
-      const isTooltipInside = children && children.type === Tooltip
+    const renderTarget = useCallback(
+      ({ getRef, isShown }) => {
+        const isTooltipInside = children && children.type === Tooltip
 
-      const getTargetRef = ref => {
-        setTargetRef(ref)
-        getRef(ref)
-      }
+        const getTargetRef = ref => {
+          setTargetRef(ref)
+          getRef(ref)
+        }
 
-      /**
-       * When a function is passed, you can control the Popover manually.
-       */
-      if (typeof children === 'function') {
-        return children({
-          getRef: getTargetRef,
-          isShown,
-          toggle
-        })
-      }
-
-      const popoverTargetProps = {
-        onClick: toggle,
-        onMouseEnter: handleOpenHover,
-        onKeyDown: handleKeyDown,
-        role: 'button',
-        'aria-expanded': isShown,
-        'aria-haspopup': true
-      }
-
-      /**
-       * Tooltips can be used within a Popover (not the other way around)
-       * In this case the children is the Tooltip instead of a button.
-       * Pass the properties to the Tooltip and let the Tooltip
-       * add the properties to the target.
-       */
-      if (isTooltipInside) {
-        return React.cloneElement(children, {
-          popoverProps: {
-            getTargetRef,
+        /**
+         * When a function is passed, you can control the Popover manually.
+         */
+        if (typeof children === 'function') {
+          return children({
+            getRef: getTargetRef,
             isShown,
+            toggle
+          })
+        }
 
-            // These propeties will be spread as `popoverTargetProps`
-            // in the Tooltip component.
-            ...popoverTargetProps
-          }
+        const popoverTargetProps = {
+          onClick: toggle,
+          onMouseEnter: handleOpenHover,
+          onKeyDown: handleKeyDown,
+          role: 'button',
+          'aria-expanded': isShown,
+          'aria-haspopup': true
+        }
+
+        /**
+         * Tooltips can be used within a Popover (not the other way around)
+         * In this case the children is the Tooltip instead of a button.
+         * Pass the properties to the Tooltip and let the Tooltip
+         * add the properties to the target.
+         */
+        if (isTooltipInside) {
+          return React.cloneElement(children, {
+            popoverProps: {
+              getTargetRef,
+              isShown,
+
+              // These propeties will be spread as `popoverTargetProps`
+              // in the Tooltip component.
+              ...popoverTargetProps
+            }
+          })
+        }
+
+        /**
+         * With normal usage only popover props end up on the target.
+         */
+        return React.cloneElement(children, {
+          ref: getTargetRef,
+          ...popoverTargetProps
         })
-      }
-
-      /**
-       * With normal usage only popover props end up on the target.
-       */
-      return React.cloneElement(children, {
-        ref: getTargetRef,
-        ...popoverTargetProps
-      })
-    }, [children, setTargetRef, toggle, handleOpenHover, handleKeyDown])
+      },
+      [children, setTargetRef, toggle, handleOpenHover, handleKeyDown]
+    )
 
     // If `props.isShown` is a boolean, popover is controlled manually, not via mouse events
     const shown = typeof props.isShown === 'boolean' ? props.isShown : isShown
