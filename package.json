@@ -125,7 +125,8 @@
     "starwars-names": "^1.6.0",
     "url-loader": "^1.1.2",
     "webpack": "^4.43.0",
-    "xo": "^0.25.3"
+    "xo": "^0.25.3",
+    "yarnhook": "^0.4.3"
   },
   "xo": {
     "parser": "babel-eslint",
@@ -237,7 +238,10 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "post-merge": "yarnhook",
+      "post-checkout": "yarnhook",
+      "post-rewrite": "yarnhook"
     }
   }
 }
