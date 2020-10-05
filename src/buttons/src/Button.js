@@ -104,7 +104,6 @@ const Button = memo(
       <Box
         is={is}
         ref={ref}
-        type={is === 'button' ? 'button' : undefined}
         className={cx(themedClassName, className)}
         data-active={isActive || undefined}
         {...boxProps}
