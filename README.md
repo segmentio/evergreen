@@ -19,7 +19,7 @@
 ## Documentation & Community
 
 - [Documentation](https://evergreen.segment.com/)
-- [Spectrum Chat](https://spectrum.chat/evergreen)
+- [GitHub Discussions](https://github.com/segmentio/evergreen/discussions)
 
 ## Evergreen v4 to v5 Migration guide
 
