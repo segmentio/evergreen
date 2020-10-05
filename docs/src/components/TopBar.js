@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import GitHubButton from 'react-github-button'
 import GitHubIcon from './GitHubIcon'
-import SpectrumIcon from './SpectrumIcon'
 import LogoWordmark from './LogoWordmark'
+import { CommentIcon } from '../../../src'
 // eslint-disable-next-line import/no-unassigned-import
 import 'react-github-button/assets/style.css'
 
@@ -60,14 +60,14 @@ const TopBar = memo(({ children, ...props }) => {
           />
           <a
             className="TopBar-link TopBar-link--icon"
-            href="https://spectrum.chat/evergreen"
+            href="https://github.com/segmentio/evergreen/discussions"
             target="_blank"
             rel="noopener noreferrer"
           >
             <span className="icon-holder">
-              <SpectrumIcon />
+              <CommentIcon />
             </span>
-            <span className="hide-on-mobile">Spectrum</span>
+            <span className="hide-on-mobile">Discussions</span>
           </a>
           <a
             className="TopBar-link TopBar-link--icon"
