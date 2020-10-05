@@ -3,9 +3,9 @@ import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import GitHubButton from 'react-github-button'
+import { CommentIcon } from '../../../src'
 import GitHubIcon from './GitHubIcon'
 import LogoWordmark from './LogoWordmark'
-import { CommentIcon } from '../../../src'
 // eslint-disable-next-line import/no-unassigned-import
 import 'react-github-button/assets/style.css'
 
