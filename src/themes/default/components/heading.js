@@ -40,21 +40,18 @@ const sizes = {
   },
   400: {
     fontSize: 'fontSizes.2',
-    fontWeight: 'fontWeights.bold',
     lineHeight: 'lineHeights.1',
     letterSpacing: 'letterSpacings.tight',
     fontFamily: 'fontFamilies.ui'
   },
   300: {
     fontSize: 'fontSizes.1',
-    fontWeight: 'fontWeights.bold',
     lineHeight: 'lineHeights.0',
     letterSpacing: 'letterSpacings.normal',
     fontFamily: 'fontFamilies.ui'
   },
   200: {
     fontSize: 'fontSizes.1',
-    fontWeight: 'fontWeights.bold',
     lineHeight: 'lineHeights.0',
     letterSpacing: 'letterSpacings.normal',
     fontFamily: 'fontFamilies.ui',
@@ -62,7 +59,6 @@ const sizes = {
   },
   100: {
     fontSize: 'fontSizes.0',
-    fontWeight: 'fontWeights.normal',
     textTransform: 'uppercase',
     lineHeight: 'lineHeights.0',
     letterSpacing: 'letterSpacings.wide',
