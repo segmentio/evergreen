@@ -1,4 +1,5 @@
 import React from 'react'
+import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
 import faker from 'faker'
 import Box from 'ui-box'
@@ -136,15 +137,26 @@ storiesOf('table', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Table.Body>
-        {range(10).map(item => {
-          return (
-            <Table.Row key={item} isSelectable onSelect={() => alert('selected!')} onDeselect={() => alert('deselected!')}>
-              <Table.TextCell>{item}</Table.TextCell>
-            </Table.Row>
-          )
-        })}
-      </Table.Body>
+
+      <Component initialState={{ selectedItem: null }}>
+        {({ setState, state }) => (
+          <Table.Body>
+            {range(10).map(item => {
+              return (
+                <Table.Row
+                  key={item}
+                  isSelectable
+                  isSelected={state.selectedItem === item}
+                  onSelect={() => setState({ selectedItem: item })}
+                  onDeselect={() => setState({ selectedItem: null })}
+                >
+                  <Table.TextCell>{item}</Table.TextCell>
+                </Table.Row>
+              )
+            })}
+          </Table.Body>
+        )}
+      </Component>
     </Box>
   ))
   .add('Table.HeaderCell', () => (

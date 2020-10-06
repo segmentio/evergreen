@@ -3,8 +3,8 @@ const colorMap = {
     base: 'white',
     hover: 'colors.neutral.lightest',
     focus: 'colors.neutral.lightest',
-    active: 'colors.blue.light',
-    current: 'colors.blue.light'
+    active: 'colors.blue.lightest',
+    current: 'colors.blue.lightest'
   },
 
   danger: {
@@ -12,7 +12,7 @@ const colorMap = {
     hover: 'colors.red.lightest',
     focus: 'colors.red.light',
     active: 'colors.red.light',
-    current: 'colors.red.light',
+    current: 'colors.red.light'
   },
 
   warning: {
@@ -20,7 +20,7 @@ const colorMap = {
     hover: 'colors.yellow.lightest',
     focus: 'colors.yellow.light',
     active: 'colors.yellow.light',
-    current: 'colors.yellow.light',
+    current: 'colors.yellow.light'
   },
 
   success: {
@@ -28,11 +28,12 @@ const colorMap = {
     hover: 'colors.green.lightest',
     focus: 'colors.green.light',
     active: 'colors.green.light',
-    current: 'colors.green.light',
+    current: 'colors.green.light'
   }
 }
 
-const getBackgroundForIntentAndState = (intent, state) => colorMap[intent][state]
+const getBackgroundForIntentAndState = (intent, state) =>
+  colorMap[intent][state]
 
 const baseStyle = {
   outline: 'none',
@@ -46,27 +47,32 @@ const baseStyle = {
 
 const appearances = {
   default: {
-    backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'base'),
+    backgroundColor: (_, props) =>
+      getBackgroundForIntentAndState(props.intent, 'base'),
 
     _hover: {
-      backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'hover')
+      backgroundColor: (_, props) =>
+        getBackgroundForIntentAndState(props.intent, 'hover')
     },
 
     _focus: {
-      backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'focus')
+      backgroundColor: (_, props) =>
+        getBackgroundForIntentAndState(props.intent, 'focus')
     },
 
     _active: {
-      backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'active')
+      backgroundColor: (_, props) =>
+        getBackgroundForIntentAndState(props.intent, 'active')
     },
 
     _current: {
-      backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'current')
-    },
+      backgroundColor: (_, props) =>
+        getBackgroundForIntentAndState(props.intent, 'current')
+    }
   }
 }
 
 export default {
   baseStyle,
-  appearances,
+  appearances
 }
