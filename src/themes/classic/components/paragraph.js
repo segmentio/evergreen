@@ -9,17 +9,17 @@ const paragraphSizes = {
   300: {
     fontSize: 'fontSizes.1',
     fontWeight: 'fontWeights.normal',
-    lineHeight: 'lineHeights.1',
+    lineHeight: 'lineHeights.0',
     letterSpacing: 'letterSpacings.normal'
   },
   400: {
     fontSize: 'fontSizes.2',
     fontWeight: 'fontWeights.normal',
-    lineHeight: 'lineHeights.3',
+    lineHeight: 'lineHeights.2',
     letterSpacing: 'letterSpacings.tight'
   },
   500: {
-    fontSize: 'fontSizes.3',
+    fontSize: 'fontSizes.2',
     fontWeight: 'fontWeights.normal',
     lineHeight: 'lineHeights.3',
     letterSpacing: 'letterSpacings.tight'
@@ -27,7 +27,7 @@ const paragraphSizes = {
   600: {
     fontSize: 'fontSizes.4',
     fontWeight: 'fontWeights.normal',
-    lineHeight: 'lineHeights.4',
+    lineHeight: 'lineHeights.3',
     letterSpacing: 'letterSpacings.tighter'
   }
 }
