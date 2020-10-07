@@ -30,13 +30,23 @@ const colorKeyForAppearanceOrIntent = (appearance, intent) => {
   }
 }
 
-const colorKeyForIntent = (intent, isBorder) => {
+const colorKeyForIntent = (intent) => {
   if (intent === 'danger') {
-    return `red${isBorder ? 300 : 500}`
+    return `red500`
   } else if (intent === 'success') {
-    return `green${isBorder ? 300 : 500}`
+    return `green500`
   } else {
-    return `gray${isBorder ? 500 : 800}`
+    return `gray800`
+  }
+}
+
+const borderColorForIntent = (intent, isHover) => {
+  if (intent === 'danger') {
+    return `red${isHover ? 500 : 300}`
+  } else if (intent === 'success') {
+    return `green${isHover ? 400 : 300}`
+  } else {
+    return `gray${isHover ? 600 : 500}`
   }
 }
 
@@ -72,7 +82,7 @@ const appearances = {
   default: {
     backgroundColor: 'white',
     border: (theme, props) =>
-      `1px solid ${theme.colors[colorKeyForIntent(props.intent, true)]}`,
+      `1px solid ${theme.colors[borderColorForIntent(props.intent)]}`,
     color: (theme, props) => theme.colors[colorKeyForIntent(props.intent)],
 
     _disabled: {
@@ -81,7 +91,8 @@ const appearances = {
     },
 
     _hover: {
-      borderColor: 'colors.gray600',
+      border: (theme, props) =>
+      `1px solid ${theme.colors[borderColorForIntent(props.intent, true)]}`,
       backgroundColor: 'colors.gray50'
     },
 
