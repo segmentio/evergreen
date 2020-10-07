@@ -51,6 +51,13 @@ storiesOf('alert', module)
               intent="danger"
               title="We weren’t able to save your changes."
             />
+            <Alert
+              appearance={appearance}
+              marginBottom={32}
+              intent="danger"
+            >
+              This Alert has no title
+            </Alert>
             <ErrorMessage
               title="This is broken"
               messaging="You need to fix this"

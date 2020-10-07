@@ -49,43 +49,41 @@ const Alert = memo(
         {...styleProps}
         {...restProps}
       >
-        <Pane flex={1}>
-          <Pane display="flex" alignItems="center">
-            {hasIcon && (
-              <Pane
-                marginRight={16}
-                marginLeft={2}
-                display="flex"
-                alignItems="center"
-              >
-                {getIconForIntent(intentToken, { size: 16 })}
-              </Pane>
-            )}
-            <Heading
-              is="h4"
-              size={400}
-              marginTop={0}
-              marginBottom={0}
-              fontWeight={500}
-              lineHeight={1}
-              // Get this from the theme / props on the Alert
-              color="inherit"
-            >
-              {title}
-            </Heading>
+        {hasIcon && (
+          <Pane
+            marginRight={16}
+            marginLeft={2}
+            marginTop={-1}
+            display="flex"
+            alignItems="flex-start"
+          >
+            {getIconForIntent(intentToken, { size: 16 })}
           </Pane>
+        )}
+        <Pane flex={1}>
+          {title && (<Heading
+            is="h4"
+            size={400}
+            marginTop={0}
+            marginBottom={0}
+            fontWeight={500}
+            lineHeight={1}
+            // Get this from the theme / props on the Alert
+            color="inherit"
+          >
+            {title}
+          </Heading>)}
           {typeof children === 'string' ? (
             <Paragraph
               size={400}
               color="muted"
-              marginTop={8}
+              marginTop={title ? 8 : 0}
               lineHeight={1}
-              paddingLeft={hasIcon ? 34 : 0}
             >
               {children}
             </Paragraph>
           ) : (
-            <Pane paddingLeft={hasIcon ? 34 : 0}>{children}</Pane>
+            <Pane>{children}</Pane>
           )}
         </Pane>
         {isRemoveable && (
