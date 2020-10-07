@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Tab, Tablist, TabNavigation } from '..'
+import { majorScale } from '../../scales'
 import { Heading, Paragraph } from '../../typography'
 
 const StorySection = props => <Box marginBottom={40} {...props} />
@@ -108,6 +109,24 @@ storiesOf('tabs', module)
           <TabNavigation marginX={-4} marginBottom={16}>
             {tabs.map((tab, index) => (
               <Tab key={tab} is="a" href="#" id={tab} isSelected={index === 0}>
+                {tab}
+              </Tab>
+            ))}
+          </TabNavigation>
+        </Box>
+      </StorySection>
+      <StorySection>
+        <StoryHeader>
+          <StoryHeading>Min-width Tabs</StoryHeading>
+          <StoryDescription>
+            Tabs with a min-width set on them
+          </StoryDescription>
+        </StoryHeader>
+
+        <Box>
+          <TabNavigation marginX={-4} marginBottom={16}>
+            {tabs.map((tab, index) => (
+              <Tab key={tab} is="a" href="#" id={tab} isSelected={index === 0} minWidth={majorScale(13)}>
                 {tab}
               </Tab>
             ))}
