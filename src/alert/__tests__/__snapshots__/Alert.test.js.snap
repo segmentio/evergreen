@@ -6,33 +6,29 @@ exports[`<Alert /> appearance snapshot 1`] = `
   role="alert"
 >
   <div
+    className="css-nil ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
+  >
+    <svg
+      className="css-1qmfd78 ub-w_16px ub-h_16px ub-box-szg_border-box"
+      data-icon="info-sign"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
+        fillRule="evenodd"
+      />
+    </svg>
+  </div>
+  <div
     className="css-nil ub-flx_1 ub-box-szg_border-box"
   >
-    <div
-      className="css-nil ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+    <h4
+      className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
     >
-      <div
-        className="css-nil ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
-      >
-        <svg
-          className="css-1qmfd78 ub-w_16px ub-h_16px ub-box-szg_border-box"
-          data-icon="info-sign"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
-            fillRule="evenodd"
-          />
-        </svg>
-      </div>
-      <h4
-        className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
-      >
-        Test title
-      </h4>
-    </div>
+      Test title
+    </h4>
     <div
-      className="css-nil ub-pl_34px ub-box-szg_border-box"
+      className="css-nil ub-box-szg_border-box"
     />
   </div>
 </div>
@@ -44,33 +40,29 @@ exports[`<Alert /> basic snapshot 1`] = `
   role="alert"
 >
   <div
+    className="css-nil ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
+  >
+    <svg
+      className="css-1qmfd78 ub-w_16px ub-h_16px ub-box-szg_border-box"
+      data-icon="info-sign"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
+        fillRule="evenodd"
+      />
+    </svg>
+  </div>
+  <div
     className="css-nil ub-flx_1 ub-box-szg_border-box"
   >
-    <div
-      className="css-nil ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+    <h4
+      className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
     >
-      <div
-        className="css-nil ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
-      >
-        <svg
-          className="css-1qmfd78 ub-w_16px ub-h_16px ub-box-szg_border-box"
-          data-icon="info-sign"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
-            fillRule="evenodd"
-          />
-        </svg>
-      </div>
-      <h4
-        className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
-      >
-        A simple general message
-      </h4>
-    </div>
+      A simple general message
+    </h4>
     <div
-      className="css-nil ub-pl_34px ub-box-szg_border-box"
+      className="css-nil ub-box-szg_border-box"
     />
   </div>
 </div>
@@ -82,33 +74,29 @@ exports[`<Alert /> intent snapshot 1`] = `
   role="alert"
 >
   <div
+    className="css-nil ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
+  >
+    <svg
+      className="css-neu3kn ub-w_16px ub-h_16px ub-box-szg_border-box"
+      data-icon="error"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M7.99-.01c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm1 13h-2v-2h2v2zm0-3h-2v-7h2v7z"
+        fillRule="evenodd"
+      />
+    </svg>
+  </div>
+  <div
     className="css-nil ub-flx_1 ub-box-szg_border-box"
   >
-    <div
-      className="css-nil ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+    <h4
+      className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
     >
-      <div
-        className="css-nil ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
-      >
-        <svg
-          className="css-neu3kn ub-w_16px ub-h_16px ub-box-szg_border-box"
-          data-icon="error"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M7.99-.01c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm1 13h-2v-2h2v2zm0-3h-2v-7h2v7z"
-            fillRule="evenodd"
-          />
-        </svg>
-      </div>
-      <h4
-        className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
-      >
-        Test title
-      </h4>
-    </div>
+      Test title
+    </h4>
     <div
-      className="css-nil ub-pl_34px ub-box-szg_border-box"
+      className="css-nil ub-box-szg_border-box"
     />
   </div>
 </div>
