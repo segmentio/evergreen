@@ -16,7 +16,7 @@ const Label = memo(
     } = props
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'Heading',
+      'Label',
       { size },
       pseudoSelectors,
       internalStyles
@@ -41,7 +41,7 @@ Label.propTypes = {
   ...Box.propTypes,
 
   /**
-   * The size of the label, visually based off the Heading sizes
+   * The size of the label.
    */
   size: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900])
 }

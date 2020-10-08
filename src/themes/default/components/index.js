@@ -13,6 +13,7 @@ import Heading from './heading'
 import Icon from './icon'
 import InlineAlert from './inline-alert'
 import Input from './input'
+import Label from './label'
 import Link from './link'
 import List from './list'
 import MenuItem from './menu-item'
@@ -48,6 +49,7 @@ export default {
   Icon,
   InlineAlert,
   Input,
+  Label,
   List,
   Link,
   MenuItem,
