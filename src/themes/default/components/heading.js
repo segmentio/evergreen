@@ -1,5 +1,5 @@
 const baseStyle = {
-  color: 'colors.default',
+  color: 'colors.dark',
   fontFamily: 'fontFamilies.display',
   fontWeight: 'fontWeights.semibold'
 }
