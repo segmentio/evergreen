@@ -11,6 +11,7 @@ const getThemeKeyForColor = color => {
 
 const baseStyle = {
   color: (_, { color }) => `colors.${getThemeKeyForColor(color)}500`,
+  textDecoration: 'none',
   _hover: {
     color: (_, { color }) => `colors.${getThemeKeyForColor(color)}400`
   },
