@@ -20,7 +20,7 @@ storiesOf('stack', module).add('Stack', () => (
           { label: 'Center', value: 'center' },
           { label: 'right', value: 'right' }
         ],
-        space: 32,
+        space: 24,
         align: 'left'
       }}
     >
