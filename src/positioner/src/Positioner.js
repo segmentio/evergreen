@@ -74,7 +74,7 @@ const Positioner = memo(function Positioner(props) {
         cancelAnimationFrame(latestAnimationFrame.current)
       }
     }
-  }, [dimensions])
+  }, [dimensions.height, dimensions.width, dimensions.left, dimensions.top, dimensions.transformOrigin])
 
   const handleEnter = () => {
     transitionState.current = 'entered'
