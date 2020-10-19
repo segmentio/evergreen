@@ -40,16 +40,14 @@ storiesOf('typography', module)
   .add('Link', () => (
     <Box padding={40}>
       <Box marginBottom={24}>
-        <Link href="#">Default Link</Link>
+        <Text>
+          In order to learn more about this feature, visit{' '}
+          <Link href="#">the developer center</Link>.{' '}
+        </Text>
       </Box>
       <Box marginBottom={24}>
         <Link href="#" color="neutral">
           Neutral Link
-        </Link>
-      </Box>
-      <Box marginBottom={24}>
-        <Link href="#" color="green">
-          Green Link
         </Link>
       </Box>
     </Box>

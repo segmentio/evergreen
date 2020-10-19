@@ -1,26 +1,48 @@
-const getThemeKeyForColor = color => {
-  switch (color) {
-    case 'default':
-      return 'blue'
-    case 'neutral':
-      return 'gray'
-    default:
-      return color
-  }
-}
-
 const baseStyle = {
-  color: (_, { color }) => `colors.${getThemeKeyForColor(color)}500`,
+  borderRadius: 'radii.1',
+  transition: '120ms all ease-in-out',
+  color: (_, { color }) => {
+    switch (color) {
+      case 'neutral':
+        return 'gray700'
+      case 'default':
+      default:
+        return 'blue500'
+    }
+  },
   textDecoration: 'none',
   _hover: {
-    color: (_, { color }) => `colors.${getThemeKeyForColor(color)}400`
+    color: (theme, { color }) => {
+      switch (color) {
+        case 'neutral':
+          return theme.colors.gray800
+        case 'default':
+        default:
+          return theme.colors.blue600
+      }
+    }
   },
   _active: {
-    color: (_, { color }) => `colors.${getThemeKeyForColor(color)}600`
+    color: (theme, { color }) => {
+      switch (color) {
+        case 'neutral':
+          return theme.colors.gray900
+        case 'default':
+        default:
+          return theme.colors.blue700
+      }
+    }
   },
   _focus: {
-    boxShadow: (theme, { color }) =>
-      `0 0 0 2px ${theme.colors[getThemeKeyForColor(color)]}300`
+    boxShadow: (theme, { color }) => {
+      switch (color) {
+        case 'neutral':
+          return `0 0 0 2px ${theme.colors.gray300}`
+        case 'default':
+        default:
+          return `0 0 0 2px ${theme.colors.blue200}`
+      }
+    }
   }
 }
 
