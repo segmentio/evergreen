@@ -32,7 +32,8 @@ const styles = {
   fontWeight: 500,
   display: 'inline-flex',
   alignItems: 'center',
-  flexWrap: 'nowrap'
+  flexWrap: 'nowrap',
+  whiteSpace: 'nowrap'
 }
 
 const Button = memo(
