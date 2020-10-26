@@ -225,12 +225,11 @@ const OptionsList = memo(function OptionsList(props) {
       {...rest}
     >
       {hasFilter && (
-        <TableHead backgroundColor={tokens.colors.gray50}>
+        <TableHead height={32} backgroundColor={tokens.colors.gray50}>
           <SearchTableHeaderCell
             onChange={handleChange}
             ref={setSearchRef}
             borderRight={null}
-            height={32}
             placeholder={filterPlaceholder}
             icon={filterIcon}
           />
