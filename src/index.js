@@ -89,5 +89,5 @@ export {
 } from './typography'
 
 /* Start generated icons */
-export * from './icons'
+export * from './icon'
 /* End generated icons */

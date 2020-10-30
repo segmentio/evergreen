@@ -43,7 +43,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
       >
         {({ getInputProps, getRef, inputValue }) => (
           <TextInput
-            placeholder="Starwars names"
+            placeholder="Sens of"
             value={inputValue}
             ref={ref => getRef(ref)}
             {...getInputProps()}

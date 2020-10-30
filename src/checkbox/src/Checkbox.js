@@ -69,7 +69,7 @@ const Checkbox = memo(
         cursor={disabled ? 'not-allowed' : 'pointer'}
         position="relative"
         display="flex"
-        marginY={16}
+        marginY={18}
         {...rest}
       >
         <Box
@@ -100,7 +100,7 @@ const Checkbox = memo(
         {label && (
           <Text
             marginLeft={8}
-            size={300}
+            size={140}
             color={disabled ? 'muted' : 'default'}
           >
             {label}

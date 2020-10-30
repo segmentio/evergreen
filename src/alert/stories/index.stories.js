@@ -18,25 +18,25 @@ storiesOf('alert', module)
             <Alert
               appearance={appearance}
               marginBottom={32}
-              title="A simple general message"
+              title="간단한 일반 메세지"
             />
             <Alert
               appearance={appearance}
               marginBottom={32}
               intent="success"
-              title="Hooray! You did it. Your Source is now sending data."
+              title="당신은 현재 원본페이지에서 데이터를 전송 중입니다"
             />
             <Alert
               appearance={appearance}
               marginBottom={32}
               intent="warning"
-              title="Changes will affect all Warehouses."
+              title="모든 변경사항은 프로그램에 영향을 미칠것입니다."
             />
             <Alert
               appearance={appearance}
               marginBottom={32}
               intent="danger"
-              title="We weren’t able to save your changes."
+              title="변경사항을 저장할수없습니다."
             />
           </Box>
         ))}
@@ -48,37 +48,34 @@ storiesOf('alert', module)
             <Alert
               appearance={appearance}
               marginBottom={32}
-              title="A simple general message"
+              title="간단한 일반 메시지"
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              간단한 일반 메시지를 통해 문자를 보낼수있습니다.
             </Alert>
             <Alert
               appearance={appearance}
+              y
               marginBottom={32}
               intent="success"
-              title="Hooray! You did it. Your Source is now sending data."
+              title="원본에서 데이터 전송 성공 !"
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              현재 원본에서 데이터 전송을 성공했습니다.
             </Alert>
             <Alert
               appearance={appearance}
               marginBottom={32}
               intent="warning"
-              title="Changes will affect all Warehouses."
+              title="모든 변경사항은 프로그램에 영향을 미칠것입니다"
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              모든 변경사항을 프로그램에 영향을 미칠것입니다.
             </Alert>
             <Alert
               appearance={appearance}
               marginBottom={32}
               intent="danger"
-              title="We weren’t able to save your changes."
+              title="변경사항을 저장할수없습니다."
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              현재 변경사항을 저장할수 없습니다
             </Alert>
           </Box>
         ))}
