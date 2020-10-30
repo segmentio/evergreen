@@ -25,6 +25,7 @@ import Select from './select'
 import Spinner from './spinner'
 import Switch from './switch'
 import Tab from './tab'
+import Table from './table'
 import TableCell from './table-cell'
 import TableHead from './table-head'
 import TableRow from './table-row'
@@ -61,6 +62,7 @@ export default {
   Spinner,
   Switch,
   Tab,
+  Table,
   TableCell,
   TableHead,
   TableRow,

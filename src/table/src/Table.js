@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
 import EditableCell from './EditableCell'
 import SearchTableHeaderCell from './SearchTableHeaderCell'
@@ -12,9 +13,22 @@ import TableVirtualBody from './TableVirtualBody'
 import TextTableCell from './TextTableCell'
 import TextTableHeaderCell from './TextTableHeaderCell'
 
+const emptyObject = {}
+
 const Table = memo(function Table(props) {
   const { children, ...rest } = props
-  return <Pane {...rest}>{children}</Pane>
+  const { className, ...boxProps } = useStyleConfig(
+    'Table',
+    emptyObject,
+    emptyObject,
+    emptyObject
+  )
+
+  return (
+    <Pane className={className} {...boxProps} {...rest}>
+      {children}
+    </Pane>
+  )
 })
 
 Table.Body = TableBody
