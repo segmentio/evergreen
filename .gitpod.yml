@@ -1,0 +1,8 @@
+tasks:
+  - name: Storybook
+    init: yarn install
+    command: yarn dev
+
+ports:
+  - port: 6006
+    onOpen: open-preview

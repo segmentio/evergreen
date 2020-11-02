@@ -117,6 +117,16 @@ Now you can visit `http://localhost:8000/` in your browser.
 
 Documentation code is under the `docs` directory. A big portion of these docs are written in MDX, if you've never used MDX before, check out these [docs](https://mdxjs.com/getting-started).
 
+#### Online one click setup
+
+You can also use Gitpod(a free online IDE) for contributing code. With a single click it will launch a workspace and automatically:
+
+- clone the `evergreen` repo.
+- install the dependencies.
+- run `yarn dev`.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/from-referrer/)
+
 ### 🏆 Step 4. Making your pull request
 
 Once you're done with making your changes, push everything to your local repository's branch.
