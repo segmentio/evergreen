@@ -4,85 +4,88 @@ import Box from 'ui-box'
 import { Heading } from '../../typography'
 import { InlineAlert, Alert } from '..'
 
-storiesOf('알람', module)
-  .add('경고', () => (
+storiesOf('사용자', module)
+  .add('프로필', () => (
     <div>
       <Box padding={40}>
         {(() => {
           document.body.style.margin = '0'
           document.body.style.height = '100vh'
         })()}
-        {['기본', '카드'].map(appearance => (
+        {['default', 'card'].map(appearance => (
           <Box key={appearance} float="left" marginRight={40}>
             <Heading marginBottom={16}>{appearance}</Heading>
             <Alert
               appearance={appearance}
               marginBottom={32}
-              title="간단한 일반 메세지"
+              title="A simple general message"
             />
             <Alert
               appearance={appearance}
               marginBottom={32}
               intent="success"
-              title="당신은 현재 원본페이지에서 데이터를 전송 중입니다"
+              title="Hooray! You did it. Your Source is now sending data."
             />
             <Alert
               appearance={appearance}
               marginBottom={32}
               intent="warning"
-              title="모든 변경사항은 프로그램에 영향을 미칠것입니다."
+              title="Changes will affect all Warehouses."
             />
             <Alert
               appearance={appearance}
               marginBottom={32}
               intent="danger"
-              title="변경사항을 저장할수없습니다."
+              title="We weren’t able to save your changes."
             />
           </Box>
         ))}
       </Box>
       <Box padding={40}>
-        {['기본', '카드'].map(appearance => (
+        {['default', 'card'].map(appearance => (
           <Box key={appearance} float="left" marginRight={40}>
             <Heading marginBottom={16}>{appearance}</Heading>
             <Alert
               appearance={appearance}
               marginBottom={32}
-              title="간단한 일반 메시지"
+              title="A simple general message"
             >
-              간단한 일반 메시지를 통해 문자를 보낼수있습니다.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Alert>
             <Alert
               appearance={appearance}
-              y
               marginBottom={32}
               intent="success"
-              title="원본에서 데이터 전송 성공 !"
+              title="Hooray! You did it. Your Source is now sending data."
             >
-              현재 원본에서 데이터 전송을 성공했습니다.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Alert>
             <Alert
               appearance={appearance}
               marginBottom={32}
               intent="warning"
-              title="모든 변경사항은 프로그램에 영향을 미칠것입니다"
+              title="Changes will affect all Warehouses."
             >
-              모든 변경사항을 프로그램에 영향을 미칠것입니다.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Alert>
             <Alert
               appearance={appearance}
               marginBottom={32}
               intent="danger"
-              title="변경사항을 저장할수없습니다."
+              title="We weren’t able to save your changes."
             >
-              현재 변경사항을 저장할수 없습니다
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Alert>
           </Box>
         ))}
       </Box>
     </div>
   ))
-  .add('내부경고', () => (
+  .add('InlineAlert', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
@@ -91,19 +94,19 @@ storiesOf('알람', module)
 
       <Box float="left" marginRight={40}>
         <Heading size={600} marginBottom={16}>
-          내부경고
+          InlineAlert component
         </Heading>
         <InlineAlert intent="success" marginBottom={16}>
-          훌륭합니다.귀하의 소스로 데이터를 보내고 있습니다.
+          Hooray! You did it. Your Source is now sending data.
         </InlineAlert>
         <InlineAlert intent="warning" marginBottom={16}>
-          변경 사항은 모든 확장자의 적용됩니다.
+          Changes will affect all Warehouses.
         </InlineAlert>
         <InlineAlert intent="danger" marginBottom={16}>
-          변경 사하을 저장할 수 없습니다.
+          We weren’t able to save your changes.
         </InlineAlert>
         <InlineAlert intent="none" marginBottom={16}>
-          200 개 이상을 통합해 사용할 수 있습니다.
+          There are over 200 integrations available.
         </InlineAlert>
       </Box>
     </Box>

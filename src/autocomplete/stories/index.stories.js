@@ -136,7 +136,7 @@ storiesOf('자동완성', module).add('자동완성', () => (
         }) => (
           <Box ref={ref => getRef(ref)} display="inline-block">
             <TextInput
-              placeholder="버튼을 사용한 트릭 "
+              placeholder="버튼을 사용한 트릭"
               value={inputValue}
               {...getInputProps()}
             />

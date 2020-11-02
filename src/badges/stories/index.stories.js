@@ -13,8 +13,8 @@ const baseStyles = {
   display: 'block'
 }
 
-storiesOf('badges', module)
-  .add('Badge', () => (
+storiesOf('색상', module)
+  .add('색상', () => (
     <ThemeConsumer>
       {theme => (
         <Box style={{ ...wrapperStyles }}>

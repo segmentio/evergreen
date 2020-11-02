@@ -34,7 +34,7 @@ const StoryDescription = props => (
   <Paragraph size={400} color="muted" {...props} />
 )
 
-storiesOf('avatar', module).add('Avatar', () => (
+storiesOf('아바타', module).add('프로필', () => (
   <Box padding={40}>
     {(() => {
       document.body.style.margin = '0'

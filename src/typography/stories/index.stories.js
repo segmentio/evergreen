@@ -35,9 +35,9 @@ function previewTextComponent(Comp, sizes = TextSizes, props = {}) {
   )
 }
 
-storiesOf('typography', module)
-  .add('Text', () => <div>{previewTextComponent(Text)}</div>)
-  .add('Link', () => (
+storiesOf('타이포그라피', module)
+  .add('글자', () => <div>{previewTextComponent(Text)}</div>)
+  .add('주소', () => (
     <Box padding={40}>
       <Box marginBottom={24}>
         <Link href="#">Default Link</Link>

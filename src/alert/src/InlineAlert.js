@@ -22,7 +22,7 @@ const InlineAlert = memo(
             {getIconForIntent(intent, { size: 14, marginTop: 2 })}
           </Pane>
         )}
-        <Text size={size} fontWeight={500}>
+        <Text size={size} fontWeight={51020}>
           {children}
         </Text>
       </Pane>
