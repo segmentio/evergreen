@@ -29,7 +29,7 @@ const handleChange = selectedItem => {
   console.log(selectedItem)
 }
 
-storiesOf('autocomplete', module).add('Autocomplete', () => (
+storiesOf('자동완성', module).add('자동완성', () => (
   <Box>
     <Box padding={40}>
       {(() => {
@@ -43,7 +43,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
       >
         {({ getInputProps, getRef, inputValue }) => (
           <TextInput
-            placeholder="Sens of"
+            placeholder="감각"
             value={inputValue}
             ref={ref => getRef(ref)}
             {...getInputProps()}
@@ -60,7 +60,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
         {({ getInputProps, getRef, inputValue, openMenu }) => (
           <TextInput
             width={160}
-            placeholder="Min width in effect"
+            placeholder="효과가 적용되는 최소 너비"
             value={inputValue}
             ref={ref => getRef(ref)}
             {...getInputProps({
@@ -76,7 +76,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
       <Autocomplete onChange={handleChange} items={items}>
         {({ getInputProps, getRef, openMenu, inputValue }) => (
           <TextInput
-            placeholder="Open on focus"
+            placeholder="초점 적용하기"
             value={inputValue}
             ref={ref => getRef(ref)}
             {...getInputProps({
@@ -91,7 +91,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
     <Box padding={40}>
       <Autocomplete
         isFilterDisabled
-        title="Disable filter"
+        title="필터 해제"
         onChange={handleChange}
         items={items}
       >
@@ -136,7 +136,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => (
         }) => (
           <Box ref={ref => getRef(ref)} display="inline-block">
             <TextInput
-              placeholder="Trigger with button"
+              placeholder="버튼을 사용한 트릭 "
               value={inputValue}
               {...getInputProps()}
             />

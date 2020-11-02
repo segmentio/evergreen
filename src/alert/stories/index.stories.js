@@ -4,15 +4,15 @@ import Box from 'ui-box'
 import { Heading } from '../../typography'
 import { InlineAlert, Alert } from '..'
 
-storiesOf('alert', module)
-  .add('Alert', () => (
+storiesOf('알람', module)
+  .add('경고', () => (
     <div>
       <Box padding={40}>
         {(() => {
           document.body.style.margin = '0'
           document.body.style.height = '100vh'
         })()}
-        {['default', 'card'].map(appearance => (
+        {['기본', '카드'].map(appearance => (
           <Box key={appearance} float="left" marginRight={40}>
             <Heading marginBottom={16}>{appearance}</Heading>
             <Alert
@@ -42,7 +42,7 @@ storiesOf('alert', module)
         ))}
       </Box>
       <Box padding={40}>
-        {['default', 'card'].map(appearance => (
+        {['기본', '카드'].map(appearance => (
           <Box key={appearance} float="left" marginRight={40}>
             <Heading marginBottom={16}>{appearance}</Heading>
             <Alert
@@ -82,7 +82,7 @@ storiesOf('alert', module)
       </Box>
     </div>
   ))
-  .add('InlineAlert', () => (
+  .add('내부경고', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
@@ -91,19 +91,19 @@ storiesOf('alert', module)
 
       <Box float="left" marginRight={40}>
         <Heading size={600} marginBottom={16}>
-          InlineAlert component
+          내부경고
         </Heading>
         <InlineAlert intent="success" marginBottom={16}>
-          Hooray! You did it. Your Source is now sending data.
+          훌륭합니다.귀하의 소스로 데이터를 보내고 있습니다.
         </InlineAlert>
         <InlineAlert intent="warning" marginBottom={16}>
-          Changes will affect all Warehouses.
+          변경 사항은 모든 확장자의 적용됩니다.
         </InlineAlert>
         <InlineAlert intent="danger" marginBottom={16}>
-          We weren’t able to save your changes.
+          변경 사하을 저장할 수 없습니다.
         </InlineAlert>
         <InlineAlert intent="none" marginBottom={16}>
-          There are over 200 integrations available.
+          200 개 이상을 통합해 사용할 수 있습니다.
         </InlineAlert>
       </Box>
     </Box>
