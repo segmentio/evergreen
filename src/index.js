@@ -87,6 +87,7 @@ export {
   Small,
   Strong
 } from './typography'
+export { list, listGroup } from './list'
 
 /* Start generated icons */
 export * from './icon'

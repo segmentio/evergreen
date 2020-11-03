@@ -38,70 +38,69 @@ function previewTextComponent(Comp, sizes = TextSizes, props = {}) {
 storiesOf('타이포그라피', module)
   .add('글자', () => <div>{previewTextComponent(Text)}</div>)
   .add('주소', () => (
-    <Box padding={40}>
-      <Box marginBottom={24}>
-        <Link href="#">Default Link</Link>
-      </Box>
-      <Box marginBottom={24}>
-        <Link href="#" color="neutral">
-          Neutral Link
+    <Box padding={100}>
+      <Box marginBottom={34}>
+        <Link href="https://www.youtube.com/user/MrFish235">
+          John Fish Studying youtuber
         </Link>
       </Box>
       <Box marginBottom={24}>
-        <Link href="#" color="green">
-          Green Link
+        <Link href="https://www.naver.com">Naver Link korea No.1 web site</Link>
+      </Box>
+      <Box marginBottom={24}>
+        <Link href="https://www.google.com/?gl=us&hl=en&pws=0&gws_rd=cr">
+          Google Link
         </Link>
       </Box>
     </Box>
   ))
-  .add('Paragraph', () => (
+  .add('단락', () => (
     <div>
       {previewTextComponent(Paragraph, TextSizes, { marginTop: 'default' })}
     </div>
   ))
-  .add('Heading', () => (
+  .add('표제', () => (
     <div>
       {previewTextComponent(Heading, HeadingSizes, { marginTop: 'default' })}
     </div>
   ))
-  .add('Code', () => <div>{previewTextComponent(Code)}</div>)
-  .add('Pre', () => <div>{previewTextComponent(Pre)}</div>)
-  .add('Label', () => <div>{previewTextComponent(Label)}</div>)
-  .add('Small', () => (
+  .add('코드', () => <div>{previewTextComponent(Code)}</div>)
+  .add('미리', () => <div>{previewTextComponent(Pre)}</div>)
+  .add('라벨', () => <div>{previewTextComponent(Label)}</div>)
+  .add('작게', () => (
     <div>
       <Paragraph>
-        Small can only be used inside of a paragraph or other text component{' '}
-        <Small>like this</Small>
+        단락이나 기타 텍스트 에서 작은 글자를 사용할수있음{' '}
+        <Small>미리보기</Small>
       </Paragraph>
     </div>
   ))
-  .add('Strong', () => <div>{previewTextComponent(Strong)}</div>)
-  .add('UnorderedList', () => (
+  .add('굵게', () => <div>{previewTextComponent(Strong)}</div>)
+  .add('적용되지 않은 목록', () => (
     <Box padding={40}>
       {[300, 400, 500].map(size => (
         <Box key={size}>
           <Heading size={700} marginTop="default">
-            Size {size}
+            크기 {size}
           </Heading>
           <Paragraph size={size} marginTop="default">
-            A paragraph before a list. You have to manually set the margins on a
-            list.
+            목록 앞에 단락 수동으로 margin을 설정해야합니다.
           </Paragraph>
           <OrderedList size={size} marginY={16}>
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>미리보기</ListItem>
+            <ListItem>미리보기</ListItem>
+            <ListItem>미리보기</ListItem>
+            <ListItem>미리보기</ListItem>
+            <ListItem>미리보기</ListItem>
           </OrderedList>
           <Paragraph size={size} marginTop="default">
-            A paragraph after a list.
+            목록 뒤에 단락.
           </Paragraph>
         </Box>
       ))}
     </Box>
   ))
-  .add('UnorderedList with icons', () => (
+  .add('정렬되지 않은 아이콘 목록', () => (
     <Box padding={40}>
       {[300, 400, 500].map(size => (
         <Box key={size}>
@@ -109,24 +108,24 @@ storiesOf('타이포그라피', module)
             Size {size}
           </Heading>
           <Paragraph size={size} marginTop="default">
-            You can add icons to list items individually.
+            아이콘을 추가해여 개별적으로 항목을 나열할 수 있다.
           </Paragraph>
           <UnorderedList size={size} marginY={16}>
             <ListItem icon={TickCircleIcon} iconColor="success">
-              Lorem ipsum dolar set amet
+              미리보기
             </ListItem>
             <ListItem icon={TickCircleIcon} iconColor="success">
-              Lorem ipsum dolar set amet
+              미리보기
             </ListItem>
             <ListItem icon={BanCircleIcon} iconColor="danger">
-              Lorem ipsum dolar set amet
+              미리보기
             </ListItem>
             <ListItem icon={BanCircleIcon} iconColor="danger">
-              Lorem ipsum dolar set amet
+              미리보기
             </ListItem>
           </UnorderedList>
           <Paragraph size={size}>
-            Or you can set the icon on the list.
+            또는 목록에서 아이콘을 직접 설정할 수 있다.
           </Paragraph>
           <UnorderedList
             size={size}
@@ -134,16 +133,16 @@ storiesOf('타이포그라피', module)
             icon={TickIcon}
             iconColor="success"
           >
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>미리보기</ListItem>
+            <ListItem>미리보기</ListItem>
+            <ListItem>미리보기</ListItem>
+            <ListItem>미리보기</ListItem>
           </UnorderedList>
         </Box>
       ))}
     </Box>
   ))
-  .add('OrderedList', () => (
+  .add('주문 목록', () => (
     <Box padding={40}>
       {[300, 400, 500].map(size => (
         <Box key={size}>
@@ -151,18 +150,17 @@ storiesOf('타이포그라피', module)
             Size {size}
           </Heading>
           <Paragraph size={size} marginTop="default">
-            A paragraph before a list. You have to manually set the margins on a
-            list.
+            목록 앞에 있는 단락.마진을 수동으로 설정할경우 리스트를 작성함.
           </Paragraph>
           <UnorderedList size={size} marginY={16}>
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
-            <ListItem>Lorem ipsum dolar set amet</ListItem>
+            <ListItem>1</ListItem>
+            <ListItem>2</ListItem>
+            <ListItem>3</ListItem>
+            <ListItem>4</ListItem>
+            <ListItem>5</ListItem>
           </UnorderedList>
-          <Paragraph size={size} marginTop="default">
-            A paragraph after a list.
+          <Paragraph size={size} marginTop="default" font="bold">
+            적용후 리스트
           </Paragraph>
         </Box>
       ))}

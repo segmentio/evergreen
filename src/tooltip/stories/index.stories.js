@@ -7,8 +7,8 @@ import { Button } from '../../buttons'
 import { InfoSignIcon } from '../../icons'
 import { Tooltip } from '..'
 
-storiesOf('tooltip', module)
-  .add('Tooltip', () => (
+storiesOf('말풍선', module)
+  .add('말풍선', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
@@ -40,12 +40,13 @@ storiesOf('tooltip', module)
       </Tooltip>
     </Box>
   ))
-  .add('Positions', () => (
+  .add('포지션', () => (
     <Box
       display="flex"
       alignItems="center"
       justifyContent="center"
       height="100vh"
+      text-decoration="underline"
     >
       {(() => {
         document.body.style.margin = '0'
@@ -53,13 +54,23 @@ storiesOf('tooltip', module)
       })()}
       <Box width={400} height={280}>
         <Box display="flex" justifyContent="space-between" marginBottom={40}>
-          <Tooltip content="Hello world" position={Position.TOP_LEFT}>
-            <Button marginRight={20}>TOP_LEFT</Button>
+          <Tooltip
+            content="좌상단"
+            position={Position.TOP_LEFT}
+            text-decoration="underline"
+          >
+            <Button marginRight={20}>좌상단</Button>
           </Tooltip>
           <Tooltip content="Hello world" position={Position.TOP}>
-            <Button marginRight={20}>TOP</Button>
+            <Button marginRight={20}>
+              <a href="https://www.naver.com">상단</a>
+            </Button>
           </Tooltip>
-          <Tooltip content="Hello world" position={Position.TOP_RIGHT}>
+          <Tooltip
+            content="Hello world"
+            position={Position.TOP_RIGHT}
+            text-decoration="underline"
+          >
             <Button marginRight={20}>TOP_RIGHT</Button>
           </Tooltip>
         </Box>

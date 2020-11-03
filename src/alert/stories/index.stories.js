@@ -85,7 +85,7 @@ storiesOf('사용자', module)
       </Box>
     </div>
   ))
-  .add('InlineAlert', () => (
+  .add('내부 경고', () => (
     <Box padding={40}>
       {(() => {
         document.body.style.margin = '0'
@@ -94,19 +94,19 @@ storiesOf('사용자', module)
 
       <Box float="left" marginRight={40}>
         <Heading size={600} marginBottom={16}>
-          InlineAlert component
+          내부 구성요소
         </Heading>
         <InlineAlert intent="success" marginBottom={16}>
-          Hooray! You did it. Your Source is now sending data.
+          성공! 이제 원본에서 데이터를 전송할수있습니다.
         </InlineAlert>
         <InlineAlert intent="warning" marginBottom={16}>
-          Changes will affect all Warehouses.
+          변경사항은 모든 저장소에 영향을 끼칠 것 입니다.
         </InlineAlert>
         <InlineAlert intent="danger" marginBottom={16}>
-          We weren’t able to save your changes.
+          현재 변경사항을 저장할수 없습니다(err:0012)
         </InlineAlert>
         <InlineAlert intent="none" marginBottom={16}>
-          There are over 200 integrations available.
+          200개이상 데이터 통합이 가능합니다.
         </InlineAlert>
       </Box>
     </Box>
