@@ -90,7 +90,6 @@ export default class EditableTable extends React.PureComponent {
                 onChange={value => this.setState({ isSelectable: value })}
               />
               <Pane
-                border
                 height="80vh"
                 display="flex"
                 flexGrow={0}
