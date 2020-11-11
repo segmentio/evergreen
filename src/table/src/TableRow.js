@@ -82,7 +82,7 @@ const TableRow = memo(
             } catch (_) {}
           } else if (event.key === 'Escape') {
             if (mainRef.current && mainRef.current instanceof Node)
-              mainRef.blur()
+              mainRef.current.blur()
           }
         }
       },
