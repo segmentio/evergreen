@@ -1,5 +1,5 @@
 import tinycolor from 'tinycolor2'
-import { get } from '../../../theme'
+import { get } from '../../../theme/src/theme-tools'
 
 const baseStyle = {
   height: 16,
