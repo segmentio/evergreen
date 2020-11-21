@@ -24,6 +24,7 @@ const TextTableCell = memo(
         <Text
           size={300}
           flex="1"
+          title={typeof children === 'string' ? children : undefined}
           {...ellipsis}
           {...(isNumber ? { fontFamily: 'mono' } : {})}
           {...textProps}
