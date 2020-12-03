@@ -2,13 +2,13 @@
 
 exports[`<Text /> size 300 renders as expected 1`] = `
 Extracted Styles:
+box-sizing: border-box;
+color: #474d66;
+font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 font-size: 12px;
 font-weight: 400;
-line-height: 16px;
 letter-spacing: 0;
-font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-color: #474d66;
-box-sizing: border-box;
+line-height: 16px;
 
 
 <span
@@ -20,13 +20,13 @@ box-sizing: border-box;
 
 exports[`<Text /> size 400 renders as expected 1`] = `
 Extracted Styles:
+box-sizing: border-box;
+color: #474d66;
+font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 font-size: 14px;
 font-weight: 400;
-line-height: 20px;
 letter-spacing: -0.05px;
-font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-color: #474d66;
-box-sizing: border-box;
+line-height: 20px;
 
 
 <span
@@ -38,13 +38,13 @@ box-sizing: border-box;
 
 exports[`<Text /> size 500 renders as expected 1`] = `
 Extracted Styles:
+box-sizing: border-box;
+color: #474d66;
+font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 font-size: 16px;
 font-weight: 400;
-line-height: 20px;
 letter-spacing: -0.05px;
-font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-color: #474d66;
-box-sizing: border-box;
+line-height: 20px;
 
 
 <span
@@ -56,13 +56,13 @@ box-sizing: border-box;
 
 exports[`<Text /> size 600 renders as expected 1`] = `
 Extracted Styles:
+box-sizing: border-box;
+color: #474d66;
+font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 font-size: 20px;
 font-weight: 400;
-line-height: 24px;
 letter-spacing: -0.07px;
-font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-color: #474d66;
-box-sizing: border-box;
+line-height: 24px;
 
 
 <span
@@ -74,13 +74,13 @@ box-sizing: border-box;
 
 exports[`Colors <Text /> accepts arbitrary theme values for color 1`] = `
 Extracted Styles:
+box-sizing: border-box;
+color: #696f8c;
+font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 font-size: 14px;
 font-weight: 400;
-line-height: 20px;
 letter-spacing: -0.05px;
-font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-color: #696f8c;
-box-sizing: border-box;
+line-height: 20px;
 
 
 Array [
@@ -95,13 +95,13 @@ Array [
 
 exports[`Colors <Text /> does not render any color when a non-theme color is passed in  1`] = `
 Extracted Styles:
+box-sizing: border-box;
+color: SOMETHING DOESNT EXISt;
+font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 font-size: 14px;
 font-weight: 400;
-line-height: 20px;
 letter-spacing: -0.05px;
-font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-color: SOMETHING DOESNT EXISt;
-box-sizing: border-box;
+line-height: 20px;
 
 
 Array [

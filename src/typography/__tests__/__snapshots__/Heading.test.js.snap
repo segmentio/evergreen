@@ -2,16 +2,16 @@
 
 exports[`<Heading /> size 100 renders as expected 1`] = `
 Extracted Styles:
-margin-top: 0px;
-margin-bottom: 0px;
+box-sizing: border-box;
 color: #696f8c;
 font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-font-weight: 500;
 font-size: 11px;
-text-transform: uppercase;
-line-height: 16px;
+font-weight: 500;
 letter-spacing: 0.6px;
-box-sizing: border-box;
+line-height: 16px;
+margin-bottom: 0px;
+margin-top: 0px;
+text-transform: uppercase;
 
 
 <h2
@@ -23,15 +23,15 @@ box-sizing: border-box;
 
 exports[`<Heading /> size 200 renders as expected 1`] = `
 Extracted Styles:
-margin-top: 0px;
-margin-bottom: 0px;
+box-sizing: border-box;
 color: #696f8c;
 font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-font-weight: 500;
 font-size: 12px;
-line-height: 16px;
+font-weight: 500;
 letter-spacing: 0;
-box-sizing: border-box;
+line-height: 16px;
+margin-bottom: 0px;
+margin-top: 0px;
 
 
 <h2
@@ -43,15 +43,15 @@ box-sizing: border-box;
 
 exports[`<Heading /> size 300 renders as expected 1`] = `
 Extracted Styles:
-margin-top: 0px;
-margin-bottom: 0px;
+box-sizing: border-box;
 color: #101840;
 font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-font-weight: 500;
 font-size: 12px;
-line-height: 16px;
+font-weight: 500;
 letter-spacing: 0;
-box-sizing: border-box;
+line-height: 16px;
+margin-bottom: 0px;
+margin-top: 0px;
 
 
 <h2
@@ -63,15 +63,15 @@ box-sizing: border-box;
 
 exports[`<Heading /> size 400 renders as expected 1`] = `
 Extracted Styles:
-margin-top: 0px;
-margin-bottom: 0px;
+box-sizing: border-box;
 color: #101840;
 font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-font-weight: 500;
 font-size: 14px;
-line-height: 18px;
+font-weight: 500;
 letter-spacing: -0.05px;
-box-sizing: border-box;
+line-height: 18px;
+margin-bottom: 0px;
+margin-top: 0px;
 
 
 <h2
@@ -83,15 +83,15 @@ box-sizing: border-box;
 
 exports[`<Heading /> size 500 renders as expected 1`] = `
 Extracted Styles:
-margin-top: 0px;
-margin-bottom: 0px;
+box-sizing: border-box;
 color: #101840;
 font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-font-weight: 600;
 font-size: 16px;
+font-weight: 600;
 letter-spacing: -0.05px;
 line-height: 20px;
-box-sizing: border-box;
+margin-bottom: 0px;
+margin-top: 0px;
 
 
 <h2
@@ -103,15 +103,15 @@ box-sizing: border-box;
 
 exports[`<Heading /> size 600 renders as expected 1`] = `
 Extracted Styles:
-margin-top: 0px;
-margin-bottom: 0px;
+box-sizing: border-box;
 color: #101840;
 font-family: "SF UI Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-font-weight: 600;
 font-size: 20px;
-line-height: 24px;
+font-weight: 600;
 letter-spacing: -0.07px;
-box-sizing: border-box;
+line-height: 24px;
+margin-bottom: 0px;
+margin-top: 0px;
 
 
 <h2
@@ -123,15 +123,15 @@ box-sizing: border-box;
 
 exports[`<Heading /> size 700 renders as expected 1`] = `
 Extracted Styles:
-margin-top: 0px;
-margin-bottom: 0px;
+box-sizing: border-box;
 color: #101840;
 font-family: "SF UI Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-font-weight: 600;
 font-size: 24px;
-line-height: 24px;
+font-weight: 600;
 letter-spacing: -0.07px;
-box-sizing: border-box;
+line-height: 24px;
+margin-bottom: 0px;
+margin-top: 0px;
 
 
 <h2
@@ -143,15 +143,15 @@ box-sizing: border-box;
 
 exports[`<Heading /> size 800 renders as expected 1`] = `
 Extracted Styles:
-margin-top: 0px;
-margin-bottom: 0px;
+box-sizing: border-box;
 color: #101840;
 font-family: "SF UI Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-font-weight: 600;
 font-size: 29px;
-line-height: 32px;
+font-weight: 600;
 letter-spacing: -0.2px;
-box-sizing: border-box;
+line-height: 32px;
+margin-bottom: 0px;
+margin-top: 0px;
 
 
 <h2
@@ -163,15 +163,15 @@ box-sizing: border-box;
 
 exports[`<Heading /> size 900 renders as expected 1`] = `
 Extracted Styles:
-margin-top: 0px;
-margin-bottom: 0px;
+box-sizing: border-box;
 color: #101840;
 font-family: "SF UI Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-font-weight: 600;
 font-size: 35px;
-line-height: 40px;
+font-weight: 600;
 letter-spacing: -0.2px;
-box-sizing: border-box;
+line-height: 40px;
+margin-bottom: 0px;
+margin-top: 0px;
 
 
 <h2
