@@ -13,17 +13,13 @@ export { default as getRadioClassName } from './getRadioClassName'
 export { default as getTagInputClassName } from './getTagInputClassName'
 export { default as getTextInputClassName } from './getTextInputClassName'
 export { default as getTextareaClassName } from './getTextareaClassName'
-export {
-  default as getTextDropdownButtonClassName
-} from './getTextDropdownButtonClassName'
+export { default as getTextDropdownButtonClassName } from './getTextDropdownButtonClassName'
 export { default as getTabClassName } from './getTabClassName'
 export { default as getRowClassName } from './getRowClassName'
 export { default as getMenuItemClassName } from './getMenuItemClassName'
 export { default as getSelectClassName } from './getSelectClassName'
 export { default as getTooltipProps } from './getTooltipProps'
-export {
-  default as getSegmentedControlRadioClassName
-} from './getSegmentedControlRadioClassName'
+export { default as getSegmentedControlRadioClassName } from './getSegmentedControlRadioClassName'
 export { default as getSwitchClassName } from './getSwitchClassName'
 export { default as getTableCellClassName } from './getTableCellClassName'
 
@@ -34,6 +30,4 @@ export { default as getAvatarProps } from './getAvatarProps'
 export { default as getBadgeProps } from './getBadgeProps'
 
 // Single Prop Getters.
-export {
-  default as getAvatarInitialsFontSize
-} from './getAvatarInitialsFontSize'
+export { default as getAvatarInitialsFontSize } from './getAvatarInitialsFontSize'

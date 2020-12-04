@@ -30,28 +30,20 @@ const getButtonAppearance = (appearance, intent) => {
           color: 'white',
           backgroundColor: 'white',
           backgroundImage: linearGradient.base,
-          boxShadow: `inset 0 0 0 1px ${
-            scales.neutral.N5A
-          }, inset 0 -1px 1px 0 ${scales.neutral.N2A}`
+          boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 -1px 1px 0 ${scales.neutral.N2A}`
         },
         hover: {
           backgroundImage: linearGradient.hover
         },
         focus: {
-          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${
-            scales.neutral.N4A
-          }, inset 0 -1px 1px 0 ${scales.neutral.N5A}`
+          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${scales.neutral.N5A}`
         },
         active: {
           backgroundImage: linearGradient.active,
-          boxShadow: `inset 0 0 0 1px ${
-            scales.neutral.N4A
-          }, inset 0 1px 1px 0 ${scales.neutral.N2A}`
+          boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 1px 1px 0 ${scales.neutral.N2A}`
         },
         focusAndActive: {
-          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${
-            scales.neutral.N4A
-          }, inset 0 1px 1px 0 ${scales.neutral.N2A}`
+          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 1px 1px 0 ${scales.neutral.N2A}`
         }
       })
     }
