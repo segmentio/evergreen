@@ -59,14 +59,14 @@ Extracted Styles:
 box-sizing: border-box;
 color: #474d66;
 font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-font-size: 20px;
+font-size: 18px;
 font-weight: 400;
 letter-spacing: -0.07px;
 line-height: 24px;
 
 
 <span
-  className="ub-fnt-sze_20px ub-f-wght_400 ub-ln-ht_24px ub-ltr-spc_-0-07px ub-fnt-fam_b77syt ub-color_474d66 ub-box-szg_border-box"
+  className="ub-fnt-sze_18px ub-f-wght_400 ub-ln-ht_24px ub-ltr-spc_-0-07px ub-fnt-fam_b77syt ub-color_474d66 ub-box-szg_border-box"
 >
   Text 600
 </span>
