@@ -2,6 +2,7 @@ const baseStyle = {
   borderRadius: 'radii.1',
   fontFamily: 'fontFamilies.ui',
   lineHeight: 'lineHeights.0',
+  fontSize: 'fontSizes.1',
   border: '1px solid transparent',
   color: 'colors.default',
   paddingX: 12,
