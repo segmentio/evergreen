@@ -283,4 +283,27 @@ The Popover can be positioned on the following positions using the `position` pr
 </Popover>
 ```
 
+## Disable Close on Escape Key
+
+```jsx
+<Popover
+  content={({ close }) => (
+    <Pane
+      width={320}
+      height={320}
+      paddingX={40}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      flexDirection="column"
+    >
+      <Button onClick={close}>Close</Button>
+    </Pane>
+  )}
+  shouldCloseOnEscapePress={false}
+>
+  <Button>Trigger Popover</Button>
+</Popover>
+```
+
 <PropsTable of="Popover" />

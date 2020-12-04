@@ -1,7 +1,3 @@
-import { storiesOf } from '@storybook/react'
-import React from 'react'
-import PropTypes from 'prop-types'
-import Box from 'ui-box'
 import { Tooltip } from '../../tooltip'
 import { TextInputField } from '../../text-input'
 import { Pane } from '../../layers'
@@ -9,6 +5,10 @@ import { Heading, Paragraph, Text } from '../../typography'
 import { Button } from '../../buttons'
 import { Position } from '../../constants'
 import { CircleArrowDownIcon } from '../../icons'
+import Box from 'ui-box'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { storiesOf } from '@storybook/react'
 import { Popover } from '..'
 
 // eslint-disable-next-line react/prop-types
@@ -150,6 +150,9 @@ storiesOf('popover', module)
       </Popover>
       <Popover content={<PopoverContent />} shouldCloseOnExternalClick={false}>
         <Button marginRight={20}>No Close on Body Click</Button>
+      </Popover>
+      <Popover content={<PopoverContent />} shouldCloseOnEscapePress={false}>
+        <Button marginRight={20}>No Close on Escape Key</Button>
       </Popover>
       <Popover
         useSmartPositioning={false}
