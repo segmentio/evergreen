@@ -23,7 +23,7 @@ jobs:
           paths:
             - ./docs/node_modules
 
-      - run: yarn run prettier src/**/*.js --check
+      - run: yarn run prettier 'src/**/*.js' --check
       - run: yarn run build
       - run: yarn run test
       - run: yarn run size-limit
