@@ -1,17 +1,17 @@
 const fontSizes = [
-  '11px',
+  '10px',
   '12px',
   '14px',
   '16px',
+  '18px',
   '20px',
   '24px',
-  '29px',
-  '35px'
+  '32px'
 ]
 
 fontSizes.body = '14px'
 fontSizes.heading = '16px'
-fontSizes.caption = '11px'
+fontSizes.caption = '10px'
 
 const typography = {
   fontFamilies: {

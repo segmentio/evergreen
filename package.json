@@ -56,6 +56,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
+    "@testing-library/react": "^11.2.2",
     "@types/react": "^16.9.5",
     "@types/react-transition-group": "^4.4.0",
     "arrify": "^1.0.1",
@@ -99,6 +100,7 @@
     "@storybook/addons": "^6.0.21",
     "@storybook/react": "^6.0.21",
     "@storybook/theming": "^6.0.21",
+    "@testing-library/jest-dom": "^5.11.6",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.1.0",
@@ -153,6 +155,9 @@
   "jest": {
     "setupFiles": [
       "./tools/test-setup"
+    ],
+    "setupFilesAfterEnv": [
+      "./tools/test-setup-after-env"
     ],
     "modulePathIgnorePatterns": [
       "<rootDir>/docs/",
