@@ -12,9 +12,7 @@ const UnorderedList = memo(
         return child
       }
 
-      return React.cloneElement(
-        child,
-        removeUndefined({
+      return React.cloneElement( child, removeUndefined({
           icon,
           size,
           iconColor,
