@@ -49,7 +49,7 @@ const MenuItem = memo(
 
     let iconColor = intent === 'none' ? 'default' : intent
 
-    if(disabled) {
+    if (disabled) {
       iconColor = 'disabled'
     }
 
@@ -58,16 +58,18 @@ const MenuItem = memo(
     const secondaryTextColor = disabled ? textColor : 'muted'
 
     const disabledProps = useMemo(() => {
-      return disabled ? {
-        backgroundColor: theme.colors.background.tint1,
-        cursor: 'not-allowed',
-        disabled: true,
-        onClick: null,
-        onKeyPress: null,
-        tabIndex: -1,
-        'aria-disabled': 'true',
-        'data-isselectable': 'false'
-      } : {}
+      return disabled
+        ? {
+            backgroundColor: theme.colors.background.tint1,
+            cursor: 'not-allowed',
+            disabled: true,
+            onClick: null,
+            onKeyPress: null,
+            tabIndex: -1,
+            'aria-disabled': 'true',
+            'data-isselectable': 'false'
+          }
+        : {}
     }, [disabled])
 
     return (

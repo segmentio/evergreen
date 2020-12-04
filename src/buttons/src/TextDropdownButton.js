@@ -39,7 +39,10 @@ const TextDropdownButton = memo(
       ...restProps
     } = props
 
-    const themedClassName = cx(theme.getTextDropdownButtonClassName(), className)
+    const themedClassName = cx(
+      theme.getTextDropdownButtonClassName(),
+      className
+    )
 
     return (
       <Text
