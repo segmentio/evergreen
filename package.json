@@ -146,6 +146,9 @@
       "indent": [
         "off"
       ],
+      "import/extensions": [
+        "off"
+      ],
       "func-names": [
         "off"
       ],
