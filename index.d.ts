@@ -1834,7 +1834,7 @@ export interface SelectMenuProps
   /**
    * The position of the Select Menu.
    */
-  position?: Omit<PositionTypes, 'left' | 'right'>
+  position?: Exclude<PositionTypes, 'left' | 'right'>
   /**
    * Can be a function that returns a node, or a node itself, that is
    * rendered on the right side of the Select Menu to give additional
@@ -1909,8 +1909,7 @@ export interface SideSheetProps {
   shouldCloseOnEscapePress?: boolean
   width?: string | number
   containerProps?: PaneOwnProps & BoxProps<'div'>
-  // @ts-ignore
-  position?: Pick<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
+  position?: Extract<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
   preventBodyScrolling?: boolean
 }
 
