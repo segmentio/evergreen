@@ -28,6 +28,14 @@ storiesOf('alert', module)
         {['default', 'card'].map(appearance => (
           <Box key={appearance}>
             <Heading marginBottom={16}>{appearance}</Heading>
+            <Heading marginY={60}>
+              Hello world!! Testing the new Evergreen x Storybook PR integration
+            </Heading>
+            <Alert
+              appearance={appearance}
+              title="Testing Storybook integration"
+              marginBottom={32}
+            />
             <Alert
               appearance={appearance}
               marginBottom={32}
@@ -51,11 +59,7 @@ storiesOf('alert', module)
               intent="danger"
               title="We weren’t able to save your changes."
             />
-            <Alert
-              appearance={appearance}
-              marginBottom={32}
-              intent="danger"
-            >
+            <Alert appearance={appearance} marginBottom={32} intent="danger">
               This Alert has no title
             </Alert>
             <ErrorMessage
