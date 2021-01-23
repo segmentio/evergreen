@@ -40,14 +40,26 @@ storiesOf('combobox', module).add('Combobox', () => {
         <Heading>Default usage</Heading>
         <Combobox items={items} onChange={handleChange} />
       </Box>
-      <Box marginBottom={16}>
-        <Heading>Custom width</Heading>
-        <Combobox width={120} items={items} onChange={handleChange} />
+      <Box>
+        <Box marginBottom={16}>
+          <Heading>Custom width</Heading>
+          <Combobox width={120} items={items} onChange={handleChange} />
+        </Box>
+        <Box marginBottom={16}>
+          <Heading>Custom width Popover</Heading>
+          <Combobox
+            width={120}
+            items={items}
+            onChange={handleChange}
+            popoverMinWidth={120}
+          />
+        </Box>
       </Box>
       <Box marginBottom={16} marginLeft={400}>
         <Heading>Custom width + offset</Heading>
         <Combobox width={120} items={items} onChange={handleChange} />
       </Box>
+
       <Box marginBottom={16}>
         <Heading>Open on focus</Heading>
         <Combobox openOnFocus items={items} onChange={handleChange} />

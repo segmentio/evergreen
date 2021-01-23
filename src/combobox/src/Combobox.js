@@ -13,6 +13,7 @@ const Combobox = memo(function Combobox(props) {
     initialSelectedItem,
     itemToString,
     width = 240,
+    popoverMinWidth = 240,
     height,
     onChange,
     placeholder,
@@ -53,6 +54,7 @@ const Combobox = memo(function Combobox(props) {
       isFilterDisabled={isOpenedByButton}
       {...autocompleteProps}
       onStateChange={handleStateChange}
+      popoverMinWidth={popoverMinWidth}
     >
       {({
         getRef,
