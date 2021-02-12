@@ -568,6 +568,7 @@ export interface AutocompleteProps
   extends Omit<DownshiftProps<any>, 'children'> {
   title?: React.ReactNode
   items: any[]
+  allowOtherValues?: boolean
   renderItem?: (i: AutocompleteItemProps) => JSX.Element | null
   itemsFilter?: (items: string[], input: string) => string[]
   children: (props: {

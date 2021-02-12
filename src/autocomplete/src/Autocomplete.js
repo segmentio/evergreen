@@ -117,6 +117,7 @@ const Autocomplete = memo(
       itemToString = i => (i ? String(i) : ''),
       popoverMaxHeight = 240,
       popoverMinWidth = 240,
+      allowOtherValues,
       ...restProps
     } = props
 
@@ -131,7 +132,7 @@ const Autocomplete = memo(
 
     const stateReducer = useCallback(
       (state, changes) => {
-        const { items } = props
+        const { allowOtherValues, items } = props
 
         if (
           Object.prototype.hasOwnProperty.call(changes, 'isOpen') &&
@@ -143,9 +144,17 @@ const Autocomplete = memo(
           }
         }
 
+        if (allowOtherValues && state.isOpen && !changes.isOpen) {
+          return {
+            ...changes,
+            selectedItem: changes.selectedItem || state.inputValue,
+            inputValue: state.inputValue
+          }
+        }
+
         return changes
       },
-      [props.items]
+      [props.items, props.allowOtherValues]
     )
 
     return (
