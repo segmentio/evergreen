@@ -307,6 +307,11 @@ Autocomplete.propTypes = {
    */
   popoverMaxHeight: PropTypes.number,
 
+  /**
+   * Whether or not the input accepts arbitrary user input beyond the provided items
+   */
+  allowOtherValues: PropTypes.bool,
+
   ...Downshift.propTypes
 }
 
