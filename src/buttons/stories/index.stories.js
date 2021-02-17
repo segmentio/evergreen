@@ -197,6 +197,11 @@ buttonsStory.add('Common', () => (
               Permanently Delete Workspace...
             </Button>
           </Pane>
+          <Pane marginTop={16}>
+            <Button appearance="minimal" color="#36f">
+              Click Me
+            </Button>
+          </Pane>
         </React.Fragment>
       )}
     </Component>
@@ -219,9 +224,7 @@ buttonsStory.add('Button types', () => (
       <Button appearance="primary" marginRight={16}>
         Primary
       </Button>
-      <Button marginRight={16} intent="success">
-        Default
-      </Button>
+      <Button marginRight={16}>Default</Button>
       <Button appearance="destructive" marginRight={16} intent="danger">
         Destructive
       </Button>
@@ -234,7 +237,7 @@ buttonsStory.add('Button types', () => (
       <Button disabled appearance="primary" marginRight={16}>
         Primary
       </Button>
-      <Button disabled marginRight={16} intent="success">
+      <Button disabled marginRight={16}>
         Default
       </Button>
       <Button
