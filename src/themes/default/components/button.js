@@ -30,7 +30,7 @@ const colorKeyForAppearanceOrIntent = (appearance, intent) => {
   }
 }
 
-const colorKeyForIntent = (intent) => {
+const colorKeyForIntent = intent => {
   if (intent === 'danger') {
     return `red500`
   } else if (intent === 'success') {
@@ -50,12 +50,12 @@ const borderColorForIntent = (intent, isHover) => {
   }
 }
 
-const getPrimaryButtonAppearance = (appearance, intent, theme) => {
+const getPrimaryButtonAppearance = (appearance, intent, textColor, theme) => {
   const color = colorKeyForAppearanceOrIntent(appearance, intent)
   return {
     backgroundColor: `colors.${color}500`,
     borderColor: `colors.${color}500`,
-    color: 'white',
+    color: textColor || 'white',
     _hover: {
       backgroundColor: `colors.${color}600`,
       borderColor: `colors.${color}600`
@@ -77,13 +77,14 @@ const getPrimaryButtonAppearance = (appearance, intent, theme) => {
 }
 
 const appearances = {
-  primary: (theme, { appearance, intent }) =>
-    getPrimaryButtonAppearance(appearance, intent, theme),
+  primary: (theme, { appearance, color, intent }) =>
+    getPrimaryButtonAppearance(appearance, intent, color, theme),
   default: {
     backgroundColor: 'white',
     border: (theme, props) =>
       `1px solid ${theme.colors[borderColorForIntent(props.intent)]}`,
-    color: (theme, props) => theme.colors[colorKeyForIntent(props.intent)],
+    color: (theme, props) =>
+      props.color || theme.colors[colorKeyForIntent(props.intent)],
 
     _disabled: {
       color: 'colors.gray500',
@@ -92,7 +93,7 @@ const appearances = {
 
     _hover: {
       border: (theme, props) =>
-      `1px solid ${theme.colors[borderColorForIntent(props.intent, true)]}`,
+        `1px solid ${theme.colors[borderColorForIntent(props.intent, true)]}`,
       backgroundColor: 'colors.gray50'
     },
 
@@ -102,7 +103,8 @@ const appearances = {
   },
   minimal: {
     backgroundColor: 'transparent',
-    color: (theme, props) => theme.colors[colorKeyForIntent(props.intent)],
+    color: (theme, props) =>
+      props.color || theme.colors[colorKeyForIntent(props.intent)],
 
     _disabled: {
       color: 'colors.gray500',
