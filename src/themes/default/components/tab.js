@@ -1,22 +1,23 @@
 const baseStyle = {
   fontFamily: 'fontFamilies.ui',
   fontWeight: 500,
-  marginBottom: (_, props) => props.direction === 'vertical' ? '8px' : null,
+  marginBottom: (_, props) => (props.direction === 'vertical' ? '8px' : null)
 }
 
 const appearances = {
   primary: {
     color: 'colors.muted',
     paddingTop: '6px',
-    paddingBottom: '16px',
+    paddingBottom: '6px',
     paddingLeft: '2px',
     paddingRight: '2px',
     position: 'relative',
 
     ':not(:last-child)': {
-      marginRight: (_, props) => props.direction === 'horizontal' ? '20px' : null,
+      marginRight: (_, props) =>
+        props.direction === 'horizontal' ? '20px' : null
     },
-    
+
     _before: {
       content: '""',
       position: 'absolute',
@@ -48,6 +49,7 @@ const appearances = {
     },
 
     _focus: {
+      boxShadow: 'shadows.focusRing',
       color: 'colors.default'
     },
 
@@ -69,7 +71,8 @@ const appearances = {
     color: 'colors.default',
 
     ':not(:last-child)': {
-      marginRight: (_, props) => props.direction === 'horizontal' ? '8px' : null,
+      marginRight: (_, props) =>
+        props.direction === 'horizontal' ? '8px' : null
     },
 
     _hover: {

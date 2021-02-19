@@ -108,7 +108,7 @@ const appearances = {
 
     _disabled: {
       color: 'colors.gray500',
-      borderColor: 'colors.gray300'
+      opacity: 0.6
     },
 
     _hover: {

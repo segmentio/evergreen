@@ -10,6 +10,7 @@ const appearances = {
     _disabled: {
       cursor: 'not-allowed',
       background: 'colors.gray100',
+      color: 'colors.gray100',
       boxShadow: theme => `inset 0 0 0 1px ${theme.colors.gray100}`
     },
     _hover: {
