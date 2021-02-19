@@ -29,7 +29,6 @@ const SearchInput = memo(
         position="relative"
         display="inline-flex"
         height={height}
-        ref={ref}
         {...matchedProps}
       >
         <Box
@@ -48,6 +47,7 @@ const SearchInput = memo(
           />
         </Box>
         <TextInput
+          ref={ref}
           height={height}
           paddingLeft={height}
           appearance={appearance}
