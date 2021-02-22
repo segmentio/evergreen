@@ -59,7 +59,7 @@ const SelectMenu = memo(function SelectMenu(props) {
             onDeselect,
             onFilterChange,
             selected: selectedArray,
-            itemRenderer,
+            renderItem: itemRenderer,
             optionSize: itemHeight
           }}
           close={close}
