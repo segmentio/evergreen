@@ -183,8 +183,15 @@ SelectMenu.propTypes = {
    */
   closeOnSelect: PropTypes.bool,
 
+  /**
+   * Can pass a method that can be used to render custom items in the
+   * select menu
+   */
   itemRenderer: PropTypes.func,
 
+  /**
+   * The height of the items in the select menu list
+   */
   itemHeight: PropTypes.number
 }
 
