@@ -2,7 +2,7 @@ import React from 'react'
 import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import { SelectMenu } from '..'
+import { SelectMenu, Option } from '..'
 import { Button } from '../../buttons'
 import { PeopleIcon } from '../../icons'
 import { Image } from '../../image'
@@ -70,27 +70,35 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             selected={state.selected}
             onSelect={item => setState({ selected: item.value })}
             itemHeight={56}
-            itemRenderer={item => (
-              <Pane display="flex" flexDirection="column" width="100%">
-                <Pane
-                  display="flex"
-                  width="100%"
-                  justifyContent="space-between"
-                  alignItems="center"
-                >
-                  <Pane display="flex" alignItems="center">
-                    <Image src={item.icon} width={24} marginRight={8} />
-                    <Text size={400}>{item.label}</Text>
+            itemRenderer={props => {
+              return (
+                <Option {...props}>
+                  <Pane display="flex" flexDirection="column" width="100%">
+                    <Pane
+                      display="flex"
+                      width="100%"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      <Pane display="flex" alignItems="center">
+                        <Image
+                          src={props.item.icon}
+                          width={24}
+                          marginRight={8}
+                        />
+                        <Text size={400}>{props.item.label}</Text>
+                      </Pane>
+                      <Text color="muted">
+                        {Math.floor(Math.random() * 100) + 1}%
+                      </Text>
+                    </Pane>
+                    <Text color="muted" marginLeft={32}>
+                      sub text
+                    </Text>
                   </Pane>
-                  <Text color="muted">
-                    {Math.floor(Math.random() * 100) + 1}%
-                  </Text>
-                </Pane>
-                <Text color="muted" marginLeft={32}>
-                  sub text
-                </Text>
-              </Pane>
-            )}
+                </Option>
+              )
+            }}
           >
             <Button>Options with custom content</Button>
           </SelectMenu>

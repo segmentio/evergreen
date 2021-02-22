@@ -3,6 +3,7 @@ import fuzzaldrin from 'fuzzaldrin-plus'
 import PropTypes from 'prop-types'
 import VirtualList from 'react-tiny-virtual-list'
 import { SearchIcon } from '../../icons'
+import { Image } from '../../image'
 import { Pane } from '../../layers'
 import SearchTableHeaderCell from '../../table/src/SearchTableHeaderCell'
 import TableHead from '../../table/src/TableHead'
@@ -22,6 +23,15 @@ const fuzzyFilter = (options, input, { key }) => {
 
 const noop = () => {}
 
+const defaultRenderItem = props => {
+  return (
+    <Option {...props}>
+      {props.icon && <Image src={props.icon} width={24} marginRight={8} />}
+      {props.label}
+    </Option>
+  )
+}
+
 const OptionsList = memo(function OptionsList(props) {
   const {
     options: originalOptions = [],
@@ -37,7 +47,7 @@ const OptionsList = memo(function OptionsList(props) {
     isMultiSelect,
     height,
     width,
-    renderItem,
+    renderItem = defaultRenderItem,
     filterPlaceholder = 'Filter...',
     filterIcon = SearchIcon,
     defaultSearchValue = '',
@@ -248,7 +258,6 @@ const OptionsList = memo(function OptionsList(props) {
                 label: item.label,
                 icon: item.icon,
                 item,
-                itemRenderer: renderItem,
                 style,
                 height: optionSize,
                 onSelect: () => handleSelect(item),
@@ -259,7 +268,7 @@ const OptionsList = memo(function OptionsList(props) {
                 tabIndex: 0
               }
 
-              return <Option {...itemProps} />
+              return renderItem(itemProps)
             }}
           />
         )}

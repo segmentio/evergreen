@@ -1,7 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { useStyleConfig } from '../../hooks'
-import { Image } from '../../image'
 import { Pane } from '../../layers'
 import TableRow from '../../table/src/TableRow'
 import TextTableCell from '../../table/src/TextTableCell'
@@ -26,6 +25,7 @@ const emptyObject = {}
 const Option = memo(
   forwardRef(function Option(props, ref) {
     const {
+      children,
       disabled,
       height,
       icon,
@@ -33,7 +33,6 @@ const Option = memo(
       isSelectable,
       isSelected,
       item,
-      itemRenderer,
       label,
       onDeselect,
       onSelect,
@@ -69,14 +68,7 @@ const Option = memo(
           cursor={disabled ? 'default' : 'pointer'}
         >
           <Pane alignItems="center" display="flex">
-            {typeof itemRenderer === 'function' ? (
-              itemRenderer(item)
-            ) : (
-              <>
-                {icon && <Image src={icon} width={24} marginRight={8} />}
-                {label}
-              </>
-            )}
+            {children}
           </Pane>
         </TextTableCell>
       </TableRow>
@@ -85,6 +77,7 @@ const Option = memo(
 )
 
 Option.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   disabled: PropTypes.bool,
   height: PropTypes.number,
   icon: PropTypes.string,
@@ -92,7 +85,6 @@ Option.propTypes = {
   isSelectable: PropTypes.bool,
   isSelected: PropTypes.bool,
   item: PropTypes.any,
-  itemRenderer: PropTypes.func,
   label: PropTypes.string,
   onDeselect: PropTypes.func,
   onSelect: PropTypes.func,
