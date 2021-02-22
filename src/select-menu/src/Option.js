@@ -32,6 +32,8 @@ const Option = memo(
       isHighlighted,
       isSelectable,
       isSelected,
+      item,
+      itemRenderer,
       label,
       onDeselect,
       onSelect,
@@ -67,8 +69,14 @@ const Option = memo(
           cursor={disabled ? 'default' : 'pointer'}
         >
           <Pane alignItems="center" display="flex">
-            {icon && <Image src={icon} width={24} marginRight={8} />}
-            {label}
+            {typeof itemRenderer === 'function' ? (
+              itemRenderer(item)
+            ) : (
+              <>
+                {icon && <Image src={icon} width={24} marginRight={8} />}
+                {label}
+              </>
+            )}
           </Pane>
         </TextTableCell>
       </TableRow>
@@ -77,16 +85,18 @@ const Option = memo(
 )
 
 Option.propTypes = {
-  label: PropTypes.string,
-  icon: PropTypes.string,
-  style: PropTypes.any,
+  disabled: PropTypes.bool,
   height: PropTypes.number,
-  onSelect: PropTypes.func,
-  onDeselect: PropTypes.func,
+  icon: PropTypes.string,
   isHighlighted: PropTypes.bool,
-  isSelected: PropTypes.bool,
   isSelectable: PropTypes.bool,
-  disabled: PropTypes.bool
+  isSelected: PropTypes.bool,
+  item: PropTypes.any,
+  itemRenderer: PropTypes.func,
+  label: PropTypes.string,
+  onDeselect: PropTypes.func,
+  onSelect: PropTypes.func,
+  style: PropTypes.any
 }
 
 export default Option

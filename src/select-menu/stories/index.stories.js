@@ -5,6 +5,7 @@ import Box from 'ui-box'
 import { SelectMenu } from '..'
 import { Button } from '../../buttons'
 import { PeopleIcon } from '../../icons'
+import { Image } from '../../image'
 import { Pane } from '../../layers'
 import { TextInput } from '../../text-input'
 import { Text } from '../../typography'
@@ -56,6 +57,42 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             onSelect={item => setState({ selected: item.value })}
           >
             <Button>Options with icons</Button>
+          </SelectMenu>
+        )}
+      </Manager>
+    </Box>
+    <Box marginBottom={24}>
+      <Manager>
+        {({ setState, state }) => (
+          <SelectMenu
+            title="Select name"
+            options={optionsWithIcons}
+            selected={state.selected}
+            onSelect={item => setState({ selected: item.value })}
+            itemHeight={56}
+            itemRenderer={item => (
+              <Pane display="flex" flexDirection="column" width="100%">
+                <Pane
+                  display="flex"
+                  width="100%"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <Pane display="flex" alignItems="center">
+                    <Image src={item.icon} width={24} marginRight={8} />
+                    <Text size={400}>{item.label}</Text>
+                  </Pane>
+                  <Text color="muted">
+                    {Math.floor(Math.random() * 100) + 1}%
+                  </Text>
+                </Pane>
+                <Text color="muted" marginLeft={32}>
+                  sub text
+                </Text>
+              </Pane>
+            )}
+          >
+            <Button>Options with custom content</Button>
           </SelectMenu>
         )}
       </Manager>

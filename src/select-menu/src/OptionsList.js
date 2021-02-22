@@ -20,12 +20,6 @@ const fuzzyFilter = (options, input, { key }) => {
   return fuzzaldrin.filter(options, input, { key })
 }
 
-/**
- * This is the default item renderer of options
- * you can pass custom renderers as long as they work the same as the Option
- */
-const itemRenderer = props => <Option {...props} />
-
 const noop = () => {}
 
 const OptionsList = memo(function OptionsList(props) {
@@ -43,7 +37,7 @@ const OptionsList = memo(function OptionsList(props) {
     isMultiSelect,
     height,
     width,
-    renderItem = itemRenderer,
+    itemRenderer,
     filterPlaceholder = 'Filter...',
     filterIcon = SearchIcon,
     defaultSearchValue = '',
@@ -248,10 +242,13 @@ const OptionsList = memo(function OptionsList(props) {
             renderItem={({ index, style }) => {
               const item = options[index]
               const isItemSelected = isSelected(item)
-              return renderItem({
+
+              const itemProps = {
                 key: item.value,
                 label: item.label,
                 icon: item.icon,
+                item,
+                itemRenderer,
                 style,
                 height: optionSize,
                 onSelect: () => handleSelect(item),
@@ -260,7 +257,9 @@ const OptionsList = memo(function OptionsList(props) {
                 isSelected: isItemSelected,
                 disabled: item.disabled,
                 tabIndex: 0
-              })
+              }
+
+              return <Option {...itemProps} />
             }}
           />
         )}
@@ -296,7 +295,7 @@ OptionsList.propTypes = {
   onFilterChange: PropTypes.func,
   hasFilter: PropTypes.bool,
   optionSize: PropTypes.number,
-  renderItem: PropTypes.func,
+  itemRenderer: PropTypes.func,
   filterPlaceholder: PropTypes.string,
   filterIcon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
   optionsFilter: PropTypes.func,

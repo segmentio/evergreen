@@ -30,6 +30,8 @@ const SelectMenu = memo(function SelectMenu(props) {
     titleView,
     isMultiSelect = false,
     closeOnSelect = false,
+    itemRenderer,
+    itemHeight,
     ...rest
   } = props
 
@@ -56,7 +58,9 @@ const SelectMenu = memo(function SelectMenu(props) {
             onSelect,
             onDeselect,
             onFilterChange,
-            selected: selectedArray
+            selected: selectedArray,
+            itemRenderer,
+            optionSize: itemHeight
           }}
           close={close}
           detailView={
@@ -177,7 +181,11 @@ SelectMenu.propTypes = {
   /*
    * When true, menu closes on option selection.
    */
-  closeOnSelect: PropTypes.bool
+  closeOnSelect: PropTypes.bool,
+
+  itemRenderer: PropTypes.func,
+
+  itemHeight: PropTypes.number
 }
 
 export default SelectMenu
