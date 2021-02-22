@@ -1481,39 +1481,39 @@ export interface RadioGroupOwnProps extends PaneOwnProps {
 export type RadioGroupProps = PolymorphicBoxProps<'div', RadioGroupOwnProps>
 export declare const RadioGroup: BoxComponent<RadioGroupOwnProps, 'div'>
 
-export interface Option {
+export interface SelectMenuOption {
   label?: string
   value?: string | number
   disabled?: boolean
 }
 
 export interface OptionsListProps extends PaneOwnProps {
-  options?: Option[]
+  options?: SelectMenuOption[]
   close?: () => void
   height?: number
   width?: number
   isMultiSelect?: boolean
   selected?: string | string[]
-  onSelect?: (value: Option) => void
-  onDeselect?: (value: Option) => void
+  onSelect?: (value: SelectMenuOption) => void
+  onDeselect?: (value: SelectMenuOption) => void
   onFilterChange?: (value: string) => void
   hasFilter?: boolean
   optionSize?: number
   renderItem?: (props: {
-    key: Option['value']
-    label: Option['label']
+    key: SelectMenuOption['value']
+    label: SelectMenuOption['label']
     style: object
     height: NonNullable<OptionsListProps['optionSize']>
     onSelect: () => void
     onDeselect: () => void
     isSelectable: boolean
     isSelected: boolean
-    disabled: Option['disabled']
+    disabled: SelectMenuOption['disabled']
   }) => JSX.Element
   filterPlaceholder?: string
   filterIcon?: React.ElementType | JSX.Element
   optionsFilter?: (
-    value: Option['label'][],
+    value: SelectMenuOption['label'][],
     filter: NonNullable<OptionsListProps['defaultSearchValue']>
   ) => void
   defaultSearchValue?: string
@@ -1800,15 +1800,16 @@ export interface SelectMenuProps
    * Function that is used to render custom items in the select menu
    */
   itemRenderer?: (props: {
-    key: Option['value']
-    label: Option['label']
+    key: SelectMenuOption['value']
+    label: SelectMenuOption['label']
+    item: SelectMenuOption
     style: object
     height: NonNullable<OptionsListProps['optionSize']>
     onSelect: () => void
     onDeselect: () => void
     isSelectable: boolean
     isSelected: boolean
-    disabled: Option['disabled']
+    disabled: SelectMenuOption['disabled']
   }) => React.ElementType | JSX.Element
   /**
    * The height of the items in the select menu list (default is 33px)
