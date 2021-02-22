@@ -1792,6 +1792,14 @@ export interface SelectMenuProps
    * When true, menu closes on option selection.
    */
   closeOnSelect?: boolean
+  /**
+   * Function that is used to render custom items in the select menu
+   */
+  itemRenderer?: (item: SelectMenuItem) => React.ElementType | JSX.Element
+  /**
+   * The height of the items in the select menu list (default is 33px)
+   */
+  itemHeight?: number
 }
 
 export declare const SelectMenu: React.FC<SelectMenuProps>
@@ -2642,7 +2650,9 @@ export interface IconProps extends BoxProps<'svg'> {
 }
 
 /* Start generated icons */
-type IconComponent = React.ForwardRefExoticComponent<React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>>
+type IconComponent = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>
+>
 export declare const AddIcon: IconComponent
 export declare const AddColumnLeftIcon: IconComponent
 export declare const AddColumnRightIcon: IconComponent
