@@ -1799,7 +1799,17 @@ export interface SelectMenuProps
   /**
    * Function that is used to render custom items in the select menu
    */
-  itemRenderer?: (item: SelectMenuItem) => React.ElementType | JSX.Element
+  itemRenderer?: (props: {
+    key: Option['value']
+    label: Option['label']
+    style: object
+    height: NonNullable<OptionsListProps['optionSize']>
+    onSelect: () => void
+    onDeselect: () => void
+    isSelectable: boolean
+    isSelected: boolean
+    disabled: Option['disabled']
+  }) => React.ElementType | JSX.Element
   /**
    * The height of the items in the select menu list (default is 33px)
    */
