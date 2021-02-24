@@ -1523,10 +1523,7 @@ export interface OptionsListProps extends PaneOwnProps {
   defaultSearchValue?: string
 }
 
-export class Option extends React.PureComponent<
-  OptionProps & BoxProps<'div'>
-> {}
-
+export declare const Option: BoxComponent<OptionProps, 'div'>
 export class OptionsList extends React.PureComponent<
   OptionsListProps & BoxProps<'div'>
 > {}
