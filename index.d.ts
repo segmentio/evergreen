@@ -1484,6 +1484,7 @@ export declare const RadioGroup: BoxComponent<RadioGroupOwnProps, 'div'>
 export interface SelectMenuOption {
   label?: string
   value?: string | number
+  icon?: string
   disabled?: boolean
 }
 
@@ -1502,6 +1503,8 @@ export interface OptionsListProps extends PaneOwnProps {
   renderItem?: (props: {
     key: SelectMenuOption['value']
     label: SelectMenuOption['label']
+    icon?: SelectMenuOption['icon']
+    item: SelectMenuOption
     style: object
     height: NonNullable<OptionsListProps['optionSize']>
     onSelect: () => void
@@ -1509,6 +1512,7 @@ export interface OptionsListProps extends PaneOwnProps {
     isSelectable: boolean
     isSelected: boolean
     disabled: SelectMenuOption['disabled']
+    tabIndex: number
   }) => JSX.Element
   filterPlaceholder?: string
   filterIcon?: React.ElementType | JSX.Element
