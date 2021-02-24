@@ -37,6 +37,7 @@ export { Select, SelectField } from './select'
 export {
   OptionShapePropType,
   OptionsList,
+  Option,
   SelectedPropType,
   SelectMenu,
   SelectMenuContent
