@@ -1,16 +1,7 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import Image from '../../image'
+import { Image } from '../../image'
 import Option from '../../select-menu/src/Option'
-
-const renderItemContent = props => {
-  return (
-    <>
-      {props.icon && <Image src={props.icon} width={24} marginRight={8} />}
-      {props.label}
-    </>
-  )
-}
 
 const AutocompleteItem = memo(
   forwardRef(function AutocompleteItem(props, ref) {
