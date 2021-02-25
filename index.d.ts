@@ -552,7 +552,7 @@ export declare const Alert: BoxComponent<AlertOwnProps, 'div'>
 
 interface OptionProps extends TableRowOwnProps {
   height?: number | string
-  label: string
+  label?: string
   icon?: string
   disabled?: boolean
 }
@@ -2666,7 +2666,9 @@ export interface IconProps extends BoxProps<'svg'> {
 }
 
 /* Start generated icons */
-type IconComponent = React.ForwardRefExoticComponent<React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>>
+type IconComponent = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>
+>
 export declare const AddIcon: IconComponent
 export declare const AddColumnLeftIcon: IconComponent
 export declare const AddColumnRightIcon: IconComponent

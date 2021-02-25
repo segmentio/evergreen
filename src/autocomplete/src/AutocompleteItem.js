@@ -1,6 +1,16 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import Image from '../../image'
 import Option from '../../select-menu/src/Option'
+
+const renderItemContent = props => {
+  return (
+    <>
+      {props.icon && <Image src={props.icon} width={24} marginRight={8} />}
+      {props.label}
+    </>
+  )
+}
 
 const AutocompleteItem = memo(
   forwardRef(function AutocompleteItem(props, ref) {
@@ -11,10 +21,14 @@ const AutocompleteItem = memo(
         ref={ref}
         isHighlighted={isHighlighted}
         isSelected={isSelected}
-        label={children}
         style={style}
         {...restProps}
-      />
+      >
+        {renderItemContent({
+          label: children,
+          icon: restProps.icon
+        })}
+      </Option>
     )
   })
 )
