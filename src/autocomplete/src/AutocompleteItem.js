@@ -1,5 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import { Image } from '../../image'
 import Option from '../../select-menu/src/Option'
 
 const AutocompleteItem = memo(
@@ -11,10 +12,14 @@ const AutocompleteItem = memo(
         ref={ref}
         isHighlighted={isHighlighted}
         isSelected={isSelected}
-        label={children}
         style={style}
         {...restProps}
-      />
+      >
+        {restProps.icon && (
+          <Image src={restProps.icon} width={24} marginRight={8} />
+        )}
+        {children}
+      </Option>
     )
   })
 )
