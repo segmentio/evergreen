@@ -24,10 +24,10 @@ const AutocompleteItem = memo(
         style={style}
         {...restProps}
       >
-        {renderItemContent({
-          label: children,
-          icon: restProps.icon
-        })}
+        {restProps.icon && (
+          <Image src={restProps.icon} width={24} marginRight={8} />
+        )}
+        {children}
       </Option>
     )
   })
