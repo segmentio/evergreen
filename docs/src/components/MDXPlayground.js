@@ -17,13 +17,19 @@ export default class MDXPlayground extends React.Component {
   }
 
   render() {
-    const { children, className, collapse, noInline } = this.props
+    const {
+      children,
+      className,
+      collapse,
+      noInline,
+      static: static_
+    } = this.props
     let language = 'jsx'
     if (className && className.includes('language-')) {
       language = className.split('-')[1]
     }
 
-    if (this.props.static) {
+    if (static_) {
       return (
         <SyntaxHighlighter language={language}>{children}</SyntaxHighlighter>
       )

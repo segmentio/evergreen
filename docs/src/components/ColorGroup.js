@@ -3,23 +3,21 @@ import PropTypes from 'prop-types'
 import { Pane, Heading } from 'evergreen-ui'
 import Swatch from './Swatch'
 
-const ColorGroup = props => {
+const ColorGroup = ({ title, colorGroup, name }) => {
   return (
     <Pane marginTop={32} minWidth={160}>
       <Pane borderBottom paddingBottom={8}>
-        <Heading>{props.title}</Heading>
+        <Heading>{title}</Heading>
       </Pane>
       <Pane>
-        {Object.keys(props.colorGroup).map(key => {
-          return (
-            <Swatch
-              key={key}
-              color={props.colorGroup[key]}
-              name={key}
-              property={props.name(key)}
-            />
-          )
-        })}
+        {Object.keys(colorGroup).map(key => (
+          <Swatch
+            key={key}
+            color={colorGroup[key]}
+            name={key}
+            property={name(key)}
+          />
+        ))}
       </Pane>
     </Pane>
   )

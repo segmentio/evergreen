@@ -24,6 +24,14 @@ export default class TextStylePreview extends React.Component {
   }
 
   render() {
+    const {
+      fontSize,
+      fontWeight,
+      lineHeight,
+      letterSpacing,
+      color,
+      marginTop
+    } = this.props
     return (
       <Pane display="flex" marginTop={24} paddingTop={24} borderTop>
         <Pane flexShrink={0} flexGrow={1} flex={1} paddingRight={12}>
@@ -33,25 +41,25 @@ export default class TextStylePreview extends React.Component {
           <p className="paragraph" style={{ marginTop: 0, marginBottom: 0 }}>
             Font family: <strong>{this.getFontFamilyVariable()}</strong>
             <br />
-            Font size: <strong>{this.props.fontSize}</strong>
+            Font size: <strong>{fontSize}</strong>
             <br />
-            Font weight: <strong>{this.props.fontWeight}</strong>
+            Font weight: <strong>{fontWeight}</strong>
             <br />
-            Line height: <strong>{this.props.lineHeight}</strong>
+            Line height: <strong>{lineHeight}</strong>
             <br />
-            Letter spacing: <strong>{this.props.letterSpacing}</strong>
+            Letter spacing: <strong>{letterSpacing}</strong>
             <br />
-            {this.props.color && (
+            {color && (
               <React.Fragment>
-                color: <strong>{this.props.color}</strong>
+                color: <strong>{color}</strong>
                 <br />
               </React.Fragment>
             )}
-            {this.props.marginTop && (
+            {marginTop && (
               <React.Fragment>
                 Default margin top:{' '}
                 <strong>
-                  {this.props.marginTop}
+                  {marginTop}
                   px
                 </strong>
                 <br />

@@ -64,16 +64,14 @@ class Page extends React.Component {
   render() {
     const metaInfo = this.getMetaInfo()
     if (!metaInfo) return null
+    const { name, github } = metaInfo
     const relatedItems = this.getRelatedItems(metaInfo)
     return (
       <React.Fragment>
         <Helmet>
-          <title>{metaInfo.name} · Evergreen</title>
-          <meta property="og:title" content={`${metaInfo.name} · Evergreen`} />
-          <meta
-            property="twitter:title"
-            content={`${metaInfo.name} · Evergreen`}
-          />
+          <title>{name} · Evergreen</title>
+          <meta property="og:title" content={`${name} · Evergreen`} />
+          <meta property="twitter:title" content={`${name} · Evergreen`} />
         </Helmet>
         <div>
           <TopBar />
@@ -98,15 +96,10 @@ class Page extends React.Component {
                         />
                       </Tooltip>
 
-                      <h1>{metaInfo.name}</h1>
+                      <h1>{name}</h1>
                     </div>
 
-                    <Button
-                      is="a"
-                      height={40}
-                      href={metaInfo.github}
-                      target="_blank"
-                    >
+                    <Button is="a" height={40} href={github} target="_blank">
                       View on GitHub
                     </Button>
                   </div>
@@ -127,17 +120,15 @@ class Page extends React.Component {
               >
                 <h3 className="Overview-groupTitle">Related</h3>
                 <div className="Overview-groupItems">
-                  {relatedItems.map(item => {
-                    return (
-                      <OverviewItem
-                        key={item.name}
-                        id={item.id}
-                        image={item.image}
-                      >
-                        {item.name}
-                      </OverviewItem>
-                    )
-                  })}
+                  {relatedItems.map(item => (
+                    <OverviewItem
+                      key={item.name}
+                      id={item.id}
+                      image={item.image}
+                    >
+                      {item.name}
+                    </OverviewItem>
+                  ))}
                 </div>
               </div>
             )}

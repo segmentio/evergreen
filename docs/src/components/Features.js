@@ -8,10 +8,11 @@ class Feature extends React.PureComponent {
   }
 
   render() {
+    const { title, children } = this.props
     return (
       <div className="Feature">
-        <h2 className="h3 Feature-title">{this.props.title}</h2>
-        <p className="Feature-description">{this.props.children}</p>
+        <h2 className="h3 Feature-title">{title}</h2>
+        <p className="Feature-description">{children}</p>
       </div>
     )
   }

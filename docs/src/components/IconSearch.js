@@ -18,9 +18,10 @@ export default class IconSearch extends React.PureComponent {
   }
 
   search = () => {
-    if (this.state.searchQuery.trim().length === 0) return iconKeys
+    const { searchQuery } = this.state
+    if (searchQuery.trim().length === 0) return iconKeys
     return iconKeys.filter(key => {
-      return filter([key], this.state.searchQuery).length > 0
+      return filter([key], searchQuery).length > 0
     })
   }
 

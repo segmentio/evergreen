@@ -9,8 +9,6 @@ export default class SyntaxHighlighter extends React.PureComponent {
     language: PropTypes.string
   }
 
-  componentDidCatch() {}
-
   render() {
     return (
       <Highlight

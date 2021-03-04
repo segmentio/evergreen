@@ -40,18 +40,15 @@ class MediaItem extends React.PureComponent {
   }
 
   render() {
+    const { image, title, published, link } = this.props
     return (
-      <a href={this.props.link} className="MediaItem" onClick={this.track}>
+      <a href={link} className="MediaItem" onClick={this.track}>
         <figure>
-          <img
-            src={this.props.image}
-            alt={this.props.title}
-            className="MediaItem-image"
-          />
+          <img src={image} alt={title} className="MediaItem-image" />
         </figure>
         <div className="MediaItem-content">
-          <h3 className="MediaItem-title">{this.props.title}</h3>
-          <p className="MediaItem-published">{this.props.published}</p>
+          <h3 className="MediaItem-title">{title}</h3>
+          <p className="MediaItem-published">{published}</p>
         </div>
       </a>
     )
@@ -65,17 +62,18 @@ export default class Media extends React.PureComponent {
   }
 
   render() {
+    const { title, items } = this.props
     return (
       <section className="Media bg-tint2 clearfix">
         <div className="Media-inner Container">
           <header style={{ textAlign: 'center', marginTop: 64 }}>
             <MediaIcon />
             <h2 className="h2" style={{ marginTop: 32 }}>
-              {this.props.title}
+              {title}
             </h2>
           </header>
           <div className="Media-grid">
-            {this.props.items.map(item => (
+            {items.map(item => (
               <MediaItem key={item.title} {...item} />
             ))}
           </div>

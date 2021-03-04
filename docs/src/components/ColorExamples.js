@@ -44,16 +44,14 @@ export default class ColorExamples extends React.Component {
               <Heading size={800} marginTop="default">
                 Scales
               </Heading>
-              {Object.keys(theme.scales).map(key => {
-                return (
-                  <ColorGroup
-                    key={key}
-                    title={capitalize(key)}
-                    colorGroup={theme.scales[key]}
-                    name={childKey => `theme.scales.${key}.${childKey}`}
-                  />
-                )
-              })}
+              {Object.keys(theme.scales).map(key => (
+                <ColorGroup
+                  key={key}
+                  title={capitalize(key)}
+                  colorGroup={theme.scales[key]}
+                  name={childKey => `theme.scales.${key}.${childKey}`}
+                />
+              ))}
             </Pane>
           </Pane>
         )}

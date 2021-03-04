@@ -84,32 +84,32 @@ export default class PropsTable extends PureComponent {
                 </p>
               </div>
             )
+
+          const { displayName, composes, props: composesProps } = componentDocs
           return (
             <>
               <div className="Content">
                 <h2 className="h2">
                   <code className="code">
-                    {this.props.rename || componentDocs.displayName}
+                    {this.props.rename || displayName}
                   </code>{' '}
                   Props
                 </h2>
-                {componentDocs &&
-                  componentDocs.composes &&
-                  componentDocs.composes.length > 0 && (
-                    <div className="PropTypesTable-composes">
-                      <p>
-                        <strong>This component composes </strong>
-                        {componentDocs.composes.map(filePath => (
-                          <code key={filePath}>
-                            {filePath.slice(filePath.indexOf('/') + 1)}
-                          </code>
-                        ))}
-                      </p>
-                    </div>
-                  )}
+                {composes && composes.length > 0 && (
+                  <div className="PropTypesTable-composes">
+                    <p>
+                      <strong>This component composes </strong>
+                      {composes.map(filePath => (
+                        <code key={filePath}>
+                          {filePath.slice(filePath.indexOf('/') + 1)}
+                        </code>
+                      ))}
+                    </p>
+                  </div>
+                )}
               </div>
 
-              {componentDocs.props.map(prop => {
+              {composesProps.map(prop => {
                 const isArrayOf = this.isArrayOf(prop)
                 // Figure out what makes sense here.
                 return (
