@@ -69,6 +69,7 @@ export {
   withTheme,
   useTheme
 } from './theme'
+export { usePaginationBehavior, Pagination } from './pagination'
 export { defaultTheme, classicTheme, deprecatedDefaultTheme } from './themes'
 export { Textarea, TextareaField } from './textarea'
 export { toaster } from './toaster'
