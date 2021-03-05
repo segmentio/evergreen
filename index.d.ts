@@ -1307,6 +1307,47 @@ export interface PaneOwnProps {
 export type PaneProps = PolymorphicBoxProps<'div', PaneOwnProps>
 export declare const Pane: BoxComponent<PaneOwnProps, 'div'>
 
+export interface PaginationOwnProps {
+  /**
+   * The current page that a user is on - defaults to 1.
+   */
+  page: number
+  /**
+   * The total number of pages to render. If ommitted, the page numbers will not be shown to the end user.
+   */
+  totalPages?: number
+  /**
+   * Callback handler when the next page button is clicked.
+   */
+  onNextPage?: () => void
+  /**
+   * Callback handler when the previous page button is clicked.
+   */
+  onPreviousPage?: () => void
+  /**
+   * Callback handler when a specific page # is clicked
+   */
+  onPageChange?: (page: number) => void
+}
+
+export type PaginationProps = PolymorphicBoxProps<'nav', PaginationOwnProps>
+export declare const Pagination: BoxComponent<PaginationOwnProps, 'nav'>
+
+interface UsePaginationBehaviorInput {
+  page?: number
+}
+
+interface UsePaginationBehaviorOutput
+  extends Required<UsePaginationBehaviorInput> {
+  onNextPage: () => void
+  onPreviousPage: () => void
+  onPageChange: (page: number) => void
+}
+
+export declare const usePaginationBehavior: (
+  input: UsePaginationBehaviorInput
+) => UsePaginationBehaviorOutput
+
 export type PillOwnProps = BadgeOwnProps
 export type PillProps = PolymorphicBoxProps<'strong', PillOwnProps>
 export declare const Pill: BoxComponent<PillOwnProps, 'strong'>
