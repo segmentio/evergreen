@@ -1462,7 +1462,7 @@ export interface PulsarProps {
   size?: number
 }
 
-export declare const Pulsar: React.FC<TooltipProps>
+export declare const Pulsar: React.FC<PulsarProps>
 
 export interface RadioOwnProps {
   /**
