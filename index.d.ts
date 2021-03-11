@@ -1292,6 +1292,27 @@ export declare const Menu: React.FC<MenuProps> & {
   OptionsGroup: typeof MenuOptionsGroup
 }
 
+export interface NudgeProps {
+  /**
+   * The position the Tooltip is on.
+   */
+  position?: Exclude<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
+  /**
+   * The size of the Pulsar
+   */
+  size?: number
+  /**
+   * The content of the Tooltip.
+   */
+  tooltipContent: React.ReactNode
+  /**
+   * When true, manually show the Tooltip.
+   */
+  isShown?: boolean
+}
+
+export declare const Nudge: React.FC<NudgeProps>
+
 export interface PaneOwnProps {
   background?: keyof Colors['background'] | string
   border?: boolean | string
@@ -1429,6 +1450,19 @@ export declare const Positioner: React.FC<PositionerProps>
 export type PreOwnProps = TextOwnProps
 export type PreProps = PolymorphicBoxProps<'pre', PreOwnProps>
 export declare const Pre: BoxComponent<PreOwnProps, 'pre'>
+
+export interface PulsarProps {
+  /**
+   * The position the Tooltip is on.
+   */
+  position?: Exclude<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
+  /**
+   * The size of the pulsar
+   */
+  size?: number
+}
+
+export declare const Pulsar: React.FC<PulsarProps>
 
 export interface RadioOwnProps {
   /**
