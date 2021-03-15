@@ -1,9 +1,18 @@
-import React, { PureComponent } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  PureComponent
+} from 'react'
 import { storiesOf } from '@storybook/react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Overlay } from '..'
 import { Button } from '../../buttons'
+import { Card } from '../../layers'
+import { majorScale } from '../../scales'
+import { Paragraph } from '../../typography'
 
 class OverlayManager extends PureComponent {
   static propTypes = {
@@ -67,3 +76,54 @@ storiesOf('overlay', module)
       </OverlayManager>
     </Box>
   ))
+  .add('Override close behavior', () => {
+    useEffect(() => {
+      document.body.style.margin = '0'
+      document.body.style.height = '100vh'
+    }, [])
+
+    const [isShown, setIsShown] = useState(false)
+
+    const show = useCallback(() => {
+      setIsShown(true)
+    }, [])
+
+    const timesClicked = useRef(0)
+
+    const hide = useCallback(() => {
+      setIsShown(false)
+      timesClicked.current = 0
+    }, [])
+
+    const beforeClose = useCallback(() => {
+      return ++timesClicked.current > 2
+    }, [])
+
+    return (
+      <Box padding={40}>
+        <Overlay
+          isShown={isShown}
+          containerProps={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+          onBeforeClose={beforeClose}
+          onExited={hide}
+        >
+          <Card
+            elevation={2}
+            background="white"
+            padding={majorScale(2)}
+            zIndex={30}
+            position="relative"
+            pointerEvents="none"
+          >
+            <Paragraph>Click 3 times to close it</Paragraph>
+          </Card>
+        </Overlay>
+
+        <Button onClick={show}>Show Overlay</Button>
+      </Box>
+    )
+  })
