@@ -93,7 +93,7 @@ const Overlay = memo(function Overlay({
   }, [isShown])
 
   const close = () => {
-    const shouldClose = safeInvoke(props.onBeforeClose)
+    const shouldClose = safeInvoke(onBeforeClose)
     if (shouldClose !== false) {
       setStatus('exiting')
     }
