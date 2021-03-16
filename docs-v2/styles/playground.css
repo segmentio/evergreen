@@ -1,0 +1,79 @@
+.Playground {
+  background-color: var(--N1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.MDXPage .Playground {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.Playground[data-isCodeCollapsed='false'] {
+  background-color: var(--N10);
+  color: white;
+}
+
+.Playground[data-isCodeCollapsed='true'] {
+  & .Playground-header:hover {
+    background-color: var(--B4);
+  }
+}
+
+.Playground-header {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  right: 0;
+  display: block;
+  padding: 8px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+}
+
+.Playground-preview {
+  background-color: #fff;
+  color: var(--N8);
+  margin: 4px;
+  padding: 16px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px var(--N4A);
+}
+
+.Playground-error {
+  border-radius: 5px;
+  background-color: var(--neutral-800);
+  color: white;
+  padding: 80px;
+  text-align: center;
+
+  & p {
+    line-height: 1.4;
+  }
+}
+
+.react-live-error {
+  background-color: var(--red-base);
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: var(--font-mono);
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  tab-size: 2;
+  hyphens: none;
+}
+
+.Playground-notice {
+  padding: 12px;
+  font-size: 14px;
+  font-family: var(--font-ui);
+}

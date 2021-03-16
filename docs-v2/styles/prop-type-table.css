@@ -1,0 +1,72 @@
+.PropTypesTable-composes {
+  background-color: var(--yellow-15A);
+  padding: 12px;
+  margin-bottom: 24px;
+
+  & p {
+    margin: 0;
+  }
+}
+
+.PropTypeWrapper {
+  font-size: 14px;
+  line-height: 1.6em;
+  margin-bottom: 24px;
+}
+
+.PropTypeHeading {
+  font-family: var(--font-mono);
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--neutral-5A);
+  margin-bottom: 4px;
+}
+
+.PropTypeHeading-propType {
+  background-color: var(--neutral-7A);
+  color: var(--neutral-800);
+  border-radius: 2px;
+  font-weight: 500;
+  padding: 2px 4px;
+}
+
+.PropTypeHeading-arrayOf {
+  margin-left: 12px;
+  background-color: var(--neutral-7A);
+  color: var(--neutral-800);
+  border-radius: 2px;
+  font-weight: 500;
+  padding: 2px 4px;
+}
+
+.PropTypeHeading-name {
+  font-family: var(--font-mono);
+  background-color: var(--turquoise-15A);
+  color: var(--turquoise-1000);
+  border-radius: 2px;
+  font-weight: 500;
+  padding: 2px 4px;
+  margin-right: 12px;
+}
+
+.PropTypeHeading-defaultValue {
+}
+
+.PropTypeHeading-required {
+  margin-left: 12px;
+  color: var(--red-700);
+}
+
+.PropType-value {
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.PropTypeDescription {
+  margin-bottom: 8px;
+}
+
+.PropTypeTypeValue {
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--neutral-5A);
+  margin-bottom: 4px;
+}

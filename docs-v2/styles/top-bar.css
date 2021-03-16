@@ -1,0 +1,92 @@
+.TopBar {
+  z-index: 1;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  background: white;
+  box-shadow: var(--elevation-1);
+}
+
+.TopBar-nav {
+  position: relative;
+  display: flex;
+  flex: 1;
+
+  @media (--range-palm), (--range-hand) {
+    margin-left: 12px;
+  }
+
+  @media (--range-lap), (--range-desk) {
+    margin-left: 24px;
+  }
+}
+
+.TopBar-navRight {
+  display: flex;
+  align-items: center;
+
+  & > span {
+    margin-right: 16px;
+  }
+}
+
+.TopBar-link {
+  color: var(--neutral-base);
+  text-transform: uppercase;
+  line-height: 16px;
+  font-size: 12px;
+  padding: 10px 12px;
+  margin-right: 8px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  letter-spacing: 0.4px;
+  border-radius: 3px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    background-color: var(--N2A);
+  }
+
+  &:active,
+  &.is-active {
+    background-color: var(--B3A);
+    color: var(--blue-base);
+  }
+
+  &:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--B6A);
+  }
+
+  & .icon-holder {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    position: relative;
+    top: -1px;
+
+    & + span {
+      margin-left: 8px;
+    }
+  }
+
+  @media (--range-palm) {
+    height: 32px;
+
+    & .hide-on-mobile {
+      display: none;
+    }
+
+    & .icon-holder + .hide-on-mobile {
+      margin-left: 0px;
+    }
+  }
+}

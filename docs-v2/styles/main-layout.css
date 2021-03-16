@@ -1,0 +1,60 @@
+body {
+  min-width: 1024px;
+}
+
+.MainLayout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.MainLayout-main {
+  flex: 1;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.MainLayout-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.MainLayout-contentRight {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.MainLayout-sidebar {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: var(--neutral-5A);
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: var(--neutral-20A);
+  }
+
+  &::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255, 0, 0, 0.4);
+  }
+
+  width: 240px;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: var(--N2);
+}
+
+.Sidebar-inner {
+  max-width: 260px;
+}
+
+.MainLayout-main {
+  flex: 1;
+}

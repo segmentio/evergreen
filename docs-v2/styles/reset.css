@@ -1,0 +1,129 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+ * https://raw.githubusercontent.com/ianstormtaylor/reset/master/index.css
+ * Add a few more `block` elements, since they're mostly treated that way.
+ */
+
+audio,
+canvas,
+img,
+video {
+  display: block;
+}
+
+/**
+ * Reset line-height, since it makes aligning elements way easier.
+ */
+
+html {
+  line-height: 1;
+}
+
+body {
+  margin: 0;
+}
+
+/**
+ * Remove default heading styles.
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  line-height: 1;
+  font-weight: inherit;
+}
+
+/**
+ * Remove default link styles, since they get used for buttons, etc.
+ */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/**
+ * Remove outline for links. You should style it, but not necessarily outline.
+ */
+
+a:focus {
+  outline: 0;
+}
+
+/**
+ * Remove default paragraph styles.
+ */
+
+p,
+small {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Remove default list styles, since they get used for navs, etc.
+ */
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Remove default blockquote and quote styles.
+ */
+
+blockquote,
+q {
+  margin: 0;
+}
+
+/**
+ * Remove default cite styles.
+ */
+
+cite {
+  font-style: inherit;
+}
+
+/**
+ * Remove default form styles.
+ */
+
+form {
+  margin: 0;
+}
+
+/**
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Remove defaultstyles.
+ */
+
+pre,
+figure {
+  margin: 0;
+}

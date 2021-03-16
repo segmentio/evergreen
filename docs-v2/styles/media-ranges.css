@@ -1,0 +1,64 @@
+/**
+ * Visual presentation of major and minor ranges:
+ * major: ---palm----|----hand---|----lap----|---desk------*
+ * minor: _s_|_m_|_l_|_s_|_m_|_l_|_s_|_m_|_l_|_s_|_m_|_l___*
+ *
+ *
+ * Usage example:
+ * .MyComponent {
+ *
+ *   @media (--range-hand) {
+ *     margin: 40px 0;
+ *   }
+ *
+ *   @media (--range-lap), (--range-desk) {
+ *     margin: 120px 0;
+ *   }
+ * }
+ */
+
+/**
+ * palm
+ * major: 0-440
+ * minor: 0-360-400-440
+ * interval: 40px
+ */
+@custom-media --range-palm (width <= 440px);
+@custom-media --range-palm-s (width <= 360px);
+@custom-media --range-palm-m (width > 360px) and (width <= 400px);
+@custom-media --range-palm-l (width > 400px) and (width <= 440px);
+
+/**
+ * hand
+ * major: 440–620
+ * minor: 440-500-560-620
+ * interval: 60px
+ */
+@custom-media --range-hand (width > 440px) and (width <= 620px);
+@custom-media --range-hand-s (width > 440px) and (width <= 500px);
+@custom-media --range-hand-m (width > 500px) and (width <= 560px);
+@custom-media --range-hand-l (width > 560px) and (width <= 620px);
+
+/**
+ * lap
+ * major: 620–980
+ * minor: 620–740–860–980
+ * interval: 120px
+ */
+@custom-media --range-lap (width > 620px) and (width <= 980px);
+@custom-media --range-lap-s (width > 620px) and (width <= 740px);
+@custom-media --range-lap-m (width > 740px) and (width <= 860px);
+@custom-media --range-lap-l (width > 860px) and (width <= 980px);
+
+/**
+ * desk
+ * major: 980–*
+ * minor: 980–1120–1260–1400–*
+ * interval: 140px
+ */
+@custom-media --range-desk (width > 980px);
+@custom-media --range-desk-s (width > 980px) and (width <= 1120px);
+@custom-media --range-desk-m (width > 1120px) and (width <= 1260px);
+@custom-media --range-desk-l (width > 1260px) and (width <= 1400px);
+@custom-media --range-desk-xl (width > 1400px);
+@custom-media --range-desk-xxl (width > 1600px);

@@ -1,0 +1,135 @@
+.Content code,
+.code {
+  font-family: var(--font-mono);
+  background-color: var(--teal-lightest);
+  box-shadow: 0 0 0 1px var(--teal-light);
+  color: var(--teal-dark);
+  border-radius: 2px;
+  font-size: 90%;
+  font-weight: 500;
+  padding: 2px 4px;
+}
+
+.Content p,
+.Content li,
+.paragraph,
+.li {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: -0.05px;
+}
+
+.Content p,
+.paragraph {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.Content li,
+.li {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+.Content h1,
+.h1 {
+  font-size: 35px;
+  font-weight: 500;
+  line-height: 40px;
+  letter-spacing: -0.2px;
+  margin-top: 54px;
+  margin-bottom: 4px;
+}
+
+.Content h2,
+.h2 {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  margin-bottom: 16px;
+  margin-top: 42px;
+}
+
+.Content h3,
+.h3 {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.05px;
+  margin-bottom: 16px;
+  margin-top: 32px;
+}
+
+.Content h4,
+.h4 {
+  font-size: 18px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.05px;
+  margin-bottom: 4px;
+  margin-top: 32px;
+}
+
+.Content a,
+.link {
+  color: var(--blue-base);
+  position: relative;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  /* &:focus {
+    outline: 1px solid var(--blue-base);
+  } */
+
+  &:focus-visible::after {
+    text-decoration: none;
+    content: '';
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: -4px;
+    right: -4px;
+    bottom: -2px;
+    box-shadow: 0 0 0 2px var(--B6A);
+    border-radius: 3px;
+  }
+}
+
+.Link--small {
+  font-size: 10px;
+}
+
+.Content blockquote,
+.blockquote {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.05px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-left: 2px solid var(--green-base);
+  padding: 12px;
+  background-color: var(--green-lightest);
+
+  & p {
+    margin: 0.5em;
+  }
+}
+
+.Content strong,
+.strong {
+  font-weight: 600;
+}
+
+.Content ul,
+.ul {
+  list-style-type: disc;
+  margin-left: 1.1em;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}

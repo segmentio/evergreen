@@ -1,0 +1,19 @@
+.Container {
+  /* width: 620px; */
+  margin-left: auto;
+  margin-right: auto;
+  width: 1024px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.Container--narrow {
+  padding-left: 120px;
+  padding-right: 120px;
+}
+
+.Container-nextToSidebar {
+  padding-left: 48px;
+  padding-right: 48px;
+  width: 840px;
+}

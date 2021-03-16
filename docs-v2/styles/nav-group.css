@@ -1,0 +1,39 @@
+.NavGroup {
+  & + .NavGroup {
+    margin-top: 32px;
+  }
+
+  & a {
+    display: block;
+    font-size: 14px;
+    padding: 8px;
+    margin: 2px -8px;
+    color: var(--neutral-base);
+    border-radius: 3px;
+
+    &:hover {
+      color: var(--neutral-base);
+      background-color: var(--N2A);
+    }
+
+    &:focus-visible {
+      box-shadow: inset 0 0 0 2px var(--B6A);
+    }
+
+    &:active,
+    &.is-active {
+      background-color: var(--B3A);
+      color: var(--blue-base);
+    }
+  }
+}
+
+.NavGroup-title {
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
