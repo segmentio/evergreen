@@ -304,6 +304,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-github-button@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@types/react-github-button/-/react-github-button-0.1.0.tgz#8a05bdd572fe46a9bfa83464c36ca85037e9bb63"
+  integrity sha512-4mgm7gJ+RwXqcAmZ8VfQupyKrXOdkwhYvBJ8HWH0+QNngKwmXMc2b8t4LUt6h1jxpSNaLiLuIfEdG5vcZvOFxA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-transition-group@^4.4.0":
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.1.tgz#e1a3cb278df7f47f17b5082b1b3da17170bd44b1"
@@ -1910,6 +1917,13 @@ react-fast-compare@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
+
+react-github-button@^0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/react-github-button/-/react-github-button-0.1.11.tgz#fc61e1f1e1371169d3618c1ba37306ba04081e56"
+  integrity sha1-/GHh8eE3EWnTYYwbo3MGugQIHlY=
+  dependencies:
+    prop-types "^15.5.10"
 
 react-is@16.13.1, react-is@^16.13.1, react-is@^16.8.1, react-is@^16.8.4:
   version "16.13.1"

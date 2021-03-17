@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "@segment/consent-manager": "^5.1.0",
+    "@types/react-github-button": "^0.1.0",
     "evergreen-ui": "6.0.0-41",
     "next": "latest",
     "otion": "^0.6.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-github-button": "^0.1.11"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",

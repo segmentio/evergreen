@@ -2,7 +2,6 @@ import Alert from './illustrations/Alert.png'
 import Autocomplete from './illustrations/Autocomplete.png'
 import Avatar from './illustrations/Avatar.png'
 import BadgePill from './illustrations/Badge & Pill.png'
-import Button from './illustrations/Button.png'
 import Checkbox from './illustrations/Checkbox.png'
 import Colors from './illustrations/Colors.png'
 import Combobox from './illustrations/Combobox.png'
@@ -10,7 +9,6 @@ import CornerDialog from './illustrations/Corner Dialog.png'
 import Dialog from './illustrations/Dialog.png'
 import Filepicker from './illustrations/Filepicker.png'
 import FormField from './illustrations/Form Field.png'
-import Icons from './illustrations/Icons.png'
 import LayoutPrimitive from './illustrations/Layout Primitive.png'
 import Menu from './illustrations/Menu.png'
 import Popover from './illustrations/Popover.png'
@@ -73,7 +71,7 @@ export default {
           'strong',
           'small'
         ],
-        image: Typography
+        image: '/public/Typography.png'
       },
       {
         id: 'colors',
@@ -87,7 +85,7 @@ export default {
         github: githubLink('icon'),
         name: 'Icons',
         tags: ['icon'],
-        image: Icons,
+        image: '/public/Icons.png',
         related: ['button']
       }
     ]
@@ -104,14 +102,14 @@ export default {
             github: githubLink('buttons'),
             name: 'Button',
             tags: ['icon button', 'button', 'action'],
-            image: Button
+            image: '/public/Button.png'
           },
           {
             id: 'tab',
             github: githubLink('tabs'),
             name: 'Tab',
             tags: ['tab', 'tab list', 'tab navigation', 'navigation'],
-            image: Tab
+            image: '/public/Tab.png'
           },
           {
             id: 'badge-and-pill',
