@@ -1,37 +1,3 @@
-import Alert from './illustrations/Alert.png'
-import Autocomplete from './illustrations/Autocomplete.png'
-import Avatar from './illustrations/Avatar.png'
-import BadgePill from './illustrations/Badge & Pill.png'
-import Checkbox from './illustrations/Checkbox.png'
-import Colors from './illustrations/Colors.png'
-import Combobox from './illustrations/Combobox.png'
-import CornerDialog from './illustrations/Corner Dialog.png'
-import Dialog from './illustrations/Dialog.png'
-import Filepicker from './illustrations/Filepicker.png'
-import FormField from './illustrations/Form Field.png'
-import LayoutPrimitive from './illustrations/Layout Primitive.png'
-import Menu from './illustrations/Menu.png'
-import Popover from './illustrations/Popover.png'
-import Portal from './illustrations/Portal.png'
-import Positioner from './illustrations/Positioner.png'
-import Radio from './illustrations/Radio.png'
-import SearchInput from './illustrations/Search Input.png'
-import SegmentedControl from './illustrations/Segmented Control.png'
-import SelectMenu from './illustrations/Select Menu.png'
-import Select from './illustrations/Select.png'
-import SideSheet from './illustrations/Side Sheet.png'
-import Spinner from './illustrations/Spinner.png'
-import StatusIndicator from './illustrations/StatusIndicator.png'
-import Switch from './illustrations/Switch.png'
-import Tab from './illustrations/Tab.png'
-import Table from './illustrations/Table.png'
-import TagInput from './illustrations/Tag Input.png'
-import TextInput from './illustrations/Text Input.png'
-import Textarea from './illustrations/Textarea.png'
-import Toaster from './illustrations/Toaster.png'
-import Tooltip from './illustrations/Tooltip.png'
-import Typography from './illustrations/Typography.png'
-
 const githubLink = (str: string) => {
   return `https://github.com/segmentio/evergreen/tree/master/src/${str}`
 }
@@ -44,7 +10,27 @@ const githubLink = (str: string) => {
  * The `id` property is used for routing and also maps to the filename.
  */
 
-export default {
+export interface Item {
+  id?: string
+  github?: string
+  name?: string
+  title?: string
+  image?: string
+  items?: Item[]
+  related?: string[]
+  tags?: string[]
+}
+
+interface Parent {
+  title: string
+  description?: string
+  items: Item[]
+}
+
+type ParentKeys = 'foundation' | 'components'
+type IA = Record<ParentKeys, Parent>
+
+const IA: IA = {
   foundation: {
     title: 'Foundation',
     description: 'Styles and primitive components. Start here.',
@@ -53,8 +39,7 @@ export default {
         id: 'layout-primitives',
         github: githubLink('layers'),
         name: 'Layout Primitives',
-        tags: ['pane', 'card', 'box', 'layout'],
-        image: LayoutPrimitive
+        tags: ['pane', 'card', 'box', 'layout']
       },
       {
         id: 'typography',
@@ -71,21 +56,21 @@ export default {
           'strong',
           'small'
         ],
-        image: '/public/Typography.png'
+        image: '/Typography.png'
       },
       {
         id: 'colors',
         github: githubLink('theme/src/default-theme'),
         name: 'Colors',
         tags: ['color'],
-        image: Colors
+        image: '/Colors.png'
       },
       {
         id: 'icons',
         github: githubLink('icon'),
         name: 'Icons',
         tags: ['icon'],
-        image: '/public/Icons.png',
+        image: '/Icons.png',
         related: ['button']
       }
     ]
@@ -101,30 +86,30 @@ export default {
             id: 'button',
             github: githubLink('buttons'),
             name: 'Button',
-            tags: ['icon button', 'button', 'action'],
-            image: '/public/Button.png'
+            image: '/Button.png',
+            tags: ['icon button', 'button', 'action']
           },
           {
             id: 'tab',
             github: githubLink('tabs'),
             name: 'Tab',
-            tags: ['tab', 'tab list', 'tab navigation', 'navigation'],
-            image: '/public/Tab.png'
+            image: '/Tab.png',
+            tags: ['tab', 'tab list', 'tab navigation', 'navigation']
           },
           {
             id: 'badge-and-pill',
             github: githubLink('badges'),
             name: 'Badge & Pill',
+            image: '/Badge & Pill.png',
             tags: ['badge', 'pills', 'tag'],
-            image: BadgePill,
             related: ['tag-input']
           },
           {
             id: 'avatar',
             github: githubLink('avatar'),
             name: 'Avatar',
-            tags: ['avatar', 'image', 'user'],
-            image: Avatar
+            image: '/Avatar.png',
+            tags: ['avatar', 'image', 'user']
           }
         ]
       },
@@ -135,41 +120,41 @@ export default {
           {
             id: 'text-input',
             github: githubLink('text-input'),
-            name: 'Text Input',
-            image: TextInput
+            image: '/Text Input.png',
+            name: 'Text Input'
           },
           {
             id: 'search-input',
             github: githubLink('search-input'),
             name: 'Search Input',
-            image: SearchInput
+            image: '/Search Input.png'
           },
           {
             id: 'tag-input',
             github: githubLink('tag-input'),
+            image: '/Tag Input.png',
             name: 'Tag Input',
-            image: TagInput,
+
             tags: ['badge', 'pills', 'tag'],
             related: ['badge-and-pill']
           },
           {
             id: 'textarea',
             github: githubLink('textarea'),
-            name: 'Textarea',
-            image: Textarea
+            image: '/Textarea.png',
+            name: 'Textarea'
           },
           {
             id: 'autocomplete',
             github: githubLink('autocomplete'),
-            name: 'Autocomplete',
-            image: Autocomplete
+            image: '/Autocomplete.png',
+            name: 'Autocomplete'
           },
           {
             id: 'filepicker',
             github: githubLink('file-picker'),
-            name: 'Filepicker',
-            image: Filepicker,
-            placeholder: 'Placeholder'
+            image: '/Filepicker.png',
+            name: 'Filepicker'
           }
         ]
       },
@@ -179,36 +164,36 @@ export default {
           {
             id: 'select',
             name: 'Select',
-            image: Select,
+            image: '/Select.png',
             github: githubLink('select')
           },
           {
             id: 'combobox',
             github: githubLink('combobox'),
             name: 'Combobox',
-            tags: ['dropdown', 'menu'],
-            image: Combobox
+            image: '/Combobox.png',
+            tags: ['dropdown', 'menu']
           },
           {
             id: 'select-menu',
             github: githubLink('select-menu'),
             name: 'Select Menu',
-            tags: ['dropdown', 'menu'],
-            image: SelectMenu
+            image: '/Select Menu.png',
+            tags: ['dropdown', 'menu']
           },
           {
             id: 'popover',
             github: githubLink('popover'),
+            image: '/Popover.png',
             name: 'Popover',
-            tags: ['dropdown'],
-            image: Popover
+            tags: ['dropdown']
           },
           {
             id: 'menu',
             github: githubLink('menu'),
+            image: '/Menu.png',
             name: 'Menu',
-            tags: ['dropdown'],
-            image: Menu
+            tags: ['dropdown']
           }
         ]
       },
@@ -218,27 +203,27 @@ export default {
           {
             id: 'checkbox',
             github: githubLink('checkbox'),
-            name: 'Checkbox',
-            image: Checkbox
+            image: '/Checkbox.png',
+            name: 'Checkbox'
           },
           {
             id: 'radio',
+            image: '/Radio.png',
             github: githubLink('radio'),
-            name: 'Radio',
-            image: Radio
+            name: 'Radio'
           },
           {
             id: 'segmented-control',
             github: githubLink('segmented-control'),
+            image: '/Segmented Control.png',
             name: 'Segmented Control',
-            tags: ['button group'],
-            image: SegmentedControl
+            tags: ['button group']
           },
           {
             id: 'switch',
+            image: '/Switch.png',
             github: githubLink('switch'),
-            name: 'Switch',
-            image: Switch
+            name: 'Switch'
           }
         ]
       },
@@ -248,30 +233,30 @@ export default {
           {
             id: 'toaster',
             github: githubLink('toaster'),
+            image: '/Toaster.png',
             name: 'Toaster',
-            tags: ['notifications', 'messages'],
-            image: Toaster
+            tags: ['notifications', 'messages']
           },
           {
             id: 'alert',
             github: githubLink('alert'),
+            image: '/Alert.png',
             name: 'Alert',
-            tags: ['banners', 'notification', 'messages', 'inline alert'],
-            image: Alert
+            tags: ['banners', 'notification', 'messages', 'inline alert']
           },
           {
             id: 'status-indicator',
             github: githubLink('status-indicator'),
+            image: '/StatusIndicator.png',
             name: 'Status Indicator',
-            tags: ['status', 'indicator', 'inline'],
-            image: StatusIndicator
+            tags: ['status', 'indicator', 'inline']
           },
           {
             id: 'spinner',
             github: githubLink('spinner'),
+            image: '/Spinner.png',
             name: 'Spinner',
-            tags: ['loading', 'indicator'],
-            image: Spinner
+            tags: ['loading', 'indicator']
           }
         ]
       },
@@ -281,29 +266,29 @@ export default {
           {
             id: 'dialog',
             github: githubLink('dialog'),
+            image: '/Dialog.png',
             name: 'Dialog',
-            tags: ['modal'],
-            image: Dialog
+            tags: ['modal']
           },
           {
             id: 'side-sheet',
             github: githubLink('side-sheet'),
+            image: '/Side Sheet.png',
             name: 'Side Sheet',
-            tags: ['drawer', 'sheet'],
-            image: SideSheet
+            tags: ['drawer', 'sheet']
           },
           {
             id: 'tooltip',
+            image: '/Tooltip.png',
             github: githubLink('tooltip'),
-            name: 'Tooltip',
-            image: Tooltip
+            name: 'Tooltip'
           },
           {
             id: 'corner-dialog',
+            image: '/Corner Dialog.png',
             github: githubLink('corner-dialog'),
             name: 'Corner Dialog',
-            tags: ['notification', 'message'],
-            image: CornerDialog
+            tags: ['notification', 'message']
           }
         ]
       },
@@ -314,7 +299,7 @@ export default {
             id: 'table',
             github: githubLink('table'),
             name: 'Table',
-            image: Table,
+            image: '/Table.png',
             tags: [
               'list',
               'row',
@@ -334,20 +319,20 @@ export default {
           {
             id: 'portal',
             github: githubLink('portal'),
-            name: 'Portal',
-            image: Portal
+            image: '/Portal.png',
+            name: 'Portal'
           },
           {
             id: 'positioner',
+            image: '/Positioner.png',
             github: githubLink('positioner'),
-            name: 'Positioner',
-            image: Positioner
+            name: 'Positioner'
           },
           {
             id: 'form-field',
+            image: '/Form Field.png',
             github: githubLink('form-field'),
             name: 'Form Field',
-            image: FormField,
             tags: ['validation message', 'label']
           }
         ]
@@ -355,3 +340,5 @@ export default {
     ]
   }
 }
+
+export default IA

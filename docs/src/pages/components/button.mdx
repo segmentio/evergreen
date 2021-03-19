@@ -1,11 +1,9 @@
-import PropsTable from 'components/PropsTable'
-
 ## Evergreen exports multiple button components
 
-* [**Button**](#button): most commonly used, can have a icon on the left or right side.
-* [**IconButton**](#icon-button): a button that holds a single icon.
-* [**TextDropdownButton**](#text-dropdown-button): a bare-bones button that is used primarily in table headers.
-* [**Group**](#group): a low-level component to group buttons or inputs based on the WAI-ARIA Group role.
+- [**Button**](#button): most commonly used, can have a icon on the left or right side.
+- [**IconButton**](#icon-button): a button that holds a single icon.
+- [**TextDropdownButton**](#text-dropdown-button): a bare-bones button that is used primarily in table headers.
+- [**Group**](#group): a low-level component to group buttons or inputs based on the WAI-ARIA Group role.
 
 `Button`, `IconButton` and `BackButton` all share a very similar API and look.
 `TextDropdownButton` is a bit different.
@@ -25,11 +23,11 @@ It contains a label and optional icons before or after the label.
 <Component
   initialState={{
     options: [
-      { label: 'Height 24', value: "small" },
-      { label: 'Height 32', value: "medium" },
-      { label: 'Height 40', value: "large" }
+      { label: 'Height 24', value: 'small' },
+      { label: 'Height 32', value: 'medium' },
+      { label: 'Height 40', value: 'large' },
     ],
-    value: "medium"
+    value: 'medium',
   }}
 >
   {({ state, setState }) => (
@@ -39,7 +37,7 @@ It contains a label and optional icons before or after the label.
         width={280}
         options={state.options}
         value={state.value}
-        onChange={value => setState({ value })}
+        onChange={(value) => setState({ value })}
       />
       <Heading marginTop={24}>Default Appearance</Heading>
       <Pane marginTop={12}>
@@ -83,13 +81,28 @@ It contains a label and optional icons before or after the label.
         >
           Warning
         </Button>
-        <Button size={state.value} marginRight={16} appearance="primary" intent="danger">
+        <Button
+          size={state.value}
+          marginRight={16}
+          appearance="primary"
+          intent="danger"
+        >
           Danger
         </Button>
-        <Button size={state.value} marginRight={16} appearance="primary" intent="success" iconBefore={AddIcon}>
+        <Button
+          size={state.value}
+          marginRight={16}
+          appearance="primary"
+          intent="success"
+          iconBefore={AddIcon}
+        >
           Icon Before
         </Button>
-        <Button size={state.value} appearance="primary" iconAfter={ArrowRightIcon}>
+        <Button
+          size={state.value}
+          appearance="primary"
+          iconAfter={ArrowRightIcon}
+        >
           Icon After
         </Button>
       </Pane>
@@ -114,13 +127,27 @@ It contains a label and optional icons before or after the label.
         >
           Warning
         </Button>
-        <Button size={state.value} marginRight={16} appearance="minimal" intent="danger">
+        <Button
+          size={state.value}
+          marginRight={16}
+          appearance="minimal"
+          intent="danger"
+        >
           Danger
         </Button>
-        <Button size={state.value} marginRight={16} appearance="minimal" iconBefore={EditIcon}>
+        <Button
+          size={state.value}
+          marginRight={16}
+          appearance="minimal"
+          iconBefore={EditIcon}
+        >
           Icon Before
         </Button>
-        <Button size={state.value} appearance="minimal" iconAfter={CaretDownIcon}>
+        <Button
+          size={state.value}
+          appearance="minimal"
+          iconAfter={CaretDownIcon}
+        >
           Icon After
         </Button>
       </Pane>
@@ -135,15 +162,19 @@ The `Button` component has a `appearance` property with 3 available values:
 
 ### Appearances
 
-* `default` — this is the default.
-* `primary`
-* `minimal`
+- `default` — this is the default.
+- `primary`
+- `minimal`
 
 ```jsx
 <>
   <Button marginRight={16}>Default</Button>
-  <Button marginRight={16} appearance="primary">Primary</Button>
-  <Button marginRight={16} appearance="minimal">Minimal</Button>
+  <Button marginRight={16} appearance="primary">
+    Primary
+  </Button>
+  <Button marginRight={16} appearance="minimal">
+    Minimal
+  </Button>
 </>
 ```
 
@@ -154,17 +185,25 @@ The `intent` property is a slightly abstract API that maps to the following valu
 
 ### Intent
 
-* `none` — this is the default.
-* `success`
-* `warning`
-* `danger`
+- `none` — this is the default.
+- `success`
+- `warning`
+- `danger`
 
 ```jsx
 <>
-  <Button marginRight={16} intent="none">None</Button>
-  <Button marginRight={16} intent="success">Success</Button>
-  <Button marginRight={16} intent="warning">Warning</Button>
-  <Button marginRight={16} intent="danger">Danger</Button>
+  <Button marginRight={16} intent="none">
+    None
+  </Button>
+  <Button marginRight={16} intent="success">
+    Success
+  </Button>
+  <Button marginRight={16} intent="warning">
+    Warning
+  </Button>
+  <Button marginRight={16} intent="danger">
+    Danger
+  </Button>
 </>
 ```
 
@@ -176,10 +215,18 @@ The `intent` property works with any `appearance`.
 
 ```jsx
 <>
-  <Button marginRight={16} appearance="primary" intent="none">None</Button>
-  <Button marginRight={16} appearance="primary" intent="success">Success</Button>
-  <Button marginRight={16} appearance="primary" intent="warning">Warning</Button>
-  <Button marginRight={16} appearance="primary" intent="danger">Danger</Button>
+  <Button marginRight={16} appearance="primary" intent="none">
+    None
+  </Button>
+  <Button marginRight={16} appearance="primary" intent="success">
+    Success
+  </Button>
+  <Button marginRight={16} appearance="primary" intent="warning">
+    Warning
+  </Button>
+  <Button marginRight={16} appearance="primary" intent="danger">
+    Danger
+  </Button>
 </>
 ```
 
@@ -187,10 +234,18 @@ The `intent` property works with any `appearance`.
 
 ```jsx
 <>
-  <Button marginRight={16} appearance="minimal" intent="none">None</Button>
-  <Button marginRight={16} appearance="minimal" intent="success">Success</Button>
-  <Button marginRight={16} appearance="minimal" intent="warning">Warning</Button>
-  <Button marginRight={16} appearance="minimal" intent="danger">Danger</Button>
+  <Button marginRight={16} appearance="minimal" intent="none">
+    None
+  </Button>
+  <Button marginRight={16} appearance="minimal" intent="success">
+    Success
+  </Button>
+  <Button marginRight={16} appearance="minimal" intent="warning">
+    Warning
+  </Button>
+  <Button marginRight={16} appearance="minimal" intent="danger">
+    Danger
+  </Button>
 </>
 ```
 
@@ -199,21 +254,32 @@ The `intent` property works with any `appearance`.
 By default buttons and controls have a height of `32px` based on the default theme. Out of the box there are three sizes: `'small'`, `'medium'`, and `'large'`.
 It is possible to change this to any height by directly providing a `height` prop.
 
-* `small` (24px)
-* `medium` (32px, default size)
-* `large` (40px)
+- `small` (24px)
+- `medium` (32px, default size)
+- `large` (40px)
 
 ```jsx
 <>
-  <Button marginRight={12} height={20}>Height 20</Button>
-  <Button marginRight={12} size="small">Height 24</Button>
-  <Button marginRight={12} size="medium">Height 32</Button>
-  <Button marginRight={12} size="large">Height 40</Button>
-  <Button marginRight={12} height={48}>Height 48</Button>
-  <Button marginRight={12} height={56}>Height 56</Button>
+  <Button marginRight={12} height={20}>
+    Height 20
+  </Button>
+  <Button marginRight={12} size="small">
+    Height 24
+  </Button>
+  <Button marginRight={12} size="medium">
+    Height 32
+  </Button>
+  <Button marginRight={12} size="large">
+    Height 40
+  </Button>
+  <Button marginRight={12} height={48}>
+    Height 48
+  </Button>
+  <Button marginRight={12} height={56}>
+    Height 56
+  </Button>
 </>
 ```
-
 
 ## Buttons with an Icon
 
@@ -221,20 +287,34 @@ Buttons support an icon on either before or after the label. Avoid using two ico
 
 ```jsx
 <>
-  <Button marginY={8} marginRight={12} iconBefore={CogIcon}>Settings</Button>
-  <Button marginY={8} marginRight={12} iconBefore={EditIcon}>Edit</Button>
-  <Button marginY={8} marginRight={12} iconBefore={ManualIcon}>Docs</Button>
-  <Button marginY={8} marginRight={12} iconBefore={ArrowLeftIcon}>Back</Button>
-  <Button marginY={8} marginRight={12} iconBefore={DownloadIcon}>Download...</Button>
-  <Button marginY={8} marginRight={12} iconBefore={TrashIcon} intent="danger">Delete...</Button>
-  <Button marginY={8} marginRight={12} iconBefore={SearchIcon}>Search</Button>
-  <Button marginY={8} marginRight={12} iconAfter={CaretDownIcon}>Filter</Button>
+  <Button marginY={8} marginRight={12} iconBefore={CogIcon}>
+    Settings
+  </Button>
+  <Button marginY={8} marginRight={12} iconBefore={EditIcon}>
+    Edit
+  </Button>
+  <Button marginY={8} marginRight={12} iconBefore={ManualIcon}>
+    Docs
+  </Button>
+  <Button marginY={8} marginRight={12} iconBefore={ArrowLeftIcon}>
+    Back
+  </Button>
+  <Button marginY={8} marginRight={12} iconBefore={DownloadIcon}>
+    Download...
+  </Button>
+  <Button marginY={8} marginRight={12} iconBefore={TrashIcon} intent="danger">
+    Delete...
+  </Button>
+  <Button marginY={8} marginRight={12} iconBefore={SearchIcon}>
+    Search
+  </Button>
+  <Button marginY={8} marginRight={12} iconAfter={CaretDownIcon}>
+    Filter
+  </Button>
 </>
 ```
 
-<div id="api">
-  <PropsTable of="Button" />
-</div>
+<div id="api"></div>
 
 # IconButton {#icon-button}
 
@@ -382,15 +462,14 @@ This is not a required property, the icon will automatically resize based on the
 </Pane>
 ```
 
-<PropsTable of="IconButton" />
-
-
 # Buttons as links
 
 Buttons can be used as links by using the optional `is` property with a value such as `Link` from [react-router](https://github.com/ReactTraining/react-router), or an `a` tag.
 
 ```jsx
-<Button is="a" href="#">Link</Button>
+<Button is="a" href="#">
+  Link
+</Button>
 ```
 
 # TextDropdownButton component {#text-dropdown-button}
@@ -402,12 +481,12 @@ This component is used inside of table header cells.
 ```jsx
 <Pane>
   <TextDropdownButton marginRight={16}>Table Header</TextDropdownButton>
-  <TextDropdownButton marginRight={16} icon={ArrowUpIcon}>Ascending</TextDropdownButton>
+  <TextDropdownButton marginRight={16} icon={ArrowUpIcon}>
+    Ascending
+  </TextDropdownButton>
   <TextDropdownButton icon={ArrowDownIcon}>Descending</TextDropdownButton>
 </Pane>
 ```
-
-<PropsTable of="TextDropdownButton" />
 
 # Group {#group}
 
