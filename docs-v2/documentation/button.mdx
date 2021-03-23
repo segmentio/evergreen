@@ -20,140 +20,16 @@ It contains a label and optional icons before or after the label.
 ## All button variations
 
 ```jsx collapse
-<Component
-  initialState={{
-    options: [
-      { label: 'Height 24', value: 'small' },
-      { label: 'Height 32', value: 'medium' },
-      { label: 'Height 40', value: 'large' },
-    ],
-    value: 'medium',
-  }}
->
-  {({ state, setState }) => (
-    <React.Fragment>
-      <SegmentedControl
-        name="button-size"
-        width={280}
-        options={state.options}
-        value={state.value}
-        onChange={(value) => setState({ value })}
-      />
-      <Heading marginTop={24}>Default Appearance</Heading>
-      <Pane marginTop={12}>
-        <Button size={state.value} marginRight={16}>
-          Default
-        </Button>
-        <Button size={state.value} marginRight={16} intent="success">
-          Success
-        </Button>
-        <Button size={state.value} marginRight={16} intent="warning">
-          Warning
-        </Button>
-        <Button size={state.value} marginRight={16} intent="danger">
-          Danger
-        </Button>
-        <Button size={state.value} marginRight={16} iconBefore={EditIcon}>
-          Icon Before
-        </Button>
-        <Button size={state.value} iconAfter={ArrowRightIcon}>
-          Icon After
-        </Button>
-      </Pane>
-      <Heading marginTop={24}>Primary Appearance</Heading>
-      <Pane marginTop={12}>
-        <Button size={state.value} appearance="primary" marginRight={16}>
-          Default
-        </Button>
-        <Button
-          size={state.value}
-          appearance="primary"
-          marginRight={16}
-          intent="success"
-        >
-          Success
-        </Button>
-        <Button
-          size={state.value}
-          appearance="primary"
-          marginRight={16}
-          intent="warning"
-        >
-          Warning
-        </Button>
-        <Button
-          size={state.value}
-          marginRight={16}
-          appearance="primary"
-          intent="danger"
-        >
-          Danger
-        </Button>
-        <Button
-          size={state.value}
-          marginRight={16}
-          appearance="primary"
-          intent="success"
-          iconBefore={AddIcon}
-        >
-          Icon Before
-        </Button>
-        <Button
-          size={state.value}
-          appearance="primary"
-          iconAfter={ArrowRightIcon}
-        >
-          Icon After
-        </Button>
-      </Pane>
-      <Heading marginTop={24}>Minimal Appearance</Heading>
-      <Pane marginTop={12}>
-        <Button size={state.value} appearance="minimal" marginRight={16}>
-          Default
-        </Button>
-        <Button
-          size={state.value}
-          appearance="minimal"
-          marginRight={16}
-          intent="success"
-        >
-          Success
-        </Button>
-        <Button
-          size={state.value}
-          appearance="minimal"
-          marginRight={16}
-          intent="warning"
-        >
-          Warning
-        </Button>
-        <Button
-          size={state.value}
-          marginRight={16}
-          appearance="minimal"
-          intent="danger"
-        >
-          Danger
-        </Button>
-        <Button
-          size={state.value}
-          marginRight={16}
-          appearance="minimal"
-          iconBefore={EditIcon}
-        >
-          Icon Before
-        </Button>
-        <Button
-          size={state.value}
-          appearance="minimal"
-          iconAfter={CaretDownIcon}
-        >
-          Icon After
-        </Button>
-      </Pane>
-    </React.Fragment>
-  )}
-</Component>
+() => {
+  const [options] = React.useState([
+    { label: 'Height 24', value: 'small' },
+    { label: 'Height 32', value: 'medium' },
+    { label: 'Height 40', value: 'large' }
+  ])
+  const [value, setValue] = React.useState('medium')
+
+  return <div>Hello world!</div>
+}
 ```
 
 ## Button Appearances
