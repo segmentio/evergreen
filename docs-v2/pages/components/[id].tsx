@@ -20,6 +20,7 @@ import {
   Ol,
   LinkIcon,
   Paragraph,
+  Strong,
   Link,
   majorScale
 } from 'evergreen-ui'
@@ -59,7 +60,8 @@ const components = {
   h5: (props: any) => <SectionHeading size={300} {...props} />,
   h6: (props: any) => <SectionHeading size={200} {...props} />,
   code: (props: any) => <Playground source={props.children} />,
-  p: (props: any) => <Paragraph {...props} />,
+  p: (props: any) => <Paragraph marginBottom={majorScale(3)} {...props} />,
+  strong: (props: any) => <Strong {...props} />,
   ol: (props: any) => <Ol {...props} />,
   ul: (props: any) => <Ul {...props} />,
   li: (props: any) => <Li {...props} />
