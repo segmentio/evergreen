@@ -1,0 +1,172 @@
+# Introduction
+
+Evergreen exports two components to create select inputs:
+
+- **Select**: base text input component. Directly maps to a `select` element.
+- **SelectField**: combines a label, select and validation message in one. Used for traditional forms.
+
+The **Select** component is a styled wrapper around a native select element,
+which allows selection of one item from a dropdown list.
+Anytime you would reach for a native select, use this.
+
+# Uncontrolled usage
+
+```jsx
+<Select onChange={event => alert(event.target.value)}>
+  <option value="foo" selected>
+    Foo
+  </option>
+  <option value="bar">Bar</option>
+</Select>
+```
+
+# Controlled usage
+
+```jsx
+function ControlledUsageSelectExample() {
+  const [value, setValue] = React.useState('foo')
+  return (
+    <Select value={value} onChange={event => setValue(event.target.value)}>
+      <option value="foo" selected>
+        Foo
+      </option>
+      <option value="bar">Bar</option>
+    </Select>
+  )
+}
+```
+
+# Full width
+
+```jsx
+<Select width="100%">
+  <option value="foo" selected>
+    Foo
+  </option>
+  <option value="bar">Bar</option>
+</Select>
+```
+
+# Custom width
+
+```jsx
+<Select width={240}>
+  <option value="foo" selected>
+    Foo
+  </option>
+  <option value="bar">Bar</option>
+</Select>
+```
+
+# Change height
+
+```jsx
+<Select width={240} height={40}>
+  <option value="foo" selected>
+    Foo
+  </option>
+  <option value="bar">Bar</option>
+</Select>
+```
+
+# SelectField Label and description
+
+```jsx
+<SelectField
+  label="Default text input field"
+  description="This is a description."
+>
+  <option value="foo" selected>
+    Foo
+  </option>
+  <option value="bar">Bar</option>
+</SelectField>
+```
+
+# SelectField with hints
+
+A **hint** is placed under the **SelectField** to let users know what the particular form input is supposed to do .
+
+```jsx
+<SelectField label="Default text input field" hint="This is a hint.">
+  <option value="foo" selected>
+    Foo
+  </option>
+  <option value="bar">Bar</option>
+</SelectField>
+```
+
+# Required select field
+
+```jsx
+<SelectField
+  id="ids-are-optional"
+  label="A required text input field"
+  required
+  description="This is a description."
+>
+  <option value="foo" selected>
+    Foo
+  </option>
+  <option value="bar">Bar</option>
+</SelectField>
+```
+
+# Invalid field
+
+```jsx
+<SelectField
+  isInvalid
+  required
+  label="A required text input field"
+  description="This is a description."
+  validationMessage="This field is required"
+>
+  <option value="foo" selected>
+    Foo
+  </option>
+  <option value="bar">Bar</option>
+</SelectField>
+```
+
+# Validation message without invalid input
+
+```jsx
+<SelectField
+  isInvalid={false}
+  required
+  label="A required text input field"
+  description="This is a description."
+  validationMessage="This field is required"
+>
+  <option value="foo" selected>
+    Foo
+  </option>
+  <option value="bar">Bar</option>
+</SelectField>
+```
+
+# Controlled usage
+
+The `SelectField` component works the same as using `input` directly.
+Use `e.target.value` to get the value of the component on change.
+
+```jsx
+function SelectFieldExample() {
+  const [value, setValue] = React.useState('foo')
+  return (
+    <SelectField
+      label="A controlled text input field"
+      required
+      description="This is a description."
+      value={value}
+      onChange={e => setState({ value: e.target.value })}
+    >
+      <option value="foo" selected>
+        Foo
+      </option>
+      <option value="bar">Bar</option>
+    </SelectField>
+  )
+}
+```

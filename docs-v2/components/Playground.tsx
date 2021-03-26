@@ -3,6 +3,7 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import * as evergreen from 'evergreen-ui'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import CodeSandboxIcon from './icons/CodeSandboxIcon'
+import TooltipIconButton from './TooltipIconButton'
 import dracula from 'prism-react-renderer/themes/dracula'
 
 interface Props {
@@ -20,17 +21,6 @@ const {
   DocumentIcon,
   majorScale
 } = evergreen
-
-const TooltipIconButton: React.FC<{ message: string } & any> = ({
-  message,
-  ...buttonProps
-}) => {
-  return (
-    <Tooltip content={message}>
-      <IconButton {...buttonProps} />
-    </Tooltip>
-  )
-}
 
 const Playground: React.FC<Props> = ({ source }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false)
@@ -68,7 +58,7 @@ const Playground: React.FC<Props> = ({ source }) => {
       </LiveProvider>
       <Pane paddingY={majorScale(2)} display="flex" alignItems="center">
         <TooltipIconButton
-          message={isExpanded ? 'Collapse' : 'Expand'}
+          content={isExpanded ? 'Collapse' : 'Expand'}
           icon={isExpanded ? MinimizeIcon : MaximizeIcon}
           onClick={() => setIsExpanded(expanded => !expanded)}
           size="small"
@@ -79,7 +69,7 @@ const Playground: React.FC<Props> = ({ source }) => {
           onCopy={() => toaster.success('Copied to clipboard!')}
         >
           <TooltipIconButton
-            message="Copy"
+            content="Copy"
             icon={DocumentIcon}
             marginX={majorScale(2)}
             size="small"
@@ -87,7 +77,7 @@ const Playground: React.FC<Props> = ({ source }) => {
           />
         </CopyToClipboard>
         <TooltipIconButton
-          message="Open in CodeSandbox"
+          content="Open in CodeSandbox"
           icon={CodeSandboxIcon}
           onClick={() => {}}
           size="small"

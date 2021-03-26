@@ -1,0 +1,32 @@
+## Introduction
+
+The `CornerDialog` component is used for announcements such as new features and feedback requests.
+Preferably the content of the `CornerDialog` should only contain one small paragraph.
+
+Good examples of call to actions for Corner Dialog are: **Learn More**, **Got It** and **Get in Touch**.
+
+## Multiple corner dialogs
+
+Be aware that only one `CornerDialog` can be shown at a single time.
+Multiple corner dialogs will stack on top of each other.
+
+```jsx
+function BasicCornerDialogExample() {
+  const [isShown, setIsShown] = React.useState(false)
+  return (
+    <React.Fragment>
+      <CornerDialog
+        title="Welcome to this new feature"
+        isShown={state.isShown}
+        onCloseComplete={() => setIsShown(false)}
+      >
+        The corner dialog component is used for new feature announcements and
+        feedback requests from the user.
+      </CornerDialog>
+      <Button onClick={() => setIsShown(true)}>
+        Show “Learn More” Corner Dialog
+      </Button>
+    </React.Fragment>
+  )
+}
+```

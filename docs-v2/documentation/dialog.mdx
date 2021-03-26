@@ -1,0 +1,209 @@
+# Introduction
+
+The `Dialog` component is used to show content on top of an overlay.
+It blocks any interaction with the page — until the overlay is clicked, or a close action is triggered.
+
+## When to use
+
+When you require your user to interact with you app and
+don’t want your users to jump to a different page and break their workflow.
+
+You should also use a dialog in cases where you need to ask for confirmation
+from the user before doing a lengthy or dangerous action.
+This could be a deletion of some sorts or initiating a lengthy download.
+
+## Terminology
+
+[BlueprintJS](https://blueprintjs.com/docs/versions/2/#core/components/dialog) pointed out in their documentation that “modal” is a misnomer for “dialog”.
+
+> The term “modal” is sometimes used to mean “dialog”, but this is a misnomer.
+> Modal is an adjective that describes parts of a UI.
+> An element is considered modal if it [blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
+> We use the term “dialog” to avoid confusion with the adjective.
+
+## Focus Management
+
+When opening a `Dialog`, focus will be brought inside the `Dialog`
+When using both the cancel and confirm button, the cancel button will get focus first.
+
+When closing the Dialog, focus will be brought back to the element that was focused before opening the `Dialog`.
+This is normally the button that triggered the `Dialog`.
+
+# Default dialog example
+
+```jsx
+function DefaultDialogExample() {
+  const [isShown, setIsShown] = React.useState(false)
+
+  return (
+    <Pane>
+      <Dialog
+        isShown={isShown}
+        title="Dialog title"
+        onCloseComplete={() => setIsShown(false)}
+        confirmLabel="Custom Label"
+      >
+        Dialog content
+      </Dialog>
+
+      <Button onClick={() => setIsShown(true)}>Show Dialog</Button>
+    </Pane>
+  )
+}
+```
+
+# Default with a danger intent
+
+The `intent` prop determines the appearance of the confirm button, `danger` is red.
+
+```jsx
+function DangerIntentDialogExample() {
+  const [isShown, setIsShown] = React.useState(false)
+
+  return (
+    <Pane>
+      <Dialog
+        isShown={isShown}
+        title="Dialog title"
+        intennt="danger"
+        onCloseComplete={() => setIsShown(false)}
+        confirmLabel="Custom Label"
+      >
+        Dialog content
+      </Dialog>
+
+      <Button onClick={() => setIsShown(true)}>Show Dialog</Button>
+    </Pane>
+  )
+}
+```
+
+# Internal scrolling
+
+When content makes the dialog height greater than the available space in the viewport,
+the content area will become scrollable
+It will add a symmetric offset on the top and bottom — based on the topOffset prop.
+
+```jsx
+function InternalScrollingDialogExample() {
+  const [isShown, setIsShown] = React.useState(false)
+
+  return (
+    <Pane>
+      <Dialog
+        isShown={isShown}
+        title="Internal scrolling"
+        onCloseComplete={() => setIsShown(false)}
+      >
+        <Pane height={1800} width="100%" backgroundColor="#ddd" />
+      </Dialog>
+
+      <Button onClick={() => setIsShown(true)}>Show Dialog</Button>
+    </Pane>
+  )
+}
+```
+
+# Self managed close
+
+```jsx
+function SelfManagedCloseDialogExample() {
+  const [isShown, setIsShown] = React.useState(false)
+  return (
+    <Pane>
+      <Dialog
+        isShown={isShown}
+        title="Self managed close"
+        onCloseComplete={() => setIsShown(false)}
+      >
+        {({ close }) => (
+          <Pane>
+            <Paragraph>Manage your own buttons and close interaction</Paragraph>
+            <Button marginTop={16} onClick={close}>
+              Self Managed Close
+            </Button>
+          </Pane>
+        )}
+      </Dialog>
+
+      <Button onClick={() => setIsShown(true)}>Show Dialog</Button>
+    </Pane>
+  )
+}
+```
+
+# Remove default footer
+
+Use the `hasFooter` prop to show or hide the footer.
+This will hide the confirm and cancel buttons.
+
+```jsx
+function NoFooterDialogExample() {
+  const [isShown, setIsShown] = React.useState(false)
+  return (
+    <Pane>
+      <Dialog
+        isShown={isShown}
+        title="No footer"
+        onCloseComplete={() => setIsShown(false)}
+        hasFooter={false}
+      >
+        No footer
+      </Dialog>
+
+      <Button onClick={() => setIsShown(true)}>Show Dialog</Button>
+    </Pane>
+  )
+}
+```
+
+# Remove default header
+
+Use the `hasHeader` prop to show or hide the header.
+This will hide both the close icon button as the title.
+
+```jsx
+function NoHeaderDialogExample() {
+  const [isShown, setIsShown] = React.useState(false)
+  return (
+    <Pane>
+      <Dialog
+        isShown={isShown}
+        title="No footer"
+        onCloseComplete={() => setIsShown(false)}
+        hasHeader={false}
+      >
+        No header
+      </Dialog>
+
+      <Button onClick={() => setIsShown(true)}>Show Dialog</Button>
+    </Pane>
+  )
+}
+```
+
+# Preserve scroll position and prevent body scrolling
+
+Use the `preventBodyScrolling` prop to disable scrolling outside the dialog.
+
+```jsx
+function PreserveBodyScrollingDialogExample() {
+  const [isShown, setIsShown] = React.useState(false)
+
+  return (
+    <Pane paddingY="40vh">
+      <Dialog
+        isShown={isShown}
+        title="Dialog title"
+        onCloseComplete={() => setIsShown(false)}
+        preventBodyScrolling
+        confirmLabel="Custom Label"
+      >
+        Dialog content
+      </Dialog>
+
+      <Button onClick={() => setIsShown(true)}>Show Dialog</Button>
+    </Pane>
+  )
+}
+```

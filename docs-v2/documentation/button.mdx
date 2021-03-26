@@ -71,59 +71,65 @@ function MixedIntentAndAppearanceExample() {
 
 # Button Sizes
 
-By default buttons and controls have a height of `32px` based on the default theme. Out of the box there are three sizes: `'small'`, `'medium'`, and `'large'`.
-It is possible to change this to any height by directly providing a `height` prop.
-
-- `small` (24px)
-- `medium` (32px, default size)
-- `large` (40px)
+By default buttons and controls have a height of **32px** based on the default theme. Out of the box there are three sizes: **small**, **medium**, and **large**. It is possible to change this by passing an explicit height to the button, as well.
 
 ```jsx
-<>
-  <Button marginRight={12} height={20}>
-    Height 20
-  </Button>
-  <Button marginRight={12} size="small">
-    Height 24
-  </Button>
-  <Button marginRight={12} size="medium">
-    Height 32
-  </Button>
-  <Button marginRight={12} size="large">
-    Height 40
-  </Button>
-  <Button marginRight={12} height={48}>
-    Height 48
-  </Button>
-  <Button marginRight={12} height={56}>
-    Height 56
-  </Button>
-</>
+function ButtonSizesExample() {
+  return (
+    <>
+      <Button marginRight={12} size="small">
+        Height 24
+      </Button>
+      <Button marginRight={12} size="medium">
+        Height 32
+      </Button>
+      <Button marginRight={12} size="large">
+        Height 40
+      </Button>
+      <Button marginRight={12} height={48}>
+        Height 48
+      </Button>
+      <Button marginRight={12} height={56}>
+        Height 56
+      </Button>
+    </>
+  )
+}
 ```
 
 # Buttons with an Icon
 
-Buttons support an icon on either before or after the label. Avoid using two icons in a button.
+Buttons support an icon either before or after the label via the **iconBefore** or **iconAfter** props. Avoid using both icons in a
+button at the same time.
 
 ```jsx
-<>
-  <Button marginY={8} marginRight={12} iconBefore={CogIcon}>
-    Settings
-  </Button>
-  <Button marginY={8} marginRight={12} iconBefore={EditIcon}>
-    Edit
-  </Button>
-  <Button marginY={8} marginRight={12} iconBefore={ManualIcon}>
-    Docs
-  </Button>
-  <Button marginY={8} marginRight={12} iconBefore={TrashIcon} intent="danger">
-    Delete...
-  </Button>
-  <Button marginY={8} marginRight={12} iconBefore={SearchIcon}>
-    Search
-  </Button>
-  <Button marginY={8} marginRight={12} iconAfter={CaretDownIcon}>
-    Filter
-  </Button>
-</>
+function ButtonIconExample() {
+  return (
+    <>
+      <Button marginY={8} marginRight={12} iconAfter={CogIcon}>
+        Settings
+      </Button>
+      <Button marginY={8} marginRight={12} iconBefore={EditIcon}>
+        Edit
+      </Button>
+      <Button marginY={8} marginRight={12} iconBefore={ManualIcon}>
+        Docs
+      </Button>
+      <Button
+        marginY={8}
+        marginRight={12}
+        iconBefore={TrashIcon}
+        intent="danger"
+      >
+        Delete...
+      </Button>
+      <Button marginY={8} marginRight={12} iconBefore={SearchIcon}>
+        Search
+      </Button>
+      <Button marginY={8} marginRight={12} iconAfter={CaretDownIcon}>
+        Filter
+      </Button>
+    </>
+  )
+}
 ```
