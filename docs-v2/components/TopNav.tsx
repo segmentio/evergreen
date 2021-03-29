@@ -18,13 +18,18 @@ const TopNav: React.FC<Props> = () => {
     <Pane
       is="nav"
       width="100%"
+      position="sticky"
+      top={0}
+      backgroundColor="white"
+      zIndex={10}
       height={majorScale(8)}
+      flexShrink={0}
       display="flex"
       alignItems="center"
       borderBottom="muted"
       paddingX={majorScale(5)}
     >
-      <Pane display="flex" alignItems="center" flex={1}>
+      <Pane display="flex" alignItems="center" width={236}>
         <Pane
           is="img"
           width={100}
@@ -33,7 +38,7 @@ const TopNav: React.FC<Props> = () => {
           marginRight={majorScale(2)}
         />
       </Pane>
-      <Pane flex={5}>
+      <Pane flex={1}>
         <Link href="/get-started" passHref>
           <EvergreenLink
             color={parentPath !== 'get-started' ? 'neutral' : undefined}
@@ -75,7 +80,7 @@ const TopNav: React.FC<Props> = () => {
           </EvergreenLink>
         </Link>
       </Pane>
-      <Pane display="flex" justifyContent="flex-end" flex={1}>
+      <Pane display="flex" justifyContent="flex-end" width={236}>
         <GitHubButton
           type="stargazers"
           namespace="segmentio"

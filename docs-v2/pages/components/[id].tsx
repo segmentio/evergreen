@@ -21,6 +21,8 @@ import {
   LinkIcon,
   Paragraph,
   Strong,
+  Tablist,
+  Tab,
   Link,
   majorScale
 } from 'evergreen-ui'
@@ -38,7 +40,10 @@ const SectionHeading: React.FC<{
   const id =
     idIndex !== -1
       ? children.trim().substring(idIndex + 2, children.length - 1)
-      : `${children.split(' ').map(child => child.toLowerCase()).join('_')}`
+      : `${children
+          .split(' ')
+          .map(child => child.toLowerCase())
+          .join('_')}`
 
   return (
     <Pane display="flex" alignItems="center" id={id} marginY={majorScale(2)}>
@@ -71,11 +76,15 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
   const { query } = useRouter()
   const { id } = query
 
-  const component = IA.components.items
+  const evergreenComponents = IA.components.items
     .reduce((acc, subtree) => {
       return [...(subtree.items || []), ...acc]
     }, [] as Item[])
-    .find(component => component.id === id)
+    .sort((a, b) => (a.name.charCodeAt(0) > b.name.charCodeAt(0) ? 1 : -1))
+
+  console.log(evergreenComponents)
+
+  const component = evergreenComponents.find(component => component.id === id)
 
   if (!component) {
     return null
@@ -87,30 +96,62 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
 
   return (
     <Layout title={`Evergreen | ${name} Documentation`}>
-      <Pane
-        width="100%"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        marginX="auto"
-        padding={majorScale(5)}
-        maxWidth={1200}
-      >
-        <PageHeader
-          title={name!}
-          description="Buttons are used as call-to-actions for users, indicating that they can take an action on a particular part of the page"
-          tabs={[
-            {
-              label: 'Details',
-              to: '/details'
-            },
-            {
-              label: 'Properties',
-              to: '/properties'
-            }
-          ]}
-        />
-        {content}
+      <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
+        <Pane
+          display="flex"
+          position="sticky"
+          top={64}
+          flexDirection="column"
+          overflowY="auto"
+          maxHeight="calc(100vh - 64px)"
+          paddingY={majorScale(5)}
+          paddingLeft={majorScale(4)}
+        >
+          <Heading
+            size={200}
+            textTransform="uppercase"
+            marginBottom={majorScale(2)}
+          >
+            Components
+          </Heading>
+          <Tablist>
+            {evergreenComponents.map(item => {
+              return (
+                <Tab
+                  alignItmes="flex-start"
+                  direction="vertical"
+                  isSelected={item.id === component.id}
+                >
+                  {item.name}
+                </Tab>
+              )
+            })}
+          </Tablist>
+        </Pane>
+        <Pane
+          width="100%"
+          display="flex"
+          flexDirection="column"
+          justifyContent="flex-start"
+          padding={majorScale(5)}
+          maxWidth={1200}
+        >
+          <PageHeader
+            title={name!}
+            description="Buttons are used as call-to-actions for users, indicating that they can take an action on a particular part of the page"
+            tabs={[
+              {
+                label: 'Details',
+                to: '/details'
+              },
+              {
+                label: 'Properties',
+                to: '/properties'
+              }
+            ]}
+          />
+          {content}
+        </Pane>
       </Pane>
     </Layout>
   )
