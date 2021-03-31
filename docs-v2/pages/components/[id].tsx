@@ -161,11 +161,10 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
 export async function getStaticPaths() {
   const files = await fs.readdirSync(path.join(process.cwd(), 'documentation'))
 
-  console.log(files)
+  const paths = files.map(file => `/components/${file.split('.')[0]}`)
 
-  console.log(files)
   return {
-    paths: ['/components/button'],
+    paths,
     fallback: true
   }
 }

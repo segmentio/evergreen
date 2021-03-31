@@ -22,7 +22,7 @@ function BasicTabsExample() {
   return (
     <Pane height={120}>
       <Tablist marginBottom={16} flexBasis={240} marginRight={24}>
-        {state.tabs.map((tab, index) => (
+        {tabs.map((tab, index) => (
           <Tab
             key={tab}
             id={tab}
@@ -35,7 +35,7 @@ function BasicTabsExample() {
         ))}
       </Tablist>
       <Pane padding={16} background="tint1" flex="1">
-        {state.tabs.map((tab, index) => (
+        {tabs.map((tab, index) => (
           <Pane
             key={tab}
             id={`panel-${tab}`}

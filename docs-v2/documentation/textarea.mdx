@@ -31,7 +31,7 @@ function ControlledTextareaExample() {
   return (
     <Textarea
       onChange={e => setState({ value: e.target.value })}
-      value={state.value}
+      value={value}
     />
   )
 }
@@ -111,7 +111,7 @@ function ControlledTextareaExample() {
       label="A controlled text input field"
       required
       description="This is a description."
-      value={state.value}
+      value={value}
       onChange={e => setState({ value: e.target.value })}
     />
   )
