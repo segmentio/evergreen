@@ -26,8 +26,8 @@ function BasicTabsExample() {
           <Tab
             key={tab}
             id={tab}
-            onSelect={() => setState({ selectedIndex: index })}
-            isSelected={index === state.selectedIndex}
+            onSelect={() => setSelectedIndex(index)}
+            isSelected={index === selectedIndex}
             aria-controls={`panel-${tab}`}
           >
             {tab}
@@ -41,8 +41,8 @@ function BasicTabsExample() {
             id={`panel-${tab}`}
             role="tabpanel"
             aria-labelledby={tab}
-            aria-hidden={index !== state.selectedIndex}
-            display={index === state.selectedIndex ? 'block' : 'none'}
+            aria-hidden={index !== selectedIndex}
+            display={index === selectedIndex ? 'block' : 'none'}
           >
             <Paragraph>Panel {tab}</Paragraph>
           </Pane>
