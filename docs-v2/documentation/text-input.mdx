@@ -20,12 +20,7 @@ Use `e.target.value` to get the value of the component on change.
 ```jsx
 function ControlledTextInputExample() {
   const [value, setValue] = React.useState('')
-  return (
-    <TextInput
-      onChange={e => setState({ value: e.target.value })}
-      value={value}
-    />
-  )
+  return <TextInput onChange={e => setValue(e.target.value)} value={value} />
 }
 ```
 
@@ -116,7 +111,7 @@ function ControlledTextInputExample() {
       required
       description="This is a description."
       value={value}
-      onChange={e => setState({ value: e.target.value })}
+      onChange={e => setValue(e.target.value)}
     />
   )
 }

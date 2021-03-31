@@ -160,7 +160,7 @@ function SelectFieldExample() {
       required
       description="This is a description."
       value={value}
-      onChange={e => setState({ value: e.target.value })}
+      onChange={e => setValue(e.target.value)}
     >
       <option value="foo" selected>
         Foo

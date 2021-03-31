@@ -28,12 +28,7 @@ Use `e.target.value` to get the value of the component on change.
 ```jsx
 function ControlledTextareaExample() {
   const [value, setValue] = React.useState('')
-  return (
-    <Textarea
-      onChange={e => setState({ value: e.target.value })}
-      value={value}
-    />
-  )
+  return <Textarea onChange={e => setValue(e.target.value)} value={value} />
 }
 ```
 
@@ -112,7 +107,7 @@ function ControlledTextareaExample() {
       required
       description="This is a description."
       value={value}
-      onChange={e => setState({ value: e.target.value })}
+      onChange={e => setValue(e.target.value)}
     />
   )
 }
