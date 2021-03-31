@@ -1,4 +1,4 @@
-## Introduction
+# Introduction
 
 The `toaster` is used to show toasts (alerts) on top of an overlay.
 The toasts will close themselves when the close button is clicked,
@@ -9,7 +9,6 @@ or after a timeout — the default is 5 seconds.
 When you want to give feedback to your users about a action they take.
 Often this is in the form of creation or deletion.
 
-
 ### Implementation details
 
 A toast is simply a wrapper around the `Alert` component and has the same kind of types as an alert.
@@ -17,10 +16,10 @@ The following types are available:
 
 ### Types of toasts
 
-* **info**: `toaster.notify()`
-* **success**: `toaster.success()`
-* **warning**: `toaster.warning()`
-* **danger**: `toaster.danger()`
+- **info**: `toaster.notify()`
+- **success**: `toaster.success()`
+- **warning**: `toaster.warning()`
+- **danger**: `toaster.danger()`
 
 ### Closing all toasts
 
@@ -43,11 +42,7 @@ The `toaster` is an instance of the `Toaster` class.
 
 ```jsx
 <Button
-  onClick={() =>
-    toaster.notify(
-      'Evergreen is a open-source design system'
-    )
-  }
+  onClick={() => toaster.notify('Evergreen is a open-source design system')}
 >
   Notify
 </Button>
@@ -56,13 +51,7 @@ The `toaster` is an instance of the `Toaster` class.
 ## Success
 
 ```jsx
-<Button
-  onClick={() =>
-    toaster.success(
-      'Your source is now sending data'
-    )
-  }
->
+<Button onClick={() => toaster.success('Your source is now sending data')}>
   Success
 </Button>
 ```
@@ -70,13 +59,7 @@ The `toaster` is an instance of the `Toaster` class.
 ## Warning
 
 ```jsx
-<Button
-  onClick={() =>
-    toaster.warning(
-      'Changes will affect all Warehouses'
-    )
-  }
->
+<Button onClick={() => toaster.warning('Changes will affect all Warehouses')}>
   Warning
 </Button>
 ```
@@ -86,9 +69,7 @@ The `toaster` is an instance of the `Toaster` class.
 ```jsx
 <Button
   onClick={() =>
-    toaster.danger(
-      'Something went wrong trying to create your audience'
-    )
+    toaster.danger('Something went wrong trying to create your audience')
   }
 >
   Danger
@@ -98,13 +79,7 @@ The `toaster` is an instance of the `Toaster` class.
 ## Close all
 
 ```jsx
-<Button
-  onClick={() =>
-    toaster.closeAll()
-  }
->
-  Close All
-</Button>
+<Button onClick={() => toaster.closeAll()}>Close All</Button>
 ```
 
 ## Adding a description
@@ -112,16 +87,12 @@ The `toaster` is an instance of the `Toaster` class.
 A `description` is used as the children of the `Alert` component.
 The description can be a React node.
 
-
 ```jsx
 <Button
   onClick={() =>
-    toaster.success(
-      'Your source is now sending data',
-      {
-        description: 'Connect your source to a destination to receive data.'
-      }
-    )
+    toaster.success('Your source is now sending data', {
+      description: 'Connect your source to a destination to receive data.'
+    })
   }
 >
   Success with description
@@ -134,17 +105,12 @@ It is possible to add a custom duration when showing a toast.
 The default `duration` is `5` seconds.
 The `duration` property is in seconds — not milliseconds.
 
-
-
 ```jsx
 <Button
   onClick={() =>
-    toaster.success(
-      'Stick around for 10 seconds',
-      {
-        duration: 10
-      }
-    )
+    toaster.success('Stick around for 10 seconds', {
+      duration: 10
+    })
   }
 >
   10 Seconds
@@ -155,7 +121,6 @@ The `duration` property is in seconds — not milliseconds.
 
 There are cases when it's only one toast with the same content can be shown at a time.
 Passing a unique ID via `id` property allows Evergreen to close all previous toasts with the same ID, before showing a new one.
-
 
 ```jsx
 <Button
