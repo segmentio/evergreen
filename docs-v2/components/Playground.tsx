@@ -4,6 +4,7 @@ import * as evergreen from 'evergreen-ui'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import CodeSandboxIcon from './icons/CodeSandboxIcon'
 import TooltipIconButton from './TooltipIconButton'
+import { getCodeSandboxLink } from '../lib/codesandbox'
 import dracula from 'prism-react-renderer/themes/dracula'
 
 interface Props {
@@ -19,6 +20,7 @@ const {
   MaximizeIcon,
   MinimizeIcon,
   DocumentIcon,
+  Link,
   majorScale
 } = evergreen
 
@@ -77,9 +79,11 @@ const Playground: React.FC<Props> = ({ source }) => {
           />
         </CopyToClipboard>
         <TooltipIconButton
+          is={Link}
+          target="_blank"
+          href={getCodeSandboxLink(source)}
           content="Open in CodeSandbox"
           icon={CodeSandboxIcon}
-          onClick={() => {}}
           size="small"
           appearance="minimal"
         />
