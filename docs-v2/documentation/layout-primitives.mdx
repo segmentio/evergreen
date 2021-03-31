@@ -40,8 +40,6 @@ Use the `Pane` component to create your layouts.
 Most CSS properties are supported on the `Pane` component.
 
 ```jsx
-// import { Pane, Text } from 'evergreen-ui'
-
 <Pane
   height={120}
   width={240}
@@ -60,8 +58,6 @@ Most components in Evergreen use a `Pane` or `Box` under the hood.
 To add spacing, or layout properties, pass the properties straight to the component:
 
 ```jsx
-// import { Pane, Button, Text, Heading } from 'evergreen-ui'
-
 <Pane display="flex" padding={16} background="tint2" borderRadius={3}>
   <Pane flex={1} alignItems="center" display="flex">
     <Heading size={600}>Left Aligned</Heading>
@@ -80,8 +76,6 @@ In most cases in Evergreen you can use the `height` property on components to ch
 of a component. The text styles and padding will adjust based on the height you pass.
 
 ```jsx
-// import { Pane, Button, TextInput } from 'evergreen-ui'
-
 <Pane display="flex">
   <TextInput
     width="100%"
@@ -108,7 +102,7 @@ Within Evergreen we call this the major scale.
 - `majorScale(5) => 40`
 
 ```jsx
-// import { majorScale, Button } from 'evergreen-ui'
+  { majorScale, Button } from 'evergreen-ui'
 
 <Button height={majorScale(5)}>Big Button</Button>
 ```
@@ -131,7 +125,7 @@ But avoid using `52`.
 - `minorScale(9) => 36`
 
 ```jsx
-// import { minorScale, Button } from 'evergreen-ui'
+  { minorScale, Button } from 'evergreen-ui'
 
 <Pane>
   <Button marginRight={minorScale(3)}>Button</Button>
@@ -432,8 +426,6 @@ All border sides are supported on a `Pane`
   )}
 </ThemeConsumer>
 ```
-
-Pane" />
 
 # Card component
 

@@ -37,6 +37,7 @@ const SectionHeading: React.FC<{
 }> = ({ size, children }) => {
   const idIndex = children.indexOf('{#')
   const text = idIndex !== -1 ? children.substring(0, idIndex) : children
+
   const id =
     idIndex !== -1
       ? children.trim().substring(idIndex + 2, children.length - 1)
@@ -73,7 +74,8 @@ const components = {
 }
 
 const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
-  const { query } = useRouter()
+  const router = useRouter()
+  const { query } = router
   const { id } = query
 
   const evergreenComponents = IA.components.items
@@ -81,8 +83,6 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
       return [...(subtree.items || []), ...acc]
     }, [] as Item[])
     .sort((a, b) => (a.name.charCodeAt(0) > b.name.charCodeAt(0) ? 1 : -1))
-
-  console.log(evergreenComponents)
 
   const component = evergreenComponents.find(component => component.id === id)
 
@@ -120,6 +120,7 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
                 <Tab
                   alignItmes="flex-start"
                   direction="vertical"
+                  onSelect={() => router.push(`/components/${item.id}`)}
                   isSelected={item.id === component.id}
                 >
                   {item.name}
@@ -158,6 +159,11 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
 }
 
 export async function getStaticPaths() {
+  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation'))
+
+  console.log(files)
+
+  console.log(files)
   return {
     paths: ['/components/button'],
     fallback: true
