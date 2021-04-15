@@ -139,7 +139,7 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
         >
           <PageHeader
             title={name!}
-            description="Buttons are used as call-to-actions for users, indicating that they can take an action on a particular part of the page"
+            description="PropIndex Buttons are used as call-to-actions for users, indicating that they can take an action on a particular part of the page"
             githubLink={github}
             tabs={[
               {

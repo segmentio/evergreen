@@ -90,7 +90,7 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
     return null
   }
 
-  const { name, github } = component
+  const { name, description, github } = component
 
   const content = hydrate(mdxSource, { components })
 
@@ -139,7 +139,8 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
         >
           <PageHeader
             title={name!}
-            description="Buttons are used as call-to-actions for users, indicating that they can take an action on a particular part of the page"
+            description={description}
+            //description="uttons are used as call-to-actions for users, indicating that they can take an action on a particular part of the page"
             githubLink={github}
             tabs={[
               {
