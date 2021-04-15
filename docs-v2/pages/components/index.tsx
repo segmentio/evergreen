@@ -4,32 +4,81 @@ import {
   Text,
   Heading,
   Link as EvergreenLink,
-  majorScale
+  majorScale,
+  Tablist,
+  Tab
 } from 'evergreen-ui'
 import { css } from 'otion'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
 import PageHeader from '../../components/PageHeader'
-import IA from '../../utils/IA'
+import IA, { Item } from '../../utils/IA'
 
 interface Props {}
 
 const ComponentsPage: React.FC<Props> = () => {
+  const router = useRouter()
   const { components } = IA
+
+
+  const evergreenComponents = IA.components.items
+  .reduce((acc, subtree) => {
+    return [...(subtree.items || []), ...acc]
+  }, [] as Item[])
+  .sort((a, b) => (a.name.charCodeAt(0) > b.name.charCodeAt(0) ? 1 : -1))
 
   return (
     <Layout title="Components / Evergreen">
-      <Pane
-        width="100%"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        marginX="auto"
-        padding={majorScale(5)}
-        maxWidth={1200}
-      >
-        <PageHeader title="Components" />
-        {components.items.map(({ items, title }, i) => {
+      <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
+        <Pane
+          display="flex"
+          position="sticky"
+          top={64}
+          flexDirection="column"
+          overflowY="auto"
+          maxHeight="calc(100vh - 64px)"
+          paddingY={majorScale(5)}
+          paddingX={majorScale(4)}
+        >
+          <Heading
+            size={200}
+            textTransform="uppercase"
+            marginBottom={majorScale(2)}
+          >
+            Components
+          </Heading>
+          <Tablist>
+            {evergreenComponents.map(item => {
+              return (
+                <Tab
+                  alignItems="flex-start"
+                  direction="vertical"
+                  onSelect={() => router.push(`../components/${item.id}`)}
+                >
+                  {item.name}
+                </Tab>
+              )
+            })}
+          </Tablist>
+        </Pane>
+        <Pane
+          width="100%"
+          display="flex"
+          flexDirection="column"
+          justifyContent="flex-start"
+          padding={majorScale(5)}
+          maxWidth={1200}
+        // width="100%"
+        // display="flex"
+        // flexDirection="column"
+        // justifyContent="center"
+        // marginX="auto"
+        // padding={majorScale(5)}
+        // maxWidth={1200}
+        >
+          <PageHeader title="Components" />
+          {components.items.map(({ items, title }, i) => {
           return (
             <Pane
               key={i}
@@ -93,7 +142,8 @@ const ComponentsPage: React.FC<Props> = () => {
               </Pane>
             </Pane>
           )
-        })}
+          })}
+        </Pane>
       </Pane>
     </Layout>
   )

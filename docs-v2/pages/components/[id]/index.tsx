@@ -1,15 +1,15 @@
 import React from 'react'
 import fs from 'fs'
-import Layout from '../../components/Layout'
-import Playground from '../../components/Playground'
+import Layout from '../../../components/Layout'
+import Playground from '../../../components/Playground'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import hydrate from 'next-mdx-remote/hydrate'
 import path from 'path'
-import IA, { Item } from '../../utils/IA'
-import PageHeader from '../../components/PageHeader'
+import IA, { Item } from '../../../utils/IA'
+import PageHeader from '../../../components/PageHeader'
 import {
   Pane,
   Heading,
@@ -118,7 +118,7 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
             {evergreenComponents.map(item => {
               return (
                 <Tab
-                  alignItmes="flex-start"
+                  alignItems="flex-start"
                   direction="vertical"
                   onSelect={() => router.push(`/components/${item.id}`)}
                   isSelected={item.id === component.id}
@@ -140,16 +140,15 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
           <PageHeader
             title={name!}
             description={description}
-            //description="uttons are used as call-to-actions for users, indicating that they can take an action on a particular part of the page"
             githubLink={github}
             tabs={[
               {
                 label: 'Details',
-                to: '/details'
+                to: `/pages/components/${id}`
               },
               {
                 label: 'Properties',
-                to: '/props'
+                to: `/pages/components/${id}/props`
               }
             ]}
           />
