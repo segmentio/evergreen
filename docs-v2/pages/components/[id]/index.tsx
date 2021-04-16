@@ -79,10 +79,7 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
   const { id } = query
 
   const evergreenComponents = IA.components.items
-    // .reduce((acc, subtree) => {
-    //   return [...(subtree.items || []), ...acc]
-    // }, [] as Item[])
-    .sort((a, b) => (a.name.charCodeAt(0) > b.name.charCodeAt(0) ? 1 : -1))
+    .sort((a, b) => (a.name > b.name ? 1 : -1))
 
   const component = evergreenComponents.find(component => component.id === id)
 

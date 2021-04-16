@@ -13,7 +13,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
 import PageHeader from '../../components/PageHeader'
-import IA, { Item } from '../../utils/IA'
+import IA from '../../utils/IA'
 
 interface Props {}
 
@@ -21,7 +21,7 @@ const ComponentsPage: React.FC<Props> = () => {
   const router = useRouter()
   
   const evergreenComponents = IA.components.items
-  .sort((a, b) => (a.name.charCodeAt(0) > b.name.charCodeAt(0) ? 1 : -1))
+    .sort((a, b) => (a.name > b.name ? 1 : -1))
 
   return (
     <Layout title="Components / Evergreen">

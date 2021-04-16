@@ -1,15 +1,15 @@
 import React from 'react'
 import fs from 'fs'
-import Layout from '../../components/Layout'
-import Playground from '../../components/Playground'
+import Layout from '../../../../components/Layout'
+import Playground from '../../../../components/Playground'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import hydrate from 'next-mdx-remote/hydrate'
 import path from 'path'
-import IA, { Item } from '../../utils/IA'
-import PageHeader from '../../components/PageHeader'
+import IA, { Item } from '../../../../utils/IA'
+import PageHeader from '../../../../components/PageHeader'
 import {
   Pane,
   Heading,
@@ -73,16 +73,13 @@ const components = {
   li: (props: any) => <Li {...props} />
 }
 
-const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
+const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
   const router = useRouter()
   const { query } = router
   const { id } = query
 
   const evergreenComponents = IA.components.items
-    .reduce((acc, subtree) => {
-      return [...(subtree.items || []), ...acc]
-    }, [] as Item[])
-    .sort((a, b) => (a.name.charCodeAt(0) > b.name.charCodeAt(0) ? 1 : -1))
+    .sort((a, b) => (a.name > b.name ? 1 : -1))
 
   const component = evergreenComponents.find(component => component.id === id)
 
@@ -118,7 +115,7 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
             {evergreenComponents.map(item => {
               return (
                 <Tab
-                  alignItmes="flex-start"
+                  alignItems="flex-start"
                   direction="vertical"
                   onSelect={() => router.push(`/components/${item.id}`)}
                   isSelected={item.id === component.id}
