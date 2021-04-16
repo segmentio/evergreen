@@ -8,7 +8,7 @@ import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import hydrate from 'next-mdx-remote/hydrate'
 import path from 'path'
-import IA, { Item } from '../../../utils/IA'
+import IA from '../../../utils/IA'
 import PageHeader from '../../../components/PageHeader'
 import {
   Pane,
@@ -79,9 +79,9 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
   const { id } = query
 
   const evergreenComponents = IA.components.items
-    .reduce((acc, subtree) => {
-      return [...(subtree.items || []), ...acc]
-    }, [] as Item[])
+    // .reduce((acc, subtree) => {
+    //   return [...(subtree.items || []), ...acc]
+    // }, [] as Item[])
     .sort((a, b) => (a.name.charCodeAt(0) > b.name.charCodeAt(0) ? 1 : -1))
 
   const component = evergreenComponents.find(component => component.id === id)
@@ -118,6 +118,7 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
             {evergreenComponents.map(item => {
               return (
                 <Tab
+                  key={item.id}
                   alignItems="flex-start"
                   direction="vertical"
                   onSelect={() => router.push(`/components/${item.id}`)}

@@ -65,7 +65,7 @@ const PageHeader: React.FC<Props> = ({
           paddingTop={majorScale(1)}
         >
           {tabs.map(({ label, to }, i) => (
-            <Tab appearance="primary" isSelected={i === 0}>
+            <Tab appearance="primary" isSelected={i === 0} key={i}>
               {label}
             </Tab>
           ))}
