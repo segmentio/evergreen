@@ -1,18 +1,15 @@
 import React from 'react'
 import {
   Pane,
-  Text,
   Heading,
-  Link as EvergreenLink,
   majorScale,
   Tablist,
   Tab
 } from 'evergreen-ui'
-import { css } from 'otion'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import Layout from '../../components/Layout'
 import PageHeader from '../../components/PageHeader'
+import Thumbnail from '../../components/Thumbnail'
 import IA from '../../utils/IA'
 
 interface Props {}
@@ -70,46 +67,18 @@ const ComponentsPage: React.FC<Props> = () => {
           <Pane
             width="100%"
             display="grid"
-            gridColumnGap="20px"
-            gridRowGap="20px"
+            gridColumnGap="24px"
+            gridRowGap="32px"
             gridTemplateColumns="1fr 1fr 1fr 1fr"
           >
             {evergreenComponents.map(item => {
               return (
-                <Link key={item.id} href={`/components/${item.id}`} passHref>
-                  <Pane
-                    width="100%"
-                    display="flex"
-                    flexDirection="column"
-                    borderRadius={4}
-                    overflow="hidden"
-                    cursor="pointer"
-                    border="default"
-                    is={EvergreenLink}
-                    hoverElevation={2}
-                    className={css({
-                      filter: 'grayscale(60%)',
-                      ':hover': {
-                        filter: 'grayscale(0)'
-                      }
-                    })}
-                    alignItems="center"
-                  >
-                    <Pane
-                      is="img"
-                      src={item.image}
-                      width="100%"
-                      height="auto"
-                    />
-                    <Pane
-                      paddingY={majorScale(1)}
-                      display="flex"
-                      justifyContent="center"
-                    >
-                      <Text size={500}>{item.name}</Text>
-                    </Pane>
-                  </Pane>
-                </Link>
+                <Thumbnail
+                  id={item.id}
+                  name={item.name}
+                  imageSrc={item.image}
+                  imageHighlightSrc={item.imageHighlight}
+                ></Thumbnail>
               )
             })}
           </Pane>

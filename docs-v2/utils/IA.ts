@@ -17,6 +17,7 @@ export interface Item {
   title?: string
   description?: string
   image?: string
+  imageHighlight?: string
   items?: Item[]
   related?: string[]
   tags?: string[]
@@ -87,6 +88,7 @@ const IA: IA = {
         name: 'Button',
         description: 'A Button triggers an action or an event.',
         image: '/Button.png',
+        imageHighlight: '/Button-highlight.png',
         tags: ['icon button', 'button', 'action']
       },
       {
@@ -95,6 +97,7 @@ const IA: IA = {
         name: 'Tab',
         description: 'Use Tabs to organize your content in logical groupings.',
         image: '/Tab.png',
+        imageHighlight: '/Tab-highlight.png',
         tags: ['tab', 'tab list', 'tab navigation', 'navigation']
       },
       {
@@ -103,6 +106,7 @@ const IA: IA = {
         name: 'Badge & Pill',
         description: 'The Badge and Pill components are labels with a background color.',
         image: '/Badge & Pill.png',
+        imageHighlight: '/Badge & Pill-highlight.png',
         tags: ['badge', 'pills', 'tag'],
         related: ['tag-input']
       },
@@ -112,12 +116,14 @@ const IA: IA = {
         name: 'Avatar',
         description: 'The Avatar component is used to represent users. And should only be used for users.',
         image: '/Avatar.png',
+        imageHighlight: '/Avatar-highlight.png',
         tags: ['avatar', 'image', 'user']
       },
       {
         id: 'text-input',
         github: githubLink('text-input'),
         image: '/Text Input.png',
+        imageHighlight: '/Text Input-highlight.png',
         name: 'Text Input',
         description: 'The Text Input component allows user to type in text.'
       },
@@ -126,12 +132,14 @@ const IA: IA = {
         github: githubLink('search-input'),
         name: 'Search Input',
         image: '/Search Input.png',
+        imageHighlight: '/Search Input-highlight.png',
         description: 'The Search Input component allows user to search via typing in text.'
       },
       {
         id: 'tag-input',
         github: githubLink('tag-input'),
         image: '/Tag Input.png',
+        imageHighlight: '/Tag Input-highlight.png',
         name: 'Tag Input',
         description: 'The Tag Input component allow user to type in multiple values as tags.',
         tags: ['badge', 'pills', 'tag'],
@@ -141,6 +149,7 @@ const IA: IA = {
         id: 'textarea',
         github: githubLink('textarea'),
         image: '/Textarea.png',
+        imageHighlight: '/Textarea-highlight.png',
         name: 'Textarea',
         description: 'The Text Area component allow user to type in longer content.',
       },
@@ -148,6 +157,7 @@ const IA: IA = {
         id: 'autocomplete',
         github: githubLink('autocomplete'),
         image: '/Autocomplete.png',
+        imageHighlight: '/Autocomplete-highlight.png',
         name: 'Autocomplete',
         description: 'The Autocomplete component allow user to type and select from a list of options.',
       },
@@ -155,6 +165,7 @@ const IA: IA = {
         id: 'filepicker',
         github: githubLink('file-picker'),
         image: '/Filepicker.png',
+        imageHighlight: '/Filepicker-highlight.png',
         name: 'Filepicker',
         description: 'The Filepicker component is used to select one or multiple files from the file system.',
       },
@@ -163,6 +174,7 @@ const IA: IA = {
         name: 'Select',
         description: 'The Select component allow user to click and select from a list of option.',
         image: '/Select.png',
+        imageHighlight: '/Select-highlight.png',
         github: githubLink('select')
       },
       {
@@ -171,6 +183,7 @@ const IA: IA = {
         name: 'Combobox',
         description: 'The Combobox component is used for selecting an option from a predefined list of options.',
         image: '/Combobox.png',
+        imageHighlight: '/Combobox-highlight.png',
         tags: ['dropdown', 'menu']
       },
       {
@@ -179,12 +192,14 @@ const IA: IA = {
         name: 'Select Menu',
         description: 'The Select Menu component allows selection of multiple items from a dropdown list.',
         image: '/Select Menu.png',
+        imageHighlight: '/Select Menu-highlight.png',
         tags: ['dropdown', 'menu']
       },
       {
         id: 'popover',
         github: githubLink('popover'),
         image: '/Popover.png',
+        imageHighlight: '/Popover-highlight.png',
         name: 'Popover',
         description: 'The Popover component shows floating content in relation to a target.',
         tags: ['dropdown']
@@ -193,6 +208,7 @@ const IA: IA = {
         id: 'menu',
         github: githubLink('menu'),
         image: '/Menu.png',
+        imageHighlight: '/Menu-highlight.png',
         name: 'Menu',
         description: 'The Menu component shows a list of actions that user can take.',
         tags: ['dropdown']
@@ -201,12 +217,14 @@ const IA: IA = {
         id: 'checkbox',
         github: githubLink('checkbox'),
         image: '/Checkbox.png',
+        imageHighlight: '/Checkbox-highlight.png',
         name: 'Checkbox',
         description: 'The Checkbox component allows user to select multiple items from a list.'
       },
       {
         id: 'radio',
         image: '/Radio.png',
+        imageHighlight: '/Radio-highlight.png',
         github: githubLink('radio'),
         name: 'Radio',
         description: 'The Radio component allows user to select a single item from a list.'
@@ -215,6 +233,7 @@ const IA: IA = {
         id: 'segmented-control',
         github: githubLink('segmented-control'),
         image: '/Segmented Control.png',
+        imageHighlight: '/Segmented Control-highlight.png',
         name: 'Segmented Control',
         tags: ['button group'],
         description: 'I am a lonely component. Don not use me.'
@@ -222,6 +241,7 @@ const IA: IA = {
       {
         id: 'switch',
         image: '/Switch.png',
+        imageHighlight: '/Switch-highlight.png',
         github: githubLink('switch'),
         name: 'Switch',
         description: 'The Switch component is used to switch between two options and the result of the change is immediate.'
@@ -230,6 +250,7 @@ const IA: IA = {
         id: 'toaster',
         github: githubLink('toaster'),
         image: '/Toaster.png',
+        imageHighlight: '/Toaster-highlight.png',
         name: 'Toaster',
         description: 'The Toaster component is used to show an ephemeral message as an overlay.',
         tags: ['notifications', 'messages']
@@ -238,6 +259,7 @@ const IA: IA = {
         id: 'alert',
         github: githubLink('alert'),
         image: '/Alert.png',
+        imageHighlight: '/Alert-highlight.png',
         name: 'Alert',
         description: 'The Alert component is used to show feedback to the user about an action or state.',
         tags: ['banners', 'notification', 'messages', 'inline alert']
@@ -245,7 +267,8 @@ const IA: IA = {
       {
         id: 'status-indicator',
         github: githubLink('status-indicator'),
-        image: '/StatusIndicator.png',
+        image: '/Status Indicator.png',
+        imageHighlight: '/Status Indicator-highlight.png',
         name: 'Status Indicator',
         description: 'The Status indicator is used to indicate the status of an item.',
         tags: ['status', 'indicator', 'inline']
@@ -254,6 +277,7 @@ const IA: IA = {
         id: 'spinner',
         github: githubLink('spinner'),
         image: '/Spinner.png',
+        imageHighlight: '/Spinner-highlight.png',
         name: 'Spinner',
         description: 'The Spinner component is used to indicate a loading state.',
         tags: ['loading', 'indicator']
@@ -262,6 +286,7 @@ const IA: IA = {
         id: 'dialog',
         github: githubLink('dialog'),
         image: '/Dialog.png',
+        imageHighlight: '/Dialog-highlight.png',
         name: 'Dialog',
         description: 'The Dialog component is used to show content on top of an overlay that requires user interaction.',
         tags: ['modal']
@@ -270,6 +295,7 @@ const IA: IA = {
         id: 'side-sheet',
         github: githubLink('side-sheet'),
         image: '/Side Sheet.png',
+        imageHighlight: '/Side Sheet-highlight.png',
         name: 'Side Sheet',
         description: 'The Sidesheet component is used to show more details about an object.',
         tags: ['drawer', 'sheet']
@@ -277,6 +303,7 @@ const IA: IA = {
       {
         id: 'tooltip',
         image: '/Tooltip.png',
+        imageHighlight: '/Tooltip-highlight.png',
         github: githubLink('tooltip'),
         name: 'Tooltip',
         description: 'The Tooltip component is used to show more content of a target.'
@@ -284,6 +311,7 @@ const IA: IA = {
       {
         id: 'corner-dialog',
         image: '/Corner Dialog.png',
+        imageHighlight: '/Corner Dialog-highlight.png',
         github: githubLink('corner-dialog'),
         name: 'Corner Dialog',
         description: 'The CornerDialog component is used for announcements such as new features and feedback requests.',
@@ -295,6 +323,7 @@ const IA: IA = {
         name: 'Table',
         description: 'The Table component is used to show all information from a data set.',
         image: '/Table.png',
+        imageHighlight: '/Table-highlight.png',
         tags: [
           'list',
           'row',
@@ -310,17 +339,20 @@ const IA: IA = {
         id: 'portal',
         github: githubLink('portal'),
         image: '/Portal.png',
+        imageHighlight: '/Portal.png',
         name: 'Portal'
       },
       {
         id: 'positioner',
         image: '/Positioner.png',
+        imageHighlight: '/Positioner.png',
         github: githubLink('positioner'),
         name: 'Positioner'
       },
       {
         id: 'form-field',
         image: '/Form Field.png',
+        imageHighlight: '/Form Field.png',
         github: githubLink('form-field'),
         name: 'Form Field',
         tags: ['validation message', 'label']
