@@ -6,6 +6,7 @@ const githubLink = (str: string) => {
  * Information Architecture.
  * - Foundation
  * - Components
+ * - Patterns
  *
  * The `id` property is used for routing and also maps to the filename.
  */
@@ -18,7 +19,7 @@ export interface Item {
   description?: string
   image?: string
   imageHighlight?: string
-  items?: Item[]
+  // items?: Item[]
   related?: string[]
   tags?: string[]
 }
@@ -29,7 +30,7 @@ interface Parent {
   items: Item[]
 }
 
-type ParentKeys = 'foundation' | 'components'
+type ParentKeys = 'foundation' | 'components' | 'patterns'
 type IA = Record<ParentKeys, Parent>
 
 const IA: IA = {
@@ -356,6 +357,20 @@ const IA: IA = {
         github: githubLink('form-field'),
         name: 'Form Field',
         tags: ['validation message', 'label']
+      }
+    ]
+  },
+
+  patterns: {
+    title: "Patterns",
+    description: "Patterns are reusable combinations of components that solve common user problems. These best practice solutions help users achieve their goals and help ensure consistency across experiences.",
+    items: [
+      {
+        id: 'empty-states',
+        name: 'Empty States',
+        description: 'Very, very empty for now.',
+        image: '/Empty State.png',
+        imageHighlight: '/Empty State-highlight.png'
       }
     ]
   }

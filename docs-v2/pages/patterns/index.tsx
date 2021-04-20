@@ -11,18 +11,18 @@ import IA from '../../utils/IA'
 
 interface Props {}
 
-const ComponentsPage: React.FC<Props> = () => {
+const PatternsPage: React.FC<Props> = () => {
 
-  const evergreenComponents = IA.components.items
+  const evergreenPatterns = IA.patterns.items
     .sort((a, b) => (a.name > b.name ? 1 : -1))
 
   return (
-    <Layout title="Components / Evergreen">
+    <Layout title="Patterns / Evergreen">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
         <SideNav 
-          title="Components"
-          items={evergreenComponents}
-          routePrefix="components"
+          title="Patterns"
+          items={evergreenPatterns}
+          routePrefix="patterns"
         />
         <Pane
           width="100%"
@@ -33,8 +33,8 @@ const ComponentsPage: React.FC<Props> = () => {
           maxWidth={1200}
         >
           <PageHeader 
-            title="Components" 
-            description={IA.components.description}
+            title="Patterns" 
+            description={IA.patterns.description}
           />
           <Pane
             width="100%"
@@ -43,12 +43,12 @@ const ComponentsPage: React.FC<Props> = () => {
             gridRowGap="32px"
             gridTemplateColumns="1fr 1fr 1fr 1fr"
           >
-            {evergreenComponents.map(item => {
+            {evergreenPatterns.map(item => {
               return (
                 <Thumbnail
                   id={item.id}
                   name={item.name}
-                  type="components"
+                  type="patterns"
                   imageSrc={item.image}
                   imageHighlightSrc={item.imageHighlight}
                 ></Thumbnail>
@@ -61,4 +61,4 @@ const ComponentsPage: React.FC<Props> = () => {
   )
 }
 
-export default ComponentsPage
+export default PatternsPage

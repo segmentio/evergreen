@@ -13,7 +13,7 @@ import router from 'next/router'
 
 interface Props {
   title?: string
-  items?: Item[]
+  items: Item[]
   routePrefix?: string
 }
 
