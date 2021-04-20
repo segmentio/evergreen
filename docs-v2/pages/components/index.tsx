@@ -31,12 +31,13 @@ const ComponentsPage: React.FC<Props> = () => {
           overflowY="auto"
           maxHeight="calc(100vh - 64px)"
           paddingY={majorScale(5)}
-          paddingX={majorScale(4)}
+          paddingX={majorScale(3)}
         >
           <Heading
             size={200}
             textTransform="uppercase"
             marginBottom={majorScale(2)}
+            marginLeft={majorScale(2)}
           >
             Components
           </Heading>
@@ -63,7 +64,10 @@ const ComponentsPage: React.FC<Props> = () => {
           padding={majorScale(5)}
           maxWidth={1200}
         >
-          <PageHeader title="Components" />
+          <PageHeader 
+            title="Components" 
+            description="Components are the reusable building blocks of our design system. Each component meets a specific interaction or UI need, and has been specifically created to work together to create patterns and intuitive user experiences."
+          />
           <Pane
             width="100%"
             display="grid"

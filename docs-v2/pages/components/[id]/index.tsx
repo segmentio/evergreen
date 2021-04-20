@@ -102,12 +102,13 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
           overflowY="auto"
           maxHeight="calc(100vh - 64px)"
           paddingY={majorScale(5)}
-          paddingX={majorScale(4)}
+          paddingX={majorScale(3)}
         >
           <Heading
             size={200}
             textTransform="uppercase"
             marginBottom={majorScale(2)}
+            marginLeft={majorScale(2)}
           >
             Components
           </Heading>
