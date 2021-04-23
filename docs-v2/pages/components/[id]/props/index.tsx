@@ -37,7 +37,9 @@ const SectionHeading: React.FC<{
 }> = ({ size, children }) => {
   const idIndex = children.indexOf('{#')
   const text = idIndex !== -1 ? children.substring(0, idIndex) : children
-
+  if (typeof children !== 'string') {
+    console.log(children)
+  }
   const id =
     idIndex !== -1
       ? children.trim().substring(idIndex + 2, children.length - 1)
@@ -78,8 +80,9 @@ const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
   const { query } = router
   const { id } = query
 
-  const evergreenComponents = IA.components.items
-    .sort((a, b) => (a.name > b.name ? 1 : -1))
+  const evergreenComponents = IA.components.items.sort((a, b) =>
+    a.name > b.name ? 1 : -1
+  )
 
   const component = evergreenComponents.find(component => component.id === id)
 
@@ -159,7 +162,7 @@ const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
 export async function getStaticPaths() {
   const files = await fs.readdirSync(path.join(process.cwd(), 'documentation'))
 
-  const paths = files.map(file => `/components/${file.split('.')[0]}`)
+  const paths = files.map(file => `/components/${file.split('.')[0]}/props`)
 
   return {
     paths,

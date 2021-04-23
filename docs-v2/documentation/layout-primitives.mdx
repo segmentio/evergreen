@@ -20,7 +20,7 @@ The `Box` component is useful because it helps with 3 common use cases
 - **Define components without worrying about CSS.**
 - **Override single properties when using components.**
 
-### You don’t need `className`
+### You don’t need className
 
 In Evergreen most of the time you don’t deal with CSS classes through the `className` property.
 Instead, you write CSS properties directly onto your Evergreen components —
@@ -93,7 +93,7 @@ of a component. The text styles and padding will adjust based on the height you 
 We recommend using values for heights, widths, margins, paddings that are always divisible by `8`.
 Within Evergreen we call this the major scale.
 
-#### Evergreen exports a utility called `majorScale` to help conform to the 8px major scale.
+#### Evergreen exports a utility called ajorScale to help conform to the 8px major scale.
 
 - `majorScale(1) => 8`
 - `majorScale(2) => 16`
@@ -102,8 +102,6 @@ Within Evergreen we call this the major scale.
 - `majorScale(5) => 40`
 
 ```jsx
-  { majorScale, Button } from 'evergreen-ui'
-
 <Button height={majorScale(5)}>Big Button</Button>
 ```
 
@@ -116,7 +114,7 @@ We recommend using the minor scale primarily for spacing only when the major sca
 For example: `4`, `12`, `20` are fine to use.
 But avoid using `52`.
 
-#### Evergreen exports a utility called `minorScale` to help conform to the 4px minor scale.
+#### Evergreen exports a utility called minorScale to help conform to the 4px minor scale.
 
 - `minorScale(1) => 4`
 - `minorScale(3) => 12`
@@ -125,8 +123,6 @@ But avoid using `52`.
 - `minorScale(9) => 36`
 
 ```jsx
-  { minorScale, Button } from 'evergreen-ui'
-
 <Pane>
   <Button marginRight={minorScale(3)}>Button</Button>
   <Button>Button</Button>
@@ -154,7 +150,7 @@ Read more above to learn about this.
 
 Because the `Pane` component directly maps to a `Box` you can pass almost any CSS property directly to the React component.
 
-## Basic `Pane` example
+## Basic Pane example
 
 ```jsx
 <Pane
@@ -297,7 +293,7 @@ Most commonly you will be only using `0`, `1` and `2`.
 The `background` property on a `Pane` is special.
 You have access to all of the colors defined in the theme objects.
 
-### Use `tint1` and `tint2` for slight gray backgrounds
+### Use tint1 and tint2 for slight gray backgrounds
 
 ```jsx
 <Pane>
@@ -308,32 +304,6 @@ You have access to all of the colors defined in the theme objects.
     <Text>tint2</Text>
   </Pane>
 </Pane>
-```
-
-### All possible options for the background color
-
-```jsx collapse
-<ThemeConsumer>
-  {theme => (
-    <Pane clearfix>
-      {Object.keys(theme.colors.background).map(background => (
-        <Pane
-          key={background}
-          background={background}
-          float="left"
-          width={120}
-          height={120}
-          margin={24}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Text color="default">{background}</Text>
-        </Pane>
-      ))}
-    </Pane>
-  )}
-</ThemeConsumer>
 ```
 
 ## Border colors
@@ -362,69 +332,6 @@ All border sides are supported on a `Pane`
 
 ```jsx
 <Pane borderTop borderRight borderLeft borderBottom width={120} height={80} />
-```
-
-### All possible options for the border color
-
-```jsx collapse
-<ThemeConsumer>
-  {theme => (
-    <Pane clearfix>
-      {Object.keys(theme.colors.border).map(borderColor => (
-        <Pane key={borderColor} overflow="auto">
-          <Pane
-            borderTop={borderColor}
-            float="left"
-            width={160}
-            height={120}
-            margin={24}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Text color="default">borderTop: {borderColor}</Text>
-          </Pane>
-          <Pane
-            borderRight={borderColor}
-            float="left"
-            width={160}
-            height={120}
-            margin={24}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Text color="default">borderRight: {borderColor}</Text>
-          </Pane>
-          <Pane
-            borderBottom={borderColor}
-            float="left"
-            width={160}
-            height={120}
-            margin={24}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Text color="default">borderBottom: {borderColor}</Text>
-          </Pane>
-          <Pane
-            borderLeft={borderColor}
-            float="left"
-            width={160}
-            height={120}
-            margin={24}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Text color="default">borderLeft: {borderColor}</Text>
-          </Pane>
-        </Pane>
-      ))}
-    </Pane>
-  )}
-</ThemeConsumer>
 ```
 
 # Card component

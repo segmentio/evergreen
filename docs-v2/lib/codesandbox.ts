@@ -1,5 +1,4 @@
 import LZString from 'lz-string'
-import packageJson from '../../package.json'
 
 function compress(string) {
   return LZString.compressToBase64(string)
@@ -52,7 +51,7 @@ ReactDOM.render(
           dependencies: {
             react: '16.8.0',
             'react-dom': '16.8.0',
-            'evergreen-ui': `${packageJson.version}`
+            'evergreen-ui': `6.0.0-34`
           },
           devDependencies: {
             'react-scripts': 'latest'

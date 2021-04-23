@@ -11,7 +11,7 @@ The `Popover` uses the `Positioner` from Evergreen to handle the positioning log
 Internally the `Popover` will make sure the `Popover` is positioned within the viewport.
 This means that sometimes the `Popover` flips — or the `Popover` might move slightly to the left or right.
 
-### When creating a Popover, you must specify both:
+### When creating a Popover, you must specify
 
 - Its `content`, by setting the content prop, and
 - Its `target`, as a single child element or a function
@@ -45,7 +45,7 @@ When you pass a function to the `content` prop you will be able to close the pop
 </Popover>
 ```
 
-## Focus management with `bringFocusInside`
+## Focus management with bringFocusInside
 
 When opening the `Popover` when `bringFocusInside` is true, focus will be brought inside the `Popover` by looking
 for elements with `[autofocus]` first, `[tabindex]` second and `button` last.

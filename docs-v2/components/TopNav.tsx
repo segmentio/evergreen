@@ -1,6 +1,6 @@
 import React from 'react'
 import { Pane, majorScale, Link as EvergreenLink } from 'evergreen-ui'
-import Link from 'next/Link'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 // eslint-disable-next-line import/no-unassigned-import
 import GitHubButton from 'react-github-button'
