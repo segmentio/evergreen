@@ -340,20 +340,20 @@ const IA: IA = {
         id: 'portal',
         github: githubLink('portal'),
         image: '/Portal.png',
-        imageHighlight: '/Portal.png',
+        imageHighlight: '/Portal-highlight.png',
         name: 'Portal'
       },
       {
         id: 'positioner',
         image: '/Positioner.png',
-        imageHighlight: '/Positioner.png',
+        imageHighlight: '/Positioner-highlight.png',
         github: githubLink('positioner'),
         name: 'Positioner'
       },
       {
         id: 'form-field',
         image: '/Form Field.png',
-        imageHighlight: '/Form Field.png',
+        imageHighlight: '/Form Field-highlight.png',
         github: githubLink('form-field'),
         name: 'Form Field',
         tags: ['validation message', 'label']
