@@ -4,7 +4,7 @@ const githubLink = (str: string) => {
 
 /**
  * Information Architecture.
- * - Foundation
+ * - Foundations
  * - Components
  * - Patterns
  *
@@ -30,19 +30,21 @@ interface Parent {
   items: Item[]
 }
 
-type ParentKeys = 'foundation' | 'components' | 'patterns'
+type ParentKeys = 'foundations' | 'components' | 'patterns'
 type IA = Record<ParentKeys, Parent>
 
 const IA: IA = {
-  foundation: {
-    title: 'Foundation',
+  foundations: {
+    title: 'Foundations',
     description: 'Styles and primitive components. Start here.',
     items: [
       {
         id: 'layout-primitives',
         github: githubLink('layers'),
         name: 'Layout Primitives',
-        tags: ['pane', 'card', 'box', 'layout']
+        tags: ['pane', 'card', 'box', 'layout'],
+        image: '/Layout Primitives.png',
+        imageHighlight: '/Layout Primitives.png'
       },
       {
         id: 'typography',
@@ -59,14 +61,16 @@ const IA: IA = {
           'strong',
           'small'
         ],
-        image: '/Typography.png'
+        image: '/Typography.png',
+        imageHighlight: '/Typography.png'
       },
       {
         id: 'colors',
         github: githubLink('theme/src/default-theme'),
         name: 'Colors',
         tags: ['color'],
-        image: '/Colors.png'
+        image: '/Colors.png',
+        imageHighlight: '/Colors.png'
       },
       {
         id: 'icons',
@@ -74,6 +78,7 @@ const IA: IA = {
         name: 'Icons',
         tags: ['icon'],
         image: '/Icons.png',
+        imageHighlight: '/Icons.png',
         related: ['button']
       }
     ]
