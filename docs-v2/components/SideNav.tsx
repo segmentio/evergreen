@@ -14,10 +14,11 @@ import router from 'next/router'
 interface Props {
   title?: string
   items: Item[]
+  selectedItem?: Item
   routePrefix?: string
 }
 
-const SideNav: React.FC<Props> = ({title, items, routePrefix}) => {
+const SideNav: React.FC<Props> = ({title, items, selectedItem, routePrefix}) => {
   return(
     <Pane
       display="flex"
@@ -44,6 +45,7 @@ const SideNav: React.FC<Props> = ({title, items, routePrefix}) => {
               key={item.id}
               alignItems="flex-start"
               direction="vertical"
+              isSelected={selectedItem? item.id===selectedItem.id : false }
               onSelect={() => router.push(`../${routePrefix}/${item.id}`)}
             >
               {item.name}

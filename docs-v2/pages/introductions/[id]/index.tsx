@@ -74,21 +74,20 @@ const components = {
   li: (props: any) => <Li {...props} />
 }
 
-const FoundationPage: React.FC<Props> = ({ mdxSource }) => {
+const IntroductionPage: React.FC<Props> = ({ mdxSource }) => {
   const router = useRouter()
   const { query } = router
   const { id } = query
 
-  const evergreenFoundations = IA.foundations.items
-    .sort((a, b) => (a.name > b.name ? 1 : -1))
+  const evergreenIntroductions = IA.introductions.items
 
-  const foundation = evergreenFoundations.find(foundation => foundation.id === id)
+  const introduction = evergreenIntroductions.find(introduction => introduction.id === id)
 
-  if (!foundation) {
+  if (!introduction) {
     return null
   }
 
-  const { name, description, github } = foundation
+  const { name, description } = introduction
 
   const content = hydrate(mdxSource, { components })
 
@@ -96,10 +95,10 @@ const FoundationPage: React.FC<Props> = ({ mdxSource }) => {
     <Layout title={`Evergreen | ${name} Documentation`}>
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
         <SideNav 
-          title="Foundations"
-          items={evergreenFoundations}
-          selectedItem={foundation}
-          routePrefix="foundations"
+          title="Introductions"
+          items={evergreenIntroductions}
+          selectedItem={introduction}
+          routePrefix="introductions"
         />
         <Pane
           width="100%"
@@ -112,17 +111,6 @@ const FoundationPage: React.FC<Props> = ({ mdxSource }) => {
           <PageHeader
             title={name!}
             description={description}
-            githubLink={github}
-            tabs={[
-              {
-                label: 'Details',
-                to: `/pages/foundations/${id}`
-              },
-              {
-                label: 'Properties',
-                to: `/pages/foundations/${id}/props`
-              }
-            ]}
           />
           {content}
         </Pane>
@@ -134,7 +122,7 @@ const FoundationPage: React.FC<Props> = ({ mdxSource }) => {
 export async function getStaticPaths() {
   const files = await fs.readdirSync(path.join(process.cwd(), 'documentation'))
 
-  const paths = files.map(file => `/foundations/${file.split('.')[0]}`)
+  const paths = files.map(file => `/introductions/${file.split('.')[0]}`)
 
   return {
     paths,
@@ -163,4 +151,4 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   }
 }
 
-export default FoundationPage
+export default IntroductionPage

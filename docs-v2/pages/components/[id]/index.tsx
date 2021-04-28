@@ -26,6 +26,7 @@ import {
   Link,
   majorScale
 } from 'evergreen-ui'
+import SideNav from '../../../components/SideNav'
 
 interface Props {
   mdxSource: MdxRemote.Source
@@ -95,40 +96,12 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
   return (
     <Layout title={`Evergreen | ${name} Documentation`}>
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <Pane
-          display="flex"
-          position="sticky"
-          top={64}
-          flexDirection="column"
-          overflowY="auto"
-          maxHeight="calc(100vh - 64px)"
-          paddingY={majorScale(5)}
-          paddingX={majorScale(3)}
-        >
-          <Heading
-            size={200}
-            textTransform="uppercase"
-            marginBottom={majorScale(2)}
-            marginLeft={majorScale(2)}
-          >
-            Components
-          </Heading>
-          <Tablist>
-            {evergreenComponents.map(item => {
-              return (
-                <Tab
-                  key={item.id}
-                  alignItems="flex-start"
-                  direction="vertical"
-                  onSelect={() => router.push(`/components/${item.id}`)}
-                  isSelected={item.id === component.id}
-                >
-                  {item.name}
-                </Tab>
-              )
-            })}
-          </Tablist>
-        </Pane>
+        <SideNav 
+          title="Components"
+          items={evergreenComponents}
+          selectedItem={component}
+          routePrefix="components"
+        />
         <Pane
           width="100%"
           display="flex"
