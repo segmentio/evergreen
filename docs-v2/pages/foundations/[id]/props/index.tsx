@@ -162,7 +162,7 @@ const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
 export async function getStaticPaths() {
   const files = await fs.readdirSync(path.join(process.cwd(), 'documentation'))
 
-  const paths = files.map(file => `/components/${file.split('.')[0]}/props`)
+  const paths = files.map(file => `/foundations/${file.split('.')[0]}/props`)
 
   return {
     paths,
