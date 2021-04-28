@@ -108,7 +108,9 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation'))
+  const files = await fs.readdirSync(
+    path.join(process.cwd(), 'documentation', 'components')
+  )
 
   const paths = files.map(file => `/components/${file.split('.')[0]}/props`)
 
@@ -128,13 +130,21 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
 
   const stem = path.join(process.cwd(), '..', 'src', `${id}`, 'src')
 
-  const componentFiles = fs.readdirSync(stem)
+  const componentFiles = fs.readdirSync(stem).filter(name => {
+    const stats = fs.statSync(path.join(stem, name))
+    return !stats.isDirectory()
+  })
 
   const props = await Promise.all(
     componentFiles.map(async name => {
       const data = await fs.readFileSync(path.join(stem, name)).toString()
-      const propsData = docgen.parse(data)
-      return propsData
+      try {
+        const propsData = docgen.parse(data)
+        return propsData
+      } catch (e) {
+        console.error('There was an error parsing component documentation', e)
+        return {}
+      }
     })
   )
 

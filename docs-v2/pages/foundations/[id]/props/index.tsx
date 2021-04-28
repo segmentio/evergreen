@@ -160,7 +160,9 @@ const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation'))
+  const files = await fs.readdirSync(
+    path.join(process.cwd(), 'documentation', 'foundations')
+  )
 
   const paths = files.map(file => `/foundations/${file.split('.')[0]}/props`)
 
@@ -179,7 +181,9 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { id } = params || {}
 
   const fileContents = fs
-    .readFileSync(path.join(process.cwd(), 'documentation', `${id}.mdx`))
+    .readFileSync(
+      path.join(process.cwd(), 'documentation', 'foundations', `${id}.mdx`)
+    )
     .toString()
 
   const mdxSource = await renderToString(fileContents, { components })

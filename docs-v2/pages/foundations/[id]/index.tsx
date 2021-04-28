@@ -79,10 +79,13 @@ const FoundationPage: React.FC<Props> = ({ mdxSource }) => {
   const { query } = router
   const { id } = query
 
-  const evergreenFoundations = IA.foundations.items
-    .sort((a, b) => (a.name > b.name ? 1 : -1))
+  const evergreenFoundations = IA.foundations.items.sort((a, b) =>
+    a.name > b.name ? 1 : -1
+  )
 
-  const foundation = evergreenFoundations.find(foundation => foundation.id === id)
+  const foundation = evergreenFoundations.find(
+    foundation => foundation.id === id
+  )
 
   if (!foundation) {
     return null
@@ -95,7 +98,7 @@ const FoundationPage: React.FC<Props> = ({ mdxSource }) => {
   return (
     <Layout title={`Evergreen | ${name} Documentation`}>
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav 
+        <SideNav
           title="Foundations"
           items={evergreenFoundations}
           selectedItem={foundation}
@@ -132,7 +135,9 @@ const FoundationPage: React.FC<Props> = ({ mdxSource }) => {
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation'))
+  const files = await fs.readdirSync(
+    path.join(process.cwd(), 'documentation', 'foundations')
+  )
 
   const paths = files.map(file => `/foundations/${file.split('.')[0]}`)
 
@@ -151,7 +156,9 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { id } = params || {}
 
   const fileContents = fs
-    .readFileSync(path.join(process.cwd(), 'documentation', `${id}.mdx`))
+    .readFileSync(
+      path.join(process.cwd(), 'documentation', 'foundations', `${id}.mdx`)
+    )
     .toString()
 
   const mdxSource = await renderToString(fileContents, { components })

@@ -14,15 +14,12 @@ import {
   Pane,
   Heading,
   HeadingOwnProps,
-  Code,
   Ul,
   Li,
   Ol,
   LinkIcon,
   Paragraph,
   Strong,
-  Tablist,
-  Tab,
   Link,
   majorScale
 } from 'evergreen-ui'
@@ -81,7 +78,9 @@ const IntroductionPage: React.FC<Props> = ({ mdxSource }) => {
 
   const evergreenIntroductions = IA.introductions.items
 
-  const introduction = evergreenIntroductions.find(introduction => introduction.id === id)
+  const introduction = evergreenIntroductions.find(
+    introduction => introduction.id === id
+  )
 
   if (!introduction) {
     return null
@@ -94,7 +93,7 @@ const IntroductionPage: React.FC<Props> = ({ mdxSource }) => {
   return (
     <Layout title={`Evergreen | ${name} Documentation`}>
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav 
+        <SideNav
           title="Introductions"
           items={evergreenIntroductions}
           selectedItem={introduction}
@@ -108,10 +107,7 @@ const IntroductionPage: React.FC<Props> = ({ mdxSource }) => {
           padding={majorScale(5)}
           maxWidth={1200}
         >
-          <PageHeader
-            title={name!}
-            description={description}
-          />
+          <PageHeader title={name!} description={description} />
           {content}
         </Pane>
       </Pane>
@@ -120,7 +116,9 @@ const IntroductionPage: React.FC<Props> = ({ mdxSource }) => {
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation'))
+  const files = await fs.readdirSync(
+    path.join(process.cwd(), 'documentation', 'introductions')
+  )
 
   const paths = files.map(file => `/introductions/${file.split('.')[0]}`)
 
@@ -139,7 +137,9 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { id } = params || {}
 
   const fileContents = fs
-    .readFileSync(path.join(process.cwd(), 'documentation', `${id}.mdx`))
+    .readFileSync(
+      path.join(process.cwd(), 'documentation', 'introductions', `${id}.mdx`)
+    )
     .toString()
 
   const mdxSource = await renderToString(fileContents, { components })

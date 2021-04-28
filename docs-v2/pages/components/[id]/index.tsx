@@ -96,7 +96,7 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
   return (
     <Layout title={`Evergreen | ${name} Documentation`}>
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav 
+        <SideNav
           title="Components"
           items={evergreenComponents}
           selectedItem={component}
@@ -133,7 +133,9 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation'))
+  const files = await fs.readdirSync(
+    path.join(process.cwd(), 'documentation', 'components')
+  )
 
   const paths = files.map(file => `/components/${file.split('.')[0]}`)
 
@@ -152,7 +154,9 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { id } = params || {}
 
   const fileContents = fs
-    .readFileSync(path.join(process.cwd(), 'documentation', `${id}.mdx`))
+    .readFileSync(
+      path.join(process.cwd(), 'documentation', 'components', `${id}.mdx`)
+    )
     .toString()
 
   const mdxSource = await renderToString(fileContents, { components })
