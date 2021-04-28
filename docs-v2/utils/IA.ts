@@ -4,6 +4,7 @@ const githubLink = (str: string) => {
 
 /**
  * Information Architecture.
+ * - Introduction
  * - Foundations
  * - Components
  * - Patterns
@@ -30,10 +31,27 @@ interface Parent {
   items: Item[]
 }
 
-type ParentKeys = 'foundations' | 'components' | 'patterns'
+type ParentKeys = 'introductions' | 'foundations' | 'components' | 'patterns'
 type IA = Record<ParentKeys, Parent>
 
 const IA: IA = {
+  introductions: {
+    title: 'Introductions',
+    description: 'Evergreen is a pragmatic UI kit for building evolving products on the web.It is built and maintained open-source by Segment.',
+    items: [
+      {
+        id: 'themeing',
+        name: 'Themeing',
+        description: 'Something about themeing'
+      },
+      {
+        id: 'what-is-new',
+        name: 'What is New',
+        description: 'Something about news'
+      }
+    ]
+  },
+
   foundations: {
     title: 'Foundations',
     description: 'Styles and primitive components. Start here.',
