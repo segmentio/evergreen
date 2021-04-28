@@ -78,8 +78,9 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
   const { query } = router
   const { id } = query
 
-  const evergreenComponents = IA.components.items
-    .sort((a, b) => (a.name > b.name ? 1 : -1))
+  const evergreenComponents = IA.components.items.sort((a, b) =>
+    a.name > b.name ? 1 : -1
+  )
 
   const component = evergreenComponents.find(component => component.id === id)
 
@@ -143,11 +144,11 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
             tabs={[
               {
                 label: 'Details',
-                to: `/pages/components/${id}`
+                to: `/components/${id}`
               },
               {
                 label: 'Properties',
-                to: `/pages/components/${id}/props`
+                to: `/components/${id}/props`
               }
             ]}
           />

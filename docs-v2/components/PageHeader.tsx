@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import {
   Pane,
   Button,
@@ -10,7 +11,7 @@ import {
   Paragraph
 } from 'evergreen-ui'
 
-interface Tab {
+interface TabProps {
   label: string
   to: string
 }
@@ -19,15 +20,16 @@ interface Props {
   title: string
   description?: string
   githubLink?: string
-  tabs?: Tab[]
+  tabs?: TabProps[]
 }
 
 const PageHeader: React.FC<Props> = ({
-  title,
   description,
   githubLink,
-  tabs
+  tabs,
+  title
 }) => {
+  const router = useRouter()
   return (
     <Pane
       display="flex"
@@ -65,7 +67,12 @@ const PageHeader: React.FC<Props> = ({
           paddingTop={majorScale(1)}
         >
           {tabs.map(({ label, to }, i) => (
-            <Tab appearance="primary" isSelected={i === 0} key={i}>
+            <Tab
+              appearance="primary"
+              isSelected={router.asPath === to}
+              key={i}
+              onSelect={() => router.push(to)}
+            >
               {label}
             </Tab>
           ))}

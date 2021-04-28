@@ -1,83 +1,23 @@
 import React from 'react'
 import fs from 'fs'
 import Layout from '../../../../components/Layout'
-import Playground from '../../../../components/Playground'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
-import { MdxRemote } from 'next-mdx-remote/types'
-import renderToString from 'next-mdx-remote/render-to-string'
-import hydrate from 'next-mdx-remote/hydrate'
 import path from 'path'
-import IA, { Item } from '../../../../utils/IA'
+import IA from '../../../../utils/IA'
 import PageHeader from '../../../../components/PageHeader'
-import {
-  Pane,
-  Heading,
-  HeadingOwnProps,
-  Code,
-  Ul,
-  Li,
-  Ol,
-  LinkIcon,
-  Paragraph,
-  Strong,
-  Tablist,
-  Tab,
-  Link,
-  majorScale
-} from 'evergreen-ui'
+import PropsTable from '../../../../components/PropsTable'
+import { Pane, Heading, Tablist, Tab, majorScale } from 'evergreen-ui'
+
+const docgen = require('react-docgen')
 
 interface Props {
-  mdxSource: MdxRemote.Source
+  componentProps: any
 }
 
-const SectionHeading: React.FC<{
-  size: HeadingOwnProps['size']
-  children: string
-}> = ({ size, children }) => {
-  const idIndex = children.indexOf('{#')
-  const text = idIndex !== -1 ? children.substring(0, idIndex) : children
-  if (typeof children !== 'string') {
-    console.log(children)
-  }
-  const id =
-    idIndex !== -1
-      ? children.trim().substring(idIndex + 2, children.length - 1)
-      : `${children
-          .split(' ')
-          .map(child => child.toLowerCase())
-          .join('_')}`
-
-  return (
-    <Pane display="flex" alignItems="center" id={id} marginY={majorScale(2)}>
-      <Heading size={size} id={id}>
-        {text}
-      </Heading>
-      <Link href={`#${id}`} marginLeft={majorScale(2)}>
-        <LinkIcon size={12} />
-      </Link>
-    </Pane>
-  )
-}
-
-const components = {
-  h1: (props: any) => <SectionHeading size={800} {...props} />,
-  h2: (props: any) => <SectionHeading size={700} {...props} />,
-  h3: (props: any) => <SectionHeading size={600} {...props} />,
-  h4: (props: any) => <SectionHeading size={500} {...props} />,
-  h5: (props: any) => <SectionHeading size={300} {...props} />,
-  h6: (props: any) => <SectionHeading size={200} {...props} />,
-  code: (props: any) => <Playground source={props.children} />,
-  p: (props: any) => <Paragraph marginBottom={majorScale(3)} {...props} />,
-  strong: (props: any) => <Strong {...props} />,
-  ol: (props: any) => <Ol {...props} />,
-  ul: (props: any) => <Ul {...props} />,
-  li: (props: any) => <Li {...props} />
-}
-
-const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
+const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
   const router = useRouter()
-  const { query } = router
+  const { query, pathname } = router
   const { id } = query
 
   const evergreenComponents = IA.components.items.sort((a, b) =>
@@ -91,8 +31,6 @@ const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
   }
 
   const { name, github } = component
-
-  const content = hydrate(mdxSource, { components })
 
   return (
     <Layout title={`Evergreen | ${name} Documentation`}>
@@ -144,15 +82,25 @@ const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
             tabs={[
               {
                 label: 'Details',
-                to: '/details'
+                to: `/components/${id}`
               },
               {
                 label: 'Properties',
-                to: '/props'
+                to: `/components/${id}/props`
               }
             ]}
           />
-          {content}
+          {componentProps.map((data, i) => {
+            return (
+              <Pane
+                marginBottom={
+                  i !== componentProps.length - 1 ? majorScale(5) : undefined
+                }
+              >
+                <PropsTable data={data} />
+              </Pane>
+            )
+          })}
         </Pane>
       </Pane>
     </Layout>
@@ -178,15 +126,21 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
-  const fileContents = fs
-    .readFileSync(path.join(process.cwd(), 'documentation', `${id}.mdx`))
-    .toString()
+  const stem = path.join(process.cwd(), '..', 'src', `${id}`, 'src')
 
-  const mdxSource = await renderToString(fileContents, { components })
+  const componentFiles = fs.readdirSync(stem)
+
+  const props = await Promise.all(
+    componentFiles.map(async name => {
+      const data = await fs.readFileSync(path.join(stem, name)).toString()
+      const propsData = docgen.parse(data)
+      return propsData
+    })
+  )
 
   return {
     props: {
-      mdxSource
+      componentProps: props
     }
   }
 }
