@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Pane, majorScale } from 'evergreen-ui'
+import { Pane, Paragraph, majorScale } from 'evergreen-ui'
 import Layout from '../../components/Layout'
 import SearchBar from '../../components/SearchBar'
 import PageHeader from '../../components/PageHeader'
