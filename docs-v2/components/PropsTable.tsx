@@ -17,9 +17,11 @@ interface Props {
 const resolveReadableType: (type: any) => string = type => {
   switch (type.name) {
     case 'enum':
-      return type.value.map(({ value }) => value).join(' | ')
+      return type.value.map(({ value }: { value: string }) => value).join(' | ')
     case 'union':
-      return type.value.map(subType => resolveReadableType(subType)).join(' | ')
+      return type.value
+        .map((subType: any) => resolveReadableType(subType))
+        .join(' | ')
     case 'custom':
       return type.raw
     default:

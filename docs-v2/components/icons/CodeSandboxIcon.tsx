@@ -1,13 +1,8 @@
 import React, { forwardRef } from 'react'
-import {
-  Pane,
-  useTheme,
-  PaneProps,
-  PolymorphicBoxProps,
-  majorScale
-} from 'evergreen-ui'
+import Box from 'ui-box'
+import { useTheme, PolymorphicBoxProps, majorScale } from 'evergreen-ui'
 
-interface Props extends PaneProps, PolymorphicBoxProps<'svg'> {
+interface Props extends PolymorphicBoxProps<'svg'> {
   size?: number
   color?: string
 }
@@ -17,10 +12,10 @@ const CodeSandboxIcon: React.FC<Props> = forwardRef(function CodeSandboxIcon(
   ref
 ) {
   const { size = majorScale(3), color = 'default', ...rest } = props
-  const theme = useTheme()
+  const theme = useTheme() as any
   const iconColor = theme.colors.icon[color] || color
   return (
-    <Pane
+    <Box
       is="svg"
       width={size}
       height={size}
@@ -36,7 +31,7 @@ const CodeSandboxIcon: React.FC<Props> = forwardRef(function CodeSandboxIcon(
         stroke={iconColor}
         strokeWidth="0.1"
       />
-    </Pane>
+    </Box>
   )
 })
 

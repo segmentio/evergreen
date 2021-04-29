@@ -1,6 +1,6 @@
 import LZString from 'lz-string'
 
-function compress(string) {
+function compress(string: string) {
   return LZString.compressToBase64(string)
     .replace(/\+/g, `-`)
     .replace(/\//g, `_`)

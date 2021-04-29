@@ -1,7 +1,6 @@
 import React from 'react'
 import { openConsentManager } from '@segment/consent-manager'
-import { majorScale, Pane, Text, Link} from 'evergreen-ui'
-
+import { majorScale, Pane, Text, Link } from 'evergreen-ui'
 
 interface Props {}
 
@@ -18,21 +17,30 @@ const PageFooter: React.FC<Props> = () => {
       display="flex"
       justifyContent="space-between"
     >
-      <Pane 
-        display="flex"
-        alignItems="center"
-      >
-        <Pane 
+      <Pane display="flex" alignItems="center">
+        <Pane
           is="img"
           width={80}
           src="/segment-logo.svg"
           marginRight={majorScale(5)}
         />
-        <Text size={300} color="muted">© {new Date().getFullYear()}, Segment.io, Inc.</Text>
+        <Text size={300} color="muted">
+          © {new Date().getFullYear()}, Segment.io, Inc.
+        </Text>
       </Pane>
       <Pane>
-        <Link size={300} color="neutral" href="https://segment.com/jobs/" target="_blank" marginRight={majorScale(2)}>We're hiring!</Link>
-        <Link size={300} color="neutral" href="" onClick={openConsentManager}>Website Data Collection</Link>
+        <Link
+          size={300}
+          color="neutral"
+          href="https://segment.com/jobs/"
+          target="_blank"
+          marginRight={majorScale(2)}
+        >
+          We're hiring!
+        </Link>
+        <Link size={300} color="neutral" href="" onClick={openConsentManager}>
+          Website Data Collection
+        </Link>
       </Pane>
     </Pane>
   )

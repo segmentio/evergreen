@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-  Pane,
-  majorScale
-} from 'evergreen-ui'
+import { Pane, majorScale } from 'evergreen-ui'
 import Layout from '../../components/Layout'
 import PageHeader from '../../components/PageHeader'
 import Thumbnail from '../../components/Thumbnail'
@@ -12,14 +9,14 @@ import IA from '../../utils/IA'
 interface Props {}
 
 const FoundationsPage: React.FC<Props> = () => {
-
-  const evergreenFoundations = IA.foundations.items
-    .sort((a, b) => (a.name > b.name ? 1 : -1))
+  const evergreenFoundations = IA.foundations.items.sort((a, b) =>
+    a.name! > b.name! ? 1 : -1
+  )
 
   return (
     <Layout title="Foundations / Evergreen">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav 
+        <SideNav
           title="Foundations"
           items={evergreenFoundations}
           routePrefix="foundations"
@@ -32,8 +29,8 @@ const FoundationsPage: React.FC<Props> = () => {
           padding={majorScale(5)}
           maxWidth={1024}
         >
-          <PageHeader 
-            title="Foundations" 
+          <PageHeader
+            title="Foundations"
             description={IA.foundations.description}
           />
           <Pane

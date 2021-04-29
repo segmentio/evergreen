@@ -12,16 +12,16 @@ import { Pane, Heading, Tablist, Tab, majorScale } from 'evergreen-ui'
 const docgen = require('react-docgen')
 
 interface Props {
-  componentProps: any
+  componentProps: any[]
 }
 
 const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
   const router = useRouter()
-  const { query, pathname } = router
+  const { query } = router
   const { id } = query
 
   const evergreenComponents = IA.components.items.sort((a, b) =>
-    a.name > b.name ? 1 : -1
+    a.name! > b.name! ? 1 : -1
   )
 
   const component = evergreenComponents.find(component => component.id === id)
@@ -116,7 +116,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: true
+    fallback: false
   }
 }
 
