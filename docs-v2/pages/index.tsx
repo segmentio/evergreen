@@ -1,5 +1,6 @@
 import React from 'react'
 import CoreValues from '../components/homepage/CoreValues'
+import DesignLanguage from '../components/homepage/DesignLanguage'
 import GetStarted from '../components/homepage/GetStarted'
 import Layout from '../components/Layout'
 
@@ -9,8 +10,8 @@ const IndexPage = () => {
       {/* <HomeHero /> */}
       <CoreValues />
       <GetStarted />
-      {/* <DesignLanguage />
-      <Resources />
+      <DesignLanguage />
+      {/* <Resources />
       <Articles /> */}
     </Layout>
   )

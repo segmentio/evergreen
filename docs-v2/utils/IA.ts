@@ -58,14 +58,6 @@ const IA: IA = {
     description: 'Styles and primitive components. Start here.',
     items: [
       {
-        id: 'layers',
-        github: githubLink('layers'),
-        name: 'Layout Primitives',
-        tags: ['pane', 'card', 'box', 'layout'],
-        image: '/Layout Primitives.png',
-        imageHighlight: '/Layout Primitives.png'
-      },
-      {
         id: 'typography',
         github: githubLink('typography'),
         name: 'Typography',
@@ -81,7 +73,7 @@ const IA: IA = {
           'small'
         ],
         image: '/Typography.png',
-        imageHighlight: '/Typography.png'
+        imageHighlight: '/Typography-highlight.png'
       },
       {
         id: 'colors',
@@ -89,7 +81,7 @@ const IA: IA = {
         name: 'Colors',
         tags: ['color'],
         image: '/Colors.png',
-        imageHighlight: '/Colors.png'
+        imageHighlight: '/Colors-highlight.png'
       },
       {
         id: 'icons',
@@ -97,8 +89,16 @@ const IA: IA = {
         name: 'Icons',
         tags: ['icon'],
         image: '/Icons.png',
-        imageHighlight: '/Icons.png',
+        imageHighlight: '/Icons-highlight.png',
         related: ['button']
+      },
+      {
+        id: 'layers',
+        github: githubLink('layers'),
+        name: 'Layout Primitives',
+        tags: ['pane', 'card', 'box', 'layout'],
+        image: '/Layout.png',
+        imageHighlight: '/Layout-highlight.png'
       }
     ]
   },
@@ -117,15 +117,7 @@ const IA: IA = {
         imageHighlight: '/Button-highlight.png',
         tags: ['icon button', 'button', 'action']
       },
-      {
-        id: 'tabs',
-        github: githubLink('tabs'),
-        name: 'Tab',
-        description: 'Use Tabs to organize your content in logical groupings.',
-        image: '/Tab.png',
-        imageHighlight: '/Tab-highlight.png',
-        tags: ['tab', 'tab list', 'tab navigation', 'navigation']
-      },
+      
       {
         id: 'badges',
         github: githubLink('badges'),
@@ -138,6 +130,16 @@ const IA: IA = {
         related: ['tag-input']
       },
       {
+        id: 'alert',
+        github: githubLink('alert'),
+        image: '/Alert.png',
+        imageHighlight: '/Alert-highlight.png',
+        name: 'Alert',
+        description:
+          'The Alert component is used to show feedback to the user about an action or state.',
+        tags: ['banners', 'notification', 'messages', 'inline alert']
+      },
+      {
         id: 'avatar',
         github: githubLink('avatar'),
         name: 'Avatar',
@@ -146,6 +148,15 @@ const IA: IA = {
         image: '/Avatar.png',
         imageHighlight: '/Avatar-highlight.png',
         tags: ['avatar', 'image', 'user']
+      },
+      {
+        id: 'tabs',
+        github: githubLink('tabs'),
+        name: 'Tab',
+        description: 'Use Tabs to organize your content in logical groupings.',
+        image: '/Tab.png',
+        imageHighlight: '/Tab-highlight.png',
+        tags: ['tab', 'tab list', 'tab navigation', 'navigation']
       },
       {
         id: 'text-input',
@@ -296,16 +307,6 @@ const IA: IA = {
         description:
           'The Toaster component is used to show an ephemeral message as an overlay.',
         tags: ['notifications', 'messages']
-      },
-      {
-        id: 'alert',
-        github: githubLink('alert'),
-        image: '/Alert.png',
-        imageHighlight: '/Alert-highlight.png',
-        name: 'Alert',
-        description:
-          'The Alert component is used to show feedback to the user about an action or state.',
-        tags: ['banners', 'notification', 'messages', 'inline alert']
       },
       {
         id: 'status-indicator',

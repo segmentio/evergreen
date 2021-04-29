@@ -9,7 +9,7 @@ const GetStarted = () => {
       marginX="auto"
       maxWidth={majorScale(143)}
     >
-      <Heading size={800} marginBottom={majorScale(5)} marginLeft={majorScale(2)}>Get started</Heading>
+      <Heading size={800} marginY={majorScale(5)} marginLeft={majorScale(2)}>Get started</Heading>
       <Pane
         display="flex"
         justifyContent="space-between"
