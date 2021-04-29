@@ -9,6 +9,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@lottiefiles/lottie-player": "^1.0.3",
     "@mdx-js/react": "^1.6.22",
     "@segment/consent-manager": "^5.1.0",
     "@types/react-github-button": "^0.1.0",
