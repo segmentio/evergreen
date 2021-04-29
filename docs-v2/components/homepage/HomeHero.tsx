@@ -1,8 +1,8 @@
-import { Pane, useTheme, majorScale, Heading, Paragraph, Button, minorScale } from "evergreen-ui"
 import React from "react"
+import { Pane, useTheme, majorScale, Heading, Paragraph, Button, minorScale } from "evergreen-ui"
 
 const HomeHero = () => {
-  const { colors } = useTheme()
+  const { colors } = useTheme() as any
 
   return (
     <Pane background={colors.gray50}>

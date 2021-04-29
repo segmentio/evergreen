@@ -1,5 +1,5 @@
-import { Heading, majorScale, Pane, LightbulbIcon, WrenchIcon, OfficeIcon} from "evergreen-ui"
 import React from "react"
+import { Heading, majorScale, Pane, LightbulbIcon, WrenchIcon, OfficeIcon} from "evergreen-ui"
 import CoreValueCard from "./CoreValueCard"
 
 const CoreValues = () => {

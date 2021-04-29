@@ -1,3 +1,4 @@
+import React from "react"
 import { Heading, Link, majorScale, Pane, Paragraph, useTheme } from "evergreen-ui"
 
 interface Props {
@@ -5,20 +6,20 @@ interface Props {
   description: string,
   linkText?: string,
   link?: string,
-  img?: string
+  img?: JSX.Element
 }
 
 const GetStartedCard = ({title, description, linkText, link, img}: Props) => {
-  const { colors } = useTheme()
+  const { colors } = useTheme() as any
 
   return (
     <Pane
       padding={majorScale(5)}
       paddingRight={majorScale(3)}
       backgroundColor={colors.gray50}
-      borderRadius={8}
+      borderRadius={majorScale(1)}
       width="100%"
-      marginX={16}
+      marginX={majorScale(2)}
       display="flex"
       justifyContent="space-between"
     >
@@ -27,7 +28,7 @@ const GetStartedCard = ({title, description, linkText, link, img}: Props) => {
         <Paragraph marginBottom={majorScale(3)}>{description}</Paragraph>
         <Link href={link}>{linkText}</Link>
       </Pane>
-      <Pane is="img" src={img}></Pane>
+      {img}
     </Pane>
   )
 }

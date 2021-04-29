@@ -1,18 +1,18 @@
-import { Heading, Link, majorScale, Pane, Paragraph } from "evergreen-ui"
 import React from "react"
+import { Heading, majorScale, Pane, Paragraph } from "evergreen-ui"
 import Thumbnail from "../Thumbnail"
 import { Item } from "../../utils/IA"
 
 interface Props {
-  img: string,
+  img: JSX.Element,
   title: string,
   description: string,
-  linkText?: string,
-  link?: string,
+  type: string,
+  link?: JSX.Element,
   items: Item[]
 }
 
-const DesignLanguageCard = ({img, title, description, linkText, link, items}: Props) => {
+const DesignLanguageCard = ({img, title, description, type, link, items}: Props) => {
   return (
     <Pane 
       marginX={majorScale(2)}
@@ -22,11 +22,11 @@ const DesignLanguageCard = ({img, title, description, linkText, link, items}: Pr
       
     >
       <Pane display="flex" alignItems="flex-start">
-        <Pane is="img" src={img} marginRight={majorScale(4)}></Pane>
-        <Pane marginRight={majorScale(4)}>
+        {img}
+        <Pane marginX={majorScale(4)}>
           <Heading marginBottom={majorScale(1)}>{title}</Heading>
           <Paragraph marginBottom={majorScale(2)}>{description}</Paragraph>
-          <Link href={`/${link}`}>{linkText}</Link>
+          {link}
         </Pane>
       </Pane>
       <Pane display="flex" alignItems="flex-start">
@@ -39,7 +39,7 @@ const DesignLanguageCard = ({img, title, description, linkText, link, items}: Pr
             <Thumbnail 
               id={item.id}
               name={item.name}
-              type={link}
+              type={type}
               imageSrc={item.image}
               imageHighlightSrc={item.imageHighlight}
             />

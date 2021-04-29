@@ -1,6 +1,8 @@
-import { Pane, majorScale, Heading } from "evergreen-ui"
 import React from "react"
+import { Pane, majorScale, Heading } from "evergreen-ui"
 import GetStartedCard from "./GetStartedCard"
+import InstallationHomeImage from "../icons/InstallationHomeImage"
+import WhatsnewHomeImage from "../icons/WhatsnewHomeImage"
 
 const GetStarted = () => {
   return (
@@ -19,14 +21,14 @@ const GetStarted = () => {
           description="Learn how to install the evergreen-ui package"
           linkText="Visit installation page"
           link="/introductions"
-          img="/homepage/installation.svg"
+          img={<InstallationHomeImage />}
         />
         <GetStartedCard 
           title="What’s new"
           description="Check out the latest changes and updates"
           linkText="Read latest updates"
           link="/introductions/what-is-new"
-          img="/homepage/whats-new.svg"
+          img={<WhatsnewHomeImage />}
         />
       </Pane>
     </Pane>

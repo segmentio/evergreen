@@ -1,9 +1,11 @@
-import { Pane, majorScale, Heading, Paragraph, Link, useTheme } from "evergreen-ui"
 import React from "react"
+import { Pane, majorScale, Heading, Paragraph, Link, useTheme } from "evergreen-ui"
 import ResourceCard from "./ResourceCard"
+import FigmaIcon from "../icons/FigmaIcon"
+import SegmentIcon from "../icons/SegmentIcon"
 
 const Resources = () => {
-  const { colors } = useTheme()
+  const { colors } = useTheme() as any
 
   return (
     <Pane background={colors.gray50}>
@@ -17,8 +19,16 @@ const Resources = () => {
           <Paragraph size={400}>A collection of tools, kits, plugins and guides to help simplify the creation process for our users. <Link href="">See all resources</Link></Paragraph>
         </Pane>
         <Pane display="flex">
-          <ResourceCard title="Evergreen Figma Library" logo="/homepage/logo-figma.svg" url="https://www.figma.com/@segment"/>
-          <ResourceCard title="Segment Brand Hub" logo="/homepage/logo-segment.svg" url="https://brand.segment.com/"/>
+          <ResourceCard 
+            title="Evergreen Figma Library" 
+            logo={<FigmaIcon />}
+            url="https://www.figma.com/@segment"
+          />
+          <ResourceCard 
+            title="Segment Brand Hub" 
+            logo={<SegmentIcon />}
+            url="https://brand.segment.com/"
+          />
         </Pane>
       </Pane>
     </Pane>

@@ -1,7 +1,10 @@
-import { Pane, majorScale, Heading } from "evergreen-ui"
 import React from "react"
+import { Pane, majorScale, Heading, Link as EvergreenLink } from "evergreen-ui"
 import DesignLanguageCard from "./DesignLanguageCard"
 import IA from "../../utils/IA"
+import FoundationHomeImage from "../icons/FoundationHomeImage"
+import ComponentHomeImage from "../icons/ComponentHomeImage"
+import PatternHomeImage from "../icons/PatternHomeImage"
 
 const DesignLanguage = () => {
   const foundations = IA.foundations.items.slice(0,3)
@@ -16,27 +19,27 @@ const DesignLanguage = () => {
     >
       <Heading size={800} marginY={majorScale(5)} marginLeft={majorScale(2)}>Design language</Heading>
       <DesignLanguageCard 
-        img="/homepage/foundations.svg"
+        img={<FoundationHomeImage />}
         title="Foundations"
         description="Evergreen contains a set of polished React components that work out of the box."
-        linkText="Go to Foundations"
-        link="foundations"
+        type="foundations"
+        link={<EvergreenLink href="foundations">Go to Foundations</EvergreenLink>}
         items={foundations}
       />
       <DesignLanguageCard 
-        img="/homepage/components.svg"
+        img={<ComponentHomeImage />}
         title="Components"
         description="Evergreen components are built on top of a React UI Primitive for endless composability."
-        linkText="Go to Components"
-        link="components"
+        type="components"
+        link={<EvergreenLink href="components">Go to Components</EvergreenLink>}
         items={components}
       />
       <DesignLanguageCard 
-        img="/homepage/patterns.svg"
+        img={<PatternHomeImage />}
         title="Patterns"
         description="Evergreen features a UI design language for enterprise-grade web applications."
-        linkText="Go to Patterns"
-        link="patterns"
+        type="patterns"
+        link={<EvergreenLink href="patterns">Go to Patterns</EvergreenLink>}
         items={patterns}
       />
     </Pane>

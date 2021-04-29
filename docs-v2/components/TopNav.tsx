@@ -30,13 +30,15 @@ const TopNav: React.FC<Props> = () => {
       paddingX={majorScale(5)}
     >
       <Pane display="flex" alignItems="center" width={236}>
-        <a href="/"><Pane
-          is="img"
-          width={100}
-          height={24}
-          src="/evergreen-logo.svg"
-          marginRight={majorScale(2)}
-        /></a>
+        <Link href="/">
+          <Pane
+            is="img"
+            width={100}
+            height={24}
+            src="/evergreen-logo.svg"
+            marginRight={majorScale(2)}
+          />
+        </Link>
       </Pane>
       <Pane flex={1}>
         <Link href="/introductions" passHref>

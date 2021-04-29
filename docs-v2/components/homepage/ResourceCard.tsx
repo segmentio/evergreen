@@ -1,20 +1,21 @@
+import React from "react"
 import { Heading, Pane, majorScale, useTheme, Link as EvergreenLink } from "evergreen-ui"
 
 interface Props {
   title: string
-  logo: string
+  logo: JSX.Element
   url: string
 }
 
 
 const ResourceCard = ({title, logo, url}: Props) => {
-  const { colors } = useTheme()
+  const { colors } = useTheme() as any
 
   return (
       <Pane width="100%">
         <EvergreenLink href={url} target="_blank">
           <Pane 
-            borderRadius={8}
+            borderRadius={majorScale(1)}
             border={`1px solid ${colors.gray400}`}
             padding={majorScale(3)}
             margin={majorScale(2)}
@@ -23,8 +24,8 @@ const ResourceCard = ({title, logo, url}: Props) => {
             display="flex" 
             alignItems="center"
           >
-            <Pane is="img" src={logo} width={24} height={24} marginRight={majorScale(2)}></Pane>
-            <Heading size={400}>{title}</Heading>
+            {logo}
+            <Heading size={400}  marginLeft={majorScale(2)}>{title}</Heading>
           </Pane>
         </EvergreenLink>
       </Pane>
