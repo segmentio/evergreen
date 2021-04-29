@@ -14,15 +14,12 @@ import {
   Pane,
   Heading,
   HeadingOwnProps,
-  Code,
   Ul,
   Li,
   Ol,
   LinkIcon,
   Paragraph,
   Strong,
-  Tablist,
-  Tab,
   Link,
   majorScale
 } from 'evergreen-ui'
@@ -80,7 +77,7 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
   const { id } = query
 
   const evergreenComponents = IA.components.items.sort((a, b) =>
-    a.name > b.name ? 1 : -1
+    a.name! > b.name! ? 1 : -1
   )
 
   const component = evergreenComponents.find(component => component.id === id)

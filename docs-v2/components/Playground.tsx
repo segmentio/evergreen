@@ -13,9 +13,6 @@ interface Props {
 
 const {
   Pane,
-  Button,
-  Tooltip,
-  IconButton,
   toaster,
   MaximizeIcon,
   MinimizeIcon,
@@ -31,6 +28,7 @@ const Playground: React.FC<Props> = ({ source }) => {
     <Pane display="flex" flexDirection="column" marginBottom={24}>
       <LiveProvider code={source.trim()} scope={{ ...evergreen }}>
         <LivePreview
+          // @ts-ignore -- The types for <LivePreview /> are unfortunately broken
           Component={({ children }) => (
             <Pane
               borderTopLeftRadius={5}
@@ -79,6 +77,7 @@ const Playground: React.FC<Props> = ({ source }) => {
           />
         </CopyToClipboard>
         <TooltipIconButton
+          // @ts-ignore
           is={Link}
           target="_blank"
           href={getCodeSandboxLink(source)}

@@ -14,15 +14,12 @@ import {
   Pane,
   Heading,
   HeadingOwnProps,
-  Code,
   Ul,
   Li,
   Ol,
   LinkIcon,
   Paragraph,
   Strong,
-  Tablist,
-  Tab,
   Link,
   majorScale
 } from 'evergreen-ui'
@@ -80,7 +77,7 @@ const FoundationPage: React.FC<Props> = ({ mdxSource }) => {
   const { id } = query
 
   const evergreenFoundations = IA.foundations.items.sort((a, b) =>
-    a.name > b.name ? 1 : -1
+    a.name! > b.name! ? 1 : -1
   )
 
   const foundation = evergreenFoundations.find(

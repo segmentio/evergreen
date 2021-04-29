@@ -8,13 +8,12 @@ import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import hydrate from 'next-mdx-remote/hydrate'
 import path from 'path'
-import IA, { Item } from '../../../../utils/IA'
+import IA from '../../../../utils/IA'
 import PageHeader from '../../../../components/PageHeader'
 import {
   Pane,
   Heading,
   HeadingOwnProps,
-  Code,
   Ul,
   Li,
   Ol,
@@ -81,7 +80,7 @@ const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
   const { id } = query
 
   const evergreenComponents = IA.components.items.sort((a, b) =>
-    a.name > b.name ? 1 : -1
+    a.name! > b.name! ? 1 : -1
   )
 
   const component = evergreenComponents.find(component => component.id === id)
