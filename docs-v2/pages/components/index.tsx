@@ -1,9 +1,7 @@
-import React from 'react'
-import {
-  Pane,
-  majorScale
-} from 'evergreen-ui'
+import React, { useState } from 'react'
+import { Pane, Paragraph, majorScale } from 'evergreen-ui'
 import Layout from '../../components/Layout'
+import SearchBar from '../../components/SearchBar'
 import PageHeader from '../../components/PageHeader'
 import Thumbnail from '../../components/Thumbnail'
 import SideNav from '../../components/SideNav'
@@ -12,14 +10,20 @@ import IA from '../../utils/IA'
 interface Props {}
 
 const ComponentsPage: React.FC<Props> = () => {
+  const [query, setQuery] = useState<string>('')
 
-  const evergreenComponents = IA.components.items
-    .sort((a, b) => (a.name > b.name ? 1 : -1))
+  const evergreenComponents = IA.components.items.sort((a, b) =>
+    a.name > b.name ? 1 : -1
+  )
+
+  const filteredItems = evergreenComponents.filter(
+    item => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
+  )
 
   return (
     <Layout title="Components / Evergreen">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav 
+        <SideNav
           title="Components"
           items={evergreenComponents}
           routePrefix="components"
@@ -32,29 +36,42 @@ const ComponentsPage: React.FC<Props> = () => {
           padding={majorScale(5)}
           maxWidth={1200}
         >
-          <PageHeader 
-            title="Components" 
+          <PageHeader
+            title="Components"
             description={IA.components.description}
           />
-          <Pane
-            width="100%"
-            display="grid"
-            gridColumnGap="24px"
-            gridRowGap="32px"
-            gridTemplateColumns="1fr 1fr 1fr 1fr"
-          >
-            {evergreenComponents.map(item => {
-              return (
-                <Thumbnail
-                  id={item.id}
-                  name={item.name}
-                  type="components"
-                  imageSrc={item.image}
-                  imageHighlightSrc={item.imageHighlight}
-                ></Thumbnail>
-              )
-            })}
+          <Pane marginBottom={majorScale(4)}>
+            <SearchBar
+              query={query}
+              onQueryChange={setQuery}
+              placeholder="Enter a term to search through components"
+            />
           </Pane>
+          {filteredItems.length > 0 ? (
+            <Pane
+              width="100%"
+              display="grid"
+              gridColumnGap="24px"
+              gridRowGap="32px"
+              gridTemplateColumns="1fr 1fr 1fr 1fr"
+            >
+              {filteredItems.map(item => {
+                return (
+                  <Thumbnail
+                    id={item.id}
+                    name={item.name}
+                    type="components"
+                    imageSrc={item.image}
+                    imageHighlightSrc={item.imageHighlight}
+                  />
+                )
+              })}
+            </Pane>
+          ) : (
+            <Pane marginY={majorScale(3)} marginX="auto" width="100%">
+              <Paragraph color="muted">{`There are no results for the query: "${query}"`}</Paragraph>
+            </Pane>
+          )}
         </Pane>
       </Pane>
     </Layout>
