@@ -1,5 +1,6 @@
 import React from 'react'
 import CoreValues from '../components/homepage/CoreValues'
+import GetStarted from '../components/homepage/GetStarted'
 import Layout from '../components/Layout'
 
 const IndexPage = () => {
@@ -7,8 +8,8 @@ const IndexPage = () => {
     <Layout title="Evergreen">
       {/* <HomeHero /> */}
       <CoreValues />
-      {/* <GetStarted />
-      <DesignLanguage />
+      <GetStarted />
+      {/* <DesignLanguage />
       <Resources />
       <Articles /> */}
     </Layout>

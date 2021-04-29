@@ -9,7 +9,7 @@ const CoreValues = () => {
       marginX="auto"
       maxWidth={majorScale(143)}
     >
-      <Heading size={800} marginBottom={majorScale(5)}>Core Values</Heading>
+      <Heading size={800} marginBottom={majorScale(5)}  marginLeft={majorScale(2)}>Core values</Heading>
       <Pane
         width="100%"
         display="flex"
