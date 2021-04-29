@@ -2,6 +2,7 @@ import React from 'react'
 import CoreValues from '../components/homepage/CoreValues'
 import DesignLanguage from '../components/homepage/DesignLanguage'
 import GetStarted from '../components/homepage/GetStarted'
+import Resources from '../components/homepage/Resources'
 import Layout from '../components/Layout'
 
 const IndexPage = () => {
@@ -11,8 +12,8 @@ const IndexPage = () => {
       <CoreValues />
       <GetStarted />
       <DesignLanguage />
-      {/* <Resources />
-      <Articles /> */}
+      <Resources />
+      {/* <Articles /> */}
     </Layout>
   )
 }
