@@ -34,7 +34,7 @@ const PatternsPage: React.FC<Props> = () => {
           flexDirection="column"
           justifyContent="flex-start"
           padding={majorScale(5)}
-          maxWidth={1200}
+          maxWidth={1024}
         >
           <PageHeader title="Patterns" description={IA.patterns.description} />
           <Pane marginBottom={majorScale(4)}>
@@ -48,7 +48,7 @@ const PatternsPage: React.FC<Props> = () => {
             <Pane
               width="100%"
               display="grid"
-              gridColumnGap="24px"
+              gridColumnGap="32px"
               gridRowGap="32px"
               gridTemplateColumns="1fr 1fr 1fr 1fr"
             >

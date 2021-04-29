@@ -34,7 +34,7 @@ const ComponentsPage: React.FC<Props> = () => {
           flexDirection="column"
           justifyContent="flex-start"
           padding={majorScale(5)}
-          maxWidth={1200}
+          maxWidth={1024}
         >
           <PageHeader
             title="Components"
@@ -46,12 +46,13 @@ const ComponentsPage: React.FC<Props> = () => {
               onQueryChange={setQuery}
               placeholder="Enter a term to search through components"
             />
+
           </Pane>
           {filteredItems.length > 0 ? (
             <Pane
               width="100%"
               display="grid"
-              gridColumnGap="24px"
+              gridColumnGap="32px"
               gridRowGap="32px"
               gridTemplateColumns="1fr 1fr 1fr 1fr"
             >
