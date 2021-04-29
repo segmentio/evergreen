@@ -24,10 +24,12 @@ const HomeHero = () => {
         paddingY={majorScale(5)}
         marginX="auto"
         maxWidth={majorScale(143)}
+        alignItems="center"
         display="flex"
       >
         <Pane
           display="flex"
+          flex={1}
           flexDirection="column"
           alignItems="flex-start"
           justifyContent="center"
@@ -46,11 +48,12 @@ const HomeHero = () => {
           </Paragraph>
           <Button appearance="primary">Get Started</Button>
         </Pane>
-        <Pane>
+        <Pane flex={2}>
           <lottie-player
             ref={ref}
             style={{
-              width: '100%'
+              width: '100%',
+              transform: 'scale(1.2)'
             }}
             src="https://assets3.lottiefiles.com/packages/lf20_dum5dwmu.json"
             autoplay
