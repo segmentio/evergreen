@@ -13,7 +13,7 @@ const PatternsPage: React.FC<Props> = () => {
   const [query, setQuery] = useState<string>('')
 
   const evergreenPatterns = IA.patterns.items.sort((a, b) =>
-    a.name > b.name ? 1 : -1
+    a.name! > b.name! ? 1 : -1
   )
 
   const filteredItems = evergreenPatterns.filter(

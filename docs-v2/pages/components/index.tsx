@@ -13,7 +13,7 @@ const ComponentsPage: React.FC<Props> = () => {
   const [query, setQuery] = useState<string>('')
 
   const evergreenComponents = IA.components.items.sort((a, b) =>
-    a.name > b.name ? 1 : -1
+    a.name! > b.name! ? 1 : -1
   )
 
   const filteredItems = evergreenComponents.filter(
