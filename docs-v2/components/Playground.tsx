@@ -28,6 +28,7 @@ const Playground: React.FC<Props> = ({ source }) => {
     <Pane display="flex" flexDirection="column" marginBottom={24}>
       <LiveProvider code={source.trim()} scope={{ ...evergreen }}>
         <LivePreview
+          // eslint-disable-next-line
           // @ts-ignore -- The types for <LivePreview /> are unfortunately broken
           Component={({ children }) => (
             <Pane
@@ -77,6 +78,7 @@ const Playground: React.FC<Props> = ({ source }) => {
           />
         </CopyToClipboard>
         <TooltipIconButton
+          // eslint-disable-next-line
           // @ts-ignore
           is={Link}
           target="_blank"

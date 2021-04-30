@@ -9,6 +9,7 @@ import PageHeader from '../../../../components/PageHeader'
 import PropsTable from '../../../../components/PropsTable'
 import { Pane, Heading, Tablist, Tab, majorScale } from 'evergreen-ui'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const docgen = require('react-docgen')
 
 interface Props {
@@ -58,6 +59,7 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
                 <Tab
                   alignItems="flex-start"
                   direction="vertical"
+                  key={item.id}
                   onSelect={() => router.push(`/components/${item.id}`)}
                   isSelected={item.id === component.id}
                 >
@@ -93,6 +95,7 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
           {componentProps.map((data, i) => {
             return (
               <Pane
+                key={i}
                 marginBottom={
                   i !== componentProps.length - 1 ? majorScale(5) : undefined
                 }

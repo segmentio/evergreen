@@ -29,7 +29,7 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    // @ts-expect-error
+    // @ts-expect-error `hydrationScript` nor `css` are well-defined
     const { css, hydrationScript } = this.props
 
     return (

@@ -55,6 +55,7 @@ const PatternsPage: React.FC<Props> = () => {
               {evergreenPatterns.map(item => {
                 return (
                   <Thumbnail
+                    key={item.id}
                     id={item.id}
                     name={item.name}
                     type="patterns"

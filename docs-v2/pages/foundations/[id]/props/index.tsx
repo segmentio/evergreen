@@ -119,6 +119,7 @@ const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
                 <Tab
                   alignItems="flex-start"
                   direction="vertical"
+                  key={item.id}
                   onSelect={() => router.push(`/components/${item.id}`)}
                   isSelected={item.id === component.id}
                 >

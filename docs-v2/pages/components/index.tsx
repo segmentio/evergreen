@@ -46,7 +46,6 @@ const ComponentsPage: React.FC<Props> = () => {
               onQueryChange={setQuery}
               placeholder="Enter a term to search through components"
             />
-
           </Pane>
           {filteredItems.length > 0 ? (
             <Pane
@@ -60,6 +59,7 @@ const ComponentsPage: React.FC<Props> = () => {
                 return (
                   <Thumbnail
                     id={item.id}
+                    key={item.id}
                     name={item.name}
                     type="components"
                     imageSrc={item.image}

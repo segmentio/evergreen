@@ -52,7 +52,7 @@ const PropsTable: React.FC<Props> = ({ data }) => {
             {Object.keys(props).map(prop => {
               const { type, required, description } = props[prop]
               return (
-                <Table.Row>
+                <Table.Row key={prop}>
                   <Table.Cell>
                     <Pane display="flex" alignItems="center">
                       <Heading size={400}>{prop}</Heading>

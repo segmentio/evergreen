@@ -1,25 +1,31 @@
-import React from "react"
-import { Heading, majorScale, Pane, Paragraph } from "evergreen-ui"
-import Thumbnail from "../Thumbnail"
-import { Item } from "../../utils/IA"
+import React from 'react'
+import { Heading, majorScale, Pane, Paragraph } from 'evergreen-ui'
+import Thumbnail from '../Thumbnail'
+import { Item } from '../../utils/IA'
 
 interface Props {
-  img: JSX.Element,
-  title: string,
-  description: string,
-  type: string,
-  link?: JSX.Element,
+  img: JSX.Element
+  title: string
+  description: string
+  type: string
+  link?: JSX.Element
   items: Item[]
 }
 
-const DesignLanguageCard = ({img, title, description, type, link, items}: Props) => {
+const DesignLanguageCard = ({
+  img,
+  title,
+  description,
+  type,
+  link,
+  items
+}: Props) => {
   return (
-    <Pane 
+    <Pane
       marginX={majorScale(2)}
       marginBottom={majorScale(4)}
       paddingY={majorScale(2)}
       display="flex"
-      
     >
       <Pane display="flex" alignItems="flex-start">
         <Pane>{img}</Pane>
@@ -30,24 +36,21 @@ const DesignLanguageCard = ({img, title, description, type, link, items}: Props)
         </Pane>
       </Pane>
       <Pane display="flex" alignItems="flex-start">
-      {items.map(item => {
-        return (
-          <Pane 
-            width={majorScale(24)} 
-            paddingX={majorScale(2)}
-          >
-            <Thumbnail 
-              id={item.id}
-              name={item.name}
-              type={type}
-              imageSrc={item.image}
-              imageHighlightSrc={item.imageHighlight}
-            />
-          </Pane>
-        )
-      })}
+        {items.map(item => {
+          return (
+            <Pane key={item.id} width={majorScale(24)} paddingX={majorScale(2)}>
+              <Thumbnail
+                id={item.id}
+                name={item.name}
+                type={type}
+                imageSrc={item.image}
+                imageHighlightSrc={item.imageHighlight}
+              />
+            </Pane>
+          )
+        })}
       </Pane>
-    </Pane> 
+    </Pane>
   )
 }
 

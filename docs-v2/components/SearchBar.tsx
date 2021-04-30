@@ -19,7 +19,8 @@ const SearchBar: React.FC<Props> = ({ query, onQueryChange, placeholder }) => {
       query={query}
       onChange={handleQueryChange}
       placeholder={placeholder}
-      // @ts-ignore
+      // eslint-disable-next-line
+      // @ts-ignore this does exist in evergreen. types need to be updated
       appearance="none"
       width="100%"
       borderBottom="1px solid #efefef !important"

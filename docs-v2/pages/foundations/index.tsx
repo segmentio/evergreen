@@ -59,6 +59,7 @@ const FoundationsPage: React.FC<Props> = () => {
                 return (
                   <Thumbnail
                     id={item.id}
+                    key={item.id}
                     name={item.name}
                     type="foundations"
                     imageSrc={item.image}
