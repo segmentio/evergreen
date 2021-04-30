@@ -76,7 +76,7 @@ const IntroductionPage: React.FC<Props> = ({ mdxSource }) => {
   const { query } = router
   const { id } = query
 
-  const evergreenIntroductions = IA.introductions.items
+  const evergreenIntroductions = IA.introduction.items
 
   const introduction = evergreenIntroductions.find(
     introduction => introduction.id === id
@@ -97,7 +97,7 @@ const IntroductionPage: React.FC<Props> = ({ mdxSource }) => {
           title="Introductions"
           items={evergreenIntroductions}
           selectedItem={introduction}
-          routePrefix="introductions"
+          routePrefix="introduction"
         />
         <Pane
           width="100%"
@@ -117,10 +117,10 @@ const IntroductionPage: React.FC<Props> = ({ mdxSource }) => {
 
 export async function getStaticPaths() {
   const files = await fs.readdirSync(
-    path.join(process.cwd(), 'documentation', 'introductions')
+    path.join(process.cwd(), 'documentation', 'introduction')
   )
 
-  const paths = files.map(file => `/introductions/${file.split('.')[0]}`)
+  const paths = files.map(file => `/introduction/${file.split('.')[0]}`)
 
   return {
     paths,
@@ -138,7 +138,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
 
   const fileContents = fs
     .readFileSync(
-      path.join(process.cwd(), 'documentation', 'introductions', `${id}.mdx`)
+      path.join(process.cwd(), 'documentation', 'introduction', `${id}.mdx`)
     )
     .toString()
 

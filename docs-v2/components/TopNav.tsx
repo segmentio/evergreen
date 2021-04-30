@@ -41,12 +41,12 @@ const TopNav: React.FC<Props> = () => {
         </Link>
       </Pane>
       <Pane flex={1}>
-        <Link href="/introductions" passHref>
+        <Link href="/introduction" passHref>
           <EvergreenLink
             color={parentPath !== 'introductions' ? 'neutral' : undefined}
             marginRight={majorScale(2)}
           >
-            Introductions
+            Introduction
           </EvergreenLink>
         </Link>
         <Link href="/foundations" passHref>

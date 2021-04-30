@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-  Pane,
-  majorScale
-} from 'evergreen-ui'
+import { Pane, majorScale } from 'evergreen-ui'
 import Layout from '../../components/Layout'
 import PageHeader from '../../components/PageHeader'
 import SideNav from '../../components/SideNav'
@@ -11,14 +8,13 @@ import IA from '../../utils/IA'
 interface Props {}
 
 const IntroductionsPage: React.FC<Props> = () => {
-
   return (
-    <Layout title="Introductions / Evergreen">
+    <Layout title="Introduction / Evergreen">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav 
+        <SideNav
           title="Introductions"
-          items={IA.introductions.items}
-          routePrefix="introductions"
+          items={IA.introduction.items}
+          routePrefix="introduction"
         />
         <Pane
           width="100%"
@@ -28,17 +24,16 @@ const IntroductionsPage: React.FC<Props> = () => {
           padding={majorScale(5)}
           maxWidth={1200}
         >
-          <PageHeader 
+          <PageHeader
             title="Introductions"
-            description={IA.introductions.description}
+            description={IA.introduction.description}
           />
           <Pane
             width="100%"
             display="grid"
             gridColumnGap="24px"
             gridRowGap="32px"
-          >
-          </Pane>
+          />
         </Pane>
       </Pane>
     </Layout>

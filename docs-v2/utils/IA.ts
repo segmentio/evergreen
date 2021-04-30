@@ -31,12 +31,12 @@ interface Parent {
   items: Item[]
 }
 
-type ParentKeys = 'introductions' | 'foundations' | 'components' | 'patterns'
+type ParentKeys = 'introduction' | 'foundations' | 'components' | 'patterns'
 type IA = Record<ParentKeys, Parent>
 
 const IA: IA = {
-  introductions: {
-    title: 'Introductions',
+  introduction: {
+    title: 'Introduction',
     description:
       'Evergreen is a pragmatic UI kit for building evolving products on the web.It is built and maintained open-source by Segment.',
     items: [
@@ -117,7 +117,7 @@ const IA: IA = {
         imageHighlight: '/Button-highlight.png',
         tags: ['icon button', 'button', 'action']
       },
-      
+
       {
         id: 'badges',
         github: githubLink('badges'),
