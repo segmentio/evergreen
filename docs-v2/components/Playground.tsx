@@ -11,15 +11,7 @@ interface Props {
   source: string
 }
 
-const {
-  Pane,
-  toaster,
-  MaximizeIcon,
-  MinimizeIcon,
-  DocumentIcon,
-  Link,
-  majorScale
-} = evergreen
+const { Pane, toaster, MaximizeIcon, MinimizeIcon, DocumentIcon, Link, majorScale } = evergreen
 
 const Playground: React.FC<Props> = ({ source }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false)
@@ -51,7 +43,7 @@ const Playground: React.FC<Props> = ({ source }) => {
               fontSize: 14,
               outline: 'none',
               borderBottomLeftRadius: 5,
-              borderBottomRightRadius: 5
+              borderBottomRightRadius: 5,
             }}
             theme={dracula}
           />
@@ -61,14 +53,11 @@ const Playground: React.FC<Props> = ({ source }) => {
         <TooltipIconButton
           content={isExpanded ? 'Collapse' : 'Expand'}
           icon={isExpanded ? MinimizeIcon : MaximizeIcon}
-          onClick={() => setIsExpanded(expanded => !expanded)}
+          onClick={() => setIsExpanded((expanded) => !expanded)}
           size="small"
           appearance="minimal"
         />
-        <CopyToClipboard
-          text={source.trim()}
-          onCopy={() => toaster.success('Copied to clipboard!')}
-        >
+        <CopyToClipboard text={source.trim()} onCopy={() => toaster.success('Copied to clipboard!')}>
           <TooltipIconButton
             content="Copy"
             icon={DocumentIcon}

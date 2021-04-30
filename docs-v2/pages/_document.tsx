@@ -1,12 +1,6 @@
 /* eslint-disable react/no-danger */
 import React from 'react'
-import Document, {
-  Html,
-  DocumentContext,
-  Head,
-  Main,
-  NextScript
-} from 'next/document'
+import Document, { Html, DocumentContext, Head, Main, NextScript } from 'next/document'
 import { extractStyles } from 'evergreen-ui'
 
 export default class MyDocument extends Document {
@@ -24,7 +18,7 @@ export default class MyDocument extends Document {
     return {
       ...page,
       css,
-      hydrationScript
+      hydrationScript,
     }
   }
 

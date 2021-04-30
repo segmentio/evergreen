@@ -1,12 +1,12 @@
-import { Heading, Icon, majorScale, Pane, Paragraph, useTheme } from "evergreen-ui"
+import { Heading, Icon, majorScale, Pane, Paragraph, useTheme } from 'evergreen-ui'
 
 interface Props {
-  icon: typeof Icon,
-  title: string,
+  icon: typeof Icon
+  title: string
   description: string
 }
 
-const ValueCard = ({icon, title, description}: Props) => {
+const ValueCard = ({ icon, title, description }: Props) => {
   const { colors } = useTheme() as any
 
   return (
@@ -20,7 +20,9 @@ const ValueCard = ({icon, title, description}: Props) => {
         backgroundColor={colors.blue50}
         marginBottom={majorScale(4)}
       />
-      <Heading size={600} marginBottom={majorScale(1)}>{title}</Heading>
+      <Heading size={600} marginBottom={majorScale(1)}>
+        {title}
+      </Heading>
       <Paragraph size={500}>{description}</Paragraph>
     </Pane>
   )

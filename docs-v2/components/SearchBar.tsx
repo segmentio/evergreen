@@ -9,7 +9,7 @@ interface Props {
 
 const SearchBar: React.FC<Props> = ({ query, onQueryChange, placeholder }) => {
   const handleQueryChange = useCallback(
-    e => {
+    (e) => {
       onQueryChange(e.target.value)
     },
     [onQueryChange]

@@ -7,10 +7,7 @@ interface Props extends PolymorphicBoxProps<'svg'> {
   color?: string
 }
 
-const CodeSandboxIcon: React.FC<Props> = forwardRef(function CodeSandboxIcon(
-  props,
-  ref
-) {
+const CodeSandboxIcon: React.FC<Props> = forwardRef(function CodeSandboxIcon(props, ref) {
   const { size = majorScale(3), color = 'default', ...rest } = props
   const theme = useTheme() as any
   const iconColor = theme.colors.icon[color] || color

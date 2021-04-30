@@ -12,22 +12,16 @@ interface Props {}
 const ComponentsPage: React.FC<Props> = () => {
   const [query, setQuery] = useState<string>('')
 
-  const evergreenComponents = IA.components.items.sort((a, b) =>
-    a.name! > b.name! ? 1 : -1
-  )
+  const evergreenComponents = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
 
   const filteredItems = evergreenComponents.filter(
-    item => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    (item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
   )
 
   return (
     <Layout title="Components / Evergreen">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav
-          title="Components"
-          items={evergreenComponents}
-          routePrefix="components"
-        />
+        <SideNav title="Components" items={evergreenComponents} routePrefix="components" />
         <Pane
           width="100%"
           display="flex"
@@ -36,16 +30,9 @@ const ComponentsPage: React.FC<Props> = () => {
           padding={majorScale(5)}
           maxWidth={1024}
         >
-          <PageHeader
-            title="Components"
-            description={IA.components.description}
-          />
+          <PageHeader title="Components" description={IA.components.description} />
           <Pane marginBottom={majorScale(4)}>
-            <SearchBar
-              query={query}
-              onQueryChange={setQuery}
-              placeholder="Enter a term to search through components"
-            />
+            <SearchBar query={query} onQueryChange={setQuery} placeholder="Enter a term to search through components" />
           </Pane>
           {filteredItems.length > 0 ? (
             <Pane
@@ -55,7 +42,7 @@ const ComponentsPage: React.FC<Props> = () => {
               gridRowGap="32px"
               gridTemplateColumns="1fr 1fr 1fr 1fr"
             >
-              {filteredItems.map(item => {
+              {filteredItems.map((item) => {
                 return (
                   <Thumbnail
                     id={item.id}

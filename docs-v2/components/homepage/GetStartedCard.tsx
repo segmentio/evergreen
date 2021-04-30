@@ -1,15 +1,15 @@
-import React from "react"
-import { Heading, Link, majorScale, Pane, Paragraph, useTheme } from "evergreen-ui"
+import React from 'react'
+import { Heading, Link, majorScale, Pane, Paragraph, useTheme } from 'evergreen-ui'
 
 interface Props {
-  title: string,
-  description: string,
-  linkText?: string,
-  link?: string,
+  title: string
+  description: string
+  linkText?: string
+  link?: string
   img?: JSX.Element
 }
 
-const GetStartedCard = ({title, description, linkText, link, img}: Props) => {
+const GetStartedCard = ({ title, description, linkText, link, img }: Props) => {
   const { colors } = useTheme() as any
 
   return (

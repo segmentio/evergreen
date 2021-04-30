@@ -21,11 +21,9 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
   const { query } = router
   const { id } = query
 
-  const evergreenComponents = IA.components.items.sort((a, b) =>
-    a.name! > b.name! ? 1 : -1
-  )
+  const evergreenComponents = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
 
-  const component = evergreenComponents.find(component => component.id === id)
+  const component = evergreenComponents.find((component) => component.id === id)
 
   if (!component) {
     return null
@@ -46,15 +44,11 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
           paddingY={majorScale(5)}
           paddingX={majorScale(4)}
         >
-          <Heading
-            size={200}
-            textTransform="uppercase"
-            marginBottom={majorScale(2)}
-          >
+          <Heading size={200} textTransform="uppercase" marginBottom={majorScale(2)}>
             Components
           </Heading>
           <Tablist>
-            {evergreenComponents.map(item => {
+            {evergreenComponents.map((item) => {
               return (
                 <Tab
                   alignItems="flex-start"
@@ -84,22 +78,17 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
             tabs={[
               {
                 label: 'Details',
-                to: `/components/${id}`
+                to: `/components/${id}`,
               },
               {
                 label: 'Properties',
-                to: `/components/${id}/props`
-              }
+                to: `/components/${id}/props`,
+              },
             ]}
           />
           {componentProps.map((data, i) => {
             return (
-              <Pane
-                key={i}
-                marginBottom={
-                  i !== componentProps.length - 1 ? majorScale(5) : undefined
-                }
-              >
+              <Pane key={i} marginBottom={i !== componentProps.length - 1 ? majorScale(5) : undefined}>
                 <PropsTable data={data} />
               </Pane>
             )
@@ -111,15 +100,13 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(
-    path.join(process.cwd(), 'documentation', 'components')
-  )
+  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'components'))
 
-  const paths = files.map(file => `/components/${file.split('.')[0]}/props`)
+  const paths = files.map((file) => `/components/${file.split('.')[0]}/props`)
 
   return {
     paths,
-    fallback: false
+    fallback: false,
   }
 }
 
@@ -133,13 +120,13 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
 
   const stem = path.join(process.cwd(), '..', 'src', `${id}`, 'src')
 
-  const componentFiles = fs.readdirSync(stem).filter(name => {
+  const componentFiles = fs.readdirSync(stem).filter((name) => {
     const stats = fs.statSync(path.join(stem, name))
     return !stats.isDirectory()
   })
 
   const props = await Promise.all(
-    componentFiles.map(async name => {
+    componentFiles.map(async (name) => {
       const data = await fs.readFileSync(path.join(stem, name)).toString()
       try {
         const propsData = docgen.parse(data)
@@ -153,8 +140,8 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
 
   return {
     props: {
-      componentProps: props
-    }
+      componentProps: props,
+    },
   }
 }
 

@@ -1,13 +1,10 @@
 import LZString from 'lz-string'
 
 function compress(string: string) {
-  return LZString.compressToBase64(string)
-    .replace(/\+/g, `-`)
-    .replace(/\//g, `_`)
-    .replace(/=+$/, ``)
+  return LZString.compressToBase64(string).replace(/\+/g, `-`).replace(/\//g, `_`).replace(/=+$/, ``)
 }
 
-export const getCodeSandboxLink: (source: string) => string = source => {
+export const getCodeSandboxLink: (source: string) => string = (source) => {
   const wrappedSource = source.startsWith('function')
     ? source
     : `const Demo = () => {
@@ -22,11 +19,7 @@ export const getCodeSandboxLink: (source: string) => string = source => {
     : 'Demo'
 
   const usedComponents = Array.from(
-    new Set(
-      (source.match(/<((\w+))/g) || []).map(component =>
-        component.replace('<', '')
-      )
-    )
+    new Set((source.match(/<((\w+))/g) || []).map((component) => component.replace('<', '')))
   ).join(', ')
 
   const codeContent = `
@@ -51,20 +44,20 @@ ReactDOM.render(
           dependencies: {
             react: '16.8.0',
             'react-dom': '16.8.0',
-            'evergreen-ui': `6.0.0-34`
+            'evergreen-ui': `6.0.0-34`,
           },
           devDependencies: {
-            'react-scripts': 'latest'
-          }
-        }
+            'react-scripts': 'latest',
+          },
+        },
       },
       'index.html': {
-        content: html
+        content: html,
       },
       'index.js': {
-        content: codeContent
-      }
-    }
+        content: codeContent,
+      },
+    },
   }
 
   const urlParams = compress(JSON.stringify(parameters))

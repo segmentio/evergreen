@@ -10,19 +10,7 @@ import hydrate from 'next-mdx-remote/hydrate'
 import path from 'path'
 import IA from '../../../utils/IA'
 import PageHeader from '../../../components/PageHeader'
-import {
-  Pane,
-  Heading,
-  HeadingOwnProps,
-  Ul,
-  Li,
-  Ol,
-  LinkIcon,
-  Paragraph,
-  Strong,
-  Link,
-  majorScale
-} from 'evergreen-ui'
+import { Pane, Heading, HeadingOwnProps, Ul, Li, Ol, LinkIcon, Paragraph, Strong, Link, majorScale } from 'evergreen-ui'
 import SideNav from '../../../components/SideNav'
 
 interface Props {
@@ -41,7 +29,7 @@ const SectionHeading: React.FC<{
       ? children.trim().substring(idIndex + 2, children.length - 1)
       : `${children
           .split(' ')
-          .map(child => child.toLowerCase())
+          .map((child) => child.toLowerCase())
           .join('_')}`
 
   return (
@@ -68,7 +56,7 @@ const components = {
   strong: (props: any) => <Strong {...props} />,
   ol: (props: any) => <Ol {...props} />,
   ul: (props: any) => <Ul {...props} />,
-  li: (props: any) => <Li {...props} />
+  li: (props: any) => <Li {...props} />,
 }
 
 const IntroductionPage: React.FC<Props> = ({ mdxSource }) => {
@@ -78,9 +66,7 @@ const IntroductionPage: React.FC<Props> = ({ mdxSource }) => {
 
   const evergreenIntroductions = IA.introduction.items
 
-  const introduction = evergreenIntroductions.find(
-    introduction => introduction.id === id
-  )
+  const introduction = evergreenIntroductions.find((introduction) => introduction.id === id)
 
   if (!introduction) {
     return null
@@ -116,15 +102,13 @@ const IntroductionPage: React.FC<Props> = ({ mdxSource }) => {
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(
-    path.join(process.cwd(), 'documentation', 'introduction')
-  )
+  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'introduction'))
 
-  const paths = files.map(file => `/introduction/${file.split('.')[0]}`)
+  const paths = files.map((file) => `/introduction/${file.split('.')[0]}`)
 
   return {
     paths,
-    fallback: false
+    fallback: false,
   }
 }
 
@@ -137,17 +121,15 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { id } = params || {}
 
   const fileContents = fs
-    .readFileSync(
-      path.join(process.cwd(), 'documentation', 'introduction', `${id}.mdx`)
-    )
+    .readFileSync(path.join(process.cwd(), 'documentation', 'introduction', `${id}.mdx`))
     .toString()
 
   const mdxSource = await renderToString(fileContents, { components })
 
   return {
     props: {
-      mdxSource
-    }
+      mdxSource,
+    },
   }
 }
 

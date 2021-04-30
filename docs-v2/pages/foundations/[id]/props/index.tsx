@@ -23,7 +23,7 @@ import {
   Tablist,
   Tab,
   Link,
-  majorScale
+  majorScale,
 } from 'evergreen-ui'
 
 interface Props {
@@ -44,7 +44,7 @@ const SectionHeading: React.FC<{
       ? children.trim().substring(idIndex + 2, children.length - 1)
       : `${children
           .split(' ')
-          .map(child => child.toLowerCase())
+          .map((child) => child.toLowerCase())
           .join('_')}`
 
   return (
@@ -71,7 +71,7 @@ const components = {
   strong: (props: any) => <Strong {...props} />,
   ol: (props: any) => <Ol {...props} />,
   ul: (props: any) => <Ul {...props} />,
-  li: (props: any) => <Li {...props} />
+  li: (props: any) => <Li {...props} />,
 }
 
 const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
@@ -79,11 +79,9 @@ const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
   const { query } = router
   const { id } = query
 
-  const evergreenComponents = IA.components.items.sort((a, b) =>
-    a.name! > b.name! ? 1 : -1
-  )
+  const evergreenComponents = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
 
-  const component = evergreenComponents.find(component => component.id === id)
+  const component = evergreenComponents.find((component) => component.id === id)
 
   if (!component) {
     return null
@@ -106,15 +104,11 @@ const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
           paddingY={majorScale(5)}
           paddingX={majorScale(4)}
         >
-          <Heading
-            size={200}
-            textTransform="uppercase"
-            marginBottom={majorScale(2)}
-          >
+          <Heading size={200} textTransform="uppercase" marginBottom={majorScale(2)}>
             Components
           </Heading>
           <Tablist>
-            {evergreenComponents.map(item => {
+            {evergreenComponents.map((item) => {
               return (
                 <Tab
                   alignItems="flex-start"
@@ -144,12 +138,12 @@ const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
             tabs={[
               {
                 label: 'Details',
-                to: '/details'
+                to: '/details',
               },
               {
                 label: 'Properties',
-                to: '/props'
-              }
+                to: '/props',
+              },
             ]}
           />
           {content}
@@ -160,15 +154,13 @@ const ComponentPropsPage: React.FC<Props> = ({ mdxSource }) => {
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(
-    path.join(process.cwd(), 'documentation', 'foundations')
-  )
+  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'foundations'))
 
-  const paths = files.map(file => `/foundations/${file.split('.')[0]}/props`)
+  const paths = files.map((file) => `/foundations/${file.split('.')[0]}/props`)
 
   return {
     paths,
-    fallback: false
+    fallback: false,
   }
 }
 
@@ -180,18 +172,14 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
-  const fileContents = fs
-    .readFileSync(
-      path.join(process.cwd(), 'documentation', 'foundations', `${id}.mdx`)
-    )
-    .toString()
+  const fileContents = fs.readFileSync(path.join(process.cwd(), 'documentation', 'foundations', `${id}.mdx`)).toString()
 
   const mdxSource = await renderToString(fileContents, { components })
 
   return {
     props: {
-      mdxSource
-    }
+      mdxSource,
+    },
   }
 }
 

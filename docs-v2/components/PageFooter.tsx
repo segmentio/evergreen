@@ -18,24 +18,13 @@ const PageFooter: React.FC<Props> = () => {
       justifyContent="space-between"
     >
       <Pane display="flex" alignItems="center">
-        <Pane
-          is="img"
-          width={80}
-          src="/segment-logo.svg"
-          marginRight={majorScale(5)}
-        />
+        <Pane is="img" width={80} src="/segment-logo.svg" marginRight={majorScale(5)} />
         <Text size={300} color="muted">
           © {new Date().getFullYear()}, Segment.io, Inc.
         </Text>
       </Pane>
       <Pane>
-        <Link
-          size={300}
-          color="neutral"
-          href="https://segment.com/jobs/"
-          target="_blank"
-          marginRight={majorScale(2)}
-        >
+        <Link size={300} color="neutral" href="https://segment.com/jobs/" target="_blank" marginRight={majorScale(2)}>
           We're hiring!
         </Link>
         <Link size={300} color="neutral" href="" onClick={openConsentManager}>

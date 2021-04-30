@@ -12,22 +12,14 @@ interface Props {}
 const PatternsPage: React.FC<Props> = () => {
   const [query, setQuery] = useState<string>('')
 
-  const evergreenPatterns = IA.patterns.items.sort((a, b) =>
-    a.name! > b.name! ? 1 : -1
-  )
+  const evergreenPatterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
 
-  const filteredItems = evergreenPatterns.filter(
-    item => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
-  )
+  const filteredItems = evergreenPatterns.filter((item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1)
 
   return (
     <Layout title="Patterns / Evergreen">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav
-          title="Patterns"
-          items={evergreenPatterns}
-          routePrefix="patterns"
-        />
+        <SideNav title="Patterns" items={evergreenPatterns} routePrefix="patterns" />
         <Pane
           width="100%"
           display="flex"
@@ -38,11 +30,7 @@ const PatternsPage: React.FC<Props> = () => {
         >
           <PageHeader title="Patterns" description={IA.patterns.description} />
           <Pane marginBottom={majorScale(4)}>
-            <SearchBar
-              query={query}
-              onQueryChange={setQuery}
-              placeholder="Search across our patterns library"
-            />
+            <SearchBar query={query} onQueryChange={setQuery} placeholder="Search across our patterns library" />
           </Pane>
           {filteredItems.length > 0 ? (
             <Pane
@@ -52,7 +40,7 @@ const PatternsPage: React.FC<Props> = () => {
               gridRowGap="32px"
               gridTemplateColumns="1fr 1fr 1fr 1fr"
             >
-              {evergreenPatterns.map(item => {
+              {evergreenPatterns.map((item) => {
                 return (
                   <Thumbnail
                     key={item.id}

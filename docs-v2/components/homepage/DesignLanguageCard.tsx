@@ -12,21 +12,9 @@ interface Props {
   items: Item[]
 }
 
-const DesignLanguageCard = ({
-  img,
-  title,
-  description,
-  type,
-  link,
-  items
-}: Props) => {
+const DesignLanguageCard = ({ img, title, description, type, link, items }: Props) => {
   return (
-    <Pane
-      marginX={majorScale(2)}
-      marginBottom={majorScale(4)}
-      paddingY={majorScale(2)}
-      display="flex"
-    >
+    <Pane marginX={majorScale(2)} marginBottom={majorScale(4)} paddingY={majorScale(2)} display="flex">
       <Pane display="flex" alignItems="flex-start">
         <Pane>{img}</Pane>
         <Pane marginX={majorScale(4)} marginTop={4}>
@@ -36,7 +24,7 @@ const DesignLanguageCard = ({
         </Pane>
       </Pane>
       <Pane display="flex" alignItems="flex-start">
-        {items.map(item => {
+        {items.map((item) => {
           return (
             <Pane key={item.id} width={majorScale(24)} paddingX={majorScale(2)}>
               <Thumbnail

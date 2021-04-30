@@ -20,110 +20,19 @@ const WhatsnewHomeImage = ({ width = 126, height = 105 }: Props) => {
         d="M90 15.9342C90 12.7838 86.9738 10.25 83.2409 10.25H8.75909C5.02916 10.25 2 12.7949 2 15.9342V78.8158C2 81.9662 5.02615 84.5 8.75909 84.5H83.2409C86.9708 84.5 90 81.9551 90 78.8158V15.9342Z"
         fill="#EBF0FF"
       />
-      <rect
-        x="9.1853"
-        y="37.9275"
-        width="9.58064"
-        height="9.58064"
-        rx="2"
-        fill="#D6E0FF"
-      />
-      <rect
-        x="29.7661"
-        y="37.9275"
-        width="9.58064"
-        height="9.58064"
-        rx="2"
-        fill="#D6E0FF"
-      />
-      <rect
-        x="50.3467"
-        y="37.9275"
-        width="9.58064"
-        height="9.58064"
-        rx="2"
-        fill="#D6E0FF"
-      />
-      <rect
-        x="70.9275"
-        y="37.9275"
-        width="9.58064"
-        height="9.58064"
-        rx="2"
-        fill="#D6E0FF"
-      />
-      <rect
-        x="9.1853"
-        y="53.496"
-        width="9.58064"
-        height="9.58064"
-        rx="2"
-        fill="#D6E0FF"
-      />
-      <rect
-        x="29.7661"
-        y="53.496"
-        width="9.58064"
-        height="9.58064"
-        rx="2"
-        fill="#D6E0FF"
-      />
-      <rect
-        x="50.3467"
-        y="53.496"
-        width="9.58064"
-        height="9.58064"
-        rx="2"
-        fill="#D6E0FF"
-      />
-      <rect
-        x="70.9275"
-        y="53.496"
-        width="9.58064"
-        height="9.58064"
-        rx="2"
-        fill="#D6E0FF"
-      />
-      <circle
-        cx="18.4999"
-        cy="54.25"
-        r="4.66667"
-        fill="#9DB5FF"
-        stroke="#EBF0FF"
-        strokeWidth="2"
-      />
-      <rect
-        x="9.1853"
-        y="69.0645"
-        width="9.58064"
-        height="9.58064"
-        rx="2"
-        fill="#D6E0FF"
-      />
-      <rect
-        x="29.7661"
-        y="69.0645"
-        width="9.58064"
-        height="9.58064"
-        rx="2"
-        fill="#D6E0FF"
-      />
-      <rect
-        x="50.3467"
-        y="69.0645"
-        width="9.58064"
-        height="9.58064"
-        rx="2"
-        fill="#D6E0FF"
-      />
-      <rect
-        x="70.9275"
-        y="69.0645"
-        width="9.58064"
-        height="9.58064"
-        rx="2"
-        fill="#D6E0FF"
-      />
+      <rect x="9.1853" y="37.9275" width="9.58064" height="9.58064" rx="2" fill="#D6E0FF" />
+      <rect x="29.7661" y="37.9275" width="9.58064" height="9.58064" rx="2" fill="#D6E0FF" />
+      <rect x="50.3467" y="37.9275" width="9.58064" height="9.58064" rx="2" fill="#D6E0FF" />
+      <rect x="70.9275" y="37.9275" width="9.58064" height="9.58064" rx="2" fill="#D6E0FF" />
+      <rect x="9.1853" y="53.496" width="9.58064" height="9.58064" rx="2" fill="#D6E0FF" />
+      <rect x="29.7661" y="53.496" width="9.58064" height="9.58064" rx="2" fill="#D6E0FF" />
+      <rect x="50.3467" y="53.496" width="9.58064" height="9.58064" rx="2" fill="#D6E0FF" />
+      <rect x="70.9275" y="53.496" width="9.58064" height="9.58064" rx="2" fill="#D6E0FF" />
+      <circle cx="18.4999" cy="54.25" r="4.66667" fill="#9DB5FF" stroke="#EBF0FF" strokeWidth="2" />
+      <rect x="9.1853" y="69.0645" width="9.58064" height="9.58064" rx="2" fill="#D6E0FF" />
+      <rect x="29.7661" y="69.0645" width="9.58064" height="9.58064" rx="2" fill="#D6E0FF" />
+      <rect x="50.3467" y="69.0645" width="9.58064" height="9.58064" rx="2" fill="#D6E0FF" />
+      <rect x="70.9275" y="69.0645" width="9.58064" height="9.58064" rx="2" fill="#D6E0FF" />
       <path
         d="M90 32.25V16.1167C90 12.8819 86.9739 10.25 83.2409 10.25H8.75909C5.02916 10.25 2 12.8766 2 16.1167V32.25H90H90Z"
         fill="#9DB5FF"

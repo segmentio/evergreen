@@ -30,63 +30,38 @@ const TopNav: React.FC<Props> = () => {
     >
       <Pane display="flex" alignItems="center" width={236}>
         <Link href="/">
-          <Pane
-            is="img"
-            width={100}
-            height={24}
-            src="/evergreen-logo.svg"
-            marginRight={majorScale(2)}
-          />
+          <Pane is="img" width={100} height={24} src="/evergreen-logo.svg" marginRight={majorScale(2)} />
         </Link>
       </Pane>
       <Pane flex={1}>
         <Link href="/introduction" passHref>
-          <EvergreenLink
-            color={parentPath !== 'introductions' ? 'neutral' : undefined}
-            marginRight={majorScale(2)}
-          >
+          <EvergreenLink color={parentPath !== 'introductions' ? 'neutral' : undefined} marginRight={majorScale(2)}>
             Introduction
           </EvergreenLink>
         </Link>
         <Link href="/foundations" passHref>
-          <EvergreenLink
-            color={parentPath !== 'foundations' ? 'neutral' : undefined}
-            marginRight={majorScale(2)}
-          >
+          <EvergreenLink color={parentPath !== 'foundations' ? 'neutral' : undefined} marginRight={majorScale(2)}>
             Foundations
           </EvergreenLink>
         </Link>
         <Link href="/components" passHref>
-          <EvergreenLink
-            color={parentPath !== 'components' ? 'neutral' : undefined}
-            marginRight={majorScale(2)}
-          >
+          <EvergreenLink color={parentPath !== 'components' ? 'neutral' : undefined} marginRight={majorScale(2)}>
             Components
           </EvergreenLink>
         </Link>
         <Link href="/patterns" passHref>
-          <EvergreenLink
-            color={parentPath !== 'patterns' ? 'neutral' : undefined}
-            marginRight={majorScale(2)}
-          >
+          <EvergreenLink color={parentPath !== 'patterns' ? 'neutral' : undefined} marginRight={majorScale(2)}>
             Patterns
           </EvergreenLink>
         </Link>
         <Link href="/resources" passHref>
-          <EvergreenLink
-            color={parentPath !== 'resources' ? 'neutral' : undefined}
-            marginRight={majorScale(2)}
-          >
+          <EvergreenLink color={parentPath !== 'resources' ? 'neutral' : undefined} marginRight={majorScale(2)}>
             Resources
           </EvergreenLink>
         </Link>
       </Pane>
       <Pane display="flex" justifyContent="flex-end" width={236}>
-        <GitHubButton
-          type="stargazers"
-          namespace="segmentio"
-          repo="evergreen"
-        />
+        <GitHubButton type="stargazers" namespace="segmentio" repo="evergreen" />
       </Pane>
     </Pane>
   )

@@ -1,27 +1,16 @@
 import React from 'react'
-import {
-  Table,
-  Code,
-  Pane,
-  majorScale,
-  Paragraph,
-  Badge,
-  Text,
-  Heading
-} from 'evergreen-ui'
+import { Table, Code, Pane, majorScale, Paragraph, Badge, Text, Heading } from 'evergreen-ui'
 
 interface Props {
   data: any
 }
 
-const resolveReadableType: (type: any) => string = type => {
+const resolveReadableType: (type: any) => string = (type) => {
   switch (type.name) {
     case 'enum':
       return type.value.map(({ value }: { value: string }) => value).join(' | ')
     case 'union':
-      return type.value
-        .map((subType: any) => resolveReadableType(subType))
-        .join(' | ')
+      return type.value.map((subType: any) => resolveReadableType(subType)).join(' | ')
     case 'custom':
       return type.raw
     default:
@@ -40,16 +29,12 @@ const PropsTable: React.FC<Props> = ({ data }) => {
       {props ? (
         <Table width="100%">
           <Table.Head>
-            {COLUMNS.map(column => {
-              return (
-                <Table.TextHeaderCell key={column}>
-                  {column}
-                </Table.TextHeaderCell>
-              )
+            {COLUMNS.map((column) => {
+              return <Table.TextHeaderCell key={column}>{column}</Table.TextHeaderCell>
             })}
           </Table.Head>
           <Table.Body>
-            {Object.keys(props).map(prop => {
+            {Object.keys(props).map((prop) => {
               const { type, required, description } = props[prop]
               return (
                 <Table.Row key={prop}>
