@@ -422,6 +422,20 @@ const IA: IA = {
         description: 'Very, very empty for now.',
         image: '/Empty State.png',
         imageHighlight: '/Empty State-highlight.png'
+      },
+      {
+        id: 'table-layout',
+        name: 'Table Layout',
+        description: 'Coming soon!',
+        image: '/Table Layout.png',
+        imageHighlight: '/Table Layout-highlight.png'
+      },
+      {
+        id: 'error-messages',
+        name: 'Error Messages',
+        description: 'Coming soon!',
+        image: '/Toaster.png',
+        imageHighlight: '/Toaster-highlight.png'
       }
     ]
   }

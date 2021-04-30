@@ -22,8 +22,8 @@ const DesignLanguageCard = ({img, title, description, type, link, items}: Props)
       
     >
       <Pane display="flex" alignItems="flex-start">
-        {img}
-        <Pane marginX={majorScale(4)}>
+        <Pane>{img}</Pane>
+        <Pane marginX={majorScale(4)} marginTop={4}>
           <Heading marginBottom={majorScale(1)}>{title}</Heading>
           <Paragraph marginBottom={majorScale(2)}>{description}</Paragraph>
           {link}
