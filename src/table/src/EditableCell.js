@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import safeInvoke from '../../lib/safe-invoke'
 import { Portal } from '../../portal'
@@ -26,6 +26,10 @@ const EditableCell = memo(function EditableCell(props) {
   const [mainRef, setMainRef] = useState()
   const [value, setValue] = useState(children)
   const [isEditing, setIsEditing] = useState(autoFocus)
+
+  useEffect(() => {
+    setValue(children)
+  }, [children])
 
   const handleDoubleClick = () => {
     if (disabled || !isSelectable) return
@@ -97,7 +101,7 @@ const EditableCell = memo(function EditableCell(props) {
         }}
         {...rest}
       >
-        {children || placeholder}
+        {value || placeholder}
       </TextTableCell>
       {isEditing && (
         <Portal>
