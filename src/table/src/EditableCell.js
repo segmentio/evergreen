@@ -96,7 +96,7 @@ const EditableCell = memo(function EditableCell(props) {
         cursor={cursor}
         textProps={{
           size,
-          opacity: disabled || (!children && placeholder) ? 0.5 : 1,
+          opacity: disabled || (!value && placeholder) ? 0.5 : 1,
           ...textProps
         }}
         {...rest}
