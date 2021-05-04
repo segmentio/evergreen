@@ -5,7 +5,7 @@ import CopyToClipboard from 'react-copy-to-clipboard'
 import CodeSandboxIcon from './icons/CodeSandboxIcon'
 import TooltipIconButton from './TooltipIconButton'
 import { getCodeSandboxLink } from '../lib/codesandbox'
-import dracula from 'prism-react-renderer/themes/dracula'
+import theme from './playground-theme'
 
 interface Props {
   source: string
@@ -45,7 +45,7 @@ const Playground: React.FC<Props> = ({ source }) => {
               borderBottomLeftRadius: 5,
               borderBottomRightRadius: 5,
             }}
-            theme={dracula}
+            theme={theme}
           />
         ) : null}
       </LiveProvider>
@@ -53,11 +53,14 @@ const Playground: React.FC<Props> = ({ source }) => {
         <TooltipIconButton
           content={isExpanded ? 'Collapse' : 'Expand'}
           icon={isExpanded ? MinimizeIcon : MaximizeIcon}
-          onClick={() => setIsExpanded((expanded) => !expanded)}
+          onClick={() => setIsExpanded(expanded => !expanded)}
           size="small"
           appearance="minimal"
         />
-        <CopyToClipboard text={source.trim()} onCopy={() => toaster.success('Copied to clipboard!')}>
+        <CopyToClipboard
+          text={source.trim()}
+          onCopy={() => toaster.success('Copied to clipboard!')}
+        >
           <TooltipIconButton
             content="Copy"
             icon={DocumentIcon}

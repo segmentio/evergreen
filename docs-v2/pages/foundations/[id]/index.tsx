@@ -23,6 +23,7 @@ import {
   Link,
   majorScale,
 } from 'evergreen-ui'
+import ColorSwatch from '../../../components/ColorSwatch'
 import SideNav from '../../../components/SideNav'
 
 interface Props {
@@ -69,6 +70,7 @@ const components = {
   ol: (props: any) => <Ol {...props} />,
   ul: (props: any) => <Ul {...props} />,
   li: (props: any) => <Li {...props} />,
+  ColorSwatch,
 }
 
 const FoundationPage: React.FC<Props> = ({ mdxSource }) => {
