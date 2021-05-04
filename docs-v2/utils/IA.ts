@@ -20,7 +20,6 @@ export interface Item {
   description?: string
   image?: string
   imageHighlight?: string
-  // items?: Item[]
   related?: string[]
   tags?: string[]
 }
@@ -41,14 +40,20 @@ const IA: IA = {
       'Evergreen is a pragmatic UI kit for building evolving products on the web.It is built and maintained open-source by Segment.',
     items: [
       {
-        id: 'themeing',
-        name: 'Themeing',
-        description: 'Something about themeing',
+        id: 'getting-started',
+        name: 'Getting started',
+        description: 'About Evergreen, and getting set up with the package locally.',
       },
       {
-        id: 'what-is-new',
-        name: 'What is New',
-        description: 'Something about news',
+        id: 'themeing',
+        name: 'Themeing',
+        description: 'A primer into the theming architecture behind Evergreen',
+      },
+      {
+        id: 'v6-migration-guide',
+        name: 'Migrating from v5.x to v6',
+        description:
+          'Guide about migrating from previous version of Evergreen into the current one.',
       },
     ],
   },

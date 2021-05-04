@@ -7,20 +7,20 @@ import IA from '../../utils/IA'
 
 interface Props {}
 
-const IntroductionsPage: React.FC<Props> = () => {
+const IntroductionPage: React.FC<Props> = () => {
   return (
     <Layout title="Introduction / Evergreen">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav title="Introductions" items={IA.introduction.items} routePrefix="introduction" />
+        <SideNav title="Introduction" items={IA.introduction.items} routePrefix="introduction" />
         <Pane
           width="100%"
           display="flex"
           flexDirection="column"
           justifyContent="flex-start"
           padding={majorScale(5)}
-          maxWidth={1200}
+          maxWidth={majorScale(143)}
         >
-          <PageHeader title="Introductions" description={IA.introduction.description} />
+          <PageHeader title="Introduction" description={IA.introduction.description} />
           <Pane width="100%" display="grid" gridColumnGap="24px" gridRowGap="32px" />
         </Pane>
       </Pane>
@@ -28,4 +28,4 @@ const IntroductionsPage: React.FC<Props> = () => {
   )
 }
 
-export default IntroductionsPage
+export default IntroductionPage

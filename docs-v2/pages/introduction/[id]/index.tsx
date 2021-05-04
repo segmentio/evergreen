@@ -2,6 +2,7 @@ import React from 'react'
 import fs from 'fs'
 import Layout from '../../../components/Layout'
 import Playground from '../../../components/Playground'
+import SyntaxHighlighter from '../../../components/SyntaxHighlighter/'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
@@ -10,7 +11,19 @@ import hydrate from 'next-mdx-remote/hydrate'
 import path from 'path'
 import IA from '../../../utils/IA'
 import PageHeader from '../../../components/PageHeader'
-import { Pane, Heading, HeadingOwnProps, Ul, Li, Ol, LinkIcon, Paragraph, Strong, Link, majorScale } from 'evergreen-ui'
+import {
+  Pane,
+  Heading,
+  HeadingOwnProps,
+  Ul,
+  Li,
+  Ol,
+  LinkIcon,
+  Paragraph,
+  Strong,
+  Link,
+  majorScale,
+} from 'evergreen-ui'
 import SideNav from '../../../components/SideNav'
 
 interface Props {
@@ -51,7 +64,15 @@ const components = {
   h4: (props: any) => <SectionHeading size={500} {...props} />,
   h5: (props: any) => <SectionHeading size={300} {...props} />,
   h6: (props: any) => <SectionHeading size={200} {...props} />,
-  code: (props: any) => <Playground source={props.children} />,
+  code: (props: any) => {
+    const { className, metastring, children } = props
+    if (metastring !== 'readonly') {
+      return <Playground source={children} />
+    } else {
+      const [, language] = className.split('language-')
+      return <SyntaxHighlighter language={language} source={children} />
+    }
+  },
   p: (props: any) => <Paragraph marginBottom={majorScale(3)} {...props} />,
   strong: (props: any) => <Strong {...props} />,
   ol: (props: any) => <Ol {...props} />,
