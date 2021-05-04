@@ -33,7 +33,7 @@ const SideNav: React.FC<Props> = ({ title, items, selectedItem, routePrefix }) =
               alignItems="flex-start"
               direction="vertical"
               isSelected={selectedItem ? item.id === selectedItem.id : false}
-              onSelect={() => router.push(`../${routePrefix}/${item.id}`)}
+              onSelect={() => router.push(`/${routePrefix}/${item.id}`)}
             >
               {item.name}
             </Tab>

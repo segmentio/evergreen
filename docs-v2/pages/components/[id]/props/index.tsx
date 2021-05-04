@@ -8,6 +8,7 @@ import IA from '../../../../utils/IA'
 import PageHeader from '../../../../components/PageHeader'
 import PropsTable from '../../../../components/PropsTable'
 import { Pane, Heading, Tablist, Tab, majorScale } from 'evergreen-ui'
+import SideNav from '../../../../components/SideNav'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const docgen = require('react-docgen')
@@ -34,7 +35,8 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
   return (
     <Layout title={`Evergreen | ${name} Documentation`}>
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <Pane
+        <SideNav title="Components" items={evergreenComponents} selectedItem={component} routePrefix="components" />
+        {/* <Pane
           display="flex"
           position="sticky"
           top={64}
@@ -62,7 +64,7 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
               )
             })}
           </Tablist>
-        </Pane>
+        </Pane> */}
         <Pane
           width="100%"
           display="flex"
