@@ -45,15 +45,15 @@ const IA: IA = {
         description: 'About Evergreen, and getting set up with the package locally.',
       },
       {
-        id: 'themeing',
-        name: 'Themeing',
-        description: 'A primer into the theming architecture behind Evergreen',
-      },
-      {
         id: 'v6-migration-guide',
         name: 'Migrating from v5.x to v6',
         description:
           'Guide about migrating from previous version of Evergreen into the current one.',
+      },
+      {
+        id: 'themeing',
+        name: 'Themeing',
+        description: 'A primer into the theming architecture behind Evergreen',
       },
     ],
   },
