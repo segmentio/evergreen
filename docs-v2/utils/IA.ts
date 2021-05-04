@@ -206,7 +206,7 @@ const IA: IA = {
           'The Autocomplete component allow user to type and select from a list of options.',
       },
       {
-        id: 'filepicker',
+        id: 'file-picker',
         github: githubLink('file-picker'),
         image: '/Filepicker.png',
         imageHighlight: '/Filepicker-highlight.png',

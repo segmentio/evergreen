@@ -30,20 +30,14 @@ const TopNav: React.FC<Props> = () => {
     >
       <Pane display="flex" alignItems="center" width={236}>
         <Link href="/">
-          <Pane
-            is="img"
-            width={100}
-            height={24}
-            src="/evergreen-logo.svg"
-            marginRight={majorScale(2)}
-          />
+          <Pane is="img" width={100} height={24} src="/evergreen-logo.svg" cursor="pointer" />
         </Link>
       </Pane>
       <Pane flex={1}>
-        <Link href="/introduction/get-started" passHref>
+        <Link href="/introduction/getting-started" passHref>
           <EvergreenLink
             color={parentPath !== 'introduction' ? 'neutral' : undefined}
-            marginRight={majorScale(2)}
+            marginRight={majorScale(3)}
           >
             Introduction
           </EvergreenLink>
@@ -51,7 +45,7 @@ const TopNav: React.FC<Props> = () => {
         <Link href="/foundations" passHref>
           <EvergreenLink
             color={parentPath !== 'foundations' ? 'neutral' : undefined}
-            marginRight={majorScale(2)}
+            marginRight={majorScale(3)}
           >
             Foundations
           </EvergreenLink>
@@ -59,7 +53,7 @@ const TopNav: React.FC<Props> = () => {
         <Link href="/components" passHref>
           <EvergreenLink
             color={parentPath !== 'components' ? 'neutral' : undefined}
-            marginRight={majorScale(2)}
+            marginRight={majorScale(3)}
           >
             Components
           </EvergreenLink>
@@ -67,7 +61,7 @@ const TopNav: React.FC<Props> = () => {
         <Link href="/patterns" passHref>
           <EvergreenLink
             color={parentPath !== 'patterns' ? 'neutral' : undefined}
-            marginRight={majorScale(2)}
+            marginRight={majorScale(3)}
           >
             Patterns
           </EvergreenLink>
@@ -75,7 +69,7 @@ const TopNav: React.FC<Props> = () => {
         <Link href="/resources" passHref>
           <EvergreenLink
             color={parentPath !== 'resources' ? 'neutral' : undefined}
-            marginRight={majorScale(2)}
+            marginRight={majorScale(3)}
           >
             Resources
           </EvergreenLink>
