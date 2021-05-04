@@ -7,7 +7,7 @@ import path from 'path'
 import IA from '../../../../utils/IA'
 import PageHeader from '../../../../components/PageHeader'
 import PropsTable from '../../../../components/PropsTable'
-import { Pane, Heading, Tablist, Tab, majorScale } from 'evergreen-ui'
+import { Pane, majorScale } from 'evergreen-ui'
 import SideNav from '../../../../components/SideNav'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -30,41 +30,12 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
     return null
   }
 
-  const { name, github } = component
+  const { name, description, github } = component
 
   return (
     <Layout title={`Evergreen | ${name} Documentation`}>
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
         <SideNav title="Components" items={evergreenComponents} selectedItem={component} routePrefix="components" />
-        {/* <Pane
-          display="flex"
-          position="sticky"
-          top={64}
-          flexDirection="column"
-          overflowY="auto"
-          maxHeight="calc(100vh - 64px)"
-          paddingY={majorScale(5)}
-          paddingX={majorScale(4)}
-        >
-          <Heading size={200} textTransform="uppercase" marginBottom={majorScale(2)}>
-            Components
-          </Heading>
-          <Tablist>
-            {evergreenComponents.map((item) => {
-              return (
-                <Tab
-                  alignItems="flex-start"
-                  direction="vertical"
-                  key={item.id}
-                  onSelect={() => router.push(`/components/${item.id}`)}
-                  isSelected={item.id === component.id}
-                >
-                  {item.name}
-                </Tab>
-              )
-            })}
-          </Tablist>
-        </Pane> */}
         <Pane
           width="100%"
           display="flex"
@@ -75,7 +46,7 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
         >
           <PageHeader
             title={name!}
-            description="PropIndex Buttons are used as call-to-actions for users, indicating that they can take an action on a particular part of the page"
+            description={description}
             githubLink={github}
             tabs={[
               {
