@@ -21,75 +21,6 @@ Evergreen uses three font family stacks, `ui`, `display` and `mono`.
 Text components will set the font family accordingly to their use case.
 There is not need for you to override this on a component level.
 
-<ThemeConsumer>
-  {theme => (
-    <div>
-      <Pane marginTop={48}>
-        <h2 className="heading h2">Heading Styles</h2>
-      </Pane>
-      <Pane borderBottom paddingBottom={24}>
-        {Object.keys(theme.typography.headings).map(size => {
-          return (
-            <TextStylePreview
-              key={size}
-              size={size}
-              renderComponent={() => {
-                return <Heading size={size}>Heading {size}</Heading>
-              }}
-              fontFamilies={theme.typography.fontFamilies}
-              {...theme.typography.headings[size]}
-            />
-          )
-        })}
-      </Pane>
-      <Pane marginTop={48}>
-        <h2 className="heading h2">Text Styles</h2>
-      </Pane>
-      <Pane borderBottom paddingBottom={24}>
-        {Object.keys(theme.typography.text).map(size => {
-          return (
-            <TextStylePreview
-              key={size}
-              size={size}
-              renderComponent={() => {
-                return <Text size={size}>Text {size}</Text>
-              }}
-              fontFamilies={theme.typography.fontFamilies}
-              fontFamily="ui"
-              {...theme.typography.text[size]}
-            />
-          )
-        })}
-      </Pane>
-      <Pane marginTop={48}>
-        <h2 className="heading h2">Paragraph Styles</h2>
-      </Pane>
-      <Pane borderBottom paddingBottom={24}>
-        {[300, 400, 500].map(size => {
-          return (
-            <TextStylePreview
-              key={size}
-              size={size}
-              renderComponent={() => {
-                return (
-                  <Paragraph size={size}>
-                    Paragraph {size}. Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.
-                  </Paragraph>
-                )
-              }}
-              fontFamilies={theme.typography.fontFamilies}
-              fontFamily="ui"
-              {...theme.typography.text[size]}
-            />
-          )
-        })}
-      </Pane>
-    </div>
-  )}
-</ThemeConsumer>
-
 # Heading component
 
 The `Heading` component is used for all headings.
@@ -175,31 +106,25 @@ The size options are: `300`, `400` (default), `500`
 ```jsx
 <div>
   <Paragraph size={300} marginTop={12}>
-    Size 300. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-    est laborum.
+    Size 300. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   </Paragraph>
   <Paragraph size={400} marginTop={12}>
-    Size 400. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-    est laborum.
+    Size 400. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   </Paragraph>
   <Paragraph marginTop={16}>
-    Size 500. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-    est laborum.
+    Size 500. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   </Paragraph>
 </div>
 ```
@@ -208,11 +133,10 @@ The size options are: `300`, `400` (default), `500`
 
 ```jsx
 <Paragraph color="muted">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+  esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
   in culpa qui officia deserunt mollit anim id est laborum.
 </Paragraph>
 ```
@@ -228,12 +152,6 @@ The size options are: `300`, `400` (default), `500`
 <div>
   <Link href="#" marginRight={12}>
     Default
-  </Link>
-  <Link href="#" marginRight={12} color="green">
-    Green
-  </Link>
-  <Link href="#" marginRight={12} color="blue">
-    Blue
   </Link>
   <Link href="#" marginRight={12} color="neutral">
     Neutral

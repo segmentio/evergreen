@@ -29,6 +29,7 @@ const Playground: React.FC<Props> = ({ source }) => {
               borderBottomLeftRadius={isExpanded ? undefined : 5}
               borderBottomRightRadius={isExpanded ? undefined : 5}
               border="default"
+              overflow="hidden"
               padding={majorScale(3)}
               backgroundColor="white"
             >

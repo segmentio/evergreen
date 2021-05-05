@@ -114,11 +114,11 @@ const FoundationPage: React.FC<Props> = ({ mdxSource }) => {
             tabs={[
               {
                 label: 'Details',
-                to: `/pages/foundations/${id}`,
+                to: `/foundations/${id}`,
               },
               {
                 label: 'Properties',
-                to: `/pages/foundations/${id}/props`,
+                to: `/foundations/${id}/props`,
               },
             ]}
           />
