@@ -2,58 +2,65 @@ import { PrismTheme } from 'prism-react-renderer'
 
 const theme: PrismTheme = {
   plain: {
-    backgroundColor: '#fafbff',
-    color: '#474d66',
+    backgroundColor: '#2b2b2b',
+    color: '#FFFFFF',
     outline: 'none',
+    lineHeight: '24px',
+    font: '14px'
   },
   styles: [
     {
       types: ['comment', 'prolog', 'doctype', 'cdata'],
       style: {
-        color: '#52bd94',
+        color: '#25CBD6',
       },
     },
     {
-      types: ['property', 'tag', 'boolean', 'number', 'constant', 'symbol', 'deleted'],
+      types: ['property', 'tag'],
       style: {
-        color: '#d14343',
+        color: '#EE9191', //red
       },
     },
     {
-      types: ['selector', 'string', 'char', 'builtin', 'inserted'],
+      types: ['boolean', 'number', 'constant', 'symbol', 'deleted', 'url'],
       style: {
-        color: '#d14343',
+        color: '#9DB5FF', //blue
+      },
+    },
+    {
+      types: ['selector', 'attr-name'],
+      style: {
+        color: '#FFD079', //yellow
+      },
+    },
+    {
+      types: ['char', 'builtin', 'inserted'],
+      style: {
+        color: '#FFFFFF',
       },
     },
     {
       types: ['punctuation'],
       style: {
-        color: '#696f8c',
+        color: '#FFFFFF',
       },
     },
     {
-      types: ['operator', 'entity', 'url'],
+      types: ['operator', 'entity'],
       style: {
-        color: '#10899e',
-        background: '#ffffff',
+        color: '#FFFFFF',
       },
     },
     {
-      types: ['atrule', 'attr-value', 'keyword'],
+      types: ['atrule', 'attr-value', 'keyword', 'string', 'function'],
       style: {
-        color: '#10899e',
-      },
-    },
-    {
-      types: ['function'],
-      style: {
-        color: '#10899e',
+        color: '#52BD94', //green
       },
     },
     {
       types: ['regex', 'important', 'variable'],
       style: {
-        color: '#ffb020',
+        color: '#FFF',
       },
     },
     {
@@ -62,7 +69,6 @@ const theme: PrismTheme = {
         'font-weight': 'bold',
       },
     },
-    // }
   ],
 }
 
