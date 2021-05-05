@@ -24,10 +24,10 @@ const Playground: React.FC<Props> = ({ source }) => {
           // @ts-ignore -- The types for <LivePreview /> are unfortunately broken
           Component={({ children }) => (
             <Pane
-              borderTopLeftRadius={5}
-              borderTopRightRadius={5}
-              borderBottomLeftRadius={isExpanded ? undefined : 5}
-              borderBottomRightRadius={isExpanded ? undefined : 5}
+              borderTopLeftRadius={4}
+              borderTopRightRadius={4}
+              borderBottomLeftRadius={isExpanded ? undefined : 4}
+              borderBottomRightRadius={isExpanded ? undefined : 4}
               border="default"
               padding={majorScale(3)}
               backgroundColor="white"
@@ -39,11 +39,11 @@ const Playground: React.FC<Props> = ({ source }) => {
         <LiveError />
         {isExpanded ? (
           <LiveEditor
+            padding={24}
             style={{
-              fontSize: 14,
-              outline: 'none',
-              borderBottomLeftRadius: 5,
-              borderBottomRightRadius: 5,
+              borderTop: 'none',
+              borderBottomLeftRadius: 4,
+              borderBottomRightRadius: 4,
             }}
             theme={theme}
           />
