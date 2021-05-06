@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Pane, Paragraph, majorScale } from 'evergreen-ui'
-import Layout from '../../components/Layout'
+import Layout from '../../components/document/Layout'
 import SearchBar from '../../components/SearchBar'
 import PageHeader from '../../components/PageHeader'
 import Thumbnail from '../../components/Thumbnail'
@@ -15,11 +15,11 @@ const FoundationsPage: React.FC<Props> = () => {
   const evergreenFoundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
 
   const filteredItems = evergreenFoundations.filter(
-    (item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    item => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
   )
 
   return (
-    <Layout title="Foundations / Evergreen">
+    <Layout title="Foundations">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
         <SideNav title="Foundations" items={evergreenFoundations} routePrefix="foundations" />
         <Pane
@@ -32,7 +32,11 @@ const FoundationsPage: React.FC<Props> = () => {
         >
           <PageHeader title="Foundations" description={IA.foundations.description} />
           <Pane marginBottom={majorScale(4)}>
-            <SearchBar query={query} onQueryChange={setQuery} placeholder="Enter a term to search through components" />
+            <SearchBar
+              query={query}
+              onQueryChange={setQuery}
+              placeholder="Enter a term to search through components"
+            />
           </Pane>
           {filteredItems.length > 0 ? (
             <Pane
@@ -42,7 +46,7 @@ const FoundationsPage: React.FC<Props> = () => {
               gridRowGap="32px"
               gridTemplateColumns="1fr 1fr 1fr 1fr"
             >
-              {filteredItems.map((item) => {
+              {filteredItems.map(item => {
                 return (
                   <Thumbnail
                     id={item.id}

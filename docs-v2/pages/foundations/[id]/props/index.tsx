@@ -1,6 +1,6 @@
 import React from 'react'
 import fs from 'fs'
-import Layout from '../../../../components/Layout'
+import Layout from '../../../../components/document/Layout'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import path from 'path'
@@ -101,28 +101,40 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
 
   const stem = path.join(process.cwd(), '..', 'src', `${id}`, 'src')
 
-  const componentFiles = fs.readdirSync(stem).filter(name => {
-    const stats = fs.statSync(path.join(stem, name))
-    return !stats.isDirectory()
-  })
+  try {
+    if (fs.existsSync(stem)) {
+      const componentFiles = fs.readdirSync(stem).filter(name => {
+        const stats = fs.statSync(path.join(stem, name))
+        return !stats.isDirectory()
+      })
 
-  const props = await Promise.all(
-    componentFiles.map(async name => {
-      const data = await fs.readFileSync(path.join(stem, name)).toString()
-      try {
-        const propsData = docgen.parse(data)
-        return propsData
-      } catch (e) {
-        console.error('There was an error parsing component documentation', e)
-        return {}
+      const props = await Promise.all(
+        componentFiles.map(async name => {
+          const data = await fs.readFileSync(path.join(stem, name)).toString()
+          try {
+            const propsData = docgen.parse(data)
+            return propsData
+          } catch (e) {
+            console.error('There was an error parsing component documentation', e)
+            return {}
+          }
+        })
+      )
+
+      return {
+        props: {
+          componentProps: props,
+        },
       }
-    })
-  )
-
-  return {
-    props: {
-      componentProps: props,
-    },
+    } else {
+      return {
+        props: {
+          componentProps: [],
+        },
+      }
+    }
+  } catch (e) {
+    console.error('There was an uncaught error trying to parse source code documentation', e)
   }
 }
 

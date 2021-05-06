@@ -1,10 +1,10 @@
 import { Heading, Link, majorScale, Pane, Paragraph } from 'evergreen-ui'
 import React from 'react'
-import Layout from '../components/Layout'
+import Layout from '../components/document/Layout'
 import PageHeader from '../components/PageHeader'
 
 const ResourcesPage = () => (
-  <Layout title="Resources / Evergreen">
+  <Layout title="Resources">
     <Pane padding={majorScale(5)} paddingLeft="276px">
       <PageHeader
         title="Resources"
@@ -18,7 +18,13 @@ const ResourcesPage = () => (
             https://www.figma.com/@segment
           </Link>
         </Paragraph>
-        <Pane is="img" src="/resource-img-figma.png" display="flex" width="100%" maxWidth={majorScale(116)} />
+        <Pane
+          is="img"
+          src="/resource-img-figma.png"
+          display="flex"
+          width="100%"
+          maxWidth={majorScale(116)}
+        />
       </Pane>
       <Pane borderTop="muted" width={majorScale(116)} marginY={majorScale(8)} />
       <Pane>

@@ -1,6 +1,6 @@
 import React from 'react'
 import fs from 'fs'
-import Layout from '../../../../components/Layout'
+import Layout from '../../../../components/document/Layout'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import path from 'path'
@@ -24,7 +24,7 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
 
   const evergreenComponents = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
 
-  const component = evergreenComponents.find((component) => component.id === id)
+  const component = evergreenComponents.find(component => component.id === id)
 
   if (!component) {
     return null
@@ -35,7 +35,12 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
   return (
     <Layout title={`Evergreen | ${name} Documentation`}>
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav title="Components" items={evergreenComponents} selectedItem={component} routePrefix="components" />
+        <SideNav
+          title="Components"
+          items={evergreenComponents}
+          selectedItem={component}
+          routePrefix="components"
+        />
         <Pane
           width="100%"
           display="flex"
@@ -61,7 +66,10 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
           />
           {componentProps.map((data, i) => {
             return (
-              <Pane key={i} marginBottom={i !== componentProps.length - 1 ? majorScale(5) : undefined}>
+              <Pane
+                key={i}
+                marginBottom={i !== componentProps.length - 1 ? majorScale(5) : undefined}
+              >
                 <PropsTable data={data} />
               </Pane>
             )
@@ -75,7 +83,7 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
 export async function getStaticPaths() {
   const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'components'))
 
-  const paths = files.map((file) => `/components/${file.split('.')[0]}/props`)
+  const paths = files.map(file => `/components/${file.split('.')[0]}/props`)
 
   return {
     paths,
@@ -93,13 +101,13 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
 
   const stem = path.join(process.cwd(), '..', 'src', `${id}`, 'src')
 
-  const componentFiles = fs.readdirSync(stem).filter((name) => {
+  const componentFiles = fs.readdirSync(stem).filter(name => {
     const stats = fs.statSync(path.join(stem, name))
     return !stats.isDirectory()
   })
 
   const props = await Promise.all(
-    componentFiles.map(async (name) => {
+    componentFiles.map(async name => {
       const data = await fs.readFileSync(path.join(stem, name)).toString()
       try {
         const propsData = docgen.parse(data)

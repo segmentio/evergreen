@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Pane, Paragraph, majorScale } from 'evergreen-ui'
-import Layout from '../../components/Layout'
+import Layout from '../../components/document/Layout'
 import SearchBar from '../../components/SearchBar'
 import PageHeader from '../../components/PageHeader'
 import Thumbnail from '../../components/Thumbnail'
@@ -15,7 +15,7 @@ const ComponentsPage: React.FC<Props> = () => {
   const evergreenComponents = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
 
   const filteredItems = evergreenComponents.filter(
-    (item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    item => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
   )
 
   return (
@@ -32,7 +32,11 @@ const ComponentsPage: React.FC<Props> = () => {
         >
           <PageHeader title="Components" description={IA.components.description} />
           <Pane marginBottom={majorScale(4)}>
-            <SearchBar query={query} onQueryChange={setQuery} placeholder="Enter a term to search through components" />
+            <SearchBar
+              query={query}
+              onQueryChange={setQuery}
+              placeholder="Enter a term to search through components"
+            />
           </Pane>
           {filteredItems.length > 0 ? (
             <Pane
@@ -42,7 +46,7 @@ const ComponentsPage: React.FC<Props> = () => {
               gridRowGap="32px"
               gridTemplateColumns="1fr 1fr 1fr 1fr"
             >
-              {filteredItems.map((item) => {
+              {filteredItems.map(item => {
                 return (
                   <Thumbnail
                     id={item.id}

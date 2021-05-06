@@ -1,6 +1,6 @@
 import React from 'react'
 import fs from 'fs'
-import Layout from '../../../components/Layout'
+import Layout from '../../../components/document/Layout'
 import Playground from '../../../components/Playground'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
