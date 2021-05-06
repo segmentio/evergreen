@@ -1,6 +1,5 @@
 import React from 'react'
 import fs from 'fs'
-import Layout from '../../../../components/document/Layout'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import path from 'path'
@@ -8,75 +7,61 @@ import IA from '../../../../utils/IA'
 import PageHeader from '../../../../components/PageHeader'
 import PropsTable from '../../../../components/PropsTable'
 import { Pane, majorScale } from 'evergreen-ui'
-import SideNav from '../../../../components/SideNav'
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const docgen = require('react-docgen')
+import EntityOverviewTemplate, {
+  Props as EntityOverviewTemplateProps,
+} from '../../../../components/templates/EntityOverviewTemplate'
+import getComponentDocs from '../../../../lib/component-docs'
 
 interface Props {
   componentProps: any[]
+  foundations: EntityOverviewTemplateProps['navItems']
+  foundation: EntityOverviewTemplateProps['selectedNavItem']
 }
 
-const ComponentPropsPage: React.FC<Props> = ({ componentProps }) => {
+const FoundationPropsPage: React.FC<Props> = ({ componentProps, foundation, foundations }) => {
   const router = useRouter()
   const { query } = router
   const { id } = query
 
-  const evergreenComponents = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-
-  const item = evergreenComponents.find(component => component.id === id)
-
-  if (!item) {
+  if (!foundation) {
     return null
   }
 
-  const { name, description, github } = item
+  const { name, description, github } = foundation
 
   return (
-    <Layout title={`Evergreen | ${name} Documentation`}>
-      <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav
-          title="Foundations"
-          items={evergreenComponents}
-          selectedItem={item}
-          routePrefix="foundations"
+    <EntityOverviewTemplate
+      navItems={foundations}
+      selectedNavItem={foundation}
+      navPrefix="foundations"
+      navTitle="Components"
+      pageTitle={`${name} Documentation`}
+      pageHeader={
+        <PageHeader
+          title={name!}
+          description={description}
+          githubLink={github}
+          tabs={[
+            {
+              label: 'Details',
+              to: `/foundations/${id}`,
+            },
+            {
+              label: 'Properties',
+              to: `/foundations/${id}/props`,
+            },
+          ]}
         />
-        <Pane
-          width="100%"
-          display="flex"
-          flexDirection="column"
-          justifyContent="flex-start"
-          padding={majorScale(5)}
-          maxWidth={1200}
-        >
-          <PageHeader
-            title={name!}
-            description={description}
-            githubLink={github}
-            tabs={[
-              {
-                label: 'Details',
-                to: `/foundations/${id}`,
-              },
-              {
-                label: 'Properties',
-                to: `/foundations/${id}/props`,
-              },
-            ]}
-          />
-          {componentProps.map((data, i) => {
-            return (
-              <Pane
-                key={i}
-                marginBottom={i !== componentProps.length - 1 ? majorScale(5) : undefined}
-              >
-                <PropsTable data={data} />
-              </Pane>
-            )
-          })}
-        </Pane>
-      </Pane>
-    </Layout>
+      }
+    >
+      {componentProps.map((data, i) => {
+        return (
+          <Pane key={i} marginBottom={i !== componentProps.length - 1 ? majorScale(5) : undefined}>
+            <PropsTable data={data} />
+          </Pane>
+        )
+      })}
+    </EntityOverviewTemplate>
   )
 }
 
@@ -101,41 +86,25 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
 
   const stem = path.join(process.cwd(), '..', 'src', `${id}`, 'src')
 
+  let props: any[]
+
   try {
-    if (fs.existsSync(stem)) {
-      const componentFiles = fs.readdirSync(stem).filter(name => {
-        const stats = fs.statSync(path.join(stem, name))
-        return !stats.isDirectory()
-      })
-
-      const props = await Promise.all(
-        componentFiles.map(async name => {
-          const data = await fs.readFileSync(path.join(stem, name)).toString()
-          try {
-            const propsData = docgen.parse(data)
-            return propsData
-          } catch (e) {
-            console.error('There was an error parsing component documentation', e)
-            return {}
-          }
-        })
-      )
-
-      return {
-        props: {
-          componentProps: props,
-        },
-      }
-    } else {
-      return {
-        props: {
-          componentProps: [],
-        },
-      }
-    }
+    props = await getComponentDocs(stem)
   } catch (e) {
-    console.error('There was an uncaught error trying to parse source code documentation', e)
+    console.error('There was an issue gathering component docs...', e)
+    props = []
+  }
+
+  const foundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const foundation = foundations.find(item => item.id === id)
+
+  return {
+    props: {
+      componentProps: props,
+      foundations,
+      foundation,
+    },
   }
 }
 
-export default ComponentPropsPage
+export default FoundationPropsPage

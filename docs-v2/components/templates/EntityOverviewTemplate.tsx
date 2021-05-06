@@ -13,7 +13,7 @@ export interface Props {
   navPrefix: string
   selectedNavItem: Item
   pageHeader: JSX.Element
-  source: MdxRemote.Source
+  source?: MdxRemote.Source
 }
 
 const EntityOverviewTemplate: React.FC<Props> = ({
@@ -24,6 +24,7 @@ const EntityOverviewTemplate: React.FC<Props> = ({
   selectedNavItem,
   pageHeader,
   source,
+  children,
 }) => {
   return (
     <Layout title={pageTitle}>
@@ -38,7 +39,8 @@ const EntityOverviewTemplate: React.FC<Props> = ({
           maxWidth={1200}
         >
           {pageHeader}
-          <MDX source={source} />
+          {source && <MDX source={source} />}
+          {children}
         </Pane>
       </Pane>
     </Layout>
