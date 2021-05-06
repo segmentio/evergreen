@@ -1,84 +1,27 @@
 import React from 'react'
 import fs from 'fs'
-import Layout from '../../../components/document/Layout'
-import Playground from '../../../components/Playground'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
-import hydrate from 'next-mdx-remote/hydrate'
 import path from 'path'
 import IA from '../../../utils/IA'
 import PageHeader from '../../../components/PageHeader'
-import {
-  Pane,
-  Heading,
-  HeadingOwnProps,
-  Ul,
-  Li,
-  Ol,
-  LinkIcon,
-  Paragraph,
-  Strong,
-  Link,
-  majorScale,
-} from 'evergreen-ui'
-import SideNav from '../../../components/SideNav'
+import componentMapping from '../../../components/MDX/componentMapping'
+import EntityOverviewTemplate, {
+  Props as EntityOverviewTemplateProps,
+} from '../../../components/templates/EntityOverviewTemplate'
 
 interface Props {
+  components: EntityOverviewTemplateProps['navItems']
+  component: EntityOverviewTemplateProps['selectedNavItem']
   mdxSource: MdxRemote.Source
 }
 
-const SectionHeading: React.FC<{
-  size: HeadingOwnProps['size']
-  children: string
-}> = ({ size, children }) => {
-  const idIndex = children.indexOf('{#')
-  const text = idIndex !== -1 ? children.substring(0, idIndex) : children
-
-  const id =
-    idIndex !== -1
-      ? children.trim().substring(idIndex + 2, children.length - 1)
-      : `${children
-          .split(' ')
-          .map(child => child.toLowerCase())
-          .join('_')}`
-
-  return (
-    <Pane display="flex" alignItems="center" id={id} marginY={majorScale(2)}>
-      <Heading size={size} id={id}>
-        {text}
-      </Heading>
-      <Link href={`#${id}`} marginLeft={majorScale(2)}>
-        <LinkIcon size={12} />
-      </Link>
-    </Pane>
-  )
-}
-
-const components = {
-  h1: (props: any) => <SectionHeading size={800} {...props} />,
-  h2: (props: any) => <SectionHeading size={700} {...props} />,
-  h3: (props: any) => <SectionHeading size={600} {...props} />,
-  h4: (props: any) => <SectionHeading size={500} {...props} />,
-  h5: (props: any) => <SectionHeading size={300} {...props} />,
-  h6: (props: any) => <SectionHeading size={200} {...props} />,
-  code: (props: any) => <Playground source={props.children} />,
-  p: (props: any) => <Paragraph marginBottom={majorScale(3)} {...props} />,
-  strong: (props: any) => <Strong {...props} />,
-  ol: (props: any) => <Ol {...props} />,
-  ul: (props: any) => <Ul {...props} />,
-  li: (props: any) => <Li {...props} />,
-}
-
-const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
+const ComponentPage: React.FC<Props> = ({ mdxSource, component, components }) => {
   const router = useRouter()
   const { query } = router
   const { id } = query
-
-  const evergreenComponents = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-
-  const component = evergreenComponents.find(component => component.id === id)
 
   if (!component) {
     return null
@@ -86,44 +29,32 @@ const ComponentPage: React.FC<Props> = ({ mdxSource }) => {
 
   const { name, description, github } = component
 
-  const content = hydrate(mdxSource, { components })
-
   return (
-    <Layout title={`Evergreen | ${name} Documentation`}>
-      <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav
-          title="Components"
-          items={evergreenComponents}
-          selectedItem={component}
-          routePrefix="components"
+    <EntityOverviewTemplate
+      navItems={components}
+      source={mdxSource}
+      navPrefix="components"
+      pageTitle={`${name} Documentation`}
+      navTitle="Components"
+      selectedNavItem={component}
+      pageHeader={
+        <PageHeader
+          title={name!}
+          description={description}
+          githubLink={github}
+          tabs={[
+            {
+              label: 'Details',
+              to: `/components/${id}`,
+            },
+            {
+              label: 'Properties',
+              to: `/components/${id}/props`,
+            },
+          ]}
         />
-        <Pane
-          width="100%"
-          display="flex"
-          flexDirection="column"
-          justifyContent="flex-start"
-          padding={majorScale(5)}
-          maxWidth={1200}
-        >
-          <PageHeader
-            title={name!}
-            description={description}
-            githubLink={github}
-            tabs={[
-              {
-                label: 'Details',
-                to: `/components/${id}`,
-              },
-              {
-                label: 'Properties',
-                to: `/components/${id}/props`,
-              },
-            ]}
-          />
-          {content}
-        </Pane>
-      </Pane>
-    </Layout>
+      }
+    />
   )
 }
 
@@ -146,15 +77,17 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
-  const fileContents = fs
-    .readFileSync(path.join(process.cwd(), 'documentation', 'components', `${id}.mdx`))
-    .toString()
+  const fileContents = fs.readFileSync(path.join(process.cwd(), 'documentation', 'components', `${id}.mdx`)).toString()
 
-  const mdxSource = await renderToString(fileContents, { components })
+  const mdxSource = await renderToString(fileContents, { components: componentMapping })
+  const components = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const component = components.find(component => component.id === id)
 
   return {
     props: {
       mdxSource,
+      components,
+      component,
     },
   }
 }

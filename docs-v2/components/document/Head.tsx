@@ -15,20 +15,17 @@ const description =
 const DocumentHead: React.FC<Props> = ({ title }) => {
   return (
     <Head>
-      <title>
-        {`Evergreen ${title ? `| ${title}` : ''}`}
-        <meta property="og:title" content="Evergreen" />
-        <meta property="og:url" content={absolutePath()} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={absolutePath('/og-image.png')} />
-
-        <meta property="twitter:card" content="summary" />
-        <meta property="twitter:description" content={description} />
-        <meta property="twitter:site" content="@segment" />
-        <meta name="twitter:creator" content="@segment" />
-        <meta name="description" content={description} />
-        <meta property="twitter:image" content={absolutePath('/twitter-og.png')} />
-      </title>
+      <title>{`Evergreen / ${title || ''}`}</title>
+      <meta property="og:title" content="Evergreen" />
+      <meta property="og:url" content={absolutePath()} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={absolutePath('/og-image.png')} />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:description" content={description} />
+      <meta property="twitter:site" content="@segment" />
+      <meta name="twitter:creator" content="@segment" />
+      <meta name="description" content={description} />
+      <meta property="twitter:image" content={absolutePath('/twitter-og.png')} />
     </Head>
   )
 }

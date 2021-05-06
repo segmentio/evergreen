@@ -40,8 +40,8 @@ const Playground: React.FC<Props> = ({ source }) => {
         <LiveError />
         {isExpanded ? (
           <LiveEditor
-            padding={24}
             style={{
+              padding: 24,
               borderTop: 'none',
               borderBottomLeftRadius: 4,
               borderBottomRightRadius: 4,
@@ -58,10 +58,7 @@ const Playground: React.FC<Props> = ({ source }) => {
           size="small"
           appearance="minimal"
         />
-        <CopyToClipboard
-          text={source.trim()}
-          onCopy={() => toaster.success('Copied to clipboard!')}
-        >
+        <CopyToClipboard text={source.trim()} onCopy={() => toaster.success('Copied to clipboard!')}>
           <TooltipIconButton
             content="Copy"
             icon={DocumentIcon}
