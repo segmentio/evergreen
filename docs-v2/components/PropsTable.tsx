@@ -5,7 +5,7 @@ interface Props {
   data: any
 }
 
-const resolveReadableType: (type: any) => string = (type) => {
+const resolveReadableType: (type: any) => string = type => {
   switch (type.name) {
     case 'enum':
       return type.value.map(({ value }: { value: string }) => value).join(' | ')
@@ -29,23 +29,23 @@ const PropsTable: React.FC<Props> = ({ data }) => {
       {props ? (
         <Table width="100%">
           <Table.Head>
-            {COLUMNS.map((column) => {
+            {COLUMNS.map(column => {
               return <Table.TextHeaderCell key={column}>{column}</Table.TextHeaderCell>
             })}
           </Table.Head>
           <Table.Body>
-            {Object.keys(props).map((prop) => {
+            {Object.keys(props).map(prop => {
               const { type, required, description } = props[prop]
               return (
-                <Table.Row key={prop}>
+                <Table.Row key={prop} minHeight={64} height="unset" paddingY={majorScale(2)}>
                   <Table.Cell>
                     <Pane display="flex" alignItems="center">
                       <Heading size={400}>{prop}</Heading>
-                      {required && <Badge>Required</Badge>}
+                      {required && <Badge marginLeft={majorScale(2)}>Required</Badge>}
                     </Pane>
                   </Table.Cell>
                   <Table.Cell>
-                    <Code>{resolveReadableType(type)}</Code>
+                    <Code display="block">{resolveReadableType(type)}</Code>
                   </Table.Cell>
                   <Table.Cell>
                     <Paragraph>{description}</Paragraph>
