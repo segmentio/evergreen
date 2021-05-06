@@ -1,6 +1,7 @@
 import SectionHeading from './renderers/SectionHeading'
 import Code from './renderers/Code'
 import InlineCode from './renderers/InlineCode'
+import Blockquote from './renderers/Blockquote'
 import ColorSwatch from '../ColorSwatch'
 import { Paragraph, Strong, Ol, Ul, Li, majorScale } from 'evergreen-ui'
 
@@ -18,6 +19,7 @@ const componentMapping = {
   ul: (props: any) => <Ul {...props} />,
   li: (props: any) => <Li {...props} />,
   inlineCode: (props: any) => <InlineCode {...props} />,
+  blockquote: Blockquote,
   ColorSwatch,
 }
 

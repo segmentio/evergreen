@@ -15,7 +15,7 @@ const InlineCode: React.FC<Props> = ({ children }) => {
       backgroundColor="#F8F9FA"
       // eslint-disable-next-line
       // @ts-ignore Types in ui-box need to be updated
-      webkitFontSmoothing="antialiased"
+      WebkitFontSmoothing="antialiased"
     >
       {children}
     </Code>

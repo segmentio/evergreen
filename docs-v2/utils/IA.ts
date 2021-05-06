@@ -47,13 +47,12 @@ const IA: IA = {
       {
         id: 'v6-migration-guide',
         name: 'Migrating from v5.x to v6',
-        description:
-          'Guide about migrating from previous version of Evergreen into the current one.',
+        description: 'Guide about migrating from previous version of Evergreen into the current one.',
       },
       {
-        id: 'themeing',
-        name: 'Themeing',
-        description: 'A primer into the theming architecture behind Evergreen',
+        id: 'theming',
+        name: 'Theming',
+        description: 'A primer into the (new!) theming architecture behind Evergreen',
       },
     ],
   },
@@ -66,17 +65,7 @@ const IA: IA = {
         id: 'typography',
         github: githubLink('typography'),
         name: 'Typography',
-        tags: [
-          'heading',
-          'paragraph',
-          'text',
-          'link',
-          'list',
-          'ordered list',
-          'unordered list',
-          'strong',
-          'small',
-        ],
+        tags: ['heading', 'paragraph', 'text', 'link', 'list', 'ordered list', 'unordered list', 'strong', 'small'],
         image: '/Typography.png',
         imageHighlight: '/Typography-highlight.png',
       },
@@ -139,16 +128,14 @@ const IA: IA = {
         image: '/Alert.png',
         imageHighlight: '/Alert-highlight.png',
         name: 'Alert',
-        description:
-          'The Alert component is used to show feedback to the user about an action or state.',
+        description: 'The Alert component is used to show feedback to the user about an action or state.',
         tags: ['banners', 'notification', 'messages', 'inline alert'],
       },
       {
         id: 'avatar',
         github: githubLink('avatar'),
         name: 'Avatar',
-        description:
-          'The Avatar component is used to represent users. And should only be used for users.',
+        description: 'The Avatar component is used to represent users. And should only be used for users.',
         image: '/Avatar.png',
         imageHighlight: '/Avatar-highlight.png',
         tags: ['avatar', 'image', 'user'],
@@ -202,8 +189,7 @@ const IA: IA = {
         image: '/Autocomplete.png',
         imageHighlight: '/Autocomplete-highlight.png',
         name: 'Autocomplete',
-        description:
-          'The Autocomplete component allow user to type and select from a list of options.',
+        description: 'The Autocomplete component allow user to type and select from a list of options.',
       },
       {
         id: 'file-picker',
@@ -211,8 +197,7 @@ const IA: IA = {
         image: '/Filepicker.png',
         imageHighlight: '/Filepicker-highlight.png',
         name: 'Filepicker',
-        description:
-          'The Filepicker component is used to select one or multiple files from the file system.',
+        description: 'The Filepicker component is used to select one or multiple files from the file system.',
       },
       {
         id: 'select',
@@ -226,8 +211,7 @@ const IA: IA = {
         id: 'combobox',
         github: githubLink('combobox'),
         name: 'Combobox',
-        description:
-          'The Combobox component is used for selecting an option from a predefined list of options.',
+        description: 'The Combobox component is used for selecting an option from a predefined list of options.',
         image: '/Combobox.png',
         imageHighlight: '/Combobox-highlight.png',
         tags: ['dropdown', 'menu'],
@@ -236,8 +220,7 @@ const IA: IA = {
         id: 'select-menu',
         github: githubLink('select-menu'),
         name: 'Select Menu',
-        description:
-          'The Select Menu component allows selection of multiple items from a dropdown list.',
+        description: 'The Select Menu component allows selection of multiple items from a dropdown list.',
         image: '/Select Menu.png',
         imageHighlight: '/Select Menu-highlight.png',
         tags: ['dropdown', 'menu'],
@@ -354,8 +337,7 @@ const IA: IA = {
         imageHighlight: '/Corner Dialog-highlight.png',
         github: githubLink('corner-dialog'),
         name: 'Corner Dialog',
-        description:
-          'The CornerDialog component is used for announcements such as new features and feedback requests.',
+        description: 'The CornerDialog component is used for announcements such as new features and feedback requests.',
         tags: ['notification', 'message'],
       },
       {
