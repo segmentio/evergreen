@@ -1,12 +1,14 @@
-# Appearances
+## Appearances
 
-The **Button** component has an **appearance** property with 3 available values: **default**, **primary**, and **minimal**.
+The Button component has an `appearance` property with 3 available values: `default`, `primary`, and `minimal`.
 
 ```jsx
 function DefaultButtonExample() {
   return (
     <>
-      <Button marginRight={16}>Default</Button>
+      <Button marginRight={16}>
+        Default
+      </Button>
       <Button marginRight={16} appearance="primary">
         Primary
       </Button>
@@ -18,10 +20,10 @@ function DefaultButtonExample() {
 }
 ```
 
-# Intents
+## Intents
 
-In addition to the **appearance** — a **Button** can also have a **intent** property.
-The **intent** property can be **none** (default), **success**, **warning**, or **danger**
+In addition to the `appearance` — a Button can also have a `intent` property.
+The `intent` property can be `none` (default), `success`, or `danger`
 
 ```jsx
 function IntentButtonExample() {
@@ -33,9 +35,6 @@ function IntentButtonExample() {
       <Button marginRight={16} intent="success">
         Success
       </Button>
-      <Button marginRight={16} intent="warning">
-        Warning
-      </Button>
       <Button marginRight={16} intent="danger">
         Danger
       </Button>
@@ -44,9 +43,9 @@ function IntentButtonExample() {
 }
 ```
 
-# Mixing appearance and intent
+## Mixing appearance and intent
 
-The **intent** property works with any **appearance**.
+The `intent` property works with any `appearance`.
 
 ```jsx
 function MixedIntentAndAppearanceExample() {
@@ -58,9 +57,6 @@ function MixedIntentAndAppearanceExample() {
       <Button marginRight={16} appearance="primary" intent="success">
         Success
       </Button>
-      <Button marginRight={16} appearance="primary" intent="warning">
-        Warning
-      </Button>
       <Button marginRight={16} appearance="primary" intent="danger">
         Danger
       </Button>
@@ -69,9 +65,9 @@ function MixedIntentAndAppearanceExample() {
 }
 ```
 
-# Button Sizes
+## Button Sizes
 
-By default buttons and controls have a height of **32px** based on the default theme. Out of the box there are three sizes: **small**, **medium**, and **large**. It is possible to change this by passing an explicit height to the button, as well.
+By default buttons and controls have a height of 32px based on the default theme. Out of the box there are three sizes: `small`, `medium`, and `large`. It is possible to change this by passing an explicit height to the button, as well.
 
 ```jsx
 function ButtonSizesExample() {
@@ -97,9 +93,9 @@ function ButtonSizesExample() {
 }
 ```
 
-# Buttons with an Icon
+## Buttons with an Icon
 
-Buttons support an icon either before or after the label via the **iconBefore** or **iconAfter** props. Avoid using both icons in a
+Buttons support an icon either before or after the label via the `iconBefore` or `iconAfter` props. Avoid using both icons in a
 button at the same time.
 
 ```jsx

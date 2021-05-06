@@ -1,16 +1,13 @@
-# Introduction
+# Usage
 
-The `Dialog` component is used to show content on top of an overlay.
-It blocks any interaction with the page — until the overlay is clicked, or a close action is triggered.
-
-## When to use
-
-When you require your user to interact with you app and
+Use the Dialog component when you require your user to interact with you app and
 don’t want your users to jump to a different page and break their workflow.
 
 You should also use a dialog in cases where you need to ask for confirmation
 from the user before doing a lengthy or dangerous action.
 This could be a deletion of some sorts or initiating a lengthy download.
+
+<br />
 
 ## Terminology
 
@@ -21,15 +18,19 @@ This could be a deletion of some sorts or initiating a lengthy download.
 > An element is considered modal if it [blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
 > We use the term “dialog” to avoid confusion with the adjective.
 
+<br />
+
 ## Focus Management
 
-When opening a `Dialog`, focus will be brought inside the `Dialog`
+When opening a Dialog, focus will be brought inside the Dialog.
 When using both the cancel and confirm button, the cancel button will get focus first.
 
-When closing the Dialog, focus will be brought back to the element that was focused before opening the `Dialog`.
-This is normally the button that triggered the `Dialog`.
+When closing the Dialog, focus will be brought back to the element that was focused before opening the Dialog.
+This is normally the button that triggered the Dialog.
 
-# Default dialog example
+<br />
+
+## Default dialog example
 
 ```jsx
 function DefaultDialogExample() {
@@ -52,7 +53,8 @@ function DefaultDialogExample() {
 }
 ```
 
-# Default with a danger intent
+
+## Default with a danger intent
 
 The `intent` prop determines the appearance of the confirm button, `danger` is red.
 
@@ -65,11 +67,11 @@ function DangerIntentDialogExample() {
       <Dialog
         isShown={isShown}
         title="Dialog title"
-        intennt="danger"
+        intent="danger"
         onCloseComplete={() => setIsShown(false)}
-        confirmLabel="Custom Label"
+        confirmLabel="Delete"
       >
-        Dialog content
+        Are you sure you want to delete this item?
       </Dialog>
 
       <Button onClick={() => setIsShown(true)}>Show Dialog</Button>
@@ -78,11 +80,11 @@ function DangerIntentDialogExample() {
 }
 ```
 
-# Internal scrolling
+## Internal scrolling
 
 When content makes the dialog height greater than the available space in the viewport,
 the content area will become scrollable
-It will add a symmetric offset on the top and bottom — based on the topOffset prop.
+It will add a symmetric offset on the top and bottom — based on the `topOffset` prop.
 
 ```jsx
 function InternalScrollingDialogExample() {
@@ -104,7 +106,7 @@ function InternalScrollingDialogExample() {
 }
 ```
 
-# Self managed close
+## Self managed close
 
 ```jsx
 function SelfManagedCloseDialogExample() {
@@ -132,7 +134,7 @@ function SelfManagedCloseDialogExample() {
 }
 ```
 
-# Remove default footer
+## Remove default footer
 
 Use the `hasFooter` prop to show or hide the footer.
 This will hide the confirm and cancel buttons.
@@ -157,7 +159,7 @@ function NoFooterDialogExample() {
 }
 ```
 
-# Remove default header
+## Remove default header
 
 Use the `hasHeader` prop to show or hide the header.
 This will hide both the close icon button as the title.
@@ -182,7 +184,7 @@ function NoHeaderDialogExample() {
 }
 ```
 
-# Preserve scroll position and prevent body scrolling
+## Preserve scroll position and prevent body scrolling
 
 Use the `preventBodyScrolling` prop to disable scrolling outside the dialog.
 
@@ -191,7 +193,7 @@ function PreserveBodyScrollingDialogExample() {
   const [isShown, setIsShown] = React.useState(false)
 
   return (
-    <Pane paddingY="40vh">
+    <Pane>
       <Dialog
         isShown={isShown}
         title="Dialog title"

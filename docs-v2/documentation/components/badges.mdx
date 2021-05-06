@@ -1,22 +1,12 @@
-# Introduction
+# Usage
+- **Badge**: used for state and text, not for numbers.
+- **Pill**: used only for numbers.
 
-The `Badge` and `Pill` components are labels with a background color.
-
-- **Badge**: Used for state and text. Slightly rounded corners.
-- **Pill**: Used only for numbers. Circular.
+<br />
+<br />
 
 # Badge
-
-The `Badge` component should only be used for state and general text labels.
-Not for numbers.
-
 ```jsx
-<Badge color="green">Success</Badge>
-```
-
-## Color options
-
-```jsx collapse
 <Pane>
   <Badge color="neutral" marginRight={8}>
     neutral
@@ -45,78 +35,62 @@ Not for numbers.
 </Pane>
 ```
 
-## When to use what badge
-
-```jsx collapse
-<Pane display="flex">
-  <Pane flexBasis={120}>
-    <Badge color="green">Success</Badge>
+### When to use what badge
+```jsx
+<Pane>
+  <Pane display="flex" alignItems="center" marginBottom={16}>
+    <Pane flexBasis={120}>
+      <Badge color="green">Success</Badge>
+    </Pane>
+    <Pane>
+      <Text>Operational, available, done, approved, added</Text>
+    </Pane>
   </Pane>
-  <Pane>
-    <Strong>Operational, available, done, approved, added</Strong>
+  <Pane display="flex" alignItems="center" marginBottom={16}>
+    <Pane flexBasis={120}>
+      <Badge color="red">Removed</Badge>
+    </Pane>
+    <Pane>
+      <Text>Errors, declined, failed, removed, critical</Text>
+    </Pane>
   </Pane>
-</Pane>
-```
-
-```jsx collapse
-<Pane display="flex">
-  <Pane flexBasis={120}>
-    <Badge color="red">Removed</Badge>
+  <Pane display="flex" alignItems="center" marginBottom={16}>
+    <Pane flexBasis={120}>
+      <Badge color="blue">In progress</Badge>
+    </Pane>
+    <Pane>
+      <Text>In progress, open, modified</Text>
+    </Pane>
   </Pane>
-  <Pane>
-    <Strong>Errors, declined, failed, removed, critical</Strong>
+  <Pane display="flex" alignItems="center" marginBottom={16}>
+    <Pane flexBasis={120}>
+      <Badge color="purple">Trial</Badge>
+    </Pane>
+    <Pane>
+      <Text>Trial, new, information, help</Text>
+    </Pane>
   </Pane>
-</Pane>
-```
-
-```jsx collapse
-<Pane display="flex">
-  <Pane flexBasis={120}>
-    <Badge color="blue">In progress</Badge>
+  <Pane display="flex" alignItems="center" marginBottom={16}>
+    <Pane flexBasis={120}>
+      <Badge color="yellow">Moved</Badge>
+    </Pane>
+    <Pane>
+      <Text>Busy, blocked, missing, warning</Text>
+    </Pane>
   </Pane>
-  <Pane>
-    <Strong>In progress, open, modified</Strong>
-  </Pane>
-</Pane>
-```
-
-```jsx collapse
-<Pane display="flex">
-  <Pane flexBasis={120}>
-    <Badge color="purple">Trial</Badge>
-  </Pane>
-  <Pane>
-    <Strong>Trial, new, information, help</Strong>
-  </Pane>
-</Pane>
-```
-
-```jsx collapse
-<Pane display="flex">
-  <Pane flexBasis={120}>
-    <Badge color="yellow">Moved</Badge>
-  </Pane>
-  <Pane>
-    <Strong>Busy, blocked, missing, warning</Strong>
+  <Pane display="flex" alignItems="center" marginBottom={16}>
+    <Pane flexBasis={120}>
+      <Badge color="neutral">Beta</Badge>
+    </Pane>
+    <Pane>
+      <Text>Beta tag</Text>
+    </Pane>
   </Pane>
 </Pane>
 ```
 
-```jsx collapse
-<Pane display="flex">
-  <Pane flexBasis={120}>
-    <Badge color="neutral">Beta</Badge>
-  </Pane>
-  <Pane>
-    <Strong>Betag</Strong>
-  </Pane>
-</Pane>
-```
 
 # Pill
-
-The `Pill` component should only be used for numbers.
-
 ```jsx
 <Pane>
   <Pill display="inline-flex" margin={8}>

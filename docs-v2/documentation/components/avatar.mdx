@@ -1,7 +1,4 @@
-The `Avatar` component is used to represent users.
-And should only be used for users.
-
-## Basic subtle avatar
+## Basic
 
 Use the `size` property to set the width and height of a avatar.
 The initials will size automatically.
@@ -25,19 +22,15 @@ Use the `src` property to create a avatar with a image.
 ## Colors explained
 
 The color of an avatar is automatically generated based on the name provided.
+You can also manually override the color with `color`.
 
 ```jsx
 <Pane>
   <Avatar name="Steve Jobs" size={40} marginRight={16} />
   <Avatar name="Bill Gates" size={40} marginRight={16} />
   <Avatar name="Elon Musk" size={40} marginRight={16} />
+  <Avatar name="Allen Kleiner" color="green" size={40}/>
 </Pane>
-```
-
-## Manually override the color
-
-```jsx
-<Avatar color="green" name="Jeroen Ransijn" size={40} />
 ```
 
 ## Rendering anonymous users with different colors

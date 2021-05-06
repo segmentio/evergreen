@@ -1,23 +1,26 @@
-# Introduction
+# Usage
 
-The `Checkbox` component maps to a checkbox input and a label.
+The Checkbox component maps to a checkbox input and a label.
+
+<br />
+<br />
 
 ## Checkbox states
 
 ```jsx
 <Pane>
   <Checkbox label="Checkbox default" />
+  <Checkbox indeterminate label="Checkbox indeterminate" />
   <Checkbox checked label="Checkbox checked" />
   <Checkbox disabled label="Checkbox disabled" />
   <Checkbox disabled checked label="Checkbox checked disabled" />
-  <Checkbox indeterminate label="Checkbox indeterminate" />
-  <Checkbox checked indeterminate label="Checkbox checked indeterminate" />
+  <Checkbox disabled indeterminate label="Checkbox indeterminate disabled" />
 </Pane>
 ```
 
 ## Controlled usage
 
-The `Checkbox` component passes on the original event through the `onChange` handler.
+The Checkbox component passes on the original event through the `onChange` handler.
 Use `e.target.checked` to get the latest value and update state accordingly.
 
 ```jsx
@@ -31,10 +34,4 @@ function ControlledCheckboxExample() {
     />
   )
 }
-```
-
-## Add margins
-
-```jsx
-<Checkbox label="Add margins" checked marginBottom={40} />
 ```
