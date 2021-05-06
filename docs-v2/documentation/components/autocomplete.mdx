@@ -1,18 +1,16 @@
-# Introduction
+# Usage
+The Autocomplete components renders a filterable list of options in a [Popover](./popover) — it does not render the text input.
+If you need a combination with a text input and trigger button, take a look at the [Combobox](./combobox) component.
 
-The `Autocomplete` components renders a filterable list of options in a `Popover` — it does not render the text input.
-If you need a combination with a text input and trigger button, take a look at the `Combobox` component.
-This component is mainly used to create type aheads
+<br />
 
-### You might not need Autocomplete
-
-In some cases you might be better off using `Combobox` or `SelectMenu`.
-
-### The autocomplete component combines a set of external libraries
-
+The autocomplete component combines a set of external libraries:
 - Uses `Downshift` for autocomplete
 - Uses `react-tiny-virtual-list` for performant list rendering
 - Uses `fuzzaldrin-plus` for fuzzy filtering
+
+<br />
+<br />
 
 ## Default example
 
@@ -34,29 +32,6 @@ In some cases you might be better off using `Combobox` or `SelectMenu`.
     )
   }}
 </Autocomplete>
-```
-
-## Using children prop
-
-There is no difference between using this syntax and the above syntax.
-
-```jsx
-<Autocomplete
-  title="Fruits"
-  onChange={changedItem => console.log(changedItem)}
-  items={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']}
-  children={props => {
-    const { getInputProps, getRef, inputValue } = props
-    return (
-      <TextInput
-        placeholder="Fruits"
-        value={inputValue}
-        ref={getRef}
-        {...getInputProps()}
-      />
-    )
-  }}
-/>
 ```
 
 ## Open on focus
@@ -119,8 +94,8 @@ Get the `openMenu` prop to manually open the menu on certain events such as `onF
 ## Fully featured example
 
 Full width with flex and options title, onFocus, filtering, and button to trigger the autocomplete.
-Note that this is very similar to the `Combobox` component.
-Consider using that component before using the `Autocomplete` component directly.
+Note that this is very similar to the [Combobox](./combobox) component. 
+Consider using that component before using the Autocomplete component directly.
 
 ```jsx
 <Autocomplete

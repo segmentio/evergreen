@@ -1,11 +1,12 @@
-# Introduction
+# Usage
 
-The Combobox component is used for selecting an option from a predefined list of options.
-It is similar to a `Select` or `SelectMenu` component.
-Clicking the button will show all items.
-Typing in the text input will filter the list.
+The Combobox component is similar to a [Select](./select) or [SelectMenu](./select-menu) component.
+Clicking the button will show all items. Typing in the text input will filter the list.
 
-## Basic Combobox Example
+<br />
+<br />
+
+## Basic
 
 ```jsx
 <Combobox
@@ -30,35 +31,12 @@ Typing in the text input will filter the list.
 />
 ```
 
-## Full width
+## Custom width and height
 
 ```jsx
 <Combobox
   openOnFocus
   width="100%"
-  items={['Banana', 'Orange', 'Apple', 'Mango']}
-  onChange={selected => console.log(selected)}
-  placeholder="Fruit"
-/>
-```
-
-## Custom width
-
-```jsx
-<Combobox
-  openOnFocus
-  width={400}
-  items={['Banana', 'Orange', 'Apple', 'Mango']}
-  onChange={selected => console.log(selected)}
-  placeholder="Fruit"
-/>
-```
-
-## Change height
-
-```jsx
-<Combobox
-  openOnFocus
   height={40}
   items={['Banana', 'Orange', 'Apple', 'Mango']}
   onChange={selected => console.log(selected)}

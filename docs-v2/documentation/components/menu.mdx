@@ -1,7 +1,7 @@
-# Introduction
+# Usage
 
 Evergreen exports multiple component to help create menus.
-All components are accessible through the `Menu` component.
+All components are accessible through the Menu component.
 
 - **Menu**: menu wrapper, helps with focus management.
 - **Menu.Item**: single menu item button. Contains labels and icons.
@@ -9,19 +9,24 @@ All components are accessible through the `Menu` component.
 - **Menu.Divider**: menu divider to divide menu groups visually.
 - **Menu.OptionsGroup**: menu group which works like a radio group.
 
+<br />
+
 ## Focus management
 
-The `Menu` component is used to help with focus management.
+The Menu component is used to help with focus management.
 
 - Arrow down on a button will bring focus inside the popover.
 - Arrow keys within the menu will cycle through all of the menu items and skip `disabled` items.
 - The `Home` key (fn + arrow left) will go to the first item.
 - The `End` key (fn + arrow right) will go to the last item.
 
-# Menu without icons
+<br />
+<br />
 
-All examples below will show the `Menu` inside of a `Popover`.
-It is important to understand the `Menu` component by itself does not manage a dropdown interaction.
+## Menu without icons
+
+All examples below will show the Menu inside of a [Popover](./popover).
+It is important to understand the Menu component by itself does not manage a dropdown interaction.
 
 ```jsx
 <Menu>
@@ -37,7 +42,7 @@ It is important to understand the `Menu` component by itself does not manage a d
 </Menu>
 ```
 
-# Using onSelect handlers
+## Using onSelect handlers
 
 Menu items support a `onSelect` handler that is triggered on click and `enter` + `space` key down.
 
@@ -45,7 +50,7 @@ Menu items support a `onSelect` handler that is triggered on click and `enter` +
 <Menu.Item onSelect={() => toaster.notify('Hello world')}>Say hello</Menu.Item>
 ```
 
-# Dropdown menu
+## Dropdown menu
 
 ```jsx
 <Popover
@@ -72,7 +77,7 @@ Menu items support a `onSelect` handler that is triggered on click and `enter` +
 </Popover>
 ```
 
-# Menu with icons
+## Menu with icons
 
 The `onSelect` handlers are omitted for brevity.
 
@@ -101,7 +106,7 @@ The `onSelect` handlers are omitted for brevity.
 </Popover>
 ```
 
-# Menu with disabled items
+## Menu with disabled items
 
 ```jsx
 <Popover
@@ -130,7 +135,8 @@ The `onSelect` handlers are omitted for brevity.
 </Popover>
 ```
 
-# Groups with titles
+
+## Groups with titles
 
 The `onSelect` handlers are omitted for brevity.
 
@@ -159,7 +165,8 @@ The `onSelect` handlers are omitted for brevity.
 </Popover>
 ```
 
-# Menu option groups
+
+## Menu option groups
 
 The `Menu.OptionsGroup` is useful inside of table headers to help with sorting and filtering options.
 
@@ -196,7 +203,7 @@ function MenuOptionsGroupExample() {
 }
 ```
 
-# Custom menu items
+## Custom menu items
 
 The `Menu` by itself offers focus management to elements inside of the component that
 either have `[role="menuitemradio"]` or `[role="menuitem"]`.
