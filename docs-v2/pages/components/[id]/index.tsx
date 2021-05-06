@@ -10,7 +10,7 @@ import hydrate from 'next-mdx-remote/hydrate'
 import path from 'path'
 import IA from '../../../utils/IA'
 import PageHeader from '../../../components/PageHeader'
-import { Pane, Heading, HeadingOwnProps, Ul, Li, Ol, LinkIcon, Paragraph, Strong, Link, majorScale } from 'evergreen-ui'
+import { Pane, Heading, HeadingOwnProps, Ul, Li, Ol, LinkIcon, Paragraph, Strong, Link, majorScale, Code } from 'evergreen-ui'
 import SideNav from '../../../components/SideNav'
 
 interface Props {
@@ -19,8 +19,9 @@ interface Props {
 
 const SectionHeading: React.FC<{
   size: HeadingOwnProps['size']
+  marginTop: number
   children: string
-}> = ({ size, children }) => {
+}> = ({ size, marginTop, children }) => {
   const idIndex = children.indexOf('{#')
   const text = idIndex !== -1 ? children.substring(0, idIndex) : children
 
@@ -33,26 +34,37 @@ const SectionHeading: React.FC<{
           .join('_')}`
 
   return (
-    <Pane display="flex" alignItems="center" id={id} marginY={majorScale(2)}>
+    <Pane display="flex" alignItems="center" id={id} marginY={majorScale(2)} marginTop={marginTop}>
       <Heading size={size} id={id}>
         {text}
       </Heading>
       <Link href={`#${id}`} marginLeft={majorScale(2)}>
-        <LinkIcon size={12} />
+        <LinkIcon size={12}/>
       </Link>
     </Pane>
   )
 }
 
+const inlineCodeStyle = {
+  padding: '2px 4px',
+  fontSize: '12px',
+  fontWeight: '300',
+  fontFamily: "Menlo, 'SF Mono', monospace",
+  borderRadius: '4px',
+  backgroundColor: '#F8F9FA',
+  webkitFontSmoothing: 'antialiased'
+}
+
 const components = {
-  h1: (props: any) => <SectionHeading size={800} {...props} />,
-  h2: (props: any) => <SectionHeading size={700} {...props} />,
-  h3: (props: any) => <SectionHeading size={600} {...props} />,
-  h4: (props: any) => <SectionHeading size={500} {...props} />,
-  h5: (props: any) => <SectionHeading size={300} {...props} />,
-  h6: (props: any) => <SectionHeading size={200} {...props} />,
+  h1: (props: any) => <SectionHeading size={800} marginTop={40} {...props} />,
+  h2: (props: any) => <SectionHeading size={700} marginTop={40} {...props} />,
+  h3: (props: any) => <SectionHeading size={600} marginTop={28} {...props} />,
+  h4: (props: any) => <SectionHeading size={500} marginTop={24} {...props} />,
+  h5: (props: any) => <SectionHeading size={300} marginTop={16} {...props} />,
+  h6: (props: any) => <SectionHeading size={200} marginTop={16} {...props} />,
   code: (props: any) => <Playground source={props.children} />,
-  p: (props: any) => <Paragraph marginBottom={majorScale(3)} {...props} />,
+  inlineCode: (props: any) => <Code style={inlineCodeStyle} {...props} />,
+  p: (props: any) => <Paragraph marginBottom={majorScale(1)} {...props} />,
   strong: (props: any) => <Strong {...props} />,
   ol: (props: any) => <Ol {...props} />,
   ul: (props: any) => <Ul {...props} />,

@@ -16,7 +16,7 @@ const { Pane, toaster, MaximizeIcon, MinimizeIcon, DocumentIcon, Link, majorScal
 const Playground: React.FC<Props> = ({ source }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false)
 
-  return (
+  return (    
     <Pane display="flex" flexDirection="column" marginBottom={24}>
       <LiveProvider code={source.trim()} scope={{ ...evergreen }}>
         <LivePreview

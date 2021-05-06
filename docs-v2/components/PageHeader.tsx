@@ -23,7 +23,6 @@ const PageHeader: React.FC<Props> = ({ description, githubLink, tabs, title }) =
       justifyContent="space-between"
       flexDirection="column"
       alignItems="flex-start"
-      marginBottom={majorScale(5)}
     >
       <Pane display="flex" width="100%" justifyContent="space-between">
         <Pane>

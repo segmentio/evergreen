@@ -5,8 +5,9 @@ const theme: PrismTheme = {
     backgroundColor: '#2b2b2b',
     color: '#FFFFFF',
     outline: 'none',
-    lineHeight: '24px',
-    font: '14px'
+    lineHeight: 1.5,
+    fontSize: 14,
+    fontFamily: "Menlo, Consolas, Monaco, 'Andale Mono', monospace"
   },
   styles: [
     {
