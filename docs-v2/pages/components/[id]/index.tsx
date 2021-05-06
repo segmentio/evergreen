@@ -19,9 +19,8 @@ interface Props {
 
 const SectionHeading: React.FC<{
   size: HeadingOwnProps['size']
-  marginTop: number
   children: string
-}> = ({ size, marginTop, children }) => {
+}> = ({ size, children }) => {
   const idIndex = children.indexOf('{#')
   const text = idIndex !== -1 ? children.substring(0, idIndex) : children
 
@@ -34,7 +33,7 @@ const SectionHeading: React.FC<{
           .join('_')}`
 
   return (
-    <Pane display="flex" alignItems="center" id={id} marginY={majorScale(2)} marginTop={marginTop}>
+    <Pane display="flex" alignItems="center" id={id} marginTop={majorScale(3)} marginBottom={majorScale(1)}>
       <Heading size={size} id={id}>
         {text}
       </Heading>
@@ -56,12 +55,12 @@ const inlineCodeStyle = {
 }
 
 const components = {
-  h1: (props: any) => <SectionHeading size={800} marginTop={40} {...props} />,
-  h2: (props: any) => <SectionHeading size={700} marginTop={40} {...props} />,
-  h3: (props: any) => <SectionHeading size={600} marginTop={28} {...props} />,
-  h4: (props: any) => <SectionHeading size={500} marginTop={24} {...props} />,
-  h5: (props: any) => <SectionHeading size={300} marginTop={16} {...props} />,
-  h6: (props: any) => <SectionHeading size={200} marginTop={16} {...props} />,
+  h1: (props: any) => <SectionHeading size={800} {...props} />,
+  h2: (props: any) => <SectionHeading size={700} {...props} />,
+  h3: (props: any) => <SectionHeading size={600} {...props} />,
+  h4: (props: any) => <SectionHeading size={500} {...props} />,
+  h5: (props: any) => <SectionHeading size={300} {...props} />,
+  h6: (props: any) => <SectionHeading size={200} {...props} />,
   code: (props: any) => <Playground source={props.children} />,
   inlineCode: (props: any) => <Code style={inlineCodeStyle} {...props} />,
   p: (props: any) => <Paragraph marginBottom={majorScale(1)} {...props} />,

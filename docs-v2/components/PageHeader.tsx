@@ -24,10 +24,10 @@ const PageHeader: React.FC<Props> = ({ description, githubLink, tabs, title }) =
       flexDirection="column"
       alignItems="flex-start"
     >
-      <Pane display="flex" width="100%" justifyContent="space-between">
+      <Pane display="flex" width="100%" justifyContent="space-between" marginBottom={majorScale(4)}>
         <Pane>
-          <Heading size={900}>{title}</Heading>
-          {description && <Paragraph marginTop={majorScale(2)}>{description}</Paragraph>}
+          <Heading size={900} marginBottom={majorScale(2)}>{title}</Heading>
+          {description && <Paragraph>{description}</Paragraph>}
         </Pane>
         <Pane>
           {githubLink && (
@@ -38,7 +38,7 @@ const PageHeader: React.FC<Props> = ({ description, githubLink, tabs, title }) =
         </Pane>
       </Pane>
       {tabs && (
-        <Tablist width="100%" borderBottom="1px solid #efefef" marginTop={majorScale(5)} paddingTop={majorScale(1)}>
+        <Tablist width="100%" borderBottom="1px solid #efefef" marginBottom={majorScale(2)} paddingTop={majorScale(1)}>
           {tabs.map(({ label, to }, i) => (
             <Tab appearance="primary" isSelected={router.asPath === to} key={i} onSelect={() => router.push(to)}>
               {label}

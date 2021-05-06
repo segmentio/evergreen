@@ -3,6 +3,8 @@ Evergreen exports two components to create text alerts:
 - **Alert**: alert component with icon, title and optional description.
 - **InlineAlert**: alert component with icon and title.
 
+<br />
+
 ### Intent API
 
 Both the Alert and the InlineAlert components implement the `intent` prop.
@@ -11,6 +13,9 @@ The `intent` is a interface used across Evergreen and has the following options:
 - **success**: `intent="success"`
 - **warning**: `intent="warning"`
 - **danger**: `intent="danger"`
+
+<br />
+<br />
 
 # Alert
 
@@ -46,72 +51,9 @@ There are props to configure the icon and the border on the left.
 </Pane>
 ```
 
-<!-- ## Alerts with description
+<br />
+<br />
 
-```jsx
-<Pane>
-  <Alert
-    intent="none"
-    title="There are over 200 integrations available"
-    marginBottom={32}
-  >
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </Alert>
-  <Alert
-    intent="success"
-    title="Your source is now sending data"
-    marginBottom={32}
-  >
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </Alert>
-  <Alert
-    intent="warning"
-    title="Changes will affect all warehouses"
-    marginBottom={32}
-  >
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </Alert>
-  <Alert intent="danger" title="We weren’t able to save your changes">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </Alert>
-</Pane>
-``` -->
-<!-- 
-## Card appearance
-
-The card appearance is useful if the alert is presented outside of a card or pane.
-
-```jsx
-<Pane>
-  <Alert
-    appearance="card"
-    intent="none"
-    title="There are over 200 integrations available"
-    marginBottom={32}
-  />
-  <Alert
-    appearance="card"
-    intent="success"
-    title="Your source is now sending data"
-    marginBottom={32}
-  />
-  <Alert
-    appearance="card"
-    intent="warning"
-    title="Changes will affect all warehouses"
-    marginBottom={32}
-  />
-  <Alert
-    appearance="card"
-    intent="danger"
-    title="We weren’t able to save your changes"
-  />
-</Pane>
-``` -->
 
 # InlineAlert
 
