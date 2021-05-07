@@ -18,15 +18,9 @@ function SingleSelectedItemExample() {
   return (
     <SelectMenu
       title="Select name"
-      options={[
-        'Apple',
-        'Apricot',
-        'Banana',
-        'Cherry',
-        'Cucumber'
-      ].map(label => ({ label, value: label }))}
+      options={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({ label, value: label }))}
       selected={selected}
-      onSelect={item => setSelected(item.value)}
+      onSelect={(item) => setSelected(item.value)}
     >
       <Button>{selected || 'Select name...'}</Button>
     </SelectMenu>
@@ -44,17 +38,11 @@ function NoFilterAndTitleSelectedMenuExample() {
   return (
     <SelectMenu
       title="Select name"
-      options={[
-        'Apple',
-        'Apricot',
-        'Banana',
-        'Cherry',
-        'Cucumber'
-      ].map(label => ({ label, value: label }))}
+      options={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({ label, value: label }))}
       selected={selected}
       hasFilter={false}
       hasTitle={false}
-      onSelect={item => setSelected(item.value)}
+      onSelect={(item) => setSelected(item.value)}
     >
       <Button>{selected || 'Select name...'}</Button>
     </SelectMenu>
@@ -72,17 +60,11 @@ function CustomSizeSelectedMenuExample() {
   return (
     <SelectMenu
       title="Select name"
-      options={[
-        'Apple',
-        'Apricot',
-        'Banana',
-        'Cherry',
-        'Cucumber'
-      ].map(label => ({ label, value: label }))}
+      options={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({ label, value: label }))}
       selected={selected}
       hasFilter={false}
       hasTitle={false}
-      onSelect={item => setSelected(item.value)}
+      onSelect={(item) => setSelected(item.value)}
     >
       <Button>{selected || 'Select name...'}</Button>
     </SelectMenu>
@@ -90,16 +72,14 @@ function CustomSizeSelectedMenuExample() {
 }
 ```
 
-# Change the position of the popover
+# Change the popover position
 
-You can change the position of **SelectMenu** by changing its **position** property to one of:
-
-- **Position.TOP**
-- **Position.TOP_LEFT**
-- **Position.TOP_RIGHT**
-- **Position.BOTTOM**
-- **Position.BOTTOM_LEFT**
-- **Position.BOTTOM_RIGHT**
+You can change the position of `SelectMenu` by changing its `position` property to `Position.TOP`,
+`Position.TOP_LEFT`,
+`Position.TOP_RIGHT`,
+`Position.BOTTOM`,
+`Position.BOTTOM_LEFT`, or
+`Position.BOTTOM_RIGHT`,
 
 ```jsx
 function CustomPositionSelectMenuExample() {
@@ -107,16 +87,10 @@ function CustomPositionSelectMenuExample() {
   return (
     <SelectMenu
       title="Select name"
-      options={[
-        'Apple',
-        'Apricot',
-        'Banana',
-        'Cherry',
-        'Cucumber'
-      ].map(label => ({ label, value: label }))}
+      options={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({ label, value: label }))}
       position={Position.TOP}
       selected={selected}
-      onSelect={item => setSelected(item.value)}
+      onSelect={(item) => setSelected(item.value)}
     >
       <Button>{selected || 'Select name...'}</Button>
     </SelectMenu>
@@ -134,36 +108,10 @@ Note that empty view won't be shown when options are being filtered and there ar
   title="Empty view"
   options={[]}
   emptyView={
-    <Pane
-      height="100%"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-    >
+    <Pane height="100%" display="flex" alignItems="center" justifyContent="center">
       <Text size={300}>No options found</Text>
     </Pane>
   }
->
-  <Button>Select option...</Button>
-</SelectMenu>
-```
-
-It's also possible to close `<SelectMenu>` from within empty view:
-
-```jsx
-<SelectMenu
-  title="Empty view"
-  options={[]}
-  emptyView={({ close }) => (
-    <Pane
-      height="100%"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <Button onClick={close}>Close</Button>
-    </Pane>
-  )}
 >
   <Button>Select option...</Button>
 </SelectMenu>
@@ -180,15 +128,14 @@ It's possible to include icons in the menu list.
     {
       label: 'Apple',
       value: 'Apple',
-      icon:
-        'https://upload.wikimedia.org/wikipedia/commons/d/d2/Malus-Boskoop_organic.jpg'
+      icon: 'https://upload.wikimedia.org/wikipedia/commons/d/d2/Malus-Boskoop_organic.jpg',
     },
     {
       label: 'Banana',
       value: 'Banana',
       icon:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Bananas_white_background_DS.jpg/2560px-Bananas_white_background_DS.jpg'
-    }
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Bananas_white_background_DS.jpg/2560px-Bananas_white_background_DS.jpg',
+    },
   ]}
 >
   <Button>Select option...</Button>
@@ -197,20 +144,14 @@ It's possible to include icons in the menu list.
 
 # Multiselect with deselect example
 
-This example shows usage with multiple selected items.
-
-This pattern is only an example.
-Selected values and the formatting of their names should be managed wherever you choose to manage state.
-The `onDeselect` method is provided to assist with this.
-
-As users click on selected values to remove them, you can update state.
+This example shows usage with multiple selected items. As users click on selected values to remove them, you can update state. Note that this is just an example.
 
 ```jsx
 function MultiSelectSelectMenuExample() {
   const [options] = React.useState(
-    ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map(label => ({
+    ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({
       label,
-      value: label
+      value: label,
     }))
   )
   const [selectedItemsState, setSelectedItems] = React.useState([])
@@ -222,7 +163,7 @@ function MultiSelectSelectMenuExample() {
       title="Select multiple names"
       options={options}
       selected={selectedItemsState}
-      onSelect={item => {
+      onSelect={(item) => {
         const selected = [...selectedItemsState, item.value]
         const selectedItems = selected
         const selectedItemsLength = selectedItems.length
@@ -237,11 +178,9 @@ function MultiSelectSelectMenuExample() {
         setSelectedItems(selected)
         setSelectedItemNames(selectedNames)
       }}
-      onDeselect={item => {
+      onDeselect={(item) => {
         const deselectedItemIndex = selectedItemsState.indexOf(item.value)
-        const selectedItems = selectedItemsState.filter(
-          (_item, i) => i !== deselectedItemIndex
-        )
+        const selectedItems = selectedItemsState.filter((_item, i) => i !== deselectedItemIndex)
         const selectedItemsLength = selectedItems.length
         let selectedNames = ''
         if (selectedItemsLength === 0) {
@@ -262,9 +201,9 @@ function MultiSelectSelectMenuExample() {
 }
 ```
 
-## onFilterChange example
+## Attaching a callback for when the filter changes
 
-You can attach a callback handler for the search filter via the **onFilterChange** property.
+You can attach a callback handler for the search filter via the `onFilterChange` property.
 
 ```jsx
 function OnFilterChangeSelectMenuExample() {
@@ -277,16 +216,10 @@ function OnFilterChangeSelectMenuExample() {
       </Pane>
       <SelectMenu
         title="Select name"
-        onFilterChange={filter => setFilter(filter)}
-        options={[
-          'Apple',
-          'Apricot',
-          'Banana',
-          'Cherry',
-          'Cucumber'
-        ].map(label => ({ label, value: label }))}
+        onFilterChange={(filter) => setFilter(filter)}
+        options={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({ label, value: label }))}
         selected={selected}
-        onSelect={item => setSelected(item.value)}
+        onSelect={(item) => setSelected(item.value)}
       >
         <Button>{selected || 'Select name...'}</Button>
       </SelectMenu>
@@ -295,7 +228,7 @@ function OnFilterChangeSelectMenuExample() {
 }
 ```
 
-## Disabled option example
+## Disabled options
 
 This example shows basic usage for disabling some options. Options that are disabled cannot be clicked and their labels are muted.
 
@@ -308,10 +241,10 @@ function DisabledItemSelectMenuExample() {
         title="Select Option"
         options={[
           { label: 'Disabled', value: 'disabled', disabled: true },
-          { label: 'Not Disabled', value: 'not-disabled' }
+          { label: 'Not Disabled', value: 'not-disabled' },
         ]}
         selected={selected}
-        onSelect={item => setSelected(item.value)}
+        onSelect={(item) => setSelected(item.value)}
       >
         <Button>{selected || 'Select name...'}</Button>
       </SelectMenu>
@@ -322,7 +255,7 @@ function DisabledItemSelectMenuExample() {
 
 ## Custom Title Example
 
-This example shows how one should use the **titleView** property to pass in a custom title.
+This example shows how one should use the `titleView` property to pass in a custom title.
 
 ```jsx
 function CustomTitleSelectMenuExample() {
@@ -333,7 +266,7 @@ function CustomTitleSelectMenuExample() {
         title="Select Option"
         options={[
           { label: 'Option 1', value: 'option-1' },
-          { label: 'Option 2', value: 'option-2' }
+          { label: 'Option 2', value: 'option-2' },
         ]}
         tooltipContent="Choose one of the options below."
         titleView={({ close, title, headerHeight }) => {
@@ -352,17 +285,12 @@ function CustomTitleSelectMenuExample() {
                   <HelpIcon size={12} marginLeft={4} />
                 </Tooltip>
               </Pane>
-              <IconButton
-                icon={CrossIcon}
-                appearance="minimal"
-                height={24}
-                onClick={close}
-              />
+              <IconButton icon={CrossIcon} appearance="minimal" height={24} onClick={close} />
             </Pane>
           )
         }}
         selected={selected}
-        onSelect={item => setSelected(item.value)}
+        onSelect={(item) => setSelected(item.value)}
       >
         <Button>{selected || 'Select name...'}</Button>
       </SelectMenu>
@@ -371,7 +299,7 @@ function CustomTitleSelectMenuExample() {
 }
 ```
 
-## Custom Filter PlaceHolder and Icon Example
+## Custom Filter PlaceHolder and Icon
 
 It's possible to change the filter placeholder and filter icon through the **filterPlaceholder** and **filterIcon** props.
 
@@ -384,17 +312,11 @@ function CustomPlaceholderAndIconSelectMenuExample() {
     <Pane>
       <SelectMenu
         title="Select Option"
-        options={[
-          'Comedy',
-          'Drama',
-          'Fantasy',
-          'Family',
-          'Action'
-        ].map(label => ({ label, value: label }))}
+        options={['Comedy', 'Drama', 'Fantasy', 'Family', 'Action'].map((label) => ({ label, value: label }))}
         selected={selected}
-        filterPlaceholder={'Choose a genre'}
+        filterPlaceholder="Choose a genre"
         filterIcon={FilmIcon}
-        onSelect={item => setSelected(item.value)}
+        onSelect={(item) => setSelected(item.value)}
       >
         <Button>{selected || 'Select name...'}</Button>
       </SelectMenu>

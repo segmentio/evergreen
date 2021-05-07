@@ -28,68 +28,25 @@ Use `e.target.value` to get the value of the component on change.
 ```jsx
 function ControlledTextareaExample() {
   const [value, setValue] = React.useState('')
-  return <Textarea onChange={e => setValue(e.target.value)} value={value} />
+  return <Textarea onChange={(e) => setValue(e.target.value)} value={value} />
 }
 ```
 
 # TextareaField
 
-The `TextareaField` component combines a `Textarea` with a label and optional
-`description`, `validationMessage` and `hint`.
+The `TextareaField` component combines a `Textarea` with a label and optional `description`, `validationMessage` and `hint`. The example below shows how each of these fields is rendered on the text field. Try opening the code example and changing some of the fields.
 
 ## Label and description
 
 ```jsx
 <TextareaField
+  isInvalid={true}
   label="Default textarea field"
   description="This is a description."
-  placeholder="Placeholder text"
-/>
-```
-
-## A hint is under the textarea
-
-```jsx
-<TextareaField
-  label="Default textarea field"
-  hint="This is a hint."
-  placeholder="Placeholder text"
-/>
-```
-
-## Required textarea field
-
-```jsx
-<TextareaField
-  id="ids-are-optional"
-  label="A required textarea field"
+  hint="This is a hint. It's rendered under the textarea"
   required
-  description="This is a description."
+  validationMessage="This field is required. It's only rendered when isInvalid is true."
   placeholder="Placeholder text"
-/>
-```
-
-## Invalid field
-
-```jsx
-<TextareaField
-  isInvalid
-  required
-  label="A required textarea field"
-  description="This is a description."
-  validationMessage="This field is required"
-/>
-```
-
-## Validation message without invalid input
-
-```jsx
-<TextareaField
-  isInvalid={false}
-  required
-  label="A required textarea field"
-  description="This is a description."
-  validationMessage="This field is required"
 />
 ```
 
@@ -107,7 +64,7 @@ function ControlledTextareaExample() {
       required
       description="This is a description."
       value={value}
-      onChange={e => setValue(e.target.value)}
+      onChange={(e) => setValue(e.target.value)}
     />
   )
 }

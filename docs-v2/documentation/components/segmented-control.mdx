@@ -6,6 +6,8 @@ Within the control, all segments are equal in width.
 A segmented control is often used to switch between views of some data.
 Use a segmented control only when the options are predefined and are at most 4 options.
 
+> Deprecation note: This component may be removed in future versions of Evergreen. Use Group instead.
+
 # Design guidelines
 
 By default the segmented control has a height of `32px` (the same as a button).
@@ -19,18 +21,11 @@ function BasicSegmentedControlExample() {
   const [options] = React.useState([
     { label: 'Hourly', value: 'hourly' },
     { label: 'Daily', value: 'daily' },
-    { label: 'Monthly', value: 'monthly' }
+    { label: 'Monthly', value: 'monthly' },
   ])
   const [value, setValue] = React.useState('daily')
 
-  return (
-    <SegmentedControl
-      width={240}
-      options={options}
-      value={value}
-      onChange={value => setValue(value)}
-    />
-  )
+  return <SegmentedControl width={240} options={options} value={value} onChange={(value) => setValue(value)} />
 }
 ```
 
@@ -43,18 +38,12 @@ function SmallSegmentedControlExample() {
   const [options] = React.useState([
     { label: 'Hourly', value: 'hourly' },
     { label: 'Daily', value: 'daily' },
-    { label: 'Monthly', value: 'monthly' }
+    { label: 'Monthly', value: 'monthly' },
   ])
   const [value, setValue] = React.useState('daily')
 
   return (
-    <SegmentedControl
-      width={240}
-      size="small"
-      options={options}
-      value={value}
-      onChange={value => setValue(value)}
-    />
+    <SegmentedControl width={240} size="small" options={options} value={value} onChange={(value) => setValue(value)} />
   )
 }
 ```

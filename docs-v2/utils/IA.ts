@@ -202,7 +202,7 @@ const IA: IA = {
       {
         id: 'select',
         name: 'Select',
-        description: 'The Select component allow user to click and select from a list of option.',
+        description: 'The Select component allow user to click and select from a list of options.',
         image: '/Select.png',
         imageHighlight: '/Select-highlight.png',
         github: githubLink('select'),
@@ -266,7 +266,7 @@ const IA: IA = {
         imageHighlight: '/Segmented Control-highlight.png',
         name: 'Segmented Control',
         tags: ['button group'],
-        description: 'I am a lonely component. Don not use me.',
+        description: 'The Segmented Control is a component that lets users toggle between up-to-4 options in a row. ',
       },
       {
         id: 'switch',
