@@ -382,7 +382,7 @@ const IA: IA = {
       {
         id: 'empty-states',
         name: 'Empty States',
-        description: 'Very, very empty for now.',
+        description: 'Coming soon!',
         image: '/Empty State.png',
         imageHighlight: '/Empty State-highlight.png',
       },
