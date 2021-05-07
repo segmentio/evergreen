@@ -1,5 +1,7 @@
 import React from 'react'
 import { Heading, majorScale, Pane, Tab, Tablist } from 'evergreen-ui'
+import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
+import scrollIntoView from 'scroll-into-view-if-needed'
 import { Item } from '../utils/IA'
 import router from 'next/router'
 
@@ -11,6 +13,16 @@ interface Props {
 }
 
 const SideNav: React.FC<Props> = ({ title, items, selectedItem, routePrefix }) => {
+  useIsomorphicLayoutEffect(() => {
+    const element = document.querySelector('[aria-selected="true"]')
+
+    if (element) {
+      scrollIntoView(element, {
+        scrollMode: 'if-needed',
+      })
+    }
+  }, [selectedItem])
+
   return (
     <Pane
       display="flex"
@@ -26,7 +38,7 @@ const SideNav: React.FC<Props> = ({ title, items, selectedItem, routePrefix }) =
         {title}
       </Heading>
       <Tablist>
-        {items.map((item) => {
+        {items.map(item => {
           return (
             <Tab
               key={item.id}
