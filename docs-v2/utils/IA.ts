@@ -20,6 +20,7 @@ export interface Item {
   description?: string
   image?: string
   imageHighlight?: string
+  inProgress?: boolean
   related?: string[]
   tags?: string[]
 }
@@ -382,8 +383,9 @@ const IA: IA = {
       {
         id: 'empty-states',
         name: 'Empty States',
-        description: 'Coming soon!',
+        description: 'Empty States are a UI affordance for when there is no data available to display to an end-user.',
         image: '/Empty State.png',
+        inProgress: true,
         imageHighlight: '/Empty State-highlight.png',
       },
       {

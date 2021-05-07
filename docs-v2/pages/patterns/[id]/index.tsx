@@ -1,5 +1,7 @@
 import React from 'react'
 import fs from 'fs'
+import path from 'path'
+
 import EntityOverviewTemplate, {
   Props as EntityOverviewTemplateProps,
 } from '../../../components/templates/EntityOverviewTemplate'
@@ -8,15 +10,16 @@ import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
-import path from 'path'
 import IA from '../../../utils/IA'
+import { Link } from 'evergreen-ui'
 import PageHeader from '../../../components/PageHeader'
 import ComingSoon from '../../../components/ComingSoon'
 
 interface Props {
   patterns: EntityOverviewTemplateProps['navItems']
   pattern: EntityOverviewTemplateProps['selectedNavItem']
-  mdxSource: MdxRemote.Source
+  mdxSource: MdxRemote.Source | null
+  inProgress?: boolean
 }
 
 const PatternPage: React.FC<Props> = ({ mdxSource, patterns, pattern }) => {
@@ -24,25 +27,11 @@ const PatternPage: React.FC<Props> = ({ mdxSource, patterns, pattern }) => {
   const { query } = router
   const { id } = query
 
-  console.log("here in PatternPage")
-
   if (!pattern) {
     return null
   }
 
   const { name, description, github } = pattern
-
-  if (pattern.description=="Coming soon!") {
-    return (
-      <ComingSoon 
-        pageTitle={`${name} Documentation`}
-        navTitle="Patterns"
-        navItems={patterns}
-        selectedNavItem={pattern}
-        navPrefix="patterns"
-      />
-    )
-  }
 
   return (
     <EntityOverviewTemplate
@@ -52,37 +41,41 @@ const PatternPage: React.FC<Props> = ({ mdxSource, patterns, pattern }) => {
       navPrefix="patterns"
       navTitle="Patterns"
       pageHeader={
-        <PageHeader
-          title={name!}
-          description={description}
-          githubLink={github}
-          tabs={[
-            {
-              label: 'Details',
-              to: `/patterns/${id}`,
-            },
-            {
-              label: 'Properties',
-              to: `/patterns/${id}/props`,
-            },
-          ]}
-        />
+        !pattern.inProgress ? (
+          <PageHeader
+            title={name!}
+            description={description}
+            githubLink={github}
+            tabs={[
+              {
+                label: 'Details',
+                to: `/patterns/${id}`,
+              },
+              {
+                label: 'Properties',
+                to: `/patterns/${id}/props`,
+              },
+            ]}
+          />
+        ) : null
       }
-      source={mdxSource}
-    />
+      source={mdxSource!}
+    >
+      {pattern.inProgress && (
+        <ComingSoon>
+          We are currently working on this pattern.{' '}
+          <Link href="https://github.com/segmentio/evergreen/discussions" target="_blank">
+            Start a discussion
+          </Link>
+          if you are interested in learning more, or want to contribute
+        </ComingSoon>
+      )}
+    </EntityOverviewTemplate>
   )
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'patterns'))
-
-  console.log("files")
-  console.log(files)
-
-  const paths = files.map(file => `/patterns/${file.split('.')[0]}`)
-
-  console.log("paths")
-  console.log(paths)
+  const paths = IA.patterns.items.map((item) => `/patterns/${item.id}`)
 
   return {
     paths,
@@ -98,15 +91,21 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
-  
+  const patterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const pattern = patterns.find((pattern) => pattern.id === id)
+
+  if (pattern?.inProgress) {
+    return {
+      props: {
+        mdxSource: null,
+        patterns,
+        pattern,
+      },
+    }
+  }
 
   const fileContents = fs.readFileSync(path.join(process.cwd(), 'documentation', 'patterns', `${id}.mdx`)).toString()
-
   const mdxSource = await renderToString(fileContents, { components })
-  const patterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-  const pattern = patterns.find(pattern => pattern.id === id)
-  
-  
 
   return {
     props: {

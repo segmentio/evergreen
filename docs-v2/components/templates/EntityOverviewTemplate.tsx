@@ -12,8 +12,8 @@ export interface Props {
   navItems: Item[]
   navPrefix: string
   selectedNavItem: Item
-  pageHeader: JSX.Element
-  source?: MdxRemote.Source
+  pageHeader: JSX.Element | null
+  source?: MdxRemote.Source | null
 }
 
 const EntityOverviewTemplate: React.FC<Props> = ({
