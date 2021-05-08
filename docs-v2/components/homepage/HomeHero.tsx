@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 
 import { Pane, useTheme, majorScale, Heading, Paragraph, Button, minorScale } from 'evergreen-ui'
+import Link from 'next/link'
 
 const HomeHero = () => {
   const { colors } = useTheme() as any
@@ -21,7 +22,7 @@ const HomeHero = () => {
           <Paragraph size={500} marginTop={majorScale(2)} marginBottom={majorScale(3)}>
             Evergreen is a React UI Framework for building ambitious products on the web. Brought to you by Segment.
           </Paragraph>
-          <Button appearance="primary">Get Started</Button>
+          <Link href="/introduction/getting-started"><Button appearance="primary">Get Started</Button></Link>
         </Pane>
         <Pane flex={2}>
           <lottie-player
