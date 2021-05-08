@@ -53,7 +53,7 @@ const PatternsPage: React.FC<Props> = () => {
                     id={item.id}
                     name={item.name}
                     type="patterns"
-                    imageSrc={item.image}
+                    imageSrc={item.imageHighlight}
                     imageHighlightSrc={item.imageHighlight}
                   />
                 )

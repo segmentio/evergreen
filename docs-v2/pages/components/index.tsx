@@ -45,6 +45,7 @@ const ComponentsPage: React.FC<Props> = () => {
               gridColumnGap="32px"
               gridRowGap="32px"
               gridTemplateColumns="1fr 1fr 1fr 1fr"
+              
             >
               {filteredItems.map(item => {
                 return (
@@ -53,7 +54,7 @@ const ComponentsPage: React.FC<Props> = () => {
                     key={item.id}
                     name={item.name}
                     type="components"
-                    imageSrc={item.image}
+                    imageSrc={item.imageHighlight}
                     imageHighlightSrc={item.imageHighlight}
                   />
                 )

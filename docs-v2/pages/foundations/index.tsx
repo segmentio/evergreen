@@ -53,7 +53,7 @@ const FoundationsPage: React.FC<Props> = () => {
                     key={item.id}
                     name={item.name}
                     type="foundations"
-                    imageSrc={item.image}
+                    imageSrc={item.imageHighlight}
                     imageHighlightSrc={item.imageHighlight}
                   />
                 )
