@@ -18,7 +18,7 @@ interface Props {
   foundation: EntityOverviewTemplateProps['selectedNavItem']
 }
 
-const FoundationPropsPage: React.FC<Props> = ({ componentProps, foundation, foundations }) => {
+const PatternPropsPage: React.FC<Props> = ({ componentProps, foundation, foundations }) => {
   const router = useRouter()
   const { query } = router
   const { id } = query
@@ -66,9 +66,8 @@ const FoundationPropsPage: React.FC<Props> = ({ componentProps, foundation, foun
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'foundations'))
-
-  const paths = files.map(file => `/foundations/${file.split('.')[0]}/props`)
+  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'patterns'))
+  const paths = files.map((file) => `/patterns/${file.split('.')[0]}/props`)
 
   return {
     paths,
@@ -96,7 +95,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   }
 
   const foundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-  const foundation = foundations.find(item => item.id === id)
+  const foundation = foundations.find((item) => item.id === id)
 
   return {
     props: {
@@ -107,4 +106,4 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   }
 }
 
-export default FoundationPropsPage
+export default PatternPropsPage

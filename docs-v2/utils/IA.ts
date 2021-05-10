@@ -104,7 +104,7 @@ const IA: IA = {
       'Components are the reusable building blocks of our design system. Each component meets a specific interaction or UI need, and has been specifically created to work together to create patterns and intuitive user experiences.',
     items: [
       {
-        id: 'button',
+        id: 'buttons',
         github: githubLink('buttons'),
         name: 'Button',
         description: 'A Button triggers an action or an event.',
@@ -393,6 +393,7 @@ const IA: IA = {
         name: 'Table Layout',
         description: 'Coming soon!',
         image: '/Table Layout.png',
+        inProgress: true,
         imageHighlight: '/Table Layout-highlight.png',
       },
       {
@@ -400,6 +401,7 @@ const IA: IA = {
         name: 'Error Messages',
         description: 'Coming soon!',
         image: '/Error Messages.png',
+        inProgress: true,
         imageHighlight: '/Error Messages-highlight.png',
       },
     ],
