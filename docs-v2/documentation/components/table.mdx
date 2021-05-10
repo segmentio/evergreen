@@ -42,12 +42,8 @@ Use `onSelect` and `isSelectable` on a `Table.Row` to make it clickable.
     <Table.TextHeaderCell>ltv</Table.TextHeaderCell>
   </Table.Head>
   <Table.Body height={240}>
-    {profiles.map(profile => (
-      <Table.Row
-        key={profile.id}
-        isSelectable
-        onSelect={() => alert(profile.name)}
-      >
+    {profiles.map((profile) => (
+      <Table.Row key={profile.id} isSelectable onSelect={() => alert(profile.name)}>
         <Table.TextCell>{profile.name}</Table.TextCell>
         <Table.TextCell>{profile.lastActivity}</Table.TextCell>
         <Table.TextCell isNumber>{profile.ltv}</Table.TextCell>
@@ -100,14 +96,9 @@ Table rows can have a `intent` prop as well.
 
 ```jsx
 <Pane>
-  {['none', 'danger', 'warning', 'success'].map(intent => {
+  {['none', 'danger', 'warning', 'success'].map((intent) => {
     return (
-      <Table.Row
-        key={intent}
-        isSelectable
-        onSelect={() => alert(intent)}
-        intent={intent}
-      >
+      <Table.Row key={intent} isSelectable onSelect={() => alert(intent)} intent={intent}>
         <Table.TextCell>{intent}</Table.TextCell>
       </Table.Row>
     )
@@ -152,12 +143,8 @@ This can be used as a base to build more complex table cells.
 
 ```jsx
 <Table.Row>
-  <Table.TextCell textProps={{ size: 500 }}>
-    You want to use this component
-  </Table.TextCell>
-  <Table.TextCell textProps={{ size: 500 }}>
-    When you are using text
-  </Table.TextCell>
+  <Table.TextCell textProps={{ size: 500 }}>You want to use this component</Table.TextCell>
+  <Table.TextCell textProps={{ size: 500 }}>When you are using text</Table.TextCell>
   <Table.TextCell textProps={{ size: 500 }}>In your table cell</Table.TextCell>
 </Table.Row>
 ```
@@ -166,9 +153,7 @@ This can be used as a base to build more complex table cells.
 
 ```jsx
 <Table.Head>
-  <Table.HeaderCell>
-    You almost never want to use this component directly.
-  </Table.HeaderCell>
+  <Table.HeaderCell>You almost never want to use this component directly.</Table.HeaderCell>
 </Table.Head>
 ```
 
@@ -185,10 +170,7 @@ This can be used as a base to build more complex table cells.
 
 ```jsx
 <Table.Head>
-  <Table.SearchHeaderCell
-    onChange={value => console.log(value)}
-    placeholder="Search by email..."
-  />
+  <Table.SearchHeaderCell onChange={(value) => console.log(value)} placeholder="Search by email..." />
 </Table.Head>
 ```
 
@@ -216,12 +198,8 @@ Evergreen gives some nice features when working with virtual tables:
     <Table.TextHeaderCell>ltv</Table.TextHeaderCell>
   </Table.Head>
   <Table.VirtualBody height={240}>
-    {profiles.map(profile => (
-      <Table.Row
-        key={profile.id}
-        isSelectable
-        onSelect={() => alert(profile.name)}
-      >
+    {profiles.map((profile) => (
+      <Table.Row key={profile.id} isSelectable onSelect={() => alert(profile.name)}>
         <Table.TextCell>{profile.name}</Table.TextCell>
         <Table.TextCell>{profile.lastActivity}</Table.TextCell>
         <Table.TextCell isNumber>{profile.ltv}</Table.TextCell>
@@ -230,8 +208,3 @@ Evergreen gives some nice features when working with virtual tables:
   </Table.VirtualBody>
 </Table>
 ```
-
-### Complete virtual example
-
-The source code of this example is available in `docs/src/components/examples/VirtualTable` on [GitHub](https://github.com/segmentio/evergreen).
-This example features dynamic and auto heights.

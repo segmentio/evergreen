@@ -3,6 +3,7 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import * as evergreen from 'evergreen-ui'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import CodeSandboxIcon from './icons/CodeSandboxIcon'
+import profiles from '../fixtures/profiles.json'
 import TooltipIconButton from './TooltipIconButton'
 import { getCodeSandboxLink } from '../lib/codesandbox'
 import theme from './playground-theme'
@@ -16,9 +17,9 @@ const { Pane, toaster, MaximizeIcon, MinimizeIcon, DocumentIcon, Link, majorScal
 const Playground: React.FC<Props> = ({ source }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false)
 
-  return (    
+  return (
     <Pane display="flex" flexDirection="column" marginBottom={24}>
-      <LiveProvider code={source.trim()} scope={{ ...evergreen }}>
+      <LiveProvider code={source.trim()} scope={{ ...evergreen, profiles }}>
         <LivePreview
           // eslint-disable-next-line
           // @ts-ignore -- The types for <LivePreview /> are unfortunately broken
