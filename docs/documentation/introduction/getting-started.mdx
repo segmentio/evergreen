@@ -1,0 +1,43 @@
+# Introduction
+
+Evergreen is the UI framework upon we build product experiences at [Segment](https://segment.com). It serves as a flexible framework, and
+a lot of its visual design is informed through plenty of iteration with our design team, and external contributors.
+
+# Principles of Evergreen
+
+Evergreen is based off a set of principles that help guide its decision:
+
+1. **Flexibility** - Evergreen should be as flexible and composable as possible, allowing its users to build many variations of UI. Evergreen is built off of [ui-box](https://github.com/segmentio/ui-box) to allow for endless flexibility.
+2. **Sensible Defaults** - Evergreen should come with sensible defaults out-of-the-box, and let its developers and customize it via an expressive API.
+3. **Contributor-Friendly** - Evergreen emphasizes robust documentation and a friendly tone in its writing so those internally and externally can feel empowered to contribute back to the framework and bring their perspectives.
+
+# Installation
+
+Evergreen can be installed by either [NPM](https://npmjs.com) or [Yarn](https://yarnpkg.com), using the following command(s). You should also have `react@16.8.0` and `react-dom@16.8.0` or higher versions.
+
+```shell readonly
+$ npm install evergreen-ui
+// OR
+$ yarn add evergreen-ui
+```
+
+# Using Evergreen
+
+Once Evergreen is installed as a dependency in your project, you can import it as such:
+
+```js readonly
+import { Button, Pane, Text, majorScale } from 'evergreen-ui'
+```
+
+Then, you can use those components in your code like:
+
+```jsx readonly
+<Pane display="flex" alginItems="center" marginX={majorScale(2)}>
+  <Button>Click me!</Button>
+  <Text>This is a clickable Button</Text>
+</Pane>
+```
+
+# CodeSandbox
+
+Evergreen also comes with a Codesandbox Template. You can use it as an interactive prototyping environment to validate your ideas and send them to other folks. You can start by opening up the CodeSandbox Template [here](https://codesandbox.io/s/evergreen-typescript-q0zin)

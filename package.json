@@ -144,7 +144,7 @@
     "singleQuote": true
   },
   "lint-staged": {
-    "!(codemods)/**/*.js": [
+    "!(codemods|docs)/**/*.js": [
       "yarn run eslint --fix",
       "prettier --write"
     ],

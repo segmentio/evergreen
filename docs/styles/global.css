@@ -1,0 +1,48 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  -webkit-text-size-adjust: 100%;
+  color: var(--neutral-500);
+  font-family: var(--font-ui);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--neutral-800);
+  font-family: var(--font-display);
+}
+
+/* tt,
+kbd,
+samp {
+  font-size: 12px;
+  font-weight: 600;
+  font-family: "Menlo", "SF Mono", monospace, var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+} */
+
+/* code {
+  border: 1px solid rgb(222, 226, 230);
+  padding: 1px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: "Menlo", "SF Mono", monospace, var(--font-mono);
+  border-radius: 4px;
+  background-color: rgb(248, 249, 250);
+  -webkit-font-smoothing: antialiased;
+} */
+
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}

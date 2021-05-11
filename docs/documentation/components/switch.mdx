@@ -1,0 +1,39 @@
+# Introduction
+
+The `Switch` component is used as an alternative for the `Checkbox` component.
+Except `indeterminate` and `label` are not supported.
+
+# Switch states
+
+```jsx
+<Pane>
+  <Switch marginBottom={16} />
+  <Switch marginBottom={16} checked />
+  <Switch marginBottom={16} disabled />
+  <Switch marginBottom={16} disabled checked />
+</Pane>
+```
+
+# Sizes
+
+The `Switch` will work with any `height` you pass it. Although it’s only ever used with: `16`, `20` and `24`.
+
+```jsx
+<>
+  <Switch height={16} checked marginBottom={majorScale(1)} />
+  <Switch height={20} checked marginBottom={majorScale(1)} />
+  <Switch height={24} checked marginBottom={majorScale(1)} />
+</>
+```
+
+# Controlled usage
+
+The `Switch` component passes on the original event through the `onChange` handler.
+Use `e.target.checked` to get the latest value and update state accordingly.
+
+```jsx
+function ControlledSwitchExample() {
+  const [checked, setChecked] = React.useState(true)
+  return <Switch checked={checked} onChange={(e) => setChecked(e.target.checked)} />
+}
+```

@@ -1,0 +1,103 @@
+# Usage
+- **Badge**: used for state and text, not for numbers.
+- **Pill**: used only for numbers.
+
+<br />
+<br />
+
+# Badge
+```jsx
+<Pane>
+  <Badge color="neutral" marginRight={8}>
+    neutral
+  </Badge>
+  <Badge color="green" marginRight={8}>
+    green
+  </Badge>
+  <Badge color="blue" marginRight={8}>
+    blue
+  </Badge>
+  <Badge color="red" marginRight={8}>
+    red
+  </Badge>
+  <Badge color="orange" marginRight={8}>
+    orange
+  </Badge>
+  <Badge color="purple" marginRight={8}>
+    purple
+  </Badge>
+  <Badge color="yellow" marginRight={8}>
+    yellow
+  </Badge>
+  <Badge color="teal" marginRight={8}>
+    teal
+  </Badge>
+</Pane>
+```
+
+### When to use what badge
+```jsx
+<Pane>
+  <Pane display="flex" alignItems="center" marginBottom={16}>
+    <Pane flexBasis={120}>
+      <Badge color="green">Success</Badge>
+    </Pane>
+    <Pane>
+      <Text>Operational, available, done, approved, added</Text>
+    </Pane>
+  </Pane>
+  <Pane display="flex" alignItems="center" marginBottom={16}>
+    <Pane flexBasis={120}>
+      <Badge color="red">Removed</Badge>
+    </Pane>
+    <Pane>
+      <Text>Errors, declined, failed, removed, critical</Text>
+    </Pane>
+  </Pane>
+  <Pane display="flex" alignItems="center" marginBottom={16}>
+    <Pane flexBasis={120}>
+      <Badge color="blue">In progress</Badge>
+    </Pane>
+    <Pane>
+      <Text>In progress, open, modified</Text>
+    </Pane>
+  </Pane>
+  <Pane display="flex" alignItems="center" marginBottom={16}>
+    <Pane flexBasis={120}>
+      <Badge color="purple">Trial</Badge>
+    </Pane>
+    <Pane>
+      <Text>Trial, new, information, help</Text>
+    </Pane>
+  </Pane>
+  <Pane display="flex" alignItems="center" marginBottom={16}>
+    <Pane flexBasis={120}>
+      <Badge color="yellow">Moved</Badge>
+    </Pane>
+    <Pane>
+      <Text>Busy, blocked, missing, warning</Text>
+    </Pane>
+  </Pane>
+  <Pane display="flex" alignItems="center" marginBottom={16}>
+    <Pane flexBasis={120}>
+      <Badge color="neutral">Beta</Badge>
+    </Pane>
+    <Pane>
+      <Text>Beta tag</Text>
+    </Pane>
+  </Pane>
+</Pane>
+```
+
+
+# Pill
+```jsx
+<Pane>
+  <Pill display="inline-flex" margin={8}>
+    0
+  </Pill>
+  <Pill display="inline-flex" margin={8} color="red">
+    24
+  </Pill>
+</Pane>
+```
