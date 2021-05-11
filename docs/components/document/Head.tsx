@@ -15,7 +15,7 @@ const description =
 const DocumentHead: React.FC<Props> = ({ title }) => {
   return (
     <Head>
-      <title>{`Evergreen / ${title || ''}`}</title>
+      <title>{`Evergreen ${title || ''}`}</title>
       <meta property="og:title" content="Evergreen" />
       <meta property="og:url" content={absolutePath()} />
       <meta property="og:description" content={description} />
