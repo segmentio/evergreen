@@ -36,12 +36,8 @@ const Thumbnail: React.FC<Props> = ({ id, name, type, imageSrc, imageHighlightSr
           borderBottomRightRadius={0}
           position="relative"
         >
-          <Pane 
-            is="img"
-            src={imageSrc}
-            width="100%"
-            height="auto" />
-          <Pane 
+          <Pane is="img" src={imageSrc} width="100%" height="auto" />
+          <Pane
             is="img"
             width="100%"
             height="auto"
@@ -49,8 +45,9 @@ const Thumbnail: React.FC<Props> = ({ id, name, type, imageSrc, imageHighlightSr
             opacity={highlight}
             position="absolute"
             top={0}
-            left={0} 
-            style={{"transition":"opacity ease 0.4s"}}/>  
+            left={0}
+            style={{ transition: 'opacity ease 0.4s' }}
+          />
         </Pane>
         <Pane paddingX={majorScale(2)} paddingY={majorScale(2)}>
           <Text size={400}>{name}</Text>
