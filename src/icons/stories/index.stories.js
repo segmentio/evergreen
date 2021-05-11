@@ -10,11 +10,8 @@ storiesOf('icons', module)
       <Box paddingLeft={40}>
         <Heading size={800}>icons</Heading>
         <Paragraph marginTop={24}>
-          Evergreen uses the amazing{' '}
-          <Link href="https://blueprintjs.com/docs/#icons">
-            @blueprintjs/icons
-          </Link>{' '}
-          package for all of its icons.
+          Evergreen uses the amazing <Link href="https://blueprintjs.com/docs/#icons">@blueprintjs/icons</Link> package
+          for all of its icons.
         </Paragraph>
       </Box>
 

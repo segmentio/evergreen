@@ -47,12 +47,7 @@ const EditableCell = memo(function EditableCell(props) {
      */
     if (key === 'Enter' || key === 'Shift') {
       setIsEditing(true)
-    } else if (
-      key.match(/^[a-z]{0,10}$/) &&
-      !e.metaKey &&
-      !e.ctrlKey &&
-      !e.altKey
-    ) {
+    } else if (key.match(/^[a-z]{0,10}$/) && !e.metaKey && !e.ctrlKey && !e.altKey) {
       setIsEditing(true)
       setValue(value + key)
     }

@@ -42,13 +42,7 @@ const Group = memo(
     })
 
     return (
-      <Box
-        className={cx(className, themedClassName)}
-        role="group"
-        ref={ref}
-        {...styleProps}
-        {...restProps}
-      >
+      <Box className={cx(className, themedClassName)} role="group" ref={ref} {...styleProps} {...restProps}>
         {enhancedChildren}
       </Box>
     )

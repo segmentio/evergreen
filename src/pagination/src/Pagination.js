@@ -108,32 +108,14 @@ const noop = () => {}
 
 const Pagination = memo(
   forwardRef(function Pagination(
-    {
-      onNextPage = noop,
-      onPageChange = noop,
-      onPreviousPage = noop,
-      page = 1,
-      totalPages,
-      ...rest
-    },
+    { onNextPage = noop, onPageChange = noop, onPreviousPage = noop, page = 1, totalPages, ...rest },
     ref
   ) {
     return (
-      <Pane
-        is="nav"
-        role="navigation"
-        aria-label="Pagination"
-        {...rest}
-        ref={ref}
-      >
+      <Pane is="nav" role="navigation" aria-label="Pagination" {...rest} ref={ref}>
         <Pane is="ul" display="flex" alignItems="center" padding={0}>
           <Pane is="li" listStyle="none">
-            <IconButton
-              appearance="minimal"
-              icon={ChevronLeftIcon}
-              disabled={page === 1}
-              onClick={onPreviousPage}
-            />
+            <IconButton appearance="minimal" icon={ChevronLeftIcon} disabled={page === 1} onClick={onPreviousPage} />
           </Pane>
           {totalPages
             ? getPaginationButtonContent({ totalPages, page }).map((val, i) => {

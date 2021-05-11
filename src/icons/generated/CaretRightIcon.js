@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const CaretRightIcon = memo(
   forwardRef(function CaretRightIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="caret-right"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="caret-right" {...props} />
   })
 )

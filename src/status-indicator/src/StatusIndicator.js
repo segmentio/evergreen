@@ -6,22 +6,11 @@ import { Text } from '../../typography'
 
 const StatusIndicator = memo(
   forwardRef(function StatusIndicator(props, ref) {
-    const {
-      children,
-      color = 'disabled',
-      disabled,
-      dotSize = 10,
-      ...rest
-    } = props
+    const { children, color = 'disabled', disabled, dotSize = 10, ...rest } = props
 
     return (
       <Text display="inline-flex" alignItems="center" ref={ref} {...rest}>
-        <SymbolCircleIcon
-          flexShrink={0}
-          marginRight={majorScale(1)}
-          size={dotSize}
-          color={color}
-        />
+        <SymbolCircleIcon flexShrink={0} marginRight={majorScale(1)} size={dotSize} color={color} />
         {children}
       </Text>
     )

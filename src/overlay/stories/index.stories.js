@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  PureComponent
-} from 'react'
+import React, { useState, useEffect, useCallback, useRef, PureComponent } from 'react'
 import { storiesOf } from '@storybook/react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'

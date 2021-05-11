@@ -8,16 +8,14 @@ const baseStyle = {
 const appearances = {
   default: {
     backgroundColor: 'white',
-    boxShadow: theme =>
-      `inset 0 0 0 1px ${theme.scales.neutral.N5A}, inset 0 1px 2px ${theme.scales.neutral.N4A}`,
+    boxShadow: theme => `inset 0 0 0 1px ${theme.scales.neutral.N5A}, inset 0 1px 2px ${theme.scales.neutral.N4A}`,
     _focused: {
       boxShadow: theme =>
         `inset 0 0 2px ${theme.scales.neutral.N4A}, inset 0 0 0 1px ${theme.scales.blue.B7}, ${theme.shadows.focusRing}`,
       zIndex: 'zIndices.focused'
     },
     _invalid: {
-      boxShadow: theme =>
-        `inset 0 0 0 1px ${theme.palette.red.base}, inset 0 1px 2px ${theme.scales.neutral.N4A}`
+      boxShadow: theme => `inset 0 0 0 1px ${theme.palette.red.base}, inset 0 1px 2px ${theme.scales.neutral.N4A}`
     },
     _disabled: {
       boxShadow: theme => `inset 0 0 0 1px ${theme.scales.neutral.N4A}`,

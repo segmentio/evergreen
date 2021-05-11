@@ -63,13 +63,7 @@ export {
 export { Tab, Tablist, TabNavigation, SidebarTab } from './tabs'
 export { TagInput } from './tag-input'
 export { TextInput, TextInputField } from './text-input'
-export {
-  ThemeContext,
-  ThemeProvider,
-  ThemeConsumer,
-  withTheme,
-  useTheme
-} from './theme'
+export { ThemeContext, ThemeProvider, ThemeConsumer, withTheme, useTheme } from './theme'
 export { usePaginationBehavior, Pagination } from './pagination'
 export { defaultTheme, classicTheme, deprecatedDefaultTheme } from './themes'
 export { Textarea, TextareaField } from './textarea'

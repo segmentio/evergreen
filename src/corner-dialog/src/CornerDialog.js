@@ -118,10 +118,7 @@ const CornerDialog = memo(function CornerDialog(props) {
     return null
   }
 
-  const {
-    className: containerClassName,
-    ...remainingContainerProps
-  } = containerProps
+  const { className: containerClassName, ...remainingContainerProps } = containerProps
 
   return (
     <Portal>
@@ -144,9 +141,7 @@ const CornerDialog = memo(function CornerDialog(props) {
             padding={32}
             position="fixed"
             {...absolutePositions[
-              Object.keys(absolutePositions).includes(position)
-                ? position
-                : positions.BOTTOM_RIGHT
+              Object.keys(absolutePositions).includes(position) ? position : positions.BOTTOM_RIGHT
             ]}
             {...remainingContainerProps}
           >
@@ -154,13 +149,7 @@ const CornerDialog = memo(function CornerDialog(props) {
               <Heading is="h4" size={600} flex="1">
                 {title}
               </Heading>
-              {hasClose && (
-                <IconButton
-                  icon={CrossIcon}
-                  appearance="minimal"
-                  onClick={handleClose}
-                />
-              )}
+              {hasClose && <IconButton icon={CrossIcon} appearance="minimal" onClick={handleClose} />}
             </Pane>
 
             <Pane overflowY="auto" data-state={state}>
@@ -168,23 +157,11 @@ const CornerDialog = memo(function CornerDialog(props) {
             </Pane>
 
             {hasFooter && (
-              <Pane
-                marginTop={24}
-                flexShrink={0}
-                display="flex"
-                flexDirection="row-reverse"
-              >
-                <Button
-                  appearance="primary"
-                  intent={intent}
-                  marginLeft={8}
-                  onClick={handleConfirm}
-                >
+              <Pane marginTop={24} flexShrink={0} display="flex" flexDirection="row-reverse">
+                <Button appearance="primary" intent={intent} marginLeft={8} onClick={handleConfirm}>
                   {confirmLabel}
                 </Button>
-                {hasCancel && (
-                  <Button onClick={handleCancel}>{cancelLabel}</Button>
-                )}
+                {hasCancel && <Button onClick={handleCancel}>{cancelLabel}</Button>}
               </Pane>
             )}
           </Card>
@@ -281,12 +258,7 @@ CornerDialog.propTypes = {
   /**
    * Props that will set position of corner dialog
    */
-  position: PropTypes.oneOf([
-    positions.TOP_LEFT,
-    positions.TOP_RIGHT,
-    positions.BOTTOM_LEFT,
-    positions.BOTTOM_RIGHT
-  ])
+  position: PropTypes.oneOf([positions.TOP_LEFT, positions.TOP_RIGHT, positions.BOTTOM_LEFT, positions.BOTTOM_RIGHT])
 }
 
 export default CornerDialog

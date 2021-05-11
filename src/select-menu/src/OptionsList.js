@@ -63,9 +63,7 @@ const OptionsList = memo(function OptionsList(props) {
 
   const isSelected = useCallback(
     item => {
-      return Boolean(
-        selectedOptions.find(selectedItem => selectedItem === item.value)
-      )
+      return Boolean(selectedOptions.find(selectedItem => selectedItem === item.value))
     },
     [selectedOptions]
   )
@@ -98,9 +96,7 @@ const OptionsList = memo(function OptionsList(props) {
   const getCurrentIndex = useCallback(() => {
     const options = getFilteredOptions()
 
-    return options.findIndex(
-      option => option.value === selected[selected.length - 1]
-    )
+    return options.findIndex(option => option.value === selected[selected.length - 1])
   }, [selected])
 
   const handleArrowUp = useCallback(() => {
@@ -221,13 +217,7 @@ const OptionsList = memo(function OptionsList(props) {
   const scrollToIndex = currentIndex === -1 ? 0 : currentIndex
 
   return (
-    <Pane
-      height={height}
-      width={width}
-      display="flex"
-      flexDirection="column"
-      {...rest}
-    >
+    <Pane height={height} width={width} display="flex" flexDirection="column" {...rest}>
       {hasFilter && (
         <TableHead height={32} backgroundColor={tokens.colors.gray50}>
           <SearchTableHeaderCell
@@ -296,9 +286,7 @@ OptionsList.propTypes = {
   /**
    * This holds the values of the options
    */
-  selected: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  ),
+  selected: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   onSelect: PropTypes.func,
   onDeselect: PropTypes.func,
   onFilterChange: PropTypes.func,

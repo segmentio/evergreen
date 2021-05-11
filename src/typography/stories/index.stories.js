@@ -41,8 +41,7 @@ storiesOf('typography', module)
     <Box padding={40}>
       <Box marginBottom={24}>
         <Text>
-          In order to learn more about this feature, visit{' '}
-          <Link href="#">the developer center</Link>.{' '}
+          In order to learn more about this feature, visit <Link href="#">the developer center</Link>.{' '}
         </Text>
       </Box>
       <Box marginBottom={24}>
@@ -52,20 +51,15 @@ storiesOf('typography', module)
       </Box>
     </Box>
   ))
-  .add('Paragraph', () => (
-    <div>{previewTextComponent(Paragraph, TextSizes, { marginTop: 24 })}</div>
-  ))
-  .add('Heading', () => (
-    <div>{previewTextComponent(Heading, HeadingSizes, { marginTop: 24 })}</div>
-  ))
+  .add('Paragraph', () => <div>{previewTextComponent(Paragraph, TextSizes, { marginTop: 24 })}</div>)
+  .add('Heading', () => <div>{previewTextComponent(Heading, HeadingSizes, { marginTop: 24 })}</div>)
   .add('Code', () => <div>{previewTextComponent(Code)}</div>)
   .add('Pre', () => <div>{previewTextComponent(Pre)}</div>)
   .add('Label', () => <div>{previewTextComponent(Label)}</div>)
   .add('Small', () => (
     <div>
       <Paragraph>
-        Small can only be used inside of a paragraph or other text component{' '}
-        <Small>like this</Small>
+        Small can only be used inside of a paragraph or other text component <Small>like this</Small>
       </Paragraph>
     </div>
   ))
@@ -78,8 +72,7 @@ storiesOf('typography', module)
             Size {size}
           </Heading>
           <Paragraph size={size} marginTop={24}>
-            A paragraph before a list. You have to manually set the margins on a
-            list.
+            A paragraph before a list. You have to manually set the margins on a list.
           </Paragraph>
           <OrderedList size={size} marginY={16}>
             <ListItem>Lorem ipsum dolar set amet</ListItem>
@@ -119,15 +112,8 @@ storiesOf('typography', module)
               Lorem ipsum dolar set amet
             </ListItem>
           </UnorderedList>
-          <Paragraph size={size}>
-            Or you can set the icon on the list.
-          </Paragraph>
-          <UnorderedList
-            size={size}
-            marginY={16}
-            icon={TickIcon}
-            iconColor="success"
-          >
+          <Paragraph size={size}>Or you can set the icon on the list.</Paragraph>
+          <UnorderedList size={size} marginY={16} icon={TickIcon} iconColor="success">
             <ListItem>Lorem ipsum dolar set amet</ListItem>
             <ListItem>Lorem ipsum dolar set amet</ListItem>
             <ListItem>Lorem ipsum dolar set amet</ListItem>
@@ -145,8 +131,7 @@ storiesOf('typography', module)
             Size {size}
           </Heading>
           <Paragraph size={size} marginTop={24}>
-            A paragraph before a list. You have to manually set the margins on a
-            list.
+            A paragraph before a list. You have to manually set the margins on a list.
           </Paragraph>
           <UnorderedList size={size} marginY={16}>
             <ListItem>Lorem ipsum dolar set amet</ListItem>

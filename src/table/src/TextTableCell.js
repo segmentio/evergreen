@@ -11,13 +11,7 @@ const ellipsis = {
 
 const TextTableCell = memo(
   forwardRef(function TextTableCell(props, ref) {
-    const {
-      children,
-      isNumber = false,
-      placeholder,
-      textProps,
-      ...rest
-    } = props
+    const { children, isNumber = false, placeholder, textProps, ...rest } = props
 
     return (
       <TableCell ref={ref} {...rest}>

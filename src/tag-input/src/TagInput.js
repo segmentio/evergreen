@@ -69,8 +69,7 @@ const TagInput = memo(
       let shouldClearInput = safeInvoke(onAdd, newValues)
 
       if (typeof onChange === 'function') {
-        shouldClearInput =
-          shouldClearInput || onChange(values.concat(newValues))
+        shouldClearInput = shouldClearInput || onChange(values.concat(newValues))
       }
 
       if (shouldClearInput !== false) {
@@ -130,9 +129,7 @@ const TagInput = memo(
 
     const handleRemoveTag = event => {
       // Using data attribute to simplify callback logic -- one handler for all children
-      const index = Number(
-        event.currentTarget.parentElement.getAttribute('data-tag-index')
-      )
+      const index = Number(event.currentTarget.parentElement.getAttribute('data-tag-index'))
       removeTagAtIndex(index)
     }
 
@@ -245,11 +242,7 @@ TagInput.propTypes = {
    */
   onRemove: PropTypes.func,
   /** Value or RegExp to split on pasted text or on enter keypress */
-  separator: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.instanceOf(RegExp),
-    PropTypes.oneOf([false])
-  ]),
+  separator: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp), PropTypes.oneOf([false])]),
   /** Provide props to tag component (actually `Badge`, for now). */
   tagProps: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /** Key to press in order to submit a new tag while typing.  */

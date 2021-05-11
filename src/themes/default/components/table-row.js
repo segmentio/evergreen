@@ -12,7 +12,7 @@ const colorMap = {
     hover: 'intents.danger.background',
     focus: 'colors.red100',
     active: 'colors.red100',
-    current: 'colors.red100',
+    current: 'colors.red100'
   },
 
   warning: {
@@ -20,7 +20,7 @@ const colorMap = {
     hover: 'intents.warning.background',
     focus: 'colors.orange100',
     active: 'colors.orange100',
-    current: 'colors.orange100',
+    current: 'colors.orange100'
   },
 
   success: {
@@ -28,7 +28,7 @@ const colorMap = {
     hover: 'intents.success.background',
     focus: 'colors.green100',
     active: 'colors.green100',
-    current: 'colors.green100',
+    current: 'colors.green100'
   }
 }
 
@@ -62,11 +62,11 @@ const appearances = {
 
     _current: {
       backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'current')
-    },
+    }
   }
 }
 
 export default {
   baseStyle,
-  appearances,
+  appearances
 }

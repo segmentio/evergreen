@@ -148,14 +148,10 @@ const Overlay = memo(function Overlay({
         return
       }
 
-      const isFocusOutsideModal = !containerRef.current.contains(
-        document.activeElement
-      )
+      const isFocusOutsideModal = !containerRef.current.contains(document.activeElement)
       if (isFocusOutsideModal) {
         // Element marked autofocus has higher priority than the other clowns
-        const autofocusElement = containerRef.current.querySelector(
-          '[autofocus]'
-        )
+        const autofocusElement = containerRef.current.querySelector('[autofocus]')
         const wrapperElement = containerRef.current.querySelector('[tabindex]')
         const buttonElement = containerRef.current.querySelector('button')
 
@@ -181,9 +177,7 @@ const Overlay = memo(function Overlay({
       }
 
       // Bring back focus on the target.
-      const isFocusInsideModal = containerRef.current.contains(
-        document.activeElement
-      )
+      const isFocusInsideModal = containerRef.current.contains(document.activeElement)
       if (document.activeElement === document.body || isFocusInsideModal) {
         previousActiveElement.focus()
       }
@@ -266,14 +260,9 @@ const Overlay = memo(function Overlay({
                 zIndex={zIndex}
                 data-state={state}
                 {...containerProps}
-                className={cx(
-                  containerProps.className,
-                  css(animationStyles(colors.overlay)).toString()
-                )}
+                className={cx(containerProps.className, css(animationStyles(colors.overlay)).toString())}
               >
-                {typeof children === 'function'
-                  ? children({ state, close })
-                  : children}
+                {typeof children === 'function' ? children({ state, close }) : children}
               </Box>
             )}
           </Transition>

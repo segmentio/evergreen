@@ -22,13 +22,7 @@ const hoverClassName = css({
 
 const Badge = memo(
   forwardRef(function Badge(props, ref) {
-    const {
-      appearance = 'subtle',
-      className,
-      color = 'neutral',
-      isInteractive = false,
-      ...restProps
-    } = props
+    const { appearance = 'subtle', className, color = 'neutral', isInteractive = false, ...restProps } = props
 
     const { className: themedClassName, ...styleProps } = useStyleConfig(
       'Badge',
@@ -41,11 +35,7 @@ const Badge = memo(
       <Strong
         ref={ref}
         size={300}
-        className={cx(
-          className,
-          themedClassName,
-          isInteractive && hoverClassName
-        )}
+        className={cx(className, themedClassName, isInteractive && hoverClassName)}
         {...styleProps}
         {...restProps}
       />

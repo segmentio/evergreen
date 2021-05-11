@@ -6,10 +6,8 @@ const appearances = {
   default: {
     _base: {
       color: 'transparent',
-      background: theme =>
-        `linear-gradient(to top, ${theme.scales.neutral.N2A}, white)`,
-      boxShadow: theme =>
-        `inset 0 0 0 1px ${theme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N3A}`
+      background: theme => `linear-gradient(to top, ${theme.scales.neutral.N2A}, white)`,
+      boxShadow: theme => `inset 0 0 0 1px ${theme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N3A}`
     },
     _disabled: {
       cursor: 'not-allowed',
@@ -17,10 +15,8 @@ const appearances = {
       background: 'scales.neutral.N2A'
     },
     _hover: {
-      background: theme =>
-        `linear-gradient(to top, ${theme.scales.neutral.N2A}, ${theme.scales.neutral.N1A})`,
-      boxShadow: theme =>
-        `inset 0 0 0 1px ${theme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`
+      background: theme => `linear-gradient(to top, ${theme.scales.neutral.N2A}, ${theme.scales.neutral.N1A})`,
+      boxShadow: theme => `inset 0 0 0 1px ${theme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`
     },
     _focus: {
       boxShadow: theme =>
@@ -33,27 +29,22 @@ const appearances = {
     _checked: {
       color: 'white',
       background: getPrimaryButtonStylesForIntent().linearGradient.base,
-      boxShadow: theme =>
-        `inset 0 0 0 1px ${theme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`
+      boxShadow: theme => `inset 0 0 0 1px ${theme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`
     },
     _checkedHover: {
       color: 'white',
       background: getPrimaryButtonStylesForIntent().linearGradient.hover,
-      boxShadow: theme =>
-        `inset 0 0 0 1px ${theme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`
+      boxShadow: theme => `inset 0 0 0 1px ${theme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`
     },
     _checkedDisabled: {
       color: 'scales.neutral.N6A',
-      background: theme =>
-        `linear-gradient(to top, ${theme.scales.neutral.N2A}, ${theme.scales.neutral.N1A})`,
-      boxShadow: theme =>
-        `inset 0 0 0 1px ${theme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`
+      background: theme => `linear-gradient(to top, ${theme.scales.neutral.N2A}, ${theme.scales.neutral.N1A})`,
+      boxShadow: theme => `inset 0 0 0 1px ${theme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`
     },
     _checkedActive: {
       color: 'white',
       background: getPrimaryButtonStylesForIntent().linearGradient.active,
-      boxShadow: theme =>
-        `inset 0 0 0 1px ${theme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`
+      boxShadow: theme => `inset 0 0 0 1px ${theme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`
     }
   }
 }

@@ -25,8 +25,7 @@ const appearances = {
       `inset 0 0 0 1px ${theme.colors.neutralAlpha.N5A}, inset 0 1px 2px ${theme.colors.neutralAlpha.N4A}`,
 
     _invalid: {
-      boxShadow: theme =>
-        `inset 0 0 0 1px ${theme.colors.red.base}, inset 0 1px 2px ${theme.colors.neutralAlpha.N4A}`
+      boxShadow: theme => `inset 0 0 0 1px ${theme.colors.red.base}, inset 0 1px 2px ${theme.colors.neutralAlpha.N4A}`
     },
     _focus: {
       boxShadow: theme =>

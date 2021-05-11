@@ -8,16 +8,7 @@ const pseudoSelectors = {}
 const internalStyles = {}
 
 const Icon = forwardRef(function Icon(
-  {
-    className,
-    color = 'currentColor',
-    name,
-    size = 16,
-    svgPaths16,
-    svgPaths20,
-    title,
-    ...svgProps
-  },
+  { className, color = 'currentColor', name, size = 16, svgPaths16, svgPaths20, title, ...svgProps },
   ref
 ) {
   const { className: themedClassName, ...styleProps } = useStyleConfig(

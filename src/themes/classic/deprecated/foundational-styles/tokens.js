@@ -88,8 +88,7 @@ const fontFamilies = {
   /**
    * @property {string} mono - Used for code and sometimes numbers in tables.
    */
-  mono:
-    '"SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace'
+  mono: '"SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace'
 }
 
 const text = {

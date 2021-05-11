@@ -77,14 +77,11 @@ const getPrimaryButtonAppearance = (appearance, intent, textColor, theme) => {
 }
 
 const appearances = {
-  primary: (theme, { appearance, color, intent }) =>
-    getPrimaryButtonAppearance(appearance, intent, color, theme),
+  primary: (theme, { appearance, color, intent }) => getPrimaryButtonAppearance(appearance, intent, color, theme),
   default: {
     backgroundColor: 'white',
-    border: (theme, props) =>
-      `1px solid ${theme.colors[borderColorForIntent(props.intent)]}`,
-    color: (theme, props) =>
-      props.color || theme.colors[colorKeyForIntent(props.intent)],
+    border: (theme, props) => `1px solid ${theme.colors[borderColorForIntent(props.intent)]}`,
+    color: (theme, props) => props.color || theme.colors[colorKeyForIntent(props.intent)],
 
     _disabled: {
       color: 'colors.gray500',
@@ -92,8 +89,7 @@ const appearances = {
     },
 
     _hover: {
-      border: (theme, props) =>
-        `1px solid ${theme.colors[borderColorForIntent(props.intent, true)]}`,
+      border: (theme, props) => `1px solid ${theme.colors[borderColorForIntent(props.intent, true)]}`,
       backgroundColor: 'colors.gray50'
     },
 
@@ -103,8 +99,7 @@ const appearances = {
   },
   minimal: {
     backgroundColor: 'transparent',
-    color: (theme, props) =>
-      props.color || theme.colors[colorKeyForIntent(props.intent)],
+    color: (theme, props) => props.color || theme.colors[colorKeyForIntent(props.intent)],
 
     _disabled: {
       color: 'colors.gray500',

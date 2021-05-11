@@ -18,9 +18,7 @@ const internalStyles = {
   justifyContent: 'center'
 }
 
-const isObjectFitSupported =
-  typeof document !== 'undefined' &&
-  'objectFit' in document.documentElement.style
+const isObjectFitSupported = typeof document !== 'undefined' && 'objectFit' in document.documentElement.style
 
 const initialsStyleClass = css({
   top: 0,
@@ -66,10 +64,7 @@ const Avatar = memo(
     const [imageHasFailedLoading, setImageHasFailedLoading] = useState(false)
     const imageUnavailable = !src || imageHasFailedLoading
 
-    const initialsFontSize = `${getAvatarInitialsFontSize(
-      size,
-      sizeLimitOneCharacter
-    )}px`
+    const initialsFontSize = `${getAvatarInitialsFontSize(size, sizeLimitOneCharacter)}px`
 
     let initials = getInitials(name)
     if (size <= sizeLimitOneCharacter) {

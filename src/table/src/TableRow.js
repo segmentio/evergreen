@@ -1,12 +1,7 @@
 import React, { memo, forwardRef, useRef, useCallback } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import {
-  useClickable,
-  useLatest,
-  useMergedRef,
-  useStyleConfig
-} from '../../hooks'
+import { useClickable, useLatest, useMergedRef, useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
@@ -81,8 +76,7 @@ const TableRow = memo(
               manageTableRowFocusInteraction(event.key, mainRef.current)
             } catch (_) {}
           } else if (event.key === 'Escape') {
-            if (mainRef.current && mainRef.current instanceof Node)
-              mainRef.current.blur()
+            if (mainRef.current && mainRef.current instanceof Node) mainRef.current.blur()
           }
         }
       },
@@ -91,11 +85,7 @@ const TableRow = memo(
 
     const clickable = useClickable({ onKeyDown: handleKeyDown, tabIndex })
 
-    const {
-      className: themedClassName,
-      height: themeHeight,
-      ...boxProps
-    } = useStyleConfig(
+    const { className: themedClassName, height: themeHeight, ...boxProps } = useStyleConfig(
       'TableRow',
       { appearance, intent },
       pseudoSelectors,

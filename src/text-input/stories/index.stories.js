@@ -8,9 +8,7 @@ import { ErrorIcon } from '../../icons'
 import { Pane, Card } from '../../layers'
 import { Text, Label, Heading } from '../../typography'
 
-const Description = props => (
-  <Text is="p" marginTop={0} size={300} color="muted" {...props} />
-)
+const Description = props => <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 
 class Manager extends React.Component {
   static propTypes = {
@@ -39,22 +37,11 @@ storiesOf('text-input', module)
             <Label htmlFor={`${appearance}-32`} size={400} display="block">
               Height 32 (default)
             </Label>
-            <Description marginBottom={8}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.
-            </Description>
-            <TextInput
-              appearance={appearance}
-              name="32"
-              id={`${appearance}-32`}
-              placeholder="With placeholder"
-            />
+            <Description marginBottom={8}>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</Description>
+            <TextInput appearance={appearance} name="32" id={`${appearance}-32`} placeholder="With placeholder" />
           </Box>
           <Box marginBottom={24} width={360}>
-            <Label
-              htmlFor={`${appearance}-disabled`}
-              size={400}
-              display="block"
-            >
+            <Label htmlFor={`${appearance}-disabled`} size={400} display="block">
               Disabled
             </Label>
             <TextInput
@@ -66,19 +53,10 @@ storiesOf('text-input', module)
             />
           </Box>
           <Box marginBottom={24} width={360}>
-            <Label
-              htmlFor={`${appearance}-disabled`}
-              size={400}
-              display="block"
-            >
+            <Label htmlFor={`${appearance}-disabled`} size={400} display="block">
               Is Invalid
             </Label>
-            <TextInput
-              appearance={appearance}
-              name="isInvalid"
-              id={`${appearance}-isInvalid`}
-              isInvalid
-            />
+            <TextInput appearance={appearance} name="isInvalid" id={`${appearance}-isInvalid`} isInvalid />
           </Box>
           <Box marginBottom={24}>
             <Label htmlFor="small" size={300} display="block" marginBottom={4}>
@@ -93,20 +71,10 @@ storiesOf('text-input', module)
             <TextInput appearance={appearance} name="medium" />
           </Box>
           <Box marginBottom={24}>
-            <Label
-              htmlFor={`${appearance}-large`}
-              size={400}
-              display="block"
-              marginBottom={4}
-            >
+            <Label htmlFor={`${appearance}-large`} size={400} display="block" marginBottom={4}>
               Large
             </Label>
-            <TextInput
-              appearance={appearance}
-              size="large"
-              name="large"
-              id={`${appearance}-large`}
-            />
+            <TextInput appearance={appearance} size="large" name="large" id={`${appearance}-large`} />
           </Box>
         </Box>
       ))}
@@ -153,38 +121,22 @@ storiesOf('text-input', module)
   ))
   .add('Settings example', () => {
     return (
-      <Pane
-        background="tint1"
-        padding={40}
-        height="100vh"
-        boxSizing="border-box"
-      >
+      <Pane background="tint1" padding={40} height="100vh" boxSizing="border-box">
         {(() => {
           document.body.style.margin = '0'
           document.body.style.height = '100vh'
         })()}
-        <Card
-          elevation={1}
-          backgroundColor="white"
-          width={640}
-          boxSizing="border-box"
-          marginX="auto"
-          padding={48}
-        >
+        <Card elevation={1} backgroundColor="white" width={640} boxSizing="border-box" marginX="auto" padding={48}>
           <Pane is="header" marginBottom={32}>
             <Heading id="general-settings" size={700} marginBottom={8}>
               General Settings
             </Heading>
             <Text color="muted" size={400}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
             </Text>
           </Pane>
-          <TextInputField
-            value="Workspace Prod"
-            required
-            label="Workspace name"
-          />
+          <TextInputField value="Workspace Prod" required label="Workspace name" />
           <TextInputField
             required
             type="email"
@@ -200,12 +152,7 @@ storiesOf('text-input', module)
             description="This is your workspace's auto-generated unique identifier."
             hint="You are not able to change this."
           />
-          <Button
-            intent="success"
-            appearance="primary"
-            marginTop={32}
-            display="flex"
-          >
+          <Button intent="success" appearance="primary" marginTop={32} display="flex">
             Save Changes
           </Button>
           <Pane paddingTop={32} marginTop={32} marginBottom={-8} borderTop>

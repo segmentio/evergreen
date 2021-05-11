@@ -47,21 +47,11 @@ const Pane = memo(
       internalStyles
     )
 
-    return (
-      <Box
-        ref={ref}
-        className={cx(className, themedClassName)}
-        {...styleProps}
-        {...restProps}
-      />
-    )
+    return <Box ref={ref} className={cx(className, themedClassName)} {...styleProps} {...restProps} />
   })
 )
 
-const StringAndBoolPropType = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.bool
-])
+const StringAndBoolPropType = PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
 
 Pane.propTypes = {
   /**

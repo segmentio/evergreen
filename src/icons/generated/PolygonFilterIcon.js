@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const PolygonFilterIcon = memo(
   forwardRef(function PolygonFilterIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="polygon-filter"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="polygon-filter" {...props} />
   })
 )

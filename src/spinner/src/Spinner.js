@@ -44,15 +44,9 @@ const Spinner = memo(
   forwardRef(function Spinner({ delay = 0, size = 'medium', ...props }, ref) {
     const [isVisible, setIsVisible] = useState(delay === 0)
 
-    const boxProps = useStyleConfig(
-      'Spinner',
-      { size },
-      emptyObject,
-      emptyObject
-    )
+    const boxProps = useStyleConfig('Spinner', { size }, emptyObject, emptyObject)
 
-    const { height, width, ...rest } =
-      typeof size === 'string' ? boxProps : { width: size, height: size }
+    const { height, width, ...rest } = typeof size === 'string' ? boxProps : { width: size, height: size }
 
     useEffect(() => {
       let delayTimer = null
@@ -72,28 +66,9 @@ const Spinner = memo(
     }
 
     return (
-      <Box
-        width={width}
-        height={height}
-        lineHeight={0}
-        {...props}
-        {...rest}
-        ref={ref}
-      >
-        <Box
-          is="svg"
-          className={outerClass}
-          x="0px"
-          y="0px"
-          viewBox="0 0 150 150"
-        >
-          <Box
-            is="circle"
-            className={innerClass(boxProps.color)}
-            cx="75"
-            cy="75"
-            r="60"
-          />
+      <Box width={width} height={height} lineHeight={0} {...props} {...rest} ref={ref}>
+        <Box is="svg" className={outerClass} x="0px" y="0px" viewBox="0 0 150 150">
+          <Box is="circle" className={innerClass(boxProps.color)} cx="75" cy="75" r="60" />
         </Box>
       </Box>
     )

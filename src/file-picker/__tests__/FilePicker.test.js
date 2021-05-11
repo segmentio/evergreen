@@ -13,54 +13,38 @@ describe('<FilePicker />', () => {
 
   it('sets name', () => {
     const component = shallow(<FilePicker name="hi" />)
-    expect(component.find(`.${CLASS_PREFIX}-file-input`).prop('name')).toEqual(
-      'hi'
-    )
+    expect(component.find(`.${CLASS_PREFIX}-file-input`).prop('name')).toEqual('hi')
   })
 
   it('sets accept', () => {
     const component = shallow(<FilePicker accept="application/json" />)
-    expect(
-      component.find(`.${CLASS_PREFIX}-file-input`).prop('accept')
-    ).toEqual('application/json')
+    expect(component.find(`.${CLASS_PREFIX}-file-input`).prop('accept')).toEqual('application/json')
   })
 
   it('sets required', () => {
     const component = shallow(<FilePicker required />)
-    expect(component.find(`.${CLASS_PREFIX}-file-input`).prop('required')).toBe(
-      true
-    )
+    expect(component.find(`.${CLASS_PREFIX}-file-input`).prop('required')).toBe(true)
   })
 
   it('sets multiple', () => {
     const component = shallow(<FilePicker multiple />)
-    expect(component.find(`.${CLASS_PREFIX}-file-input`).prop('multiple')).toBe(
-      true
-    )
+    expect(component.find(`.${CLASS_PREFIX}-file-input`).prop('multiple')).toBe(true)
   })
 
   it('sets disabled', () => {
     const component = shallow(<FilePicker disabled />)
-    expect(component.find(`.${CLASS_PREFIX}-file-input`).prop('disabled')).toBe(
-      true
-    )
-    expect(component.find(`.${CLASS_PREFIX}-button`).prop('disabled')).toBe(
-      true
-    )
+    expect(component.find(`.${CLASS_PREFIX}-file-input`).prop('disabled')).toBe(true)
+    expect(component.find(`.${CLASS_PREFIX}-button`).prop('disabled')).toBe(true)
   })
 
   it('sets capture', () => {
     const component = shallow(<FilePicker capture />)
-    expect(component.find(`.${CLASS_PREFIX}-file-input`).prop('capture')).toBe(
-      true
-    )
+    expect(component.find(`.${CLASS_PREFIX}-file-input`).prop('capture')).toBe(true)
   })
 
   it('passes through height', () => {
     const component = shallow(<FilePicker height={20} />)
-    expect(
-      component.find(`.${CLASS_PREFIX}-text-input`).prop('height')
-    ).toEqual(20)
+    expect(component.find(`.${CLASS_PREFIX}-text-input`).prop('height')).toEqual(20)
     expect(component.find(`.${CLASS_PREFIX}-button`).prop('height')).toEqual(20)
   })
 
@@ -97,8 +81,6 @@ describe('<FilePicker />', () => {
 
   it('sets placeholder', () => {
     const component = shallow(<FilePicker placeholder="placeholder here!" />)
-    expect(
-      component.find(`.${CLASS_PREFIX}-text-input`).prop('placeholder')
-    ).toEqual('placeholder here!')
+    expect(component.find(`.${CLASS_PREFIX}-text-input`).prop('placeholder')).toEqual('placeholder here!')
   })
 })

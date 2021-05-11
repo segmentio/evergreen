@@ -6,47 +6,23 @@ import { Pulsar, Nudge } from '../src/Nudge'
 
 storiesOf('nudge', module)
   .add('Nudge', () => (
-    <Box
-      padding={40}
-      display="flex"
-      flexDirection="column"
-      gap={32}
-      alignItems="flex-start"
-    >
+    <Box padding={40} display="flex" flexDirection="column" gap={32} alignItems="flex-start">
       <Nudge isShown={true} tooltipContent="Example tooltip content">
         <Box>Example Nudge Usage</Box>
       </Nudge>
-      <Nudge
-        isShown={true}
-        tooltipContent="Top Left"
-        position={Position.TOP_LEFT}
-      >
+      <Nudge isShown={true} tooltipContent="Top Left" position={Position.TOP_LEFT}>
         <Box>Example Nudge Usage</Box>
       </Nudge>
-      <Nudge
-        isShown={true}
-        tooltipContent="Bottom Right"
-        position={Position.BOTTOM_RIGHT}
-      >
+      <Nudge isShown={true} tooltipContent="Bottom Right" position={Position.BOTTOM_RIGHT}>
         <Box>Example Nudge Usage</Box>
       </Nudge>
-      <Nudge
-        isShown={true}
-        tooltipContent="Bottom Left"
-        position={Position.BOTTOM_LEFT}
-      >
+      <Nudge isShown={true} tooltipContent="Bottom Left" position={Position.BOTTOM_LEFT}>
         <Box>Example Nudge Usage</Box>
       </Nudge>
     </Box>
   ))
   .add('Pulsar', () => (
-    <Box
-      padding={40}
-      display="flex"
-      flexDirection="column"
-      gap={32}
-      alignItems="flex-start"
-    >
+    <Box padding={40} display="flex" flexDirection="column" gap={32} alignItems="flex-start">
       <Box position="relative" display="inline-block">
         <Box>Pulsar</Box>
         <Pulsar />

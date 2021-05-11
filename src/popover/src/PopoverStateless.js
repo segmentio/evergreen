@@ -7,15 +7,7 @@ const PopoverStateless = memo(
     const { children, ...rest } = props
 
     return (
-      <Card
-        role="dialog"
-        elevation={3}
-        overflow="hidden"
-        minWidth={200}
-        backgroundColor="white"
-        ref={ref}
-        {...rest}
-      >
+      <Card role="dialog" elevation={3} overflow="hidden" minWidth={200} backgroundColor="white" ref={ref} {...rest}>
         {children}
       </Card>
     )

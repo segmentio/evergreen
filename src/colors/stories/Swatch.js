@@ -34,13 +34,7 @@ export default class Swatch extends React.Component {
   render() {
     const { color, name, property, ...props } = this.props
     return (
-      <Pane
-        display="flex"
-        paddingY={16}
-        alignItems="center"
-        borderBottom="muted"
-        {...props}
-      >
+      <Pane display="flex" paddingY={16} alignItems="center" borderBottom="muted" {...props}>
         <Popover content={this.renderContent}>
           <Pane
             style={{ backgroundColor: color }}

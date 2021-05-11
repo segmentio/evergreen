@@ -80,14 +80,10 @@ const Dialog = memo(function Dialog({
   topOffset = '12vmin',
   width = 560
 }) {
-  const sideOffsetWithUnit = Number.isInteger(sideOffset)
-    ? `${sideOffset}px`
-    : sideOffset
+  const sideOffsetWithUnit = Number.isInteger(sideOffset) ? `${sideOffset}px` : sideOffset
   const maxWidth = `calc(100% - ${sideOffsetWithUnit} * 2)`
 
-  const topOffsetWithUnit = Number.isInteger(topOffset)
-    ? `${topOffset}px`
-    : topOffset
+  const topOffsetWithUnit = Number.isInteger(topOffset) ? `${topOffset}px` : topOffset
   const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
 
   const renderChildren = close => {
@@ -110,24 +106,9 @@ const Dialog = memo(function Dialog({
     return node
   }
 
-  const themedHeaderProps = useStyleConfig(
-    'DialogHeader',
-    emptyProps,
-    emptyProps,
-    emptyProps
-  )
-  const themedBodyProps = useStyleConfig(
-    'DialogBody',
-    emptyProps,
-    emptyProps,
-    emptyProps
-  )
-  const themedFooterProps = useStyleConfig(
-    'DialogFooter',
-    emptyProps,
-    emptyProps,
-    emptyProps
-  )
+  const themedHeaderProps = useStyleConfig('DialogHeader', emptyProps, emptyProps, emptyProps)
+  const themedBodyProps = useStyleConfig('DialogBody', emptyProps, emptyProps, emptyProps)
+  const themedFooterProps = useStyleConfig('DialogFooter', emptyProps, emptyProps, emptyProps)
 
   const renderHeader = close => {
     if (!header && !hasHeader) {
@@ -135,12 +116,7 @@ const Dialog = memo(function Dialog({
     }
 
     return (
-      <Pane
-        flexShrink={0}
-        display="flex"
-        alignItems="center"
-        {...themedHeaderProps}
-      >
+      <Pane flexShrink={0} display="flex" alignItems="center" {...themedHeaderProps}>
         {header ? (
           renderNode(header, close)
         ) : (
@@ -148,13 +124,7 @@ const Dialog = memo(function Dialog({
             <Heading is="h4" size={600} flex="1">
               {title}
             </Heading>
-            {hasClose && (
-              <IconButton
-                appearance="minimal"
-                icon={CrossIcon}
-                onClick={() => onCancel(close)}
-              />
-            )}
+            {hasClose && <IconButton appearance="minimal" icon={CrossIcon} onClick={() => onCancel(close)} />}
           </>
         )}
       </Pane>
@@ -198,10 +168,7 @@ const Dialog = memo(function Dialog({
     )
   }
 
-  const {
-    className: containerClassName,
-    remainingContainerProps
-  } = containerProps
+  const { className: containerClassName, remainingContainerProps } = containerProps
 
   return (
     <Overlay

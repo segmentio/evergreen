@@ -1,10 +1,4 @@
-import React, {
-  memo,
-  forwardRef,
-  useState,
-  useEffect,
-  useCallback
-} from 'react'
+import React, { memo, forwardRef, useState, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { spacing, position, layout, dimensions } from 'ui-box'
 import { Button } from '../../buttons'
@@ -15,17 +9,7 @@ import warning from '../../lib/warning'
 
 const SegmentedControl = memo(
   forwardRef(function SegmentedControl(props, ref) {
-    const {
-      defaultValue,
-      disabled,
-      height,
-      name,
-      onChange,
-      options,
-      size,
-      value,
-      ...rest
-    } = props
+    const { defaultValue, disabled, height, name, onChange, options, size, value, ...rest } = props
 
     const groupName = useId('SegmentedControl')
 
@@ -45,9 +29,7 @@ const SegmentedControl = memo(
         return value
       }
 
-      return typeof defaultValue !== 'undefined' && defaultValue !== null
-        ? defaultValue
-        : options[0].value
+      return typeof defaultValue !== 'undefined' && defaultValue !== null ? defaultValue : options[0].value
     }
 
     const [activeValue, setActiveValue] = useState(getDefaultValue())
@@ -111,31 +93,19 @@ SegmentedControl.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.node.isRequired,
-      value: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-        PropTypes.bool
-      ]).isRequired
+      value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]).isRequired
     })
   ).isRequired,
 
   /**
    * The current value of the Segmented Control when controlled.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.bool
-  ]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
 
   /**
    * The default value of the Segmented Control when uncontrolled.
    */
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.bool
-  ]),
+  defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
 
   /**
    * Function called when the value changes.

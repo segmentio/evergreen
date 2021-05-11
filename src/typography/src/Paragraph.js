@@ -8,38 +8,18 @@ const emptyObject = {}
 
 const Paragraph = memo(
   forwardRef(function Paragraph(props, ref) {
-    const {
-      color = 'default',
-      fontFamily = 'ui',
-      size = 400,
-      ...restProps
-    } = props
+    const { color = 'default', fontFamily = 'ui', size = 400, ...restProps } = props
 
     const theme = useTheme()
 
     const { colors, fontFamilies } = theme
 
     const themedFontFamily = fontFamilies[fontFamily] || fontFamily
-    const themedColor =
-      colors[color] || (colors.text && colors.text[color]) || color
+    const themedColor = colors[color] || (colors.text && colors.text[color]) || color
 
-    const textStyle = useStyleConfig(
-      'Paragraph',
-      { size },
-      emptyObject,
-      emptyObject
-    )
+    const textStyle = useStyleConfig('Paragraph', { size }, emptyObject, emptyObject)
 
-    return (
-      <Box
-        is="p"
-        ref={ref}
-        {...textStyle}
-        fontFamily={themedFontFamily}
-        color={themedColor}
-        {...restProps}
-      />
-    )
+    return <Box is="p" ref={ref} {...textStyle} fontFamily={themedFontFamily} color={themedColor} {...restProps} />
   })
 )
 

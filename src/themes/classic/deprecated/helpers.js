@@ -33,11 +33,7 @@ const getTextColorForIntent = (intent, defaultColor) => {
  * @param {String} endColor
  * @param {Number} intensityMultiplier - Some colors need more darkening.
  */
-const getLinearGradientWithStates = (
-  startColor,
-  endColor,
-  intensityMultiplier = 1
-) => {
+const getLinearGradientWithStates = (startColor, endColor, intensityMultiplier = 1) => {
   return {
     base: linearGradient(startColor, endColor),
     hover: linearGradient(
@@ -112,9 +108,4 @@ const getPrimaryButtonStylesForIntent = intent => {
   }
 }
 
-export {
-  linearGradient,
-  getTextColorForIntent,
-  getLinearGradientWithStates,
-  getPrimaryButtonStylesForIntent
-}
+export { linearGradient, getTextColorForIntent, getLinearGradientWithStates, getPrimaryButtonStylesForIntent }

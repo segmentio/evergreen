@@ -66,10 +66,7 @@ const Select = memo(
 
     const height = heightProp || boxProps.height
 
-    const textProps =
-      !restProps.size && restProps.height
-        ? getTextPropsForControlHeight(restProps.height)
-        : {}
+    const textProps = !restProps.size && restProps.height ? getTextPropsForControlHeight(restProps.height) : {}
 
     const iconSize = getIconSizeForSelect(height)
     const iconMargin = height >= 36 ? 12 : 8

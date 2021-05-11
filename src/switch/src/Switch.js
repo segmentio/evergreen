@@ -42,11 +42,7 @@ const handleContainerStyleClass = css({
   }
 }).toString()
 
-const CheckIcon = memo(function CheckIcon({
-  fill = 'currentColor',
-  size,
-  ...props
-}) {
+const CheckIcon = memo(function CheckIcon({ fill = 'currentColor', size, ...props }) {
   return (
     <svg width={10} height={size} viewBox="0 0 10 7" {...props}>
       <path
@@ -117,14 +113,7 @@ const Switch = memo(
     )
 
     return (
-      <Box
-        is="label"
-        display="block"
-        width={height * 2}
-        position="relative"
-        ref={ref}
-        {...rest}
-      >
+      <Box is="label" display="block" width={height * 2} position="relative" ref={ref} {...rest}>
         <Box
           is="input"
           id={id}
@@ -137,37 +126,13 @@ const Switch = memo(
           defaultChecked={defaultChecked}
           onChange={onChange}
         />
-        <Box
-          height={height}
-          width={height * 2}
-          borderRadius={9999}
-          cursor="pointer"
-        >
-          <Box
-            height={height}
-            width={height}
-            data-checked={checked}
-            className={iconContainerStyleClass}
-          >
-            {hasCheckIcon && (
-              <CheckIcon
-                display={checked ? 'block' : undefined}
-                size={height / 2 - 3}
-              />
-            )}
+        <Box height={height} width={height * 2} borderRadius={9999} cursor="pointer">
+          <Box height={height} width={height} data-checked={checked} className={iconContainerStyleClass}>
+            {hasCheckIcon && <CheckIcon display={checked ? 'block' : undefined} size={height / 2 - 3} />}
           </Box>
-          <Box
-            width={height * 2}
-            display="flex"
-            data-checked={checked}
-            className={handleContainerStyleClass}
-          >
+          <Box width={height * 2} display="flex" data-checked={checked} className={handleContainerStyleClass}>
             <Box flex={1} padding={2}>
-              <Box
-                width={height - 4}
-                height={height - 4}
-                className={handleStyleClass}
-              />
+              <Box width={height - 4} height={height - 4} className={handleStyleClass} />
             </Box>
           </Box>
         </Box>

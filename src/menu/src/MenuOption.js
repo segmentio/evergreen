@@ -14,14 +14,7 @@ const internalStyles = {
 }
 
 const MenuOption = memo(function MenuOption(props) {
-  const {
-    id,
-    children,
-    appearance = 'default',
-    onSelect = noop,
-    secondaryText,
-    isSelected = false
-  } = props
+  const { id, children, appearance = 'default', onSelect = noop, secondaryText, isSelected = false } = props
 
   const handleClick = useCallback(e => onSelect(e), [onSelect])
 
@@ -56,14 +49,7 @@ const MenuOption = memo(function MenuOption(props) {
       {...boxProps}
     >
       {isSelected && (
-        <TickIcon
-          aria-hidden
-          color="selected"
-          marginLeft={16}
-          marginRight={-4}
-          size={16}
-          flexShrink={0}
-        />
+        <TickIcon aria-hidden color="selected" marginLeft={16} marginRight={-4} size={16} flexShrink={0} />
       )}
       <Text {...textProps} marginRight={16} flex={1}>
         {children}

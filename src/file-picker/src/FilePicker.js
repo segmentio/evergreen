@@ -50,8 +50,7 @@ const FilePicker = memo(
       e => {
         // Setting e.target.files to an array fails. It must be a FileList
         if (e && e.target) {
-          e.target.files =
-            fileInputRef && fileInputRef.current && fileInputRef.current.files
+          e.target.files = fileInputRef && fileInputRef.current && fileInputRef.current.files
         }
 
         safeInvoke(onBlur, e)
@@ -137,10 +136,7 @@ FilePicker.propTypes = {
   /**
    * The accept attribute of the input.
    */
-  accept: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
-  ]),
+  accept: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
 
   /**
    * When true, the file picker is required.

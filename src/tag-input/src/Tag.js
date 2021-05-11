@@ -30,13 +30,7 @@ const Tag = memo(
     return (
       <Badge ref={ref} isInteractive {...badgeStyles} {...restProps}>
         {children}
-        {isRemovable && (
-          <CrossIcon
-            marginLeft={minorScale(1)}
-            onClick={onRemove}
-            size={minorScale(3)}
-          />
-        )}
+        {isRemovable && <CrossIcon marginLeft={minorScale(1)} onClick={onRemove} size={minorScale(3)} />}
       </Badge>
     )
   })

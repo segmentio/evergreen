@@ -50,48 +50,35 @@ const getPositionProps = ({ position, size }) => {
   return props
 }
 
-export const Pulsar = memo(
-  ({ position = Positions.TOP_RIGHT, size = majorScale(1) }) => {
-    const { colors } = useTheme()
-    const positionProps = getPositionProps({ position, size })
-    const outerPadding = size * 0.25
+export const Pulsar = memo(({ position = Positions.TOP_RIGHT, size = majorScale(1) }) => {
+  const { colors } = useTheme()
+  const positionProps = getPositionProps({ position, size })
+  const outerPadding = size * 0.25
 
-    return (
-      <Pane
-        position="absolute"
-        borderRadius="50%"
-        backgroundColor={colors.blue100}
-        boxSizing="content-box"
-        opacity={0.7}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        padding={outerPadding}
-        className={pulsarAnimationClassName}
-        {...positionProps}
-      >
-        <Pane
-          width={size}
-          height={size}
-          backgroundColor={colors.blue200}
-          borderRadius="50%"
-          opacity={0.7}
-        />
-      </Pane>
-    )
-  }
-)
+  return (
+    <Pane
+      position="absolute"
+      borderRadius="50%"
+      backgroundColor={colors.blue100}
+      boxSizing="content-box"
+      opacity={0.7}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      padding={outerPadding}
+      className={pulsarAnimationClassName}
+      {...positionProps}
+    >
+      <Pane width={size} height={size} backgroundColor={colors.blue200} borderRadius="50%" opacity={0.7} />
+    </Pane>
+  )
+})
 
 Pulsar.propTypes = {
   /**
    * The position of the pulsar
    */
-  position: PropTypes.oneOf([
-    Positions.TOP_LEFT,
-    Positions.TOP_RIGHT,
-    Positions.BOTTOM_LEFT,
-    Positions.BOTTOM_RIGHT
-  ]),
+  position: PropTypes.oneOf([Positions.TOP_LEFT, Positions.TOP_RIGHT, Positions.BOTTOM_LEFT, Positions.BOTTOM_RIGHT]),
 
   /**
    * The width/height of the dot
@@ -99,19 +86,9 @@ Pulsar.propTypes = {
   size: PropTypes.number
 }
 
-export const Nudge = ({
-  children,
-  isShown = false,
-  position = Positions.TOP_RIGHT,
-  size,
-  tooltipContent
-}) => {
+export const Nudge = ({ children, isShown = false, position = Positions.TOP_RIGHT, size, tooltipContent }) => {
   return (
-    <Tooltip
-      content={tooltipContent}
-      position={position}
-      isShown={isShown ? undefined : false}
-    >
+    <Tooltip content={tooltipContent} position={position} isShown={isShown ? undefined : false}>
       <Pane position="relative">
         {isShown && <Pulsar position={position} size={size} />}
         {children}
@@ -124,12 +101,7 @@ Nudge.propTypes = {
   /**
    * The position for the Puslar and the Tooltip
    */
-  position: PropTypes.oneOf([
-    Positions.TOP_LEFT,
-    Positions.TOP_RIGHT,
-    Positions.BOTTOM_LEFT,
-    Positions.BOTTOM_RIGHT
-  ]),
+  position: PropTypes.oneOf([Positions.TOP_LEFT, Positions.TOP_RIGHT, Positions.BOTTOM_LEFT, Positions.BOTTOM_RIGHT]),
 
   /**
    * Size of the Pulsar

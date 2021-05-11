@@ -11,9 +11,7 @@ const StorySection = props => <Box marginBottom={40} {...props} />
 const StoryHeader = props => <Box marginBottom={16} {...props} />
 
 const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
-const StoryDescription = props => (
-  <Paragraph size={400} color="muted" {...props} />
-)
+const StoryDescription = props => <Paragraph size={400} color="muted" {...props} />
 
 class TabManager extends React.PureComponent {
   static propTypes = {
@@ -49,8 +47,7 @@ storiesOf('tabs', module)
         <StoryHeader>
           <StoryHeading>Tab usage</StoryHeading>
           <StoryDescription>
-            If you are not using a link (`a` tag) for your Tab, make sure to
-            wrap in a `Tablist` and comply with{' '}
+            If you are not using a link (`a` tag) for your Tab, make sure to wrap in a `Tablist` and comply with{' '}
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -99,10 +96,7 @@ storiesOf('tabs', module)
       <StorySection>
         <StoryHeader>
           <StoryHeading>Link usage</StoryHeading>
-          <StoryDescription>
-            If you are using a link (`a` tag), make sure to wrap in a
-            `TabNavigation`
-          </StoryDescription>
+          <StoryDescription>If you are using a link (`a` tag), make sure to wrap in a `TabNavigation`</StoryDescription>
         </StoryHeader>
 
         <Box>
@@ -118,9 +112,7 @@ storiesOf('tabs', module)
       <StorySection>
         <StoryHeader>
           <StoryHeading>Min-width Tabs</StoryHeading>
-          <StoryDescription>
-            Tabs with a min-width set on them
-          </StoryDescription>
+          <StoryDescription>Tabs with a min-width set on them</StoryDescription>
         </StoryHeader>
 
         <Box>
@@ -137,8 +129,8 @@ storiesOf('tabs', module)
         <StoryHeader>
           <StoryHeading>Disabled tab</StoryHeading>
           <StoryDescription>
-            If you want a tab to be disabled, pass `disabled` prop with value
-            `true`. The `Identities` tab is disabled below.
+            If you want a tab to be disabled, pass `disabled` prop with value `true`. The `Identities` tab is disabled
+            below.
           </StoryDescription>
         </StoryHeader>
 
@@ -228,8 +220,7 @@ storiesOf('tabs', module)
         <StoryHeader>
           <StoryHeading>Tab usage</StoryHeading>
           <StoryDescription>
-            If you are not using a link (`a` tag) for your Tab, make sure to
-            wrap in a `Tablist` and comply with{' '}
+            If you are not using a link (`a` tag) for your Tab, make sure to wrap in a `Tablist` and comply with{' '}
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -278,23 +269,13 @@ storiesOf('tabs', module)
       <StorySection>
         <StoryHeader>
           <StoryHeading>Link usage</StoryHeading>
-          <StoryDescription>
-            If you are using a link (`a` tag), make sure to wrap in a
-            `TabNavigation`
-          </StoryDescription>
+          <StoryDescription>If you are using a link (`a` tag), make sure to wrap in a `TabNavigation`</StoryDescription>
         </StoryHeader>
 
         <Box>
           <TabNavigation marginX={-4} marginBottom={16} width={240}>
             {tabs.map((tab, index) => (
-              <Tab
-                key={tab}
-                is="a"
-                href="#"
-                id={tab}
-                isSelected={index === 0}
-                direction="vertical"
-              >
+              <Tab key={tab} is="a" href="#" id={tab} isSelected={index === 0} direction="vertical">
                 {tab}
               </Tab>
             ))}

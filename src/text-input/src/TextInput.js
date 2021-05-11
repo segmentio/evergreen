@@ -50,10 +50,7 @@ const TextInput = memo(
     )
 
     const height = restProps.height || boxProps.height
-    const textProps =
-      !restProps.size && restProps.height
-        ? getTextPropsForControlHeight(restProps.height)
-        : {}
+    const textProps = !restProps.size && restProps.height ? getTextPropsForControlHeight(restProps.height) : {}
 
     return (
       <Box

@@ -59,8 +59,6 @@ describe('Sizing', () => {
   test('<Text /> has undefined behavior when trying to set arbitrary sizes', () => {
     render(<Text size={800} />)
     expect(mockFn.mock.calls.length).toEqual(1)
-    expect(mockFn.mock.calls[0][0]).toEqual(
-      expect.stringContaining('Invalid prop `size`')
-    )
+    expect(mockFn.mock.calls[0][0]).toEqual(expect.stringContaining('Invalid prop `size`'))
   })
 })

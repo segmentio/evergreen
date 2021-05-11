@@ -14,23 +14,13 @@ const getIconSizeForInput = height => {
 
 const SearchInput = memo(
   forwardRef(function SearchInput(props, ref) {
-    const {
-      appearance = 'default',
-      disabled,
-      height = 32,
-      ...restProps
-    } = props
+    const { appearance = 'default', disabled, height = 32, ...restProps } = props
     const { matchedProps, remainingProps } = splitBoxProps(restProps)
     const { width } = matchedProps
     const iconSize = getIconSizeForInput(height)
 
     return (
-      <Box
-        position="relative"
-        display="inline-flex"
-        height={height}
-        {...matchedProps}
-      >
+      <Box position="relative" display="inline-flex" height={height} {...matchedProps}>
         <Box
           height={height}
           width={height}
@@ -40,11 +30,7 @@ const SearchInput = memo(
           justifyContent="center"
           alignItems="center"
         >
-          <SearchIcon
-            color="default"
-            zIndex={StackingOrder.FOCUSED + 1}
-            size={iconSize}
-          />
+          <SearchIcon color="default" zIndex={StackingOrder.FOCUSED + 1} size={iconSize} />
         </Box>
         <TextInput
           ref={ref}

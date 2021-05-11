@@ -33,12 +33,7 @@ storiesOf('layers', module)
               ))}
           </Pane>
           <Pane overflow="auto">
-            <Pane
-              {...cardStyle}
-              elevation={1}
-              hoverElevation={3}
-              activeElevation={2}
-            >
+            <Pane {...cardStyle} elevation={1} hoverElevation={3} activeElevation={2}>
               Interactive
             </Pane>
           </Pane>
@@ -83,12 +78,7 @@ storiesOf('layers', module)
           </Pane>
 
           <Pane overflow="auto">
-            <Card
-              {...cardStyle}
-              elevation={1}
-              hoverElevation={3}
-              activeElevation={2}
-            >
+            <Card {...cardStyle} elevation={1} hoverElevation={3} activeElevation={2}>
               Interactive
             </Card>
           </Pane>

@@ -1,10 +1,4 @@
-import React, {
-  memo,
-  forwardRef,
-  useState,
-  useEffect,
-  useCallback
-} from 'react'
+import React, { memo, forwardRef, useState, useEffect, useCallback } from 'react'
 import Downshift from 'downshift'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import PropTypes from 'prop-types'
@@ -23,9 +17,7 @@ const fuzzyFilter = itemToString => {
         item
       }))
 
-      return fuzzaldrin
-        .filter(wrappedItems, input, { key: 'key' })
-        .map(({ item }) => item)
+      return fuzzaldrin.filter(wrappedItems, input, { key: 'key' }).map(({ item }) => item)
     }
   }
 
@@ -54,10 +46,7 @@ const AutocompleteItems = ({
   width
 }) => {
   itemsFilter = itemsFilter || fuzzyFilter(itemToString)
-  const items =
-    isFilterDisabled || inputValue.trim() === ''
-      ? originalItems
-      : itemsFilter(originalItems, inputValue)
+  const items = isFilterDisabled || inputValue.trim() === '' ? originalItems : itemsFilter(originalItems, inputValue)
 
   if (items.length === 0) return null
 
@@ -134,10 +123,7 @@ const Autocomplete = memo(
       (state, changes) => {
         const { allowOtherValues, items } = props
 
-        if (
-          Object.prototype.hasOwnProperty.call(changes, 'isOpen') &&
-          changes.isOpen
-        ) {
+        if (Object.prototype.hasOwnProperty.call(changes, 'isOpen') && changes.isOpen) {
           return {
             ...changes,
             highlightedIndex: items.indexOf(state.selectedItem)
@@ -158,13 +144,7 @@ const Autocomplete = memo(
     )
 
     return (
-      <Downshift
-        stateReducer={stateReducer}
-        scrollIntoView={noop}
-        itemToString={itemToString}
-        ref={ref}
-        {...restProps}
-      >
+      <Downshift stateReducer={stateReducer} scrollIntoView={noop} itemToString={itemToString} ref={ref} {...restProps}>
         {({
           getItemProps,
           getMenuProps,
@@ -180,12 +160,7 @@ const Autocomplete = memo(
               bringFocusInside={false}
               isShown={isShown}
               minWidth={popoverMinWidth}
-              position={
-                position ||
-                (targetWidth < popoverMinWidth
-                  ? Position.BOTTOM_LEFT
-                  : Position.BOTTOM)
-              }
+              position={position || (targetWidth < popoverMinWidth ? Position.BOTTOM_LEFT : Position.BOTTOM)}
               content={() => (
                 <AutocompleteItems
                   getItemProps={getItemProps}

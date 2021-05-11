@@ -16,14 +16,7 @@ const internalStyles = {
 
 const InlineAlert = memo(
   forwardRef(function InlineAlert(props, ref) {
-    const {
-      children,
-      className,
-      hasIcon = true,
-      intent = 'info',
-      size = 400,
-      ...restProps
-    } = props
+    const { children, className, hasIcon = true, intent = 'info', size = 400, ...restProps } = props
 
     const intentToken = intent === 'none' ? 'info' : intent
     const { className: themedClassName, ...styleProps } = useStyleConfig(
@@ -34,12 +27,7 @@ const InlineAlert = memo(
     )
 
     return (
-      <Pane
-        ref={ref}
-        className={cx(className, themedClassName)}
-        {...styleProps}
-        {...restProps}
-      >
+      <Pane ref={ref} className={cx(className, themedClassName)} {...styleProps} {...restProps}>
         {hasIcon && (
           <Pane display="flex" marginRight={16}>
             {getIconForIntent(intent, { size: 16 })}

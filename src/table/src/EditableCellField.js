@@ -74,10 +74,7 @@ const EditableCellField = memo(function EditableCellField(props) {
     let calculatedTop
     if (tableBodyRef.current) {
       const bounds = tableBodyRef.current.getBoundingClientRect()
-      calculatedTop = Math.min(
-        Math.max(targetTop, bounds.top),
-        bounds.bottom - targetHeight
-      )
+      calculatedTop = Math.min(Math.max(targetTop, bounds.top), bounds.bottom - targetHeight)
     } else {
       calculatedTop = targetTop
     }

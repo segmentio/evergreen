@@ -1,13 +1,4 @@
-const fontSizes = [
-  '11px',
-  '12px',
-  '14px',
-  '16px',
-  '20px',
-  '24px',
-  '29px',
-  '35px'
-]
+const fontSizes = ['11px', '12px', '14px', '16px', '20px', '24px', '29px', '35px']
 
 fontSizes.body = '14px'
 fontSizes.heading = '16px'

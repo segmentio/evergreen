@@ -17,12 +17,7 @@ const OrderedList = memo(
   forwardRef(function OrderedList(props, ref) {
     const { children, className, size = 400, ...rest } = props
 
-    const { className: themedClassName, ...styleProps } = useStyleConfig(
-      'List',
-      { size },
-      emptyObject,
-      internalStyles
-    )
+    const { className: themedClassName, ...styleProps } = useStyleConfig('List', { size }, emptyObject, internalStyles)
 
     const finalChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {
@@ -36,13 +31,7 @@ const OrderedList = memo(
     })
 
     return (
-      <Box
-        is="ol"
-        className={cx(className, themedClassName)}
-        {...styleProps}
-        {...rest}
-        ref={ref}
-      >
+      <Box is="ol" className={cx(className, themedClassName)} {...styleProps} {...rest} ref={ref}>
         {finalChildren}
       </Box>
     )

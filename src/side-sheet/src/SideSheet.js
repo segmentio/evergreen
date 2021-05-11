@@ -159,12 +159,7 @@ const SideSheet = memo(function SideSheet(props) {
           className={css(animationStylesClass[position]).toString()}
           data-state={state}
         >
-          <SheetClose
-            position={position}
-            data-state={state}
-            isClosing={false}
-            onClick={close}
-          />
+          <SheetClose position={position} data-state={state} isClosing={false} onClick={close} />
           <Pane
             elevation={4}
             backgroundColor="white"
@@ -234,12 +229,7 @@ SideSheet.propTypes = {
   /**
    * Positions the sheet to the top, left, right, or bottom of the screen.
    */
-  position: PropTypes.oneOf([
-    Position.TOP,
-    Position.BOTTOM,
-    Position.LEFT,
-    Position.RIGHT
-  ]),
+  position: PropTypes.oneOf([Position.TOP, Position.BOTTOM, Position.LEFT, Position.RIGHT]),
 
   /**
    * Whether or not to prevent scrolling in the outer body

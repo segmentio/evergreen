@@ -63,11 +63,7 @@ storiesOf('radio', module)
       <Heading>Indeterminate Single Radio (uncommon)</Heading>
       <Box aria-label="Radio Group Label 12" role="group">
         <Radio name="indeterminate" label="Indeterminate" />
-        <Radio
-          checked={false}
-          name="indeterminate"
-          label="Indeterminate `checked={false}`"
-        />
+        <Radio checked={false} name="indeterminate" label="Indeterminate `checked={false}`" />
       </Box>
       <Heading marginTop={40}>Default usage, size 12</Heading>
       <Box aria-label="Radio Group Label 12" role="group">
@@ -81,13 +77,7 @@ storiesOf('radio', module)
         <Radio checked size={16} name="group2" label="Radio default" />
         <Radio size={16} name="group2" checked label="Radio checked" />
         <Radio size={16} name="group2" disabled label="Radio disabled" />
-        <Radio
-          size={16}
-          name="group4"
-          checked
-          disabled
-          label="Radio checked disabled"
-        />
+        <Radio size={16} name="group4" checked disabled label="Radio checked disabled" />
       </Box>
     </Box>
   ))

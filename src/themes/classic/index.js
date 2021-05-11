@@ -1,10 +1,6 @@
 import components from './components'
 
-import {
-  palette,
-  scales,
-  tokens as ogTokens
-} from './deprecated/foundational-styles'
+import { palette, scales, tokens as ogTokens } from './deprecated/foundational-styles'
 
 import tokens from './tokens'
 

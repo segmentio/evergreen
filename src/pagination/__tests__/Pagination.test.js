@@ -8,12 +8,8 @@ describe('Pagination', () => {
     const { findByRole } = render(<Pagination page={1} totalPages={5} />)
     const container = await findByRole('navigation')
     expect(container.querySelectorAll('li')).toHaveLength(7)
-    expect(
-      container.querySelectorAll('button[aria-label~="Page"]')
-    ).toHaveLength(5)
-    expect(
-      container.querySelector('button[aria-current="true"').textContent
-    ).toEqual('1')
+    expect(container.querySelectorAll('button[aria-label~="Page"]')).toHaveLength(5)
+    expect(container.querySelector('button[aria-current="true"').textContent).toEqual('1')
   })
 
   it('Shows a maximum # of items if it is overflowing', async () => {
@@ -53,27 +49,19 @@ describe('Pagination', () => {
     const container = await findByRole('navigation')
     const paginationItems = container.querySelectorAll('li')
     const previousHandle = paginationItems[0].querySelector('button')
-    const nextHandle = paginationItems[
-      paginationItems.length - 1
-    ].querySelector('button')
+    const nextHandle = paginationItems[paginationItems.length - 1].querySelector('button')
 
     expect(previousHandle).toHaveAttribute('disabled')
-    expect(
-      container.querySelector('button[aria-current="true"').textContent
-    ).toEqual('1')
+    expect(container.querySelector('button[aria-current="true"').textContent).toEqual('1')
 
     fireEvent.click(nextHandle)
 
-    expect(
-      container.querySelector('button[aria-current="true"').textContent
-    ).toEqual('2')
+    expect(container.querySelector('button[aria-current="true"').textContent).toEqual('2')
 
     expect(previousHandle).not.toHaveAttribute('disabled')
 
     fireEvent.click(previousHandle)
 
-    expect(
-      container.querySelector('button[aria-current="true"').textContent
-    ).toEqual('1')
+    expect(container.querySelector('button[aria-current="true"').textContent).toEqual('1')
   })
 })

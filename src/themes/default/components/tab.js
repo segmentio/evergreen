@@ -14,8 +14,7 @@ const appearances = {
     position: 'relative',
 
     ':not(:last-child)': {
-      marginRight: (_, props) =>
-        props.direction === 'horizontal' ? '20px' : null
+      marginRight: (_, props) => (props.direction === 'horizontal' ? '20px' : null)
     },
 
     _before: {
@@ -71,8 +70,7 @@ const appearances = {
     color: 'colors.default',
 
     ':not(:last-child)': {
-      marginRight: (_, props) =>
-        props.direction === 'horizontal' ? '8px' : null
+      marginRight: (_, props) => (props.direction === 'horizontal' ? '8px' : null)
     },
 
     _hover: {

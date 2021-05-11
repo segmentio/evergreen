@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const LayoutHierarchyIcon = memo(
   forwardRef(function LayoutHierarchyIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="layout-hierarchy"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="layout-hierarchy" {...props} />
   })
 )

@@ -17,14 +17,7 @@ const ButtonIcon = memo(function ButtonIcon({ edge, icon, size, spacing }) {
   const marginLeft = edge === 'start' ? edgeMargin : innerMargin
   const marginRight = edge === 'end' ? edgeMargin : innerMargin
 
-  return (
-    <IconWrapper
-      icon={icon}
-      size={size}
-      marginLeft={marginLeft}
-      marginRight={marginRight}
-    />
-  )
+  return <IconWrapper icon={icon} size={size} marginLeft={marginLeft} marginRight={marginRight} />
 })
 /* eslint-enable react/prop-types */
 
@@ -51,8 +44,7 @@ export const internalStyles = {
 }
 
 export const pseudoSelectors = {
-  _active:
-    '&:not([disabled]):active, &:not([disabled])[aria-expanded="true"], &:not([disabled])[data-active]',
+  _active: '&:not([disabled]):active, &:not([disabled])[aria-expanded="true"], &:not([disabled])[data-active]',
   _disabled: '&[disabled]',
   _focus: '&:not([disabled]):focus',
   _focusAndActive:
@@ -94,10 +86,7 @@ const Button = memo(
 
     const height = restProps.height || boxProps.height
     // Keep backwards compat font sizing if an explicit height was passed in.
-    const textProps =
-      !restProps.size && restProps.height
-        ? getTextPropsForControlHeight(restProps.height)
-        : {}
+    const textProps = !restProps.size && restProps.height ? getTextPropsForControlHeight(restProps.height) : {}
     const iconSize = getIconSizeForButton(height)
 
     return (
@@ -118,19 +107,9 @@ const Button = memo(
             size={Math.round(height / 2)}
           />
         )}
-        <ButtonIcon
-          icon={iconBefore}
-          size={iconSize}
-          spacing={restProps.paddingLeft}
-          edge="start"
-        />
+        <ButtonIcon icon={iconBefore} size={iconSize} spacing={restProps.paddingLeft} edge="start" />
         {children}
-        <ButtonIcon
-          icon={iconAfter}
-          size={iconSize}
-          spacing={restProps.paddingRight}
-          edge="end"
-        />
+        <ButtonIcon icon={iconAfter} size={iconSize} spacing={restProps.paddingRight} edge="end" />
       </Box>
     )
   })

@@ -63,17 +63,9 @@ function maybeRunDeep(raw, ...args) {
 function combineStyles(theme, props, styleConfig, internalStyles = {}) {
   const config = maybeRun(styleConfig, theme, props)
   const baseStyle = maybeRunDeep(config.baseStyle, theme, props)
-  const sizeStyle = maybeRunDeep(
-    get(config, `sizes.${props.size}`, {}),
-    theme,
-    props
-  )
+  const sizeStyle = maybeRunDeep(get(config, `sizes.${props.size}`, {}), theme, props)
 
-  const appearanceStyle = maybeRunDeep(
-    get(config, `appearances.${props.appearance}`, {}),
-    theme,
-    props
-  )
+  const appearanceStyle = maybeRunDeep(get(config, `appearances.${props.appearance}`, {}), theme, props)
 
   return merge({}, internalStyles, baseStyle, sizeStyle, appearanceStyle)
 }
@@ -87,12 +79,7 @@ function useMergedStyles(theme, props, styleConfig, internalStyles) {
   const styleRef = useRef({})
 
   return useMemo(() => {
-    const combinedStyles = combineStyles(
-      theme,
-      props,
-      styleConfig,
-      internalStyles
-    )
+    const combinedStyles = combineStyles(theme, props, styleConfig, internalStyles)
     if (!isEqual(styleRef.current, combinedStyles)) {
       styleRef.current = combinedStyles
     }
@@ -142,30 +129,17 @@ function useGlamorAndBox(styles, pseudoSelectors) {
  * @param {GlamorAndBoxStyle} [internalStyles] additional styles that are specified internally, separate from the visual styles
  * @returns {{ className: string; boxProps: import('ui-box').EnhancerProps }}
  */
-export function useStyleConfig(
-  componentKey,
-  props,
-  pseudoSelectors,
-  internalStyles
-) {
+export function useStyleConfig(componentKey, props, pseudoSelectors, internalStyles) {
   const theme = useTheme()
 
   // Get the component style object from the theme
   const componentStyles = get(theme, `components.${componentKey}`) || {}
 
   // Merges the theme styles with the modifiers/props (appearance, size, etc)
-  const mergedStyles = useMergedStyles(
-    theme,
-    props,
-    componentStyles,
-    internalStyles
-  )
+  const mergedStyles = useMergedStyles(theme, props, componentStyles, internalStyles)
 
   // Resolve theme token strings found throughout the style object
-  const styles = useMemo(() => resolveThemeTokens(theme, mergedStyles), [
-    theme,
-    mergedStyles
-  ])
+  const styles = useMemo(() => resolveThemeTokens(theme, mergedStyles), [theme, mergedStyles])
 
   // Finally, split up the styles based which ones Box supports and the rest construct a glamor className
   return useGlamorAndBox(styles, pseudoSelectors)

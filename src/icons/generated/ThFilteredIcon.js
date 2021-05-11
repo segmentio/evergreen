@@ -12,14 +12,6 @@ const svgPaths20 = [
 
 export const ThFilteredIcon = memo(
   forwardRef(function ThFilteredIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="th-filtered"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="th-filtered" {...props} />
   })
 )

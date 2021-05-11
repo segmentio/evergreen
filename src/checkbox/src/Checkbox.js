@@ -20,11 +20,7 @@ CheckIcon.propTypes = {
 
 const MinusIcon = ({ fill = 'currentColor', ...props }) => (
   <svg width={16} height={16} viewBox="0 0 16 16" {...props}>
-    <path
-      fill={fill}
-      fillRule="evenodd"
-      d="M11 7H5c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1z"
-    />
+    <path fill={fill} fillRule="evenodd" d="M11 7H5c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1z" />
   </svg>
 )
 
@@ -41,12 +37,9 @@ const pseudoSelectors = {
   _focus: '&:not([disabled]):focus + div',
   _active: '&:not([disabled]):active + div',
   _checked: '&:checked + div, &[type=checkbox]:indeterminate + div',
-  _checkedHover:
-    '&:not([disabled]):checked:hover + div, &[type=checkbox]:not([disabled]):indeterminate:hover + div',
-  _checkedActive:
-    '&:not([disabled]):checked:active + div, &[type=checkbox]:not([disabled]):indeterminate:active + div',
-  _checkedDisabled:
-    '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div'
+  _checkedHover: '&:not([disabled]):checked:hover + div, &[type=checkbox]:not([disabled]):indeterminate:hover + div',
+  _checkedActive: '&:not([disabled]):checked:active + div, &[type=checkbox]:not([disabled]):indeterminate:active + div',
+  _checkedDisabled: '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div'
 }
 
 const internalStyles = {
@@ -138,11 +131,7 @@ const Checkbox = memo(
           {indeterminate ? <MinusIcon /> : <CheckIcon />}
         </Box>
         {label && (
-          <Text
-            marginLeft={8}
-            size={300}
-            color={disabled ? 'muted' : 'default'}
-          >
+          <Text marginLeft={8} size={300} color={disabled ? 'muted' : 'default'}>
             {label}
           </Text>
         )}

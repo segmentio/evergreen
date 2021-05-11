@@ -8,23 +8,15 @@ const emptyObject = {}
 
 const Text = memo(
   forwardRef(function Text(props, ref) {
-    const {
-      className,
-      color: colorProp = 'default',
-      fontFamily = 'ui',
-      size = 400,
-      ...restProps
-    } = props
+    const { className, color: colorProp = 'default', fontFamily = 'ui', size = 400, ...restProps } = props
 
     const theme = useTheme()
     const { colors, fontFamilies } = theme
 
-    const color =
-      colorProp === 'none' || colorProp === 'default' ? 'default' : colorProp
+    const color = colorProp === 'none' || colorProp === 'default' ? 'default' : colorProp
 
     const themedFontFamily = fontFamilies[fontFamily] || fontFamily
-    const themedColor =
-      colors[color] || (colors.text && colors.text[color]) || color
+    const themedColor = colors[color] || (colors.text && colors.text[color]) || color
 
     const textStyle = useStyleConfig('Text', { size }, emptyObject, emptyObject)
 

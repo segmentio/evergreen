@@ -86,8 +86,7 @@ const Positioner = memo(function Positioner(props) {
 
     const targetRect = targetRef.current.getBoundingClientRect()
 
-    const hasEntered =
-      positionerRef.current.getAttribute('data-state') === 'entered'
+    const hasEntered = positionerRef.current.getAttribute('data-state') === 'entered'
 
     const viewportHeight = document.documentElement.clientHeight
     const viewportWidth = document.documentElement.clientWidth

@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const OilFieldIcon = memo(
   forwardRef(function OilFieldIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="oil-field"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="oil-field" {...props} />
   })
 )

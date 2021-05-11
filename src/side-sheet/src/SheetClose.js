@@ -124,12 +124,7 @@ export default class SheetClose extends PureComponent {
   static propTypes = {
     ...Box.propTypes,
     isClosing: PropTypes.bool,
-    position: PropTypes.oneOf([
-      Position.LEFT,
-      Position.RIGHT,
-      Position.TOP,
-      Position.BOTTOM
-    ]).isRequired
+    position: PropTypes.oneOf([Position.LEFT, Position.RIGHT, Position.TOP, Position.BOTTOM]).isRequired
   }
 
   render() {

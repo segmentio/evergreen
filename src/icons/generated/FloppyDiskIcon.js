@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const FloppyDiskIcon = memo(
   forwardRef(function FloppyDiskIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="floppy-disk"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="floppy-disk" {...props} />
   })
 )

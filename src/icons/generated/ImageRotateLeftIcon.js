@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const ImageRotateLeftIcon = memo(
   forwardRef(function ImageRotateLeftIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="image-rotate-left"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="image-rotate-left" {...props} />
   })
 )

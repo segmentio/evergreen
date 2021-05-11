@@ -4,12 +4,7 @@ import { Pagination, usePaginationBehavior } from '../'
 
 storiesOf('pagination', module)
   .add('Pagination with no overflow', () => {
-    const {
-      onNextPage,
-      onPageChange,
-      onPreviousPage,
-      page
-    } = usePaginationBehavior({ page: 3 })
+    const { onNextPage, onPageChange, onPreviousPage, page } = usePaginationBehavior({ page: 3 })
 
     return (
       <Pagination
@@ -22,12 +17,7 @@ storiesOf('pagination', module)
     )
   })
   .add('Pagination with overflow', () => {
-    const {
-      onNextPage,
-      onPageChange,
-      onPreviousPage,
-      page
-    } = usePaginationBehavior({ page: 5 })
+    const { onNextPage, onPageChange, onPreviousPage, page } = usePaginationBehavior({ page: 5 })
 
     return (
       <Pagination
@@ -40,19 +30,9 @@ storiesOf('pagination', module)
     )
   })
   .add('Pagination with unknown # of total pages', () => {
-    const {
-      onNextPage,
-      onPageChange,
-      onPreviousPage,
-      page
-    } = usePaginationBehavior()
+    const { onNextPage, onPageChange, onPreviousPage, page } = usePaginationBehavior()
 
     return (
-      <Pagination
-        page={page}
-        onNextPage={onNextPage}
-        onPreviousPage={onPreviousPage}
-        onPageChange={onPageChange}
-      />
+      <Pagination page={page} onNextPage={onNextPage} onPreviousPage={onPreviousPage} onPageChange={onPageChange} />
     )
   })

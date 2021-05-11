@@ -66,8 +66,7 @@ const Menu = memo(function Menu(props) {
 
     function onKeyPressListener(e) {
       const { target } = e
-      const menuItem =
-        menuItems.current && menuItems.current.find(item => item === target)
+      const menuItem = menuItems.current && menuItems.current.find(item => item === target)
 
       if (!menuItem) {
         return

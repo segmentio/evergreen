@@ -8,9 +8,7 @@
  */
 export default function majorScale(x) {
   if (!Number.isInteger(x)) {
-    throw new TypeError(
-      `majorScale only accepts integers as input, instead ${x} was passed.`
-    )
+    throw new TypeError(`majorScale only accepts integers as input, instead ${x} was passed.`)
   }
 
   return x * 8

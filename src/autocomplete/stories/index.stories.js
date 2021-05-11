@@ -49,21 +49,12 @@ storiesOf('autocomplete', module).add('Autocomplete', () => {
           allowOtherValues
         >
           {({ getInputProps, getRef, inputValue }) => (
-            <TextInput
-              placeholder="Starwars names"
-              value={inputValue}
-              ref={ref => getRef(ref)}
-              {...getInputProps()}
-            />
+            <TextInput placeholder="Starwars names" value={inputValue} ref={ref => getRef(ref)} {...getInputProps()} />
           )}
         </Autocomplete>
       </Box>
       <Box padding={40}>
-        <Autocomplete
-          title="Starwars names"
-          onChange={handleChange}
-          items={items}
-        >
+        <Autocomplete title="Starwars names" onChange={handleChange} items={items}>
           {({ getInputProps, getRef, inputValue, openMenu }) => (
             <TextInput
               width={160}
@@ -96,12 +87,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => {
         </Autocomplete>
       </Box>
       <Box padding={40}>
-        <Autocomplete
-          isFilterDisabled
-          title="Disable filter"
-          onChange={handleChange}
-          items={items}
-        >
+        <Autocomplete isFilterDisabled title="Disable filter" onChange={handleChange} items={items}>
           {({ getInputProps, getRef, inputValue, openMenu }) => (
             <TextInput
               placeholder="Disable filter and open on focus"
@@ -134,19 +120,9 @@ storiesOf('autocomplete', module).add('Autocomplete', () => {
       </Box>
       <Box padding={40}>
         <Autocomplete onChange={handleChange} items={items}>
-          {({
-            getInputProps,
-            getRef,
-            getToggleButtonProps,
-            inputValue,
-            toggleMenu
-          }) => (
+          {({ getInputProps, getRef, getToggleButtonProps, inputValue, toggleMenu }) => (
             <Box ref={ref => getRef(ref)} display="inline-block">
-              <TextInput
-                placeholder="Trigger with button"
-                value={inputValue}
-                {...getInputProps()}
-              />
+              <TextInput placeholder="Trigger with button" value={inputValue} {...getInputProps()} />
               <Button onClick={toggleMenu} {...getToggleButtonProps()}>
                 Trigger
               </Button>

@@ -18,14 +18,7 @@ function IndeterminateWithRefExample() {
     }
   }, [ref])
 
-  return (
-    <Checkbox
-      checked
-      indeterminate
-      ref={ref}
-      label="Checkbox checked indeterminate disabled with ref"
-    />
-  )
+  return <Checkbox checked indeterminate ref={ref} label="Checkbox checked indeterminate disabled with ref" />
 }
 
 storiesOf('checkbox', module).add('Checkbox', () => (

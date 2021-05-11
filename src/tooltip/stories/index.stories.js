@@ -41,12 +41,7 @@ storiesOf('tooltip', module)
     </Box>
   ))
   .add('Positions', () => (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      height="100vh"
-    >
+    <Box display="flex" alignItems="center" justifyContent="center" height="100vh">
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'

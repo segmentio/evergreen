@@ -24,15 +24,7 @@ const Link = memo(
       internalStyles
     )
 
-    return (
-      <Text
-        is="a"
-        ref={ref}
-        className={cx(className, themedClassName)}
-        {...boxProps}
-        {...restProps}
-      />
-    )
+    return <Text is="a" ref={ref} className={cx(className, themedClassName)} {...boxProps} {...restProps} />
   })
 )
 

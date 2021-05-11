@@ -20,12 +20,9 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             isShown={state.isShown}
             onCloseComplete={() => setState({ isShown: false })}
           >
-            The Corner Dialog component is used for new feature announcements
-            and feedback requests from the user.
+            The Corner Dialog component is used for new feature announcements and feedback requests from the user.
           </CornerDialog>
-          <Button onClick={() => setState({ isShown: true })}>
-            Show “Learn More” Corner Dialog
-          </Button>
+          <Button onClick={() => setState({ isShown: true })}>Show “Learn More” Corner Dialog</Button>
         </Box>
       )}
     </Manager>
@@ -38,12 +35,9 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             confirmLabel="Get in Touch"
             onCloseComplete={() => setState({ isShown: false })}
           >
-            Help shape Segment’s data governance product roadmap. If you’re
-            willing to provide feedback, let’s chat.
+            Help shape Segment’s data governance product roadmap. If you’re willing to provide feedback, let’s chat.
           </CornerDialog>
-          <Button onClick={() => setState({ isShown: true })}>
-            Show “Get in Touch” Corner Dialog
-          </Button>
+          <Button onClick={() => setState({ isShown: true })}>Show “Get in Touch” Corner Dialog</Button>
         </Box>
       )}
     </Manager>
@@ -57,13 +51,10 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             confirmLabel="View Agreement"
             onCloseComplete={() => setState({ isShown: false })}
           >
-            Segment now offers a Data Processing Agreement and EU Model Contract
-            Clauses as a means of meeting the adequacy and security requirements
-            of the GDPR.
+            Segment now offers a Data Processing Agreement and EU Model Contract Clauses as a means of meeting the
+            adequacy and security requirements of the GDPR.
           </CornerDialog>
-          <Button onClick={() => setState({ isShown: true })}>
-            Show “GDPR” Corner Dialog
-          </Button>
+          <Button onClick={() => setState({ isShown: true })}>Show “GDPR” Corner Dialog</Button>
         </Box>
       )}
     </Manager>
@@ -81,9 +72,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
           >
             MIT License
           </CornerDialog>
-          <Button onClick={() => setState({ isShown: true })}>
-            Show License Terms Dialog
-          </Button>
+          <Button onClick={() => setState({ isShown: true })}>Show License Terms Dialog</Button>
         </Box>
       )}
     </Manager>
@@ -140,9 +129,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
           >
             MIT License
           </CornerDialog>
-          <Button onClick={() => setState({ isShown: true })}>
-            Bottom right
-          </Button>
+          <Button onClick={() => setState({ isShown: true })}>Bottom right</Button>
         </Box>
       )}
     </Manager>
@@ -161,9 +148,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
           >
             MIT License
           </CornerDialog>
-          <Button onClick={() => setState({ isShown: true })}>
-            Bottom left
-          </Button>
+          <Button onClick={() => setState({ isShown: true })}>Bottom left</Button>
         </Box>
       )}
     </Manager>

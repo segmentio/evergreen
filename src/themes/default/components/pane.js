@@ -24,10 +24,7 @@ function borderProperty(theme, { border, value }) {
 
 const baseStyle = (theme, props) => {
   const transitionStyles = {}
-  if (
-    theme.shadows[props.hoverElevation] ||
-    theme.shadows[props.activeElevation]
-  ) {
+  if (theme.shadows[props.hoverElevation] || theme.shadows[props.activeElevation]) {
     Object.assign(transitionStyles, {
       transitionDuration: '150ms',
       transitionProperty: 'box-shadow, transform',

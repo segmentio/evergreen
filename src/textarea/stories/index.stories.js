@@ -35,23 +35,13 @@ storiesOf('textarea', module)
         <Label marginBottom={8} htmlFor="disabled" size={400} display="block">
           Disabled
         </Label>
-        <Textarea
-          value="This is disabled"
-          name="disabled"
-          id="disabled"
-          disabled
-        />
+        <Textarea value="This is disabled" name="disabled" id="disabled" disabled />
       </Box>
       <Box marginBottom={24} width={360}>
         <Label marginBottom={8} htmlFor="isInvalid" size={400} display="block">
           Is Invalid
         </Label>
-        <Textarea
-          name="isInvalid"
-          id="isInvalid"
-          isInvalid
-          placeholder="This is invalid"
-        />
+        <Textarea name="isInvalid" id="isInvalid" isInvalid placeholder="This is invalid" />
       </Box>
     </Box>
   ))

@@ -128,12 +128,7 @@ const Tooltip = memo(function Tooltip(props) {
   }
 
   return (
-    <Positioner
-      target={renderTarget}
-      isShown={shown}
-      position={position}
-      animationDuration={160}
-    >
+    <Positioner target={renderTarget} isShown={shown} position={position} animationDuration={160}>
       {({ css, getRef, state, style }) => (
         <TooltipStateless
           id={id}
@@ -144,10 +139,7 @@ const Tooltip = memo(function Tooltip(props) {
           onMouseEnter={handleMouseEnterTarget}
           onMouseLeave={handleMouseLeaveTarget}
           {...statelessProps}
-          className={cx(
-            statelessProps.className,
-            css ? glamorCss(css).toString() : undefined
-          )}
+          className={cx(statelessProps.className, css ? glamorCss(css).toString() : undefined)}
         >
           {content}
         </TooltipStateless>

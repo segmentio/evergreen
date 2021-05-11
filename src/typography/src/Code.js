@@ -10,23 +10,9 @@ const Code = memo(
   forwardRef(function Code(props, ref) {
     const { appearance = 'default', className, ...restProps } = props
 
-    const styleProps = useStyleConfig(
-      'Code',
-      { appearance },
-      pseudoSelectors,
-      internalStyles
-    )
+    const styleProps = useStyleConfig('Code', { appearance }, pseudoSelectors, internalStyles)
 
-    return (
-      <Text
-        is="code"
-        ref={ref}
-        className={className}
-        fontFamily="mono"
-        {...styleProps}
-        {...restProps}
-      />
-    )
+    return <Text is="code" ref={ref} className={className} fontFamily="mono" {...styleProps} {...restProps} />
   })
 )
 

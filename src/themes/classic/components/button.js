@@ -1,7 +1,4 @@
-import {
-  getTextColorForIntent,
-  getPrimaryButtonStylesForIntent
-} from '../deprecated/helpers'
+import { getTextColorForIntent, getPrimaryButtonStylesForIntent } from '../deprecated/helpers'
 import { defaultControlStyles } from '../deprecated/shared'
 
 const baseStyle = {
@@ -18,28 +15,21 @@ const baseStyle = {
 const appearances = {
   primary: {
     backgroundColor: 'white',
-    backgroundImage: (_, props) =>
-      getPrimaryButtonStylesForIntent(props.intent).linearGradient.base,
-    boxShadow: theme =>
-      `inset 0 0 0 1px ${theme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`,
+    backgroundImage: (_, props) => getPrimaryButtonStylesForIntent(props.intent).linearGradient.base,
+    boxShadow: theme => `inset 0 0 0 1px ${theme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`,
     color: 'white',
     _focus: {
-      backgroundImage: (_, props) =>
-        getPrimaryButtonStylesForIntent(props.intent).linearGradient.focus,
+      backgroundImage: (_, props) => getPrimaryButtonStylesForIntent(props.intent).linearGradient.focus,
       boxShadow: (theme, props) =>
-        `0 0 0 3px ${
-          getPrimaryButtonStylesForIntent(props.intent).focusColor
-        }, inset 0 0 0 1px ${theme.scales.neutral.N4A}, inset 0 -1px 1px 0 ${
-          theme.scales.neutral.N5A
-        }`
+        `0 0 0 3px ${getPrimaryButtonStylesForIntent(props.intent).focusColor}, inset 0 0 0 1px ${
+          theme.scales.neutral.N4A
+        }, inset 0 -1px 1px 0 ${theme.scales.neutral.N5A}`
     },
     _hover: {
-      backgroundImage: (_, props) =>
-        getPrimaryButtonStylesForIntent(props.intent).linearGradient.hover
+      backgroundImage: (_, props) => getPrimaryButtonStylesForIntent(props.intent).linearGradient.hover
     },
     _active: {
-      backgroundImage: (_, props) =>
-        getPrimaryButtonStylesForIntent(props.intent).linearGradient.active
+      backgroundImage: (_, props) => getPrimaryButtonStylesForIntent(props.intent).linearGradient.active
     },
     _focusAndActive: {}
   },
@@ -53,8 +43,7 @@ const appearances = {
     _disabled: defaultControlStyles.disabled
   },
   minimal: {
-    color: (theme, props) =>
-      getTextColorForIntent(props.intent, theme.colors.blue.base),
+    color: (theme, props) => getTextColorForIntent(props.intent, theme.colors.blue.base),
     background: 'transparent',
     _hover: {
       background: 'scales.neutral.N2A'

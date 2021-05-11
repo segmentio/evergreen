@@ -4,9 +4,7 @@ import Box from 'ui-box'
 import { Select } from '..'
 import { Text, Label } from '../../typography'
 
-const Description = props => (
-  <Text is="p" marginTop={0} size={300} color="muted" {...props} />
-)
+const Description = props => <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 
 const appearance = 'default'
 
@@ -16,9 +14,7 @@ storiesOf('select', module).add('Select', () => (
       <Label htmlFor="32" size={400} display="block">
         Height 32 (default)
       </Label>
-      <Description marginBottom={8}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.
-      </Description>
+      <Description marginBottom={8}>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</Description>
       <Select appearance={appearance} name="32" id="32">
         <option>Apple</option>
         <option>Pear</option>
@@ -30,13 +26,7 @@ storiesOf('select', module).add('Select', () => (
       <Label htmlFor="disabled" size={400} display="block">
         Disabled
       </Label>
-      <Select
-        appearance={appearance}
-        value="This is disabled"
-        name="disabled"
-        id="disabled"
-        disabled
-      >
+      <Select appearance={appearance} value="This is disabled" name="disabled" id="disabled" disabled>
         <option>Apple</option>
         <option>Pear</option>
         <option>Banana</option>

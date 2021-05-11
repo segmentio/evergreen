@@ -41,13 +41,7 @@ const SearchTableHeaderCell = memo(
 
     return (
       <TableHeaderCell {...rest}>
-        <IconWrapper
-          icon={icon}
-          color="muted"
-          marginLeft={2}
-          marginRight={10}
-          size={12}
-        />
+        <IconWrapper icon={icon} color="muted" marginLeft={2} marginRight={10} size={12} />
         <Text
           is="input"
           size={300}

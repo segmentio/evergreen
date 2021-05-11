@@ -13,40 +13,19 @@ import { Heading, Paragraph, Text } from '../../typography'
 
 // eslint-disable-next-line react/prop-types
 const PopoverContent = ({ height = 240 }) => (
-  <Pane
-    width={240}
-    height={height}
-    display="flex"
-    alignItems="center"
-    justifyContent="center"
-    flexDirection="column"
-  >
+  <Pane width={240} height={height} display="flex" alignItems="center" justifyContent="center" flexDirection="column">
     <Text>PopoverContent</Text>
   </Pane>
 )
 
 const PopoverContentWithTextInput = () => (
-  <Pane
-    width={320}
-    height={200}
-    display="flex"
-    alignItems="center"
-    justifyContent="center"
-    flexDirection="column"
-  >
+  <Pane width={320} height={200} display="flex" alignItems="center" justifyContent="center" flexDirection="column">
     <TextInputField label="Auto focus" autoFocus width="80%" />
   </Pane>
 )
 
 const ClosablePopoverContent = ({ close }) => (
-  <Pane
-    width={240}
-    height={240}
-    display="flex"
-    alignItems="center"
-    justifyContent="center"
-    flexDirection="column"
-  >
+  <Pane width={240} height={240} display="flex" alignItems="center" justifyContent="center" flexDirection="column">
     <Text>ClosablePopoverContent</Text>
     <Button onClick={close}>Close</Button>
   </Pane>
@@ -58,10 +37,7 @@ ClosablePopoverContent.propTypes = {
 
 // Using it with a function for complete control
 const controlUsage = (
-  <Popover
-    content={({ close }) => <ClosablePopoverContent close={close} />}
-    display="inline-block"
-  >
+  <Popover content={({ close }) => <ClosablePopoverContent close={close} />} display="inline-block">
     {({ getRef, isShown, toggle }) => (
       <Button
         // You can use `isShown` to set a properties
@@ -82,12 +58,7 @@ const controlUsage = (
 
 storiesOf('popover', module)
   .add('positions', () => (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      height="100vh"
-    >
+    <Box display="flex" alignItems="center" justifyContent="center" height="100vh">
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
@@ -100,10 +71,7 @@ storiesOf('popover', module)
           <Popover content={<PopoverContent />} position={Position.BOTTOM}>
             <Button marginRight={20}>BOTTOM</Button>
           </Popover>
-          <Popover
-            content={<PopoverContent />}
-            position={Position.BOTTOM_RIGHT}
-          >
+          <Popover content={<PopoverContent />} position={Position.BOTTOM_RIGHT}>
             <Button marginRight={20}>BOTTOM_RIGHT</Button>
           </Popover>
         </Box>
@@ -143,26 +111,18 @@ storiesOf('popover', module)
       <Popover content={<PopoverContent />}>
         <Button marginRight={20}>Trigger Popover</Button>
       </Popover>
-      <Popover
-        content={({ close }) => <ClosablePopoverContent close={close} />}
-      >
+      <Popover content={({ close }) => <ClosablePopoverContent close={close} />}>
         <Button marginRight={20}>Trigger Closable Popover</Button>
       </Popover>
       <Popover content={<PopoverContent />} shouldCloseOnExternalClick={false}>
         <Button marginRight={20}>No Close on Body Click</Button>
       </Popover>
-      <Popover
-        useSmartPositioning={false}
-        content={({ close }) => <ClosablePopoverContent close={close} />}
-      >
+      <Popover useSmartPositioning={false} content={({ close }) => <ClosablePopoverContent close={close} />}>
         <Button marginRight={20}>Disable Smart Positioning</Button>
       </Popover>
       <Pane overflowY="scroll" height={400} appearance="tint3">
         <Box height={800} paddingTop={200}>
-          <Popover
-            position={Position.BOTTOM_LEFT}
-            content={({ close }) => <ClosablePopoverContent close={close} />}
-          >
+          <Popover position={Position.BOTTOM_LEFT} content={({ close }) => <ClosablePopoverContent close={close} />}>
             <Button marginRight={20}>Inside Scrolling Container</Button>
           </Popover>
         </Box>
@@ -173,10 +133,7 @@ storiesOf('popover', module)
           Use Smart Positioning
         </Button>
       </Popover>
-      <Popover
-        content={<PopoverContent height={999} />}
-        position={Position.TOP_LEFT}
-      >
+      <Popover content={<PopoverContent height={999} />} position={Position.TOP_LEFT}>
         <Button position="absolute" left={40} top={80} marginRight={20}>
           Compensated for shooting past the bottom
         </Button>
@@ -204,9 +161,7 @@ storiesOf('popover', module)
         position={Position.BOTTOM_RIGHT}
         content={
           <Pane padding={12.3}>
-            <Text>
-              Lorem ipsum dolar set amet. Some content that keeps on going.
-            </Text>
+            <Text>Lorem ipsum dolar set amet. Some content that keeps on going.</Text>
           </Pane>
         }
       >
@@ -247,8 +202,8 @@ storiesOf('popover', module)
             <React.Fragment>
               <Heading>Heading</Heading>
               <Paragraph color="muted" marginTop={4}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.
               </Paragraph>
             </React.Fragment>
           }

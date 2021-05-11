@@ -2,14 +2,7 @@ import ListItem from './src/ListItem'
 import OrderedList from './src/OrderedList'
 import UnorderedList from './src/UnorderedList'
 
-export {
-  UnorderedList,
-  UnorderedList as Ul,
-  OrderedList,
-  OrderedList as Ol,
-  ListItem,
-  ListItem as Li
-}
+export { UnorderedList, UnorderedList as Ul, OrderedList, OrderedList as Ol, ListItem, ListItem as Li }
 
 export { default as Text } from './src/Text'
 export { default as Paragraph } from './src/Paragraph'

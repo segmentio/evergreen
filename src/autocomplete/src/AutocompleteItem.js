@@ -8,16 +8,8 @@ const AutocompleteItem = memo(
     const { children, isHighlighted, isSelected, style, ...restProps } = props
 
     return (
-      <Option
-        ref={ref}
-        isHighlighted={isHighlighted}
-        isSelected={isSelected}
-        style={style}
-        {...restProps}
-      >
-        {restProps.icon && (
-          <Image src={restProps.icon} width={24} marginRight={8} />
-        )}
+      <Option ref={ref} isHighlighted={isHighlighted} isSelected={isSelected} style={style} {...restProps}>
+        {restProps.icon && <Image src={restProps.icon} width={24} marginRight={8} />}
         {children}
       </Option>
     )

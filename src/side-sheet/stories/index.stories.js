@@ -5,12 +5,7 @@ import Box from 'ui-box'
 import { SideSheet } from '..'
 import { Button } from '../../buttons'
 import { Dialog } from '../../dialog'
-import {
-  PeopleIcon,
-  CircleArrowRightIcon,
-  TrashIcon,
-  EditIcon
-} from '../../icons'
+import { PeopleIcon, CircleArrowRightIcon, TrashIcon, EditIcon } from '../../icons'
 import { Card, Pane } from '../../layers'
 import Menu from '../../menu/src/Menu'
 import { Tab } from '../../tabs'
@@ -46,17 +41,15 @@ storiesOf('side-sheet', module)
                 <Pane display="flex" padding={8}>
                   <Component initialState={{ selectedIndex: 0 }}>
                     {({ setState, state }) =>
-                      ['Traits', 'Event History', 'Identities'].map(
-                        (tab, index) => (
-                          <Tab
-                            key={tab}
-                            isSelected={state.selectedIndex === index}
-                            onSelect={() => setState({ selectedIndex: index })}
-                          >
-                            {tab}
-                          </Tab>
-                        )
-                      )
+                      ['Traits', 'Event History', 'Identities'].map((tab, index) => (
+                        <Tab
+                          key={tab}
+                          isSelected={state.selectedIndex === index}
+                          onSelect={() => setState({ selectedIndex: index })}
+                        >
+                          {tab}
+                        </Tab>
+                      ))
                     }
                   </Component>
                 </Pane>
@@ -74,9 +67,7 @@ storiesOf('side-sheet', module)
                 </Card>
               </Pane>
             </SideSheet>
-            <Button onClick={() => setState({ isShown: true })}>
-              Show Side Sheet
-            </Button>
+            <Button onClick={() => setState({ isShown: true })}>Show Side Sheet</Button>
           </Box>
         )}
       </Component>
@@ -121,9 +112,7 @@ storiesOf('side-sheet', module)
                 </Card>
               </Pane>
             </SideSheet>
-            <Button onClick={() => setState({ isShown: true })}>
-              Show Side Sheet
-            </Button>
+            <Button onClick={() => setState({ isShown: true })}>Show Side Sheet</Button>
           </Box>
         )}
       </Component>
@@ -165,9 +154,7 @@ storiesOf('side-sheet', module)
                 </Card>
               </Pane>
             </SideSheet>
-            <Button onClick={() => setState({ isShown: true })}>
-              Show Side Sheet
-            </Button>
+            <Button onClick={() => setState({ isShown: true })}>Show Side Sheet</Button>
           </Box>
         )}
       </Component>
@@ -182,10 +169,7 @@ storiesOf('side-sheet', module)
       <Component initialState={{ isShown: false }}>
         {({ setState, state }) => (
           <Box>
-            <SideSheet
-              isShown={state.isShown}
-              onCloseComplete={() => setState({ isShown: false })}
-            >
+            <SideSheet isShown={state.isShown} onCloseComplete={() => setState({ isShown: false })}>
               {({ close }) => {
                 return (
                   <Box padding={40}>
@@ -194,9 +178,7 @@ storiesOf('side-sheet', module)
                 )
               }}
             </SideSheet>
-            <Button onClick={() => setState({ isShown: true })}>
-              Show Side Sheet
-            </Button>
+            <Button onClick={() => setState({ isShown: true })}>Show Side Sheet</Button>
           </Box>
         )}
       </Component>
@@ -229,9 +211,7 @@ storiesOf('side-sheet', module)
                     <Menu>
                       <Menu.Group title="Actions">
                         <Menu.Item icon={PeopleIcon}>Collaborators</Menu.Item>
-                        <Menu.Item icon={CircleArrowRightIcon}>
-                          Discover
-                        </Menu.Item>
+                        <Menu.Item icon={CircleArrowRightIcon}>Discover</Menu.Item>
                         <Menu.Item icon={EditIcon} secondaryText="⌘N">
                           Compose
                         </Menu.Item>
@@ -248,11 +228,7 @@ storiesOf('side-sheet', module)
               }}
             </SideSheet>
             {['left', 'right', 'top', 'bottom'].map(position => (
-              <Button
-                key={position}
-                margin="10px"
-                onClick={() => setState({ position, isShown: true })}
-              >
+              <Button key={position} margin="10px" onClick={() => setState({ position, isShown: true })}>
                 Show {position}
               </Button>
             ))}
@@ -276,9 +252,7 @@ storiesOf('side-sheet', module)
               shouldCloseOnEscapePress={false}
               onCloseComplete={() => setState({ isShown: false })}
             />
-            <Button onClick={() => setState({ isShown: true })}>
-              Show Side Sheet
-            </Button>
+            <Button onClick={() => setState({ isShown: true })}>Show Side Sheet</Button>
           </Box>
         )}
       </Component>
@@ -374,16 +348,12 @@ storiesOf('side-sheet', module)
                         Save
                       </Button>
                     </Pane>
-                    <Paragraph marginTop={16}>
-                      Current value: {state.value}
-                    </Paragraph>
+                    <Paragraph marginTop={16}>Current value: {state.value}</Paragraph>
                   </Box>
                 )
               }}
             </SideSheet>
-            <Button onClick={() => setState({ isShown: true })}>
-              Show Side Sheet
-            </Button>
+            <Button onClick={() => setState({ isShown: true })}>Show Side Sheet</Button>
           </Box>
         )}
       </Component>

@@ -7,20 +7,8 @@ const emptyObject = {}
 
 const Card = memo(
   forwardRef(function Card({ className, ...props }, ref) {
-    const { className: themedClassName, ...styleProps } = useStyleConfig(
-      'Card',
-      emptyObject,
-      emptyObject,
-      emptyObject
-    )
-    return (
-      <Pane
-        className={cx(className, themedClassName)}
-        {...styleProps}
-        {...props}
-        ref={ref}
-      />
-    )
+    const { className: themedClassName, ...styleProps } = useStyleConfig('Card', emptyObject, emptyObject, emptyObject)
+    return <Pane className={cx(className, themedClassName)} {...styleProps} {...props} ref={ref} />
   })
 )
 

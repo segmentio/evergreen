@@ -56,11 +56,7 @@ export default class VirtualTable extends React.PureComponent {
     return (
       <Fragment>
         <Pane display="flex">
-          <TextInputField
-            label="scrollOffset"
-            marginRight={minorScale(4)}
-            onChange={this.setValue('scrollOffset')}
-          />
+          <TextInputField label="scrollOffset" marginRight={minorScale(4)} onChange={this.setValue('scrollOffset')} />
           <TextInputField
             type="number"
             label="scrollToIndex"
@@ -69,9 +65,7 @@ export default class VirtualTable extends React.PureComponent {
           />
           <SelectField
             label="scrollToAlignment"
-            onChange={event =>
-              this.setState({ scrollToAlignment: event.target.value })
-            }
+            onChange={event => this.setState({ scrollToAlignment: event.target.value })}
           >
             <option value="" checked>
               scrollToAlignment
@@ -109,9 +103,7 @@ export default class VirtualTable extends React.PureComponent {
                         <Paragraph marginY={24}>{user.content}</Paragraph>
                       </Table.Cell>
                     ) : (
-                      <Table.TextCell>
-                        This is a static height row
-                      </Table.TextCell>
+                      <Table.TextCell>This is a static height row</Table.TextCell>
                     )}
                   </Table.Row>
                 )

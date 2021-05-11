@@ -57,9 +57,7 @@ const ToastManager = memo(function ToastManager(props) {
   }
 
   const removeToast = id => {
-    const updatedToasts = toasts.filter(
-      toast => !String(toast.id).startsWith(id)
-    )
+    const updatedToasts = toasts.filter(toast => !String(toast.id).startsWith(id))
     setToasts(updatedToasts)
     return updatedToasts
   }

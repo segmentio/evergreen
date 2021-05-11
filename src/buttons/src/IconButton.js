@@ -3,11 +3,7 @@ import PropTypes from 'prop-types'
 import { dimensions, spacing, position, layout } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
-import Button, {
-  getIconSizeForButton,
-  internalStyles,
-  pseudoSelectors
-} from './Button'
+import Button, { getIconSizeForButton, internalStyles, pseudoSelectors } from './Button'
 
 const IconButton = memo(
   forwardRef(function IconButton(props, ref) {
@@ -17,12 +13,7 @@ const IconButton = memo(
     const { appearance, intent = 'none', size = 'medium' } = props
 
     // Composes the exact same styles as button
-    const styleProps = useStyleConfig(
-      'Button',
-      { appearance, intent, size },
-      pseudoSelectors,
-      internalStyles
-    )
+    const styleProps = useStyleConfig('Button', { appearance, intent, size }, pseudoSelectors, internalStyles)
 
     const height = restProps.height || styleProps.height
     const relativeIconSize = getIconSizeForButton(height)

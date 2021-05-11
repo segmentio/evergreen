@@ -49,12 +49,7 @@ storiesOf('badges', module)
         <Box style={{ ...wrapperStyles }}>
           {Object.keys(theme.tokens.fills).map((color, index) => {
             return (
-              <Box
-                key={color}
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-              >
+              <Box key={color} display="flex" flexDirection="column" alignItems="center">
                 <Pill color={color} {...baseStyles}>
                   {randomNumbers[index]}
                 </Pill>

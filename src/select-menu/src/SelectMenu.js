@@ -63,14 +63,8 @@ const SelectMenu = memo(function SelectMenu(props) {
             optionSize: itemHeight
           }}
           close={close}
-          detailView={
-            typeof detailView === 'function'
-              ? detailView({ close })
-              : detailView
-          }
-          emptyView={
-            typeof emptyView === 'function' ? emptyView({ close }) : emptyView
-          }
+          detailView={typeof detailView === 'function' ? detailView({ close }) : detailView}
+          emptyView={typeof emptyView === 'function' ? emptyView({ close }) : emptyView}
           closeOnSelect={closeOnSelect}
         />
       )}

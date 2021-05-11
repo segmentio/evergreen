@@ -71,10 +71,7 @@ const Tab = memo(
     const clickableProps = useClickable({ disabled, onKeyDown, tabIndex })
 
     if (process.env.NODE_ENV !== 'production') {
-      warning(
-        typeof props.onClick === 'function',
-        '<Tab> expects `onSelect` prop, but you passed `onClick`.'
-      )
+      warning(typeof props.onClick === 'function', '<Tab> expects `onSelect` prop, but you passed `onClick`.')
     }
 
     let elementBasedProps

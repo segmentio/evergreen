@@ -4,11 +4,7 @@ import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { Text } from '../../typography'
 
-const CircleIcon = memo(function CircleIcon({
-  fill = 'currentColor',
-  size,
-  ...props
-}) {
+const CircleIcon = memo(function CircleIcon({ fill = 'currentColor', size, ...props }) {
   return (
     <svg width={size} height={size} viewBox="0 0 10 10" {...props}>
       <circle fill={fill} cx="5" cy="5" r="5" />
@@ -30,12 +26,9 @@ const pseudoSelectors = {
   _focus: '&:not([disabled]):focus + div',
   _active: '&:not([disabled]):active + div',
   _checked: '&:checked + div, &[type=checkbox]:indeterminate + div',
-  _checkedHover:
-    '&:not([disabled]):checked:hover + div, &[type=checkbox]:not([disabled]):indeterminate:hover + div',
-  _checkedActive:
-    '&:not([disabled]):checked:active + div, &[type=checkbox]:not([disabled]):indeterminate:active + div',
-  _checkedDisabled:
-    '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div'
+  _checkedHover: '&:not([disabled]):checked:hover + div, &[type=checkbox]:not([disabled]):indeterminate:hover + div',
+  _checkedActive: '&:not([disabled]):checked:active + div, &[type=checkbox]:not([disabled]):indeterminate:active + div',
+  _checkedDisabled: '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div'
 }
 
 const internalStyles = {
@@ -122,11 +115,7 @@ const Radio = memo(
           <CircleIcon size={size / 2} />
         </Box>
         {label && (
-          <Text
-            marginLeft={size === 12 ? 8 : 10}
-            size={size === 12 ? 300 : 400}
-            color={disabled ? 'muted' : 'default'}
-          >
+          <Text marginLeft={size === 12 ? 8 : 10} size={size === 12 ? 300 : 400} color={disabled ? 'muted' : 'default'}>
             {label}
           </Text>
         )}

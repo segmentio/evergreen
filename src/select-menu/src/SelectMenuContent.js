@@ -21,13 +21,7 @@ const DefaultTitleView = ({ close, headerHeight, title }) => (
         {title}
       </Text>
     </Pane>
-    <IconButton
-      icon={CrossIcon}
-      appearance="minimal"
-      height={24}
-      onClick={close}
-      border="none"
-    />
+    <IconButton icon={CrossIcon} appearance="minimal" height={24} onClick={close} border="none" />
   </Pane>
 )
 

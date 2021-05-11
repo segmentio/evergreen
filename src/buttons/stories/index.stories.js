@@ -37,46 +37,22 @@ buttonsStory.add('Common', () => (
             <Button size={state.value} marginRight={16}>
               Cancel
             </Button>
-            <Button
-              size={state.value}
-              marginRight={16}
-              iconAfter={Icons.CaretDownIcon}
-            >
+            <Button size={state.value} marginRight={16} iconAfter={Icons.CaretDownIcon}>
               Select event...
             </Button>
-            <Button
-              size={state.value}
-              marginRight={16}
-              iconBefore={Icons.AddIcon}
-            >
+            <Button size={state.value} marginRight={16} iconBefore={Icons.AddIcon}>
               New Audience
             </Button>
-            <Button
-              size={state.value}
-              marginRight={16}
-              iconBefore={Icons.DownloadIcon}
-            >
+            <Button size={state.value} marginRight={16} iconBefore={Icons.DownloadIcon}>
               Download
             </Button>
-            <Button
-              size={state.value}
-              marginRight={16}
-              iconBefore={Icons.DownloadIcon}
-            >
+            <Button size={state.value} marginRight={16} iconBefore={Icons.DownloadIcon}>
               Download CSV...
             </Button>
-            <Button
-              size={state.value}
-              marginRight={16}
-              iconBefore={Icons.EditIcon}
-            >
+            <Button size={state.value} marginRight={16} iconBefore={Icons.EditIcon}>
               Edit
             </Button>
-            <Button
-              size={state.value}
-              marginRight={16}
-              iconBefore={Icons.ManualIcon}
-            >
+            <Button size={state.value} marginRight={16} iconBefore={Icons.ManualIcon}>
               Docs
             </Button>
             <Button size={state.value} iconBefore={Icons.ImportIcon}>
@@ -87,30 +63,15 @@ buttonsStory.add('Common', () => (
             <Button size={state.value} appearance="primary" marginRight={16}>
               Confirm
             </Button>
-            <Button
-              size={state.value}
-              appearance="primary"
-              marginRight={16}
-              iconAfter={Icons.ArrowRightIcon}
-            >
+            <Button size={state.value} appearance="primary" marginRight={16} iconAfter={Icons.ArrowRightIcon}>
               Next Step
             </Button>
-            <Button
-              size={state.value}
-              appearance="primary"
-              marginRight={16}
-              iconBefore={Icons.EyeOpenIcon}
-            >
+            <Button size={state.value} appearance="primary" marginRight={16} iconBefore={Icons.EyeOpenIcon}>
               Preview
             </Button>
           </Pane>
           <Pane marginTop={16}>
-            <Button
-              size={state.value}
-              appearance="primary"
-              intent="success"
-              marginRight={16}
-            >
+            <Button size={state.value} appearance="primary" intent="success" marginRight={16}>
               Got It
             </Button>
             <Button
@@ -151,12 +112,7 @@ buttonsStory.add('Common', () => (
             </Button>
           </Pane>
           <Pane marginTop={16}>
-            <Button
-              size={state.value}
-              intent="warning"
-              marginRight={16}
-              iconBefore={Icons.RefreshIcon}
-            >
+            <Button size={state.value} intent="warning" marginRight={16} iconBefore={Icons.RefreshIcon}>
               Retry
             </Button>
             <Button
@@ -179,12 +135,7 @@ buttonsStory.add('Common', () => (
             >
               Delete...
             </Button>
-            <Button
-              size={state.value}
-              intent="danger"
-              marginRight={16}
-              iconBefore={Icons.TrashIcon}
-            >
+            <Button size={state.value} intent="danger" marginRight={16} iconBefore={Icons.TrashIcon}>
               Delete...
             </Button>
             <Button
@@ -240,12 +191,7 @@ buttonsStory.add('Button types', () => (
       <Button disabled marginRight={16}>
         Default
       </Button>
-      <Button
-        disabled
-        appearance="destructive"
-        marginRight={16}
-        intent="danger"
-      >
+      <Button disabled appearance="destructive" marginRight={16} intent="danger">
         Destructive
       </Button>
       <Button disabled appearance="minimal" marginRight={16} intent="warning">
@@ -272,12 +218,7 @@ buttonsStory.add('IconButton', () => (
     <Pane borderRight paddingRight={24} marginRight={24}>
       <Heading marginBottom={16}>Size &quot;medium&quot;</Heading>
       <Pane display="flex">
-        <Box
-          display="grid"
-          gridTemplateColumns="32px"
-          gridRowGap={16}
-          marginRight={16}
-        >
+        <Box display="grid" gridTemplateColumns="32px" gridRowGap={16} marginRight={16}>
           <IconButton icon={Icons.CogIcon} />
           <IconButton icon={Icons.PlusIcon} />
           <IconButton icon={Icons.FilterIcon} />
@@ -296,12 +237,7 @@ buttonsStory.add('IconButton', () => (
     <Pane>
       <Heading marginBottom={16}>Size &quot;small&quot;</Heading>
       <Pane display="flex">
-        <Box
-          display="grid"
-          gridTemplateColumns="24px"
-          gridRowGap={16}
-          marginRight={16}
-        >
+        <Box display="grid" gridTemplateColumns="24px" gridRowGap={16} marginRight={16}>
           <IconButton size="small" icon={Icons.CogIcon} />
           <IconButton size="small" icon={Icons.PlusIcon} />
           <IconButton size="small" icon={Icons.FilterIcon} />
@@ -309,59 +245,21 @@ buttonsStory.add('IconButton', () => (
           <IconButton size="small" icon={Icons.ChevronLeftIcon} />
           <IconButton size="small" icon={Icons.ChevronRightIcon} />
         </Box>
-        <Box
-          display="grid"
-          gridTemplateColumns="24px"
-          gridRowGap={16}
-          marginRight={16}
-        >
-          <IconButton
-            appearance="minimal"
-            size="small"
-            icon={Icons.CrossIcon}
-          />
+        <Box display="grid" gridTemplateColumns="24px" gridRowGap={16} marginRight={16}>
+          <IconButton appearance="minimal" size="small" icon={Icons.CrossIcon} />
           <IconButton appearance="minimal" size="small" icon={Icons.MoreIcon} />
           <IconButton appearance="minimal" size="small" icon={Icons.PlusIcon} />
-          <IconButton
-            appearance="minimal"
-            size="small"
-            icon={Icons.TrashIcon}
-            intent="danger"
-          />
-          <IconButton
-            appearance="minimal"
-            size="small"
-            icon={Icons.FilterIcon}
-          />
+          <IconButton appearance="minimal" size="small" icon={Icons.TrashIcon} intent="danger" />
+          <IconButton appearance="minimal" size="small" icon={Icons.FilterIcon} />
           <IconButton appearance="minimal" size="small" icon={Icons.EditIcon} />
         </Box>
         <Box display="grid" gridTemplateColumns="24px" gridRowGap={16}>
-          <IconButton
-            appearance="minimal"
-            size="small"
-            icon={Icons.ClipboardIcon}
-          />
-          <IconButton
-            appearance="minimal"
-            size="small"
-            icon={Icons.CalendarIcon}
-          />
+          <IconButton appearance="minimal" size="small" icon={Icons.ClipboardIcon} />
+          <IconButton appearance="minimal" size="small" icon={Icons.CalendarIcon} />
           <IconButton appearance="minimal" size="small" icon={Icons.LockIcon} />
-          <IconButton
-            appearance="minimal"
-            size="small"
-            icon={Icons.UnlockIcon}
-          />
-          <IconButton
-            appearance="minimal"
-            size="small"
-            icon={Icons.NotificationsIcon}
-          />
-          <IconButton
-            appearance="minimal"
-            size="small"
-            icon={Icons.ManualIcon}
-          />
+          <IconButton appearance="minimal" size="small" icon={Icons.UnlockIcon} />
+          <IconButton appearance="minimal" size="small" icon={Icons.NotificationsIcon} />
+          <IconButton appearance="minimal" size="small" icon={Icons.ManualIcon} />
         </Box>
       </Pane>
     </Pane>

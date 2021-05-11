@@ -1,11 +1,4 @@
-import React, {
-  memo,
-  useMemo,
-  useRef,
-  useState,
-  useEffect,
-  useCallback
-} from 'react'
+import React, { memo, useMemo, useRef, useState, useEffect, useCallback } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
@@ -127,13 +120,7 @@ const Toast = memo(function Toast(props) {
   )
 
   return (
-    <Transition
-      appear
-      unmountOnExit
-      timeout={ANIMATION_DURATION}
-      in={isShown}
-      onExited={onRemove}
-    >
+    <Transition appear unmountOnExit timeout={ANIMATION_DURATION} in={isShown} onExited={onRemove}>
       {state => (
         <div
           data-state={state}

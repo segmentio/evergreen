@@ -4,12 +4,7 @@ import { Table } from '..'
 import { Avatar } from '../../avatar'
 import { IconButton, TextDropdownButton } from '../../buttons'
 import { Position } from '../../constants'
-import {
-  CaretDownIcon,
-  ArrowDownIcon,
-  ArrowUpIcon,
-  MoreIcon
-} from '../../icons'
+import { CaretDownIcon, ArrowDownIcon, ArrowUpIcon, MoreIcon } from '../../icons'
 import { Menu } from '../../menu'
 import { Popover } from '../../popover'
 import { Text } from '../../typography'
@@ -117,9 +112,7 @@ export default class AdvancedTable extends React.Component {
                   { label: 'Ascending', value: Order.ASC },
                   { label: 'Descending', value: Order.DESC }
                 ]}
-                selected={
-                  this.state.orderedColumn === 2 ? this.state.ordering : null
-                }
+                selected={this.state.orderedColumn === 2 ? this.state.ordering : null}
                 onChange={value => {
                   this.setState({
                     orderedColumn: 2,
@@ -155,11 +148,7 @@ export default class AdvancedTable extends React.Component {
           )}
         >
           <TextDropdownButton
-            icon={
-              this.state.orderedColumn === 2
-                ? this.getIconForOrder(this.state.ordering)
-                : CaretDownIcon
-            }
+            icon={this.state.orderedColumn === 2 ? this.getIconForOrder(this.state.ordering) : CaretDownIcon}
           >
             {capitalize(this.state.column2Show)}
           </TextDropdownButton>
@@ -181,9 +170,7 @@ export default class AdvancedTable extends React.Component {
                   { label: 'Ascending', value: Order.ASC },
                   { label: 'Descending', value: Order.DESC }
                 ]}
-                selected={
-                  this.state.orderedColumn === 3 ? this.state.ordering : null
-                }
+                selected={this.state.orderedColumn === 3 ? this.state.ordering : null}
                 onChange={value => {
                   this.setState({
                     orderedColumn: 3,
@@ -197,11 +184,7 @@ export default class AdvancedTable extends React.Component {
           )}
         >
           <TextDropdownButton
-            icon={
-              this.state.orderedColumn === 3
-                ? this.getIconForOrder(this.state.ordering)
-                : CaretDownIcon
-            }
+            icon={this.state.orderedColumn === 3 ? this.getIconForOrder(this.state.ordering) : CaretDownIcon}
           >
             LTV
           </TextDropdownButton>
@@ -238,10 +221,7 @@ export default class AdvancedTable extends React.Component {
         <Table.TextCell>{profile[this.state.column2Show]}</Table.TextCell>
         <Table.TextCell isNumber>{profile.ltv}</Table.TextCell>
         <Table.Cell width={48} flex="none">
-          <Popover
-            content={this.renderRowMenu}
-            position={Position.BOTTOM_RIGHT}
-          >
+          <Popover content={this.renderRowMenu} position={Position.BOTTOM_RIGHT}>
             <IconButton icon={MoreIcon} height={24} appearance="minimal" />
           </Popover>
         </Table.Cell>
@@ -254,17 +234,12 @@ export default class AdvancedTable extends React.Component {
     return (
       <Table border>
         <Table.Head>
-          <Table.SearchHeaderCell
-            onChange={this.handleFilterChange}
-            value={this.state.searchQuery}
-          />
+          <Table.SearchHeaderCell onChange={this.handleFilterChange} value={this.state.searchQuery} />
           {this.renderValueTableHeaderCell()}
           {this.renderLTVTableHeaderCell()}
           <Table.HeaderCell width={48} flex="none" />
         </Table.Head>
-        <Table.VirtualBody height={640}>
-          {items.map(item => this.renderRow({ profile: item }))}
-        </Table.VirtualBody>
+        <Table.VirtualBody height={640}>{items.map(item => this.renderRow({ profile: item }))}</Table.VirtualBody>
       </Table>
     )
   }

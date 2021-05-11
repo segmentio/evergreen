@@ -233,14 +233,7 @@ export default function getFittedPosition({
  * @param {Object} viewportOffset - offset from the viewport.
  * @return {Object} - { rect: Rect, position: Position }
  */
-function getPosition({
-  dimensions,
-  position,
-  targetOffset,
-  targetRect,
-  viewport,
-  viewportOffset = 8
-}) {
+function getPosition({ dimensions, position, targetOffset, targetRect, viewport, viewportOffset = 8 }) {
   const isHorizontal = isAlignedHorizontal(position)
 
   // Handle left and right positions
@@ -295,9 +288,7 @@ function getPosition({
     }
 
     // Default to using the position with the most space
-    const spaceRight = Math.abs(
-      viewport.width - viewportOffset - rightRect.right
-    )
+    const spaceRight = Math.abs(viewport.width - viewportOffset - rightRect.right)
     const spaceLeft = Math.abs(leftRect.left - viewportOffset)
 
     if (spaceRight < spaceLeft) {
@@ -347,11 +338,7 @@ function getPosition({
 
   const topRectFitsOnTop = getFitsOnTop(topRect, viewportOffset)
 
-  const bottomRectFitsOnBottom = getFitsOnBottom(
-    bottomRect,
-    viewport,
-    viewportOffset
-  )
+  const bottomRectFitsOnBottom = getFitsOnBottom(bottomRect, viewport, viewportOffset)
 
   if (positionIsAlignedOnTop) {
     if (topRectFitsOnTop) {
@@ -386,9 +373,7 @@ function getPosition({
   }
 
   // Default to most spacious if there is no fit.
-  const spaceBottom = Math.abs(
-    viewport.height - viewportOffset - bottomRect.bottom
-  )
+  const spaceBottom = Math.abs(viewport.height - viewportOffset - bottomRect.bottom)
 
   const spaceTop = Math.abs(topRect.top - viewportOffset)
 
@@ -418,8 +403,7 @@ function getRect({ dimensions, position, targetOffset, targetRect }) {
   const alignedTopY = targetRect.top - dimensions.height - targetOffset
   const alignedBottomY = targetRect.bottom + targetOffset
   const alignedRightX = targetRect.right - dimensions.width
-  const alignedLeftRightY =
-    targetRect.top + targetRect.height / 2 - dimensions.height / 2
+  const alignedLeftRightY = targetRect.top + targetRect.height / 2 - dimensions.height / 2
 
   switch (position) {
     case Position.LEFT:

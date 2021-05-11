@@ -4,12 +4,7 @@ import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
 import { Button } from '../../buttons'
 import { Position } from '../../constants'
-import {
-  PeopleIcon,
-  CircleArrowRightIcon,
-  EditIcon,
-  TrashIcon
-} from '../../icons'
+import { PeopleIcon, CircleArrowRightIcon, EditIcon, TrashIcon } from '../../icons'
 import { Popover } from '../../popover'
 import { UnorderedList, ListItem } from '../../typography'
 import Menu from '../src/Menu'
@@ -202,19 +197,12 @@ storiesOf('menu', module)
       </Popover>
 
       <UnorderedList marginTop={24}>
+        <ListItem>Arrow down on a button will bring focus inside the popover.</ListItem>
         <ListItem>
-          Arrow down on a button will bring focus inside the popover.
+          Arrow keys within the menu will cycle through all of the menu items and skip disabled items.
         </ListItem>
-        <ListItem>
-          Arrow keys within the menu will cycle through all of the menu items
-          and skip disabled items.
-        </ListItem>
-        <ListItem>
-          The Home key (fn + arrow left) will go to the first item.
-        </ListItem>
-        <ListItem>
-          The End key (fn + arrow right) will go to the last item.
-        </ListItem>
+        <ListItem>The Home key (fn + arrow left) will go to the first item.</ListItem>
+        <ListItem>The End key (fn + arrow right) will go to the last item.</ListItem>
       </UnorderedList>
     </Box>
   ))
