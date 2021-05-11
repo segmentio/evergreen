@@ -41,12 +41,14 @@ const PropsTable: React.FC<Props> = ({ data }) => {
                 <Table.Row key={prop} minHeight={64} height="unset" paddingY={majorScale(2)}>
                   <Table.Cell>
                     <Pane display="flex" alignItems="center">
-                      <Heading size={400}>{prop}</Heading>
+                      <InlineCode display="block">{prop}</InlineCode>
+                      {/* <Heading size={400}>{prop}</Heading> */}
                       {required && <Badge marginLeft={majorScale(2)}>Required</Badge>}
                     </Pane>
                   </Table.Cell>
                   <Table.Cell>
-                    <InlineCode display="block">{resolveReadableType(type)}</InlineCode>
+                    <Text>{resolveReadableType(type)}</Text>
+                    {/* <InlineCode display="block">{resolveReadableType(type)}</InlineCode> */}
                   </Table.Cell>
                   <Table.Cell>
                     <Paragraph>{description}</Paragraph>

@@ -7,7 +7,7 @@ const theme: PrismTheme = {
     outline: 'none',
     lineHeight: 1.5,
     fontSize: 14,
-    fontFamily: "Menlo, Consolas, Monaco, 'Andale Mono', monospace"
+    fontFamily: "ui-monospace, Consolas, Menlo, 'SF Mono', monospace"
   },
   styles: [
     {

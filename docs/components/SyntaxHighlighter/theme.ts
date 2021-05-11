@@ -1,7 +1,7 @@
 export default {
   'code[class*="language-"]': {
     color: '#a9b7c6',
-    fontFamily: "Consolas, Monaco, 'Andale Mono', monospace",
+    fontFamily: "ui-monospace, Consolas, Menlo, 'SF Mono', monospace",
     fontSize: 14,
     direction: 'ltr',
     textAlign: 'left',
@@ -19,7 +19,7 @@ export default {
   },
   'pre[class*="language-"]': {
     color: '#a9b7c6',
-    fontFamily: "Consolas, Monaco, 'Andale Mono', monospace",
+    fontFamily: "ui-monospace, Consolas, Menlo, 'SF Mono', monospace",
     direction: 'ltr',
     textAlign: 'left',
     whiteSpace: 'pre',
