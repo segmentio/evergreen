@@ -25,16 +25,16 @@ const appearances = {
     },
 
     _active: {
-      backgroundColor: 'colors.blue.lightest',
+      backgroundColor: 'colors.blue.lightest'
     },
 
     _current: {
-      backgroundColor: 'colors.blue.lightest',
-    },
+      backgroundColor: 'colors.blue.lightest'
+    }
   }
 }
 
 export default {
   baseStyle,
-  appearances,
+  appearances
 }

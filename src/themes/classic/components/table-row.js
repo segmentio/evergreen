@@ -32,8 +32,7 @@ const colorMap = {
   }
 }
 
-const getBackgroundForIntentAndState = (intent, state) =>
-  colorMap[intent][state]
+const getBackgroundForIntentAndState = (intent, state) => colorMap[intent][state]
 
 const baseStyle = {
   outline: 'none',
@@ -47,27 +46,22 @@ const baseStyle = {
 
 const appearances = {
   default: {
-    backgroundColor: (_, props) =>
-      getBackgroundForIntentAndState(props.intent, 'base'),
+    backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'base'),
 
     _hover: {
-      backgroundColor: (_, props) =>
-        getBackgroundForIntentAndState(props.intent, 'hover')
+      backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'hover')
     },
 
     _focus: {
-      backgroundColor: (_, props) =>
-        getBackgroundForIntentAndState(props.intent, 'focus')
+      backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'focus')
     },
 
     _active: {
-      backgroundColor: (_, props) =>
-        getBackgroundForIntentAndState(props.intent, 'active')
+      backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'active')
     },
 
     _current: {
-      backgroundColor: (_, props) =>
-        getBackgroundForIntentAndState(props.intent, 'current')
+      backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'current')
     }
   }
 }

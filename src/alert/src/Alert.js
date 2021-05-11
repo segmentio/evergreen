@@ -42,44 +42,29 @@ const Alert = memo(
     )
 
     return (
-      <Pane
-        ref={ref}
-        className={cx(className, themedClassName)}
-        role="alert"
-        {...styleProps}
-        {...restProps}
-      >
+      <Pane ref={ref} className={cx(className, themedClassName)} role="alert" {...styleProps} {...restProps}>
         {hasIcon && (
-          <Pane
-            marginRight={16}
-            marginLeft={2}
-            marginTop={-1}
-            display="flex"
-            alignItems="flex-start"
-          >
+          <Pane marginRight={16} marginLeft={2} marginTop={-1} display="flex" alignItems="flex-start">
             {getIconForIntent(intentToken, { size: 16 })}
           </Pane>
         )}
         <Pane flex={1}>
-          {title && (<Heading
-            is="h4"
-            size={400}
-            marginTop={0}
-            marginBottom={0}
-            fontWeight={500}
-            lineHeight={1}
-            // Get this from the theme / props on the Alert
-            color="inherit"
-          >
-            {title}
-          </Heading>)}
-          {typeof children === 'string' ? (
-            <Paragraph
+          {title && (
+            <Heading
+              is="h4"
               size={400}
-              color="muted"
-              marginTop={title ? 8 : 0}
+              marginTop={0}
+              marginBottom={0}
+              fontWeight={500}
               lineHeight={1}
+              // Get this from the theme / props on the Alert
+              color="inherit"
             >
+              {title}
+            </Heading>
+          )}
+          {typeof children === 'string' ? (
+            <Paragraph size={400} color="muted" marginTop={title ? 8 : 0} lineHeight={1}>
               {children}
             </Paragraph>
           ) : (
@@ -87,20 +72,8 @@ const Alert = memo(
           )}
         </Pane>
         {isRemoveable && (
-          <Pane
-            marginLeft={24}
-            flexShrink={0}
-            marginBottom={-2}
-            marginTop={-2}
-            marginRight={-2}
-          >
-            <IconButton
-              icon={CrossIcon}
-              appearance="minimal"
-              height={24}
-              onClick={onRemove}
-              intent={intentToken}
-            />
+          <Pane marginLeft={24} flexShrink={0} marginBottom={-2} marginTop={-2} marginRight={-2}>
+            <IconButton icon={CrossIcon} appearance="minimal" height={24} onClick={onRemove} intent={intentToken} />
           </Pane>
         )}
       </Pane>

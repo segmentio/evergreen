@@ -9,11 +9,7 @@ const internalStyles = {}
 
 const Label = memo(
   forwardRef(function Label(props, ref) {
-    const {
-      className,
-      size = 400,
-      ...restProps
-    } = props
+    const { className, size = 400, ...restProps } = props
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Label',
@@ -22,15 +18,7 @@ const Label = memo(
       internalStyles
     )
 
-    return  (
-      <Box
-        is="label"
-        ref={ref}
-        className={cx(themedClassName, className)}
-        {...boxProps}
-        {...restProps}
-      />
-    )
+    return <Box is="label" ref={ref} className={cx(themedClassName, className)} {...boxProps} {...restProps} />
   })
 )
 

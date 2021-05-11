@@ -28,11 +28,7 @@ storiesOf('alert', module)
         {['default', 'card'].map(appearance => (
           <Box key={appearance}>
             <Heading marginBottom={16}>{appearance}</Heading>
-            <Alert
-              appearance={appearance}
-              marginBottom={32}
-              title="A simple general message"
-            />
+            <Alert appearance={appearance} marginBottom={32} title="A simple general message" />
             <Alert
               appearance={appearance}
               marginBottom={32}
@@ -51,18 +47,10 @@ storiesOf('alert', module)
               intent="danger"
               title="We weren’t able to save your changes."
             />
-            <Alert
-              appearance={appearance}
-              marginBottom={32}
-              intent="danger"
-            >
+            <Alert appearance={appearance} marginBottom={32} intent="danger">
               This Alert has no title
             </Alert>
-            <ErrorMessage
-              title="This is broken"
-              messaging="You need to fix this"
-              cta="Try again"
-            />
+            <ErrorMessage title="This is broken" messaging="You need to fix this" cta="Try again" />
           </Box>
         ))}
       </Box>
@@ -70,13 +58,9 @@ storiesOf('alert', module)
         {['default'].map(appearance => (
           <Box key={appearance}>
             <Heading marginBottom={16}>{appearance}</Heading>
-            <Alert
-              appearance={appearance}
-              marginBottom={32}
-              title="A simple general message"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <Alert appearance={appearance} marginBottom={32} title="A simple general message">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
             </Alert>
             <Alert
               appearance={appearance}
@@ -84,8 +68,8 @@ storiesOf('alert', module)
               intent="success"
               title="Hooray! You did it. Your Source is now sending data."
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
             </Alert>
             <Alert
               appearance={appearance}
@@ -93,8 +77,8 @@ storiesOf('alert', module)
               intent="warning"
               title="Changes will affect all Warehouses."
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
             </Alert>
             <Alert
               appearance={appearance}
@@ -102,8 +86,8 @@ storiesOf('alert', module)
               intent="danger"
               title="We weren’t able to save your changes."
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
             </Alert>
           </Box>
         ))}

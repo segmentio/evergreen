@@ -4,7 +4,7 @@ const baseStyle = {
   display: 'flex',
   position: 'relative',
   backgroundColor: 'white',
-  borderBottom: (theme) => `1px solid ${theme.colors.border.muted}`,
+  borderBottom: theme => `1px solid ${theme.colors.border.muted}`,
 
   _before: {
     content: '""',
@@ -32,7 +32,7 @@ const baseStyle = {
   },
 
   _active: {
-    backgroundColor: 'colors.blue.lightest',
+    backgroundColor: 'colors.blue.lightest'
   },
 
   _selected: {
@@ -44,7 +44,7 @@ const baseStyle = {
 
     '&:before': {
       transform: 'scaleX(1)'
-    },
+    }
   },
 
   _disabled: {
@@ -55,5 +55,5 @@ const baseStyle = {
 }
 
 export default {
-  baseStyle,
+  baseStyle
 }

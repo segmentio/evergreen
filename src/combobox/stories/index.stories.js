@@ -60,11 +60,7 @@ storiesOf('combobox', module).add('Combobox', () => {
       </Box>
       <Box marginBottom={16}>
         <Heading>Default value</Heading>
-        <Combobox
-          initialSelectedItem="Yoda"
-          items={items}
-          onChange={handleChange}
-        />
+        <Combobox initialSelectedItem="Yoda" items={items} onChange={handleChange} />
       </Box>
       <Box marginBottom={16}>
         <Heading>Any value</Heading>
@@ -102,46 +98,38 @@ storiesOf('combobox', module).add('Combobox', () => {
 
       <Box marginBottom={16}>
         <Heading>Full width combobox</Heading>
-          <Pane display="flex" background="tint1" padding={16}>
-            <Combobox
-              width="100%"
-              initialSelectedItem={customItems[0]}
-              items={customItems}
-              itemToString={i => (i ? i.label : '')}
-              onChange={handleChange}
-            />
-          </Pane>
+        <Pane display="flex" background="tint1" padding={16}>
+          <Combobox
+            width="100%"
+            initialSelectedItem={customItems[0]}
+            items={customItems}
+            itemToString={i => (i ? i.label : '')}
+            onChange={handleChange}
+          />
+        </Pane>
 
-          <Heading>Pane has 75% width</Heading>
-          <Pane display="flex" background="tint2" width="75%" padding={16}>
-            <Combobox
-              width="100%"
-              initialSelectedItem={customItems[0]}
-              items={customItems}
-              itemToString={i => (i ? i.label : '')}
-              onChange={handleChange}
-            />
-          </Pane>
+        <Heading>Pane has 75% width</Heading>
+        <Pane display="flex" background="tint2" width="75%" padding={16}>
+          <Combobox
+            width="100%"
+            initialSelectedItem={customItems[0]}
+            items={customItems}
+            itemToString={i => (i ? i.label : '')}
+            onChange={handleChange}
+          />
+        </Pane>
 
-          <Heading>
-            Pane is a column flexbox and Combobox is set to 100% width
-          </Heading>
-          <Pane
-            flexDirection="column"
-            display="flex"
-            background="greenTint"
-            padding={16}
-          >
-            <Combobox
-              width="100%"
-              initialSelectedItem={customItems[0]}
-              items={customItems}
-              itemToString={i => (i ? i.label : '')}
-              onChange={handleChange}
-            />
-          </Pane>
-        </Box>
+        <Heading>Pane is a column flexbox and Combobox is set to 100% width</Heading>
+        <Pane flexDirection="column" display="flex" background="greenTint" padding={16}>
+          <Combobox
+            width="100%"
+            initialSelectedItem={customItems[0]}
+            items={customItems}
+            itemToString={i => (i ? i.label : '')}
+            onChange={handleChange}
+          />
+        </Pane>
       </Box>
-    )
-  }
-)
+    </Box>
+  )
+})
