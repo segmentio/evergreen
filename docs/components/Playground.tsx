@@ -42,7 +42,6 @@ const Playground: React.FC<Props> = ({ source }) => {
         {isExpanded ? (
           <LiveEditor
             style={{
-              padding: 24,
               borderTop: 'none',
               borderBottomLeftRadius: 4,
               borderBottomRightRadius: 4,
@@ -55,7 +54,7 @@ const Playground: React.FC<Props> = ({ source }) => {
         <TooltipIconButton
           content={isExpanded ? 'Collapse' : 'Expand'}
           icon={isExpanded ? MinimizeIcon : MaximizeIcon}
-          onClick={() => setIsExpanded(expanded => !expanded)}
+          onClick={() => setIsExpanded((expanded) => !expanded)}
           size="small"
           appearance="minimal"
         />
