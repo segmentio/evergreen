@@ -47,13 +47,18 @@ const IA: IA = {
       },
       {
         id: 'v6-migration-guide',
-        name: 'Migrating from v5.x to v6',
+        name: 'Migrating from v5 to v6',
         description: 'Guide about migrating from previous version of Evergreen into the current one.',
       },
       {
         id: 'theming',
         name: 'Theming',
-        description: 'A primer into the (new!) theming architecture behind Evergreen',
+        description: 'A primer into the (new!) theming architecture behind Evergreen.',
+      },
+      {
+        id: 'what-is-new',
+        name: 'What is new',
+        description: 'Evergreen is a living system, which means we are constently making updates to it. You can learn more about those changes and upcoming ones here.',
       },
     ],
   },
