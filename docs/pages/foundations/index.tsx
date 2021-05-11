@@ -35,7 +35,7 @@ const FoundationsPage: React.FC<Props> = () => {
             <SearchBar
               query={query}
               onQueryChange={setQuery}
-              placeholder="Enter a term to search through components"
+              placeholder="Search components by name"
             />
           </Pane>
           {filteredItems.length > 0 ? (
@@ -53,7 +53,7 @@ const FoundationsPage: React.FC<Props> = () => {
                     key={item.id}
                     name={item.name}
                     type="foundations"
-                    imageSrc={item.imageHighlight}
+                    imageSrc={item.image}
                     imageHighlightSrc={item.imageHighlight}
                   />
                 )

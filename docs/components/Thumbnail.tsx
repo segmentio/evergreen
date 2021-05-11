@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Thumbnail: React.FC<Props> = ({ id, name, type, imageSrc, imageHighlightSrc }) => {
-  const [image, setImage] = useState(imageSrc)
+  const [highlight, setHighlight] = useState(0)
 
   return (
     <Link key={id} href={`/${type}/${id}`} passHref>
@@ -24,19 +24,34 @@ const Thumbnail: React.FC<Props> = ({ id, name, type, imageSrc, imageHighlightSr
         is={EvergreenLink}
         borderRadius={8}
         hoverElevation={1}
-        onMouseOver={() => setImage(imageHighlightSrc)}
-        onMouseOut={() => setImage(imageSrc)}
+        onMouseOver={() => setHighlight(1)}
+        onMouseOut={() => setHighlight(0)}
       >
         <Pane
-          is="img"
-          src={image}
           width="100%"
           height="auto"
           borderTopLeftRadius={8}
           borderTopRightRadius={8}
           borderBottomLeftRadius={0}
           borderBottomRightRadius={0}
-        ></Pane>
+          position="relative"
+        >
+          <Pane 
+            is="img"
+            src={imageSrc}
+            width="100%"
+            height="auto" />
+          <Pane 
+            is="img"
+            width="100%"
+            height="auto"
+            src={imageHighlightSrc}
+            opacity={highlight}
+            position="absolute"
+            top={0}
+            left={0} 
+            style={{"transition":"opacity ease 0.4s"}}/>  
+        </Pane>
         <Pane paddingX={majorScale(2)} paddingY={majorScale(2)}>
           <Text size={400}>{name}</Text>
         </Pane>

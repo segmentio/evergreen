@@ -35,7 +35,7 @@ const PatternsPage: React.FC<Props> = () => {
             <SearchBar
               query={query}
               onQueryChange={setQuery}
-              placeholder="Search across our patterns library"
+              placeholder="Search patterns by name"
             />
           </Pane>
           {filteredItems.length > 0 ? (
@@ -53,7 +53,7 @@ const PatternsPage: React.FC<Props> = () => {
                     id={item.id}
                     name={item.name}
                     type="patterns"
-                    imageSrc={item.imageHighlight}
+                    imageSrc={item.image}
                     imageHighlightSrc={item.imageHighlight}
                   />
                 )
