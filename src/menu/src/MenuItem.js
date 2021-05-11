@@ -1,4 +1,4 @@
-import React, { memo, forwardRef, useCallback } from 'react'
+import React, { memo, forwardRef, useMemo, useCallback } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
@@ -59,8 +59,30 @@ const MenuItem = memo(
       internalStyles
     )
 
-    const iconColor = intent === 'none' ? 'default' : intent
-    const textColor = disabled ? 'muted' : iconColor
+    let iconColor = intent === 'none' ? 'default' : intent
+
+    if (disabled) {
+      iconColor = 'disabled'
+    }
+
+    const textColor = disabled ? 'disabled' : intent
+
+    const secondaryTextColor = disabled ? textColor : 'muted'
+
+    const disabledProps = useMemo(() => {
+      return disabled
+        ? {
+            backgroundColor: 'tint1',
+            cursor: 'not-allowed',
+            disabled: true,
+            onClick: null,
+            onKeyPress: null,
+            tabIndex: -1,
+            'aria-disabled': 'true',
+            'data-isselectable': 'false'
+          }
+        : {}
+    }, [disabled])
 
     return (
       <Pane
@@ -74,6 +96,7 @@ const MenuItem = memo(
         height={icon ? 40 : 32}
         {...boxProps}
         {...passthroughProps}
+        {...disabledProps}
         tabIndex={tabIndex}
         onKeyDown={onKeyDown}
       >
@@ -89,7 +112,7 @@ const MenuItem = memo(
           {children}
         </Text>
         {secondaryText && (
-          <Text marginRight={16} color="muted">
+          <Text marginRight={16} color={secondaryTextColor}>
             {secondaryText}
           </Text>
         )}

@@ -1,9 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import canUseDom from '../../lib/canUseDom'
 import ToastManager from './ToastManager'
-
-const isBrowser =
-  typeof window !== 'undefined' && typeof window.document !== 'undefined'
 
 /**
  * The Toaster manages the interactions between
@@ -11,7 +9,7 @@ const isBrowser =
  */
 export default class Toaster {
   constructor() {
-    if (!isBrowser) return
+    if (!canUseDom) return
 
     const container = document.createElement('div')
     container.setAttribute('data-evergreen-toaster-container', '')

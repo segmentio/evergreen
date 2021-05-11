@@ -1,0 +1,141 @@
+import ThemeLayout from '../../components/ThemeLayout'
+
+export default ThemeLayout
+
+### Theme Provider
+
+In order to style your app, you must wrap it in the `ThemeProvider` component.
+This component uses the `React.Context` API under the hood.
+
+In order to use the `ThemeProvider` component, you must pass it a value prop that is a `Theme` object.
+
+Please note: at this moment in time, theming isn't fully supported yet! There are certain attributes of the `Theme` object that are required so please be sure you have them when providing a custom theme.
+
+## Simple theming
+
+Using the `ThemeProvider` Component, you can either override the default styles (shown below) or use your own theme completely.
+You can add anything you want to the theme object, as long as you have required properties.
+
+```jsx
+const newTheme = {
+  ...defaultTheme,
+  spinnerColor: 'hotpink'
+}
+
+const ThemedApp = () => (
+  <ThemeProvider value={newTheme}>
+    <Spinner />
+  </ThemeProvider>
+)
+
+render(<ThemedApp />)
+```
+
+## Nested theming
+
+You can theme certain parts of your app differently by nesting the `ThemeProvider` components.
+
+```jsx
+const parentTheme = {
+  ...defaultTheme,
+  spinnerColor: 'hotpink'
+}
+
+const childTheme = {
+  ...defaultTheme,
+  spinnerColor: 'blue'
+}
+
+const ThemedParent = ({ children }) => (
+  <ThemeProvider value={parentTheme}>
+    <Spinner />
+    { children }
+  </ThemeProvider>
+)
+
+const ThemedChild = () => (
+  <ThemeProvider value={childTheme}>
+    <Spinner />
+  </ThemeProvider>
+)
+
+render(
+  <ThemedParent>
+    <ThemedChild />
+  </ThemedParent>
+)
+```
+
+## Using withTheme
+
+The `withTheme` HOC allows you to easily pass the theme object down to your components.
+
+```jsx
+const theme = {
+  ...defaultTheme,
+  myNewButtonStyles: {
+    color: 'white',
+    backgroundColor: 'hotpink',
+    height: 30,
+    borderRadius: '5px',
+  }
+}
+
+const ThemedApp = ({ children }) => (
+  <ThemeProvider value={theme}>
+    { children }
+  </ThemeProvider>
+)
+
+const MyNewButton = ({ theme }) => (
+  <button style={theme.myNewButtonStyles}>
+    Custom styled button
+  </button>
+)
+
+const MyNewThemedButton = withTheme(MyNewButton)
+
+render(
+  <ThemedApp>
+    <MyNewThemedButton />
+  </ThemedApp>
+)
+```
+
+## Using useTheme
+
+The `useTheme` hook provides the same functionalities as the `withTheme` HOC.
+
+```jsx
+const theme = {
+  ...defaultTheme,
+  myNewButtonStyles: {
+    color: 'white',
+    backgroundColor: 'hotpink',
+    height: 30,
+    borderRadius: '5px',
+  }
+}
+
+const ThemedApp = ({ children }) => (
+  <ThemeProvider value={theme}>
+    { children }
+  </ThemeProvider>
+)
+
+const MyNewThemedButton = () => {
+  const theme = useTheme()
+
+  return (
+    <button style={theme.myNewButtonStyles}>
+      Custom styled button
+    </button>
+  )
+}
+
+render(
+  <ThemedApp>
+    <MyNewThemedButton />
+  </ThemedApp>
+)
+```

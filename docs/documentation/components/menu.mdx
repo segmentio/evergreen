@@ -135,6 +135,11 @@ The `onSelect` handlers are omitted for brevity.
 </Popover>
 ```
 
+<<<<<<< HEAD:docs/documentation/components/menu.mdx
+
+=======
+
+> > > > > > > master:docs/src/pages/components/menu.mdx
 
 ## Groups with titles
 
@@ -165,7 +170,6 @@ The `onSelect` handlers are omitted for brevity.
 </Popover>
 ```
 
-
 ## Menu option groups
 
 The `Menu.OptionsGroup` is useful inside of table headers to help with sorting and filtering options.
@@ -180,10 +184,10 @@ function MenuOptionsGroupExample() {
         title="Order"
         options={[
           { label: 'Ascending', value: 'asc' },
-          { label: 'Descending', value: 'desc' }
+          { label: 'Descending', value: 'desc' },
         ]}
         selected={selectedOrder}
-        onChange={selected => setSelectedOrder(selected)}
+        onChange={(selected) => setSelectedOrder(selected)}
       />
       <Menu.Divider />
       <Menu.OptionsGroup
@@ -193,10 +197,10 @@ function MenuOptionsGroupExample() {
           { label: 'Phone', value: 'phone' },
           { label: 'State', value: 'state' },
           { label: 'Country', value: 'country' },
-          { label: 'Type', value: 'type' }
+          { label: 'Type', value: 'type' },
         ]}
         selected={selectedField}
-        onChange={selected => setSelectedField(selected)}
+        onChange={(selected) => setSelectedField(selected)}
       />
     </Menu>
   )
