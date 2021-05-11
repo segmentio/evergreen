@@ -1,1 +1,3 @@
+docs/**/*.tsx
+docs/**/*.ts
 docs/**/*.js

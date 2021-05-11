@@ -1,0 +1,71 @@
+# Introduction
+
+Similar to text inputs, Evergreen exports two components to create text areas:
+
+- **Textarea**: base text area component. Directly maps to a `textarea` element.
+- **TextareaField**: combines a label, textarea and validation message in one. Used for traditional forms.
+
+```jsx
+<Textarea name="textarea-1" placeholder="Textarea placeholder..." />
+```
+
+# Textarea with a label
+
+```jsx
+<Pane>
+  <Label htmlFor="textarea-2" marginBottom={4} display="block">
+    Label
+  </Label>
+  <Textarea id="textarea-2" placeholder="Textarea placeholder..." />
+</Pane>
+```
+
+# Controlled usage
+
+The `Textarea` component works the same as using `textarea` directly.
+Use `e.target.value` to get the value of the component on change.
+
+```jsx
+function ControlledTextareaExample() {
+  const [value, setValue] = React.useState('')
+  return <Textarea onChange={(e) => setValue(e.target.value)} value={value} />
+}
+```
+
+# TextareaField
+
+The `TextareaField` component combines a `Textarea` with a label and optional `description`, `validationMessage` and `hint`. The example below shows how each of these fields is rendered on the text field. Try opening the code example and changing some of the fields.
+
+## Label and description
+
+```jsx
+<TextareaField
+  isInvalid={true}
+  label="Default textarea field"
+  description="This is a description."
+  hint="This is a hint. It's rendered under the textarea"
+  required
+  validationMessage="This field is required. It's only rendered when isInvalid is true."
+  placeholder="Placeholder text"
+/>
+```
+
+## Controlled usage
+
+The `TextareaField` component works the same as using `textarea` directly.
+Use `e.target.value` to get the value of the component on change.
+
+```jsx
+function ControlledTextareaExample() {
+  const [value, setValue] = React.useState('')
+  return (
+    <TextareaField
+      label="A controlled text input field"
+      required
+      description="This is a description."
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
+  )
+}
+```

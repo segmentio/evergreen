@@ -1,0 +1,260 @@
+# Introduction
+
+Evergreen ships with an all-new, extensible theming architecture that lets end-users customize the look and feel of the components in Evergreen as you want. You can target arbtirary styles and states of each component to achieve maximum flexibility and alignment with your brand. This page goes over some of the options and background of the theming architecture, and how you can leverage it in your apps.
+
+# Classic and Default Theme
+
+For starters, Evergreen ships with two themes. The `defaultTheme` is the current brand (and the one we use internally at Segment!), and the `classicTheme` is the same look and feel from the previous iterations of Evergreen (v4+).
+
+> If you are using a previous version of upgrade, you'll want to explicitly set your theme to the classicTheme
+
+```jsx
+<Pane display="grid" gridTemplateColumns="repeat(auto-fill, minmax(100px, 1fr))" gridColumnGap="300px">
+  <ThemeProvider value={defaultTheme}>
+    <Pane display="flex" flexDirection="column" alignItems="flex-start">
+      <Heading marginBottom={majorScale(2)}>Using Default Theme</Heading>
+      <Button marginBottom={majorScale(2)} appearance="primary" onClick={() => {}}>
+        Confirm
+      </Button>
+      <Alert marginBottom={majorScale(2)} title="There was an issue processing your data!" intent="warning" />
+      <Checkbox checked marginBottom={majorScale(2)} label="I agree" />
+    </Pane>
+  </ThemeProvider>
+  <ThemeProvider value={classicTheme}>
+    <Pane display="flex" flexDirection="column" alignItems="flex-start">
+      <Heading marginBottom={majorScale(2)}>Using Classic Theme</Heading>
+      <Button marginBottom={majorScale(2)} appearance="primary" onClick={() => {}}>
+        Confirm
+      </Button>
+      <Alert marginBottom={majorScale(2)} title="There was an issue processing your data!" intent="warning" />
+      <Checkbox checked marginBottom={majorScale(2)} label="I agree" />
+    </Pane>
+  </ThemeProvider>
+</Pane>
+```
+
+# Theme API Overview
+
+Most components go by the following API, which takes inspiration from the `useStyleConfig` API pioneered by the folks over at [Chakra UI](https://chakra-ui.com/). There are three parts to the theming system:
+
+- `baseStyle`: These are the default "base" styles applied to a component. This includes targeting pseudo-states that some components offer, including `_hover`, and `_active`.
+- `appearances`: These are the custom styles that you can apply to a component based on the `appearance` prop. Note that **some** components don't have this.
+- `sizes`: These are additional props that you can alias via a `size` property. Again, note that **some** components don't have this, and you can only configure `baseStyle`.
+
+An example implementation that leverages some of these props to create a custom button is below:
+
+```jsx
+function CustomButtonExample() {
+  const theme = {
+    ...defaultTheme,
+    components: {
+      ...defaultTheme.components,
+      Button: {
+        baseStyle: {
+          color: 'white',
+          paddingX: 12,
+          paddingY: 8,
+          borderRadius: 5,
+          backgroundColor: 'indianred',
+          _hover: {
+            backgroundColor: 'firebrick',
+          },
+          _active: {
+            backgroundColor: 'darkred',
+          },
+          _focus: {
+            boxShadow: '0 0 0 2px lightcoral',
+          },
+        },
+      },
+    },
+  }
+
+  return (
+    <ThemeProvider value={theme}>
+      <Button>Custom Button</Button>
+    </ThemeProvider>
+  )
+}
+```
+
+# Custom Appearances
+
+The theming API also supports custom appearances, so you can bring your own verbiage and nomenclature to how you want to define Evergreen styles. We are still working out TypeScript support for this, so use at your own discretion! For the example below, we are going to take those same styles, and apply them to respond to a prop `appearance="superdanger"`.
+
+```jsx
+function CustomAppearancesExmaple() {
+  const theme = {
+    ...defaultTheme,
+    components: {
+      ...defaultTheme.components,
+      Button: {
+        ...defaultTheme.components.Button,
+        appearances: {
+          superdanger: {
+            color: 'white',
+            paddingX: 12,
+            paddingY: 8,
+            borderRadius: 5,
+            backgroundColor: 'indianred',
+            _hover: {
+              backgroundColor: 'firebrick',
+            },
+            _active: {
+              backgroundColor: 'darkred',
+            },
+            _focus: {
+              boxShadow: '0 0 0 2px lightcoral',
+            },
+          },
+        },
+      },
+    },
+  }
+
+  return (
+    <ThemeProvider value={theme}>
+      <Button appearance="superdanger">Custom Button</Button>
+    </ThemeProvider>
+  )
+}
+```
+
+# Theme Shape
+
+All in all, the shape of the theme object looks as follows. Use this as your baseline disrection for piecing together and building theme objects.
+
+```js readonly
+export default {
+  colors,
+  fills,
+  intents,
+  radii,
+  shadows,
+  fontFamilies: {
+    display: '...',
+    ui: '...',
+    mono: '...',
+  },
+  fontSizes: {
+    /*...*/
+  },
+  fontWeights: {
+    /*...*/
+  },
+  letterSpacings: {
+    /* ...*/
+  },
+  lineHeights: [
+    /*...*/
+  ],
+  zIndices,
+  components: {
+    Alert: {
+      /* ... */
+    },
+    Avatar: {
+      /* ... */
+    },
+    Badge: {
+      /* ... */
+    },
+    Button: {
+      /* ... */
+    },
+    Card: {
+      /* ... */
+    },
+    Checkbox: {
+      /* ... */
+    },
+    Code: {
+      /* ... */
+    },
+    DialogBody: {
+      /* ... */
+    },
+    DialogFooter: {
+      /* ... */
+    },
+    DialogHeader: {
+      /* ... */
+    },
+    Group: {
+      /* ... */
+    },
+    Heading: {
+      /* ... */
+    },
+    Icon: {
+      /* ... */
+    },
+    InlineAlert: {
+      /* ... */
+    },
+    Input: {
+      /* ... */
+    },
+    Label: {
+      /* ... */
+    },
+    List: {
+      /* ... */
+    },
+    Link: {
+      /* ... */
+    },
+    MenuItem: {
+      /* ... */
+    },
+    Option: {
+      /* ... */
+    },
+    Pane: {
+      /* ... */
+    },
+    Paragraph: {
+      /* ... */
+    },
+    Radio: {
+      /* ... */
+    },
+    Select: {
+      /* ... */
+    },
+    Spinner: {
+      /* ... */
+    },
+    Switch: {
+      /* ... */
+    },
+    Tab: {
+      /* ... */
+    },
+    Table: {
+      /* ... */
+    },
+    TableCell: {
+      /* ... */
+    },
+    TableHead: {
+      /* ... */
+    },
+    TableRow: {
+      /* ... */
+    },
+    TagInput: {
+      /* ... */
+    },
+    Text: {
+      /* ... */
+    },
+    TextDropdownButton: {
+      /* ... */
+    },
+    Tooltip: {
+      /* ... */
+    },
+  },
+}
+```
