@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { openConsentManager } from '@segment/consent-manager'
 import { majorScale, Pane, Text, Link } from 'evergreen-ui'
 
 interface Props {}
 
 const PageFooter: React.FC<Props> = () => {
+  const dataCollectionHandler = useCallback((e) => {
+    e.preventDefault()
+    openConsentManager()
+  }, [])
+
   return (
     <Pane
       is="footer"
@@ -27,7 +32,7 @@ const PageFooter: React.FC<Props> = () => {
         <Link size={300} color="neutral" href="https://segment.com/jobs/" target="_blank" marginRight={majorScale(2)}>
           We're hiring!
         </Link>
-        <Link size={300} color="neutral" href="" onClick={openConsentManager}>
+        <Link size={300} color="neutral" href="#" onClick={dataCollectionHandler}>
           Website Data Collection
         </Link>
       </Pane>
