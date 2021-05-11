@@ -12,7 +12,7 @@ const DesignLanguage = () => {
   const patterns = IA.patterns.items.slice(0, 3)
 
   return (
-    <Pane paddingY={majorScale(5)} marginX="auto" maxWidth={majorScale(143)}>
+    <Pane paddingY={majorScale(5)} marginX="auto" maxWidth={majorScale(150)} paddingX={majorScale(3)}>
       <Heading size={800} marginY={majorScale(5)} marginLeft={majorScale(2)}>
         Design language
       </Heading>

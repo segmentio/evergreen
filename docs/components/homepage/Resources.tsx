@@ -8,7 +8,7 @@ const Resources = () => {
   const { colors } = useTheme() as any
 
   return (
-    <Pane background={colors.gray50}>
+    <Pane background={colors.gray50} paddingX={majorScale(5)}>
       <Pane paddingY={majorScale(5)} marginX="auto" maxWidth={majorScale(143)}>
         <Pane marginY={majorScale(5)} marginLeft={majorScale(2)}>
           <Heading size={800} marginBottom={majorScale(2)}>

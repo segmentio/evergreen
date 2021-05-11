@@ -12,7 +12,7 @@ const HomeHero = () => {
   }, [])
 
   return (
-    <Pane background={colors.gray50}>
+    <Pane background={colors.gray50} paddingX={majorScale(5)}>
       <Pane paddingY={majorScale(5)} marginX="auto" maxWidth={majorScale(143)} alignItems="center" display="flex">
         <Pane display="flex" flex={1} flexDirection="column" alignItems="flex-start" justifyContent="center">
           <Heading size={900}>Meet Evergreen,</Heading>
