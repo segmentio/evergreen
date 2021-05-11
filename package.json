@@ -171,12 +171,12 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "250 KB",
+      "limit": "275 KB",
       "running": false
     },
     {
       "path": "umd/evergreen.min.js",
-      "limit": "225 KB",
+      "limit": "240 KB",
       "running": false
     },
     {
