@@ -2745,10 +2745,10 @@ events@^3.0.0:
   resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
-evergreen-ui@6.0.0-41:
-  version "6.0.0-41"
-  resolved "https://registry.yarnpkg.com/evergreen-ui/-/evergreen-ui-6.0.0-41.tgz#578e079379e0479a23bd8af5c16b54cd16e12239"
-  integrity sha512-B+4Sj7NtgBIzGcwYfXRvG/yf2A5mqiaNt3OJ76xp/l0Ly7DEYjVa02/ORnHLQz2u3ZgDP9WhD+32hMp/5j5xDg==
+evergreen-ui@6.0.0-44:
+  version "6.0.0-44"
+  resolved "https://registry.yarnpkg.com/evergreen-ui/-/evergreen-ui-6.0.0-44.tgz#cbdbb0d12e5d27eb98f462d6ac83da6e066a7ba2"
+  integrity sha512-5j8lRlMJwhwkE+MTZDkhDXsCPZhc2fOKYeT/aSF38W06o6AJtdZ1XYfAUCjRgJix4LRW/PSAtzGedeHfECacTA==
   dependencies:
     "@babel/runtime" "^7.1.2"
     "@types/react" "^16.9.5"
