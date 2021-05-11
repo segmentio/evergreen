@@ -6,9 +6,7 @@ The Button component has an `appearance` property with 3 available values: `defa
 function DefaultButtonExample() {
   return (
     <>
-      <Button marginRight={16}>
-        Default
-      </Button>
+      <Button marginRight={16}>Default</Button>
       <Button marginRight={16} appearance="primary">
         Primary
       </Button>
@@ -40,6 +38,26 @@ function IntentButtonExample() {
       </Button>
     </>
   )
+}
+```
+
+## Disabled State
+
+Buttons support disabled states to indicate that a user can not take an action on a particular CTA. It intentionally prevents `pointer-events` from happening on the element.
+
+```jsx
+function DisabledButtonExample() {
+  return <Button disabled>Continue</Button>
+}
+```
+
+## Loading State
+
+Buttons also support an `isLoading` property, which shows a loading indicator, while disabling the button, as well.
+
+```jsx
+function LoadingButtonExample() {
+  return <Button isLoading>Continue</Button>
 }
 ```
 
@@ -111,12 +129,7 @@ function ButtonIconExample() {
       <Button marginY={8} marginRight={12} iconBefore={ManualIcon}>
         Docs
       </Button>
-      <Button
-        marginY={8}
-        marginRight={12}
-        iconBefore={TrashIcon}
-        intent="danger"
-      >
+      <Button marginY={8} marginRight={12} iconBefore={TrashIcon} intent="danger">
         Delete...
       </Button>
       <Button marginY={8} marginRight={12} iconBefore={SearchIcon}>
@@ -126,6 +139,22 @@ function ButtonIconExample() {
         Filter
       </Button>
     </>
+  )
+}
+```
+
+## Icon Buttons
+
+Evergreen also supports icon-only buttons for a lighter-weight toolbar-like treatment. They support the same API as regular buttons.
+
+```jsx
+function IconButtonExample() {
+  return (
+    <Pane display="flex" alignItems="center">
+      <IconButton icon={CogIcon} marginRight={majorScale(2)} />
+      <IconButton icon={TrashIcon} intent="danger" marginRight={majorScale(2)} />
+      <IconButton icon={TickIcon} intent="success" />
+    </Pane>
   )
 }
 ```
