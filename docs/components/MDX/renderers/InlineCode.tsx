@@ -6,9 +6,9 @@ interface Props {}
 const InlineCode: React.FC<Props> = ({ children }) => {
   return (
     <Code
-      paddingX={2}
+      paddingX={4}
       paddingY={4}
-      fontSize="12px"
+      fontSize="14px"
       fontWeight={300}
       fontFamily="Menlo 'SF Mono' monospace"
       borderRadius="4px"

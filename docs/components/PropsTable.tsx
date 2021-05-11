@@ -1,5 +1,6 @@
 import React from 'react'
 import { Table, Code, Pane, majorScale, Paragraph, Badge, Text, Heading } from 'evergreen-ui'
+import InlineCode from './MDX/renderers/InlineCode'
 
 interface Props {
   data: any
@@ -25,7 +26,7 @@ const PropsTable: React.FC<Props> = ({ data }) => {
 
   return (
     <Pane width="100%" maxWidth={1152}>
-      <Heading marginBottom={majorScale(2)}>{displayName}</Heading>
+      <Heading marginY={majorScale(2)} size={800}>{displayName}</Heading>
       {props ? (
         <Table width="100%">
           <Table.Head>
@@ -45,7 +46,7 @@ const PropsTable: React.FC<Props> = ({ data }) => {
                     </Pane>
                   </Table.Cell>
                   <Table.Cell>
-                    <Code display="block">{resolveReadableType(type)}</Code>
+                    <InlineCode display="block">{resolveReadableType(type)}</InlineCode>
                   </Table.Cell>
                   <Table.Cell>
                     <Paragraph>{description}</Paragraph>
