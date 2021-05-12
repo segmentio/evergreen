@@ -68,7 +68,7 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps, components, compo
 export async function getStaticPaths() {
   const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'components'))
 
-  const paths = files.map(file => `/components/${file.split('.')[0]}/props`)
+  const paths = files.map((file) => `/components/${file.split('.')[0]}/props`)
 
   return {
     paths,
@@ -84,11 +84,21 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
+  const components = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const component = components.find((component) => component.id === id)
+
+  if (component?.inProgress) {
+    return {
+      props: {
+        componentProps: [],
+        components,
+        component,
+      },
+    }
+  }
+
   const stem = path.join(process.cwd(), '..', 'src', `${id}`, 'src')
   const props = await getComponentDocs(stem)
-
-  const components = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-  const component = components.find(component => component.id === id)
 
   return {
     props: {
