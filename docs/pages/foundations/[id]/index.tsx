@@ -36,19 +36,7 @@ const FoundationPage: React.FC<Props> = ({ mdxSource, foundations, foundation })
       selectedNavItem={foundation}
       navPrefix="foundations"
       navTitle="Foundations"
-      pageHeader={
-        <PageHeader
-          title={name!}
-          description={description}
-          githubLink={github}
-          tabs={[
-            {
-              label: 'Details',
-              to: `/foundations/${id}`,
-            },
-          ]}
-        />
-      }
+      pageHeader={<PageHeader title={name!} description={description} githubLink={github} />}
       source={mdxSource}
     />
   )
