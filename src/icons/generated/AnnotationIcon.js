@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const AnnotationIcon = memo(
   forwardRef(function AnnotationIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="annotation"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="annotation" {...props} />
   })
 )

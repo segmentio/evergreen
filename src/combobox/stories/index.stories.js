@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/react'
 import React, { useState } from 'react'
-import Box from 'ui-box'
+import { storiesOf } from '@storybook/react'
 import starWarsNames from 'starwars-names'
-import { Heading } from '../../typography'
-import { Pane } from '../../layers'
+import Box from 'ui-box'
 import { Combobox } from '..'
+import { Pane } from '../../layers'
+import { Heading } from '../../typography'
 
 // Generate a big list of items
 const items = starWarsNames.all.sort((a, b) => {
@@ -24,12 +24,12 @@ const items = starWarsNames.all.sort((a, b) => {
 const customItems = items.map(i => ({ label: i }))
 
 const handleChange = selectedItem => {
+  // eslint-disable-next-line no-console
   console.log(selectedItem)
 }
 
 storiesOf('combobox', module).add('Combobox', () => {
   const [value, setValue] = useState('')
-
   return (
     <Box padding={40}>
       {(() => {
@@ -38,7 +38,13 @@ storiesOf('combobox', module).add('Combobox', () => {
       })()}
       <Box marginBottom={16}>
         <Heading>Default usage</Heading>
-        <Combobox items={items} onChange={handleChange} />
+        <Combobox
+          autocompleteProps={{
+            title: 'Hello World'
+          }}
+          items={items}
+          onChange={handleChange}
+        />
       </Box>
       <Box marginBottom={16}>
         <Heading>Custom width</Heading>
@@ -54,11 +60,7 @@ storiesOf('combobox', module).add('Combobox', () => {
       </Box>
       <Box marginBottom={16}>
         <Heading>Default value</Heading>
-        <Combobox
-          initialSelectedItem="Yoda"
-          items={items}
-          onChange={handleChange}
-        />
+        <Combobox initialSelectedItem="Yoda" items={items} onChange={handleChange} />
       </Box>
       <Box marginBottom={16}>
         <Heading>Any value</Heading>
@@ -96,7 +98,6 @@ storiesOf('combobox', module).add('Combobox', () => {
 
       <Box marginBottom={16}>
         <Heading>Full width combobox</Heading>
-
         <Pane display="flex" background="tint1" padding={16}>
           <Combobox
             width="100%"
@@ -118,15 +119,8 @@ storiesOf('combobox', module).add('Combobox', () => {
           />
         </Pane>
 
-        <Heading>
-          Pane is a column flexbox and Combobox is set to 100% width
-        </Heading>
-        <Pane
-          flexDirection="column"
-          display="flex"
-          background="greenTint"
-          padding={16}
-        >
+        <Heading>Pane is a column flexbox and Combobox is set to 100% width</Heading>
+        <Pane flexDirection="column" display="flex" background="greenTint" padding={16}>
           <Combobox
             width="100%"
             initialSelectedItem={customItems[0]}

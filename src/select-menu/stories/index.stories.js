@@ -1,15 +1,16 @@
-import { storiesOf } from '@storybook/react'
-import Component from '@reactions/component'
 import React from 'react'
+import Component from '@reactions/component'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
+import { SelectMenu, Option } from '..'
 import { Button } from '../../buttons'
-import { Text } from '../../typography'
+import { PeopleIcon } from '../../icons'
+import { Image } from '../../image'
 import { Pane } from '../../layers'
 import { TextInput } from '../../text-input'
-import { PeopleIcon } from '../../icons'
-import options, { optionsWithIcons } from './starwars-options'
+import { Text } from '../../typography'
 import Manager from './Manager'
-import { SelectMenu } from '..'
+import options, { optionsWithIcons } from './starwars-options'
 
 storiesOf('select-menu', module).add('SelectMenu', () => (
   <Box padding={40}>
@@ -63,6 +64,39 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
     <Box marginBottom={24}>
       <Manager>
         {({ setState, state }) => (
+          <SelectMenu
+            title="Select name"
+            options={optionsWithIcons}
+            selected={state.selected}
+            onSelect={item => setState({ selected: item.value })}
+            itemHeight={56}
+            itemRenderer={props => {
+              return (
+                <Option {...props}>
+                  <Pane display="flex" flexDirection="column" width="100%">
+                    <Pane display="flex" width="100%" justifyContent="space-between" alignItems="center">
+                      <Pane display="flex" alignItems="center">
+                        <Image src={props.item.icon} width={24} marginRight={8} />
+                        <Text size={400}>{props.item.label}</Text>
+                      </Pane>
+                      <Text color="muted">{Math.floor(Math.random() * 100) + 1}%</Text>
+                    </Pane>
+                    <Text color="muted" marginLeft={32}>
+                      sub text
+                    </Text>
+                  </Pane>
+                </Option>
+              )
+            }}
+          >
+            <Button>Options with custom content</Button>
+          </SelectMenu>
+        )}
+      </Manager>
+    </Box>
+    <Box marginBottom={24}>
+      <Manager>
+        {({ setState, state }) => (
           <Pane display="inline-block">
             <Text display="block">Filter Text: {state.filterText}</Text>
             <SelectMenu
@@ -82,20 +116,11 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
       <Manager>
         {({ setState, state }) => (
           <Pane display="block">
-            <Box
-              width={250}
-              display="flex"
-              flexDirection="row"
-              justifyContent="space-between"
-            >
+            <Box width={250} display="flex" flexDirection="row" justifyContent="space-between">
               <Box marginBottom={12}>
-                <Text display="block">
-                  Filter Placeholder: {state.filterPlaceholder}
-                </Text>
+                <Text display="block">Filter Placeholder: {state.filterPlaceholder}</Text>
                 <TextInput
-                  onChange={event =>
-                    setState({ placeholderText: event.target.value })
-                  }
+                  onChange={event => setState({ placeholderText: event.target.value })}
                   width={100}
                   height={20}
                   display="inline-block"
@@ -111,9 +136,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
               onFilterChange={filterText => setState({ filterText })}
               onSelect={item => setState({ selected: item.value })}
             >
-              <Button width={300}>
-                Select w/ custom filter placeholder and icon
-              </Button>
+              <Button width={300}>Select w/ custom filter placeholder and icon</Button>
             </SelectMenu>
           </Pane>
         )}
@@ -126,7 +149,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
           selected: []
         }}
       >
-        {({ state, setState }) => (
+        {({ setState, state }) => (
           <SelectMenu
             isMultiSelect
             title="Select multiple names"
@@ -152,9 +175,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             }}
             onDeselect={item => {
               const deselectedItemIndex = state.selected.indexOf(item.value)
-              const selectedItems = state.selected.filter(
-                (_item, i) => i !== deselectedItemIndex
-              )
+              const selectedItems = state.selected.filter((_item, i) => i !== deselectedItemIndex)
               const selectedItemsLength = selectedItems.length
               let selectedNames = ''
               if (selectedItemsLength === 0) {
@@ -177,12 +198,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
       <SelectMenu
         title="Empty state"
         emptyView={
-          <Box
-            height="100%"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
+          <Box height="100%" display="flex" alignItems="center" justifyContent="center">
             <Text size={300}>No options found</Text>
           </Box>
         }

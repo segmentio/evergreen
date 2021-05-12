@@ -1,5 +1,5 @@
-import { storiesOf } from '@storybook/react'
 import React, { useEffect, useRef } from 'react'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
 import { Checkbox } from '..'
 
@@ -10,22 +10,15 @@ const refCallback = el => {
 }
 
 function IndeterminateWithRefExample() {
+  const ref = useRef()
+
   useEffect(() => {
     if (ref && ref.current) {
       refCallback(ref.current)
     }
   }, [ref])
 
-  const ref = useRef()
-
-  return (
-    <Checkbox
-      checked
-      indeterminate
-      ref={ref}
-      label="Checkbox checked indeterminate disabled with ref"
-    />
-  )
+  return <Checkbox checked indeterminate ref={ref} label="Checkbox checked indeterminate disabled with ref" />
 }
 
 storiesOf('checkbox', module).add('Checkbox', () => (

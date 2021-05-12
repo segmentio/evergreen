@@ -9,12 +9,17 @@ import { minorScale } from '../../scales'
 
 const Tag = memo(
   forwardRef(function Tag(props, ref) {
-    const { children, onRemove, isRemovable, ...restProps } = props
+    const { children, isRemovable, onRemove, ...restProps } = props
 
     const badgeStyles = {
       alignItems: 'center',
       display: 'inline-flex',
       fontWeight: 400,
+      borderRadius: 4,
+      paddingX: 8,
+      paddingY: 6,
+      marginTop: 0,
+      marginBottom: 0,
       textTransform: 'none'
     }
 
@@ -25,13 +30,7 @@ const Tag = memo(
     return (
       <Badge ref={ref} isInteractive {...badgeStyles} {...restProps}>
         {children}
-        {isRemovable && (
-          <CrossIcon
-            marginLeft={minorScale(1)}
-            onClick={onRemove}
-            size={minorScale(3)}
-          />
-        )}
+        {isRemovable && <CrossIcon marginLeft={minorScale(1)} onClick={onRemove} size={minorScale(3)} />}
       </Badge>
     )
   })

@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const TimelineBarChartIcon = memo(
   forwardRef(function TimelineBarChartIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="timeline-bar-chart"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="timeline-bar-chart" {...props} />
   })
 )

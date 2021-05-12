@@ -1,0 +1,326 @@
+# Introduction
+
+The `SelectMenu` component is an advanced interaction pattern which allows selection of multiple items from a dropdown list.
+It can be used as a substitute for the native multiple select element.
+
+## Implementation details
+
+The `SelectMenu` builds on top of the `Popover` component
+and uses `react-tiny-virtual-list` for the rendering of the virtualized list of options.
+
+# Single selected item
+
+This example shows basic usage with a single selected item.
+
+```jsx
+function SingleSelectedItemExample() {
+  const [selected, setSelected] = React.useState(null)
+  return (
+    <SelectMenu
+      title="Select name"
+      options={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({ label, value: label }))}
+      selected={selected}
+      onSelect={(item) => setSelected(item.value)}
+    >
+      <Button>{selected || 'Select name...'}</Button>
+    </SelectMenu>
+  )
+}
+```
+
+# Remove title and filter
+
+The title and default filter can be removed via the **hasFilter** and **hasTitle** props, respectively.
+
+```jsx
+function NoFilterAndTitleSelectedMenuExample() {
+  const [selected, setSelected] = React.useState(null)
+  return (
+    <SelectMenu
+      title="Select name"
+      options={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({ label, value: label }))}
+      selected={selected}
+      hasFilter={false}
+      hasTitle={false}
+      onSelect={(item) => setSelected(item.value)}
+    >
+      <Button>{selected || 'Select name...'}</Button>
+    </SelectMenu>
+  )
+}
+```
+
+# Change the height and width
+
+You can make the size of a **SelectMenu** custom via the **width** and **height** properties.
+
+```jsx
+function CustomSizeSelectedMenuExample() {
+  const [selected, setSelected] = React.useState(null)
+  return (
+    <SelectMenu
+      title="Select name"
+      options={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({ label, value: label }))}
+      selected={selected}
+      hasFilter={false}
+      hasTitle={false}
+      onSelect={(item) => setSelected(item.value)}
+    >
+      <Button>{selected || 'Select name...'}</Button>
+    </SelectMenu>
+  )
+}
+```
+
+# Change the popover position
+
+You can change the position of `SelectMenu` by changing its `position` property to `Position.TOP`,
+`Position.TOP_LEFT`,
+`Position.TOP_RIGHT`,
+`Position.BOTTOM`,
+`Position.BOTTOM_LEFT`, or
+`Position.BOTTOM_RIGHT`,
+
+```jsx
+function CustomPositionSelectMenuExample() {
+  const [selected, setSelected] = React.useState(null)
+  return (
+    <SelectMenu
+      title="Select name"
+      options={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({ label, value: label }))}
+      position={Position.TOP}
+      selected={selected}
+      onSelect={(item) => setSelected(item.value)}
+    >
+      <Button>{selected || 'Select name...'}</Button>
+    </SelectMenu>
+  )
+}
+```
+
+# Empty view
+
+It's possible to display a custom empty view instead of options list via `emptyView`, when there are no properties supplied.
+Note that empty view won't be shown when options are being filtered and there are no search results.
+
+```jsx
+<SelectMenu
+  title="Empty view"
+  options={[]}
+  emptyView={
+    <Pane height="100%" display="flex" alignItems="center" justifyContent="center">
+      <Text size={300}>No options found</Text>
+    </Pane>
+  }
+>
+  <Button>Select option...</Button>
+</SelectMenu>
+```
+
+# Menu with icons
+
+It's possible to include icons in the menu list.
+
+```jsx
+<SelectMenu
+  title="Options with icons"
+  options={[
+    {
+      label: 'Apple',
+      value: 'Apple',
+      icon: 'https://upload.wikimedia.org/wikipedia/commons/d/d2/Malus-Boskoop_organic.jpg',
+    },
+    {
+      label: 'Banana',
+      value: 'Banana',
+      icon:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Bananas_white_background_DS.jpg/2560px-Bananas_white_background_DS.jpg',
+    },
+  ]}
+>
+  <Button>Select option...</Button>
+</SelectMenu>
+```
+
+# Multiselect with deselect example
+
+This example shows usage with multiple selected items. As users click on selected values to remove them, you can update state. Note that this is just an example.
+
+```jsx
+function MultiSelectSelectMenuExample() {
+  const [options] = React.useState(
+    ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({
+      label,
+      value: label,
+    }))
+  )
+  const [selectedItemsState, setSelectedItems] = React.useState([])
+  const [selectedItemNamesState, setSelectedItemNames] = React.useState(null)
+
+  return (
+    <SelectMenu
+      isMultiSelect
+      title="Select multiple names"
+      options={options}
+      selected={selectedItemsState}
+      onSelect={(item) => {
+        const selected = [...selectedItemsState, item.value]
+        const selectedItems = selected
+        const selectedItemsLength = selectedItems.length
+        let selectedNames = ''
+        if (selectedItemsLength === 0) {
+          selectedNames = ''
+        } else if (selectedItemsLength === 1) {
+          selectedNames = selectedItems.toString()
+        } else if (selectedItemsLength > 1) {
+          selectedNames = selectedItemsLength.toString() + ' selected...'
+        }
+        setSelectedItems(selected)
+        setSelectedItemNames(selectedNames)
+      }}
+      onDeselect={(item) => {
+        const deselectedItemIndex = selectedItemsState.indexOf(item.value)
+        const selectedItems = selectedItemsState.filter((_item, i) => i !== deselectedItemIndex)
+        const selectedItemsLength = selectedItems.length
+        let selectedNames = ''
+        if (selectedItemsLength === 0) {
+          selectedNames = ''
+        } else if (selectedItemsLength === 1) {
+          selectedNames = selectedItems.toString()
+        } else if (selectedItemsLength > 1) {
+          selectedNames = selectedItemsLength.toString() + ' selected...'
+        }
+
+        setSelectedItems(selected)
+        setSelectedItemNames(selectedNames)
+      }}
+    >
+      <Button>{selectedItemNamesState || 'Select multiple...'}</Button>
+    </SelectMenu>
+  )
+}
+```
+
+## Attaching a callback for when the filter changes
+
+You can attach a callback handler for the search filter via the `onFilterChange` property.
+
+```jsx
+function OnFilterChangeSelectMenuExample() {
+  const [selected, setSelected] = React.useState(null)
+  const [filter, setFilter] = React.useState('')
+  return (
+    <Pane>
+      <Pane marginBottom={8}>
+        <Text>Filter value: {filter}</Text>
+      </Pane>
+      <SelectMenu
+        title="Select name"
+        onFilterChange={(filter) => setFilter(filter)}
+        options={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({ label, value: label }))}
+        selected={selected}
+        onSelect={(item) => setSelected(item.value)}
+      >
+        <Button>{selected || 'Select name...'}</Button>
+      </SelectMenu>
+    </Pane>
+  )
+}
+```
+
+## Disabled options
+
+This example shows basic usage for disabling some options. Options that are disabled cannot be clicked and their labels are muted.
+
+```jsx
+function DisabledItemSelectMenuExample() {
+  const [selected, setSelected] = React.useState(null)
+  return (
+    <Pane>
+      <SelectMenu
+        title="Select Option"
+        options={[
+          { label: 'Disabled', value: 'disabled', disabled: true },
+          { label: 'Not Disabled', value: 'not-disabled' },
+        ]}
+        selected={selected}
+        onSelect={(item) => setSelected(item.value)}
+      >
+        <Button>{selected || 'Select name...'}</Button>
+      </SelectMenu>
+    </Pane>
+  )
+}
+```
+
+## Custom Title Example
+
+This example shows how one should use the `titleView` property to pass in a custom title.
+
+```jsx
+function CustomTitleSelectMenuExample() {
+  const [selected, setSelected] = React.useState(null)
+  return (
+    <Pane>
+      <SelectMenu
+        title="Select Option"
+        options={[
+          { label: 'Option 1', value: 'option-1' },
+          { label: 'Option 2', value: 'option-2' },
+        ]}
+        tooltipContent="Choose one of the options below."
+        titleView={({ close, title, headerHeight }) => {
+          return (
+            <Pane
+              display="flex"
+              alignItems="center"
+              borderBottom="default"
+              padding={8}
+              height={headerHeight}
+              boxSizing="border-box"
+            >
+              <Pane flex="1" display="flex" alignItems="center">
+                <Heading size={400}>{title}</Heading>
+                <Tooltip content="Pick one of the options below">
+                  <HelpIcon size={12} marginLeft={4} />
+                </Tooltip>
+              </Pane>
+              <IconButton icon={CrossIcon} appearance="minimal" height={24} onClick={close} />
+            </Pane>
+          )
+        }}
+        selected={selected}
+        onSelect={(item) => setSelected(item.value)}
+      >
+        <Button>{selected || 'Select name...'}</Button>
+      </SelectMenu>
+    </Pane>
+  )
+}
+```
+
+## Custom Filter PlaceHolder and Icon
+
+It's possible to change the filter placeholder and filter icon through the **filterPlaceholder** and **filterIcon** props.
+
+Note that the icon can be one found in Segment's various [icons](https://evergreen.segment.com/components/icons), or `none`.
+
+```jsx
+function CustomPlaceholderAndIconSelectMenuExample() {
+  const [selected, setSelected] = React.useState(null)
+  return (
+    <Pane>
+      <SelectMenu
+        title="Select Option"
+        options={['Comedy', 'Drama', 'Fantasy', 'Family', 'Action'].map((label) => ({ label, value: label }))}
+        selected={selected}
+        filterPlaceholder="Choose a genre"
+        filterIcon={FilmIcon}
+        onSelect={(item) => setSelected(item.value)}
+      >
+        <Button>{selected || 'Select name...'}</Button>
+      </SelectMenu>
+    </Pane>
+  )
+}
+```

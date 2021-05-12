@@ -1,17 +1,23 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import Component from '@reactions/component'
+import { storiesOf } from '@storybook/react'
+import faker from 'faker'
 import Box from 'ui-box'
-import { Portal } from '../../portal'
-import { Pane } from '../../layers'
-import AdvancedTable from './AdvancedTable'
-import VirtualTable from './VirtualTable'
-import EditableTable from './EditableTable'
 import { Table } from '..'
+import { Pane } from '../../layers'
+import { Portal } from '../../portal'
+import AdvancedTable from './AdvancedTable'
+import EditableTable from './EditableTable'
+import VirtualTable from './VirtualTable'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
+faker.seed(500)
 const dynamicHeights = range(500).map(() => {
-  return Math.max(Math.ceil(Math.random() * 100), 32)
+  return faker.random.number({
+    min: 32,
+    max: 100
+  })
 })
 
 storiesOf('table', module)
@@ -70,7 +76,7 @@ storiesOf('table', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Table.Cell>Table.Cell</Table.Cell>
+      <Table.Cell isSelectable>Table.Cell</Table.Cell>
     </Box>
   ))
   .add('Table.TextCell', () => (
@@ -131,15 +137,26 @@ storiesOf('table', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <Table.Body>
-        {range(10).map(item => {
-          return (
-            <Table.Row key={item} isSelectable>
-              <Table.TextCell>{item}</Table.TextCell>
-            </Table.Row>
-          )
-        })}
-      </Table.Body>
+
+      <Component initialState={{ selectedItem: null }}>
+        {({ setState, state }) => (
+          <Table.Body>
+            {range(10).map(item => {
+              return (
+                <Table.Row
+                  key={item}
+                  isSelectable
+                  isSelected={state.selectedItem === item}
+                  onSelect={() => setState({ selectedItem: item })}
+                  onDeselect={() => setState({ selectedItem: null })}
+                >
+                  <Table.TextCell>{item}</Table.TextCell>
+                </Table.Row>
+              )
+            })}
+          </Table.Body>
+        )}
+      </Component>
     </Box>
   ))
   .add('Table.HeaderCell', () => (

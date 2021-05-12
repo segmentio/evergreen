@@ -1,37 +1,17 @@
 import React, { memo, forwardRef } from 'react'
-import Box from 'ui-box'
+import warning from '../../lib/warning'
 import Tab from './Tab'
 
-const styles = {
-  width: '100%',
-  paddingX: 0,
-  paddingLeft: 8,
-  marginX: 0,
-  marginBottom: 4,
-  justifyContent: 'auto'
-}
-
-const SidebarTab = memo(
-  forwardRef(function SidebarTab(props, ref) {
-    const { children, height = 32, isSelected, ...rest } = props
-
-    return (
-      <Tab
-        isSelected={isSelected}
-        height={height}
-        {...styles}
-        {...rest}
-        ref={ref}
-        display="flex"
-      >
-        <Box is="span" flex="1">
-          {children}
-        </Box>
-      </Tab>
-    )
+const SideBarTab = memo(
+  forwardRef(function Sidebartab(props, ref) {
+    if (process.env.NODE_ENV !== 'production') {
+      warning(
+        true,
+        '<SidebarTab> is deprecated and will be removed in the next major verison of Evergreen. Prefer composing with the `<Tab />` element directly.'
+      )
+    }
+    return <Tab direction="vertical" {...props} ref={ref} />
   })
 )
 
-SidebarTab.propTypes = Tab.propTypes
-
-export default SidebarTab
+export default SideBarTab

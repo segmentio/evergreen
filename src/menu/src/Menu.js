@@ -1,9 +1,9 @@
 import React, { memo, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
-import MenuItem from './MenuItem'
 import MenuDivider from './MenuDivider'
 import MenuGroup from './MenuGroup'
+import MenuItem from './MenuItem'
 import MenuOption from './MenuOption'
 import MenuOptionsGroup from './MenuOptionsGroup'
 
@@ -66,8 +66,7 @@ const Menu = memo(function Menu(props) {
 
     function onKeyPressListener(e) {
       const { target } = e
-      const menuItem =
-        menuItems.current && menuItems.current.find(item => item === target)
+      const menuItem = menuItems.current && menuItems.current.find(item => item === target)
 
       if (!menuItem) {
         return

@@ -1,20 +1,21 @@
 import React, { Fragment } from 'react'
 import faker from 'faker'
-import { Pane } from '../../layers'
-import { Paragraph } from '../../typography'
-import { TextInputField } from '../../text-input'
-import { SelectField } from '../../select'
-import { minorScale } from '../../scales'
 import { Table } from '..'
+import { Pane } from '../../layers'
+import { minorScale } from '../../scales'
+import { SelectField } from '../../select'
+import { TextInputField } from '../../text-input'
+import { Paragraph } from '../../typography'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
 const randomLengthContent = [
-  `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-  `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`,
-  `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 ]
 
+faker.seed(1000)
 // Generate a bunch of users.
 const users = range(1000)
   .map((user, index) => ({
@@ -55,11 +56,7 @@ export default class VirtualTable extends React.PureComponent {
     return (
       <Fragment>
         <Pane display="flex">
-          <TextInputField
-            label="scrollOffset"
-            marginRight={minorScale(4)}
-            onChange={this.setValue('scrollOffset')}
-          />
+          <TextInputField label="scrollOffset" marginRight={minorScale(4)} onChange={this.setValue('scrollOffset')} />
           <TextInputField
             type="number"
             label="scrollToIndex"
@@ -68,9 +65,7 @@ export default class VirtualTable extends React.PureComponent {
           />
           <SelectField
             label="scrollToAlignment"
-            onChange={event =>
-              this.setState({ scrollToAlignment: event.target.value })
-            }
+            onChange={event => this.setState({ scrollToAlignment: event.target.value })}
           >
             <option value="" checked>
               scrollToAlignment
@@ -108,9 +103,7 @@ export default class VirtualTable extends React.PureComponent {
                         <Paragraph marginY={24}>{user.content}</Paragraph>
                       </Table.Cell>
                     ) : (
-                      <Table.TextCell>
-                        This is a static height row
-                      </Table.TextCell>
+                      <Table.TextCell>This is a static height row</Table.TextCell>
                     )}
                   </Table.Row>
                 )

@@ -1,18 +1,12 @@
-import React, {
-  memo,
-  forwardRef,
-  useState,
-  useEffect,
-  useCallback
-} from 'react'
-import PropTypes from 'prop-types'
-import fuzzaldrin from 'fuzzaldrin-plus'
+import React, { memo, forwardRef, useState, useEffect, useCallback } from 'react'
 import Downshift from 'downshift'
+import fuzzaldrin from 'fuzzaldrin-plus'
+import PropTypes from 'prop-types'
 import VirtualList from 'react-tiny-virtual-list'
-import { Popover } from '../../popover'
 import { Position } from '../../constants'
-import { Heading } from '../../typography'
 import { Pane } from '../../layers'
+import { Popover } from '../../popover'
+import { Text } from '../../typography'
 import AutocompleteItem from './AutocompleteItem'
 
 const fuzzyFilter = itemToString => {
@@ -23,9 +17,7 @@ const fuzzyFilter = itemToString => {
         item
       }))
 
-      return fuzzaldrin
-        .filter(wrappedItems, input, { key: 'key' })
-        .map(({ item }) => item)
+      return fuzzaldrin.filter(wrappedItems, input, { key: 'key' }).map(({ item }) => item)
     }
   }
 
@@ -43,9 +35,9 @@ const AutocompleteItems = ({
   highlightedIndex,
   inputValue,
   isFilterDisabled,
-  itemsFilter,
   itemSize,
   itemToString,
+  itemsFilter,
   originalItems,
   popoverMaxHeight,
   renderItem,
@@ -54,10 +46,7 @@ const AutocompleteItems = ({
   width
 }) => {
   itemsFilter = itemsFilter || fuzzyFilter(itemToString)
-  const items =
-    isFilterDisabled || inputValue.trim() === ''
-      ? originalItems
-      : itemsFilter(originalItems, inputValue)
+  const items = isFilterDisabled || inputValue.trim() === '' ? originalItems : itemsFilter(originalItems, inputValue)
 
   if (items.length === 0) return null
 
@@ -68,7 +57,9 @@ const AutocompleteItems = ({
     <Pane width={width} {...menuProps}>
       {title && (
         <Pane padding={8} borderBottom="muted">
-          <Heading size={100}>{title}</Heading>
+          <Text size={300} textTransform="uppercase">
+            {title}
+          </Text>
         </Pane>
       )}
       {items.length > 0 && (
@@ -115,6 +106,7 @@ const Autocomplete = memo(
       itemToString = i => (i ? String(i) : ''),
       popoverMaxHeight = 240,
       popoverMinWidth = 240,
+      allowOtherValues,
       ...restProps
     } = props
 
@@ -129,39 +121,38 @@ const Autocomplete = memo(
 
     const stateReducer = useCallback(
       (state, changes) => {
-        const { items } = props
+        const { allowOtherValues, items } = props
 
-        if (
-          Object.prototype.hasOwnProperty.call(changes, 'isOpen') &&
-          changes.isOpen
-        ) {
+        if (Object.prototype.hasOwnProperty.call(changes, 'isOpen') && changes.isOpen) {
           return {
             ...changes,
             highlightedIndex: items.indexOf(state.selectedItem)
           }
         }
 
+        if (allowOtherValues && state.isOpen && !changes.isOpen) {
+          return {
+            ...changes,
+            selectedItem: changes.selectedItem || state.inputValue,
+            inputValue: state.inputValue
+          }
+        }
+
         return changes
       },
-      [props.items]
+      [props.items, props.allowOtherValues]
     )
 
     return (
-      <Downshift
-        stateReducer={stateReducer}
-        scrollIntoView={noop}
-        itemToString={itemToString}
-        ref={ref}
-        {...restProps}
-      >
+      <Downshift stateReducer={stateReducer} scrollIntoView={noop} itemToString={itemToString} ref={ref} {...restProps}>
         {({
-          isOpen: isShown,
-          inputValue,
           getItemProps,
           getMenuProps,
-          selectedItem,
-          highlightedIndex,
           getRootProps,
+          highlightedIndex,
+          inputValue,
+          isOpen: isShown,
+          selectedItem,
           ...restDownshiftProps
         }) => (
           <div style={{ width: '100%' }}>
@@ -169,12 +160,7 @@ const Autocomplete = memo(
               bringFocusInside={false}
               isShown={isShown}
               minWidth={popoverMinWidth}
-              position={
-                position ||
-                (targetWidth < popoverMinWidth
-                  ? Position.BOTTOM_LEFT
-                  : Position.BOTTOM)
-              }
+              position={position || (targetWidth < popoverMinWidth ? Position.BOTTOM_LEFT : Position.BOTTOM)}
               content={() => (
                 <AutocompleteItems
                   getItemProps={getItemProps}
@@ -196,7 +182,7 @@ const Autocomplete = memo(
               minHeight={0}
               animationDuration={0}
             >
-              {({ isShown: isShownPopover, toggle, getRef }) =>
+              {({ getRef, isShown: isShownPopover, toggle }) =>
                 children({
                   isShown: isShownPopover,
                   toggle,
@@ -295,6 +281,11 @@ Autocomplete.propTypes = {
    * Defines the maximum height the results container will be
    */
   popoverMaxHeight: PropTypes.number,
+
+  /**
+   * Whether or not the input accepts arbitrary user input beyond the provided items
+   */
+  allowOtherValues: PropTypes.bool,
 
   ...Downshift.propTypes
 }

@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const TickCircleIcon = memo(
   forwardRef(function TickCircleIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="tick-circle"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="tick-circle" {...props} />
   })
 )

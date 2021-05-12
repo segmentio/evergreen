@@ -4,22 +4,22 @@ import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import Box from 'ui-box'
+import { StackingOrder } from '../../constants'
+import preventBodyScroll from '../../lib/prevent-body-scroll'
+import safeInvoke from '../../lib/safe-invoke'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
-import { StackingOrder } from '../../constants'
 import { useTheme } from '../../theme'
-import safeInvoke from '../../lib/safe-invoke'
-import preventBodyScroll from '../../lib/prevent-body-scroll'
 
 const noop = () => {}
 const emptyProps = {}
 
 const animationEasing = {
-  standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`,
-  sharp: `cubic-bezier(0.4, 0.0, 0.6, 1)`,
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
+  standard: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+  deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
+  sharp: 'cubic-bezier(0.4, 0.0, 0.6, 1)',
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
 const ANIMATION_DURATION = 240
@@ -81,6 +81,7 @@ const Overlay = memo(function Overlay({
   ...props
 }) {
   const theme = useTheme()
+  const { colors } = theme
   const [previousActiveElement, setPreviousActiveElement] = useState(null)
   const [status, setStatus] = useState(isShown ? 'entering' : 'exited')
   const containerRef = useRef()
@@ -92,7 +93,7 @@ const Overlay = memo(function Overlay({
   }, [isShown])
 
   const close = () => {
-    const shouldClose = safeInvoke(props.onBeforeClose)
+    const shouldClose = safeInvoke(onBeforeClose)
     if (shouldClose !== false) {
       setStatus('exiting')
     }
@@ -147,14 +148,10 @@ const Overlay = memo(function Overlay({
         return
       }
 
-      const isFocusOutsideModal = !containerRef.current.contains(
-        document.activeElement
-      )
+      const isFocusOutsideModal = !containerRef.current.contains(document.activeElement)
       if (isFocusOutsideModal) {
         // Element marked autofocus has higher priority than the other clowns
-        const autofocusElement = containerRef.current.querySelector(
-          '[autofocus]'
-        )
+        const autofocusElement = containerRef.current.querySelector('[autofocus]')
         const wrapperElement = containerRef.current.querySelector('[tabindex]')
         const buttonElement = containerRef.current.querySelector('button')
 
@@ -180,9 +177,7 @@ const Overlay = memo(function Overlay({
       }
 
       // Bring back focus on the target.
-      const isFocusInsideModal = containerRef.current.contains(
-        document.activeElement
-      )
+      const isFocusInsideModal = containerRef.current.contains(document.activeElement)
       if (document.activeElement === document.body || isFocusInsideModal) {
         previousActiveElement.focus()
       }
@@ -265,14 +260,9 @@ const Overlay = memo(function Overlay({
                 zIndex={zIndex}
                 data-state={state}
                 {...containerProps}
-                className={cx(
-                  containerProps.className,
-                  css(animationStyles(theme.overlayBackgroundColor)).toString()
-                )}
+                className={cx(containerProps.className, css(animationStyles(colors.overlay)).toString())}
               >
-                {typeof children === 'function'
-                  ? children({ state, close })
-                  : children}
+                {typeof children === 'function' ? children({ state, close }) : children}
               </Box>
             )}
           </Transition>

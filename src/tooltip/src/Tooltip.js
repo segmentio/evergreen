@@ -1,11 +1,11 @@
+import React, { memo, useState, useEffect } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
-import React, { memo, useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
-import { Positioner } from '../../positioner'
+import PropTypes from 'prop-types'
 import { Position } from '../../constants'
 import { useId } from '../../hooks'
+import { Positioner } from '../../positioner'
 import TooltipStateless from './TooltipStateless'
 
 const emptyProps = {}
@@ -128,13 +128,8 @@ const Tooltip = memo(function Tooltip(props) {
   }
 
   return (
-    <Positioner
-      target={renderTarget}
-      isShown={shown}
-      position={position}
-      animationDuration={160}
-    >
-      {({ css, style, state, getRef }) => (
+    <Positioner target={renderTarget} isShown={shown} position={position} animationDuration={160}>
+      {({ css, getRef, state, style }) => (
         <TooltipStateless
           id={id}
           appearance={appearance}
@@ -144,10 +139,7 @@ const Tooltip = memo(function Tooltip(props) {
           onMouseEnter={handleMouseEnterTarget}
           onMouseLeave={handleMouseLeaveTarget}
           {...statelessProps}
-          className={cx(
-            statelessProps.className,
-            css ? glamorCss(css).toString() : undefined
-          )}
+          className={cx(statelessProps.className, css ? glamorCss(css).toString() : undefined)}
         >
           {content}
         </TooltipStateless>

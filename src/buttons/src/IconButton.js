@@ -1,31 +1,38 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { dimensions, spacing, position, layout } from 'ui-box'
-import { useTheme } from '../../theme'
+import { useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
-import Button from './Button'
+import Button, { getIconSizeForButton, internalStyles, pseudoSelectors } from './Button'
 
 const IconButton = memo(
   forwardRef(function IconButton(props, ref) {
-    const theme = useTheme()
-    const { icon, iconSize, height = 32, intent = 'none', ...restProps } = props
+    const { icon, iconSize, ...restProps } = props
+
+    // modifiers
+    const { appearance, intent = 'none', size = 'medium' } = props
+
+    // Composes the exact same styles as button
+    const styleProps = useStyleConfig('Button', { appearance, intent, size }, pseudoSelectors, internalStyles)
+
+    const height = restProps.height || styleProps.height
+    const relativeIconSize = getIconSizeForButton(height)
 
     return (
       <Button
         ref={ref}
-        intent={intent}
-        height={height}
-        width={height}
         paddingLeft={0}
         paddingRight={0}
-        display="flex"
-        justifyContent="center"
+        flex="none"
+        height={height}
+        width={height}
+        minWidth={height}
         {...restProps}
       >
         <IconWrapper
           icon={icon}
           color={intent === 'none' ? 'default' : 'currentColor'}
-          size={iconSize || theme.getIconSizeForIconButton(height)}
+          size={iconSize || relativeIconSize}
         />
       </Button>
     )
@@ -54,6 +61,11 @@ IconButton.propTypes = {
   ...layout.propTypes,
 
   /**
+   * The size of the button
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+
+  /**
    * The Evergreen icon or custom icon to render
    */
   icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
@@ -75,7 +87,7 @@ IconButton.propTypes = {
 
   /**
    * Forcefully set the active state of a button.
-   * Useful in conjuction with a Popover.
+   * Useful in conjunction with a Popover.
    */
   isActive: PropTypes.bool,
 

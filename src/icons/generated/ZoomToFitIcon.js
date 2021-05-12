@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const ZoomToFitIcon = memo(
   forwardRef(function ZoomToFitIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="zoom-to-fit"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="zoom-to-fit" {...props} />
   })
 )

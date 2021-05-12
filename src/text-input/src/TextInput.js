@@ -1,48 +1,74 @@
 import React, { forwardRef, memo } from 'react'
-import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { Text } from '../../typography'
+import PropTypes from 'prop-types'
+import Box, { spacing, dimensions, position, layout } from 'ui-box'
+import { useStyleConfig } from '../../hooks'
+import { getTextPropsForControlHeight } from '../../lib/deprecated-theme-helpers'
 import { useTheme } from '../../theme'
+
+const pseudoSelectors = {
+  _focus: '&:focus',
+  _disabled: '&:disabled',
+  _invalid: '&[aria-invalid="true"]:not(:focus)',
+  _placeholder: '&::placeholder',
+  _placeholderHover: '&:hover::placeholder',
+  _placeholderFocus: '&:focus::placeholder'
+}
+
+const internalStyles = {
+  border: 'none',
+  MozAppearance: 'none',
+  outline: 'none',
+  textDecoration: 'none',
+  WebkitAppearance: 'none',
+  WebkitFontSmoothing: 'antialiased'
+}
 
 const TextInput = memo(
   forwardRef(function TextInput(props, ref) {
     const {
-      className,
-      required,
-      placeholder,
-      width = 280,
-      height = 32,
-      disabled = false,
-      isInvalid = false,
       appearance = 'default',
+      className,
+      disabled = false,
+      fontFamily = 'ui',
+      isInvalid = false,
+      placeholder,
+      required,
       spellCheck = true,
+      width = 280,
       ...restProps
     } = props
-    const theme = useTheme()
 
-    const themedClassName = theme.getTextInputClassName(appearance)
-    const textSize = theme.getTextSizeForControlHeight(height)
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
+    const theme = useTheme()
+    const { fontFamilies } = theme
+    const themedFontFamily = fontFamilies[fontFamily] || fontFamily
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Input',
+      { appearance, size: restProps.size || 'medium' },
+      pseudoSelectors,
+      internalStyles
+    )
+
+    const height = restProps.height || boxProps.height
+    const textProps = !restProps.size && restProps.height ? getTextPropsForControlHeight(restProps.height) : {}
 
     return (
-      <Text
+      <Box
         is="input"
         className={cx(themedClassName, className)}
         type="text"
-        size={textSize}
         width={width}
-        height={height}
         required={required}
         disabled={disabled}
         placeholder={placeholder}
-        paddingLeft={Math.round(height / 3.2)}
-        paddingRight={Math.round(height / 3.2)}
-        borderRadius={borderRadius}
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
-        {...(disabled ? { color: 'muted' } : {})}
         ref={ref}
+        fontFamily={themedFontFamily}
+        {...boxProps}
         {...restProps}
+        {...textProps}
+        height={height}
       />
     )
   })
@@ -50,9 +76,24 @@ const TextInput = memo(
 
 TextInput.propTypes = {
   /**
-   * Composes the Text component as the base.
+   * Composes the dimensions spec from the Box primitive.
    */
-  ...Text.propTypes,
+  ...dimensions.propTypes,
+
+  /**
+   * Composes the spacing spec from the Box primitive.
+   */
+  ...spacing.propTypes,
+
+  /**
+   * Composes the position spec from the Box primitive.
+   */
+  ...position.propTypes,
+
+  /**
+   * Composes the layout spec from the Box primitive.
+   */
+  ...layout.propTypes,
 
   /**
    * Makes the input element required.

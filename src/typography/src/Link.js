@@ -1,25 +1,30 @@
 import React, { forwardRef, memo } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import { useTheme } from '../../theme'
+import { useStyleConfig } from '../../hooks'
 import Text from './Text'
+
+const internalStyles = {
+  textDecoration: 'underline'
+}
+
+const pseudoSelectors = {
+  _hover: '&:hover',
+  _active: '&:active',
+  _focus: '&:focus'
+}
 
 const Link = memo(
   forwardRef(function Link(props, ref) {
-    const theme = useTheme()
     const { className, color = 'default', ...restProps } = props
-    const themedClassName = theme.getLinkClassName(color)
-
-    return (
-      <Text
-        is="a"
-        ref={ref}
-        className={cx(className, themedClassName)}
-        textDecoration="underline"
-        color={null}
-        {...restProps}
-      />
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Link',
+      { color },
+      pseudoSelectors,
+      internalStyles
     )
+
+    return <Text is="a" ref={ref} className={cx(className, themedClassName)} {...boxProps} {...restProps} />
   })
 )
 

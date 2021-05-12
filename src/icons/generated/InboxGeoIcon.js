@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const InboxGeoIcon = memo(
   forwardRef(function InboxGeoIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="inbox-geo"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="inbox-geo" {...props} />
   })
 )

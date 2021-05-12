@@ -1,11 +1,11 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import safeInvoke from '../../lib/safe-invoke'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
-import safeInvoke from '../../lib/safe-invoke'
-import TextTableCell from './TextTableCell'
-import TableCell from './TableCell'
 import EditableCellField from './EditableCellField'
+import TableCell from './TableCell'
+import TextTableCell from './TextTableCell'
 
 const emptyProps = {}
 
@@ -27,6 +27,10 @@ const EditableCell = memo(function EditableCell(props) {
   const [value, setValue] = useState(children)
   const [isEditing, setIsEditing] = useState(autoFocus)
 
+  useEffect(() => {
+    setValue(children)
+  }, [children])
+
   const handleDoubleClick = () => {
     if (disabled || !isSelectable) return
 
@@ -43,12 +47,7 @@ const EditableCell = memo(function EditableCell(props) {
      */
     if (key === 'Enter' || key === 'Shift') {
       setIsEditing(true)
-    } else if (
-      key.match(/^[a-z]{0,10}$/) &&
-      !e.metaKey &&
-      !e.ctrlKey &&
-      !e.altKey
-    ) {
+    } else if (key.match(/^[a-z]{0,10}$/) && !e.metaKey && !e.ctrlKey && !e.altKey) {
       setIsEditing(true)
       setValue(value + key)
     }
@@ -92,12 +91,12 @@ const EditableCell = memo(function EditableCell(props) {
         cursor={cursor}
         textProps={{
           size,
-          opacity: disabled || (!children && placeholder) ? 0.5 : 1,
+          opacity: disabled || (!value && placeholder) ? 0.5 : 1,
           ...textProps
         }}
         {...rest}
       >
-        {children ? children : placeholder}
+        {value || placeholder}
       </TextTableCell>
       {isEditing && (
         <Portal>

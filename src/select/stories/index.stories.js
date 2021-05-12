@@ -1,12 +1,10 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import { Text, Label } from '../../typography'
 import { Select } from '..'
+import { Text, Label } from '../../typography'
 
-const Description = props => (
-  <Text is="p" marginTop={0} size={300} color="muted" {...props} />
-)
+const Description = props => <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 
 const appearance = 'default'
 
@@ -16,9 +14,7 @@ storiesOf('select', module).add('Select', () => (
       <Label htmlFor="32" size={400} display="block">
         Height 32 (default)
       </Label>
-      <Description marginBottom={8}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.
-      </Description>
+      <Description marginBottom={8}>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</Description>
       <Select appearance={appearance} name="32" id="32">
         <option>Apple</option>
         <option>Pear</option>
@@ -30,13 +26,7 @@ storiesOf('select', module).add('Select', () => (
       <Label htmlFor="disabled" size={400} display="block">
         Disabled
       </Label>
-      <Select
-        appearance={appearance}
-        value="This is disabled"
-        name="disabled"
-        id="disabled"
-        disabled
-      >
+      <Select appearance={appearance} value="This is disabled" name="disabled" id="disabled" disabled>
         <option>Apple</option>
         <option>Pear</option>
         <option>Banana</option>
@@ -56,20 +46,9 @@ storiesOf('select', module).add('Select', () => (
     </Box>
     <Box marginBottom={24}>
       <Label htmlFor="24" size={300} display="block" marginBottom={4}>
-        Height 24
+        Small
       </Label>
-      <Select appearance={appearance} height={24} name="24" id="24">
-        <option>Apple</option>
-        <option>Pear</option>
-        <option>Banana</option>
-        <option>Kiwi</option>
-      </Select>
-    </Box>
-    <Box marginBottom={24}>
-      <Label htmlFor="28" size={300} display="block" marginBottom={4}>
-        Height 28
-      </Label>
-      <Select appearance={appearance} height={28} name="28" id="28">
+      <Select appearance={appearance} size="small" name="24" id="24">
         <option>Apple</option>
         <option>Pear</option>
         <option>Banana</option>
@@ -78,9 +57,9 @@ storiesOf('select', module).add('Select', () => (
     </Box>
     <Box marginBottom={24}>
       <Label htmlFor="36" size={400} display="block" marginBottom={4}>
-        Height 36
+        Medium (32px)
       </Label>
-      <Select appearance={appearance} height={36} name="36" id="36">
+      <Select appearance={appearance} size="medium" name="36" id="36">
         <option>Apple</option>
         <option>Pear</option>
         <option>Banana</option>
@@ -89,9 +68,9 @@ storiesOf('select', module).add('Select', () => (
     </Box>
     <Box marginBottom={24}>
       <Label htmlFor="40" size={500} display="block" marginBottom={4}>
-        Height 40
+        Large
       </Label>
-      <Select appearance={appearance} height={40} name="40" id="40">
+      <Select appearance={appearance} size="large" name="40" id="40">
         <option>Apple</option>
         <option>Pear</option>
         <option>Banana</option>

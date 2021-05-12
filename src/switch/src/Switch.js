@@ -2,10 +2,10 @@ import React, { memo, forwardRef } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
-import { useTheme } from '../../theme'
+import { useStyleConfig } from '../../hooks'
 
 const animationEasing = {
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
 const handleStyleClass = css({
@@ -42,11 +42,7 @@ const handleContainerStyleClass = css({
   }
 }).toString()
 
-const CheckIcon = memo(function CheckIcon({
-  size,
-  fill = 'currentColor',
-  ...props
-}) {
+const CheckIcon = memo(function CheckIcon({ fill = 'currentColor', size, ...props }) {
   return (
     <svg width={10} height={size} viewBox="0 0 10 7" {...props}>
       <path
@@ -65,6 +61,35 @@ CheckIcon.propTypes = {
 
 const noop = () => {}
 
+const pseudoSelectors = {
+  _base: '& + div',
+  _disabled: '&[disabled] + div',
+  _hover: '&:not([disabled]):hover + div',
+  _focus: '&:not([disabled]):focus + div',
+  _active: '&:not([disabled]):active + div',
+  _checked: '&:checked + div',
+  _checkedHover: '&:checked:hover + div',
+  _checkedActive: '&:not([disabled]):checked:active + div',
+  _checkedDisabled: '&[disabled]:checked + div'
+}
+
+const internalStyles = {
+  border: '0',
+  clip: 'rect(1px, 1px, 1px, 1px)',
+  height: '1px',
+  overflow: 'hidden',
+  padding: '0',
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  width: '1px',
+  opacity: '0',
+  '& + div > svg': { display: 'none' },
+
+  [pseudoSelectors._base]: {
+    transition: 'all 120ms ease-in-out'
+  }
+}
+
 const Switch = memo(
   forwardRef(function Switch(props, ref) {
     const {
@@ -75,55 +100,39 @@ const Switch = memo(
       onChange = noop,
       disabled = false,
       appearance = 'default',
-      hasCheckIcon = true,
+      hasCheckIcon = false,
       defaultChecked,
       ...rest
     } = props
 
-    const theme = useTheme()
-    const themedClassName = theme.getSwitchClassName(appearance)
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Switch',
+      { appearance },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
-      <Box
-        is="label"
-        display="block"
-        width={height * 2}
-        position="relative"
-        ref={ref}
-        {...rest}
-      >
+      <Box is="label" display="block" width={height * 2} position="relative" ref={ref} {...rest}>
         <Box
           is="input"
-          className={themedClassName}
           id={id}
           name={name}
+          {...boxProps}
+          className={themedClassName}
           type="checkbox"
           checked={checked}
           disabled={disabled}
           defaultChecked={defaultChecked}
           onChange={onChange}
         />
-        <Box height={height} width={height * 2}>
-          <Box
-            height={height}
-            width={height}
-            data-checked={checked}
-            className={iconContainerStyleClass}
-          >
-            {hasCheckIcon && <CheckIcon size={height / 2 - 3} />}
+        <Box height={height} width={height * 2} borderRadius={9999} cursor="pointer">
+          <Box height={height} width={height} data-checked={checked} className={iconContainerStyleClass}>
+            {hasCheckIcon && <CheckIcon display={checked ? 'block' : undefined} size={height / 2 - 3} />}
           </Box>
-          <Box
-            width={height * 2}
-            display="flex"
-            data-checked={checked}
-            className={handleContainerStyleClass}
-          >
+          <Box width={height * 2} display="flex" data-checked={checked} className={handleContainerStyleClass}>
             <Box flex={1} padding={2}>
-              <Box
-                width={height - 4}
-                height={height - 4}
-                className={handleStyleClass}
-              />
+              <Box width={height - 4} height={height - 4} className={handleStyleClass} />
             </Box>
           </Box>
         </Box>

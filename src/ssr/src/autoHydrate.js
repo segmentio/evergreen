@@ -1,5 +1,5 @@
-import { hydrate as boxHydrate } from 'ui-box'
 import { rehydrate } from 'glamor'
+import { hydrate as boxHydrate } from 'ui-box'
 import canUseDom from '../../lib/canUseDom'
 
 /**
@@ -25,10 +25,7 @@ export default function autoHydrate() {
         const hydrationObject = JSON.parse(hydration.innerHTML)
         hydrate(hydrationObject)
       } catch (error) {
-        console.error(
-          'Evergreen automatic hydration object is invalid JSON',
-          error
-        )
+        console.error('Evergreen automatic hydration object is invalid JSON', error)
       }
     }
   }

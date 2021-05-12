@@ -1,91 +1,90 @@
-import React, { PureComponent } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import { useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
-import { TickIcon } from '../../icons'
-import { Image } from '../../image'
 import TableRow from '../../table/src/TableRow'
 import TextTableCell from '../../table/src/TextTableCell'
 
-const disableProps = { color: 'muted' }
-const selectedProps = { color: 'selected' }
-const emptyProps = {}
+export const pseudoSelectors = {
+  _active: '&[aria-current="true"]:active, &[data-isselectable="true"]:active',
+  _before: '&:before',
+  _disabled: '&[disabled]',
+  _focus: ':focus',
+  _hover: ':hover',
+  _isSelectable: '&[data-isselectable="true"]',
+  _selected: '&[aria-current="true"]'
+}
 
-export default class Option extends PureComponent {
-  static propTypes = {
-    label: PropTypes.string,
-    icon: PropTypes.string,
-    style: PropTypes.any,
-    height: PropTypes.number,
-    onSelect: PropTypes.func,
-    onDeselect: PropTypes.func,
-    isHighlighted: PropTypes.bool,
-    isSelected: PropTypes.bool,
-    isSelectable: PropTypes.bool,
-    disabled: PropTypes.bool
-  }
+const internalStyles = {
+  alignItems: 'center',
+  display: 'flex'
+}
 
-  render() {
+const emptyObject = {}
+
+const Option = memo(
+  forwardRef(function Option(props, ref) {
     const {
-      label,
-      onSelect,
-      onDeselect,
-      isHighlighted,
-      isSelected,
-      isSelectable,
+      children,
       disabled,
-      style,
       height,
-      icon,
-      ...props
-    } = this.props
+      isHighlighted,
+      isSelectable,
+      isSelected,
+      item,
+      onDeselect,
+      onSelect,
+      style,
+      ...rest
+    } = props
 
-    let textProps = emptyProps
-    if (disabled) {
-      textProps = disableProps
-    }
-
-    if (isSelected) {
-      textProps = selectedProps
-    }
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Option',
+      emptyObject,
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <TableRow
+        className={themedClassName}
         isSelectable={isSelectable && !disabled}
         isHighlighted={isHighlighted}
         onSelect={onSelect}
         onDeselect={onDeselect}
         isSelected={isSelected}
         style={style}
-        display="flex"
-        alignItems="center"
-        borderBottom={false}
-        {...props}
+        {...boxProps}
+        {...rest}
+        ref={ref}
       >
-        <Pane
-          paddingLeft={12}
-          paddingRight={8}
-          opacity={isSelected ? 1 : 0}
-          flexGrow={0}
-          paddingTop={4}
-        >
-          <TickIcon color="selected" size={14} />
-        </Pane>
         <TextTableCell
-          height={height}
-          borderBottom="muted"
-          textProps={textProps}
-          paddingLeft={0}
           borderRight={null}
           flex={1}
           alignSelf="stretch"
+          height={height}
           cursor={disabled ? 'default' : 'pointer'}
         >
           <Pane alignItems="center" display="flex">
-            {icon && <Image src={icon} width={24} marginRight={8} />}
-            {label}
+            {children}
           </Pane>
         </TextTableCell>
       </TableRow>
     )
-  }
+  })
+)
+
+Option.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  disabled: PropTypes.bool,
+  height: PropTypes.number,
+  isHighlighted: PropTypes.bool,
+  isSelectable: PropTypes.bool,
+  isSelected: PropTypes.bool,
+  item: PropTypes.any,
+  onDeselect: PropTypes.func,
+  onSelect: PropTypes.func,
+  style: PropTypes.any
 }
+
+export default Option

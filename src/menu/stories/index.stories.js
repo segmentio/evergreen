@@ -1,18 +1,13 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Component from '@reactions/component'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import Menu from '../src/Menu'
 import { Button } from '../../buttons'
-import { UnorderedList, ListItem } from '../../typography'
-import { Popover } from '../../popover'
 import { Position } from '../../constants'
-import {
-  PeopleIcon,
-  CircleArrowRightIcon,
-  EditIcon,
-  TrashIcon
-} from '../../icons'
+import { PeopleIcon, CircleArrowRightIcon, EditIcon, TrashIcon } from '../../icons'
+import { Popover } from '../../popover'
+import { UnorderedList, ListItem } from '../../typography'
+import Menu from '../src/Menu'
 
 storiesOf('menu', module)
   .add('dropdown', () => (
@@ -110,7 +105,7 @@ storiesOf('menu', module)
                 selected: 'asc'
               }}
             >
-              {({ state, setState }) => {
+              {({ setState, state }) => {
                 return (
                   <Menu.OptionsGroup
                     title="Order"
@@ -132,7 +127,7 @@ storiesOf('menu', module)
                 selected: 'email'
               }}
             >
-              {({ state, setState }) => {
+              {({ setState, state }) => {
                 return (
                   <Menu.OptionsGroup
                     title="Show"
@@ -202,19 +197,12 @@ storiesOf('menu', module)
       </Popover>
 
       <UnorderedList marginTop={24}>
+        <ListItem>Arrow down on a button will bring focus inside the popover.</ListItem>
         <ListItem>
-          Arrow down on a button will bring focus inside the popover.
+          Arrow keys within the menu will cycle through all of the menu items and skip disabled items.
         </ListItem>
-        <ListItem>
-          Arrow keys within the menu will cycle through all of the menu items
-          and skip disabled items.
-        </ListItem>
-        <ListItem>
-          The Home key (fn + arrow left) will go to the first item.
-        </ListItem>
-        <ListItem>
-          The End key (fn + arrow right) will go to the last item.
-        </ListItem>
+        <ListItem>The Home key (fn + arrow left) will go to the first item.</ListItem>
+        <ListItem>The End key (fn + arrow right) will go to the last item.</ListItem>
       </UnorderedList>
     </Box>
   ))

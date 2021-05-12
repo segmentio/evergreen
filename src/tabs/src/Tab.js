@@ -1,64 +1,78 @@
-import PropTypes from 'prop-types'
+import React, { forwardRef, memo, useCallback } from 'react'
 import cx from 'classnames'
-import React, { forwardRef, memo } from 'react'
+import PropTypes from 'prop-types'
+import { useClickable, useLatest, useStyleConfig } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
-import { useTheme } from '../../theme'
 import { Text } from '../../typography'
-
-const styles = {
-  display: 'inline-flex',
-  fontWeight: 500,
-  paddingX: 8,
-  marginX: 4,
-  borderRadius: 3,
-  lineHeight: '28px',
-  alignItems: 'center',
-  justifyContent: 'center',
-  textDecoration: 'none',
-  tabIndex: 0
-}
 
 const noop = () => {}
 
+const getInternalStyles = direction => ({
+  alignItems: 'center',
+  justifyContent: direction === 'horizontal' ? 'center' : 'flex-start',
+  textDecoration: 'none',
+  cursor: 'pointer',
+  outline: 'none',
+  WebkitFontSmoothing: 'antialiased',
+  WebkitAppearance: 'none',
+  MozAppearance: 'none',
+  '&::-moz-focus-inner ': {
+    border: 0
+  },
+  display: direction === 'horizontal' ? 'inline-flex' : 'flex',
+  width: direction === 'horizontal' ? 'auto' : '100%'
+})
+
+const pseudoSelectors = {
+  _active: '&:active',
+  _after: '&:after',
+  _before: '&:before',
+  _current: '&[aria-current="page"], &[aria-selected="true"]',
+  _disabled: '&[aria-disabled="true"]',
+  _focus: '&:focus',
+  _hover: '&:hover'
+}
+
 const Tab = memo(
   forwardRef(function Tab(props, ref) {
-    const theme = useTheme()
-
     const {
-      appearance,
+      appearance = 'secondary',
+      direction = 'horizontal',
       disabled = false,
-      height = 28,
       is = 'span',
       isSelected,
-      onKeyPress = noop,
+      onKeyDown = noop,
       onSelect = noop,
+      height = 28,
       className,
+      tabIndex,
       ...rest
     } = props
 
-    const handleClick = e => {
-      safeInvoke(props.onClick, e)
-      onSelect()
-    }
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Tab',
+      { appearance, direction },
+      pseudoSelectors,
+      getInternalStyles(direction)
+    )
 
-    const handleKeyPress = e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        onSelect()
-        e.preventDefault()
-      }
+    const onClickRef = useLatest(props.onClick)
+    const handleClick = useCallback(
+      event => {
+        safeInvoke(onClickRef.current, event)
+        if (!disabled) {
+          onSelect()
+        }
+      },
+      [disabled, onSelect]
+    )
 
-      onKeyPress(e)
-    }
+    const clickableProps = useClickable({ disabled, onKeyDown, tabIndex })
 
     if (process.env.NODE_ENV !== 'production') {
-      warning(
-        typeof props.onClick === 'function',
-        '<Tab> expects `onSelect` prop, but you passed `onClick`.'
-      )
+      warning(typeof props.onClick === 'function', '<Tab> expects `onSelect` prop, but you passed `onClick`.')
     }
-
-    const textSize = theme.getTextSizeForControlHeight(height)
 
     let elementBasedProps
     if (disabled) {
@@ -87,19 +101,18 @@ const Tab = memo(
       }
     }
 
-    const classNames = cx(theme.getTabClassName(appearance), className)
-
     return (
       <Text
-        className={classNames}
+        className={cx(className, themedClassName)}
         is={is}
-        size={textSize}
+        size={300}
         height={height}
         ref={ref}
-        {...styles}
+        tabIndex={0}
+        {...boxProps}
         {...rest}
         onClick={handleClick}
-        onKeyPress={handleKeyPress}
+        {...clickableProps}
         {...elementBasedProps}
       />
     )
@@ -124,9 +137,15 @@ Tab.propTypes = {
 
   /**
    * The appearance of the tab.
-   * The default theme only comes with a default style.
+   * The default theme has primary, and secondary. The default is secondary
    */
   appearance: PropTypes.string,
+
+  /**
+   * The directionality of the tab.
+   * If the tab is apart of a vertical or horizontal list
+   */
+  direction: PropTypes.oneOf(['horizontal', 'vertical']),
 
   /**
    * Class name passed to the Tab.

@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
 import Component from '@reactions/component'
+import { storiesOf } from '@storybook/react'
+import Box from 'ui-box'
 import { SegmentedControl } from '..'
 
 storiesOf('segmented-control', module).add('SegmentedControl', () => (
@@ -20,7 +20,7 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
         value: 'hourly'
       }}
     >
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <SegmentedControl
           name="time"
           width={240}
@@ -39,7 +39,7 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
         value: true
       }}
     >
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <SegmentedControl
           name="switch"
           marginTop={24}

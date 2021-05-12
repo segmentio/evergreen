@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const LayoutGroupByIcon = memo(
   forwardRef(function LayoutGroupByIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="layout-group-by"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="layout-group-by" {...props} />
   })
 )

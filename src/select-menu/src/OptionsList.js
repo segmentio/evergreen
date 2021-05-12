@@ -1,13 +1,15 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import fuzzaldrin from 'fuzzaldrin-plus'
+import PropTypes from 'prop-types'
 import VirtualList from 'react-tiny-virtual-list'
-import { Pane } from '../../layers'
 import { SearchIcon } from '../../icons'
-import TableHead from '../../table/src/TableHead'
+import { Image } from '../../image'
+import { Pane } from '../../layers'
 import SearchTableHeaderCell from '../../table/src/SearchTableHeaderCell'
-import OptionShapePropType from './OptionShapePropType'
+import TableHead from '../../table/src/TableHead'
+import { useTheme } from '../../theme'
 import Option from './Option'
+import OptionShapePropType from './OptionShapePropType'
 
 /**
  * Fuzzaldrin-plus is the default filter, but you can use your own
@@ -19,278 +21,216 @@ const fuzzyFilter = (options, input, { key }) => {
   return fuzzaldrin.filter(options, input, { key })
 }
 
-/**
- * This is the default item renderer of options
- * you can pass custom renderers as long as they work the same as the Option
- */
-const itemRenderer = props => <Option {...props} />
-
 const noop = () => {}
 
-export default class OptionsList extends PureComponent {
-  static propTypes = {
-    options: PropTypes.arrayOf(OptionShapePropType),
-    close: PropTypes.func,
-    height: PropTypes.number,
-    width: PropTypes.number,
+const defaultRenderItem = props => {
+  return (
+    <Option {...props}>
+      {props.icon && <Image src={props.icon} width={24} marginRight={8} />}
+      {props.label}
+    </Option>
+  )
+}
 
-    /**
-     * When true, multi select is accounted for.
-     */
-    isMultiSelect: PropTypes.bool,
+const OptionsList = memo(function OptionsList(props) {
+  const {
+    options: originalOptions = [],
+    optionSize = 33,
+    close,
+    closeOnSelect,
+    onSelect = noop,
+    onDeselect = noop,
+    onFilterChange = noop,
+    hasFilter,
+    selected = [],
+    optionsFilter,
+    isMultiSelect,
+    height,
+    width,
+    renderItem = defaultRenderItem,
+    filterPlaceholder = 'Filter...',
+    filterIcon = SearchIcon,
+    defaultSearchValue = '',
+    ...rest
+  } = props
 
-    /**
-     * When true, menu closes on option selection.
-     */
-    closeOnSelect: PropTypes.bool,
+  const [searchValue, setSearchValue] = useState(defaultSearchValue)
+  const [selectedOptions, setSelectedOptions] = useState(selected)
+  const [searchRef, setSearchRef] = useState(null)
+  const requestId = useRef()
+  const theme = useTheme()
+  const { tokens } = theme
 
-    /**
-     * This holds the values of the options
-     */
-    selected: PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    ),
-    onSelect: PropTypes.func,
-    onDeselect: PropTypes.func,
-    onFilterChange: PropTypes.func,
-    hasFilter: PropTypes.bool,
-    optionSize: PropTypes.number,
-    renderItem: PropTypes.func,
-    filterPlaceholder: PropTypes.string,
-    filterIcon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
-    optionsFilter: PropTypes.func,
-    defaultSearchValue: PropTypes.string
-  }
+  const isSelected = useCallback(
+    item => {
+      return Boolean(selectedOptions.find(selectedItem => selectedItem === item.value))
+    },
+    [selectedOptions]
+  )
 
-  static defaultProps = {
-    options: [],
-    /**
-     * Including border bottom
-     * For some reason passing height to TableRow doesn't work
-     * TODO: fix hacky solution
-     */
-    optionSize: 33,
-    onSelect: noop,
-    onDeselect: noop,
-    onFilterChange: noop,
-    selected: [],
-    renderItem: itemRenderer,
-    filterPlaceholder: 'Filter...',
-    filterIcon: SearchIcon,
-    defaultSearchValue: ''
-  }
+  const search = useCallback(
+    options => {
+      if (searchValue.trim() === '') {
+        return options
+      }
 
-  constructor(props, context) {
-    super(props, context)
+      // Preserve backwards compatibility with allowing custom filters, which accept array of strings
+      if (typeof optionsFilter === 'function') {
+        return optionsFilter(
+          options.map(item => item.label),
+          searchValue
+        ).map(name => options.find(item => item.label === name))
+      }
 
-    this.state = {
-      searchValue: props.defaultSearchValue,
-      selected: props.selected
-    }
-  }
+      return fuzzyFilter(options, searchValue, { key: 'label' })
+    },
+    [optionsFilter, searchValue]
+  )
 
-  componentDidMount() {
-    const { hasFilter } = this.props
-    if (!hasFilter) return
-    /**
-     * Hacky solution for broken autoFocus
-     * https://github.com/segmentio/evergreen/issues/90
-     */
-    this.requestId = requestAnimationFrame(() => {
-      if (this.searchRef) this.searchRef.focus()
-    })
+  const options = search(originalOptions)
 
-    window.addEventListener('keydown', this.handleKeyDown)
-  }
+  const getFilteredOptions = useCallback(() => {
+    return search(options)
+  }, [options])
 
-  componentWillUnmount() {
-    cancelAnimationFrame(this.requestId)
-    window.removeEventListener('keydown', this.handleKeyDown)
-  }
+  const getCurrentIndex = useCallback(() => {
+    const options = getFilteredOptions()
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.selected !== this.props.selected) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({
-        selected: this.props.selected
-      })
-    }
-  }
+    return options.findIndex(option => option.value === selected[selected.length - 1])
+  }, [selected])
 
-  isSelected = item => {
-    const { selected } = this.state
+  const handleArrowUp = useCallback(() => {
+    const options = getFilteredOptions()
 
-    return Boolean(selected.find(selectedItem => selectedItem === item.value))
-  }
-
-  search = options => {
-    const { optionsFilter } = this.props
-    const { searchValue } = this.state
-
-    if (searchValue.trim() === '') {
-      return options
-    }
-
-    // Preserve backwards compatibility with allowing custom filters, which accept array of strings
-    if (typeof optionsFilter === 'function') {
-      return optionsFilter(
-        options.map(item => item.label),
-        searchValue
-      ).map(name => options.find(item => item.label === name))
-    }
-
-    return fuzzyFilter(options, searchValue, { key: 'label' })
-  }
-
-  getCurrentIndex = () => {
-    const { selected } = this.props
-    const options = this.getFilteredOptions()
-
-    return options.findIndex(
-      option => option.value === selected[selected.length - 1]
-    )
-  }
-
-  getFilteredOptions() {
-    const { options } = this.props
-
-    return this.search(options)
-  }
-
-  handleKeyDown = e => {
-    if (e.key === 'ArrowUp') {
-      this.handleArrowUp()
-    }
-
-    if (e.key === 'ArrowDown') {
-      this.handleArrowDown()
-    }
-
-    if (e.key === 'Enter') {
-      this.handleEnter()
-    }
-
-    if (e.key === 'Escape') {
-      this.props.close()
-    }
-  }
-
-  handleArrowUp = () => {
-    const { onSelect } = this.props
-    const options = this.getFilteredOptions()
-
-    let nextIndex = this.getCurrentIndex() - 1
+    let nextIndex = getCurrentIndex() - 1
 
     if (nextIndex < 0) {
       nextIndex = options.length - 1
     }
 
-    if (this.isSelected(options[nextIndex])) {
+    if (isSelected(options[nextIndex])) {
       return
     }
 
     onSelect(options[nextIndex])
-  }
+  }, [onSelect])
 
-  handleArrowDown = () => {
-    const { onSelect } = this.props
-    const options = this.getFilteredOptions()
+  const handleArrowDown = useCallback(() => {
+    const options = getFilteredOptions()
 
-    let nextIndex = this.getCurrentIndex() + 1
+    let nextIndex = getCurrentIndex() + 1
 
     if (nextIndex === options.length) {
       nextIndex = 0
     }
 
-    if (!this.isSelected(options[nextIndex])) {
+    if (!isSelected(options[nextIndex])) {
       onSelect(options[nextIndex])
     }
-  }
+  }, [onSelect])
 
-  handleEnter = () => {
-    const isSelected = this.getCurrentIndex() !== -1
+  const handleChange = useCallback(
+    searchValue => {
+      setSearchValue(searchValue)
+      onFilterChange(searchValue)
+    },
+    [onFilterChange]
+  )
+
+  const handleSelect = useCallback(
+    item => {
+      if (isSelected(item) && isMultiSelect) {
+        onDeselect(item)
+      } else {
+        onSelect(item)
+      }
+
+      if (!isMultiSelect && closeOnSelect) {
+        close()
+      }
+    },
+    [onDeselect, isMultiSelect, closeOnSelect]
+  )
+
+  const handleEnter = useCallback(() => {
+    const isSelected = getCurrentIndex() !== -1
 
     if (isSelected) {
-      if (!this.props.isMultiSelect && this.props.closeOnSelect) {
-        this.props.close()
+      if (!isMultiSelect && closeOnSelect) {
+        close()
       }
     }
-  }
+  }, [isMultiSelect, close, closeOnSelect])
 
-  handleChange = searchValue => {
-    this.setState({
-      searchValue
-    })
-    this.props.onFilterChange(searchValue)
-  }
+  const handleDeselect = useCallback(
+    item => {
+      onDeselect(item)
+    },
+    [onDeselect]
+  )
 
-  handleSelect = item => {
-    if (this.isSelected(item)) {
-      this.props.onDeselect(item)
-    } else {
-      this.props.onSelect(item)
+  const handleKeyDown = useCallback(
+    e => {
+      if (e.key === 'ArrowUp') {
+        handleArrowUp()
+      }
+
+      if (e.key === 'ArrowDown') {
+        handleArrowDown()
+      }
+
+      if (e.key === 'Enter') {
+        handleEnter()
+      }
+
+      if (e.key === 'Escape') {
+        close()
+      }
+    },
+    [close]
+  )
+
+  useEffect(() => {
+    if (hasFilter) {
+      requestId.current = requestAnimationFrame(() => {
+        if (searchRef) {
+          searchRef.focus()
+        }
+      })
+
+      window.addEventListener('keydown', handleKeyDown)
+      return () => {
+        cancelAnimationFrame(requestId.current)
+        window.removeEventListener('keydown', handleKeyDown)
+      }
     }
+  }, [hasFilter, searchRef, handleKeyDown])
 
-    if (!this.props.isMultiSelect && this.props.closeOnSelect) {
-      this.props.close()
+  useEffect(() => {
+    if (selected !== selectedOptions) {
+      setSelectedOptions(selected)
     }
-  }
+  }, [selected])
 
-  handleDeselect = item => {
-    this.props.onDeselect(item)
-  }
+  const listHeight = height - (hasFilter ? 32 : 0)
+  const currentIndex = getCurrentIndex()
+  const scrollToIndex = currentIndex === -1 ? 0 : currentIndex
 
-  assignSearchRef = ref => {
-    this.searchRef = ref
-  }
-
-  render() {
-    const {
-      options: originalOptions,
-      close,
-      closeOnSelect,
-      width,
-      height,
-      onSelect,
-      onDeselect,
-      onFilterChange,
-      selected,
-      hasFilter,
-      filterPlaceholder,
-      filterIcon,
-      optionSize,
-      renderItem,
-      optionsFilter,
-      isMultiSelect,
-      defaultSearchValue,
-      ...props
-    } = this.props
-    const options = this.search(originalOptions)
-    const listHeight = height - (hasFilter ? 32 : 0)
-    const currentIndex = this.getCurrentIndex()
-    const scrollToIndex = currentIndex === -1 ? 0 : currentIndex
-
-    return (
-      <Pane
-        height={height}
-        width={width}
-        display="flex"
-        flexDirection="column"
-        {...props}
-      >
-        {hasFilter && (
-          <TableHead>
-            <SearchTableHeaderCell
-              onChange={this.handleChange}
-              ref={this.assignSearchRef}
-              borderRight={null}
-              height={32}
-              placeholder={filterPlaceholder}
-              icon={filterIcon}
-            />
-          </TableHead>
-        )}
-        <Pane flex={1}>
+  return (
+    <Pane height={height} width={width} display="flex" flexDirection="column" {...rest}>
+      {hasFilter && (
+        <TableHead height={32} backgroundColor={tokens.colors.gray50}>
+          <SearchTableHeaderCell
+            onChange={handleChange}
+            ref={setSearchRef}
+            borderRight={null}
+            placeholder={filterPlaceholder}
+            icon={filterIcon}
+          />
+        </TableHead>
+      )}
+      <Pane flex={1}>
+        {options.length > 0 && (
           <VirtualList
             height={listHeight}
             width="100%"
@@ -301,24 +241,62 @@ export default class OptionsList extends PureComponent {
             scrollToIndex={scrollToIndex || undefined}
             renderItem={({ index, style }) => {
               const item = options[index]
-              const isSelected = this.isSelected(item)
-              return renderItem({
+              const isItemSelected = isSelected(item)
+
+              const itemProps = {
                 key: item.value,
                 label: item.label,
                 icon: item.icon,
+                item,
                 style,
                 height: optionSize,
-                onSelect: () => this.handleSelect(item),
-                onDeselect: () => this.handleDeselect(item),
-                isSelectable: !isSelected || isMultiSelect,
-                isSelected,
+                onSelect: () => handleSelect(item),
+                onDeselect: () => handleDeselect(item),
+                isSelectable: !isItemSelected || isMultiSelect,
+                isSelected: isItemSelected,
                 disabled: item.disabled,
                 tabIndex: 0
-              })
+              }
+
+              return renderItem(itemProps)
             }}
           />
-        </Pane>
+        )}
       </Pane>
-    )
-  }
+    </Pane>
+  )
+})
+
+OptionsList.propTypes = {
+  options: PropTypes.arrayOf(OptionShapePropType),
+  close: PropTypes.func,
+  height: PropTypes.number,
+  width: PropTypes.number,
+
+  /**
+   * When true, multi select is accounted for.
+   */
+  isMultiSelect: PropTypes.bool,
+
+  /**
+   * When true, menu closes on option selection.
+   */
+  closeOnSelect: PropTypes.bool,
+
+  /**
+   * This holds the values of the options
+   */
+  selected: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  onSelect: PropTypes.func,
+  onDeselect: PropTypes.func,
+  onFilterChange: PropTypes.func,
+  hasFilter: PropTypes.bool,
+  optionSize: PropTypes.number,
+  renderItem: PropTypes.func,
+  filterPlaceholder: PropTypes.string,
+  filterIcon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
+  optionsFilter: PropTypes.func,
+  defaultSearchValue: PropTypes.string
 }
+
+export default OptionsList

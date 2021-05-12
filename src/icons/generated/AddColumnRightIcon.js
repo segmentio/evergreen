@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const AddColumnRightIcon = memo(
   forwardRef(function AddColumnRightIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="add-column-right"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="add-column-right" {...props} />
   })
 )

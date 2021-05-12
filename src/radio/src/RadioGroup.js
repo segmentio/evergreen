@@ -1,9 +1,9 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { spacing, position, layout, dimensions } from 'ui-box'
+import { useId } from '../../hooks'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import { useId } from '../../hooks'
 import Radio from './Radio'
 
 const noop = () => {}

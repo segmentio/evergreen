@@ -1,74 +1,50 @@
 import React, { memo, forwardRef } from 'react'
-import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { dimensions, spacing, position, layout } from 'ui-box'
-import { IconWrapper } from '../../icons/src/IconWrapper'
+import PropTypes from 'prop-types'
+import Box, { dimensions, spacing, position, layout } from 'ui-box'
+import { useStyleConfig } from '../../hooks'
 import { CaretDownIcon } from '../../icons'
-import { Text } from '../../typography'
+import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Spinner } from '../../spinner'
-import { useTheme } from '../../theme'
-
-const styles = {
-  position: 'relative',
-  fontFamily: 'ui',
-  fontWeight: 500,
-  display: 'inline-flex',
-  alignItems: 'center',
-  flexWrap: 'nowrap'
-}
+import { internalStyles, pseudoSelectors } from './Button'
 
 const TextDropdownButton = memo(
   forwardRef(function TextDropdownButton(props, ref) {
-    const theme = useTheme()
     const {
-      className,
-      intent,
-      height,
-      isActive = false,
-      children,
-      disabled,
       appearance,
-      isLoading,
-
-      paddingRight,
-      paddingLeft,
-      paddingTop,
-      paddingBottom,
-
+      children,
+      className,
+      disabled,
       icon = CaretDownIcon,
+      is = 'button',
+      isActive = false,
+      isLoading,
+      size = 'medium',
       ...restProps
     } = props
 
-    const themedClassName = cx(
-      theme.getTextDropdownButtonClassName(),
-      className
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'TextDropdownButton',
+      { size },
+      pseudoSelectors,
+      internalStyles
     )
 
     return (
-      <Text
-        is="button"
+      <Box
+        is={is}
         ref={ref}
-        className={themedClassName}
-        paddingX={4}
-        marginX={-4}
-        paddingY={2}
-        marginY={-2}
-        size={300}
-        data-active={isActive}
-        {...styles}
+        type={is === 'button' ? 'button' : undefined}
+        className={cx(themedClassName, className)}
+        data-active={isActive || undefined}
+        {...boxProps}
         {...restProps}
-        disabled={disabled}
+        disabled={disabled || isLoading}
       >
-        {isLoading && (
-          <Spinner
-            marginLeft={-Math.round(height / 8)}
-            marginRight={Math.round(height / 4)}
-            size={Math.round(height / 2)}
-          />
-        )}
+        {isLoading && <Spinner marginLeft={-2} marginRight={4} size={12} />}
         {children}
         <IconWrapper icon={icon} marginLeft={2} color="default" size={12} />
-      </Text>
+      </Box>
     )
   })
 )

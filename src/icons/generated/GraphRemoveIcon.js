@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const GraphRemoveIcon = memo(
   forwardRef(function GraphRemoveIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="graph-remove"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="graph-remove" {...props} />
   })
 )

@@ -1,18 +1,17 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import { Tab, Tablist, TabNavigation } from '..'
+import { majorScale } from '../../scales'
 import { Heading, Paragraph } from '../../typography'
-import { Tab, SidebarTab, Tablist, TabNavigation } from '..'
 
 const StorySection = props => <Box marginBottom={40} {...props} />
 
 const StoryHeader = props => <Box marginBottom={16} {...props} />
 
 const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
-const StoryDescription = props => (
-  <Paragraph size={400} color="muted" {...props} />
-)
+const StoryDescription = props => <Paragraph size={400} color="muted" {...props} />
 
 class TabManager extends React.PureComponent {
   static propTypes = {
@@ -48,8 +47,7 @@ storiesOf('tabs', module)
         <StoryHeader>
           <StoryHeading>Tab usage</StoryHeading>
           <StoryDescription>
-            If you are not using a link (`a` tag) for your Tab, make sure to
-            wrap in a `Tablist` and comply with{' '}
+            If you are not using a link (`a` tag) for your Tab, make sure to wrap in a `Tablist` and comply with{' '}
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -61,13 +59,14 @@ storiesOf('tabs', module)
           </StoryDescription>
         </StoryHeader>
         <TabManager>
-          {({ selectedIndex, onSelect }) => (
+          {({ onSelect, selectedIndex }) => (
             <Box>
               <Tablist marginX={-4} marginBottom={16}>
                 {tabs.map((tab, index) => (
                   <Tab
                     key={tab}
                     id={tab}
+                    appearance="primary"
                     onSelect={() => onSelect(index)}
                     isSelected={index === selectedIndex}
                     aria-controls={`panel-${tab}`}
@@ -97,10 +96,7 @@ storiesOf('tabs', module)
       <StorySection>
         <StoryHeader>
           <StoryHeading>Link usage</StoryHeading>
-          <StoryDescription>
-            If you are using a link (`a` tag), make sure to wrap in a
-            `TabNavigation`
-          </StoryDescription>
+          <StoryDescription>If you are using a link (`a` tag), make sure to wrap in a `TabNavigation`</StoryDescription>
         </StoryHeader>
 
         <Box>
@@ -115,21 +111,73 @@ storiesOf('tabs', module)
       </StorySection>
       <StorySection>
         <StoryHeader>
+          <StoryHeading>Min-width Tabs</StoryHeading>
+          <StoryDescription>Tabs with a min-width set on them</StoryDescription>
+        </StoryHeader>
+
+        <Box>
+          <TabNavigation marginX={-4} marginBottom={16}>
+            {tabs.map((tab, index) => (
+              <Tab key={tab} is="a" href="#" id={tab} isSelected={index === 0} minWidth={majorScale(13)}>
+                {tab}
+              </Tab>
+            ))}
+          </TabNavigation>
+        </Box>
+      </StorySection>
+      <StorySection>
+        <StoryHeader>
           <StoryHeading>Disabled tab</StoryHeading>
           <StoryDescription>
-            If you want a tab to be disabled, pass `disabled` prop with value
-            `true`. The `Identities` tab is disabled below.
+            If you want a tab to be disabled, pass `disabled` prop with value `true`. The `Identities` tab is disabled
+            below.
           </StoryDescription>
         </StoryHeader>
 
         <Box>
           <TabManager>
-            {({ selectedIndex, onSelect }) => (
+            {({ onSelect, selectedIndex }) => (
               <Box>
                 <Tablist marginX={-4} marginBottom={16}>
                   {tabs.map((tab, index) => (
                     <Tab
-                      disabled={index === 2}
+                      appearance="primary"
+                      disabled={true}
+                      key={tab}
+                      id={tab}
+                      onSelect={() => onSelect(index)}
+                      isSelected={index === selectedIndex}
+                      aria-controls={`panel-${tab}`}
+                    >
+                      {tab}
+                    </Tab>
+                  ))}
+                </Tablist>
+                <Box padding={16} backgroundColor="#eee">
+                  {tabs.map((tab, index) => (
+                    <Box
+                      key={tab}
+                      id={`panel-${tab}`}
+                      role="tabpanel"
+                      aria-labelledby={tab}
+                      aria-hidden={index !== selectedIndex}
+                      display={index === selectedIndex ? 'block' : 'none'}
+                    >
+                      <Paragraph>Panel {tab}</Paragraph>
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+            )}
+          </TabManager>
+
+          <TabManager>
+            {({ onSelect, selectedIndex }) => (
+              <Box marginTop={32}>
+                <Tablist marginX={-4} marginBottom={16}>
+                  {tabs.map((tab, index) => (
+                    <Tab
+                      disabled={true}
                       key={tab}
                       id={tab}
                       onSelect={() => onSelect(index)}
@@ -172,8 +220,7 @@ storiesOf('tabs', module)
         <StoryHeader>
           <StoryHeading>Tab usage</StoryHeading>
           <StoryDescription>
-            If you are not using a link (`a` tag) for your Tab, make sure to
-            wrap in a `Tablist` and comply with{' '}
+            If you are not using a link (`a` tag) for your Tab, make sure to wrap in a `Tablist` and comply with{' '}
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -185,19 +232,20 @@ storiesOf('tabs', module)
           </StoryDescription>
         </StoryHeader>
         <TabManager>
-          {({ selectedIndex, onSelect }) => (
+          {({ onSelect, selectedIndex }) => (
             <Box display="flex">
               <Tablist marginBottom={16} flexBasis={240} marginRight={24}>
                 {tabs.map((tab, index) => (
-                  <SidebarTab
+                  <Tab
                     key={tab}
                     id={tab}
                     onSelect={() => onSelect(index)}
                     isSelected={index === selectedIndex}
                     aria-controls={`panel-${tab}`}
+                    direction="vertical"
                   >
                     {tab}
-                  </SidebarTab>
+                  </Tab>
                 ))}
               </Tablist>
               <Box padding={16} backgroundColor="#eee" flex="1">
@@ -221,24 +269,15 @@ storiesOf('tabs', module)
       <StorySection>
         <StoryHeader>
           <StoryHeading>Link usage</StoryHeading>
-          <StoryDescription>
-            If you are using a link (`a` tag), make sure to wrap in a
-            `TabNavigation`
-          </StoryDescription>
+          <StoryDescription>If you are using a link (`a` tag), make sure to wrap in a `TabNavigation`</StoryDescription>
         </StoryHeader>
 
         <Box>
           <TabNavigation marginX={-4} marginBottom={16} width={240}>
             {tabs.map((tab, index) => (
-              <SidebarTab
-                key={tab}
-                is="a"
-                href="#"
-                id={tab}
-                isSelected={index === 0}
-              >
+              <Tab key={tab} is="a" href="#" id={tab} isSelected={index === 0} direction="vertical">
                 {tab}
-              </SidebarTab>
+              </Tab>
             ))}
           </TabNavigation>
         </Box>

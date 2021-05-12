@@ -1,5 +1,5 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
 import { FilePicker } from '..'
 
@@ -14,6 +14,7 @@ storiesOf('file-picker', module).add('FilePicker', () => (
       multiple
       width={250}
       marginBottom={32}
+      // eslint-disable-next-line no-console
       onChange={files => console.log(files)}
     />
 
@@ -21,6 +22,7 @@ storiesOf('file-picker', module).add('FilePicker', () => (
       multiple
       width={250}
       marginBottom={32}
+      // eslint-disable-next-line no-console
       onChange={files => console.log(files)}
       placeholder="Placeholder dynamic here!"
     />

@@ -6,18 +6,13 @@ import { ThemeConsumer } from './ThemeContext'
  * @param {React.Component} WrappedComponent - Component that gets theme.
  */
 function withTheme(WrappedComponent) {
-  const displayName =
-    WrappedComponent.displayName || WrappedComponent.name || 'Component'
+  const displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component'
 
   return class extends React.Component {
     static displayName = `withTheme(${displayName})`
 
     render() {
-      return (
-        <ThemeConsumer>
-          {theme => <WrappedComponent theme={theme} {...this.props} />}
-        </ThemeConsumer>
-      )
+      return <ThemeConsumer>{theme => <WrappedComponent theme={theme} {...this.props} />}</ThemeConsumer>
     }
   }
 }

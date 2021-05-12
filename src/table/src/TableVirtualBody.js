@@ -1,23 +1,23 @@
 import React, { memo, useState, useEffect } from 'react'
+import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import VirtualList from 'react-tiny-virtual-list'
-import debounce from 'lodash.debounce'
-import { Pane } from '../../layers'
 import { useForceUpdate } from '../../hooks'
+import { Pane } from '../../layers'
 
 const TableVirtualBody = memo(function TableVirtualBody(props) {
   const {
-    children: inputChildren,
-    height: paneHeight,
-    defaultHeight = 48,
     allowAutoHeight = false,
-    overscanCount = 5,
+    children: inputChildren,
+    defaultHeight = 48,
     estimatedItemSize,
-    useAverageAutoHeightEstimation = true,
-    scrollToIndex,
+    height: paneHeight,
+    onScroll,
+    overscanCount = 5,
     scrollOffset,
     scrollToAlignment,
-    onScroll,
+    scrollToIndex,
+    useAverageAutoHeightEstimation = true,
     ...rest
   } = props
 
@@ -105,12 +105,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
       }
 
       // Make sure the ref has a child
-      if (
-        ref &&
-        ref.childNodes &&
-        ref.childNodes[0] &&
-        Number.isInteger(ref.childNodes[0].offsetHeight)
-      ) {
+      if (ref && ref.childNodes && ref.childNodes[0] && Number.isInteger(ref.childNodes[0].offsetHeight)) {
         const height = ref.childNodes[0].offsetHeight
 
         // Add to the total to calculate the averageAutoHeight.
@@ -183,28 +178,17 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
   }
 
   // Children always needs to be an array.
-  const children = Array.isArray(inputChildren)
-    ? inputChildren
-    : React.Children.toArray(inputChildren)
+  const children = Array.isArray(inputChildren) ? inputChildren : React.Children.toArray(inputChildren)
 
   const itemSize = getItemSize(children)
 
   return (
-    <Pane
-      data-evergreen-table-body
-      ref={setPaneRef}
-      height={paneHeight}
-      flex="1"
-      overflow="hidden"
-      {...rest}
-    >
+    <Pane data-evergreen-table-body ref={setPaneRef} height={paneHeight} flex="1" overflow="hidden" {...rest}>
       <VirtualList
         height={isIntegerHeight ? paneHeight : calculatedHeight}
         width="100%"
         estimatedItemSize={
-          allowAutoHeight && useAverageAutoHeightEstimation
-            ? averageAutoHeight
-            : estimatedItemSize || null
+          allowAutoHeight && useAverageAutoHeightEstimation ? averageAutoHeight : estimatedItemSize || null
         }
         itemSize={itemSize}
         overscanCount={overscanCount}
@@ -274,10 +258,7 @@ TableVirtualBody.propTypes = {
   /**
    * Children needs to be an array of a single node.
    */
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]),
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 
   /**
    * Default height of each row.

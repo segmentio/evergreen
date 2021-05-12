@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const LayoutGridIcon = memo(
   forwardRef(function LayoutGridIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="layout-grid"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="layout-grid" {...props} />
   })
 )

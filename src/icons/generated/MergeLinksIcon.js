@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const MergeLinksIcon = memo(
   forwardRef(function MergeLinksIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="merge-links"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="merge-links" {...props} />
   })
 )

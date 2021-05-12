@@ -8,9 +8,7 @@
  */
 export default function minorScale(x) {
   if (!Number.isInteger(x)) {
-    throw new TypeError(
-      `minorScale only accepts integers as input, instead ${x} was passed.`
-    )
+    throw new TypeError(`minorScale only accepts integers as input, instead ${x} was passed.`)
   }
 
   return x * 4

@@ -4,7 +4,7 @@ import { Pane } from '../../layers'
 import { Heading } from '../../typography'
 
 const MenuGroup = memo(function MenuGroup(props) {
-  const { title, children } = props
+  const { children, title } = props
 
   return (
     <Pane paddingY={8}>

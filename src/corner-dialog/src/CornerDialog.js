@@ -1,19 +1,20 @@
 import React, { memo, useState, useEffect, useCallback } from 'react'
+import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
-import { Pane, Card } from '../../layers'
-import { Portal } from '../../portal'
-import { Paragraph, Heading } from '../../typography'
 import { Button, IconButton } from '../../buttons'
 import absolutePositions from '../../constants/src/AbsolutePosition'
 import positions from '../../constants/src/Position'
 import { CrossIcon } from '../../icons'
+import { Pane, Card } from '../../layers'
+import { Portal } from '../../portal'
+import { Paragraph, Heading } from '../../typography'
 
 const animationEasing = {
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`,
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
+  deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
 const ANIMATION_DURATION = 240
@@ -54,7 +55,7 @@ const emptyProps = {}
 const CornerDialog = memo(function CornerDialog(props) {
   const {
     title,
-    width = 392,
+    width = 448,
     children,
     intent = 'none',
     isShown,
@@ -117,6 +118,8 @@ const CornerDialog = memo(function CornerDialog(props) {
     return null
   }
 
+  const { className: containerClassName, ...remainingContainerProps } = containerProps
+
   return (
     <Portal>
       <Transition
@@ -133,29 +136,20 @@ const CornerDialog = memo(function CornerDialog(props) {
             backgroundColor="white"
             elevation={4}
             width={width}
-            css={animationStyles}
+            className={cx(css(animationStyles).toString(), containerClassName)}
             data-state={state}
             padding={32}
             position="fixed"
             {...absolutePositions[
-              Object.keys(absolutePositions).includes(position)
-                ? position
-                : positions.BOTTOM_RIGHT
+              Object.keys(absolutePositions).includes(position) ? position : positions.BOTTOM_RIGHT
             ]}
-            {...containerProps}
+            {...remainingContainerProps}
           >
             <Pane display="flex" alignItems="center" marginBottom={12}>
               <Heading is="h4" size={600} flex="1">
                 {title}
               </Heading>
-              {hasClose && (
-                <IconButton
-                  height={32}
-                  icon={CrossIcon}
-                  appearance="minimal"
-                  onClick={handleClose}
-                />
-              )}
+              {hasClose && <IconButton icon={CrossIcon} appearance="minimal" onClick={handleClose} />}
             </Pane>
 
             <Pane overflowY="auto" data-state={state}>
@@ -163,23 +157,11 @@ const CornerDialog = memo(function CornerDialog(props) {
             </Pane>
 
             {hasFooter && (
-              <Pane
-                marginTop={24}
-                flexShrink={0}
-                display="flex"
-                flexDirection="row-reverse"
-              >
-                <Button
-                  appearance="primary"
-                  intent={intent}
-                  marginLeft={8}
-                  onClick={handleConfirm}
-                >
+              <Pane marginTop={24} flexShrink={0} display="flex" flexDirection="row-reverse">
+                <Button appearance="primary" intent={intent} marginLeft={8} onClick={handleConfirm}>
                   {confirmLabel}
                 </Button>
-                {hasCancel && (
-                  <Button onClick={handleCancel}>{cancelLabel}</Button>
-                )}
+                {hasCancel && <Button onClick={handleCancel}>{cancelLabel}</Button>}
               </Pane>
             )}
           </Card>
@@ -276,12 +258,7 @@ CornerDialog.propTypes = {
   /**
    * Props that will set position of corner dialog
    */
-  position: PropTypes.oneOf([
-    positions.TOP_LEFT,
-    positions.TOP_RIGHT,
-    positions.BOTTOM_LEFT,
-    positions.BOTTOM_RIGHT
-  ])
+  position: PropTypes.oneOf([positions.TOP_LEFT, positions.TOP_RIGHT, positions.BOTTOM_LEFT, positions.BOTTOM_RIGHT])
 }
 
 export default CornerDialog
