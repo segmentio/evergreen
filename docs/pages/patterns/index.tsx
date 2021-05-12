@@ -19,7 +19,7 @@ const PatternsPage: React.FC<Props> = () => {
   )
 
   return (
-    <Layout title="Patterns / Evergreen">
+    <Layout title="Patterns">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
         <SideNav title="Patterns" items={evergreenPatterns} routePrefix="patterns" />
         <Pane

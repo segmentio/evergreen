@@ -58,7 +58,8 @@ const IA: IA = {
       {
         id: 'what-is-new',
         name: 'What is new',
-        description: 'Evergreen is a living system, which means we are constently making updates to it. You can learn more about those changes and upcoming ones here.',
+        description:
+          'Evergreen is a living system, which means we are constently making updates to it. You can learn more about those changes and upcoming ones here.',
       },
     ],
   },
@@ -264,6 +265,25 @@ const IA: IA = {
         github: githubLink('radio'),
         name: 'Radio',
         description: 'The Radio component allows user to select a single item from a list.',
+      },
+      {
+        id: 'pagination',
+        image: '/Pagination.png',
+        imageHighlight: '/Pagination-highlight.png',
+        github: githubLink('pagination'),
+        name: 'Pagination',
+        description:
+          'The Pagination component is used to split up content into several pages and navigate between pages.',
+      },
+      {
+        id: 'pulsar',
+        image: '/Pulsar.png',
+        imageHighlight: '/Pulsar-highlight.png',
+        inProgress: true,
+        github: githubLink('pulsar'),
+        name: 'Pulsar',
+        description:
+          'The Pulsar component is a user education UI used to indicate to a user where they should take a particular action.',
       },
       {
         id: 'segmented-control',

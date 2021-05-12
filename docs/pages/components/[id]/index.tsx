@@ -6,11 +6,13 @@ import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
 import IA from '../../../utils/IA'
+import { Link } from 'evergreen-ui'
 import PageHeader from '../../../components/PageHeader'
 import componentMapping from '../../../components/MDX/componentMapping'
 import EntityOverviewTemplate, {
   Props as EntityOverviewTemplateProps,
 } from '../../../components/templates/EntityOverviewTemplate'
+import ComingSoon from '../../../components/ComingSoon'
 
 interface Props {
   components: EntityOverviewTemplateProps['navItems']
@@ -38,6 +40,7 @@ const ComponentPage: React.FC<Props> = ({ mdxSource, component, components }) =>
       navTitle="Components"
       selectedNavItem={component}
       pageHeader={
+        !component.inProgress ? (
         <PageHeader
           title={name!}
           description={description}
@@ -53,8 +56,19 @@ const ComponentPage: React.FC<Props> = ({ mdxSource, component, components }) =>
             },
           ]}
         />
+        ) : null
       }
-    />
+    >
+      {component.inProgress && (
+        <ComingSoon>
+          We are currently working on this component.{' '}
+          <Link href="https://github.com/segmentio/evergreen/discussions" target="_blank">
+            Start a discussion
+          </Link>
+          {' '}if you are interested in learning more, or want to contribute
+        </ComingSoon>
+      )}
+      </EntityOverviewTemplate>
   )
 }
 
@@ -76,12 +90,22 @@ interface Query {
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
+  const components = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const component = components.find(component => component.id === id)
+  
+  if (component?.inProgress) {
+    return {
+      props: {
+        mdxSource: null,
+        components,
+        component,
+      },
+    }
+  }
 
   const fileContents = fs.readFileSync(path.join(process.cwd(), 'documentation', 'components', `${id}.mdx`)).toString()
 
   const mdxSource = await renderToString(fileContents, { components: componentMapping })
-  const components = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-  const component = components.find(component => component.id === id)
 
   return {
     props: {

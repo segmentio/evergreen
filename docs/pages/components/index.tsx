@@ -19,7 +19,7 @@ const ComponentsPage: React.FC<Props> = () => {
   )
 
   return (
-    <Layout title="Components / Evergreen">
+    <Layout title="Components">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
         <SideNav title="Components" items={evergreenComponents} routePrefix="components" />
         <Pane

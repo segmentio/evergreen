@@ -46,10 +46,6 @@ const FoundationPage: React.FC<Props> = ({ mdxSource, foundations, foundation })
               label: 'Details',
               to: `/foundations/${id}`,
             },
-            {
-              label: 'Properties',
-              to: `/foundations/${id}/props`,
-            },
           ]}
         />
       }
@@ -61,7 +57,7 @@ const FoundationPage: React.FC<Props> = ({ mdxSource, foundations, foundation })
 export async function getStaticPaths() {
   const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'foundations'))
 
-  const paths = files.map(file => `/foundations/${file.split('.')[0]}`)
+  const paths = files.map((file) => `/foundations/${file.split('.')[0]}`)
 
   return {
     paths,
@@ -81,7 +77,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
 
   const mdxSource = await renderToString(fileContents, { components })
   const foundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-  const foundation = foundations.find(foundation => foundation.id === id)
+  const foundation = foundations.find((foundation) => foundation.id === id)
 
   return {
     props: {

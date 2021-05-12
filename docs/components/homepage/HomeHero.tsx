@@ -13,8 +13,8 @@ const HomeHero = () => {
 
   return (
     <Pane background={colors.gray50} paddingX={majorScale(5)}>
-      <Pane paddingY={majorScale(5)} marginX="auto" maxWidth={majorScale(143)} alignItems="center" display="flex">
-        <Pane display="flex" flex={1} flexDirection="column" alignItems="flex-start" justifyContent="center">
+      <Pane paddingY={majorScale(5)} marginX="auto" maxWidth={majorScale(140)} alignItems="center" display="flex">
+        <Pane display="flex" flex={2} flexDirection="column" alignItems="flex-start" justifyContent="center">
           <Heading size={900}>Meet Evergreen,</Heading>
           <Heading size={900} marginTop={minorScale(1)}>
             Segment’s design system
@@ -24,12 +24,12 @@ const HomeHero = () => {
           </Paragraph>
           <Link href="/introduction/getting-started"><Button appearance="primary">Get Started</Button></Link>
         </Pane>
-        <Pane flex={2}>
+        <Pane flex={3}>
           <lottie-player
             ref={ref}
             style={{
               width: '100%',
-              transform: 'scale(1.2)',
+              transform: 'scale(1.4)',
             }}
             src="https://assets3.lottiefiles.com/packages/lf20_dum5dwmu.json"
             autoplay
