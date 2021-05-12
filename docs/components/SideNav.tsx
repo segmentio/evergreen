@@ -2,8 +2,9 @@ import React from 'react'
 import { Heading, majorScale, Pane, Tab, Tablist } from 'evergreen-ui'
 import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 import scrollIntoView from 'scroll-into-view-if-needed'
+import Link from 'next/link'
 import { Item } from '../utils/IA'
-import router from 'next/router'
+// import router from 'next/router'
 
 interface Props {
   title?: string
@@ -38,17 +39,20 @@ const SideNav: React.FC<Props> = ({ title, items, selectedItem, routePrefix }) =
         {title}
       </Heading>
       <Tablist>
-        {items.map(item => {
+        {items.map((item) => {
           return (
-            <Tab
-              key={item.id}
-              alignItems="flex-start"
-              direction="vertical"
-              isSelected={selectedItem ? item.id === selectedItem.id : false}
-              onSelect={() => router.push(`/${routePrefix}/${item.id}`)}
-            >
-              {item.name}
-            </Tab>
+            <Link href={`/${routePrefix}/${item.id}`} passHref>
+              <Tab
+                key={item.id}
+                is="a"
+                alignItems="flex-start"
+                direction="vertical"
+                isSelected={selectedItem ? item.id === selectedItem.id : false}
+                // onSelect={() => router.push(`/${routePrefix}/${item.id}`)}
+              >
+                {item.name}
+              </Tab>
+            </Link>
           )
         })}
       </Tablist>
