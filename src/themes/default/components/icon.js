@@ -1,4 +1,4 @@
-import { get } from '../../../theme'
+import { get } from '../../../theme/src/theme-tools'
 
 const baseStyle = (theme, { color }) => {
   return {
