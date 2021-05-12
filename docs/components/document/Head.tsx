@@ -17,6 +17,7 @@ const DocumentHead: React.FC<Props> = ({ title }) => {
     <Head>
       <title>{`Evergreen ${title || ''}`}</title>
       <meta property="og:title" content="Evergreen" />
+      <meta name="viewport" content="width=device-width, initial-scale=0.65, maximum-scale=5.0, minimum-scale=0.65" />
       <meta property="og:url" content={absolutePath()} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={absolutePath('/og-image.png')} />
