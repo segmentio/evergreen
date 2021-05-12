@@ -15,7 +15,7 @@ const description =
 const DocumentHead: React.FC<Props> = ({ title }) => {
   return (
     <Head>
-      <title>{`Evergreen / ${title || ''}`}</title>
+      <title>{`Evergreen ${title || ''}`}</title>
       <meta property="og:title" content="Evergreen" />
       <meta property="og:url" content={absolutePath()} />
       <meta property="og:description" content={description} />
@@ -26,6 +26,8 @@ const DocumentHead: React.FC<Props> = ({ title }) => {
       <meta name="twitter:creator" content="@segment" />
       <meta name="description" content={description} />
       <meta property="twitter:image" content={absolutePath('/twitter-og.png')} />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"></link>
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"></link>
     </Head>
   )
 }

@@ -266,6 +266,23 @@ const IA: IA = {
         description: 'The Radio component allows user to select a single item from a list.',
       },
       {
+        id: 'pagination',
+        image: '/Pagination.png',
+        imageHighlight: '/Pagination-highlight.png',
+        github: githubLink('pagination'),
+        name: 'Pagination',
+        description: 'The Pagination component is used to split up content into several pages and navigate between pages.',
+      },
+      {
+        id: 'pulsar',
+        image: '/Pulsar.png',
+        imageHighlight: '/Pulsar-highlight.png',
+        inProgress: true,
+        github: githubLink('pulsar'),
+        name: 'Pulsar',
+        description: 'Th.',
+      },
+      {
         id: 'segmented-control',
         github: githubLink('segmented-control'),
         image: '/Segmented Control.png',

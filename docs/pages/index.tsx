@@ -8,7 +8,7 @@ import Layout from '../components/document/Layout'
 
 const IndexPage = () => {
   return (
-    <Layout title="Evergreen">
+    <Layout title="">
       <HomeHero />
       <CoreValues />
       <GetStarted />
