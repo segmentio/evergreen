@@ -17,16 +17,12 @@ interface Props {
 const PageHeader: React.FC<Props> = ({ description, githubLink, tabs, title }) => {
   const router = useRouter()
   return (
-    <Pane
-      display="flex"
-      width="100%"
-      justifyContent="space-between"
-      flexDirection="column"
-      alignItems="flex-start"
-    >
+    <Pane display="flex" width="100%" justifyContent="space-between" flexDirection="column" alignItems="flex-start">
       <Pane display="flex" width="100%" justifyContent="space-between" marginBottom={majorScale(4)}>
         <Pane>
-          <Heading size={900} marginBottom={majorScale(1)}>{title}</Heading>
+          <Heading size={900} marginBottom={majorScale(1)}>
+            {title}
+          </Heading>
           {description && <Paragraph>{description}</Paragraph>}
         </Pane>
         <Pane>
