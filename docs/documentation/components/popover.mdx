@@ -28,14 +28,7 @@ When you pass a function to the `content` prop you will be able to close the pop
 ```jsx
 <Popover
   content={
-    <Pane
-      width={240}
-      height={240}
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      flexDirection="column"
-    >
+    <Pane width={240} height={240} display="flex" alignItems="center" justifyContent="center" flexDirection="column">
       <Text>PopoverContent</Text>
     </Pane>
   }
@@ -65,7 +58,7 @@ When closing, it will return back focus on the target if nothing else has focus.
       justifyContent="center"
       flexDirection="column"
     >
-      <TextInput autoFocus width="100%" />
+      <TextInput width="100%" />
     </Pane>
   }
 >

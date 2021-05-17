@@ -72,7 +72,6 @@ const Popover = memo(
           ) {
             return
           }
-          // Always delay focus manipulation to just before repaint to prevent scroll jumping
 
           const isFocusOutsideModal = !popoverNode.current.contains(document.activeElement)
           if (isFocusOutsideModal) {
@@ -184,6 +183,13 @@ const Popover = memo(
         if (targetRef.current && targetRef.current.contains(event.target)) {
           return
         }
+
+        if (popoverNode.current && popoverNode.current.contains(event.target)) {
+          return
+        }
+
+        // Notify body click
+        onBodyClick(event)
 
         if (shouldCloseOnExternalClick !== false) {
           close()
