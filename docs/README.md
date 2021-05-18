@@ -19,6 +19,8 @@ Add an entry under the corresponding header in `IA.ts` - you can think of this a
 
 From there, the directory structure in `docs/documentation/` contains the `.mdx` files which mirror the route structure for the docs site.
 
+Any thumbnail images or static assets should be added in the `public/` directory, as they'll be picked up by Next.js.
+
 # A note about hot-reloading / fast-refresh
 
 Changes made to any of the UI components that make up `docs/` (i.e. anything with a `ts` or `tsx` extension) will be picked up by Next.js automatically.
