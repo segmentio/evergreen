@@ -66,8 +66,7 @@ const PatternPropsPage: React.FC<Props> = ({ componentProps, foundation, foundat
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'patterns'))
-  const paths = files.map((file) => `/patterns/${file.split('.')[0]}/props`)
+  const paths = IA.patterns.items.filter((item) => !item.inProgress).map((item) => `/patterns/${item.id}`)
 
   return {
     paths,
