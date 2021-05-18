@@ -1,41 +1,27 @@
-# TypeScript Next.js example
+# Evergreen Docs
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+The following gives some information about getting the Evergreen docs site up and running locally.
 
-## Deploy your own
+# Spinning up the dev server
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
-
-## How to use it?
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-typescript with-typescript-app
-# or
-yarn create next-app --example with-typescript with-typescript-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-## Notes
-
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
+To get started locally, run the following commands:
 
 ```
-npm install --save-dev typescript
+$ (docs): yarn install
+$ (docs): yarn dev
 ```
 
-To enable TypeScript's features, we install the type declarations for React and Node.
+Then, navigate to your browser and go to: `localhost:3000`.
 
-```
-npm install --save-dev @types/react @types/react-dom @types/node
-```
+# Adding a new documentation page
 
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
+Add an entry under the corresponding header in `IA.ts` - you can think of this as the "database" for all status relating to Evergreen components and documentation.
 
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
+From there, the directory structure in `docs/documentation/` contains the `.mdx` files which mirror the route structure for the docs site.
 
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+Any thumbnail images or static assets should be added in the `public/` directory, as they'll be picked up by Next.js.
+
+# A note about hot-reloading / fast-refresh
+
+Changes made to any of the UI components that make up `docs/` (i.e. anything with a `ts` or `tsx` extension) will be picked up by Next.js automatically.
+However, if you make changes to any `.mdx`, you should refresh the page that you're looking at.
