@@ -2445,13 +2445,6 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dom-helpers@^3.2.1:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.4.0.tgz#e9b369700f959f62ecde5a6babde4bccd9169af8"
-  integrity sha512-LnuPJ+dwqKDIyotW1VzmOZ5TONUN7CwkCR5hrgawTUbkBGYdeoNLZo6nNfGkCrjtE1nXXaj7iMMpDa8/d9WoIA==
-  dependencies:
-    "@babel/runtime" "^7.1.2"
-
 dom-helpers@^5.0.1:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-5.2.0.tgz#57fd054c5f8f34c52a3eeffdb7e7e93cd357d95b"
@@ -2769,17 +2762,16 @@ events@^3.0.0:
   resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
-evergreen-ui@6.0.0-44:
-  version "6.0.0-44"
-  resolved "https://registry.yarnpkg.com/evergreen-ui/-/evergreen-ui-6.0.0-44.tgz#cbdbb0d12e5d27eb98f462d6ac83da6e066a7ba2"
-  integrity sha512-5j8lRlMJwhwkE+MTZDkhDXsCPZhc2fOKYeT/aSF38W06o6AJtdZ1XYfAUCjRgJix4LRW/PSAtzGedeHfECacTA==
+evergreen-ui@^6.0.0:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/evergreen-ui/-/evergreen-ui-6.0.1.tgz#4e04f1c93b5a878f877464b967dc823b36cc8b31"
+  integrity sha512-8jD0M8uE/1ergVvNZ+YM3iq8wwp1zC6LTVZMc/fEco8Am/xKE32DZyBp54fGWRvPhWs6147r30pw1gJAzXHoxg==
   dependencies:
     "@babel/runtime" "^7.1.2"
     "@types/react" "^16.9.5"
     "@types/react-transition-group" "^4.4.0"
     arrify "^1.0.1"
     classnames "^2.2.6"
-    dom-helpers "^3.2.1"
     downshift "^5.2.0"
     fuzzaldrin-plus "^0.6.0"
     glamor "^2.20.40"
