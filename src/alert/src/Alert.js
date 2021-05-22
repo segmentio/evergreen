@@ -72,7 +72,7 @@ const Alert = memo(
           )}
         </Pane>
         {isRemoveable && (
-          <Pane marginLeft={24} flexShrink={0} marginBottom={-2} marginTop={-2} marginRight={-2}>
+          <Pane marginLeft={24} flexShrink={0} marginBottom={-2} marginTop={-4} marginRight={-4}>
             <IconButton icon={CrossIcon} appearance="minimal" height={24} onClick={onRemove} intent={intentToken} />
           </Pane>
         )}
