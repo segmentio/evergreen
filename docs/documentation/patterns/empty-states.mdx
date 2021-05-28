@@ -1,0 +1,41 @@
+# Introduction
+
+Empty states occur where there is no data to display to the user. Typically this happens while a user is setting up or using the product for the first time. However, empty states can also occur when data is deleted or unavailable.
+
+A successful empty state in Segment should:
+- Keep users informed and on track
+- Remain consistent across the app to ensure a smooth experience
+- Take into account the context of the user’s current situation
+
+Possible elements of an empty state:
+1. Border
+2. Background
+3. Visual 
+4. Headline copy. Use headline copy to explain the situation at hand.
+5. Body copy (optional). Use body copy to direct users and clearly explain the next action to populate the space.
+6. Primary CTA (optional). The action on the page users can use to leave the state.
+7. Text link (optional). Additional user support, like reference documents.
+ 
+
+### Base empty state: in-table
+Maintain table header, background color, and outline for in-table empty states.
+
+### Base empty state: non-table
+Include background color and outline for non-table empty states.
+
+### Small empty state
+Use for small use cases such as drop downs and overlays.
+
+### Minimum viable empty state
+While every empty state does not need to include all elements in the base, every empty state should include, at minimum, a visual and headline copy.
+
+### CTA rules
+- Use a primary button if the CTA allows the user to resolve the empty state on the page.
+- In first time use scenarios, hide top line primary button and search box to avoid redundancy and confusion.
+- Use a text link if the CTA provides additional information or resources outside Segment but does not allow the user to resolve the empty state.
+
+### Copy rules
+- Headline copy should never exceed 1 line, body copy should not exceed 2 lines. In all cases, try to make copy as succinct as possible.
+- Tone is intentional, suggestive, and friendly. Tone is not jargon-y, superfluous, or opaque. 
+- Use to headline copy to try and explain the situation at hand, and body copy to offer solutions. Use humor like an accent color — sparingly and to delightful effect. Context is key, ie; humor may be appropriate for a loading state or health check but not for permission gating.
+
