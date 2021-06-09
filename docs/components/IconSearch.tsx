@@ -51,7 +51,7 @@ const IconSearch: React.FC<Props> = () => {
 
   return (
     <Pane width="100%" minHeight={250}>
-      <SearchBar query={query} onQueryChange={setQuery} placeholder="Search through icons below:" />
+      <SearchBar query={query} onQueryChange={setQuery} placeholder="Search through icons below" />
       {iconComponentNames.length > 0 ? (
         <Pane
           marginTop={majorScale(5)}
