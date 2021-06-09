@@ -3,6 +3,7 @@ import Code from './renderers/Code'
 import InlineCode from './renderers/InlineCode'
 import Blockquote from './renderers/Blockquote'
 import ColorSwatch from '../ColorSwatch'
+import IconSearch from '../IconSearch'
 import { Paragraph, Strong, Ol, Ul, Li, majorScale } from 'evergreen-ui'
 
 const componentMapping = {
@@ -21,6 +22,7 @@ const componentMapping = {
   inlineCode: (props: any) => <InlineCode {...props} />,
   blockquote: Blockquote,
   ColorSwatch,
+  IconSearch,
 }
 
 export default componentMapping
