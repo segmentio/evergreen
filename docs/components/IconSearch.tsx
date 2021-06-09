@@ -1,42 +1,52 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import SearchBar from './SearchBar'
 import { css } from 'otion'
+import CopyToClipboard from 'react-copy-to-clipboard'
 import * as evergreen from 'evergreen-ui'
 
-const { Pane, majorScale, Text } = evergreen
+const { Pane, majorScale, Text, toaster } = evergreen
 
 interface Props {}
 
 const Item: React.FC<{ name: string }> = ({ name }) => {
   const readableName = name.slice(0, name.indexOf('Icon'))
+
+  const handleCopy = useCallback(() => {
+    toaster.success('Successfully copied icon name to clipboard!')
+  }, [])
+
   // @ts-ignore
   if (evergreen[name]) {
     return (
-      <Pane
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="column"
-        cursor="pointer"
-        borderRadius={5}
-        paddingY={majorScale(3)}
-        className={css({
-          ':hover': {
-            opacity: 0.8,
-            background: '#efefef60',
-          },
-        })}
-      >
-        {/*  @ts-ignore */}
-        {React.createElement(evergreen[name] as any, {
-          size: majorScale(3),
-          color: 'default',
-          marginBottom: majorScale(3),
-        })}
-        <Text color="muted" size={300} maxWidth="100%">
-          {readableName}
-        </Text>
-      </Pane>
+      <CopyToClipboard text={name} onCopy={handleCopy}>
+        <Pane
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+          cursor="pointer"
+          borderRadius={5}
+          paddingY={majorScale(3)}
+          className={css({
+            ':hover': {
+              background: '#efefef60',
+            },
+            ':active': {
+              background: '#efefef90',
+            },
+          })}
+        >
+          {/*  @ts-ignore */}
+          {React.createElement(evergreen[name] as any, {
+            size: majorScale(3),
+            color: 'default',
+            marginBottom: majorScale(3),
+          })}
+          <Text color="muted" size={300} maxWidth="100%">
+            {readableName}
+          </Text>
+        </Pane>
+      </CopyToClipboard>
     )
   } else {
     return null
