@@ -151,7 +151,7 @@
       "yarn run eslint --fix",
       "prettier --write"
     ],
-    "docs/**/*.{ts, tsx, js, jsx}": [
+    "docs/**/*.{ts,tsx,js,jsx}": [
       "yarn --cwd ./docs run lint"
     ],
     "*.{json,md}": [
