@@ -2,21 +2,12 @@ import React, { useState } from 'react'
 import SearchBar from './SearchBar'
 import { useTheme, majorScale, minorScale, Text, Pane } from 'evergreen-ui'
 
-const Sample: React.FC<{ hex: string; name: string; description?: string }> = ({
-  hex,
-  name,
-  description,
-}) => {
+const Sample: React.FC<{ hex: string; name: string; description?: string }> = ({ hex, name, description }) => {
   const { colors } = useTheme() as any
   return (
     <Pane display="flex" alignItems="center">
       <Pane width={majorScale(10)} height={majorScale(10)} backgroundColor={hex} borderRadius={5} />
-      <Pane
-        marginLeft={majorScale(2)}
-        display="flex"
-        alignItems="flex-start"
-        flexDirection="column"
-      >
+      <Pane marginLeft={majorScale(2)} display="flex" alignItems="flex-start" flexDirection="column">
         <Text fontWeight="bold" size={500} marginBottom={majorScale(1)}>
           {name}
         </Text>

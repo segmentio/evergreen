@@ -35,42 +35,27 @@ const TopNav: React.FC<Props> = () => {
       </Pane>
       <Pane flex={1}>
         <Link href="/introduction/getting-started" passHref>
-          <EvergreenLink
-            color={parentPath !== 'introduction' ? 'neutral' : undefined}
-            marginRight={majorScale(3)}
-          >
+          <EvergreenLink color={parentPath !== 'introduction' ? 'neutral' : undefined} marginRight={majorScale(3)}>
             Introduction
           </EvergreenLink>
         </Link>
         <Link href="/foundations" passHref>
-          <EvergreenLink
-            color={parentPath !== 'foundations' ? 'neutral' : undefined}
-            marginRight={majorScale(3)}
-          >
+          <EvergreenLink color={parentPath !== 'foundations' ? 'neutral' : undefined} marginRight={majorScale(3)}>
             Foundations
           </EvergreenLink>
         </Link>
         <Link href="/components" passHref>
-          <EvergreenLink
-            color={parentPath !== 'components' ? 'neutral' : undefined}
-            marginRight={majorScale(3)}
-          >
+          <EvergreenLink color={parentPath !== 'components' ? 'neutral' : undefined} marginRight={majorScale(3)}>
             Components
           </EvergreenLink>
         </Link>
         <Link href="/patterns" passHref>
-          <EvergreenLink
-            color={parentPath !== 'patterns' ? 'neutral' : undefined}
-            marginRight={majorScale(3)}
-          >
+          <EvergreenLink color={parentPath !== 'patterns' ? 'neutral' : undefined} marginRight={majorScale(3)}>
             Patterns
           </EvergreenLink>
         </Link>
         <Link href="/resources" passHref>
-          <EvergreenLink
-            color={parentPath !== 'resources' ? 'neutral' : undefined}
-            marginRight={majorScale(3)}
-          >
+          <EvergreenLink color={parentPath !== 'resources' ? 'neutral' : undefined} marginRight={majorScale(3)}>
             Resources
           </EvergreenLink>
         </Link>

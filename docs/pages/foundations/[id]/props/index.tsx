@@ -68,7 +68,7 @@ const FoundationPropsPage: React.FC<Props> = ({ componentProps, foundation, foun
 export async function getStaticPaths() {
   const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'foundations'))
 
-  const paths = files.map(file => `/foundations/${file.split('.')[0]}/props`)
+  const paths = files.map((file) => `/foundations/${file.split('.')[0]}/props`)
 
   return {
     paths,
@@ -96,7 +96,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   }
 
   const foundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-  const foundation = foundations.find(item => item.id === id)
+  const foundation = foundations.find((item) => item.id === id)
 
   return {
     props: {

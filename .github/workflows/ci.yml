@@ -31,11 +31,17 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+      - name: Install docs dependencies
+        working-directory: './docs'
+        run: 'yarn install --frozen-lockfile'
       - name: Run build
         run: yarn run build
       - name: Run prettier
         run: yarn run prettier 'src/**/*.js' --check
       - name: Run test
         run: yarn run test
+      - name: Run docs lint
+        working-directory: './docs'
+        run: yarn run lint
       - name: Run size-limit
         run: yarn run size-limit

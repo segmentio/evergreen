@@ -4,7 +4,6 @@ import EntityOverviewTemplate, {
   Props as EntityOverviewTemplateProps,
 } from '../../../components/templates/EntityOverviewTemplate'
 import components from '../../../components/MDX/componentMapping'
-import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
@@ -19,10 +18,6 @@ interface Props {
 }
 
 const FoundationPage: React.FC<Props> = ({ mdxSource, foundations, foundation }) => {
-  const router = useRouter()
-  const { query } = router
-  const { id } = query
-
   if (!foundation) {
     return null
   }

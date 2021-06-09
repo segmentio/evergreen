@@ -15,6 +15,7 @@ const Item: React.FC<{ name: string }> = ({ name }) => {
     toaster.success('Successfully copied icon name to clipboard!')
   }, [])
 
+  // eslint-disable-next-line
   // @ts-ignore
   if (evergreen[name]) {
     return (
@@ -36,6 +37,7 @@ const Item: React.FC<{ name: string }> = ({ name }) => {
             },
           })}
         >
+          {/* eslint-disable-next-line */}
           {/*  @ts-ignore */}
           {React.createElement(evergreen[name] as any, {
             size: majorScale(3),
@@ -71,7 +73,6 @@ const IconSearch: React.FC<Props> = () => {
           gridTemplateColumns="repeat(auto-fill, 168px)"
         >
           {iconComponentNames.map((componentName) => {
-            console.log(componentName.slice(0, componentName.indexOf('Icon')))
             return <Item key={componentName} name={componentName} />
           })}
         </Pane>

@@ -1,5 +1,4 @@
 import React from 'react'
-import fs from 'fs'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import path from 'path'

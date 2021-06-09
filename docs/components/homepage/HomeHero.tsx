@@ -22,7 +22,9 @@ const HomeHero = () => {
           <Paragraph size={500} marginTop={majorScale(2)} marginBottom={majorScale(3)}>
             Evergreen is a React UI Framework for building ambitious products on the web. Brought to you by Segment.
           </Paragraph>
-          <Link href="/introduction/getting-started"><Button appearance="primary">Get Started</Button></Link>
+          <Link href="/introduction/getting-started">
+            <Button appearance="primary">Get Started</Button>
+          </Link>
         </Pane>
         <Pane flex={3}>
           <lottie-player

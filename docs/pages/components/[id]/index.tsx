@@ -41,21 +41,21 @@ const ComponentPage: React.FC<Props> = ({ mdxSource, component, components }) =>
       selectedNavItem={component}
       pageHeader={
         !component.inProgress ? (
-        <PageHeader
-          title={name!}
-          description={description}
-          githubLink={github}
-          tabs={[
-            {
-              label: 'Details',
-              to: `/components/${id}`,
-            },
-            {
-              label: 'Properties',
-              to: `/components/${id}/props`,
-            },
-          ]}
-        />
+          <PageHeader
+            title={name!}
+            description={description}
+            githubLink={github}
+            tabs={[
+              {
+                label: 'Details',
+                to: `/components/${id}`,
+              },
+              {
+                label: 'Properties',
+                to: `/components/${id}/props`,
+              },
+            ]}
+          />
         ) : null
       }
     >
@@ -64,18 +64,18 @@ const ComponentPage: React.FC<Props> = ({ mdxSource, component, components }) =>
           We are currently working on this component.{' '}
           <Link href="https://github.com/segmentio/evergreen/discussions" target="_blank">
             Start a discussion
-          </Link>
-          {' '}if you are interested in learning more, or want to contribute
+          </Link>{' '}
+          if you are interested in learning more, or want to contribute
         </ComingSoon>
       )}
-      </EntityOverviewTemplate>
+    </EntityOverviewTemplate>
   )
 }
 
 export async function getStaticPaths() {
   const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'components'))
 
-  const paths = files.map(file => `/components/${file.split('.')[0]}`)
+  const paths = files.map((file) => `/components/${file.split('.')[0]}`)
 
   return {
     paths,
@@ -91,8 +91,8 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
   const components = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-  const component = components.find(component => component.id === id)
-  
+  const component = components.find((component) => component.id === id)
+
   if (component?.inProgress) {
     return {
       props: {

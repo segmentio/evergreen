@@ -15,7 +15,7 @@ const FoundationsPage: React.FC<Props> = () => {
   const evergreenFoundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
 
   const filteredItems = evergreenFoundations.filter(
-    item => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    (item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
   )
 
   return (
@@ -32,11 +32,7 @@ const FoundationsPage: React.FC<Props> = () => {
         >
           <PageHeader title="Foundations" description={IA.foundations.description} />
           <Pane marginBottom={majorScale(4)}>
-            <SearchBar
-              query={query}
-              onQueryChange={setQuery}
-              placeholder="Search components by name"
-            />
+            <SearchBar query={query} onQueryChange={setQuery} placeholder="Search components by name" />
           </Pane>
           {filteredItems.length > 0 ? (
             <Pane
@@ -46,7 +42,7 @@ const FoundationsPage: React.FC<Props> = () => {
               gridRowGap="32px"
               gridTemplateColumns="1fr 1fr 1fr 1fr"
             >
-              {filteredItems.map(item => {
+              {filteredItems.map((item) => {
                 return (
                   <Thumbnail
                     id={item.id}
