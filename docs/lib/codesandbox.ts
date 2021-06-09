@@ -20,7 +20,7 @@ export const getCodeSandboxLink: (source: string) => string = (source) => {
 
   const usedComponents = Array.from(
     new Set(
-      (source.match(/<((\w+))|minorScale|majorScale|(((\w+)Icon))/g) || []).map((component) =>
+      (source.match(/<((\w+))|minorScale|majorScale|(((\w+)Icon))|Position/g) || []).map((component) =>
         component.replace('<', '')
       )
     )
