@@ -15,7 +15,7 @@ const ComponentsPage: React.FC<Props> = () => {
   const evergreenComponents = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
 
   const filteredItems = evergreenComponents.filter(
-    item => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    (item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
   )
 
   return (
@@ -32,11 +32,7 @@ const ComponentsPage: React.FC<Props> = () => {
         >
           <PageHeader title="Components" description={IA.components.description} />
           <Pane marginBottom={majorScale(4)}>
-            <SearchBar
-              query={query}
-              onQueryChange={setQuery}
-              placeholder="Search components by name"
-            />
+            <SearchBar query={query} onQueryChange={setQuery} placeholder="Search components by name" />
           </Pane>
           {filteredItems.length > 0 ? (
             <Pane
@@ -45,9 +41,8 @@ const ComponentsPage: React.FC<Props> = () => {
               gridColumnGap="32px"
               gridRowGap="32px"
               gridTemplateColumns="1fr 1fr 1fr 1fr"
-              
             >
-              {filteredItems.map(item => {
+              {filteredItems.map((item) => {
                 return (
                   <Thumbnail
                     id={item.id}

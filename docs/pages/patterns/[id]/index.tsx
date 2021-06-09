@@ -66,8 +66,8 @@ const PatternPage: React.FC<Props> = ({ mdxSource, patterns, pattern }) => {
           We are currently working on this pattern.{' '}
           <Link href="https://github.com/segmentio/evergreen/discussions" target="_blank">
             Start a discussion
-          </Link>
-          {' '}if you are interested in learning more, or want to contribute
+          </Link>{' '}
+          if you are interested in learning more, or want to contribute
         </ComingSoon>
       )}
     </EntityOverviewTemplate>

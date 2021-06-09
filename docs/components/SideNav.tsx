@@ -41,9 +41,8 @@ const SideNav: React.FC<Props> = ({ title, items, selectedItem, routePrefix }) =
       <Tablist>
         {items.map((item) => {
           return (
-            <Link href={`/${routePrefix}/${item.id}`} passHref>
+            <Link key={item.id} href={`/${routePrefix}/${item.id}`} passHref>
               <Tab
-                key={item.id}
                 is="a"
                 alignItems="flex-start"
                 direction="vertical"
