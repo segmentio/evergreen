@@ -57,11 +57,11 @@ const HorizontalOrientation = ({
           {hasFooter && (
             <Pane marginTop={majorScale(5)} display="flex">
               {primaryCta && React.cloneElement(primaryCta, { marginRight: majorScale(2) })}
-              {secondaryCta &&
-                React.cloneElement(secondaryCta, {
-                  marginRight: majorScale(2)
-                })}
-              {anchorCta}
+              {secondaryCta}
+              {(primaryCta || secondaryCta) &&
+                anchorCta &&
+                React.cloneElement(anchorCta, { marginLeft: majorScale(2) })}
+              {!primaryCta && !secondaryCta && anchorCta}
             </Pane>
           )}
         </Pane>
@@ -133,7 +133,7 @@ const EmptyState = ({
   description,
   image,
   imageBgColor,
-  orientation = 'vertical',
+  orientation = 'horizontal',
   primaryCta,
   secondaryCta,
   title

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Button } from '../../buttons'
 import { LockIcon } from '../../icons'
 import { Pane } from '../../layers'
@@ -7,12 +8,13 @@ import { majorScale } from '../../scales'
 import { useTheme } from '../../theme'
 import EmptyState from '../src/EmptyState'
 
-const SmallExample = () => {
+const SmallExample = props => {
   const { colors } = useTheme()
 
   return (
     <Pane marginBottom={majorScale(20)}>
       <Popover
+        {...props.popoverProps}
         content={
           <Pane width={450} height="auto">
             <EmptyState
@@ -31,6 +33,10 @@ const SmallExample = () => {
       </Popover>
     </Pane>
   )
+}
+
+SmallExample.propTypes = {
+  popoverProps: PropTypes.any
 }
 
 export default SmallExample
