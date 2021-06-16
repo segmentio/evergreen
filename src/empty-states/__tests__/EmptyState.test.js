@@ -51,7 +51,7 @@ describe('Empty States', () => {
         primaryCta={<EmptyState.PrimaryButton>Primary Action</EmptyState.PrimaryButton>}
       />
     )
-    expect(getByRole('button', { name: 'Primary Action' }).toBeInTheDocument)
+    expect(getByRole('button', { name: 'Primary Action' })).toBeInTheDocument()
   })
 
   it('should render secondary button when passed in', () => {
@@ -63,7 +63,7 @@ describe('Empty States', () => {
         secondaryCta={<EmptyState.SecondaryButton>Secondary Action</EmptyState.SecondaryButton>}
       />
     )
-    expect(getByRole('button', { name: 'Secondary Action' }).toBeInTheDocument)
+    expect(getByRole('button', { name: 'Secondary Action' })).toBeInTheDocument()
   })
 
   it('should render link button when passed in', () => {
@@ -77,26 +77,34 @@ describe('Empty States', () => {
         }
       />
     )
-    expect(getByRole('link').toBeInTheDocument)
+    expect(getByRole('link')).toBeInTheDocument()
   })
 
   // Small Minimal Example with just image and title
   // Not sure how to properly test svg
   it('should render image and title in minimal popup', () => {
-    const { container } = render(<SmallMinimalExample popoverProps={{ isShown: true }} />)
-    expect(container.querySelector('svg').toBeInTheDocument)
+    const { getByTestId } = render(
+      <SmallMinimalExample
+        popoverProps={{ isShown: true, statelessProps: { 'data-testid': 'empty-state-container' } }}
+      />
+    )
+    const container = getByTestId('empty-state-container')
+    expect(container.querySelector('svg')).toBeInTheDocument()
   })
 
   // Small Example
-  // Not sure how to properly test svg
   it('should render image, title, description, CTA in popup', () => {
-    const { getAllByRole, getAllByText } = render(<SmallExample popoverProps={{ isShown: true }} />)
-    expect(getAllByText('You need permission to access these sources').toBeInTheDocument)
+    const { getAllByText, getByRole, getByTestId } = render(
+      <SmallExample popoverProps={{ isShown: true, statelessProps: { 'data-testid': 'empty-state-container' } }} />
+    )
+    const container = getByTestId('empty-state-container')
+    expect(getAllByText('You need permission to access these sources')).toHaveLength(1)
     expect(
       getAllByText(
         'If you believe you should have accesss to this page, please check with your Workspace Owner or request access below.'
-      ).toBeInTheDocument
-    )
-    expect(getAllByRole('button', { name: 'Request Access' }).toBeInTheDocument)
+      )
+    ).toHaveLength(1)
+    expect(getByRole('button', { name: 'Request Access' })).toBeInTheDocument()
+    expect(container.querySelector('svg')).toBeInTheDocument()
   })
 })
