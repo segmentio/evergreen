@@ -1,11 +1,4 @@
-import React, {
-  memo,
-  useMemo,
-  useRef,
-  useState,
-  useEffect,
-  useCallback
-} from 'react'
+import React, { memo, useMemo, useRef, useState, useEffect, useCallback } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
@@ -13,9 +6,9 @@ import Box from 'ui-box'
 import Alert from '../../alert/src/Alert'
 
 const animationEasing = {
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`,
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
+  deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
 const ANIMATION_DURATION = 240
@@ -57,15 +50,15 @@ const animationStyles = css({
 
 const Toast = memo(function Toast(props) {
   const {
+    children,
     duration,
-    onRemove,
-    isShown: isShownProp,
+    hasCloseButton,
     // Template props
     intent = 'none',
-    zIndex,
+    isShown: isShownProp,
+    onRemove,
     title,
-    children,
-    hasCloseButton
+    zIndex
   } = props
 
   const [isShown, setIsShown] = useState(true)
@@ -127,13 +120,7 @@ const Toast = memo(function Toast(props) {
   )
 
   return (
-    <Transition
-      appear
-      unmountOnExit
-      timeout={ANIMATION_DURATION}
-      in={isShown}
-      onExited={onRemove}
-    >
+    <Transition appear unmountOnExit timeout={ANIMATION_DURATION} in={isShown} onExited={onRemove}>
       {state => (
         <div
           data-state={state}

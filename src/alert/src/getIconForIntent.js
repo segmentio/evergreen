@@ -1,11 +1,6 @@
 import React from 'react'
 import { Intent } from '../../constants'
-import {
-  TickCircleIcon,
-  ErrorIcon,
-  WarningSignIcon,
-  InfoSignIcon
-} from '../../icons'
+import { TickCircleIcon, ErrorIcon, WarningSignIcon, InfoSignIcon } from '../../icons'
 
 /**
  * Get the properties for an icon based on the intent.

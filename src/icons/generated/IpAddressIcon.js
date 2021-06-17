@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const IpAddressIcon = memo(
   forwardRef(function IpAddressIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="ip-address"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="ip-address" {...props} />
   })
 )

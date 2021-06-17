@@ -13,14 +13,6 @@ const svgPaths20 = [
 
 export const CellTowerIcon = memo(
   forwardRef(function CellTowerIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="cell-tower"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="cell-tower" {...props} />
   })
 )

@@ -1,0 +1,160 @@
+## Appearances
+
+The Button component has an `appearance` property with 3 available values: `default`, `primary`, and `minimal`.
+
+```jsx
+function DefaultButtonExample() {
+  return (
+    <>
+      <Button marginRight={16}>Default</Button>
+      <Button marginRight={16} appearance="primary">
+        Primary
+      </Button>
+      <Button marginRight={16} appearance="minimal">
+        Minimal
+      </Button>
+    </>
+  )
+}
+```
+
+## Intents
+
+In addition to the `appearance` — a Button can also have a `intent` property.
+The `intent` property can be `none` (default), `success`, or `danger`
+
+```jsx
+function IntentButtonExample() {
+  return (
+    <>
+      <Button marginRight={16} intent="none">
+        None
+      </Button>
+      <Button marginRight={16} intent="success">
+        Success
+      </Button>
+      <Button marginRight={16} intent="danger">
+        Danger
+      </Button>
+    </>
+  )
+}
+```
+
+## Disabled State
+
+Buttons support disabled states to indicate that a user can not take an action on a particular CTA. It intentionally prevents `pointer-events` from happening on the element.
+
+```jsx
+function DisabledButtonExample() {
+  return <Button disabled>Continue</Button>
+}
+```
+
+## Loading State
+
+Buttons also support an `isLoading` property, which shows a loading indicator, while disabling the button, as well.
+
+```jsx
+function LoadingButtonExample() {
+  return <Button isLoading>Continue</Button>
+}
+```
+
+## Mixing appearance and intent
+
+The `intent` property works with any `appearance`.
+
+```jsx
+function MixedIntentAndAppearanceExample() {
+  return (
+    <>
+      <Button marginRight={16} appearance="primary" intent="none">
+        None
+      </Button>
+      <Button marginRight={16} appearance="primary" intent="success">
+        Success
+      </Button>
+      <Button marginRight={16} appearance="primary" intent="danger">
+        Danger
+      </Button>
+    </>
+  )
+}
+```
+
+## Button Sizes
+
+By default buttons and controls have a height of 32px based on the default theme. Out of the box there are three sizes: `small`, `medium`, and `large`. It is possible to change this by passing an explicit height to the button, as well.
+
+```jsx
+function ButtonSizesExample() {
+  return (
+    <>
+      <Button marginRight={12} size="small">
+        Height 24
+      </Button>
+      <Button marginRight={12} size="medium">
+        Height 32
+      </Button>
+      <Button marginRight={12} size="large">
+        Height 40
+      </Button>
+      <Button marginRight={12} height={48}>
+        Height 48
+      </Button>
+      <Button marginRight={12} height={56}>
+        Height 56
+      </Button>
+    </>
+  )
+}
+```
+
+## Buttons with an Icon
+
+Buttons support an icon either before or after the label via the `iconBefore` or `iconAfter` props. Avoid using both icons in a
+button at the same time.
+
+```jsx
+function ButtonIconExample() {
+  return (
+    <>
+      <Button marginY={8} marginRight={12} iconAfter={CogIcon}>
+        Settings
+      </Button>
+      <Button marginY={8} marginRight={12} iconBefore={EditIcon}>
+        Edit
+      </Button>
+      <Button marginY={8} marginRight={12} iconBefore={ManualIcon}>
+        Docs
+      </Button>
+      <Button marginY={8} marginRight={12} iconBefore={TrashIcon} intent="danger">
+        Delete...
+      </Button>
+      <Button marginY={8} marginRight={12} iconBefore={SearchIcon}>
+        Search
+      </Button>
+      <Button marginY={8} marginRight={12} iconAfter={CaretDownIcon}>
+        Filter
+      </Button>
+    </>
+  )
+}
+```
+
+## Icon Buttons
+
+Evergreen also supports icon-only buttons for a lighter-weight toolbar-like treatment. They support the same API as regular buttons.
+
+```jsx
+function IconButtonExample() {
+  return (
+    <Pane display="flex" alignItems="center">
+      <IconButton icon={CogIcon} marginRight={majorScale(2)} />
+      <IconButton icon={TrashIcon} intent="danger" marginRight={majorScale(2)} />
+      <IconButton icon={TickIcon} intent="success" />
+    </Pane>
+  )
+}
+```

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
-import { Heading, Text, Code } from '../../typography'
 import { Popover } from '../../popover'
+import { Heading, Text, Code } from '../../typography'
 
 function uppercaseColor(color) {
   if (color[0] === '#') return color.toUpperCase()
@@ -34,13 +34,7 @@ export default class Swatch extends React.Component {
   render() {
     const { color, name, property, ...props } = this.props
     return (
-      <Pane
-        display="flex"
-        paddingY={16}
-        alignItems="center"
-        borderBottom="muted"
-        {...props}
-      >
+      <Pane display="flex" paddingY={16} alignItems="center" borderBottom="muted" {...props}>
         <Popover content={this.renderContent}>
           <Pane
             style={{ backgroundColor: color }}

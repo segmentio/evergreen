@@ -1,14 +1,18 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import { useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
 import { Paragraph } from '../../typography'
-import { useTheme } from '../../theme'
+
+const pseudoSelectors = {}
+const internalStyles = {}
 
 const TooltipStateless = memo(
   forwardRef(function TooltipStateless(props, ref) {
-    const theme = useTheme()
-    const { children, appearance, ...restProps } = props
-    const { color, ...themedProps } = theme.getTooltipProps(appearance)
+    const { appearance, children, ...restProps } = props
+    const { ...boxProps } = useStyleConfig('Tooltip', { appearance }, pseudoSelectors, internalStyles)
+
+    const { color, ...themedProps } = boxProps
 
     let child
     if (typeof children === 'string') {
@@ -22,15 +26,7 @@ const TooltipStateless = memo(
     }
 
     return (
-      <Pane
-        ref={ref}
-        borderRadius={3}
-        paddingX={8}
-        paddingY={4}
-        maxWidth={240}
-        {...themedProps}
-        {...restProps}
-      >
+      <Pane ref={ref} {...themedProps} {...restProps}>
         {child}
       </Pane>
     )

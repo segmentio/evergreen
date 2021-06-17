@@ -1,9 +1,8 @@
 import React, { memo, forwardRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
+import { useMergedRef, useStyleConfig } from '../../hooks'
 import { Text } from '../../typography'
-import { useTheme } from '../../theme'
-import { useMergedRef } from '../../hooks'
 
 const CheckIcon = ({ fill = 'currentColor', ...props }) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...props}>
@@ -21,11 +20,7 @@ CheckIcon.propTypes = {
 
 const MinusIcon = ({ fill = 'currentColor', ...props }) => (
   <svg width={16} height={16} viewBox="0 0 16 16" {...props}>
-    <path
-      fill={fill}
-      fillRule="evenodd"
-      d="M11 7H5c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1z"
-    />
+    <path fill={fill} fillRule="evenodd" d="M11 7H5c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1z" />
   </svg>
 )
 
@@ -34,6 +29,39 @@ MinusIcon.propTypes = {
 }
 
 const noop = () => {}
+
+const pseudoSelectors = {
+  _base: '& + div',
+  _disabled: '&[disabled] + div',
+  _hover: '&:not([disabled]):hover + div',
+  _focus: '&:not([disabled]):focus + div',
+  _active: '&:not([disabled]):active + div',
+  _checked: '&:checked + div, &[type=checkbox]:indeterminate + div',
+  _checkedHover: '&:not([disabled]):checked:hover + div, &[type=checkbox]:not([disabled]):indeterminate:hover + div',
+  _checkedActive: '&:not([disabled]):checked:active + div, &[type=checkbox]:not([disabled]):indeterminate:active + div',
+  _checkedDisabled: '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div'
+}
+
+const internalStyles = {
+  border: '0',
+  clip: 'rect(1px, 1px, 1px, 1px)',
+  height: '1px',
+  overflow: 'hidden',
+  padding: '0',
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  WebkitFontSmoothing: 'antialiased',
+  textDecoration: 'none',
+  WebkitAppearance: 'none',
+  MozAppearance: 'none',
+  width: '1px',
+  opacity: '0',
+
+  [pseudoSelectors._base]: {
+    outline: 'none',
+    cursor: 'pointer'
+  }
+}
 
 const Checkbox = memo(
   forwardRef(function Checkbox(props, forwardedRef) {
@@ -60,8 +88,12 @@ const Checkbox = memo(
       }
     }, [ref, indeterminate])
 
-    const theme = useTheme()
-    const themedClassName = theme.getCheckboxClassName(appearance)
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Checkbox',
+      { appearance },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Box
@@ -83,6 +115,7 @@ const Checkbox = memo(
           onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
+          {...boxProps}
           ref={callbackRef}
         />
         <Box
@@ -98,11 +131,7 @@ const Checkbox = memo(
           {indeterminate ? <MinusIcon /> : <CheckIcon />}
         </Box>
         {label && (
-          <Text
-            marginLeft={8}
-            size={300}
-            color={disabled ? 'muted' : 'default'}
-          >
+          <Text marginLeft={8} size={300} color={disabled ? 'muted' : 'default'}>
             {label}
           </Text>
         )}

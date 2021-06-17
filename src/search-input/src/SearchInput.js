@@ -1,31 +1,26 @@
 import React, { memo, forwardRef } from 'react'
 import Box, { splitBoxProps } from 'ui-box'
+import { StackingOrder } from '../../constants'
 import { SearchIcon } from '../../icons'
 import { TextInput } from '../../text-input'
-import { useTheme } from '../../theme'
-import { StackingOrder } from '../../constants'
+
+const getIconSizeForInput = height => {
+  if (height <= 28) return 12
+  if (height <= 32) return 14
+  if (height <= 40) return 16
+  if (height <= 48) return 18
+  return 20
+}
 
 const SearchInput = memo(
   forwardRef(function SearchInput(props, ref) {
-    const theme = useTheme()
-    const {
-      appearance = 'default',
-      disabled,
-      height = 32,
-      ...restProps
-    } = props
+    const { appearance = 'default', disabled, height = 32, ...restProps } = props
     const { matchedProps, remainingProps } = splitBoxProps(restProps)
     const { width } = matchedProps
-    const iconSize = theme.getIconSizeForInput(height)
+    const iconSize = getIconSizeForInput(height)
 
     return (
-      <Box
-        position="relative"
-        display="inline-flex"
-        height={height}
-        ref={ref}
-        {...matchedProps}
-      >
+      <Box position="relative" display="inline-flex" height={height} {...matchedProps}>
         <Box
           height={height}
           width={height}
@@ -35,13 +30,10 @@ const SearchInput = memo(
           justifyContent="center"
           alignItems="center"
         >
-          <SearchIcon
-            color="default"
-            zIndex={StackingOrder.FOCUSED + 1}
-            size={iconSize}
-          />
+          <SearchIcon color="default" zIndex={StackingOrder.FOCUSED + 1} size={iconSize} />
         </Box>
         <TextInput
+          ref={ref}
           height={height}
           paddingLeft={height}
           appearance={appearance}

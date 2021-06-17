@@ -1,36 +1,31 @@
 import React, { memo, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from '../../layers'
-import { Text } from '../../typography'
+import { useClickable, useStyleConfig } from '../../hooks'
 import { TickIcon } from '../../icons'
-import { useTheme } from '../../theme'
+import { Pane } from '../../layers'
+import { pseudoSelectors } from '../../table/src/TableRow'
+import { Text } from '../../typography'
 
 const noop = () => {}
 
+const internalStyles = {
+  display: 'flex',
+  alignItems: 'center'
+}
+
 const MenuOption = memo(function MenuOption(props) {
-  const {
-    id,
-    children,
-    appearance = 'default',
-    onSelect = noop,
-    secondaryText,
-    isSelected = false
-  } = props
+  const { id, children, appearance = 'default', onSelect = noop, secondaryText, isSelected = false } = props
 
   const handleClick = useCallback(e => onSelect(e), [onSelect])
 
-  const handleKeyPress = useCallback(
-    e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        onSelect(e)
-        e.preventDefault()
-      }
-    },
-    [onSelect]
-  )
+  const { onKeyDown, tabIndex } = useClickable()
 
-  const theme = useTheme()
-  const themedClassName = theme.getMenuItemClassName(appearance, 'none')
+  const { className: themedClassName, ...boxProps } = useStyleConfig(
+    'MenuItem',
+    { appearance },
+    pseudoSelectors,
+    internalStyles
+  )
 
   const textProps = isSelected
     ? {
@@ -44,25 +39,17 @@ const MenuOption = memo(function MenuOption(props) {
     <Pane
       id={id}
       role="menuitemradio"
-      tabIndex={0}
+      tabIndex={tabIndex}
       className={themedClassName}
       onClick={handleClick}
-      onKeyPress={handleKeyPress}
+      onKeyDown={onKeyDown}
       data-isselectable="true"
       aria-checked={isSelected}
       height={40}
-      display="flex"
-      alignItems="center"
+      {...boxProps}
     >
       {isSelected && (
-        <TickIcon
-          aria-hidden
-          color="selected"
-          marginLeft={16}
-          marginRight={-4}
-          size={16}
-          flexShrink={0}
-        />
+        <TickIcon aria-hidden color="selected" marginLeft={16} marginRight={-4} size={16} flexShrink={0} />
       )}
       <Text {...textProps} marginRight={16} flex={1}>
         {children}

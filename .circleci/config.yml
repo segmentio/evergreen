@@ -3,7 +3,7 @@ jobs:
   test:
     working_directory: ~/evergreen
     docker:
-      - image: circleci/node:10.18
+      - image: circleci/node:12.20
     steps:
       - checkout
 
@@ -23,6 +23,7 @@ jobs:
           paths:
             - ./docs/node_modules
 
+      - run: yarn run prettier 'src/**/*.js' --check
       - run: yarn run build
       - run: yarn run test
       - run: yarn run size-limit

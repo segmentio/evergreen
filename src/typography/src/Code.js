@@ -1,29 +1,18 @@
 import React, { forwardRef, memo } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
-import { useTheme } from '../../theme'
+import { useStyleConfig } from '../../hooks'
 import Text from './Text'
+
+const pseudoSelectors = {}
+const internalStyles = {}
 
 const Code = memo(
   forwardRef(function Code(props, ref) {
-    const theme = useTheme()
-    const { className, appearance = 'default', ...restProps } = props
+    const { appearance = 'default', className, ...restProps } = props
 
-    const {
-      className: themedClassName = '',
-      ...themeProps
-    } = theme.getCodeProps(appearance)
+    const styleProps = useStyleConfig('Code', { appearance }, pseudoSelectors, internalStyles)
 
-    return (
-      <Text
-        is="code"
-        ref={ref}
-        className={cx(className, themedClassName)}
-        fontFamily="mono"
-        {...themeProps}
-        {...restProps}
-      />
-    )
+    return <Text is="code" ref={ref} className={className} fontFamily="mono" {...styleProps} {...restProps} />
   })
 )
 
@@ -36,7 +25,7 @@ Code.propTypes = {
   appearance: PropTypes.oneOf(['default', 'minimal']),
 
   /**
-   * Class name passed to the button.
+   * Class name passed to the Code component.
    * Only use if you know what you are doing.
    */
   className: PropTypes.string

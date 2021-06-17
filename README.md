@@ -19,11 +19,11 @@
 ## Documentation & Community
 
 - [Documentation](https://evergreen.segment.com/)
-- [Spectrum Chat](https://spectrum.chat/evergreen)
+- [GitHub Discussions](https://github.com/segmentio/evergreen/discussions)
 
-## Evergreen v4 to v5 Migration guide
+## Evergreen v5 to v6 Migration guide
 
-Evergreen v4 to v5 [migration guide](https://evergreen.segment.com/get-started/v5-migration-guide)
+Evergreen v5 to v6 [migration guide](https://evergreen.segment.com/introduction/v6-migration-guide)
 
 ## Install and use components
 
@@ -42,10 +42,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Button } from 'evergreen-ui'
 
-ReactDOM.render(
-  <Button>I am using 🌲 Evergreen!</Button>,
-  document.getElementById('root')
-)
+ReactDOM.render(<Button>I am using 🌲 Evergreen!</Button>, document.getElementById('root'))
 ```
 
 ## Core values of 🌲 Evergreen
@@ -61,9 +58,7 @@ ReactDOM.render(
 
 ### Theming support?
 
-Evergreen v5 supports theming partially. It is still complex to theme Evergreen. We have done exploratory work to make theming more powerful and accessible, and hope to release a new theming api in Evergreen v6.
-
-See these [docs](https://evergreen.segment.com/get-started/theming/) for more information regarding theming in Evergreen.
+Evergreen supports a robust theming layer out of the box. You can check out [these docs](https://evergreen.segment.com/introduction/theming) for more information regarding theming in Evergreen.
 
 ### How does Server Side Rendering (SSR) work?
 
@@ -113,7 +108,7 @@ $ yarn install
 $ yarn dev
 ```
 
-Now you can visit `http://localhost:8000/` in your browser.
+Now you can visit `http://localhost:3000/` in your browser.
 
 Documentation code is under the `docs` directory. A big portion of these docs are written in MDX, if you've never used MDX before, check out these [docs](https://mdxjs.com/getting-started).
 
@@ -218,4 +213,4 @@ Please respect our [Code of Conduct](.github/CODE_OF_CONDUCT.md), in short:
 Evergreen is released under the MIT license.
 The BlueprintJS icons are licensed under a [custom Apache 2.0 license](https://github.com/palantir/blueprint/blob/develop/LICENSE).
 
-Copyright © 2017 Segment.io, Inc.
+Copyright © 2021 Segment.io, Inc.

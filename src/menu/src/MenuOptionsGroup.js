@@ -6,7 +6,7 @@ import MenuOption from './MenuOption'
 
 const MenuOptionsGroup = memo(
   forwardRef(function MenuOptionsGroup(props, ref) {
-    const { title, options, selected, onChange } = props
+    const { onChange, options, selected, title } = props
 
     return (
       <Pane ref={ref} paddingY={8}>

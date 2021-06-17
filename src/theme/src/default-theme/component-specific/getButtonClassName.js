@@ -1,11 +1,8 @@
 import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
-import {
-  getTextColorForIntent,
-  getPrimaryButtonStylesForIntent
-} from '../helpers'
+import { getTextColorForIntent, getPrimaryButtonStylesForIntent } from '../helpers'
 import { defaultControlStyles } from '../shared'
+import memoizeClassName from '../utils/memoizeClassName'
 
 /**
  * Disabled styles are all the same for all buttons.
@@ -21,37 +18,27 @@ const { disabled } = defaultControlStyles
 const getButtonAppearance = (appearance, intent) => {
   switch (appearance) {
     case 'primary': {
-      const { linearGradient, focusColor } = getPrimaryButtonStylesForIntent(
-        intent
-      )
+      const { focusColor, linearGradient } = getPrimaryButtonStylesForIntent(intent)
       return Themer.createButtonAppearance({
         disabled,
         base: {
           color: 'white',
           backgroundColor: 'white',
           backgroundImage: linearGradient.base,
-          boxShadow: `inset 0 0 0 1px ${
-            scales.neutral.N5A
-          }, inset 0 -1px 1px 0 ${scales.neutral.N2A}`
+          boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 -1px 1px 0 ${scales.neutral.N2A}`
         },
         hover: {
           backgroundImage: linearGradient.hover
         },
         focus: {
-          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${
-            scales.neutral.N4A
-          }, inset 0 -1px 1px 0 ${scales.neutral.N5A}`
+          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${scales.neutral.N5A}`
         },
         active: {
           backgroundImage: linearGradient.active,
-          boxShadow: `inset 0 0 0 1px ${
-            scales.neutral.N4A
-          }, inset 0 1px 1px 0 ${scales.neutral.N2A}`
+          boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 1px 1px 0 ${scales.neutral.N2A}`
         },
         focusAndActive: {
-          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${
-            scales.neutral.N4A
-          }, inset 0 1px 1px 0 ${scales.neutral.N2A}`
+          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 1px 1px 0 ${scales.neutral.N2A}`
         }
       })
     }

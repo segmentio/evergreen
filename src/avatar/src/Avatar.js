@@ -1,16 +1,24 @@
 import React, { useState, memo, forwardRef } from 'react'
+import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import { useStyleConfig } from '../../hooks'
 import { Image } from '../../image'
 import { Text } from '../../typography'
-import { useTheme } from '../../theme'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
 
-const isObjectFitSupported =
-  typeof document !== 'undefined' &&
-  'objectFit' in document.documentElement.style
+const pseudoSelectors = {}
+const internalStyles = {
+  overflow: 'hidden',
+  position: 'relative',
+  display: 'inline-flex',
+  flexShrink: 0,
+  justifyContent: 'center'
+}
+
+const isObjectFitSupported = typeof document !== 'undefined' && 'objectFit' in document.documentElement.style
 
 const initialsStyleClass = css({
   top: 0,
@@ -21,63 +29,56 @@ const initialsStyleClass = css({
   lineHeight: 1
 }).toString()
 
-function getColorProps({ isSolid, theme, color, name, propsHashValue }) {
-  if (color === 'automatic') {
-    const hashValue = globalHash(propsHashValue || name)
-    return theme.getAvatarProps({ isSolid, color, hashValue })
+const getAvatarInitialsFontSize = (size, sizeLimitOneCharacter) => {
+  if (size <= sizeLimitOneCharacter) {
+    return Math.floor(size / 2.2)
   }
 
-  return theme.getAvatarProps({ isSolid, color })
+  return Math.floor(size / 2.6)
 }
 
 const Avatar = memo(
   forwardRef(function Avatar(props, ref) {
     const {
-      src,
-      name,
-      size = 24,
-      isSolid = false,
+      className,
       color = 'automatic',
       forceShowInitials = false,
-      sizeLimitOneCharacter = 20,
       getInitials = globalGetInitials,
       hashValue: propsHashValue,
+      name,
+      shape = 'round',
+      size = 24,
+      sizeLimitOneCharacter = 20,
+      src,
       ...restProps
     } = props
 
-    const theme = useTheme()
+    const hashValue = globalHash(propsHashValue || name)
+    const { className: themedClassName, ...styleProps } = useStyleConfig(
+      'Avatar',
+      { color, hashValue, shape },
+      pseudoSelectors,
+      internalStyles
+    )
+
     const [imageHasFailedLoading, setImageHasFailedLoading] = useState(false)
     const imageUnavailable = !src || imageHasFailedLoading
-    const colorProps = getColorProps({
-      isSolid,
-      theme,
-      color,
-      name,
-      propsHashValue
-    })
-    const initialsFontSize = `${theme.getAvatarInitialsFontSize(
-      size,
-      sizeLimitOneCharacter
-    )}px`
+
+    const initialsFontSize = `${getAvatarInitialsFontSize(size, sizeLimitOneCharacter)}px`
 
     let initials = getInitials(name)
     if (size <= sizeLimitOneCharacter) {
-      initials = initials.substring(0, 1)
+      initials = initials.slice(0, 1)
     }
 
     return (
       <Box
         width={size}
         height={size}
-        overflow="hidden"
-        borderRadius={9999}
-        position="relative"
-        display="inline-flex"
-        flexShrink={0}
-        justifyContent="center"
-        backgroundColor={colorProps.backgroundColor}
         title={name}
         ref={ref}
+        className={cx(className, themedClassName)}
+        {...styleProps}
         {...restProps}
       >
         {(imageUnavailable || forceShowInitials) && (
@@ -87,7 +88,7 @@ const Avatar = memo(
             lineHeight={initialsFontSize}
             width={size}
             height={size}
-            color={colorProps.color}
+            color="inherit"
           >
             {initials}
           </Text>
@@ -107,6 +108,12 @@ const Avatar = memo(
 )
 
 Avatar.propTypes = {
+  /**
+   * Class name passed to the component.
+   * Only use if you know what you are doing.
+   */
+  className: PropTypes.string,
+
   /**
    * The src attribute of the image.
    * When it's not available, render initials instead.
@@ -131,11 +138,6 @@ Avatar.propTypes = {
   hashValue: PropTypes.string,
 
   /**
-   * When true, render a solid avatar.
-   */
-  isSolid: PropTypes.bool,
-
-  /**
    * The color used for the avatar.
    * When the value is `automatic`, use the hash function to determine the color.
    */
@@ -155,7 +157,12 @@ Avatar.propTypes = {
   /**
    * When the size is smaller than this number, use a single initial for the avatar.
    */
-  sizeLimitOneCharacter: PropTypes.number
+  sizeLimitOneCharacter: PropTypes.number,
+
+  /**
+   * Allows for the shape of the avatar component to either be round or square
+   */
+  shape: PropTypes.oneOf(['round', 'square'])
 }
 
 export default Avatar

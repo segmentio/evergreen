@@ -1,53 +1,74 @@
 import React, { memo, forwardRef } from 'react'
-import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { Text } from '../../typography'
+import PropTypes from 'prop-types'
+import Box, { spacing, dimensions, position, layout } from 'ui-box'
+import { useStyleConfig } from '../../hooks'
 import { useTheme } from '../../theme'
 
-const styles = {
+const pseudoSelectors = {
+  _focus: '&:focus',
+  _disabled: '&:disabled',
+  _invalid: '&[aria-invalid="true"]:not(:focus)',
+  _placeholder: '&::placeholder',
+  _placeholderHover: '&:hover::placeholder',
+  _placeholderFocus: '&:focus::placeholder'
+}
+
+const internalStyles = {
+  border: 'none',
+  MozAppearance: 'none',
+  outline: 'none',
+  textDecoration: 'none',
+  WebkitAppearance: 'none',
+  WebkitFontSmoothing: 'antialiased',
   minHeight: 80,
-  paddingX: 10,
-  paddingY: 8
+  paddingX: 12,
+  paddingY: 8,
+  borderRadius: 4
 }
 
 const Textarea = memo(
   forwardRef(function Textarea(props, ref) {
-    const theme = useTheme()
     const {
       className,
-      width = '100%',
-      height,
       disabled = false,
-      required,
-      isInvalid = false,
-      appearance = 'default',
-      placeholder,
-      spellCheck = true,
+      fontFamily = 'ui',
       grammarly = false,
+      height,
+      isInvalid = false,
+      placeholder,
+      required,
+      spellCheck = true,
+      width = '100%',
       ...restProps
     } = props
 
-    const themedClassName = theme.getTextareaClassName(appearance)
+    const theme = useTheme()
+    const { fontFamilies } = theme
+    const themedFontFamily = fontFamilies[fontFamily] || fontFamily
+
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Input',
+      { appearance: 'default' },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
-      <Text
+      <Box
         is="textarea"
         ref={ref}
         className={cx(themedClassName, className)}
-        size={400}
         width={width}
         height={height}
         required={required}
         disabled={disabled}
         placeholder={placeholder}
-        paddingLeft={Math.round(height / 3.2)}
-        paddingRight={Math.round(height / 3.2)}
-        borderRadius={3}
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
-        {...(disabled ? { color: 'muted' } : {})}
-        {...styles}
+        fontFamily={themedFontFamily}
+        {...boxProps}
         {...restProps}
       />
     )
@@ -56,9 +77,24 @@ const Textarea = memo(
 
 Textarea.propTypes = {
   /**
-   * Composes the Text component as the base.
+   * Composes the dimensions spec from the Box primitive.
    */
-  ...Text.propTypes,
+  ...dimensions.propTypes,
+
+  /**
+   * Composes the spacing spec from the Box primitive.
+   */
+  ...spacing.propTypes,
+
+  /**
+   * Composes the position spec from the Box primitive.
+   */
+  ...position.propTypes,
+
+  /**
+   * Composes the layout spec from the Box primitive.
+   */
+  ...layout.propTypes,
 
   /**
    * Makes the textarea element required.

@@ -1,8 +1,8 @@
 import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
-import { defaultControlStyles } from '../shared'
-import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
+import scales from '../foundational-styles/scales'
+import { defaultControlStyles } from '../shared'
+import memoizeClassName from '../utils/memoizeClassName'
 
 const SelectAppearances = {}
 
@@ -10,9 +10,7 @@ SelectAppearances.default = Themer.createSelectAppearance({
   base: defaultControlStyles.base,
   disabled: defaultControlStyles.disabled,
   invalid: {
-    boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${
-      scales.neutral.N4A
-    }`
+    boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${scales.neutral.N4A}`
   },
   hover: defaultControlStyles.hover,
   focus: defaultControlStyles.focus,

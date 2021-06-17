@@ -1,13 +1,14 @@
 import React from 'react'
 import faker from 'faker'
-import { Stack } from '../../stack'
+import { Table } from '..'
 import { Pane } from '../../layers'
 import { SegmentedControl } from '../../segmented-control'
-import { Table } from '..'
+import { Stack } from '../../stack'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
 // Generate a bunch of users.
+faker.seed(100)
 const users = range(100).map(index => {
   const options = range(20).map(i => {
     const item = faker.commerce.productName()
@@ -88,66 +89,36 @@ export default class EditableTable extends React.PureComponent {
                 value={this.state.isSelectable}
                 onChange={value => this.setState({ isSelectable: value })}
               />
-              <Pane
-                border
-                height="80vh"
-                display="flex"
-                flexGrow={0}
-                position="relative"
-                zIndex={zIndex}
-              >
+              <Pane height="80vh" display="flex" flexGrow={0} position="relative" zIndex={zIndex}>
                 <Table flex={1} display="flex" flexDirection="column">
                   <Table.Head>
-                    <Table.TextHeaderCell
-                      borderRight="default"
-                      flex={0}
-                      flexBasis={80}
-                    >
+                    <Table.TextHeaderCell borderRight="default" flex={0} flexBasis={80}>
                       Id
                     </Table.TextHeaderCell>
-                    <Table.TextHeaderCell borderRight="default">
-                      Name
-                    </Table.TextHeaderCell>
-                    <Table.TextHeaderCell borderRight="default">
-                      Email
-                    </Table.TextHeaderCell>
-                    <Table.TextHeaderCell borderRight="default">
-                      Product
-                    </Table.TextHeaderCell>
+                    <Table.TextHeaderCell borderRight="default">Name</Table.TextHeaderCell>
+                    <Table.TextHeaderCell borderRight="default">Email</Table.TextHeaderCell>
+                    <Table.TextHeaderCell borderRight="default">Product</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Notes</Table.TextHeaderCell>
                   </Table.Head>
                   <Table.VirtualBody flex={1} overscanCount={15}>
                     {this.state.users.map(user => {
                       return (
                         <Table.Row key={user.id}>
-                          <Table.EditableCell
-                            borderRight="muted"
-                            disabled
-                            flex={0}
-                            flexBasis={80}
-                          >
+                          <Table.EditableCell borderRight="muted" disabled flex={0} flexBasis={80}>
                             {user.id}
                           </Table.EditableCell>
                           <Table.EditableCell
                             isSelectable={this.state.isSelectable}
                             borderRight="muted"
                             autoFocus={user.id === 1} // Example condition
-                            onChange={this.handleChange.bind(
-                              null,
-                              user.id,
-                              'name'
-                            )}
+                            onChange={this.handleChange.bind(null, user.id, 'name')}
                           >
                             {user.name}
                           </Table.EditableCell>
                           <Table.EditableCell
                             isSelectable={this.state.isSelectable}
                             borderRight="muted"
-                            onChange={this.handleChange.bind(
-                              null,
-                              user.id,
-                              'email'
-                            )}
+                            onChange={this.handleChange.bind(null, user.id, 'email')}
                           >
                             {user.email}
                           </Table.EditableCell>
@@ -166,11 +137,7 @@ export default class EditableTable extends React.PureComponent {
                           <Table.EditableCell
                             isSelectable={this.state.isSelectable}
                             placeholder="Notes..."
-                            onChange={this.handleChange.bind(
-                              null,
-                              user.id,
-                              'notes'
-                            )}
+                            onChange={this.handleChange.bind(null, user.id, 'notes')}
                           >
                             {user.notes}
                           </Table.EditableCell>

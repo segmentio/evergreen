@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const RemoveIcon = memo(
   forwardRef(function RemoveIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="remove"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="remove" {...props} />
   })
 )

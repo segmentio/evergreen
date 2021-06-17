@@ -1,17 +1,17 @@
 import React, { memo, useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
-import { Portal } from '../../portal'
-import { Stack } from '../../stack'
 import { StackingOrder, Position } from '../../constants'
 import { useMergedRef, usePrevious } from '../../hooks'
+import { Portal } from '../../portal'
+import { Stack } from '../../stack'
 import getPosition from './getPosition'
 
 const animationEasing = {
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
-const getCSS = ({ initialScale, animationDuration }) => ({
+const getCSS = ({ animationDuration, initialScale }) => ({
   position: 'fixed',
   opacity: 0,
   transitionTimingFunction: animationEasing.spring,
@@ -21,7 +21,7 @@ const getCSS = ({ initialScale, animationDuration }) => ({
   '&[data-state="entering"], &[data-state="entered"]': {
     opacity: 1,
     visibility: 'visible',
-    transform: `scale(1)`
+    transform: 'scale(1)'
   },
   '&[data-state="exiting"]': {
     opacity: 0,
@@ -86,8 +86,7 @@ const Positioner = memo(function Positioner(props) {
 
     const targetRect = targetRef.current.getBoundingClientRect()
 
-    const hasEntered =
-      positionerRef.current.getAttribute('data-state') === 'entered'
+    const hasEntered = positionerRef.current.getAttribute('data-state') === 'entered'
 
     const viewportHeight = document.documentElement.clientHeight
     const viewportWidth = document.documentElement.clientWidth

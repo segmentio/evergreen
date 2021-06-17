@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const GitPushIcon = memo(
   forwardRef(function GitPushIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="git-push"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="git-push" {...props} />
   })
 )

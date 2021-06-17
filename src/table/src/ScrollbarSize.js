@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 
 const noop = () => {}
 
-const ScrollbarSize = memo(function ScrollbarSize({
-  handleScrollbarSize = noop
-}) {
+const ScrollbarSize = memo(function ScrollbarSize({ handleScrollbarSize = noop }) {
   const innerRef = useRef()
   const outerRef = useRef()
   const [widths, setWidths] = useState({ innerWidth: null, outerWidth: null })

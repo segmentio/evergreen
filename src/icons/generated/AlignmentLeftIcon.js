@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const AlignmentLeftIcon = memo(
   forwardRef(function AlignmentLeftIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="alignment-left"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="alignment-left" {...props} />
   })
 )

@@ -1,47 +1,43 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
+import { css } from 'glamor'
 import PropTypes from 'prop-types'
+import { useStyleConfig } from '../../hooks'
 import { Strong } from '../../typography'
-import { useTheme } from '../../theme'
 
-const styles = {
+const pseudoSelectors = {}
+
+const internalStyles = {
   display: 'inline-block',
   boxSizing: 'border-box',
-  height: 16,
-  paddingTop: 0,
-  paddingRight: 6,
-  paddingBottom: 0,
-  paddingLeft: 6,
-  borderRadius: 2,
-  textAlign: 'center',
-  textDecoration: 'none',
-  textTransform: 'uppercase'
+  verticalAlign: 'middle'
 }
+
+const hoverClassName = css({
+  '&:hover': {
+    opacity: 0.8
+  },
+  cursor: 'pointer'
+})
 
 const Badge = memo(
   forwardRef(function Badge(props, ref) {
-    const theme = useTheme()
+    const { appearance = 'subtle', className, color = 'neutral', isInteractive = false, ...restProps } = props
 
-    const {
-      className,
-      color = 'neutral',
-      isInteractive = false,
-      isSolid = false,
-      ...restProps
-    } = props
-
-    const themeProps = theme.getBadgeProps({ color, isSolid })
-    const appearance = isInteractive ? 'interactive' : 'default'
-    const classNames = cx(className, theme.getBadgeClassName(appearance))
+    const { className: themedClassName, ...styleProps } = useStyleConfig(
+      'Badge',
+      { appearance, color },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Strong
         ref={ref}
         size={300}
-        {...styles}
-        {...themeProps}
+        className={cx(className, themedClassName, isInteractive && hoverClassName)}
+        {...styleProps}
         {...restProps}
-        className={classNames}
       />
     )
   })

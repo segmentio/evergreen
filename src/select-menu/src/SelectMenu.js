@@ -1,12 +1,12 @@
 import React, { memo, useMemo } from 'react'
-import PropTypes from 'prop-types'
 import arrify from 'arrify'
-import { Popover } from '../../popover'
+import PropTypes from 'prop-types'
 import { Position } from '../../constants'
 import { SearchIcon } from '../../icons'
-import SelectMenuContent from './SelectMenuContent'
+import { Popover } from '../../popover'
 import OptionShapePropType from './OptionShapePropType'
 import SelectedPropType from './SelectedPropType'
+import SelectMenuContent from './SelectMenuContent'
 
 const noop = () => {}
 
@@ -30,6 +30,8 @@ const SelectMenu = memo(function SelectMenu(props) {
     titleView,
     isMultiSelect = false,
     closeOnSelect = false,
+    itemRenderer,
+    itemHeight,
     ...rest
   } = props
 
@@ -56,17 +58,13 @@ const SelectMenu = memo(function SelectMenu(props) {
             onSelect,
             onDeselect,
             onFilterChange,
-            selected: selectedArray
+            selected: selectedArray,
+            renderItem: itemRenderer,
+            optionSize: itemHeight
           }}
           close={close}
-          detailView={
-            typeof detailView === 'function'
-              ? detailView({ close })
-              : detailView
-          }
-          emptyView={
-            typeof emptyView === 'function' ? emptyView({ close }) : emptyView
-          }
+          detailView={typeof detailView === 'function' ? detailView({ close }) : detailView}
+          emptyView={typeof emptyView === 'function' ? emptyView({ close }) : emptyView}
           closeOnSelect={closeOnSelect}
         />
       )}
@@ -177,7 +175,18 @@ SelectMenu.propTypes = {
   /*
    * When true, menu closes on option selection.
    */
-  closeOnSelect: PropTypes.bool
+  closeOnSelect: PropTypes.bool,
+
+  /**
+   * Can pass a method that can be used to render custom items in the
+   * select menu
+   */
+  itemRenderer: PropTypes.func,
+
+  /**
+   * The height of the items in the select menu list
+   */
+  itemHeight: PropTypes.number
 }
 
 export default SelectMenu

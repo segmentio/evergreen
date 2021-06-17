@@ -1,5 +1,6 @@
-import { hydrate as boxHydrate } from 'ui-box'
 import { rehydrate } from 'glamor'
+import { hydrate as boxHydrate } from 'ui-box'
+import canUseDom from '../../lib/canUseDom'
 
 /**
  * You shouldn't have to manually run this.
@@ -16,7 +17,7 @@ export function hydrate(hydration) {
 }
 
 export default function autoHydrate() {
-  if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+  if (canUseDom) {
     const hydration = document.querySelector('#evergreen-hydrate')
 
     if (hydration) {
@@ -24,10 +25,7 @@ export default function autoHydrate() {
         const hydrationObject = JSON.parse(hydration.innerHTML)
         hydrate(hydrationObject)
       } catch (error) {
-        console.error(
-          'Evergreen automatic hydration object is invalid JSON',
-          error
-        )
+        console.error('Evergreen automatic hydration object is invalid JSON', error)
       }
     }
   }

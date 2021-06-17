@@ -1,27 +1,27 @@
 import React, { memo, forwardRef, useState, useRef, useCallback } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import cx from 'classnames'
 import { Button } from '../../buttons'
-import { TextInput } from '../../text-input'
 import safeInvoke from '../../lib/safe-invoke'
+import { TextInput } from '../../text-input'
 
 export const CLASS_PREFIX = 'evergreen-file-picker'
 
 const FilePicker = memo(
   forwardRef(function FilePicker(props, ref) {
     const {
-      name,
       accept,
-      required,
-      multiple,
-      onBlur,
-      disabled,
       capture,
-      height,
+      className,
+      disabled,
+      height = 32,
+      multiple,
+      name,
+      onBlur,
       onChange,
       placeholder = 'Select a file to upload…',
-      className,
+      required,
       ...rest
     } = props
 
@@ -49,9 +49,9 @@ const FilePicker = memo(
     const handleBlur = useCallback(
       e => {
         // Setting e.target.files to an array fails. It must be a FileList
-        if (e && e.target)
-          e.target.files =
-            fileInputRef && fileInputRef.current && fileInputRef.current.files
+        if (e && e.target) {
+          e.target.files = fileInputRef && fileInputRef.current && fileInputRef.current.files
+        }
 
         safeInvoke(onBlur, e)
       },
@@ -79,12 +79,7 @@ const FilePicker = memo(
     const rootClassNames = cx(`${CLASS_PREFIX}-root`, className)
 
     return (
-      <Box
-        display="flex"
-        className={rootClassNames}
-        ref={ref}
-        {...rest}
-      >
+      <Box display="flex" className={rootClassNames} ref={ref} {...rest}>
         <Box
           ref={fileInputRef}
           className={`${CLASS_PREFIX}-file-input`}
@@ -141,10 +136,7 @@ FilePicker.propTypes = {
   /**
    * The accept attribute of the input.
    */
-  accept: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
-  ]),
+  accept: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
 
   /**
    * When true, the file picker is required.

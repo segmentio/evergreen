@@ -12,14 +12,6 @@ const svgPaths20 = [
 
 export const HeatmapIcon = memo(
   forwardRef(function HeatmapIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="heatmap"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="heatmap" {...props} />
   })
 )

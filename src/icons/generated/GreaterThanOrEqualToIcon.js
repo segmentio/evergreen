@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const GreaterThanOrEqualToIcon = memo(
   forwardRef(function GreaterThanOrEqualToIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="greater-than-or-equal-to"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="greater-than-or-equal-to" {...props} />
   })
 )

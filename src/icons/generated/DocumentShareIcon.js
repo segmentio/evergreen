@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const DocumentShareIcon = memo(
   forwardRef(function DocumentShareIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="document-share"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="document-share" {...props} />
   })
 )

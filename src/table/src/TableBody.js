@@ -6,13 +6,7 @@ const TableBody = memo(
     const { children, ...rest } = props
 
     return (
-      <Pane
-        ref={ref}
-        data-evergreen-table-body
-        flex="1"
-        overflowY="auto"
-        {...rest}
-      >
+      <Pane ref={ref} data-evergreen-table-body flex="1" overflowY="auto" {...rest}>
         {children}
       </Pane>
     )

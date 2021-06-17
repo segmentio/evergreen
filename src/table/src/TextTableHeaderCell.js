@@ -1,16 +1,16 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
-import { Text } from '../../typography'
+import Box from 'ui-box'
 import TableHeaderCell from './TableHeaderCell'
 
 const TextTableHeaderCell = memo(function TextTableHeaderCell(props) {
-  const { children, textProps, isSortable, sortOrder, ...rest } = props
+  const { children, isSortable, sortOrder, textProps, ...rest } = props
 
   return (
     <TableHeaderCell {...rest}>
-      <Text fontWeight={500} size={300} flex="1" {...textProps}>
+      <Box flex="1" {...textProps}>
         {children}{' '}
-      </Text>
+      </Box>
     </TableHeaderCell>
   )
 })

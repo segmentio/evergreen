@@ -1,0 +1,56 @@
+# Usage
+
+The Combobox component is similar to a [Select](./select) or [SelectMenu](./select-menu) component.
+Clicking the button will show all items. Typing in the text input will filter the list.
+
+<br />
+<br />
+
+## Basic
+
+```jsx
+<Combobox
+  items={['Banana', 'Orange', 'Apple', 'Mango']}
+  onChange={selected => console.log(selected)}
+  placeholder="Fruit"
+  autocompleteProps={{
+    // Used for the title in the autocomplete.
+    title: 'Fruit'
+  }}
+/>
+```
+
+## Open on focus
+
+```jsx
+<Combobox
+  openOnFocus
+  items={['Banana', 'Orange', 'Apple', 'Mango']}
+  onChange={selected => console.log(selected)}
+  placeholder="Fruit"
+/>
+```
+
+## Custom width and height
+
+```jsx
+<Combobox
+  openOnFocus
+  width="100%"
+  height={40}
+  items={['Banana', 'Orange', 'Apple', 'Mango']}
+  onChange={selected => console.log(selected)}
+  placeholder="Fruit"
+/>
+```
+
+## Custom items and default selected item
+
+```jsx
+<Combobox
+  initialSelectedItem={{ label: 'Banana' }}
+  items={[{ label: 'Banana' }, { label: 'Pear' }, { label: 'Kiwi' }]}
+  itemToString={item => (item ? item.label : '')}
+  onChange={selected => console.log(selected)}
+/>
+```

@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const ScatterPlotIcon = memo(
   forwardRef(function ScatterPlotIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="scatter-plot"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="scatter-plot" {...props} />
   })
 )

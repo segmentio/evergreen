@@ -3,14 +3,13 @@
  */
 
 import React, { memo, forwardRef, useState } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import cx from 'classnames'
-import { Text } from '../../typography'
-import { useTheme } from '../../theme'
-import { majorScale } from '../../scales'
+import { useId, useStyleConfig } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
-import { useId } from '../../hooks'
+import { majorScale } from '../../scales'
+import { TextInput } from '../../text-input'
 import Tag from './Tag'
 
 const GET_KEY_FOR_TAG_DELIMITER = {
@@ -20,6 +19,17 @@ const GET_KEY_FOR_TAG_DELIMITER = {
 
 const emptyProps = {}
 const emptyArray = []
+
+const internalStyles = {
+  alignItems: 'center',
+  display: 'inline-flex',
+  flexWrap: 'wrap'
+}
+
+const pseudoSelectors = {
+  _focused: '&[aria-activedescendant]',
+  _disabled: '&[aria-disabled="true"]'
+}
 
 const TagInput = memo(
   forwardRef(function TagInput(props, ref) {
@@ -38,12 +48,10 @@ const TagInput = memo(
       onFocus,
       onInputChange,
       className,
-      inputProps = {},
+      inputProps = emptyProps,
       inputRef,
       ...rest
     } = props
-    const theme = useTheme()
-
     const [inputValue, setInputValue] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const id = useId('TagInput')
@@ -61,8 +69,7 @@ const TagInput = memo(
       let shouldClearInput = safeInvoke(onAdd, newValues)
 
       if (typeof onChange === 'function') {
-        shouldClearInput =
-          shouldClearInput || onChange(values.concat(newValues))
+        shouldClearInput = shouldClearInput || onChange(values.concat(newValues))
       }
 
       if (shouldClearInput !== false) {
@@ -122,9 +129,7 @@ const TagInput = memo(
 
     const handleRemoveTag = event => {
       // Using data attribute to simplify callback logic -- one handler for all children
-      const index = Number(
-        event.currentTarget.parentElement.getAttribute('data-tag-index')
-      )
+      const index = Number(event.currentTarget.parentElement.getAttribute('data-tag-index'))
       removeTagAtIndex(index)
     }
 
@@ -139,8 +144,7 @@ const TagInput = memo(
         <Tag
           key={`${tag}:${index}`}
           data-tag-index={index}
-          marginRight={majorScale(1)}
-          marginY="6px"
+          marginX={majorScale(1)}
           onRemove={disabled ? null : handleRemoveTag}
           isRemovable={!disabled}
           {...propsForElement}
@@ -150,37 +154,34 @@ const TagInput = memo(
       )
     }
 
-    const themedContainerClassName = theme.getTagInputClassName('default')
-    const textSize = theme.getTextSizeForControlHeight(height)
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
-    const themedInputClassName = cx(theme.getTextInputClassName('none'), inputProps.className)
+    const { className: themedContainerClassName, ...boxProps } = useStyleConfig(
+      'TagInput',
+      { appearance: 'default', height },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Box
         aria-disabled={disabled || undefined}
         aria-activedescendant={isFocused ? id : undefined}
-        borderRadius={borderRadius}
         className={cx(themedContainerClassName, className)}
-        paddingLeft={Math.round(height / 3.2)}
-        paddingRight={Math.round(height / 3.2)}
-        paddingY="2px"
         ref={ref}
-        {...rest}
         onBlur={handleBlur}
+        {...boxProps}
+        {...rest}
       >
         {values.map(maybeRenderTag)}
-        <Text
-          is="input"
+        <TextInput
+          appearance="none"
           id={id}
-          color={disabled ? 'muted' : undefined}
           disabled={disabled}
           flexGrow="1"
           height={height - 4}
-          size={textSize}
+          width="auto"
           type="text"
           value={inputValue}
           {...inputProps}
-          className={themedInputClassName}
           ref={inputRef}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
@@ -241,11 +242,7 @@ TagInput.propTypes = {
    */
   onRemove: PropTypes.func,
   /** Value or RegExp to split on pasted text or on enter keypress */
-  separator: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.instanceOf(RegExp),
-    PropTypes.oneOf([false])
-  ]),
+  separator: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp), PropTypes.oneOf([false])]),
   /** Provide props to tag component (actually `Badge`, for now). */
   tagProps: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /** Key to press in order to submit a new tag while typing.  */

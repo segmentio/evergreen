@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const TagIcon = memo(
   forwardRef(function TagIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="tag"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="tag" {...props} />
   })
 )

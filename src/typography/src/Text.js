@@ -1,39 +1,33 @@
 import React, { forwardRef, memo } from 'react'
-import cx from 'classnames'
-import { css as glamorCss } from 'glamor'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import { useStyleConfig } from '../../hooks'
 import { useTheme } from '../../theme'
+
+const emptyObject = {}
 
 const Text = memo(
   forwardRef(function Text(props, ref) {
+    const { className, color: colorProp = 'default', fontFamily = 'ui', size = 400, ...restProps } = props
+
     const theme = useTheme()
-    const {
-      className,
-      css,
-      size = 400,
-      color = 'default',
-      fontFamily = 'ui',
-      marginTop,
-      ...restProps
-    } = props
+    const { colors, fontFamilies } = theme
 
-    const { marginTop: defaultMarginTop, ...textStyle } = theme.getTextStyle(
-      size
-    )
+    const color = colorProp === 'none' || colorProp === 'default' ? 'default' : colorProp
 
-    const finalMarginTop =
-      marginTop === 'default' ? defaultMarginTop : marginTop
+    const themedFontFamily = fontFamilies[fontFamily] || fontFamily
+    const themedColor = colors[color] || (colors.text && colors.text[color]) || color
+
+    const textStyle = useStyleConfig('Text', { size }, emptyObject, emptyObject)
 
     return (
       <Box
         is="span"
         ref={ref}
-        color={theme.getTextColor(color)}
-        fontFamily={theme.getFontFamily(fontFamily)}
-        marginTop={finalMarginTop}
         {...textStyle}
-        className={cx(className, css ? glamorCss(css).toString() : undefined)}
+        fontFamily={themedFontFamily}
+        color={themedColor}
+        className={className}
         {...restProps}
       />
     )

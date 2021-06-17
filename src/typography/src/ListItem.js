@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types'
 import React, { forwardRef, memo } from 'react'
+import PropTypes from 'prop-types'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { minorScale } from '../../scales'
 import Text from './Text'
 
 const ListItem = memo(
   forwardRef(function ListItem(props, ref) {
-    const { children, size, icon, iconColor, ...rest } = props
+    const { children, icon, iconColor, size, ...rest } = props
 
     let paddingLeft
     if (size === 300) paddingLeft = minorScale(1)

@@ -1,10 +1,10 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box, { dimensions, spacing, position, layout } from 'ui-box'
-import FormFieldLabel from './FormFieldLabel'
 import FormFieldDescription from './FormFieldDescription'
-import FormFieldValidationMessage from './FormFieldValidationMessage'
 import FormFieldHint from './FormFieldHint'
+import FormFieldLabel from './FormFieldLabel'
+import FormFieldValidationMessage from './FormFieldValidationMessage'
 
 const FormField = memo(
   forwardRef(function FormField(props, ref) {
@@ -22,34 +22,19 @@ const FormField = memo(
 
     return (
       <Box {...rest} ref={ref}>
-        <FormFieldLabel
-          htmlFor={labelFor}
-          isAstrixShown={isRequired}
-          marginBottom={description ? 0 : 4}
-          {...labelProps}
-        >
-          {label}
-        </FormFieldLabel>
-        {typeof description === 'string' ? (
-          <FormFieldDescription marginBottom={4}>
-            {description}
-          </FormFieldDescription>
-        ) : (
-          description
-        )}
+        <Box display="flex" flexDirection="column" marginBottom={8}>
+          <FormFieldLabel htmlFor={labelFor} isAstrixShown={isRequired} {...labelProps}>
+            {label}
+          </FormFieldLabel>
+          {typeof description === 'string' ? <FormFieldDescription>{description}</FormFieldDescription> : description}
+        </Box>
         {children}
         {typeof validationMessage === 'string' ? (
-          <FormFieldValidationMessage marginTop={8}>
-            {validationMessage}
-          </FormFieldValidationMessage>
+          <FormFieldValidationMessage marginTop={8}>{validationMessage}</FormFieldValidationMessage>
         ) : (
           validationMessage
         )}
-        {typeof hint === 'string' ? (
-          <FormFieldHint marginTop={6}>{hint}</FormFieldHint>
-        ) : (
-          hint
-        )}
+        {typeof hint === 'string' ? <FormFieldHint marginTop={6}>{hint}</FormFieldHint> : hint}
       </Box>
     )
   })

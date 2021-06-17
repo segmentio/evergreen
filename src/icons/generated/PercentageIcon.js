@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const PercentageIcon = memo(
   forwardRef(function PercentageIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="percentage"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="percentage" {...props} />
   })
 )

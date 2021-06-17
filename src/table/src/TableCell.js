@@ -1,13 +1,12 @@
 import React, { memo, forwardRef, useState } from 'react'
-import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { toaster } from '../../toaster'
-import { useTheme } from '../../theme'
+import PropTypes from 'prop-types'
+import { useMergedRef, useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
-import { useMergedRef } from '../../hooks'
-import { TableRowConsumer } from './TableRowContext'
+import { toaster } from '../../toaster'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
+import { TableRowConsumer } from './TableRowContext'
 
 function executeArrowKeyOverride(override) {
   if (!override) {
@@ -28,6 +27,19 @@ function executeArrowKeyOverride(override) {
   override.focus()
 }
 
+const pseudoSelectors = {
+  _focus: '&[data-isselectable="true"]:focus, &[aria-expanded="true"][aria-haspopup="true"]'
+}
+
+const internalStyles = {
+  boxSizing: 'border-box',
+  flex: 1,
+  display: 'flex',
+  alignItems: 'center',
+  flexShrink: 0,
+  overflow: 'hidden'
+}
+
 const TableCell = memo(
   forwardRef(function TableCell(props, forwardedRef) {
     const {
@@ -43,36 +55,20 @@ const TableCell = memo(
       arrowKeysOverrides,
       ...rest
     } = props
-    const theme = useTheme()
+
     const [cellRef, setCellRef] = useState(null)
     const handleRef = useMergedRef(setCellRef, forwardedRef)
-
-    const styles = {
-      paddingX: 12,
-      boxSizing: 'border-box',
-      flex: 1,
-      display: 'flex',
-      alignItems: 'center',
-      flexShrink: 0,
-      overflow: 'hidden'
-    }
 
     const handleKeyDown = e => {
       const { arrowKeysOverrides = {} } = props
 
       if (isSelectable) {
         const { key } = e
-        if (
-          key === 'ArrowUp' ||
-          key === 'ArrowDown' ||
-          key === 'ArrowLeft' ||
-          key === 'ArrowRight'
-        ) {
+        if (key === 'ArrowUp' || key === 'ArrowDown' || key === 'ArrowLeft' || key === 'ArrowRight') {
           e.preventDefault()
           try {
             // Support arrow key overrides.
-            const override =
-              arrowKeysOverrides[key.slice('Arrow'.length).toLowerCase()]
+            const override = arrowKeysOverrides[key.slice('Arrow'.length).toLowerCase()]
             if (override === false) return
             if (override) return executeArrowKeyOverride(override)
 
@@ -89,7 +85,12 @@ const TableCell = memo(
       safeInvoke(onKeyDown, e)
     }
 
-    const themedClassName = theme.getTableCellClassName(appearance)
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'TableCell',
+      { appearance },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <TableRowConsumer>
@@ -103,11 +104,11 @@ const TableCell = memo(
               data-isselectable={isSelectable}
               onClick={onClick}
               onKeyDown={handleKeyDown}
-              {...styles}
+              {...boxProps}
               {...rest}
             >
               {children}
-              {rightView ? rightView : null}
+              {rightView || null}
             </Pane>
           )
         }}
@@ -144,30 +145,10 @@ TableCell.propTypes = {
    * A string will be used as a selector.
    */
   arrowKeysOverrides: PropTypes.shape({
-    up: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-      PropTypes.element,
-      PropTypes.oneOf([false])
-    ]),
-    down: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-      PropTypes.element,
-      PropTypes.oneOf([false])
-    ]),
-    left: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-      PropTypes.element,
-      PropTypes.oneOf([false])
-    ]),
-    right: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-      PropTypes.element,
-      PropTypes.oneOf([false])
-    ])
+    up: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element, PropTypes.oneOf([false])]),
+    down: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element, PropTypes.oneOf([false])]),
+    left: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element, PropTypes.oneOf([false])]),
+    right: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element, PropTypes.oneOf([false])])
   }),
 
   /**

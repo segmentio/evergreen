@@ -1,30 +1,22 @@
-import React, { forwardRef, useMemo } from 'react'
+import React, { forwardRef } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { useTheme } from '../../theme'
+import { useStyleConfig } from '../../hooks'
 
-/**
- * This implementation is a remix of the Icon component in Blueprintjs:
- * https://github.com/palantir/blueprint/blob/813e93f2/packages/core/src/components/icon/icon.tsx#L15
- * Refer to the LICENSE for BlueprintJS here: https://github.com/palantir/blueprint/blob/develop/LICENSE
- */
-
-const emptyObject = {}
+const pseudoSelectors = {}
+const internalStyles = {}
 
 const Icon = forwardRef(function Icon(
-  {
-    color = 'currentColor',
-    size = 16,
-    name,
-    title,
-    style = emptyObject,
-    svgPaths16,
-    svgPaths20,
-    ...svgProps
-  },
+  { className, color = 'currentColor', name, size = 16, svgPaths16, svgPaths20, title, ...svgProps },
   ref
 ) {
-  const theme = useTheme()
+  const { className: themedClassName, ...styleProps } = useStyleConfig(
+    'Icon',
+    { color },
+    pseudoSelectors,
+    internalStyles
+  )
   const SIZE_STANDARD = 16
   const SIZE_LARGE = 20
 
@@ -38,17 +30,14 @@ const Icon = forwardRef(function Icon(
 
   const viewBox = `0 0 ${pixelGridSize} ${pixelGridSize}`
 
-  const styles = useMemo(() => {
-    return color ? { ...style, fill: theme.getIconColor(color) } : style
-  }, [style, color])
-
   return (
     <Box
       is="svg"
       ref={ref}
+      className={cx(className, themedClassName)}
+      {...styleProps}
       {...svgProps}
       data-icon={name}
-      style={styles}
       width={size}
       height={size}
       viewBox={viewBox}
@@ -60,6 +49,12 @@ const Icon = forwardRef(function Icon(
 })
 
 Icon.propTypes = {
+  /**
+   * Class name passed to the component.
+   * Only use if you know what you are doing.
+   */
+  className: PropTypes.string,
+
   /**
    * Color of icon. Equivalent to setting CSS `fill` property.
    */
@@ -84,11 +79,6 @@ Icon.propTypes = {
    * By default, this is set to the icon's name for accessibility.
    */
   title: PropTypes.string,
-
-  /**
-   * CSS style properties.
-   */
-  style: PropTypes.object,
 
   svgPaths16: PropTypes.arrayOf(PropTypes.string).isRequired,
 

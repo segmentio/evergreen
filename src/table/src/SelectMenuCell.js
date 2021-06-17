@@ -1,10 +1,10 @@
-import React, { memo, useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
+import React, { memo, useState, useEffect, useCallback } from 'react'
 import debounce from 'lodash.debounce'
-import { SelectMenu } from '../../select-menu'
+import PropTypes from 'prop-types'
 import { CaretDownIcon } from '../../icons'
-import TextTableCell from './TextTableCell'
+import { SelectMenu } from '../../select-menu'
 import TableCell from './TableCell'
+import TextTableCell from './TextTableCell'
 
 const MIN_SELECT_MENU_WIDTH = 240
 const emptyProps = {}
@@ -48,6 +48,7 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
     getRef(ref)
   }
 
+  // TODO consider `useClickable`
   const handleKeyDown = (toggle, isShown, e) => {
     if (e.key === 'Enter') {
       e.preventDefault()
@@ -77,14 +78,14 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
     }
   }
 
-  const handleFocus = () => {
+  const handleFocus = useCallback(() => {
     setIsFocused(true)
-  }
+  }, [])
 
-  const handleBlur = () => {
+  const handleBlur = useCallback(() => {
     setShouldClickToggle(false)
     setIsFocused(false)
-  }
+  }, [])
 
   let cursor = 'default'
   if (disabled) {
@@ -101,12 +102,12 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
 
   return (
     <SelectMenu width={targetWidth} {...selectMenuProps}>
-      {({ toggle, getRef, isShown }) => {
+      {({ getRef, isShown, toggle }) => {
         return (
           <TextTableCell
             ref={onMainRef.bind(null, getRef)}
             onClick={handleClick.bind(null, toggle, isShown)}
-            onFocus={handleFocus.bind(null, toggle, isShown)}
+            onFocus={handleFocus}
             onBlur={handleBlur}
             isSelectable={isSelectable && !disabled}
             rightView={isSelectable ? <CaretDownIcon color="muted" /> : null}
@@ -122,7 +123,7 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
             onDoubleClick={handleDoubleClick.bind(null, toggle, isShown)}
             {...rest}
           >
-            {children ? children : placeholder}
+            {children || placeholder}
           </TextTableCell>
         )
       }}

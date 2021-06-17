@@ -1,12 +1,7 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import {
-  FormField,
-  FormFieldDescription,
-  FormFieldLabel,
-  FormFieldValidationMessage
-} from '..'
+import { FormField, FormFieldDescription, FormFieldLabel, FormFieldValidationMessage } from '..'
 
 storiesOf('form-field', module)
   .add('FormField', () => (
@@ -42,8 +37,6 @@ storiesOf('form-field', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <FormFieldValidationMessage>
-        FormFieldValidationMessage
-      </FormFieldValidationMessage>
+      <FormFieldValidationMessage>FormFieldValidationMessage</FormFieldValidationMessage>
     </Box>
   ))
