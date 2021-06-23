@@ -6,6 +6,7 @@ import { LockIcon } from '../../icons/generated/LockIcon'
 import { ThemeProvider } from '../../theme'
 import { classicTheme, defaultTheme } from '../../themes'
 import Button from '../src/Button'
+import IconButton from '../src/IconButton'
 
 describe.each([
   ['default', defaultTheme],
@@ -28,6 +29,10 @@ function makeButtonFixture(props = {}) {
       Test
     </Button>
   )
+}
+
+function makeIconButtonFixture(props = {}) {
+  return <IconButton data-testid="button" {...props} />
 }
 
 describe('Button', () => {
@@ -82,5 +87,20 @@ describe('Button', () => {
     expect(onClick).toHaveBeenCalledTimes(1)
     userEvent.keyboard('{space}')
     expect(onClick).toHaveBeenCalledTimes(2)
+  })
+})
+
+describe('IconButton', () => {
+  it('Passes through an icon when passes as a component reference', () => {
+    const { getByTestId } = render(makeIconButtonFixture({ icon: LockIcon }))
+    const container = getByTestId('button')
+    expect(container.querySelector('svg')).toHaveAttribute('data-icon', 'lock')
+  })
+  it('Passes through an instantiated component as `icon`', () => {
+    const { getByTestId } = render(makeIconButtonFixture({ icon: <LockIcon size={24} /> }))
+    const container = getByTestId('button')
+    const svg = container.querySelector('svg')
+    expect(window.getComputedStyle(svg).width).toEqual('24px')
+    expect(window.getComputedStyle(svg).height).toEqual('24px')
   })
 })
