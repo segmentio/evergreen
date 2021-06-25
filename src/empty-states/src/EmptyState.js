@@ -12,8 +12,8 @@ const HorizontalOrientation = ({
   anchorCta,
   background,
   description,
-  image,
-  imageBgColor,
+  icon,
+  iconBgColor,
   primaryCta,
   secondaryCta,
   title
@@ -40,11 +40,11 @@ const HorizontalOrientation = ({
             justifyContent="center"
             alignItems="center"
             borderRadius="50%"
-            backgroundColor={imageBgColor}
+            backgroundColor={iconBgColor}
             width={majorScale(9)}
             height={majorScale(9)}
           >
-            {React.cloneElement(image, { size: majorScale(4) })}
+            {React.cloneElement(icon, { size: majorScale(4) })}
           </Pane>
         </Pane>
         <Pane display="flex" flexDirection="column" paddingRight={majorScale(6)}>
@@ -74,7 +74,7 @@ const HorizontalOrientation = ({
 
 /* eslint-disable react/prop-types */
 
-const VerticalOrientation = ({ background, description, image, imageBgColor, primaryCta, title }) => {
+const VerticalOrientation = ({ background, description, icon, iconBgColor, primaryCta, title }) => {
   const { colors } = useTheme()
   const backgroundColor = background === 'light' ? 'white' : colors.gray75
 
@@ -96,11 +96,11 @@ const VerticalOrientation = ({ background, description, image, imageBgColor, pri
         justifyContent="center"
         alignItems="center"
         borderRadius="50%"
-        backgroundColor={imageBgColor}
+        backgroundColor={iconBgColor}
         width={majorScale(7)}
         height={majorScale(7)}
       >
-        {React.cloneElement(image, { size: majorScale(3) })}
+        {React.cloneElement(icon, { size: majorScale(3) })}
       </Pane>
       <Heading marginTop={majorScale(2)} textAlign="center">
         {title}
@@ -124,15 +124,15 @@ const SecondaryButton = props => {
 }
 
 const LinkButton = props => {
-  return <Link {...props} target="_blank" size={300} lineHeight="34px" />
+  return <Link {...props} size={300} lineHeight="34px" />
 }
 
 const EmptyState = ({
   anchorCta,
   background = 'light',
   description,
-  image,
-  imageBgColor,
+  icon,
+  iconBgColor,
   orientation = 'horizontal',
   primaryCta,
   secondaryCta,
@@ -142,8 +142,8 @@ const EmptyState = ({
     return (
       <VerticalOrientation
         title={title}
-        image={image}
-        imageBgColor={imageBgColor}
+        icon={icon}
+        iconBgColor={iconBgColor}
         background={background}
         description={description}
         primaryCta={primaryCta}
@@ -153,8 +153,8 @@ const EmptyState = ({
     return (
       <HorizontalOrientation
         title={title}
-        image={image}
-        imageBgColor={imageBgColor}
+        icon={icon}
+        iconBgColor={iconBgColor}
         background={background}
         description={description}
         primaryCta={primaryCta}
@@ -171,8 +171,8 @@ EmptyState.LinkButton = LinkButton
 
 EmptyState.propTypes = {
   title: PropTypes.string.isRequired,
-  image: PropTypes.element.isRequired,
-  imageBgColor: PropTypes.string.isRequired,
+  icon: PropTypes.element.isRequired,
+  iconBgColor: PropTypes.string.isRequired,
   orientation: PropTypes.oneOf(['vertical', 'horizontal']),
   description: PropTypes.string,
   background: PropTypes.oneOf(['light', 'dark']),

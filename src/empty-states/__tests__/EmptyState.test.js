@@ -12,88 +12,90 @@ describe('Empty States', () => {
       render(
         <EmptyState
           title="My Empty States"
-          image={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-          imageBgColor={defaultTheme.tokens.colors.gray200}
+          icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
+          iconBgColor={defaultTheme.tokens.colors.gray200}
         />
       )
     ).not.toThrowError()
   })
 
-  it('should render an image and a title', () => {
+  it('should render an icon and a title', () => {
     const { getByText } = render(
       <EmptyState
         title="My Empty States"
-        image={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        imageBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
+        iconBgColor={defaultTheme.tokens.colors.gray200}
       />
     )
-    expect(getByText('My Empty States')).toBeInTheDocument()
+    expect(getByText('My Empty States')).toBeVisible()
   })
 
   it('should render decription when passed in', () => {
     const { getByText } = render(
       <EmptyState
         title="My Empty States"
-        image={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        imageBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
+        iconBgColor={defaultTheme.tokens.colors.gray200}
         description="Some description"
       />
     )
-    expect(getByText('Some description')).toBeInTheDocument()
+    expect(getByText('Some description')).toBeVisible()
   })
 
   it('should render primary button when passed in', () => {
     const { getByRole } = render(
       <EmptyState
         title="My Empty States"
-        image={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        imageBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
+        iconBgColor={defaultTheme.tokens.colors.gray200}
         primaryCta={<EmptyState.PrimaryButton>Primary Action</EmptyState.PrimaryButton>}
       />
     )
-    expect(getByRole('button', { name: 'Primary Action' })).toBeInTheDocument()
+    expect(getByRole('button', { name: 'Primary Action' })).toBeVisible()
   })
 
   it('should render secondary button when passed in', () => {
     const { getByRole } = render(
       <EmptyState
         title="My Empty States"
-        image={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        imageBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
+        iconBgColor={defaultTheme.tokens.colors.gray200}
         secondaryCta={<EmptyState.SecondaryButton>Secondary Action</EmptyState.SecondaryButton>}
       />
     )
-    expect(getByRole('button', { name: 'Secondary Action' })).toBeInTheDocument()
+    expect(getByRole('button', { name: 'Secondary Action' })).toBeVisible()
   })
 
   it('should render link button when passed in', () => {
     const { getByRole } = render(
       <EmptyState
         title="My Empty States"
-        image={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        imageBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
+        iconBgColor={defaultTheme.tokens.colors.gray200}
         anchorCta={
-          <EmptyState.LinkButton href="https://segment.com/docs/">Link to Documentation</EmptyState.LinkButton>
+          <EmptyState.LinkButton href="https://segment.com/docs/" target="_blank">
+            Link to Documentation
+          </EmptyState.LinkButton>
         }
       />
     )
-    expect(getByRole('link')).toBeInTheDocument()
+    expect(getByRole('link')).toBeVisible()
   })
 
-  // Small Minimal Example with just image and title
-  // Not sure how to properly test svg
-  it('should render image and title in minimal popup', () => {
+  // Small Minimal Example with just icon and title
+  it('should render icon and title in minimal popup', () => {
     const { getByTestId } = render(
       <SmallMinimalExample
         popoverProps={{ isShown: true, statelessProps: { 'data-testid': 'empty-state-container' } }}
       />
     )
     const container = getByTestId('empty-state-container')
-    expect(container.querySelector('svg')).toBeInTheDocument()
+    expect(container.querySelector('svg')).toBeVisible()
+    expect(container.querySelector('svg')).toHaveAttribute('data-icon', 'hand-up')
   })
 
   // Small Example
-  it('should render image, title, description, CTA in popup', () => {
+  it('should render icon, title, description, CTA in popup', () => {
     const { getAllByText, getByRole, getByTestId } = render(
       <SmallExample popoverProps={{ isShown: true, statelessProps: { 'data-testid': 'empty-state-container' } }} />
     )
@@ -104,7 +106,8 @@ describe('Empty States', () => {
         'If you believe you should have accesss to this page, please check with your Workspace Owner or request access below.'
       )
     ).toHaveLength(1)
-    expect(getByRole('button', { name: 'Request Access' })).toBeInTheDocument()
-    expect(container.querySelector('svg')).toBeInTheDocument()
+    expect(getByRole('button', { name: 'Request Access' })).toBeVisible()
+    expect(container.querySelector('svg')).toBeVisible()
+    expect(container.querySelector('svg')).toHaveAttribute('data-icon', 'lock')
   })
 })

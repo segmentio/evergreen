@@ -21,8 +21,8 @@ const SmallExample = props => {
               background="light"
               title="You need permission to access these sources"
               orientation="vertical"
-              image={<LockIcon color={colors.blue300} />}
-              imageBgColor={colors.blue100}
+              icon={<LockIcon color={colors.blue300} />}
+              iconBgColor={colors.blue100}
               description="If you believe you should have accesss to this page, please check with your Workspace Owner or request access below."
               primaryCta={<EmptyState.PrimaryButton appearance="primary">Request Access</EmptyState.PrimaryButton>}
             />

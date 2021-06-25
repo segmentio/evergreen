@@ -21,8 +21,8 @@ const SmallMinimalExample = props => {
               background="light"
               title="No source selected"
               orientation="vertical"
-              image={<HandUpIcon color={colors.gray500} />}
-              imageBgColor={colors.gray300}
+              icon={<HandUpIcon color={colors.gray500} />}
+              iconBgColor={colors.gray300}
             />
           </Pane>
         }

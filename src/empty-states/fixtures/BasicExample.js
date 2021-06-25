@@ -13,8 +13,8 @@ const BasicExample = () => {
         background="dark"
         title="You need permission to access these sources"
         orientation="horizontal"
-        image={<LockIcon color={colors.orange500} />}
-        imageBgColor={colors.orange100}
+        icon={<LockIcon color={colors.orange500} />}
+        iconBgColor={colors.orange100}
         description="If you believe you should have accesss to this page, please check with your Workspace Owner or request access below."
         primaryCta={<EmptyState.PrimaryButton>Request Access</EmptyState.PrimaryButton>}
         secondaryCta={<EmptyState.SecondaryButton>Do Something Else</EmptyState.SecondaryButton>}

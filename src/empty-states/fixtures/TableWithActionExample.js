@@ -22,8 +22,8 @@ const TableWithActionExample = () => {
             background="light"
             title="No audiences found"
             orientation="horizontal"
-            image={<SearchIcon color={colors.gray500} />}
-            imageBgColor={colors.gray200}
+            icon={<SearchIcon color={colors.gray500} />}
+            iconBgColor={colors.gray200}
             description="Click the button below to create a new Audience. Once done, you will see it come up in this list."
             primaryCta={<EmptyState.PrimaryButton>Create Audience</EmptyState.PrimaryButton>}
           />
