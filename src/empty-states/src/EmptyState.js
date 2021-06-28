@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { Button } from '../../buttons'
 import { Pane } from '../../layers'
@@ -8,7 +8,7 @@ import { Link, Heading, Paragraph } from '../../typography'
 
 /* eslint-disable react/prop-types */
 
-const HorizontalOrientation = ({
+const HorizontalOrientation = memo(function HorizontalOrientation({
   anchorCta,
   background,
   description,
@@ -17,7 +17,7 @@ const HorizontalOrientation = ({
   primaryCta,
   secondaryCta,
   title
-}) => {
+}) {
   const hasFooter = primaryCta || secondaryCta || anchorCta
   const { colors } = useTheme()
 
@@ -68,13 +68,20 @@ const HorizontalOrientation = ({
       </Pane>
     </Pane>
   )
-}
+})
 
 /* eslint-enable react/prop-types */
 
 /* eslint-disable react/prop-types */
 
-const VerticalOrientation = ({ background, description, icon, iconBgColor, primaryCta, title }) => {
+const VerticalOrientation = memo(function VerticalOrientation({
+  background,
+  description,
+  icon,
+  iconBgColor,
+  primaryCta,
+  title
+}) {
   const { colors } = useTheme()
   const backgroundColor = background === 'light' ? 'white' : colors.gray75
 
@@ -111,8 +118,7 @@ const VerticalOrientation = ({ background, description, icon, iconBgColor, prima
       {primaryCta && React.cloneElement(primaryCta, { marginTop: minorScale(5) })}
     </Pane>
   )
-}
-
+})
 /* eslint-enable react/prop-types */
 
 const PrimaryButton = props => {
@@ -127,7 +133,7 @@ const LinkButton = props => {
   return <Link {...props} size={300} lineHeight="34px" />
 }
 
-const EmptyState = ({
+const EmptyState = memo(function EmptyState({
   anchorCta,
   background = 'light',
   description,
@@ -137,7 +143,7 @@ const EmptyState = ({
   primaryCta,
   secondaryCta,
   title
-}) => {
+}) {
   if (orientation === 'vertical') {
     return (
       <VerticalOrientation
@@ -163,7 +169,7 @@ const EmptyState = ({
       />
     )
   }
-}
+})
 
 EmptyState.PrimaryButton = PrimaryButton
 EmptyState.SecondaryButton = SecondaryButton
