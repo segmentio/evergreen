@@ -408,9 +408,10 @@ const IA: IA = {
       {
         id: 'empty-states',
         name: 'Empty States',
+        inProgress: true,
         description: 'Empty States are a UI affordance for when there is no data available to display to an end-user.',
         image: '/Empty State.png',
-        inProgress: true,
+
         imageHighlight: '/Empty State-highlight.png',
       },
       {
