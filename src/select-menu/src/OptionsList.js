@@ -120,6 +120,8 @@ const OptionsList = memo(function OptionsList(props) {
 
     let nextIndex = getCurrentIndex() + 1
 
+    // Set selected options in the arrow keys
+    // 'selected' variable does not change past first option
     if (nextIndex === options.length) {
       nextIndex = 0
     }
@@ -207,6 +209,7 @@ const OptionsList = memo(function OptionsList(props) {
   }, [hasFilter, searchRef, handleKeyDown])
 
   useEffect(() => {
+    // this is not called on arrow keys
     if (selected !== selectedOptions) {
       setSelectedOptions(selected)
     }
