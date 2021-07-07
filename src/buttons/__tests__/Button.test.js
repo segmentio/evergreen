@@ -61,7 +61,7 @@ describe('Button', () => {
     const container = getByTestId('button')
 
     expect(() => userEvent.click(container)).toThrowError()
-    expect(container.querySelector('svg')).toBeInTheDocument()
+    expect(container.querySelector('svg')).toBeVisible()
     expect(onClick).toHaveBeenCalledTimes(0)
   })
   it('renders an icon in either the `iconBefore` props', () => {
