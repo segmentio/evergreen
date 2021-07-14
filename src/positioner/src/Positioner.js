@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useRef } from 'react'
+import React, { memo, useState, useLayoutEffect, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import { StackingOrder, Position } from '../../constants'
@@ -61,8 +61,65 @@ const Positioner = memo(function Positioner(props) {
   const setTargetRef = useMergedRef(targetRef)
   const getRef = useMergedRef(positionerRef)
 
+  const update = useCallback(
+    (prevHeight = 0, prevWidth = 0) => {
+      if (!isShown || !targetRef.current || !positionerRef.current) return
+
+      const targetRect = targetRef.current.getBoundingClientRect()
+
+      const hasEntered = positionerRef.current.getAttribute('data-state') === 'entered'
+
+      const viewportHeight = document.documentElement.clientHeight
+      const viewportWidth = document.documentElement.clientWidth
+
+      let height
+      let width
+      if (hasEntered) {
+        // Only when the animation is done should we opt-in to `getBoundingClientRect`
+        const positionerRect = positionerRef.current.getBoundingClientRect()
+
+        // https://github.com/segmentio/evergreen/issues/255
+        // We need to ceil the width and height to prevent jitter when
+        // the window is zoomed (when `window.devicePixelRatio` is not an integer)
+        height = Math.round(positionerRect.height)
+        width = Math.round(positionerRect.width)
+      } else {
+        // When the animation is in flight use `offsetWidth/Height` which
+        // does not calculate the `transform` property as part of its result.
+        // There is still change on jitter during the animation (although unoticable)
+        // When the browser is zoomed in — we fix this with `Math.max`.
+        height = Math.max(positionerRef.current.offsetHeight, prevHeight)
+        width = Math.max(positionerRef.current.offsetWidth, prevWidth)
+      }
+
+      const { rect, transformOrigin } = getPosition({
+        position,
+        targetRect,
+        targetOffset,
+        dimensions: {
+          height,
+          width
+        },
+        viewport: {
+          width: viewportWidth,
+          height: viewportHeight
+        },
+        viewportOffset: bodyOffset
+      })
+
+      setDimensions({
+        left: rect.left,
+        top: rect.top,
+        height,
+        width,
+        transformOrigin
+      })
+    },
+    [isShown, bodyOffset, position, targetOffset]
+  )
+
   // Call `update` whenever the component has "entered" and dimensions change
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (transitionState.current === 'entered') {
       latestAnimationFrame.current = requestAnimationFrame(() => {
         update(previousDimensions.height, previousDimensions.width)
@@ -74,65 +131,13 @@ const Positioner = memo(function Positioner(props) {
         cancelAnimationFrame(latestAnimationFrame.current)
       }
     }
-  }, [dimensions])
+    // `previousDimensions` is a ref
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dimensions, update])
 
   const handleEnter = () => {
     transitionState.current = 'entered'
     update()
-  }
-
-  const update = (prevHeight = 0, prevWidth = 0) => {
-    if (!isShown || !targetRef.current || !positionerRef.current) return
-
-    const targetRect = targetRef.current.getBoundingClientRect()
-
-    const hasEntered = positionerRef.current.getAttribute('data-state') === 'entered'
-
-    const viewportHeight = document.documentElement.clientHeight
-    const viewportWidth = document.documentElement.clientWidth
-
-    let height
-    let width
-    if (hasEntered) {
-      // Only when the animation is done should we opt-in to `getBoundingClientRect`
-      const positionerRect = positionerRef.current.getBoundingClientRect()
-
-      // https://github.com/segmentio/evergreen/issues/255
-      // We need to ceil the width and height to prevent jitter when
-      // the window is zoomed (when `window.devicePixelRatio` is not an integer)
-      height = Math.round(positionerRect.height)
-      width = Math.round(positionerRect.width)
-    } else {
-      // When the animation is in flight use `offsetWidth/Height` which
-      // does not calculate the `transform` property as part of its result.
-      // There is still change on jitter during the animation (although unoticable)
-      // When the browser is zoomed in — we fix this with `Math.max`.
-      height = Math.max(positionerRef.current.offsetHeight, prevHeight)
-      width = Math.max(positionerRef.current.offsetWidth, prevWidth)
-    }
-
-    const { rect, transformOrigin } = getPosition({
-      position,
-      targetRect,
-      targetOffset,
-      dimensions: {
-        height,
-        width
-      },
-      viewport: {
-        width: viewportWidth,
-        height: viewportHeight
-      },
-      viewportOffset: bodyOffset
-    })
-
-    setDimensions({
-      left: rect.left,
-      top: rect.top,
-      height,
-      width,
-      transformOrigin
-    })
   }
 
   const handleExited = () => {

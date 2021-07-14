@@ -25,6 +25,8 @@ export function useClickable({ disabled = false, onKeyDown: onKeyDownHandler, ta
         event.currentTarget.click()
       }
     },
+    // onKeyDownRef is a ref, but eslint can't figure that out
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [disabled]
   )
 
