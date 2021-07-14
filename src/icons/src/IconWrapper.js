@@ -8,7 +8,7 @@ import Box from 'ui-box'
  * Box props are applied to the outer Box container, and Evergreen icon-specific props are added to the icon element.
  */
 export const IconWrapper = memo(
-  forwardRef(function Icon({ icon, color, size, title, ...props }, ref) {
+  forwardRef(function Icon({ color, icon, size, title, ...props }, ref) {
     if (!icon || typeof icon === 'string') {
       return null
     }
@@ -24,11 +24,7 @@ export const IconWrapper = memo(
       const Component = icon
       iconWithProps = <Component ref={ref} {...iconProps} />
     } else if (React.isValidElement(icon)) {
-      iconWithProps = React.cloneElement(icon, {
-        ...iconProps,
-        ...icon.props,
-        ref
-      })
+      iconWithProps = React.cloneElement(icon, { ...iconProps, ...icon.props, ref })
     }
 
     return (

@@ -1,0 +1,318 @@
+## Text components
+
+- [**Heading**](#heading_component): used for headings. A `h2` element by default.
+- [**Text**](#text_component): used for single line text. A `span` element by default.
+- [**Paragraph**](#paragraph_component): used for multiline text. A `p` element by default.
+- [**Link**](#link_component): used for links. A `a` element by default.
+- [**Strong**](#strong_component): used to make text strong. A `strong` element by default.
+- [**Small**](#small_component): used for inline small text. A `small` element by default.
+- [**Pre**](#pre_component): used for preformatted content. A `pre` element by default.
+- [**Code**](#code_component): used for inline code. A `code` element by default.
+
+## List components
+
+- [**OrderedList**](#heading_orderedlist_component): used for ordered lists. A `ol` element.
+- [**UnorderedList**](#heading_unorderedlist_component): used for unordered lists. A `ul` element.
+- [**ListItem**](#heading_listitem_component): used as the list item in either an unordered list, or ordered list. A `li` element.
+
+## Font families
+
+Evergreen uses three font family stacks, `ui`, `display` and `mono`.
+Text components will set the font family accordingly to their use case.
+There is not need for you to override this on a component level.
+
+# Heading component
+
+The `Heading` component is used for all headings.
+
+The size options are: `100`, `200`, `300`, `400`, `500` (default), `600`, `700`, `800`, `900`.
+
+```jsx
+<Pane>
+  <Heading size={100} marginTop={16}>
+    100: The quick brown fox jumps over the lazy dog
+  </Heading>
+  <Heading size={200} marginTop={16}>
+    200: The quick brown fox jumps over the lazy dog
+  </Heading>
+  <Heading size={300} marginTop={16}>
+    300: The quick brown fox jumps over the lazy dog
+  </Heading>
+  <Heading size={400} marginTop={16}>
+    400: The quick brown fox jumps over the lazy dog
+  </Heading>
+  <Heading size={500} marginTop={24}>
+    500: The quick brown fox jumps over the lazy dog
+  </Heading>
+  <Heading size={600} marginTop={28}>
+    600: The quick brown fox jumps over the lazy dog
+  </Heading>
+  <Heading size={700} marginTop={40}>
+    700: The quick brown fox jumps over the lazy dog
+  </Heading>
+  <Heading size={800} marginTop={40}>
+    800: The quick brown fox jumps over the lazy dog
+  </Heading>
+  <Heading size={900} marginTop={52}>
+    900: The quick brown fox jumps over the lazy dog
+  </Heading>
+</Pane>
+```
+
+## Changing the semantic element
+
+The `Heading` component will always render a `h2` until you specify otherwise with the `is` property.
+It’s important to realize that the style of a heading is independent from the semantic underlying element.
+
+```jsx
+<Heading is="h3">Heading h3</Heading>
+```
+
+# Text component
+
+The `Text` component is used for single line text.
+The component renders a `span` element by default.
+If you need a multiline paragraph use the `Paragraph` component.
+
+The size options are: `300`, `400` (default), `500`
+
+```jsx
+<div>
+  <div>
+    <Text size={300}>The quick brown fox jumps over the lazy dog</Text>
+  </div>
+  <div>
+    <Text size={400}>The quick brown fox jumps over the lazy dog</Text>
+  </div>
+  <div>
+    <Text size={500}>The quick brown fox jumps over the lazy dog</Text>
+  </div>
+</div>
+```
+
+## Set a muted color on a Text component
+
+```jsx
+<Text color="muted">The quick brown fox jumps over the lazy dog</Text>
+```
+
+# Paragraph component
+
+The `Paragraph` component is used for multiline text.
+This renders a `p` element by default.
+
+The size options are: `300`, `400` (default), `500`
+
+```jsx
+<div>
+  <Paragraph size={300} marginTop={12}>
+    Size 300. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </Paragraph>
+  <Paragraph size={400} marginTop={12}>
+    Size 400. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </Paragraph>
+  <Paragraph marginTop={16}>
+    Size 500. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </Paragraph>
+</div>
+```
+
+## Set a muted color on a paragraph
+
+```jsx
+<Paragraph color="muted">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+  esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum.
+</Paragraph>
+```
+
+# Link component
+
+The `Link` component is used for anchor links.
+This component renders a `a` element by default.
+
+The size options are: `300`, `400` (default), `500`
+
+```jsx
+<div>
+  <Link href="#" marginRight={12}>
+    Default
+  </Link>
+  <Link href="#" marginRight={12} color="neutral">
+    Neutral
+  </Link>
+</div>
+```
+
+# Strong component
+
+The `Strong` component renders strong text.
+This component renders a `strong` element by default.
+Make sure to set the `size` property if you are using this within a other text component such as a `Paragraph`.
+
+```jsx
+<div>
+  <div>
+    <Strong size={300}>The quick brown fox jumps over the lazy dog</Strong>
+  </div>
+  <div>
+    <Strong size={400}>The quick brown fox jumps over the lazy dog</Strong>
+  </div>
+  <div>
+    <Strong size={500}>The quick brown fox jumps over the lazy dog</Strong>
+  </div>
+</div>
+```
+
+# Small component
+
+The `Small` component works only inside other text components.
+
+```jsx
+<Paragraph>
+  The <Small>small</Small> component can only be used in a other text component
+</Paragraph>
+```
+
+# Code component
+
+The `Code` component is based on the `Text` component but renders a `code` element by default.
+
+```jsx
+<div>
+  <div>
+    <Code size={300}>The quick brown fox jumps over the lazy dog</Code>
+  </div>
+  <div>
+    <Code size={400}>The quick brown fox jumps over the lazy dog</Code>
+  </div>
+  <div>
+    <Code size={500}>The quick brown fox jumps over the lazy dog</Code>
+  </div>
+  <div>
+    <Code size={300} appearance="minimal">
+      The quick brown fox jumps over the lazy dog
+    </Code>
+  </div>
+  <div>
+    <Code size={400} appearance="minimal">
+      The quick brown fox jumps over the lazy dog
+    </Code>
+  </div>
+  <div>
+    <Code size={500} appearance="minimal">
+      The quick brown fox jumps over the lazy dog
+    </Code>
+  </div>
+</div>
+```
+
+# Pre component
+
+The `Pre` component renders a chunk of preformatted text.
+This component renders a `pre` element by default.
+
+```jsx
+<Pre>Preformatted text.</Pre>
+```
+
+# UnorderedList component
+
+```jsx
+<UnorderedList>
+  <ListItem>Lorem ipsum dolor sit amet</ListItem>
+  <ListItem>Consectetur adipiscing elit</ListItem>
+  <ListItem>Integer molestie lorem at massa</ListItem>
+  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+</UnorderedList>
+```
+
+## Changing the size of all list items in a UnorderedList
+
+```jsx
+<UnorderedList size={300}>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+</UnorderedList>
+```
+
+## Adding icons to a list
+
+The icon property has access to all available icons.
+
+### Set icons for all list items on the list
+
+```jsx
+<UnorderedList icon={TickIcon} iconColor="success">
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+</UnorderedList>
+```
+
+### Set icons on each individual list item
+
+```jsx
+<UnorderedList>
+  <ListItem icon={TickCircleIcon} iconColor="success">
+    Lorem ipsum dolar set amet
+  </ListItem>
+  <ListItem icon={TickCircleIcon} iconColor="success">
+    Lorem ipsum dolar set amet
+  </ListItem>
+  <ListItem icon={BanCircleIcon} iconColor="danger">
+    Lorem ipsum dolar set amet
+  </ListItem>
+  <ListItem icon={BanCircleIcon} iconColor="danger">
+    Lorem ipsum dolar set amet
+  </ListItem>
+</UnorderedList>
+```
+
+# OrderedList component
+
+```jsx
+<OrderedList>
+  <ListItem>Lorem ipsum dolor sit amet</ListItem>
+  <ListItem>Consectetur adipiscing elit</ListItem>
+  <ListItem>Integer molestie lorem at massa</ListItem>
+  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+</OrderedList>
+```
+
+## Changing the size of all list items in a OrderedList
+
+```jsx
+<OrderedList size={300}>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+  <ListItem>Lorem ipsum dolar set amet</ListItem>
+</OrderedList>
+```
+
+# ListItem component
+
+```jsx
+<ListItem>List item. Use inside of a UnorderedList or OrderedList.</ListItem>
+```

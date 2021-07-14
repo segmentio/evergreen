@@ -1,75 +1,79 @@
-import React, { memo, forwardRef, useState, useEffect } from 'react'
+import React, { memo, forwardRef, useState, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import Box, { spacing, position, layout, dimensions } from 'ui-box'
-import safeInvoke from '../../lib/safe-invoke'
+import { spacing, position, layout, dimensions } from 'ui-box'
+import { Button } from '../../buttons'
+import { Group } from '../../group'
 import { useId } from '../../hooks'
-import SegmentedControlRadio from './SegmentedControlRadio'
+import safeInvoke from '../../lib/safe-invoke'
+import warning from '../../lib/warning'
+
+function isControlled(value) {
+  return typeof value !== 'undefined' && value !== null
+}
 
 const SegmentedControl = memo(
   forwardRef(function SegmentedControl(props, ref) {
-    const {
-      value,
-      name,
-      height = 32,
-      options,
-      onChange,
-      defaultValue,
-      disabled,
-      ...rest
-    } = props
+    const { defaultValue, disabled, height, name, onChange, options, size, value, ...rest } = props
 
     const groupName = useId('SegmentedControl')
 
-    const isControlled = () => {
-      return typeof value !== 'undefined' && value !== null
+    if (process.env.NODE_ENV !== 'production') {
+      warning(
+        true,
+        '<SegmentedControl> is deprecated and will be removed in the next major verison of Evergreen. Prefer Tabs for navigational elements, or form components / button groups for other use cases.'
+      )
     }
 
     const getDefaultValue = () => {
-      if (isControlled()) {
+      if (isControlled(value)) {
         return value
       }
 
-      return typeof defaultValue !== 'undefined' && defaultValue !== null
-        ? defaultValue
-        : options[0].value
+      return typeof defaultValue !== 'undefined' && defaultValue !== null ? defaultValue : options[0].value
     }
 
     const [activeValue, setActiveValue] = useState(getDefaultValue())
 
     useEffect(() => {
-      if (isControlled() && value !== activeValue) {
+      if (isControlled(value)) {
         setActiveValue(value)
       }
     }, [value])
 
-    const handleChange = newValue => {
-      // Save a render cycle when it's a controlled input
-      if (!isControlled()) {
-        setActiveValue(newValue)
-      }
+    const handleChange = useCallback(
+      event => {
+        event.preventDefault()
+        const newValue = event.target.value
 
-      safeInvoke(onChange, newValue)
-    }
+        // Save a render cycle when it's a controlled input
+        if (!isControlled(value)) {
+          setActiveValue(newValue)
+        }
+
+        safeInvoke(onChange, newValue)
+      },
+      [value, onChange]
+    )
 
     return (
-      <Box display="flex" marginRight={-1} height={height} ref={ref} {...rest}>
+      <Group ref={ref} display="flex" {...rest}>
         {options.map((option, index) => (
-          <SegmentedControlRadio
+          <Button
             key={option.value}
             id={groupName + index}
             name={name || groupName}
-            label={option.label}
             value={String(option.value)}
-            height={height}
-            checked={activeValue === option.value}
-            onChange={handleChange.bind(null, option.value)}
-            appearance="default"
-            isFirstItem={index === 0}
-            isLastItem={index === options.length - 1}
             disabled={disabled}
-          />
+            size={size}
+            height={height}
+            isActive={activeValue === String(option.value)}
+            onClick={handleChange}
+            flex="1"
+          >
+            {option.label}
+          </Button>
         ))}
-      </Box>
+      </Group>
     )
   })
 )
@@ -89,31 +93,19 @@ SegmentedControl.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.node.isRequired,
-      value: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-        PropTypes.bool
-      ]).isRequired
+      value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]).isRequired
     })
   ).isRequired,
 
   /**
    * The current value of the Segmented Control when controlled.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.bool
-  ]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
 
   /**
    * The default value of the Segmented Control when uncontrolled.
    */
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.bool
-  ]),
+  defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
 
   /**
    * Function called when the value changes.
@@ -126,9 +118,9 @@ SegmentedControl.propTypes = {
   name: PropTypes.string,
 
   /**
-   * The height of the Segmented Control.
+   * The size of the Segmented Control.
    */
-  height: PropTypes.number,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 
   /**
    * When true, the Segmented Control is disabled.

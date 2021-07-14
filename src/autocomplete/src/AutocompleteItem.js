@@ -1,20 +1,17 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import { Image } from '../../image'
 import Option from '../../select-menu/src/Option'
 
 const AutocompleteItem = memo(
   forwardRef(function AutocompleteItem(props, ref) {
-    const { isHighlighted, isSelected, style, children, ...restProps } = props
+    const { children, isHighlighted, isSelected, style, ...restProps } = props
 
     return (
-      <Option
-        ref={ref}
-        isHighlighted={isHighlighted}
-        isSelected={isSelected}
-        label={children}
-        style={style}
-        {...restProps}
-      />
+      <Option ref={ref} isHighlighted={isHighlighted} isSelected={isSelected} style={style} {...restProps}>
+        {restProps.icon && <Image src={restProps.icon} width={24} marginRight={8} />}
+        {children}
+      </Option>
     )
   })
 )

@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
-import { Text } from '../../typography'
-import { Position } from '../../constants'
-import { Button } from '../../buttons'
-import { InfoSignIcon } from '../../icons'
 import { Tooltip } from '..'
+import { Button } from '../../buttons'
+import { Position } from '../../constants'
+import { InfoSignIcon } from '../../icons'
+import { Text } from '../../typography'
 
 storiesOf('tooltip', module)
   .add('Tooltip', () => (
@@ -41,12 +41,7 @@ storiesOf('tooltip', module)
     </Box>
   ))
   .add('Positions', () => (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      height="100vh"
-    >
+    <Box display="flex" alignItems="center" justifyContent="center" height="100vh">
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'

@@ -1,15 +1,17 @@
 import React, { memo } from 'react'
+import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import { Pane } from '../../layers'
-import { Paragraph, Heading } from '../../typography'
-import { Overlay } from '../../overlay'
 import { Button, IconButton } from '../../buttons'
+import { useStyleConfig } from '../../hooks'
 import { CrossIcon } from '../../icons'
+import { Pane } from '../../layers'
+import { Overlay } from '../../overlay'
+import { Paragraph, Heading } from '../../typography'
 
 const animationEasing = {
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`
+  deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)'
 }
 
 const ANIMATION_DURATION = 200
@@ -78,14 +80,10 @@ const Dialog = memo(function Dialog({
   topOffset = '12vmin',
   width = 560
 }) {
-  const sideOffsetWithUnit = Number.isInteger(sideOffset)
-    ? `${sideOffset}px`
-    : sideOffset
+  const sideOffsetWithUnit = Number.isInteger(sideOffset) ? `${sideOffset}px` : sideOffset
   const maxWidth = `calc(100% - ${sideOffsetWithUnit} * 2)`
 
-  const topOffsetWithUnit = Number.isInteger(topOffset)
-    ? `${topOffset}px`
-    : topOffset
+  const topOffsetWithUnit = Number.isInteger(topOffset) ? `${topOffset}px` : topOffset
   const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
 
   const renderChildren = close => {
@@ -108,19 +106,17 @@ const Dialog = memo(function Dialog({
     return node
   }
 
+  const themedHeaderProps = useStyleConfig('DialogHeader', emptyProps, emptyProps, emptyProps)
+  const themedBodyProps = useStyleConfig('DialogBody', emptyProps, emptyProps, emptyProps)
+  const themedFooterProps = useStyleConfig('DialogFooter', emptyProps, emptyProps, emptyProps)
+
   const renderHeader = close => {
     if (!header && !hasHeader) {
       return undefined
     }
 
     return (
-      <Pane
-        padding={16}
-        flexShrink={0}
-        borderBottom="muted"
-        display="flex"
-        alignItems="center"
-      >
+      <Pane flexShrink={0} display="flex" alignItems="center" {...themedHeaderProps}>
         {header ? (
           renderNode(header, close)
         ) : (
@@ -128,13 +124,7 @@ const Dialog = memo(function Dialog({
             <Heading is="h4" size={600} flex="1">
               {title}
             </Heading>
-            {hasClose && (
-              <IconButton
-                appearance="minimal"
-                icon={CrossIcon}
-                onClick={() => onCancel(close)}
-              />
-            )}
+            {hasClose && <IconButton appearance="minimal" icon={CrossIcon} onClick={() => onCancel(close)} />}
           </>
         )}
       </Pane>
@@ -147,8 +137,8 @@ const Dialog = memo(function Dialog({
     }
 
     return (
-      <Pane borderTop="muted" clearfix>
-        <Pane padding={16} float="right">
+      <Pane display="flex" justifyContent="flex-end" {...themedFooterProps}>
+        <Pane>
           {footer ? (
             renderNode(footer, close)
           ) : (
@@ -164,10 +154,10 @@ const Dialog = memo(function Dialog({
                 tabIndex={0}
                 marginLeft={8}
                 appearance="primary"
+                intent={intent}
                 isLoading={isConfirmLoading}
                 disabled={isConfirmDisabled}
                 onClick={() => onConfirm(close)}
-                intent={intent}
               >
                 {confirmLabel}
               </Button>
@@ -177,6 +167,8 @@ const Dialog = memo(function Dialog({
       </Pane>
     )
   }
+
+  const { className: containerClassName, remainingContainerProps } = containerProps
 
   return (
     <Overlay
@@ -193,7 +185,7 @@ const Dialog = memo(function Dialog({
       }}
       preventBodyScrolling={preventBodyScrolling}
     >
-      {({ state, close }) => (
+      {({ close, state }) => (
         <Pane
           role="dialog"
           backgroundColor="white"
@@ -206,9 +198,9 @@ const Dialog = memo(function Dialog({
           marginY={topOffsetWithUnit}
           display="flex"
           flexDirection="column"
-          css={animationStyles}
+          className={cx(css(animationStyles).toString(), containerClassName)}
           data-state={state}
-          {...containerProps}
+          {...remainingContainerProps}
         >
           {renderHeader(close)}
 
@@ -216,9 +208,9 @@ const Dialog = memo(function Dialog({
             data-state={state}
             display="flex"
             overflow="auto"
-            padding={16}
             flexDirection="column"
             minHeight={minHeightContent}
+            {...themedBodyProps}
             {...contentContainerProps}
           >
             <Pane>{renderChildren(close)}</Pane>

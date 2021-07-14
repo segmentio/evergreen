@@ -1,102 +1,103 @@
 import React, { memo, forwardRef } from 'react'
-import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { dimensions, spacing, position, layout } from 'ui-box'
+import PropTypes from 'prop-types'
+import Box, { spacing, dimensions, position, layout } from 'ui-box'
+import { useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
-import { Text } from '../../typography'
+import { getTextPropsForControlHeight } from '../../lib/deprecated-theme-helpers'
 import { Spinner } from '../../spinner'
-import { useTheme } from '../../theme'
 
-/* eslint-disable-next-line react/prop-types */
-const ButtonIcon = memo(function ButtonIcon({ icon, size, spacing, edge }) {
+/* eslint-disable react/prop-types */
+const ButtonIcon = memo(function ButtonIcon({ edge, icon, size, spacing }) {
   if (!icon) return null
 
-  const edgeMargin = -Math.round(spacing * 0.2)
+  const relativeSpace = typeof spacing === 'number' ? spacing : size
+  const edgeMargin = -Math.round(relativeSpace * 0.25)
   const innerMargin = Math.round(size * 0.7)
   const marginLeft = edge === 'start' ? edgeMargin : innerMargin
   const marginRight = edge === 'end' ? edgeMargin : innerMargin
 
-  return (
-    <IconWrapper
-      icon={icon}
-      size={size}
-      marginLeft={marginLeft}
-      marginRight={marginRight}
-    />
-  )
+  return <IconWrapper icon={icon} size={size} marginLeft={marginLeft} marginRight={marginRight} />
 })
+/* eslint-enable react/prop-types */
 
-const styles = {
+export const internalStyles = {
   position: 'relative',
-  fontFamily: 'ui',
   fontWeight: 500,
   display: 'inline-flex',
   alignItems: 'center',
-  flexWrap: 'nowrap'
+  flexWrap: 'nowrap',
+  justifyContent: 'center',
+  textDecoration: 'none',
+  verticalAlign: 'middle',
+  border: 'none',
+  outline: 'none',
+  userSelect: 'none',
+  cursor: 'pointer',
+  whiteSpace: 'nowrap',
+  WebkitFontSmoothing: 'antialiased',
+  WebkitAppearance: 'none',
+  MozAppearance: 'none',
+  '&::-moz-focus-inner ': {
+    border: 0
+  }
+}
+
+export const pseudoSelectors = {
+  _active: '&:not([disabled]):active, &:not([disabled])[aria-expanded="true"], &:not([disabled])[data-active]',
+  _disabled: '&[disabled]',
+  _focus: '&:not([disabled]):focus',
+  _focusAndActive:
+    '&:not([disabled]):focus:active, &:not([disabled])[aria-expanded="true"]:focus, &:not([disabled])[data-active]:focus',
+  _hover: '&:not([disabled]):hover'
+}
+
+export const getIconSizeForButton = height => {
+  if (height <= 28) return 12
+  if (height <= 32) return 14
+  if (height <= 40) return 16
+  if (height <= 48) return 18
+  return 20
 }
 
 const Button = memo(
   forwardRef(function Button(props, ref) {
-    const theme = useTheme()
-
     const {
-      className,
-
-      intent = 'none',
-      height = 32,
-      isActive = false,
-      children,
-      disabled,
       appearance = 'default',
-      isLoading,
-
-      // Paddings
-      paddingRight,
-      paddingLeft,
-      paddingTop = 0,
-      paddingBottom = 0,
-
-      // Icons
-      iconBefore,
+      children,
+      className,
+      color,
+      disabled,
       iconAfter,
-
+      iconBefore,
+      intent = 'none',
+      is = 'button',
+      isActive = false,
+      isLoading,
       ...restProps
     } = props
 
-    const themedClassName = theme.getButtonClassName(appearance, intent)
-    const textSize = theme.getTextSizeForControlHeight(height)
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Button',
+      { appearance, color, intent, size: restProps.size || 'medium' },
+      pseudoSelectors,
+      internalStyles
+    )
 
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
-    const iconSize = theme.getIconSizeForButton(height)
-
-    const padding = Math.round(height / 2)
-    const pr = paddingRight !== undefined ? paddingRight : padding // eslint-disable-line no-negated-condition
-    const pl = paddingLeft !== undefined ? paddingLeft : padding // eslint-disable-line no-negated-condition
+    const height = restProps.height || boxProps.height
+    // Keep backwards compat font sizing if an explicit height was passed in.
+    const textProps = !restProps.size && restProps.height ? getTextPropsForControlHeight(restProps.height) : {}
+    const iconSize = getIconSizeForButton(height)
 
     return (
-      <Text
-        is="button"
+      <Box
+        is={is}
         ref={ref}
         className={cx(themedClassName, className)}
-        borderTopRightRadius={borderRadius}
-        borderBottomRightRadius={borderRadius}
-        borderTopLeftRadius={borderRadius}
-        borderBottomLeftRadius={borderRadius}
-        paddingTop={paddingTop}
-        paddingBottom={paddingBottom}
-        paddingRight={pr}
-        paddingLeft={pl}
-        marginLeft={0} // Removes weird margins in Safari
-        marginRight={0} // Removes weird margins in Safari
-        marginTop={0} // Removes weird margins in Safari
-        marginBottom={0} // Removes weird margins in Safari
-        size={textSize}
-        color={null} // Prevent the Text color overriding the glamor appearanceStyle color
-        height={height}
-        lineHeight={`${height}px`}
-        {...(isActive ? { 'data-active': true } : {})}
-        {...styles}
+        data-active={isActive || undefined}
+        {...boxProps}
         {...restProps}
+        {...textProps}
         disabled={disabled || isLoading}
       >
         {isLoading && (
@@ -106,15 +107,10 @@ const Button = memo(
             size={Math.round(height / 2)}
           />
         )}
-        <ButtonIcon
-          icon={iconBefore}
-          size={iconSize}
-          spacing={pl}
-          edge="start"
-        />
+        <ButtonIcon icon={iconBefore} size={iconSize} spacing={restProps.paddingLeft} edge="start" />
         {children}
-        <ButtonIcon icon={iconAfter} size={iconSize} spacing={pr} edge="end" />
-      </Text>
+        <ButtonIcon icon={iconAfter} size={iconSize} spacing={restProps.paddingRight} edge="end" />
+      </Box>
     )
   })
 )
@@ -141,14 +137,14 @@ Button.propTypes = {
   ...layout.propTypes,
 
   /**
-   * The intent of the button.
-   */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
-
-  /**
    * The appearance of the button.
    */
   appearance: PropTypes.oneOf(['default', 'minimal', 'primary']),
+
+  /**
+   * The size of the button
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 
   /**
    * When true, show a loading spinner before the children.
@@ -158,7 +154,7 @@ Button.propTypes = {
 
   /**
    * Forcefully set the active state of a button.
-   * Useful in conjuction with a Popover.
+   * Useful in conjunction with a Popover.
    */
   isActive: PropTypes.bool,
 

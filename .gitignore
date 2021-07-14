@@ -5,9 +5,9 @@ node_modules
 /esm/
 /umd/
 /.out/
-/docs/public/
 .cache
 /npm-shrinkwrap.json
 /package-lock.json
 /.idea/
 /storybook-static/
+.eslintcache

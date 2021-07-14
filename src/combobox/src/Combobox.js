@@ -1,26 +1,28 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import Box, { dimensions, spacing, position, layout } from 'ui-box'
+import { dimensions, spacing, position, layout } from 'ui-box'
 import { Autocomplete } from '../../autocomplete'
-import { TextInput } from '../../text-input'
 import { IconButton } from '../../buttons'
+import { Group } from '../../group'
 import { CaretDownIcon } from '../../icons'
+import { TextInput } from '../../text-input'
 
 const Combobox = memo(function Combobox(props) {
   const {
-    items,
-    selectedItem,
-    initialSelectedItem,
-    itemToString,
-    width = 240,
-    height,
-    onChange,
-    placeholder,
-    inputProps,
-    buttonProps,
-    openOnFocus = false,
     autocompleteProps,
+    buttonProps,
+    height,
+    initialSelectedItem,
+    inputProps,
     isLoading = false,
+    itemToString,
+    items,
+    onChange,
+    openOnFocus = false,
+    placeholder,
+    selectedItem,
+    size = 'medium',
+    width = 240,
     ...rest
   } = props
 
@@ -28,20 +30,20 @@ const Combobox = memo(function Combobox(props) {
 
   const [isOpenedByButton, setIsOpenedByButton] = useState(false)
 
-  const handleStateChange = (changes, stateAndHelpers) => {
-    if (Object.prototype.hasOwnProperty.call(changes, 'isOpen')) {
-      if (!changes.isOpen) {
-        setIsOpenedByButton(false)
+  const handleStateChange = useCallback(
+    (changes, stateAndHelpers) => {
+      if (Object.prototype.hasOwnProperty.call(changes, 'isOpen')) {
+        if (!changes.isOpen) {
+          setIsOpenedByButton(false)
+        }
       }
-    }
 
-    if (
-      autocompleteProps &&
-      typeof autocompleteProps.onStateChange === 'function'
-    ) {
-      autocompleteProps.onStateChange(changes, stateAndHelpers)
-    }
-  }
+      if (autocompleteProps && typeof autocompleteProps.onStateChange === 'function') {
+        autocompleteProps.onStateChange(changes, stateAndHelpers)
+      }
+    },
+    [autocompleteProps]
+  )
 
   return (
     <Autocomplete
@@ -54,16 +56,8 @@ const Combobox = memo(function Combobox(props) {
       {...autocompleteProps}
       onStateChange={handleStateChange}
     >
-      {({
-        getRef,
-        isShown,
-        openMenu,
-        inputValue,
-        getInputProps,
-        getToggleButtonProps,
-        clearSelection
-      }) => (
-        <Box ref={getRef} display="inline-flex" width={width} {...rest}>
+      {({ clearSelection, getInputProps, getRef, getToggleButtonProps, inputValue, isShown, openMenu }) => (
+        <Group ref={getRef} size={size} width={width} {...rest}>
           <TextInput
             width={0}
             flex={1}
@@ -111,7 +105,7 @@ const Combobox = memo(function Combobox(props) {
               }
             })}
           />
-        </Box>
+        </Group>
       )}
     </Autocomplete>
   )
@@ -185,7 +179,9 @@ Combobox.propTypes = {
   /**
    * When true, show a loading spinner. This also disables the button.
    */
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
+
+  size: PropTypes.oneOf(['small', 'medium', 'large'])
 }
 
 export default Combobox

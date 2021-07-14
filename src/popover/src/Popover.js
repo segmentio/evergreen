@@ -1,20 +1,11 @@
-import React, {
-  memo,
-  forwardRef,
-  useRef,
-  useState,
-  useEffect,
-  useImperativeHandle,
-  useCallback,
-  useMemo
-} from 'react'
+import React, { memo, forwardRef, useRef, useState, useEffect, useImperativeHandle, useCallback, useMemo } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
 import PropTypes from 'prop-types'
-import { Positioner } from '../../positioner'
-import { Tooltip } from '../../tooltip'
 import { Position } from '../../constants'
 import { useMergedRef } from '../../hooks'
+import { Positioner } from '../../positioner'
+import { Tooltip } from '../../tooltip'
 import PopoverStateless from './PopoverStateless'
 
 const noop = () => {}
@@ -82,22 +73,16 @@ const Popover = memo(
             return
           }
 
-          const isFocusOutsideModal = !popoverNode.current.contains(
-            document.activeElement
-          )
+          const isFocusOutsideModal = !popoverNode.current.contains(document.activeElement)
           if (isFocusOutsideModal) {
             // Element marked autofocus has higher priority than the other elements
-            const autofocusElement = popoverNode.current.querySelector(
-              '[autofocus]:not([disabled])'
-            )
+            const autofocusElement = popoverNode.current.querySelector('[autofocus]:not([disabled])')
             if (autofocusElement) {
               // Return early to avoid unnecessary dom queries
               return autofocusElement.focus()
             }
 
-            const wrapperElement = popoverNode.current.querySelector(
-              '[tabindex]:not([disabled])'
-            )
+            const wrapperElement = popoverNode.current.querySelector('[tabindex]:not([disabled])')
             if (wrapperElement) {
               return wrapperElement.focus()
             }
@@ -124,9 +109,7 @@ const Popover = memo(
           return
         }
 
-        const isFocusInsideModal = popoverNode.current.contains(
-          document.activeElement
-        )
+        const isFocusInsideModal = popoverNode.current.contains(document.activeElement)
 
         // Bring back focus on the target.
         if (document.activeElement === document.body || isFocusInsideModal) {
@@ -212,13 +195,7 @@ const Popover = memo(
           close()
         }
       },
-      [
-        onBodyClick,
-        shouldCloseOnExternalClick,
-        close,
-        targetRef.current,
-        popoverNode.current
-      ]
+      [onBodyClick, shouldCloseOnExternalClick, close, targetRef.current, popoverNode.current]
     )
 
     const handleOpenComplete = useCallback(() => {
@@ -316,7 +293,7 @@ const Popover = memo(
         onOpenComplete={handleOpenComplete}
         onCloseComplete={onCloseComplete}
       >
-        {({ css, style, state, getRef }) => (
+        {({ css, getRef, state, style }) => (
           <PopoverStateless
             ref={ref => {
               setPopoverNode(ref)
@@ -327,10 +304,7 @@ const Popover = memo(
             minWidth={minWidth}
             minHeight={minHeight}
             {...statelessProps}
-            className={cx(
-              statelessProps.className,
-              glamorCss(css, style, statelessProps.style).toString()
-            )}
+            className={cx(statelessProps.className, glamorCss(css, style, statelessProps.style).toString())}
             // Overwrite `statelessProps.style` since we are including it via className
             style={undefined}
             onMouseLeave={handleCloseHover}

@@ -1,8 +1,21 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
+import { InlineAlert, Alert, Button, majorScale, Paragraph } from '../..'
 import { Heading } from '../../typography'
-import { InlineAlert, Alert } from '..'
+
+/* eslint-disable react/prop-types */
+const ErrorMessage = ({ cta, messaging, title }) => (
+  <Alert appearance="card" intent="danger" title={title}>
+    <Paragraph>{messaging}</Paragraph>
+    {cta && (
+      <Button appearance="primary" marginTop={majorScale(1)} onClick={() => {}}>
+        {cta}
+      </Button>
+    )}
+  </Alert>
+)
+/* eslint-enable react/prop-types */
 
 storiesOf('alert', module)
   .add('Alert', () => (
@@ -13,13 +26,9 @@ storiesOf('alert', module)
           document.body.style.height = '100vh'
         })()}
         {['default', 'card'].map(appearance => (
-          <Box key={appearance} float="left" marginRight={40}>
+          <Box key={appearance}>
             <Heading marginBottom={16}>{appearance}</Heading>
-            <Alert
-              appearance={appearance}
-              marginBottom={32}
-              title="A simple general message"
-            />
+            <Alert appearance={appearance} marginBottom={32} title="A simple general message" />
             <Alert
               appearance={appearance}
               marginBottom={32}
@@ -38,20 +47,20 @@ storiesOf('alert', module)
               intent="danger"
               title="We weren’t able to save your changes."
             />
+            <Alert appearance={appearance} marginBottom={32} intent="danger">
+              This Alert has no title
+            </Alert>
+            <ErrorMessage title="This is broken" messaging="You need to fix this" cta="Try again" />
           </Box>
         ))}
       </Box>
       <Box padding={40}>
-        {['default', 'card'].map(appearance => (
-          <Box key={appearance} float="left" marginRight={40}>
+        {['default'].map(appearance => (
+          <Box key={appearance}>
             <Heading marginBottom={16}>{appearance}</Heading>
-            <Alert
-              appearance={appearance}
-              marginBottom={32}
-              title="A simple general message"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <Alert appearance={appearance} marginBottom={32} title="A simple general message">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
             </Alert>
             <Alert
               appearance={appearance}
@@ -59,8 +68,8 @@ storiesOf('alert', module)
               intent="success"
               title="Hooray! You did it. Your Source is now sending data."
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
             </Alert>
             <Alert
               appearance={appearance}
@@ -68,8 +77,8 @@ storiesOf('alert', module)
               intent="warning"
               title="Changes will affect all Warehouses."
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
             </Alert>
             <Alert
               appearance={appearance}
@@ -77,8 +86,8 @@ storiesOf('alert', module)
               intent="danger"
               title="We weren’t able to save your changes."
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
             </Alert>
           </Box>
         ))}
@@ -92,7 +101,7 @@ storiesOf('alert', module)
         document.body.style.height = '100vh'
       })()}
 
-      <Box float="left" marginRight={40}>
+      <Box>
         <Heading size={600} marginBottom={16}>
           InlineAlert component
         </Heading>

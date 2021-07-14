@@ -1,5 +1,5 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
+import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
 import { Spinner } from '..'
 
@@ -11,6 +11,12 @@ storiesOf('spinner', module)
         document.body.style.height = '100vh'
       })()}
       <Spinner />
+    </Box>
+  ))
+  .add('Spinner with custom sizes', () => (
+    <Box padding={40}>
+      <Spinner size="medium" />
+      <Spinner size={60} />
     </Box>
   ))
   .add('Spinner with 300ms delay', () => (

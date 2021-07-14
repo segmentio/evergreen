@@ -1,14 +1,10 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
+import { useStyleConfig } from '../../hooks'
 import { Text } from '../../typography'
-import { useTheme } from '../../theme'
 
-const CircleIcon = memo(function CircleIcon({
-  size,
-  fill = 'currentColor',
-  ...props
-}) {
+const CircleIcon = memo(function CircleIcon({ fill = 'currentColor', size, ...props }) {
   return (
     <svg width={size} height={size} viewBox="0 0 10 10" {...props}>
       <circle fill={fill} cx="5" cy="5" r="5" />
@@ -22,6 +18,40 @@ CircleIcon.propTypes = {
 }
 
 const noop = () => {}
+
+const pseudoSelectors = {
+  _base: '& + div',
+  _disabled: '&[disabled] + div',
+  _hover: '&:not([disabled]):hover + div',
+  _focus: '&:not([disabled]):focus + div',
+  _active: '&:not([disabled]):active + div',
+  _checked: '&:checked + div, &[type=checkbox]:indeterminate + div',
+  _checkedHover: '&:not([disabled]):checked:hover + div, &[type=checkbox]:not([disabled]):indeterminate:hover + div',
+  _checkedActive: '&:not([disabled]):checked:active + div, &[type=checkbox]:not([disabled]):indeterminate:active + div',
+  _checkedDisabled: '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div'
+}
+
+const internalStyles = {
+  border: '0',
+  clip: 'rect(1px, 1px, 1px, 1px)',
+  height: '1px',
+  overflow: 'hidden',
+  padding: '0',
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  width: '1px',
+  opacity: '0',
+
+  [pseudoSelectors._base]: {
+    WebkitFontSmoothing: 'antialiased',
+    textDecoration: 'none',
+    WebkitAppearance: 'none',
+    MozAppearance: 'none',
+    border: 'none',
+    outline: 'none',
+    cursor: 'pointer'
+  }
+}
 
 const Radio = memo(
   forwardRef(function Radio(props, ref) {
@@ -40,8 +70,12 @@ const Radio = memo(
       ...rest
     } = props
 
-    const theme = useTheme()
-    const themedClassName = theme.getRadioClassName(appearance)
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'Radio',
+      { appearance },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
       <Box
@@ -64,6 +98,7 @@ const Radio = memo(
           onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
+          {...boxProps}
           required={isRequired}
         />
         <Box
@@ -77,14 +112,10 @@ const Radio = memo(
           width={size}
           height={size}
         >
-          <CircleIcon size={size === 12 ? 4 : 4} />
+          <CircleIcon size={size / 2} />
         </Box>
         {label && (
-          <Text
-            marginLeft={size === 12 ? 8 : 10}
-            size={size === 12 ? 300 : 400}
-            color={disabled ? 'muted' : 'default'}
-          >
+          <Text marginLeft={size === 12 ? 8 : 10} size={size === 12 ? 300 : 400} color={disabled ? 'muted' : 'default'}>
             {label}
           </Text>
         )}

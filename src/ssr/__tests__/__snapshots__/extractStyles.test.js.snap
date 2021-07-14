@@ -1,0 +1,233 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`extractStyles returns styles for a Box 1`] = `
+Object {
+  "cache": Object {
+    "glamorIds": Array [
+      "ng405l",
+      "fv6wzy",
+      "11r1ktn",
+    ],
+    "uiBoxCache": Array [
+      Array [
+        "height11",
+        "ub-h_11px",
+      ],
+      Array [
+        "boxSizingborder-box",
+        "ub-box-szg_border-box",
+      ],
+    ],
+  },
+  "css": ".ub-h_11px {height: 11px;}.ub-box-szg_border-box {box-sizing: border-box;}
+@-webkit-keyframes loading_ng405l { 
+  0% {transform: rotate(0); -webkit-transform: rotate(0);} 
+  100% {transform: rotate(360deg); -webkit-transform: rotate(360deg);} 
+}@-moz-keyframes loading_ng405l { 
+  0% {transform: rotate(0); -webkit-transform: rotate(0);} 
+  100% {transform: rotate(360deg); -webkit-transform: rotate(360deg);} 
+}@-o-keyframes loading_ng405l { 
+  0% {transform: rotate(0); -webkit-transform: rotate(0);} 
+  100% {transform: rotate(360deg); -webkit-transform: rotate(360deg);} 
+}@keyframes loading_ng405l { 
+  0% {transform: rotate(0); -webkit-transform: rotate(0);} 
+  100% {transform: rotate(360deg); -webkit-transform: rotate(360deg);} 
+}@-webkit-keyframes loading-circle_fv6wzy { 
+  0% {stroke-dashoffset: 600;} 
+  100% {stroke-dashoffset: 0;} 
+}@-moz-keyframes loading-circle_fv6wzy { 
+  0% {stroke-dashoffset: 600;} 
+  100% {stroke-dashoffset: 0;} 
+}@-o-keyframes loading-circle_fv6wzy { 
+  0% {stroke-dashoffset: 600;} 
+  100% {stroke-dashoffset: 0;} 
+}@keyframes loading-circle_fv6wzy { 
+  0% {stroke-dashoffset: 600;} 
+  100% {stroke-dashoffset: 0;} 
+}.css-11r1ktn,[data-css-11r1ktn] {animation: loading_ng405l 2s linear infinite; -webkit-animation: loading_ng405l 2s linear infinite;}",
+  "hydrationScript": <script
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "{\\"uiBoxCache\\":[[\\"height11\\",\\"ub-h_11px\\"],[\\"boxSizingborder-box\\",\\"ub-box-szg_border-box\\"]],\\"glamorIds\\":[\\"ng405l\\",\\"fv6wzy\\",\\"11r1ktn\\"]}",
+      }
+    }
+    id="evergreen-hydrate"
+    nonce="abcd1234"
+    type="application/json"
+  />,
+}
+`;
+
+exports[`extractStyles returns styles for a Button 1`] = `
+Object {
+  "cache": Object {
+    "glamorIds": Array [
+      "ng405l",
+      "fv6wzy",
+      "11r1ktn",
+      "12b25td",
+    ],
+    "uiBoxCache": Array [
+      Array [
+        "positionrelative",
+        "ub-pst_relative",
+      ],
+      Array [
+        "fontWeight500",
+        "ub-f-wght_500",
+      ],
+      Array [
+        "displayinline-flex",
+        "ub-dspl_inline-flex",
+      ],
+      Array [
+        "alignItemscenter",
+        "ub-algn-itms_center",
+      ],
+      Array [
+        "flexWrapnowrap",
+        "ub-flx-wrap_nowrap",
+      ],
+      Array [
+        "justifyContentcenter",
+        "ub-just-cnt_center",
+      ],
+      Array [
+        "textDecorationnone",
+        "ub-txt-deco_none",
+      ],
+      Array [
+        "verticalAlignmiddle",
+        "ub-ver-algn_middle",
+      ],
+      Array [
+        "borderBottom1px solid #c1c4d6",
+        "ub-b-btm_1px-solid-c1c4d6",
+      ],
+      Array [
+        "borderLeft1px solid #c1c4d6",
+        "ub-b-lft_1px-solid-c1c4d6",
+      ],
+      Array [
+        "borderRight1px solid #c1c4d6",
+        "ub-b-rgt_1px-solid-c1c4d6",
+      ],
+      Array [
+        "borderTop1px solid #c1c4d6",
+        "ub-b-top_1px-solid-c1c4d6",
+      ],
+      Array [
+        "outlinenone",
+        "ub-otln_iu2jf4",
+      ],
+      Array [
+        "userSelectnone",
+        "ub-usr-slct_none",
+      ],
+      Array [
+        "cursorpointer",
+        "ub-crsr_pointer",
+      ],
+      Array [
+        "whiteSpacenowrap",
+        "ub-wht-spc_nowrap",
+      ],
+      Array [
+        "fontFamily\\"SF UI Text\\", -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, Helvetica, Arial, sans-serif, \\"Apple Color Emoji\\", \\"Segoe UI Emoji\\", \\"Segoe UI Symbol\\"",
+        "ub-fnt-fam_b77syt",
+      ],
+      Array [
+        "borderBottomLeftRadius4px",
+        "ub-bblr_4px",
+      ],
+      Array [
+        "borderBottomRightRadius4px",
+        "ub-bbrr_4px",
+      ],
+      Array [
+        "borderTopLeftRadius4px",
+        "ub-btlr_4px",
+      ],
+      Array [
+        "borderTopRightRadius4px",
+        "ub-btrr_4px",
+      ],
+      Array [
+        "color#474d66",
+        "ub-color_474d66",
+      ],
+      Array [
+        "transitionbox-shadow 80ms ease-in-out",
+        "ub-tstn_n1akt6",
+      ],
+      Array [
+        "height32",
+        "ub-h_32px",
+      ],
+      Array [
+        "minWidth32",
+        "ub-min-w_32px",
+      ],
+      Array [
+        "fontSize12px",
+        "ub-fnt-sze_12px",
+      ],
+      Array [
+        "lineHeight32px",
+        "ub-ln-ht_32px",
+      ],
+      Array [
+        "paddingLeft16",
+        "ub-pl_16px",
+      ],
+      Array [
+        "paddingRight16",
+        "ub-pr_16px",
+      ],
+      Array [
+        "backgroundColorwhite",
+        "ub-bg-clr_white",
+      ],
+      Array [
+        "boxSizingborder-box",
+        "ub-box-szg_border-box",
+      ],
+    ],
+  },
+  "css": ".ub-pst_relative {position: relative;}.ub-f-wght_500 {font-weight: 500;}.ub-dspl_inline-flex {display: inline-flex;}.ub-algn-itms_center {align-items: center; -webkit-box-align: center;}.ub-flx-wrap_nowrap {flex-wrap: nowrap; -webkit-box-lines: nowrap;}.ub-just-cnt_center {justify-content: center; -webkit-box-pack: center;}.ub-txt-deco_none {text-decoration: none;}.ub-ver-algn_middle {vertical-align: middle;}.ub-b-btm_1px-solid-c1c4d6 {border-bottom: 1px solid #c1c4d6;}.ub-b-lft_1px-solid-c1c4d6 {border-left: 1px solid #c1c4d6;}.ub-b-rgt_1px-solid-c1c4d6 {border-right: 1px solid #c1c4d6;}.ub-b-top_1px-solid-c1c4d6 {border-top: 1px solid #c1c4d6;}.ub-otln_iu2jf4 {outline: none;}.ub-usr-slct_none {-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}.ub-crsr_pointer {cursor: pointer;}.ub-wht-spc_nowrap {white-space: nowrap;}.ub-fnt-fam_b77syt {font-family: \\"SF UI Text\\", -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, Helvetica, Arial, sans-serif, \\"Apple Color Emoji\\", \\"Segoe UI Emoji\\", \\"Segoe UI Symbol\\";}.ub-bblr_4px {border-bottom-left-radius: 4px;}.ub-bbrr_4px {border-bottom-right-radius: 4px;}.ub-btlr_4px {border-top-left-radius: 4px;}.ub-btrr_4px {border-top-right-radius: 4px;}.ub-color_474d66 {color: #474d66;}.ub-tstn_n1akt6 {transition: box-shadow 80ms ease-in-out;}.ub-h_32px {height: 32px;}.ub-min-w_32px {min-width: 32px;}.ub-fnt-sze_12px {font-size: 12px;}.ub-ln-ht_32px {line-height: 32px;}.ub-pl_16px {padding-left: 16px;}.ub-pr_16px {padding-right: 16px;}.ub-bg-clr_white {background-color: white;}.ub-box-szg_border-box {box-sizing: border-box;}
+@-webkit-keyframes loading_ng405l { 
+  0% {transform: rotate(0); -webkit-transform: rotate(0);} 
+  100% {transform: rotate(360deg); -webkit-transform: rotate(360deg);} 
+}@-moz-keyframes loading_ng405l { 
+  0% {transform: rotate(0); -webkit-transform: rotate(0);} 
+  100% {transform: rotate(360deg); -webkit-transform: rotate(360deg);} 
+}@-o-keyframes loading_ng405l { 
+  0% {transform: rotate(0); -webkit-transform: rotate(0);} 
+  100% {transform: rotate(360deg); -webkit-transform: rotate(360deg);} 
+}@keyframes loading_ng405l { 
+  0% {transform: rotate(0); -webkit-transform: rotate(0);} 
+  100% {transform: rotate(360deg); -webkit-transform: rotate(360deg);} 
+}@-webkit-keyframes loading-circle_fv6wzy { 
+  0% {stroke-dashoffset: 600;} 
+  100% {stroke-dashoffset: 0;} 
+}@-moz-keyframes loading-circle_fv6wzy { 
+  0% {stroke-dashoffset: 600;} 
+  100% {stroke-dashoffset: 0;} 
+}@-o-keyframes loading-circle_fv6wzy { 
+  0% {stroke-dashoffset: 600;} 
+  100% {stroke-dashoffset: 0;} 
+}@keyframes loading-circle_fv6wzy { 
+  0% {stroke-dashoffset: 600;} 
+  100% {stroke-dashoffset: 0;} 
+}.css-11r1ktn,[data-css-11r1ktn] {animation: loading_ng405l 2s linear infinite; -webkit-animation: loading_ng405l 2s linear infinite;}.css-12b25td,[data-css-12b25td] {-webkit-font-smoothing: antialiased; -webkit-appearance: none; -moz-appearance: none;}.css-12b25td::-moz-focus-inner ,[data-css-12b25td]::-moz-focus-inner {border: 0;}.css-12b25td:not([disabled]):focus,[data-css-12b25td]:not([disabled]):focus {box-shadow: 0 0 0 2px #D6E0FF;}.css-12b25td[disabled],[data-css-12b25td][disabled] {cursor: not-allowed; pointer-events: none; color: #c1c4d6; border-color: #E6E8F0;}.css-12b25td:not([disabled]):hover,[data-css-12b25td]:not([disabled]):hover {border: 1px solid #8f95b2; background-color: #FAFBFF;}.css-12b25td:not([disabled]):active,[data-css-12b25td]:not([disabled]):active, .css-12b25td:not([disabled])[aria-expanded=\\"true\\"], [data-css-12b25td]:not([disabled])[aria-expanded=\\"true\\"], .css-12b25td:not([disabled])[data-active], [data-css-12b25td]:not([disabled])[data-active] {background-color: #F4F5F9;}",
+  "hydrationScript": <script
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "{\\"uiBoxCache\\":[[\\"positionrelative\\",\\"ub-pst_relative\\"],[\\"fontWeight500\\",\\"ub-f-wght_500\\"],[\\"displayinline-flex\\",\\"ub-dspl_inline-flex\\"],[\\"alignItemscenter\\",\\"ub-algn-itms_center\\"],[\\"flexWrapnowrap\\",\\"ub-flx-wrap_nowrap\\"],[\\"justifyContentcenter\\",\\"ub-just-cnt_center\\"],[\\"textDecorationnone\\",\\"ub-txt-deco_none\\"],[\\"verticalAlignmiddle\\",\\"ub-ver-algn_middle\\"],[\\"borderBottom1px solid #c1c4d6\\",\\"ub-b-btm_1px-solid-c1c4d6\\"],[\\"borderLeft1px solid #c1c4d6\\",\\"ub-b-lft_1px-solid-c1c4d6\\"],[\\"borderRight1px solid #c1c4d6\\",\\"ub-b-rgt_1px-solid-c1c4d6\\"],[\\"borderTop1px solid #c1c4d6\\",\\"ub-b-top_1px-solid-c1c4d6\\"],[\\"outlinenone\\",\\"ub-otln_iu2jf4\\"],[\\"userSelectnone\\",\\"ub-usr-slct_none\\"],[\\"cursorpointer\\",\\"ub-crsr_pointer\\"],[\\"whiteSpacenowrap\\",\\"ub-wht-spc_nowrap\\"],[\\"fontFamily\\\\\\"SF UI Text\\\\\\", -apple-system, BlinkMacSystemFont, \\\\\\"Segoe UI\\\\\\", Roboto, Helvetica, Arial, sans-serif, \\\\\\"Apple Color Emoji\\\\\\", \\\\\\"Segoe UI Emoji\\\\\\", \\\\\\"Segoe UI Symbol\\\\\\"\\",\\"ub-fnt-fam_b77syt\\"],[\\"borderBottomLeftRadius4px\\",\\"ub-bblr_4px\\"],[\\"borderBottomRightRadius4px\\",\\"ub-bbrr_4px\\"],[\\"borderTopLeftRadius4px\\",\\"ub-btlr_4px\\"],[\\"borderTopRightRadius4px\\",\\"ub-btrr_4px\\"],[\\"color#474d66\\",\\"ub-color_474d66\\"],[\\"transitionbox-shadow 80ms ease-in-out\\",\\"ub-tstn_n1akt6\\"],[\\"height32\\",\\"ub-h_32px\\"],[\\"minWidth32\\",\\"ub-min-w_32px\\"],[\\"fontSize12px\\",\\"ub-fnt-sze_12px\\"],[\\"lineHeight32px\\",\\"ub-ln-ht_32px\\"],[\\"paddingLeft16\\",\\"ub-pl_16px\\"],[\\"paddingRight16\\",\\"ub-pr_16px\\"],[\\"backgroundColorwhite\\",\\"ub-bg-clr_white\\"],[\\"boxSizingborder-box\\",\\"ub-box-szg_border-box\\"]],\\"glamorIds\\":[\\"ng405l\\",\\"fv6wzy\\",\\"11r1ktn\\",\\"12b25td\\"]}",
+      }
+    }
+    id="evergreen-hydrate"
+    type="application/json"
+  />,
+}
+`;

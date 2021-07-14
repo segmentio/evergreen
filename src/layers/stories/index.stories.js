@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
-import { ThemeConsumer } from '../../theme'
+import { storiesOf } from '@storybook/react'
 import { Pane, Card } from '..'
+import { ThemeConsumer } from '../../theme'
 
 const cardStyle = {
   float: 'left',
@@ -19,24 +19,21 @@ storiesOf('layers', module)
       {theme => (
         <div>
           <Pane overflow="auto">
-            {theme.elevations.map((style, index) => (
+            {theme.shadows.map((style, index) => (
               <Pane key={style} {...cardStyle} elevation={index}>
                 Elevation {index}
               </Pane>
             ))}
-            {Object.keys(theme.colors.background).map(background => (
-              <Pane key={background} {...cardStyle} background={background}>
-                Background: {background}
-              </Pane>
-            ))}
+            {Object.keys(theme.colors)
+              .filter(c => typeof theme.colors[c] === 'string')
+              .map(background => (
+                <Pane key={background} {...cardStyle} background={background}>
+                  Background: {background}
+                </Pane>
+              ))}
           </Pane>
           <Pane overflow="auto">
-            <Pane
-              {...cardStyle}
-              elevation={1}
-              hoverElevation={3}
-              activeElevation={2}
-            >
+            <Pane {...cardStyle} elevation={1} hoverElevation={3} activeElevation={2}>
               Interactive
             </Pane>
           </Pane>
@@ -65,26 +62,23 @@ storiesOf('layers', module)
       {theme => (
         <div>
           <Pane overflow="auto">
-            {theme.elevations.map((style, index) => (
+            {theme.shadows.map((style, index) => (
               <Card key={style} {...cardStyle} elevation={index}>
                 Elevation {index}
               </Card>
             ))}
 
-            {Object.keys(theme.colors.background).map(background => (
-              <Card key={background} {...cardStyle} background={background}>
-                Background: {background}
-              </Card>
-            ))}
+            {Object.keys(theme.colors)
+              .filter(c => typeof theme.colors[c] === 'string')
+              .map(background => (
+                <Card key={background} {...cardStyle} background={background}>
+                  Background: {background}
+                </Card>
+              ))}
           </Pane>
 
           <Pane overflow="auto">
-            <Card
-              {...cardStyle}
-              elevation={1}
-              hoverElevation={3}
-              activeElevation={2}
-            >
+            <Card {...cardStyle} elevation={1} hoverElevation={3} activeElevation={2}>
               Interactive
             </Card>
           </Pane>

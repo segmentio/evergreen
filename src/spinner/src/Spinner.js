@@ -2,7 +2,7 @@ import React, { useState, useEffect, forwardRef, memo } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { useTheme } from '../../theme'
+import { useStyleConfig } from '../../hooks'
 
 const loadingKeyframes = css.keyframes('loading', {
   '0%': {
@@ -38,10 +38,15 @@ const innerClass = color =>
     fill: 'transparent'
   }).toString()
 
+const emptyObject = {}
+
 const Spinner = memo(
-  forwardRef(function Spinner({ delay = 0, size = 40, ...props }, ref) {
-    const theme = useTheme()
+  forwardRef(function Spinner({ delay = 0, size = 'medium', ...props }, ref) {
     const [isVisible, setIsVisible] = useState(delay === 0)
+
+    const boxProps = useStyleConfig('Spinner', { size }, emptyObject, emptyObject)
+
+    const { height, width, ...rest } = typeof size === 'string' ? boxProps : { width: size, height: size }
 
     useEffect(() => {
       let delayTimer = null
@@ -54,28 +59,16 @@ const Spinner = memo(
       return function() {
         clearTimeout(delayTimer)
       }
-    }, [])
+    }, [delay])
 
     if (!isVisible) {
       return null
     }
 
     return (
-      <Box width={size} height={size} lineHeight={0} {...props} ref={ref}>
-        <Box
-          is="svg"
-          className={outerClass}
-          x="0px"
-          y="0px"
-          viewBox="0 0 150 150"
-        >
-          <Box
-            is="circle"
-            className={innerClass(theme.spinnerColor)}
-            cx="75"
-            cy="75"
-            r="60"
-          />
+      <Box width={width} height={height} lineHeight={0} {...props} {...rest} ref={ref}>
+        <Box is="svg" className={outerClass} x="0px" y="0px" viewBox="0 0 150 150">
+          <Box is="circle" className={innerClass(boxProps.color)} cx="75" cy="75" r="60" />
         </Box>
       </Box>
     )

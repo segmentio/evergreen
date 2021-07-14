@@ -1,51 +1,63 @@
-import React, { memo, forwardRef, useCallback, useMemo } from 'react'
+import React, { memo, forwardRef, useMemo, useCallback } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import { useClickable, useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import { useTheme } from '../../theme'
-import safeInvoke from '../../lib/safe-invoke'
 
 const noop = () => {}
+
+const pseudoSelectors = {
+  _hover:
+    '&[data-isselectable="true"]:not([aria-current="true"]):not([aria-checked="true"]):not(:focus):not(:active):hover',
+  _focus:
+    '&[data-isselectable="true"]:not([aria-current="true"]):not([aria-checked="true"]):focus, &[aria-selected="true"]',
+  _active: '&[aria-current="true"], &[data-isselectable="true"]:active',
+  _current: '&[aria-current="true"], &[aria-checked="true"]',
+  _isSelectable: '&[data-isselectable="true"]',
+  _disabled: '&:disabled, &[aria-disabled="true"]'
+}
+
+const internalStyles = {
+  display: 'flex',
+  alignItems: 'center'
+}
 
 const MenuItem = memo(
   forwardRef(function MenuItem(props, ref) {
     const {
       is = 'div',
       children,
+      className,
       appearance = 'default',
+      disabled,
       secondaryText,
       intent = 'none',
       icon,
       onSelect = noop,
-      onKeyPress,
-      disabled,
       ...passthroughProps
     } = props
 
-    const theme = useTheme()
-
     const handleClick = useCallback(
       event => {
+        if (disabled) return
         onSelect(event)
       },
-      [onSelect]
+      [disabled, onSelect]
     )
 
-    const handleKeyPress = useCallback(
-      event => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          onSelect(event)
-          event.preventDefault()
-        }
+    // Pass all props, so the hook can handled `disabled`, `onKeyDown`, `tabIndex`
+    // and any other explicit props that are passed through to the underlying component
+    const { onKeyDown, tabIndex } = useClickable(props)
 
-        safeInvoke(onKeyPress, event)
-      },
-      [onSelect, onKeyPress]
+    const { className: themedClassName, ...boxProps } = useStyleConfig(
+      'MenuItem',
+      { appearance },
+      pseudoSelectors,
+      internalStyles
     )
-
-    const themedClassName = theme.getMenuItemClassName(appearance, 'none')
 
     let iconColor = intent === 'none' ? 'default' : intent
 
@@ -53,14 +65,14 @@ const MenuItem = memo(
       iconColor = 'disabled'
     }
 
-    const textColor = disabled ? theme.colors.icon.disabled : intent
+    const textColor = disabled ? 'disabled' : intent
 
     const secondaryTextColor = disabled ? textColor : 'muted'
 
     const disabledProps = useMemo(() => {
       return disabled
         ? {
-            backgroundColor: theme.colors.background.tint1,
+            backgroundColor: 'tint1',
             cursor: 'not-allowed',
             disabled: true,
             onClick: null,
@@ -76,21 +88,21 @@ const MenuItem = memo(
       <Pane
         is={is}
         role="menuitem"
-        className={themedClassName}
+        className={cx(themedClassName, className)}
         onClick={handleClick}
-        onKeyPress={handleKeyPress}
-        height={icon ? 40 : 32}
-        tabIndex={0}
-        data-isselectable="true"
-        display="flex"
-        alignItems="center"
+        data-isselectable={!disabled || undefined}
+        aria-disabled={disabled}
         ref={ref}
-        {...disabledProps}
+        height={icon ? 40 : 32}
+        {...boxProps}
         {...passthroughProps}
+        {...disabledProps}
+        tabIndex={tabIndex}
+        onKeyDown={onKeyDown}
       >
         <IconWrapper
           icon={icon}
-          color={iconColor}
+          color={disabled ? 'disabled' : iconColor}
           marginLeft={16}
           marginRight={-4}
           size={16}
@@ -115,6 +127,12 @@ MenuItem.propTypes = {
    * For example: `<MenuItem is={ReactRouterLink}>...</MenuItem>`
    */
   is: Box.propTypes.is,
+
+  /**
+   * Class name passed to the component.
+   * Only use if you know what you are doing.
+   */
+  className: PropTypes.string,
 
   /**
    * Function that is called on click and enter/space keypress.
@@ -145,11 +163,6 @@ MenuItem.propTypes = {
    * The intent of the menu item.
    */
   intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
-
-  /**
-   * Callback to invoke onkeypress
-   */
-  onKeyPress: PropTypes.func,
 
   /**
    * Flag to indicate whether the menu item is disabled or not

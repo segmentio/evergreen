@@ -1,28 +1,39 @@
 import React, { memo, forwardRef } from 'react'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { spacing, dimensions, position, layout } from 'ui-box'
+import { useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
 import { getIconForIntent } from './getIconForIntent'
 
+const pseudoSelectors = {}
+
+const internalStyles = {
+  display: 'flex',
+  alignItems: 'center'
+}
+
 const InlineAlert = memo(
   forwardRef(function InlineAlert(props, ref) {
-    const {
-      children,
-      intent = 'none',
-      hasIcon = true,
-      size = 400,
-      ...restProps
-    } = props
+    const { children, className, hasIcon = true, intent = 'info', size = 400, ...restProps } = props
+
+    const intentToken = intent === 'none' ? 'info' : intent
+    const { className: themedClassName, ...styleProps } = useStyleConfig(
+      'InlineAlert',
+      { intent: intentToken },
+      pseudoSelectors,
+      internalStyles
+    )
 
     return (
-      <Pane ref={ref} alignItems="center" display="flex" {...restProps}>
+      <Pane ref={ref} className={cx(className, themedClassName)} {...styleProps} {...restProps}>
         {hasIcon && (
-          <Pane display="inline" marginRight={8}>
-            {getIconForIntent(intent, { size: 14, marginTop: 2 })}
+          <Pane display="flex" marginRight={16}>
+            {getIconForIntent(intent, { size: 16 })}
           </Pane>
         )}
-        <Text size={size} fontWeight={500}>
+        <Text size={size} lineHeight={1} fontWeight={500} color="inherit">
           {children}
         </Text>
       </Pane>

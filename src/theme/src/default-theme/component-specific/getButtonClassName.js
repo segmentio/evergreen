@@ -1,11 +1,8 @@
 import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
-import {
-  getTextColorForIntent,
-  getPrimaryButtonStylesForIntent
-} from '../helpers'
+import { getTextColorForIntent, getPrimaryButtonStylesForIntent } from '../helpers'
 import { defaultControlStyles } from '../shared'
+import memoizeClassName from '../utils/memoizeClassName'
 
 /**
  * Disabled styles are all the same for all buttons.
@@ -21,9 +18,7 @@ const { disabled } = defaultControlStyles
 const getButtonAppearance = (appearance, intent) => {
   switch (appearance) {
     case 'primary': {
-      const { linearGradient, focusColor } = getPrimaryButtonStylesForIntent(
-        intent
-      )
+      const { focusColor, linearGradient } = getPrimaryButtonStylesForIntent(intent)
       return Themer.createButtonAppearance({
         disabled,
         base: {

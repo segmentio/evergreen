@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const VerticalDistributionIcon = memo(
   forwardRef(function VerticalDistributionIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="vertical-distribution"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="vertical-distribution" {...props} />
   })
 )

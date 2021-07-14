@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const CreditCardIcon = memo(
   forwardRef(function CreditCardIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="credit-card"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="credit-card" {...props} />
   })
 )

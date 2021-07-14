@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const FastForwardIcon = memo(
   forwardRef(function FastForwardIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="fast-forward"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="fast-forward" {...props} />
   })
 )

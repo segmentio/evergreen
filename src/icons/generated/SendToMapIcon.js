@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const SendToMapIcon = memo(
   forwardRef(function SendToMapIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="send-to-map"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="send-to-map" {...props} />
   })
 )

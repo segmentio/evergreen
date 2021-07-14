@@ -6,14 +6,6 @@ const svgPaths20 = ['M9.96 0a10 10 0 100 20 10 10 0 100-20z']
 
 export const FullCircleIcon = memo(
   forwardRef(function FullCircleIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="full-circle"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="full-circle" {...props} />
   })
 )

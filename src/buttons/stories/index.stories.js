@@ -1,123 +1,81 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
 import Component from '@reactions/component'
-import { Heading } from '../../typography'
-import { Pane } from '../../layers'
-import { SegmentedControl } from '../../segmented-control'
+import { storiesOf } from '@storybook/react'
+import Box from 'ui-box'
+import { IconButton, Button, TextDropdownButton } from '..'
 import * as Icons from '../../icons'
-import { IconButton, Button, BackButton, TextDropdownButton } from '..'
+import { Pane } from '../../layers'
+import { majorScale } from '../../scales'
+import { SegmentedControl } from '../../segmented-control'
+import { Heading } from '../../typography'
 
 const buttonsStory = storiesOf('buttons', module)
-
 buttonsStory.add('Common', () => (
   <Box padding={40}>
     <Component
       initialState={{
         options: [
-          { label: 'Height 24', value: 24 },
-          { label: 'Height 32', value: 32 },
-          { label: 'Height 40', value: 40 }
+          { label: 'Small (24px)', value: 'small' },
+          { label: 'Medium (32px)', value: 'medium' },
+          { label: 'Large (40px)', value: 'large' }
         ],
-        value: 32
+        value: 'medium'
       }}
     >
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <React.Fragment>
           <SegmentedControl
-            width={280}
+            width={350}
             options={state.options}
             value={state.value}
-            onChange={value => setState({ value: Number(value) })}
+            onChange={value => setState({ value })}
           />
           <Pane marginTop={16}>
-            <Button height={state.value} marginRight={16}>
+            <Button size={state.value} marginRight={16}>
               Close
             </Button>
-            <Button height={state.value} marginRight={16}>
+            <Button size={state.value} marginRight={16}>
               Cancel
             </Button>
-            <BackButton height={state.value} marginRight={16}>
-              Back
-            </BackButton>
-            <Button
-              height={state.value}
-              marginRight={16}
-              iconAfter={Icons.CaretDownIcon}
-            >
+            <Button size={state.value} marginRight={16} iconAfter={Icons.CaretDownIcon}>
               Select event...
             </Button>
-            <Button
-              height={state.value}
-              marginRight={16}
-              iconBefore={Icons.AddIcon}
-            >
+            <Button size={state.value} marginRight={16} iconBefore={Icons.AddIcon}>
               New Audience
             </Button>
-            <Button
-              height={state.value}
-              marginRight={16}
-              iconBefore={Icons.DownloadIcon}
-            >
+            <Button size={state.value} marginRight={16} iconBefore={Icons.DownloadIcon}>
               Download
             </Button>
-            <Button
-              height={state.value}
-              marginRight={16}
-              iconBefore={Icons.DownloadIcon}
-            >
+            <Button size={state.value} marginRight={16} iconBefore={Icons.DownloadIcon}>
               Download CSV...
             </Button>
-            <Button
-              height={state.value}
-              marginRight={16}
-              iconBefore={Icons.EditIcon}
-            >
+            <Button size={state.value} marginRight={16} iconBefore={Icons.EditIcon}>
               Edit
             </Button>
-            <Button
-              height={state.value}
-              marginRight={16}
-              iconBefore={Icons.ManualIcon}
-            >
+            <Button size={state.value} marginRight={16} iconBefore={Icons.ManualIcon}>
               Docs
             </Button>
-            <Button height={state.value} iconBefore={Icons.ImportIcon}>
+            <Button size={state.value} iconBefore={Icons.ImportIcon}>
               Import
             </Button>
           </Pane>
           <Pane marginTop={16}>
-            <Button height={state.value} appearance="primary" marginRight={16}>
+            <Button size={state.value} appearance="primary" marginRight={16}>
               Confirm
             </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              marginRight={16}
-              iconAfter={Icons.ArrowRightIcon}
-            >
+            <Button size={state.value} appearance="primary" marginRight={16} iconAfter={Icons.ArrowRightIcon}>
               Next Step
             </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              marginRight={16}
-              iconBefore={Icons.EyeOpenIcon}
-            >
+            <Button size={state.value} appearance="primary" marginRight={16} iconBefore={Icons.EyeOpenIcon}>
               Preview
             </Button>
           </Pane>
           <Pane marginTop={16}>
-            <Button
-              height={state.value}
-              appearance="primary"
-              intent="success"
-              marginRight={16}
-            >
+            <Button size={state.value} appearance="primary" intent="success" marginRight={16}>
               Got It
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               intent="success"
               marginRight={16}
@@ -126,7 +84,7 @@ buttonsStory.add('Common', () => (
               Add Source
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               intent="success"
               marginRight={16}
@@ -135,7 +93,7 @@ buttonsStory.add('Common', () => (
               Add Destination
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               intent="success"
               marginRight={16}
@@ -144,7 +102,7 @@ buttonsStory.add('Common', () => (
               New Audience
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               intent="success"
               marginRight={16}
@@ -154,16 +112,11 @@ buttonsStory.add('Common', () => (
             </Button>
           </Pane>
           <Pane marginTop={16}>
-            <Button
-              height={state.value}
-              intent="warning"
-              marginRight={16}
-              iconBefore={Icons.RefreshIcon}
-            >
+            <Button size={state.value} intent="warning" marginRight={16} iconBefore={Icons.RefreshIcon}>
               Retry
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               intent="warning"
               marginRight={16}
@@ -174,7 +127,7 @@ buttonsStory.add('Common', () => (
           </Pane>
           <Pane marginTop={16}>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="minimal"
               intent="danger"
               marginRight={16}
@@ -182,16 +135,11 @@ buttonsStory.add('Common', () => (
             >
               Delete...
             </Button>
-            <Button
-              height={state.value}
-              intent="danger"
-              marginRight={16}
-              iconBefore={Icons.TrashIcon}
-            >
+            <Button size={state.value} intent="danger" marginRight={16} iconBefore={Icons.TrashIcon}>
               Delete...
             </Button>
             <Button
-              height={state.value}
+              size={state.value}
               appearance="primary"
               intent="danger"
               marginRight={16}
@@ -200,250 +148,121 @@ buttonsStory.add('Common', () => (
               Permanently Delete Workspace...
             </Button>
           </Pane>
+          <Pane marginTop={16}>
+            <Button appearance="minimal" color="#36f">
+              Click Me
+            </Button>
+          </Pane>
         </React.Fragment>
       )}
     </Component>
+  </Box>
+))
+
+buttonsStory.add('Button height vs. size', () => (
+  <Box padding={40}>
+    <Button marginRight={16} height={40}>
+      With Height
+    </Button>
+    <Button size="large">With size</Button>
   </Box>
 ))
 
 buttonsStory.add('Button types', () => (
   <Box padding={40}>
-    <Component
-      initialState={{
-        options: [
-          { label: 'Height 24', value: 24 },
-          { label: 'Height 32', value: 32 },
-          { label: 'Height 40', value: 40 }
-        ],
-        value: 32
-      }}
-    >
-      {({ state, setState }) => (
-        <React.Fragment>
-          <SegmentedControl
-            width={280}
-            options={state.options}
-            value={state.value}
-            onChange={value => setState({ value: Number(value) })}
-          />
-          <Heading marginTop="default">Default Appearance</Heading>
-          <Box marginTop={12}>
-            <Button height={state.value} marginRight={16}>
-              Default
-            </Button>
-            <Button height={state.value} marginRight={16} intent="success">
-              Success
-            </Button>
-            <Button height={state.value} marginRight={16} intent="warning">
-              Warning
-            </Button>
-            <Button height={state.value} intent="danger">
-              Danger
-            </Button>
-          </Box>
-          <Heading marginTop="default">Primary Appearance</Heading>
-          <Box marginTop={12}>
-            <Button height={state.value} appearance="primary" marginRight={16}>
-              Default
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              marginRight={16}
-              intent="success"
-            >
-              Success
-            </Button>
-            <Button
-              height={state.value}
-              appearance="primary"
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button height={state.value} appearance="primary" intent="danger">
-              Danger
-            </Button>
-          </Box>
-          <Heading marginTop="default">Minimal Appearance</Heading>
-          <Box marginTop={12}>
-            <Button height={state.value} appearance="minimal" marginRight={16}>
-              Default
-            </Button>
-            <Button
-              height={state.value}
-              appearance="minimal"
-              marginRight={16}
-              intent="success"
-            >
-              Success
-            </Button>
-            <Button
-              height={state.value}
-              appearance="minimal"
-              marginRight={16}
-              intent="warning"
-            >
-              Warning
-            </Button>
-            <Button height={state.value} appearance="minimal" intent="danger">
-              Danger
-            </Button>
-          </Box>
-        </React.Fragment>
-      )}
-    </Component>
+    <Heading>Default Appearance</Heading>
+    <Box marginTop={12}>
+      <Button appearance="primary" marginRight={16}>
+        Primary
+      </Button>
+      <Button marginRight={16}>Default</Button>
+      <Button appearance="destructive" marginRight={16} intent="danger">
+        Destructive
+      </Button>
+      <Button appearance="minimal" marginRight={16} intent="warning">
+        Minimal
+      </Button>
+    </Box>
+    <Heading marginTop={24}>Disabled Appearance</Heading>
+    <Box marginTop={12}>
+      <Button disabled appearance="primary" marginRight={16}>
+        Primary
+      </Button>
+      <Button disabled marginRight={16}>
+        Default
+      </Button>
+      <Button disabled appearance="destructive" marginRight={16} intent="danger">
+        Destructive
+      </Button>
+      <Button disabled appearance="minimal" marginRight={16} intent="warning">
+        Minimal
+      </Button>
+    </Box>
   </Box>
 ))
 
 buttonsStory.add('TextDropdownButton', () => (
-  <Box padding={40}>
-    <TextDropdownButton>Table Header</TextDropdownButton>
-  </Box>
+  <>
+    <Box padding={40}>
+      <Heading marginY={majorScale(2)}> Default props </Heading>
+      <TextDropdownButton>Table Header</TextDropdownButton>
+
+      <Heading marginY={majorScale(2)}> Is Loading </Heading>
+      <TextDropdownButton isLoading>Table Header</TextDropdownButton>
+    </Box>
+  </>
 ))
 
 buttonsStory.add('IconButton', () => (
-  <Box padding={40} clearfix>
-    <Pane borderRight paddingRight={24} marginRight={24} float="left">
-      <Heading marginBottom={16}>Height 32</Heading>
-      <Box float="left" marginRight={16}>
-        <IconButton marginBottom={16} icon={Icons.CogIcon} />
-        <IconButton marginBottom={16} icon={Icons.PlusIcon} />
-        <IconButton marginBottom={16} icon={Icons.FilterIcon} />
-        <IconButton marginBottom={16} icon={Icons.EditIcon} />
-        <IconButton marginBottom={16} icon={Icons.RefreshIcon} />
-      </Box>
-      <Box float="left">
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          icon={Icons.CrossIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          icon={Icons.MoreIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          icon={Icons.PlusIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          icon={Icons.EditIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          icon={Icons.SearchIcon}
-        />
-      </Box>
+  <Box display="flex" padding={40}>
+    <Pane borderRight paddingRight={24} marginRight={24}>
+      <Heading marginBottom={16}>Size &quot;medium&quot;</Heading>
+      <Pane display="flex">
+        <Box display="grid" gridTemplateColumns="32px" gridRowGap={16} marginRight={16}>
+          <IconButton icon={Icons.CogIcon} />
+          <IconButton icon={Icons.PlusIcon} />
+          <IconButton icon={Icons.FilterIcon} />
+          <IconButton icon={Icons.EditIcon} />
+          <IconButton icon={Icons.RefreshIcon} />
+        </Box>
+        <Box display="grid" gridTemplateColumns="32px" gridRowGap={16}>
+          <IconButton appearance="minimal" icon={Icons.CrossIcon} />
+          <IconButton appearance="minimal" icon={Icons.MoreIcon} />
+          <IconButton appearance="minimal" icon={Icons.PlusIcon} />
+          <IconButton appearance="minimal" icon={Icons.EditIcon} />
+          <IconButton appearance="minimal" icon={Icons.SearchIcon} />
+        </Box>
+      </Pane>
     </Pane>
-    <Pane float="left">
-      <Heading marginBottom={16}>Height 24</Heading>
-      <Box float="left" marginRight={16}>
-        <IconButton marginBottom={16} height={24} icon={Icons.CogIcon} />
-        <IconButton marginBottom={16} height={24} icon={Icons.PlusIcon} />
-        <IconButton marginBottom={16} height={24} icon={Icons.FilterIcon} />
-        <IconButton marginBottom={16} height={24} icon={Icons.EditIcon} />
-        <IconButton
-          marginBottom={16}
-          height={24}
-          icon={Icons.ChevronLeftIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          height={24}
-          icon={Icons.ChevronRightIcon}
-        />
-      </Box>
-      <Box float="left" marginRight={16}>
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon={Icons.CrossIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon={Icons.MoreIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon={Icons.PlusIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon={Icons.TrashIcon}
-          intent="danger"
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon={Icons.FilterIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon={Icons.EditIcon}
-        />
-      </Box>
-      <Box float="left">
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon={Icons.ClipboardIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon={Icons.CalendarIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon={Icons.LockIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon={Icons.UnlockIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon={Icons.NotificationsIcon}
-        />
-        <IconButton
-          marginBottom={16}
-          appearance="minimal"
-          height={24}
-          icon={Icons.ManualIcon}
-        />
-      </Box>
+    <Pane>
+      <Heading marginBottom={16}>Size &quot;small&quot;</Heading>
+      <Pane display="flex">
+        <Box display="grid" gridTemplateColumns="24px" gridRowGap={16} marginRight={16}>
+          <IconButton size="small" icon={Icons.CogIcon} />
+          <IconButton size="small" icon={Icons.PlusIcon} />
+          <IconButton size="small" icon={Icons.FilterIcon} />
+          <IconButton size="small" icon={Icons.EditIcon} />
+          <IconButton size="small" icon={Icons.ChevronLeftIcon} />
+          <IconButton size="small" icon={Icons.ChevronRightIcon} />
+        </Box>
+        <Box display="grid" gridTemplateColumns="24px" gridRowGap={16} marginRight={16}>
+          <IconButton appearance="minimal" size="small" icon={Icons.CrossIcon} />
+          <IconButton appearance="minimal" size="small" icon={Icons.MoreIcon} />
+          <IconButton appearance="minimal" size="small" icon={Icons.PlusIcon} />
+          <IconButton appearance="minimal" size="small" icon={Icons.TrashIcon} intent="danger" />
+          <IconButton appearance="minimal" size="small" icon={Icons.FilterIcon} />
+          <IconButton appearance="minimal" size="small" icon={Icons.EditIcon} />
+        </Box>
+        <Box display="grid" gridTemplateColumns="24px" gridRowGap={16}>
+          <IconButton appearance="minimal" size="small" icon={Icons.ClipboardIcon} />
+          <IconButton appearance="minimal" size="small" icon={Icons.CalendarIcon} />
+          <IconButton appearance="minimal" size="small" icon={Icons.LockIcon} />
+          <IconButton appearance="minimal" size="small" icon={Icons.UnlockIcon} />
+          <IconButton appearance="minimal" size="small" icon={Icons.NotificationsIcon} />
+          <IconButton appearance="minimal" size="small" icon={Icons.ManualIcon} />
+        </Box>
+      </Pane>
     </Pane>
-  </Box>
-))
-
-buttonsStory.add('Button presets', () => (
-  <Box padding={40}>
-    <BackButton>Back</BackButton>
   </Box>
 ))
 
@@ -454,7 +273,7 @@ buttonsStory.add('Button isLoading', () => (
         isShown: false
       }}
     >
-      {({ state, setState }) => (
+      {({ setState, state }) => (
         <Button
           marginRight={16}
           isLoading={state.isLoading}

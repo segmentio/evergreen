@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const LayoutSortedClustersIcon = memo(
   forwardRef(function LayoutSortedClustersIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="layout-sorted-clusters"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="layout-sorted-clusters" {...props} />
   })
 )

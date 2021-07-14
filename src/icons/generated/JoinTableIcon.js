@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const JoinTableIcon = memo(
   forwardRef(function JoinTableIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="join-table"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="join-table" {...props} />
   })
 )

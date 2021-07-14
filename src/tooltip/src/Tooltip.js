@@ -1,11 +1,11 @@
+import React, { memo, useState, useEffect, useRef } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
-import React, { memo, useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
-import { Positioner } from '../../positioner'
+import PropTypes from 'prop-types'
 import { Position } from '../../constants'
 import { useId } from '../../hooks'
+import { Positioner } from '../../positioner'
 import TooltipStateless from './TooltipStateless'
 
 const emptyProps = {}
@@ -25,7 +25,7 @@ const Tooltip = memo(function Tooltip(props) {
   const id = useId('evergreen-tooltip')
   const [isShown, setIsShown] = useState(propIsShown || false)
   const [isShownByTarget, setIsShownByTarget] = useState(false)
-  const [closeTimeout, setCloseTimeout] = useState(null)
+  const closeTimer = useRef(undefined)
 
   const mouseLeftTarget = () => {
     setIsShownByTarget(false)
@@ -36,7 +36,7 @@ const Tooltip = memo(function Tooltip(props) {
   const hide = () => {
     setIsShown(false)
     // Clean up any timeouts that may have been triggered from `showDelay`
-    clearTimeout(closeTimeout)
+    clearTimeout(closeTimer.current)
   }
 
   const handleHide = debounce(hide, hideDelay)
@@ -44,7 +44,7 @@ const Tooltip = memo(function Tooltip(props) {
   // Component will unmount
   useEffect(
     () => () => {
-      clearTimeout(closeTimeout)
+      clearTimeout(closeTimer.current)
     },
     []
   )
@@ -57,11 +57,10 @@ const Tooltip = memo(function Tooltip(props) {
       return
     }
 
-    setCloseTimeout(
-      setTimeout(() => {
-        setIsShown(true)
-      }, showDelay)
-    )
+    clearTimeout(closeTimer.current)
+    closeTimer.current = setTimeout(() => {
+      setIsShown(true)
+    }, showDelay)
   }
 
   const renderTarget = ({ getRef }) => {
@@ -128,13 +127,8 @@ const Tooltip = memo(function Tooltip(props) {
   }
 
   return (
-    <Positioner
-      target={renderTarget}
-      isShown={shown}
-      position={position}
-      animationDuration={160}
-    >
-      {({ css, style, state, getRef }) => (
+    <Positioner target={renderTarget} isShown={shown} position={position} animationDuration={160}>
+      {({ css, getRef, state, style }) => (
         <TooltipStateless
           id={id}
           appearance={appearance}
@@ -144,10 +138,7 @@ const Tooltip = memo(function Tooltip(props) {
           onMouseEnter={handleMouseEnterTarget}
           onMouseLeave={handleMouseLeaveTarget}
           {...statelessProps}
-          className={cx(
-            statelessProps.className,
-            css ? glamorCss(css).toString() : undefined
-          )}
+          className={cx(statelessProps.className, css ? glamorCss(css).toString() : undefined)}
         >
           {content}
         </TooltipStateless>

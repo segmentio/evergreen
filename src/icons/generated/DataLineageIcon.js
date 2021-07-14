@@ -10,14 +10,6 @@ const svgPaths20 = [
 
 export const DataLineageIcon = memo(
   forwardRef(function DataLineageIcon(props, ref) {
-    return (
-      <Icon
-        svgPaths16={svgPaths16}
-        svgPaths20={svgPaths20}
-        ref={ref}
-        name="data-lineage"
-        {...props}
-      />
-    )
+    return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="data-lineage" {...props} />
   })
 )

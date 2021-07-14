@@ -1,9 +1,9 @@
-import { css } from 'glamor'
 import React, { memo, forwardRef, useCallback } from 'react'
+import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import { Text } from '../../typography'
-import { IconWrapper } from '../../icons/src/IconWrapper'
 import { SearchIcon } from '../../icons'
+import { IconWrapper } from '../../icons/src/IconWrapper'
+import { Text } from '../../typography'
 import TableHeaderCell from './TableHeaderCell'
 
 const invisibleInputClass = css({
@@ -18,7 +18,7 @@ const invisibleInputClass = css({
   },
 
   '&::placeholder': {
-    color: `rgba(67, 90, 111, 0.7)`
+    color: 'rgba(67, 90, 111, 0.7)'
   }
 }).toString()
 
@@ -41,13 +41,7 @@ const SearchTableHeaderCell = memo(
 
     return (
       <TableHeaderCell {...rest}>
-        <IconWrapper
-          icon={icon}
-          color="muted"
-          marginLeft={2}
-          marginRight={10}
-          size={12}
-        />
+        <IconWrapper icon={icon} color="muted" marginLeft={2} marginRight={10} size={12} />
         <Text
           is="input"
           size={300}

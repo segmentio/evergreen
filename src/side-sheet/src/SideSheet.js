@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
+import { Position } from '../../constants'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
-import { Position } from '../../constants'
 import SheetClose from './SheetClose'
 
 const paneProps = {
@@ -53,8 +53,8 @@ const subpaneProps = {
 }
 
 const animationEasing = {
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`
+  deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)'
 }
 
 const ANIMATION_DURATION = 240
@@ -72,54 +72,54 @@ const withAnimations = (animateIn, animateOut) => {
 
 const animationStylesClass = {
   [Position.LEFT]: {
-    transform: `translateX(-100%)`,
+    transform: 'translateX(-100%)',
     ...withAnimations(
       css.keyframes('anchoredLeftSlideInAnimation', {
-        from: { transform: `translateX(-100%)` },
-        to: { transform: `translateX(0)` }
+        from: { transform: 'translateX(-100%)' },
+        to: { transform: 'translateX(0)' }
       }),
       css.keyframes('anchoredLeftSlideOutAnimation', {
-        from: { transform: `translateX(0)` },
-        to: { transform: `translateX(-100%)` }
+        from: { transform: 'translateX(0)' },
+        to: { transform: 'translateX(-100%)' }
       })
     )
   },
   [Position.RIGHT]: {
-    transform: `translateX(100%)`,
+    transform: 'translateX(100%)',
     ...withAnimations(
       css.keyframes('anchoredRightSlideInAnimation', {
-        from: { transform: `translateX(100%)` },
-        to: { transform: `translateX(0)` }
+        from: { transform: 'translateX(100%)' },
+        to: { transform: 'translateX(0)' }
       }),
       css.keyframes('anchoredRightSlideOutAnimation', {
-        from: { transform: `translateX(0)` },
-        to: { transform: `translateX(100%)` }
+        from: { transform: 'translateX(0)' },
+        to: { transform: 'translateX(100%)' }
       })
     )
   },
   [Position.TOP]: {
-    transform: `translateY(-100%)`,
+    transform: 'translateY(-100%)',
     ...withAnimations(
       css.keyframes('anchoredTopSlideInAnimation', {
-        from: { transform: `translateY(-100%)` },
-        to: { transform: `translateY(0)` }
+        from: { transform: 'translateY(-100%)' },
+        to: { transform: 'translateY(0)' }
       }),
       css.keyframes('anchoredTopSlideOutAnimation', {
-        from: { transform: `translateY(0)` },
-        to: { transform: `translateY(-100%)` }
+        from: { transform: 'translateY(0)' },
+        to: { transform: 'translateY(-100%)' }
       })
     )
   },
   [Position.BOTTOM]: {
-    transform: `translateY(100%)`,
+    transform: 'translateY(100%)',
     ...withAnimations(
       css.keyframes('anchoredBottomSlideInAnimation', {
-        from: { transform: `translateY(100%)` },
-        to: { transform: `translateY(0)` }
+        from: { transform: 'translateY(100%)' },
+        to: { transform: 'translateY(0)' }
       }),
       css.keyframes('anchoredBottomSlideOutAnimation', {
-        from: { transform: `translateY(0)` },
-        to: { transform: `translateY(100%)` }
+        from: { transform: 'translateY(0)' },
+        to: { transform: 'translateY(100%)' }
       })
     )
   }
@@ -152,19 +152,14 @@ const SideSheet = memo(function SideSheet(props) {
       onEntered={onOpenComplete}
       preventBodyScrolling={preventBodyScrolling}
     >
-      {({ state, close }) => (
+      {({ close, state }) => (
         <Pane
           width={width}
           {...paneProps[position]}
-          css={animationStylesClass[position]}
+          className={css(animationStylesClass[position]).toString()}
           data-state={state}
         >
-          <SheetClose
-            position={position}
-            data-state={state}
-            isClosing={false}
-            onClick={close}
-          />
+          <SheetClose position={position} data-state={state} isClosing={false} onClick={close} />
           <Pane
             elevation={4}
             backgroundColor="white"
@@ -234,12 +229,7 @@ SideSheet.propTypes = {
   /**
    * Positions the sheet to the top, left, right, or bottom of the screen.
    */
-  position: PropTypes.oneOf([
-    Position.TOP,
-    Position.BOTTOM,
-    Position.LEFT,
-    Position.RIGHT
-  ]),
+  position: PropTypes.oneOf([Position.TOP, Position.BOTTOM, Position.LEFT, Position.RIGHT]),
 
   /**
    * Whether or not to prevent scrolling in the outer body
