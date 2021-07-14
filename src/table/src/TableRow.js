@@ -5,7 +5,6 @@ import { useClickable, useLatest, useMergedRef, useStyleConfig } from '../../hoo
 import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
-import { TableRowProvider } from './TableRowContext'
 
 const noop = () => {}
 
@@ -99,24 +98,22 @@ const TableRow = memo(
     const height = rest.height || themeHeight
 
     return (
-      <TableRowProvider height={height}>
-        <Pane
-          ref={onRef}
-          className={cx(themedClassName, className)}
-          aria-selected={isHighlighted}
-          aria-current={isSelected}
-          data-isselectable={isSelectable}
-          tabIndex={isSelectable ? clickable.tabIndex : undefined}
-          onClick={handleClick}
-          onKeyDown={clickable.onKeyDown}
-          borderBottom="muted"
-          height={height}
-          {...boxProps}
-          {...rest}
-        >
-          {children}
-        </Pane>
-      </TableRowProvider>
+      <Pane
+        ref={onRef}
+        className={cx(themedClassName, className)}
+        aria-selected={isHighlighted}
+        aria-current={isSelected}
+        data-isselectable={isSelectable}
+        tabIndex={isSelectable ? clickable.tabIndex : undefined}
+        onClick={handleClick}
+        onKeyDown={clickable.onKeyDown}
+        borderBottom="muted"
+        height={height}
+        {...boxProps}
+        {...rest}
+      >
+        {children}
+      </Pane>
     )
   })
 )

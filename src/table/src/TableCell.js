@@ -6,7 +6,6 @@ import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
 import { toaster } from '../../toaster'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
-import { TableRowConsumer } from './TableRowContext'
 
 function executeArrowKeyOverride(override) {
   if (!override) {
@@ -93,26 +92,19 @@ const TableCell = memo(
     )
 
     return (
-      <TableRowConsumer>
-        {height => {
-          return (
-            <Pane
-              ref={handleRef}
-              height={height}
-              className={cx(themedClassName, className)}
-              tabIndex={isSelectable ? tabIndex : undefined}
-              data-isselectable={isSelectable}
-              onClick={onClick}
-              onKeyDown={handleKeyDown}
-              {...boxProps}
-              {...rest}
-            >
-              {children}
-              {rightView || null}
-            </Pane>
-          )
-        }}
-      </TableRowConsumer>
+      <Pane
+        ref={handleRef}
+        className={cx(themedClassName, className)}
+        tabIndex={isSelectable ? tabIndex : undefined}
+        data-isselectable={isSelectable}
+        onClick={onClick}
+        onKeyDown={handleKeyDown}
+        {...boxProps}
+        {...rest}
+      >
+        {children}
+        {rightView || null}
+      </Pane>
     )
   })
 )
