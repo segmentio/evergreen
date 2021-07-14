@@ -7,6 +7,10 @@ import { useId } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
 
+function isControlled(value) {
+  return typeof value !== 'undefined' && value !== null
+}
+
 const SegmentedControl = memo(
   forwardRef(function SegmentedControl(props, ref) {
     const { defaultValue, disabled, height, name, onChange, options, size, value, ...rest } = props
@@ -20,12 +24,8 @@ const SegmentedControl = memo(
       )
     }
 
-    const isControlled = () => {
-      return typeof value !== 'undefined' && value !== null
-    }
-
     const getDefaultValue = () => {
-      if (isControlled()) {
+      if (isControlled(value)) {
         return value
       }
 
@@ -35,7 +35,7 @@ const SegmentedControl = memo(
     const [activeValue, setActiveValue] = useState(getDefaultValue())
 
     useEffect(() => {
-      if (isControlled() && value !== activeValue) {
+      if (isControlled(value)) {
         setActiveValue(value)
       }
     }, [value])
@@ -46,13 +46,13 @@ const SegmentedControl = memo(
         const newValue = event.target.value
 
         // Save a render cycle when it's a controlled input
-        if (!isControlled()) {
+        if (!isControlled(value)) {
           setActiveValue(newValue)
         }
 
         safeInvoke(onChange, newValue)
       },
-      [onChange]
+      [value, onChange]
     )
 
     return (

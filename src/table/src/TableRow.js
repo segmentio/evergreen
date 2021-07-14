@@ -63,6 +63,8 @@ const TableRow = memo(
           }
         }
       },
+      // These "missing" deps are all refs
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       [isSelected, isSelectable]
     )
 
@@ -80,6 +82,8 @@ const TableRow = memo(
           }
         }
       },
+      // These "missing" deps are all refs
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       [isSelectable]
     )
 

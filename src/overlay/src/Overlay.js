@@ -119,6 +119,8 @@ const Overlay = memo(function Overlay({
       document.body.removeEventListener('keydown', onEsc, false)
       bringFocusBackToTarget()
     }
+    // These missing deps *should* be okay (adding them would require other changes)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status])
 
   // ComponentWillUnmount
@@ -127,6 +129,8 @@ const Overlay = memo(function Overlay({
       handleBodyScroll(false)
       document.body.removeEventListener('keydown', onEsc, false)
     },
+    // These missing deps *should* be okay (adding them would require other changes)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )
 

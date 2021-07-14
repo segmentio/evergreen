@@ -3,12 +3,7 @@
   "env": {
     "browser": true
   },
-  "extends": [
-    "plugin:react/recommended",
-    "standard",
-    "prettier",
-    "prettier/react"
-  ],
+  "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended", "standard", "prettier", "prettier/react"],
   "settings": {
     "react": {
       "version": "detect"
@@ -21,13 +16,18 @@
     "ecmaVersion": 2015,
     "sourceType": "module"
   },
-  "plugins": ["react", "sort-destructure-keys"],
+  "plugins": ["react", "react-hooks", "sort-destructure-keys"],
   "rules": {
     "space-before-function-paren": "off",
     "no-unused-vars": "error",
     "react/display-name": "off",
     "sort-destructure-keys/sort-destructure-keys": "error",
-    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
     "import/order": [
       "error",
       {

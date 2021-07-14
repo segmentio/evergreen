@@ -88,15 +88,15 @@ const CornerDialog = memo(function CornerDialog(props) {
     onCloseComplete()
   }, [onCloseComplete])
 
-  const handleClose = useCallback(() => setExiting(true))
+  const handleClose = useCallback(() => setExiting(true), [])
 
   const handleCancel = useCallback(() => {
     onCancel(handleClose)
-  }, [onCancel])
+  }, [onCancel, handleClose])
 
   const handleConfirm = useCallback(() => {
     onConfirm(handleClose)
-  }, [onConfirm])
+  }, [onConfirm, handleClose])
 
   const renderChildren = useCallback(() => {
     if (typeof children === 'function') {
@@ -112,7 +112,7 @@ const CornerDialog = memo(function CornerDialog(props) {
     }
 
     return children
-  }, [children])
+  }, [children, handleClose])
 
   if (exited) {
     return null

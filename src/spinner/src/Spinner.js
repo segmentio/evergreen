@@ -59,7 +59,7 @@ const Spinner = memo(
       return function() {
         clearTimeout(delayTimer)
       }
-    }, [])
+    }, [delay])
 
     if (!isVisible) {
       return null

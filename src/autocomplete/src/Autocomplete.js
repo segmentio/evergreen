@@ -121,16 +121,14 @@ const Autocomplete = memo(
 
     const stateReducer = useCallback(
       (state, changes) => {
-        const { allowOtherValues, items } = props
-
         if (Object.prototype.hasOwnProperty.call(changes, 'isOpen') && changes.isOpen) {
           return {
             ...changes,
-            highlightedIndex: items.indexOf(state.selectedItem)
+            highlightedIndex: props.items.indexOf(state.selectedItem)
           }
         }
 
-        if (allowOtherValues && state.isOpen && !changes.isOpen) {
+        if (props.allowOtherValues && state.isOpen && !changes.isOpen) {
           return {
             ...changes,
             selectedItem: changes.selectedItem || state.inputValue,
