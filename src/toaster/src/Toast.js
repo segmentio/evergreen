@@ -70,12 +70,12 @@ const Toast = memo(function Toast(props) {
       clearTimeout(closeTimer.current)
       closeTimer.current = null
     }
-  })
+  }, [])
 
   const close = useCallback(() => {
     clearCloseTimer()
     setIsShown(false)
-  })
+  }, [clearCloseTimer])
 
   const startCloseTimer = useCallback(() => {
     if (duration) {
@@ -84,7 +84,7 @@ const Toast = memo(function Toast(props) {
         close()
       }, duration * 1000)
     }
-  })
+  }, [duration, clearCloseTimer, close])
 
   useEffect(() => {
     startCloseTimer()
@@ -92,23 +92,23 @@ const Toast = memo(function Toast(props) {
     return () => {
       clearCloseTimer()
     }
-  }, [])
+  }, [startCloseTimer, clearCloseTimer])
 
   useEffect(() => {
     if (isShownProp !== isShown && typeof isShownProp === 'boolean') {
       setIsShown(isShownProp)
     }
-  }, [isShownProp])
+  }, [isShown, isShownProp])
 
-  const handleMouseEnter = useCallback(() => clearCloseTimer())
-  const handleMouseLeave = useCallback(() => startCloseTimer())
+  const handleMouseEnter = useCallback(() => clearCloseTimer(), [clearCloseTimer])
+  const handleMouseLeave = useCallback(() => startCloseTimer(), [startCloseTimer])
 
   const onRef = useCallback(ref => {
     if (ref === null) return
 
     const { height: rectHeight } = ref.getBoundingClientRect()
     setHeight(rectHeight)
-  })
+  }, [])
 
   const styles = useMemo(
     () => ({

@@ -1,6 +1,6 @@
 {
   "name": "evergreen-ui",
-  "version": "6.0.1",
+  "version": "6.1.0",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
@@ -31,8 +31,8 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "test": "yarn eslint && yarn jest",
-    "eslint": "eslint 'src/**/*.js'",
+    "test": "yarn lint && yarn jest",
+    "lint": "eslint 'src/**/*.js' --cache",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
@@ -118,6 +118,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-sort-destructure-keys": "^1.3.5",
     "eslint-plugin-standard": "4.0.0",
     "faker": "^4.1.0",
@@ -137,7 +138,8 @@
     "size-limit": "^4.5.0",
     "starwars-names": "^1.6.0",
     "url-loader": "^1.1.2",
-    "webpack": "^4.43.0"
+    "webpack": "^4.43.0",
+    "yarnhook": "^0.5.1"
   },
   "prettier": {
     "semi": false,
@@ -148,7 +150,7 @@
   },
   "lint-staged": {
     "!(codemods|docs)/**/*.js": [
-      "yarn run eslint --fix",
+      "yarn lint --fix",
       "prettier --write"
     ],
     "docs/**/*.{ts,tsx,js,jsx}": [
