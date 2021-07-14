@@ -91,13 +91,13 @@ const OptionsList = memo(function OptionsList(props) {
 
   const getFilteredOptions = useCallback(() => {
     return search(options)
-  }, [search, options])
+  }, [options])
 
   const getCurrentIndex = useCallback(() => {
     const options = getFilteredOptions()
 
     return options.findIndex(option => option.value === selected[selected.length - 1])
-  }, [getFilteredOptions, selected])
+  }, [selected])
 
   const handleArrowUp = useCallback(() => {
     const options = getFilteredOptions()
@@ -113,7 +113,7 @@ const OptionsList = memo(function OptionsList(props) {
     }
 
     onSelect(options[nextIndex])
-  }, [getFilteredOptions, getCurrentIndex, isSelected, onSelect])
+  }, [onSelect])
 
   const handleArrowDown = useCallback(() => {
     const options = getFilteredOptions()
@@ -127,7 +127,7 @@ const OptionsList = memo(function OptionsList(props) {
     if (!isSelected(options[nextIndex])) {
       onSelect(options[nextIndex])
     }
-  }, [getFilteredOptions, getCurrentIndex, isSelected, onSelect])
+  }, [onSelect])
 
   const handleChange = useCallback(
     searchValue => {
@@ -149,7 +149,7 @@ const OptionsList = memo(function OptionsList(props) {
         close()
       }
     },
-    [onDeselect, isMultiSelect, closeOnSelect, close, isSelected, onSelect]
+    [onDeselect, isMultiSelect, closeOnSelect]
   )
 
   const handleEnter = useCallback(() => {
@@ -160,7 +160,7 @@ const OptionsList = memo(function OptionsList(props) {
         close()
       }
     }
-  }, [isMultiSelect, close, closeOnSelect, getCurrentIndex])
+  }, [isMultiSelect, close, closeOnSelect])
 
   const handleDeselect = useCallback(
     item => {
@@ -187,7 +187,7 @@ const OptionsList = memo(function OptionsList(props) {
         close()
       }
     },
-    [close, handleArrowUp, handleArrowDown, handleEnter]
+    [close]
   )
 
   useEffect(() => {
@@ -210,7 +210,7 @@ const OptionsList = memo(function OptionsList(props) {
     if (selected !== selectedOptions) {
       setSelectedOptions(selected)
     }
-  }, [selected, selectedOptions, setSelectedOptions])
+  }, [selected])
 
   const listHeight = height - (hasFilter ? 32 : 0)
   const currentIndex = getCurrentIndex()

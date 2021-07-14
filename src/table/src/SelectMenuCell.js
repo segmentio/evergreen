@@ -1,4 +1,4 @@
-import React, { memo, useRef, useMemo, useState, useEffect, useCallback } from 'react'
+import React, { memo, useState, useEffect, useCallback } from 'react'
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import { CaretDownIcon } from '../../icons'
@@ -13,7 +13,7 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
   const [targetWidth, setTargetWidth] = useState(MIN_SELECT_MENU_WIDTH)
   const [shouldClickToggle, setShouldClickToggle] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
-  const mainRef = useRef(null)
+  const [mainRef, setMainRef] = useState()
 
   const {
     children,
@@ -26,13 +26,13 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
     ...rest
   } = props
 
-  const updateOnResize = useCallback(() => {
-    if (!mainRef.current) return
-    const mainRefWidth = mainRef.current.offsetWidth
+  const updateOnResize = () => {
+    if (!mainRef) return
+    const mainRefWidth = mainRef.offsetWidth
     setTargetWidth(Math.max(MIN_SELECT_MENU_WIDTH, mainRefWidth))
-  }, [])
+  }
 
-  const onResize = useMemo(() => debounce(updateOnResize, 200), [updateOnResize])
+  const onResize = debounce(updateOnResize, 200)
 
   useEffect(() => {
     updateOnResize()
@@ -41,10 +41,10 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
     return () => {
       window.removeEventListener('resize', onResize)
     }
-  }, [updateOnResize, onResize])
+  }, [])
 
   const onMainRef = (getRef, ref) => {
-    mainRef.current = ref
+    setMainRef(ref)
     getRef(ref)
   }
 

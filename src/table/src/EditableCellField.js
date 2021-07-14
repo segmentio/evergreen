@@ -56,8 +56,6 @@ const EditableCellField = memo(function EditableCellField(props) {
 
       props.onCancel()
     }
-    // This is needs to be reworked a bit
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const update = () => {

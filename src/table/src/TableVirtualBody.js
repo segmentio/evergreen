@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo, useRef, useEffect } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import VirtualList from 'react-tiny-virtual-list'
@@ -22,54 +22,58 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
   } = props
 
   const forceUpdate = useForceUpdate()
-  const paneRef = useRef()
-  const autoHeights = useRef([])
-  const autoHeightRefs = useRef([])
-  const averageAutoHeight = useRef(defaultHeight)
-  const calculatedHeight = useRef(0)
+  let autoHeights = []
+  let autoHeightRefs = []
+  let averageAutoHeight = defaultHeight
 
-  const isIntegerHeight = useMemo(() => {
-    if (props.height !== calculatedHeight.current) {
-      return Number.isInteger(props.height)
+  const [paneRef, setPaneRef] = useState()
+  const [isIntegerHeight, setIsIntegerHeight] = useState(false)
+  const [calculatedHeight, setCalculatedHeight] = useState(0)
+
+  const updateOnResize = () => {
+    autoHeights = []
+    autoHeightRefs = []
+    averageAutoHeight = defaultHeight
+
+    // Simply return when we now the height of the pane is fixed.
+    if (isIntegerHeight) return
+
+    // Return if we are in a weird edge case in which the ref is no longer valid.
+    if (paneRef && paneRef instanceof Node) {
+      const tempCalculatedHeight = paneRef.offsetHeight
+
+      if (tempCalculatedHeight > 0) {
+        // Save the calculated height which is needed for the VirtualList.
+        setCalculatedHeight(tempCalculatedHeight)
+
+        // Prevent updateOnResize being called recursively when there is a valid height.
+        return
+      }
     }
 
-    return false
+    // When height is still 0 (or paneRef is not valid) try recursively until success.
+    requestAnimationFrame(() => {
+      updateOnResize()
+    })
+  }
+
+  const onResize = debounce(updateOnResize, 200)
+
+  useEffect(() => {
+    if (props.height !== calculatedHeight) {
+      setIsIntegerHeight(Number.isInteger(props.height))
+    }
   }, [props.height])
 
-  const updateOnResize = useCallback(() => {
-    const update = () => {
-      autoHeights.current = []
-      autoHeightRefs.current = []
-      averageAutoHeight.current = defaultHeight
-
-      // Simply return when we know the height of the pane is fixed.
-      if (isIntegerHeight) return
-
-      // Return if we are in a weird edge case in which the ref is no longer valid.
-      if (paneRef.current && paneRef.current instanceof Node) {
-        const tempCalculatedHeight = paneRef.current.offsetHeight
-
-        if (tempCalculatedHeight > 0) {
-          // Save the calculated height which is needed for the VirtualList.
-          calculatedHeight.current = tempCalculatedHeight
-
-          // Prevent updateOnResize being called recursively when there is a valid height.
-          return
-        }
-      }
-
-      // When height is still 0 (or paneRef is not valid) try recursively until success.
-      requestAnimationFrame(() => {
-        update()
-      })
+  useEffect(() => {
+    if (paneRef && paneRef instanceof Node) {
+      updateOnResize()
     }
-
-    update()
-  }, [isIntegerHeight, defaultHeight])
-
-  const onResize = useMemo(() => debounce(updateOnResize, 200), [updateOnResize])
+  }, [paneRef])
 
   // Mirrors functionality of componentDidMount and componentWillUnmount.
+  // By passing an empty array, will only run on first render, the function returned
+  // will be called on component unmount
   useEffect(() => {
     updateOnResize()
     window.addEventListener('resize', onResize, false)
@@ -77,7 +81,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
     return () => {
       window.removeEventListener('resize', onResize)
     }
-  }, [updateOnResize, onResize])
+  }, [])
 
   /**
    * This function will process all items that have height="auto" set.
@@ -91,11 +95,11 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
     let totalAmount = 0
 
     // Loop through all of the refs that have height="auto".
-    autoHeightRefs.current.forEach((ref, index) => {
+    autoHeightRefs.forEach((ref, index) => {
       // If the height is already calculated, skip it,
       // but calculate the height for the total.
-      if (autoHeights.current[index]) {
-        total += autoHeights.current[index]
+      if (autoHeights[index]) {
+        total += autoHeights[index]
         totalAmount += 1
         return
       }
@@ -109,7 +113,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
         totalAmount += 1
 
         // Cache the height.
-        autoHeights.current[index] = height
+        autoHeights[index] = height
 
         // Set the update flag to true.
         isUpdated = true
@@ -117,7 +121,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
     })
 
     // Save the average height.
-    averageAutoHeight.current = total / totalAmount
+    averageAutoHeight = total / totalAmount
 
     // There are some new heights detected that had previously not been calculated.
     // Call forceUpdate to make sure the virtual list renders again.
@@ -125,7 +129,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
   }
 
   const onVirtualHelperRef = (index, ref) => {
-    autoHeightRefs.current[index] = ref
+    autoHeightRefs[index] = ref
 
     requestAnimationFrame(() => {
       processAutoHeights()
@@ -160,10 +164,10 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
       // When allowAutoHeight is set and  the height is set to "auto"...
       if (allowAutoHeight && children[index].props.height === 'auto') {
         // ... and the height is calculated, return the calculated height.
-        if (autoHeights.current[index]) return autoHeights.current[index]
+        if (autoHeights[index]) return autoHeights[index]
 
         // ... if the height is not yet calculated, return the averge
-        if (useAverageAutoHeightEstimation) return averageAutoHeight.current
+        if (useAverageAutoHeightEstimation) return averageAutoHeight
       }
 
       // Return the default height.
@@ -179,12 +183,12 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
   const itemSize = getItemSize(children)
 
   return (
-    <Pane data-evergreen-table-body ref={paneRef} height={paneHeight} flex="1" overflow="hidden" {...rest}>
+    <Pane data-evergreen-table-body ref={setPaneRef} height={paneHeight} flex="1" overflow="hidden" {...rest}>
       <VirtualList
-        height={isIntegerHeight ? paneHeight : calculatedHeight.current}
+        height={isIntegerHeight ? paneHeight : calculatedHeight}
         width="100%"
         estimatedItemSize={
-          allowAutoHeight && useAverageAutoHeightEstimation ? averageAutoHeight.current : estimatedItemSize || null
+          allowAutoHeight && useAverageAutoHeightEstimation ? averageAutoHeight : estimatedItemSize || null
         }
         itemSize={itemSize}
         overscanCount={overscanCount}
@@ -217,7 +221,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
             React.isValidElement(child) &&
             child.props.height === 'auto' &&
             // ... and only when the height is not already been calculated.
-            !autoHeights.current[index]
+            !autoHeights[index]
           ) {
             // ... render the item in a helper div, the ref is used to calculate
             // the height of its children.
