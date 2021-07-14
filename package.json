@@ -137,7 +137,8 @@
     "size-limit": "^4.5.0",
     "starwars-names": "^1.6.0",
     "url-loader": "^1.1.2",
-    "webpack": "^4.43.0"
+    "webpack": "^4.43.0",
+    "yarnhook": "^0.5.1"
   },
   "prettier": {
     "semi": false,
