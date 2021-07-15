@@ -33,7 +33,7 @@ const PatternPropsPage: React.FC<Props> = ({ componentProps, pattern, patterns }
       navItems={patterns}
       selectedNavItem={pattern}
       navPrefix="patterns"
-      navTitle="Components"
+      navTitle="Patterns"
       pageTitle={`${name} Documentation`}
       pageHeader={
         <PageHeader
