@@ -1,4 +1,4 @@
-// This file sets up the unit test environment (see the ava config)
+// This file sets up the unit test environment (see the jest config)
 import { configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
