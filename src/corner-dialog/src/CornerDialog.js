@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useCallback } from 'react'
+import React, { memo, useRef, useState, useEffect, useCallback } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
@@ -74,6 +74,7 @@ const CornerDialog = memo(function CornerDialog(props) {
 
   const [exiting, setExiting] = useState(false)
   const [exited, setExited] = useState(!props.isShown)
+  const transitionRef = useRef(null)
 
   useEffect(() => {
     if (isShown) {
@@ -123,6 +124,7 @@ const CornerDialog = memo(function CornerDialog(props) {
   return (
     <Portal>
       <Transition
+        nodeRef={transitionRef}
         appear
         unmountOnExit
         timeout={ANIMATION_DURATION}
@@ -132,6 +134,7 @@ const CornerDialog = memo(function CornerDialog(props) {
       >
         {state => (
           <Card
+            ref={transitionRef}
             role="dialog"
             backgroundColor="white"
             elevation={4}
