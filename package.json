@@ -108,8 +108,6 @@
     "camelcase": "^5.0.0",
     "chromatic": "^5.1.0",
     "concurrently": "^4.0.1",
-    "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.6.0",
     "eslint": "6.2.2",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.1",
@@ -161,9 +159,6 @@
     ]
   },
   "jest": {
-    "setupFiles": [
-      "./tools/test-setup"
-    ],
     "setupFilesAfterEnv": [
       "./tools/test-setup-after-env"
     ],
