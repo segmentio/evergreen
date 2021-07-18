@@ -52,7 +52,7 @@
     "chromatic": "npx chromatic"
   },
   "engines": {
-    "node": ">=10.18"
+    "node": ">=12"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
@@ -67,7 +67,6 @@
     "lodash.merge": "^4.6.2",
     "prop-types": "^15.6.2",
     "react-fast-compare": "^3.2.0",
-    "react-is": "^16.13.1",
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^4.4.1",
     "tinycolor2": "^1.4.1",
@@ -75,7 +74,8 @@
   },
   "peerDependencies": {
     "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react-dom": "^16.8.0",
+    "react-is": "^16.8.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -125,9 +125,10 @@
     "lint-staged": "^10.0.1",
     "np": "^6.3.2",
     "prettier": "^1.14.3",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-test-renderer": "^16.5.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-is": "^16.8.0",
+    "react-test-renderer": "^16.8.0",
     "rollup": "^1.29.1",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-terser": "^5.2.0",
