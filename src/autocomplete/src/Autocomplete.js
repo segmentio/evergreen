@@ -161,7 +161,7 @@ const Autocomplete = memo(
               isShown={isShown}
               minWidth={popoverMinWidth}
               position={position || (targetWidth < popoverMinWidth ? Position.BOTTOM_LEFT : Position.BOTTOM)}
-              content={() => (
+              content={
                 <AutocompleteItems
                   getItemProps={getItemProps}
                   getMenuProps={getMenuProps}
@@ -178,7 +178,7 @@ const Autocomplete = memo(
                   title={props.title}
                   width={Math.max(targetWidth, popoverMinWidth)}
                 />
-              )}
+              }
               minHeight={0}
               animationDuration={0}
             >
