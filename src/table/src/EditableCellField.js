@@ -94,6 +94,8 @@ const EditableCellField = memo(function EditableCellField(props) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       onCancelRef.current()
     }
+    // we only want `update` to run once, and `onCancelRef` is a ref
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleFocus = useCallback(e => {
