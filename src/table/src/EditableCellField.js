@@ -1,44 +1,81 @@
-import React, { memo, useRef, useState, useEffect } from 'react'
+import React, { memo, useRef, useState, useMemo, useCallback, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
+import { useLatest } from '../../hooks'
 import { Textarea } from '../../textarea'
 
-const EditableCellField = memo(function EditableCellField(props) {
-  const { getTargetRef } = props
+function getTableBodyRef(currentRef) {
+  let ref = currentRef
 
-  const getTableBodyRef = () => {
-    let ref = getTargetRef()
+  if (!ref) return
 
-    if (!ref) return
-
-    while (ref) {
-      const isTableBody = ref.hasAttribute('data-evergreen-table-body')
-      if (isTableBody) {
-        return ref
-      }
-
-      if (ref.parentElement) {
-        ref = ref.parentElement
-      } else {
-        return null
-      }
+  while (ref) {
+    const isTableBody = ref.hasAttribute('data-evergreen-table-body')
+    if (isTableBody) {
+      return ref
     }
 
-    return ref
+    if (ref.parentElement) {
+      ref = ref.parentElement
+    } else {
+      return null
+    }
   }
+
+  return ref
+}
+
+const EditableCellField = memo(function EditableCellField(props) {
+  const { minHeight = 40, minWidth = 80, size, value, zIndex } = props
 
   const latestAnimationFrame = useRef()
   const textareaRef = useRef()
   const tableBodyRef = useRef()
-  const [{ height, left, top, width }, setDimensions] = useState({
-    top: 0,
-    left: 0,
-    height: 0,
-    width: 0
-  })
+  const onCancelRef = useLatest(props.onCancel)
+  const onChangeCompleteRef = useLatest(props.onChangeComplete)
+  const getTargetRef = useLatest(props.getTargetRef)
+  const [height, setHeight] = useState(0)
+  const [width, setWidth] = useState(0)
+  const [left, setLeft] = useState(0)
+  const [top, setTop] = useState(0)
+
+  const update = useCallback(() => {
+    function updater() {
+      const targetRef = getTargetRef.current()
+      if (!targetRef) return
+      tableBodyRef.current = getTableBodyRef(targetRef)
+
+      const {
+        height: targetHeight,
+        left: targetLeft,
+        top: targetTop,
+        width: targetWidth
+      } = targetRef.getBoundingClientRect()
+
+      let calculatedTop
+      if (tableBodyRef.current) {
+        const bounds = tableBodyRef.current.getBoundingClientRect()
+        calculatedTop = Math.min(Math.max(targetTop, bounds.top), bounds.bottom - targetHeight)
+      } else {
+        calculatedTop = targetTop
+      }
+
+      setHeight(targetHeight)
+      setWidth(targetWidth)
+      setLeft(targetLeft)
+      setTop(calculatedTop)
+
+      // recursively run the updater
+      latestAnimationFrame.current = requestAnimationFrame(() => updater())
+    }
+
+    // kick off the updater
+    updater()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // Mirrors functionality of componentDidMount and componentWillUnmount.
   // Focus on mount
-  useEffect(() => {
+  useLayoutEffect(() => {
     update()
 
     const requestId = requestAnimationFrame(() => {
@@ -54,52 +91,28 @@ const EditableCellField = memo(function EditableCellField(props) {
         cancelAnimationFrame(latestAnimationFrame.current)
       }
 
-      props.onCancel()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      onCancelRef.current()
     }
+    // we only want `update` to run once, and `onCancelRef` is a ref
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const update = () => {
-    const { getTargetRef } = props
-    const targetRef = getTargetRef()
-    if (!targetRef) return
-    tableBodyRef.current = getTableBodyRef()
-
-    const {
-      height: targetHeight,
-      left: targetLeft,
-      top: targetTop,
-      width: targetWidth
-    } = targetRef.getBoundingClientRect()
-
-    let calculatedTop
-    if (tableBodyRef.current) {
-      const bounds = tableBodyRef.current.getBoundingClientRect()
-      calculatedTop = Math.min(Math.max(targetTop, bounds.top), bounds.bottom - targetHeight)
-    } else {
-      calculatedTop = targetTop
-    }
-
-    setDimensions({
-      top: calculatedTop,
-      left: targetLeft,
-      height: targetHeight,
-      width: targetWidth
-    })
-    latestAnimationFrame.current = requestAnimationFrame(() => update())
-  }
-
-  const handleFocus = e => {
+  const handleFocus = useCallback(e => {
     e.target.selectionStart = e.target.value.length
-  }
+  }, [])
 
-  const handleBlur = () => {
-    if (textareaRef.current) props.onChangeComplete(textareaRef.current.value)
-  }
+  const handleBlur = useCallback(() => {
+    if (textareaRef.current) {
+      onChangeCompleteRef.current(textareaRef.current.value)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  const handleKeyDown = e => {
+  const handleKeyDown = useCallback(e => {
     switch (e.key) {
       case 'Escape':
-        props.onCancel()
+        onCancelRef.current()
         if (textareaRef.current) textareaRef.current.blur()
         break
       case 'Enter':
@@ -112,9 +125,21 @@ const EditableCellField = memo(function EditableCellField(props) {
       default:
         break
     }
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  const { minHeight = 40, minWidth = 80, size, value, zIndex } = props
+  const style = useMemo(
+    () => ({
+      left,
+      top,
+      height,
+      minHeight: Math.max(height, minHeight),
+      width,
+      minWidth: Math.max(width, minWidth),
+      zIndex
+    }),
+    [left, top, height, width, minHeight, minWidth, zIndex]
+  )
 
   return (
     <Textarea
@@ -124,15 +149,7 @@ const EditableCellField = memo(function EditableCellField(props) {
       onFocus={handleFocus}
       appearance="editable-cell"
       size={size}
-      style={{
-        left,
-        top,
-        height,
-        minHeight: Math.max(height, minHeight),
-        width,
-        minWidth: Math.max(width, minWidth),
-        zIndex
-      }}
+      style={style}
       height={null}
       width={null}
       minHeight={null}

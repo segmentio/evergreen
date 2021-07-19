@@ -94,6 +94,8 @@ const AutocompleteItems = ({
 }
 /* eslint-enable react/prop-types */
 
+const containerStyle = { width: '100%' }
+
 const Autocomplete = memo(
   forwardRef(function Autocomplete(props, ref) {
     const {
@@ -153,13 +155,13 @@ const Autocomplete = memo(
           selectedItem,
           ...restDownshiftProps
         }) => (
-          <div style={{ width: '100%' }}>
+          <div style={containerStyle}>
             <Popover
               bringFocusInside={false}
               isShown={isShown}
               minWidth={popoverMinWidth}
               position={position || (targetWidth < popoverMinWidth ? Position.BOTTOM_LEFT : Position.BOTTOM)}
-              content={() => (
+              content={
                 <AutocompleteItems
                   getItemProps={getItemProps}
                   getMenuProps={getMenuProps}
@@ -176,7 +178,7 @@ const Autocomplete = memo(
                   title={props.title}
                   width={Math.max(targetWidth, popoverMinWidth)}
                 />
-              )}
+              }
               minHeight={0}
               animationDuration={0}
             >

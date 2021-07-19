@@ -1,4 +1,4 @@
-import React, { useState, memo, forwardRef } from 'react'
+import React, { useState, memo, forwardRef, useCallback } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
@@ -8,6 +8,8 @@ import { Image } from '../../image'
 import { Text } from '../../typography'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
+
+const imageStyles = { objectFit: 'cover' }
 
 const pseudoSelectors = {}
 const internalStyles = {
@@ -62,6 +64,7 @@ const Avatar = memo(
     )
 
     const [imageHasFailedLoading, setImageHasFailedLoading] = useState(false)
+    const onError = useCallback(() => setImageHasFailedLoading(true), [])
     const imageUnavailable = !src || imageHasFailedLoading
 
     const initialsFontSize = `${getAvatarInitialsFontSize(size, sizeLimitOneCharacter)}px`
@@ -95,11 +98,11 @@ const Avatar = memo(
         )}
         {!imageUnavailable && (
           <Image
-            style={{ objectFit: 'cover' }} // Unsupported by ui-box directly
+            style={imageStyles} // Unsupported by ui-box directly
             width={isObjectFitSupported ? '100%' : 'auto'} // Fallback to old behaviour on IE
             height="100%"
             src={src}
-            onError={() => setImageHasFailedLoading(true)}
+            onError={onError}
           />
         )}
       </Box>

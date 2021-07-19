@@ -2,6 +2,13 @@ import React, { memo, useRef, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 const noop = () => {}
+const style = {
+  position: 'fixed',
+  top: -500,
+  left: -500,
+  width: 100,
+  overflowY: 'scroll'
+}
 
 const ScrollbarSize = memo(function ScrollbarSize({ handleScrollbarSize = noop }) {
   const innerRef = useRef()
@@ -26,20 +33,10 @@ const ScrollbarSize = memo(function ScrollbarSize({ handleScrollbarSize = noop }
     if (widths.innerWidth && widths.outerWidth) {
       handleScrollbarSize(widths.outerWidth - widths.innerWidth)
     }
-  })
+  }, [widths, handleScrollbarSize])
 
   return (
-    <div
-      ref={outerRef}
-      aria-hidden
-      style={{
-        position: 'fixed',
-        top: -500,
-        left: -500,
-        width: 100,
-        overflowY: 'scroll'
-      }}
-    >
+    <div ref={outerRef} aria-hidden style={style}>
       <div ref={innerRef} />
     </div>
   )
