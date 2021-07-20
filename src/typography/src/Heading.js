@@ -3,19 +3,26 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useStyleConfig } from '../../hooks'
+import { useTheme } from '../../theme'
 
 const pseudoSelectors = {}
 const internalStyles = {}
 
 const Heading = memo(
   forwardRef(function Heading(props, ref) {
-    const { className, size = 500, ...restProps } = props
+    const { className, color: colorProp = 'default', size = 500, ...restProps } = props
     const { className: themedClassName, ...styleProps } = useStyleConfig(
       'Heading',
       { size },
       pseudoSelectors,
       internalStyles
     )
+
+    const { colors } = useTheme()
+
+    const color = colorProp === 'none' || colorProp === 'default' ? 'default' : colorProp
+
+    const themedColor = colors[color] || (colors.text && colors.text[color]) || color
 
     return (
       <Box
@@ -24,6 +31,7 @@ const Heading = memo(
         className={cx(themedClassName, className)}
         marginTop={0}
         marginBottom={0}
+        color={themedColor}
         {...styleProps}
         {...restProps}
       />
