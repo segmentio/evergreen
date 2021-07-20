@@ -180,3 +180,43 @@ margin-top: 0px;
   Heading 900
 </h2>
 `;
+
+exports[`Colors <Heading /> accepts arbitrary theme values for color 1`] = `
+Extracted Styles:
+box-sizing: border-box;
+color: #101840;
+font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+font-size: 16px;
+font-weight: 600;
+letter-spacing: -0.05px;
+line-height: 20px;
+margin-bottom: 0px;
+margin-top: 0px;
+
+
+<h2
+  className="ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_b77syt ub-f-wght_600 ub-fnt-sze_16px ub-ltr-spc_-0-05px ub-ln-ht_20px ub-box-szg_border-box"
+>
+  Testing
+</h2>
+`;
+
+exports[`Colors <Heading /> does not render any color when a non-theme color is passed in  1`] = `
+Extracted Styles:
+box-sizing: border-box;
+color: #101840;
+font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+font-size: 16px;
+font-weight: 600;
+letter-spacing: -0.05px;
+line-height: 20px;
+margin-bottom: 0px;
+margin-top: 0px;
+
+
+<h2
+  className="ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_b77syt ub-f-wght_600 ub-fnt-sze_16px ub-ltr-spc_-0-05px ub-ln-ht_20px ub-box-szg_border-box"
+>
+  Testing
+</h2>
+`;

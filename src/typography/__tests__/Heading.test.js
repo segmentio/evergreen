@@ -37,3 +37,25 @@ test('Heading lets you override the underlying DOM element', async () => {
 
   expect(screen.getByText('Testing h1', { selector: 'h1' })).toBeTruthy()
 })
+
+describe('Colors', () => {
+  test('<Heading /> accepts arbitrary theme values for color', () => {
+    const component = (
+      <ThemeProvider value={defaultTheme}>
+        <Heading color="blue600">Testing</Heading>
+      </ThemeProvider>
+    )
+    const tree = renderer.create(component).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('<Heading /> does not render any color when a non-theme color is passed in ', () => {
+    const component = (
+      <ThemeProvider value={defaultTheme}>
+        <Heading color="COLOR THAT DOESNT EXIST">Testing</Heading>
+      </ThemeProvider>
+    )
+    const tree = renderer.create(component).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+})
