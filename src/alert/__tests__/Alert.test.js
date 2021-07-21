@@ -1,35 +1,34 @@
 import React from 'react'
-import { shallow } from 'enzyme'
-import render from 'react-test-renderer'
-
+import { render, screen } from '@testing-library/react'
+import renderer from 'react-test-renderer'
 import Alert from '../src/Alert'
 
 describe('<Alert />', () => {
   it('basic snapshot', () => {
     const component = <Alert title="A simple general message" />
-    const tree = render.create(component).toJSON()
+    const tree = renderer.create(component).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it('outputs title', () => {
-    const component = shallow(<Alert title="Test title" />)
-    expect(component.html()).toEqual(expect.stringContaining('Test title'))
+    render(<Alert title="Test title" />)
+    expect(screen.getByText('Test title')).toBeTruthy()
   })
 
   it('outputs children', () => {
-    const component = shallow(<Alert title="Test title">Test content</Alert>)
-    expect(component.html()).toEqual(expect.stringContaining('Test content'))
+    render(<Alert title="Test title">Test content</Alert>)
+    expect(screen.getByText('Test content')).toBeTruthy()
   })
 
   it('intent snapshot', () => {
     const component = <Alert title="Test title" intent="danger" />
-    const tree = render.create(component).toJSON()
+    const tree = renderer.create(component).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it('appearance snapshot', () => {
     const component = <Alert title="Test title" appearance="card" />
-    const tree = render.create(component).toJSON()
+    const tree = renderer.create(component).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

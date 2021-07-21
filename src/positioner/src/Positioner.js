@@ -149,6 +149,7 @@ const Positioner = memo(function Positioner(props) {
             {target({ getRef: setTargetRef, isShown })}
 
             <Transition
+              nodeRef={positionerRef}
               appear
               in={isShown}
               timeout={animationDuration}

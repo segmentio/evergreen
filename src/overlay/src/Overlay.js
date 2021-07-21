@@ -84,7 +84,7 @@ const Overlay = memo(function Overlay({
   const { colors } = theme
   const [previousActiveElement, setPreviousActiveElement] = useState(null)
   const [status, setStatus] = useState(isShown ? 'entering' : 'exited')
-  const containerRef = useRef()
+  const containerRef = useRef(null)
 
   useEffect(() => {
     if (isShown) {
@@ -241,6 +241,7 @@ const Overlay = memo(function Overlay({
       {zIndex => (
         <Portal>
           <Transition
+            nodeRef={containerRef}
             appear
             unmountOnExit
             timeout={ANIMATION_DURATION}

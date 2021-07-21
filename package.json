@@ -52,7 +52,7 @@
     "chromatic": "npx chromatic"
   },
   "engines": {
-    "node": ">=10.18"
+    "node": ">=12"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
@@ -67,8 +67,6 @@
     "lodash.merge": "^4.6.2",
     "prop-types": "^15.6.2",
     "react-fast-compare": "^3.2.0",
-    "react-is": "^16.13.1",
-    "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^4.4.1",
     "tinycolor2": "^1.4.1",
@@ -76,7 +74,8 @@
   },
   "peerDependencies": {
     "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react-dom": "^16.8.0",
+    "react-is": "^16.8.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -109,8 +108,6 @@
     "camelcase": "^5.0.0",
     "chromatic": "^5.1.0",
     "concurrently": "^4.0.1",
-    "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.6.0",
     "eslint": "6.2.2",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.1",
@@ -129,9 +126,10 @@
     "lint-staged": "^10.0.1",
     "np": "^6.3.2",
     "prettier": "^1.14.3",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-test-renderer": "^16.5.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-is": "^16.8.0",
+    "react-test-renderer": "^16.8.0",
     "rollup": "^2.28.2",
     "rollup-plugin-terser": "^5.2.0",
     "sinon": "^8.1.0",
@@ -161,9 +159,6 @@
     ]
   },
   "jest": {
-    "setupFiles": [
-      "./tools/test-setup"
-    ],
     "setupFilesAfterEnv": [
       "./tools/test-setup-after-env"
     ],
@@ -177,7 +172,7 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "275 KB",
+      "limit": "277 KB",
       "running": false
     },
     {
