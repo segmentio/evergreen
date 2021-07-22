@@ -1,9 +1,9 @@
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
-import pkg from './package.json'
-import replace from '@rollup/plugin-replace'
 import resolve from '@rollup/plugin-node-resolve'
+import replace from '@rollup/plugin-replace'
 import { terser } from 'rollup-plugin-terser'
+import pkg from './package.json'
 
 // Use peerDependencies as rollup external
 // https://rollupjs.org/guide/en/#peer-dependencies
@@ -13,6 +13,12 @@ const external = Object.keys(peerDependencies)
 // Ignore SSR imports in UMD, replace with empty functions
 const ignoreSSR = {
   ssr: './ssr/index.umd.js'
+}
+
+const globals = {
+  react: 'React',
+  'react-dom': 'ReactDOM',
+  'react-is': 'ReactIs'
 }
 
 export default [
@@ -25,10 +31,7 @@ export default [
       format: 'umd',
       name: 'EvergreenUI',
       indent: false,
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM'
-      }
+      globals
     },
     plugins: [
       replace({
@@ -57,10 +60,7 @@ export default [
       format: 'umd',
       name: 'EvergreenUI',
       indent: false,
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM'
-      }
+      globals
     },
     plugins: [
       replace({
