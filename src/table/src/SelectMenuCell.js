@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useCallback } from 'react'
+import React, { memo, useState, useEffect, useCallback, useMemo } from 'react'
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import { CaretDownIcon } from '../../icons'
@@ -100,6 +100,17 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
     cursor = 'text'
   }
 
+  const lessOpacity = useMemo(() => disabled || (!children && placeholder), [disabled, children, placeholder])
+
+  const mergedTextProps = useMemo(
+    () => ({
+      size,
+      opacity: lessOpacity ? 0.5 : 1,
+      ...textProps
+    }),
+    [lessOpacity, size, textProps]
+  )
+
   return (
     <SelectMenu width={targetWidth} {...selectMenuProps}>
       {({ getRef, isShown, toggle }) => {
@@ -114,11 +125,7 @@ const SelectMenuCell = memo(function SelectMenuCell(props) {
             aria-haspopup
             aria-expanded={isShown}
             cursor={isShown ? 'pointer' : cursor}
-            textProps={{
-              size,
-              opacity: disabled || (!children && placeholder) ? 0.5 : 1,
-              ...textProps
-            }}
+            textProps={mergedTextProps}
             onKeyDown={handleKeyDown.bind(null, toggle, isShown)}
             onDoubleClick={handleDoubleClick.bind(null, toggle, isShown)}
             {...rest}
