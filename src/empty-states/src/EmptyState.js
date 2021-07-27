@@ -48,7 +48,9 @@ const HorizontalOrientation = memo(function HorizontalOrientation({
           </Pane>
         </Pane>
         <Pane display="flex" flexDirection="column" paddingRight={majorScale(6)}>
-          <Heading size={500}>{title}</Heading>
+          <Heading size={500} color={colors.gray700}>
+            {title}
+          </Heading>
           {description && (
             <Paragraph color="muted" marginTop={majorScale(2)}>
               {description}
@@ -109,10 +111,10 @@ const VerticalOrientation = memo(function VerticalOrientation({
       >
         {React.cloneElement(icon, { size: majorScale(3) })}
       </Pane>
-      <Heading marginTop={majorScale(2)} textAlign="center">
+      <Heading marginTop={majorScale(2)} textAlign="center" color={colors.gray700}>
         {title}
       </Heading>
-      <Paragraph marginTop={majorScale(2)} textAlign="center">
+      <Paragraph marginTop={majorScale(2)} textAlign="center" color={colors.gray700}>
         {description}
       </Paragraph>
       {primaryCta && React.cloneElement(primaryCta, { marginTop: minorScale(5) })}
