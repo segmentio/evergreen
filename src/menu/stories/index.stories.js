@@ -195,6 +195,9 @@ storiesOf('menu', module)
       >
         <Button>Hover menus</Button>
       </Popover>
+      <Popover position={Position.BOTTOM_LEFT} content={<Menu></Menu>}>
+        <Button marginTop={16}>Without Menu Items</Button>
+      </Popover>
 
       <UnorderedList marginTop={24}>
         <ListItem>Arrow down on a button will bring focus inside the popover.</ListItem>

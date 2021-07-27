@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import MenuDivider from './MenuDivider'
@@ -14,6 +14,8 @@ const Menu = memo(function Menu(props) {
 
   const menuItems = useRef()
 
+  const [isEmpty, setIsEmpty] = useState(false)
+
   useEffect(() => {
     const currentMenuRef = menuRef.current
 
@@ -26,7 +28,8 @@ const Menu = memo(function Menu(props) {
       : []
 
     if (menuItems.current.length === 0) {
-      throw new Error('The menu has no menu items')
+      setIsEmpty(true)
+      // throw new Error('The menu has no menu items')
     }
 
     firstItem.current = menuItems.current[0]
@@ -101,9 +104,19 @@ const Menu = memo(function Menu(props) {
   }, [menuRef])
 
   const { children } = props
+
+  const renderChildren = children => {
+    return isEmpty ? (
+      <MenuGroup>
+        <MenuItem disabled>No menu items...</MenuItem>
+      </MenuGroup>
+    ) : (
+      children
+    )
+  }
   return (
     <Pane is="nav" ref={menuRef} role="menu" outline="none">
-      {children}
+      {renderChildren(children)}
     </Pane>
   )
 })
