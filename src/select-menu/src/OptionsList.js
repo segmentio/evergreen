@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import VirtualList from '@segment/react-tiny-virtual-list'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import PropTypes from 'prop-types'
-import VirtualList from 'react-tiny-virtual-list'
 import { SearchIcon } from '../../icons'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
