@@ -56,6 +56,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
+    "@segment/react-tiny-virtual-list": "^2.2.1",
     "@types/react": "^16.9.5",
     "@types/react-transition-group": "^4.4.0",
     "arrify": "^1.0.1",
@@ -67,15 +68,14 @@
     "lodash.merge": "^4.6.2",
     "prop-types": "^15.6.2",
     "react-fast-compare": "^3.2.0",
-    "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^4.4.1",
     "tinycolor2": "^1.4.1",
-    "ui-box": "^4.0.0"
+    "ui-box": "^5.0.0"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "react-is": "^16.8.0"
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0",
+    "react-is": "^16.8.0 || ^17.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -126,10 +126,10 @@
     "lint-staged": "^10.0.1",
     "np": "^6.3.2",
     "prettier": "^1.14.3",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "react-is": "^16.8.0",
-    "react-test-renderer": "^16.8.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-is": "^17.0.2",
+    "react-test-renderer": "^17.0.2",
     "rollup": "^2.28.2",
     "rollup-plugin-terser": "^5.2.0",
     "sinon": "^8.1.0",
