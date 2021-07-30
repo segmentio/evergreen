@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import MenuDivider from './MenuDivider'
@@ -9,28 +9,17 @@ import MenuOptionsGroup from './MenuOptionsGroup'
 
 const Menu = memo(function Menu(props) {
   const menuRef = useRef(null)
+
   const firstItem = useRef()
   const lastItem = useRef()
 
   const menuItems = useRef()
 
-  const [isEmpty, setIsEmpty] = useState(false)
-
   useEffect(() => {
     const currentMenuRef = menuRef.current
-
-    menuItems.current = currentMenuRef
-      ? [
-          ...currentMenuRef.querySelectorAll(
-            '[role="menuitemradio"]:not([disabled]), [role="menuitem"]:not([disabled])'
-          )
-        ]
-      : []
-
-    if (menuItems.current.length === 0) {
-      setIsEmpty(true)
-      // throw new Error('The menu has no menu items')
-    }
+    menuItems.current = [
+      ...currentMenuRef.querySelectorAll('[role="menuitemradio"]:not([disabled]), [role="menuitem"]:not([disabled])')
+    ]
 
     firstItem.current = menuItems.current[0]
     lastItem.current = menuItems.current[menuItems.current.length - 1]
@@ -71,9 +60,7 @@ const Menu = memo(function Menu(props) {
       const { target } = e
       const menuItem = menuItems.current && menuItems.current.find(item => item === target)
 
-      if (!menuItem) {
-        return
-      }
+      if (!menuItem) return
 
       if (e.key === 'ArrowDown') {
         e.preventDefault()
@@ -105,18 +92,16 @@ const Menu = memo(function Menu(props) {
 
   const { children } = props
 
-  const renderChildren = children => {
-    return isEmpty ? (
+  const renderEmptyChildren = () => {
+    return (
       <MenuGroup>
-        <MenuItem disabled>No menu items...</MenuItem>
+        <MenuItem disabled>No items...</MenuItem>
       </MenuGroup>
-    ) : (
-      children
     )
   }
   return (
     <Pane is="nav" ref={menuRef} role="menu" outline="none">
-      {renderChildren(children)}
+      {children || renderEmptyChildren()}
     </Pane>
   )
 })
