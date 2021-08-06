@@ -1,38 +1,61 @@
 # Introduction
 
-Empty states occur where there is no data to display to the user. Typically this happens while a user is setting up or using the product for the first time. However, empty states can also occur when data is deleted or unavailable.
+Empty states can occur when:
 
-A successful empty state in Segment should:
-
-- Keep users informed and on track
-- Remain consistent across the app to ensure a smooth experience
-- Take into account the context of the user’s current situation
+- a user is setting up or using the product for the first time.
+- data is deleted, unavailable, or nonexistent.
 
 <br />
 <br />
 <br />
 
-Possible elements of an empty state:
+# Anatomy
 
-<img src="/empty-state-anatomy.png" alt="empty-state-anatomy" width="100%" maxWidth="1200" />
+Possible elements of an empty state include:
+
+<img src="/empty-state-anatomy.png" alt="empty-state-anatomy" width="720px" />
 
 1. Border
 2. Background
-3. Visual
-4. Headline copy. Use headline copy to explain the situation at hand.
-5. Body copy (optional). Use body copy to direct users and clearly explain the next action to populate the space.
-6. Primary CTA (optional). The action on the page users can use to leave the state.
-7. Secondary CTA (optional).
-8. Text link (optional). Additional user support, like reference documents.
-
+3. Visual. Icon that relates to the situation at hand.
+4. Headline. Use to explain the situation at hand.
+5. Body (optional). Use to direct users and explain how the user can populate the screen.
+6. Primary CTA (optional). Use to help the user take an action to resolve the empty state.
+7. Text link (optional). Use to provide additional user support, like documentation.
 
 <br />
 <br />
 <br />
 
-### Base empty state: in-table
+# Types
 
-Maintain table header, background color, and outline for in-table empty states.
+Most empty states in Segment fall in one of four categories:
+
+### In-table
+
+<img src="/empty-state-table.png" alt="empty-state-anatomy" width="720px" />
+
+### Non-table
+
+<img src="/empty-state-nontable.png" alt="empty-state-anatomy" width="720px" />
+
+### Small
+
+<img src="/empty-state-small.png" alt="empty-state-anatomy" width="300px" />
+
+### Minimal
+
+<img src="/empty-state-minimal.png" alt="empty-state-anatomy" width="300px" />
+
+<br />
+<br />
+<br />
+
+# Examples
+
+### In-table
+
+Segment often shows users tables with large data sets. When the data in these tables is either unavailable or nonexistent, maintain the table header in the empty state to provide additional context and set expectations. For example, if a table of tracked events isn’t populated yet, the empty state within the table shows the user what event data event will eventually populate.
 
 ```jsx
 <Table maxWidth={1152} width="100%">
@@ -59,9 +82,9 @@ Maintain table header, background color, and outline for in-table empty states.
 </Table>
 ```
 
-### Base empty state: non-table
+### Non-table
 
-Include background color and outline for non-table empty states.
+Empty states for content outside of a table include a background color to create variation on screens where there are multiple empty states or when an entire screen is blocked. For example, if an entire screen is blocked because a user doesn’t have the necessary permissions, a background is added to the empty state to create contrast and containment.
 
 ```jsx
 <EmptyState
@@ -76,9 +99,9 @@ Include background color and outline for non-table empty states.
 />
 ```
 
-### Small empty state
+### Small
 
-Use for small use cases such as drop downs and overlays.
+When design real estate is limited, consider using a small empty state.
 
 ```jsx
 <Popover
@@ -100,9 +123,9 @@ Use for small use cases such as drop downs and overlays.
 </Popover>
 ```
 
-### Minimum viable empty state
+### Minimal
 
-While every empty state does not need to include all elements in the base, every empty state should include, at minimum, a visual and headline copy.
+The smallest acceptable empty state uses only a visual and headline. Minimal empty states typically occur in small components, like drop downs or side sheets within tables.
 
 ```jsx
 <Popover
@@ -122,26 +145,54 @@ While every empty state does not need to include all elements in the base, every
 </Popover>
 ```
 
-### CTA rules
-
-- Use a primary button if the CTA allows the user to resolve the empty state on the page.
-- In first time use scenarios, hide top line primary button and search box to avoid redundancy and confusion.
-- Use a text link if the CTA provides additional information or resources outside Segment but does not allow the user to resolve the empty state.
+### Calls to Action
 
 <br />
 <br />
 <br />
 
-### Copy rules
+### Content
 
-- Headline copy should never exceed 1 line, body copy should not exceed 2 lines. In all cases, try to make copy as succinct as possible.
-- Tone is intentional, suggestive, and friendly. Tone is not jargon-y, superfluous, or opaque.
-- Use to headline copy to try and explain the situation at hand, and body copy to offer solutions. Use humor like an accent color — sparingly and to delightful effect. Context is key, ie; humor may be appropriate for a loading state or health check but not for permission gating.
+Empty state content should explain what information or data isn’t being showed, and how to change the empty state to a populated state.
 
-<br />
-<br />
-<br />
+#### Headline text
 
-### Dos and Don'ts
+Limit headline text to one line. Since users typically skim online content, the headline should contain the most important information.
 
-<img src="/empty-state-dos-donts.png" alt="empty-state-dos-donts" width="100%" maxWidth="1200" />
+- For an onboarding experience: Explain what eventually populates the empty state.
+- For an error experience: Explain what went wrong.
+- For a no results/data experience: Explain what happened.
+  <br />
+  <br />
+
+#### Body copy (optional)
+
+Limit body copy to two lines. Use the body copy to introduce additional information about what the user can do with this UI element.
+
+- For an onboarding empty state: Describe how a feature works or what will happen when they use it.
+- For an error empty state: Explain how the user can fix the error.
+- For a no results/data experience: Explain what they can do to try and get a different outcome.
+  <br />
+  <br />
+
+#### Buttons and links (optional)
+
+Buttons and link text should set expectations for the user.
+
+- Button text should reflect what will happen when the user selects the button.
+- Link text should reflect what kind of info the user gets at the destination.
+  <br />
+  <br />
+
+#### Tone
+
+Tone should be educational and plain-spoken.
+
+<RuleLayout>
+  <RuleCard type="Do" description="Use an educational and plain-spoken tone." image="/empty-state-small.png" />
+  <RuleCard
+    type="Don't"
+    description="Use excessive emotion or exceed 1 line for headline and 2 lines for body."
+    image="/empty-state-small.png"
+  />
+</RuleLayout>

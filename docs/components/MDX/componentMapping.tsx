@@ -2,6 +2,8 @@ import SectionHeading from './renderers/SectionHeading'
 import Code from './renderers/Code'
 import InlineCode from './renderers/InlineCode'
 import Blockquote from './renderers/Blockquote'
+import RuleCard from './renderers/RuleCard'
+import RuleLayout from './renderers/RuleLayout'
 import ColorSwatch from '../ColorSwatch'
 import IconSearch from '../IconSearch'
 import { Paragraph, Strong, Ol, Ul, Li, majorScale } from 'evergreen-ui'
@@ -23,6 +25,8 @@ const componentMapping = {
   blockquote: Blockquote,
   ColorSwatch,
   IconSearch,
+  RuleCard,
+  RuleLayout,
 }
 
 export default componentMapping
