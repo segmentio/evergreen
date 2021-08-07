@@ -979,15 +979,12 @@ export interface EmptyStateOwnProps {
   background?: 'light' | 'dark'
   /** the primary cta of the empty state */
   primaryCta?: React.ReactNode
-  /** the secondary cta of the empty state */
-  annchorCta?: React.ReactNode
   /** the link cta of the empty state */
-  secondaryCta?: React.ReactNode
+  annchorCta?: React.ReactNode
 }
 
 export declare const EmptyState: React.FC<EmptyStateOwnProps> & {
   PrimaryButton: typeof Button
-  SecondaryButton: typeof Button
   LinkButton: typeof Link
 }
 
