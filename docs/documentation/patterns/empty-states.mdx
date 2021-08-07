@@ -60,21 +60,22 @@ Segment often shows users tables with large data sets. When the data in these ta
 ```jsx
 <Table maxWidth={1152} width="100%">
   <Table.Head>
-    <Table.TextHeaderCell>Name</Table.TextHeaderCell>
-    <Table.TextHeaderCell>Status</Table.TextHeaderCell>
-    <Table.TextHeaderCell>Created At </Table.TextHeaderCell>
+    <Table.TextHeaderCell>Event Name</Table.TextHeaderCell>
+    <Table.TextHeaderCell>Last Seen</Table.TextHeaderCell>
+    <Table.TextHeaderCell>Allowed</Table.TextHeaderCell>
+    <Table.TextHeaderCell>Blocked</Table.TextHeaderCell>
   </Table.Head>
   <Table.Body height="auto">
     <EmptyState
       background="light"
-      title="No audiences found"
+      title="No tracked events for this Source."
       orientation="horizontal"
       icon={<SearchIcon color="#C1C4D6" />}
       iconBgColor="#EDEFF5"
-      description="Click the button below to create a new Audience. Once done, you will see it come up in this list."
+      description="Events appear when the Source starts sending data to Segment about your users and their activity."
       anchorCta={
         <EmptyState.LinkButton href="https://segment.com/docs/" target="_blank">
-          Learn more about compute times
+          Learn how to start tracking events
         </EmptyState.LinkButton>
       }
     />
@@ -89,13 +90,12 @@ Empty states for content outside of a table include a background color to create
 ```jsx
 <EmptyState
   background="dark"
-  title="You need permission to access these sources"
+  title="You need permission for these sources."
   orientation="horizontal"
   icon={<LockIcon color="#EBAC91" />}
   iconBgColor="#F8E3DA"
-  description="If you believe you should have accesss to this page, please check with your Workspace Owner or request access below."
+  description="To see these sources, request access."
   primaryCta={<EmptyState.PrimaryButton>Request Access</EmptyState.PrimaryButton>}
-  secondaryCta={<EmptyState.SecondaryButton>Do Something Else</EmptyState.SecondaryButton>}
 />
 ```
 
@@ -109,17 +109,17 @@ When design real estate is limited, consider using a small empty state.
     <Pane width={450} height="auto">
       <EmptyState
         background="light"
-        title="You need permission to access these sources"
+        title="You need permission for these sources."
         orientation="vertical"
         icon={<LockIcon color="#EBAC91" />}
         iconBgColor="#F8E3DA"
-        description="If you believe you should have accesss to this page, please check with your Workspace Owner or request access below."
+        description="To see these sources, request access."
         primaryCta={<EmptyState.PrimaryButton appearance="primary">Request Access</EmptyState.PrimaryButton>}
       />
     </Pane>
   }
 >
-  <Button>Trigger Popover</Button>
+  <Button>Show Empty State</Button>
 </Popover>
 ```
 
@@ -133,7 +133,7 @@ The smallest acceptable empty state uses only a visual and headline. Minimal emp
     <Pane width={300} height="auto">
       <EmptyState
         background="light"
-        title="No source selected"
+        title="No event selected"
         orientation="vertical"
         icon={<HandUpIcon color="#C1C4D6" />}
         iconBgColor="#EDEFF5"
@@ -141,7 +141,7 @@ The smallest acceptable empty state uses only a visual and headline. Minimal emp
     </Pane>
   }
 >
-  <Button>Trigger Popover</Button>
+  <Button>Show Empty State</Button>
 </Popover>
 ```
 
