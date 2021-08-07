@@ -15,10 +15,9 @@ const HorizontalOrientation = memo(function HorizontalOrientation({
   icon,
   iconBgColor,
   primaryCta,
-  secondaryCta,
   title
 }) {
-  const hasFooter = primaryCta || secondaryCta || anchorCta
+  const hasFooter = primaryCta || anchorCta
   const { colors } = useTheme()
 
   const backgroundColor = background === 'light' ? 'white' : colors.gray75
@@ -58,12 +57,9 @@ const HorizontalOrientation = memo(function HorizontalOrientation({
           )}
           {hasFooter && (
             <Pane marginTop={majorScale(5)} display="flex">
-              {primaryCta && React.cloneElement(primaryCta, { marginRight: majorScale(2) })}
-              {secondaryCta}
-              {(primaryCta || secondaryCta) &&
-                anchorCta &&
-                React.cloneElement(anchorCta, { marginLeft: majorScale(2) })}
-              {!primaryCta && !secondaryCta && anchorCta}
+              {primaryCta}
+              {primaryCta && anchorCta && React.cloneElement(anchorCta, { marginLeft: majorScale(4) })}
+              {!primaryCta && anchorCta}
             </Pane>
           )}
         </Pane>
@@ -127,10 +123,6 @@ const PrimaryButton = props => {
   return <Button appearance="primary" {...props} />
 }
 
-const SecondaryButton = props => {
-  return <Button appearance="minimal" {...props} />
-}
-
 const LinkButton = props => {
   return <Link {...props} size={300} lineHeight="34px" />
 }
@@ -143,7 +135,6 @@ const EmptyState = memo(function EmptyState({
   iconBgColor,
   orientation = 'horizontal',
   primaryCta,
-  secondaryCta,
   title
 }) {
   if (orientation === 'vertical') {
@@ -166,7 +157,6 @@ const EmptyState = memo(function EmptyState({
         background={background}
         description={description}
         primaryCta={primaryCta}
-        secondaryCta={secondaryCta}
         anchorCta={anchorCta}
       />
     )
@@ -174,7 +164,6 @@ const EmptyState = memo(function EmptyState({
 })
 
 EmptyState.PrimaryButton = PrimaryButton
-EmptyState.SecondaryButton = SecondaryButton
 EmptyState.LinkButton = LinkButton
 
 EmptyState.propTypes = {
@@ -185,8 +174,7 @@ EmptyState.propTypes = {
   description: PropTypes.string,
   background: PropTypes.oneOf(['light', 'dark']),
   primaryCta: PropTypes.element,
-  anchorCta: PropTypes.element,
-  secondaryCta: PropTypes.element
+  anchorCta: PropTypes.element
 }
 
 export default EmptyState
