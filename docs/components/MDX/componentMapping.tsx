@@ -19,7 +19,7 @@ const componentMapping = {
   p: (props: any) => <Paragraph marginBottom={majorScale(3)} {...props} />,
   strong: (props: any) => <Strong {...props} />,
   ol: (props: any) => <Ol {...props} />,
-  ul: (props: any) => <Ul {...props} />,
+  ul: (props: any) => <Ul {...props} marginTop="-16px" />,
   li: (props: any) => <Li {...props} />,
   inlineCode: (props: any) => <InlineCode {...props} />,
   blockquote: Blockquote,
