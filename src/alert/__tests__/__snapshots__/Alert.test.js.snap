@@ -2,11 +2,11 @@
 
 exports[`<Alert /> appearance snapshot 1`] = `
 <div
-  className="css-nil ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
+  className="ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
   role="alert"
 >
   <div
-    className="css-nil ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
+    className="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
   >
     <svg
       className="css-1ffn9ia ub-w_16px ub-h_16px ub-box-szg_border-box"
@@ -20,7 +20,7 @@ exports[`<Alert /> appearance snapshot 1`] = `
     </svg>
   </div>
   <div
-    className="css-nil ub-flx_1 ub-box-szg_border-box"
+    className="ub-flx_1 ub-box-szg_border-box"
   >
     <h4
       className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
@@ -28,7 +28,7 @@ exports[`<Alert /> appearance snapshot 1`] = `
       Test title
     </h4>
     <div
-      className="css-nil ub-box-szg_border-box"
+      className="ub-box-szg_border-box"
     />
   </div>
 </div>
@@ -36,11 +36,11 @@ exports[`<Alert /> appearance snapshot 1`] = `
 
 exports[`<Alert /> basic snapshot 1`] = `
 <div
-  className="css-nil ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
+  className="ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
   role="alert"
 >
   <div
-    className="css-nil ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
+    className="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
   >
     <svg
       className="css-1ffn9ia ub-w_16px ub-h_16px ub-box-szg_border-box"
@@ -54,7 +54,7 @@ exports[`<Alert /> basic snapshot 1`] = `
     </svg>
   </div>
   <div
-    className="css-nil ub-flx_1 ub-box-szg_border-box"
+    className="ub-flx_1 ub-box-szg_border-box"
   >
     <h4
       className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
@@ -62,7 +62,7 @@ exports[`<Alert /> basic snapshot 1`] = `
       A simple general message
     </h4>
     <div
-      className="css-nil ub-box-szg_border-box"
+      className="ub-box-szg_border-box"
     />
   </div>
 </div>
@@ -70,11 +70,11 @@ exports[`<Alert /> basic snapshot 1`] = `
 
 exports[`<Alert /> intent snapshot 1`] = `
 <div
-  className="css-nil ub-b-top_1px-solid-D14343 ub-b-rgt_1px-solid-D14343 ub-b-btm_1px-solid-D14343 ub-b-lft_1px-solid-D14343 ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_FDF4F4 ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_A73636 ub-box-szg_border-box"
+  className="ub-b-top_1px-solid-D14343 ub-b-rgt_1px-solid-D14343 ub-b-btm_1px-solid-D14343 ub-b-lft_1px-solid-D14343 ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_FDF4F4 ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_A73636 ub-box-szg_border-box"
   role="alert"
 >
   <div
-    className="css-nil ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
+    className="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
   >
     <svg
       className="css-tn1wco ub-w_16px ub-h_16px ub-box-szg_border-box"
@@ -88,7 +88,7 @@ exports[`<Alert /> intent snapshot 1`] = `
     </svg>
   </div>
   <div
-    className="css-nil ub-flx_1 ub-box-szg_border-box"
+    className="ub-flx_1 ub-box-szg_border-box"
   >
     <h4
       className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
@@ -96,7 +96,7 @@ exports[`<Alert /> intent snapshot 1`] = `
       Test title
     </h4>
     <div
-      className="css-nil ub-box-szg_border-box"
+      className="ub-box-szg_border-box"
     />
   </div>
 </div>

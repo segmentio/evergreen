@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect } from 'react'
+import VirtualList from '@segment/react-tiny-virtual-list'
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
-import VirtualList from 'react-tiny-virtual-list'
 import { useForceUpdate } from '../../hooks'
 import { Pane } from '../../layers'
 
