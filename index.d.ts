@@ -980,7 +980,7 @@ export interface EmptyStateOwnProps {
   /** the primary cta of the empty state */
   primaryCta?: React.ReactNode
   /** the link cta of the empty state */
-  annchorCta?: React.ReactNode
+  anchorCta?: React.ReactNode
 }
 
 export declare const EmptyState: React.FC<EmptyStateOwnProps> & {
