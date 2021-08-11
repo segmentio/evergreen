@@ -54,18 +54,6 @@ describe('Empty States', () => {
     expect(getByRole('button', { name: 'Primary Action' })).toBeVisible()
   })
 
-  it('should render secondary button when passed in', () => {
-    const { getByRole } = render(
-      <EmptyState
-        title="My Empty States"
-        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        iconBgColor={defaultTheme.tokens.colors.gray200}
-        secondaryCta={<EmptyState.SecondaryButton>Secondary Action</EmptyState.SecondaryButton>}
-      />
-    )
-    expect(getByRole('button', { name: 'Secondary Action' })).toBeVisible()
-  })
-
   it('should render link button when passed in', () => {
     const { getByRole } = render(
       <EmptyState

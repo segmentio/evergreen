@@ -1,12 +1,11 @@
-import React, { memo, forwardRef, useState } from 'react'
+import React, { memo, forwardRef, useRef, useCallback } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import { useMergedRef, useStyleConfig } from '../../hooks'
+import { useLatest, useMergedRef, useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
 import { toaster } from '../../toaster'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
-import { TableRowConsumer } from './TableRowContext'
 
 function executeArrowKeyOverride(override) {
   if (!override) {
@@ -56,34 +55,40 @@ const TableCell = memo(
       ...rest
     } = props
 
-    const [cellRef, setCellRef] = useState(null)
-    const handleRef = useMergedRef(setCellRef, forwardedRef)
+    const cellRef = useRef(null)
+    const handleRef = useMergedRef(cellRef, forwardedRef)
+    const onKeyDownRef = useLatest(onKeyDown)
 
-    const handleKeyDown = e => {
-      const { arrowKeysOverrides = {} } = props
+    const handleKeyDown = useCallback(
+      e => {
+        const arrowKeysOverrides = props.arrowKeysOverrides || {}
 
-      if (isSelectable) {
-        const { key } = e
-        if (key === 'ArrowUp' || key === 'ArrowDown' || key === 'ArrowLeft' || key === 'ArrowRight') {
-          e.preventDefault()
-          try {
-            // Support arrow key overrides.
-            const override = arrowKeysOverrides[key.slice('Arrow'.length).toLowerCase()]
-            if (override === false) return
-            if (override) return executeArrowKeyOverride(override)
+        if (isSelectable) {
+          const { key } = e
+          if (key === 'ArrowUp' || key === 'ArrowDown' || key === 'ArrowLeft' || key === 'ArrowRight') {
+            e.preventDefault()
+            try {
+              // Support arrow key overrides.
+              const override = arrowKeysOverrides[key.slice('Arrow'.length).toLowerCase()]
+              if (override === false) return
+              if (override) return executeArrowKeyOverride(override)
 
-            manageTableCellFocusInteraction(key, cellRef)
-          } catch (error) {
-            toaster.danger('Keyboard interaction not possible')
-            console.error('Keyboard interaction not possible', error)
+              manageTableCellFocusInteraction(key, cellRef.current)
+            } catch (error) {
+              toaster.danger('Keyboard interaction not possible')
+              console.error('Keyboard interaction not possible', error)
+            }
+          } else if (key === 'Escape') {
+            if (cellRef.current instanceof Node) cellRef.current.blur()
           }
-        } else if (key === 'Escape') {
-          if (cellRef && cellRef instanceof Node) cellRef.blur()
         }
-      }
 
-      safeInvoke(onKeyDown, e)
-    }
+        safeInvoke(onKeyDownRef.current, e)
+      },
+      // onKeyDownRef.current is a ref
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [isSelectable, props.arrowKeysOverrides]
+    )
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'TableCell',
@@ -93,26 +98,19 @@ const TableCell = memo(
     )
 
     return (
-      <TableRowConsumer>
-        {height => {
-          return (
-            <Pane
-              ref={handleRef}
-              height={height}
-              className={cx(themedClassName, className)}
-              tabIndex={isSelectable ? tabIndex : undefined}
-              data-isselectable={isSelectable}
-              onClick={onClick}
-              onKeyDown={handleKeyDown}
-              {...boxProps}
-              {...rest}
-            >
-              {children}
-              {rightView || null}
-            </Pane>
-          )
-        }}
-      </TableRowConsumer>
+      <Pane
+        ref={handleRef}
+        className={cx(themedClassName, className)}
+        tabIndex={isSelectable ? tabIndex : undefined}
+        data-isselectable={isSelectable}
+        onClick={onClick}
+        onKeyDown={handleKeyDown}
+        {...boxProps}
+        {...rest}
+      >
+        {children}
+        {rightView || null}
+      </Pane>
     )
   })
 )

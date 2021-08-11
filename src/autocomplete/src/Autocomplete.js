@@ -1,8 +1,8 @@
 import React, { memo, forwardRef, useState, useEffect, useCallback } from 'react'
+import VirtualList from '@segment/react-tiny-virtual-list'
 import Downshift from 'downshift'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import PropTypes from 'prop-types'
-import VirtualList from 'react-tiny-virtual-list'
 import { Position } from '../../constants'
 import { Pane } from '../../layers'
 import { Popover } from '../../popover'
@@ -94,6 +94,8 @@ const AutocompleteItems = ({
 }
 /* eslint-enable react/prop-types */
 
+const containerStyle = { width: '100%' }
+
 const Autocomplete = memo(
   forwardRef(function Autocomplete(props, ref) {
     const {
@@ -121,16 +123,14 @@ const Autocomplete = memo(
 
     const stateReducer = useCallback(
       (state, changes) => {
-        const { allowOtherValues, items } = props
-
         if (Object.prototype.hasOwnProperty.call(changes, 'isOpen') && changes.isOpen) {
           return {
             ...changes,
-            highlightedIndex: items.indexOf(state.selectedItem)
+            highlightedIndex: props.items.indexOf(state.selectedItem)
           }
         }
 
-        if (allowOtherValues && state.isOpen && !changes.isOpen) {
+        if (props.allowOtherValues && state.isOpen && !changes.isOpen) {
           return {
             ...changes,
             selectedItem: changes.selectedItem || state.inputValue,
@@ -155,13 +155,13 @@ const Autocomplete = memo(
           selectedItem,
           ...restDownshiftProps
         }) => (
-          <div style={{ width: '100%' }}>
+          <div style={containerStyle}>
             <Popover
               bringFocusInside={false}
               isShown={isShown}
               minWidth={popoverMinWidth}
               position={position || (targetWidth < popoverMinWidth ? Position.BOTTOM_LEFT : Position.BOTTOM)}
-              content={() => (
+              content={
                 <AutocompleteItems
                   getItemProps={getItemProps}
                   getMenuProps={getMenuProps}
@@ -178,7 +178,7 @@ const Autocomplete = memo(
                   title={props.title}
                   width={Math.max(targetWidth, popoverMinWidth)}
                 />
-              )}
+              }
               minHeight={0}
               animationDuration={0}
             >

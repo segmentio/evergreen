@@ -84,7 +84,7 @@ const Overlay = memo(function Overlay({
   const { colors } = theme
   const [previousActiveElement, setPreviousActiveElement] = useState(null)
   const [status, setStatus] = useState(isShown ? 'entering' : 'exited')
-  const containerRef = useRef()
+  const containerRef = useRef(null)
 
   useEffect(() => {
     if (isShown) {
@@ -119,6 +119,8 @@ const Overlay = memo(function Overlay({
       document.body.removeEventListener('keydown', onEsc, false)
       bringFocusBackToTarget()
     }
+    // These missing deps *should* be okay (adding them would require other changes)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status])
 
   // ComponentWillUnmount
@@ -127,6 +129,8 @@ const Overlay = memo(function Overlay({
       handleBodyScroll(false)
       document.body.removeEventListener('keydown', onEsc, false)
     },
+    // These missing deps *should* be okay (adding them would require other changes)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )
 
@@ -237,6 +241,7 @@ const Overlay = memo(function Overlay({
       {zIndex => (
         <Portal>
           <Transition
+            nodeRef={containerRef}
             appear
             unmountOnExit
             timeout={ANIMATION_DURATION}

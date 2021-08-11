@@ -979,15 +979,12 @@ export interface EmptyStateOwnProps {
   background?: 'light' | 'dark'
   /** the primary cta of the empty state */
   primaryCta?: React.ReactNode
-  /** the secondary cta of the empty state */
-  annchorCta?: React.ReactNode
   /** the link cta of the empty state */
-  secondaryCta?: React.ReactNode
+  anchorCta?: React.ReactNode
 }
 
 export declare const EmptyState: React.FC<EmptyStateOwnProps> & {
   PrimaryButton: typeof Button
-  SecondaryButton: typeof Button
   LinkButton: typeof Link
 }
 
@@ -2633,6 +2630,7 @@ type IconComponent = React.ForwardRefExoticComponent<React.PropsWithoutRef<IconP
 export declare const AddIcon: IconComponent
 export declare const AddColumnLeftIcon: IconComponent
 export declare const AddColumnRightIcon: IconComponent
+export declare const AddLocationIcon: IconComponent
 export declare const AddRowBottomIcon: IconComponent
 export declare const AddRowTopIcon: IconComponent
 export declare const AddToArtifactIcon: IconComponent
@@ -2649,9 +2647,16 @@ export declare const AlignmentRightIcon: IconComponent
 export declare const AlignmentTopIcon: IconComponent
 export declare const AlignmentVerticalCenterIcon: IconComponent
 export declare const AnnotationIcon: IconComponent
+export declare const AppHeaderIcon: IconComponent
 export declare const ApplicationIcon: IconComponent
 export declare const ApplicationsIcon: IconComponent
 export declare const ArchiveIcon: IconComponent
+export declare const ArrayIcon: IconComponent
+export declare const ArrayBooleanIcon: IconComponent
+export declare const ArrayDateIcon: IconComponent
+export declare const ArrayNumericIcon: IconComponent
+export declare const ArrayStringIcon: IconComponent
+export declare const ArrayTimestampIcon: IconComponent
 export declare const ArrowBottomLeftIcon: IconComponent
 export declare const ArrowBottomRightIcon: IconComponent
 export declare const ArrowDownIcon: IconComponent
@@ -2664,6 +2669,7 @@ export declare const ArrowsHorizontalIcon: IconComponent
 export declare const ArrowsVerticalIcon: IconComponent
 export declare const AsteriskIcon: IconComponent
 export declare const AutomaticUpdatesIcon: IconComponent
+export declare const BacklinkIcon: IconComponent
 export declare const BadgeIcon: IconComponent
 export declare const BanCircleIcon: IconComponent
 export declare const BankAccountIcon: IconComponent
@@ -2726,7 +2732,9 @@ export declare const CubeAddIcon: IconComponent
 export declare const CubeRemoveIcon: IconComponent
 export declare const CurvedRangeChartIcon: IconComponent
 export declare const CutIcon: IconComponent
+export declare const CycleIcon: IconComponent
 export declare const DashboardIcon: IconComponent
+export declare const DataConnectionIcon: IconComponent
 export declare const DataLineageIcon: IconComponent
 export declare const DatabaseIcon: IconComponent
 export declare const DeleteIcon: IconComponent
@@ -2754,10 +2762,15 @@ export declare const DownloadIcon: IconComponent
 export declare const DragHandleHorizontalIcon: IconComponent
 export declare const DragHandleVerticalIcon: IconComponent
 export declare const DrawIcon: IconComponent
+export declare const DrawerLeftIcon: IconComponent
+export declare const DrawerLeftFilledIcon: IconComponent
+export declare const DrawerRightIcon: IconComponent
+export declare const DrawerRightFilledIcon: IconComponent
 export declare const DriveTimeIcon: IconComponent
 export declare const DuplicateIcon: IconComponent
 export declare const EditIcon: IconComponent
 export declare const EjectIcon: IconComponent
+export declare const EmojiIcon: IconComponent
 export declare const EndorsedIcon: IconComponent
 export declare const EnvelopeIcon: IconComponent
 export declare const EqualsIcon: IconComponent
@@ -2806,6 +2819,7 @@ export declare const FullStackedChartIcon: IconComponent
 export declare const FullscreenIcon: IconComponent
 export declare const FunctionIcon: IconComponent
 export declare const GanttChartIcon: IconComponent
+export declare const GeofenceIcon: IconComponent
 export declare const GeolocationIcon: IconComponent
 export declare const GeosearchIcon: IconComponent
 export declare const GitBranchIcon: IconComponent
@@ -2842,6 +2856,7 @@ export declare const HeatGridIcon: IconComponent
 export declare const HeatmapIcon: IconComponent
 export declare const HelpIcon: IconComponent
 export declare const HelperManagementIcon: IconComponent
+export declare const HighPriorityIcon: IconComponent
 export declare const HighlightIcon: IconComponent
 export declare const HistoryIcon: IconComponent
 export declare const HomeIcon: IconComponent
@@ -2884,6 +2899,7 @@ export declare const KnownVehicleIcon: IconComponent
 export declare const LabTestIcon: IconComponent
 export declare const LabelIcon: IconComponent
 export declare const LayerIcon: IconComponent
+export declare const LayerOutlineIcon: IconComponent
 export declare const LayersIcon: IconComponent
 export declare const LayoutIcon: IconComponent
 export declare const LayoutAutoIcon: IconComponent
@@ -2911,6 +2927,8 @@ export declare const LogInIcon: IconComponent
 export declare const LogOutIcon: IconComponent
 export declare const ManualIcon: IconComponent
 export declare const ManuallyEnteredDataIcon: IconComponent
+export declare const ManyToManyIcon: IconComponent
+export declare const ManyToOneIcon: IconComponent
 export declare const MapIcon: IconComponent
 export declare const MapCreateIcon: IconComponent
 export declare const MapMarkerIcon: IconComponent
@@ -2925,6 +2943,8 @@ export declare const MinimizeIcon: IconComponent
 export declare const MinusIcon: IconComponent
 export declare const MobilePhoneIcon: IconComponent
 export declare const MobileVideoIcon: IconComponent
+export declare const ModalIcon: IconComponent
+export declare const ModalFilledIcon: IconComponent
 export declare const MoonIcon: IconComponent
 export declare const MoreIcon: IconComponent
 export declare const MountainIcon: IconComponent
@@ -2944,6 +2964,7 @@ export declare const NewTextBoxIcon: IconComponent
 export declare const NinjaIcon: IconComponent
 export declare const NotEqualToIcon: IconComponent
 export declare const NotificationsIcon: IconComponent
+export declare const NotificationsSnoozeIcon: IconComponent
 export declare const NotificationsUpdatedIcon: IconComponent
 export declare const NumberedListIcon: IconComponent
 export declare const NumericalIcon: IconComponent
@@ -2951,6 +2972,8 @@ export declare const OfficeIcon: IconComponent
 export declare const OfflineIcon: IconComponent
 export declare const OilFieldIcon: IconComponent
 export declare const OneColumnIcon: IconComponent
+export declare const OneToManyIcon: IconComponent
+export declare const OneToOneIcon: IconComponent
 export declare const OutdatedIcon: IconComponent
 export declare const PageLayoutIcon: IconComponent
 export declare const PanelStatsIcon: IconComponent
@@ -3000,6 +3023,7 @@ export declare const RightJoinIcon: IconComponent
 export declare const RingIcon: IconComponent
 export declare const RotateDocumentIcon: IconComponent
 export declare const RotatePageIcon: IconComponent
+export declare const RouteIcon: IconComponent
 export declare const SatelliteIcon: IconComponent
 export declare const SavedIcon: IconComponent
 export declare const ScatterPlotIcon: IconComponent
@@ -3010,6 +3034,7 @@ export declare const SearchTextIcon: IconComponent
 export declare const SegmentedControlIcon: IconComponent
 export declare const SelectIcon: IconComponent
 export declare const SelectionIcon: IconComponent
+export declare const SendMessageIcon: IconComponent
 export declare const SendToIcon: IconComponent
 export declare const SendToGraphIcon: IconComponent
 export declare const SendToMapIcon: IconComponent
@@ -3019,7 +3044,9 @@ export declare const SeriesDerivedIcon: IconComponent
 export declare const SeriesFilteredIcon: IconComponent
 export declare const SeriesSearchIcon: IconComponent
 export declare const SettingsIcon: IconComponent
+export declare const ShapesIcon: IconComponent
 export declare const ShareIcon: IconComponent
+export declare const SharedFilterIcon: IconComponent
 export declare const ShieldIcon: IconComponent
 export declare const ShopIcon: IconComponent
 export declare const ShoppingCartIcon: IconComponent
@@ -3053,6 +3080,7 @@ export declare const StrikethroughIcon: IconComponent
 export declare const StyleIcon: IconComponent
 export declare const SwapHorizontalIcon: IconComponent
 export declare const SwapVerticalIcon: IconComponent
+export declare const SwitchIcon: IconComponent
 export declare const SymbolCircleIcon: IconComponent
 export declare const SymbolCrossIcon: IconComponent
 export declare const SymbolDiamondIcon: IconComponent

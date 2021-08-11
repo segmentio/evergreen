@@ -1,5 +1,6 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
+import { useLatest } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
@@ -18,61 +19,73 @@ const EditableCell = memo(function EditableCell(props) {
     isSelectable = true,
     textProps = emptyProps,
     autoFocus = false,
+    onChange,
     ...rest
   } = props
 
   let cursor = 'text'
 
-  const [mainRef, setMainRef] = useState()
+  const mainRef = useRef(null)
   const [value, setValue] = useState(children)
   const [isEditing, setIsEditing] = useState(autoFocus)
+  const onChangeRef = useLatest(onChange)
 
   useEffect(() => {
     setValue(children)
   }, [children])
 
-  const handleDoubleClick = () => {
+  const handleDoubleClick = useCallback(() => {
     if (disabled || !isSelectable) return
 
     setIsEditing(true)
-  }
+  }, [disabled, isSelectable])
 
-  const handleKeyDown = e => {
-    if (disabled) return
-    const { key } = e
+  const handleKeyDown = useCallback(
+    e => {
+      if (disabled) return
+      const { key } = e
 
-    /**
-     * When the user presses a character on the keyboard, use that character
-     * as the value in the text field.
-     */
-    if (key === 'Enter' || key === 'Shift') {
-      setIsEditing(true)
-    } else if (key.match(/^[a-z]{0,10}$/) && !e.metaKey && !e.ctrlKey && !e.altKey) {
-      setIsEditing(true)
-      setValue(value + key)
-    }
-  }
+      /**
+       * When the user presses a character on the keyboard, use that character
+       * as the value in the text field.
+       */
+      if (key === 'Enter' || key === 'Shift') {
+        setIsEditing(true)
+      } else if (key.match(/^[a-z]{0,10}$/) && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        setIsEditing(true)
+        setValue(prev => prev + key)
+      }
+    },
+    [disabled]
+  )
 
-  const handleFieldChangeComplete = value => {
-    const { onChange } = rest
+  const handleFieldChangeComplete = useCallback(
+    value => {
+      setIsEditing(false)
+      setValue(value)
 
+      safeInvoke(onChangeRef.current, value)
+
+      if (mainRef.current && isSelectable) {
+        mainRef.current.focus()
+      }
+    },
+    // onChangeRef is a ref
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isSelectable]
+  )
+
+  const handleFieldCancel = useCallback(() => {
     setIsEditing(false)
-    setValue(value)
+  }, [])
 
-    safeInvoke(onChange, value)
-
-    if (mainRef && isSelectable) {
-      mainRef.focus()
+  const handleClick = useCallback(() => {
+    if (mainRef.current) {
+      mainRef.current.focus()
     }
-  }
+  }, [])
 
-  const handleFieldCancel = () => {
-    setIsEditing(false)
-  }
-
-  const handleClick = () => {
-    if (mainRef) mainRef.focus()
-  }
+  const getTargetRef = useCallback(() => mainRef.current, [])
 
   if (disabled) {
     cursor = 'not-allowed'
@@ -80,20 +93,26 @@ const EditableCell = memo(function EditableCell(props) {
     cursor = 'default'
   }
 
+  const lessOpacity = useMemo(() => disabled || (!value && placeholder), [disabled, value, placeholder])
+
+  const mergedTextProps = useMemo(
+    () => ({
+      size,
+      opacity: lessOpacity ? 0.5 : 1,
+      ...textProps
+    }),
+    [lessOpacity, size, textProps]
+  )
   return (
     <React.Fragment>
       <TextTableCell
-        ref={setMainRef}
+        ref={mainRef}
         isSelectable={isSelectable}
         onClick={handleClick}
         onDoubleClick={handleDoubleClick}
         onKeyDown={handleKeyDown}
         cursor={cursor}
-        textProps={{
-          size,
-          opacity: disabled || (!value && placeholder) ? 0.5 : 1,
-          ...textProps
-        }}
+        textProps={mergedTextProps}
         {...rest}
       >
         {value || placeholder}
@@ -104,7 +123,7 @@ const EditableCell = memo(function EditableCell(props) {
             {zIndex => (
               <EditableCellField
                 zIndex={zIndex}
-                getTargetRef={() => mainRef}
+                getTargetRef={getTargetRef}
                 value={value}
                 onEscape={handleFieldCancel}
                 onChangeComplete={handleFieldChangeComplete}

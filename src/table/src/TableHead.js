@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback } from 'react'
+import React, { memo, useState } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { useStyleConfig } from '../../hooks'
@@ -15,10 +15,6 @@ const internalStyles = {
 const TableHead = memo(function TableHead(props) {
   const { accountForScrollbar = true, children, className, ...rest } = props
   const [scrollbarWidth, setScrollBarWidth] = useState(0)
-
-  const handleScrollbarSize = useCallback(width => {
-    setScrollBarWidth(width)
-  })
 
   const { className: themedClassName, height: themeHeight, ...boxProps } = useStyleConfig(
     'TableHead',
@@ -37,7 +33,7 @@ const TableHead = memo(function TableHead(props) {
       {...boxProps}
       {...rest}
     >
-      {children} {accountForScrollbar && <ScrollbarSize handleScrollbarSize={handleScrollbarSize} />}
+      {children} {accountForScrollbar && <ScrollbarSize handleScrollbarSize={setScrollBarWidth} />}
     </Pane>
   )
 })

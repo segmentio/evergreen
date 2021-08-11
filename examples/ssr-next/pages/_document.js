@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react'
-import Document, { Head, Main, NextScript } from 'next/document'
 import { extractStyles } from 'evergreen-ui'
+import Document, { Head, Main, NextScript } from 'next/document'
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {

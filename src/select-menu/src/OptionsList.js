@@ -1,7 +1,7 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import VirtualList from '@segment/react-tiny-virtual-list'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import PropTypes from 'prop-types'
-import VirtualList from 'react-tiny-virtual-list'
 import { SearchIcon } from '../../icons'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
@@ -55,7 +55,6 @@ const OptionsList = memo(function OptionsList(props) {
   } = props
 
   const [searchValue, setSearchValue] = useState(defaultSearchValue)
-  const [selectedOptions, setSelectedOptions] = useState(selected)
   const [searchRef, setSearchRef] = useState(null)
   const requestId = useRef()
   const theme = useTheme()
@@ -63,45 +62,36 @@ const OptionsList = memo(function OptionsList(props) {
 
   const isSelected = useCallback(
     item => {
-      return Boolean(selectedOptions.find(selectedItem => selectedItem === item.value))
+      return Boolean(selected.find(selectedItem => selectedItem === item.value))
     },
-    [selectedOptions]
+    [selected]
   )
 
-  const search = useCallback(
-    options => {
-      if (searchValue.trim() === '') {
-        return options
-      }
+  const optionLabels = useMemo(() => {
+    return originalOptions.map(item => item.label)
+  }, [originalOptions])
 
-      // Preserve backwards compatibility with allowing custom filters, which accept array of strings
-      if (typeof optionsFilter === 'function') {
-        return optionsFilter(
-          options.map(item => item.label),
-          searchValue
-        ).map(name => options.find(item => item.label === name))
-      }
+  // Gets filtered options any time the filter fn, value, or options change
+  const options = useMemo(() => {
+    if (searchValue.trim() === '') {
+      return originalOptions
+    }
 
-      return fuzzyFilter(options, searchValue, { key: 'label' })
-    },
-    [optionsFilter, searchValue]
-  )
+    // Preserve backwards compatibility with allowing custom filters, which accept array of strings
+    if (typeof optionsFilter === 'function') {
+      return optionsFilter(optionLabels, searchValue).map(name => {
+        return originalOptions.find(item => item.label === name)
+      })
+    }
 
-  const options = search(originalOptions)
-
-  const getFilteredOptions = useCallback(() => {
-    return search(options)
-  }, [options])
+    return fuzzyFilter(originalOptions, searchValue, { key: 'label' })
+  }, [originalOptions, optionLabels, optionsFilter, searchValue])
 
   const getCurrentIndex = useCallback(() => {
-    const options = getFilteredOptions()
-
     return options.findIndex(option => option.value === selected[selected.length - 1])
-  }, [selected])
+  }, [selected, options])
 
   const handleArrowUp = useCallback(() => {
-    const options = getFilteredOptions()
-
     let nextIndex = getCurrentIndex() - 1
 
     if (nextIndex < 0) {
@@ -113,11 +103,9 @@ const OptionsList = memo(function OptionsList(props) {
     }
 
     onSelect(options[nextIndex])
-  }, [onSelect])
+  }, [onSelect, options, getCurrentIndex, isSelected])
 
   const handleArrowDown = useCallback(() => {
-    const options = getFilteredOptions()
-
     let nextIndex = getCurrentIndex() + 1
 
     if (nextIndex === options.length) {
@@ -127,7 +115,7 @@ const OptionsList = memo(function OptionsList(props) {
     if (!isSelected(options[nextIndex])) {
       onSelect(options[nextIndex])
     }
-  }, [onSelect])
+  }, [onSelect, options, getCurrentIndex, isSelected])
 
   const handleChange = useCallback(
     searchValue => {
@@ -149,7 +137,7 @@ const OptionsList = memo(function OptionsList(props) {
         close()
       }
     },
-    [onDeselect, isMultiSelect, closeOnSelect]
+    [onDeselect, isMultiSelect, closeOnSelect, onSelect, isSelected, close]
   )
 
   const handleEnter = useCallback(() => {
@@ -160,7 +148,7 @@ const OptionsList = memo(function OptionsList(props) {
         close()
       }
     }
-  }, [isMultiSelect, close, closeOnSelect])
+  }, [isMultiSelect, close, closeOnSelect, getCurrentIndex])
 
   const handleDeselect = useCallback(
     item => {
@@ -187,7 +175,7 @@ const OptionsList = memo(function OptionsList(props) {
         close()
       }
     },
-    [close]
+    [close, handleArrowUp, handleArrowDown, handleEnter]
   )
 
   useEffect(() => {
@@ -205,12 +193,6 @@ const OptionsList = memo(function OptionsList(props) {
       }
     }
   }, [hasFilter, searchRef, handleKeyDown])
-
-  useEffect(() => {
-    if (selected !== selectedOptions) {
-      setSelectedOptions(selected)
-    }
-  }, [selected])
 
   const listHeight = height - (hasFilter ? 32 : 0)
   const currentIndex = getCurrentIndex()
