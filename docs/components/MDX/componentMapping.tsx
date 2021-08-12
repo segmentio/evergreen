@@ -2,6 +2,8 @@ import SectionHeading from './renderers/SectionHeading'
 import Code from './renderers/Code'
 import InlineCode from './renderers/InlineCode'
 import Blockquote from './renderers/Blockquote'
+import RuleCard from './renderers/RuleCard'
+import RuleLayout from './renderers/RuleLayout'
 import ColorSwatch from '../ColorSwatch'
 import IconSearch from '../IconSearch'
 import { Paragraph, Strong, Ol, Ul, Li, majorScale, Link as EvergreenLink } from 'evergreen-ui'
@@ -18,12 +20,14 @@ const componentMapping = {
   a: (props: any) => <EvergreenLink {...props} />,
   strong: (props: any) => <Strong {...props} />,
   ol: (props: any) => <Ol {...props} />,
-  ul: (props: any) => <Ul {...props} />,
+  ul: (props: any) => <Ul {...props} marginTop="-16px" />,
   li: (props: any) => <Li {...props} />,
   inlineCode: (props: any) => <InlineCode {...props} />,
   blockquote: Blockquote,
   ColorSwatch,
   IconSearch,
+  RuleCard,
+  RuleLayout,
 }
 
 export default componentMapping
