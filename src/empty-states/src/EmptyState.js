@@ -167,13 +167,21 @@ EmptyState.PrimaryButton = PrimaryButton
 EmptyState.LinkButton = LinkButton
 
 EmptyState.propTypes = {
+  /** The title of the empty state */
   title: PropTypes.string.isRequired,
+  /** The icon used in the empty state */
   icon: PropTypes.element.isRequired,
+  /** The background color used for the icon circle */
   iconBgColor: PropTypes.string.isRequired,
+  /** The direction in which to align the empty state elements */
   orientation: PropTypes.oneOf(['vertical', 'horizontal']),
+  /** The description of the empty state */
   description: PropTypes.string,
+  /** The background used for the entire empty state container */
   background: PropTypes.oneOf(['light', 'dark']),
+  /** The primary CTA of the empty state */
   primaryCta: PropTypes.element,
+  /** The link CTA of the empty state */
   anchorCta: PropTypes.element
 }
 

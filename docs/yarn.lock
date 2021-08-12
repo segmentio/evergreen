@@ -1258,6 +1258,13 @@
     jstz "^2.1.1"
     us "^2.0.0"
 
+"@segment/react-tiny-virtual-list@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@segment/react-tiny-virtual-list/-/react-tiny-virtual-list-2.2.1.tgz#658da8a93cfb83537235c89307818d6f1741aeb3"
+  integrity sha512-G01b9DrsQLF+8yFRyyJeZBZkzbFuqILG9C7SFFS+GtTFbjdprkHt0CL0riCPOZfe1ZXiT8z8MaKoWfNhrfUjhQ==
+  dependencies:
+    prop-types "^15.5.7"
+
 "@segment/top-domain@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@segment/top-domain/-/top-domain-3.0.0.tgz#02e5a5a4fd42a9f6cf886b05e82f104012a3c3a7"
@@ -2746,12 +2753,13 @@ events@^3.0.0:
   resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
-evergreen-ui@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/evergreen-ui/-/evergreen-ui-6.2.0.tgz#e0dfad3a9fe20d02bb602cd50499962f1a3ace1c"
-  integrity sha512-PC5uKW6zQY0XjFBrMsePP6YvBHIAWmcZPb5ycWqZLFb91xfr3KTCuj4R43A2ZQ7g/YfmW1eR6hMxL6gLAG+quA==
+evergreen-ui@6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/evergreen-ui/-/evergreen-ui-6.4.0.tgz#5a0a88af3ca6ecce235d48edbf855f2ccfa07582"
+  integrity sha512-dRNCx2Of2Sex30FcBzmOJA+egBLINWPIu2hm2KI5F3bpLsswvLfi3tIfNXN5RWxEK94RUguPgFLUlFcP5ExYSQ==
   dependencies:
     "@babel/runtime" "^7.1.2"
+    "@segment/react-tiny-virtual-list" "^2.2.1"
     "@types/react" "^16.9.5"
     "@types/react-transition-group" "^4.4.0"
     arrify "^1.0.1"
@@ -2763,10 +2771,9 @@ evergreen-ui@^6.2.0:
     lodash.merge "^4.6.2"
     prop-types "^15.6.2"
     react-fast-compare "^3.2.0"
-    react-tiny-virtual-list "^2.1.4"
     react-transition-group "^4.4.1"
     tinycolor2 "^1.4.1"
-    ui-box "^4.0.0"
+    ui-box "^5.0.0"
 
 evp_bytestokey@^1.0.0, evp_bytestokey@^1.0.3:
   version "1.0.3"
@@ -5360,10 +5367,10 @@ ua-parser-js@^0.7.18:
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.24.tgz#8d3ecea46ed4f1f1d63ec25f17d8568105dc027c"
   integrity sha512-yo+miGzQx5gakzVK3QFfN0/L9uVhosXBBO7qmnk7c2iw1IhL212wfA3zbnI54B0obGwC/5NWub/iT9sReMx+Fw==
 
-ui-box@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-4.1.0.tgz#b262e2060c72e93938062ef9e7399e3acc4a9414"
-  integrity sha512-nwMlFcNus6m/Id0rSlznIsvrEnTdUbgn+aLipoTGqRzsjpm55KOvl/9Z0ta+632WwQ76mOhOuk75bovI1VLqfw==
+ui-box@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-5.0.0.tgz#8b73e81cc7a50cf53749b969d411e8f56a93af48"
+  integrity sha512-DJZZKe8UoB1e6hNenNniO3ror9ER57EG5k+fOUm17vrLnU2T4vhoTnWGoStewXJzQ4Ur9ox9Xk4kljVKFpXlzQ==
   dependencies:
     "@emotion/hash" "^0.7.1"
     inline-style-prefixer "^5.0.4"
