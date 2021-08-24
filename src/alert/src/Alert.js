@@ -98,7 +98,7 @@ Alert.propTypes = {
   /**
    * The intent of the alert.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info']),
 
   /**
    * The title of the alert.

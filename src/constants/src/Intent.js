@@ -2,5 +2,6 @@ export default {
   NONE: 'none',
   SUCCESS: 'success',
   WARNING: 'warning',
-  DANGER: 'danger'
+  DANGER: 'danger',
+  INFO: 'info'
 }

@@ -233,7 +233,7 @@ Dialog.propTypes = {
   /**
    * The intent of the Dialog. Used for the button.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info']),
 
   /**
    * When true, the dialog is shown.
