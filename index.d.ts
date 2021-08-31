@@ -960,6 +960,10 @@ export interface DialogProps {
    * Whether or not to prevent scrolling in the outer body. Defaults to false.
    */
   preventBodyScrolling?: boolean
+  /**
+   * Props that are passed to the Overlay component.
+   */
+  overlayProps?: React.ComponentProps<typeof Pane>
 }
 
 export declare const Dialog: React.FC<DialogProps>
