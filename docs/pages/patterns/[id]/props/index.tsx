@@ -13,27 +13,27 @@ import getComponentDocs from '../../../../lib/component-docs'
 
 interface Props {
   componentProps: any[]
-  foundations: EntityOverviewTemplateProps['navItems']
-  foundation: EntityOverviewTemplateProps['selectedNavItem']
+  patterns: EntityOverviewTemplateProps['navItems']
+  pattern: EntityOverviewTemplateProps['selectedNavItem']
 }
 
-const PatternPropsPage: React.FC<Props> = ({ componentProps, foundation, foundations }) => {
+const PatternPropsPage: React.FC<Props> = ({ componentProps, pattern, patterns }) => {
   const router = useRouter()
   const { query } = router
   const { id } = query
 
-  if (!foundation) {
+  if (!pattern) {
     return null
   }
 
-  const { name, description, github } = foundation
+  const { name, description, github } = pattern
 
   return (
     <EntityOverviewTemplate
-      navItems={foundations}
-      selectedNavItem={foundation}
-      navPrefix="foundations"
-      navTitle="Components"
+      navItems={patterns}
+      selectedNavItem={pattern}
+      navPrefix="patterns"
+      navTitle="Patterns"
       pageTitle={`${name} Documentation`}
       pageHeader={
         <PageHeader
@@ -43,11 +43,11 @@ const PatternPropsPage: React.FC<Props> = ({ componentProps, foundation, foundat
           tabs={[
             {
               label: 'Details',
-              to: `/foundations/${id}`,
+              to: `/patterns/${id}`,
             },
             {
               label: 'Properties',
-              to: `/foundations/${id}/props`,
+              to: `/patterns/${id}/props`,
             },
           ]}
         />
@@ -65,7 +65,7 @@ const PatternPropsPage: React.FC<Props> = ({ componentProps, foundation, foundat
 }
 
 export async function getStaticPaths() {
-  const paths = IA.patterns.items.filter((item) => !item.inProgress).map((item) => `/patterns/${item.id}`)
+  const paths = IA.patterns.items.filter((item) => !item.inProgress).map((item) => `/patterns/${item.id}/props`)
 
   return {
     paths,
@@ -92,14 +92,14 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
     props = []
   }
 
-  const foundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-  const foundation = foundations.find((item) => item.id === id)
+  const patterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const pattern = patterns.find((item) => item.id === id)
 
   return {
     props: {
       componentProps: props,
-      foundations,
-      foundation,
+      patterns,
+      pattern,
     },
   }
 }
