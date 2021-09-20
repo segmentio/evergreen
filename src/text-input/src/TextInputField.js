@@ -9,6 +9,8 @@ import TextInput from './TextInput'
 const TextInputField = memo(
   forwardRef(function TextInputField(props, ref) {
     const id = useId('TextInputField', props.id)
+    const hintId = id + '__hint'
+    const descId = id + '__desc'
 
     const {
       // We are using the id from the state
@@ -39,6 +41,20 @@ const TextInputField = memo(
      */
     const { matchedProps, remainingProps } = splitBoxProps(restProps)
 
+    let ariaDescribedBy = props['aria-describedby'] || ''
+
+    if (hint) {
+      ariaDescribedBy += ' ' + hintId
+    }
+
+    if (description) {
+      ariaDescribedBy += ' ' + descId
+    }
+
+    if (ariaDescribedBy.length !== 0) {
+      remainingProps['aria-describedby'] = ariaDescribedBy.trim()
+    }
+
     return (
       <FormField
         marginBottom={24}
@@ -48,6 +64,8 @@ const TextInputField = memo(
         description={description}
         validationMessage={validationMessage}
         labelFor={id}
+        hintId={hintId}
+        descId={descId}
         {...matchedProps}
       >
         <TextInput

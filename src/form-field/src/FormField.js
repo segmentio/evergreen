@@ -10,12 +10,14 @@ const FormField = memo(
   forwardRef(function FormField(props, ref) {
     const {
       hint,
+      hintId,
       label,
       labelFor,
       children,
       isRequired,
       labelProps = { size: 400 },
       description,
+      descId,
       validationMessage,
       ...rest
     } = props
@@ -26,7 +28,11 @@ const FormField = memo(
           <FormFieldLabel htmlFor={labelFor} isAstrixShown={isRequired} {...labelProps}>
             {label}
           </FormFieldLabel>
-          {typeof description === 'string' ? <FormFieldDescription>{description}</FormFieldDescription> : description}
+          {typeof description === 'string' ? (
+            <FormFieldDescription id={descId}>{description}</FormFieldDescription>
+          ) : (
+            description
+          )}
         </Box>
         {children}
         {typeof validationMessage === 'string' ? (
@@ -34,7 +40,13 @@ const FormField = memo(
         ) : (
           validationMessage
         )}
-        {typeof hint === 'string' ? <FormFieldHint marginTop={6}>{hint}</FormFieldHint> : hint}
+        {typeof hint === 'string' ? (
+          <FormFieldHint marginTop={6} id={hintId}>
+            {hint}
+          </FormFieldHint>
+        ) : (
+          hint
+        )}
       </Box>
     )
   })
