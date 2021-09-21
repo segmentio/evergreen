@@ -8,10 +8,6 @@
  * @returns {String | null}
  */
 export function generateAriaDescribedBy(id, { description, hint, validationMessage }) {
-  if (!id || (!description && !hint && !validationMessage)) {
-    return null
-  }
-
   let tokens = ''
 
   // Only add each of the following to tokens if it is a non-empty string.
