@@ -1,5 +1,5 @@
 /**
- * Generates a token valie for `aria-describedby`
+ * Generates a token value for `aria-describedby` when the author provides `description`, `hint`, or `validationMessage` strings.
  * @param {String} id
  * @param {Object} helperTextCandidates
  * @param {String | React.ReactNode} [helperTextCandidates.description]
@@ -10,9 +10,9 @@
 export function generateAriaDescribedBy(id, { description, hint, validationMessage }) {
   let tokens = ''
 
-  // Only add each of the following to tokens if it is a string.
-  // When the author provides a React element, we assume they
-  // want to manage aria-describedby themselves.
+  // Only add each of the following to aria-describedby if
+  // it was provided as a string. When the author provides
+  // a React element, we assume they want to manage aria-describedby themselves.
 
   if (typeof description === 'string') {
     tokens += ' ' + id + '__description'
