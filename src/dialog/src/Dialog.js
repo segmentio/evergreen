@@ -168,7 +168,7 @@ const Dialog = memo(function Dialog({
     )
   }
 
-  const { className: containerClassName, remainingContainerProps } = containerProps
+  const { className: containerClassName, ...remainingContainerProps } = containerProps
 
   return (
     <Overlay
