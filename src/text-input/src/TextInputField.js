@@ -3,14 +3,13 @@ import PropTypes from 'prop-types'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
 import { useId } from '../../hooks'
+import { generateAriaDescribedBy } from '../../lib/generate-aria-describedby'
 import { majorScale } from '../../scales'
 import TextInput from './TextInput'
 
 const TextInputField = memo(
   forwardRef(function TextInputField(props, ref) {
     const id = useId('TextInputField', props.id)
-    const hintId = id + '__hint'
-    const descId = id + '__desc'
 
     const {
       // We are using the id from the state
@@ -41,20 +40,6 @@ const TextInputField = memo(
      */
     const { matchedProps, remainingProps } = splitBoxProps(restProps)
 
-    let ariaDescribedBy = props['aria-describedby'] || ''
-
-    if (hint) {
-      ariaDescribedBy += ' ' + hintId
-    }
-
-    if (description) {
-      ariaDescribedBy += ' ' + descId
-    }
-
-    if (ariaDescribedBy.length !== 0) {
-      remainingProps['aria-describedby'] = ariaDescribedBy.trim()
-    }
-
     return (
       <FormField
         marginBottom={24}
@@ -64,8 +49,6 @@ const TextInputField = memo(
         description={description}
         validationMessage={validationMessage}
         labelFor={id}
-        hintId={hintId}
-        descId={descId}
         {...matchedProps}
       >
         <TextInput
@@ -79,6 +62,7 @@ const TextInputField = memo(
           placeholder={placeholder}
           spellCheck={spellCheck}
           ref={ref}
+          aria-describedby={generateAriaDescribedBy(id, { description, hint, validationMessage })}
           {...remainingProps}
         />
       </FormField>

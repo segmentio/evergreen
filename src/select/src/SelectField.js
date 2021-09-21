@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
 import { useId } from '../../hooks'
+import { generateAriaDescribedBy } from '../../lib/generate-aria-describedby'
 import Select from './Select'
 
 const SelectField = memo(function SelectField(props) {
@@ -55,6 +56,7 @@ const SelectField = memo(function SelectField(props) {
         required={required}
         isInvalid={isInvalid}
         appearance={appearance}
+        aria-describedby={generateAriaDescribedBy(id, { description, hint, validationMessage })}
         {...remainingProps}
       />
     </FormField>
