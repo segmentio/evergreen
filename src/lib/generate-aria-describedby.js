@@ -10,19 +10,19 @@
 export function generateAriaDescribedBy(id, { description, hint, validationMessage }) {
   let tokens = ''
 
-  // Only add each of the following to tokens if it is a non-empty string.
-  // When the user provides a React element, we assume they
+  // Only add each of the following to tokens if it is a string.
+  // When the author provides a React element, we assume they
   // want to manage aria-describedby themselves.
 
-  if (typeof description === 'string' && description.length) {
+  if (typeof description === 'string') {
     tokens += ' ' + id + '__description'
   }
 
-  if (typeof hint === 'string' && hint.length) {
+  if (typeof hint === 'string') {
     tokens += ' ' + id + '__hint'
   }
 
-  if (typeof validationMessage === 'string' && validationMessage.length) {
+  if (typeof validationMessage === 'string') {
     tokens += ' ' + id + '__validation-message'
   }
 
