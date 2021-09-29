@@ -184,7 +184,7 @@ CornerDialog.propTypes = {
   /**
    * The intent of the CornerDialog. Used for the button.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger', 'info']),
 
   /**
    * When true, the dialog is shown.

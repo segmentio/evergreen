@@ -115,6 +115,22 @@ storiesOf('toaster', module).add('examples', () => (
           Danger remove notification with id
         </Button>
       </Box>
+      <Box marginBottom={12}>
+        <Button marginRight={8} onClick={() => toaster.info('Changes will affect all Warehouses.')}>
+          Info
+        </Button>
+
+        <Button
+          marginRight={8}
+          onClick={() =>
+            toaster.info('Changes will affect all Warehouses.', {
+              description: loremIpsum
+            })
+          }
+        >
+          Info with Text
+        </Button>
+      </Box>
     </Box>
   </Box>
 ))

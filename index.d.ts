@@ -149,6 +149,7 @@ export interface Colors {
     none: string
     success: string
     warning: string
+    info: string
   }
   text: {
     danger: string

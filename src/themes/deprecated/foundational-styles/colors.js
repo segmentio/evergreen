@@ -76,6 +76,7 @@ export default {
     none: palette.blue.base,
     success: palette.green.base,
     danger: palette.red.base,
-    warning: palette.orange.base
+    warning: palette.orange.base,
+    info: palette.blue.base
   }
 }

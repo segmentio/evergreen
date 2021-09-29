@@ -66,6 +66,10 @@ export default class Toaster {
     return this.notifyHandler(title, { ...settings, intent: 'danger' })
   }
 
+  info = (title, settings = {}) => {
+    return this.notifyHandler(title, { ...settings, intent: 'info' })
+  }
+
   remove = id => {
     return this.removeHandler(id)
   }
