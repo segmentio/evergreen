@@ -397,6 +397,13 @@ const IA: IA = {
         name: 'Form Field',
         tags: ['validation message', 'label'],
       },
+      {
+        id: 'overlay',
+        image: '/Overlay.png',
+        imageHighlight: '/Overlay-highlight.png',
+        github: githubLink('overlay'),
+        name: 'Overlay',
+      },
     ],
   },
 
