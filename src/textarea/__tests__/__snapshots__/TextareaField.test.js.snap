@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextareaField Should pass through \`resize\` prop to textarea 1`] = `
+<div
+  className="ub-mb_24px ub-box-szg_border-box"
+>
+  <div
+    className="ub-dspl_flex ub-flx-drct_column ub-mb_8px ub-box-szg_border-box"
+  >
+    <label
+      className="ub-color_101840 ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_18px ub-ltr-spc_-0-05px ub-dspl_block ub-mb_0px ub-box-szg_border-box"
+      htmlFor="TextareaField-2"
+    >
+      TextareaField
+       
+    </label>
+  </div>
+  <textarea
+    aria-invalid={false}
+    className="css-12rdf6g ub-w_100prcnt ub-h_80px ub-fnt-fam_b77syt ub-b-btm_1px-solid-transparent ub-b-lft_1px-solid-transparent ub-b-rgt_1px-solid-transparent ub-b-top_1px-solid-transparent ub-otln_iu2jf4 ub-txt-deco_none ub-min-h_80px ub-pl_12px ub-pr_12px ub-pb_8px ub-pt_8px ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-ln-ht_16px ub-fnt-sze_12px ub-color_474d66 ub-tstn_n1akt6 ub-bg-clr_white ub-b-btm-clr_d8dae5 ub-b-lft-clr_d8dae5 ub-b-rgt-clr_d8dae5 ub-b-top-clr_d8dae5 ub-rsz_none ub-box-szg_border-box"
+    data-gramm_editor={false}
+    data-testid="TextareaField"
+    disabled={false}
+    id="TextareaField-2"
+    spellCheck={true}
+  />
+</div>
+`;
