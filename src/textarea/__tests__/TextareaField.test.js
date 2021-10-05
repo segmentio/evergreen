@@ -1,6 +1,5 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import renderer from 'react-test-renderer'
 import { TextareaField } from '..'
 
 const makeTextareaFieldFixture = (props = {}) => (
@@ -13,7 +12,10 @@ describe('TextareaField', () => {
   })
 
   it('Should pass through `resize` prop to textarea', () => {
-    const tree = renderer.create(makeTextareaFieldFixture({ resize: 'none' })).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(makeTextareaFieldFixture({ resize: 'none' }))
+
+    const textarea = container.querySelector('textarea')
+    expect(textarea).not.toBeNull()
+    expect(textarea).toHaveStyle({ resize: 'none' })
   })
 })
