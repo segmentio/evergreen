@@ -960,6 +960,10 @@ export interface DialogProps {
    * Whether or not to prevent scrolling in the outer body. Defaults to false.
    */
   preventBodyScrolling?: boolean
+  /**
+   * Props that are passed to the Overlay component.
+   */
+  overlayProps?: React.ComponentProps<typeof Pane>
 }
 
 export declare const Dialog: React.FC<DialogProps>
@@ -1400,6 +1404,27 @@ export interface PositionerProps {
 }
 
 export declare const Positioner: React.FC<PositionerProps>
+
+export interface GetPositionInput {
+  position: PositionTypes
+  dimensions: {
+    height: number
+    width: number
+  }
+  viewport: {
+    height: number
+    width: number
+  }
+  targetRect: DOMRect
+  targetOffset: number
+  viewportOffset?: number
+}
+export interface GetPositionOutput {
+  rect: DOMRect
+  position: PositionTypes
+  transformOrigin: string
+}
+export declare const getPosition: (params: GetPositionInput) => GetPositionOutput
 
 export type PreOwnProps = TextOwnProps
 export type PreProps = PolymorphicBoxProps<'pre', PreOwnProps>
