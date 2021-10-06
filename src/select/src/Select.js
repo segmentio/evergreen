@@ -43,6 +43,7 @@ const Select = memo(
   forwardRef(function Select(props, ref) {
     const {
       appearance = 'default',
+      'aria-describedby': ariaDescribedby,
       autoFocus,
       children,
       defaultValue,
@@ -98,6 +99,7 @@ const Select = memo(
           paddingRight={iconMargin * 2 + iconSize}
           {...boxProps}
           height="100%"
+          aria-describedby={ariaDescribedby}
         >
           {children}
         </Box>
