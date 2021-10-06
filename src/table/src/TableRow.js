@@ -157,7 +157,7 @@ TableRow.propTypes = {
   /**
    * The intent of the alert.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+  intent: PropTypes.string,
 
   /**
    * The appearance of the table row. Default theme only support default.
