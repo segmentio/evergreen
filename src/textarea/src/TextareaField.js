@@ -27,6 +27,7 @@ const TextareaField = memo(
       label,
       placeholder,
       required,
+      resize,
       spellCheck,
       validationMessage,
 
@@ -61,6 +62,7 @@ const TextareaField = memo(
           appearance={appearance}
           placeholder={placeholder}
           spellCheck={spellCheck}
+          resize={resize}
           {...remainingProps}
         />
       </FormField>

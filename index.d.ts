@@ -1860,7 +1860,7 @@ export interface SideSheetProps {
   isShown?: boolean
   onCloseComplete?: () => void
   onOpenComplete?: () => void
-  onBeforeClose?: () => void
+  onBeforeClose?: () => boolean
   shouldCloseOnOverlayClick?: boolean
   shouldCloseOnEscapePress?: boolean
   width?: string | number
@@ -2614,7 +2614,7 @@ export interface OverlayProps {
   preventBodyScrolling?: boolean
   shouldCloseOnClick?: boolean
   shouldCloseOnEscapePress?: boolean
-  onBeforeClose?: () => void
+  onBeforeClose?: () => boolean
   onExit?: TransitionProps['onExit']
   onExiting?: TransitionProps['onExiting']
   onExited?: TransitionProps['onExited']
