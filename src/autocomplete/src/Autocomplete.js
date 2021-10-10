@@ -75,8 +75,8 @@ const AutocompleteItems = ({
             const item = items[index]
             const itemString = itemToString(item)
 
-            return renderItem(
-              getItemProps({
+            return renderItem({
+              ...getItemProps({
                 item,
                 key: itemString,
                 index,
@@ -84,8 +84,9 @@ const AutocompleteItems = ({
                 children: itemString,
                 isSelected: itemToString(selectedItem) === itemString,
                 isHighlighted: highlightedIndex === index
-              })
-            )
+              }),
+              item
+            })
           }}
         />
       )}

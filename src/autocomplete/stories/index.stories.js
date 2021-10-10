@@ -4,7 +4,10 @@ import starWarsNames from 'starwars-names'
 import Box from 'ui-box'
 import { Autocomplete } from '..'
 import { Button } from '../../buttons'
+import { Image } from '../../image'
+import { Pane } from '../../layers'
 import { TextInput } from '../../text-input'
+import { Small, Text } from '../../typography'
 
 // Generate a big list of items
 const items = [
@@ -24,6 +27,13 @@ const items = [
 
   return 0
 })
+
+const itemsWithdetails = items.map(x => ({
+  name: x,
+  unique_id: `${x}-${Math.floor(Math.random() * 100)}`,
+  image_src: 'http://lorempixel.com/output/cats-q-c-640-480-5.jpg',
+  power_score: Math.floor(Math.random() * 100)
+}))
 
 storiesOf('autocomplete', module).add('Autocomplete', () => {
   const [selectedItem, setSelectedItem] = React.useState('')
@@ -123,6 +133,41 @@ storiesOf('autocomplete', module).add('Autocomplete', () => {
           {({ getInputProps, getRef, getToggleButtonProps, inputValue, toggleMenu }) => (
             <Box ref={ref => getRef(ref)} display="inline-block">
               <TextInput placeholder="Trigger with button" value={inputValue} {...getInputProps()} />
+              <Button onClick={toggleMenu} {...getToggleButtonProps()}>
+                Trigger
+              </Button>
+            </Box>
+          )}
+        </Autocomplete>
+      </Box>
+      {/* Autocomplete with custom autocomplete item render */}
+      <Box padding={40}>
+        <Autocomplete
+          itemSize={50}
+          onChange={handleChange}
+          itemToString={item => (item ? item.name : '')}
+          items={itemsWithdetails}
+          renderItem={({ item, ...props }) => (
+            <Pane
+              display="flex"
+              alignItems="center"
+              justifyContent="left"
+              gap={10}
+              key={item.unique_id}
+              {...props}
+              paddingX={12}
+            >
+              <Image src={item.image_src} width={50} />
+              <Text color="grey">{item.name}</Text>
+              <Small color="grey" size={300} flex={1}>
+                (Power: {item.power_score})
+              </Small>
+            </Pane>
+          )}
+        >
+          {({ getInputProps, getRef, getToggleButtonProps, inputValue, toggleMenu }) => (
+            <Box ref={ref => getRef(ref)} display="inline-block">
+              <TextInput placeholder="Custom item renderer" value={inputValue} {...getInputProps()} />
               <Button onClick={toggleMenu} {...getToggleButtonProps()}>
                 Trigger
               </Button>
