@@ -31,7 +31,7 @@ const items = [
 const itemsWithdetails = items.map(x => ({
   name: x,
   unique_id: `${x}-${Math.floor(Math.random() * 100)}`,
-  image_src: 'http://lorempixel.com/output/cats-q-c-640-480-5.jpg',
+  image_src: `http://lorempixel.com/100/50?x=${Math.floor(Math.random() * 100)}`,
   power_score: Math.floor(Math.random() * 100)
 }))
 
