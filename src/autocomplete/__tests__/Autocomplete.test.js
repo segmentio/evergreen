@@ -162,4 +162,46 @@ describe('Autocomplete', () => {
       expect(getAllByTestId('custom-autocomplete-item').length).toEqual(0)
     })
   })
+
+  it('can update search input value when autocomplete item is clicked/selected', () => {
+    expect(() => {
+      const { getAllByTestId, getByTestId } = render(
+        <Autocomplete
+          onChange={() => {}}
+          items={itemsWithdetails}
+          renderItem={({ item }) => (
+            <Option key={item.unique_id} data-testid="custom-autocomplete-item">
+              <Pane display="flex" alignItems="center" justifyContent="center" gap={10}>
+                <Text color="grey">{item.name}</Text>
+                <Small color="grey" size={300}>
+                  (Power Score: {item.power_score})
+                </Small>
+              </Pane>
+            </Option>
+          )}
+        >
+          {({ getInputProps, getRef, getToggleButtonProps, inputValue, toggleMenu }) => (
+            <Box ref={ref => getRef(ref)} display="inline-block">
+              <TextInput
+                placeholder="Custom item renderer"
+                value={inputValue}
+                {...getInputProps()}
+                data-testid="autocomplete-search-input"
+              />
+              <Button onClick={toggleMenu} {...getToggleButtonProps()} data-testId="search-trigger">
+                Trigger
+              </Button>
+            </Box>
+          )}
+        </Autocomplete>
+      )
+
+      const triggerButton = getByTestId('autocomplete-search-input')
+      fireEvent.click(triggerButton)
+      const firstAutocompleteItem = getAllByTestId('custom-autocomplete-item')[0]
+      fireEvent.click(firstAutocompleteItem)
+      const input = getByTestId('autocomplete-search-input')
+      expect(input.value).toBe(itemsWithdetails[0].name)
+    })
+  })
 })
