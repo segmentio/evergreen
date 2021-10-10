@@ -147,7 +147,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => {
           onChange={handleChange}
           itemToString={item => (item ? item.name : '')}
           items={itemsWithdetails}
-          renderItem={({ item, ...props }) => (
+          renderItem={({ isHighlighted, isSelected, item, ...props }) => (
             <Pane
               display="flex"
               alignItems="center"
@@ -156,6 +156,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => {
               key={item.unique_id}
               {...props}
               paddingX={12}
+              cursor="pointer"
             >
               <Image src={item.image_src} width={50} />
               <Text color="grey">{item.name}</Text>
