@@ -1,7 +1,6 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import Radio from '../src/Radio'
-import RadioGroup from '../src/RadioGroup'
 
 describe('Radio', () => {
   it('should not crash when rendering', () => {
@@ -10,38 +9,38 @@ describe('Radio', () => {
     }).not.toThrowError()
   })
 
-  it('should render', () => {
+  it('should render the component', () => {
     expect(() => {
       render(<Radio />)
     }).not.toBeNull()
   })
 
-  it('should render with an id', () => {
+  it('should render with an id when id is specified', () => {
     render(<Radio id="test-123" />)
     expect(screen.getByRole('radio').getAttribute('id')).toEqual('test-123')
   })
 
-  it('should render with a name', () => {
+  it('should render with a name when name is specified', () => {
     render(<Radio name="test-name" />)
     expect(screen.getByRole('radio').getAttribute('name')).toEqual('test-name')
   })
 
-  it('should render with a label', () => {
+  it('should render with a label when label is specified', () => {
     render(<Radio label="Select me" />)
     expect(screen.getByText('Select me')).toBeVisible()
   })
 
-  it('should render with a value', () => {
+  it('should render with a value when value is specified', () => {
     render(<Radio value="test-value" />)
     expect(screen.getByRole('radio').getAttribute('value')).toEqual('test-value')
   })
 
-  it('should be disabled', () => {
+  it('should render a disabled state when disabled is true', () => {
     render(<Radio disabled />)
     expect(screen.getByRole('radio')).toBeDisabled()
   })
 
-  it('should be checked', () => {
+  it('should render a checked state when checked is true', () => {
     render(<Radio checked />)
     expect(screen.getByRole('radio')).toBeChecked()
   })
@@ -54,17 +53,17 @@ describe('Radio', () => {
     // expect(screen.getByRole('radio')).toHaveStyle('width: 12px')
   })
 
-  it('should be required and show the required asterisk', () => {
+  it('should render a required state when isRequired is true', () => {
     render(<Radio isRequired />)
     expect(screen.getByRole('radio').required).toBeTruthy()
   })
 
-  it('should be invalid', () => {
+  it('should render an invalid state when isInvalid is true', () => {
     render(<Radio isInvalid />)
     expect(screen.getByRole('radio')).toBeInvalid()
   })
 
-  it('should be checked when clicked', () => {
+  it('should render a checked state when the radio is clicked', () => {
     render(<Radio />)
     const radio = screen.getByRole('radio')
     expect(screen.getByRole('radio')).not.toBeChecked()
@@ -72,7 +71,7 @@ describe('Radio', () => {
     expect(screen.getByRole('radio')).toBeChecked()
   })
 
-  it('should handle state change', () => {
+  it('should handle state change when onChange is specified', () => {
     const onChangeMock = jest.fn()
     render(<Radio onChange={onChangeMock} />)
 
@@ -81,55 +80,4 @@ describe('Radio', () => {
     fireEvent.click(radio)
     expect(onChangeMock).toBeCalledTimes(1)
   })
-})
-
-describe('Radio Group', () => {
-  const options = [
-    { label: 'Read-only', value: 'read-only' },
-    { label: 'Write', value: 'write', isDisabled: true },
-    { label: 'Restricted', value: 'restricted' }
-  ]
-
-  it('should not crash when render', () => {
-    expect(() => {
-      render(<RadioGroup options={options} />)
-    }).not.toThrowError()
-  })
-
-  it('should show the options', () => {
-    render(<RadioGroup options={options} />)
-    expect(screen.getByRole('group')).toBeVisible()
-    expect(screen.getAllByRole('radio')).toHaveLength(3)
-  })
-
-  it('should show group title', () => {
-    render(<RadioGroup options={options} label="Permissions" />)
-    expect(screen.getByRole('group').getAttribute('aria-label')).toEqual('Permissions')
-    expect(screen.getByText('Permissions')).toBeVisible()
-  })
-
-  it('options are all required', () => {
-    // not sure if this prop even makes sense
-    render(<RadioGroup options={options} isRequired />)
-    screen.getAllByRole('radio').forEach(element => {
-      expect(element).toBeRequired()
-    })
-  })
-
-  it('should select the option that has the same value passed in', () => {
-    render(<RadioGroup options={options} value="write" />)
-    expect(screen.getByRole('radio', { name: 'Write' })).toBeChecked()
-  })
-
-  it('should handle state change', () => {
-    const onChangeMock = jest.fn()
-    render(<RadioGroup options={options} value="read-only" onChange={onChangeMock} />)
-
-    const radio = screen.getByRole('radio', { name: 'Restricted' })
-    expect(onChangeMock).toBeCalledTimes(0)
-    fireEvent.click(radio)
-    expect(onChangeMock).toBeCalledTimes(1)
-  })
-
-  // untested props: defaultValue, size
 })
