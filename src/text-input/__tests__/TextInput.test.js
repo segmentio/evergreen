@@ -62,9 +62,10 @@ describe('TextInputField', () => {
     expect(() => render(makeTextInputFieldFixture())).not.toThrow()
   })
 
-  it('Should render a required `label` when passed in', () => {
-    const { getByLabelText } = render(makeTextInputFieldFixture())
+  it('Should have expected accessible name when `label` prop', () => {
+    const { getByLabelText, getByTestId } = render(makeTextInputFieldFixture())
     expect(getByLabelText('Name')).toBeInTheDocument()
+    expect(getByTestId('input')).toHaveAccessibleName('Name')
   })
 
   it('Should render a `hint` underneath the input', () => {
