@@ -68,9 +68,10 @@ describe('TextInputField', () => {
     expect(getByTestId('input')).toHaveAccessibleName('Name')
   })
 
-  it('Should render a `hint` underneath the input', () => {
-    const { getByText } = render(makeTextInputFieldFixture({ hint: 'Enter a value in the input' }))
+  it('Should add hint text to accessible description when `hint` prop provided', () => {
+    const { getByTestId, getByText } = render(makeTextInputFieldFixture({ hint: 'Enter a value in the input' }))
     expect(getByText('Enter a value in the input')).toBeInTheDocument()
+    expect(getByTestId('input')).toHaveAccessibleDescription('Enter a value in the input')
   })
 
   it('Should render an astrix when `required` is passed in', () => {
