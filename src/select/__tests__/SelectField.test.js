@@ -42,7 +42,7 @@ describe('Select', () => {
   })
 })
 
-describe('TextInputField', () => {
+describe('SelectField', () => {
   it('Should render without crashing', () => {
     expect(() => render(makeSelectFieldFixture())).not.toThrow()
   })
