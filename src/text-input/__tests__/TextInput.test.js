@@ -84,4 +84,14 @@ describe('TextInputField', () => {
     expect(getByText('Please enter a value.')).toBeInTheDocument()
     expect(getByTestId('input')).toHaveAccessibleDescription('Please enter a value.')
   })
+
+  it('Should correctly compose an accessible description from multiple hints', () => {
+    const { getByTestId, getByText } = render(
+      makeTextInputFieldFixture({ description: 'A description.', hint: 'Am hint.', validationMessage: 'Try again.' })
+    )
+    expect(getByText('A description.')).toBeInTheDocument()
+    expect(getByText('Am hint.')).toBeInTheDocument()
+    expect(getByText('Try again.')).toBeInTheDocument()
+    expect(getByTestId('input')).toHaveAccessibleDescription('A description. Try again. Am hint.')
+  })
 })
