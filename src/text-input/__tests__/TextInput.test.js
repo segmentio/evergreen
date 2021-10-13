@@ -79,8 +79,9 @@ describe('TextInputField', () => {
     expect(getByTitle('This field is required.')).toBeInTheDocument()
   })
 
-  it('Should not render a `validationMessage` when passed in', () => {
-    const { getByText } = render(makeTextInputFieldFixture({ validationMessage: 'Please enter a value' }))
-    expect(getByText('Please enter a value')).toBeInTheDocument()
+  it('Should render a `validationMessage` when passed in', () => {
+    const { getByTestId, getByText } = render(makeTextInputFieldFixture({ validationMessage: 'Please enter a value.' }))
+    expect(getByText('Please enter a value.')).toBeInTheDocument()
+    expect(getByTestId('input')).toHaveAccessibleDescription('Please enter a value.')
   })
 })
