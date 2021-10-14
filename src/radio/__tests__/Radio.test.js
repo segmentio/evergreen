@@ -10,9 +10,8 @@ describe('Radio', () => {
   })
 
   it('should render the component', () => {
-    expect(() => {
-      render(<Radio />)
-    }).not.toBeNull()
+    render(<Radio data-testid="test-id-radio" />)
+    expect(screen.getByTestId('test-id-radio')).toBeVisible()
   })
 
   it('should render with an id when id is specified', () => {
