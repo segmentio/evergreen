@@ -26,8 +26,8 @@ describe('Radio', () => {
   })
 
   it('should render with a label when label is specified', () => {
-    render(<Radio label="Select me" />)
-    expect(screen.getByText('Select me')).toBeVisible()
+    render(<Radio label="Select" />)
+    expect(screen.getByLabelText('Select')).toBeInTheDocument()
   })
 
   it('should render with a value when value is specified', () => {
@@ -43,14 +43,6 @@ describe('Radio', () => {
   it('should render a checked state when checked is true', () => {
     render(<Radio checked />)
     expect(screen.getByRole('radio')).toBeChecked()
-  })
-
-  it('should render with the according size', () => {
-    // the input element is always 1px, and the size is on the sibling Box
-    // how to find the right assertion that has the size?
-    render(<Radio size={12} />)
-    // expect(screen.getByRole('radio')).toHaveStyle('height: 12px')
-    // expect(screen.getByRole('radio')).toHaveStyle('width: 12px')
   })
 
   it('should render a required state when isRequired is true', () => {
