@@ -1,99 +1,135 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, screen } from '@testing-library/react'
 import faker from 'faker'
 import { TextareaField } from '..'
 
-const makeTextareaFieldFixture = (props = {}) => (
-  <TextareaField data-testid="TextareaField" label="TextareaField" {...props} />
-)
+const makeTextareaFieldFixture = (props = {}) => <TextareaField data-testid="TextareaField" {...props} />
 
 describe('TextareaField', () => {
   it('Should render', () => {
     expect(() => render(makeTextareaFieldFixture())).not.toThrow()
   })
 
-  it('Should be disabled when disabled is true', () => {
-    const { container } = render(makeTextareaFieldFixture({ disabled: true }))
+  describe('FormField props', () => {
+    test('Should render label when provided', () => {
+      const expected = faker.random.alphaNumeric()
+      render(makeTextareaFieldFixture({ label: expected }))
 
-    const textarea = container.querySelector('textarea')
-    expect(textarea).toBeDisabled()
+      expect(screen.getByLabelText(expected)).toBeInTheDocument()
+    })
+
+    test('Should render asterisk when required is true', () => {
+      render(makeTextareaFieldFixture({ required: true }))
+
+      expect(screen.getByLabelText('*')).toBeInTheDocument()
+    })
+
+    test('Should render hint when provided', () => {
+      const expected = faker.random.alphaNumeric()
+      render(makeTextareaFieldFixture({ hint: expected }))
+
+      expect(screen.getByText(expected)).toBeInTheDocument()
+    })
+
+    test('Should render description when provided', () => {
+      const expected = faker.random.alphaNumeric()
+      render(makeTextareaFieldFixture({ description: expected }))
+
+      expect(screen.getByText(expected)).toBeInTheDocument()
+    })
+
+    test('Should render validationMessage when provided', () => {
+      const expected = faker.random.alphaNumeric()
+      render(makeTextareaFieldFixture({ validationMessage: expected }))
+
+      expect(screen.getByText(expected)).toBeInTheDocument()
+    })
   })
 
-  it.each([undefined, null, false])('Should not be disabled when disabled is %p', disabled => {
-    const { container } = render(makeTextareaFieldFixture({ disabled }))
+  describe('Textarea props', () => {
+    it('Should be disabled when disabled is true', () => {
+      const { container } = render(makeTextareaFieldFixture({ disabled: true }))
 
-    const textarea = container.querySelector('textarea')
-    expect(textarea).not.toBeDisabled()
-  })
+      const textarea = container.querySelector('textarea')
+      expect(textarea).toBeDisabled()
+    })
 
-  it('Should be required when required is true', () => {
-    const { container } = render(makeTextareaFieldFixture({ required: true }))
+    it.each([undefined, null, false])('Should not be disabled when disabled is %p', disabled => {
+      const { container } = render(makeTextareaFieldFixture({ disabled }))
 
-    const textarea = container.querySelector('textarea')
-    expect(textarea).toBeRequired()
-  })
+      const textarea = container.querySelector('textarea')
+      expect(textarea).not.toBeDisabled()
+    })
 
-  it.each([undefined, null, false])('Should not be required when required is %p', required => {
-    const { container } = render(makeTextareaFieldFixture({ required }))
+    it('Should be required when required is true', () => {
+      const { container } = render(makeTextareaFieldFixture({ required: true }))
 
-    const textarea = container.querySelector('textarea')
-    expect(textarea).not.toBeRequired()
-  })
+      const textarea = container.querySelector('textarea')
+      expect(textarea).toBeRequired()
+    })
 
-  it('Should render with placeholder when placeholder provided', () => {
-    const expected = faker.random.alphaNumeric()
-    const { container } = render(makeTextareaFieldFixture({ placeholder: expected }))
+    it.each([undefined, null, false])('Should not be required when required is %p', required => {
+      const { container } = render(makeTextareaFieldFixture({ required }))
 
-    const textarea = container.querySelector('textarea')
-    expect(textarea).toHaveAttribute('placeholder', expected)
-  })
+      const textarea = container.querySelector('textarea')
+      expect(textarea).not.toBeRequired()
+    })
 
-  it('Should pass through `spellCheck` prop to textarea', () => {
-    const expected = faker.random.boolean()
-    const { container } = render(makeTextareaFieldFixture({ spellCheck: expected }))
+    it('Should render with placeholder when placeholder provided', () => {
+      const expected = faker.random.alphaNumeric()
+      const { container } = render(makeTextareaFieldFixture({ placeholder: expected }))
 
-    const textarea = container.querySelector('textarea')
-    expect(textarea).toHaveAttribute('spellCheck', expected.toString())
-  })
+      const textarea = container.querySelector('textarea')
+      expect(textarea).toHaveAttribute('placeholder', expected)
+    })
 
-  it('Should render with `aria-invalid` when isInvalid provided', () => {
-    const expected = faker.random.boolean()
-    const { container } = render(makeTextareaFieldFixture({ isInvalid: expected }))
+    it('Should pass through `spellCheck` prop to textarea', () => {
+      const expected = faker.random.boolean()
+      const { container } = render(makeTextareaFieldFixture({ spellCheck: expected }))
 
-    const textarea = container.querySelector('textarea')
-    expect(textarea).toHaveAttribute('aria-invalid', expected.toString())
-  })
+      const textarea = container.querySelector('textarea')
+      expect(textarea).toHaveAttribute('spellCheck', expected.toString())
+    })
 
-  it('Should render with `data-gramm_editor` when grammarly provided', () => {
-    const expected = faker.random.boolean()
-    const { container } = render(makeTextareaFieldFixture({ grammarly: expected }))
+    it('Should render with `aria-invalid` when isInvalid provided', () => {
+      const expected = faker.random.boolean()
+      const { container } = render(makeTextareaFieldFixture({ isInvalid: expected }))
 
-    const textarea = container.querySelector('textarea')
-    expect(textarea).toHaveAttribute('data-gramm_editor', expected.toString())
-  })
+      const textarea = container.querySelector('textarea')
+      expect(textarea).toHaveAttribute('aria-invalid', expected.toString())
+    })
 
-  it('Should pass through `inputWidth` prop to textarea', () => {
-    const expected = faker.random.number({ min: 10, max: 100 })
-    const { container } = render(makeTextareaFieldFixture({ inputWidth: expected }))
+    it('Should render with `data-gramm_editor` when grammarly provided', () => {
+      const expected = faker.random.boolean()
+      const { container } = render(makeTextareaFieldFixture({ grammarly: expected }))
 
-    const textarea = container.querySelector('textarea')
-    expect(textarea).toHaveStyle({ width: `${expected}px` })
-  })
+      const textarea = container.querySelector('textarea')
+      expect(textarea).toHaveAttribute('data-gramm_editor', expected.toString())
+    })
 
-  it('Should pass through `inputHeight` prop to textarea', () => {
-    const expected = faker.random.number({ min: 10, max: 100 })
-    const { container } = render(makeTextareaFieldFixture({ inputHeight: expected }))
+    it('Should pass through `inputWidth` prop to textarea', () => {
+      const expected = faker.random.number({ min: 10, max: 100 })
+      const { container } = render(makeTextareaFieldFixture({ inputWidth: expected }))
 
-    const textarea = container.querySelector('textarea')
-    expect(textarea).toHaveStyle({ height: `${expected}px` })
-  })
+      const textarea = container.querySelector('textarea')
+      expect(textarea).toHaveStyle({ width: `${expected}px` })
+    })
 
-  it('Should call onChange when event is fired', () => {
-    const onChange = jest.fn()
-    const { container } = render(makeTextareaFieldFixture({ onChange }))
+    it('Should pass through `inputHeight` prop to textarea', () => {
+      const expected = faker.random.number({ min: 10, max: 100 })
+      const { container } = render(makeTextareaFieldFixture({ inputHeight: expected }))
 
-    const textarea = container.querySelector('textarea')
-    fireEvent.change(textarea, { target: { value: 'test' } })
-    expect(onChange).toHaveBeenCalled()
+      const textarea = container.querySelector('textarea')
+      expect(textarea).toHaveStyle({ height: `${expected}px` })
+    })
+
+    it('Should call onChange when event is fired', () => {
+      const onChange = jest.fn()
+      const { container } = render(makeTextareaFieldFixture({ onChange }))
+
+      const textarea = container.querySelector('textarea')
+      fireEvent.change(textarea, { target: { value: 'test' } })
+      expect(onChange).toHaveBeenCalled()
+    })
   })
 })
