@@ -3,7 +3,9 @@ import { render, fireEvent, screen } from '@testing-library/react'
 import faker from 'faker'
 import { TextareaField } from '..'
 
-const makeTextareaFieldFixture = (props = {}) => <TextareaField data-testid="TextareaField" {...props} />
+const makeTextareaFieldFixture = (props = {}) => (
+  <TextareaField data-testid="TextareaField" label="TextareaField" {...props} />
+)
 
 describe('TextareaField', () => {
   it('Should render', () => {
@@ -19,9 +21,11 @@ describe('TextareaField', () => {
     })
 
     test('Should render asterisk when required is true', () => {
-      render(makeTextareaFieldFixture({ required: true }))
+      const label = faker.random.alphaNumeric()
+      const expected = `${label} *`
+      render(makeTextareaFieldFixture({ label, required: true }))
 
-      expect(screen.getByLabelText('*')).toBeInTheDocument()
+      expect(screen.getByLabelText(expected)).toBeInTheDocument()
     })
 
     test('Should render hint when provided', () => {
@@ -43,6 +47,14 @@ describe('TextareaField', () => {
       render(makeTextareaFieldFixture({ validationMessage: expected }))
 
       expect(screen.getByText(expected)).toBeInTheDocument()
+    })
+
+    test('Should render label with `for` attribute for accessibility', () => {
+      const { container } = render(makeTextareaFieldFixture({ label: faker.random.alphaNumeric() }))
+
+      const textarea = container.querySelector('textarea')
+      const label = container.querySelector('label')
+      expect(label).toHaveAttribute('for', textarea.id)
     })
   })
 
