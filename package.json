@@ -32,7 +32,8 @@
   "sideEffects": false,
   "scripts": {
     "test": "yarn lint && yarn jest",
-    "lint": "eslint 'src/**/*.js' --cache",
+    "test:watch": "yarn run test -- --watch",
+    "lint": "eslint 'src/**/*.js' --cache --fix",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
