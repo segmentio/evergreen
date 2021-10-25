@@ -58,7 +58,7 @@ InlineAlert.propTypes = {
   /**
    * The intent of the alert. This should always be set explicitly.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+  intent: PropTypes.string,
 
   /**
    * When true, show a icon on the left matching the type.
