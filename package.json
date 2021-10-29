@@ -32,6 +32,7 @@
   "sideEffects": false,
   "scripts": {
     "test": "yarn lint && yarn jest",
+    "test:watch": "yarn run test -- --watch",
     "lint": "eslint \"src/**/*.js\" --cache",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "dev": "start-storybook -p 6006",
