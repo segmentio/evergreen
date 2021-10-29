@@ -78,7 +78,7 @@ IconButton.propTypes = {
   /**
    * The intent of the button.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+  intent: PropTypes.string,
 
   /**
    * The appearance of the button.

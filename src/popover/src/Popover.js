@@ -224,8 +224,10 @@ const Popover = memo(
         const isTooltipInside = children && children.type === Tooltip
 
         const getTargetRef = ref => {
-          setTargetRef(ref)
-          getRef(ref)
+          if (ref !== targetRef) {
+            setTargetRef(ref)
+            getRef(ref)
+          }
         }
 
         /**
