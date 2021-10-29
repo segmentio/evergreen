@@ -1,6 +1,5 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import faker from 'faker'
 import renderer from 'react-test-renderer'
 import { UIBoxSerializer } from '../../../lib/testing'
 import { ThemeProvider } from '../../theme'
@@ -73,25 +72,7 @@ describe('Sizing', () => {
 })
 
 describe('Props', () => {
-  test('<Text /> accepts arbitrary props', () => {
-    const propKey = faker.random
-      .word()
-      .toLowerCase()
-      .replace(/ /g, '')
-    const propValue = faker.random
-      .word()
-      .toLowerCase()
-      .replace(/ /g, '')
-    const component = (
-      <Text data-testid="text" {...{ [propKey]: propValue }}>
-        Testing
-      </Text>
-    )
-    const { getByTestId } = render(component)
-    expect(getByTestId('text')).toHaveAttribute(propKey, propValue)
-  })
-
-  test('<Text/> forwards className prop', () => {
+  it('should forward `className` prop', () => {
     const MY_CLASS = 'my-custom-class'
     const component = (
       <Text data-testid="text" className={`${MY_CLASS}`}>
