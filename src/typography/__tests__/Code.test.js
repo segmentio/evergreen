@@ -44,11 +44,11 @@ describe('Code', () => {
   it('should pass through `className` prop', () => {
     const expected = faker.random.word().toLowerCase()
     const component = (
-      <Code data-testid="text" className={expected}>
+      <Code data-testid="code" className={expected}>
         Testing
       </Code>
     )
     const { getByTestId } = render(component)
-    expect(getByTestId('text')).toHaveClass(expected)
+    expect(getByTestId('code')).toHaveClass(expected)
   })
 })
