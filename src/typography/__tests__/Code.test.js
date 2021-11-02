@@ -2,9 +2,12 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import faker from 'faker'
 import renderer from 'react-test-renderer'
+import { UIBoxSerializer } from '../../../lib/testing'
 import { ThemeProvider } from '../../theme'
 import { defaultTheme } from '../../themes'
 import Code from '../src/Code'
+
+expect.addSnapshotSerializer(UIBoxSerializer)
 
 describe('Code', () => {
   it('Should render', () => {
