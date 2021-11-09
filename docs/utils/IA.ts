@@ -276,11 +276,10 @@ const IA: IA = {
           'The Pagination component is used to split up content into several pages and navigate between pages.',
       },
       {
-        id: 'pulsar',
+        id: 'nudge',
         image: '/Pulsar.png',
         imageHighlight: '/Pulsar-highlight.png',
-        inProgress: true,
-        github: githubLink('pulsar'),
+        github: githubLink('nudge'),
         name: 'Pulsar',
         description:
           'The Pulsar component is a user education UI used to indicate to a user where they should take a particular action.',

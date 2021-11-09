@@ -1,105 +1,57 @@
-import React, { memo } from 'react'
-import { css } from 'glamor'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import Positions from '../../constants/src/Position'
 import { Pane } from '../../layers'
-import { majorScale } from '../../scales'
-import { useTheme } from '../../theme'
-import { Tooltip } from '../../tooltip'
+import warning from '../../lib/warning'
+import { Popover } from '../../popover'
+import { minorScale } from '../../scales'
+import { Text } from '../../typography'
+import { Pulsar } from './Pulsar'
 
-const pulseAnimation = css.keyframes('pulseAnimation', {
-  '0%': {
-    transform: 'scale(1)'
-  },
-  '50%': {
-    transform: 'scale(1.9)'
-  },
-  '100%': {
-    transform: 'scale(1)'
+export const Nudge = ({
+  children,
+  isShown = false,
+  position = Positions.TOP_RIGHT,
+  size,
+  tooltipContent: tooltipContentProp,
+  onClick
+}) => {
+  if (process.env.NODE_ENV !== 'production') {
+    warning(true, '<Nudge> is deprecated and will be renamed to Pulsar in the next major version of Evergreen.')
   }
-})
 
-const animationTiming = 'cubic-bezier(0, 0, 0.58, 1)'
-const animationDuration = '1.8s'
+  const [isHovered, setIsHovered] = useState(false)
+  const handleMouseEnter = useCallback(() => setIsHovered(true), [setIsHovered])
+  const handleMouseLeave = useCallback(() => setIsHovered(false), [setIsHovered])
 
-const pulsarAnimationClassName = css({
-  animation: `${pulseAnimation} ${animationDuration} ${animationTiming} both infinite`
-}).toString()
-
-const POSITION_KEYS = {
-  [Positions.TOP_LEFT]: ['top', 'left'],
-  [Positions.TOP_RIGHT]: ['top', 'right'],
-  [Positions.BOTTOM_LEFT]: ['bottom', 'left'],
-  [Positions.BOTTOM_RIGHT]: ['bottom', 'right']
-}
-
-const getPositionProps = ({ position, size }) => {
-  const keys = POSITION_KEYS[position]
-  const props = {}
-
-  keys.forEach(key => {
-    const isYAxisKey = key === 'top' || key === 'bottom'
-
-    if (isYAxisKey) {
-      props[key] = -(size / 2)
-    } else {
-      props[key] = -size
-    }
-  })
-
-  return props
-}
-
-export const Pulsar = memo(({ position = Positions.TOP_RIGHT, size = majorScale(1) }) => {
-  const { colors } = useTheme()
-  const positionProps = getPositionProps({ position, size })
-  const outerPadding = size * 0.25
-
-  return (
-    <Pane
-      position="absolute"
-      borderRadius="50%"
-      backgroundColor={colors.blue100}
-      boxSizing="content-box"
-      opacity={0.7}
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      padding={outerPadding}
-      className={pulsarAnimationClassName}
-      {...positionProps}
-    >
-      <Pane width={size} height={size} backgroundColor={colors.blue200} borderRadius="50%" opacity={0.7} />
+  const isTooltipContentString = typeof tooltipContentProp === 'string'
+  const innerContent = isTooltipContentString ? <Text>{tooltipContentProp}</Text> : tooltipContentProp
+  const tooltipContent = (
+    <Pane maxWidth={240} padding={isTooltipContentString ? minorScale(2) : undefined}>
+      {innerContent}
     </Pane>
   )
-})
 
-Pulsar.propTypes = {
-  /**
-   * The position of the pulsar
-   */
-  position: PropTypes.oneOf([Positions.TOP_LEFT, Positions.TOP_RIGHT, Positions.BOTTOM_LEFT, Positions.BOTTOM_RIGHT]),
-
-  /**
-   * The width/height of the dot
-   */
-  size: PropTypes.number
-}
-
-export const Nudge = ({ children, isShown = false, position = Positions.TOP_RIGHT, size, tooltipContent }) => {
   return (
-    <Tooltip content={tooltipContent} position={position} isShown={isShown ? undefined : false}>
-      <Pane position="relative">
-        {isShown && <Pulsar position={position} size={size} />}
+    <Popover
+      content={tooltipContent}
+      position={position}
+      isShown={isShown && isHovered && !!tooltipContentProp}
+      trigger="hover"
+      onOpen={handleMouseEnter}
+      maxWidth={240}
+    >
+      <Pane position="relative" onMouseLeave={handleMouseLeave}>
+        {isShown && <Pulsar onClick={onClick} position={position} size={size} />}
         {children}
       </Pane>
-    </Tooltip>
+    </Popover>
   )
 }
 
 Nudge.propTypes = {
   /**
-   * The position for the Puslar and the Tooltip
+   * The position for the Pulsar and the Tooltip
    */
   position: PropTypes.oneOf([Positions.TOP_LEFT, Positions.TOP_RIGHT, Positions.BOTTOM_LEFT, Positions.BOTTOM_RIGHT]),
 
@@ -116,10 +68,15 @@ Nudge.propTypes = {
   /**
    * Content for the tooltip
    */
-  tooltipContent: Tooltip.propTypes.content,
+  tooltipContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 
   /**
    * Content for the pulsar/tooltip to be anchored too
    */
-  children: PropTypes.node
+  children: PropTypes.node,
+
+  /**
+   * Called when the Pulsar is clicked
+   */
+  onClick: PropTypes.func
 }

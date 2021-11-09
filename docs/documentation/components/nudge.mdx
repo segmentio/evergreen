@@ -1,0 +1,53 @@
+# Usage
+
+Pulsars are best suited for situations where you need to draw attention to a part in the UI, and want to do it contextually and gently without too much of a distraction or removal from the main experience of using the app.
+
+Specifically, a pulsar is optional - the user can simply ignore the pulsing dot and continue using the app as they would. If they happen across it, the pulsar can provide a helpful tip on hover or can even guide them to their next action.
+
+It is also important to note that pulsars are not meant to be a permanent part of the UI. They should be used judiciously and with purpose. If pulsars are there all the time, and in every part of the app, they will lose its meaning.
+
+```jsx
+<Pane padding={40} display="flex" flexDirection="column" gap={32} alignItems="flex-start">
+  <Nudge isShown={true} tooltipContent="Example tooltip content">
+    <Pane>Example Nudge Usage</Pane>
+  </Nudge>
+  <Nudge isShown={true} tooltipContent="Top Left" position={Position.TOP_LEFT}>
+    <Pane>Example Nudge Usage</Pane>
+  </Nudge>
+  <Nudge isShown={true} tooltipContent="Bottom Right" position={Position.BOTTOM_RIGHT}>
+    <Pane>Example Nudge Usage</Pane>
+  </Nudge>
+  <Nudge isShown={true} tooltipContent="Bottom Left" position={Position.BOTTOM_LEFT}>
+    <Pane>Example Nudge Usage</Pane>
+  </Nudge>
+</Pane>
+```
+
+```jsx
+<Pane padding={40} display="flex" flexDirection="column" gap={32} alignItems="flex-start">
+  <Pane position="relative" display="inline-block">
+    <Pane>Pulsar</Pane>
+    <Pulsar />
+  </Pane>
+  <Pane position="relative" display="inline-block">
+    <Pane>Pulsar Top Left</Pane>
+    <Pulsar position={Position.TOP_LEFT} />
+  </Pane>
+  <Pane position="relative" display="inline-block">
+    <Pane>Pulsar Bottom Right</Pane>
+    <Pulsar position={Position.BOTTOM_RIGHT} />
+  </Pane>
+  <Pane position="relative" display="inline-block">
+    <Pane>Pulsar Bottom Left</Pane>
+    <Pulsar position={Position.BOTTOM_LEFT} />
+  </Pane>
+  <Pane position="relative" display="inline-block">
+    <Pane>Pulsar Custom Size</Pane>
+    <Pulsar size={21} />
+  </Pane>
+  <Pane position="relative" display="inline-block">
+    <Pane>Pulsar Custom Size</Pane>
+    <Pulsar size={4} />
+  </Pane>
+</Pane>
+```

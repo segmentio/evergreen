@@ -1,1 +1,2 @@
-export { Nudge, Pulsar } from './src/Nudge'
+export { Pulsar } from './src/Pulsar'
+export { Nudge } from './src/Nudge'
