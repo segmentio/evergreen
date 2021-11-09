@@ -49,7 +49,7 @@ const getPositionProps = ({ position, size }) => {
   return props
 }
 
-export const Pulsar = memo(({ position = Positions.TOP_RIGHT, size = majorScale(1) }) => {
+export const Pulsar = memo(({ position = Positions.TOP_RIGHT, size = majorScale(1), onClick }) => {
   const { colors } = useTheme()
   const positionProps = getPositionProps({ position, size })
   const outerPadding = size * 0.25
@@ -66,6 +66,8 @@ export const Pulsar = memo(({ position = Positions.TOP_RIGHT, size = majorScale(
       justifyContent="center"
       padding={outerPadding}
       className={pulsarAnimationClassName}
+      onClick={onClick}
+      cursor={onClick ? 'pointer' : undefined}
       {...positionProps}
     >
       <Pane width={size} height={size} backgroundColor={colors.blue200} borderRadius="50%" opacity={0.7} />
@@ -82,5 +84,10 @@ Pulsar.propTypes = {
   /**
    * The width/height of the dot
    */
-  size: PropTypes.number
+  size: PropTypes.number,
+
+  /**
+   * Called when the Pulsar is clicked
+   */
+  onClick: PropTypes.func
 }
