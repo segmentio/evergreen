@@ -1270,11 +1270,15 @@ export interface NudgeProps {
   /**
    * The content of the Tooltip.
    */
-  tooltipContent: React.ReactNode
+  tooltipContent?: React.ReactNode | ((object: { close: () => void }) => React.ReactNode)
   /**
    * When true, manually show the Tooltip.
    */
   isShown?: boolean
+  /**
+   * Called when the Pulsar is clicked
+   */
+  onClick?: PaneProps['onClick']
 }
 
 export declare const Nudge: React.FC<NudgeProps>
@@ -1439,6 +1443,10 @@ export interface PulsarProps {
    * The size of the pulsar
    */
   size?: number
+  /**
+   * Called when the Pulsar is clicked
+   */
+  onClick?: PaneProps['onClick']
 }
 
 export declare const Pulsar: React.FC<PulsarProps>
