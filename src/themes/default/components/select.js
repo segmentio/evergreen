@@ -21,6 +21,10 @@ const appearances = {
       backgroundColor: 'colors.gray50'
     },
 
+    _invalid: {
+      borderColor: 'colors.red500'
+    },
+
     _focus: {
       boxShadow: 'shadows.focusRing'
     },
