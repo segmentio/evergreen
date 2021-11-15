@@ -20,6 +20,36 @@ It is also important to note that pulsars are not meant to be a permanent part o
   <Nudge isShown={true} tooltipContent="Bottom Left" position={Position.BOTTOM_LEFT}>
     <Pane>Example Nudge Usage</Pane>
   </Nudge>
+  <Popover
+    content={({ close }) => (
+      <Pane maxWidth={300} padding={minorScale(3)}>
+        <Text>
+          Bacon ipsum dolor amet rump porchetta strip steak, bresaola chuck boudin beef ribs short ribs buffalo meatball
+          tenderloin tail. Porchetta cow buffalo pork loin jerky. Swine turkey boudin tri-tip corned beef bacon pig
+          landjaeger alcatra.
+        </Text>
+        <Button display="block" marginTop={minorScale(2)} onClick={close}>
+          Close
+        </Button>
+      </Pane>
+    )}
+  >
+    {({ getRef, isShown, toggle }) => (
+      <Nudge
+        isShown={!isShown}
+        position={Position.BOTTOM_LEFT}
+        tooltipContent="Click here for more info"
+        onClick={(e) => {
+          e.stopPropagation()
+          toggle()
+        }}
+      >
+        <Link cursor="pointer" onClick={toggle} ref={getRef}>
+          Example Nudge Usage
+        </Link>
+      </Nudge>
+    )}
+  </Popover>
 </Pane>
 ```
 
