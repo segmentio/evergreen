@@ -276,7 +276,7 @@ const IA: IA = {
           'The Pagination component is used to split up content into several pages and navigate between pages.',
       },
       {
-        id: 'nudge',
+        id: 'pulsar',
         image: '/Pulsar.png',
         imageHighlight: '/Pulsar-highlight.png',
         github: githubLink('nudge'),
