@@ -187,11 +187,9 @@ const Autocomplete = memo(
                   isShown: isShownPopover,
                   toggle,
                   getRef: ref => {
-                    if (ref !== targetRef) {
-                      // Use the ref internally to determine the width
-                      setTargetRef(ref)
-                      getRef(ref)
-                    }
+                    // Use the ref internally to determine the width
+                    setTargetRef(ref)
+                    getRef(ref)
                   },
                   inputValue,
                   selectedItem,
