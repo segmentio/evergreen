@@ -87,7 +87,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
-    "@blueprintjs/icons": "^3.13.0",
+    "@blueprintjs/icons": "^3.31.0",
     "@reactions/component": "^2.0.2",
     "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-commonjs": "^15.1.0",
