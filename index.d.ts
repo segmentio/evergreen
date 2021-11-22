@@ -824,6 +824,10 @@ export interface CornerDialogProps {
    * Props that are passed to the dialog container.
    */
   containerProps?: React.ComponentProps<typeof Card>
+  /**
+   * Props that will set position of corner dialog
+   */
+  position?: Exclude<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
 }
 
 export declare const CornerDialog: React.FC<CornerDialogProps>
