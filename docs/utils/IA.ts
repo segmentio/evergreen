@@ -279,7 +279,7 @@ const IA: IA = {
         id: 'pulsar',
         image: '/Pulsar.png',
         imageHighlight: '/Pulsar-highlight.png',
-        github: githubLink('nudge'),
+        github: githubLink('pulsar'),
         name: 'Pulsar',
         description:
           'The Pulsar component is a user education UI used to indicate to a user where they should take a particular action.',

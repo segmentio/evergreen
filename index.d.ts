@@ -1262,6 +1262,7 @@ export declare const Menu: React.FC<MenuProps> & {
   OptionsGroup: typeof MenuOptionsGroup
 }
 
+/** @deprecated This component will be renamed to Pulsar in the next major version of Evergreen */
 export interface NudgeProps {
   /**
    * The position the Tooltip is on.
