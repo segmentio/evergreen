@@ -1,0 +1,221 @@
+# Introduction
+
+Empty states can occur when:
+
+- a user is setting up or using the product for the first time.
+- data is deleted, unavailable, or nonexistent.
+
+<br />
+<br />
+<br />
+
+# Anatomy
+
+Possible elements of an empty state include:
+
+<img src="/empty-state-anatomy.png" alt="empty-state-anatomy" width="720px" />
+
+1. Border
+2. Background
+3. Visual. Icon that relates to the situation at hand.
+4. Headline. Use to explain the situation at hand.
+5. Body (optional). Use to direct users and explain how the user can populate the screen.
+6. Primary CTA (optional). Use to help the user take an action to resolve the empty state.
+7. Text link (optional). Use to provide additional user support, like documentation.
+
+<br />
+<br />
+<br />
+
+# Types
+
+Most empty states in Segment fall in one of four categories:
+
+### In-table
+
+<img src="/empty-state-table.png" alt="empty-state-anatomy" width="720px" />
+
+### Non-table
+
+<img src="/empty-state-nontable.png" alt="empty-state-anatomy" width="720px" />
+
+### Small
+
+<img src="/empty-state-small.png" alt="empty-state-anatomy" width="300px" />
+
+### Minimal
+
+<img src="/empty-state-minimal.png" alt="empty-state-anatomy" width="300px" />
+
+<br />
+<br />
+<br />
+
+# Examples
+
+### In-table
+
+Segment often shows users tables with large data sets. When the data in these tables is either unavailable or nonexistent, maintain the table header in the empty state to provide additional context and set expectations. For example, if a table of tracked events isn’t populated yet, the empty state within the table shows the user what event data event will eventually populate.
+
+```jsx
+<Table maxWidth={1152} width="100%">
+  <Table.Head>
+    <Table.TextHeaderCell>Event Name</Table.TextHeaderCell>
+    <Table.TextHeaderCell>Last Seen</Table.TextHeaderCell>
+    <Table.TextHeaderCell>Allowed</Table.TextHeaderCell>
+    <Table.TextHeaderCell>Blocked</Table.TextHeaderCell>
+  </Table.Head>
+  <Table.Body height="auto">
+    <EmptyState
+      background="light"
+      title="No tracked events for this Source"
+      orientation="horizontal"
+      icon={<SearchIcon color="#C1C4D6" />}
+      iconBgColor="#EDEFF5"
+      description="Events appear when the Source starts sending data to Segment about your users and their activity."
+      anchorCta={
+        <EmptyState.LinkButton href="https://segment.com/docs/" target="_blank">
+          Learn how to start tracking events
+        </EmptyState.LinkButton>
+      }
+    />
+  </Table.Body>
+</Table>
+```
+
+### Non-table
+
+Empty states for content outside of a table include a background color to create variation on screens where there are multiple empty states or when an entire screen is blocked. For example, if an entire screen is blocked because a user doesn’t have the necessary permissions, a background is added to the empty state to create contrast and containment.
+
+```jsx
+<EmptyState
+  background="dark"
+  title="You need permission for these sources"
+  orientation="horizontal"
+  icon={<LockIcon color="#EBAC91" />}
+  iconBgColor="#F8E3DA"
+  description="To see these sources, request access."
+  primaryCta={<EmptyState.PrimaryButton>Request access</EmptyState.PrimaryButton>}
+/>
+```
+
+### Small
+
+When design real estate is limited, consider using a small empty state.
+
+```jsx
+<Popover
+  content={
+    <Pane width={450} height="auto">
+      <EmptyState
+        background="light"
+        title="You need permission for these sources"
+        orientation="vertical"
+        icon={<LockIcon color="#EBAC91" />}
+        iconBgColor="#F8E3DA"
+        description="To see these sources, request access."
+        primaryCta={<EmptyState.PrimaryButton appearance="primary">Request access</EmptyState.PrimaryButton>}
+      />
+    </Pane>
+  }
+>
+  <Button>Show Empty State</Button>
+</Popover>
+```
+
+### Minimal
+
+The smallest acceptable empty state uses only a visual and headline. Minimal empty states typically occur in small components, like drop downs or side sheets within tables.
+
+```jsx
+<Popover
+  content={
+    <Pane width={300} height="auto">
+      <EmptyState
+        background="light"
+        title="No event selected"
+        orientation="vertical"
+        icon={<HandUpIcon color="#C1C4D6" />}
+        iconBgColor="#EDEFF5"
+      />
+    </Pane>
+  }
+>
+  <Button>Show Empty State</Button>
+</Popover>
+```
+
+### Calls to Action
+
+<RuleLayout>
+  <RuleCard
+    type="Do"
+    description="Use a primary button if the action allows the user to resolve the empty state."
+    image="/empty-state-cta-do.png"
+    imageAlt="empty-state-cta-do"
+  />
+  <RuleCard
+    type="Don't"
+    description="Offer a CTA twice on the same screen. Hide the top line primary button when the action is redundant."
+    image="/empty-state-cta-dont.png"
+    imageAlt="empty-state-cta-dont"
+  />
+</RuleLayout>
+<RuleLayout>
+  <RuleCard
+    type="Do"
+    description="Consider a text link to provide additional information if a button cannot resolve the empty state."
+    image="/empty-state-textlink-do.png"
+    imageAlt="empty-state-textlink-do"
+  />
+</RuleLayout>
+<br />
+<br />
+<br />
+
+### Content
+
+Empty state content should explain what information or data isn’t being showed, and how to change the empty state to a populated state.
+
+#### Headline text
+
+Limit headline text to one line. Since users typically skim online content, the headline should contain the most important information.
+
+- For an onboarding experience: Explain what eventually populates the empty state.
+- For an error experience: Explain what went wrong.
+- For a no results/data experience: Explain what happened.
+  <br />
+  <br />
+
+#### Body copy (optional)
+
+Limit body copy to two lines. Use the body copy to introduce additional information about what the user can do with this UI element.
+
+- For an onboarding empty state: Describe how a feature works or what will happen when they use it.
+- For an error empty state: Explain how the user can fix the error.
+- For a no results/data experience: Explain what they can do to try and get a different outcome.
+  <br />
+  <br />
+
+#### Buttons and links (optional)
+
+Buttons and link text should set expectations for the user.
+
+- Button text should reflect what will happen when the user selects the button.
+- Link text should reflect what kind of info the user gets at the destination.
+  <br />
+  <br />
+
+#### Tone
+
+Tone should be educational and plain-spoken.
+
+<RuleLayout>
+  <RuleCard type="Do" description="Use an educational and plain-spoken tone." image="/empty-state-tone-do.png" imageAlt="empty-state-tone-do" />
+  <RuleCard
+    type="Don't"
+    description="Use excessive emotion or exceed 1 line for headline and 2 lines for body."
+    image="/empty-state-tone-dont.png"
+    imageAlt="empty-state-tone-dont"
+  />
+</RuleLayout>

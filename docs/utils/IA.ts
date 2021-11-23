@@ -279,7 +279,6 @@ const IA: IA = {
         id: 'pulsar',
         image: '/Pulsar.png',
         imageHighlight: '/Pulsar-highlight.png',
-        inProgress: true,
         github: githubLink('pulsar'),
         name: 'Pulsar',
         description:
@@ -397,6 +396,13 @@ const IA: IA = {
         name: 'Form Field',
         tags: ['validation message', 'label'],
       },
+      {
+        id: 'overlay',
+        image: '/Overlay.png',
+        imageHighlight: '/Overlay-highlight.png',
+        github: githubLink('overlay'),
+        name: 'Overlay',
+      },
     ],
   },
 
@@ -408,10 +414,8 @@ const IA: IA = {
       {
         id: 'empty-states',
         name: 'Empty States',
-        inProgress: true,
-        description: 'Empty States are a UI affordance for when there is no data available to display to an end-user.',
+        description: 'Empty states occur when there is no available data to display.',
         image: '/Empty State.png',
-
         imageHighlight: '/Empty State-highlight.png',
       },
       {

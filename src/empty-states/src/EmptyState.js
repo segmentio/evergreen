@@ -15,10 +15,9 @@ const HorizontalOrientation = memo(function HorizontalOrientation({
   icon,
   iconBgColor,
   primaryCta,
-  secondaryCta,
   title
 }) {
-  const hasFooter = primaryCta || secondaryCta || anchorCta
+  const hasFooter = primaryCta || anchorCta
   const { colors } = useTheme()
 
   const backgroundColor = background === 'light' ? 'white' : colors.gray75
@@ -48,7 +47,9 @@ const HorizontalOrientation = memo(function HorizontalOrientation({
           </Pane>
         </Pane>
         <Pane display="flex" flexDirection="column" paddingRight={majorScale(6)}>
-          <Heading size={500}>{title}</Heading>
+          <Heading size={500} color={colors.gray700}>
+            {title}
+          </Heading>
           {description && (
             <Paragraph color="muted" marginTop={majorScale(2)}>
               {description}
@@ -56,12 +57,9 @@ const HorizontalOrientation = memo(function HorizontalOrientation({
           )}
           {hasFooter && (
             <Pane marginTop={majorScale(5)} display="flex">
-              {primaryCta && React.cloneElement(primaryCta, { marginRight: majorScale(2) })}
-              {secondaryCta}
-              {(primaryCta || secondaryCta) &&
-                anchorCta &&
-                React.cloneElement(anchorCta, { marginLeft: majorScale(2) })}
-              {!primaryCta && !secondaryCta && anchorCta}
+              {primaryCta}
+              {primaryCta && anchorCta && React.cloneElement(anchorCta, { marginLeft: majorScale(4) })}
+              {!primaryCta && anchorCta}
             </Pane>
           )}
         </Pane>
@@ -109,10 +107,10 @@ const VerticalOrientation = memo(function VerticalOrientation({
       >
         {React.cloneElement(icon, { size: majorScale(3) })}
       </Pane>
-      <Heading marginTop={majorScale(2)} textAlign="center">
+      <Heading marginTop={majorScale(2)} textAlign="center" color={colors.gray700}>
         {title}
       </Heading>
-      <Paragraph marginTop={majorScale(2)} textAlign="center">
+      <Paragraph marginTop={majorScale(2)} textAlign="center" color={colors.gray700}>
         {description}
       </Paragraph>
       {primaryCta && React.cloneElement(primaryCta, { marginTop: minorScale(5) })}
@@ -123,10 +121,6 @@ const VerticalOrientation = memo(function VerticalOrientation({
 
 const PrimaryButton = props => {
   return <Button appearance="primary" {...props} />
-}
-
-const SecondaryButton = props => {
-  return <Button appearance="minimal" {...props} />
 }
 
 const LinkButton = props => {
@@ -141,7 +135,6 @@ const EmptyState = memo(function EmptyState({
   iconBgColor,
   orientation = 'horizontal',
   primaryCta,
-  secondaryCta,
   title
 }) {
   if (orientation === 'vertical') {
@@ -164,7 +157,6 @@ const EmptyState = memo(function EmptyState({
         background={background}
         description={description}
         primaryCta={primaryCta}
-        secondaryCta={secondaryCta}
         anchorCta={anchorCta}
       />
     )
@@ -172,19 +164,25 @@ const EmptyState = memo(function EmptyState({
 })
 
 EmptyState.PrimaryButton = PrimaryButton
-EmptyState.SecondaryButton = SecondaryButton
 EmptyState.LinkButton = LinkButton
 
 EmptyState.propTypes = {
+  /** The title of the empty state */
   title: PropTypes.string.isRequired,
+  /** The icon used in the empty state */
   icon: PropTypes.element.isRequired,
+  /** The background color used for the icon circle */
   iconBgColor: PropTypes.string.isRequired,
+  /** The direction in which to align the empty state elements */
   orientation: PropTypes.oneOf(['vertical', 'horizontal']),
+  /** The description of the empty state */
   description: PropTypes.string,
+  /** The background used for the entire empty state container */
   background: PropTypes.oneOf(['light', 'dark']),
+  /** The primary CTA of the empty state */
   primaryCta: PropTypes.element,
-  anchorCta: PropTypes.element,
-  secondaryCta: PropTypes.element
+  /** The link CTA of the empty state */
+  anchorCta: PropTypes.element
 }
 
 export default EmptyState

@@ -1,0 +1,19 @@
+# Usage
+
+The `Overlay` component is the translucent background that is used by other
+components like [Dialog](./dialog), [Side-sheet](./side-sheet) to call users
+attention to the information in the foreground.
+
+## Example
+
+```jsx
+function BasicOverlayExample() {
+  const [isShown, setIsShown] = React.useState(false)
+  return (
+    <React.Fragment>
+      <Overlay isShown={isShown}></Overlay>
+      <Button onClick={() => setIsShown(true)}>Click to Show Overlay</Button>
+    </React.Fragment>
+  )
+}
+```

@@ -1,6 +1,6 @@
 {
   "name": "evergreen-ui",
-  "version": "6.3.0",
+  "version": "6.6.2",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
@@ -32,7 +32,8 @@
   "sideEffects": false,
   "scripts": {
     "test": "yarn lint && yarn jest",
-    "lint": "eslint 'src/**/*.js' --cache",
+    "test:watch": "yarn run test -- --watch",
+    "lint": "eslint \"src/**/*.js\" --cache",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
@@ -86,7 +87,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
-    "@blueprintjs/icons": "^3.13.0",
+    "@blueprintjs/icons": "^3.31.0",
     "@reactions/component": "^2.0.2",
     "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-commonjs": "^15.1.0",
@@ -172,12 +173,12 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "277 KB",
+      "limit": "286 KB",
       "running": false
     },
     {
       "path": "umd/evergreen.min.js",
-      "limit": "240 KB",
+      "limit": "249 KB",
       "running": false
     },
     {
