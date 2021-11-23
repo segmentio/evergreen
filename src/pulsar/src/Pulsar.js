@@ -5,7 +5,6 @@ import Positions from '../../constants/src/Position'
 import { Pane } from '../../layers'
 import { majorScale } from '../../scales'
 import { useTheme } from '../../theme'
-import { Tooltip } from '../../tooltip'
 
 const pulseAnimation = css.keyframes('pulseAnimation', {
   '0%': {
@@ -50,7 +49,7 @@ const getPositionProps = ({ position, size }) => {
   return props
 }
 
-export const Pulsar = memo(({ position = Positions.TOP_RIGHT, size = majorScale(1) }) => {
+export const Pulsar = memo(({ position = Positions.TOP_RIGHT, size = majorScale(1), onClick }) => {
   const { colors } = useTheme()
   const positionProps = getPositionProps({ position, size })
   const outerPadding = size * 0.25
@@ -67,6 +66,8 @@ export const Pulsar = memo(({ position = Positions.TOP_RIGHT, size = majorScale(
       justifyContent="center"
       padding={outerPadding}
       className={pulsarAnimationClassName}
+      onClick={onClick}
+      cursor={onClick ? 'pointer' : undefined}
       {...positionProps}
     >
       <Pane width={size} height={size} backgroundColor={colors.blue200} borderRadius="50%" opacity={0.7} />
@@ -83,43 +84,10 @@ Pulsar.propTypes = {
   /**
    * The width/height of the dot
    */
-  size: PropTypes.number
-}
-
-export const Nudge = ({ children, isShown = false, position = Positions.TOP_RIGHT, size, tooltipContent }) => {
-  return (
-    <Tooltip content={tooltipContent} position={position} isShown={isShown ? undefined : false}>
-      <Pane position="relative">
-        {isShown && <Pulsar position={position} size={size} />}
-        {children}
-      </Pane>
-    </Tooltip>
-  )
-}
-
-Nudge.propTypes = {
-  /**
-   * The position for the Puslar and the Tooltip
-   */
-  position: PropTypes.oneOf([Positions.TOP_LEFT, Positions.TOP_RIGHT, Positions.BOTTOM_LEFT, Positions.BOTTOM_RIGHT]),
+  size: PropTypes.number,
 
   /**
-   * Size of the Pulsar
+   * Called when the Pulsar is clicked
    */
-  size: Pulsar.propTypes.size,
-
-  /**
-   * Wether or not the Pulsar/Tooltip is shown
-   */
-  isShown: PropTypes.bool,
-
-  /**
-   * Content for the tooltip
-   */
-  tooltipContent: Tooltip.propTypes.content,
-
-  /**
-   * Content for the pulsar/tooltip to be anchored too
-   */
-  children: PropTypes.node
+  onClick: PropTypes.func
 }

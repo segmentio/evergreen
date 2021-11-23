@@ -279,7 +279,6 @@ const IA: IA = {
         id: 'pulsar',
         image: '/Pulsar.png',
         imageHighlight: '/Pulsar-highlight.png',
-        inProgress: true,
         github: githubLink('pulsar'),
         name: 'Pulsar',
         description:
