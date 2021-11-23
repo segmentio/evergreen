@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
+import faker from 'faker'
 import renderer from 'react-test-renderer'
 import { UIBoxSerializer } from '../../../lib/testing'
 import { ThemeProvider } from '../../theme'
@@ -68,5 +69,18 @@ describe('Sizing', () => {
 
       "Warning: Failed %s type: %s%s"
     `)
+  })
+})
+
+describe('Props', () => {
+  it('should forward `className` prop', () => {
+    const expected = faker.random.word().toLowerCase()
+    const component = (
+      <Text data-testid="text" className={expected}>
+        Testing
+      </Text>
+    )
+    const { getByTestId } = render(component)
+    expect(getByTestId('text')).toHaveClass(expected)
   })
 })
