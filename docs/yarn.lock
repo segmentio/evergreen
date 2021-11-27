@@ -2753,10 +2753,10 @@ events@^3.0.0:
   resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
-evergreen-ui@6.6.0:
-  version "6.6.0"
-  resolved "https://registry.yarnpkg.com/evergreen-ui/-/evergreen-ui-6.6.0.tgz#dbc6f67de9dead2967f6d66f788681a97d5358db"
-  integrity sha512-aEKOlHtTXBm7/4Qk5jhZ2fysuBiPTcAVmnsXtY1wiHK6a4fByX3vDsPd/9h8zlMV7oyUS+A6Gawa1iV3kBAhVw==
+evergreen-ui@6.6.3:
+  version "6.6.3"
+  resolved "https://registry.yarnpkg.com/evergreen-ui/-/evergreen-ui-6.6.3.tgz#b1acd960ba6c81ade80fb367567a34235cdd6bb6"
+  integrity sha512-vjBpBw7j5ymd+1XhaVcRT7qjHwaJpDI/n0tNmxc6pVv5C25XXnuk6h9IrKzhimvcpkqrIT24wlcf4h3yvKAHaA==
   dependencies:
     "@babel/runtime" "^7.1.2"
     "@segment/react-tiny-virtual-list" "^2.2.1"
