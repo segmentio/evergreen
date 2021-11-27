@@ -28,6 +28,7 @@ const Popover = memo(
       onOpenComplete = noop,
       position = Position.BOTTOM,
       shouldCloseOnExternalClick = true,
+      shouldCloseOnEscapePress = true,
       statelessProps = emptyProps,
       trigger = 'click',
       ...props
@@ -172,9 +173,9 @@ const Popover = memo(
 
     const onEsc = useCallback(
       event => {
-        return event.key === 'Escape' ? close() : undefined
+        return event.key === 'Escape' && shouldCloseOnEscapePress ? close() : undefined
       },
-      [close]
+      [shouldCloseOnEscapePress, close]
     )
 
     const handleBodyClick = useCallback(
@@ -411,7 +412,12 @@ Popover.propTypes = {
   /**
    * Boolean indicating if clicking outside the dialog should close the dialog.
    */
-  shouldCloseOnExternalClick: PropTypes.bool
+  shouldCloseOnExternalClick: PropTypes.bool,
+
+  /**
+   * Boolean indicating if pressing the esc key should close the dialog.
+   */
+  shouldCloseOnEscapePress: PropTypes.bool
 }
 
 export default Popover
