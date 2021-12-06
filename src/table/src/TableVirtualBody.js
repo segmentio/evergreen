@@ -183,7 +183,18 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
   const itemSize = getItemSize(children)
 
   return (
-    <Pane data-evergreen-table-body ref={setPaneRef} height={paneHeight} flex="1" overflow="hidden" {...rest}>
+    <Pane
+      data-evergreen-table-body
+      ref={setPaneRef}
+      borderTopLeftRadius="4px"
+      borderTopRightRadius="4px"
+      borderBottomLeftRadius="4px"
+      borderBottomRightRadius="4px"
+      height={paneHeight}
+      flex="1"
+      overflow="hidden"
+      {...rest}
+    >
       <VirtualList
         height={isIntegerHeight ? paneHeight : calculatedHeight}
         width="100%"

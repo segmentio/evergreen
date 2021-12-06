@@ -229,6 +229,26 @@ export default class AdvancedTable extends React.Component {
     )
   }
 
+  renderLastRow = ({ profile }) => {
+    return (
+      <Table.Row key={profile.id} borderBottom={null}>
+        <Table.Cell display="flex" alignItems="center">
+          <Avatar name={profile.name} />
+          <Text marginLeft={8} size={300} fontWeight={500}>
+            {profile.name}
+          </Text>
+        </Table.Cell>
+        <Table.TextCell>{profile[this.state.column2Show]}</Table.TextCell>
+        <Table.TextCell isNumber>{profile.ltv}</Table.TextCell>
+        <Table.Cell width={48} flex="none">
+          <Popover content={this.renderRowMenu} position={Position.BOTTOM_RIGHT}>
+            <IconButton icon={MoreIcon} height={24} appearance="minimal" />
+          </Popover>
+        </Table.Cell>
+      </Table.Row>
+    )
+  }
+
   render() {
     const items = this.filter(this.sort(profiles))
     return (
@@ -239,7 +259,15 @@ export default class AdvancedTable extends React.Component {
           {this.renderLTVTableHeaderCell()}
           <Table.HeaderCell width={48} flex="none" />
         </Table.Head>
-        <Table.VirtualBody height={640}>{items.map(item => this.renderRow({ profile: item }))}</Table.VirtualBody>
+        <Table.VirtualBody height={640}>
+          {items.map((item, index) => {
+            if (index !== items.length - 1) {
+              return this.renderRow({ profile: item })
+            } else {
+              return this.renderLastRow({ profile: item })
+            }
+          })}
+        </Table.VirtualBody>
       </Table>
     )
   }

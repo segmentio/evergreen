@@ -30,6 +30,8 @@ const TableHead = memo(function TableHead(props) {
       paddingRight={scrollbarWidth}
       className={cx(themedClassName, className)}
       height={height}
+      borderTopLeftRadius="4px"
+      borderTopRightRadius="4px"
       {...boxProps}
       {...rest}
     >
