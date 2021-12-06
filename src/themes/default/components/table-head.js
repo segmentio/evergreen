@@ -8,7 +8,12 @@ const baseStyle = {
   letterSpacing: 'letterSpacings.normal',
   fontFamily: 'fontFamilies.ui',
   color: 'colors.muted',
-  textTransform: 'uppercase'
+  textTransform: 'uppercase',
+
+  _firstOfType: {
+    borderTopLeftRadius: 'radii.1',
+    borderTopRightRadius: 'radii.1'
+  }
 }
 
 const appearances = {}
