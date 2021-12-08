@@ -7,6 +7,10 @@ import ScrollbarSize from './ScrollbarSize'
 
 const emptyObject = {}
 
+const pseudoSelectors = {
+  _firstOfType: '&:first-of-type'
+}
+
 const internalStyles = {
   display: 'flex',
   flexShrink: 0
@@ -19,7 +23,7 @@ const TableHead = memo(function TableHead(props) {
   const { className: themedClassName, height: themeHeight, ...boxProps } = useStyleConfig(
     'TableHead',
     emptyObject,
-    emptyObject,
+    pseudoSelectors,
     internalStyles
   )
 
