@@ -4896,6 +4896,7 @@ export type ThemeContext<T extends Theme = DefaultTheme> = React.Context<T>
 export declare const ThemeContext: ThemeContext
 export declare const ThemeProvider: ThemeContext['Provider']
 export declare const ThemeConsumer: ThemeContext['Consumer']
+export declare const getThemeContext: <T extends Theme = DefaultTheme>() => ThemeContext<T>
 export declare const useTheme: <T extends Theme = DefaultTheme>() => T
 /**
  * Adds or overrides theme values on top of an existing theme object
