@@ -1951,7 +1951,7 @@ export interface ClassicTheme extends Theme {
     }
   }
   radii: string[]
-  shadows: [string, string, string, string, string]
+  shadows: string[]
   fontFamilies: {
     display: string
     ui: string
@@ -4897,6 +4897,15 @@ export declare const ThemeContext: ThemeContext
 export declare const ThemeProvider: ThemeContext['Provider']
 export declare const ThemeConsumer: ThemeContext['Consumer']
 export declare const useTheme: <T extends Theme = DefaultTheme>() => T
+/**
+ * Adds or overrides theme values on top of an existing theme object
+ * @param destinationTheme Theme object to merge on top of
+ * @param sourceTheme Theme object that adds or overrides values
+ */
+export declare const mergeTheme: <TDestinationTheme extends Theme, TSourceTheme extends Theme>(
+  destinationTheme: TDestinationTheme,
+  sourceTheme: TSourceTheme
+) => TDestinationTheme & TSourceTheme
 
 export interface IconProps extends BoxProps<'svg'> {
   /**
