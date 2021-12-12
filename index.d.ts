@@ -64,22 +64,85 @@ type Components =
   | 'Tooltip'
 
 type ButtonPseudoSelectors = '_active' | '_disabled' | '_focus' | '_focusAndActive' | '_hover' | '_disabled'
+type CheckboxPseudoSelectors =
+  | '_base'
+  | '_disabled'
+  | '_hover'
+  | '_focus'
+  | '_active'
+  | '_checked'
+  | '_checkedActive'
+  | '_checkedDisabled'
+  | '_checkedHover'
+type GroupPseudoSelectors = '_child' | '_firstChild' | '_middleChild' | '_lastChild' | '&:focus' | '&:active'
+type InputPseudoSelectors = '_placeholder' | '_disabled' | '_focus'
+type LinkPseudoSelectors = '_hover' | '_active' | '_focus'
+type MenuItemPseudoSelectors = '_isSelectable' | '_disabled' | '_hover' | '_focus' | '_active' | '_current' | '&:before'
+type RadioPseudoSelectors =
+  | '_base'
+  | '_disabled'
+  | '_hover'
+  | '_focus'
+  | '_active'
+  | '_checked'
+  | '_checkedHover'
+  | '_checkedActive'
+  | '_checkedDisabled'
+type SelectPseudoSelectors = '_disabled' | '_hover' | '_invalid' | '_focus' | '_active'
+type SwitchPseudoSelectors =
+  | '_base'
+  | '_disabled'
+  | '_hover'
+  | '_focus'
+  | '_active'
+  | '_checked'
+  | '_checkedHover'
+  | '_checkedActive'
+  | '_checkedDisabled'
+type TabPseudoSelectors = '_before' | '_hover' | '_current' | '_focus' | '_disabled'
+type TableCellPseudoSelectors = '_focus'
+type TableRowPseudoSelectors = '_isSelectable' | '_hover' | '_focus' | '_active' | '_current'
+type TagInputPseudoSelectors = '_focused' | '_disabled'
+type TextDropdownButtonPseudoSelectors = '_disabled' | '_focus'
 
 type AlertPropsModifiers = 'appearance' | 'intent'
 type ButtonPropsModifiers = 'appearance' | 'color' | 'intent' | 'size'
 
-type ComponentToPseudoSelectors<C> = C extends 'Button' ? ButtonPseudoSelectors : ''
+type ComponentToPseudoSelectors<C> = C extends 'Button'
+  ? ButtonPseudoSelectors
+  : C extends 'Checkbox'
+  ? CheckboxPseudoSelectors
+  : C extends 'Group'
+  ? GroupPseudoSelectors
+  : C extends 'Input'
+  ? InputPseudoSelectors
+  : C extends 'Link'
+  ? LinkPseudoSelectors
+  : C extends 'MenuItem'
+  ? MenuItemPseudoSelectors
+  : C extends 'Radio'
+  ? RadioPseudoSelectors
+  : C extends 'Select'
+  ? SelectPseudoSelectors
+  : C extends 'Switch'
+  ? SwitchPseudoSelectors
+  : C extends 'Tab'
+  ? TabPseudoSelectors
+  : C extends 'TableCell'
+  ? TableCellPseudoSelectors
+  : C extends 'TableRow'
+  ? TableRowPseudoSelectors
+  : C extends 'TagInput'
+  ? TagInputPseudoSelectors
+  : C extends 'TextDropdownButton'
+  ? TextDropdownButtonPseudoSelectors
+  : ''
 
 type ComponentToPossibleModifiers<C> = C extends 'Alert'
   ? AlertPropsModifiers
   : C extends 'Button'
   ? ButtonPropsModifiers
-  : {}
-
-type PropOrThemeFunction<C extends Components, T = {}> = (
-  props: ComponentToPossibleModifiers<C>,
-  theme: Omit<T, Components>
-) => string | number
+  : ''
 
 type BaseHTMLElement<T> = T extends 'Button' | 'IconButton' | 'TextDropdownButton'
   ? 'button'
@@ -91,30 +154,27 @@ type BaseHTMLElement<T> = T extends 'Button' | 'IconButton' | 'TextDropdownButto
   ? 'a'
   : T extends 'Text' | 'Tab'
   ? 'span'
+  : T extends 'Checkbox' | 'Input'
+  ? 'input'
   : 'div'
 
-type BaseStyle<T extends Components> = {
-  [k in
-    | ComponentToPseudoSelectors<T>
-    | keyof PolymorphicBoxProps<BaseHTMLElement<T>>]: k extends ComponentToPseudoSelectors<T>
-    ? {
-        [prop in keyof PolymorphicBoxProps<BaseHTMLElement<T>>]: PropOrThemeFunction<T>
-      }
-    : PropOrThemeFunction<T>
-}
+export type BaseStyle<T extends Components> = {
+  [key in ComponentToPseudoSelectors<T>]: PolymorphicBoxProps<BaseHTMLElement<T>>
+} &
+  PolymorphicBoxProps<BaseHTMLElement<T>>
 
 type BaseThemeObject<T extends Components> = {
-  baseStyle: BaseStyle<T>
-  appearances: {
-    [k: string]: BaseStyle<T>
+  baseStyle?: Partial<BaseStyle<T>>
+  appearances?: {
+    [k: string]: Partial<BaseStyle<T>>
   }
-  sizes: {
-    [k in 'small' | 'medium' | 'large' | string]: BaseStyle<T>
+  sizes?: {
+    [k in 'small' | 'medium' | 'large' | string]: Partial<BaseStyle<T>>
   }
 }
 
-type ThemeBuilder = {
-  [Component in Components]: BaseThemeObject<Component>
+export type ComponentStyles<T extends Components = Components> = {
+  [Component in T]: Partial<BaseThemeObject<Component>>
 }
 
 export interface Colors {
@@ -464,7 +524,8 @@ interface Typography {
 
 export interface Theme {}
 
-export interface DefaultTheme extends Theme {
+export type DefaultTheme = BaseThemeObject<Components>
+export interface _DefaultTheme extends Theme {
   tokens: {
     colors: {
       gray900: string
