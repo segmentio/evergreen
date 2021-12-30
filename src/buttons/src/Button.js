@@ -137,6 +137,11 @@ Button.propTypes = {
   ...layout.propTypes,
 
   /**
+   * The intent of the button.
+   */
+  intent: PropTypes.string,
+
+  /**
    * The appearance of the button.
    */
   appearance: PropTypes.string,
