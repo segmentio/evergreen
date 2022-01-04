@@ -96,7 +96,7 @@ describe('TextareaField', () => {
     })
 
     it('Should pass through `spellCheck` prop to textarea', () => {
-      const expected = faker.random.boolean()
+      const expected = faker.datatype.boolean()
       const { container } = render(makeTextareaFieldFixture({ spellCheck: expected }))
 
       const textarea = container.querySelector('textarea')
@@ -104,7 +104,7 @@ describe('TextareaField', () => {
     })
 
     it('Should render with `aria-invalid` when isInvalid provided', () => {
-      const expected = faker.random.boolean()
+      const expected = faker.datatype.boolean()
       const { container } = render(makeTextareaFieldFixture({ isInvalid: expected }))
 
       const textarea = container.querySelector('textarea')
@@ -112,7 +112,7 @@ describe('TextareaField', () => {
     })
 
     it('Should render with `data-gramm_editor` when grammarly provided', () => {
-      const expected = faker.random.boolean()
+      const expected = faker.datatype.boolean()
       const { container } = render(makeTextareaFieldFixture({ grammarly: expected }))
 
       const textarea = container.querySelector('textarea')
@@ -120,7 +120,7 @@ describe('TextareaField', () => {
     })
 
     it('Should pass through `inputWidth` prop to textarea', () => {
-      const expected = faker.random.number({ min: 10, max: 100 })
+      const expected = faker.datatype.number({ min: 10, max: 100 })
       const { container } = render(makeTextareaFieldFixture({ inputWidth: expected }))
 
       const textarea = container.querySelector('textarea')
@@ -128,7 +128,7 @@ describe('TextareaField', () => {
     })
 
     it('Should pass through `inputHeight` prop to textarea', () => {
-      const expected = faker.random.number({ min: 10, max: 100 })
+      const expected = faker.datatype.number({ min: 10, max: 100 })
       const { container } = render(makeTextareaFieldFixture({ inputHeight: expected }))
 
       const textarea = container.querySelector('textarea')
