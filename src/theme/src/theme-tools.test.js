@@ -94,6 +94,26 @@ describe('Theme tools', () => {
       expect(result.components.Button.baseStyle).toMatchObject(destinationTheme.components.Button.baseStyle)
       expect(result.components.Button.appearances).toMatchObject(sourceTheme.components.Button.appearances)
     })
+
+    it('should always return a new reference', () => {
+      const destinationTheme = {
+        colors: {
+          gray900: '#101840',
+          gray800: '#474d66',
+          gray700: '#696f8c'
+        }
+      }
+
+      const sourceTheme = {
+        colors: {
+          gray700: 'updated'
+        }
+      }
+
+      const result = mergeTheme(destinationTheme, sourceTheme)
+
+      expect(result).not.toEqual(destinationTheme)
+    })
   })
 
   describe('resolveThemeTokens', () => {

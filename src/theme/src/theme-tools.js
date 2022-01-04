@@ -27,7 +27,7 @@ export function getValue(theme, pathOrValue) {
  * @param sourceTheme Theme object that adds or overrides values
  */
 export function mergeTheme(destinationTheme, sourceTheme) {
-  return merge(destinationTheme, sourceTheme)
+  return merge({}, destinationTheme, sourceTheme)
 }
 
 /**
