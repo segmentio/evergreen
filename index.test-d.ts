@@ -1,8 +1,5 @@
 import { expectAssignable, expectType } from 'tsd'
-import { defaultTheme, mergeTheme, StyleProps, Intent, Theme, Fill } from '.'
-
-// For some the TS language server picks this up but tsd can't, so we're redefining it
-type Partial<T> = { [P in keyof T]?: T[P] }
+import { defaultTheme, mergeTheme, StyleProps, Intent, Theme, Fill, Partial } from '.'
 
 const themeOverridesOrAdditions = {
   components: {

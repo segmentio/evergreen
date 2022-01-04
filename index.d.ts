@@ -8,7 +8,9 @@ import { TransitionProps, TransitionStatus } from 'react-transition-group/Transi
 
 export { configureSafeHref, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps, EnhancerProps } from 'ui-box'
 
-type DeepPartial<T> = {
+// Re-exporting these utility types for testing + consumer usage if needed
+export type Partial<T> = { [Key in keyof T]?: T[Key] }
+export type DeepPartial<T> = {
   [Key in keyof T]?: DeepPartial<T[Key]>
 }
 
@@ -544,12 +546,12 @@ export interface Theme<TComponents extends Components = Components> {
   colors: Record<string, string | Record<string, string>>
   fills: Record<string, Fill>
   intents: Record<string, Intent>
-  fontFamilies: FontFamily
+  fontFamilies: FontFamilies
   radii: string[]
   shadows: string[]
   fontSizes: string[]
-  fontWeights: FontWeight
-  letterSpacings: LettingSpacing
+  fontWeights: FontWeights
+  letterSpacings: LettingSpacings
   lineHeights: string[]
   zIndices: ZIndices
   components: Partial<ComponentStyles<TComponents>>
@@ -567,20 +569,20 @@ export interface Intent {
   icon: string
 }
 
-interface FontFamily {
+export interface FontFamilies {
   display: string
   ui: string
   mono: string
 }
 
-interface FontWeight {
+export interface FontWeights {
   light: number
   normal: number
   semibold: number
   bold: number
 }
 
-interface LettingSpacing {
+export interface LettingSpacings {
   tightest: string
   tighter: string
   tight: string
@@ -588,7 +590,7 @@ interface LettingSpacing {
   wide: string
 }
 
-interface ZIndices {
+export interface ZIndices {
   focused: number
   stack: number
   positioner: number
