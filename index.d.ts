@@ -552,15 +552,15 @@ export interface Theme<TComponents extends Components = Components> {
   letterSpacings: LettingSpacing
   lineHeights: string[]
   zIndices: ZIndices
-  components: ComponentStyles<TComponents>
+  components: Partial<ComponentStyles<TComponents>>
 }
 
-interface Fill {
+export interface Fill {
   backgroundColor: string
   color: string
 }
 
-interface Intent {
+export interface Intent {
   background: string
   border: string
   text: string
@@ -675,6 +675,13 @@ export interface DefaultTheme extends Theme {
   }
   intents: {
     [key in 'info' | 'success' | 'warning' | 'danger']: Intent
+  }
+  components: {
+    Button: {
+      appearances: {
+        [key in 'primary' | 'minimal' | 'default' | 'destructive']: Partial<StyleProps<'Button'>>
+      }
+    }
   }
 }
 
