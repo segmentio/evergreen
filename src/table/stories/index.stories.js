@@ -14,7 +14,7 @@ const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
 faker.seed(500)
 const dynamicHeights = range(500).map(() => {
-  return faker.random.number({
+  return faker.datatype.number({
     min: 32,
     max: 100
   })
