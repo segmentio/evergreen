@@ -9,6 +9,7 @@ import { TransitionProps, TransitionStatus } from 'react-transition-group/Transi
 export { configureSafeHref, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps, EnhancerProps } from 'ui-box'
 
 // Re-exporting these utility types for testing + consumer usage if needed
+export type Pick<T, Properties extends keyof T> = { [Key in Properties]: T[Key] }
 export type Partial<T> = { [Key in keyof T]?: T[Key] }
 export type DeepPartial<T> = {
   [Key in keyof T]?: DeepPartial<T[Key]>
@@ -141,7 +142,9 @@ type ComponentToPseudoSelectors<C extends Components = Components> = C extends '
   ? TextDropdownButtonPseudoSelectors
   : ''
 
-type DefaultThemeButtonAppearance = 'default' | 'minimal' | 'destructive'
+export type DefaultThemeButtonAppearance = 'default' | 'minimal' | 'destructive' | 'default'
+export type DefaultThemeFill = 'neutral' | 'blue' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'purple'
+export type DefaultThemeIntent = 'info' | 'success' | 'warning' | 'danger'
 
 type ComponentToAppearance<C extends Components = Components> = C extends 'Button' ? DefaultThemeButtonAppearance : ''
 
@@ -195,351 +198,6 @@ export type ComponentStyle<T extends Components = Components> = {
 
 export type ComponentStyles<T extends Components = Components> = {
   [Component in T]: Partial<ComponentStyle<Component>>
-}
-
-export interface Colors {
-  background: {
-    blueTint: string
-    greenTint: string
-    orangeTint: string
-    overlay: string
-    purpleTint: string
-    redTint: string
-    tealTint: string
-    tint1: string
-    tint2: string
-    yellowTint: string
-  }
-  border: {
-    default: string
-    muted: string
-  }
-  icon: {
-    danger: string
-    default: string
-    disabled: string
-    info: string
-    muted: string
-    selected: string
-    success: string
-    warning: string
-  }
-  intent: {
-    danger: string
-    none: string
-    success: string
-    warning: string
-  }
-  text: {
-    danger: string
-    dark: string
-    default: string
-    info: string
-    muted: string
-    selected: string
-    success: string
-    warning: string
-  }
-}
-
-interface SolidFills {
-  blue: {
-    backgroundColor: string
-    color: string
-  }
-  green: {
-    backgroundColor: string
-    color: string
-  }
-  neutral: {
-    backgroundColor: string
-    color: string
-  }
-  orange: {
-    backgroundColor: string
-    color: string
-  }
-  purple: {
-    backgroundColor: string
-    color: string
-  }
-  red: {
-    backgroundColor: string
-    color: string
-  }
-  teal: {
-    backgroundColor: string
-    color: string
-  }
-  yellow: {
-    backgroundColor: string
-    color: string
-  }
-}
-
-interface SubtleFills {
-  blue: {
-    backgroundColor: string
-    color: string
-  }
-  green: {
-    backgroundColor: string
-    color: string
-  }
-  neutral: {
-    backgroundColor: string
-    color: string
-  }
-  orange: {
-    backgroundColor: string
-    color: string
-  }
-  purple: {
-    backgroundColor: string
-    color: string
-  }
-  red: {
-    backgroundColor: string
-    color: string
-  }
-  teal: {
-    backgroundColor: string
-    color: string
-  }
-  yellow: {
-    backgroundColor: string
-    color: string
-  }
-}
-
-interface Fills {
-  options: string[]
-  solid: SolidFills
-  subtle: SubtleFills
-}
-
-interface Palette {
-  blue: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  green: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  neutral: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  orange: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  purple: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  red: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  teal: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  yellow: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-}
-
-interface ColorScales {
-  blue: {
-    B1: string
-    B10: string
-    B1A: string
-    B2: string
-    B2A: string
-    B3: string
-    B3A: string
-    B4: string
-    B4A: string
-    B5: string
-    B5A: string
-    B6: string
-    B6A: string
-    B7: string
-    B7A: string
-    B8: string
-    B8A: string
-    B9: string
-  }
-  neutral: {
-    N1: string
-    N10: string
-    N1A: string
-    N2: string
-    N2A: string
-    N3: string
-    N3A: string
-    N4: string
-    N4A: string
-    N5: string
-    N5A: string
-    N6: string
-    N6A: string
-    N7: string
-    N7A: string
-    N8: string
-    N8A: string
-    N9: string
-  }
-}
-
-interface Typography {
-  fontFamilies: {
-    display: string
-    mono: string
-    ui: string
-  }
-  paragraph: {
-    300: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    400: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    500: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-  }
-  headings: {
-    100: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    200: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    300: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    400: {
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    500: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    600: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    700: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    800: {
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    900: {
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-  }
-  text: {
-    300: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    400: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    500: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    600: {
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-  }
 }
 
 export interface Theme<TComponents extends Components = Components> {
@@ -673,15 +331,15 @@ export interface DefaultTheme extends Theme {
     text: { danger: string; success: string; info: string }
   }
   fills: {
-    [key in 'neutral' | 'blue' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'purple']: Fill
+    [key in DefaultThemeFill]: Fill
   }
   intents: {
-    [key in 'info' | 'success' | 'warning' | 'danger']: Intent
+    [key in DefaultThemeIntent]: Intent
   }
   components: {
     Button: {
       appearances: {
-        [key in 'primary' | 'minimal' | 'default' | 'destructive']: Partial<StyleProps<'Button'>>
+        [key in DefaultThemeButtonAppearance]: Partial<StyleProps<'Button'>>
       }
     }
   }
@@ -691,15 +349,363 @@ export const defaultTheme: DefaultTheme
 
 export const classicTheme: Theme
 
+/** START DEPRECATED THEME */
+interface DeprecatedColors {
+  background: {
+    blueTint: string
+    greenTint: string
+    orangeTint: string
+    overlay: string
+    purpleTint: string
+    redTint: string
+    tealTint: string
+    tint1: string
+    tint2: string
+    yellowTint: string
+  }
+  border: {
+    default: string
+    muted: string
+  }
+  icon: {
+    danger: string
+    default: string
+    disabled: string
+    info: string
+    muted: string
+    selected: string
+    success: string
+    warning: string
+  }
+  intent: {
+    danger: string
+    none: string
+    success: string
+    warning: string
+  }
+  text: {
+    danger: string
+    dark: string
+    default: string
+    info: string
+    muted: string
+    selected: string
+    success: string
+    warning: string
+  }
+}
+
+interface DeprecatedSolidFills {
+  blue: {
+    backgroundColor: string
+    color: string
+  }
+  green: {
+    backgroundColor: string
+    color: string
+  }
+  neutral: {
+    backgroundColor: string
+    color: string
+  }
+  orange: {
+    backgroundColor: string
+    color: string
+  }
+  purple: {
+    backgroundColor: string
+    color: string
+  }
+  red: {
+    backgroundColor: string
+    color: string
+  }
+  teal: {
+    backgroundColor: string
+    color: string
+  }
+  yellow: {
+    backgroundColor: string
+    color: string
+  }
+}
+
+interface DeprecatedSubtleFills {
+  blue: {
+    backgroundColor: string
+    color: string
+  }
+  green: {
+    backgroundColor: string
+    color: string
+  }
+  neutral: {
+    backgroundColor: string
+    color: string
+  }
+  orange: {
+    backgroundColor: string
+    color: string
+  }
+  purple: {
+    backgroundColor: string
+    color: string
+  }
+  red: {
+    backgroundColor: string
+    color: string
+  }
+  teal: {
+    backgroundColor: string
+    color: string
+  }
+  yellow: {
+    backgroundColor: string
+    color: string
+  }
+}
+
+interface DeprecatedFills {
+  options: string[]
+  solid: DeprecatedSolidFills
+  subtle: DeprecatedSubtleFills
+}
+
+interface DeprecatedPalette {
+  blue: {
+    base: string
+    dark: string
+    light: string
+    lightest: string
+  }
+  green: {
+    base: string
+    dark: string
+    light: string
+    lightest: string
+  }
+  neutral: {
+    base: string
+    dark: string
+    light: string
+    lightest: string
+  }
+  orange: {
+    base: string
+    dark: string
+    light: string
+    lightest: string
+  }
+  purple: {
+    base: string
+    dark: string
+    light: string
+    lightest: string
+  }
+  red: {
+    base: string
+    dark: string
+    light: string
+    lightest: string
+  }
+  teal: {
+    base: string
+    dark: string
+    light: string
+    lightest: string
+  }
+  yellow: {
+    base: string
+    dark: string
+    light: string
+    lightest: string
+  }
+}
+
+interface DeprecatedColorScales {
+  blue: {
+    B1: string
+    B10: string
+    B1A: string
+    B2: string
+    B2A: string
+    B3: string
+    B3A: string
+    B4: string
+    B4A: string
+    B5: string
+    B5A: string
+    B6: string
+    B6A: string
+    B7: string
+    B7A: string
+    B8: string
+    B8A: string
+    B9: string
+  }
+  neutral: {
+    N1: string
+    N10: string
+    N1A: string
+    N2: string
+    N2A: string
+    N3: string
+    N3A: string
+    N4: string
+    N4A: string
+    N5: string
+    N5A: string
+    N6: string
+    N6A: string
+    N7: string
+    N7A: string
+    N8: string
+    N8A: string
+    N9: string
+  }
+}
+
+interface DeprecatedTypography {
+  fontFamilies: {
+    display: string
+    mono: string
+    ui: string
+  }
+  paragraph: {
+    300: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    400: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    500: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+  }
+  headings: {
+    100: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    200: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    300: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    400: {
+      fontFamily: string
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    500: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    600: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    700: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    800: {
+      fontFamily: string
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    900: {
+      fontFamily: string
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+  }
+  text: {
+    300: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    400: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    500: {
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+    600: {
+      fontFamily: string
+      fontSize: string
+      fontWeight: number
+      letterSpacing: string
+      lineHeight: string
+      marginTop: number
+    }
+  }
+}
+
 interface DeprecatedDefaultTheme {
-  colors: Colors
-  scales: ColorScales
-  typography: Typography
-  fills: Fills
-  palette: Palette
+  colors: DeprecatedColors
+  scales: DeprecatedColorScales
+  typography: DeprecatedTypography
+  fills: DeprecatedFills
+  palette: DeprecatedPalette
 }
 
 export const deprecatedDefaultTheme: DeprecatedDefaultTheme
+
+/** END DEPRECATED THEME  */
 
 export enum Position {
   TOP = 'top',
@@ -1383,7 +1389,7 @@ export interface InlineAlertOwnProps extends PaneOwnProps {
   /**
    * The size of the Text.
    */
-  size?: keyof Typography['text']
+  size?: keyof DeprecatedTypography['text']
 }
 
 export type InlineAlertProps = PolymorphicBoxProps<'div', InlineAlertOwnProps>
@@ -1600,7 +1606,7 @@ export interface PopoverProps {
 export declare const Popover: React.FC<PopoverProps>
 
 export type ParagraphOwnProps = {
-  size?: keyof Typography['paragraph']
+  size?: keyof DeprecatedTypography['paragraph']
   fontFamily?: FontFamily
 }
 
@@ -2579,7 +2585,7 @@ export type TextTableHeaderCellProps = PolymorphicBoxProps<'div', TextTableHeade
 export declare const TextTableHeaderCell: BoxComponent<TextTableHeaderCellOwnProps, 'div'>
 
 export type TextOwnProps = {
-  size?: keyof Typography['text']
+  size?: keyof DeprecatedTypography['text']
   fontFamily?: FontFamily | string
 }
 
@@ -2716,7 +2722,7 @@ export interface OrderedListOwnProps {
   /**
    * Size of the text used in a list item.
    */
-  size?: keyof Typography['text']
+  size?: keyof DeprecatedTypography['text']
 }
 
 export type OrderedListProps = PolymorphicBoxProps<'ol', OrderedListOwnProps>
@@ -2727,7 +2733,7 @@ export interface UnorderedListOwnProps {
   /**
    * Size of the text used in a list item.
    */
-  size?: keyof Typography['text']
+  size?: keyof DeprecatedTypography['text']
   /**
    * When passed, adds a icon before each list item in the list
    * You can override this on a individual list item.
