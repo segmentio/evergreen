@@ -206,7 +206,8 @@ export interface Theme<TComponents extends Components = Components> {
   intents: Record<string, Intent>
   fontFamilies: FontFamilies
   radii: string[]
-  shadows: string[]
+  // TODO: Attach borderShadowColor and blurryShadowColor to colors object or here?
+  shadows: string[] & { focusRing: string }
   fontSizes: string[]
   fontWeights: FontWeights
   letterSpacings: LettingSpacings
@@ -2905,7 +2906,9 @@ export interface IconProps extends BoxProps<'svg'> {
 }
 
 /* Start generated icons */
-export type IconComponent = React.ForwardRefExoticComponent<React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>>
+export type IconComponent = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>
+>
 export declare const AddIcon: IconComponent
 export declare const AddColumnLeftIcon: IconComponent
 export declare const AddColumnRightIcon: IconComponent
