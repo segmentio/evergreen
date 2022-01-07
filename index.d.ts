@@ -1393,7 +1393,7 @@ export type GroupProps = PolymorphicBoxProps<'div', GroupOwnProps>
 export declare const Group: BoxComponent<GroupOwnProps, 'div'>
 
 export interface HeadingOwnProps {
-  size?: HeadingSize
+  size?: Size
 }
 
 export type HeadingProps = PolymorphicBoxProps<'h2', HeadingOwnProps>
