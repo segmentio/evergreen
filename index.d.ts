@@ -145,6 +145,71 @@ type ComponentToPseudoSelectors<C extends Components = Components> = C extends '
 export type DefaultThemeButtonAppearance = 'default' | 'minimal' | 'destructive' | 'default'
 export type DefaultThemeFill = 'neutral' | 'blue' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'purple'
 export type DefaultThemeIntent = 'info' | 'success' | 'warning' | 'danger'
+export type DefaultThemeColors =
+  | 'gray900'
+  | 'gray800'
+  | 'gray700'
+  | 'gray600'
+  | 'gray500'
+  | 'gray400'
+  | 'gray300'
+  | 'gray200'
+  | 'gray100'
+  | 'gray90'
+  | 'gray75'
+  | 'gray50'
+  | 'white'
+  | 'blue900'
+  | 'blue800'
+  | 'blue700'
+  | 'blue600'
+  | 'blue500'
+  | 'blue400'
+  | 'blue300'
+  | 'blue200'
+  | 'blue100'
+  | 'blue50'
+  | 'blue25'
+  | 'red700'
+  | 'red600'
+  | 'red500'
+  | 'red300'
+  | 'red100'
+  | 'red25'
+  | 'green900'
+  | 'green800'
+  | 'green700'
+  | 'green600'
+  | 'green500'
+  | 'green400'
+  | 'green300'
+  | 'green200'
+  | 'green100'
+  | 'green25'
+  | 'orange700'
+  | 'orange500'
+  | 'orange100'
+  | 'orange25'
+  | 'purple600'
+  | 'purple100'
+  | 'teal800'
+  | 'teal100'
+  | 'yellow800'
+  | 'yellow100'
+  | 'muted'
+  | 'default'
+  | 'dark'
+  | 'selected'
+  | 'tint1'
+  | 'tint2'
+  | 'overlay'
+  | 'yellowTint'
+  | 'greenTint'
+  | 'orangeTint'
+  | 'redTint'
+  | 'blueTint'
+  | 'purpleTint'
+  | 'tealTint'
 
 type ComponentToAppearance<C extends Components = Components> = C extends 'Button' ? DefaultThemeButtonAppearance : ''
 
@@ -201,7 +266,7 @@ export type ComponentStyles<T extends Components = Components> = {
 }
 
 export interface Theme<TComponents extends Components = Components> {
-  colors: Record<string, string | Record<string, string>>
+  colors: Record<string, Color<string | Record<string, Color>>>
   fills: Record<string, Fill>
   intents: Record<string, Intent>
   fontFamilies: FontFamilies
@@ -216,6 +281,7 @@ export interface Theme<TComponents extends Components = Components> {
   components: Partial<ComponentStyles<TComponents>>
 }
 
+export type Color<T extends string | Record<string, Color> = string> = T
 export interface Fill {
   backgroundColor: string
   color: string
@@ -258,91 +324,21 @@ export interface ZIndices {
 }
 
 export interface DefaultTheme extends Theme {
-  colors: {
-    gray900: string
-    gray800: string
-    gray700: string
-    gray600: string
-    gray500: string
-    gray400: string
-    gray300: string
-    gray200: string
-    gray100: string
-    gray90: string
-    gray75: string
-    gray50: string
-    white: string
-    blue900: string
-    blue800: string
-    blue700: string
-    blue600: string
-    blue500: string
-    blue400: string
-    blue300: string
-    blue200: string
-    blue100: string
-    blue50: string
-    blue25: string
-    red700: string
-    red600: string
-    red500: string
-    red300: string
-    red100: string
-    red25: string
-    green900: string
-    green800: string
-    green700: string
-    green600: string
-    green500: string
-    green400: string
-    green300: string
-    green200: string
-    green100: string
-    green25: string
-    orange700: string
-    orange500: string
-    orange100: string
-    orange25: string
-    purple600: string
-    purple100: string
-    teal800: string
-    teal100: string
-    yellow800: string
-    yellow100: string
-    muted: string
-    default: string
-    dark: string
-    selected: string
-    tint1: string
-    tint2: string
-    overlay: string
-    yellowTint: string
-    greenTint: string
-    orangeTint: string
-    redTint: string
-    blueTint: string
-    purpleTint: string
-    tealTint: string
-    border: { default: string; muted: string }
-    icon: {
+  colors: Record<DefaultThemeColors, Color> & {
+    border: Color<{ default: string; muted: string }>
+    icon: Color<{
       default: string
       muted: string
       disabled: string
       selected: string
-    }
-    text: { danger: string; success: string; info: string }
+    }>
+    text: Color<{ danger: string; success: string; info: string }>
   }
-  fills: {
-    [key in DefaultThemeFill]: Fill
-  }
-  intents: {
-    [key in DefaultThemeIntent]: Intent
-  }
+  fills: Record<DefaultThemeFill, Fill>
+  intents: Record<DefaultThemeIntent, Intent>
   components: {
     Button: {
-      appearances: {
-        [key in DefaultThemeButtonAppearance]: Partial<StyleProps<'Button'>>
-      }
+      appearances: Record<DefaultThemeButtonAppearance, Partial<StyleProps<'Button'>>>
     }
   }
 }
