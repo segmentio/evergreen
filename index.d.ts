@@ -271,6 +271,7 @@ export interface DefaultTheme extends Theme {
     gray90: string
     gray75: string
     gray50: string
+    white: string
     blue900: string
     blue800: string
     blue700: string
