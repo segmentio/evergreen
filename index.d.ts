@@ -26,6 +26,10 @@ export type PositionTypes =
   | 'right'
 export type IntentTypes = string
 export type DefaultAppearance = 'default'
+export type Small = 'small'
+export type Medium = 'medium'
+export type Large = 'large'
+export type StandardSizes = Small | Medium | Large
 export type AlertAppearance = DefaultAppearance | 'card'
 export type ButtonAppearance = string
 export type CodeAppearance = DefaultAppearance | 'minimal'
@@ -38,6 +42,7 @@ export type FontFamily = 'ui' | 'display' | 'mono'
 export type Elevation = 0 | 1 | 2 | 3 | 4
 export type FontSizeSmall = 300 | 400
 export type HeadingSize = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+export type Size = number | string
 
 export type Components =
   | 'Alert'
@@ -52,6 +57,7 @@ export type Components =
   | 'Icon'
   | 'InlineAlert'
   | 'Input'
+  | 'Label'
   | 'List'
   | 'Link'
   | 'MenuItem'
@@ -142,7 +148,19 @@ type ComponentToPseudoSelectors<C extends Components = Components> = C extends '
   ? TextDropdownButtonPseudoSelectors
   : ''
 
-export type DefaultThemeButtonAppearance = 'default' | 'minimal' | 'destructive' | 'default'
+export type DefaultThemeButtonSize = StandardSizes
+export type DefaultThemeTextSize = 300 | 400 | 500 | 600 | StandardSizes
+export type DefaultThemeHeadingSize = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+export type DefaultThemeInputAppearance = DefaultAppearance | 'none'
+export type DefaultThemeInputSize = StandardSizes
+export type DefaultThemeLabelSize = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+export type DefaultThemeParagraphSize = 300 | 400 | 500 | 600 | StandardSizes
+export type DefaultThemeSelectSize = StandardSizes
+export type DefaultThemeSpinnerSize = StandardSizes
+export type DefaultThemeTextDropdownButtonSize = StandardSizes
+export type DefaultThemeTooltipAppearance = 'card' | DefaultAppearance
+export type DefaultThemeTabAppearance = 'primary' | 'secondary'
+export type DefaultThemeButtonAppearance = DefaultAppearance | 'minimal' | 'destructive' | 'primary'
 export type DefaultThemeFill = 'neutral' | 'blue' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'purple'
 export type DefaultThemeIntent = 'info' | 'success' | 'warning' | 'danger'
 export type DefaultThemeColors =
@@ -234,6 +252,8 @@ type BaseHTMLElement<T extends Components = Components> = T extends 'Button' | '
   ? 'span'
   : T extends 'Checkbox' | 'Input'
   ? 'input'
+  : T extends 'Label'
+  ? 'label'
   : 'div'
 
 /** Allow these properties to be tokenizable (i.e. assignable as a string) */
@@ -253,12 +273,8 @@ export type StyleProps<T extends Components = Components> = {
 
 export type ComponentStyle<T extends Components = Components> = {
   baseStyle?: Partial<StyleProps<T>>
-  appearances?: {
-    [k: string]: Partial<StyleProps<T>>
-  }
-  sizes?: {
-    [k: string | number]: Partial<StyleProps<T>>
-  }
+  appearances?: Record<string, Partial<StyleProps<T>>>
+  sizes?: Record<Size, Partial<StyleProps<T>>>
 }
 
 export type ComponentStyles<T extends Components = Components> = {
@@ -271,7 +287,6 @@ export interface Theme<TComponents extends Components = Components> {
   intents: Record<string, Intent>
   fontFamilies: FontFamilies
   radii: string[]
-  // TODO: Attach borderShadowColor and blurryShadowColor to colors object or here?
   shadows: string[] & { focusRing: string }
   fontSizes: string[]
   fontWeights: FontWeights
@@ -339,6 +354,63 @@ export interface DefaultTheme extends Theme {
   components: {
     Button: {
       appearances: Record<DefaultThemeButtonAppearance, Partial<StyleProps<'Button'>>>
+      sizes: Record<DefaultThemeButtonSize, Partial<StyleProps<'Button'>>>
+    }
+    Checkbox: {
+      appearances: Record<DefaultAppearance, Partial<StyleProps<'Checkbox'>>>
+    }
+    Code: {
+      appearances: Record<DefaultAppearance, Partial<StyleProps<'Code'>>>
+    }
+    Heading: {
+      sizes: Record<DefaultThemeHeadingSize, Partial<StyleProps<'Heading'>>>
+    }
+    Input: {
+      appearances: Record<DefaultThemeInputAppearance, Partial<StyleProps<'Input'>>>
+      sizes: Record<DefaultThemeInputSize, Partial<StyleProps<'Input'>>>
+    }
+    Label: {
+      sizes: Record<DefaultThemeLabelSize, Partial<StyleProps<'Label'>>>
+    }
+    MenuItem: {
+      appearances: Record<DefaultAppearance, Partial<StyleProps<'MenuItem'>>>
+    }
+    Paragraph: {
+      sizes: Record<DefaultThemeParagraphSize, Partial<StyleProps<'Paragraph'>>>
+    }
+    Radio: {
+      appearances: Record<DefaultAppearance, Partial<StyleProps<'Radio'>>>
+    }
+    Select: {
+      appearances: Record<DefaultAppearance, Partial<StyleProps<'Select'>>>
+      sizes: Record<DefaultThemeSelectSize, Partial<StyleProps<'Select'>>>
+    }
+    Spinner: {
+      sizes: Record<DefaultThemeSpinnerSize, Partial<StyleProps<'Spinner'>>>
+    }
+    Switch: {
+      appearances: Record<DefaultAppearance, Partial<StyleProps<'Switch'>>>
+    }
+    Tab: {
+      appearances: Record<DefaultThemeTabAppearance, Partial<StyleProps<'Tab'>>>
+    }
+    TableCell: {
+      appearances: Record<DefaultAppearance, Partial<StyleProps<'TableCell'>>>
+    }
+    TableRow: {
+      appearances: Record<DefaultAppearance, Partial<StyleProps<'TableRow'>>>
+    }
+    TagInput: {
+      appearances: Record<DefaultAppearance, Partial<StyleProps<'TagInput'>>>
+    }
+    Text: {
+      sizes: Record<DefaultThemeTextSize, Partial<StyleProps<'Text'>>>
+    }
+    TextDropdownButton: {
+      sizes: Record<DefaultThemeTextDropdownButtonSize, Partial<StyleProps<'TextDropdownButton'>>>
+    }
+    Tooltip: {
+      appearances: Record<DefaultThemeTooltipAppearance, Partial<StyleProps<'Tooltip'>>>
     }
   }
 }
@@ -1387,7 +1459,7 @@ export interface InlineAlertOwnProps extends PaneOwnProps {
   /**
    * The size of the Text.
    */
-  size?: keyof DeprecatedTypography['text']
+  size?: Size
 }
 
 export type InlineAlertProps = PolymorphicBoxProps<'div', InlineAlertOwnProps>
@@ -1604,7 +1676,7 @@ export interface PopoverProps {
 export declare const Popover: React.FC<PopoverProps>
 
 export type ParagraphOwnProps = {
-  size?: keyof DeprecatedTypography['paragraph']
+  size?: Size
   fontFamily?: FontFamily
 }
 
@@ -2583,7 +2655,7 @@ export type TextTableHeaderCellProps = PolymorphicBoxProps<'div', TextTableHeade
 export declare const TextTableHeaderCell: BoxComponent<TextTableHeaderCellOwnProps, 'div'>
 
 export type TextOwnProps = {
-  size?: keyof DeprecatedTypography['text']
+  size?: Size
   fontFamily?: FontFamily | string
 }
 
@@ -2720,7 +2792,7 @@ export interface OrderedListOwnProps {
   /**
    * Size of the text used in a list item.
    */
-  size?: keyof DeprecatedTypography['text']
+  size?: Size
 }
 
 export type OrderedListProps = PolymorphicBoxProps<'ol', OrderedListOwnProps>
@@ -2731,7 +2803,7 @@ export interface UnorderedListOwnProps {
   /**
    * Size of the text used in a list item.
    */
-  size?: keyof DeprecatedTypography['text']
+  size?: Size
   /**
    * When passed, adds a icon before each list item in the list
    * You can override this on a individual list item.

@@ -1,7 +1,7 @@
 import { expectAssignable, expectType, expectError } from 'tsd'
 import { defaultTheme, mergeTheme, StyleProps, Intent, Theme, Fill, Partial, Pick } from '.'
 
-const themeOverridesOrAdditions: Pick<Theme, 'fills' | 'components'> = {
+const themeOverridesOrAdditions: Partial<Pick<Theme, 'fills' | 'components'>> = {
   fills: {
     awesomeBlue: {
       color: '#3492eb',
@@ -37,6 +37,10 @@ expectType<string>(defaultTheme.fills.neutral.color)
 expectType<string>(defaultTheme.fills.neutral.backgroundColor)
 expectType<Intent>(defaultTheme.intents.info)
 expectType<Partial<StyleProps<'Button'>>>(defaultTheme.components.Button.appearances.minimal)
+expectType<Partial<StyleProps<'Button'>>>(defaultTheme.components.Button.appearances.default)
+expectType<Partial<StyleProps<'Button'>>>(defaultTheme.components.Button.appearances.destructive)
+expectType<Partial<StyleProps<'Button'>>>(defaultTheme.components.Button.appearances.primary)
+expectType<Partial<StyleProps<'Text'>>>(defaultTheme.components.Text.sizes[300])
 
 expectAssignable<Theme>(mergeTheme(defaultTheme, themeOverridesOrAdditions))
 
@@ -59,6 +63,9 @@ expectType<string>(customTheme.fills.neutral.color)
 expectType<string>(customTheme.fills.neutral.backgroundColor)
 expectType<Intent>(customTheme.intents.info)
 expectType<Partial<StyleProps<'Button'>>>(customTheme.components.Button.appearances.minimal)
+expectType<Partial<StyleProps<'Button'>>>(customTheme.components.Button.appearances.default)
+expectType<Partial<StyleProps<'Button'>>>(customTheme.components.Button.appearances.destructive)
+expectType<Partial<StyleProps<'Button'>>>(customTheme.components.Button.appearances.primary)
 
 // Ensure new values are strongly typed
 expectAssignable<Fill>(customTheme.fills.awesomeBlue)
