@@ -118,7 +118,49 @@ type TableRowPseudoSelectors = '_isSelectable' | '_hover' | '_focus' | '_active'
 type TagInputPseudoSelectors = '_focused' | '_disabled'
 type TextDropdownButtonPseudoSelectors = '_disabled' | '_focus'
 
-type ComponentToPseudoSelectors<C extends Components = Components> = C extends 'Button'
+type ComponentAppearances<C extends Components = Components> = C extends 'Button'
+  ? DefaultThemeButtonAppearance
+  : C extends 'Input'
+  ? DefaultThemeInputAppearance
+  : C extends 'Tooltip'
+  ? DefaultThemeTooltipAppearance
+  : C extends 'Tab'
+  ? DefaultThemeTabAppearance
+  : C extends
+      | 'Checkbox'
+      | 'Code'
+      | 'MenuItem'
+      | 'Radio'
+      | 'Select'
+      | 'Switch'
+      | 'Tab'
+      | 'TableCell'
+      | 'TableRow'
+      | 'TagInput'
+  ? DefaultAppearance
+  : ''
+
+type ComponentSizes<C extends Components = Components> = C extends 'Button'
+  ? DefaultThemeButtonSize
+  : C extends 'Text'
+  ? DefaultThemeTextSize
+  : C extends 'Heading'
+  ? DefaultThemeHeadingSize
+  : C extends 'Input'
+  ? DefaultThemeInputSize
+  : C extends 'Label'
+  ? DefaultThemeLabelSize
+  : C extends 'Paragraph'
+  ? DefaultThemeParagraphSize
+  : C extends 'Select'
+  ? DefaultThemeSelectSize
+  : C extends 'Spinner'
+  ? DefaultThemeSpinnerSize
+  : C extends 'TextDropdownButton'
+  ? DefaultThemeTextDropdownButtonSize
+  : ''
+
+type ComponentPseudoSelectors<C extends Components = Components> = C extends 'Button'
   ? ButtonPseudoSelectors
   : C extends 'Checkbox'
   ? CheckboxPseudoSelectors
@@ -229,17 +271,6 @@ export type DefaultThemeColors =
   | 'purpleTint'
   | 'tealTint'
 
-type ComponentToAppearance<C extends Components = Components> = C extends 'Button' ? DefaultThemeButtonAppearance : ''
-
-type AlertPropsModifiers = 'appearance' | 'intent'
-type ButtonPropsModifiers = 'appearance' | 'color' | 'intent' | 'size'
-
-type ComponentToPropsModifiers<C> = C extends 'Alert'
-  ? AlertPropsModifiers
-  : C extends 'Button'
-  ? ButtonPropsModifiers
-  : {}
-
 type BaseHTMLElement<T extends Components = Components> = T extends 'Button' | 'IconButton' | 'TextDropdownButton'
   ? 'button'
   : T extends 'Icon'
@@ -265,16 +296,16 @@ type PolymorphicBoxPropsOrTokens<T extends Components = Components> = Omit<
 > &
   { [key in TokenizableProps]?: string }
 
-export type StyleProps<T extends Components = Components> = {
-  [key in ComponentToPseudoSelectors<T>]: PolymorphicBoxPropsOrTokens<T>
-} &
-  { [key in ComponentToAppearance<T>]: PolymorphicBoxPropsOrTokens<T> } &
+export type StyleProps<T extends Components = Components> = Record<
+  ComponentPseudoSelectors<T>,
+  PolymorphicBoxPropsOrTokens<T>
+> &
   PolymorphicBoxPropsOrTokens<T>
 
 export type ComponentStyle<T extends Components = Components> = {
   baseStyle?: Partial<StyleProps<T>>
-  appearances?: Record<string, Partial<StyleProps<T>>>
-  sizes?: Record<Size, Partial<StyleProps<T>>>
+  appearances?: Record<string & ComponentAppearances<T>, Partial<StyleProps<T>>>
+  sizes?: Record<Size & ComponentSizes<T>, Partial<StyleProps<T>>>
 }
 
 export type ComponentStyles<T extends Components = Components> = {
@@ -351,68 +382,6 @@ export interface DefaultTheme extends Theme {
   }
   fills: Record<DefaultThemeFill, Fill>
   intents: Record<DefaultThemeIntent, Intent>
-  components: {
-    Button: {
-      appearances: Record<DefaultThemeButtonAppearance, Partial<StyleProps<'Button'>>>
-      sizes: Record<DefaultThemeButtonSize, Partial<StyleProps<'Button'>>>
-    }
-    Checkbox: {
-      appearances: Record<DefaultAppearance, Partial<StyleProps<'Checkbox'>>>
-    }
-    Code: {
-      appearances: Record<DefaultAppearance, Partial<StyleProps<'Code'>>>
-    }
-    Heading: {
-      sizes: Record<DefaultThemeHeadingSize, Partial<StyleProps<'Heading'>>>
-    }
-    Input: {
-      appearances: Record<DefaultThemeInputAppearance, Partial<StyleProps<'Input'>>>
-      sizes: Record<DefaultThemeInputSize, Partial<StyleProps<'Input'>>>
-    }
-    Label: {
-      sizes: Record<DefaultThemeLabelSize, Partial<StyleProps<'Label'>>>
-    }
-    MenuItem: {
-      appearances: Record<DefaultAppearance, Partial<StyleProps<'MenuItem'>>>
-    }
-    Paragraph: {
-      sizes: Record<DefaultThemeParagraphSize, Partial<StyleProps<'Paragraph'>>>
-    }
-    Radio: {
-      appearances: Record<DefaultAppearance, Partial<StyleProps<'Radio'>>>
-    }
-    Select: {
-      appearances: Record<DefaultAppearance, Partial<StyleProps<'Select'>>>
-      sizes: Record<DefaultThemeSelectSize, Partial<StyleProps<'Select'>>>
-    }
-    Spinner: {
-      sizes: Record<DefaultThemeSpinnerSize, Partial<StyleProps<'Spinner'>>>
-    }
-    Switch: {
-      appearances: Record<DefaultAppearance, Partial<StyleProps<'Switch'>>>
-    }
-    Tab: {
-      appearances: Record<DefaultThemeTabAppearance, Partial<StyleProps<'Tab'>>>
-    }
-    TableCell: {
-      appearances: Record<DefaultAppearance, Partial<StyleProps<'TableCell'>>>
-    }
-    TableRow: {
-      appearances: Record<DefaultAppearance, Partial<StyleProps<'TableRow'>>>
-    }
-    TagInput: {
-      appearances: Record<DefaultAppearance, Partial<StyleProps<'TagInput'>>>
-    }
-    Text: {
-      sizes: Record<DefaultThemeTextSize, Partial<StyleProps<'Text'>>>
-    }
-    TextDropdownButton: {
-      sizes: Record<DefaultThemeTextDropdownButtonSize, Partial<StyleProps<'TextDropdownButton'>>>
-    }
-    Tooltip: {
-      appearances: Record<DefaultThemeTooltipAppearance, Partial<StyleProps<'Tooltip'>>>
-    }
-  }
 }
 
 export const defaultTheme: DefaultTheme

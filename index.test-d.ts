@@ -1,7 +1,7 @@
 import { expectAssignable, expectType, expectError } from 'tsd'
-import { defaultTheme, mergeTheme, StyleProps, Intent, Theme, Fill, Partial, Pick } from '.'
+import { defaultTheme, mergeTheme, StyleProps, Intent, Theme, Fill, Partial } from '.'
 
-const themeOverridesOrAdditions: Partial<Pick<Theme, 'fills' | 'components'>> = {
+const themeOverridesOrAdditions = {
   fills: {
     awesomeBlue: {
       color: '#3492eb',
