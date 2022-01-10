@@ -11,9 +11,6 @@ export { configureSafeHref, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxP
 // Re-exporting these utility types for testing + consumer usage if needed
 export type Pick<T, Properties extends keyof T> = { [Key in Properties]: T[Key] }
 export type Partial<T> = { [Key in keyof T]?: T[Key] }
-export type DeepPartial<T> = {
-  [Key in keyof T]?: DeepPartial<T[Key]>
-}
 
 export type PositionTypes =
   | 'top'
@@ -296,16 +293,15 @@ type PolymorphicBoxPropsOrTokens<T extends Components = Components> = Omit<
 > &
   { [key in TokenizableProps]?: string }
 
-export type StyleProps<T extends Components = Components> = Record<
-  ComponentPseudoSelectors<T>,
-  PolymorphicBoxPropsOrTokens<T>
-> &
+export type StyleProps<T extends Components = Components> = {
+  [key in ComponentPseudoSelectors<T>]: PolymorphicBoxPropsOrTokens<T>
+} &
   PolymorphicBoxPropsOrTokens<T>
 
 export type ComponentStyle<T extends Components = Components> = {
   baseStyle?: Partial<StyleProps<T>>
-  appearances?: Record<string & ComponentAppearances<T>, Partial<StyleProps<T>>>
-  sizes?: Record<Size & ComponentSizes<T>, Partial<StyleProps<T>>>
+  appearances?: { [appearance: string]: Partial<StyleProps<T>> }
+  sizes?: { [size: Size]: Partial<StyleProps<T>> }
 }
 
 export type ComponentStyles<T extends Components = Components> = {
@@ -313,9 +309,9 @@ export type ComponentStyles<T extends Components = Components> = {
 }
 
 export interface Theme<TComponents extends Components = Components> {
-  colors: Record<string, Color<string | Record<string, Color>>>
-  fills: Record<string, Fill>
-  intents: Record<string, Intent>
+  colors: { [color: string]: Color<string | { [group: string]: Color }> }
+  fills: { [fill: string]: Fill }
+  intents: { [intent: string]: Intent }
   fontFamilies: FontFamilies
   radii: string[]
   shadows: string[] & { focusRing: string }
@@ -327,7 +323,7 @@ export interface Theme<TComponents extends Components = Components> {
   components: Partial<ComponentStyles<TComponents>>
 }
 
-export type Color<T extends string | Record<string, Color> = string> = T
+export type Color<T extends string | { [group: string]: Color } = string> = T
 export interface Fill {
   backgroundColor: string
   color: string
@@ -370,7 +366,7 @@ export interface ZIndices {
 }
 
 export interface DefaultTheme extends Theme {
-  colors: Record<DefaultThemeColors, Color> & {
+  colors: { [color in DefaultThemeColors]: Color } & {
     border: Color<{ default: string; muted: string }>
     icon: Color<{
       default: string
@@ -380,8 +376,15 @@ export interface DefaultTheme extends Theme {
     }>
     text: Color<{ danger: string; success: string; info: string }>
   }
-  fills: Record<DefaultThemeFill, Fill>
-  intents: Record<DefaultThemeIntent, Intent>
+  fills: { [fill in DefaultThemeFill]: Fill }
+  intents: { [intent in DefaultThemeIntent]: Intent }
+  components: {
+    [Component in Components]: {
+      baseStyle: StyleProps<Component>
+      appearances: Record<string & ComponentAppearances<Component>, Partial<StyleProps<Component>>>
+      sizes: Record<Size & ComponentSizes<Component>, Partial<StyleProps<Component>>>
+    }
+  }
 }
 
 export const defaultTheme: DefaultTheme
@@ -2918,7 +2921,7 @@ export declare const useTheme: <T extends Theme = DefaultTheme>() => T
  * @param destinationTheme Theme object to merge on top of
  * @param sourceTheme Theme object that adds or overrides values
  */
-export declare const mergeTheme: <TDestinationTheme extends Theme, TSourceTheme extends DeepPartial<Theme>>(
+export declare const mergeTheme: <TDestinationTheme extends Theme, TSourceTheme extends Partial<Theme>>(
   destinationTheme: TDestinationTheme,
   sourceTheme: TSourceTheme
 ) => TDestinationTheme & TSourceTheme
