@@ -8,6 +8,10 @@ import { TransitionProps, TransitionStatus } from 'react-transition-group/Transi
 
 export { configureSafeHref, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps, EnhancerProps } from 'ui-box'
 
+// Re-exporting these utility types for testing + consumer usage if needed
+export type Pick<T, Properties extends keyof T> = { [Key in Properties]: T[Key] }
+export type Partial<T> = { [Key in keyof T]?: T[Key] }
+
 export type PositionTypes =
   | 'top'
   | 'top-left'
@@ -19,6 +23,10 @@ export type PositionTypes =
   | 'right'
 export type IntentTypes = string
 export type DefaultAppearance = 'default'
+export type Small = 'small'
+export type Medium = 'medium'
+export type Large = 'large'
+export type StandardSizes = Small | Medium | Large
 export type AlertAppearance = DefaultAppearance | 'card'
 export type ButtonAppearance = string
 export type CodeAppearance = DefaultAppearance | 'minimal'
@@ -31,8 +39,9 @@ export type FontFamily = 'ui' | 'display' | 'mono'
 export type Elevation = 0 | 1 | 2 | 3 | 4
 export type FontSizeSmall = 300 | 400
 export type HeadingSize = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+export type Size = number | string
 
-type Components =
+export type Components =
   | 'Alert'
   | 'Avatar'
   | 'Badge'
@@ -45,6 +54,7 @@ type Components =
   | 'Icon'
   | 'InlineAlert'
   | 'Input'
+  | 'Label'
   | 'List'
   | 'Link'
   | 'MenuItem'
@@ -64,24 +74,201 @@ type Components =
   | 'Tooltip'
 
 type ButtonPseudoSelectors = '_active' | '_disabled' | '_focus' | '_focusAndActive' | '_hover' | '_disabled'
+type CheckboxPseudoSelectors =
+  | '_base'
+  | '_disabled'
+  | '_hover'
+  | '_focus'
+  | '_active'
+  | '_checked'
+  | '_checkedActive'
+  | '_checkedDisabled'
+  | '_checkedHover'
+type GroupPseudoSelectors = '_child' | '_firstChild' | '_middleChild' | '_lastChild' | '&:focus' | '&:active'
+type InputPseudoSelectors = '_placeholder' | '_disabled' | '_focus' | '_invalid'
+type LinkPseudoSelectors = '_hover' | '_active' | '_focus'
+type MenuItemPseudoSelectors = '_isSelectable' | '_disabled' | '_hover' | '_focus' | '_active' | '_current' | '&:before'
+type RadioPseudoSelectors =
+  | '_base'
+  | '_disabled'
+  | '_hover'
+  | '_focus'
+  | '_active'
+  | '_checked'
+  | '_checkedHover'
+  | '_checkedActive'
+  | '_checkedDisabled'
+type SelectPseudoSelectors = '_disabled' | '_hover' | '_invalid' | '_focus' | '_active'
+type SwitchPseudoSelectors =
+  | '_base'
+  | '_disabled'
+  | '_hover'
+  | '_focus'
+  | '_active'
+  | '_checked'
+  | '_checkedHover'
+  | '_checkedActive'
+  | '_checkedDisabled'
+type TabPseudoSelectors = '_before' | '_hover' | '_current' | '_focus' | '_disabled'
+type TableCellPseudoSelectors = '_focus'
+type TableRowPseudoSelectors = '_isSelectable' | '_hover' | '_focus' | '_active' | '_current'
+type TagInputPseudoSelectors = '_focused' | '_disabled'
+type TextDropdownButtonPseudoSelectors = '_disabled' | '_focus'
 
-type AlertPropsModifiers = 'appearance' | 'intent'
-type ButtonPropsModifiers = 'appearance' | 'color' | 'intent' | 'size'
+type ComponentAppearances<C extends Components = Components> = C extends 'Button'
+  ? DefaultThemeButtonAppearance
+  : C extends 'Input'
+  ? DefaultThemeInputAppearance
+  : C extends 'Tooltip'
+  ? DefaultThemeTooltipAppearance
+  : C extends 'Tab'
+  ? DefaultThemeTabAppearance
+  : C extends
+      | 'Checkbox'
+      | 'Code'
+      | 'MenuItem'
+      | 'Radio'
+      | 'Select'
+      | 'Switch'
+      | 'Tab'
+      | 'TableCell'
+      | 'TableRow'
+      | 'TagInput'
+  ? DefaultAppearance
+  : ''
 
-type ComponentToPseudoSelectors<C> = C extends 'Button' ? ButtonPseudoSelectors : ''
+type ComponentSizes<C extends Components = Components> = C extends 'Button'
+  ? DefaultThemeButtonSize
+  : C extends 'Text'
+  ? DefaultThemeTextSize
+  : C extends 'Heading'
+  ? DefaultThemeHeadingSize
+  : C extends 'Input'
+  ? DefaultThemeInputSize
+  : C extends 'Label'
+  ? DefaultThemeLabelSize
+  : C extends 'Paragraph'
+  ? DefaultThemeParagraphSize
+  : C extends 'Select'
+  ? DefaultThemeSelectSize
+  : C extends 'Spinner'
+  ? DefaultThemeSpinnerSize
+  : C extends 'TextDropdownButton'
+  ? DefaultThemeTextDropdownButtonSize
+  : ''
 
-type ComponentToPossibleModifiers<C> = C extends 'Alert'
-  ? AlertPropsModifiers
-  : C extends 'Button'
-  ? ButtonPropsModifiers
-  : {}
+type ComponentPseudoSelectors<C extends Components = Components> = C extends 'Button'
+  ? ButtonPseudoSelectors
+  : C extends 'Checkbox'
+  ? CheckboxPseudoSelectors
+  : C extends 'Group'
+  ? GroupPseudoSelectors
+  : C extends 'Input'
+  ? InputPseudoSelectors
+  : C extends 'Link'
+  ? LinkPseudoSelectors
+  : C extends 'MenuItem'
+  ? MenuItemPseudoSelectors
+  : C extends 'Radio'
+  ? RadioPseudoSelectors
+  : C extends 'Select'
+  ? SelectPseudoSelectors
+  : C extends 'Switch'
+  ? SwitchPseudoSelectors
+  : C extends 'Tab'
+  ? TabPseudoSelectors
+  : C extends 'TableCell'
+  ? TableCellPseudoSelectors
+  : C extends 'TableRow'
+  ? TableRowPseudoSelectors
+  : C extends 'TagInput'
+  ? TagInputPseudoSelectors
+  : C extends 'TextDropdownButton'
+  ? TextDropdownButtonPseudoSelectors
+  : ''
 
-type PropOrThemeFunction<C extends Components, T = {}> = (
-  props: ComponentToPossibleModifiers<C>,
-  theme: Omit<T, Components>
-) => string | number
+export type DefaultThemeButtonSize = StandardSizes
+export type DefaultThemeTextSize = 300 | 400 | 500 | 600 | StandardSizes
+export type DefaultThemeHeadingSize = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+export type DefaultThemeInputAppearance = DefaultAppearance | 'none'
+export type DefaultThemeInputSize = StandardSizes
+export type DefaultThemeLabelSize = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+export type DefaultThemeParagraphSize = 300 | 400 | 500 | 600 | StandardSizes
+export type DefaultThemeSelectSize = StandardSizes
+export type DefaultThemeSpinnerSize = StandardSizes
+export type DefaultThemeTextDropdownButtonSize = StandardSizes
+export type DefaultThemeTooltipAppearance = 'card' | DefaultAppearance
+export type DefaultThemeTabAppearance = 'primary' | 'secondary'
+export type DefaultThemeButtonAppearance = DefaultAppearance | 'minimal' | 'destructive' | 'primary'
+export type DefaultThemeFill = 'neutral' | 'blue' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'purple'
+export type DefaultThemeIntent = 'info' | 'success' | 'warning' | 'danger'
+export type DefaultThemeColors =
+  | 'gray900'
+  | 'gray800'
+  | 'gray700'
+  | 'gray600'
+  | 'gray500'
+  | 'gray400'
+  | 'gray300'
+  | 'gray200'
+  | 'gray100'
+  | 'gray90'
+  | 'gray75'
+  | 'gray50'
+  | 'white'
+  | 'blue900'
+  | 'blue800'
+  | 'blue700'
+  | 'blue600'
+  | 'blue500'
+  | 'blue400'
+  | 'blue300'
+  | 'blue200'
+  | 'blue100'
+  | 'blue50'
+  | 'blue25'
+  | 'red700'
+  | 'red600'
+  | 'red500'
+  | 'red300'
+  | 'red100'
+  | 'red25'
+  | 'green900'
+  | 'green800'
+  | 'green700'
+  | 'green600'
+  | 'green500'
+  | 'green400'
+  | 'green300'
+  | 'green200'
+  | 'green100'
+  | 'green25'
+  | 'orange700'
+  | 'orange500'
+  | 'orange100'
+  | 'orange25'
+  | 'purple600'
+  | 'purple100'
+  | 'teal800'
+  | 'teal100'
+  | 'yellow800'
+  | 'yellow100'
+  | 'muted'
+  | 'default'
+  | 'dark'
+  | 'selected'
+  | 'tint1'
+  | 'tint2'
+  | 'overlay'
+  | 'yellowTint'
+  | 'greenTint'
+  | 'orangeTint'
+  | 'redTint'
+  | 'blueTint'
+  | 'purpleTint'
+  | 'tealTint'
 
-type BaseHTMLElement<T> = T extends 'Button' | 'IconButton' | 'TextDropdownButton'
+type BaseHTMLElement<T extends Components = Components> = T extends 'Button' | 'IconButton' | 'TextDropdownButton'
   ? 'button'
   : T extends 'Icon'
   ? 'svg'
@@ -91,33 +278,121 @@ type BaseHTMLElement<T> = T extends 'Button' | 'IconButton' | 'TextDropdownButto
   ? 'a'
   : T extends 'Text' | 'Tab'
   ? 'span'
+  : T extends 'Checkbox' | 'Input'
+  ? 'input'
+  : T extends 'Label'
+  ? 'label'
   : 'div'
 
-type BaseStyle<T extends Components> = {
-  [k in
-    | ComponentToPseudoSelectors<T>
-    | keyof PolymorphicBoxProps<BaseHTMLElement<T>>]: k extends ComponentToPseudoSelectors<T>
-    ? {
-        [prop in keyof PolymorphicBoxProps<BaseHTMLElement<T>>]: PropOrThemeFunction<T>
-      }
-    : PropOrThemeFunction<T>
+/** Allow these properties to be tokenizable (i.e. assignable as a string) */
+type TokenizableProps = 'elevation' | 'fontWeight' | 'zIndex'
+
+type PolymorphicBoxPropsOrTokens<T extends Components = Components> = Omit<
+  PolymorphicBoxProps<BaseHTMLElement<T>>,
+  TokenizableProps
+> &
+  { [key in TokenizableProps]?: string }
+
+export type StyleProps<T extends Components = Components> = {
+  [key in ComponentPseudoSelectors<T>]: PolymorphicBoxPropsOrTokens<T>
+} &
+  PolymorphicBoxPropsOrTokens<T>
+
+export type ComponentStyle<T extends Components = Components> = {
+  baseStyle?: Partial<StyleProps<T>>
+  appearances?: { [appearance: string]: Partial<StyleProps<T>> }
+  sizes?: { [size: Size]: Partial<StyleProps<T>> }
 }
 
-type BaseThemeObject<T extends Components> = {
-  baseStyle: BaseStyle<T>
-  appearances: {
-    [k: string]: BaseStyle<T>
+export type ComponentStyles<T extends Components = Components> = {
+  [Component in T]: Partial<ComponentStyle<Component>>
+}
+
+export interface Theme<TComponents extends Components = Components> {
+  colors: { [color: string]: Color<string | { [group: string]: Color }> }
+  fills: { [fill: string]: Fill }
+  intents: { [intent: string]: Intent }
+  fontFamilies: FontFamilies
+  radii: string[]
+  shadows: string[] & { focusRing: string }
+  fontSizes: string[]
+  fontWeights: FontWeights
+  letterSpacings: LettingSpacings
+  lineHeights: string[]
+  zIndices: ZIndices
+  components: Partial<ComponentStyles<TComponents>>
+}
+
+export type Color<T extends string | { [group: string]: Color } = string> = T
+export interface Fill {
+  backgroundColor: string
+  color: string
+}
+
+export interface Intent {
+  background: string
+  border: string
+  text: string
+  icon: string
+}
+
+export interface FontFamilies {
+  display: string
+  ui: string
+  mono: string
+}
+
+export interface FontWeights {
+  light: number
+  normal: number
+  semibold: number
+  bold: number
+}
+
+export interface LettingSpacings {
+  tightest: string
+  tighter: string
+  tight: string
+  normal: string
+  wide: string
+}
+
+export interface ZIndices {
+  focused: number
+  stack: number
+  positioner: number
+  overlay: number
+  toaster: number
+}
+
+export interface DefaultTheme extends Theme {
+  colors: { [color in DefaultThemeColors]: Color } & {
+    border: Color<{ default: string; muted: string }>
+    icon: Color<{
+      default: string
+      muted: string
+      disabled: string
+      selected: string
+    }>
+    text: Color<{ danger: string; success: string; info: string }>
   }
-  sizes: {
-    [k in 'small' | 'medium' | 'large' | string]: BaseStyle<T>
+  fills: { [fill in DefaultThemeFill]: Fill }
+  intents: { [intent in DefaultThemeIntent]: Intent }
+  components: {
+    [Component in Components]: {
+      baseStyle: StyleProps<Component>
+      appearances: Record<string & ComponentAppearances<Component>, Partial<StyleProps<Component>>>
+      sizes: Record<Size & ComponentSizes<Component>, Partial<StyleProps<Component>>>
+    }
   }
 }
 
-type ThemeBuilder = {
-  [Component in Components]: BaseThemeObject<Component>
-}
+export const defaultTheme: DefaultTheme
 
-export interface Colors {
+export const classicTheme: Theme
+
+/** START DEPRECATED THEME */
+interface DeprecatedColors {
   background: {
     blueTint: string
     greenTint: string
@@ -162,7 +437,7 @@ export interface Colors {
   }
 }
 
-interface SolidFills {
+interface DeprecatedSolidFills {
   blue: {
     backgroundColor: string
     color: string
@@ -197,7 +472,7 @@ interface SolidFills {
   }
 }
 
-interface SubtleFills {
+interface DeprecatedSubtleFills {
   blue: {
     backgroundColor: string
     color: string
@@ -232,13 +507,13 @@ interface SubtleFills {
   }
 }
 
-interface Fills {
+interface DeprecatedFills {
   options: string[]
-  solid: SolidFills
-  subtle: SubtleFills
+  solid: DeprecatedSolidFills
+  subtle: DeprecatedSubtleFills
 }
 
-interface Palette {
+interface DeprecatedPalette {
   blue: {
     base: string
     dark: string
@@ -289,7 +564,7 @@ interface Palette {
   }
 }
 
-interface ColorScales {
+interface DeprecatedColorScales {
   blue: {
     B1: string
     B10: string
@@ -332,7 +607,7 @@ interface ColorScales {
   }
 }
 
-interface Typography {
+interface DeprecatedTypography {
   fontFamilies: {
     display: string
     mono: string
@@ -462,20 +737,17 @@ interface Typography {
   }
 }
 
-export interface Theme {}
-
-export const defaultTheme: Theme
-export const classicTheme: Theme
-
 interface DeprecatedDefaultTheme {
-  colors: Colors
-  scales: ColorScales
-  typography: Typography
-  fills: Fills
-  palette: Palette
+  colors: DeprecatedColors
+  scales: DeprecatedColorScales
+  typography: DeprecatedTypography
+  fills: DeprecatedFills
+  palette: DeprecatedPalette
 }
 
 export const deprecatedDefaultTheme: DeprecatedDefaultTheme
+
+/** END DEPRECATED THEME  */
 
 export enum Position {
   TOP = 'top',
@@ -1093,7 +1365,7 @@ export type GroupProps = PolymorphicBoxProps<'div', GroupOwnProps>
 export declare const Group: BoxComponent<GroupOwnProps, 'div'>
 
 export interface HeadingOwnProps {
-  size?: HeadingSize
+  size?: Size
 }
 
 export type HeadingProps = PolymorphicBoxProps<'h2', HeadingOwnProps>
@@ -1159,7 +1431,7 @@ export interface InlineAlertOwnProps extends PaneOwnProps {
   /**
    * The size of the Text.
    */
-  size?: keyof Typography['text']
+  size?: Size
 }
 
 export type InlineAlertProps = PolymorphicBoxProps<'div', InlineAlertOwnProps>
@@ -1289,7 +1561,7 @@ export interface NudgeProps {
 export declare const Nudge: React.FC<NudgeProps>
 
 export interface PaneOwnProps {
-  background?: keyof Colors['background'] | string
+  background?: string
   border?: boolean | string
   borderTop?: boolean | string
   borderRight?: boolean | string
@@ -1376,7 +1648,7 @@ export interface PopoverProps {
 export declare const Popover: React.FC<PopoverProps>
 
 export type ParagraphOwnProps = {
-  size?: keyof Typography['paragraph']
+  size?: Size
   fontFamily?: FontFamily
 }
 
@@ -2355,7 +2627,7 @@ export type TextTableHeaderCellProps = PolymorphicBoxProps<'div', TextTableHeade
 export declare const TextTableHeaderCell: BoxComponent<TextTableHeaderCellOwnProps, 'div'>
 
 export type TextOwnProps = {
-  size?: keyof Typography['text']
+  size?: Size
   fontFamily?: FontFamily | string
 }
 
@@ -2492,7 +2764,7 @@ export interface OrderedListOwnProps {
   /**
    * Size of the text used in a list item.
    */
-  size?: keyof Typography['text']
+  size?: Size
 }
 
 export type OrderedListProps = PolymorphicBoxProps<'ol', OrderedListOwnProps>
@@ -2503,7 +2775,7 @@ export interface UnorderedListOwnProps {
   /**
    * Size of the text used in a list item.
    */
-  size?: keyof Typography['text']
+  size?: Size
   /**
    * When passed, adds a icon before each list item in the list
    * You can override this on a individual list item.
@@ -2638,10 +2910,21 @@ export interface OverlayProps {
 
 export declare const Overlay: React.FC<OverlayProps>
 
-export declare const ThemeContext: React.Context<Theme>
-export declare const ThemeProvider: React.Context<Theme>['Provider']
-export declare const ThemeConsumer: React.Context<Theme>['Consumer']
-export declare const useTheme: () => Theme
+export type ThemeContext<T extends Theme = DefaultTheme> = React.Context<T>
+export declare const ThemeContext: ThemeContext
+export declare const ThemeProvider: ThemeContext['Provider']
+export declare const ThemeConsumer: ThemeContext['Consumer']
+export declare const getThemeContext: <T extends Theme = DefaultTheme>() => ThemeContext<T>
+export declare const useTheme: <T extends Theme = DefaultTheme>() => T
+/**
+ * Adds or overrides theme values on top of an existing theme object
+ * @param destinationTheme Theme object to merge on top of
+ * @param sourceTheme Theme object that adds or overrides values
+ */
+export declare const mergeTheme: <TDestinationTheme extends Theme, TSourceTheme extends Partial<Theme>>(
+  destinationTheme: TDestinationTheme,
+  sourceTheme: TSourceTheme
+) => TDestinationTheme & TSourceTheme
 
 export interface IconProps extends BoxProps<'svg'> {
   /**
@@ -2664,7 +2947,9 @@ export interface IconProps extends BoxProps<'svg'> {
 }
 
 /* Start generated icons */
-export type IconComponent = React.ForwardRefExoticComponent<React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>>
+export type IconComponent = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>
+>
 export declare const AddIcon: IconComponent
 export declare const AddColumnLeftIcon: IconComponent
 export declare const AddColumnRightIcon: IconComponent
