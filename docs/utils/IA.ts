@@ -59,7 +59,7 @@ const IA: IA = {
         id: 'what-is-new',
         name: 'What is new',
         description:
-          'Evergreen is a living system, which means we are constently making updates to it. You can learn more about those changes and upcoming ones here.',
+          'Evergreen is a living system, which means we are constantly making updates to it. You can learn more about those changes and upcoming ones here.',
       },
     ],
   },

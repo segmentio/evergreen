@@ -1,6 +1,6 @@
 # Introduction
 
-Evergreen ships with an all-new, extensible theming architecture that lets end-users customize the look and feel of the components in Evergreen as you want. You can target arbtirary styles and states of each component to achieve maximum flexibility and alignment with your brand. This page goes over some of the options and background of the theming architecture, and how you can leverage it in your apps.
+Evergreen ships with an all-new, extensible theming architecture that lets end-users customize the look and feel of the components in Evergreen as you want. You can target arbitrary styles and states of each component to achieve maximum flexibility and alignment with your brand. This page goes over some of the options and background of the theming architecture, and how you can leverage it in your apps.
 
 # Classic and Default Theme
 
@@ -45,10 +45,8 @@ An example implementation that leverages some of these props to create a custom 
 
 ```jsx
 function CustomButtonExample() {
-  const theme = {
-    ...defaultTheme,
+  const theme = mergeTheme(defaultTheme, {
     components: {
-      ...defaultTheme.components,
       Button: {
         baseStyle: {
           color: 'white',
@@ -68,7 +66,7 @@ function CustomButtonExample() {
         },
       },
     },
-  }
+  })
 
   return (
     <ThemeProvider value={theme}>
@@ -78,18 +76,17 @@ function CustomButtonExample() {
 }
 ```
 
+`mergeTheme` is a utility function that allows you to deeply merge a partial `Theme` object onto another one, such as the `defaultTheme`, without having to do multiple object spreads (i.e. `...defaultTheme, ...defaultTheme.colors, ...defaultTheme.components`). If you're using TypeScript, it returns a type union of `DestinationTheme & SourceTheme`, where `DestinationTheme` is the first argument (such as `defaultTheme`) and `SourceTheme` is the type of the second argument (which can be explicitly or implicitly typed).
+
 # Custom Appearances
 
 The theming API also supports custom appearances, so you can bring your own verbiage and nomenclature to how you want to define Evergreen styles. We are still working out TypeScript support for this, so use at your own discretion! For the example below, we are going to take those same styles, and apply them to respond to a prop `appearance="superdanger"`.
 
 ```jsx
 function CustomAppearancesExmaple() {
-  const theme = {
-    ...defaultTheme,
+  const theme = mergeTheme(defaultTheme, {
     components: {
-      ...defaultTheme.components,
       Button: {
-        ...defaultTheme.components.Button,
         appearances: {
           superdanger: {
             color: 'white',
@@ -110,7 +107,7 @@ function CustomAppearancesExmaple() {
         },
       },
     },
-  }
+  })
 
   return (
     <ThemeProvider value={theme}>
