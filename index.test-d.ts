@@ -1,7 +1,10 @@
 import { expectAssignable, expectType, expectError } from 'tsd'
-import { defaultTheme, mergeTheme, StyleProps, Intent, Theme, Fill, Partial, Pick } from '.'
+import { defaultTheme, mergeTheme, StyleProps, Intent, Theme, Fill, Partial, Pick, Color } from '.'
 
-interface ThemeOverrides extends Partial<Pick<Theme, 'fills' | 'components'>> {
+interface ThemeOverrides extends Partial<Pick<Theme, 'colors' | 'fills' | 'components'>> {
+  colors: {
+    speakers: Color<string[]>
+  }
   fills: {
     awesomeBlue: Fill
   }
@@ -16,6 +19,9 @@ interface ThemeOverrides extends Partial<Pick<Theme, 'fills' | 'components'>> {
 }
 
 const themeOverridesOrAdditions: ThemeOverrides = {
+  colors: {
+    speakers: ['#0f4880', '#1d781d', '#db0a5b', '#8d6708', '#d43900']
+  },
   fills: {
     awesomeBlue: {
       color: '#3492eb',
@@ -98,6 +104,7 @@ expectType<Partial<StyleProps<'Text'>>>(customTheme.components.Text.sizes[300])
 
 // Ensure new values are strongly typed
 expectAssignable<Fill>(customTheme.fills.awesomeBlue)
+expectType<string[]>(customTheme.colors.speakers)
 
 // Negative case - attempting to reference pseudoselector not defined in index.d.ts
 const themeWithNonExistentPseudoSelector = {
@@ -112,3 +119,9 @@ const themeWithNonExistentPseudoSelector = {
   }
 }
 expectError(mergeTheme(defaultTheme, themeWithNonExistentPseudoSelector))
+
+// Negative case - attempting to assign colors property to string[] (should at least have a key wrapping it)
+const themeWithTopLevelColorsArray = {
+  colors: ['#0f4880', '#1d781d', '#db0a5b', '#8d6708', '#d43900']
+}
+expectError(mergeTheme(defaultTheme, themeWithTopLevelColorsArray))
