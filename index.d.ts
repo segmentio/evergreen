@@ -380,7 +380,7 @@ export interface DefaultTheme extends Theme {
   intents: { [intent in DefaultThemeIntent]: Intent }
   components: {
     [Component in Components]: {
-      baseStyle: {}
+      baseStyle: Partial<StyleProps<Component>>
       appearances: Record<string & ComponentAppearances<Component>, Partial<StyleProps<Component>>>
       sizes: Record<Size & ComponentSizes<Component>, Partial<StyleProps<Component>>>
     }
