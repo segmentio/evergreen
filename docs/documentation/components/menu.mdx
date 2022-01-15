@@ -181,7 +181,7 @@ function MenuOptionsGroupExample() {
           { label: 'Descending', value: 'desc' },
         ]}
         selected={selectedOrder}
-        onChange={(selected) => setSelectedOrder(selected)}
+        onChange={selected => setSelectedOrder(selected)}
       />
       <Menu.Divider />
       <Menu.OptionsGroup
@@ -194,7 +194,7 @@ function MenuOptionsGroupExample() {
           { label: 'Type', value: 'type' },
         ]}
         selected={selectedField}
-        onChange={(selected) => setSelectedField(selected)}
+        onChange={selected => setSelectedField(selected)}
       />
     </Menu>
   )
@@ -236,4 +236,10 @@ The focus styles are currently not working in the docs, sorry for the inconvenie
 >
   <Button>Custom Menu Items</Button>
 </Popover>
+```
+
+## Menu without items
+
+```jsx
+<Menu></Menu>
 ```
