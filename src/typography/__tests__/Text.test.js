@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
+import faker from 'faker'
 import renderer from 'react-test-renderer'
 import { UIBoxSerializer } from '../../../lib/testing'
 import { ThemeProvider } from '../../theme'
@@ -59,6 +60,27 @@ describe('Sizing', () => {
   test('<Text /> has undefined behavior when trying to set arbitrary sizes', () => {
     render(<Text size={800} />)
     expect(mockFn.mock.calls.length).toEqual(1)
-    expect(mockFn.mock.calls[0][0]).toEqual(expect.stringContaining('Invalid prop `size`'))
+    expect(mockFn.mock.calls[0][0]).toMatchInlineSnapshot(`
+      Extracted Styles:
+      box-sizing: border-box;
+      color: #474d66;
+      font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+
+      "Warning: Failed %s type: %s%s"
+    `)
+  })
+})
+
+describe('Props', () => {
+  it('should forward `className` prop', () => {
+    const expected = faker.random.word().toLowerCase()
+    const component = (
+      <Text data-testid="text" className={expected}>
+        Testing
+      </Text>
+    )
+    const { getByTestId } = render(component)
+    expect(getByTestId('text')).toHaveClass(expected)
   })
 })

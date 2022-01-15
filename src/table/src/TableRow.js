@@ -15,6 +15,7 @@ export const pseudoSelectors = {
     '&[data-isselectable="true"]:not([aria-checked="true"]):not([aria-current="true"]):focus, &[aria-selected="true"]',
   _active: '&[aria-current="true"], &[data-isselectable="true"]:active',
   _current: '&[aria-current="true"], &[aria-checked="true"]',
+  _lastOfType: '&:last-of-type',
   _isSelectable: '&[data-isselectable="true"]'
 }
 
@@ -157,7 +158,7 @@ TableRow.propTypes = {
   /**
    * The intent of the alert.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+  intent: PropTypes.string,
 
   /**
    * The appearance of the table row. Default theme only support default.

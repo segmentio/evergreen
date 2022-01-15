@@ -39,6 +39,12 @@ const baseStyle = {
   textDecoration: 'none',
   height: 64,
 
+  _lastOfType: {
+    borderBottom: 'none',
+    borderBottomLeftRadius: 'radii.1',
+    borderBottomRightRadius: 'radii.1'
+  },
+
   _isSelectable: {
     cursor: 'pointer'
   }

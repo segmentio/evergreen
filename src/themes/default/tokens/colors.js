@@ -12,6 +12,7 @@ const colorScales = {
   gray90: '#F4F6FA',
   gray75: '#F9FAFC',
   gray50: '#FAFBFF',
+  white: '#FFFFFF',
 
   // Blues
   blue900: '#0A1433',

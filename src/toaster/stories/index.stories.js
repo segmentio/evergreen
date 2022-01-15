@@ -50,6 +50,16 @@ storiesOf('toaster', module).add('examples', () => (
         >
           Notify once
         </Button>
+        <Button
+          marginRight={8}
+          onClick={() =>
+            toaster.notify('Cannot be closed by user', {
+              hasCloseButton: false
+            })
+          }
+        >
+          Notify without close button
+        </Button>
       </Box>
       <Box marginBottom={12}>
         <Button marginRight={8} onClick={() => toaster.success('Hooray! You did it. Your Source is now sending data.')}>

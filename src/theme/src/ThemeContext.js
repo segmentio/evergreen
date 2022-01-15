@@ -11,5 +11,10 @@ import defaultTheme from '../../themes/default'
 const ThemeContext = React.createContext(defaultTheme)
 const { Consumer: ThemeConsumer, Provider: ThemeProvider } = ThemeContext
 
+/**
+ * Returns a typed version of the ThemeContext when using a custom theme
+ */
+const getThemeContext = () => ThemeContext
+
 export default ThemeContext
-export { ThemeProvider, ThemeConsumer }
+export { getThemeContext, ThemeProvider, ThemeConsumer }

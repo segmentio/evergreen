@@ -12,7 +12,7 @@ const Code = memo(
 
     const styleProps = useStyleConfig('Code', { appearance }, pseudoSelectors, internalStyles)
 
-    return <Text is="code" ref={ref} className={className} fontFamily="mono" {...styleProps} {...restProps} />
+    return <Text is="code" ref={ref} {...styleProps} fontFamily="mono" className={className} {...restProps} />
   })
 )
 

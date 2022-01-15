@@ -18,7 +18,7 @@ const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
 faker.seed(7816)
 const randomNumbers = range(8).map(() => {
-  return faker.random.number({
+  return faker.datatype.number({
     min: 1,
     max: 100
   })
