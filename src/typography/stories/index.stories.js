@@ -52,7 +52,7 @@ storiesOf('typography', module)
     </Box>
   ))
   .add('Paragraph', () => <div>{previewTextComponent(Paragraph, TextSizes, { marginTop: 24 })}</div>)
-  .add('Heading', () => <div>{previewTextComponent(Heading, HeadingSizes, { marginTop: 24 })}</div>)
+  .add('Heading', () => <div>{previewTextComponent(Heading, HeadingSizes, { marginTop: 24, color: 'red500' })}</div>)
   .add('Code', () => <div>{previewTextComponent(Code)}</div>)
   .add('Pre', () => <div>{previewTextComponent(Pre)}</div>)
   .add('Label', () => <div>{previewTextComponent(Label)}</div>)

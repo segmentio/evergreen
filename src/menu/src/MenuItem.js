@@ -152,7 +152,7 @@ MenuItem.propTypes = {
   /**
    * Secondary text shown on the right.
    */
-  secondaryText: PropTypes.node,
+  secondaryText: PropTypes.any,
 
   /**
    * The default theme only supports one default appearance.

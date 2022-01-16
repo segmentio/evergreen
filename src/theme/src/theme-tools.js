@@ -1,6 +1,5 @@
 export function get(obj, path, fallback) {
   const keys = path && path.split ? path.split('.') : [path]
-
   let value = obj
   for (const key of keys) {
     value = value ? value[key] : undefined

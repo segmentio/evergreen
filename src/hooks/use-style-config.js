@@ -3,7 +3,7 @@ import { css } from 'glamor'
 import merge from 'lodash.merge'
 import isEqual from 'react-fast-compare'
 import { splitBoxProps } from 'ui-box'
-import { useTheme, get, resolveThemeTokens } from '../theme'
+import { useTheme, get, resolveThemeTokens, getValue } from '../theme'
 
 /**
  * @typedef {object} StateStyles
@@ -61,9 +61,15 @@ function maybeRunDeep(raw, ...args) {
  * @returns {StyleConfig}
  */
 function combineStyles(theme, props, styleConfig, internalStyles = {}) {
-  const config = maybeRun(styleConfig, theme, props)
-  const baseStyle = maybeRunDeep(config.baseStyle, theme, props)
-  const sizeStyle = maybeRunDeep(get(config, `sizes.${props.size}`, {}), theme, props)
+  const { ...config } = maybeRun(styleConfig, theme, props)
+
+  // if color is passed in props
+  config.baseStyle.color = props.color ? `colors.${getValue(theme, props.color)}` : config.baseStyle.color
+
+  const { ...baseStyle } = maybeRunDeep(config.baseStyle, theme, props)
+  const { ...sizeStyle } = maybeRunDeep(get(config, `sizes.${props.size}`, {}), theme, props)
+
+  sizeStyle.color = baseStyle.color // sizeStyle color should same as baseStyle color
 
   const appearanceStyle = maybeRunDeep(get(config, `appearances.${props.appearance}`, {}), theme, props)
 
@@ -77,7 +83,6 @@ function combineStyles(theme, props, styleConfig, internalStyles = {}) {
  */
 function useMergedStyles(theme, props, styleConfig, internalStyles) {
   const styleRef = useRef({})
-
   return useMemo(() => {
     const combinedStyles = combineStyles(theme, props, styleConfig, internalStyles)
     if (!isEqual(styleRef.current, combinedStyles)) {
@@ -134,10 +139,8 @@ export function useStyleConfig(componentKey, props, pseudoSelectors, internalSty
 
   // Get the component style object from the theme
   const componentStyles = get(theme, `components.${componentKey}`) || {}
-
   // Merges the theme styles with the modifiers/props (appearance, size, etc)
   const mergedStyles = useMergedStyles(theme, props, componentStyles, internalStyles)
-
   // Resolve theme token strings found throughout the style object
   const styles = useMemo(() => resolveThemeTokens(theme, mergedStyles), [theme, mergedStyles])
 

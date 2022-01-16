@@ -18,7 +18,7 @@ const Text = memo(
     const themedFontFamily = fontFamilies[fontFamily] || fontFamily
     const themedColor = colors[color] || (colors.text && colors.text[color]) || color
 
-    const textStyle = useStyleConfig('Text', { size }, emptyObject, emptyObject)
+    const textStyle = useStyleConfig('Text', { size, color }, emptyObject, emptyObject)
 
     return (
       <Box

@@ -9,10 +9,10 @@ const internalStyles = {}
 
 const Heading = memo(
   forwardRef(function Heading(props, ref) {
-    const { className, size = 500, ...restProps } = props
+    const { className, color, size = 500, ...restProps } = props
     const { className: themedClassName, ...styleProps } = useStyleConfig(
       'Heading',
-      { size },
+      { size, color },
       pseudoSelectors,
       internalStyles
     )
