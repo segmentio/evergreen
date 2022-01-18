@@ -115,7 +115,7 @@ const Radio = memo(
           width={size}
           height={size}
         >
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ size: number; }' is not assignable to type... Remove this comment to see the full error message
+          {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ size: number; }' is not assignable to type... Remove this comment to see the full error message */}
           <CircleIcon size={size / 2} />
         </Box>
         {label && (

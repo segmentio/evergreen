@@ -24,7 +24,7 @@ const FormField = memo(
     return (
       <Box {...rest} ref={ref}>
         <Box display="flex" flexDirection="column" marginBottom={8}>
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: never; size: number; htmlFor: ne... Remove this comment to see the full error message
+          {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: never; size: number; htmlFor: ne... Remove this comment to see the full error message */}
           <FormFieldLabel htmlFor={labelFor} isAstrixShown={isRequired} {...labelProps}>
             {label}
           </FormFieldLabel>
@@ -37,7 +37,7 @@ const FormField = memo(
         ) : (
           validationMessage
         )}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'. */}
         {typeof hint === 'string' ? <FormFieldHint marginTop={6}>{hint}</FormFieldHint> : hint}
       </Box>
     )

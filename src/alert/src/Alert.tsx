@@ -46,12 +46,12 @@ const Alert = memo(
     return (
       <Pane ref={ref} className={cx(className, themedClassName)} role="alert" {...styleProps} {...restProps}>
         {hasIcon && (
-          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+          /* @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message */
           <Pane marginRight={16} marginLeft={2} marginTop={-1} display="flex" alignItems="flex-start">
             {getIconForIntent(intentToken, { size: 16 })}
           </Pane>
         )}
-        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
+        {/* @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message */}
         <Pane flex={1}>
           {title && (
             <Heading
@@ -75,7 +75,7 @@ const Alert = memo(
             </Heading>
           )}
           {typeof children === 'string' ? (
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
+            /* @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'. */
             <Paragraph size={400} color="muted" marginTop={title ? 8 : 0} lineHeight={1}>
               {children}
             </Paragraph>
@@ -84,9 +84,9 @@ const Alert = memo(
           )}
         </Pane>
         {isRemoveable && (
-          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+          /* @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message */
           <Pane marginLeft={24} flexShrink={0} marginBottom={-2} marginTop={-4} marginRight={-4}>
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'MemoExoticComponent<ForwardRefExoticComponen... Remove this comment to see the full error message
+            {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'MemoExoticComponent<ForwardRefExoticComponen... Remove this comment to see the full error message */}
             <IconButton icon={CrossIcon} appearance="minimal" height={24} onClick={onRemove} intent={intentToken} />
           </Pane>
         )}

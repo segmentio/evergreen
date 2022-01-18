@@ -42,7 +42,7 @@ const ScrollbarSize = memo(function ScrollbarSize({ handleScrollbarSize = noop }
   return (
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'MutableRefObject<undefined>' is not assignab... Remove this comment to see the full error message
     <div ref={outerRef} aria-hidden style={style}>
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'MutableRefObject<undefined>' is not assignab... Remove this comment to see the full error message
+      {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'MutableRefObject<undefined>' is not assignab... Remove this comment to see the full error message */}
       <div ref={innerRef} />
     </div>
   )

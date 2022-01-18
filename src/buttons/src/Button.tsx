@@ -113,10 +113,10 @@ const Button = memo(
             size={Math.round(height / 2)}
           />
         )}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ icon: never; size: number; spacing: any; e... Remove this comment to see the full error message
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ icon: never; size: number; spacing: any; e... Remove this comment to see the full error message */}
         <ButtonIcon icon={iconBefore} size={iconSize} spacing={restProps.paddingLeft} edge="start" />
         {children}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ icon: never; size: number; spacing: any; e... Remove this comment to see the full error message
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ icon: never; size: number; spacing: any; e... Remove this comment to see the full error message */}
         <ButtonIcon icon={iconAfter} size={iconSize} spacing={restProps.paddingRight} edge="end" />
       </Box>
     )

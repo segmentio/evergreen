@@ -131,7 +131,7 @@ const Switch = memo(
         />
         <Box height={height} width={height * 2} borderRadius={9999} cursor="pointer">
           <Box height={height} width={height} data-checked={checked} className={iconContainerStyleClass}>
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ display: string | undefined; size: number;... Remove this comment to see the full error message
+            {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ display: string | undefined; size: number;... Remove this comment to see the full error message */}
             {hasCheckIcon && <CheckIcon display={checked ? 'block' : undefined} size={height / 2 - 3} />}
           </Box>
           <Box width={height * 2} display="flex" data-checked={checked} className={handleContainerStyleClass}>

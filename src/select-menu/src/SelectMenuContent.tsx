@@ -7,11 +7,7 @@ import { Text } from '../../typography'
 import OptionShapePropType from './OptionShapePropType'
 import OptionsList from './OptionsList'
 
-const DefaultTitleView = ({
-  close,
-  headerHeight,
-  title
-}: any) => (
+const DefaultTitleView = ({ close, headerHeight, title }: any) => (
   // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
   <Pane
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
@@ -27,14 +23,14 @@ const DefaultTitleView = ({
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
     boxSizing="border-box"
   >
-    // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+    {/* @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message */}
     <Pane flex="1" display="flex" alignItems="center">
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+      {/* @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message */}
       <Text size={300} textTransform="uppercase">
         {title}
       </Text>
     </Pane>
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'MemoExoticComponent<ForwardRefExoticComponen... Remove this comment to see the full error message
+    {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'MemoExoticComponent<ForwardRefExoticComponen... Remove this comment to see the full error message */}
     <IconButton icon={CrossIcon} appearance="minimal" height={24} onClick={close} border="none" />
   </Pane>
 )
@@ -90,7 +86,7 @@ const SelectMenuContent = memo(function SelectMenuContent(props) {
   return (
     // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
     <Pane display="flex" height={height}>
-      // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
+      {/* @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message */}
       <Pane
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
         width={width}

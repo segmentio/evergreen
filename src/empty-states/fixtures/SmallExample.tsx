@@ -34,7 +34,7 @@ const SmallExample = (props: any) => {
           </Pane>
         }
       >
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+        {/* @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message */}
         <Button>Trigger Popover</Button>
       </Popover>
     </Pane>

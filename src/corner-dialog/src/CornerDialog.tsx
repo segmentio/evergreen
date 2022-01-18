@@ -167,17 +167,17 @@ const CornerDialog = memo(function CornerDialog(props) {
             ]}
             {...remainingContainerProps}
           >
-            // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
+            {/* @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message */}
             <Pane display="flex" alignItems="center" marginBottom={12}>
-              // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+              {/* @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message */}
               <Heading is="h4" size={600} flex="1">
                 {title}
               </Heading>
-              // @ts-expect-error ts-migrate(2322) FIXME: Type 'MemoExoticComponent<ForwardRefExoticComponen... Remove this comment to see the full error message
+              {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'MemoExoticComponent<ForwardRefExoticComponen... Remove this comment to see the full error message */}
               {hasClose && <IconButton icon={CrossIcon} appearance="minimal" onClick={handleClose} />}
             </Pane>
 
-            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+            {/* @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message */}
             <Pane overflowY="auto" data-state={state}>
               {renderChildren()}
             </Pane>
@@ -185,11 +185,11 @@ const CornerDialog = memo(function CornerDialog(props) {
             {hasFooter && (
               // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
               <Pane marginTop={24} flexShrink={0} display="flex" flexDirection="row-reverse">
-                // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+                {/* @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message */}
                 <Button appearance="primary" intent={intent} marginLeft={8} onClick={handleConfirm}>
                   {confirmLabel}
                 </Button>
-                // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+                {/* @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message */}
                 {hasCancel && <Button onClick={handleCancel}>{cancelLabel}</Button>}
               </Pane>
             )}

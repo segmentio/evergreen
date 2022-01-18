@@ -12,19 +12,19 @@ const TableWithActionExample = () => {
   return (
     // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
     <Pane marginBottom={majorScale(8)}>
-      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element[]; maxWidth: number; wid... Remove this comment to see the full error message
+      {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element[]; maxWidth: number; wid... Remove this comment to see the full error message */}
       <Table maxWidth={1152} width="100%">
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'Head' does not exist on type 'NamedExoti... Remove this comment to see the full error message
+        {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'Head' does not exist on type 'NamedExoti... Remove this comment to see the full error message */}
         <Table.Head>
-          // @ts-expect-error ts-migrate(2339) FIXME: Property 'TextHeaderCell' does not exist on type '... Remove this comment to see the full error message
+          {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'TextHeaderCell' does not exist on type '... Remove this comment to see the full error message */}
           <Table.TextHeaderCell>Name</Table.TextHeaderCell>
-          // @ts-expect-error ts-migrate(2339) FIXME: Property 'TextHeaderCell' does not exist on type '... Remove this comment to see the full error message
+          {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'TextHeaderCell' does not exist on type '... Remove this comment to see the full error message */}
           <Table.TextHeaderCell>Status</Table.TextHeaderCell>
-          // @ts-expect-error ts-migrate(2339) FIXME: Property 'TextHeaderCell' does not exist on type '... Remove this comment to see the full error message
+          {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'TextHeaderCell' does not exist on type '... Remove this comment to see the full error message */}
           <Table.TextHeaderCell>Created At </Table.TextHeaderCell>
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'Head' does not exist on type 'NamedExoti... Remove this comment to see the full error message
+          {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'Head' does not exist on type 'NamedExoti... Remove this comment to see the full error message */}
         </Table.Head>
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'Body' does not exist on type 'NamedExoti... Remove this comment to see the full error message
+        {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'Body' does not exist on type 'NamedExoti... Remove this comment to see the full error message */}
         <Table.Body height="auto">
           <EmptyState
             // @ts-expect-error ts-migrate(2322) FIXME: Type '{ background: string; title: string; orienta... Remove this comment to see the full error message
@@ -38,7 +38,7 @@ const TableWithActionExample = () => {
             // @ts-expect-error ts-migrate(2339) FIXME: Property 'PrimaryButton' does not exist on type 'N... Remove this comment to see the full error message
             primaryCta={<EmptyState.PrimaryButton>Create Audience</EmptyState.PrimaryButton>}
           />
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'Body' does not exist on type 'NamedExoti... Remove this comment to see the full error message
+          {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'Body' does not exist on type 'NamedExoti... Remove this comment to see the full error message */}
         </Table.Body>
       </Table>
     </Pane>

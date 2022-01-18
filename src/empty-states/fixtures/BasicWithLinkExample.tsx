@@ -25,7 +25,7 @@ const BasicWithLinkExample = () => {
           // @ts-expect-error ts-migrate(2339) FIXME: Property 'LinkButton' does not exist on type 'Name... Remove this comment to see the full error message
           <EmptyState.LinkButton href="https://segment.com/docs/" target="_blank">
             Learn more about permission
-          // @ts-expect-error ts-migrate(2339) FIXME: Property 'LinkButton' does not exist on type 'Name... Remove this comment to see the full error message
+            {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'LinkButton' does not exist on type 'Name... Remove this comment to see the full error message */}
           </EmptyState.LinkButton>
         }
       />

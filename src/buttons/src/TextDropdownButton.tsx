@@ -42,10 +42,10 @@ const TextDropdownButton = memo(
         {...restProps}
         disabled={disabled || isLoading}
       >
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'. */}
         {isLoading && <Spinner marginLeft={-2} marginRight={4} size={12} />}
         {children}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'MemoExoticComponent<ForwardRefExoticComponen... Remove this comment to see the full error message
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'MemoExoticComponent<ForwardRefExoticComponen... Remove this comment to see the full error message */}
         <IconWrapper icon={icon} marginLeft={2} color="default" size={12} />
       </Box>
     )

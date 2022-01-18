@@ -43,7 +43,7 @@ const SearchTableHeaderCell = memo(
 
     return (
       <TableHeaderCell {...rest}>
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'MemoExoticComponent<ForwardRefExoticComponen... Remove this comment to see the full error message
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'MemoExoticComponent<ForwardRefExoticComponen... Remove this comment to see the full error message */}
         <IconWrapper icon={icon} color="muted" marginLeft={2} marginRight={10} size={12} />
         <Text
           // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
