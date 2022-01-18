@@ -9,6 +9,7 @@ import MenuOptionsGroup from './MenuOptionsGroup'
 
 const Menu = memo(function Menu(props) {
   const menuRef = useRef(null)
+
   const firstItem = useRef()
   const lastItem = useRef()
 
@@ -16,18 +17,9 @@ const Menu = memo(function Menu(props) {
 
   useEffect(() => {
     const currentMenuRef = menuRef.current
-
-    menuItems.current = currentMenuRef
-      ? [
-          ...currentMenuRef.querySelectorAll(
-            '[role="menuitemradio"]:not([disabled]), [role="menuitem"]:not([disabled])'
-          )
-        ]
-      : []
-
-    if (menuItems.current.length === 0) {
-      throw new Error('The menu has no menu items')
-    }
+    menuItems.current = [
+      ...currentMenuRef.querySelectorAll('[role="menuitemradio"]:not([disabled]), [role="menuitem"]:not([disabled])')
+    ]
 
     firstItem.current = menuItems.current[0]
     lastItem.current = menuItems.current[menuItems.current.length - 1]
@@ -68,9 +60,7 @@ const Menu = memo(function Menu(props) {
       const { target } = e
       const menuItem = menuItems.current && menuItems.current.find(item => item === target)
 
-      if (!menuItem) {
-        return
-      }
+      if (!menuItem) return
 
       if (e.key === 'ArrowDown') {
         e.preventDefault()
@@ -101,9 +91,17 @@ const Menu = memo(function Menu(props) {
   }, [menuRef])
 
   const { children } = props
+
+  const renderEmptyChildren = () => {
+    return (
+      <MenuGroup>
+        <MenuItem disabled>No items...</MenuItem>
+      </MenuGroup>
+    )
+  }
   return (
     <Pane is="nav" ref={menuRef} role="menu" outline="none">
-      {children}
+      {children || renderEmptyChildren()}
     </Pane>
   )
 })
