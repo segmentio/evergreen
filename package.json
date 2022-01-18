@@ -137,6 +137,8 @@
     "sinon": "^8.1.0",
     "size-limit": "^4.5.0",
     "starwars-names": "^1.6.0",
+    "ts-migrate": "^0.1.27",
+    "typescript": "^4.5.4",
     "url-loader": "^1.1.2",
     "webpack": "^4.43.0",
     "yarnhook": "^0.5.1"
