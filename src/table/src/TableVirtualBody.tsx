@@ -1,5 +1,6 @@
 import React, { memo, useState, useEffect } from 'react'
 import VirtualList from '@segment/react-tiny-virtual-list'
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import { useForceUpdate } from '../../hooks'
@@ -7,23 +8,33 @@ import { Pane } from '../../layers'
 
 const TableVirtualBody = memo(function TableVirtualBody(props) {
   const {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'allowAutoHeight' does not exist on type ... Remove this comment to see the full error message
     allowAutoHeight = false,
     children: inputChildren,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'defaultHeight' does not exist on type '{... Remove this comment to see the full error message
     defaultHeight = 48,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'estimatedItemSize' does not exist on typ... Remove this comment to see the full error message
     estimatedItemSize,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type '{ childr... Remove this comment to see the full error message
     height: paneHeight,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onScroll' does not exist on type '{ chil... Remove this comment to see the full error message
     onScroll,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'overscanCount' does not exist on type '{... Remove this comment to see the full error message
     overscanCount = 5,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'scrollOffset' does not exist on type '{ ... Remove this comment to see the full error message
     scrollOffset,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'scrollToAlignment' does not exist on typ... Remove this comment to see the full error message
     scrollToAlignment,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'scrollToIndex' does not exist on type '{... Remove this comment to see the full error message
     scrollToIndex,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'useAverageAutoHeightEstimation' does not... Remove this comment to see the full error message
     useAverageAutoHeightEstimation = true,
     ...rest
   } = props
 
   const forceUpdate = useForceUpdate()
-  let autoHeights = []
-  let autoHeightRefs = []
+  let autoHeights: any = []
+  let autoHeightRefs: any = []
   let averageAutoHeight = defaultHeight
 
   const [paneRef, setPaneRef] = useState()
@@ -39,7 +50,9 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
     if (isIntegerHeight) return
 
     // Return if we are in a weird edge case in which the ref is no longer valid.
+    // @ts-expect-error ts-migrate(2358) FIXME: The left-hand side of an 'instanceof' expression m... Remove this comment to see the full error message
     if (paneRef && paneRef instanceof Node) {
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       const tempCalculatedHeight = paneRef.offsetHeight
 
       if (tempCalculatedHeight > 0) {
@@ -60,12 +73,16 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
   const onResize = debounce(updateOnResize, 200)
 
   useEffect(() => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type 'PropsWit... Remove this comment to see the full error message
     if (props.height !== calculatedHeight) {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type 'PropsWit... Remove this comment to see the full error message
       setIsIntegerHeight(Number.isInteger(props.height))
     }
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type 'PropsWit... Remove this comment to see the full error message
   }, [props.height])
 
   useEffect(() => {
+    // @ts-expect-error ts-migrate(2358) FIXME: The left-hand side of an 'instanceof' expression m... Remove this comment to see the full error message
     if (paneRef && paneRef instanceof Node) {
       updateOnResize()
     }
@@ -95,6 +112,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
     let totalAmount = 0
 
     // Loop through all of the refs that have height="auto".
+    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'ref' implicitly has an 'any' type.
     autoHeightRefs.forEach((ref, index) => {
       // If the height is already calculated, skip it,
       // but calculate the height for the total.
@@ -128,7 +146,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
     if (isUpdated) forceUpdate()
   }
 
-  const onVirtualHelperRef = (index, ref) => {
+  const onVirtualHelperRef = (index: any, ref: any) => {
     autoHeightRefs[index] = ref
 
     requestAnimationFrame(() => {
@@ -136,11 +154,12 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
     })
   }
 
-  const getItemSize = children => {
+  const getItemSize = (children: any) => {
     // Prefer to return a array of all heights.
     if (!allowAutoHeight) {
-      return children.map(child => {
+      return children.map((child: any) => {
         if (!React.isValidElement(child)) return defaultHeight
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type 'unknown'... Remove this comment to see the full error message
         const { height } = child.props
 
         if (Number.isInteger(height)) {
@@ -148,11 +167,11 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
         }
 
         return defaultHeight
-      })
+      });
     }
 
     // If allowAutoHeight is true, return a function instead.
-    const itemSizeFn = index => {
+    const itemSizeFn = (index: any) => {
       if (!React.isValidElement(children[index])) return defaultHeight
       const { height } = children[index].props
 
@@ -183,6 +202,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
   const itemSize = getItemSize(children)
 
   return (
+    // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
     <Pane data-evergreen-table-body ref={setPaneRef} height={paneHeight} flex="1" overflow="hidden" {...rest}>
       <VirtualList
         height={isIntegerHeight ? paneHeight : calculatedHeight}
@@ -199,6 +219,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
         onScroll={onScroll}
         renderItem={({ index, style }) => {
           const child = children[index]
+          // @ts-expect-error ts-migrate(2533) FIXME: Object is possibly 'null' or 'undefined'.
           const key = child.key || index
           const props = {
             key,
@@ -249,10 +270,12 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
   )
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 TableVirtualBody.propTypes = {
   /**
    * Composes the Pane component as the base.
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
   ...Pane.propTypes,
 
   /**

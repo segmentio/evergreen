@@ -1,6 +1,7 @@
 import React, { memo, forwardRef, useState, useEffect, useCallback } from 'react'
 import VirtualList from '@segment/react-tiny-virtual-list'
 import Downshift from 'downshift'
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'fuzz... Remove this comment to see the full error message
 import fuzzaldrin from 'fuzzaldrin-plus'
 import PropTypes from 'prop-types'
 import { Position } from '../../constants'
@@ -9,24 +10,26 @@ import { Popover } from '../../popover'
 import { Text } from '../../typography'
 import AutocompleteItem from './AutocompleteItem'
 
-const fuzzyFilter = itemToString => {
+const fuzzyFilter = (itemToString: any) => {
   if (itemToString) {
-    return (items, input) => {
-      const wrappedItems = items.map(item => ({
+    return (items: any, input: any) => {
+      const wrappedItems = items.map((item: any) => ({
         key: itemToString(item),
         item
       }))
 
-      return fuzzaldrin.filter(wrappedItems, input, { key: 'key' }).map(({ item }) => item)
-    }
+      return fuzzaldrin.filter(wrappedItems, input, { key: 'key' }).map(({
+        item
+      }: any) => item);
+    };
   }
 
-  return (items, input) => fuzzaldrin.filter(items, input)
+  return (items: any, input: any) => fuzzaldrin.filter(items, input);
 }
 
 const noop = () => {}
 
-const autocompleteItemRenderer = props => <AutocompleteItem {...props} />
+const autocompleteItemRenderer = (props: any) => <AutocompleteItem {...props} />
 
 /* eslint-disable react/prop-types */
 const AutocompleteItems = ({
@@ -44,7 +47,7 @@ const AutocompleteItems = ({
   selectedItem,
   title,
   width
-}) => {
+}: any) => {
   itemsFilter = itemsFilter || fuzzyFilter(itemToString)
   const items = isFilterDisabled || inputValue.trim() === '' ? originalItems : itemsFilter(originalItems, inputValue)
 
@@ -56,7 +59,9 @@ const AutocompleteItems = ({
   return (
     <Pane width={width} {...menuProps}>
       {title && (
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Pane padding={8} borderBottom="muted">
+          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
           <Text size={300} textTransform="uppercase">
             {title}
           </Text>
@@ -70,6 +75,7 @@ const AutocompleteItems = ({
           itemCount={items.length}
           scrollToIndex={highlightedIndex || 0}
           overscanCount={3}
+          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           scrollToAlignment="auto"
           renderItem={({ index, style }) => {
             const item = items[index]
@@ -105,10 +111,11 @@ const Autocomplete = memo(
       renderItem = autocompleteItemRenderer,
       isFilterDisabled = false,
       itemsFilter,
-      itemToString = i => (i ? String(i) : ''),
+      itemToString = (i: any) => i ? String(i) : '',
       popoverMaxHeight = 240,
       popoverMinWidth = 240,
       allowOtherValues,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...restProps
     } = props
 
@@ -117,6 +124,7 @@ const Autocomplete = memo(
 
     useEffect(() => {
       if (targetRef) {
+        // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
         setTargetWidth(targetRef.getBoundingClientRect().width)
       }
     }, [targetRef])
@@ -126,10 +134,12 @@ const Autocomplete = memo(
         if (Object.prototype.hasOwnProperty.call(changes, 'isOpen') && changes.isOpen) {
           return {
             ...changes,
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'items' does not exist on type 'never'.
             highlightedIndex: props.items.indexOf(state.selectedItem)
           }
         }
 
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'allowOtherValues' does not exist on type... Remove this comment to see the full error message
         if (props.allowOtherValues && state.isOpen && !changes.isOpen) {
           return {
             ...changes,
@@ -140,6 +150,7 @@ const Autocomplete = memo(
 
         return changes
       },
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'items' does not exist on type 'never'.
       [props.items, props.allowOtherValues]
     )
 
@@ -156,11 +167,16 @@ const Autocomplete = memo(
           ...restDownshiftProps
         }) => (
           <div style={containerStyle}>
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             <Popover
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.
               bringFocusInside={false}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.
               isShown={isShown}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
               minWidth={popoverMinWidth}
               position={position || (targetWidth < popoverMinWidth ? Position.BOTTOM_LEFT : Position.BOTTOM)}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'Element' is not assignable to type 'never'.
               content={
                 <AutocompleteItems
                   getItemProps={getItemProps}
@@ -171,22 +187,31 @@ const Autocomplete = memo(
                   itemsFilter={itemsFilter}
                   itemSize={itemSize}
                   itemToString={itemToString}
+                  // @ts-expect-error ts-migrate(2339) FIXME: Property 'items' does not exist on type 'never'.
                   originalItems={props.items}
                   popoverMaxHeight={popoverMaxHeight}
                   renderItem={renderItem}
                   selectedItem={selectedItem}
+                  // @ts-expect-error ts-migrate(2339) FIXME: Property 'title' does not exist on type 'never'.
                   title={props.title}
                   width={Math.max(targetWidth, popoverMinWidth)}
                 />
               }
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
               minHeight={0}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
               animationDuration={0}
             >
-              {({ getRef, isShown: isShownPopover, toggle }) =>
+              {({
+                getRef,
+                isShown: isShownPopover,
+                toggle
+              }: any) =>
+                // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                 children({
                   isShown: isShownPopover,
                   toggle,
-                  getRef: ref => {
+                  getRef: (ref: any) => {
                     // Use the ref internally to determine the width
                     setTargetRef(ref)
                     getRef(ref)
@@ -201,10 +226,11 @@ const Autocomplete = memo(
           </div>
         )}
       </Downshift>
-    )
+    );
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Autocomplete.propTypes = {
   /**
    * This prop can be either a string or a Node.
@@ -287,6 +313,7 @@ Autocomplete.propTypes = {
    */
   allowOtherValues: PropTypes.bool,
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'typeo... Remove this comment to see the full error message
   ...Downshift.propTypes
 }
 

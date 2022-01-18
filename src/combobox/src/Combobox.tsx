@@ -9,23 +9,38 @@ import { TextInput } from '../../text-input'
 
 const Combobox = memo(function Combobox(props) {
   const {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'autocompleteProps' does not exist on typ... Remove this comment to see the full error message
     autocompleteProps,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'buttonProps' does not exist on type '{ c... Remove this comment to see the full error message
     buttonProps,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type '{ childr... Remove this comment to see the full error message
     height,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'initialSelectedItem' does not exist on t... Remove this comment to see the full error message
     initialSelectedItem,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'inputProps' does not exist on type '{ ch... Remove this comment to see the full error message
     inputProps,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isLoading' does not exist on type '{ chi... Remove this comment to see the full error message
     isLoading = false,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'itemToString' does not exist on type '{ ... Remove this comment to see the full error message
     itemToString,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'items' does not exist on type '{ childre... Remove this comment to see the full error message
     items,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onChange' does not exist on type '{ chil... Remove this comment to see the full error message
     onChange,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'openOnFocus' does not exist on type '{ c... Remove this comment to see the full error message
     openOnFocus = false,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'placeholder' does not exist on type '{ c... Remove this comment to see the full error message
     placeholder,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'selectedItem' does not exist on type '{ ... Remove this comment to see the full error message
     selectedItem,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'size' does not exist on type '{ children... Remove this comment to see the full error message
     size = 'medium',
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'width' does not exist on type '{ childre... Remove this comment to see the full error message
     width = 240,
     ...rest
   } = props
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'disabled' does not exist on type 'PropsW... Remove this comment to see the full error message
   const disabled = props.disabled || isLoading
 
   const [isOpenedByButton, setIsOpenedByButton] = useState(false)
@@ -56,7 +71,16 @@ const Combobox = memo(function Combobox(props) {
       {...autocompleteProps}
       onStateChange={handleStateChange}
     >
-      {({ clearSelection, getInputProps, getRef, getToggleButtonProps, inputValue, isShown, openMenu }) => (
+      {({
+        clearSelection,
+        getInputProps,
+        getRef,
+        getToggleButtonProps,
+        inputValue,
+        isShown,
+        openMenu
+      }: any) => (
+        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
         <Group ref={getRef} size={size} width={width} {...rest}>
           <TextInput
             width={0}
@@ -72,7 +96,7 @@ const Combobox = memo(function Combobox(props) {
               onFocus: () => {
                 if (openOnFocus) openMenu()
               },
-              onChange: e => {
+              onChange: (e: any) => {
                 if (isOpenedByButton) {
                   setIsOpenedByButton(false)
                 }
@@ -110,9 +134,10 @@ const Combobox = memo(function Combobox(props) {
         </Group>
       )}
     </Autocomplete>
-  )
+  );
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 Combobox.propTypes = {
   /**
    * Implements some APIs from ui-box.

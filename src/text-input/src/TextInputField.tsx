@@ -8,6 +8,7 @@ import TextInput from './TextInput'
 
 const TextInputField = memo(
   forwardRef(function TextInputField(props, ref) {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type 'never'.
     const id = useId('TextInputField', props.id)
 
     const {
@@ -31,6 +32,7 @@ const TextInputField = memo(
       validationMessage,
 
       // Rest props are spread on the FormField
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...restProps
     } = props
 
@@ -40,19 +42,25 @@ const TextInputField = memo(
     const { matchedProps, remainingProps } = splitBoxProps(restProps)
 
     return (
+      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <FormField
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         marginBottom={24}
         label={label}
         isRequired={required}
         hint={hint}
         description={description}
         validationMessage={validationMessage}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
         labelFor={id}
         {...matchedProps}
       >
         <TextInput
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
           id={id}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           width={inputWidth}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           height={inputHeight}
           disabled={disabled}
           required={required}
@@ -68,11 +76,14 @@ const TextInputField = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 TextInputField.propTypes = {
   /**
    * Composes the TextInput component as the base.
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
   ...TextInput.propTypes,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
   ...FormField.propTypes,
 
   /**

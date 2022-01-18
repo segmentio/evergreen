@@ -152,6 +152,7 @@ export default {
   codeBackgroundColor,
   codeBorderColor,
   // TODO support solid fills for v5 compat
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'subtle' does not exist on type '{}'.
   fills: fills.subtle,
   selectedOptionColor: colors.blue500,
   // Border radius used across input components

@@ -1,7 +1,12 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../../../../themer' or its cor... Remove this comment to see the full error message
 import { Themer } from '../../../../themer'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../foundational-styles/scales'... Remove this comment to see the full error message
 import scales from '../foundational-styles/scales'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../helpers' or its correspondi... Remove this comment to see the full error message
 import { getTextColorForIntent, getPrimaryButtonStylesForIntent } from '../helpers'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../shared' or its correspondin... Remove this comment to see the full error message
 import { defaultControlStyles } from '../shared'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../utils/memoizeClassName' or ... Remove this comment to see the full error message
 import memoizeClassName from '../utils/memoizeClassName'
 
 /**
@@ -15,7 +20,7 @@ const { disabled } = defaultControlStyles
  * @param {string} intent - none, success, warning, danger.
  * @return {Object} the appearance of the button.
  */
-const getButtonAppearance = (appearance, intent) => {
+const getButtonAppearance = (appearance: any, intent: any) => {
   switch (appearance) {
     case 'primary': {
       const { focusColor, linearGradient } = getPrimaryButtonStylesForIntent(intent)

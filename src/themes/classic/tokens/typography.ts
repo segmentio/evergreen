@@ -1,7 +1,10 @@
 const fontSizes = ['11px', '12px', '14px', '16px', '20px', '24px', '29px', '35px']
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'body' does not exist on type 'string[]'.
 fontSizes.body = '14px'
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'heading' does not exist on type 'string[... Remove this comment to see the full error message
 fontSizes.heading = '16px'
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'caption' does not exist on type 'string[... Remove this comment to see the full error message
 fontSizes.caption = '11px'
 
 const typography = {

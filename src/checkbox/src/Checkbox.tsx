@@ -76,6 +76,7 @@ const Checkbox = memo(
       onChange = noop,
       value,
       indeterminate = false,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
@@ -84,6 +85,7 @@ const Checkbox = memo(
 
     useEffect(() => {
       if (ref) {
+        // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
         ref.indeterminate = indeterminate
       }
     }, [ref, indeterminate])
@@ -131,6 +133,7 @@ const Checkbox = memo(
           {indeterminate ? <MinusIcon /> : <CheckIcon />}
         </Box>
         {label && (
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           <Text marginLeft={8} size={300} color={disabled ? 'muted' : 'default'}>
             {label}
           </Text>
@@ -140,6 +143,7 @@ const Checkbox = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Checkbox.propTypes = {
   /**
    * Composes some Box APIs.

@@ -6,7 +6,7 @@ import canUseDom from '../../lib/canUseDom'
  * You shouldn't have to manually run this.
  * This is mainly an export for testing purposes.
  */
-export function hydrate(hydration) {
+export function hydrate(hydration: any) {
   if (hydration.uiBoxCache) {
     boxHydrate(hydration.uiBoxCache)
   }

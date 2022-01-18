@@ -7,6 +7,7 @@ const Pill = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Pill.propTypes = Badge.propTypes
 
 export default Pill

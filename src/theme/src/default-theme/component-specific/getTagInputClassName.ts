@@ -1,10 +1,15 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../../../../themer' or its cor... Remove this comment to see the full error message
 import { Themer } from '../../../../themer'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../foundational-styles/palette... Remove this comment to see the full error message
 import palette from '../foundational-styles/palette'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../foundational-styles/scales'... Remove this comment to see the full error message
 import scales from '../foundational-styles/scales'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../utils/memoizeClassName' or ... Remove this comment to see the full error message
 import memoizeClassName from '../utils/memoizeClassName'
 
 const TagInputAppearances = {}
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'default' does not exist on type '{}'.
 TagInputAppearances.default = Themer.createTagInputAppearance({
   base: {
     backgroundColor: 'white',
@@ -28,6 +33,7 @@ TagInputAppearances.default = Themer.createTagInputAppearance({
  * @return {Object} the appearance object.
  */
 const getTextInputAppearance = () => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'default' does not exist on type '{}'.
   return TagInputAppearances.default
 }
 

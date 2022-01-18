@@ -7,6 +7,7 @@ import Button, { getIconSizeForButton, internalStyles, pseudoSelectors } from '.
 
 const IconButton = memo(
   forwardRef(function IconButton(props, ref) {
+    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { icon, iconSize, ...restProps } = props
 
     // modifiers
@@ -31,6 +32,7 @@ const IconButton = memo(
       >
         <IconWrapper
           icon={icon}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           color={intent === 'none' ? 'default' : 'currentColor'}
           size={iconSize || relativeIconSize}
         />
@@ -39,6 +41,7 @@ const IconButton = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 IconButton.propTypes = {
   /**
    * Composes the dimensions spec from the Box primitive.

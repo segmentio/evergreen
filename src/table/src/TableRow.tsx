@@ -40,6 +40,7 @@ const TableRow = memo(
       isHighlighted,
       isSelectable,
       isSelected,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
@@ -78,6 +79,7 @@ const TableRow = memo(
               manageTableRowFocusInteraction(event.key, mainRef.current)
             } catch (_) {}
           } else if (event.key === 'Escape') {
+            // @ts-expect-error ts-migrate(2358) FIXME: The left-hand side of an 'instanceof' expression m... Remove this comment to see the full error message
             if (mainRef.current && mainRef.current instanceof Node) mainRef.current.blur()
           }
         }
@@ -108,6 +110,7 @@ const TableRow = memo(
         tabIndex={isSelectable ? clickable.tabIndex : undefined}
         onClick={handleClick}
         onKeyDown={clickable.onKeyDown}
+        // @ts-expect-error ts-migrate(2783) FIXME: 'borderBottom' is specified more than once, so thi... Remove this comment to see the full error message
         borderBottom="muted"
         height={height}
         {...boxProps}
@@ -119,10 +122,12 @@ const TableRow = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 TableRow.propTypes = {
   /**
    * Composes the Pane component as the base.
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
   ...Pane.propTypes,
 
   /**

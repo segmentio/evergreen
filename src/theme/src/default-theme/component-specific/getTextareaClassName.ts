@@ -1,10 +1,15 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../../../../themer' or its cor... Remove this comment to see the full error message
 import { Themer } from '../../../../themer'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../foundational-styles/palette... Remove this comment to see the full error message
 import palette from '../foundational-styles/palette'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../foundational-styles/scales'... Remove this comment to see the full error message
 import scales from '../foundational-styles/scales'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../utils/memoizeClassName' or ... Remove this comment to see the full error message
 import memoizeClassName from '../utils/memoizeClassName'
 
 const Appearances = {}
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'default' does not exist on type '{}'.
 Appearances.default = Themer.createInputAppearance({
   base: {
     backgroundColor: 'white',
@@ -26,6 +31,7 @@ Appearances.default = Themer.createInputAppearance({
   }
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'neutral' does not exist on type '{}'.
 Appearances.neutral = Themer.createInputAppearance({
   base: {
     backgroundColor: scales.neutral.N2A
@@ -47,6 +53,7 @@ Appearances.neutral = Themer.createInputAppearance({
   }
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'editableCell' does not exist on type '{}... Remove this comment to see the full error message
 Appearances.editableCell = Themer.createInputAppearance({
   base: {
     backgroundColor: scales.neutral.N2A
@@ -73,13 +80,16 @@ Appearances.editableCell = Themer.createInputAppearance({
  * @param {string} appearance
  * @return {Object} the appearance object.
  */
-const getTextareaAppearance = appearance => {
+const getTextareaAppearance = (appearance: any) => {
   switch (appearance) {
     case 'neutral':
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'neutral' does not exist on type '{}'.
       return Appearances.neutral
     case 'editable-cell':
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'editableCell' does not exist on type '{}... Remove this comment to see the full error message
       return Appearances.editableCell
     default:
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'default' does not exist on type '{}'.
       return Appearances.default
   }
 }

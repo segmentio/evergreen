@@ -13,12 +13,19 @@ const emptyProps = {}
 const EditableCell = memo(function EditableCell(props) {
   const {
     children,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'size' does not exist on type '{ children... Remove this comment to see the full error message
     size = 300,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'disabled' does not exist on type '{ chil... Remove this comment to see the full error message
     disabled,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'placeholder' does not exist on type '{ c... Remove this comment to see the full error message
     placeholder,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isSelectable' does not exist on type '{ ... Remove this comment to see the full error message
     isSelectable = true,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'textProps' does not exist on type '{ chi... Remove this comment to see the full error message
     textProps = emptyProps,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'autoFocus' does not exist on type '{ chi... Remove this comment to see the full error message
     autoFocus = false,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onChange' does not exist on type '{ chil... Remove this comment to see the full error message
     onChange,
     ...rest
   } = props
@@ -67,6 +74,7 @@ const EditableCell = memo(function EditableCell(props) {
       safeInvoke(onChangeRef.current, value)
 
       if (mainRef.current && isSelectable) {
+        // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
         mainRef.current.focus()
       }
     },
@@ -81,6 +89,7 @@ const EditableCell = memo(function EditableCell(props) {
 
   const handleClick = useCallback(() => {
     if (mainRef.current) {
+      // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
       mainRef.current.focus()
     }
   }, [])
@@ -105,13 +114,20 @@ const EditableCell = memo(function EditableCell(props) {
   )
   return (
     <React.Fragment>
+      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <TextTableCell
         ref={mainRef}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
         isSelectable={isSelectable}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type 'never... Remove this comment to see the full error message
         onClick={handleClick}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type 'never... Remove this comment to see the full error message
         onDoubleClick={handleDoubleClick}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '(e: any) => void' is not assignable to type ... Remove this comment to see the full error message
         onKeyDown={handleKeyDown}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         cursor={cursor}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
         textProps={mergedTextProps}
         {...rest}
       >
@@ -120,28 +136,29 @@ const EditableCell = memo(function EditableCell(props) {
       {isEditing && (
         <Portal>
           <Stack>
-            {zIndex => (
-              <EditableCellField
-                zIndex={zIndex}
-                getTargetRef={getTargetRef}
-                value={value}
-                onEscape={handleFieldCancel}
-                onChangeComplete={handleFieldChangeComplete}
-                onCancel={handleFieldCancel}
-                size={size}
-              />
-            )}
+            {(zIndex: any) => <EditableCellField
+              // @ts-expect-error ts-migrate(2322) FIXME: Type '{ zIndex: any; getTargetRef: () => null; val... Remove this comment to see the full error message
+              zIndex={zIndex}
+              getTargetRef={getTargetRef}
+              value={value}
+              onEscape={handleFieldCancel}
+              onChangeComplete={handleFieldChangeComplete}
+              onCancel={handleFieldCancel}
+              size={size}
+            />}
           </Stack>
         </Portal>
       )}
     </React.Fragment>
-  )
+  );
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 EditableCell.propTypes = {
   /**
    * Composes the TableCell component as the base.
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
   ...TableCell.propTypes,
 
   /*

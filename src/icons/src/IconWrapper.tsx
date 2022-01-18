@@ -1,5 +1,6 @@
 import React, { forwardRef, memo } from 'react'
 import PropTypes from 'prop-types'
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import ReactIs from 'react-is'
 import Box from 'ui-box'
 
@@ -8,6 +9,7 @@ import Box from 'ui-box'
  * Box props are applied to the outer Box container, and Evergreen icon-specific props are added to the icon element.
  */
 export const IconWrapper = memo(
+  // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
   forwardRef(function Icon({ color, icon, size, title, ...props }, ref) {
     if (!icon || typeof icon === 'string') {
       return null
@@ -22,8 +24,10 @@ export const IconWrapper = memo(
     let iconWithProps = null
     if (ReactIs.isValidElementType(icon)) {
       const Component = icon
+      // @ts-expect-error ts-migrate(2604) FIXME: JSX element type 'Component' does not have any con... Remove this comment to see the full error message
       iconWithProps = <Component ref={ref} {...iconProps} />
     } else if (React.isValidElement(icon)) {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'never'.
       iconWithProps = React.cloneElement(icon, { ...iconProps, ...icon.props, ref })
     }
 
@@ -35,6 +39,7 @@ export const IconWrapper = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 IconWrapper.propTypes = {
   /**
    * Color of icon. Equivalent to setting CSS `fill` property.

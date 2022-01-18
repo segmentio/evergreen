@@ -7,7 +7,7 @@ const baseStyle = {
 const appearances = {
   default: {
     backgroundColor: 'white',
-    border: theme => `1px solid ${theme.colors.gray500}`,
+    border: (theme: any) => `1px solid ${theme.colors.gray500}`,
     color: 'colors.gray800',
 
     _disabled: {

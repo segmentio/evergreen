@@ -42,6 +42,7 @@ const handleContainerStyleClass = css({
   }
 }).toString()
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'fill' does not exist on type '{ children... Remove this comment to see the full error message
 const CheckIcon = memo(function CheckIcon({ fill = 'currentColor', size, ...props }) {
   return (
     <svg width={10} height={size} viewBox="0 0 10 7" {...props}>
@@ -54,6 +55,7 @@ const CheckIcon = memo(function CheckIcon({ fill = 'currentColor', size, ...prop
   )
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 CheckIcon.propTypes = {
   fill: PropTypes.string,
   size: PropTypes.number
@@ -102,6 +104,7 @@ const Switch = memo(
       appearance = 'default',
       hasCheckIcon = false,
       defaultChecked,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
@@ -128,6 +131,7 @@ const Switch = memo(
         />
         <Box height={height} width={height * 2} borderRadius={9999} cursor="pointer">
           <Box height={height} width={height} data-checked={checked} className={iconContainerStyleClass}>
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ display: string | undefined; size: number;... Remove this comment to see the full error message
             {hasCheckIcon && <CheckIcon display={checked ? 'block' : undefined} size={height / 2 - 3} />}
           </Box>
           <Box width={height * 2} display="flex" data-checked={checked} className={handleContainerStyleClass}>
@@ -141,6 +145,7 @@ const Switch = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Switch.propTypes = {
   /**
    * Composes some Box APIs.

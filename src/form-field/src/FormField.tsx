@@ -17,12 +17,14 @@ const FormField = memo(
       labelProps = { size: 400 },
       description,
       validationMessage,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
     return (
       <Box {...rest} ref={ref}>
         <Box display="flex" flexDirection="column" marginBottom={8}>
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: never; size: number; htmlFor: ne... Remove this comment to see the full error message
           <FormFieldLabel htmlFor={labelFor} isAstrixShown={isRequired} {...labelProps}>
             {label}
           </FormFieldLabel>
@@ -30,16 +32,19 @@ const FormField = memo(
         </Box>
         {children}
         {typeof validationMessage === 'string' ? (
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           <FormFieldValidationMessage marginTop={8}>{validationMessage}</FormFieldValidationMessage>
         ) : (
           validationMessage
         )}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         {typeof hint === 'string' ? <FormFieldHint marginTop={6}>{hint}</FormFieldHint> : hint}
       </Box>
     )
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 FormField.propTypes = {
   /**
    * The label used above the input element.

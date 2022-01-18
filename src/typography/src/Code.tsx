@@ -8,6 +8,7 @@ const internalStyles = {}
 
 const Code = memo(
   forwardRef(function Code(props, ref) {
+    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { appearance = 'default', className, ...restProps } = props
 
     const styleProps = useStyleConfig('Code', { appearance }, pseudoSelectors, internalStyles)
@@ -16,7 +17,9 @@ const Code = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Code.propTypes = {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
   ...Text.propTypes,
 
   /**

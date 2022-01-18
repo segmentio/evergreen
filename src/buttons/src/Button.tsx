@@ -8,6 +8,7 @@ import { getTextPropsForControlHeight } from '../../lib/deprecated-theme-helpers
 import { Spinner } from '../../spinner'
 
 /* eslint-disable react/prop-types */
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'edge' does not exist on type '{ children... Remove this comment to see the full error message
 const ButtonIcon = memo(function ButtonIcon({ edge, icon, size, spacing }) {
   if (!icon) return null
 
@@ -17,6 +18,7 @@ const ButtonIcon = memo(function ButtonIcon({ edge, icon, size, spacing }) {
   const marginLeft = edge === 'start' ? edgeMargin : innerMargin
   const marginRight = edge === 'end' ? edgeMargin : innerMargin
 
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
   return <IconWrapper icon={icon} size={size} marginLeft={marginLeft} marginRight={marginRight} />
 })
 /* eslint-enable react/prop-types */
@@ -52,7 +54,7 @@ export const pseudoSelectors = {
   _hover: '&:not([disabled]):hover'
 }
 
-export const getIconSizeForButton = height => {
+export const getIconSizeForButton = (height: any) => {
   if (height <= 28) return 12
   if (height <= 32) return 14
   if (height <= 40) return 16
@@ -74,6 +76,7 @@ const Button = memo(
       is = 'button',
       isActive = false,
       isLoading,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...restProps
     } = props
 
@@ -102,19 +105,25 @@ const Button = memo(
       >
         {isLoading && (
           <Spinner
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
             marginLeft={-Math.round(height / 8)}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
             marginRight={Math.round(height / 4)}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
             size={Math.round(height / 2)}
           />
         )}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ icon: never; size: number; spacing: any; e... Remove this comment to see the full error message
         <ButtonIcon icon={iconBefore} size={iconSize} spacing={restProps.paddingLeft} edge="start" />
         {children}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ icon: never; size: number; spacing: any; e... Remove this comment to see the full error message
         <ButtonIcon icon={iconAfter} size={iconSize} spacing={restProps.paddingRight} edge="end" />
       </Box>
     )
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Button.propTypes = {
   /**
    * Composes the dimensions spec from the Box primitive.

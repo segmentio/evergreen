@@ -6,7 +6,9 @@ const baseStyle = {
   borderRadius: 'radii.1',
   fontWeight: 500,
   border: '0',
-  color: (theme, { color }) => theme.colors[color] || color || 'colors.default',
+  color: (theme: any, {
+    color
+  }: any) => theme.colors[color] || color || 'colors.default',
   _disabled: {
     ...defaultControlStyles.disabled
   }
@@ -15,41 +17,43 @@ const baseStyle = {
 const appearances = {
   primary: {
     backgroundColor: 'white',
-    backgroundImage: (_, props) => getPrimaryButtonStylesForIntent(props.intent).linearGradient.base,
-    boxShadow: theme => `inset 0 0 0 1px ${theme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`,
+    backgroundImage: (_: any, props: any) => getPrimaryButtonStylesForIntent(props.intent).linearGradient.base,
+    boxShadow: (theme: any) => `inset 0 0 0 1px ${theme.scales.neutral.N5A}, inset 0 -1px 1px 0 ${theme.scales.neutral.N2A}`,
     color: 'white',
     _focus: {
-      backgroundImage: (_, props) => getPrimaryButtonStylesForIntent(props.intent).linearGradient.focus,
-      boxShadow: (theme, props) =>
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'focus' does not exist on type '{ base: s... Remove this comment to see the full error message
+      backgroundImage: (_: any, props: any) => getPrimaryButtonStylesForIntent(props.intent).linearGradient.focus,
+      boxShadow: (theme: any, props: any) =>
         `0 0 0 3px ${getPrimaryButtonStylesForIntent(props.intent).focusColor}, inset 0 0 0 1px ${
           theme.scales.neutral.N4A
         }, inset 0 -1px 1px 0 ${theme.scales.neutral.N5A}`
     },
     _hover: {
-      backgroundImage: (_, props) => getPrimaryButtonStylesForIntent(props.intent).linearGradient.hover
+      backgroundImage: (_: any, props: any) => getPrimaryButtonStylesForIntent(props.intent).linearGradient.hover
     },
     _active: {
-      backgroundImage: (_, props) => getPrimaryButtonStylesForIntent(props.intent).linearGradient.active
+      backgroundImage: (_: any, props: any) => getPrimaryButtonStylesForIntent(props.intent).linearGradient.active
     },
     _focusAndActive: {}
   },
 
   default: {
     ...defaultControlStyles.base,
-    color: (_, props) => getTextColorForIntent(props.intent),
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
+    color: (_: any, props: any) => getTextColorForIntent(props.intent),
     _hover: defaultControlStyles.hover,
     _active: defaultControlStyles.active,
     _focus: defaultControlStyles.focus,
     _disabled: defaultControlStyles.disabled
   },
   minimal: {
-    color: (theme, props) => getTextColorForIntent(props.intent, theme.colors.blue.base),
+    color: (theme: any, props: any) => getTextColorForIntent(props.intent, theme.colors.blue.base),
     background: 'transparent',
     _hover: {
       background: 'scales.neutral.N2A'
     },
     _focus: {
-      boxShadow: theme => `0 0 0 3px ${theme.colors.blueAlpha.B5A}`
+      boxShadow: (theme: any) => `0 0 0 3px ${theme.colors.blueAlpha.B5A}`
     },
     _active: {
       background: 'scales.blue.B3A'

@@ -7,7 +7,7 @@ import safeInvoke from '../../lib/safe-invoke'
 import { toaster } from '../../toaster'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
 
-function executeArrowKeyOverride(override) {
+function executeArrowKeyOverride(override: any) {
   if (!override) {
     return
   }
@@ -18,6 +18,7 @@ function executeArrowKeyOverride(override) {
   }
 
   if (typeof override === 'string') {
+    // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
     document.querySelector(override).focus()
     return
   }
@@ -52,6 +53,7 @@ const TableCell = memo(
       className,
       rightView,
       arrowKeysOverrides,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
@@ -61,6 +63,7 @@ const TableCell = memo(
 
     const handleKeyDown = useCallback(
       e => {
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'arrowKeysOverrides' does not exist on ty... Remove this comment to see the full error message
         const arrowKeysOverrides = props.arrowKeysOverrides || {}
 
         if (isSelectable) {
@@ -79,6 +82,7 @@ const TableCell = memo(
               console.error('Keyboard interaction not possible', error)
             }
           } else if (key === 'Escape') {
+            // @ts-expect-error ts-migrate(2358) FIXME: The left-hand side of an 'instanceof' expression m... Remove this comment to see the full error message
             if (cellRef.current instanceof Node) cellRef.current.blur()
           }
         }
@@ -86,6 +90,7 @@ const TableCell = memo(
         safeInvoke(onKeyDownRef.current, e)
       },
       // onKeyDownRef.current is a ref
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'arrowKeysOverrides' does not exist on ty... Remove this comment to see the full error message
       // eslint-disable-next-line react-hooks/exhaustive-deps
       [isSelectable, props.arrowKeysOverrides]
     )
@@ -115,10 +120,12 @@ const TableCell = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 TableCell.propTypes = {
   /**
    * Composes the Pane component as the base.
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
   ...Pane.propTypes,
 
   /*

@@ -6,6 +6,7 @@ import palette from './palette'
  */
 const fills = {}
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'solid' does not exist on type '{}'.
 fills.solid = {
   neutral: {
     color: 'white',
@@ -41,6 +42,7 @@ fills.solid = {
   }
 }
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'subtle' does not exist on type '{}'.
 fills.subtle = {
   neutral: {
     color: colors.text.default,
@@ -76,6 +78,7 @@ fills.subtle = {
   }
 }
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'options' does not exist on type '{}'.
 fills.options = Object.keys(fills.solid)
 
 export default fills

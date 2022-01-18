@@ -15,9 +15,10 @@ const wrapperClass = css({
   pointerEvents: 'none'
 })
 
-const hasCustomId = settings => Object.hasOwnProperty.call(settings, 'id')
+const hasCustomId = (settings: any) => Object.hasOwnProperty.call(settings, 'id')
 
 const ToastManager = memo(function ToastManager(props) {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'bindCloseAll' does not exist on type '{ ... Remove this comment to see the full error message
   const { bindCloseAll, bindGetToasts, bindNotify, bindRemove } = props
 
   const [toasts, setToasts] = useState([])
@@ -26,6 +27,7 @@ const ToastManager = memo(function ToastManager(props) {
   const getToasts = () => toasts
 
   const closeAll = () => {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'any[]' is not assignable to para... Remove this comment to see the full error message
     setToasts(toasts.map(toast => ({ ...toast, isShown: false })))
   }
 
@@ -33,11 +35,14 @@ const ToastManager = memo(function ToastManager(props) {
    * This will set isShown on the Toast which will close the toast.
    * It won't remove the toast until onExited triggers onRemove.
    */
-  const closeToast = id => {
+  const closeToast = (id: any) => {
     setToasts(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'any[]' is not assignable to para... Remove this comment to see the full error message
       toasts.map(toast => {
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type 'never'.
         if (toast.id === id) {
           return {
+            // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
             ...toast,
             isShown: false
           }
@@ -48,21 +53,24 @@ const ToastManager = memo(function ToastManager(props) {
     )
   }
 
-  const safeCloseToast = id => {
+  const safeCloseToast = (id: any) => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type 'never'.
     const toastToRemove = toasts.find(toast => String(toast.id).startsWith(id))
 
     if (toastToRemove) {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type 'never'.
       closeToast(toastToRemove.id)
     }
   }
 
-  const removeToast = id => {
+  const removeToast = (id: any) => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type 'never'.
     const updatedToasts = toasts.filter(toast => !String(toast.id).startsWith(id))
     setToasts(updatedToasts)
     return updatedToasts
   }
 
-  const createToastInstance = (title, settings) => {
+  const createToastInstance = (title: any, settings: any) => {
     const uniqueId = idCounter
     setIdCounter(idCounter + 1)
     const id = hasCustomId(settings) ? `${settings.id}-${uniqueId}` : uniqueId
@@ -78,13 +86,14 @@ const ToastManager = memo(function ToastManager(props) {
     }
   }
 
-  const notify = (title, settings) => {
+  const notify = (title: any, settings: any) => {
     let tempToasts = toasts
     if (hasCustomId(settings)) {
       tempToasts = removeToast(settings.id)
     }
 
     const instance = createToastInstance(title, settings)
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string | number; title: any; descripti... Remove this comment to see the full error message
     setToasts([instance, ...tempToasts])
   }
 
@@ -94,7 +103,9 @@ const ToastManager = memo(function ToastManager(props) {
   bindCloseAll(closeAll)
 
   return (
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'StyleAttribute' is not assignable to type 's... Remove this comment to see the full error message
     <span className={wrapperClass}>
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       {toasts.map(({ description, id, ...rest }) => {
         return (
           <Toast key={id} onRemove={() => removeToast(id)} {...rest}>
@@ -106,6 +117,7 @@ const ToastManager = memo(function ToastManager(props) {
   )
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 ToastManager.propTypes = {
   /**
    * Function called with the `this.notify` function.

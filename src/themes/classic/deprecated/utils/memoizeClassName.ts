@@ -20,24 +20,27 @@ import { css } from 'glamor'
  * @param {function} fn — function that return an appearance (object).
  * @return {string} a class name.
  */
-const memoizeClassName = fn => {
+const memoizeClassName = (fn: any) => {
   // Memo will hold a list of string keys with string values (classNames).
   const memo = {}
 
   // Return the wrapped function.
-  return (...args) => {
+  return (...args: any[]) => {
     // Create a key by joining all args.
     const key = args.join('_') || '__no_args__'
 
     // Check if is already memoized, if so return the result.
+    // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     if (memo[key]) return memo[key]
 
     // Create a new entry in the memo with the generated className.
+    // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     memo[key] = css(fn(...args)).toString()
 
     // Return the newly generated className.
+    // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     return memo[key]
-  }
+  };
 }
 
 export default memoizeClassName

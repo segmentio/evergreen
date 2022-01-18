@@ -9,6 +9,7 @@ const internalStyles = {}
 
 const TooltipStateless = memo(
   forwardRef(function TooltipStateless(props, ref) {
+    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { appearance, children, ...restProps } = props
     const { ...boxProps } = useStyleConfig('Tooltip', { appearance }, pseudoSelectors, internalStyles)
 
@@ -17,6 +18,7 @@ const TooltipStateless = memo(
     let child
     if (typeof children === 'string') {
       child = (
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
         <Paragraph color={color} size={400}>
           {children}
         </Paragraph>
@@ -33,6 +35,7 @@ const TooltipStateless = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 TooltipStateless.propTypes = {
   children: PropTypes.node,
 

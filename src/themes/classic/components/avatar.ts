@@ -1,4 +1,7 @@
-function getColors(theme, { color, hashValue }) {
+function getColors(theme: any, {
+  color,
+  hashValue
+}: any) {
   if (color === 'automatic') {
     const keys = Object.keys(theme.fills.subtle)
 
@@ -12,7 +15,7 @@ function getColors(theme, { color, hashValue }) {
   return theme.fills.subtle[color]
 }
 
-const baseStyle = (theme, props) => {
+const baseStyle = (theme: any, props: any) => {
   return {
     borderRadius: props.shape === 'round' ? '100%' : 'radii.1',
     ...getColors(theme, props)

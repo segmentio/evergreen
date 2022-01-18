@@ -1,28 +1,37 @@
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'tiny... Remove this comment to see the full error message
 import tinycolor from 'tinycolor2'
 
 const baseStyle = {
-  color: (_, { color }) => `colors.${getThemeKeyForColor(color)}.base`,
+  color: (_: any, {
+    color
+  }: any) => `colors.${getThemeKeyForColor(color)}.base`,
   _hover: {
-    color: (_, { color }) =>
+    color: (_: any, {
+      color
+    }: any) =>
       tinycolor(`colors.${getThemeKeyForColor(color)}.base`)
         .lighten(10)
         .toString()
   },
   _active: {
-    color: (theme, { color }) =>
+    color: (theme: any, {
+      color
+    }: any) =>
       tinycolor(theme.colors[getThemeKeyForColor(color)].base)
         .darken(10)
         .toString()
   },
   _focus: {
-    boxShadow: (theme, { color }) =>
+    boxShadow: (theme: any, {
+      color
+    }: any) =>
       `0 0 0 2px ${tinycolor(theme.colors[getThemeKeyForColor(color)].base)
         .setAlpha(0.4)
         .toString()}`
   }
 }
 
-const getThemeKeyForColor = color => {
+const getThemeKeyForColor = (color: any) => {
   switch (color) {
     case 'blue':
     case 'neutral':

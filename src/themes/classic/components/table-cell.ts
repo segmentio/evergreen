@@ -7,7 +7,7 @@ const appearances = {
     _focus: {
       outline: 'none',
       backgroundColor: 'colors.blueAlpha.B2A',
-      boxShadow: theme => `inset 0 0 0 1px ${theme.colors.blueAlpha.B7A}`
+      boxShadow: (theme: any) => `inset 0 0 0 1px ${theme.colors.blueAlpha.B7A}`
     }
   }
 }

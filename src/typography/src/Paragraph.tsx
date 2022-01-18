@@ -8,6 +8,7 @@ const emptyObject = {}
 
 const Paragraph = memo(
   forwardRef(function Paragraph(props, ref) {
+    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { color = 'default', fontFamily = 'ui', size = 400, ...restProps } = props
 
     const theme = useTheme()
@@ -15,6 +16,7 @@ const Paragraph = memo(
     const { colors, fontFamilies } = theme
 
     const themedFontFamily = fontFamilies[fontFamily] || fontFamily
+    // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     const themedColor = colors[color] || (colors.text && colors.text[color]) || color
 
     const textStyle = useStyleConfig('Paragraph', { size }, emptyObject, emptyObject)
@@ -23,10 +25,12 @@ const Paragraph = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Paragraph.propTypes = {
   /**
    * Composes the Box component as the base.
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type '<E ex... Remove this comment to see the full error message
   ...Box.propTypes,
 
   /**

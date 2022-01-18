@@ -31,7 +31,7 @@ const pseudoSelectors = {
   _active: '&:not([disabled]):active'
 }
 
-const getIconSizeForSelect = height => {
+const getIconSizeForSelect = (height: any) => {
   if (height <= 28) return 12
   if (height <= 32) return 14 // Slightly bigger than getIconSizeForButton
   if (height <= 40) return 16
@@ -54,6 +54,7 @@ const Select = memo(
       onChange,
       required,
       value,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...restProps
     } = props
 
@@ -93,8 +94,11 @@ const Select = memo(
           required={required}
           autoFocus={autoFocus}
           disabled={disabled}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'boolean |... Remove this comment to see the full error message
           aria-invalid={String(isInvalid)}
+          // @ts-expect-error ts-migrate(2783) FIXME: 'paddingLeft' is specified more than once, so this... Remove this comment to see the full error message
           paddingLeft={Math.round(height / 3.2)}
+          // @ts-expect-error ts-migrate(2783) FIXME: 'paddingRight' is specified more than once, so thi... Remove this comment to see the full error message
           paddingRight={iconMargin * 2 + iconSize}
           {...boxProps}
           height="100%"
@@ -102,12 +106,19 @@ const Select = memo(
           {children}
         </Box>
         <CaretDownIcon
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           color="default"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           size={iconSize}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           position="absolute"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           top="50%"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           marginTop={-iconSize / 2}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           right={iconMargin}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           pointerEvents="none"
         />
       </Box>
@@ -115,6 +126,7 @@ const Select = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Select.propTypes = {
   /**
    * Composes the dimensions spec from the Box primitive.

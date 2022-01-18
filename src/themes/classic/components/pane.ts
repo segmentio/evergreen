@@ -1,4 +1,7 @@
-function borderProperty(theme, { border, value }) {
+function borderProperty(theme: any, {
+  border,
+  value
+}: any) {
   if (Object.prototype.hasOwnProperty.call(theme.colors.border, value)) {
     return `1px solid ${theme.colors.border[value]}`
   }
@@ -22,7 +25,7 @@ function borderProperty(theme, { border, value }) {
   return value || border
 }
 
-const baseStyle = (theme, props) => {
+const baseStyle = (theme: any, props: any) => {
   const transitionStyles = {}
   if (theme.shadows[props.hoverElevation] || theme.shadows[props.activeElevation]) {
     Object.assign(transitionStyles, {

@@ -10,7 +10,13 @@ import { Position } from '../../constants'
  * @param {Number} position.top
  * @return {Object} Rect { width, height, left, top, right, bottom }
  */
-const makeRect = ({ height, width }, { left, top }) => {
+const makeRect = ({
+  height,
+  width
+}: any, {
+  left,
+  top
+}: any) => {
   const ceiledLeft = Math.ceil(left)
   const ceiledTop = Math.ceil(top)
   return {
@@ -28,7 +34,7 @@ const makeRect = ({ height, width }, { left, top }) => {
  * @param {Position} position
  * @return {Position} flipped position
  */
-const flipHorizontal = position => {
+const flipHorizontal = (position: any) => {
   switch (position) {
     case Position.TOP_LEFT:
       return Position.BOTTOM_LEFT
@@ -51,7 +57,7 @@ const flipHorizontal = position => {
  * @param {Position} position
  * @return {Boolean}
  */
-const isAlignedOnTop = position => {
+const isAlignedOnTop = (position: any) => {
   switch (position) {
     case Position.TOP_LEFT:
     case Position.TOP:
@@ -67,7 +73,7 @@ const isAlignedOnTop = position => {
  * @param {Position} position
  * @return {Boolean}
  */
-const isAlignedHorizontal = position => {
+const isAlignedHorizontal = (position: any) => {
   switch (position) {
     case Position.LEFT:
     case Position.RIGHT:
@@ -84,7 +90,7 @@ const isAlignedHorizontal = position => {
  * @param {Number} viewportOffset
  * @return {Boolean}
  */
-const getFitsOnBottom = (rect, viewport, viewportOffset) => {
+const getFitsOnBottom = (rect: any, viewport: any, viewportOffset: any) => {
   return rect.bottom < viewport.height - viewportOffset
 }
 
@@ -94,7 +100,7 @@ const getFitsOnBottom = (rect, viewport, viewportOffset) => {
  * @param {Number} viewportOffset
  * @return {Boolean}
  */
-const getFitsOnTop = (rect, viewportOffset) => {
+const getFitsOnTop = (rect: any, viewportOffset: any) => {
   return rect.top > viewportOffset
 }
 
@@ -105,7 +111,7 @@ const getFitsOnTop = (rect, viewportOffset) => {
  * @param {Number} viewportOffset
  * @return {Boolean}
  */
-const getFitsOnRight = (rect, viewport, viewportOffset) => {
+const getFitsOnRight = (rect: any, viewport: any, viewportOffset: any) => {
   return rect.right < viewport.width - viewportOffset
 }
 
@@ -115,7 +121,7 @@ const getFitsOnRight = (rect, viewport, viewportOffset) => {
  * @param {Number} viewportOffset
  * @return {Boolean}
  */
-const getFitsOnLeft = (rect, viewportOffset) => {
+const getFitsOnLeft = (rect: any, viewportOffset: any) => {
   return rect.left > viewportOffset
 }
 
@@ -128,7 +134,12 @@ const getFitsOnLeft = (rect, viewportOffset) => {
  * @param {Number} targetCenter - center of the target.
  * @return {String} transform origin
  */
-const getTransformOrigin = ({ dimensions, position, rect, targetCenter }) => {
+const getTransformOrigin = ({
+  dimensions,
+  position,
+  rect,
+  targetCenter
+}: any) => {
   const centerY = Math.round(targetCenter - rect.top)
 
   if (position === Position.LEFT) {
@@ -169,7 +180,7 @@ export default function getFittedPosition({
   targetRect,
   viewport,
   viewportOffset = 8
-}) {
+}: any) {
   const { position: finalPosition, rect } = getPosition({
     position,
     dimensions,
@@ -233,7 +244,14 @@ export default function getFittedPosition({
  * @param {Object} viewportOffset - offset from the viewport.
  * @return {Object} - { rect: Rect, position: Position }
  */
-function getPosition({ dimensions, position, targetOffset, targetRect, viewport, viewportOffset = 8 }) {
+function getPosition({
+  dimensions,
+  position,
+  targetOffset,
+  targetRect,
+  viewport,
+  viewportOffset = 8
+}: any) {
   const isHorizontal = isAlignedHorizontal(position)
 
   // Handle left and right positions
@@ -398,7 +416,12 @@ function getPosition({ dimensions, position, targetOffset, targetRect, viewport,
  * @param {Rect} targetRect — the rect of the target.
  * @return {Rect} - Rect { width, height, left, top, right, bottom }
  */
-function getRect({ dimensions, position, targetOffset, targetRect }) {
+function getRect({
+  dimensions,
+  position,
+  targetOffset,
+  targetRect
+}: any) {
   const leftRect = targetRect.left + targetRect.width / 2 - dimensions.width / 2
   const alignedTopY = targetRect.top - dimensions.height - targetOffset
   const alignedBottomY = targetRect.bottom + targetOffset

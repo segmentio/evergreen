@@ -2,7 +2,9 @@ const baseStyle = {
   fontFamily: 'fontFamilies.ui',
   border: '1px solid transparent',
   borderRadius: 'radii.1',
-  color: (theme, { color }) => theme.colors[color] || color || 'colors.default',
+  color: (theme: any, {
+    color
+  }: any) => theme.colors[color] || color || 'colors.default',
   transition: 'box-shadow 80ms ease-in-out',
 
   _focus: {
@@ -15,7 +17,7 @@ const baseStyle = {
   }
 }
 
-const colorKeyForAppearanceOrIntent = (appearance, intent) => {
+const colorKeyForAppearanceOrIntent = (appearance: any, intent: any) => {
   if (appearance === 'destructive') {
     return 'red'
   }
@@ -30,7 +32,7 @@ const colorKeyForAppearanceOrIntent = (appearance, intent) => {
   }
 }
 
-const colorKeyForIntent = intent => {
+const colorKeyForIntent = (intent: any) => {
   if (intent === 'danger') {
     return `red500`
   } else if (intent === 'success') {
@@ -40,7 +42,7 @@ const colorKeyForIntent = intent => {
   }
 }
 
-const borderColorForIntent = (intent, isHover) => {
+const borderColorForIntent = (intent: any, isHover: any) => {
   if (intent === 'danger') {
     return `red${isHover ? 500 : 300}`
   } else if (intent === 'success') {
@@ -50,7 +52,7 @@ const borderColorForIntent = (intent, isHover) => {
   }
 }
 
-const getPrimaryButtonAppearance = (appearance, intent, textColor, theme) => {
+const getPrimaryButtonAppearance = (appearance: any, intent: any, textColor: any, theme: any) => {
   const color = colorKeyForAppearanceOrIntent(appearance, intent)
   return {
     backgroundColor: `colors.${color}500`,
@@ -77,11 +79,16 @@ const getPrimaryButtonAppearance = (appearance, intent, textColor, theme) => {
 }
 
 const appearances = {
-  primary: (theme, { appearance, color, intent }) => getPrimaryButtonAppearance(appearance, intent, color, theme),
+  primary: (theme: any, {
+    appearance,
+    color,
+    intent
+  }: any) => getPrimaryButtonAppearance(appearance, intent, color, theme),
   default: {
     backgroundColor: 'white',
-    border: (theme, props) => `1px solid ${theme.colors[borderColorForIntent(props.intent)]}`,
-    color: (theme, props) => props.color || theme.colors[colorKeyForIntent(props.intent)],
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
+    border: (theme: any, props: any) => `1px solid ${theme.colors[borderColorForIntent(props.intent)]}`,
+    color: (theme: any, props: any) => props.color || theme.colors[colorKeyForIntent(props.intent)],
 
     _disabled: {
       color: 'colors.gray500',
@@ -89,7 +96,7 @@ const appearances = {
     },
 
     _hover: {
-      border: (theme, props) => `1px solid ${theme.colors[borderColorForIntent(props.intent, true)]}`,
+      border: (theme: any, props: any) => `1px solid ${theme.colors[borderColorForIntent(props.intent, true)]}`,
       backgroundColor: 'colors.gray50'
     },
 
@@ -99,7 +106,7 @@ const appearances = {
   },
   minimal: {
     backgroundColor: 'transparent',
-    color: (theme, props) => props.color || theme.colors[colorKeyForIntent(props.intent)],
+    color: (theme: any, props: any) => props.color || theme.colors[colorKeyForIntent(props.intent)],
 
     _disabled: {
       color: 'colors.gray500',
@@ -114,6 +121,7 @@ const appearances = {
       backgroundColor: 'colors.gray200'
     }
   },
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 4 arguments, but got 1.
   destructive: getPrimaryButtonAppearance('destructive')
 }
 

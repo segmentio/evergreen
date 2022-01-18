@@ -1,5 +1,5 @@
-const previousOverflow = []
-const previousPaddingRight = []
+const previousOverflow: any = []
+const previousPaddingRight: any = []
 
 /**
  * Toggle the body scroll / overflow and additional styling
@@ -7,7 +7,7 @@ const previousPaddingRight = []
  *
  * @param {boolean} preventScroll - whether or not to prevent body scrolling
  */
-export default function preventBodyScroll(preventScroll) {
+export default function preventBodyScroll(preventScroll: any) {
   /** Get the width before toggling the style so we can calculate the scrollbar width for a smooth, jankless style change */
   const { width } = document.body.getBoundingClientRect()
 

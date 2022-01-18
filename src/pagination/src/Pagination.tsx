@@ -33,7 +33,12 @@ export const usePaginationBehavior = ({ page: inputPage = 1 } = {}) => {
 const MAX_HANDLES_TO_SHOW = 7
 
 /* eslint-disable react/prop-types */
-const PaginationButton = ({ isSelected, onPageChange, page, ...rest }) => {
+const PaginationButton = ({
+  isSelected,
+  onPageChange,
+  page,
+  ...rest
+}: any) => {
   const { colors } = useTheme()
   const isEllipsis = typeof page === 'string' && page === '...'
   const selectedProps = useMemo(() => {
@@ -53,11 +58,17 @@ const PaginationButton = ({ isSelected, onPageChange, page, ...rest }) => {
 
   if (isEllipsis) {
     return (
+      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <Text
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         paddingX={majorScale(1)}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         paddingY={majorScale(1)}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         minWidth={majorScale(4)}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         textAlign="center"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         aria-label="Pagination overflow"
       >
         {page}
@@ -79,7 +90,7 @@ const PaginationButton = ({ isSelected, onPageChange, page, ...rest }) => {
 }
 /* eslint-enable react/prop-types */
 
-const range = (start, stop) => {
+const range = (start: any, stop: any) => {
   const output = []
   for (let i = start; i <= stop; i++) {
     output.push(i)
@@ -88,7 +99,10 @@ const range = (start, stop) => {
   return output
 }
 
-const getPaginationButtonContent = ({ page, totalPages }) => {
+const getPaginationButtonContent = ({
+  page,
+  totalPages
+}: any) => {
   if (totalPages <= MAX_HANDLES_TO_SHOW) {
     return range(1, totalPages)
   }
@@ -108,13 +122,17 @@ const noop = () => {}
 
 const Pagination = memo(
   forwardRef(function Pagination(
+    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     { onNextPage = noop, onPageChange = noop, onPreviousPage = noop, page = 1, totalPages, ...rest },
     ref
   ) {
     return (
       <Pane is="nav" role="navigation" aria-label="Pagination" {...rest} ref={ref}>
+        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
         <Pane is="ul" display="flex" alignItems="center" padding={0}>
+          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
           <Pane is="li" listStyle="none">
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             <IconButton appearance="minimal" icon={ChevronLeftIcon} disabled={page === 1} onClick={onPreviousPage} />
           </Pane>
           {totalPages
@@ -122,6 +140,7 @@ const Pagination = memo(
                 const isSelected = val === page
 
                 return (
+                  // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
                   <Pane is="li" listStyle="none" key={`${val}-${i}`}>
                     <PaginationButton
                       appearance="minimal"
@@ -136,11 +155,16 @@ const Pagination = memo(
                 )
               })
             : null}
+          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
           <Pane is="li" listStyle="none">
             <IconButton
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
               appearance="minimal"
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'MemoExoticComponent<ForwardRefExoticComponen... Remove this comment to see the full error message
               icon={ChevronRightIcon}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean | undefined' is not assignable to ty... Remove this comment to see the full error message
               disabled={totalPages ? page === totalPages : undefined}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type 'never... Remove this comment to see the full error message
               onClick={onNextPage}
             />
           </Pane>
@@ -150,6 +174,7 @@ const Pagination = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Pagination.propTypes = {
   /**
    * The current page that a user is on - defaults to 1.

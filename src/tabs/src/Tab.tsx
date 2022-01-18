@@ -8,7 +8,7 @@ import { Text } from '../../typography'
 
 const noop = () => {}
 
-const getInternalStyles = direction => ({
+const getInternalStyles = (direction: any) => ({
   alignItems: 'center',
   justifyContent: direction === 'horizontal' ? 'center' : 'flex-start',
   textDecoration: 'none',
@@ -17,9 +17,11 @@ const getInternalStyles = direction => ({
   WebkitFontSmoothing: 'antialiased',
   WebkitAppearance: 'none',
   MozAppearance: 'none',
+
   '&::-moz-focus-inner ': {
     border: 0
   },
+
   display: direction === 'horizontal' ? 'inline-flex' : 'flex',
   width: direction === 'horizontal' ? 'auto' : '100%'
 })
@@ -47,6 +49,7 @@ const Tab = memo(
       height = 28,
       className,
       tabIndex,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
@@ -57,6 +60,7 @@ const Tab = memo(
       getInternalStyles(direction)
     )
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onClick' does not exist on type 'never'.
     const onClickRef = useLatest(props.onClick)
     const handleClick = useCallback(
       event => {
@@ -72,7 +76,9 @@ const Tab = memo(
 
     const clickableProps = useClickable({ disabled, onKeyDown, tabIndex })
 
+    // @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
     if (process.env.NODE_ENV !== 'production') {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'onClick' does not exist on type 'never'.
       warning(typeof props.onClick === 'function', '<Tab> expects `onSelect` prop, but you passed `onClick`.')
     }
 
@@ -83,6 +89,7 @@ const Tab = memo(
       }
     }
 
+    // @ts-expect-error ts-migrate(2367) FIXME: This condition will always return 'false' since th... Remove this comment to see the full error message
     if (is === 'a') {
       // Use aria-current when it's a link
       // https://tink.uk/using-the-aria-current-attribute/
@@ -108,8 +115,10 @@ const Tab = memo(
         className={cx(className, themedClassName)}
         is={is}
         size={300}
+        // @ts-expect-error ts-migrate(2783) FIXME: 'height' is specified more than once, so this usag... Remove this comment to see the full error message
         height={height}
         ref={ref}
+        // @ts-expect-error ts-migrate(2783) FIXME: 'tabIndex' is specified more than once, so this us... Remove this comment to see the full error message
         tabIndex={0}
         {...boxProps}
         {...rest}
@@ -121,10 +130,12 @@ const Tab = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Tab.propTypes = {
   /**
    * Composes the Text component as the base.
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
   ...Text.propTypes,
 
   /**

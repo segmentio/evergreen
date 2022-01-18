@@ -19,6 +19,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const openAnimation = css.keyframes('openAnimation', {
   from: {
     transform: 'translateY(100%)'
@@ -28,6 +29,7 @@ const openAnimation = css.keyframes('openAnimation', {
   }
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const closeAnimation = css.keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
@@ -48,31 +50,47 @@ const animationStyles = {
   }
 }
 
-const closeHandler = close => close()
+const closeHandler = (close: any) => close()
 const noop = () => {}
 const emptyProps = {}
 
 const CornerDialog = memo(function CornerDialog(props) {
   const {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'title' does not exist on type '{ childre... Remove this comment to see the full error message
     title,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'width' does not exist on type '{ childre... Remove this comment to see the full error message
     width = 448,
     children,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'intent' does not exist on type '{ childr... Remove this comment to see the full error message
     intent = 'none',
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isShown' does not exist on type '{ child... Remove this comment to see the full error message
     isShown,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hasFooter' does not exist on type '{ chi... Remove this comment to see the full error message
     hasFooter = true,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hasCancel' does not exist on type '{ chi... Remove this comment to see the full error message
     hasCancel = true,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hasClose' does not exist on type '{ chil... Remove this comment to see the full error message
     hasClose = true,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'cancelLabel' does not exist on type '{ c... Remove this comment to see the full error message
     cancelLabel = 'Close',
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'confirmLabel' does not exist on type '{ ... Remove this comment to see the full error message
     confirmLabel = 'Learn More',
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onOpenComplete' does not exist on type '... Remove this comment to see the full error message
     onOpenComplete,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onCloseComplete' does not exist on type ... Remove this comment to see the full error message
     onCloseComplete = noop,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onCancel' does not exist on type '{ chil... Remove this comment to see the full error message
     onCancel = closeHandler,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onConfirm' does not exist on type '{ chi... Remove this comment to see the full error message
     onConfirm = closeHandler,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'containerProps' does not exist on type '... Remove this comment to see the full error message
     containerProps = emptyProps,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'position' does not exist on type '{ chil... Remove this comment to see the full error message
     position = positions.BOTTOM_RIGHT
   } = props
 
   const [exiting, setExiting] = useState(false)
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'isShown' does not exist on type 'PropsWi... Remove this comment to see the full error message
   const [exited, setExited] = useState(!props.isShown)
   const transitionRef = useRef(null)
 
@@ -106,6 +124,7 @@ const CornerDialog = memo(function CornerDialog(props) {
 
     if (typeof children === 'string') {
       return (
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Paragraph size={400} color="muted">
           {children}
         </Paragraph>
@@ -148,22 +167,29 @@ const CornerDialog = memo(function CornerDialog(props) {
             ]}
             {...remainingContainerProps}
           >
+            // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
             <Pane display="flex" alignItems="center" marginBottom={12}>
+              // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
               <Heading is="h4" size={600} flex="1">
                 {title}
               </Heading>
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'MemoExoticComponent<ForwardRefExoticComponen... Remove this comment to see the full error message
               {hasClose && <IconButton icon={CrossIcon} appearance="minimal" onClick={handleClose} />}
             </Pane>
 
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             <Pane overflowY="auto" data-state={state}>
               {renderChildren()}
             </Pane>
 
             {hasFooter && (
+              // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
               <Pane marginTop={24} flexShrink={0} display="flex" flexDirection="row-reverse">
+                // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
                 <Button appearance="primary" intent={intent} marginLeft={8} onClick={handleConfirm}>
                   {confirmLabel}
                 </Button>
+                // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
                 {hasCancel && <Button onClick={handleCancel}>{cancelLabel}</Button>}
               </Pane>
             )}
@@ -174,6 +200,7 @@ const CornerDialog = memo(function CornerDialog(props) {
   )
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 CornerDialog.propTypes = {
   /**
    * Children can be a string, node or a function accepting `({ close })`.

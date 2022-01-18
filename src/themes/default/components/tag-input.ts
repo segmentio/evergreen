@@ -6,11 +6,11 @@ const baseStyle = {
 
 const appearances = {
   default: {
-    border: theme => `1px solid ${theme.colors.gray400}`,
+    border: (theme: any) => `1px solid ${theme.colors.gray400}`,
     _focused: {
       outline: 'none',
       zIndex: 'zIndices.focused',
-      border: theme => `1px solid ${theme.colors.blue200}`,
+      border: (theme: any) => `1px solid ${theme.colors.blue200}`,
       transition: 'box-shadow 80ms ease-in-out',
       boxShadow: 'shadows.focusRing'
     },

@@ -15,6 +15,7 @@ const shadows = [
   `0 0 1px ${borderShadowColor}, 0 16px 24px -8px ${blurryShadowColor}`
 ]
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'focusRing' does not exist on type 'strin... Remove this comment to see the full error message
 shadows.focusRing = `0 0 0 3px ${colors.blueAlpha.B4A}`
 
 export default shadows

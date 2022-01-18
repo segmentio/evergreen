@@ -16,6 +16,7 @@ const internalStyles = {
 
 const UnorderedList = memo(
   forwardRef(function UnorderedList(props, ref) {
+    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { children, className, icon, iconColor, size = 400, ...rest } = props
 
     const { className: themedClassName, ...styleProps } = useStyleConfig('List', { size }, emptyObject, internalStyles)
@@ -32,6 +33,7 @@ const UnorderedList = memo(
           size,
           iconColor,
           // Prefer more granularly defined props if present
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'never'.
           ...child.props
         })
       )
@@ -45,7 +47,9 @@ const UnorderedList = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 UnorderedList.propTypes = {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type '<E ex... Remove this comment to see the full error message
   ...Box.propTypes,
 
   /**

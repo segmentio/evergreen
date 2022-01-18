@@ -9,6 +9,7 @@ import { minorScale } from '../../scales'
 
 const Tag = memo(
   forwardRef(function Tag(props, ref) {
+    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { children, isRemovable, onRemove, ...restProps } = props
 
     const badgeStyles = {
@@ -24,18 +25,21 @@ const Tag = memo(
     }
 
     if (isRemovable) {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'paddingRight' does not exist on type '{ ... Remove this comment to see the full error message
       badgeStyles.paddingRight = minorScale(1)
     }
 
     return (
       <Badge ref={ref} isInteractive {...badgeStyles} {...restProps}>
         {children}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         {isRemovable && <CrossIcon marginLeft={minorScale(1)} onClick={onRemove} size={minorScale(3)} />}
       </Badge>
     )
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Tag.propTypes = {
   /** The tag content */
   children: PropTypes.node,

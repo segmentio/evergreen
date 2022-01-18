@@ -8,7 +8,7 @@ let count = 0
  * @param {string} [explicitId] - an optional explicit value that takes precedence over the generated id
  * @returns {string}
  */
-export function useId(prefix, explicitId) {
+export function useId(prefix: any, explicitId: any) {
   const [value] = useState(() => explicitId || [prefix, ++count].filter(Boolean).join('-'))
   return value
 }

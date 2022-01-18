@@ -14,7 +14,7 @@ const baseStyle = {
   },
 
   _focus: {
-    boxShadow: theme => `0 0 0 3px ${theme.colors.blueAlpha.B5A}`
+    boxShadow: (theme: any) => `0 0 0 3px ${theme.colors.blueAlpha.B5A}`
   }
 }
 

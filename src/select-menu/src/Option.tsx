@@ -35,6 +35,7 @@ const Option = memo(
       onDeselect,
       onSelect,
       style,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
@@ -58,13 +59,19 @@ const Option = memo(
         {...rest}
         ref={ref}
       >
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <TextTableCell
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'null' is not assignable to type 'never'.
           borderRight={null}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           flex={1}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           alignSelf="stretch"
           height={height}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           cursor={disabled ? 'default' : 'pointer'}
         >
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           <Pane alignItems="center" display="flex">
             {children}
           </Pane>
@@ -74,6 +81,7 @@ const Option = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Option.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   disabled: PropTypes.bool,

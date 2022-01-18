@@ -27,6 +27,7 @@ const Pane = memo(
       elevation,
       hoverElevation,
 
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...restProps
     } = props
 
@@ -53,10 +54,12 @@ const Pane = memo(
 
 const StringAndBoolPropType = PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Pane.propTypes = {
   /**
    * Composes the Box component as the base.
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type '<E ex... Remove this comment to see the full error message
   ...Box.propTypes,
 
   /**

@@ -16,6 +16,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 200
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const openAnimation = css.keyframes('openAnimation', {
   from: {
     transform: 'scale(0.8)',
@@ -27,6 +28,7 @@ const openAnimation = css.keyframes('openAnimation', {
   }
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const closeAnimation = css.keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
@@ -47,37 +49,64 @@ const animationStyles = {
   }
 }
 
-const closeHandler = close => close()
+const closeHandler = (close: any) => close()
 const emptyProps = {}
 
 const Dialog = memo(function Dialog({
   children,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'cancelLabel' does not exist on type '{ c... Remove this comment to see the full error message
   cancelLabel = 'Cancel',
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'confirmLabel' does not exist on type '{ ... Remove this comment to see the full error message
   confirmLabel = 'Confirm',
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'containerProps' does not exist on type '... Remove this comment to see the full error message
   containerProps = emptyProps,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'contentContainerProps' does not exist on... Remove this comment to see the full error message
   contentContainerProps,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'footer' does not exist on type '{ childr... Remove this comment to see the full error message
   footer,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'hasCancel' does not exist on type '{ chi... Remove this comment to see the full error message
   hasCancel = true,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'hasClose' does not exist on type '{ chil... Remove this comment to see the full error message
   hasClose = true,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'hasFooter' does not exist on type '{ chi... Remove this comment to see the full error message
   hasFooter = true,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'hasHeader' does not exist on type '{ chi... Remove this comment to see the full error message
   hasHeader = true,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'header' does not exist on type '{ childr... Remove this comment to see the full error message
   header,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'intent' does not exist on type '{ childr... Remove this comment to see the full error message
   intent = 'none',
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'isConfirmDisabled' does not exist on typ... Remove this comment to see the full error message
   isConfirmDisabled = false,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'isConfirmLoading' does not exist on type... Remove this comment to see the full error message
   isConfirmLoading = false,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'isShown' does not exist on type '{ child... Remove this comment to see the full error message
   isShown = false,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'minHeightContent' does not exist on type... Remove this comment to see the full error message
   minHeightContent = 80,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onCancel' does not exist on type '{ chil... Remove this comment to see the full error message
   onCancel = closeHandler,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onCloseComplete' does not exist on type ... Remove this comment to see the full error message
   onCloseComplete,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onConfirm' does not exist on type '{ chi... Remove this comment to see the full error message
   onConfirm = closeHandler,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onOpenComplete' does not exist on type '... Remove this comment to see the full error message
   onOpenComplete,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'overlayProps' does not exist on type '{ ... Remove this comment to see the full error message
   overlayProps = emptyProps,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'preventBodyScrolling' does not exist on ... Remove this comment to see the full error message
   preventBodyScrolling = false,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'shouldCloseOnEscapePress' does not exist... Remove this comment to see the full error message
   shouldCloseOnEscapePress = true,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'shouldCloseOnOverlayClick' does not exis... Remove this comment to see the full error message
   shouldCloseOnOverlayClick = true,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'sideOffset' does not exist on type '{ ch... Remove this comment to see the full error message
   sideOffset = '16px',
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'title' does not exist on type '{ childre... Remove this comment to see the full error message
   title,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'topOffset' does not exist on type '{ chi... Remove this comment to see the full error message
   topOffset = '12vmin',
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'width' does not exist on type '{ childre... Remove this comment to see the full error message
   width = 560
 }) {
   const sideOffsetWithUnit = Number.isInteger(sideOffset) ? `${sideOffset}px` : sideOffset
@@ -86,19 +115,20 @@ const Dialog = memo(function Dialog({
   const topOffsetWithUnit = Number.isInteger(topOffset) ? `${topOffset}px` : topOffset
   const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
 
-  const renderChildren = close => {
+  const renderChildren = (close: any) => {
     if (typeof children === 'function') {
       return children({ close })
     }
 
     if (typeof children === 'string') {
+      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       return <Paragraph>{children}</Paragraph>
     }
 
     return children
   }
 
-  const renderNode = (node, close) => {
+  const renderNode = (node: any, close: any) => {
     if (typeof node === 'function') {
       return node({ close })
     }
@@ -110,20 +140,23 @@ const Dialog = memo(function Dialog({
   const themedBodyProps = useStyleConfig('DialogBody', emptyProps, emptyProps, emptyProps)
   const themedFooterProps = useStyleConfig('DialogFooter', emptyProps, emptyProps, emptyProps)
 
-  const renderHeader = close => {
+  const renderHeader = (close: any) => {
     if (!header && !hasHeader) {
       return undefined
     }
 
     return (
+      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <Pane flexShrink={0} display="flex" alignItems="center" {...themedHeaderProps}>
         {header ? (
           renderNode(header, close)
         ) : (
           <>
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             <Heading is="h4" size={600} flex="1">
               {title}
             </Heading>
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             {hasClose && <IconButton appearance="minimal" icon={CrossIcon} onClick={() => onCancel(close)} />}
           </>
         )}
@@ -131,13 +164,15 @@ const Dialog = memo(function Dialog({
     )
   }
 
-  const renderFooter = close => {
+  const renderFooter = (close: any) => {
     if (!footer && !hasFooter) {
       return undefined
     }
 
     return (
+      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <Pane display="flex" justifyContent="flex-end" {...themedFooterProps}>
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Pane>
           {footer ? (
             renderNode(footer, close)
@@ -145,18 +180,27 @@ const Dialog = memo(function Dialog({
             <>
               {/* Cancel should be first to make sure focus gets on it first. */}
               {hasCancel && (
+                // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
                 <Button tabIndex={0} onClick={() => onCancel(close)}>
                   {cancelLabel}
                 </Button>
               )}
 
+              // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
               <Button
+                // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
                 tabIndex={0}
+                // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
                 marginLeft={8}
+                // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
                 appearance="primary"
+                // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
                 intent={intent}
+                // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
                 isLoading={isConfirmLoading}
+                // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
                 disabled={isConfirmDisabled}
+                // @ts-expect-error ts-migrate(2322) FIXME: Type '() => any' is not assignable to type 'never'... Remove this comment to see the full error message
                 onClick={() => onConfirm(close)}
               >
                 {confirmLabel}
@@ -171,6 +215,7 @@ const Dialog = memo(function Dialog({
   const { className: containerClassName, ...remainingContainerProps } = containerProps
 
   return (
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: ({ close, state }: any) => Eleme... Remove this comment to see the full error message
     <Overlay
       isShown={isShown}
       shouldCloseOnClick={shouldCloseOnOverlayClick}
@@ -185,7 +230,10 @@ const Dialog = memo(function Dialog({
       }}
       preventBodyScrolling={preventBodyScrolling}
     >
-      {({ close, state }) => (
+      {({
+        close,
+        state
+      }: any) => (
         <Pane
           role="dialog"
           backgroundColor="white"
@@ -206,13 +254,18 @@ const Dialog = memo(function Dialog({
 
           <Pane
             data-state={state}
+            // @ts-expect-error ts-migrate(2783) FIXME: 'display' is specified more than once, so this usa... Remove this comment to see the full error message
             display="flex"
+            // @ts-expect-error ts-migrate(2783) FIXME: 'overflow' is specified more than once, so this us... Remove this comment to see the full error message
             overflow="auto"
+            // @ts-expect-error ts-migrate(2783) FIXME: 'flexDirection' is specified more than once, so th... Remove this comment to see the full error message
             flexDirection="column"
+            // @ts-expect-error ts-migrate(2783) FIXME: 'minHeight' is specified more than once, so this u... Remove this comment to see the full error message
             minHeight={minHeightContent}
             {...themedBodyProps}
             {...contentContainerProps}
           >
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             <Pane>{renderChildren(close)}</Pane>
           </Pane>
 
@@ -220,9 +273,10 @@ const Dialog = memo(function Dialog({
         </Pane>
       )}
     </Overlay>
-  )
+  );
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 Dialog.propTypes = {
   /**
    * Children can be a string, node or a function accepting `({ close })`.

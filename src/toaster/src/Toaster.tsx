@@ -1,4 +1,5 @@
 import React from 'react'
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import ReactDOM from 'react-dom'
 import canUseDom from '../../lib/canUseDom'
 import ToastManager from './ToastManager'
@@ -8,6 +9,10 @@ import ToastManager from './ToastManager'
  * the ToasterManger and the toast API.
  */
 export default class Toaster {
+  closeAllHandler: any;
+  getToastsHandler: any;
+  notifyHandler: any;
+  removeHandler: any;
   constructor() {
     if (!canUseDom) return
 
@@ -17,6 +22,7 @@ export default class Toaster {
 
     ReactDOM.render(
       <ToastManager
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ bindNotify: (handler: any) => void; bindRe... Remove this comment to see the full error message
         bindNotify={this._bindNotify}
         bindRemove={this._bindRemove}
         bindGetToasts={this._bindGetToasts}
@@ -26,19 +32,19 @@ export default class Toaster {
     )
   }
 
-  _bindNotify = handler => {
+  _bindNotify = (handler: any) => {
     this.notifyHandler = handler
   }
 
-  _bindRemove = handler => {
+  _bindRemove = (handler: any) => {
     this.removeHandler = handler
   }
 
-  _bindGetToasts = handler => {
+  _bindGetToasts = (handler: any) => {
     this.getToastsHandler = handler
   }
 
-  _bindCloseAll = handler => {
+  _bindCloseAll = (handler: any) => {
     this.closeAllHandler = handler
   }
 
@@ -50,23 +56,23 @@ export default class Toaster {
     return this.closeAllHandler()
   }
 
-  notify = (title, settings = {}) => {
+  notify = (title: any, settings = {}) => {
     return this.notifyHandler(title, { ...settings, intent: 'none' })
   }
 
-  success = (title, settings = {}) => {
+  success = (title: any, settings = {}) => {
     return this.notifyHandler(title, { ...settings, intent: 'success' })
   }
 
-  warning = (title, settings = {}) => {
+  warning = (title: any, settings = {}) => {
     return this.notifyHandler(title, { ...settings, intent: 'warning' })
   }
 
-  danger = (title, settings = {}) => {
+  danger = (title: any, settings = {}) => {
     return this.notifyHandler(title, { ...settings, intent: 'danger' })
   }
 
-  remove = id => {
+  remove = (id: any) => {
     return this.removeHandler(id)
   }
 }

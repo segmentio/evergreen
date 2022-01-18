@@ -7,10 +7,12 @@ const FormFieldHint = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 FormFieldHint.propTypes = {
   /**
    * Composes the Paragraph component as the base.
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
   ...Paragraph.propTypes
 }
 

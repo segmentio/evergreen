@@ -16,6 +16,7 @@ const pseudoSelectors = {
 
 const Link = memo(
   forwardRef(function Link(props, ref) {
+    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { className, color = 'default', ...restProps } = props
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Link',
@@ -28,7 +29,9 @@ const Link = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Link.propTypes = {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
   ...Text.propTypes,
 
   /**

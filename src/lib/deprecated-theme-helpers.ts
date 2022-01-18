@@ -25,7 +25,7 @@ const text = {
   }
 }
 
-export const getTextPropsForControlHeight = height => {
+export const getTextPropsForControlHeight = (height: any) => {
   if (height <= 32) return text['300']
   if (height <= 40) return text['400']
   return text['500']

@@ -5,7 +5,7 @@ import { ThemeConsumer } from './ThemeContext'
  * HOC that uses ThemeConsumer.
  * @param {React.Component} WrappedComponent - Component that gets theme.
  */
-function withTheme(WrappedComponent) {
+function withTheme(WrappedComponent: any) {
   const displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component'
 
   return class extends React.Component {

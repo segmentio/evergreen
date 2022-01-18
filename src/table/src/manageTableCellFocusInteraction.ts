@@ -3,7 +3,7 @@
  * @param {Object} key - React `event.key`.
  * @param {Element} ref - the cell to manage focus interaction for.
  */
-export default function manageTableCellFocusInteraction(key, ref) {
+export default function manageTableCellFocusInteraction(key: any, ref: any) {
   const tableRowChildren = Array.from(ref.parentElement.children)
   const columnIndex = tableRowChildren.indexOf(ref)
 
@@ -25,7 +25,9 @@ export default function manageTableCellFocusInteraction(key, ref) {
       nextRow = tableBodyChildren[rowIndex + 1]
     }
 
+    // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
     if (nextRow && nextRow.children) {
+      // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
       nextItemToFocus = nextRow.children[columnIndex]
     }
   }

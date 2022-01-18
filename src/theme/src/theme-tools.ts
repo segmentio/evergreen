@@ -1,6 +1,7 @@
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import merge from 'lodash.merge'
 
-export function get(obj, path, fallback) {
+export function get(obj: any, path: any, fallback: any) {
   const keys = path && path.split ? path.split('.') : [path]
 
   let value = obj
@@ -17,7 +18,7 @@ export function get(obj, path, fallback) {
  * @param {object} theme
  * @param {unknown} pathOrValue
  */
-export function getValue(theme, pathOrValue) {
+export function getValue(theme: any, pathOrValue: any) {
   return get(theme, pathOrValue, pathOrValue)
 }
 
@@ -26,7 +27,7 @@ export function getValue(theme, pathOrValue) {
  * @param destinationTheme Theme object to merge on top of
  * @param sourceTheme Theme object that adds or overrides values
  */
-export function mergeTheme(destinationTheme, sourceTheme) {
+export function mergeTheme(destinationTheme: any, sourceTheme: any) {
   return merge({}, destinationTheme, sourceTheme)
 }
 
@@ -37,7 +38,7 @@ export function mergeTheme(destinationTheme, sourceTheme) {
  * @param {object} obj
  * @returns {object} a new object with theme-resolved properties
  */
-export function resolveThemeTokens(theme, obj) {
+export function resolveThemeTokens(theme: any, obj: any) {
   const result = {}
 
   for (const key of Object.keys(obj)) {
@@ -48,8 +49,10 @@ export function resolveThemeTokens(theme, obj) {
     }
 
     if (typeof raw === 'object') {
+      // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       result[key] = resolveThemeTokens(theme, raw)
     } else {
+      // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       result[key] = getValue(theme, raw)
     }
   }

@@ -4,8 +4,8 @@ const baseStyle = {
   padding: '8px',
   borderRadius: 'radii.1',
   color: 'colors.default',
-  marginX: (_, props) => (props.direction === 'horizontal' ? '4px' : null),
-  marginY: (_, props) => (props.direction === 'vertical' ? '4px' : null),
+  marginX: (_: any, props: any) => (props.direction === 'horizontal' ? '4px' : null),
+  marginY: (_: any, props: any) => (props.direction === 'vertical' ? '4px' : null),
 
   _hover: {
     backgroundColor: 'colors.neutralAlpha.N2A'

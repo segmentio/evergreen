@@ -6,6 +6,7 @@ import Text from './Text'
 
 const ListItem = memo(
   forwardRef(function ListItem(props, ref) {
+    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { children, icon, iconColor, size, ...rest } = props
 
     let paddingLeft
@@ -26,7 +27,9 @@ const ListItem = memo(
     if (size === 500) iconSize = 14
     if (size === 600) iconSize = 16
 
+    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     let iconLeft = -iconSize - 4
+    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     if (size === 600) iconLeft = -iconSize
 
     return (
@@ -44,9 +47,13 @@ const ListItem = memo(
           <IconWrapper
             icon={icon}
             color={iconColor}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             position="absolute"
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | undefined' is not assignable to typ... Remove this comment to see the full error message
             size={iconSize}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
             left={iconLeft}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | undefined' is not assignable to typ... Remove this comment to see the full error message
             top={iconTop}
           />
         )}
@@ -56,7 +63,9 @@ const ListItem = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 ListItem.propTypes = {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
   ...Text.propTypes,
 
   /**

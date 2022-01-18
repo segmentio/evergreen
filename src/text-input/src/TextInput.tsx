@@ -36,6 +36,7 @@ const TextInput = memo(
       required,
       spellCheck = true,
       width = 280,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...restProps
     } = props
 
@@ -57,6 +58,7 @@ const TextInput = memo(
         is="input"
         className={cx(themedClassName, className)}
         type="text"
+        // @ts-expect-error ts-migrate(2783) FIXME: 'width' is specified more than once, so this usage... Remove this comment to see the full error message
         width={width}
         required={required}
         disabled={disabled}
@@ -64,6 +66,7 @@ const TextInput = memo(
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         ref={ref}
+        // @ts-expect-error ts-migrate(2783) FIXME: 'fontFamily' is specified more than once, so this ... Remove this comment to see the full error message
         fontFamily={themedFontFamily}
         {...boxProps}
         {...restProps}
@@ -74,6 +77,7 @@ const TextInput = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 TextInput.propTypes = {
   /**
    * Composes the dimensions spec from the Box primitive.

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function setRef(ref, node) {
+function setRef(ref: any, node: any) {
   if (typeof ref === 'function') {
     ref(node)
   } else if (ref && 'current' in ref) {
@@ -13,15 +13,15 @@ function setRef(ref, node) {
  * @param {import('react').Ref<any>} refA
  * @param {import('react').Ref<any>} [refB]
  */
-export function useMergedRef(refA, refB) {
+export function useMergedRef(refA: any, refB: any) {
   return React.useMemo(() => {
     if (!refA && !refB) {
       return null
     }
 
-    return node => {
+    return (node: any) => {
       setRef(refA, node)
       setRef(refB, node)
-    }
-  }, [refA, refB])
+    };
+  }, [refA, refB]);
 }

@@ -1,7 +1,9 @@
 const baseStyle = {
   borderRadius: 'radii.1',
   transition: '120ms all ease-in-out',
-  color: (_, { color }) => {
+  color: (_: any, {
+    color
+  }: any) => {
     switch (color) {
       case 'neutral':
         return 'gray700'
@@ -12,7 +14,9 @@ const baseStyle = {
   },
   textDecoration: 'none',
   _hover: {
-    color: (theme, { color }) => {
+    color: (theme: any, {
+      color
+    }: any) => {
       switch (color) {
         case 'neutral':
           return theme.colors.gray800
@@ -23,7 +27,9 @@ const baseStyle = {
     }
   },
   _active: {
-    color: (theme, { color }) => {
+    color: (theme: any, {
+      color
+    }: any) => {
       switch (color) {
         case 'neutral':
           return theme.colors.gray900
@@ -34,7 +40,9 @@ const baseStyle = {
     }
   },
   _focus: {
-    boxShadow: (theme, { color }) => {
+    boxShadow: (theme: any, {
+      color
+    }: any) => {
       switch (color) {
         case 'neutral':
           return `0 0 0 2px ${theme.colors.gray300}`

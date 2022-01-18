@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'tiny... Remove this comment to see the full error message
 import tinycolor from 'tinycolor2'
 import { Intent } from '../../../constants'
 import colors from './foundational-styles/colors'
@@ -7,7 +8,7 @@ import colors from './foundational-styles/colors'
  * @param {String} bottom - color.
  * @return {String} CSS background propery.
  */
-const linearGradient = (top, bottom) => {
+const linearGradient = (top: any, bottom: any) => {
   return `linear-gradient(to bottom, ${top}, ${bottom})`
 }
 
@@ -15,7 +16,7 @@ const linearGradient = (top, bottom) => {
  * @param {Intent} intent
  * @return {String} color
  */
-const getTextColorForIntent = (intent, defaultColor) => {
+const getTextColorForIntent = (intent: any, defaultColor: any) => {
   switch (intent) {
     case Intent.SUCCESS:
       return colors.text.success
@@ -33,7 +34,7 @@ const getTextColorForIntent = (intent, defaultColor) => {
  * @param {String} endColor
  * @param {Number} intensityMultiplier - Some colors need more darkening.
  */
-const getLinearGradientWithStates = (startColor, endColor, intensityMultiplier = 1) => {
+const getLinearGradientWithStates = (startColor: any, endColor: any, intensityMultiplier = 1) => {
   return {
     base: linearGradient(startColor, endColor),
     hover: linearGradient(
@@ -60,7 +61,7 @@ const getLinearGradientWithStates = (startColor, endColor, intensityMultiplier =
  * @param {Intent} intent - intent of the gradient.
  * @return {Object} { base, hover, active }
  */
-const getPrimaryButtonStylesForIntent = intent => {
+const getPrimaryButtonStylesForIntent = (intent: any) => {
   switch (intent) {
     case Intent.SUCCESS: {
       const startColor = '#23C277'

@@ -9,18 +9,24 @@ const MenuOptionsGroup = memo(
     const { onChange, options, selected, title } = props
 
     return (
+      // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
       <Pane ref={ref} paddingY={8}>
         {title && (
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           <Heading size={100} marginLeft={44} marginRight={16} marginY={8}>
             {title}
           </Heading>
         )}
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Pane>
-          {options.map(option => {
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type 'never'.
+          {options.map((option: any) => {
             return (
+              // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: any; key: any; isSelected: boole... Remove this comment to see the full error message
               <MenuOption
                 key={option.value}
                 isSelected={option.value === selected}
+                // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                 onSelect={() => onChange(option.value)}
               >
                 {option.label}
@@ -29,10 +35,11 @@ const MenuOptionsGroup = memo(
           })}
         </Pane>
       </Pane>
-    )
+    );
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 MenuOptionsGroup.propTypes = {
   /**
    * Title of the menu group.

@@ -11,7 +11,10 @@ const animationEasing = {
   spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
-const getCSS = ({ animationDuration, initialScale }) => ({
+const getCSS = ({
+  animationDuration,
+  initialScale
+}: any) => ({
   position: 'fixed',
   opacity: 0,
   transitionTimingFunction: animationEasing.spring,
@@ -40,15 +43,24 @@ const initialDimensions = {
 
 const Positioner = memo(function Positioner(props) {
   const {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'target' does not exist on type '{ childr... Remove this comment to see the full error message
     target,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isShown' does not exist on type '{ child... Remove this comment to see the full error message
     isShown,
     children,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'initialScale' does not exist on type '{ ... Remove this comment to see the full error message
     initialScale = 0.9,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'animationDuration' does not exist on typ... Remove this comment to see the full error message
     animationDuration = 300,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'position' does not exist on type '{ chil... Remove this comment to see the full error message
     position = Position.BOTTOM,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'bodyOffset' does not exist on type '{ ch... Remove this comment to see the full error message
     bodyOffset = 6,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'targetOffset' does not exist on type '{ ... Remove this comment to see the full error message
     targetOffset = 6,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onOpenComplete' does not exist on type '... Remove this comment to see the full error message
     onOpenComplete = noop,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onCloseComplete' does not exist on type ... Remove this comment to see the full error message
     onCloseComplete = noop
   } = props
 
@@ -58,15 +70,19 @@ const Positioner = memo(function Positioner(props) {
   const transitionState = useRef()
   const positionerRef = useRef()
   const targetRef = useRef()
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
   const setTargetRef = useMergedRef(targetRef)
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
   const getRef = useMergedRef(positionerRef)
 
   const update = useCallback(
     (prevHeight = 0, prevWidth = 0) => {
       if (!isShown || !targetRef.current || !positionerRef.current) return
 
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       const targetRect = targetRef.current.getBoundingClientRect()
 
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       const hasEntered = positionerRef.current.getAttribute('data-state') === 'entered'
 
       const viewportHeight = document.documentElement.clientHeight
@@ -76,6 +92,7 @@ const Positioner = memo(function Positioner(props) {
       let width
       if (hasEntered) {
         // Only when the animation is done should we opt-in to `getBoundingClientRect`
+        // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
         const positionerRect = positionerRef.current.getBoundingClientRect()
 
         // https://github.com/segmentio/evergreen/issues/255
@@ -88,7 +105,9 @@ const Positioner = memo(function Positioner(props) {
         // does not calculate the `transform` property as part of its result.
         // There is still change on jitter during the animation (although unoticable)
         // When the browser is zoomed in — we fix this with `Math.max`.
+        // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
         height = Math.max(positionerRef.current.offsetHeight, prevHeight)
+        // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
         width = Math.max(positionerRef.current.offsetWidth, prevWidth)
       }
 
@@ -112,6 +131,7 @@ const Positioner = memo(function Positioner(props) {
         top: rect.top,
         height,
         width,
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'null'.
         transformOrigin
       })
     },
@@ -121,6 +141,7 @@ const Positioner = memo(function Positioner(props) {
   // Call `update` whenever the component has "entered" and dimensions change
   useEffect(() => {
     if (transitionState.current === 'entered') {
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'undefined... Remove this comment to see the full error message
       latestAnimationFrame.current = requestAnimationFrame(() => {
         update(previousDimensions.height, previousDimensions.width)
       })
@@ -128,25 +149,29 @@ const Positioner = memo(function Positioner(props) {
 
     return () => {
       if (latestAnimationFrame.current) {
+        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'undefined' is not assignable to ... Remove this comment to see the full error message
         cancelAnimationFrame(latestAnimationFrame.current)
       }
     }
   }, [previousDimensions.height, previousDimensions.width, update])
 
   const handleEnter = () => {
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '"entered"' is not assignable to type 'undefi... Remove this comment to see the full error message
     transitionState.current = 'entered'
     update()
   }
 
   const handleExited = () => {
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '"exited"' is not assignable to type 'undefin... Remove this comment to see the full error message
     transitionState.current = 'exited'
     setDimensions(initialDimensions)
     onCloseComplete()
   }
 
   return (
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: (zIndex: any) => Element; value:... Remove this comment to see the full error message
     <Stack value={StackingOrder.POSITIONER}>
-      {zIndex => {
+      {(zIndex: any) => {
         return (
           <React.Fragment>
             {target({ getRef: setTargetRef, isShown })}
@@ -163,6 +188,7 @@ const Positioner = memo(function Positioner(props) {
             >
               {state => (
                 <Portal>
+                  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                   {children({
                     top: dimensions.top,
                     left: dimensions.left,
@@ -188,9 +214,10 @@ const Positioner = memo(function Positioner(props) {
         )
       }}
     </Stack>
-  )
+  );
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 Positioner.propTypes = {
   /**
    * The position the element that is being positioned is on.

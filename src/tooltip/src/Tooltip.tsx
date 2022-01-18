@@ -1,6 +1,7 @@
 import React, { memo, useState, useEffect, useRef } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import { Position } from '../../constants'
@@ -12,16 +13,24 @@ const emptyProps = {}
 
 const Tooltip = memo(function Tooltip(props) {
   const {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'appearance' does not exist on type '{ ch... Remove this comment to see the full error message
     appearance = 'default',
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'position' does not exist on type '{ chil... Remove this comment to see the full error message
     position = Position.BOTTOM,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'content' does not exist on type '{ child... Remove this comment to see the full error message
     content,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hideDelay' does not exist on type '{ chi... Remove this comment to see the full error message
     hideDelay = 120,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'showDelay' does not exist on type '{ chi... Remove this comment to see the full error message
     showDelay = 0,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isShown' does not exist on type '{ child... Remove this comment to see the full error message
     isShown: propIsShown,
     children,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'statelessProps' does not exist on type '... Remove this comment to see the full error message
     statelessProps = emptyProps
   } = props
 
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
   const id = useId('evergreen-tooltip')
   const [isShown, setIsShown] = useState(propIsShown || false)
   const [isShownByTarget, setIsShownByTarget] = useState(false)
@@ -58,12 +67,15 @@ const Tooltip = memo(function Tooltip(props) {
     }
 
     clearTimeout(closeTimer.current)
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'undefined... Remove this comment to see the full error message
     closeTimer.current = setTimeout(() => {
       setIsShown(true)
     }, showDelay)
   }
 
-  const renderTarget = ({ getRef }) => {
+  const renderTarget = ({
+    getRef
+  }: any) => {
     const tooltipTargetProps = {
       onMouseEnter: show,
       onMouseLeave: handleHide,
@@ -75,6 +87,7 @@ const Tooltip = memo(function Tooltip(props) {
      * When a Tooltip is used within a Popover, the Popover passes
      * its props to the Tooltip in a `popoverProps` object.
      */
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'popoverProps' does not exist on type 'Pr... Remove this comment to see the full error message
     // eslint-disable-next-line react/prop-types
     if (props.popoverProps) {
       const {
@@ -83,35 +96,39 @@ const Tooltip = memo(function Tooltip(props) {
         // eslint-disable-next-line react/prop-types
         isShown,
         ...popoverTargetProps
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'popoverProps' does not exist on type 'Pr... Remove this comment to see the full error message
         // eslint-disable-next-line react/prop-types
       } = props.popoverProps
 
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       return React.cloneElement(children, {
         // Add the Popover props to the target.
         ...popoverTargetProps,
         // Add the Tooltip props to the target.
         ...tooltipTargetProps,
 
-        ref: ref => {
+        ref: (ref: any) => {
           // Get the ref for the Tooltip.
           getRef(ref)
           // Pass the ref to the Popover.
           getTargetRef(ref)
         }
-      })
+      });
     }
 
     /**
      * With normal usage only the props for a Tooltip are passed to the target.
      */
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     return React.cloneElement(children, {
       ...tooltipTargetProps,
-      ref: ref => {
+      ref: (ref: any) => {
         getRef(ref)
       }
-    })
+    });
   }
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'popoverProps' does not exist on type 'Pr... Remove this comment to see the full error message
   // eslint-disable-next-line react/prop-types
   const isPopoverShown = () => props.popoverProps && props.popoverProps.isShown
 
@@ -127,8 +144,14 @@ const Tooltip = memo(function Tooltip(props) {
   }
 
   return (
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: ({ css, getRef, state, style }: ... Remove this comment to see the full error message
     <Positioner target={renderTarget} isShown={shown} position={position} animationDuration={160}>
-      {({ css, getRef, state, style }) => (
+      {({
+        css,
+        getRef,
+        state,
+        style
+      }: any) => (
         <TooltipStateless
           id={id}
           appearance={appearance}
@@ -144,9 +167,10 @@ const Tooltip = memo(function Tooltip(props) {
         </TooltipStateless>
       )}
     </Positioner>
-  )
+  );
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 Tooltip.propTypes = {
   /**
    * The appearance of the tooltip.

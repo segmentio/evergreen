@@ -13,6 +13,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const openAnimation = css.keyframes('openAnimation', {
   from: {
     opacity: 0,
@@ -23,6 +24,7 @@ const openAnimation = css.keyframes('openAnimation', {
   }
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const closeAnimation = css.keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
@@ -51,13 +53,20 @@ const animationStyles = css({
 const Toast = memo(function Toast(props) {
   const {
     children,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'duration' does not exist on type '{ chil... Remove this comment to see the full error message
     duration,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hasCloseButton' does not exist on type '... Remove this comment to see the full error message
     hasCloseButton,
     // Template props
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'intent' does not exist on type '{ childr... Remove this comment to see the full error message
     intent = 'none',
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isShown' does not exist on type '{ child... Remove this comment to see the full error message
     isShown: isShownProp,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onRemove' does not exist on type '{ chil... Remove this comment to see the full error message
     onRemove,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'title' does not exist on type '{ childre... Remove this comment to see the full error message
     title,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'zIndex' does not exist on type '{ childr... Remove this comment to see the full error message
     zIndex
   } = props
 
@@ -68,6 +77,7 @@ const Toast = memo(function Toast(props) {
 
   const clearCloseTimer = useCallback(() => {
     if (closeTimer.current) {
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'null' is not assignable to param... Remove this comment to see the full error message
       clearTimeout(closeTimer.current)
       closeTimer.current = null
     }
@@ -81,6 +91,7 @@ const Toast = memo(function Toast(props) {
   const startCloseTimer = useCallback(() => {
     if (duration) {
       clearCloseTimer()
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'null'.
       closeTimer.current = setTimeout(() => {
         close()
       }, duration * 1000)
@@ -133,20 +144,30 @@ const Toast = memo(function Toast(props) {
         <div
           ref={transitionRef}
           data-state={state}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'StyleAttribute' is not assignable to type 's... Remove this comment to see the full error message
           className={animationStyles}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           style={styles}
         >
           <Box ref={onRef} padding={8}>
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             <Alert
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
               flexShrink={0}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
               appearance="card"
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
               elevation={3}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
               intent={intent}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
               title={title}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
               isRemoveable={hasCloseButton}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type 'never... Remove this comment to see the full error message
               onRemove={close}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
               pointerEvents="all"
             >
               {children}
@@ -158,6 +179,7 @@ const Toast = memo(function Toast(props) {
   )
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 Toast.propTypes = {
   /**
    * The z-index of the toast.

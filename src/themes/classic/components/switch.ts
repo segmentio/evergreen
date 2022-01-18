@@ -17,7 +17,7 @@ const appearances = {
       backgroundColor: 'scales.neutral.N6A'
     },
     _focus: {
-      boxShadow: theme => `0 0 0 3px ${theme.scales.blue.B6A}`
+      boxShadow: (theme: any) => `0 0 0 3px ${theme.scales.blue.B6A}`
     },
     _checked: {
       backgroundColor: 'scales.blue.B8',

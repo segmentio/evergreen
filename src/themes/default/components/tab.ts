@@ -1,7 +1,7 @@
 const baseStyle = {
   fontFamily: 'fontFamilies.ui',
   fontWeight: 500,
-  marginBottom: (_, props) => (props.direction === 'vertical' ? '8px' : null)
+  marginBottom: (_: any, props: any) => (props.direction === 'vertical' ? '8px' : null)
 }
 
 const appearances = {
@@ -14,7 +14,7 @@ const appearances = {
     position: 'relative',
 
     ':not(:last-child)': {
-      marginRight: (_, props) => (props.direction === 'horizontal' ? '20px' : null)
+      marginRight: (_: any, props: any) => (props.direction === 'horizontal' ? '20px' : null)
     },
 
     _before: {
@@ -70,7 +70,7 @@ const appearances = {
     color: 'colors.default',
 
     ':not(:last-child)': {
-      marginRight: (_, props) => (props.direction === 'horizontal' ? '8px' : null)
+      marginRight: (_: any, props: any) => (props.direction === 'horizontal' ? '8px' : null)
     },
 
     _hover: {

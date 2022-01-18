@@ -31,7 +31,7 @@ const initialsStyleClass = css({
   lineHeight: 1
 }).toString()
 
-const getAvatarInitialsFontSize = (size, sizeLimitOneCharacter) => {
+const getAvatarInitialsFontSize = (size: any, sizeLimitOneCharacter: any) => {
   if (size <= sizeLimitOneCharacter) {
     return Math.floor(size / 2.2)
   }
@@ -52,6 +52,7 @@ const Avatar = memo(
       size = 24,
       sizeLimitOneCharacter = 20,
       src,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...restProps
     } = props
 
@@ -76,7 +77,9 @@ const Avatar = memo(
 
     return (
       <Box
+        // @ts-expect-error ts-migrate(2783) FIXME: 'width' is specified more than once, so this usage... Remove this comment to see the full error message
         width={size}
+        // @ts-expect-error ts-migrate(2783) FIXME: 'height' is specified more than once, so this usag... Remove this comment to see the full error message
         height={size}
         title={name}
         ref={ref}
@@ -85,12 +88,19 @@ const Avatar = memo(
         {...restProps}
       >
         {(imageUnavailable || forceShowInitials) && (
+          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
           <Text
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             className={initialsStyleClass}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             fontSize={initialsFontSize}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             lineHeight={initialsFontSize}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
             width={size}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
             height={size}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             color="inherit"
           >
             {initials}
@@ -98,10 +108,14 @@ const Avatar = memo(
         )}
         {!imageUnavailable && (
           <Image
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ objectFit: string; }' is not assignable to... Remove this comment to see the full error message
             style={imageStyles} // Unsupported by ui-box directly
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             width={isObjectFitSupported ? '100%' : 'auto'} // Fallback to old behaviour on IE
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             height="100%"
             src={src}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type 'never... Remove this comment to see the full error message
             onError={onError}
           />
         )}
@@ -110,6 +124,7 @@ const Avatar = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Avatar.propTypes = {
   /**
    * Class name passed to the component.

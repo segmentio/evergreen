@@ -27,7 +27,7 @@ const sharedStyles = {
   }
 }
 
-const withAnimations = (animateIn, animateOut) => {
+const withAnimations = (animateIn: any, animateOut: any) => {
   return {
     '&[data-state="entering"], &[data-state="entered"]': {
       animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
@@ -45,10 +45,12 @@ const sheetCloseStyles = {
     marginTop: 12,
     transform: 'translateX(-100%)',
     ...withAnimations(
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('rotate360InAnimation', {
         from: { transform: 'translateX(100%) rotate(0deg)' },
         to: { transform: 'translateX(-100%) rotate(-360deg)' }
       }),
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('rotate360OutAnimation', {
         from: { transform: 'translateX(-100%) rotate(0deg)' },
         to: { transform: 'translateX(100%) rotate(360deg)' }
@@ -61,10 +63,12 @@ const sheetCloseStyles = {
     marginTop: 12,
     transform: 'translateX(100%)',
     ...withAnimations(
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('leftRotate360InAnimation', {
         from: { transform: 'translateX(-100%) rotate(0deg)' },
         to: { transform: 'translateX(100%), rotate(360deg)' }
       }),
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('leftRotate360OutAnimation', {
         from: { transform: 'translateX(100%) rotate(0deg)' },
         to: { transform: 'translateX(-100%), rotate(360deg)' }
@@ -78,10 +82,12 @@ const sheetCloseStyles = {
     marginTop: 12,
     transform: 'translateY(0)',
     ...withAnimations(
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('topRotate360InAnimation', {
         from: { transform: 'translateY(-200%) rotate(0deg)' },
         to: { transform: 'translateY(0%), rotate(360deg)' }
       }),
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('topRotate360OutAnimation', {
         from: { transform: 'translateY(0%) rotate(0deg)' },
         to: { transform: 'translateY(-200%), rotate(360deg)' }
@@ -95,10 +101,12 @@ const sheetCloseStyles = {
     marginBottom: 12,
     transform: 'translateY(0)',
     ...withAnimations(
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('bottomRotate360InAnimation', {
         from: { transform: 'translateY(200%) rotate(0deg)' },
         to: { transform: 'translateY(0%), rotate(360deg)' }
       }),
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('bottomRotate360OutAnimation', {
         from: { transform: 'translateY(0%) rotate(0deg)' },
         to: { transform: 'translateY(200%), rotate(360deg)' }
@@ -109,25 +117,30 @@ const sheetCloseStyles = {
 
 const sheetCloseClassNameCache = {}
 
-const getSheetCloseClassName = position => {
+const getSheetCloseClassName = (position: any) => {
+  // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
   if (!sheetCloseClassNameCache[position]) {
+    // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     sheetCloseClassNameCache[position] = css({
       ...sheetCloseStyles[position],
       ...sharedStyles
     }).toString()
   }
 
+  // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
   return sheetCloseClassNameCache[position]
 }
 
 export default class SheetClose extends PureComponent {
   static propTypes = {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type '<E ex... Remove this comment to see the full error message
     ...Box.propTypes,
     isClosing: PropTypes.bool,
     position: PropTypes.oneOf([Position.LEFT, Position.RIGHT, Position.TOP, Position.BOTTOM]).isRequired
   }
 
   render() {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isClosing' does not exist on type 'Reado... Remove this comment to see the full error message
     const { isClosing, position, ...props } = this.props
     return (
       <Box
@@ -139,6 +152,7 @@ export default class SheetClose extends PureComponent {
         className={getSheetCloseClassName(position)}
         {...props}
       >
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         <CrossIcon color="#fff" />
       </Box>
     )

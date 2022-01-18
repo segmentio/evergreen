@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'tiny... Remove this comment to see the full error message
 import tinycolor from 'tinycolor2'
 import { get } from '../../../theme/src/theme-tools'
 
@@ -12,7 +13,7 @@ const baseStyle = {
   textTransform: 'uppercase'
 }
 
-function getContrastingColor(theme, props) {
+function getContrastingColor(theme: any, props: any) {
   const scheme = get(theme, `fills.${props.appearance}.${props.color}`, {
     backgroundColor: props.color,
     color: tinycolor(props.color).isLight() ? 'colors.dark' : 'white'

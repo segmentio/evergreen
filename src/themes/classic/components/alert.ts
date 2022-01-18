@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'theme' implicitly has an 'any' type.
 const baseStyle = (theme, { intent = 'info' }) => ({
   backgroundColor: 'white',
   boxShadow: `inset 0 0 0 1px ${theme.colors.neutralAlpha.N4A}`,

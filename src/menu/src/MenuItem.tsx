@@ -37,12 +37,14 @@ const MenuItem = memo(
       intent = 'none',
       icon,
       onSelect = noop,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...passthroughProps
     } = props
 
     const handleClick = useCallback(
       event => {
         if (disabled) return
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
         onSelect(event)
       },
       [disabled, onSelect]
@@ -93,6 +95,7 @@ const MenuItem = memo(
         data-isselectable={!disabled || undefined}
         aria-disabled={disabled}
         ref={ref}
+        // @ts-expect-error ts-migrate(2783) FIXME: 'height' is specified more than once, so this usag... Remove this comment to see the full error message
         height={icon ? 40 : 32}
         {...boxProps}
         {...passthroughProps}
@@ -102,16 +105,23 @@ const MenuItem = memo(
       >
         <IconWrapper
           icon={icon}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           color={disabled ? 'disabled' : iconColor}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           marginLeft={16}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           marginRight={-4}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           size={16}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           flexShrink={0}
         />
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         <Text color={textColor} marginLeft={16} marginRight={16} flex={1}>
           {children}
         </Text>
         {secondaryText && (
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           <Text marginRight={16} color={secondaryTextColor}>
             {secondaryText}
           </Text>
@@ -121,11 +131,13 @@ const MenuItem = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 MenuItem.propTypes = {
   /**
    * Element type to use for the menu item.
    * For example: `<MenuItem is={ReactRouterLink}>...</MenuItem>`
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type '<E ex... Remove this comment to see the full error message
   is: Box.propTypes.is,
 
   /**

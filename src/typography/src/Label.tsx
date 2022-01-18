@@ -9,6 +9,7 @@ const internalStyles = {}
 
 const Label = memo(
   forwardRef(function Label(props, ref) {
+    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { className, size = 400, ...restProps } = props
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
@@ -22,10 +23,12 @@ const Label = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Label.propTypes = {
   /**
    * Label composes Box as the base.
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type '<E ex... Remove this comment to see the full error message
   ...Box.propTypes,
 
   /**

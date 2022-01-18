@@ -40,6 +40,7 @@ const Textarea = memo(
       required,
       spellCheck = true,
       width = '100%',
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...restProps
     } = props
 
@@ -59,7 +60,9 @@ const Textarea = memo(
         is="textarea"
         ref={ref}
         className={cx(themedClassName, className)}
+        // @ts-expect-error ts-migrate(2783) FIXME: 'width' is specified more than once, so this usage... Remove this comment to see the full error message
         width={width}
+        // @ts-expect-error ts-migrate(2783) FIXME: 'height' is specified more than once, so this usag... Remove this comment to see the full error message
         height={height}
         required={required}
         disabled={disabled}
@@ -67,6 +70,7 @@ const Textarea = memo(
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
+        // @ts-expect-error ts-migrate(2783) FIXME: 'fontFamily' is specified more than once, so this ... Remove this comment to see the full error message
         fontFamily={themedFontFamily}
         {...boxProps}
         {...restProps}
@@ -75,6 +79,7 @@ const Textarea = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Textarea.propTypes = {
   /**
    * Composes the dimensions spec from the Box primitive.

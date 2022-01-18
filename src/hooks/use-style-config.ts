@@ -1,5 +1,6 @@
 import { useMemo, useRef } from 'react'
 import { css } from 'glamor'
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import merge from 'lodash.merge'
 import isEqual from 'react-fast-compare'
 import { splitBoxProps } from 'ui-box'
@@ -34,15 +35,16 @@ import { useTheme, get, resolveThemeTokens } from '../theme'
  * @property {{ [size: string]: Style }} [sizes]
  */
 
-function maybeRun(value, ...args) {
+function maybeRun(value: any, ...args: any[]) {
   return typeof value === 'function' ? value(...args) : value
 }
 
-function maybeRunDeep(raw, ...args) {
+function maybeRunDeep(raw: any, ...args: any[]) {
   if (raw && typeof raw === 'object') {
     const result = {}
 
     for (const key of Object.keys(raw)) {
+      // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       result[key] = maybeRunDeep(raw[key], ...args)
     }
 
@@ -60,7 +62,7 @@ function maybeRunDeep(raw, ...args) {
  * @param {GlamorAndBoxStyle} [internalStyles]
  * @returns {StyleConfig}
  */
-function combineStyles(theme, props, styleConfig, internalStyles = {}) {
+function combineStyles(theme: any, props: any, styleConfig: any, internalStyles = {}) {
   const config = maybeRun(styleConfig, theme, props)
   const baseStyle = maybeRunDeep(config.baseStyle, theme, props)
   const sizeStyle = maybeRunDeep(get(config, `sizes.${props.size}`, {}), theme, props)
@@ -75,7 +77,7 @@ function combineStyles(theme, props, styleConfig, internalStyles = {}) {
  * and returns a memoized style object
  * @returns {StyleConfig}
  */
-function useMergedStyles(theme, props, styleConfig, internalStyles) {
+function useMergedStyles(theme: any, props: any, styleConfig: any, internalStyles: any) {
   const styleRef = useRef({})
 
   return useMemo(() => {
@@ -91,7 +93,7 @@ function useMergedStyles(theme, props, styleConfig, internalStyles) {
 /**
  * Split up the style props into glamor-ready and box-ready props (className + spreadable props)
  */
-function useGlamorAndBox(styles, pseudoSelectors) {
+function useGlamorAndBox(styles: any, pseudoSelectors: any) {
   const glamorStylesRef = useRef({})
   const classNameRef = useRef()
 
@@ -105,6 +107,7 @@ function useGlamorAndBox(styles, pseudoSelectors) {
     // Swap out pseudo selector placeholders for their actual css selector strings
     for (const k of Object.keys(remainingProps)) {
       const key = k in pseudoSelectors ? pseudoSelectors[k] : k
+      // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       glamorStyles[key] = remainingProps[k]
     }
 
@@ -112,6 +115,7 @@ function useGlamorAndBox(styles, pseudoSelectors) {
     if (!isEqual(glamorStylesRef.current, glamorStyles)) {
       const className = css(glamorStyles).toString()
       glamorStylesRef.current = glamorStyles
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string | undefined' is not assignable to typ... Remove this comment to see the full error message
       classNameRef.current = className === 'css-nil' ? undefined : className
     }
 
@@ -130,10 +134,11 @@ function useGlamorAndBox(styles, pseudoSelectors) {
  * @param {GlamorAndBoxStyle} [internalStyles] additional styles that are specified internally, separate from the visual styles
  * @returns {{ className: string; boxProps: import('ui-box').EnhancerProps }}
  */
-export function useStyleConfig(componentKey, props, pseudoSelectors, internalStyles) {
+export function useStyleConfig(componentKey: any, props: any, pseudoSelectors: any, internalStyles: any) {
   const theme = useTheme()
 
   // Get the component style object from the theme
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 3 arguments, but got 2.
   const componentStyles = get(theme, `components.${componentKey}`) || {}
 
   // Merges the theme styles with the modifiers/props (appearance, size, etc)

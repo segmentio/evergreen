@@ -4,6 +4,7 @@ import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { Text } from '../../typography'
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'fill' does not exist on type '{ children... Remove this comment to see the full error message
 const CircleIcon = memo(function CircleIcon({ fill = 'currentColor', size, ...props }) {
   return (
     <svg width={size} height={size} viewBox="0 0 10 10" {...props}>
@@ -12,6 +13,7 @@ const CircleIcon = memo(function CircleIcon({ fill = 'currentColor', size, ...pr
   )
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 CircleIcon.propTypes = {
   fill: PropTypes.string,
   size: PropTypes.number
@@ -67,6 +69,7 @@ const Radio = memo(
       size = 12,
       isRequired = false,
       appearance = 'default',
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
@@ -112,9 +115,11 @@ const Radio = memo(
           width={size}
           height={size}
         >
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ size: number; }' is not assignable to type... Remove this comment to see the full error message
           <CircleIcon size={size / 2} />
         </Box>
         {label && (
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           <Text marginLeft={size === 12 ? 8 : 10} size={size === 12 ? 300 : 400} color={disabled ? 'muted' : 'default'}>
             {label}
           </Text>
@@ -124,6 +129,7 @@ const Radio = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Radio.propTypes = {
   /**
    * Composes some Box APIs.

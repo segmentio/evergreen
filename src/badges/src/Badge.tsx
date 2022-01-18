@@ -22,6 +22,7 @@ const hoverClassName = css({
 
 const Badge = memo(
   forwardRef(function Badge(props, ref) {
+    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { appearance = 'subtle', className, color = 'neutral', isInteractive = false, ...restProps } = props
 
     const { className: themedClassName, ...styleProps } = useStyleConfig(
@@ -43,7 +44,9 @@ const Badge = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Badge.propTypes = {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
   ...Strong.propTypes,
 
   /**

@@ -11,6 +11,7 @@ const ellipsis = {
 
 const TextTableCell = memo(
   forwardRef(function TextTableCell(props, ref) {
+    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { children, isNumber = false, placeholder, textProps, ...rest } = props
 
     return (
@@ -30,10 +31,12 @@ const TextTableCell = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 TextTableCell.propTypes = {
   /**
    * Composes the TableCell component as the base.
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
   ...TableCell.propTypes,
 
   /**

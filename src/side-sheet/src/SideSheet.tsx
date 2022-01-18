@@ -59,7 +59,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const withAnimations = (animateIn, animateOut) => {
+const withAnimations = (animateIn: any, animateOut: any) => {
   return {
     '&[data-state="entering"], &[data-state="entered"]': {
       animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
@@ -74,10 +74,12 @@ const animationStylesClass = {
   [Position.LEFT]: {
     transform: 'translateX(-100%)',
     ...withAnimations(
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredLeftSlideInAnimation', {
         from: { transform: 'translateX(-100%)' },
         to: { transform: 'translateX(0)' }
       }),
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredLeftSlideOutAnimation', {
         from: { transform: 'translateX(0)' },
         to: { transform: 'translateX(-100%)' }
@@ -87,10 +89,12 @@ const animationStylesClass = {
   [Position.RIGHT]: {
     transform: 'translateX(100%)',
     ...withAnimations(
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredRightSlideInAnimation', {
         from: { transform: 'translateX(100%)' },
         to: { transform: 'translateX(0)' }
       }),
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredRightSlideOutAnimation', {
         from: { transform: 'translateX(0)' },
         to: { transform: 'translateX(100%)' }
@@ -100,10 +104,12 @@ const animationStylesClass = {
   [Position.TOP]: {
     transform: 'translateY(-100%)',
     ...withAnimations(
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredTopSlideInAnimation', {
         from: { transform: 'translateY(-100%)' },
         to: { transform: 'translateY(0)' }
       }),
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredTopSlideOutAnimation', {
         from: { transform: 'translateY(0)' },
         to: { transform: 'translateY(-100%)' }
@@ -113,10 +119,12 @@ const animationStylesClass = {
   [Position.BOTTOM]: {
     transform: 'translateY(100%)',
     ...withAnimations(
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredBottomSlideInAnimation', {
         from: { transform: 'translateY(100%)' },
         to: { transform: 'translateY(0)' }
       }),
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredBottomSlideOutAnimation', {
         from: { transform: 'translateY(0)' },
         to: { transform: 'translateY(100%)' }
@@ -129,20 +137,31 @@ const noop = () => {}
 
 const SideSheet = memo(function SideSheet(props) {
   const {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'width' does not exist on type '{ childre... Remove this comment to see the full error message
     width = 620,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isShown' does not exist on type '{ child... Remove this comment to see the full error message
     isShown,
     children,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'containerProps' does not exist on type '... Remove this comment to see the full error message
     containerProps,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onOpenComplete' does not exist on type '... Remove this comment to see the full error message
     onOpenComplete = noop,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onCloseComplete' does not exist on type ... Remove this comment to see the full error message
     onCloseComplete = noop,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onBeforeClose' does not exist on type '{... Remove this comment to see the full error message
     onBeforeClose,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'shouldCloseOnOverlayClick' does not exis... Remove this comment to see the full error message
     shouldCloseOnOverlayClick = true,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'shouldCloseOnEscapePress' does not exist... Remove this comment to see the full error message
     shouldCloseOnEscapePress = true,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'position' does not exist on type '{ chil... Remove this comment to see the full error message
     position = Position.RIGHT,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'preventBodyScrolling' does not exist on ... Remove this comment to see the full error message
     preventBodyScrolling
   } = props
 
   return (
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: ({ close, state }: any) => Eleme... Remove this comment to see the full error message
     <Overlay
       isShown={isShown}
       shouldCloseOnClick={shouldCloseOnOverlayClick}
@@ -152,11 +171,18 @@ const SideSheet = memo(function SideSheet(props) {
       onEntered={onOpenComplete}
       preventBodyScrolling={preventBodyScrolling}
     >
-      {({ close, state }) => (
+      {({
+        close,
+        state
+      }: any) => (
+        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
         <Pane
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
           width={width}
           {...paneProps[position]}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           className={css(animationStylesClass[position]).toString()}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
           data-state={state}
         >
           <SheetClose position={position} data-state={state} isClosing={false} onClick={close} />
@@ -175,9 +201,10 @@ const SideSheet = memo(function SideSheet(props) {
         </Pane>
       )}
     </Overlay>
-  )
+  );
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 SideSheet.propTypes = {
   /**
    * Children can be a string, node or a function accepting `({ close })`.

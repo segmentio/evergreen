@@ -18,7 +18,7 @@ const GET_KEY_FOR_TAG_DELIMITER = {
 }
 
 const emptyProps = {}
-const emptyArray = []
+const emptyArray: any = []
 
 const internalStyles = {
   alignItems: 'center',
@@ -50,10 +50,12 @@ const TagInput = memo(
       className,
       inputProps = emptyProps,
       inputRef,
+      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
     const [inputValue, setInputValue] = useState('')
     const [isFocused, setIsFocused] = useState(false)
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     const id = useId('TagInput')
 
     const getValues = (inputValue = '') =>
@@ -69,6 +71,7 @@ const TagInput = memo(
       let shouldClearInput = safeInvoke(onAdd, newValues)
 
       if (typeof onChange === 'function') {
+        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         shouldClearInput = shouldClearInput || onChange(values.concat(newValues))
       }
 
@@ -77,10 +80,11 @@ const TagInput = memo(
       }
     }
 
-    const removeTagAtIndex = index => {
+    const removeTagAtIndex = (index: any) => {
       safeInvoke(onRemove, values[index], index)
 
       // Remove item at index as a new array
+      // @ts-expect-error ts-migrate(7006) FIXME: Parameter '_' implicitly has an 'any' type.
       const newValues = values.filter((_, i) => i !== index)
       safeInvoke(onChange, newValues)
     }
@@ -89,7 +93,7 @@ const TagInput = memo(
       removeTagAtIndex(values.length - 1)
     }
 
-    const handleBlur = event => {
+    const handleBlur = (event: any) => {
       const container = event.target
 
       requestAnimationFrame(() => {
@@ -105,17 +109,17 @@ const TagInput = memo(
       safeInvoke(onBlur, event)
     }
 
-    const handleInputChange = event => {
+    const handleInputChange = (event: any) => {
       setInputValue(event.target.value)
       safeInvoke(onInputChange, event)
     }
 
-    const handleInputFocus = event => {
+    const handleInputFocus = (event: any) => {
       setIsFocused(true)
       safeInvoke(onFocus, event)
     }
 
-    const handleKeyDown = event => {
+    const handleKeyDown = (event: any) => {
       const { selectionEnd, value } = event.target
       const key = GET_KEY_FOR_TAG_DELIMITER[tagSubmitKey]
 
@@ -123,17 +127,18 @@ const TagInput = memo(
         event.preventDefault()
         addTags(value)
       } else if (event.key === 'Backspace' && selectionEnd === 0) {
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
         handleBackspaceToRemove(event)
       }
     }
 
-    const handleRemoveTag = event => {
+    const handleRemoveTag = (event: any) => {
       // Using data attribute to simplify callback logic -- one handler for all children
       const index = Number(event.currentTarget.parentElement.getAttribute('data-tag-index'))
       removeTagAtIndex(index)
     }
 
-    const maybeRenderTag = (tag, index) => {
+    const maybeRenderTag = (tag: any, index: any) => {
       if (!tag) {
         return null
       }
@@ -173,18 +178,29 @@ const TagInput = memo(
       >
         {values.map(maybeRenderTag)}
         <TextInput
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           appearance="none"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
           id={id}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.
           disabled={disabled}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           flexGrow="1"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           height={height - 4}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           width="auto"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           type="text"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           value={inputValue}
           {...inputProps}
           ref={inputRef}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '(event: any) => void' is not assignable to t... Remove this comment to see the full error message
           onChange={handleInputChange}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '(event: any) => void' is not assignable to t... Remove this comment to see the full error message
           onFocus={handleInputFocus}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '(event: any) => void' is not assignable to t... Remove this comment to see the full error message
           onKeyDown={handleKeyDown}
         />
       </Box>
@@ -192,6 +208,7 @@ const TagInput = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 TagInput.propTypes = {
   /** Whether or not the inputValue should be added to the tags when the input blurs. */
   addOnBlur: PropTypes.bool,

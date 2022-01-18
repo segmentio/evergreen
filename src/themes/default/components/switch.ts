@@ -14,7 +14,7 @@ const appearances = {
       backgroundColor: 'colors.gray500'
     },
     _focus: {
-      boxShadow: theme => `0 0 0 3px ${theme.colors.blue100}`
+      boxShadow: (theme: any) => `0 0 0 3px ${theme.colors.blue100}`
     },
     _active: {
       backgroundColor: 'colors.gray600'

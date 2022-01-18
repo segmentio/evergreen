@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const loadingKeyframes = css.keyframes('loading', {
   '0%': {
     transform: 'rotate(0)'
@@ -13,6 +14,7 @@ const loadingKeyframes = css.keyframes('loading', {
   }
 })
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const loadingCircleKeyframes = css.keyframes('loading-circle', {
   '0%': {
     strokeDashoffset: 600
@@ -26,21 +28,21 @@ const outerClass = css({
   animation: `${loadingKeyframes} 2s linear infinite`
 }).toString()
 
-const innerClass = color =>
-  css({
-    strokeDashoffset: 600,
-    strokeDasharray: 300,
-    strokeWidth: 12,
-    strokeMiterlimit: 10,
-    strokeLinecap: 'round',
-    animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
-    stroke: color,
-    fill: 'transparent'
-  }).toString()
+const innerClass = (color: any) => css({
+  strokeDashoffset: 600,
+  strokeDasharray: 300,
+  strokeWidth: 12,
+  strokeMiterlimit: 10,
+  strokeLinecap: 'round',
+  animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
+  stroke: color,
+  fill: 'transparent'
+}).toString()
 
 const emptyObject = {}
 
 const Spinner = memo(
+  // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
   forwardRef(function Spinner({ delay = 0, size = 'medium', ...props }, ref) {
     const [isVisible, setIsVisible] = useState(delay === 0)
 
@@ -49,7 +51,7 @@ const Spinner = memo(
     const { height, width, ...rest } = typeof size === 'string' ? boxProps : { width: size, height: size }
 
     useEffect(() => {
-      let delayTimer = null
+      let delayTimer: any = null
       if (delay > 0) {
         delayTimer = setTimeout(() => {
           setIsVisible(true)
@@ -75,10 +77,12 @@ const Spinner = memo(
   })
 )
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Spinner.propTypes = {
   /**
    * Composes the Box component as the base.
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type '<E ex... Remove this comment to see the full error message
   ...Box.propTypes,
 
   /**

@@ -8,6 +8,7 @@ const pseudoSelectors = {}
 const internalStyles = {}
 
 const Icon = forwardRef(function Icon(
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'className' does not exist on type '{ chi... Remove this comment to see the full error message
   { className, color = 'currentColor', name, size = 16, svgPaths16, svgPaths20, title, ...svgProps },
   ref
 ) {
@@ -23,7 +24,7 @@ const Icon = forwardRef(function Icon(
   // Choose which pixel grid is most appropriate for given icon size
   const pixelGridSize = size >= SIZE_LARGE ? SIZE_LARGE : SIZE_STANDARD
   const pathStrings = pixelGridSize === SIZE_STANDARD ? svgPaths16 : svgPaths20
-  const paths = pathStrings.map((d, i) => (
+  const paths = pathStrings.map((d: any, i: any) => (
     // eslint-disable-next-line react/no-array-index-key
     <path key={i} d={d} fillRule="evenodd" />
   ))
@@ -33,6 +34,7 @@ const Icon = forwardRef(function Icon(
   return (
     <Box
       is="svg"
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '((instance: unknown) => void) | MutableRefOb... Remove this comment to see the full error message
       ref={ref}
       className={cx(className, themedClassName)}
       {...styleProps}
@@ -53,6 +55,7 @@ Icon.propTypes = {
    * Class name passed to the component.
    * Only use if you know what you are doing.
    */
+  // @ts-expect-error ts-migrate(2322) FIXME: Type '{ className: PropTypes.Requireable<string>; ... Remove this comment to see the full error message
   className: PropTypes.string,
 
   /**
