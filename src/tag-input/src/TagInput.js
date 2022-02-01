@@ -10,7 +10,6 @@ import { useId, useStyleConfig } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
 import { majorScale } from '../../scales'
 import { TextInput } from '../../text-input'
-import { useTheme } from '../../theme'
 import Tag from './Tag'
 
 const GET_KEY_FOR_TAG_DELIMITER = {
@@ -29,7 +28,8 @@ const internalStyles = {
 
 const pseudoSelectors = {
   _focused: '&[aria-activedescendant]',
-  _disabled: '&[aria-disabled="true"]'
+  _disabled: '&[aria-disabled="true"]',
+  _invalid: '&[aria-invalid="true"]:not(:focus)'
 }
 
 const TagInput = memo(
@@ -57,7 +57,6 @@ const TagInput = memo(
     const [inputValue, setInputValue] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const id = useId('TagInput')
-    const theme = useTheme()
 
     const getValues = (inputValue = '') =>
       separator
@@ -168,10 +167,10 @@ const TagInput = memo(
       <Box
         aria-disabled={disabled || undefined}
         aria-activedescendant={isFocused ? id : undefined}
+        aria-invalid={isInvalid}
         className={cx(themedContainerClassName, className)}
         ref={ref}
         onBlur={handleBlur}
-        borderColor={isInvalid ? theme.colors.red600 : undefined}
         {...boxProps}
         {...rest}
       >
