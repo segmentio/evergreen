@@ -2499,6 +2499,7 @@ export interface TagInputOwnProps {
   addOnBlur?: boolean
   className?: string
   disabled?: boolean
+  isInvalid?: boolean
   height?: number
   inputProps?: PolymorphicBoxProps<'input', TextOwnProps>
   inputRef?: React.Ref<HTMLInputElement>
