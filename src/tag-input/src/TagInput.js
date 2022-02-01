@@ -10,6 +10,7 @@ import { useId, useStyleConfig } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
 import { majorScale } from '../../scales'
 import { TextInput } from '../../text-input'
+import { useTheme } from '../../theme'
 import Tag from './Tag'
 
 const GET_KEY_FOR_TAG_DELIMITER = {
@@ -22,8 +23,7 @@ const emptyArray = []
 
 const internalStyles = {
   alignItems: 'center',
-  display: 'inline-flex',
-  flexWrap: 'wrap'
+  display: 'inline-flex'
 }
 
 const pseudoSelectors = {
@@ -50,11 +50,13 @@ const TagInput = memo(
       className,
       inputProps = emptyProps,
       inputRef,
+      isInvalid,
       ...rest
     } = props
     const [inputValue, setInputValue] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const id = useId('TagInput')
+    const theme = useTheme()
 
     const getValues = (inputValue = '') =>
       separator
@@ -168,6 +170,7 @@ const TagInput = memo(
         className={cx(themedContainerClassName, className)}
         ref={ref}
         onBlur={handleBlur}
+        borderColor={isInvalid ? theme.colors.red600 : undefined}
         {...boxProps}
         {...rest}
       >
@@ -199,6 +202,8 @@ TagInput.propTypes = {
   className: PropTypes.string,
   /** Whether or not the input should be disabled. */
   disabled: PropTypes.bool,
+  /** Whether or not the input is invalid. */
+  isInvalid: PropTypes.bool,
   /** The vertical size of the input */
   height: PropTypes.number,
   /** Props to pass to the input component. Note that `ref` and `key` are not supported. See `inputRef`. */
