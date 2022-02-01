@@ -23,7 +23,8 @@ const emptyArray = []
 
 const internalStyles = {
   alignItems: 'center',
-  display: 'inline-flex'
+  display: 'inline-flex',
+  flexWrap: 'wrap'
 }
 
 const pseudoSelectors = {
