@@ -6,6 +6,7 @@ import React, { memo, forwardRef, useState } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import { Autocomplete } from '../../autocomplete'
 import { useId, useStyleConfig } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
 import { majorScale } from '../../scales'
@@ -52,11 +53,15 @@ const TagInput = memo(
       inputProps = emptyProps,
       inputRef,
       isInvalid,
+      autocompleteItems,
       ...rest
     } = props
     const [inputValue, setInputValue] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const id = useId('TagInput')
+
+    const inputId = inputProps && inputProps.id ? inputProps.id : id
+    const hasAutocomplete = Array.isArray(autocompleteItems) && autocompleteItems.length > 0
 
     const getValues = (inputValue = '') =>
       separator
@@ -98,6 +103,7 @@ const TagInput = memo(
         if (!container.contains(document.activeElement)) {
           if (addOnBlur && inputValue) {
             addTags(inputValue)
+            setInputValue('')
           }
 
           setIsFocused(false)
@@ -166,7 +172,7 @@ const TagInput = memo(
     return (
       <Box
         aria-disabled={disabled || undefined}
-        aria-activedescendant={isFocused ? id : undefined}
+        aria-activedescendant={isFocused ? inputId : undefined}
         aria-invalid={isInvalid}
         className={cx(themedContainerClassName, className)}
         ref={ref}
@@ -175,21 +181,80 @@ const TagInput = memo(
         {...rest}
       >
         {values.map(maybeRenderTag)}
-        <TextInput
-          appearance="none"
-          id={id}
-          disabled={disabled}
-          flexGrow="1"
-          height={height - 4}
-          width="auto"
-          type="text"
-          value={inputValue}
-          {...inputProps}
-          ref={inputRef}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-          onKeyDown={handleKeyDown}
-        />
+        <Box flexGrow="1" display="inline-block">
+          <Autocomplete
+            onChange={changedItem => {
+              addTags(changedItem)
+              setInputValue('')
+            }}
+            items={hasAutocomplete ? autocompleteItems : []}
+            id={inputId}
+            selectedItem=""
+            inputValue={inputValue}
+          >
+            {autocompleteProps => {
+              const { closeMenu, getInputProps, getRef: autocompleteGetRef, highlightedIndex } = autocompleteProps
+
+              const {
+                onBlur: autocompleteOnBlur,
+                onChange: autocompleteOnChange,
+                onKeyDown: autocompleteKeyDown,
+                ...autocompleteRestProps
+              } = getInputProps()
+
+              return (
+                <TextInput
+                  appearance="none"
+                  disabled={disabled}
+                  height={height - 4}
+                  width="auto"
+                  type="text"
+                  {...inputProps}
+                  {...autocompleteRestProps}
+                  value={inputValue}
+                  id={inputId}
+                  ref={textInputRef => {
+                    autocompleteGetRef(textInputRef)
+                    if (inputRef instanceof Function) {
+                      inputRef(textInputRef)
+                    } else if (inputRef) {
+                      inputRef.current = textInputRef
+                    }
+                  }}
+                  onBlur={e => {
+                    autocompleteOnBlur(e)
+                    if (inputProps.onBlur) {
+                      safeInvoke(inputProps.onBlur, e)
+                    }
+                  }}
+                  onFocus={e => {
+                    handleInputFocus(e)
+                    if (inputProps.onFocus) {
+                      safeInvoke(inputProps.onFocus, e)
+                    }
+                  }}
+                  onChange={e => {
+                    handleInputChange(e)
+                    autocompleteOnChange(e)
+                  }}
+                  onKeyDown={e => {
+                    autocompleteKeyDown(e)
+                    if (e.key === 'Backspace' || !(highlightedIndex > -1)) {
+                      handleKeyDown(e)
+                      if (e.key === GET_KEY_FOR_TAG_DELIMITER[tagSubmitKey]) {
+                        closeMenu()
+                        setInputValue('')
+                      }
+                    }
+                    if (e.key === 'Backspace' && e.target.selectionEnd === 0) {
+                      closeMenu()
+                    }
+                  }}
+                />
+              )
+            }}
+          </Autocomplete>
+        </Box>
       </Box>
     )
   })
@@ -198,6 +263,8 @@ const TagInput = memo(
 TagInput.propTypes = {
   /** Whether or not the inputValue should be added to the tags when the input blurs. */
   addOnBlur: PropTypes.bool,
+  /** Autocomplete options to show when typing in a new value */
+  autocompleteItems: PropTypes.array,
   /** The class name to apply to the container component. */
   className: PropTypes.string,
   /** Whether or not the input should be disabled. */
