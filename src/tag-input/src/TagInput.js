@@ -8,8 +8,10 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Autocomplete } from '../../autocomplete'
 import { useId, useStyleConfig } from '../../hooks'
+import { CaretDownIcon } from '../../icons'
+import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
-import { majorScale } from '../../scales'
+import { majorScale, minorScale } from '../../scales'
 import { TextInput } from '../../text-input'
 import Tag from './Tag'
 
@@ -24,7 +26,8 @@ const emptyArray = []
 const internalStyles = {
   alignItems: 'center',
   display: 'inline-flex',
-  flexWrap: 'wrap'
+  flexWrap: 'wrap',
+  position: 'relative'
 }
 
 const pseudoSelectors = {
@@ -153,6 +156,7 @@ const TagInput = memo(
           key={`${tag}:${index}`}
           data-tag-index={index}
           marginX={majorScale(1)}
+          marginY={minorScale(1) * 1.5}
           onRemove={disabled ? null : handleRemoveTag}
           isRemovable={!disabled}
           {...propsForElement}
@@ -179,6 +183,7 @@ const TagInput = memo(
         onBlur={handleBlur}
         {...boxProps}
         {...rest}
+        paddingRight={hasAutocomplete ? majorScale(3) : undefined}
       >
         {values.map(maybeRenderTag)}
         <Box flexGrow="1" display="inline-block">
@@ -193,7 +198,13 @@ const TagInput = memo(
             inputValue={inputValue}
           >
             {autocompleteProps => {
-              const { closeMenu, getInputProps, getRef: autocompleteGetRef, highlightedIndex } = autocompleteProps
+              const {
+                closeMenu,
+                getInputProps,
+                getRef: autocompleteGetRef,
+                getToggleButtonProps,
+                highlightedIndex
+              } = autocompleteProps
 
               const {
                 onBlur: autocompleteOnBlur,
@@ -203,54 +214,75 @@ const TagInput = memo(
               } = getInputProps()
 
               return (
-                <TextInput
-                  appearance="none"
-                  disabled={disabled}
-                  height={height - 4}
-                  width="auto"
-                  type="text"
-                  {...inputProps}
-                  {...autocompleteRestProps}
-                  value={inputValue}
-                  id={inputId}
-                  ref={textInputRef => {
-                    autocompleteGetRef(textInputRef)
-                    if (inputRef instanceof Function) {
-                      inputRef(textInputRef)
-                    } else if (inputRef) {
-                      inputRef.current = textInputRef
-                    }
-                  }}
-                  onBlur={e => {
-                    autocompleteOnBlur(e)
-                    if (inputProps.onBlur) {
-                      safeInvoke(inputProps.onBlur, e)
-                    }
-                  }}
-                  onFocus={e => {
-                    handleInputFocus(e)
-                    if (inputProps.onFocus) {
-                      safeInvoke(inputProps.onFocus, e)
-                    }
-                  }}
-                  onChange={e => {
-                    handleInputChange(e)
-                    autocompleteOnChange(e)
-                  }}
-                  onKeyDown={e => {
-                    autocompleteKeyDown(e)
-                    if (e.key === 'Backspace' || !(highlightedIndex > -1)) {
-                      handleKeyDown(e)
-                      if (e.key === GET_KEY_FOR_TAG_DELIMITER[tagSubmitKey]) {
-                        closeMenu()
-                        setInputValue('')
+                <>
+                  <TextInput
+                    appearance="none"
+                    disabled={disabled}
+                    height={height - 4}
+                    width="auto"
+                    type="text"
+                    {...inputProps}
+                    {...autocompleteRestProps}
+                    value={inputValue}
+                    id={inputId}
+                    ref={textInputRef => {
+                      autocompleteGetRef(textInputRef)
+                      if (inputRef instanceof Function) {
+                        inputRef(textInputRef)
+                      } else if (inputRef) {
+                        inputRef.current = textInputRef
                       }
-                    }
-                    if (e.key === 'Backspace' && e.target.selectionEnd === 0) {
-                      closeMenu()
-                    }
-                  }}
-                />
+                    }}
+                    onBlur={e => {
+                      autocompleteOnBlur(e)
+                      if (inputProps.onBlur) {
+                        safeInvoke(inputProps.onBlur, e)
+                      }
+                    }}
+                    onFocus={e => {
+                      handleInputFocus(e)
+                      if (inputProps.onFocus) {
+                        safeInvoke(inputProps.onFocus, e)
+                      }
+                    }}
+                    onChange={e => {
+                      handleInputChange(e)
+                      autocompleteOnChange(e)
+                    }}
+                    onKeyDown={e => {
+                      autocompleteKeyDown(e)
+                      if (e.key === 'Backspace' || !(highlightedIndex > -1)) {
+                        handleKeyDown(e)
+                        if (e.key === GET_KEY_FOR_TAG_DELIMITER[tagSubmitKey]) {
+                          closeMenu()
+                          setInputValue('')
+                        }
+                      }
+                      if (e.key === 'Backspace' && e.target.selectionEnd === 0) {
+                        closeMenu()
+                      }
+                    }}
+                  />
+                  {hasAutocomplete && (
+                    <Pane
+                      as="button"
+                      background="gray100"
+                      position="absolute"
+                      top={6}
+                      right={4}
+                      height={20}
+                      width={20}
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      borderRadius={4}
+                      cursor={disabled ? undefined : 'pointer'}
+                      {...getToggleButtonProps()}
+                    >
+                      <CaretDownIcon color="muted" />
+                    </Pane>
+                  )}
+                </>
               )
             }}
           </Autocomplete>
