@@ -17,6 +17,9 @@ const appearances = {
     _disabled: {
       cursor: 'not-allowed',
       backgroundColor: 'colors.gray100'
+    },
+    _invalid: {
+      borderColor: 'colors.red600'
     }
   }
 }

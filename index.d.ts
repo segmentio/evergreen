@@ -1491,7 +1491,7 @@ export interface MenuProps {
 export interface MenuItemOwnProps extends PaneOwnProps {
   onSelect?: (event: React.SyntheticEvent) => void
   icon?: React.ElementType | JSX.Element | null | false
-  secondaryText?: JSX.Element
+  secondaryText?: JSX.Element | string
   appearance?: DefaultAppearance
   intent?: IntentTypes
   disabled?: boolean
@@ -2499,6 +2499,7 @@ export interface TagInputOwnProps {
   addOnBlur?: boolean
   className?: string
   disabled?: boolean
+  isInvalid?: boolean
   height?: number
   inputProps?: PolymorphicBoxProps<'input', TextOwnProps>
   inputRef?: React.Ref<HTMLInputElement>
