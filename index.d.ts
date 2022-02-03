@@ -309,7 +309,7 @@ export type ComponentStyles<T extends Components = Components> = {
 }
 
 export interface Theme<TComponents extends Components = Components> {
-  colors: { [color: string]: Color<string | { [group: string]: Color }> }
+  colors: { [color: string]: Color<string | string[] | { [group: string]: Color }> }
   fills: { [fill: string]: Fill }
   intents: { [intent: string]: Intent }
   fontFamilies: FontFamilies
@@ -323,7 +323,7 @@ export interface Theme<TComponents extends Components = Components> {
   components: Partial<ComponentStyles<TComponents>>
 }
 
-export type Color<T extends string | { [group: string]: Color } = string> = T
+export type Color<T extends string | string[] | { [group: string]: Color } = string> = T
 export interface Fill {
   backgroundColor: string
   color: string
@@ -380,7 +380,7 @@ export interface DefaultTheme extends Theme {
   intents: { [intent in DefaultThemeIntent]: Intent }
   components: {
     [Component in Components]: {
-      baseStyle: StyleProps<Component>
+      baseStyle: Partial<StyleProps<Component>>
       appearances: Record<string & ComponentAppearances<Component>, Partial<StyleProps<Component>>>
       sizes: Record<Size & ComponentSizes<Component>, Partial<StyleProps<Component>>>
     }
