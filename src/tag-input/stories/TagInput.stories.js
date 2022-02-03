@@ -177,7 +177,7 @@ storiesOf('tag-input', module).add('TagInput', () => (
       <StoryHeader>
         <StoryHeading>With Autocomplete</StoryHeading>
       </StoryHeader>
-      <StateManager values={initialValues}>
+      <StateManager>
         {({ addValues, handleChange, removeValue, values }) => {
           const autocompleteItems = autocompleteValues.filter(i => !values.includes(i))
           return (

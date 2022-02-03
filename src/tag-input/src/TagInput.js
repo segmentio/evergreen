@@ -277,6 +277,7 @@ const TagInput = memo(
                       justifyContent="center"
                       borderRadius={4}
                       cursor={disabled ? undefined : 'pointer'}
+                      data-testid="TagInput-autocomplete-toggle"
                       {...getToggleButtonProps()}
                     >
                       <CaretDownIcon color="muted" />

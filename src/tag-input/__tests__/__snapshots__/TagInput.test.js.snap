@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TagInput /> basic snapshot 1`] = `
+<div
+  className="css-1defwtr ub-algn-itms_center ub-dspl_inline-flex ub-flx-wrap_wrap ub-pst_relative ub-pb_2px ub-pt_2px ub-bg-clr_white ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-b-btm_1px-solid-d8dae5 ub-b-lft_1px-solid-d8dae5 ub-b-rgt_1px-solid-d8dae5 ub-b-top_1px-solid-d8dae5 ub-box-szg_border-box"
+  onBlur={[Function]}
+>
+  <strong
+    className="css-1rdjc1y ub-fnt-sze_11-5px ub-f-wght_400 ub-ln-ht_16px ub-ltr-spc_0 ub-fnt-fam_b77syt ub-color_474d66 ub-dspl_inline-flex ub-box-szg_border-box ub-ver-algn_middle ub-h_16px ub-pb_6px ub-pt_6px ub-pl_8px ub-pr_4px ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-txt-algn_center ub-txt-deco_none ub-txt-trns_none ub-bg-clr_edeff5 ub-algn-itms_center ub-mt_6px ub-mb_6px ub-ml_8px ub-mr_8px"
+    data-tag-index={0}
+  >
+    one
+    <svg
+      className="css-c4d79v ub-ml_4px ub-w_12px ub-h_12px ub-box-szg_border-box"
+      data-icon="cross"
+      onClick={[Function]}
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M9.41 8l3.29-3.29c.19-.18.3-.43.3-.71a1.003 1.003 0 00-1.71-.71L8 6.59l-3.29-3.3a1.003 1.003 0 00-1.42 1.42L6.59 8 3.3 11.29c-.19.18-.3.43-.3.71a1.003 1.003 0 001.71.71L8 9.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 00.71-1.71L9.41 8z"
+        fillRule="evenodd"
+      />
+    </svg>
+  </strong>
+  <strong
+    className="css-1rdjc1y ub-fnt-sze_11-5px ub-f-wght_400 ub-ln-ht_16px ub-ltr-spc_0 ub-fnt-fam_b77syt ub-color_474d66 ub-dspl_inline-flex ub-box-szg_border-box ub-ver-algn_middle ub-h_16px ub-pb_6px ub-pt_6px ub-pl_8px ub-pr_4px ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-txt-algn_center ub-txt-deco_none ub-txt-trns_none ub-bg-clr_edeff5 ub-algn-itms_center ub-mt_6px ub-mb_6px ub-ml_8px ub-mr_8px"
+    data-tag-index={1}
+  >
+    two
+    <svg
+      className="css-c4d79v ub-ml_4px ub-w_12px ub-h_12px ub-box-szg_border-box"
+      data-icon="cross"
+      onClick={[Function]}
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M9.41 8l3.29-3.29c.19-.18.3-.43.3-.71a1.003 1.003 0 00-1.71-.71L8 6.59l-3.29-3.3a1.003 1.003 0 00-1.42 1.42L6.59 8 3.3 11.29c-.19.18-.3.43-.3.71a1.003 1.003 0 001.71.71L8 9.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 00.71-1.71L9.41 8z"
+        fillRule="evenodd"
+      />
+    </svg>
+  </strong>
+  <strong
+    className="css-1rdjc1y ub-fnt-sze_11-5px ub-f-wght_400 ub-ln-ht_16px ub-ltr-spc_0 ub-fnt-fam_b77syt ub-color_474d66 ub-dspl_inline-flex ub-box-szg_border-box ub-ver-algn_middle ub-h_16px ub-pb_6px ub-pt_6px ub-pl_8px ub-pr_4px ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-txt-algn_center ub-txt-deco_none ub-txt-trns_none ub-bg-clr_edeff5 ub-algn-itms_center ub-mt_6px ub-mb_6px ub-ml_8px ub-mr_8px"
+    data-tag-index={2}
+  >
+    three
+    <svg
+      className="css-c4d79v ub-ml_4px ub-w_12px ub-h_12px ub-box-szg_border-box"
+      data-icon="cross"
+      onClick={[Function]}
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M9.41 8l3.29-3.29c.19-.18.3-.43.3-.71a1.003 1.003 0 00-1.71-.71L8 6.59l-3.29-3.3a1.003 1.003 0 00-1.42 1.42L6.59 8 3.3 11.29c-.19.18-.3.43-.3.71a1.003 1.003 0 001.71.71L8 9.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 00.71-1.71L9.41 8z"
+        fillRule="evenodd"
+      />
+    </svg>
+  </strong>
+  <div
+    className="ub-flx-grow_1 ub-dspl_inline-block ub-box-szg_border-box"
+  >
+    <div
+      aria-expanded={false}
+      aria-haspopup="listbox"
+      aria-labelledby="TagInput-1-label"
+      aria-owns={null}
+      role="combobox"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <input
+        aria-activedescendant={null}
+        aria-autocomplete="list"
+        aria-controls={null}
+        aria-invalid={false}
+        aria-labelledby="TagInput-1-label"
+        autoComplete="off"
+        className="css-2radon ub-w_auto ub-fnt-fam_b77syt ub-b-btm_1px-solid-transparent ub-b-lft_1px-solid-transparent ub-b-rgt_1px-solid-transparent ub-b-top_1px-solid-transparent ub-otln_iu2jf4 ub-txt-deco_none ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-ln-ht_16px ub-fnt-sze_12px ub-color_474d66 ub-pl_12px ub-pr_12px ub-tstn_n1akt6 ub-h_28px ub-bg-clr_transparent ub-f-wght_400 ub-ltr-spc_0 ub-box-szg_border-box"
+        disabled={false}
+        id="TagInput-1"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        placeholder="Enter something..."
+        spellCheck={true}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
