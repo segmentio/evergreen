@@ -28,7 +28,8 @@ const internalStyles = {
 
 const pseudoSelectors = {
   _focused: '&[aria-activedescendant]',
-  _disabled: '&[aria-disabled="true"]'
+  _disabled: '&[aria-disabled="true"]',
+  _invalid: '&[aria-invalid="true"]:not(:focus)'
 }
 
 const TagInput = memo(
@@ -50,6 +51,7 @@ const TagInput = memo(
       className,
       inputProps = emptyProps,
       inputRef,
+      isInvalid,
       ...rest
     } = props
     const [inputValue, setInputValue] = useState('')
@@ -165,6 +167,7 @@ const TagInput = memo(
       <Box
         aria-disabled={disabled || undefined}
         aria-activedescendant={isFocused ? id : undefined}
+        aria-invalid={isInvalid}
         className={cx(themedContainerClassName, className)}
         ref={ref}
         onBlur={handleBlur}
@@ -199,6 +202,8 @@ TagInput.propTypes = {
   className: PropTypes.string,
   /** Whether or not the input should be disabled. */
   disabled: PropTypes.bool,
+  /** Whether or not the input is invalid. */
+  isInvalid: PropTypes.bool,
   /** The vertical size of the input */
   height: PropTypes.number,
   /** Props to pass to the input component. Note that `ref` and `key` are not supported. See `inputRef`. */

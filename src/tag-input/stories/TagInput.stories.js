@@ -124,6 +124,22 @@ storiesOf('tag-input', module).add('TagInput', () => (
     </StorySection>
     <StorySection>
       <StoryHeader>
+        <StoryHeading>Invalid</StoryHeading>
+      </StoryHeader>
+      <StateManager>
+        {({ addValues, removeValue, values }) => (
+          <TagInput
+            inputProps={{ placeholder: 'Enter something...', validationMessage: 'This field should not be empty' }}
+            values={values}
+            onAdd={addValues}
+            onRemove={removeValue}
+            isInvalid={true}
+          />
+        )}
+      </StateManager>
+    </StorySection>
+    <StorySection>
+      <StoryHeader>
         <StoryHeading>With `tagProps`</StoryHeading>
       </StoryHeader>
       <StateManager values={['valid', 'invalid']}>
