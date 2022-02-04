@@ -2497,6 +2497,7 @@ export declare const TabNavigation: BoxComponent<TabNavigationOwnProps, 'nav'>
 
 export interface TagInputOwnProps {
   addOnBlur?: boolean
+  autocompleteItems?: Array<string>
   className?: string
   disabled?: boolean
   isInvalid?: boolean

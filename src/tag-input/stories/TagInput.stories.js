@@ -9,6 +9,7 @@ const StoryHeader = props => <Box marginBottom={16} {...props} />
 const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
 const StorySection = props => <Box marginBottom={40} {...props} />
 const initialValues = ['First', 'Second', 'Third']
+const autocompleteValues = initialValues.concat('Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth')
 
 class StateManager extends React.PureComponent {
   static propTypes = {
@@ -129,7 +130,7 @@ storiesOf('tag-input', module).add('TagInput', () => (
       <StateManager>
         {({ addValues, removeValue, values }) => (
           <TagInput
-            inputProps={{ placeholder: 'Enter something...', validationMessage: 'This field should not be empty' }}
+            inputProps={{ placeholder: 'Enter something...' }}
             values={values}
             onAdd={addValues}
             onRemove={removeValue}
@@ -170,6 +171,28 @@ storiesOf('tag-input', module).add('TagInput', () => (
             onRemove={removeValue}
           />
         )}
+      </StateManager>
+    </StorySection>
+    <StorySection>
+      <StoryHeader>
+        <StoryHeading>With Autocomplete</StoryHeading>
+      </StoryHeader>
+      <StateManager>
+        {({ addValues, handleChange, removeValue, values }) => {
+          const autocompleteItems = autocompleteValues.filter(i => !values.includes(i))
+          return (
+            <TagInput
+              addOnBlur
+              inputProps={{ placeholder: 'Enter something...' }}
+              values={values}
+              separator={false}
+              onAdd={addValues}
+              onChange={handleChange}
+              onRemove={removeValue}
+              autocompleteItems={autocompleteItems}
+            />
+          )
+        }}
       </StateManager>
     </StorySection>
   </Box>
