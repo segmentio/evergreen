@@ -7,9 +7,9 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Autocomplete } from '../../autocomplete'
+import { Button } from '../../buttons'
 import { useId, useStyleConfig } from '../../hooks'
 import { CaretDownIcon } from '../../icons'
-import { Pane } from '../../layers'
 import safeInvoke from '../../lib/safe-invoke'
 import { majorScale, minorScale } from '../../scales'
 import { TextInput } from '../../text-input'
@@ -213,6 +213,20 @@ const TagInput = memo(
                 ...autocompleteRestProps
               } = getInputProps()
 
+              const handleAutocompleteKeydown = e => {
+                autocompleteKeyDown(e)
+                if (e.key === 'Backspace' || !(highlightedIndex > -1)) {
+                  handleKeyDown(e)
+                  if (e.key === GET_KEY_FOR_TAG_DELIMITER[tagSubmitKey]) {
+                    closeMenu()
+                    setInputValue('')
+                  }
+                }
+                if (e.key === 'Backspace' && e.target.selectionEnd === 0) {
+                  closeMenu()
+                }
+              }
+
               return (
                 <>
                   <TextInput
@@ -235,53 +249,39 @@ const TagInput = memo(
                     }}
                     onBlur={e => {
                       autocompleteOnBlur(e)
-                      if (inputProps.onBlur) {
-                        safeInvoke(inputProps.onBlur, e)
-                      }
+                      safeInvoke(inputProps.onBlur, e)
                     }}
                     onFocus={e => {
                       handleInputFocus(e)
-                      if (inputProps.onFocus) {
-                        safeInvoke(inputProps.onFocus, e)
-                      }
+                      safeInvoke(inputProps.onFocus, e)
                     }}
                     onChange={e => {
                       handleInputChange(e)
                       autocompleteOnChange(e)
                     }}
-                    onKeyDown={e => {
-                      autocompleteKeyDown(e)
-                      if (e.key === 'Backspace' || !(highlightedIndex > -1)) {
-                        handleKeyDown(e)
-                        if (e.key === GET_KEY_FOR_TAG_DELIMITER[tagSubmitKey]) {
-                          closeMenu()
-                          setInputValue('')
-                        }
-                      }
-                      if (e.key === 'Backspace' && e.target.selectionEnd === 0) {
-                        closeMenu()
-                      }
-                    }}
+                    onKeyDown={handleAutocompleteKeydown}
                   />
                   {hasAutocomplete && (
-                    <Pane
-                      as="button"
+                    <Button
+                      appearance="none"
                       background="gray100"
                       position="absolute"
-                      top={6}
-                      right={4}
-                      height={20}
-                      width={20}
+                      top={minorScale(1) * 1.5}
+                      right={minorScale(1)}
+                      height={minorScale(5)}
+                      padding={0}
+                      width={minorScale(5)}
+                      minWidth={minorScale(5)}
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
-                      borderRadius={4}
+                      borderRadius={minorScale(1)}
                       cursor={disabled ? undefined : 'pointer'}
                       data-testid="TagInput-autocomplete-toggle"
                       {...getToggleButtonProps()}
                     >
                       <CaretDownIcon color="muted" />
-                    </Pane>
+                    </Button>
                   )}
                 </>
               )
