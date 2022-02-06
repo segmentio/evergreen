@@ -31,10 +31,10 @@ buttonsStory.add('Common', () => (
             onChange={value => setState({ value })}
           />
           <Pane marginTop={16}>
-            <Button size={state.value} marginRight={16}>
+            <Button size={state.value} marginRight={16} iconBefore={Icons.CrossIcon}>
               Close
             </Button>
-            <Button size={state.value} marginRight={16}>
+            <Button size={state.value} marginRight={16} iconBefore={Icons.DeleteIcon}>
               Cancel
             </Button>
             <Button size={state.value} marginRight={16} iconAfter={Icons.CaretDownIcon}>
@@ -55,8 +55,14 @@ buttonsStory.add('Common', () => (
             <Button size={state.value} marginRight={16} iconBefore={Icons.ManualIcon}>
               Docs
             </Button>
-            <Button size={state.value} iconBefore={Icons.ImportIcon}>
+            <Button size={state.value} iconBefore={Icons.ImportIcon} marginRight={16}>
               Import
+            </Button>
+            <Button size={state.value} marginRight={16} iconBefore={Icons.ExportIcon}>
+              Export
+            </Button>
+            <Button size={state.value} marginRight={16} iconBefore={Icons.ChatIcon}>
+              Chat
             </Button>
           </Pane>
           <Pane marginTop={16}>
@@ -68,6 +74,9 @@ buttonsStory.add('Common', () => (
             </Button>
             <Button size={state.value} appearance="primary" marginRight={16} iconBefore={Icons.EyeOpenIcon}>
               Preview
+            </Button>
+            <Button size={state.value} appearance="primary" marginRight={16} iconBefore={Icons.PrintIcon}>
+              Print
             </Button>
           </Pane>
           <Pane marginTop={16}>
