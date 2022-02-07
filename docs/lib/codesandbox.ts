@@ -1,5 +1,5 @@
 import LZString from 'lz-string'
-import { dependencies } from '../package.json'
+import packageJson from '../package.json'
 
 function compress(string: string) {
   return LZString.compressToBase64(string).replace(/\+/g, `-`).replace(/\//g, `_`).replace(/=+$/, ``)
@@ -49,7 +49,7 @@ ReactDOM.render(
           dependencies: {
             react: '16.8.0',
             'react-dom': '16.8.0',
-            'evergreen-ui': `${dependencies['evergreen-ui']}`,
+            'evergreen-ui': `${packageJson.dependencies['evergreen-ui']}`,
           },
           devDependencies: {
             'react-scripts': 'latest',
