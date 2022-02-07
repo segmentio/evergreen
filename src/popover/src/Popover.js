@@ -41,15 +41,6 @@ const Popover = memo(
     const targetRef = useRef()
     const setTargetRef = useMergedRef(targetRef)
 
-    useImperativeHandle(
-      forwardedRef,
-      () => ({
-        open,
-        close
-      }),
-      [popoverNode.current]
-    )
-
     /**
      * Methods borrowed from BlueprintJS
      * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
@@ -137,6 +128,15 @@ const Popover = memo(
       bringFocusBackToTarget()
       onClose()
     }, [setIsShown, bringFocusBackToTarget, onClose, isShown])
+
+    useImperativeHandle(
+      forwardedRef,
+      () => ({
+        open,
+        close
+      }),
+      [open, close]
+    )
 
     // If `props.isShown` is a boolean, treat as a controlled component
     // `open` and `close` should be applied when it changes
