@@ -42,6 +42,35 @@ It is important to understand the Menu component by itself does not manage a dro
 </Menu>
 ```
 
+## Close the opened state inside of the Menu
+
+you can be able to close the popover inside of the content. It's more flexible than that in [close_from_within_content](https://evergreen.segment.com/components/popover#close_from_within_content)
+
+
+```js
+function MenuWithClose() {
+    const [open, setOpen] = React.useState(false)
+    return (
+        <Popover
+            isShown={open}
+            onOpen={() => {
+                setOpen(true)
+            }}
+            position={Position.BOTTOM_LEFT}
+            content={
+                <Menu>
+                    <Menu.Group>
+                        <Menu.Item onSelect={() => setOpen(false)}>Close</Menu.Item>
+                    </Menu.Group>
+                </Menu>
+            }
+            shouldCloseOnExternalClick={true}>
+            <IconButton icon={MenuIcon} height={40} />
+        </Popover>
+    )
+}
+```
+
 ## Using onSelect handlers
 
 Menu items support a `onSelect` handler that is triggered on click and `enter` + `space` key down.
