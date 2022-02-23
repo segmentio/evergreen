@@ -14,6 +14,7 @@ export { CornerDialog } from './corner-dialog'
 export { Dialog } from './dialog'
 export { EmptyState } from './empty-states'
 export { FilePicker } from './file-picker'
+export { FileCard } from './file-uploader'
 export {
   FormField,
   FormFieldDescription,

@@ -2,6 +2,7 @@ import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { IconButton } from '../../buttons'
+import { useStyleConfig } from '../../hooks'
 import { InfoSignIcon, TrashIcon } from '../../icons'
 import { Image } from '../../image'
 import { Card } from '../../layers'
@@ -16,8 +17,11 @@ import humanizeFileSize from './utils/humanize-file-size'
 import { isImage } from './utils/is-image'
 
 const imageSize = majorScale(5)
-const baseStyles = {}
-const invalidStyles = {}
+const styleModifiers = {}
+const pseudoSelectors = {
+  _invalid: `&[aria-invalid='true']`
+}
+const internalStyles = {}
 
 const FileCard = memo(
   forwardRef((props, ref) => {
@@ -34,6 +38,8 @@ const FileCard = memo(
       validationMessage
     } = props
 
+    const { className, ...boxProps } = useStyleConfig('FileCard', styleModifiers, pseudoSelectors, internalStyles)
+
     const Icon = getIconFromType(type)
     const renderImage = hasValue(src) && isImage(type)
     const renderInvalidIcon = !isLoading && isInvalid
@@ -41,7 +47,7 @@ const FileCard = memo(
 
     return (
       <Box ref={ref} display="flex" flexDirection="column" marginBottom={isInvalid ? majorScale(1) : majorScale(2)}>
-        <Box {...baseStyles} {...(isInvalid ? invalidStyles : {})} aria-invalid={isInvalid}>
+        <Box aria-invalid={isInvalid} className={className} {...boxProps}>
           <Box alignItems="center" display="flex" flexDirection="row" width="100%">
             <Box marginLeft={majorScale(2)} marginRight={majorScale(1)}>
               {renderImage ? (

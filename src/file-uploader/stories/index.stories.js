@@ -14,11 +14,18 @@ storiesOf('file-uploader', module)
     </Box>
   ))
   .add('FileCard', () => (
-    <Box padding={40}>
+    <Box padding={40} maxWidth={600}>
       {(() => {
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <FileCard name="Sample-Image.png" type="image/png" sizeInBytes={9 * 1024 * 1024} />
+      <FileCard name="Sample-Image.png" type="image/png" sizeInBytes={0.75 * 1024 * 1024} />
+      <FileCard
+        name="Sample-Image.gif"
+        type="image/gif"
+        sizeInBytes={3 * 1024 * 1024}
+        isInvalid={true}
+        validationMessage="This file is not an accepted format. You can upload .png and .pdf file formats."
+      />
     </Box>
   ))
