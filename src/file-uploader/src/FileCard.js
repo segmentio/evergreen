@@ -30,7 +30,7 @@ const FileCard = memo(
       onRemove,
       sizeInBytes,
       src,
-      type = '',
+      type,
       validationMessage
     } = props
 
@@ -38,6 +38,7 @@ const FileCard = memo(
     const renderImage = hasValue(src) && isImage(type)
     const renderInvalidIcon = !isLoading && isInvalid
     const renderDefaultIcon = !isLoading && !isInvalid
+
     return (
       <Box ref={ref} display="flex" flexDirection="column" marginBottom={isInvalid ? majorScale(1) : majorScale(2)}>
         <Box {...baseStyles} {...(isInvalid ? invalidStyles : {})} aria-invalid={isInvalid}>

@@ -11,7 +11,7 @@ export const getIconFromType = type => {
     return MediaIcon
   }
 
-  if (type.includes('video')) {
+  if (type?.includes('video')) {
     return VideoIcon
   }
 
