@@ -20,10 +20,9 @@
  */
 const path = require('path')
 const fs = require('fs-extra')
-const task = require('./task')
-
-const componentTemplate = require('./component-template')
 const componentStoriesTemplate = require('./component-stories-template')
+const componentTemplate = require('./component-template')
+const task = require('./task')
 
 const packageName = process.argv[2]
 
@@ -49,20 +48,14 @@ module.exports = task('create-package-components', async () => {
   // Create directory
   await fs.ensureDir(packageDir)
 
+  // eslint-disable-next-line no-console
   console.info('Package name will be:', packageName)
 
   // Create `src` dir in package
   await fs.ensureDir(path.join(packageDir, 'src'))
-  await fs.writeFile(
-    path.join(packageDir, 'index.js'),
-    getIndexFile(componentNames)
-  )
+  await fs.writeFile(path.join(packageDir, 'index.js'), getIndexFile(componentNames))
 
-  await Promise.all(
-    componentNames.map(componentName =>
-      createComponent({ componentName, packageDir })
-    )
-  )
+  await Promise.all(componentNames.map(componentName => createComponent({ componentName, packageDir })))
 
   await fs.ensureDir(path.join(packageDir, 'stories'))
   await fs.writeFile(
@@ -79,22 +72,15 @@ async function createComponent({ componentName, packageDir }) {
   }
 
   if (!initialIsCapital(componentName)) {
-    throw new Error(
-      `Wrong format for '${componentName}': use CamelCase for ComponentName`
-    )
+    throw new Error(`Wrong format for '${componentName}': use CamelCase for ComponentName`)
   }
 
-  await fs.writeFile(
-    path.join(packageDir, 'src', `${componentName}.js`),
-    componentTemplate({ componentName })
-  )
+  await fs.writeFile(path.join(packageDir, 'src', `${componentName}.js`), componentTemplate({ componentName }))
 }
 
 function getIndexFile(componentNames) {
   return componentNames
-    .map(
-      componentName => `export ${componentName} from './src/${componentName}'`
-    )
+    .map(componentName => `export { default as ${componentName} } from './src/${componentName}'`)
     .join('\n')
 }
 
