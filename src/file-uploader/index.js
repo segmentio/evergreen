@@ -1,2 +1,2 @@
-export FileUploader from './src/FileUploader'
-export FileCard from './src/FileCard'
+export { default as FileUploader } from './src/FileUploader'
+export { default as FileCard } from './src/FileCard'
