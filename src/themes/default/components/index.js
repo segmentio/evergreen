@@ -9,6 +9,7 @@ import DialogBody from './dialog-body'
 import DialogFooter from './dialog-footer'
 import DialogHeader from './dialog-header'
 import FileCard from './file-card'
+import FileUploader from './file-uploader'
 import Group from './group'
 import Heading from './heading'
 import Icon from './icon'
@@ -47,6 +48,7 @@ export default {
   DialogFooter,
   DialogHeader,
   FileCard,
+  FileUploader,
   Group,
   Heading,
   Icon,
