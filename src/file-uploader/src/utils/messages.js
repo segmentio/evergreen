@@ -1,5 +1,4 @@
-import humanizeFileSize from './humanize-file-size'
-import humanizeOxford from './humanize-oxford'
+import humanize from 'humanize-plus'
 import mimeTypesToExtensions from './mime-types-to-extensions'
 
 /**
@@ -9,7 +8,7 @@ import mimeTypesToExtensions from './mime-types-to-extensions'
  * @returns {string}
  */
 export const getAcceptedTypesMessage = acceptedMimeTypes => {
-  const fileExtensions = humanizeOxford(mimeTypesToExtensions(acceptedMimeTypes))
+  const fileExtensions = humanize.oxford(mimeTypesToExtensions(acceptedMimeTypes))
   return `You can upload ${fileExtensions} formats.`
 }
 
@@ -18,7 +17,8 @@ export const getAcceptedTypesMessage = acceptedMimeTypes => {
  * @param {number} maxSizeInBytes
  * @returns {string}
  */
-export const getFileSizeMessage = maxSizeInBytes => `You can upload files up to ${humanizeFileSize(maxSizeInBytes)}.`
+export const getFileSizeMessage = maxSizeInBytes =>
+  `You can upload files up to ${humanize.fileSize(maxSizeInBytes, 0)}.`
 
 /**
  * Returns a standard message informing the user of the maximum number of files that can be uploaded

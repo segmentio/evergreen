@@ -1,4 +1,5 @@
 import React, { memo, forwardRef } from 'react'
+import humanize from 'humanize-plus'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { IconButton } from '../../buttons'
@@ -13,7 +14,6 @@ import { Spinner } from '../../spinner'
 import { useTheme } from '../../theme'
 import { Paragraph } from '../../typography'
 import { getIconFromType } from './utils/get-icon-from-type'
-import humanizeFileSize from './utils/humanize-file-size'
 import { isImage } from './utils/is-image'
 
 const imageSize = majorScale(5)
@@ -73,7 +73,7 @@ const FileCard = memo(
                 {name}
               </Paragraph>
               <Paragraph color={colors.gray700} size={300}>
-                {hasValue(description) ? description : humanizeFileSize(sizeInBytes)}
+                {hasValue(description) ? description : humanize.fileSize(sizeInBytes, 0)}
               </Paragraph>
             </Box>
             {isFunction(onRemove) && (

@@ -1,13 +1,18 @@
 import React, { memo, forwardRef, useState, useRef, useCallback } from 'react'
+import isEmpty from 'lodash.isempty'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import { Key } from '../../constants'
 import { FormField } from '../../form-field'
 import { UploadIcon } from '../../icons'
-import isEmpty from '../../lib/is-empty'
+import arrayToCsv from '../../lib/array-to-csv'
 import safeInvoke from '../../lib/safe-invoke'
 import { majorScale } from '../../scales'
 import { useTheme } from '../../theme'
 import { Text, Paragraph } from '../../typography'
+import getFileDataTransferItems from './utils/get-file-data-transfer-items'
+import { getMaxFilesMessage } from './utils/messages'
+import splitFiles from './utils/split-files'
 
 const UploaderState = {
   Initial: 'initial',
@@ -46,6 +51,11 @@ const FileUploader = memo(
     const [fileInputKey, setFileInputKey] = useState(0)
     const fileInputRef = useRef(null)
 
+    const browseCopyClassName = ''
+    const orDragCopyClassName = ''
+    const className = ''
+    const orDragCopy = `or drag ${maxFiles === 1 ? 'a file' : 'files'} here`
+
     // If the dropzone is meant to be a single file input and we already have a file, don't render
     // the dropzone which will always result in rejected files/errors.
     const renderDropzone = maxFiles !== 1 || isEmpty(values)
@@ -56,6 +66,9 @@ const FileUploader = memo(
     }, [])
 
     const handleChange = useCallback(
+      /**
+       * @param {FileList} fileList
+       */
       fileList => {
         setFileInputKey(prev => prev + 1)
 
@@ -85,6 +98,96 @@ const FileUploader = memo(
       [acceptedMimeTypes, maxFiles, maxSizeInBytes, onAccepted, onChange, onRejected, values?.length]
     )
 
+    const handleClick = useCallback(() => {
+      if (disabled) {
+        return
+      }
+
+      if (fileInputRef.current == null) {
+        return
+      }
+
+      fileInputRef.current.click()
+    }, [disabled])
+
+    const handleDragOver = useCallback(
+      /**
+       * @param {React.DragEvent<HTMLDivElement>} event
+       */
+      event => {
+        event.preventDefault()
+        event.stopPropagation()
+        event.dataTransfer.dropEffect = 'copy'
+
+        if (disabled) {
+          return
+        }
+
+        const dragItems = getFileDataTransferItems(event.dataTransfer.items)
+        const { length: draggingCount } = dragItems
+        const { length: currentCount } = values ?? []
+
+        if (maxFiles == null) {
+          setState(UploaderState.Dragging)
+          return
+        }
+
+        if (draggingCount > maxFiles || draggingCount + currentCount > maxFiles) {
+          setValidationMessage(getMaxFilesMessage(maxFiles))
+          setState(UploaderState.Error)
+          return
+        }
+
+        setState(UploaderState.Dragging)
+      },
+      [disabled, maxFiles, values]
+    )
+
+    const handleDragLeave = useCallback(() => resetState(), [resetState])
+
+    const handleDrop = useCallback(
+      /**
+       * @param { React.DragEvent<HTMLDivElement>} event
+       */
+      event => {
+        event.preventDefault()
+        event.stopPropagation()
+
+        if (disabled) {
+          return
+        }
+
+        resetState()
+        handleChange(event.dataTransfer.files)
+      },
+      [disabled, handleChange, resetState]
+    )
+
+    const handleInputChange = useCallback(
+      /**
+       * @param {React.ChangeEvent<HTMLInputElement>} event
+       */
+      event => {
+        handleChange(event.target.files)
+      },
+      [handleChange]
+    )
+
+    const handleKeyDown = useCallback(
+      /**
+       * @param {React.KeyboardEvent<HTMLDivElement>} event
+       */
+      event => {
+        if (event.key !== Key.Enter && event.key !== Key.Space) {
+          return
+        }
+
+        event.preventDefault()
+        handleClick()
+      },
+      [handleClick]
+    )
+
     return (
       <Box ref={ref}>
         <FormField
@@ -99,7 +202,6 @@ const FileUploader = memo(
           {renderDropzone && (
             <Box
               aria-disabled={disabled}
-              className={className.toString()}
               height="100%"
               onClick={handleClick}
               onDragLeave={handleDragLeave}

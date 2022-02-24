@@ -1,9 +1,22 @@
+import isEmpty from 'lodash.isempty'
+import uniqBy from 'lodash.uniqby'
 import FileRejectionReason from '../../../constants/src/FileRejectionReason'
 import hasValue from '../../../lib/has-value'
-import isEmpty from '../../../lib/is-empty'
-import uniqBy from '../../../lib/uniq-by'
 import { getAcceptedTypesMessage, getFileSizeMessage, getMaxFilesMessage } from './messages'
 
+/**
+ * @typedef {object} FileRejection
+ * @property {File} file
+ * @property {string} message Informative message to display to the user for why the file was rejected
+ * @property {string} reason Error code/enum to denote why the file was rejected
+ */
+
+/**
+ * Returns a list of objects containing rejected files and why they were rejected based on the provided options
+ * @param {File[]} files
+ * @param {import('./split-files').SplitFilesOptions | undefined} options
+ * @returns {FileRejection[]}
+ */
 const getFileRejections = (files, options) => {
   if (options == null || isEmpty(files)) {
     return []

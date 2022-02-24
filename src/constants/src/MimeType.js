@@ -1,3 +1,6 @@
+/**
+ * Non-exhaustive list of common MimeTypes
+ */
 const MimeType = {
   css: 'text/css',
   csv: 'text/csv',
