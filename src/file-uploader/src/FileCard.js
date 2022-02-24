@@ -10,7 +10,7 @@ import hasValue from '../../lib/has-value'
 import isFunction from '../../lib/is-function'
 import { majorScale } from '../../scales'
 import { Spinner } from '../../spinner'
-import { defaultTheme } from '../../themes'
+import { useTheme } from '../../theme'
 import { Paragraph } from '../../typography'
 import { getIconFromType } from './utils/get-icon-from-type'
 import humanizeFileSize from './utils/humanize-file-size'
@@ -38,9 +38,10 @@ const FileCard = memo(
       validationMessage
     } = props
 
+    const { colors } = useTheme()
     const { className, ...boxProps } = useStyleConfig('FileCard', styleModifiers, pseudoSelectors, internalStyles)
 
-    const Icon = getIconFromType(type)
+    const FileTypeIcon = getIconFromType(type)
     const renderImage = hasValue(src) && isImage(type)
     const renderInvalidIcon = !isLoading && isInvalid
     const renderDefaultIcon = !isLoading && !isInvalid
@@ -55,28 +56,23 @@ const FileCard = memo(
               ) : (
                 <Card
                   alignItems="center"
-                  backgroundColor={isInvalid || isLoading ? undefined : defaultTheme.colors.gray90}
+                  backgroundColor={isInvalid || isLoading ? undefined : colors.gray90}
                   display="flex"
                   height={majorScale(5)}
                   justifyContent="center"
                   width={majorScale(5)}
                 >
                   {isLoading && <Spinner size={majorScale(2)} />}
-                  {renderInvalidIcon && <InfoSignIcon color={defaultTheme.colors.red500} size={majorScale(2)} />}
-                  {renderDefaultIcon && <Icon color={defaultTheme.colors.gray600} size={majorScale(2)} />}
+                  {renderInvalidIcon && <InfoSignIcon color={colors.red500} size={majorScale(2)} />}
+                  {renderDefaultIcon && <FileTypeIcon color={colors.gray600} size={majorScale(2)} />}
                 </Card>
               )}
             </Box>
             <Box display="flex" flexDirection="column" overflow="hidden">
-              <Paragraph
-                color={defaultTheme.colors.gray800}
-                whiteSpace="nowrap"
-                overflow="hidden"
-                textOverflow="ellipsis"
-              >
+              <Paragraph color={colors.gray800} whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
                 {name}
               </Paragraph>
-              <Paragraph color={defaultTheme.colors.gray700} size={300}>
+              <Paragraph color={colors.gray700} size={300}>
                 {hasValue(description) ? description : humanizeFileSize(sizeInBytes)}
               </Paragraph>
             </Box>
@@ -94,7 +90,7 @@ const FileCard = memo(
           </Box>
         </Box>
         {hasValue(validationMessage) && (
-          <Paragraph color={defaultTheme.colors.red500} size="small">
+          <Paragraph color={colors.red500} size="small">
             {validationMessage}
           </Paragraph>
         )}
