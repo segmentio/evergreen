@@ -122,7 +122,9 @@ export const ${iconName} = memo(forwardRef(function ${iconName}(props, ref) {
   const iconTypeDefs = iconNames.map(componentName => `export declare const ${componentName}: IconComponent`).join('\n')
 
   const iconsTypeDefs = `/* Start generated icons */
-export type IconComponent = React.ForwardRefExoticComponent<React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>>
+export type IconComponent = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>
+>
 ${iconTypeDefs}
 /* End generated icons */`
 
