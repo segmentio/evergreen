@@ -7,10 +7,12 @@ import { FormField } from '../../form-field'
 import { useStyleConfig } from '../../hooks'
 import { UploadIcon } from '../../icons'
 import arrayToCsv from '../../lib/array-to-csv'
+import isFunction from '../../lib/is-function'
 import safeInvoke from '../../lib/safe-invoke'
 import { majorScale } from '../../scales'
 import { useTheme } from '../../theme'
 import { Text, Paragraph } from '../../typography'
+import FileCard from './FileCard'
 import getFileDataTransferItems from './utils/get-file-data-transfer-items'
 import { getMaxFilesMessage } from './utils/messages'
 import splitFiles from './utils/split-files'
@@ -257,6 +259,26 @@ const FileUploader = memo(
             </Box>
           )}
         </FormField>
+        <Box marginTop={majorScale(2)}>
+          {values?.map(
+            /**
+             * @param {File} file
+             * @param {number} index
+             */
+            (file, index) =>
+              isFunction(renderFile) ? (
+                renderFile(file, index)
+              ) : (
+                <FileCard
+                  key={`${file.name}-${index}`}
+                  name={file.name}
+                  onRemove={isFunction(onRemove) ? () => onRemove(file) : undefined}
+                  sizeInBytes={file.size}
+                  type={file.type}
+                />
+              )
+          )}
+        </Box>
       </Box>
     )
   })
