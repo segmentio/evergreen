@@ -1,14 +1,40 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
+import { Button } from '../../buttons'
 import { MimeType } from '../../constants'
 import { FileUploader, FileCard } from '../../file-uploader'
 import { majorScale } from '../../scales'
 import { toaster } from '../../toaster'
-import { Label, Code } from '../../typography'
-import { getMaxFilesMessage } from '../src/utils/messages'
+import { Label, Code, ListItem } from '../../typography'
+import { getIconFromType } from '../src/utils/get-icon-from-type'
+import { getAcceptedTypesMessage, getMaxFilesMessage, getFileSizeMessage } from '../src/utils/messages'
 
-const handleRemove = () => toaster.notify('Removed file!')
+const acceptedMimeTypes = [MimeType.gif, MimeType.png, MimeType.jpeg]
+const maxSizeInBytes = 5 * 1024 * 1024
+const handleFileCardRemove = () => toaster.notify('Removed file!')
+const handleAccepted = files => toaster.notify(`Accepted: ${files.map(file => file.name).join(', ')}`)
+const handleRejected = fileRejections =>
+  toaster.danger(
+    `Rejected: ${fileRejections
+      .map(fileRejection => `${fileRejection.file.name} (${fileRejection.reason})`)
+      .join(', ')}`
+  )
+
+const noop = () => {}
+
+const FileUploaderState = props => {
+  const [files, setFiles] = useState([])
+  const handleReset = useCallback(() => setFiles([]), [])
+  const handleRemove = useCallback(file => setFiles(prev => prev.filter(existingFile => existingFile !== file)), [])
+
+  return (
+    <Box maxWidth={600} marginBottom={majorScale(2)}>
+      <FileUploader onChange={setFiles} onRemove={handleRemove} values={files} {...props} />
+      <Button onClick={handleReset}>Reset</Button>
+    </Box>
+  )
+}
 
 storiesOf('file-uploader', module)
   .add('FileUploader', () => (
@@ -17,9 +43,26 @@ storiesOf('file-uploader', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <FileUploader label="Basic" description={getMaxFilesMessage(2)} maxFiles={2} />
-      <Box marginY={majorScale(2)} />
-      <FileUploader disabled={true} label="Disabled" />
+      <FileUploaderState description={getMaxFilesMessage(3)} label="Multiple file upload" maxFiles={3} />
+      <FileUploaderState description={getMaxFilesMessage(1)} label="Single file upload" maxFiles={1} />
+      <FileUploaderState disabled={true} label="Disabled" />
+      <FileUploaderState
+        acceptedMimeTypes={acceptedMimeTypes}
+        description={`${getAcceptedTypesMessage(acceptedMimeTypes)} ${getFileSizeMessage(maxSizeInBytes)}`}
+        label="File type and size restrictions"
+        maxSizeInBytes={maxSizeInBytes}
+        onAccepted={handleAccepted}
+        onRejected={handleRejected}
+        onChange={noop}
+      />
+      <FileUploaderState
+        label="Custom renderFile"
+        renderFile={file => (
+          <ListItem icon={getIconFromType(file.type)}>
+            <Code marginLeft={majorScale(3)}>{file.name}</Code>
+          </ListItem>
+        )}
+      />
     </Box>
   ))
   .add('FileCard', () => (
@@ -43,7 +86,7 @@ storiesOf('file-uploader', module)
       </Label>
       <FileCard
         name="favicon.ico"
-        onRemove={handleRemove}
+        onRemove={handleFileCardRemove}
         sizeInBytes={128 * 1024}
         src="https://segment.com/favicon.ico"
         type={MimeType.ico}
@@ -55,7 +98,7 @@ storiesOf('file-uploader', module)
         description="Uploading..."
         isLoading={true}
         name="Sample-Image.png"
-        onRemove={handleRemove}
+        onRemove={handleFileCardRemove}
         sizeInBytes={0.75 * 1024 * 1024}
         type={MimeType.png}
       />
