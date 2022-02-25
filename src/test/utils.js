@@ -1,11 +1,19 @@
 import { MimeType, FileRejectionReason } from '../constants'
 
-export const buildFile = () => new File([], `file-${new Date().getTime()}.gif`, { type: MimeType.gif })
+export const buildFile = (overrides = {}) => {
+  const { name = `file-${new Date().getTime()}.gif`, size = 1024, type = MimeType.gif } = overrides
 
-export const buildFiles = (count = 2) => {
+  // Allocate an array the given size, but set a reasonable 10MB ceiling for testing
+  const file = new File(Buffer.alloc(Math.min(size, 10 * 1024 ** 2)), name, {
+    type
+  })
+  return file
+}
+
+export const buildFiles = (count = 2, overrides = {}) => {
   const files = []
   for (let i = 0; i < count; i++) {
-    files.push(buildFile())
+    files.push(buildFile(overrides))
   }
 
   return files
