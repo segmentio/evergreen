@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Key } from '../../constants'
 import { FormField } from '../../form-field'
+import { useStyleConfig } from '../../hooks'
 import { UploadIcon } from '../../icons'
 import arrayToCsv from '../../lib/array-to-csv'
 import safeInvoke from '../../lib/safe-invoke'
@@ -19,6 +20,19 @@ const UploaderState = {
   Dragging: 'dragging',
   Error: 'error'
 }
+
+const disabledPseudoSelector = `&[aria-disabled='true']`
+const dragHoverPseudoSelector = `&[data-state='${UploaderState.Dragging}']`
+const invalidPseudoSelector = `&[aria-invalid='true']`
+const styleModifiers = {}
+const pseudoSelectors = {
+  _focus: '&:focus',
+  _hover: `&:hover:not(${disabledPseudoSelector}):not(${dragHoverPseudoSelector}):not(${invalidPseudoSelector})`,
+  _dragHover: dragHoverPseudoSelector,
+  _disabled: disabledPseudoSelector,
+  _invalid: invalidPseudoSelector
+}
+const internalStyles = {}
 
 const FileUploader = memo(
   forwardRef((props, ref) => {
@@ -40,6 +54,7 @@ const FileUploader = memo(
     } = props
 
     const { colors } = useTheme()
+    const { className, ...boxProps } = useStyleConfig('FileUploader', styleModifiers, pseudoSelectors, internalStyles)
     const [state, setState] = useState(UploaderState.Initial)
     const [validationMessage, setValidationMessage] = useState('')
     /**
@@ -53,7 +68,6 @@ const FileUploader = memo(
 
     const browseCopyClassName = ''
     const orDragCopyClassName = ''
-    const className = ''
     const orDragCopy = `or drag ${maxFiles === 1 ? 'a file' : 'files'} here`
 
     // If the dropzone is meant to be a single file input and we already have a file, don't render
@@ -132,7 +146,7 @@ const FileUploader = memo(
           return
         }
 
-        if (draggingCount > maxFiles || draggingCount + currentCount > maxFiles) {
+        if (maxFiles > 0 && (draggingCount > maxFiles || draggingCount + currentCount > maxFiles)) {
           setValidationMessage(getMaxFilesMessage(maxFiles))
           setState(UploaderState.Error)
           return
@@ -202,16 +216,16 @@ const FileUploader = memo(
           {renderDropzone && (
             <Box
               aria-disabled={disabled}
-              height="100%"
+              aria-invalid={state === UploaderState.Error}
+              className={className}
+              data-state={state}
               onClick={handleClick}
               onDragLeave={handleDragLeave}
               onDragOver={handleDragOver}
               onDrop={handleDrop}
               onKeyDown={handleKeyDown}
-              paddingX={majorScale(5)}
-              paddingY={majorScale(5)}
               tabIndex={disabled ? undefined : 0}
-              width="100%"
+              {...boxProps}
             >
               <Box
                 accept={arrayToCsv(acceptedMimeTypes)}

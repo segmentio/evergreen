@@ -3,8 +3,10 @@ import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
 import { MimeType } from '../../constants'
 import { FileUploader, FileCard } from '../../file-uploader'
+import { majorScale } from '../../scales'
 import { toaster } from '../../toaster'
 import { Label, Code } from '../../typography'
+import { getMaxFilesMessage } from '../src/utils/messages'
 
 const handleRemove = () => toaster.notify('Removed file!')
 
@@ -15,7 +17,9 @@ storiesOf('file-uploader', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      <FileUploader>FileUploader</FileUploader>
+      <FileUploader label="Basic" description={getMaxFilesMessage(2)} maxFiles={2} />
+      <Box marginY={majorScale(2)} />
+      <FileUploader disabled={true} label="Disabled" />
     </Box>
   ))
   .add('FileCard', () => (
