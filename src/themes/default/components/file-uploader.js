@@ -28,6 +28,16 @@ const baseStyle = {
     borderColor: 'colors.gray600'
   },
 
+  _hoverBrowseCopy: {
+    color: 'colors.blue500',
+    cursor: 'pointer'
+  },
+
+  _hoverOrDragCopy: {
+    color: 'colors.gray800',
+    cursor: 'pointer'
+  },
+
   _disabled: {
     backgroundColor: 'colors.gray50',
     borderColor: 'colors.gray50',

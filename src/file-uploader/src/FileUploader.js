@@ -24,10 +24,13 @@ const UploaderState = {
 const disabledPseudoSelector = `&[aria-disabled='true']`
 const dragHoverPseudoSelector = `&[data-state='${UploaderState.Dragging}']`
 const invalidPseudoSelector = `&[aria-invalid='true']`
+const hoverPseudoSelector = `&:hover:not(${disabledPseudoSelector}):not(${dragHoverPseudoSelector}):not(${invalidPseudoSelector})`
 const styleModifiers = {}
 const pseudoSelectors = {
   _focus: '&:focus',
-  _hover: `&:hover:not(${disabledPseudoSelector}):not(${dragHoverPseudoSelector}):not(${invalidPseudoSelector})`,
+  _hover: hoverPseudoSelector,
+  _hoverBrowseCopy: `${hoverPseudoSelector} span:first-of-type`,
+  _hoverOrDragCopy: `${hoverPseudoSelector} span:last-of-type`,
   _dragHover: dragHoverPseudoSelector,
   _disabled: disabledPseudoSelector,
   _invalid: invalidPseudoSelector
@@ -65,9 +68,6 @@ const FileUploader = memo(
      */
     const [fileInputKey, setFileInputKey] = useState(0)
     const fileInputRef = useRef(null)
-
-    const browseCopyClassName = ''
-    const orDragCopyClassName = ''
     const orDragCopy = `or drag ${maxFiles === 1 ? 'a file' : 'files'} here`
 
     // If the dropzone is meant to be a single file input and we already have a file, don't render
@@ -141,12 +141,12 @@ const FileUploader = memo(
         const { length: draggingCount } = dragItems
         const { length: currentCount } = values ?? []
 
-        if (maxFiles == null) {
+        if (maxFiles == null || maxFiles < 0) {
           setState(UploaderState.Dragging)
           return
         }
 
-        if (maxFiles > 0 && (draggingCount > maxFiles || draggingCount + currentCount > maxFiles)) {
+        if (draggingCount > maxFiles || draggingCount + currentCount > maxFiles) {
           setValidationMessage(getMaxFilesMessage(maxFiles))
           setState(UploaderState.Error)
           return
@@ -161,7 +161,7 @@ const FileUploader = memo(
 
     const handleDrop = useCallback(
       /**
-       * @param { React.DragEvent<HTMLDivElement>} event
+       * @param {React.DragEvent<HTMLDivElement>} event
        */
       event => {
         event.preventDefault()
@@ -251,8 +251,8 @@ const FileUploader = memo(
                 <UploadIcon color={disabled ? colors.gray400 : colors.gray500} size={majorScale(3)} />
               </Box>
               <Paragraph marginTop={majorScale(3)} pointerEvents="none">
-                <Text className={browseCopyClassName}>Browse </Text>
-                <Text className={orDragCopyClassName}>{orDragCopy}</Text>
+                <Text color={disabled ? colors.gray500 : colors.blue400}>Browse </Text>
+                <Text color={disabled ? colors.gray500 : colors.gray700}>{orDragCopy}</Text>
               </Paragraph>
             </Box>
           )}
@@ -263,6 +263,7 @@ const FileUploader = memo(
 )
 
 FileUploader.propTypes = {
+  ...FormField.propTypes,
   acceptedMimeTypes: PropTypes.array,
   disabled: PropTypes.bool,
   maxFiles: PropTypes.number,
