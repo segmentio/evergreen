@@ -1,6 +1,7 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, cleanup } from '@testing-library/react'
 import faker from 'faker'
+import { Key, MimeType } from '../../constants'
 import { buildFiles } from '../../test/utils'
 import FileUploader from '../src/FileUploader'
 
@@ -8,7 +9,21 @@ const testId = 'test-file-uploader'
 const renderWithProps = (props = {}) => render(<FileUploader {...props} data-testid={testId} />)
 
 describe('FileUploader', () => {
+  beforeEach(cleanup)
+
   describe('props', () => {
+    describe('acceptedMimeTypes', () => {
+      it('should forward csv string to file input', () => {
+        const acceptedMimeTypes = faker.random.arrayElements(Object.values(MimeType))
+
+        renderWithProps({ acceptedMimeTypes })
+        const element = screen.getByTestId(testId)
+        const fileInput = element.querySelector('input')
+
+        expect(fileInput).toHaveAttribute('accept', acceptedMimeTypes.join(','))
+      })
+    })
+
     describe('description', () => {
       it('should render description', () => {
         const description = faker.random.words()
@@ -16,6 +31,45 @@ describe('FileUploader', () => {
         renderWithProps({ description })
 
         expect(screen.getByText(description)).toBeInTheDocument()
+      })
+    })
+
+    describe('disabled', () => {
+      it('should ignore click event when disabled', () => {
+        const onClick = jest.fn()
+        const disabled = true
+
+        renderWithProps({ disabled })
+
+        const element = screen.getByTestId(testId)
+        const fileInput = element.querySelector('input')
+        fileInput.onclick = onClick
+        fireEvent.click(element)
+
+        expect(onClick).not.toHaveBeenCalled()
+      })
+
+      it.each([Key.Enter, Key.Space])('should ignore %p keyboard event when disabled', key => {
+        const onClick = jest.fn()
+        const disabled = true
+
+        renderWithProps({ disabled })
+
+        const element = screen.getByTestId(testId)
+        const fileInput = element.querySelector('input')
+        fileInput.onclick = onClick
+        fireEvent.keyDown(element, { key })
+
+        expect(onClick).not.toHaveBeenCalled()
+      })
+
+      it('should set aria-disabled true', () => {
+        const disabled = true
+
+        renderWithProps({ disabled })
+        const element = screen.getByTestId(testId)
+
+        expect(element).toHaveAttribute('aria-disabled', true.toString())
       })
     })
 
@@ -36,6 +90,31 @@ describe('FileUploader', () => {
         renderWithProps({ label })
 
         expect(screen.getByText(label)).toBeInTheDocument()
+      })
+    })
+
+    describe('maxFiles', () => {
+      it("should render singular 'file' when maxFiles is 1", () => {
+        const maxFiles = 1
+
+        renderWithProps({ maxFiles })
+
+        expect(screen.getByText(text => text.includes('file') && !text.includes('files'))).toBeInTheDocument()
+      })
+
+      it.each([undefined, null, 0, 2, 100])("should render plural 'files' when maxFiles is %p", maxFiles => {
+        renderWithProps({ maxFiles })
+
+        expect(screen.getByText(text => text.includes('files'))).toBeInTheDocument()
+      })
+
+      it('should not render dropzone when maxFiles is 1 and values is not empty', () => {
+        const values = buildFiles(1)
+        const maxFiles = 1
+
+        renderWithProps({ maxFiles, values })
+
+        expect(screen.queryByTestId(testId)).toBeNull()
       })
     })
 
@@ -204,6 +283,17 @@ describe('FileUploader', () => {
       })
     })
 
+    describe('renderFile', () => {
+      it('should be called for each file', () => {
+        const renderFile = jest.fn()
+        const values = buildFiles(2)
+
+        renderWithProps({ renderFile, values })
+
+        expect(renderFile).toHaveBeenCalledTimes(values.length)
+      })
+    })
+
     describe('validationMessage', () => {
       it('should render validationMessage', () => {
         const validationMessage = faker.random.words()
@@ -227,6 +317,62 @@ describe('FileUploader', () => {
         rerender()
 
         expect(screen.queryByText(validationMessage)).toBeNull()
+      })
+    })
+
+    describe('values', () => {
+      it('should render <FileCard /> for each file', () => {
+        const values = buildFiles(2)
+
+        renderWithProps({ values })
+        const fileCards = values.map(file => screen.getByText(file.name), { exact: true })
+
+        expect(fileCards).toHaveLength(values.length)
+      })
+    })
+  })
+
+  describe('interactions', () => {
+    describe('when clicked', () => {
+      it('should forward click event to file input', () => {
+        const onClick = jest.fn()
+
+        renderWithProps()
+
+        const element = screen.getByTestId(testId)
+        const fileInput = element.querySelector('input')
+        fileInput.onclick = onClick
+        fireEvent.click(element)
+
+        expect(onClick).toHaveBeenCalled()
+      })
+    })
+
+    describe('when keyboard event is fired', () => {
+      it.each([Key.Enter, Key.Space])('should forward as click event to file input when key is %p', key => {
+        const onClick = jest.fn()
+
+        renderWithProps()
+
+        const element = screen.getByTestId(testId)
+        const fileInput = element.querySelector('input')
+        fileInput.onclick = onClick
+        fireEvent.keyDown(element, { key })
+
+        expect(onClick).toHaveBeenCalled()
+      })
+
+      it.each(['A', '[', '1'])('should ignore event when key is %p', key => {
+        const onClick = jest.fn()
+
+        renderWithProps()
+
+        const element = screen.getByTestId(testId)
+        const fileInput = element.querySelector('input')
+        fileInput.onclick = onClick
+        fireEvent.keyDown(element, { key })
+
+        expect(onClick).not.toHaveBeenCalled()
       })
     })
   })
