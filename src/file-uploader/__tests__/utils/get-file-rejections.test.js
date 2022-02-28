@@ -1,6 +1,6 @@
-import { MimeType } from '../../constants'
-import { buildFiles, buildFile } from '../../test/utils'
-import getFileRejections from '../src/utils/get-file-rejections'
+import { MimeType } from '../../../constants'
+import { buildFiles, buildFile } from '../../../test/utils'
+import getFileRejections from '../../src/utils/get-file-rejections'
 
 describe('getFileRejections', () => {
   it.each([undefined, null, {}])('should return empty array when options is %p', options => {
