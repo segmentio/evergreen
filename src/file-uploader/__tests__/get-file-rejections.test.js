@@ -42,4 +42,121 @@ describe('getFileRejections', () => {
       expect(result).toHaveLength(expected.length)
     })
   })
+
+  describe('options.maxFiles', () => {
+    it('should return empty array when under maxFiles', () => {
+      const maxFiles = 5
+      const files = buildFiles(maxFiles - 1)
+      const expected = []
+
+      const result = getFileRejections(files, { maxFiles })
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('should return empty array when equal to maxFiles', () => {
+      const maxFiles = 5
+      const files = buildFiles(maxFiles)
+      const expected = []
+
+      const result = getFileRejections(files, { maxFiles })
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('should return empty array when maxFiles less than 1', () => {
+      const maxFiles = 0
+      const files = buildFiles(maxFiles)
+      const expected = []
+
+      const result = getFileRejections(files, { maxFiles })
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('should return last N files when over maxFiles', () => {
+      const maxFiles = 5
+      const files = buildFiles(maxFiles + 3)
+
+      const result = getFileRejections(files, { maxFiles })
+
+      expect(result).toHaveLength(files.length - maxFiles)
+    })
+
+    describe('options.currentFileCount', () => {
+      it('should return empty array when under maxFiles + currentFileCount', () => {
+        const maxFiles = 5
+        const currentFileCount = 1
+        const files = buildFiles(maxFiles - currentFileCount - 1)
+        const expected = []
+
+        const result = getFileRejections(files, { currentFileCount, maxFiles })
+
+        expect(result).toStrictEqual(expected)
+      })
+
+      it('should return empty array when equal to maxFiles + currentFileCount', () => {
+        const maxFiles = 5
+        const currentFileCount = 1
+        const files = buildFiles(maxFiles - currentFileCount)
+        const expected = []
+
+        const result = getFileRejections(files, { currentFileCount, maxFiles })
+
+        expect(result).toStrictEqual(expected)
+      })
+
+      it('should return empty array when currentFileCount less than 1', () => {
+        const maxFiles = 5
+        const currentFileCount = -5
+        const files = buildFiles(maxFiles)
+        const expected = []
+
+        const result = getFileRejections(files, { currentFileCount, maxFiles })
+
+        expect(result).toStrictEqual(expected)
+      })
+
+      it('should return last N files when over maxFiles + currentFileCount', () => {
+        const maxFiles = 5
+        const currentFileCount = 1
+        const files = buildFiles(maxFiles + 3)
+
+        const result = getFileRejections(files, { currentFileCount, maxFiles })
+
+        expect(result).toHaveLength(files.length + currentFileCount - maxFiles)
+      })
+    })
+  })
+
+  describe('options.maxSizeInBytes', () => {
+    it('should return file greater than maxSizeInBytes', () => {
+      const maxSizeInBytes = 10000
+      const files = [buildFile({ size: maxSizeInBytes + 1 })]
+
+      const result = getFileRejections(files, { maxSizeInBytes })
+
+      expect(result).toHaveLength(files.length)
+    })
+
+    it('should not return file equal to maxSizeInBytes', () => {
+      const maxSizeInBytes = 10000
+      const files = [buildFile({ size: maxSizeInBytes })]
+      const expected = []
+
+      const result = getFileRejections(files, { maxSizeInBytes })
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('should not return file less than maxSizeInBytes', () => {
+      const maxSizeInBytes = 10000
+      const files = [buildFile({ size: maxSizeInBytes - 1 })]
+      const expected = []
+
+      const result = getFileRejections(files, { maxSizeInBytes })
+
+      expect(result).toStrictEqual(expected)
+    })
+  })
 })
