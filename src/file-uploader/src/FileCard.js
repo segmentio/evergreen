@@ -13,8 +13,8 @@ import { majorScale } from '../../scales'
 import { Spinner } from '../../spinner'
 import { useTheme } from '../../theme'
 import { Paragraph } from '../../typography'
-import { getIconFromType } from './utils/get-icon-from-type'
-import { isImage } from './utils/is-image'
+import getIconFromType from './utils/get-icon-from-type'
+import isImage from './utils/is-image'
 
 const imageSize = majorScale(5)
 const styleModifiers = {}

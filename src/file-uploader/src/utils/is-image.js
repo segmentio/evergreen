@@ -1,6 +1,8 @@
 /**
  * Returns whether or not the given MimeType is an image
- * @param {string} type MimeType to test
+ * @param {string} mimeType MimeType to test
  * @returns {boolean}
  */
-export const isImage = type => type?.includes('image') ?? false
+const isImage = mimeType => mimeType?.includes('image') ?? false
+
+export default isImage
