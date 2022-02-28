@@ -23,7 +23,6 @@ describe('FileCard', () => {
     describe('description', () => {
       it('should render description when non-empty', () => {
         const description = faker.random.words()
-
         renderWithProps({ description })
 
         expect(screen.getByText(description)).toBeInTheDocument()
@@ -34,42 +33,38 @@ describe('FileCard', () => {
       it('should render InfoSignIcon when true', () => {
         renderWithProps({ isInvalid: true })
 
-        const element = screen.getByTestId(testId)
+        const fileCard = screen.getByTestId(testId)
 
-        expect(element.querySelector(`[data-icon='info-sign']`)).toBeInTheDocument()
+        expect(fileCard.querySelector(`[data-icon='info-sign']`)).toBeInTheDocument()
       })
 
       it('should set aria-invalid true', () => {
         renderWithProps({ isInvalid: true })
+        const fileCard = screen.getByTestId(testId)
 
-        const element = screen.getByTestId(testId)
-
-        expect(element).toHaveAttribute('aria-invalid', true.toString())
+        expect(fileCard).toHaveAttribute('aria-invalid', true.toString())
       })
     })
 
     describe('isLoading', () => {
       it('should render <Spinner /> when true', () => {
         renderWithProps({ isLoading: true })
+        const fileCard = screen.getByTestId(testId)
 
-        const element = screen.getByTestId(testId)
-
-        expect(element.querySelector('circle')).toBeInTheDocument()
+        expect(fileCard.querySelector('circle')).toBeInTheDocument()
       })
 
       it.each([undefined, null, false])('should not render <Spinner /> when %p', isLoading => {
         renderWithProps({ isLoading })
+        const fileCard = screen.getByTestId(testId)
 
-        const element = screen.getByTestId(testId)
-
-        expect(element.querySelector('circle')).not.toBeInTheDocument()
+        expect(fileCard.querySelector('circle')).not.toBeInTheDocument()
       })
     })
 
     describe('name', () => {
       it('should render name', () => {
         const name = faker.system.fileName()
-
         renderWithProps({ name })
 
         expect(screen.getByText(name)).toBeInTheDocument()
@@ -82,20 +77,18 @@ describe('FileCard', () => {
           const onRemove = jest.fn()
 
           renderWithProps({ onRemove })
+          const fileCard = screen.getByTestId(testId)
 
-          const element = screen.getByTestId(testId)
-
-          expect(element.querySelector(`[data-icon='trash']`)).toBeInTheDocument()
+          expect(fileCard.querySelector(`[data-icon='trash']`)).toBeInTheDocument()
         })
 
         it('should render disabled <IconButton /> when isLoading = true', () => {
           const onRemove = jest.fn()
 
           renderWithProps({ onRemove, isLoading: true })
-
-          const element = screen.getByTestId(testId)
-          const icon = element.querySelector(`[data-icon='trash']`)
-          const iconButton = element.querySelector('button')
+          const fileCard = screen.getByTestId(testId)
+          const icon = fileCard.querySelector(`[data-icon='trash']`)
+          const iconButton = fileCard.querySelector('button')
 
           expect(icon).toBeInTheDocument()
           expect(iconButton).toBeDisabled()
@@ -106,10 +99,9 @@ describe('FileCard', () => {
           const onRemove = jest.fn()
 
           renderWithProps({ onRemove, disabled: true })
-
-          const element = screen.getByTestId(testId)
-          const icon = element.querySelector(`[data-icon='trash']`)
-          const iconButton = element.querySelector('button')
+          const fileCard = screen.getByTestId(testId)
+          const icon = fileCard.querySelector(`[data-icon='trash']`)
+          const iconButton = fileCard.querySelector('button')
 
           expect(icon).toBeInTheDocument()
           expect(iconButton).toBeDisabled()
@@ -119,10 +111,9 @@ describe('FileCard', () => {
 
       it.each([undefined, null])('should not render <IconButton /> with TrashIcon when onRemove is %p', onRemove => {
         renderWithProps({ onRemove })
+        const fileCard = screen.getByTestId(testId)
 
-        const element = screen.getByTestId(testId)
-
-        expect(element.querySelector(`[data-icon='trash']`)).not.toBeInTheDocument()
+        expect(fileCard.querySelector(`[data-icon='trash']`)).not.toBeInTheDocument()
       })
     })
 
@@ -144,9 +135,9 @@ describe('FileCard', () => {
             const src = faker.image.animals()
 
             renderWithProps({ src, type })
-            const element = screen.getByTestId(testId)
+            const fileCard = screen.getByTestId(testId)
 
-            expect(element.querySelector('img')).not.toBeInTheDocument()
+            expect(fileCard.querySelector('img')).not.toBeInTheDocument()
           }
         )
 
@@ -154,18 +145,18 @@ describe('FileCard', () => {
           const src = faker.image.animals()
 
           renderWithProps({ src, type })
-          const element = screen.getByTestId(testId)
+          const fileCard = screen.getByTestId(testId)
 
-          expect(element.querySelector('img')).toBeInTheDocument()
+          expect(fileCard.querySelector('img')).toBeInTheDocument()
         })
       })
 
       it.each([undefined, null, ''])('should not render <img /> when src is %p', src => {
         renderWithProps({ src })
 
-        const element = screen.getByTestId(testId)
+        const fileCard = screen.getByTestId(testId)
 
-        expect(element.querySelector('img')).not.toBeInTheDocument()
+        expect(fileCard.querySelector('img')).not.toBeInTheDocument()
       })
     })
 
