@@ -176,6 +176,12 @@
       "<rootDir>/codemods/",
       "<rootDir>/esm/",
       "<rootDir>/commonjs/"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!**/*.stories.{js,jsx}",
+      "!src/{constants,test,themes}/**",
+      "!src/icons/generated/**"
     ]
   },
   "size-limit": [
