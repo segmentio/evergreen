@@ -55,7 +55,8 @@ const FileUploader = memo(
       onRemove,
       renderFile,
       validationMessage: validationMessageProp,
-      values
+      values,
+      ...rest
     } = props
 
     const { colors } = useTheme()
@@ -184,9 +185,15 @@ const FileUploader = memo(
        * @param {React.ChangeEvent<HTMLInputElement>} event
        */
       event => {
+        // Theoretically the input should not be accessible at all when disabled,
+        // but this should act as a safeguard
+        if (disabled) {
+          return
+        }
+
         handleChange(event.target.files)
       },
-      [handleChange]
+      [disabled, handleChange]
     )
 
     const handleKeyDown = useCallback(
@@ -228,6 +235,7 @@ const FileUploader = memo(
               onKeyDown={handleKeyDown}
               tabIndex={disabled ? undefined : 0}
               {...boxProps}
+              {...rest}
             >
               <Box
                 accept={arrayToCsv(acceptedMimeTypes)}
