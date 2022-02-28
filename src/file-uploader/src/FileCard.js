@@ -35,7 +35,8 @@ const FileCard = memo(
       sizeInBytes,
       src,
       type,
-      validationMessage
+      validationMessage,
+      ...rest
     } = props
 
     const { colors } = useTheme()
@@ -48,7 +49,7 @@ const FileCard = memo(
 
     return (
       <Box ref={ref} display="flex" flexDirection="column" marginBottom={isInvalid ? majorScale(1) : majorScale(2)}>
-        <Box aria-invalid={isInvalid} className={className} {...boxProps}>
+        <Box aria-invalid={isInvalid} className={className} {...boxProps} {...rest}>
           <Box alignItems="center" display="flex" flexDirection="row" width="100%">
             <Box marginLeft={majorScale(2)} marginRight={majorScale(1)}>
               {renderImage ? (
@@ -104,7 +105,7 @@ FileCard.propTypes = {
   description: PropTypes.string,
   name: PropTypes.string,
   sizeInBytes: PropTypes.number,
-  type: PropTypes.string, // TODO: Restrict to MimeType?
+  type: PropTypes.string,
   isInvalid: PropTypes.bool,
   isLoading: PropTypes.bool,
   onRemove: PropTypes.func,
