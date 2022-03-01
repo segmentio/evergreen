@@ -49,6 +49,8 @@ export type Components =
   | 'Card'
   | 'Checkbox'
   | 'Code'
+  | 'FileCard'
+  | 'FileUploader'
   | 'Group'
   | 'Heading'
   | 'Icon'
@@ -85,6 +87,15 @@ type CheckboxPseudoSelectors =
   | '_checkedDisabled'
   | '_checkedHover'
 type GroupPseudoSelectors = '_child' | '_firstChild' | '_middleChild' | '_lastChild' | '&:focus' | '&:active'
+type FileCardPseudoSelectors = '_invalid'
+type FileUploaderPseudoSelectors =
+  | '_focus'
+  | '_hover'
+  | '_hoverBrowseCopy'
+  | '_hoverOrDragCopy'
+  | '_disabled'
+  | '_dragHover'
+  | '_invalid'
 type InputPseudoSelectors = '_placeholder' | '_disabled' | '_focus' | '_invalid'
 type LinkPseudoSelectors = '_hover' | '_active' | '_focus'
 type MenuItemPseudoSelectors = '_isSelectable' | '_disabled' | '_hover' | '_focus' | '_active' | '_current' | '&:before'
@@ -161,6 +172,10 @@ type ComponentPseudoSelectors<C extends Components = Components> = C extends 'Bu
   ? ButtonPseudoSelectors
   : C extends 'Checkbox'
   ? CheckboxPseudoSelectors
+  : C extends 'FileCard'
+  ? FileCardPseudoSelectors
+  : C extends 'FileUploader'
+  ? FileUploaderPseudoSelectors
   : C extends 'Group'
   ? GroupPseudoSelectors
   : C extends 'Input'
