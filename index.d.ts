@@ -1521,7 +1521,7 @@ export declare const splitFiles: (files: File[], options?: SplitFilesOptions) =>
  * Truncates a string in the center with ellipsis, if needed
  *
  * @param value Value to truncate
- * @param maximumChars Maximum number of characters (including the ellipsis) to show. Defaults to 65
+ * @param maximumChars Maximum number of characters (including the ellipsis) to show. Defaults to 55
  */
 export declare const truncateCenter: (value: string, maximumChars?: number) => string
 
