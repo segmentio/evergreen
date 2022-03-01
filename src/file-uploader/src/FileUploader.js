@@ -46,7 +46,9 @@ const FileUploader = memo(
       description,
       disabled = false,
       hint,
+      isRequired,
       label,
+      labelFor,
       maxFiles,
       maxSizeInBytes,
       onAccepted,
@@ -215,8 +217,10 @@ const FileUploader = memo(
       <Box ref={ref}>
         <FormField
           label={label}
+          labelFor={labelFor}
           description={description}
           hint={hint}
+          isRequired={isRequired}
           // Always override the validationMessage from prop if we have a message to display from dragging
           validationMessage={
             !isEmpty(validationMessage) ? <Text color={colors.red500}>{validationMessage}</Text> : validationMessageProp
