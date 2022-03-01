@@ -403,6 +403,16 @@ const IA: IA = {
         github: githubLink('overlay'),
         name: 'Overlay',
       },
+      {
+        id: 'file-uploader',
+        image: '/Filepicker.png',
+        imageHighlight: '/Filepicker-highlight.png',
+        github: githubLink('file-uploader'),
+        name: 'File Uploader',
+        description:
+          'The File Uploader component allows users to drag and drop files into a dropzone area (or click to select files from the browser file picker) to upload files.',
+        tags: ['files', 'upload'],
+      },
     ],
   },
 

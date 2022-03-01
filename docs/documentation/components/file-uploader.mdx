@@ -1,0 +1,90 @@
+# Usage
+
+The `File Uploader` component is used when users need the ability to upload a file or multiple files.
+
+## Single file upload
+
+Provides the ability to upload one file at a time. This should allow the user to see the name and size of the file they’ve uploaded, as well as remove and/or replace it.
+
+```jsx
+function FileUploaderSingleUploadDemo() {
+  const [files, setFiles] = React.useState([])
+  const [fileRejections, setFileRejections] = React.useState([])
+  const handleChange = React.useCallback((files) => setFiles([files[0]]), [])
+  const handleRejected = React.useCallback((fileRejections) => setFileRejections([fileRejections[0]]), [])
+  const handleRemove = React.useCallback(() => {
+    setFiles([])
+    setFileRejections([])
+  }, [])
+  return (
+    <Pane maxWidth={654}>
+      <FileUploader
+        label="Upload File"
+        description="You can upload 1 file. File can be up to 50 MB."
+        maxSizeInBytes={50 * 1024 ** 2}
+        maxFiles={1}
+        onChange={handleChange}
+        onRejected={handleRejected}
+        onRemove={handleRemove}
+        renderFile={(file) => {
+          const { name, size, type } = file
+          const fileRejection = fileRejections.find((fileRejection) => fileRejection.file === file)
+          const { message } = fileRejection || {}
+          return (
+            <FileCard
+              key={name}
+              isInvalid={fileRejection != null}
+              name={name}
+              onRemove={handleRemove}
+              sizeInBytes={size}
+              type={type}
+              validationMessage={message}
+            />
+          )
+        }}
+        values={files}
+      />
+    </Pane>
+  )
+}
+```
+
+## Multiple file upload
+
+Provides the ability to upload multiple files at once. This should allow the user to see the names and sizes of all of the files they’ve uploaded, remove a file that they’ve uploaded, or add more files.
+
+```jsx
+function FileUploaderSingleUploadDemo() {
+  const [files, setFiles] = React.useState([])
+  const handleRemove = React.useCallback((file) => {
+    setFiles((prev) => prev.filter((existingFile) => existingFile !== file))
+  }, [])
+  return (
+    <Pane maxWidth={654}>
+      <FileUploader
+        acceptedMimeTypes={[MimeType.jpeg, MimeType.pdf]}
+        label="Upload File"
+        description="You can upload up to 10 files. Files can be up to 50MB. You can upload .jpg and .pdf file formats."
+        maxSizeInBytes={50 * 1024 ** 2}
+        maxFiles={10}
+        onAccepted={setFiles}
+        onRemove={handleRemove}
+        values={files}
+      />
+    </Pane>
+  )
+}
+```
+
+---
+
+# Anatomy
+
+The file uploader component is composed of: (1) Label, (2) Description, (3) Dropzone, (4) File Preview.
+
+<img src="/file-uploader-anatomy.svg" alt="file-uploader-anatomy" height={366} width={654} />
+
+1. **Label.** Use to set context on what the user can do (ie. Upload Files)
+1. **Description.** Use to specify file limitations.
+1. **Dropzone.** Designated area for users to either “browse” or drop files
+1. **File card.** Use to provide feedback to users on status of file uploads, file size, file format, and the ability to remove an uploaded file.
