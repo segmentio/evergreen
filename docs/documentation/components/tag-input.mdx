@@ -175,12 +175,12 @@ function OnAddOnRemoveTagInputExample() {
     <TagInput
       inputProps={{ placeholder: 'Add email...' }}
       values={values}
-      onAdd={(value) => {
-        if (!value.includes('@')) {
+      onAdd={(newValues) => {
+        if (newValues.some((val) => !val.includes('@'))) {
           toaster.danger('Oops, you tried entering a invalid email. Try again.')
           return
         }
-        setValues([...values, value])
+        setValues([...values, ...newValues])
       }}
       onRemove={(_value, index) => {
         setValues(values.filter((_, i) => i !== index))
