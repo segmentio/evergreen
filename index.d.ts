@@ -1387,9 +1387,22 @@ export type FilePickerProps = PolymorphicBoxProps<'div', FilePickerOwnProps>
 export declare const FilePicker: BoxComponent<FilePickerOwnProps, 'div'>
 
 export interface FileRejection {
+  /**
+   * The file that was rejected
+   */
   file: File
+  /**
+   * Human-friendly message for why the file was rejected.
+   * @see {getAcceptedTypesMessage}
+   * @see {getFileSizeMessage}
+   * @see {getMaxFilesMessage}
+   */
   message: string
-  reason: FileRejectionReason
+  /**
+   * Error/status code for why the file was rejected. The `FileUploader` component
+   * will return values from `FileRejectionReason`, but you can define your own if needed
+   */
+  reason: FileRejectionReason | string | number
 }
 
 export interface FileUploaderOwnProps extends FormFieldOwnProps {
