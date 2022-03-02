@@ -239,13 +239,13 @@ Refer to these guidelines when using the `File Uploader` component.
 ## Dropzone errors
 
 - If the user drops more files in the dropzone than is allowed, surface an alert above the files and disable the dropzone.
-  - Recommended phrasing for once files are dropped: ““You can upload up to [max #] files. Remove [#] files.”
+- Recommended phrasing for once files are dropped: “You can upload up to [max #] files. Remove [#] files.”
 
-<Pane height={594} width={654}>
+<Pane height={594} marginBottom={32} width={654}>
   <img src="/file-uploader-dropzone-errors.svg" alt="file-uploader-dropzone-errors" />
 </Pane>
 
-## File card
+## File Card
 
 - Truncate the file name in the middle if it’s too long
 - We recommend building the file uploader component with the accompanying card file components so that users receive instant feedback on progress of the file upload. Include text that communicates when it’s uploading, when it’s successful, or when it fails (and why).
@@ -268,3 +268,67 @@ Refer to these guidelines when using the `File Uploader` component.
     <TableTextCell>Upload failed</TableTextCell>
   </TableRow>
 </Table>
+
+## File Card Errors
+
+The card displaying the file that didn’t upload should have an error message beneath it that clearly communicates why it wasn’t uploaded. These error types may include invalid file type or file over the file size limit. We recommend the following phrasing:
+
+<Table marginBottom={32} width={654}>
+  <TableHead>
+    <TableTextHeaderCell>Scenario</TableTextHeaderCell>
+    <TableTextHeaderCell>Recommended Phrasing</TableTextHeaderCell>
+  </TableHead>
+  <TableRow>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Invalid file type
+    </TableTextCell>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      This file is not an accepted format. You can upload [x], [x] and [x] file formats.
+    </TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Exceeds file size limit
+    </TableTextCell>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      This file is too big. You can upload files up to [file limit].
+    </TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Network errors (internet connection dropped while uploading, request timeout, service is down)
+    </TableTextCell>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Something went wrong with the network. Check your internet connection, then try again.
+    </TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Too many uploads in a certain amount of time
+    </TableTextCell>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      We couldn’t upload so many files so quickly. Try uploading files more slowly, or try again later.
+    </TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Generic (encountered an internal error)
+    </TableTextCell>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Something went wrong. Try uploading your files again.
+    </TableTextCell>
+  </TableRow>
+</Table>
+
+An example of file size limit and file type errors:
+
+<Pane height={484} marginBottom={32} width={654}>
+  <img
+    src="/file-uploader-example-file-size-and-file-type-errors.svg"
+    alt="file-uploader-example-file-size-and-file-type-errors"
+  />
+</Pane>
+
+# Accessibility
+
+File uploader should be accessible via keyboard support. Tabbing over the dropzone should activate the ‘Browse’ link, and users should be able to hit ‘Enter’ in order to open the file browser.
