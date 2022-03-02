@@ -298,16 +298,53 @@ const FileUploader = memo(
 
 FileUploader.propTypes = {
   ...FormField.propTypes,
+  /**
+   * MIME types (not file extensions) to accept
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
+   */
   acceptedMimeTypes: PropTypes.array,
+  /**
+   * When true, displays a disabled state where drops don't fire and the native browser picker doesn't open
+   */
   disabled: PropTypes.bool,
+  /**
+   * Maximum number of files to accept
+   */
   maxFiles: PropTypes.number,
+  /**
+   * Maximum size of an **individual** file to accept
+   */
   maxSizeInBytes: PropTypes.number,
+  /**
+   * Callback for when files are accepted via drop or the native browser picker.
+   * @type {(files: File[]) => void}
+   */
   onAccepted: PropTypes.func,
+  /**
+   * Callback for when files are added via drop or the native browser picker, which includes both
+   * the accepted and rejected files.
+   * @type {(files: File[]) => void}
+   */
   onChange: PropTypes.func,
+  /**
+   * Callback for when files are rejected via drop or the native browser picker
+   * @type {(fileRejections: FileRejection[]) => void}
+   */
   onRejected: PropTypes.func,
+  /**
+   * Callback to fire when a file should be removed
+   * @type {(file: File) => void}
+   */
   onRemove: PropTypes.func,
+  /**
+   * Custom render function for displaying the file underneath the uploader
+   * @type {(file: File, index: number) => React.ReactNode}
+   */
   renderFile: PropTypes.func,
-  values: PropTypes.array
+  /**
+   * File values to render underneath the uploader
+   */
+  values: PropTypes.arrayOf(PropTypes.instanceOf(File))
 }
 
 export default FileUploader
