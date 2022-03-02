@@ -197,3 +197,74 @@ When a file is successfully uploaded, a thumbnail image or icon is shown alongsi
     alt="file-uploader-file-upload-successful-single-file"
   />
 </Pane>
+
+# Best Practices
+
+Refer to these guidelines when using the `File Uploader` component.
+
+## Label
+
+- Ensure that you’re using “Upload” as the verb in the component label. For example, use “Upload Files” or “Upload Attachments” to communicate what the user can do, depending on context.
+
+## Description
+
+- File limitations should be communicated to the user up front. Provide users with this information to help avoid errors, like uploading an incompatible file type or one that’s too large.
+- Make each limitation its own sentence. Use positive framing to clearly communicate limitations to the user:
+
+<Table width={654}>
+  <TableHead>
+    <TableTextHeaderCell>Status</TableTextHeaderCell>
+    <TableTextHeaderCell>Recommended Phrasing</TableTextHeaderCell>
+  </TableHead>
+  <TableRow>
+    <TableTextCell>File type</TableTextCell>
+    <TableTextCell>You can upload [x], [x] and [x] file formats.</TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell>File size</TableTextCell>
+    <TableTextCell>Files can be up to [file limit].</TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell>Number of files</TableTextCell>
+    <TableTextCell>You can upload up to [max #] files.</TableTextCell>
+  </TableRow>
+</Table>
+
+## Dropzone
+
+- Always process immediately when something is dropped into the dropzone to reflect user expectation.
+- Don’t store files until the final action is performed. For example, if a user is uploading files to add to their support form request ticket, the files should only be uploaded once the ticket is submitted.
+- If the user uploads the maximum number of files, disable the dropzone.
+
+## Dropzone errors
+
+- If the user drops more files in the dropzone than is allowed, surface an alert above the files and disable the dropzone.
+  - Recommended phrasing for once files are dropped: ““You can upload up to [max #] files. Remove [#] files.”
+
+<Pane height={594} width={654}>
+  <img src="/file-uploader-dropzone-errors.svg" alt="file-uploader-dropzone-errors" />
+</Pane>
+
+## File card
+
+- Truncate the file name in the middle if it’s too long
+- We recommend building the file uploader component with the accompanying card file components so that users receive instant feedback on progress of the file upload. Include text that communicates when it’s uploading, when it’s successful, or when it fails (and why).
+
+<Table width={654}>
+  <TableHead>
+    <TableTextHeaderCell>Status</TableTextHeaderCell>
+    <TableTextHeaderCell>Recommended Phrasing</TableTextHeaderCell>
+  </TableHead>
+  <TableRow>
+    <TableTextCell>File uploading</TableTextCell>
+    <TableTextCell>Uploading...</TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell>File upload successful</TableTextCell>
+    <TableTextCell fontStyle="italic">Display the file size</TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell>File upload failed</TableTextCell>
+    <TableTextCell>Upload failed</TableTextCell>
+  </TableRow>
+</Table>
