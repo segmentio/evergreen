@@ -21,6 +21,8 @@ import {
   TableHeadProps,
   TextTableCellProps,
   TableRowProps,
+  AlertProps,
+  Alert,
 } from 'evergreen-ui'
 
 const componentMapping = {
@@ -38,6 +40,7 @@ const componentMapping = {
   ul: (props: any) => <Ul {...props} marginTop="-16px" />,
   li: (props: any) => <Li {...props} />,
   inlineCode: (props: any) => <InlineCode {...props} />,
+  Alert: (props: AlertProps) => <Alert {...props} />,
   Pane: (props: PaneProps) => <Pane {...props} />,
   Table: (props: TableProps) => <Table {...props} />,
   TableHead: (props: TableHeadProps) => <Table.Head {...props} />,

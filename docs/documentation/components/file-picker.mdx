@@ -1,12 +1,22 @@
+<Alert
+  marginBottom={16}
+  title={
+    <React.Fragment>
+      <p color="colors.blue400" marginBottom={0}>
+        If you have sufficient space, use the new <a href="/components/file-uploader">File Uploader</a> component
+        instead.
+      </p>
+      <p color="colors.blue400" marginBottom={0}>
+        This component will eventually be replaced by a button version of the new File Uploader component.
+      </p>
+    </React.Fragment>
+  }
+/>
+
 ## Basic
 
 ```jsx
-<FilePicker
-  multiple
-  width={250}
-  onChange={files => console.log(files)}
-  placeholder="Select the file here!"
-/>
+<FilePicker multiple width={250} onChange={(files) => console.log(files)} placeholder="Select the file here!" />
 ```
 
 ## Changing the height
