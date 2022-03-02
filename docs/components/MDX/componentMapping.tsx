@@ -6,7 +6,7 @@ import RuleCard from './renderers/RuleCard'
 import RuleLayout from './renderers/RuleLayout'
 import ColorSwatch from '../ColorSwatch'
 import IconSearch from '../IconSearch'
-import { Paragraph, Strong, Ol, Ul, Li, majorScale, Link as EvergreenLink } from 'evergreen-ui'
+import { Pane, Paragraph, Strong, Ol, Ul, Li, majorScale, Link as EvergreenLink, PaneProps } from 'evergreen-ui'
 
 const componentMapping = {
   h1: (props: any) => <SectionHeading size={800} {...props} />,
@@ -23,6 +23,7 @@ const componentMapping = {
   ul: (props: any) => <Ul {...props} marginTop="-16px" />,
   li: (props: any) => <Li {...props} />,
   inlineCode: (props: any) => <InlineCode {...props} />,
+  Pane: (props: PaneProps) => <Pane {...props} />,
   blockquote: Blockquote,
   ColorSwatch,
   IconSearch,

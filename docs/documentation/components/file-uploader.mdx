@@ -135,9 +135,65 @@ function FileUploaderMultipleUploadDemo() {
 
 The file uploader component is composed of: (1) Label, (2) Description, (3) Dropzone, (4) File Preview.
 
-<img src="/file-uploader-anatomy.svg" alt="file-uploader-anatomy" height={366} width={654} />
+<Pane height={366} marginBottom={64} width={654}>
+  <img src="/file-uploader-anatomy.svg" alt="file-uploader-anatomy" />
+</Pane>
 
 1. **Label.** Use to set context on what the user can do (ie. Upload Files)
 1. **Description.** Use to specify file limitations.
 1. **Dropzone.** Designated area for users to either “browse” or drop files
 1. **File card.** Use to provide feedback to users on status of file uploads, file size, file format, and the ability to remove an uploaded file.
+
+# Enabled
+
+By default, the entire dropzone is active to drop files into. Click anywhere in the dropzone to trigger the “Browse” functionality.
+
+<Pane height={236} width={654}>
+  <img src="/file-uploader-enabled.svg" alt="file-uploader-enabled" />
+</Pane>
+
+# Hover With File(s)
+
+When a user hovers over the dropzone with files, it becomes active to indicate it’s ready to receive the files.
+
+<Pane height={236} width={654}>
+  <img src="/file-uploader-hover-with-files.svg" alt="file-uploader-hover-with-files" />
+</Pane>
+
+# Files Uploading - Multiple Files
+
+When uploading multiple files, a file card is shown beneath the dropzone with a spinning icon to indicate upload in progress.
+
+<Pane height={384} width={654}>
+  <img src="/file-uploader-files-uploading-multiple-files.svg" alt="file-uploader-files-uploading-multiple-files" />
+</Pane>
+
+# File Uploads Successful - Multiple Files
+
+When a file is successfully uploaded, a thumbnail image or icon is shown alongside the file name and file size. Use the trash icon to remove the file.
+
+<Pane height={384} width={654}>
+  <img
+    src="/file-uploader-file-uploads-successful-multiple-files.svg"
+    alt="file-uploader-file-uploads-successful-multiple-files"
+  />
+</Pane>
+
+# File Uploading - Single File
+
+When uploading a single file, a file card is shown without the dropzone with a spinning icon to indicate upload in progress.
+
+<Pane height={118} width={654}>
+  <img src="/file-uploader-file-uploading-single-file.svg" alt="file-uploader-file-uploading-single-file" />
+</Pane>
+
+# File Upload Successful - Single File
+
+When a file is successfully uploaded, a thumbnail image or icon is shown alongside the file name and file size. Use the trash icon to remove the file. The dropzone is hidden in this use case until the file is removed.
+
+<Pane height={118} width={654}>
+  <img
+    src="/file-uploader-file-upload-successful-single-file.svg"
+    alt="file-uploader-file-upload-successful-single-file"
+  />
+</Pane>
