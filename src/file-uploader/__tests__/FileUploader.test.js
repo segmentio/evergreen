@@ -6,6 +6,10 @@ import { buildFiles } from '../../test/utils'
 import FileUploader from '../src/FileUploader'
 
 const testId = 'test-file-uploader'
+/**
+ * Utility function for rendering the system under test with a props object + testing id
+ * @param {import('../../..').FileUploaderProps} props
+ */
 const renderWithProps = (props = {}) => render(<FileUploader {...props} data-testid={testId} />)
 
 describe('FileUploader', () => {
