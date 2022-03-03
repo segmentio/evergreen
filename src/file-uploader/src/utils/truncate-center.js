@@ -4,7 +4,7 @@
  * @param {number | undefined} maximumChars Maximum number of characters (including the ellipsis) to show
  * @returns {string}
  */
-const truncateCenter = (value, maximumChars = 65) => {
+const truncateCenter = (value, maximumChars = 55) => {
   const { length } = value
 
   if (length <= maximumChars) {

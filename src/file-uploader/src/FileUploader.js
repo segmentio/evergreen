@@ -46,7 +46,9 @@ const FileUploader = memo(
       description,
       disabled = false,
       hint,
+      isRequired,
       label,
+      labelFor,
       maxFiles,
       maxSizeInBytes,
       onAccepted,
@@ -55,7 +57,8 @@ const FileUploader = memo(
       onRemove,
       renderFile,
       validationMessage: validationMessageProp,
-      values
+      values,
+      ...rest
     } = props
 
     const { colors } = useTheme()
@@ -184,9 +187,15 @@ const FileUploader = memo(
        * @param {React.ChangeEvent<HTMLInputElement>} event
        */
       event => {
+        // Theoretically the input should not be accessible at all when disabled,
+        // but this should act as a safeguard
+        if (disabled) {
+          return
+        }
+
         handleChange(event.target.files)
       },
-      [handleChange]
+      [disabled, handleChange]
     )
 
     const handleKeyDown = useCallback(
@@ -208,8 +217,10 @@ const FileUploader = memo(
       <Box ref={ref}>
         <FormField
           label={label}
+          labelFor={labelFor}
           description={description}
           hint={hint}
+          isRequired={isRequired}
           // Always override the validationMessage from prop if we have a message to display from dragging
           validationMessage={
             !isEmpty(validationMessage) ? <Text color={colors.red500}>{validationMessage}</Text> : validationMessageProp
@@ -228,6 +239,7 @@ const FileUploader = memo(
               onKeyDown={handleKeyDown}
               tabIndex={disabled ? undefined : 0}
               {...boxProps}
+              {...rest}
             >
               <Box
                 accept={arrayToCsv(acceptedMimeTypes)}

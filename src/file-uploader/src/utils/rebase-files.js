@@ -22,6 +22,6 @@ import splitFiles from './split-files'
  * @param {RebaseFilesOptions | undefined} options
  * @returns {RebaseFilesResult}
  */
-const rebaseFiles = (files, options) => splitFiles(files, merge({}, options ?? {}, { currentFileCount: undefined }))
+const rebaseFiles = (files, options) => splitFiles(files, merge({}, options ?? {}, { currentFileCount: null }))
 
 export default rebaseFiles

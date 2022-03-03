@@ -1,6 +1,7 @@
 *.log
 node_modules
 .DS_Store
+coverage
 /commonjs/
 /esm/
 /umd/
