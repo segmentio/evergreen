@@ -1,5 +1,5 @@
-const { MimeType } = require('../../../constants')
-const { default: getFileDataTransferItems } = require('../../src/utils/get-file-data-transfer-items')
+import { MimeType } from '../../../constants'
+import getFileDataTransferItems from '../../src/utils/get-file-data-transfer-items'
 
 describe('getFileDataTransferItems', () => {
   const buildDataTransferItem = (values = {}) => {

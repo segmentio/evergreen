@@ -6,6 +6,10 @@ import { MimeType } from '../../constants'
 import FileCard from '../src/FileCard'
 
 const testId = 'test-file-card'
+/**
+ * Utility function for rendering the system under test with a props object + testing id
+ * @param {import('../../..').FileCardProps} props
+ */
 const renderWithProps = (props = {}) => render(<FileCard {...props} data-testid={testId} />)
 
 describe('FileCard', () => {
