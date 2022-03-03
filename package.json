@@ -65,13 +65,16 @@
     "downshift": "^5.2.0",
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
+    "humanize-plus": "^1.8.2",
     "lodash.debounce": "^4.0.8",
+    "lodash.differencewith": "^4.5.0",
+    "lodash.isempty": "^4.4.0",
     "lodash.merge": "^4.6.2",
+    "lodash.uniqby": "^4.7.0",
     "prop-types": "^15.6.2",
     "react-fast-compare": "^3.2.0",
     "react-transition-group": "^4.4.1",
     "tinycolor2": "^1.4.1",
-    "tsd": "^0.19.1",
     "ui-box": "^5.0.0"
   },
   "peerDependencies": {
@@ -137,6 +140,7 @@
     "sinon": "^8.1.0",
     "size-limit": "^4.5.0",
     "starwars-names": "^1.6.0",
+    "tsd": "^0.19.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.43.0",
     "yarnhook": "^0.5.1"
@@ -177,12 +181,12 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "287 KB",
+      "limit": "300 KB",
       "running": false
     },
     {
       "path": "umd/evergreen.min.js",
-      "limit": "249 KB",
+      "limit": "275 KB",
       "running": false
     },
     {

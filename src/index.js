@@ -9,11 +9,23 @@ export { Badge, Pill } from './badges'
 export { Button, IconButton, TextDropdownButton } from './buttons'
 export { Checkbox } from './checkbox'
 export { Combobox } from './combobox'
-export { StackingOrder, Intent, Position } from './constants'
+export { StackingOrder, Intent, Position, MimeType, FileRejectionReason } from './constants'
 export { CornerDialog } from './corner-dialog'
 export { Dialog } from './dialog'
 export { EmptyState } from './empty-states'
 export { FilePicker } from './file-picker'
+export {
+  FileCard,
+  FileUploader,
+  getAcceptedTypesMessage,
+  getFileSizeMessage,
+  getMaxFilesMessage,
+  mimeTypeToExtension,
+  mimeTypeToExtensions,
+  rebaseFiles,
+  splitFiles,
+  truncateCenter
+} from './file-uploader'
 export {
   FormField,
   FormFieldDescription,
