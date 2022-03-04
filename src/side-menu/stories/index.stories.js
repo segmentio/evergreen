@@ -36,10 +36,13 @@ storiesOf('side-menu', module)
                     </Pane>
                     <Menu>
                       <Menu.Group >
-                        <Menu.Item icon={PeopleIcon}>Collaborators</Menu.Item>
-                        <Menu.Item icon={CircleArrowRightIcon}>Discover</Menu.Item>
+                        <Menu.Item icon={PeopleIcon}>Menu item 1</Menu.Item>
+                        <Menu.Item icon={CircleArrowRightIcon}>Menu item 2</Menu.Item>
+                        <Menu.Item icon={CircleArrowRightIcon}>Menu item 3</Menu.Item>
+                        <Menu.Item icon={CircleArrowRightIcon}>Menu item 4</Menu.Item>
+                        <Menu.Item icon={CircleArrowRightIcon}>Menu item 5</Menu.Item>
                         <Menu.Item icon={EditIcon} >
-                          Compose
+                          Menu item 6
                         </Menu.Item>
                       </Menu.Group>
                       <Menu.Divider />
@@ -58,4 +61,3 @@ storiesOf('side-menu', module)
       </Component>
     </Box>
   ))
-
