@@ -316,13 +316,13 @@ FileUploader.propTypes = {
    */
   maxSizeInBytes: PropTypes.number,
   /**
-   * Callback for when files are accepted via drop or the native browser picker.
+   * Callback for when files are accepted via drop or the native browser picker
    * @type {(files: File[]) => void}
    */
   onAccepted: PropTypes.func,
   /**
    * Callback for when files are added via drop or the native browser picker, which includes both
-   * the accepted and rejected files.
+   * the accepted and rejected files
    * @type {(files: File[]) => void}
    */
   onChange: PropTypes.func,

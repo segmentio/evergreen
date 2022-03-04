@@ -106,7 +106,7 @@ FileCard.propTypes = {
    */
   description: PropTypes.string,
   /**
-   * Disables the button to remove the file.
+   * Disables the button to remove the file
    */
   disabled: PropTypes.bool,
   /**
@@ -114,7 +114,7 @@ FileCard.propTypes = {
    */
   isInvalid: PropTypes.bool,
   /**
-   * Sets a loading state on the card. If the remove button is rendered, it will be disabled.
+   * Sets a loading state on the card. If the remove button is rendered, it will be disabled
    */
   isLoading: PropTypes.bool,
   /**
