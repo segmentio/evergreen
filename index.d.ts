@@ -1448,7 +1448,7 @@ export interface FileUploaderOwnProps extends FormFieldOwnProps {
    */
   onChange?: (files: File[]) => void
   /**
-   * Callback for when files are rejected via drop or the native browser picker based on
+   * Callback for when files are rejected via drop or the native browser picker
    */
   onRejected?: (fileRejections: FileRejection[]) => void
   /**

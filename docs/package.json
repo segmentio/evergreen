@@ -15,7 +15,7 @@
     "@segment/consent-manager": "^5.1.0",
     "@types/react-github-button": "^0.1.0",
     "@types/react-syntax-highlighter": "^13.5.0",
-    "evergreen-ui": "6.8.2",
+    "evergreen-ui": "6.9.0",
     "lz-string": "^1.4.4",
     "next": "latest",
     "next-mdx-remote": "^2.1.3",
