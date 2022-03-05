@@ -1,6 +1,6 @@
 import React from 'react'
+import faker from '@faker-js/faker'
 import { render, screen, fireEvent, cleanup } from '@testing-library/react'
-import faker from 'faker'
 import { Key, MimeType } from '../../constants'
 import { buildFiles } from '../../test/utils'
 import FileUploader from '../src/FileUploader'
