@@ -233,7 +233,7 @@ const TagInput = memo(
                     appearance="none"
                     disabled={disabled}
                     height={height - 4}
-                    width="auto"
+                    width="100%"
                     type="text"
                     {...inputProps}
                     {...autocompleteRestProps}
