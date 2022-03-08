@@ -1,6 +1,6 @@
 import React from 'react'
+import faker from '@faker-js/faker/locale/en'
 import { render, fireEvent } from '@testing-library/react'
-import faker from 'faker'
 import { Textarea } from '..'
 
 const makeTextareaFixture = (props = {}) => <Textarea data-testid="Textarea" {...props} />

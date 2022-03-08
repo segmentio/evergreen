@@ -1,6 +1,6 @@
 import React from 'react'
+import faker from '@faker-js/faker/locale/en'
 import { render, fireEvent, screen } from '@testing-library/react'
-import faker from 'faker'
 import { TextareaField } from '..'
 
 const makeTextareaFieldFixture = (props = {}) => (
