@@ -1,5 +1,5 @@
 import React from 'react'
-import faker from '@faker-js/faker'
+import { faker } from '@faker-js/faker/locale/en'
 import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
 import { Badge, Pill } from '..'
