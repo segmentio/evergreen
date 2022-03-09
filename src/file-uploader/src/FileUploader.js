@@ -343,8 +343,9 @@ FileUploader.propTypes = {
   renderFile: PropTypes.func,
   /**
    * File values to render underneath the uploader
+   * @type {File}
    */
-  values: PropTypes.arrayOf(PropTypes.instanceOf(File))
+  values: PropTypes.array
 }
 
 export default FileUploader

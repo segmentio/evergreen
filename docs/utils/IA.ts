@@ -405,8 +405,8 @@ const IA: IA = {
       },
       {
         id: 'file-uploader',
-        image: '/File Uploader.png',
-        imageHighlight: '/File Uploader-highlight.png',
+        image: '/FileUploader.png',
+        imageHighlight: '/FileUploader-highlight.png',
         github: githubLink('file-uploader'),
         name: 'File Uploader',
         description:
