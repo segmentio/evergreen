@@ -144,6 +144,18 @@ const Positioner = memo(function Positioner(props) {
     onCloseComplete()
   }
 
+  const handleResize = useCallback(() => {
+    update()
+  }, [update])
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  })
+
   return (
     <Stack value={StackingOrder.POSITIONER}>
       {zIndex => {
