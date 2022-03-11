@@ -1,5 +1,5 @@
 import React from 'react'
-import { faker } from '@faker-js/faker/locale/en'
+import { faker } from '@faker-js/faker'
 import { render, screen } from '@testing-library/react'
 import humanize from 'humanize-plus'
 import { MimeType } from '../../constants'

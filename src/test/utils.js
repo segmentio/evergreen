@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker/locale/en'
+import { faker } from '@faker-js/faker'
 import { MimeType, FileRejectionReason } from '../constants'
 
 /**

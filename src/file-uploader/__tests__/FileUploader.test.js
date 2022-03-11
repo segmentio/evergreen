@@ -1,5 +1,5 @@
 import React from 'react'
-import { faker } from '@faker-js/faker/locale/en'
+import { faker } from '@faker-js/faker'
 import { render, screen, fireEvent, cleanup } from '@testing-library/react'
 import { Key, MimeType } from '../../constants'
 import { buildFiles } from '../../test/utils'
