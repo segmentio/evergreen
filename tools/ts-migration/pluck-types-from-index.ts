@@ -1,16 +1,18 @@
-import { Project, TypeAliasDeclaration } from 'ts-morph'
+import { InterfaceDeclaration, Project, TypeAliasDeclaration } from 'ts-morph'
 import { log } from './log'
-import { last } from './utils'
+import { insertTypeOrInterface, last } from './utils'
 
 const pluckTypesFromIndex = async (project: Project) => {
   const indexFile = project.getSourceFileOrThrow('index.d.ts')
 
-  const types = indexFile.getTypeAliases()
+  const typesAndInterfaces = [...indexFile.getTypeAliases(), ...indexFile.getInterfaces()]
 
-  types.forEach((type: TypeAliasDeclaration) => {
-    log.info(`Found TypeAliasDeclaration ${type.getName()} on line ${type.getStartLineNumber()}`)
+  typesAndInterfaces.forEach((typeOrInterface: TypeAliasDeclaration | InterfaceDeclaration) => {
+    log.info(
+      `Found ${typeOrInterface.getKindName()} ${typeOrInterface.getName()} on line ${typeOrInterface.getStartLineNumber()}`
+    )
 
-    const sourceFile = project.getSourceFile(typeToSourceFileName(type))
+    const sourceFile = project.getSourceFile(typeToSourceFileName(typeOrInterface))
     if (sourceFile == null) {
       return
     }
@@ -19,13 +21,15 @@ const pluckTypesFromIndex = async (project: Project) => {
 
     // Insert types after the last import declaration if any exist
     const lastImportIndex = last(sourceFile.getImportDeclarations())?.getChildIndex()
-    sourceFile.insertTypeAlias(lastImportIndex != null ? lastImportIndex + 1 : 0, type.getStructure())
-    type.remove()
+    const insertionIndex = lastImportIndex != null ? lastImportIndex + 1 : 0
+
+    insertTypeOrInterface(sourceFile, insertionIndex, typeOrInterface)
+    typeOrInterface.remove()
   })
 }
 
-const typeToSourceFileName = (type: TypeAliasDeclaration): string =>
-  `${type
+const typeToSourceFileName = (typeOrInterface: TypeAliasDeclaration | InterfaceDeclaration): string =>
+  `${typeOrInterface
     .getName()
     .replace('OwnProps', '')
     .replace('Props', '')}.tsx`
