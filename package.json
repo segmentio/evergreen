@@ -50,7 +50,8 @@
     "deploy-docs": "cd docs && yarn install && yarn deploy",
     "postpublish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then yarn deploy-docs; else echo \"not on main branch, skipping docs deploy\"; fi;",
     "storybook": "start-storybook -p 6006",
-    "chromatic": "npx chromatic"
+    "chromatic": "npx chromatic",
+    "ts-migration": "ts-node tools/ts-migration/main.ts"
   },
   "engines": {
     "node": ">=12"
