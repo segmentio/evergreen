@@ -1,7 +1,7 @@
 import { InterfaceDeclaration, Project, SourceFile, TypeAliasDeclaration } from 'ts-morph'
 import { INDEX_D_TS } from './constants'
 import { log } from './log'
-import { compact, insertTypeOrInterface, last } from './utils'
+import { compact, getSourceFileName, insertTypeOrInterface, last } from './utils'
 
 /**
  * Moves manually written type aliases and interfaces from index.d.ts to the corresponding component
@@ -23,7 +23,7 @@ const pluckTypesFromIndex = async (project: Project): Promise<SourceFile[]> => {
     const line = typeOrInterface.getStartLineNumber()
     log.info(`⌨️ Found ${kind} '${name}' at ${INDEX_D_TS}:${line}`)
 
-    const sourceFile = project.getSourceFile(typeToSourceFileName(typeOrInterface))
+    const sourceFile = project.getSourceFile(getSourceFileName(typeOrInterface))
     if (sourceFile == null) {
       return
     }
@@ -42,11 +42,5 @@ const pluckTypesFromIndex = async (project: Project): Promise<SourceFile[]> => {
 
   return compact(sourceFiles)
 }
-
-const typeToSourceFileName = (typeOrInterface: TypeAliasDeclaration | InterfaceDeclaration): string =>
-  `${typeOrInterface
-    .getName()
-    .replace('OwnProps', '')
-    .replace('Props', '')}.tsx`
 
 export { pluckTypesFromIndex }
