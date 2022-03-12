@@ -11,6 +11,10 @@ const main = async () => {
   log.info(`Added ${indexFile.getBaseName()} to Project`)
 
   pluckTypesFromIndex(project)
+
+  await project.save()
+
+  log.info('Saved Project! Exiting.')
 }
 
 main()
