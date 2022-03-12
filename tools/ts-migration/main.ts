@@ -1,4 +1,6 @@
 import { Project } from 'ts-morph'
+import { addMissingImports } from './add-missing-imports'
+import { INDEX_D_TS } from './constants'
 import { log } from './log'
 import { pluckTypesFromIndex } from './pluck-types-from-index'
 
@@ -7,10 +9,11 @@ const main = async () => {
   const sourceFiles = project.getSourceFiles()
   log.info(`Loaded Project with ${sourceFiles.length} SourceFiles.`)
 
-  const indexFile = project.addSourceFileAtPath('./index.d.ts')
-  log.info(`Added ${indexFile.getBaseName()} to Project`)
+  project.addSourceFileAtPath(`./${INDEX_D_TS}`)
+  log.info(`Added ${INDEX_D_TS} to Project`)
 
-  pluckTypesFromIndex(project)
+  const filesWithTypes = await pluckTypesFromIndex(project)
+  await addMissingImports(filesWithTypes)
 
   await project.save()
 

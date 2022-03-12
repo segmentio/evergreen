@@ -1,5 +1,13 @@
 import { InterfaceDeclaration, SourceFile, TypeAliasDeclaration } from 'ts-morph'
 
+const compact = <T>(values?: Array<T | null | undefined>): T[] => {
+  if (values == null) {
+    return []
+  }
+
+  return values.filter((maybeValue: T | null | undefined) => maybeValue != null) as T[]
+}
+
 const first = <T>(values?: T[]): T | undefined => values?.[0]
 
 const insertTypeOrInterface = (
@@ -13,4 +21,4 @@ const insertTypeOrInterface = (
 
 const last = <T>(values?: T[]): T | undefined => values?.reverse()[0]
 
-export { first, insertTypeOrInterface, last }
+export { compact, first, insertTypeOrInterface, last }
