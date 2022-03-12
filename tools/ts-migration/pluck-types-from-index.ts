@@ -21,14 +21,14 @@ const pluckTypesFromIndex = async (project: Project): Promise<SourceFile[]> => {
     const kind = typeOrInterface.getKindName()
     const name = typeOrInterface.getName()
     const line = typeOrInterface.getStartLineNumber()
-    log.info(`Found ${kind} '${name}' at ${INDEX_D_TS}:${line}`)
+    log.info(`⌨️ Found ${kind} '${name}' at ${INDEX_D_TS}:${line}`)
 
     const sourceFile = project.getSourceFile(typeToSourceFileName(typeOrInterface))
     if (sourceFile == null) {
       return
     }
 
-    log.info(`  Found matching SourceFile at ${sourceFile.getBaseName()}`)
+    log.info(`  📄 Found matching SourceFile at ${sourceFile.getBaseName()}`)
 
     // Insert types after the last import declaration if any exist
     const lastImportIndex = last(sourceFile.getImportDeclarations())?.getChildIndex()
