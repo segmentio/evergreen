@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Position } from '../../constants'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
-import SheetClose from '../../side-sheet/src/SheetClose'
+import SideMenuClose from '../src/SideMenuClose'
 
 const paneProps = {
   [Position.LEFT]: {
@@ -90,7 +90,7 @@ const SideMenu = memo(function SideMenu(props){
           className={css(animationStylesClass[position]).toString()}
           data-state={state}
         >
-          <SheetClose position={position} data-state={state} isClosing={false} onClick={close} />
+          <SideMenuClose position={position} data-state={state} isClosing={false} onClick={close} />
           <Pane
             elevation={4}
             backgroundColor="white"
