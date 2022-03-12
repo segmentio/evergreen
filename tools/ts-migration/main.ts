@@ -1,3 +1,5 @@
+import { stripTSIgnorePlugin, tsIgnorePlugin } from 'ts-migrate-plugins'
+import { migrate, MigrateConfig } from 'ts-migrate-server'
 import { Project } from 'ts-morph'
 import { addComponentTypes } from './add-component-types'
 import { addMissingImports } from './add-missing-imports'
@@ -18,8 +20,11 @@ const main = async () => {
   await addMissingImports(filesWithTypes)
 
   await project.save()
+  log.info('💾 Saved Project!')
 
-  log.info('💾 Saved Project! Exiting.')
+  log.info('🧼 Refreshing ts-ignore and ts-expect-error comments')
+  const config = new MigrateConfig().addPlugin(stripTSIgnorePlugin, {}).addPlugin(tsIgnorePlugin, {})
+  await migrate({ rootDir: '.', config })
 }
 
 main()
