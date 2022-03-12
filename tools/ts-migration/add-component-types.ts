@@ -1,9 +1,9 @@
-import { Project, VariableDeclaration } from 'ts-morph'
+import { Project } from 'ts-morph'
 import { INDEX_D_TS } from './constants'
 import { log } from './log'
-import { getSourceFileName } from './utils'
+import { compact, first, getSourceFileName } from './utils'
 
-const pluckComponentDefinitionsFromIndex = async (project: Project) => {
+const addComponentTypes = async (project: Project) => {
   const indexFile = project.getSourceFileOrThrow(INDEX_D_TS)
 
   const typedVariableDeclarations = indexFile.getVariableDeclarations()
@@ -25,21 +25,18 @@ const pluckComponentDefinitionsFromIndex = async (project: Project) => {
       return
     }
 
-    const type = getVariableType(typedVariableDeclaration)
-    variableDeclaration.setType(type)
+    const propsName = `${name}Props`
+    const typeOrInterface = first(compact([sourceFile.getInterface(propsName), sourceFile.getTypeAlias(propsName)]))
+
+    if (typeOrInterface == null) {
+      log.info(`  🤔 No props found for ${name}`)
+      return
+    }
+
+    variableDeclaration.setType(`React.FC<${propsName}>`)
 
     typedVariableDeclaration.remove()
   })
 }
 
-const getVariableType = (variableDeclaration: VariableDeclaration): string => {
-  const name = variableDeclaration.getName()
-
-  return variableDeclaration
-    .getFullText()
-    .replace(name, '')
-    .replace(':', '')
-    .trim()
-}
-
-export { pluckComponentDefinitionsFromIndex }
+export { addComponentTypes }

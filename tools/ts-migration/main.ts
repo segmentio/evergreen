@@ -1,8 +1,8 @@
 import { Project } from 'ts-morph'
+import { addComponentTypes } from './add-component-types'
 import { addMissingImports } from './add-missing-imports'
 import { INDEX_D_TS } from './constants'
 import { log } from './log'
-import { pluckComponentDefinitionsFromIndex } from './pluck-component-definitions-from-index'
 import { pluckTypesFromIndex } from './pluck-types-from-index'
 
 const main = async () => {
@@ -14,7 +14,7 @@ const main = async () => {
   log.info(`📄 Added ${INDEX_D_TS} to Project`)
 
   const filesWithTypes = await pluckTypesFromIndex(project)
-  await pluckComponentDefinitionsFromIndex(project)
+  await addComponentTypes(project)
   await addMissingImports(filesWithTypes)
 
   await project.save()
