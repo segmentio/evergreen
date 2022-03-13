@@ -1371,12 +1371,6 @@ export interface HeadingOwnProps {
 export type HeadingProps = PolymorphicBoxProps<'h2', HeadingOwnProps>
 export declare const Heading: BoxComponent<HeadingOwnProps, 'h2'>
 
-export type IconOwnProps = IconProps & {
-  icon: React.ElementType | JSX.Element
-}
-
-export declare const Icon: ForwardRefComponent<IconOwnProps>
-
 export interface IconButtonOwnProps extends ButtonOwnProps {
   /**
    * Name of a Blueprint UI icon, or an icon element, to render.
@@ -2926,30 +2920,7 @@ export declare const mergeTheme: <TDestinationTheme extends Theme, TSourceTheme 
   sourceTheme: TSourceTheme
 ) => TDestinationTheme & TSourceTheme
 
-export interface IconProps extends BoxProps<'svg'> {
-  /**
-   * Color of icon. Equivalent to setting CSS `fill` property.
-   */
-  color?: string
-  /**
-   * Size of the icon, in pixels.
-   * Blueprint contains 16px and 20px SVG icon images,
-   * and chooses the appropriate resolution based on this prop.
-   */
-  size?: number
-  /**
-   * Description string.
-   * Browsers usually render this as a tooltip on hover, whereas screen
-   * readers will use it for aural feedback.
-   * By default, this is set to the icon's name for accessibility.
-   */
-  title?: string
-}
-
 /* Start generated icons */
-export type IconComponent = React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>
->
 export declare const AddIcon: IconComponent
 export declare const AddColumnLeftIcon: IconComponent
 export declare const AddColumnRightIcon: IconComponent

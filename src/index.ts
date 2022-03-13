@@ -22,7 +22,7 @@ export {
   FormFieldValidationMessage
 } from './form-field'
 export { Group } from './group'
-export { IconWrapper as Icon } from './icons/src/IconWrapper'
+export { IconWrapper as Icon, IconWrapperProps as IconProps } from './icons/src/IconWrapper'
 export { Image } from './image'
 export { Pane, Card } from './layers'
 export { Menu } from './menu'
@@ -70,6 +70,7 @@ export { defaultTheme, classicTheme, deprecatedDefaultTheme } from './themes'
 export { Textarea, TextareaField } from './textarea'
 export { toaster } from './toaster'
 export { Tooltip } from './tooltip'
+export { IconComponent } from './types'
 export {
   UnorderedList,
   Ul,
