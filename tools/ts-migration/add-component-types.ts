@@ -1,5 +1,5 @@
-import { Project } from 'ts-morph'
-import { INDEX_D_TS } from './constants'
+import { Project, VariableDeclaration } from 'ts-morph'
+import { ICON_COMPONENT, INDEX_D_TS } from './constants'
 import { log } from './log'
 import { compact, first, getSourceFileName } from './utils'
 
@@ -25,6 +25,13 @@ const addComponentTypes = async (project: Project) => {
       return
     }
 
+    if (isIconComponent(variableDeclaration)) {
+      sourceFile.addImportDeclaration({ namedImports: [ICON_COMPONENT], moduleSpecifier: '../../types' })
+      variableDeclaration.setType(ICON_COMPONENT)
+      typedVariableDeclaration.remove()
+      return
+    }
+
     const propsName = `${name}Props`
     const typeOrInterface = first(compact([sourceFile.getInterface(propsName), sourceFile.getTypeAlias(propsName)]))
 
@@ -38,5 +45,7 @@ const addComponentTypes = async (project: Project) => {
     typedVariableDeclaration.remove()
   })
 }
+
+const isIconComponent = (variableDeclaration: VariableDeclaration) => variableDeclaration.getName().endsWith('Icon')
 
 export { addComponentTypes }

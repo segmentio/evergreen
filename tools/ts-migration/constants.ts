@@ -1,3 +1,4 @@
+const ICON_COMPONENT = 'IconComponent'
 const INDEX_D_TS = 'index.d.ts'
 
-export { INDEX_D_TS }
+export { ICON_COMPONENT, INDEX_D_TS }
