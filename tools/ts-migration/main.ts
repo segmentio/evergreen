@@ -6,6 +6,7 @@ import { addMissingImports } from './add-missing-imports'
 import { INDEX_D_TS } from './constants'
 import { log } from './log'
 import { pluckTypesFromIndex } from './pluck-types-from-index'
+import { removePropTypes } from './remove-prop-types'
 
 const main = async () => {
   const project = new Project({ tsConfigFilePath: './tsconfig.json' })
@@ -18,7 +19,9 @@ const main = async () => {
   const filesWithTypes = await pluckTypesFromIndex(project)
   await addComponentTypes(project)
   await addMissingImports(filesWithTypes)
+  await removePropTypes(project)
 
+  log.info('😵‍💫 Saving Project...')
   await project.save()
   log.info('💾 Saved Project!')
 
