@@ -151,7 +151,6 @@ const Toast = memo(function Toast(props) {
           style={styles}
         >
           <Box ref={onRef} padding={8}>
-            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             <Alert
               // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
               flexShrink={0}

@@ -2803,7 +2803,7 @@ export function extractStyles(options?: {
 /**
  * Optional settings that can be set when creating a new Toast.
  */
-interface ToasterSettings {
+export interface ToasterSettings {
   /**
    * A description of the toast which is rendered as the children of the Toast's Alert component.
    */
