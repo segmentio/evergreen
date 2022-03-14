@@ -16,7 +16,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
-    "types": ["jest", "node"]
+    "types": ["jest", "node", "testing-library__jest-dom"]
   },
   "include": ["src"]
 }
