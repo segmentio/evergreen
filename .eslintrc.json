@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true
   },
@@ -16,7 +16,7 @@
     "ecmaVersion": 2015,
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "sort-destructure-keys"],
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "sort-destructure-keys"],
   "rules": {
     "space-before-function-paren": "off",
     "no-unused-vars": "error",
@@ -46,7 +46,10 @@
         }
       }
     ],
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    // Turning this off in favor of typescript-eslint version which correctly reports errors
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"]
   },
   "overrides": [
     {
