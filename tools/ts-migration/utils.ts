@@ -11,10 +11,7 @@ const compact = <T>(values?: Array<T | null | undefined>): T[] => {
 const first = <T>(values?: T[]): T | undefined => values?.[0]
 
 const getSourceFileName = (node: VariableDeclaration | TypeAliasDeclaration | InterfaceDeclaration): string =>
-  `${node
-    .getName()
-    .replace('OwnProps', '')
-    .replace('Props', '')}.tsx`
+  `${node.getName().replace(/OwnProps|Props/, '')}.tsx`
 
 const insertTypeOrInterface = (
   sourceFile: SourceFile,
