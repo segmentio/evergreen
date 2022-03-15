@@ -1344,7 +1344,7 @@ export interface HeadingOwnProps {
   size?: Size
 }
 
-export type HeadingProps = PolymorphicBoxProps<'h2', HeadingOwnProps>
+export type HeadingProps = PolymorphicBoxProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6', HeadingOwnProps>
 export declare const Heading: BoxComponent<HeadingOwnProps, 'h2'>
 
 export interface IconButtonOwnProps extends ButtonOwnProps {
