@@ -848,7 +848,7 @@ export interface AvatarOwnProps {
    * When provided, the first and last initial of the name will be used.
    * For example: Foo Bar -> FB
    */
-  name?: string | null
+  name?: string
   hashValue?: string
   color?: string
   shape?: 'round' | 'square'

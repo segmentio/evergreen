@@ -9,7 +9,7 @@ import { Text } from '../../typography'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
 
-const imageStyles = { objectFit: 'cover' }
+const imageStyles: React.CSSProperties = { objectFit: 'cover' }
 
 const pseudoSelectors = {}
 const internalStyles = {
@@ -70,7 +70,7 @@ const Avatar = memo(
 
     const initialsFontSize = `${getAvatarInitialsFontSize(size, sizeLimitOneCharacter)}px`
 
-    let initials = getInitials(name)
+    let initials = getInitials(name!)
     if (size <= sizeLimitOneCharacter) {
       initials = initials.slice(0, 1)
     }
