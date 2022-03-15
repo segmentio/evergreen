@@ -1,10 +1,10 @@
 /* tslint:disable:interface-name max-classes-per-file no-empty-interface */
 
 import * as React from 'react'
-import { extractStyles as boxExtractStyles, BoxProps, BoxComponent, PolymorphicBoxProps } from 'ui-box'
-import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
+import { StyleAttribute, CSSProperties } from 'glamor'
 import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition'
+import { extractStyles as boxExtractStyles, BoxProps, BoxComponent, PolymorphicBoxProps } from 'ui-box'
 
 export { configureSafeHref, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps, EnhancerProps } from 'ui-box'
 
@@ -1243,30 +1243,6 @@ export interface DialogProps {
 }
 
 export declare const Dialog: React.FC<DialogProps>
-
-export interface EmptyStateOwnProps {
-  /** the title of the empty state */
-  title: string
-  /** the icon used in the empty state */
-  icon: React.ReactNode
-  /** the background used for the icon circle */
-  iconBgColor: string
-  /** specify the orientation of how the content flows */
-  orientation?: 'horizontal' | 'vertical'
-  /** the description of the empty state */
-  description?: string
-  /** the background used for the entire empty state container */
-  background?: 'light' | 'dark'
-  /** the primary cta of the empty state */
-  primaryCta?: React.ReactNode
-  /** the link cta of the empty state */
-  anchorCta?: React.ReactNode
-}
-
-export declare const EmptyState: React.FC<EmptyStateOwnProps> & {
-  PrimaryButton: typeof Button
-  LinkButton: typeof Link
-}
 
 export interface FilePickerOwnProps {
   /** the name attribute of the input */
