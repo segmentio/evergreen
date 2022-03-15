@@ -3,7 +3,14 @@
   "env": {
     "browser": true
   },
-  "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended", "standard", "prettier", "prettier/react"],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "standard",
+    "prettier",
+    "prettier/react",
+    "plugin:@typescript-eslint/eslint-recommended"
+  ],
   "settings": {
     "react": {
       "version": "detect"
@@ -19,7 +26,8 @@
   "plugins": ["@typescript-eslint", "react", "react-hooks", "sort-destructure-keys"],
   "rules": {
     "space-before-function-paren": "off",
-    "no-unused-vars": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
     "react/display-name": "off",
     "sort-destructure-keys/sort-destructure-keys": "error",
     "no-console": [
