@@ -3,6 +3,29 @@ import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { StackingOrder } from '../../constants'
 import Toast from './Toast'
+import { Toast as ToastReference, ToasterSettings } from './Toaster'
+
+interface ToastManagerProps {
+  /**
+   * Function called with the `this.notify` function.
+   */
+  bindNotify: (handler: (title: string, settings: ToasterSettings) => void) => void
+
+  /**
+   * Function called with the `this.remove` function.
+   */
+  bindRemove: (handler: (id: string) => void) => void
+
+  /**
+   * Function called with the `this.getToasts` function.
+   */
+  bindGetToasts: (handler: () => ToastReference[]) => void
+
+  /**
+   * Function called with the `this.closeAll` function.
+   */
+  bindCloseAll: (handler: () => void) => void
+}
 
 const wrapperClass = css({
   maxWidth: 560,
@@ -15,19 +38,18 @@ const wrapperClass = css({
   pointerEvents: 'none'
 })
 
-const hasCustomId = (settings: any) => Object.hasOwnProperty.call(settings, 'id')
+const hasCustomId = (settings: ToasterSettings) => Object.hasOwnProperty.call(settings, 'id')
 
-const ToastManager = memo(function ToastManager(props) {
+const ToastManager: React.FC<ToastManagerProps> = memo(function ToastManager(props) {
   // @ts-expect-error ts-migrate(2339) FIXME: Property 'bindCloseAll' does not exist on type '{ ... Remove this comment to see the full error message
   const { bindCloseAll, bindGetToasts, bindNotify, bindRemove } = props
 
-  const [toasts, setToasts] = useState([])
+  const [toasts, setToasts] = useState<ToastReference[]>([])
   const [idCounter, setIdCounter] = useState(0)
 
   const getToasts = () => toasts
 
   const closeAll = () => {
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'any[]' is not assignable to para... Remove this comment to see the full error message
     setToasts(toasts.map(toast => ({ ...toast, isShown: false })))
   }
 
@@ -35,14 +57,11 @@ const ToastManager = memo(function ToastManager(props) {
    * This will set isShown on the Toast which will close the toast.
    * It won't remove the toast until onExited triggers onRemove.
    */
-  const closeToast = (id: any) => {
+  const closeToast = (id: string) => {
     setToasts(
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'any[]' is not assignable to para... Remove this comment to see the full error message
       toasts.map(toast => {
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type 'never'.
         if (toast.id === id) {
           return {
-            // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
             ...toast,
             isShown: false
           }
@@ -53,24 +72,22 @@ const ToastManager = memo(function ToastManager(props) {
     )
   }
 
-  const safeCloseToast = (id: any) => {
+  const safeCloseToast = (id: string | number) => {
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type 'never'.
     const toastToRemove = toasts.find(toast => String(toast.id).startsWith(id))
 
     if (toastToRemove) {
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type 'never'.
       closeToast(toastToRemove.id)
     }
   }
 
-  const removeToast = (id: any) => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type 'never'.
-    const updatedToasts = toasts.filter(toast => !String(toast.id).startsWith(id))
+  const removeToast = (id?: string) => {
+    const updatedToasts = toasts.filter(toast => !String(toast.id).startsWith(id ?? ''))
     setToasts(updatedToasts)
     return updatedToasts
   }
 
-  const createToastInstance = (title: any, settings: any) => {
+  const createToastInstance = (title: string, settings: ToasterSettings) => {
     const uniqueId = idCounter
     setIdCounter(idCounter + 1)
     const id = hasCustomId(settings) ? `${settings.id}-${uniqueId}` : uniqueId
@@ -86,7 +103,7 @@ const ToastManager = memo(function ToastManager(props) {
     }
   }
 
-  const notify = (title: any, settings: any) => {
+  const notify = (title: string, settings: ToasterSettings) => {
     let tempToasts = toasts
     if (hasCustomId(settings)) {
       tempToasts = removeToast(settings.id)
@@ -105,7 +122,6 @@ const ToastManager = memo(function ToastManager(props) {
   return (
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'StyleAttribute' is not assignable to type 's... Remove this comment to see the full error message
     <span className={wrapperClass}>
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       {toasts.map(({ description, id, ...rest }) => {
         return (
           <Toast key={id} onRemove={() => removeToast(id)} {...rest}>
