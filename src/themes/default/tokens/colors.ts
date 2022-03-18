@@ -1,3 +1,5 @@
+export type DefaultThemeColors = typeof colors
+
 const colorScales = {
   // Grays / neutrals
   gray900: '#101840',

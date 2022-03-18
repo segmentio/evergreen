@@ -1,3 +1,4 @@
+import { Components } from '../../../types/theme/components'
 import Alert from './alert'
 import Avatar from './avatar'
 import Badge from './badge'
@@ -34,7 +35,10 @@ import Text from './text'
 import TextDropdownButton from './text-dropdown-button'
 import Tooltip from './tooltip'
 
-export default {
+export type DefaultThemeAppearances<T extends Components> = keyof typeof defaultTheme[T]['appearances']
+export type DefaultThemeSizes<T extends Components> = keyof typeof defaultTheme[T]['sizes']
+
+const defaultTheme = {
   Alert,
   Avatar,
   Badge,
@@ -71,3 +75,5 @@ export default {
   TextDropdownButton,
   Tooltip
 }
+
+export default defaultTheme

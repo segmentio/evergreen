@@ -73,7 +73,10 @@ const appearances = {
   }
 }
 
+const sizes = {}
+
 export default {
   baseStyle,
-  appearances
+  appearances,
+  sizes
 }

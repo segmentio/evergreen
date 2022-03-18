@@ -1,5 +1,7 @@
 import colors from './colors'
 
+export type DefaultThemeFills = typeof fills
+
 /**
  * Used for matching background colors and foreground colors
  */

@@ -55,6 +55,9 @@ const baseStyle = {
   }
 }
 
+const sizes = {}
+
 export default {
-  baseStyle
+  baseStyle,
+  sizes
 }

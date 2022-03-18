@@ -1,5 +1,7 @@
 import colors from './colors'
 
+export type DefaultThemeIntents = typeof intents
+
 const intents = {
   info: {
     background: colors.blue25,
