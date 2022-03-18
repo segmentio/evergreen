@@ -5,15 +5,17 @@ import isEqual from 'react-fast-compare'
 import { EnhancerProps, splitBoxProps } from 'ui-box'
 import { useTheme, get, resolveThemeTokens } from '../theme'
 import { Appearance } from '../types/theme/appearance'
+import { Color } from '../types/theme/color'
 import { ComponentStyle } from '../types/theme/component-style'
 import { Components } from '../types/theme/components'
 import { IntentTypes } from '../types/theme/intent-types'
-import { PseudoSelectorKey, PseudoSelectors } from '../types/theme/pseudo-selectors'
+import { PseudoSelectorKey, PseudoSelectorMap } from '../types/theme/pseudo-selectors'
 import { Size } from '../types/theme/size'
 
 type GlamorAndBoxStyle = EnhancerProps & CSSProperties
 interface StyleModifiers {
   appearance?: Appearance
+  color?: Color
   intent?: IntentTypes
   size?: Size
 }
@@ -84,7 +86,7 @@ function useMergedStyles(
 /**
  * Split up the style props into glamor-ready and box-ready props (className + spreadable props)
  */
-function useGlamorAndBox(styles: any, pseudoSelectors: PseudoSelectors): UseGlamorAndBoxOutput {
+function useGlamorAndBox(styles: any, pseudoSelectors: PseudoSelectorMap): UseGlamorAndBoxOutput {
   const glamorStylesRef = useRef({})
   const classNameRef = useRef<string | undefined>()
 
@@ -125,7 +127,7 @@ function useGlamorAndBox(styles: any, pseudoSelectors: PseudoSelectors): UseGlam
 export function useStyleConfig<T extends Components>(
   componentKey: T,
   props: StyleModifiers,
-  pseudoSelectors: PseudoSelectors,
+  pseudoSelectors: PseudoSelectorMap,
   internalStyles: GlamorAndBoxStyle
 ): UseStyleConfigOutput {
   const theme = useTheme()

@@ -1,4 +1,4 @@
 import { EnhancerProps } from 'ui-box'
-import { PseudoSelectors } from './pseudo-selectors'
+import { PseudoSelectorMap } from './pseudo-selectors'
 
-export type StyleProps = EnhancerProps & Partial<PseudoSelectors<EnhancerProps>>
+export type StyleProps = EnhancerProps & Partial<PseudoSelectorMap<EnhancerProps>>

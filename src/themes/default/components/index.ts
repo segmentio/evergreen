@@ -1,4 +1,6 @@
 import { Components } from '../../../types/theme/components'
+import { PseudoSelectorsKeys } from '../../../types/theme/pseudo-selectors'
+import { Theme } from '../../../types/theme/theme'
 import Alert from './alert'
 import Avatar from './avatar'
 import Badge from './badge'
@@ -35,8 +37,10 @@ import Text from './text'
 import TextDropdownButton from './text-dropdown-button'
 import Tooltip from './tooltip'
 
-export type DefaultThemeAppearances<T extends Components> = keyof typeof defaultTheme[T]['appearances']
-export type DefaultThemeSizes<T extends Components> = keyof typeof defaultTheme[T]['sizes']
+export type DefaultTheme = typeof defaultTheme & Theme
+export type DefaultThemeAppearances<T extends Components> = keyof DefaultTheme[T]['appearances']
+export type DefaultThemeSizes<T extends Components> = keyof DefaultTheme[T]['sizes']
+export type DefaultThemePseudoSelectors<T extends Components> = PseudoSelectorsKeys<keyof DefaultTheme[T]['baseStyle']>
 
 const defaultTheme = {
   Alert,
