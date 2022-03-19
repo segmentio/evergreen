@@ -9,7 +9,7 @@ import SideMenuClose from '../src/SideMenuClose'
 const paneProps = {
   [Position.LEFT]: {
     height: '100vh',
-    maxWidth: '100vw',
+    maxWidth: '50vw',
     position: 'absolute',
     left: 0,
     right: 'auto'
@@ -60,7 +60,7 @@ const noop =() =>{}
 
 const SideMenu = memo(function SideMenu(props){
   const{
-    width = 550,
+    width = 650,
     isShown,
     children,
     containerProps,
