@@ -144,15 +144,13 @@ const Positioner = memo(function Positioner(props) {
     onCloseComplete()
   }
 
-  const handleResize = useCallback(() => {
-    update()
-  }, [update])
-
   useEffect(() => {
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', update)
+    window.addEventListener('scroll', update)
 
     return () => {
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', update)
+      window.removeEventListener('scroll', update)
     }
   })
 
