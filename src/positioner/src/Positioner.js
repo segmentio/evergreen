@@ -119,7 +119,7 @@ const Positioner = memo(function Positioner(props) {
   )
 
   // Call `update` whenever the component has "entered" and dimensions change
-  // additionally, when have dynamic children
+  // additionally, when there are dynamic children
   useEffect(() => {
     if (transitionState.current === 'entered') {
       latestAnimationFrame.current = requestAnimationFrame(() => {
