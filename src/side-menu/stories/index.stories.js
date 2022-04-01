@@ -61,3 +61,100 @@ storiesOf('side-menu', module)
       </Component>
     </Box>
   ))
+   .add('without-icons', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Component initialState={{ isShown: false, position: 'left' }}>
+        {({ setState, state }) => (
+          <Box>
+            <SideMenu
+              position={state.position}
+              width={250}
+              isShown={state.isShown}
+              onCloseComplete={() => setState({ isShown: false })}
+            >
+              {() => {
+                return (
+                  <Box>
+                    <Pane padding={16} borderBottom="muted">
+                    </Pane>
+                    <Menu>
+                      <Menu.Group >
+                        <Menu.Item >Menu item 1</Menu.Item>
+                        <Menu.Item >Menu item 2</Menu.Item>
+                        <Menu.Item >Menu item 3</Menu.Item>
+                        <Menu.Item >Menu item 4</Menu.Item>
+                        <Menu.Item >Menu item 5</Menu.Item>
+                        <Menu.Item >
+                          Menu item 6
+                        </Menu.Item>
+                      </Menu.Group>
+                      <Menu.Divider />
+                    </Menu>
+                  </Box>
+                )
+              }}
+            </SideMenu>
+            {['left'].map(position => (
+              <Button key={position} margin="10px" onClick={() => setState({ position, isShown: true })} icon={EditIcon}>
+                ☰
+              </Button>
+            ))}
+          </Box>
+        )}
+      </Component>
+    </Box>
+  ))
+
+  .add('semi-transparent-background', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+
+      })()}
+      <Component initialState={{ isShown: false, position: 'left_bg' }}>
+        {({ setState, state }) => (
+          <Box>
+            <SideMenu
+              position={state.position}
+              width={250}
+              isShown={state.isShown}
+              onCloseComplete={() => setState({ isShown: false })}
+            >
+              {() => {
+                return (
+                  <Box>
+                    <Pane padding={16} borderBottom="muted">
+                    </Pane>
+                    <Menu>
+                      <Menu.Group >
+                        <Menu.Item >Menu item 1</Menu.Item>
+                        <Menu.Item >Menu item 2</Menu.Item>
+                        <Menu.Item >Menu item 3</Menu.Item>
+                        <Menu.Item >Menu item 4</Menu.Item>
+                        <Menu.Item >Menu item 5</Menu.Item>
+                        <Menu.Item >
+                          Menu item 6
+                        </Menu.Item>
+                      </Menu.Group>
+                      <Menu.Divider />
+                    </Menu>
+                  </Box>
+                )
+              }}
+            </SideMenu>
+            {['left'].map(position => (
+              <Button key={position} margin="10px" onClick={() => setState({ position, isShown: true })} icon={EditIcon}>
+                ☰
+              </Button>
+            ))}
+          </Box>
+        )}
+      </Component>
+    </Box>
+  ))
+
