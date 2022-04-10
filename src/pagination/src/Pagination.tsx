@@ -129,9 +129,15 @@ const Pagination = memo(
     return (
       <Pane is="nav" role="navigation" aria-label="Pagination" {...rest} ref={ref}>
         // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
         <Pane is="ul" display="flex" alignItems="center" padding={0}>
           // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
           <Pane is="li" listStyle="none">
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             <IconButton appearance="minimal" icon={ChevronLeftIcon} disabled={page === 1} onClick={onPreviousPage} />
           </Pane>
@@ -155,6 +161,8 @@ const Pagination = memo(
                 )
               })
             : null}
+          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
           // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
           <Pane is="li" listStyle="none">
             <IconButton

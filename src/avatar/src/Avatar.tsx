@@ -59,6 +59,7 @@ const Avatar = memo(
     const hashValue = globalHash(propsHashValue || name)
     const { className: themedClassName, ...styleProps } = useStyleConfig(
       'Avatar',
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ color: string; hashValue: numb... Remove this comment to see the full error message
       { color, hashValue, shape },
       pseudoSelectors,
       internalStyles
@@ -77,9 +78,7 @@ const Avatar = memo(
 
     return (
       <Box
-        // @ts-expect-error ts-migrate(2783) FIXME: 'width' is specified more than once, so this usage... Remove this comment to see the full error message
         width={size}
-        // @ts-expect-error ts-migrate(2783) FIXME: 'height' is specified more than once, so this usag... Remove this comment to see the full error message
         height={size}
         title={name}
         ref={ref}
@@ -108,7 +107,7 @@ const Avatar = memo(
         )}
         {!imageUnavailable && (
           <Image
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ objectFit: string; }' is not assignable to... Remove this comment to see the full error message
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'CSSProperties' is not assignable to type 'ne... Remove this comment to see the full error message
             style={imageStyles} // Unsupported by ui-box directly
             // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             width={isObjectFitSupported ? '100%' : 'auto'} // Fallback to old behaviour on IE

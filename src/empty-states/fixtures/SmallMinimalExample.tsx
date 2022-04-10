@@ -20,7 +20,6 @@ const SmallMinimalExample = (props: any) => {
           // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
           <Pane width={300} height="auto">
             <EmptyState
-              // @ts-expect-error ts-migrate(2322) FIXME: Type '{ background: string; title: string; orienta... Remove this comment to see the full error message
               background="light"
               title="No source selected"
               orientation="vertical"
@@ -31,7 +30,8 @@ const SmallMinimalExample = (props: any) => {
           </Pane>
         }
       >
-        {/* @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message */}
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Button>Trigger Popover</Button>
       </Popover>
     </Pane>

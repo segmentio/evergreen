@@ -49,6 +49,8 @@ export type Components =
   | 'Card'
   | 'Checkbox'
   | 'Code'
+  | 'FileCard'
+  | 'FileUploader'
   | 'Group'
   | 'Heading'
   | 'Icon'
@@ -85,6 +87,15 @@ type CheckboxPseudoSelectors =
   | '_checkedDisabled'
   | '_checkedHover'
 type GroupPseudoSelectors = '_child' | '_firstChild' | '_middleChild' | '_lastChild' | '&:focus' | '&:active'
+type FileCardPseudoSelectors = '_invalid'
+type FileUploaderPseudoSelectors =
+  | '_focus'
+  | '_hover'
+  | '_hoverBrowseCopy'
+  | '_hoverOrDragCopy'
+  | '_disabled'
+  | '_dragHover'
+  | '_invalid'
 type InputPseudoSelectors = '_placeholder' | '_disabled' | '_focus' | '_invalid'
 type LinkPseudoSelectors = '_hover' | '_active' | '_focus'
 type MenuItemPseudoSelectors = '_isSelectable' | '_disabled' | '_hover' | '_focus' | '_active' | '_current' | '&:before'
@@ -161,6 +172,10 @@ type ComponentPseudoSelectors<C extends Components = Components> = C extends 'Bu
   ? ButtonPseudoSelectors
   : C extends 'Checkbox'
   ? CheckboxPseudoSelectors
+  : C extends 'FileCard'
+  ? FileCardPseudoSelectors
+  : C extends 'FileUploader'
+  ? FileUploaderPseudoSelectors
   : C extends 'Group'
   ? GroupPseudoSelectors
   : C extends 'Input'
@@ -629,6 +644,51 @@ interface DeprecatedDefaultTheme {
 export const deprecatedDefaultTheme: DeprecatedDefaultTheme
 
 /** END DEPRECATED THEME  */
+
+/**
+ * Basic error codes for why a file is rejected or in an errored state
+ */
+export enum FileRejectionReason {
+  FileTooLarge = 'FILE_TOO_LARGE',
+  InvalidFileType = 'INVALID_FILE_TYPE',
+  OverFileLimit = 'OVER_FILE_LIMIT',
+  Unknown = 'UNKNOWN'
+}
+
+/**
+ * Non-exhaustive list of common MimeTypes
+ */
+export enum MimeType {
+  css = 'text/css',
+  csv = 'text/csv',
+  doc = 'application/msword',
+  docx = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  gif = 'image/gif',
+  gz = 'application/gzip',
+  ico = 'image/vnd.microsoft.icon',
+  jpeg = 'image/jpeg',
+  js = 'text/javascript',
+  json = 'application/json',
+  mp3 = 'audio/mpeg',
+  mp4 = 'video/mp4',
+  mpeg = 'video/mpeg',
+  pdf = 'application/pdf',
+  png = 'image/png',
+  ppt = 'application/vnd.ms-powerpoint',
+  pptx = 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+  rar = 'application/vnd.rar',
+  rtf = 'application/rtf',
+  svg = 'image/svg+xml',
+  tar = 'application/x-tar',
+  tiff = 'image/tiff',
+  txt = 'text/plain',
+  wav = 'audio/wav',
+  webp = 'image/webp',
+  xls = 'application/vnd.ms-excel',
+  xlsx = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  xml = 'application/xml',
+  zip = 'application/zip'
+}
 
 export enum Position {
   TOP = 'top',
@@ -1125,6 +1185,77 @@ export interface DialogProps {
 
 export declare const Dialog: React.FC<DialogProps>
 
+export interface EmptyStateOwnProps {
+  /** the title of the empty state */
+  title: string
+  /** the icon used in the empty state */
+  icon: React.ReactNode
+  /** the background used for the icon circle */
+  iconBgColor: string
+  /** specify the orientation of how the content flows */
+  orientation?: 'horizontal' | 'vertical'
+  /** the description of the empty state */
+  description?: string
+  /** the background used for the entire empty state container */
+  background?: 'light' | 'dark'
+  /** the primary cta of the empty state */
+  primaryCta?: React.ReactNode
+  /** the link cta of the empty state */
+  anchorCta?: React.ReactNode
+}
+
+export declare const EmptyState: React.FC<EmptyStateOwnProps> & {
+  PrimaryButton: typeof Button
+  LinkButton: typeof Link
+}
+
+export interface FileCardOwnProps {
+  /**
+   * Description to display under the file name. If not provided, defaults to the file size
+   */
+  description?: string
+  /**
+   * Disables the button to remove the file.
+   */
+  disabled?: boolean
+  /**
+   * When true, displays the card in an error state
+   */
+  isInvalid?: boolean
+  /**
+   * Sets a loading state on the card. If the remove button is rendered, it will be disabled.
+   */
+  isLoading?: boolean
+  /**
+   * Name of the file to display
+   */
+  name?: string
+  /**
+   * Callback to be fired when the remove button is clicked. If not provided, the button will not
+   * render
+   */
+  onRemove?: () => void
+  /**
+   * Size of the file
+   */
+  sizeInBytes?: number
+  /**
+   * Url of the uploaded image
+   */
+  src?: string
+  /**
+   * MimeType of the file to display, which controls what type of icon is rendered
+   */
+  type?: string
+  /**
+   * Message to display underneath the card
+   */
+  validationMessage?: string
+}
+
+export type FileCardProps = PolymorphicBoxProps<'div', FileCardOwnProps>
+export declare const FileCard: BoxComponent<FileCardOwnProps, 'div'>
+
 export interface FilePickerOwnProps {
   /** the name attribute of the input */
   name?: string
@@ -1150,6 +1281,145 @@ export interface FilePickerOwnProps {
 
 export type FilePickerProps = PolymorphicBoxProps<'div', FilePickerOwnProps>
 export declare const FilePicker: BoxComponent<FilePickerOwnProps, 'div'>
+
+export interface FileRejection {
+  /**
+   * The file that was rejected
+   */
+  file: File
+  /**
+   * Human-friendly message for why the file was rejected.
+   * @see {getAcceptedTypesMessage}
+   * @see {getFileSizeMessage}
+   * @see {getMaxFilesMessage}
+   */
+  message: string
+  /**
+   * Error/status code for why the file was rejected. The `FileUploader` component
+   * will return values from `FileRejectionReason`, but you can define your own if needed
+   */
+  reason: FileRejectionReason | string | number
+}
+
+export interface FileUploaderOwnProps extends FormFieldOwnProps {
+  /**
+   * MIME types (not file extensions) to accept
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
+   */
+  acceptedMimeTypes?: MimeType[]
+  /**
+   * When true, displays a disabled state where drops don't fire and the native browser picker doesn't open
+   */
+  disabled?: boolean
+  /**
+   * Maximum number of files to accept
+   */
+  maxFiles?: number
+  /**
+   * Maximum size of an **individual** file to accept
+   */
+  maxSizeInBytes?: number
+  /**
+   * Callback for when files are accepted via drop or the native browser picker.
+   */
+  onAccepted?: (files: File[]) => void
+  /**
+   * Callback for when files are added via drop or the native browser picker, which includes both
+   * the accepted and rejected files.
+   */
+  onChange?: (files: File[]) => void
+  /**
+   * Callback for when files are rejected via drop or the native browser picker
+   */
+  onRejected?: (fileRejections: FileRejection[]) => void
+  /**
+   * Callback to fire when a file should be removed
+   */
+  onRemove?: (file: File) => void
+  /**
+   * Custom render function for displaying the file underneath the uploader
+   */
+  renderFile?: (file: File, index: number) => React.ReactNode
+  /**
+   * File values to render underneath the uploader
+   */
+  values?: File[]
+}
+
+export type FileUploaderProps = PolymorphicBoxProps<'div', FileUploaderOwnProps>
+export declare const FileUploader: BoxComponent<FileUploaderProps, 'div'>
+
+/**
+ * Returns a standard message informing the user what file extensions are accepted based
+ * on the provided array of MimeTypes
+ */
+export declare const getAcceptedTypesMessage: (acceptedMimeTypes: MimeType[]) => string
+
+/**
+ * Returns a standard message informing the user of the maximum individual file size
+ */
+export declare const getFileSizeMessage: (maxSizeInBytes: number) => string
+
+/**
+ * Returns a standard message informing the user of the maximum number of files that can be uploaded
+ */
+export declare const getMaxFilesMessage: (maxFiles: number) => string
+
+/**
+ * Returns the corresponding file extension from the provided MimeType.
+ *
+ * If the MimeType cannot be found, it returns `undefined`
+ */
+export declare const mimeTypeToExtension: (mimeType: MimeType) => string | undefined
+
+/**
+ * Returns the corresponding file extensions from the provided MimeTypes.
+ *
+ * Unlike `mimeTypeToExtension`, this will never return `undefined` values. MimeTypes
+ * that aren't found are discarded.
+ */
+export declare const mimeTypesToExtensions: (mimeTypes: MimeType[]) => string[]
+
+export interface RebaseFilesOptions {
+  acceptedMimeTypes?: MimeType[]
+  maxFiles?: number
+  maxSizeInBytes?: number
+}
+
+export interface RebaseFilesResult {
+  accepted: File[]
+  rejected: FileRejection[]
+}
+
+/**
+ * Returns separate arrays for accepted and rejected files based on the provided options, similar to
+ * `splitFiles`. This function should be used for rebasing files on removal (i.e. for removing files
+ * from the `rejected` array when they are no longer over maximum limit, if there is one)
+ */
+export declare const rebaseFiles: (files: File[], options?: RebaseFilesOptions) => RebaseFilesResult
+
+export interface SplitFilesOptions extends RebaseFilesOptions {
+  /**
+   * Current count of files used for validating whether the dropped files are over the `maxFiles` limit
+   */
+  currentFileCount?: number
+}
+
+export type SplitFilesResult = RebaseFilesResult
+
+/*
+ * Returns separate arrays for accepted and rejected files based on the provided options.
+ * This should be used for accepting and rejecting files on drop
+ */
+export declare const splitFiles: (files: File[], options?: SplitFilesOptions) => SplitFilesResult
+
+/**
+ * Truncates a string in the center with ellipsis, if needed
+ *
+ * @param value Value to truncate
+ * @param maximumChars Maximum number of characters (including the ellipsis) to show. Defaults to 55
+ */
+export declare const truncateCenter: (value: string, maximumChars?: number) => string
 
 export interface FormFieldOwnProps {
   /**
@@ -1342,7 +1612,7 @@ export interface MenuProps {
 export interface MenuItemOwnProps extends PaneOwnProps {
   onSelect?: (event: React.SyntheticEvent) => void
   icon?: React.ElementType | JSX.Element | null | false
-  secondaryText?: JSX.Element
+  secondaryText?: JSX.Element | string
   appearance?: DefaultAppearance
   intent?: IntentTypes
   disabled?: boolean
@@ -2348,8 +2618,10 @@ export declare const TabNavigation: BoxComponent<TabNavigationOwnProps, 'nav'>
 
 export interface TagInputOwnProps {
   addOnBlur?: boolean
+  autocompleteItems?: Array<string>
   className?: string
   disabled?: boolean
+  isInvalid?: boolean
   height?: number
   inputProps?: PolymorphicBoxProps<'input', TextOwnProps>
   inputRef?: React.Ref<HTMLInputElement>

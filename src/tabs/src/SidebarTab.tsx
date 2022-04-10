@@ -4,7 +4,6 @@ import Tab from './Tab'
 
 const SideBarTab = memo(
   forwardRef(function Sidebartab(props, ref) {
-    // @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
     if (process.env.NODE_ENV !== 'production') {
       warning(
         true,

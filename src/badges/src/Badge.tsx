@@ -29,6 +29,7 @@ const Badge = memo(
       'Badge',
       { appearance, color },
       pseudoSelectors,
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ display: string; boxSizing: st... Remove this comment to see the full error message
       internalStyles
     )
 

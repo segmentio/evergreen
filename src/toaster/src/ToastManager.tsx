@@ -41,7 +41,6 @@ const wrapperClass = css({
 const hasCustomId = (settings: ToasterSettings) => Object.hasOwnProperty.call(settings, 'id')
 
 const ToastManager: React.FC<ToastManagerProps> = memo(function ToastManager(props) {
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'bindCloseAll' does not exist on type '{ ... Remove this comment to see the full error message
   const { bindCloseAll, bindGetToasts, bindNotify, bindRemove } = props
 
   const [toasts, setToasts] = useState<ToastReference[]>([])
@@ -73,7 +72,7 @@ const ToastManager: React.FC<ToastManagerProps> = memo(function ToastManager(pro
   }
 
   const safeCloseToast = (id: string | number) => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type 'never'.
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | number' is not assignab... Remove this comment to see the full error message
     const toastToRemove = toasts.find(toast => String(toast.id).startsWith(id))
 
     if (toastToRemove) {
@@ -110,7 +109,7 @@ const ToastManager: React.FC<ToastManagerProps> = memo(function ToastManager(pro
     }
 
     const instance = createToastInstance(title, settings)
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string | number; title: any; descripti... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string | number; title: string; descri... Remove this comment to see the full error message
     setToasts([instance, ...tempToasts])
   }
 
@@ -133,7 +132,6 @@ const ToastManager: React.FC<ToastManagerProps> = memo(function ToastManager(pro
   )
 })
 
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 ToastManager.propTypes = {
   /**
    * Function called with the `this.notify` function.

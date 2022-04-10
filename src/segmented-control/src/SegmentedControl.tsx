@@ -19,7 +19,6 @@ const SegmentedControl = memo(
     // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     const groupName = useId('SegmentedControl')
 
-    // @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
     if (process.env.NODE_ENV !== 'production') {
       warning(
         true,
@@ -61,6 +60,8 @@ const SegmentedControl = memo(
 
     return (
       <Group ref={ref} display="flex" {...rest}>
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type 'never'.
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type 'never'.
         // @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type 'never'.
         {options.map((option: any, index: any) => (
           // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message

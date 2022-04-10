@@ -40,6 +40,7 @@ const Alert = memo(
       'Alert',
       { appearance, intent: intentToken },
       pseudoSelectors,
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ position: string; overflow: st... Remove this comment to see the full error message
       internalStyles
     )
 

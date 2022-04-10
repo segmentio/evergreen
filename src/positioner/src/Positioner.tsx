@@ -139,6 +139,7 @@ const Positioner = memo(function Positioner(props) {
   )
 
   // Call `update` whenever the component has "entered" and dimensions change
+  // additionally, when there are dynamic children
   useEffect(() => {
     if (transitionState.current === 'entered') {
       // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'undefined... Remove this comment to see the full error message
@@ -153,7 +154,7 @@ const Positioner = memo(function Positioner(props) {
         cancelAnimationFrame(latestAnimationFrame.current)
       }
     }
-  }, [previousDimensions.height, previousDimensions.width, update])
+  }, [previousDimensions.height, previousDimensions.width, update, children])
 
   const handleEnter = () => {
     // @ts-expect-error ts-migrate(2322) FIXME: Type '"entered"' is not assignable to type 'undefi... Remove this comment to see the full error message
@@ -167,6 +168,16 @@ const Positioner = memo(function Positioner(props) {
     setDimensions(initialDimensions)
     onCloseComplete()
   }
+
+  useEffect(() => {
+    window.addEventListener('resize', update)
+    window.addEventListener('scroll', update)
+
+    return () => {
+      window.removeEventListener('resize', update)
+      window.removeEventListener('scroll', update)
+    }
+  })
 
   return (
     // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: (zIndex: any) => Element; value:... Remove this comment to see the full error message
@@ -188,6 +199,8 @@ const Positioner = memo(function Positioner(props) {
             >
               {state => (
                 <Portal>
+                  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+                  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                   // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                   {children({
                     top: dimensions.top,

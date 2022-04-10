@@ -3,7 +3,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
-// @ts-expect-error ts-migrate(1192) FIXME: Module '"/Users/brandon.scott/oss/fork/evergreen/s... Remove this comment to see the full error message
+// @ts-expect-error ts-migrate(1192) FIXME: Module '"/Users/Brandon/oss/fork/evergreen/src/tab... Remove this comment to see the full error message
 import ScrollbarSize from './ScrollbarSize'
 
 const emptyObject = {}

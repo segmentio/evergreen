@@ -99,6 +99,7 @@ const TableCell = memo(
       'TableCell',
       { appearance },
       pseudoSelectors,
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ boxSizing: string; flex: numbe... Remove this comment to see the full error message
       internalStyles
     )
 

@@ -95,7 +95,6 @@ const MenuItem = memo(
         data-isselectable={!disabled || undefined}
         aria-disabled={disabled}
         ref={ref}
-        // @ts-expect-error ts-migrate(2783) FIXME: 'height' is specified more than once, so this usag... Remove this comment to see the full error message
         height={icon ? 40 : 32}
         {...boxProps}
         {...passthroughProps}
@@ -105,17 +104,14 @@ const MenuItem = memo(
       >
         <IconWrapper
           icon={icon}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           color={disabled ? 'disabled' : iconColor}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           marginLeft={16}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           marginRight={-4}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           size={16}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           flexShrink={0}
         />
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         <Text color={textColor} marginLeft={16} marginRight={16} flex={1}>
           {children}

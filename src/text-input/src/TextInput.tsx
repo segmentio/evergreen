@@ -58,7 +58,6 @@ const TextInput = memo(
         is="input"
         className={cx(themedClassName, className)}
         type="text"
-        // @ts-expect-error ts-migrate(2783) FIXME: 'width' is specified more than once, so this usage... Remove this comment to see the full error message
         width={width}
         required={required}
         disabled={disabled}
@@ -66,7 +65,6 @@ const TextInput = memo(
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         ref={ref}
-        // @ts-expect-error ts-migrate(2783) FIXME: 'fontFamily' is specified more than once, so this ... Remove this comment to see the full error message
         fontFamily={themedFontFamily}
         {...boxProps}
         {...restProps}

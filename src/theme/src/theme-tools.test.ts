@@ -1,10 +1,7 @@
 import { getValue, mergeTheme, resolveThemeTokens } from './theme-tools'
 
-// @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
 describe('Theme tools', () => {
-  // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
   describe('getValue', () => {
-    // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
     it('returns the value based on a path lookup', () => {
       const obj = {
         foo: {
@@ -13,11 +10,9 @@ describe('Theme tools', () => {
       }
 
       const result = getValue(obj, 'foo.bar')
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       expect(result).toEqual('baz')
     })
 
-    // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
     it('returns the value as-is if the path cannot be resolved', () => {
       const obj = {
         foo: {
@@ -26,14 +21,11 @@ describe('Theme tools', () => {
       }
 
       const result = getValue(obj, '12px')
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       expect(result).toEqual('12px')
     })
   })
 
-  // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
   describe('mergeTheme', () => {
-    // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
     it.each([undefined, null, {}])('should return unmodified destinationTheme when sourceTheme is %p', (sourceTheme: any) => {
       const destinationTheme = {
         colors: {
@@ -45,11 +37,9 @@ describe('Theme tools', () => {
 
       const result = mergeTheme(destinationTheme, sourceTheme)
 
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       expect(result).toStrictEqual(destinationTheme)
     })
 
-    // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
     it('should override existing values', () => {
       const destinationTheme = {
         colors: {
@@ -67,11 +57,9 @@ describe('Theme tools', () => {
 
       const result = mergeTheme(destinationTheme, sourceTheme)
 
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       expect(result.colors.gray700).toBe(sourceTheme.colors.gray700)
     })
 
-    // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
     it('should add new values without clobbering existing structure', () => {
       const destinationTheme = {
         components: {
@@ -103,13 +91,10 @@ describe('Theme tools', () => {
 
       const result = mergeTheme(destinationTheme, sourceTheme)
 
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       expect(result.components.Button.baseStyle).toMatchObject(destinationTheme.components.Button.baseStyle)
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       expect(result.components.Button.appearances).toMatchObject(sourceTheme.components.Button.appearances)
     })
 
-    // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
     it('should always return a new reference', () => {
       const destinationTheme = {
         colors: {
@@ -127,14 +112,11 @@ describe('Theme tools', () => {
 
       const result = mergeTheme(destinationTheme, sourceTheme)
 
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       expect(result).not.toEqual(destinationTheme)
     })
   })
 
-  // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
   describe('resolveThemeTokens', () => {
-    // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
     it('preserves nested object structures', () => {
       const theme = {}
       const props = {
@@ -149,11 +131,9 @@ describe('Theme tools', () => {
       }
 
       const result = resolveThemeTokens(theme, props)
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       expect(result).toEqual(props)
     })
 
-    // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
     it('resolves keys if they exist in the theme', () => {
       const theme = {
         colors: {
@@ -174,7 +154,6 @@ describe('Theme tools', () => {
       }
 
       const result = resolveThemeTokens(theme, props)
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       expect(result).toEqual({
         baseStyle: {
           color: 'gray'

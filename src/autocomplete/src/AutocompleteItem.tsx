@@ -11,6 +11,8 @@ const AutocompleteItem = memo(
     return (
       <Option ref={ref} isHighlighted={isHighlighted} isSelected={isSelected} style={style} {...restProps}>
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
         {restProps.icon && <Image src={restProps.icon} width={24} marginRight={8} />}
         {children}
       </Option>

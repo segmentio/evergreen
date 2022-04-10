@@ -1,7 +1,6 @@
 import React, { memo, forwardRef, useState, useEffect, useCallback } from 'react'
 import VirtualList from '@segment/react-tiny-virtual-list'
 import Downshift from 'downshift'
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'fuzz... Remove this comment to see the full error message
 import fuzzaldrin from 'fuzzaldrin-plus'
 import PropTypes from 'prop-types'
 import { Position } from '../../constants'
@@ -59,8 +58,10 @@ const AutocompleteItems = ({
   return (
     <Pane width={width} {...menuProps}>
       {title && (
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
         <Pane padding={8} borderBottom="muted">
+          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
           // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
           <Text size={300} textTransform="uppercase">
             {title}
@@ -167,6 +168,8 @@ const Autocomplete = memo(
           ...restDownshiftProps
         }) => (
           <div style={containerStyle}>
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             <Popover
               // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.

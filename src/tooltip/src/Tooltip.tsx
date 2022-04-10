@@ -1,7 +1,6 @@
 import React, { memo, useState, useEffect, useRef } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import { Position } from '../../constants'
@@ -67,7 +66,7 @@ const Tooltip = memo(function Tooltip(props) {
     }
 
     clearTimeout(closeTimer.current)
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'undefined... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Timeout' is not assignable to type 'undefine... Remove this comment to see the full error message
     closeTimer.current = setTimeout(() => {
       setIsShown(true)
     }, showDelay)

@@ -110,7 +110,6 @@ const TableRow = memo(
         tabIndex={isSelectable ? clickable.tabIndex : undefined}
         onClick={handleClick}
         onKeyDown={clickable.onKeyDown}
-        // @ts-expect-error ts-migrate(2783) FIXME: 'borderBottom' is specified more than once, so thi... Remove this comment to see the full error message
         borderBottom="muted"
         height={height}
         {...boxProps}

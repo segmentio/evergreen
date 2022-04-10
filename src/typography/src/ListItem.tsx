@@ -47,13 +47,9 @@ const ListItem = memo(
           <IconWrapper
             icon={icon}
             color={iconColor}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             position="absolute"
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | undefined' is not assignable to typ... Remove this comment to see the full error message
             size={iconSize}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
             left={iconLeft}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | undefined' is not assignable to typ... Remove this comment to see the full error message
             top={iconTop}
           />
         )}

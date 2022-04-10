@@ -33,6 +33,8 @@ const SearchInput = memo(
           alignItems="center"
         >
           // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           <SearchIcon color="default" zIndex={StackingOrder.FOCUSED + 1} size={iconSize} />
         </Box>
         <TextInput

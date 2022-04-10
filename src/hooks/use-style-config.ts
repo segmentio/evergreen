@@ -99,6 +99,7 @@ function useGlamorAndBox(styles: any, pseudoSelectors: PseudoSelectorMap): UseGl
     // Swap out pseudo selector placeholders for their actual css selector strings
     for (const placeholderKey of Object.keys(remainingProps)) {
       const key =
+        // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
         placeholderKey in pseudoSelectors ? pseudoSelectors[placeholderKey as PseudoSelectorKey] : placeholderKey
       glamorStyles[key] = remainingProps[placeholderKey]
     }

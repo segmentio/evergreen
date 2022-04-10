@@ -14,6 +14,7 @@ const IconButton = memo(
     const { appearance, intent = 'none', size = 'medium' } = props
 
     // Composes the exact same styles as button
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ position: string; fontWeight: ... Remove this comment to see the full error message
     const styleProps = useStyleConfig('Button', { appearance, intent, size }, pseudoSelectors, internalStyles)
 
     const height = restProps.height || styleProps.height
@@ -32,7 +33,6 @@ const IconButton = memo(
       >
         <IconWrapper
           icon={icon}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           color={intent === 'none' ? 'default' : 'currentColor'}
           size={iconSize || relativeIconSize}
         />

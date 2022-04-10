@@ -60,9 +60,7 @@ const Textarea = memo(
         is="textarea"
         ref={ref}
         className={cx(themedClassName, className)}
-        // @ts-expect-error ts-migrate(2783) FIXME: 'width' is specified more than once, so this usage... Remove this comment to see the full error message
         width={width}
-        // @ts-expect-error ts-migrate(2783) FIXME: 'height' is specified more than once, so this usag... Remove this comment to see the full error message
         height={height}
         required={required}
         disabled={disabled}
@@ -70,7 +68,6 @@ const Textarea = memo(
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
-        // @ts-expect-error ts-migrate(2783) FIXME: 'fontFamily' is specified more than once, so this ... Remove this comment to see the full error message
         fontFamily={themedFontFamily}
         {...boxProps}
         {...restProps}

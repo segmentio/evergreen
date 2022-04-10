@@ -40,6 +40,7 @@ const Option = memo(
     } = props
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '"Option"' is not assignable to p... Remove this comment to see the full error message
       'Option',
       emptyObject,
       pseudoSelectors,
@@ -60,6 +61,8 @@ const Option = memo(
         ref={ref}
       >
         // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
         <TextTableCell
           // @ts-expect-error ts-migrate(2322) FIXME: Type 'null' is not assignable to type 'never'.
           borderRight={null}
@@ -71,6 +74,8 @@ const Option = memo(
           // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           cursor={disabled ? 'default' : 'pointer'}
         >
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           <Pane alignItems="center" display="flex">
             {children}

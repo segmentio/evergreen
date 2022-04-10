@@ -1,6 +1,6 @@
 {
   "name": "evergreen-ui",
-  "version": "6.7.0",
+  "version": "6.9.4",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
@@ -31,7 +31,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "test": "yarn lint && yarn jest",
+    "test": "yarn lint && yarn tsd && yarn jest",
     "test:watch": "yarn run test -- --watch",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --cache",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
@@ -66,12 +66,15 @@
     "downshift": "^5.2.0",
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
+    "humanize-plus": "^1.8.2",
     "lodash.debounce": "^4.0.8",
+    "lodash.differencewith": "^4.5.0",
+    "lodash.isempty": "^4.4.0",
     "lodash.merge": "^4.6.2",
+    "lodash.uniqby": "^4.7.0",
     "react-fast-compare": "^3.2.0",
     "react-transition-group": "^4.4.1",
     "tinycolor2": "^1.4.1",
-    "tsd": "^0.19.1",
     "ui-box": "^5.0.0"
   },
   "peerDependencies": {
@@ -155,6 +158,7 @@
     "ts-morph": "14.0.0",
     "ts-node": "10.7.0",
     "typescript": "^4.6.2",
+    "tsd": "^0.19.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.43.0",
     "yarnhook": "^0.5.1"
@@ -190,17 +194,23 @@
       "<rootDir>/codemods/",
       "<rootDir>/esm/",
       "<rootDir>/commonjs/"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!**/*.stories.{js,jsx}",
+      "!src/{constants,test,themes}/**",
+      "!src/icons/generated/**"
     ]
   },
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "287 KB",
+      "limit": "303 KB",
       "running": false
     },
     {
       "path": "umd/evergreen.min.js",
-      "limit": "249 KB",
+      "limit": "275 KB",
       "running": false
     },
     {

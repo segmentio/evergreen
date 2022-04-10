@@ -18,7 +18,11 @@ const MenuOptionsGroup = memo(
           </Heading>
         )}
         // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
         <Pane>
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type 'never'.
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type 'never'.
           // @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type 'never'.
           {options.map((option: any) => {
             return (

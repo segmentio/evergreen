@@ -1,5 +1,4 @@
 import React, { forwardRef, memo } from 'react'
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import ReactIs from 'react-is'
 import Box, { BoxProps } from 'ui-box'
 
@@ -51,7 +50,6 @@ export const IconWrapper: React.FC<IconWrapperProps> = memo(
     let iconWithProps = null
     if (ReactIs.isValidElementType(icon)) {
       const Component = icon
-      // @ts-expect-error ts-migrate(2604) FIXME: JSX element type 'Component' does not have any con... Remove this comment to see the full error message
       iconWithProps = <Component ref={ref} {...iconProps} />
     } else if (React.isValidElement(icon)) {
       iconWithProps = React.cloneElement(icon, { ...iconProps, ...(icon as React.ReactElement).props, ref })

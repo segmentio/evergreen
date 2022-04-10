@@ -12,6 +12,8 @@ const StatusIndicator = memo(
     return (
       <Text display="inline-flex" alignItems="center" ref={ref} {...rest}>
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         <SymbolCircleIcon flexShrink={0} marginRight={majorScale(1)} size={dotSize} color={color} />
         {children}
       </Text>

@@ -86,7 +86,8 @@ const SelectMenuContent = memo(function SelectMenuContent(props) {
   return (
     // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
     <Pane display="flex" height={height}>
-      {/* @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message */}
+      // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this
+      comment to see the full error message
       <Pane
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
         width={width}

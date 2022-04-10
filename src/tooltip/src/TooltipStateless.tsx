@@ -18,7 +18,7 @@ const TooltipStateless = memo(
     let child
     if (typeof children === 'string') {
       child = (
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | false | Color | null | undefined' i... Remove this comment to see the full error message
         <Paragraph color={color} size={400}>
           {children}
         </Paragraph>

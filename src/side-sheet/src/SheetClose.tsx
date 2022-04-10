@@ -153,6 +153,8 @@ export default class SheetClose extends PureComponent {
         {...props}
       >
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         <CrossIcon color="#fff" />
       </Box>
     )

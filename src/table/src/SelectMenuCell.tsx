@@ -1,5 +1,4 @@
 import React, { memo, useState, useEffect, useCallback, useMemo } from 'react'
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import { CaretDownIcon } from '../../icons'

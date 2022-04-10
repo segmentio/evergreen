@@ -1,6 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import VirtualList from '@segment/react-tiny-virtual-list'
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'fuzz... Remove this comment to see the full error message
 import fuzzaldrin from 'fuzzaldrin-plus'
 import PropTypes from 'prop-types'
 import { SearchIcon } from '../../icons'
@@ -29,6 +28,8 @@ const noop = () => {}
 const defaultRenderItem = (props: any) => {
   return (
     <Option {...props}>
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
       // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
       {props.icon && <Image src={props.icon} width={24} marginRight={8} />}
       {props.label}
@@ -199,6 +200,7 @@ const OptionsList = memo(function OptionsList(props) {
     [close, handleArrowUp, handleArrowDown, handleEnter]
   )
 
+  // @ts-expect-error ts-migrate(7030) FIXME: Not all code paths return a value.
   useEffect(() => {
     if (hasFilter) {
       // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'undefined... Remove this comment to see the full error message
@@ -241,6 +243,8 @@ const OptionsList = memo(function OptionsList(props) {
           />
         </TableHead>
       )}
+      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <Pane flex={1}>
         {options.length > 0 && (

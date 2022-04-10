@@ -94,6 +94,7 @@ const Overlay = memo(function Overlay({
   onEntered = noop,
   // @ts-expect-error ts-migrate(2339) FIXME: Property 'isShown' does not exist on type '{ child... Remove this comment to see the full error message
   isShown,
+  // @ts-expect-error ts-migrate(6133) FIXME: 'props' is declared but its value is never read.
   ...props
 }) {
   const theme = useTheme()

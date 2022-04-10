@@ -55,6 +55,7 @@ const Tab = memo(
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Tab',
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ appearance: string; direction:... Remove this comment to see the full error message
       { appearance, direction },
       pseudoSelectors,
       getInternalStyles(direction)
@@ -76,7 +77,6 @@ const Tab = memo(
 
     const clickableProps = useClickable({ disabled, onKeyDown, tabIndex })
 
-    // @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
     if (process.env.NODE_ENV !== 'production') {
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'onClick' does not exist on type 'never'.
       warning(typeof props.onClick === 'function', '<Tab> expects `onSelect` prop, but you passed `onClick`.')
@@ -115,7 +115,6 @@ const Tab = memo(
         className={cx(className, themedClassName)}
         is={is}
         size={300}
-        // @ts-expect-error ts-migrate(2783) FIXME: 'height' is specified more than once, so this usag... Remove this comment to see the full error message
         height={height}
         ref={ref}
         // @ts-expect-error ts-migrate(2783) FIXME: 'tabIndex' is specified more than once, so this us... Remove this comment to see the full error message

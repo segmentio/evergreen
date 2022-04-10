@@ -1,5 +1,4 @@
 import React from 'react'
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import ReactDOM from 'react-dom'
 import canUseDom from '../../lib/canUseDom'
 import ToastManager from './ToastManager'
@@ -32,6 +31,7 @@ export interface Toast {
   /**
    * The intent of this Toast. One of none, success, warning, or danger.
    */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'IntentTypes'.
   intent?: IntentTypes
 }
 
@@ -69,13 +69,13 @@ type ToasterSettingsWithIntent = Omit<ToasterSettings, 'intent'>
  * the ToasterManger and the toast API.
  */
 export default class Toaster {
-  /* @ts-ignore */
+  // @ts-expect-error ts-migrate(2564) FIXME: Property 'closeAllHandler' has no initializer and ... Remove this comment to see the full error message
   closeAllHandler: () => void
-  /* @ts-ignore */
+  // @ts-expect-error ts-migrate(2564) FIXME: Property 'getToastsHandler' has no initializer and... Remove this comment to see the full error message
   getToastsHandler: () => Toast[]
-  /* @ts-ignore */
+  // @ts-expect-error ts-migrate(2564) FIXME: Property 'notifyHandler' has no initializer and is... Remove this comment to see the full error message
   notifyHandler: (title: string, settings: ToasterSettings) => void
-  /* @ts-ignore */
+  // @ts-expect-error ts-migrate(2564) FIXME: Property 'removeHandler' has no initializer and is... Remove this comment to see the full error message
   removeHandler: (id: string) => void
   constructor() {
     if (!canUseDom) return

@@ -1,10 +1,12 @@
 import React, { memo } from 'react'
 import { Button } from '../../buttons'
+// @ts-expect-error ts-migrate(2614) FIXME: Module '"../../buttons/src/Button"' has no exporte... Remove this comment to see the full error message
 import { ButtonProps } from '../../buttons/src/Button'
 import { Pane } from '../../layers'
 import { majorScale, minorScale } from '../../scales'
 import { useTheme } from '../../theme'
 import { Link, Heading, Paragraph } from '../../typography'
+// @ts-expect-error ts-migrate(2614) FIXME: Module '"../../typography/src/Link"' has no export... Remove this comment to see the full error message
 import { LinkProps } from '../../typography/src/Link'
 
 export interface EmptyStateProps {
@@ -36,39 +38,66 @@ const HorizontalOrientation: React.FC<EmptyStateOrientationProps> = memo<EmptySt
     const backgroundColor = background === 'light' ? 'white' : colors.gray75
 
     return (
+      // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
       <Pane
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         width="100%"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         height="100%"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         display="flex"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         flexDirection="column"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         padding={majorScale(6)}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         backgroundColor={backgroundColor}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         justifyContent="center"
       >
+        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
         <Pane display="flex" alignItems="flex-start" flex={1} height="100%">
+          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
           <Pane paddingRight={majorScale(6)}>
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             <Pane
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
               display="flex"
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
               justifyContent="center"
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
               alignItems="center"
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
               borderRadius="50%"
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
               backgroundColor={iconBgColor}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
               width={majorScale(9)}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
               height={majorScale(9)}
             >
               {React.cloneElement(icon, { size: majorScale(4) })}
             </Pane>
           </Pane>
+          // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
           <Pane display="flex" flexDirection="column" paddingRight={majorScale(6)}>
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             <Heading size={500} color={colors.gray700}>
               {title}
             </Heading>
             {description && (
+              // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
               <Paragraph color="muted" marginTop={majorScale(2)}>
                 {description}
               </Paragraph>
             )}
             {hasFooter && (
+              // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
               <Pane marginTop={majorScale(5)} display="flex">
                 {primaryCta}
                 {primaryCta && anchorCta && React.cloneElement(anchorCta, { marginLeft: majorScale(4) })}
@@ -88,32 +117,56 @@ const VerticalOrientation: React.FC<EmptyStateOrientationProps> = memo<EmptyStat
     const backgroundColor = background === 'light' ? 'white' : colors.gray75
 
     return (
+      // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
       <Pane
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         display="flex"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         alignItems="center"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         flexDirection="column"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         justifyContent="center"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         flex={1}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         backgroundColor={backgroundColor}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         paddingX={majorScale(5)}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         paddingY={majorScale(5)}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         height="100%"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         width="100%"
       >
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Pane
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           display="flex"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           justifyContent="center"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           alignItems="center"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           borderRadius="50%"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           backgroundColor={iconBgColor}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           width={majorScale(7)}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           height={majorScale(7)}
         >
           {React.cloneElement(icon, { size: majorScale(3) })}
         </Pane>
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Heading marginTop={majorScale(2)} textAlign="center" color={colors.gray700}>
           {title}
         </Heading>
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Paragraph marginTop={majorScale(2)} textAlign="center" color={colors.gray700}>
           {description}
         </Paragraph>

@@ -27,7 +27,6 @@ const TableWithLinkExample = () => {
         {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'Body' does not exist on type 'NamedExoti... Remove this comment to see the full error message */}
         <Table.Body height="auto">
           <EmptyState
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ background: string; title: string; orienta... Remove this comment to see the full error message
             background="light"
             title="No audiences found"
             orientation="horizontal"
@@ -36,10 +35,8 @@ const TableWithLinkExample = () => {
             iconBgColor={colors.gray200}
             description="Click the button below to create a new Audience. Once done, you will see it come up in this list."
             anchorCta={
-              // @ts-expect-error ts-migrate(2339) FIXME: Property 'LinkButton' does not exist on type 'Name... Remove this comment to see the full error message
               <EmptyState.LinkButton href="https://segment.com/docs/" target="_blank">
                 Learn more about compute time.
-                {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'LinkButton' does not exist on type 'Name... Remove this comment to see the full error message */}
               </EmptyState.LinkButton>
             }
           />

@@ -17,6 +17,7 @@ const emptyObject = {}
 
 const Table = memo(function Table(props) {
   const { children, ...rest } = props
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '"Table"' is not assignable to pa... Remove this comment to see the full error message
   const { className, ...boxProps } = useStyleConfig('Table', emptyObject, emptyObject, emptyObject)
 
   return (

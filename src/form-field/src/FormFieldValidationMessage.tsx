@@ -9,7 +9,11 @@ const FormFieldValidationMessage = memo(
     return (
       <Pane ref={ref} display="flex" {...props}>
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         <ErrorIcon color="danger" marginTop={1} size={14} marginRight={8} />
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         <Paragraph marginTop={0} size={300} color="danger" role="alert">
           {children}

@@ -37,6 +37,8 @@ const InlineAlert = memo(
           </Pane>
         )}
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         <Text size={size} lineHeight={1} fontWeight={500} color="inherit">
           {children}
         </Text>

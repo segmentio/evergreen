@@ -94,6 +94,7 @@ const Checkbox = memo(
       'Checkbox',
       { appearance },
       pseudoSelectors,
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ [x: string]: string | { outlin... Remove this comment to see the full error message
       internalStyles
     )
 

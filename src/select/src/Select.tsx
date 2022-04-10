@@ -62,6 +62,7 @@ const Select = memo(
       'Select',
       { appearance, size: restProps.size || 'medium' },
       pseudoSelectors,
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ textTransform: string; WebkitA... Remove this comment to see the full error message
       internalStyles
     )
 
@@ -96,9 +97,7 @@ const Select = memo(
           disabled={disabled}
           // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'boolean |... Remove this comment to see the full error message
           aria-invalid={String(isInvalid)}
-          // @ts-expect-error ts-migrate(2783) FIXME: 'paddingLeft' is specified more than once, so this... Remove this comment to see the full error message
           paddingLeft={Math.round(height / 3.2)}
-          // @ts-expect-error ts-migrate(2783) FIXME: 'paddingRight' is specified more than once, so thi... Remove this comment to see the full error message
           paddingRight={iconMargin * 2 + iconSize}
           {...boxProps}
           height="100%"

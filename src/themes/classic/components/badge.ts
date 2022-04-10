@@ -1,4 +1,3 @@
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'tiny... Remove this comment to see the full error message
 import tinycolor from 'tinycolor2'
 import { get } from '../../../theme/src/theme-tools'
 

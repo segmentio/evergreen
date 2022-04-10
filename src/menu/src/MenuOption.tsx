@@ -45,7 +45,7 @@ const MenuOption = memo(function MenuOption(props) {
       role="menuitemradio"
       // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
       tabIndex={tabIndex}
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'undefined' is not assignable to type 'never'... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
       className={themedClassName}
       // @ts-expect-error ts-migrate(2322) FIXME: Type '(e: any) => any' is not assignable to type '... Remove this comment to see the full error message
       onClick={handleClick}
@@ -63,6 +63,8 @@ const MenuOption = memo(function MenuOption(props) {
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.
         <TickIcon aria-hidden color="selected" marginLeft={16} marginRight={-4} size={16} flexShrink={0} />
       )}
+      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <Text {...textProps} marginRight={16} flex={1}>
         {children}

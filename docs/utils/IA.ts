@@ -59,7 +59,7 @@ const IA: IA = {
         id: 'what-is-new',
         name: 'What is new',
         description:
-          'Evergreen is a living system, which means we are constently making updates to it. You can learn more about those changes and upcoming ones here.',
+          'Evergreen is a living system, which means we are constantly making updates to it. You can learn more about those changes and upcoming ones here.',
       },
     ],
   },
@@ -402,6 +402,16 @@ const IA: IA = {
         imageHighlight: '/Overlay-highlight.png',
         github: githubLink('overlay'),
         name: 'Overlay',
+      },
+      {
+        id: 'file-uploader',
+        image: '/FileUploader.png',
+        imageHighlight: '/FileUploader-highlight.png',
+        github: githubLink('file-uploader'),
+        name: 'File Uploader',
+        description:
+          'The File Uploader component allows users to drag and drop files into a dropzone area (or click to select files from the browser file picker) to upload files.',
+        tags: ['files', 'upload'],
       },
     ],
   },

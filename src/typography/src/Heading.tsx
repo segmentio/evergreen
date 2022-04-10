@@ -23,9 +23,7 @@ const Heading = memo(
         is="h2"
         ref={ref}
         className={cx(themedClassName, className)}
-        // @ts-expect-error ts-migrate(2783) FIXME: 'marginTop' is specified more than once, so this u... Remove this comment to see the full error message
         marginTop={0}
-        // @ts-expect-error ts-migrate(2783) FIXME: 'marginBottom' is specified more than once, so thi... Remove this comment to see the full error message
         marginBottom={0}
         {...styleProps}
         {...restProps}

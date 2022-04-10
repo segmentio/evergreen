@@ -9,6 +9,7 @@ import MenuOptionsGroup from './MenuOptionsGroup'
 
 const Menu = memo(function Menu(props) {
   const menuRef = useRef(null)
+
   const firstItem = useRef()
   const lastItem = useRef()
 
@@ -16,21 +17,11 @@ const Menu = memo(function Menu(props) {
 
   useEffect(() => {
     const currentMenuRef = menuRef.current
-
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'any[]' is not assignable to type 'undefined'... Remove this comment to see the full error message
-    menuItems.current = currentMenuRef
-      ? [
-          // @ts-expect-error ts-migrate(2339) FIXME: Property 'querySelectorAll' does not exist on type... Remove this comment to see the full error message
-          ...currentMenuRef.querySelectorAll(
-            '[role="menuitemradio"]:not([disabled]), [role="menuitem"]:not([disabled])'
-          )
-        ]
-      : []
-
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
-    if (menuItems.current.length === 0) {
-      throw new Error('The menu has no menu items')
-    }
+    menuItems.current = [
+      // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
+      ...currentMenuRef.querySelectorAll('[role="menuitemradio"]:not([disabled]), [role="menuitem"]:not([disabled])')
+    ]
 
     // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     firstItem.current = menuItems.current[0]
@@ -78,9 +69,7 @@ const Menu = memo(function Menu(props) {
       // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       const menuItem = menuItems.current && menuItems.current.find((item: any) => item === target)
 
-      if (!menuItem) {
-        return
-      }
+      if (!menuItem) return
 
       if (e.key === 'ArrowDown') {
         e.preventDefault()
@@ -115,10 +104,20 @@ const Menu = memo(function Menu(props) {
   }, [menuRef])
 
   const { children } = props
+
+  const renderEmptyChildren = () => {
+    return (
+      <MenuGroup>
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+        <MenuItem disabled>No items...</MenuItem>
+      </MenuGroup>
+    )
+  }
   return (
     // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
     <Pane is="nav" ref={menuRef} role="menu" outline="none">
-      {children}
+      {children || renderEmptyChildren()}
     </Pane>
   )
 })

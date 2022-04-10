@@ -27,11 +27,8 @@ const viewport = (overrides: any) => ({
   ...overrides
 })
 
-// @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
 describe('<Positioner />', () => {
-  // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
   it('All positions work', () => {
-    // @ts-expect-error ts-migrate(2550) FIXME: Property 'values' does not exist on type 'ObjectCo... Remove this comment to see the full error message
     const generatedPositions = Object.values(Position).map((position: any) => getFittedPosition({
       position,
       // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
@@ -43,13 +40,10 @@ describe('<Positioner />', () => {
       viewport: viewport()
     })
     )
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(generatedPositions).toMatchSnapshot()
   })
 
-  // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
   it('Position.LEFT repositions to the right', () => {
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(
       getFittedPosition({
         position: Position.LEFT,
@@ -63,9 +57,7 @@ describe('<Positioner />', () => {
     )
   })
 
-  // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
   it('Position.RIGHT repositions to the left', () => {
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(
       getFittedPosition({
         position: Position.RIGHT,
@@ -78,9 +70,7 @@ describe('<Positioner />', () => {
     ).toMatchSnapshot()
   })
 
-  // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
   it('Position.LEFT and Position.RIGHT will use the side with the most space', () => {
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(
       getFittedPosition({
         position: Position.LEFT,
@@ -92,9 +82,7 @@ describe('<Positioner />', () => {
     ).toMatchSnapshot()
   })
 
-  // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
   it('Position.TOP repositions to the bottom', () => {
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(
       getFittedPosition({
         position: Position.TOP,
@@ -107,9 +95,7 @@ describe('<Positioner />', () => {
     ).toMatchSnapshot()
   })
 
-  // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
   it('Position.BOTTOM repositions to the top', () => {
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(
       getFittedPosition({
         position: Position.BOTTOM,
@@ -121,9 +107,7 @@ describe('<Positioner />', () => {
     ).toMatchSnapshot()
   })
 
-  // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
   it('It pushes the rect to the right if overflowing on the left side', () => {
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(
       getFittedPosition({
         position: Position.BOTTOM,
@@ -136,9 +120,7 @@ describe('<Positioner />', () => {
     ).toMatchSnapshot()
   })
 
-  // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
   it('It pushes the rect to the top if overflowing on the bottom side', () => {
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(
       getFittedPosition({
         position: Position.TOP,

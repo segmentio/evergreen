@@ -1,0 +1,350 @@
+# Usage
+
+The `File Uploader` component is used when users need the ability to upload a file or multiple files.
+
+## Single file upload
+
+Provides the ability to upload one file at a time. This should allow the user to see the name and size of the file they’ve uploaded, as well as remove and/or replace it.
+
+```jsx
+function FileUploaderSingleUploadDemo() {
+  const [files, setFiles] = React.useState([])
+  const [fileRejections, setFileRejections] = React.useState([])
+  const handleChange = React.useCallback((files) => setFiles([files[0]]), [])
+  const handleRejected = React.useCallback((fileRejections) => setFileRejections([fileRejections[0]]), [])
+  const handleRemove = React.useCallback(() => {
+    setFiles([])
+    setFileRejections([])
+  }, [])
+  return (
+    <Pane maxWidth={654}>
+      <FileUploader
+        label="Upload File"
+        description="You can upload 1 file. File can be up to 50 MB."
+        maxSizeInBytes={50 * 1024 ** 2}
+        maxFiles={1}
+        onChange={handleChange}
+        onRejected={handleRejected}
+        renderFile={(file) => {
+          const { name, size, type } = file
+          const fileRejection = fileRejections.find((fileRejection) => fileRejection.file === file)
+          const { message } = fileRejection || {}
+          return (
+            <FileCard
+              key={name}
+              isInvalid={fileRejection != null}
+              name={name}
+              onRemove={handleRemove}
+              sizeInBytes={size}
+              type={type}
+              validationMessage={message}
+            />
+          )
+        }}
+        values={files}
+      />
+    </Pane>
+  )
+}
+```
+
+## Multiple file upload
+
+Provides the ability to upload multiple files at once. This should allow the user to see the names and sizes of all of the files they’ve uploaded, remove a file that they’ve uploaded, or add more files.
+
+```jsx
+function FileUploaderMultipleUploadDemo() {
+  const acceptedMimeTypes = [MimeType.jpeg, MimeType.pdf]
+  const maxFiles = 5
+  const maxSizeInBytes = 50 * 1024 ** 2 // 50 MB
+  const [files, setFiles] = React.useState([])
+  const [fileRejections, setFileRejections] = React.useState([])
+  const values = React.useMemo(() => [...files, ...fileRejections.map((fileRejection) => fileRejection.file)], [
+    files,
+    fileRejections,
+  ])
+  const handleRemove = React.useCallback(
+    (file) => {
+      const updatedFiles = files.filter((existingFile) => existingFile !== file)
+      const updatedFileRejections = fileRejections.filter((fileRejection) => fileRejection.file !== file)
+
+      // Call rebaseFiles to ensure accepted + rejected files are in sync (some might have previously been
+      // rejected for being over the file count limit, but might be under the limit now!)
+      const { accepted, rejected } = rebaseFiles(
+        [...updatedFiles, ...updatedFileRejections.map((fileRejection) => fileRejection.file)],
+        { acceptedMimeTypes, maxFiles, maxSizeInBytes }
+      )
+
+      setFiles(accepted)
+      setFileRejections(rejected)
+    },
+    [acceptedMimeTypes, files, fileRejections, maxFiles, maxSizeInBytes]
+  )
+
+  const fileCountOverLimit = files.length + fileRejections.length - maxFiles
+  const fileCountError = `You can upload up to 5 files. Please remove ${fileCountOverLimit} ${
+    fileCountOverLimit === 1 ? 'file' : 'files'
+  }.`
+
+  return (
+    <Pane maxWidth={654}>
+      <FileUploader
+        acceptedMimeTypes={acceptedMimeTypes}
+        label="Upload Files"
+        description="You can upload up to 5 files. Files can be up to 50MB. You can upload .jpg and .pdf file formats."
+        disabled={files.length + fileRejections.length >= maxFiles}
+        maxSizeInBytes={maxSizeInBytes}
+        maxFiles={maxFiles}
+        onAccepted={setFiles}
+        onRejected={setFileRejections}
+        renderFile={(file, index) => {
+          const { name, size, type } = file
+          const renderFileCountError = index === 0 && fileCountOverLimit > 0
+
+          // We're displaying an <Alert /> component to aggregate files rejected for being over the maxFiles limit,
+          // so don't show those errors individually on each <FileCard />
+          const fileRejection = fileRejections.find(
+            (fileRejection) => fileRejection.file === file && fileRejection.reason !== FileRejectionReason.OverFileLimit
+          )
+          const { message } = fileRejection || {}
+
+          return (
+            <React.Fragment key={`${file.name}-${index}`}>
+              {renderFileCountError && <Alert intent="danger" marginBottom={majorScale(2)} title={fileCountError} />}
+              <FileCard
+                isInvalid={fileRejection != null}
+                name={name}
+                onRemove={() => handleRemove(file)}
+                sizeInBytes={size}
+                type={type}
+                validationMessage={message}
+              />
+            </React.Fragment>
+          )
+        }}
+        values={values}
+      />
+    </Pane>
+  )
+}
+```
+
+---
+
+# Anatomy
+
+The file uploader component is composed of: (1) Label, (2) Description, (3) Dropzone, (4) File Preview.
+
+<Pane height={366} marginBottom={64} width={654}>
+  <img src="/file-uploader-anatomy.svg" alt="file-uploader-anatomy" />
+</Pane>
+
+1. **Label.** Use to set context on what the user can do (ie. Upload Files)
+1. **Description.** Use to specify file limitations.
+1. **Dropzone.** Designated area for users to either “browse” or drop files
+1. **File card.** Use to provide feedback to users on status of file uploads, file size, file format, and the ability to remove an uploaded file.
+
+---
+
+# Enabled
+
+By default, the entire dropzone is active to drop files into. Click anywhere in the dropzone to trigger the “Browse” functionality.
+
+<Pane height={236} width={654}>
+  <img src="/file-uploader-enabled.svg" alt="file-uploader-enabled" />
+</Pane>
+
+---
+
+# Hover With File(s)
+
+When a user hovers over the dropzone with files, it becomes active to indicate it’s ready to receive the files.
+
+<Pane height={236} width={654}>
+  <img src="/file-uploader-hover-with-files.svg" alt="file-uploader-hover-with-files" />
+</Pane>
+
+---
+
+# Files Uploading - Multiple Files
+
+When uploading multiple files, a file card is shown beneath the dropzone with a spinning icon to indicate upload in progress.
+
+<Pane height={384} width={654}>
+  <img src="/file-uploader-files-uploading-multiple-files.svg" alt="file-uploader-files-uploading-multiple-files" />
+</Pane>
+
+---
+
+# File Uploads Successful - Multiple Files
+
+When a file is successfully uploaded, a thumbnail image or icon is shown alongside the file name and file size. Use the trash icon to remove the file.
+
+<Pane height={384} width={654}>
+  <img
+    src="/file-uploader-file-uploads-successful-multiple-files.svg"
+    alt="file-uploader-file-uploads-successful-multiple-files"
+  />
+</Pane>
+
+---
+
+# File Uploading - Single File
+
+When uploading a single file, a file card is shown without the dropzone with a spinning icon to indicate upload in progress.
+
+<Pane height={118} width={654}>
+  <img src="/file-uploader-file-uploading-single-file.svg" alt="file-uploader-file-uploading-single-file" />
+</Pane>
+
+---
+
+# File Upload Successful - Single File
+
+When a file is successfully uploaded, a thumbnail image or icon is shown alongside the file name and file size. Use the trash icon to remove the file. The dropzone is hidden in this use case until the file is removed.
+
+<Pane height={118} width={654}>
+  <img
+    src="/file-uploader-file-upload-successful-single-file.svg"
+    alt="file-uploader-file-upload-successful-single-file"
+  />
+</Pane>
+
+---
+
+# Best Practices
+
+Refer to these guidelines when using the `File Uploader` component.
+
+## Label
+
+- Ensure that you’re using “Upload” as the verb in the component label. For example, use “Upload Files” or “Upload Attachments” to communicate what the user can do, depending on context.
+
+## Description
+
+- File limitations should be communicated to the user up front. Provide users with this information to help avoid errors, like uploading an incompatible file type or one that’s too large.
+- Make each limitation its own sentence. Use positive framing to clearly communicate limitations to the user:
+
+<Table width={654}>
+  <TableHead>
+    <TableTextHeaderCell>Status</TableTextHeaderCell>
+    <TableTextHeaderCell>Recommended Phrasing</TableTextHeaderCell>
+  </TableHead>
+  <TableRow>
+    <TableTextCell>File type</TableTextCell>
+    <TableTextCell>You can upload [x], [x] and [x] file formats.</TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell>File size</TableTextCell>
+    <TableTextCell>Files can be up to [file limit].</TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell>Number of files</TableTextCell>
+    <TableTextCell>You can upload up to [max #] files.</TableTextCell>
+  </TableRow>
+</Table>
+
+## Dropzone
+
+- Always process immediately when something is dropped into the dropzone to reflect user expectation.
+- Don’t store files until the final action is performed. For example, if a user is uploading files to add to their support form request ticket, the files should only be uploaded once the ticket is submitted.
+- If the user uploads the maximum number of files, disable the dropzone.
+
+## Dropzone errors
+
+- If the user drops more files in the dropzone than is allowed, surface an alert above the files and disable the dropzone.
+- Recommended phrasing for once files are dropped: “You can upload up to [max #] files. Remove [#] files.”
+
+<Pane height={594} marginBottom={32} width={654}>
+  <img src="/file-uploader-dropzone-errors.svg" alt="file-uploader-dropzone-errors" />
+</Pane>
+
+## File Card
+
+- Truncate the file name in the middle if it’s too long
+- We recommend building the file uploader component with the accompanying card file components so that users receive instant feedback on progress of the file upload. Include text that communicates when it’s uploading, when it’s successful, or when it fails (and why).
+
+<Table width={654}>
+  <TableHead>
+    <TableTextHeaderCell>Status</TableTextHeaderCell>
+    <TableTextHeaderCell>Recommended Phrasing</TableTextHeaderCell>
+  </TableHead>
+  <TableRow>
+    <TableTextCell>File uploading</TableTextCell>
+    <TableTextCell>Uploading...</TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell>File upload successful</TableTextCell>
+    <TableTextCell fontStyle="italic">Display the file size</TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell>File upload failed</TableTextCell>
+    <TableTextCell>Upload failed</TableTextCell>
+  </TableRow>
+</Table>
+
+## File Card Errors
+
+The card displaying the file that didn’t upload should have an error message beneath it that clearly communicates why it wasn’t uploaded. These error types may include invalid file type or file over the file size limit. We recommend the following phrasing:
+
+<Table marginBottom={32} width={654}>
+  <TableHead>
+    <TableTextHeaderCell>Scenario</TableTextHeaderCell>
+    <TableTextHeaderCell>Recommended Phrasing</TableTextHeaderCell>
+  </TableHead>
+  <TableRow>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Invalid file type
+    </TableTextCell>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      This file is not an accepted format. You can upload [x], [x] and [x] file formats.
+    </TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Exceeds file size limit
+    </TableTextCell>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      This file is too big. You can upload files up to [file limit].
+    </TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Network errors (internet connection dropped while uploading, request timeout, service is down)
+    </TableTextCell>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Something went wrong with the network. Check your internet connection, then try again.
+    </TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Too many uploads in a certain amount of time
+    </TableTextCell>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      We couldn’t upload so many files so quickly. Try uploading files more slowly, or try again later.
+    </TableTextCell>
+  </TableRow>
+  <TableRow>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Generic (encountered an internal error)
+    </TableTextCell>
+    <TableTextCell textProps={{ whiteSpace: 'break-spaces', overflow: 'auto', textOverflow: 'unset' }}>
+      Something went wrong. Try uploading your files again.
+    </TableTextCell>
+  </TableRow>
+</Table>
+
+An example of file size limit and file type errors:
+
+<Pane height={484} marginBottom={32} width={654}>
+  <img
+    src="/file-uploader-example-file-size-and-file-type-errors.svg"
+    alt="file-uploader-example-file-size-and-file-type-errors"
+  />
+</Pane>
+
+---
+
+# Accessibility
+
+File uploader should be accessible via keyboard support. Tabbing over the dropzone should activate the ‘Browse’ link, and users should be able to hit ‘Enter’ in order to open the file browser.

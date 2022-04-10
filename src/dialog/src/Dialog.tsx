@@ -136,8 +136,11 @@ const Dialog = memo(function Dialog({
     return node
   }
 
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '"DialogHeader"' is not assignabl... Remove this comment to see the full error message
   const themedHeaderProps = useStyleConfig('DialogHeader', emptyProps, emptyProps, emptyProps)
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '"DialogBody"' is not assignable ... Remove this comment to see the full error message
   const themedBodyProps = useStyleConfig('DialogBody', emptyProps, emptyProps, emptyProps)
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '"DialogFooter"' is not assignabl... Remove this comment to see the full error message
   const themedFooterProps = useStyleConfig('DialogFooter', emptyProps, emptyProps, emptyProps)
 
   const renderHeader = (close: any) => {
@@ -153,9 +156,13 @@ const Dialog = memo(function Dialog({
         ) : (
           <>
             // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             <Heading is="h4" size={600} flex="1">
               {title}
             </Heading>
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             {hasClose && <IconButton appearance="minimal" icon={CrossIcon} onClick={() => onCancel(close)} />}
           </>
@@ -170,8 +177,10 @@ const Dialog = memo(function Dialog({
     }
 
     return (
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
       <Pane display="flex" justifyContent="flex-end" {...themedFooterProps}>
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Pane>
           {footer ? (
@@ -186,6 +195,8 @@ const Dialog = memo(function Dialog({
                 </Button>
               )}
 
+              // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+              // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
               // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
               <Button
                 // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
@@ -254,17 +265,15 @@ const Dialog = memo(function Dialog({
 
           <Pane
             data-state={state}
-            // @ts-expect-error ts-migrate(2783) FIXME: 'display' is specified more than once, so this usa... Remove this comment to see the full error message
             display="flex"
-            // @ts-expect-error ts-migrate(2783) FIXME: 'overflow' is specified more than once, so this us... Remove this comment to see the full error message
             overflow="auto"
-            // @ts-expect-error ts-migrate(2783) FIXME: 'flexDirection' is specified more than once, so th... Remove this comment to see the full error message
             flexDirection="column"
-            // @ts-expect-error ts-migrate(2783) FIXME: 'minHeight' is specified more than once, so this u... Remove this comment to see the full error message
             minHeight={minHeightContent}
             {...themedBodyProps}
             {...contentContainerProps}
           >
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             <Pane>{renderChildren(close)}</Pane>
           </Pane>

@@ -37,6 +37,8 @@ const RadioGroup = memo(
           </Text>
         )}
         // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'item' implicitly has an 'any' type.
+        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'item' implicitly has an 'any' type.
+        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'item' implicitly has an 'any' type.
         {options.map(item => (
           <Radio
             key={item.value}

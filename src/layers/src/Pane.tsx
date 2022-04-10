@@ -34,6 +34,7 @@ const Pane = memo(
     const { className: themedClassName, ...styleProps } = useStyleConfig(
       'Pane',
       {
+        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ elevation: never; hoverElevati... Remove this comment to see the full error message
         elevation,
         hoverElevation,
         activeElevation,

@@ -1,6 +1,5 @@
 import React, { memo, useState, useEffect } from 'react'
 import VirtualList from '@segment/react-tiny-virtual-list'
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import { useForceUpdate } from '../../hooks'

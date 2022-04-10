@@ -16,7 +16,6 @@ export const Nudge = ({
   tooltipContent: tooltipContentProp,
   onClick
 }: any) => {
-  // @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
   if (process.env.NODE_ENV !== 'production') {
     warning(true, '<Nudge> is deprecated and will be renamed to Pulsar in the next major version of Evergreen.')
   }

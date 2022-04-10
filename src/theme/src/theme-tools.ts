@@ -1,4 +1,3 @@
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import merge from 'lodash.merge'
 
 export function get(obj: any, path: any, fallback: any) {

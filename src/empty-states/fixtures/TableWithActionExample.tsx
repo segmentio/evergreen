@@ -27,7 +27,6 @@ const TableWithActionExample = () => {
         {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'Body' does not exist on type 'NamedExoti... Remove this comment to see the full error message */}
         <Table.Body height="auto">
           <EmptyState
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ background: string; title: string; orienta... Remove this comment to see the full error message
             background="light"
             title="No audiences found"
             orientation="horizontal"
@@ -35,7 +34,6 @@ const TableWithActionExample = () => {
             icon={<SearchIcon color={colors.gray500} />}
             iconBgColor={colors.gray200}
             description="Click the button below to create a new Audience. Once done, you will see it come up in this list."
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'PrimaryButton' does not exist on type 'N... Remove this comment to see the full error message
             primaryCta={<EmptyState.PrimaryButton>Create Audience</EmptyState.PrimaryButton>}
           />
           {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'Body' does not exist on type 'NamedExoti... Remove this comment to see the full error message */}

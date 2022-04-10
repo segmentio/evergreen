@@ -33,6 +33,8 @@ const Tag = memo(
       <Badge ref={ref} isInteractive {...badgeStyles} {...restProps}>
         {children}
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         {isRemovable && <CrossIcon marginLeft={minorScale(1)} onClick={onRemove} size={minorScale(3)} />}
       </Badge>
     )

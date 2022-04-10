@@ -18,7 +18,6 @@ const ButtonIcon = memo(function ButtonIcon({ edge, icon, size, spacing }) {
   const marginLeft = edge === 'start' ? edgeMargin : innerMargin
   const marginRight = edge === 'end' ? edgeMargin : innerMargin
 
-  // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
   return <IconWrapper icon={icon} size={size} marginLeft={marginLeft} marginRight={marginRight} />
 })
 /* eslint-enable react/prop-types */
@@ -84,6 +83,7 @@ const Button = memo(
       'Button',
       { appearance, color, intent, size: restProps.size || 'medium' },
       pseudoSelectors,
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ position: string; fontWeight: ... Remove this comment to see the full error message
       internalStyles
     )
 
