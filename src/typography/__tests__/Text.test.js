@@ -1,6 +1,6 @@
 import React from 'react'
+import { faker } from '@faker-js/faker'
 import { render } from '@testing-library/react'
-import faker from 'faker'
 import renderer from 'react-test-renderer'
 import { UIBoxSerializer } from '../../../lib/testing'
 import { ThemeProvider } from '../../theme'

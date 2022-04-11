@@ -1,7 +1,7 @@
 import React from 'react'
+import { faker } from '@faker-js/faker'
 import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
-import faker from 'faker'
 import Box from 'ui-box'
 import { Table } from '..'
 import { Pane } from '../../layers'
