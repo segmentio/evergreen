@@ -46,3 +46,11 @@ export const buildFileRejection = file => ({
   reason: faker.random.arrayElement(Object.values(FileRejectionReason)),
   message: faker.random.words()
 })
+
+/**
+ * Returns a mock ref object in the shape of `{ current: jest.fn() }`
+ */
+export const mockRef = () => ({
+  // eslint-disable-next-line no-undef
+  current: jest.fn()
+})
