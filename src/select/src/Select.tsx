@@ -44,7 +44,7 @@ export interface SelectOwnProps {
   onChange?(event: React.ChangeEvent<HTMLSelectElement>): void
 }
 
-export type SelectProps = PolymorphicBoxProps<'div', SelectOwnProps>
+export type SelectProps = PolymorphicBoxProps<'select', SelectOwnProps>
 
 const internalStyles = {
   textTransform: 'default',
@@ -94,13 +94,14 @@ const Select: React.FC<SelectProps> = memo(
       name,
       onChange,
       required,
+      size,
       value,
       ...restProps
     } = props
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Select',
-      { appearance, size: restProps.size || 'medium' },
+      { appearance, size: size || 'medium' },
       pseudoSelectors,
       // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ textTransform: string; WebkitA... Remove this comment to see the full error message
       internalStyles

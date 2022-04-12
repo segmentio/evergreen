@@ -1,12 +1,12 @@
 import { faker } from '@faker-js/faker'
 import { MimeType, FileRejectionReason } from '../constants'
+import { FileRejection } from '../file-uploader/src/types/file-rejection'
 
 /**
  * Builds a `File` object for testing
- * @param {Pick<File, 'name' | 'size' | 'type'>} overrides Specific `File` properties to override
- * @returns {File}
+ * @param overrides Specific `File` properties to override
  */
-export const buildFile = (overrides = {}) => {
+export const buildFile = (overrides: Partial<Pick<File, 'name' | 'size' | 'type'>> = {}): File => {
   const maxSizeInBytes = 10 * 1024 ** 2
   const {
     name = faker.system.fileName(),
@@ -15,7 +15,7 @@ export const buildFile = (overrides = {}) => {
   } = overrides
 
   // Allocate an array the given size, but set a reasonable ceiling for testing
-  const file = new File(Buffer.alloc(Math.min(size, maxSizeInBytes)), name, {
+  const file = new File((Buffer.alloc(Math.min(size, maxSizeInBytes)) as any) as BlobPart[], name, {
     type
   })
   return file
@@ -23,11 +23,13 @@ export const buildFile = (overrides = {}) => {
 
 /**
  * Builds a collection of `File` objects for testing
- * @param {number} count Number of files to create (default: 2)
- * @param {Pick<File, 'name' | 'size' | 'type'>} overrides Specific `File` properties to override
- * @returns {File[]}
+ * @param count Number of files to create (default: 2)
+ * @param overrides Specific `File` properties to override
  */
-export const buildFiles = (count = 2, overrides = {}) => {
+export const buildFiles = (
+  count: number = 2,
+  overrides: Partial<Pick<File, 'name' | 'size' | 'type'>> = {}
+): File[] => {
   const files = []
   for (let i = 0; i < count; i++) {
     files.push(buildFile(overrides))
@@ -38,10 +40,8 @@ export const buildFiles = (count = 2, overrides = {}) => {
 
 /**
  * Builds a `FileRejection` object for testing
- * @param {File} file
- * @returns {import('../file-uploader/src/utils/get-file-rejections').FileRejection}
  */
-export const buildFileRejection = file => ({
+export const buildFileRejection = (file: File): FileRejection => ({
   file,
   reason: faker.random.arrayElement(Object.values(FileRejectionReason)),
   message: faker.random.words()

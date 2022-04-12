@@ -98,6 +98,7 @@
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-replace": "^2.3.3",
+    "@rollup/plugin-typescript": "^8.3.1",
     "@size-limit/preset-big-lib": "^4.5.4",
     "@storybook/addon-essentials": "^6.0.21",
     "@storybook/addon-options": "^5.3.21",
@@ -161,8 +162,9 @@
     "ts-migrate-server": "^0.1.27",
     "ts-morph": "14.0.0",
     "ts-node": "10.7.0",
-    "typescript": "^4.6.2",
     "tsd": "^0.19.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.2",
     "url-loader": "^1.1.2",
     "webpack": "^4.43.0",
     "yarnhook": "^0.5.1"

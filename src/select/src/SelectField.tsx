@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
 import { PolymorphicBoxProps, splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
-import { FormFieldOwnProps } from "../../form-field/src/FormField"
+import { FormFieldOwnProps } from '../../form-field/src/FormField'
 import { useId } from '../../hooks'
 import Select, { SelectOwnProps } from './Select'
 
-export type SelectFieldProps = PolymorphicBoxProps<'div', SelectFieldOwnProps>;
-export type SelectFieldOwnProps = FormFieldOwnProps & SelectOwnProps;
+export type SelectFieldProps = PolymorphicBoxProps<'select', SelectFieldOwnProps>
+export type SelectFieldOwnProps = FormFieldOwnProps & SelectOwnProps
 
 const SelectField: React.FC<SelectFieldProps> = memo(function SelectField(props) {
   const id = useId('SelectField', props.id)
@@ -19,6 +19,7 @@ const SelectField: React.FC<SelectFieldProps> = memo(function SelectField(props)
     description,
     disabled,
     hint,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     id: unusedId,
 
     // TextInput props
