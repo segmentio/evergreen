@@ -1,4 +1,5 @@
 import React, { memo, forwardRef } from 'react'
+import { IconComponent } from "../../types";
 import Icon from '../src/Icon'
 
 const svgPaths16 = [
@@ -12,7 +13,7 @@ const svgPaths20 = [
   'M10 10l-5 5M9.621 9.671l.707.708-5.02 5.02-.707-.707z'
 ]
 
-export const SearchAroundIcon = memo(
+export const SearchAroundIcon: IconComponent = memo(
   forwardRef(function SearchAroundIcon(props, ref) {
     return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="search-around" {...props} />
   })

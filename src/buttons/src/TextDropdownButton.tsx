@@ -1,16 +1,48 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
-import PropTypes from 'prop-types'
-import Box, { dimensions, spacing, position, layout } from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { CaretDownIcon } from '../../icons'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Spinner } from '../../spinner'
 import { internalStyles, pseudoSelectors } from './Button'
 
-const TextDropdownButton = memo(
+export interface TextDropdownButtonOwnProps {
+  /**
+   * Forcefully set the active state of a button.
+   * Useful in conjuction with a Popover.
+   */
+  isActive?: boolean
+  /**
+   * Whether or not the button is loading.
+   * Automatically sets `disabled` when `isLoading={true}`
+   */
+  isLoading?: boolean
+  /**
+   * When true, the button is disabled.
+   * isLoading also sets the button to disabled.
+   */
+  disabled?: boolean
+  /**
+   * An Evergreen icon or custom icon node. By default it uses CaretDownIcon
+   */
+  icon?: React.ElementType | JSX.Element | null | false
+  /**
+   * Class name passed to the button.
+   */
+  className?: string
+  /**
+   * Size of the button
+   */
+  size?: 'small' | 'medium' | 'large'
+}
+
+export type TextDropdownButtonProps = PolymorphicBoxProps<'button', TextDropdownButtonOwnProps>
+
+const TextDropdownButton: React.FC<TextDropdownButtonProps> = memo(
   forwardRef(function TextDropdownButton(props, ref) {
     const {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'appearance' does not exist on type 'Prop... Remove this comment to see the full error message
       appearance,
       children,
       className,
@@ -20,7 +52,6 @@ const TextDropdownButton = memo(
       isActive = false,
       isLoading,
       size = 'medium',
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...restProps
     } = props
 
@@ -43,60 +74,13 @@ const TextDropdownButton = memo(
         {...restProps}
         disabled={disabled || isLoading}
       >
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         {isLoading && <Spinner marginLeft={-2} marginRight={4} size={12} />}
         {children}
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'false | ElementType<any> | Element | IconCom... Remove this comment to see the full error message */}
         <IconWrapper icon={icon} marginLeft={2} color="default" size={12} />
       </Box>
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-TextDropdownButton.propTypes = {
-  /**
-   * Composes the dimensions spec from the Box primitive.
-   */
-  ...dimensions.propTypes,
-
-  /**
-   * Composes the spacing spec from the Box primitive.
-   */
-  ...spacing.propTypes,
-
-  /**
-   * Composes the position spec from the Box primitive.
-   */
-  ...position.propTypes,
-
-  /**
-   * Composes the layout spec from the Box primitive.
-   */
-  ...layout.propTypes,
-
-  /**
-   * Forcefully set the active state of a button.
-   * Useful in conjuction with a Popover.
-   */
-  isActive: PropTypes.bool,
-
-  /**
-   * When true, the button is disabled.
-   * isLoading also sets the button to disabled.
-   */
-  disabled: PropTypes.bool,
-
-  /**
-   * An Evergreen icon or custom icon node. By default it uses CaretDownIcon
-   */
-  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
-
-  /**
-   * Class name passed to the button.
-   * Only use if you know what you are doing.
-   */
-  className: PropTypes.string
-}
 
 export default TextDropdownButton

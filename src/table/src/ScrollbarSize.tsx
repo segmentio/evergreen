@@ -1,8 +1,11 @@
-import React, { memo, useRef, useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
+import React, { memo, useRef, useState, useEffect, SetStateAction } from 'react'
+
+interface ScrollbarSizeProps {
+  handleScrollbarSize: React.Dispatch<SetStateAction<number>>
+}
 
 const noop = () => {}
-const style = {
+const style: React.CSSProperties = {
   position: 'fixed',
   top: -500,
   left: -500,
@@ -10,10 +13,9 @@ const style = {
   overflowY: 'scroll'
 }
 
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'handleScrollbarSize' does not exist on t... Remove this comment to see the full error message
-const ScrollbarSize = memo(function ScrollbarSize({ handleScrollbarSize = noop }) {
-  const innerRef = useRef()
-  const outerRef = useRef()
+const ScrollbarSize: React.FC<ScrollbarSizeProps> = memo(function ScrollbarSize({ handleScrollbarSize = noop }) {
+  const innerRef = useRef<HTMLDivElement>(null)
+  const outerRef = useRef<HTMLDivElement>(null)
   const [widths, setWidths] = useState({ innerWidth: null, outerWidth: null })
 
   useEffect(() => {
@@ -34,26 +36,15 @@ const ScrollbarSize = memo(function ScrollbarSize({ handleScrollbarSize = noop }
 
   useEffect(() => {
     if (widths.innerWidth && widths.outerWidth) {
-      // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
       handleScrollbarSize(widths.outerWidth - widths.innerWidth)
     }
   }, [widths, handleScrollbarSize])
 
   return (
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'MutableRefObject<undefined>' is not assignab... Remove this comment to see the full error message
     <div ref={outerRef} aria-hidden style={style}>
-      {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'MutableRefObject<undefined>' is not assignab... Remove this comment to see the full error message */}
       <div ref={innerRef} />
     </div>
   )
 })
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
-ScrollbarSize.propTypes = {
-  /**
-   * Returns the size of the scrollbar by creating a hidden fixed div.
-   */
-  handleScrollbarSize: PropTypes.func
-}
 
 export default ScrollbarSize

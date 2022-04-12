@@ -1,37 +1,24 @@
 import React, { forwardRef, memo } from 'react'
-import PropTypes from 'prop-types'
+import { PolymorphicBoxProps } from "ui-box";
+import { CodeAppearance } from "../../..";
 import { useStyleConfig } from '../../hooks'
-import Text from './Text'
+import Text, { TextOwnProps } from './Text'
+
+export type CodeProps = PolymorphicBoxProps<'code', CodeOwnProps>;
+export type CodeOwnProps = TextOwnProps & { appearance?: CodeAppearance };
 
 const pseudoSelectors = {}
 const internalStyles = {}
 
-const Code = memo(
+const Code: React.FC<CodeProps> = memo(
   forwardRef(function Code(props, ref) {
-    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { appearance = 'default', className, ...restProps } = props
 
     const styleProps = useStyleConfig('Code', { appearance }, pseudoSelectors, internalStyles)
 
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '"code"' is not assignable to type '"span" | ... Remove this comment to see the full error message
     return <Text is="code" ref={ref} {...styleProps} fontFamily="mono" className={className} {...restProps} />
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-Code.propTypes = {
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  ...Text.propTypes,
-
-  /**
-   * The appearance of the code.
-   */
-  appearance: PropTypes.oneOf(['default', 'minimal']),
-
-  /**
-   * Class name passed to the Code component.
-   * Only use if you know what you are doing.
-   */
-  className: PropTypes.string
-}
 
 export default Code

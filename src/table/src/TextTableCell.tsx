@@ -1,7 +1,21 @@
 import React, { memo, forwardRef } from 'react'
-import PropTypes from 'prop-types'
+import { PolymorphicBoxProps } from 'ui-box'
 import { Text } from '../../typography'
-import TableCell from './TableCell'
+import { TextOwnProps } from '../../typography/src/Text'
+import TableCell, { TableCellOwnProps } from './TableCell'
+
+export interface TextTableCellOwnProps extends TableCellOwnProps {
+  /**
+   * Adds textAlign: right and fontFamily: mono.
+   */
+  isNumber?: boolean
+  /**
+   * Pass additional props to the Text component.
+   */
+  textProps?: PolymorphicBoxProps<'span', TextOwnProps>
+}
+
+export type TextTableCellProps = PolymorphicBoxProps<'div', TextTableCellOwnProps>
 
 const ellipsis = {
   overflow: 'hidden',
@@ -9,13 +23,13 @@ const ellipsis = {
   whiteSpace: 'nowrap'
 }
 
-const TextTableCell = memo(
+const TextTableCell: React.FC<TextTableCellProps> = memo(
   forwardRef(function TextTableCell(props, ref) {
-    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { children, isNumber = false, placeholder, textProps, ...rest } = props
 
     return (
       <TableCell ref={ref} {...rest}>
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: ReactNode; alignContent?: number... Remove this comment to see the full error message */}
         <Text
           size={300}
           flex="1"
@@ -30,24 +44,5 @@ const TextTableCell = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-TextTableCell.propTypes = {
-  /**
-   * Composes the TableCell component as the base.
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  ...TableCell.propTypes,
-
-  /**
-   * Adds fontFamily: mono.
-   */
-  isNumber: PropTypes.bool,
-
-  /**
-   * Pass additional props to the Text component.
-   */
-  textProps: PropTypes.object
-}
 
 export default TextTableCell

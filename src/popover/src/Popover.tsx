@@ -1,17 +1,44 @@
 import React, { memo, forwardRef, useRef, useState, useEffect, useImperativeHandle, useCallback, useMemo } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
-import PropTypes from 'prop-types'
+import { PositionTypes } from '../../..'
 import { Position } from '../../constants'
 import { useMergedRef } from '../../hooks'
+import safeInvoke from '../../lib/safe-invoke'
 import { Positioner } from '../../positioner'
 import { Tooltip } from '../../tooltip'
-import PopoverStateless from './PopoverStateless'
+import PopoverStateless, { PopoverStatelessProps } from './PopoverStateless'
+
+export interface PopoverProps {
+  position?: PositionTypes
+  isShown?: boolean
+  trigger?: 'click' | 'hover'
+  content: React.ReactNode | ((object: { close: () => void }) => React.ReactNode)
+  children:
+    | ((props: {
+        toggle: () => void
+        getRef: (ref: React.RefObject<HTMLElement>) => void
+        isShown: NonNullable<PopoverProps['isShown']>
+      }) => React.ReactNode)
+    | React.ReactNode
+  display?: string
+  minWidth?: number | string
+  minHeight?: number | string
+  animationDuration?: number
+  onOpen?: () => void
+  onClose?: () => void
+  onOpenComplete?: () => void
+  onCloseComplete?: () => void
+  onBodyClick?: () => void
+  bringFocusInside?: boolean
+  shouldCloseOnExternalClick?: boolean
+  statelessProps?: PopoverStatelessProps
+}
 
 const noop = () => {}
 const emptyProps = {}
 
-const Popover = memo(
+const Popover: React.FC<PopoverProps> = memo(
   forwardRef(function Popover(
     {
       animationDuration = 300,
@@ -28,10 +55,10 @@ const Popover = memo(
       onOpenComplete = noop,
       position = Position.BOTTOM,
       shouldCloseOnExternalClick = true,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'shouldCloseOnEscapePress' does not exist... Remove this comment to see the full error message
       shouldCloseOnEscapePress = true,
       statelessProps = emptyProps,
       trigger = 'click',
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...props
     },
     forwardedRef
@@ -234,12 +261,11 @@ const Popover = memo(
 
     const renderTarget = useCallback(
       ({ getRef, isShown }) => {
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'string | n... Remove this comment to see the full error message
         const isTooltipInside = children && children.type === Tooltip
 
         const getTargetRef = (ref: any) => {
-          // @ts-expect-error ts-migrate(2721) FIXME: Cannot invoke an object which is possibly 'null'.
-          setTargetRef(ref)
+          safeInvoke(setTargetRef, ref)
           getRef(ref)
         }
 
@@ -247,7 +273,6 @@ const Popover = memo(
          * When a function is passed, you can control the Popover manually.
          */
         if (typeof children === 'function') {
-          // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
           return children({
             getRef: getTargetRef,
             isShown,
@@ -271,6 +296,7 @@ const Popover = memo(
          * add the properties to the target.
          */
         if (isTooltipInside) {
+          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           return React.cloneElement(children, {
             popoverProps: {
               getTargetRef,
@@ -286,6 +312,7 @@ const Popover = memo(
         /**
          * With normal usage only popover props end up on the target.
          */
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         return React.cloneElement(children, {
           ref: getTargetRef,
           ...popoverTargetProps
@@ -298,12 +325,10 @@ const Popover = memo(
     const shown = typeof props.isShown === 'boolean' ? props.isShown : isShown
 
     const contentToRender = useMemo(() => {
-      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       return typeof content === 'function' ? content({ close }) : content
     }, [content, close])
 
     return (
-      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: ({ css, getRef, state, style }: ... Remove this comment to see the full error message
       <Positioner
         target={renderTarget}
         isShown={shown}
@@ -312,145 +337,29 @@ const Popover = memo(
         onOpenComplete={handleOpenComplete}
         onCloseComplete={onCloseComplete}
       >
-        {({
-          css,
-          getRef,
-          state,
-          style
-        }: any) => (
-          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
+        {({ css, getRef, state, style }: any) => (
           <PopoverStateless
             ref={ref => {
-              // @ts-expect-error ts-migrate(2721) FIXME: Cannot invoke an object which is possibly 'null'.
-              setPopoverNode(ref)
+              safeInvoke(setPopoverNode, ref)
               getRef(ref)
             }}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
             data-state={state}
             display={display}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
             minWidth={minWidth}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
             minHeight={minHeight}
             {...statelessProps}
             // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             className={cx(statelessProps.className, glamorCss(css, style, statelessProps.style).toString())}
             // Overwrite `statelessProps.style` since we are including it via className
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'undefined' is not assignable to type 'never'... Remove this comment to see the full error message
             style={undefined}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '(() => void) | undefined' is not assignable ... Remove this comment to see the full error message
             onMouseLeave={handleCloseHover}
           >
             {contentToRender}
           </PopoverStateless>
         )}
       </Positioner>
-    );
+    )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-Popover.propTypes = {
-  /**
-   * The position the Popover is on. Smart positioning might override this.
-   */
-  position: PropTypes.oneOf([
-    Position.TOP,
-    Position.TOP_LEFT,
-    Position.TOP_RIGHT,
-    Position.BOTTOM,
-    Position.BOTTOM_LEFT,
-    Position.BOTTOM_RIGHT,
-    Position.LEFT,
-    Position.RIGHT
-  ]),
-
-  /**
-   * When true, the Popover is manually shown.
-   */
-  isShown: PropTypes.bool,
-  /**
-   * Open the Popover based on click or hover. Default is click.
-   */
-  trigger: PropTypes.oneOf(['click', 'hover']),
-
-  /**
-   * The content of the Popover.
-   */
-  content: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
-
-  /**
-   * The target button of the Popover.
-   * When a function the following arguments are passed:
-   * ({ toggle: Function -> Void, getRef: Function -> Ref, isShown: Bool })
-   */
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
-
-  /**
-   * The display property passed to the Popover card.
-   */
-  display: PropTypes.string,
-
-  /**
-   * The min width of the Popover card.
-   */
-  minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-  /**
-   * The min height of the Popover card.
-   */
-  minHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-  /**
-   * Properties passed through to the Popover card.
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  statelessProps: PropTypes.shape(PopoverStateless.propTypes),
-
-  /**
-   * Duration of the animation.
-   */
-  animationDuration: PropTypes.number,
-
-  /**
-   * Function called when the Popover opens.
-   */
-  onOpen: PropTypes.func,
-
-  /**
-   * Function fired when Popover closes.
-   */
-  onClose: PropTypes.func,
-
-  /**
-   * Function that will be called when the enter transition is complete.
-   */
-  onOpenComplete: PropTypes.func,
-
-  /**
-   * Function that will be called when the exit transition is complete.
-   */
-  onCloseComplete: PropTypes.func,
-
-  /**
-   * Function that will be called when the body is clicked.
-   */
-  onBodyClick: PropTypes.func,
-
-  /**
-   * When true, bring focus inside of the Popover on open.
-   */
-  bringFocusInside: PropTypes.bool,
-
-  /**
-   * Boolean indicating if clicking outside the dialog should close the dialog.
-   */
-  shouldCloseOnExternalClick: PropTypes.bool,
-
-  /**
-   * Boolean indicating if pressing the esc key should close the dialog.
-   */
-  shouldCloseOnEscapePress: PropTypes.bool
-}
 
 export default Popover

@@ -1,14 +1,38 @@
 import React, { memo, forwardRef, useState, useRef, useCallback } from 'react'
 import cx from 'classnames'
-import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
 import { Button } from '../../buttons'
 import safeInvoke from '../../lib/safe-invoke'
 import { TextInput } from '../../text-input'
 
+export interface FilePickerOwnProps {
+    /** the name attribute of the input */
+    name?: string;
+    /** the accept attribute of the input */
+    accept?: string | string[];
+    /** whether or not the field is required */
+    required?: boolean;
+    /** whether or not the file input accepts multiple files */
+    multiple?: boolean;
+    /** whether or not the filepicker is disabled */
+    disabled?: boolean;
+    /** the capture attribute of the input */
+    capture?: boolean;
+    /** the height of the filepicker */
+    height?: number;
+    /** function called when onChange is fired */
+    onChange?: (files: FileList) => void;
+    /** function called when onBlur is fired */
+    onBlur?: (event: React.FocusEvent) => void;
+    /** placeholder of the text input */
+    placeholder?: string;
+}
+
+export type FilePickerProps = PolymorphicBoxProps<'div', FilePickerOwnProps>;
+
 export const CLASS_PREFIX = 'evergreen-file-picker'
 
-const FilePicker = memo(
+const FilePicker: React.FC<FilePickerProps> = memo(
   forwardRef(function FilePicker(props, ref) {
     const {
       accept,
@@ -22,7 +46,6 @@ const FilePicker = memo(
       onChange,
       placeholder = 'Select a file to upload…',
       required,
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
@@ -92,6 +115,7 @@ const FilePicker = memo(
           is="input"
           type="file"
           name={name}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string | string[] | undefined' is not assign... Remove this comment to see the full error message
           accept={accept}
           required={required}
           multiple={multiple}
@@ -102,26 +126,16 @@ const FilePicker = memo(
         />
 
         <TextInput
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           className={`${CLASS_PREFIX}-text-input`}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.
           readOnly
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
           value={inputValue}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           placeholder={placeholder}
           // There's a weird specifity issue when there's two differently sized inputs on the page
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           borderTopRightRadius="0 !important"
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           borderBottomRightRadius="0 !important"
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           height={height}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           flex={1}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           textOverflow="ellipsis"
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '(e: any) => void' is not assignable to type ... Remove this comment to see the full error message
           onBlur={handleBlur}
         />
 
@@ -129,22 +143,14 @@ const FilePicker = memo(
         // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Button
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           className={`${CLASS_PREFIX}-button`}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type 'never... Remove this comment to see the full error message
           onClick={handleButtonClick}
           disabled={disabled}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           borderTopLeftRadius={0}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           borderBottomLeftRadius={0}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           height={height}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           flexShrink={0}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           type="button"
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '(e: any) => void' is not assignable to type ... Remove this comment to see the full error message
           onBlur={handleBlur}
         >
           {buttonText}
@@ -153,66 +159,5 @@ const FilePicker = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-FilePicker.propTypes = {
-  /**
-   * Name attribute of the input.
-   */
-  name: PropTypes.string,
-
-  /**
-   * The accept attribute of the input.
-   */
-  accept: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-
-  /**
-   * When true, the file picker is required.
-   */
-  required: PropTypes.bool,
-
-  /**
-   * When true, accept multiple files.
-   */
-  multiple: PropTypes.bool,
-
-  /**
-   * When true, the filepicker is disabled.
-   */
-  disabled: PropTypes.bool,
-
-  /**
-   * The capture attribute of the input.
-   */
-  capture: PropTypes.bool,
-
-  /**
-   * The height of the file picker.
-   */
-  height: PropTypes.number,
-
-  /**
-   * Function called when onChange is fired.
-   * (files: FileList) => void
-   */
-  onChange: PropTypes.func,
-
-  /**
-   * Function called when onBlur is fired.
-   * (event: React.FocusEvent) => void
-   */
-  onBlur: PropTypes.func,
-
-  /**
-   * Placeholder of the text input
-   */
-  placeholder: PropTypes.string,
-
-  /**
-   * Class name passed to the FilePicker.
-   * Only use this if you know what you are doing.
-   */
-  className: PropTypes.string
-}
 
 export default FilePicker

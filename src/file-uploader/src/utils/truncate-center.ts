@@ -1,10 +1,9 @@
 /**
  * Truncates a string in the center with ellipsis, if needed
- * @param {string} value Value to truncate
- * @param {number | undefined} maximumChars Maximum number of characters (including the ellipsis) to show
- * @returns {string}
+ * @param value Value to truncate
+ * @param maximumChars Maximum number of characters (including the ellipsis) to show
  */
-const truncateCenter = (value, maximumChars = 55) => {
+const truncateCenter = (value: string, maximumChars: number = 55): string => {
   const { length } = value
 
   if (length <= maximumChars) {

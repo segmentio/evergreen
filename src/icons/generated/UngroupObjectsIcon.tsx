@@ -1,4 +1,5 @@
 import React, { memo, forwardRef } from 'react'
+import { IconComponent } from "../../types";
 import Icon from '../src/Icon'
 
 const svgPaths16 = [
@@ -8,7 +9,7 @@ const svgPaths20 = [
   'M4.5 6C2.01 6 0 8.01 0 10.5S2.01 15 4.5 15 9 12.99 9 10.5 6.99 6 4.5 6zm11 0C13.01 6 11 8.01 11 10.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5S17.99 6 15.5 6z'
 ]
 
-export const UngroupObjectsIcon = memo(
+export const UngroupObjectsIcon: IconComponent = memo(
   forwardRef(function UngroupObjectsIcon(props, ref) {
     return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="ungroup-objects" {...props} />
   })

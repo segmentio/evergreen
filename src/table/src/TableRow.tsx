@@ -1,10 +1,59 @@
 import React, { memo, forwardRef, useRef, useCallback } from 'react'
 import cx from 'classnames'
-import PropTypes from 'prop-types'
+import { PolymorphicBoxProps } from 'ui-box'
+import { IntentTypes, DefaultAppearance } from '../../..'
 import { useClickable, useLatest, useMergedRef, useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
+import { PaneOwnProps } from '../../layers/src/Pane'
 import safeInvoke from '../../lib/safe-invoke'
+import { Theme } from '../../types/theme/theme'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
+
+export interface TableRowOwnProps extends PaneOwnProps {
+  /**
+   * The height of the row. Remember to add paddings when using "auto".
+   */
+  height?: number | string
+  /**
+   * Makes the TableRow selectable.
+   */
+  isSelectable?: boolean
+  /**
+   * Makes the TableRow selected.
+   */
+  isSelected?: boolean
+  /**
+   * Manually set the TableRow to be highlighted.
+   */
+  isHighlighted?: boolean
+  /**
+   * The intent of the alert.
+   */
+  intent?: IntentTypes
+  /**
+   * The appearance of the table row. Default theme only support default.
+   */
+  appearance?: DefaultAppearance
+  /**
+   * Theme provided by ThemeProvider.
+   */
+  theme?: Theme
+  /**
+   * Class name passed to the table row.
+   * Only use if you know what you are doing.
+   */
+  className?: string
+  /**
+   * Function that is called on click and enter/space keypress.
+   */
+  onSelect?(): void
+  /**
+   * Function that is called on click and enter/space keypress.
+   */
+  onDeselect?(): void
+}
+
+export type TableRowProps = PolymorphicBoxProps<'div', TableRowOwnProps>
 
 const noop = () => {}
 
@@ -23,7 +72,7 @@ const internalStyles = {
   display: 'flex'
 }
 
-const TableRow = memo(
+const TableRow: React.FC<TableRowProps> = memo(
   forwardRef(function TableRow(props, forwardedRef) {
     const {
       className,
@@ -40,7 +89,6 @@ const TableRow = memo(
       isHighlighted,
       isSelectable,
       isSelected,
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
@@ -120,60 +168,5 @@ const TableRow = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-TableRow.propTypes = {
-  /**
-   * Composes the Pane component as the base.
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  ...Pane.propTypes,
-
-  /**
-   * The height of the row. Remember to add paddings when using "auto".
-   */
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-  /**
-   * Function that is called on click and enter/space keypress.
-   */
-  onSelect: PropTypes.func,
-
-  /**
-   * Function that is called on click and enter/space keypress.
-   */
-  onDeselect: PropTypes.func,
-
-  /**
-   * Makes the TableRow selectable.
-   */
-  isSelectable: PropTypes.bool,
-
-  /**
-   * Makes the TableRow selected.
-   */
-  isSelected: PropTypes.bool,
-
-  /**
-   * Manually set the TableRow to be highlighted.
-   */
-  isHighlighted: PropTypes.bool,
-
-  /**
-   * The intent of the alert.
-   */
-  intent: PropTypes.string,
-
-  /**
-   * The appearance of the table row. Default theme only support default.
-   */
-  appearance: PropTypes.string,
-
-  /**
-   * Class name passed to the table row.
-   * Only use if you know what you are doing.
-   */
-  className: PropTypes.string
-}
 
 export default TableRow

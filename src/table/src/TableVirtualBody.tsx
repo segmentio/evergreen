@@ -1,7 +1,6 @@
 import React, { memo, useState, useEffect } from 'react'
 import VirtualList from '@segment/react-tiny-virtual-list'
 import debounce from 'lodash.debounce'
-import PropTypes from 'prop-types'
 import { useForceUpdate } from '../../hooks'
 import { Pane } from '../../layers'
 
@@ -77,7 +76,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type 'PropsWit... Remove this comment to see the full error message
       setIsIntegerHeight(Number.isInteger(props.height))
     }
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type 'PropsWit... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type 'PropsWit... Remove this comment to see the full error message
   }, [props.height])
 
   useEffect(() => {
@@ -166,7 +165,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
         }
 
         return defaultHeight
-      });
+      })
     }
 
     // If allowAutoHeight is true, return a function instead.
@@ -201,7 +200,6 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
   const itemSize = getItemSize(children)
 
   return (
-    // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
     <Pane data-evergreen-table-body ref={setPaneRef} height={paneHeight} flex="1" overflow="hidden" {...rest}>
       <VirtualList
         height={isIntegerHeight ? paneHeight : calculatedHeight}
@@ -268,65 +266,5 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
     </Pane>
   )
 })
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
-TableVirtualBody.propTypes = {
-  /**
-   * Composes the Pane component as the base.
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  ...Pane.propTypes,
-
-  /**
-   * Children needs to be an array of a single node.
-   */
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-
-  /**
-   * Default height of each row.
-   * 48 is the default height of a TableRow.
-   */
-  defaultHeight: PropTypes.number,
-
-  /**
-   * When true, support `height="auto"` on children being rendered.
-   * This is somewhat of an expirmental feature.
-   */
-  allowAutoHeight: PropTypes.bool,
-
-  /**
-   * The overscanCount property passed to react-tiny-virtual-list.
-   */
-  overscanCount: PropTypes.number,
-
-  /**
-   * When passed, this is used as the `estimatedItemSize` in react-tiny-virtual-list.
-   * Only when `allowAutoHeight` and`useAverageAutoHeightEstimation` are false.
-   */
-  estimatedItemSize: PropTypes.number,
-
-  /**
-   * When allowAutoHeight is true and this prop is true, the estimated height
-   * will be computed based on the average height of auto height rows.
-   */
-  useAverageAutoHeightEstimation: PropTypes.bool,
-
-  /**
-   * The scrollToIndex property passed to react-tiny-virtual-list
-   */
-  scrollToIndex: PropTypes.number,
-  /**
-   * The scrollOffset property passed to react-tiny-virtual-list
-   */
-  scrollOffset: PropTypes.number,
-  /**
-   * The scrollToAlignment property passed to react-tiny-virtual-list
-   */
-  scrollToAlignment: PropTypes.oneOf(['start', 'center', 'end', 'auto']),
-  /**
-   * The onScroll callback passed to react-tiny-virtual-list
-   */
-  onScroll: PropTypes.func
-}
 
 export default TableVirtualBody

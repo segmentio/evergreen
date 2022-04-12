@@ -1,19 +1,17 @@
 import React, { memo, forwardRef } from 'react'
+import { PolymorphicBoxProps } from "ui-box";
 import { Paragraph } from '../../typography'
+import { ParagraphOwnProps } from "../../typography/src/Paragraph";
 
-const FormFieldHint = memo(
+export interface FormFieldHintOwnProps extends ParagraphOwnProps {
+}
+
+export type FormFieldHintProps = PolymorphicBoxProps<'p', FormFieldHintOwnProps>;
+
+const FormFieldHint: React.FC<FormFieldHintProps> = memo(
   forwardRef(function FormFieldHint(props, ref) {
     return <Paragraph marginTop={0} size={300} color="muted" {...props} ref={ref} />
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-FormFieldHint.propTypes = {
-  /**
-   * Composes the Paragraph component as the base.
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  ...Paragraph.propTypes
-}
 
 export default FormFieldHint

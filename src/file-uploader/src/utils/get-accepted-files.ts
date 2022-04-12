@@ -1,13 +1,11 @@
 import differenceWith from 'lodash.differencewith'
 import getFileRejections from './get-file-rejections'
+import { SplitFilesOptions } from './split-files'
 
 /**
  * Returns a list of accepted files based on the provided options
- * @param {File[]} files
- * @param {import('./split-files').SplitFilesOptions | undefined} options
- * @returns {File[]}
  */
-const getAcceptedFiles = (files, options) => {
+const getAcceptedFiles = (files: File[], options?: SplitFilesOptions): File[] => {
   if (options == null) {
     return files
   }

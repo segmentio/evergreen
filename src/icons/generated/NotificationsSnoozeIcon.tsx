@@ -1,4 +1,5 @@
 import React, { memo, forwardRef } from 'react'
+import { IconComponent } from "../../types";
 import Icon from '../src/Icon'
 
 const svgPaths16 = [
@@ -10,7 +11,7 @@ const svgPaths20 = [
   'M16 9.25v-.395a.75.75 0 00-.75-.75h-2.813L15.834 3.9A.75.75 0 0016 3.43v-.68a.75.75 0 00-.75-.75h-4.5a.75.75 0 00-.75.75v.184c0 .414.336.75.75.75h2.813L10.22 7.831a1 1 0 00-.221.627v.792c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75z'
 ]
 
-export const NotificationsSnoozeIcon = memo(
+export const NotificationsSnoozeIcon: IconComponent = memo(
   forwardRef(function NotificationsSnoozeIcon(props, ref) {
     return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="notifications-snooze" {...props} />
   })

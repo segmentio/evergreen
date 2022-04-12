@@ -1,4 +1,5 @@
 import React, { memo, forwardRef } from 'react'
+import { IconComponent } from "../../types";
 import Icon from '../src/Icon'
 
 const svgPaths16 = [
@@ -8,7 +9,7 @@ const svgPaths20 = [
   'M11.41 10l3.29-3.29c.19-.18.3-.43.3-.71a1.003 1.003 0 00-1.71-.71L10 8.59l-3.29-3.3a1.003 1.003 0 00-1.42 1.42L8.59 10 5.3 13.29c-.19.18-.3.43-.3.71a1.003 1.003 0 001.71.71l3.29-3.3 3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 00.71-1.71L11.41 10z'
 ]
 
-export const SmallCrossIcon = memo(
+export const SmallCrossIcon: IconComponent = memo(
   forwardRef(function SmallCrossIcon(props, ref) {
     return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="small-cross" {...props} />
   })

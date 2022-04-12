@@ -1,9 +1,10 @@
 import React, { memo, forwardRef, useState, useRef, useCallback } from 'react'
 import isEmpty from 'lodash.isempty'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
-import { Key } from '../../constants'
+import Box, { PolymorphicBoxProps } from 'ui-box'
+import { Key, MimeType } from '../../constants'
 import { FormField } from '../../form-field'
+import { FormFieldOwnProps } from '../../form-field/src/FormField'
 import { useStyleConfig } from '../../hooks'
 import { UploadIcon } from '../../icons'
 import arrayToCsv from '../../lib/array-to-csv'
@@ -13,9 +14,57 @@ import { majorScale } from '../../scales'
 import { useTheme } from '../../theme'
 import { Text, Paragraph } from '../../typography'
 import FileCard from './FileCard'
+import { FileRejection } from './types/file-rejection'
 import getFileDataTransferItems from './utils/get-file-data-transfer-items'
 import { getMaxFilesMessage } from './utils/messages'
 import splitFiles from './utils/split-files'
+
+export interface FileUploaderOwnProps extends FormFieldOwnProps {
+  /**
+   * MIME types (not file extensions) to accept
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
+   */
+  acceptedMimeTypes?: MimeType[]
+  /**
+   * When true, displays a disabled state where drops don't fire and the native browser picker doesn't open
+   */
+  disabled?: boolean
+  /**
+   * Maximum number of files to accept
+   */
+  maxFiles?: number
+  /**
+   * Maximum size of an **individual** file to accept
+   */
+  maxSizeInBytes?: number
+  /**
+   * Callback for when files are accepted via drop or the native browser picker.
+   */
+  onAccepted?: (files: File[]) => void
+  /**
+   * Callback for when files are added via drop or the native browser picker, which includes both
+   * the accepted and rejected files.
+   */
+  onChange?: (files: File[]) => void
+  /**
+   * Callback for when files are rejected via drop or the native browser picker
+   */
+  onRejected?: (fileRejections: FileRejection[]) => void
+  /**
+   * Callback to fire when a file should be removed
+   */
+  onRemove?: (file: File) => void
+  /**
+   * Custom render function for displaying the file underneath the uploader
+   */
+  renderFile?: (file: File, index: number) => React.ReactNode
+  /**
+   * File values to render underneath the uploader
+   */
+  values?: File[]
+}
+
+export type FileUploaderProps = PolymorphicBoxProps<'div', FileUploaderOwnProps>
 
 const UploaderState = {
   Initial: 'initial',
@@ -39,7 +88,7 @@ const pseudoSelectors = {
 }
 const internalStyles = {}
 
-const FileUploader = memo(
+const FileUploader: React.FC<FileUploaderProps> = memo(
   forwardRef((props, ref) => {
     const {
       acceptedMimeTypes,
@@ -72,7 +121,7 @@ const FileUploader = memo(
      * https://stackoverflow.com/a/45846251
      */
     const [fileInputKey, setFileInputKey] = useState(0)
-    const fileInputRef = useRef(null)
+    const fileInputRef = useRef<HTMLInputElement | null>(null)
     const orDragCopy = `or drag ${maxFiles === 1 ? 'a file' : 'files'} here`
 
     // If the dropzone is meant to be a single file input and we already have a file, don't render
@@ -85,10 +134,7 @@ const FileUploader = memo(
     }, [])
 
     const handleChange = useCallback(
-      /**
-       * @param {FileList} fileList
-       */
-      fileList => {
+      (fileList: FileList) => {
         setFileInputKey(prev => prev + 1)
 
         if (isEmpty(fileList)) {
@@ -96,7 +142,7 @@ const FileUploader = memo(
           return
         }
 
-        const files = [...fileList]
+        const files = [...((fileList as any) as File[])]
         safeInvoke(onChange, files)
 
         const { accepted, rejected } = splitFiles(files, {
@@ -130,10 +176,7 @@ const FileUploader = memo(
     }, [disabled])
 
     const handleDragOver = useCallback(
-      /**
-       * @param {React.DragEvent<HTMLDivElement>} event
-       */
-      event => {
+      (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault()
         event.stopPropagation()
         event.dataTransfer.dropEffect = 'copy'
@@ -165,10 +208,7 @@ const FileUploader = memo(
     const handleDragLeave = useCallback(() => resetState(), [resetState])
 
     const handleDrop = useCallback(
-      /**
-       * @param {React.DragEvent<HTMLDivElement>} event
-       */
-      event => {
+      (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault()
         event.stopPropagation()
 
@@ -183,26 +223,21 @@ const FileUploader = memo(
     )
 
     const handleInputChange = useCallback(
-      /**
-       * @param {React.ChangeEvent<HTMLInputElement>} event
-       */
-      event => {
+      (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { files } = event.target
         // Theoretically the input should not be accessible at all when disabled,
         // but this should act as a safeguard
-        if (disabled) {
+        if (disabled || files == null) {
           return
         }
 
-        handleChange(event.target.files)
+        handleChange(files)
       },
       [disabled, handleChange]
     )
 
     const handleKeyDown = useCallback(
-      /**
-       * @param {React.KeyboardEvent<HTMLDivElement>} event
-       */
-      event => {
+      (event: React.KeyboardEvent<HTMLDivElement>) => {
         if (event.key !== Key.Enter && event.key !== Key.Space) {
           return
         }
@@ -272,23 +307,18 @@ const FileUploader = memo(
           )}
         </FormField>
         <Box marginTop={majorScale(2)}>
-          {values?.map(
-            /**
-             * @param {File} file
-             * @param {number} index
-             */
-            (file, index) =>
-              isFunction(renderFile) ? (
-                renderFile(file, index)
-              ) : (
-                <FileCard
-                  key={`${file.name}-${index}`}
-                  name={file.name}
-                  onRemove={isFunction(onRemove) ? () => onRemove(file) : undefined}
-                  sizeInBytes={file.size}
-                  type={file.type}
-                />
-              )
+          {values?.map((file: File, index: number) =>
+            isFunction(renderFile) ? (
+              renderFile(file, index)
+            ) : (
+              <FileCard
+                key={`${file.name}-${index}`}
+                name={file.name}
+                onRemove={isFunction(onRemove) ? () => onRemove(file) : undefined}
+                sizeInBytes={file.size}
+                type={file.type}
+              />
+            )
           )}
         </Box>
       </Box>

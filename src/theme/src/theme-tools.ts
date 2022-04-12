@@ -1,4 +1,5 @@
 import merge from 'lodash.merge'
+import { Theme } from '../../types/theme/theme'
 
 export function get(obj: any, path: any, fallback: any) {
   const keys = path && path.split ? path.split('.') : [path]
@@ -26,7 +27,10 @@ export function getValue(theme: any, pathOrValue: any) {
  * @param destinationTheme Theme object to merge on top of
  * @param sourceTheme Theme object that adds or overrides values
  */
-export function mergeTheme(destinationTheme: any, sourceTheme: any) {
+export function mergeTheme<TDestinationTheme extends Theme, TSourceTheme extends Partial<Theme>>(
+  destinationTheme: TDestinationTheme,
+  sourceTheme: TSourceTheme
+): TDestinationTheme & TSourceTheme {
   return merge({}, destinationTheme, sourceTheme)
 }
 

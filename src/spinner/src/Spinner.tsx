@@ -1,8 +1,20 @@
 import React, { useState, useEffect, forwardRef, memo } from 'react'
 import { css } from 'glamor'
-import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
+
+export interface SpinnerOwnProps {
+    /**
+     * Delay after which spinner should be visible.
+     */
+    delay?: number;
+    /**
+     * The size of the spinner.
+     */
+    size?: number;
+}
+
+export type SpinnerProps = PolymorphicBoxProps<'div', SpinnerOwnProps>;
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const loadingKeyframes = css.keyframes('loading', {
@@ -41,8 +53,7 @@ const innerClass = (color: any) => css({
 
 const emptyObject = {}
 
-const Spinner = memo(
-  // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
+const Spinner: React.FC<SpinnerProps> = memo(
   forwardRef(function Spinner({ delay = 0, size = 'medium', ...props }, ref) {
     const [isVisible, setIsVisible] = useState(delay === 0)
 
@@ -76,24 +87,5 @@ const Spinner = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-Spinner.propTypes = {
-  /**
-   * Composes the Box component as the base.
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type '<E ex... Remove this comment to see the full error message
-  ...Box.propTypes,
-
-  /**
-   * Delay after which spinner should be visible.
-   */
-  delay: PropTypes.number,
-
-  /**
-   * The size of the spinner.
-   */
-  size: PropTypes.number
-}
 
 export default Spinner

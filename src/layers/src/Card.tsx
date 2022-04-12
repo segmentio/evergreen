@@ -1,22 +1,20 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
+import { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
-import Pane from './Pane'
+import Pane, { PaneOwnProps } from './Pane'
+
+export type CardProps<T extends React.ElementType<any> = 'div'> = PolymorphicBoxProps<T, CardOwnProps>
+export type CardOwnProps = PaneOwnProps
 
 const emptyObject = {}
 
-const Card = memo(
-  // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
-  forwardRef(function Card({ className, ...props }, ref) {
-    const { className: themedClassName, ...styleProps } = useStyleConfig('Card', emptyObject, emptyObject, emptyObject)
-    return <Pane className={cx(className, themedClassName)} {...styleProps} {...props} ref={ref} />
-  })
-)
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-Card.propTypes = {
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  ...Pane.propTypes
+function Card<T extends React.ElementType<any> = 'div'>(
+  { className, ...props }: CardProps<T>,
+  ref: React.Ref<JSX.LibraryManagedAttributes<T, React.ComponentPropsWithRef<T>>>
+) {
+  const { className: themedClassName, ...styleProps } = useStyleConfig('Card', emptyObject, emptyObject, emptyObject)
+  return <Pane className={cx(className, themedClassName)} {...styleProps} {...props} ref={ref} />
 }
 
-export default Card
+export default memo(forwardRef(Card))

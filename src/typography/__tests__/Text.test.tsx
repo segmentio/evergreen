@@ -69,7 +69,6 @@ describe('Sizing', () => {
   })
 
   test('<Text /> has undefined behavior when trying to set arbitrary sizes', () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
     render(<Text size={800} />)
     expect(mockFn.mock.calls.length).toEqual(1)
     expect(mockFn.mock.calls[0][0]).toMatchInlineSnapshot(`
@@ -88,7 +87,6 @@ describe('Props', () => {
   it('should forward `className` prop', () => {
     const expected = faker.random.word().toLowerCase()
     const component = (
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <Text data-testid="text" className={expected}>
         Testing
       </Text>

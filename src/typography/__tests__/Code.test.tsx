@@ -13,7 +13,6 @@ expect.addSnapshotSerializer(UIBoxSerializer)
 
 describe('Code', () => {
   it('Should render', () => {
-    // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
     expect(() => render(<Code>This is my code</Code>)).not.toThrow()
   })
 
@@ -56,7 +55,6 @@ describe('Code', () => {
   it('should pass through `className` prop', () => {
     const expected = faker.random.word().toLowerCase()
     const component = (
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <Code data-testid="code" className={expected}>
         Testing
       </Code>

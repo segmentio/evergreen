@@ -1,8 +1,59 @@
 import React, { memo, forwardRef } from 'react'
-import PropTypes from 'prop-types'
-import Box, { spacing, position, layout, dimensions } from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
+import { DefaultAppearance } from '../../..'
 import { useStyleConfig } from '../../hooks'
 import { Text } from '../../typography'
+
+export interface RadioOwnProps {
+  /**
+   * The id attribute of the radio.
+   */
+  id?: string
+  /**
+   * The name attribute of the radio.
+   */
+  name?: string
+  /**
+   * Label of the radio.
+   */
+  label?: React.ReactNode
+  /**
+   * The value attribute of the radio.
+   */
+  value?: string
+  /**
+   * When true, the radio is disabled.
+   */
+  disabled?: boolean
+  /**
+   * When true, the radio is checked.
+   */
+  checked?: boolean
+  /**
+   * The size of the radio circle. This also informs the text size and spacing.
+   */
+  size?: 12 | 16 | number
+  /**
+   * When true, the radio get the required attribute.
+   */
+  isRequired?: boolean
+  /**
+   * When true, the aria-invalid attribute is true.
+   * Used for accessibility.
+   */
+  isInvalid?: boolean
+  /**
+   * The appearance of the checkbox.
+   * The default theme only comes with a default style.
+   */
+  appearance?: DefaultAppearance
+  /**
+   * Function called when state changes.
+   */
+  onChange?(event: React.ChangeEvent<HTMLInputElement>): void
+}
+
+export type RadioProps = PolymorphicBoxProps<'label', RadioOwnProps>
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'fill' does not exist on type '{ children... Remove this comment to see the full error message
 const CircleIcon = memo(function CircleIcon({ fill = 'currentColor', size, ...props }) {
@@ -12,12 +63,6 @@ const CircleIcon = memo(function CircleIcon({ fill = 'currentColor', size, ...pr
     </svg>
   )
 })
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
-CircleIcon.propTypes = {
-  fill: PropTypes.string,
-  size: PropTypes.number
-}
 
 const noop = () => {}
 
@@ -55,7 +100,7 @@ const internalStyles = {
   }
 }
 
-const Radio = memo(
+const Radio: React.FC<RadioProps> = memo(
   forwardRef(function Radio(props, ref) {
     const {
       id,
@@ -69,7 +114,6 @@ const Radio = memo(
       size = 12,
       isRequired = false,
       appearance = 'default',
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
@@ -120,7 +164,6 @@ const Radio = memo(
           <CircleIcon size={size / 2} />
         </Box>
         {label && (
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           <Text marginLeft={size === 12 ? 8 : 10} size={size === 12 ? 300 : 400} color={disabled ? 'muted' : 'default'}>
             {label}
           </Text>
@@ -129,77 +172,5 @@ const Radio = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-Radio.propTypes = {
-  /**
-   * Composes some Box APIs.
-   */
-  ...spacing.propTypes,
-  ...position.propTypes,
-  ...layout.propTypes,
-  ...dimensions.propTypes,
-
-  /**
-   * The id attribute of the radio.
-   */
-  id: PropTypes.string,
-
-  /**
-   * The name attribute of the radio.
-   */
-  name: PropTypes.string,
-
-  /**
-   * Label of the radio.
-   */
-  label: PropTypes.node,
-
-  /**
-   * The value attribute of the radio.
-   */
-  value: PropTypes.string,
-
-  /**
-   * Function called when state changes
-   * Signature:
-   * ```
-   * function(event: object, checked: boolean) => void
-   * ```
-   */
-  onChange: PropTypes.func,
-
-  /**
-   * When true, the radio is disabled.
-   */
-  disabled: PropTypes.bool,
-
-  /**
-   * When true, the radio is checked.
-   */
-  checked: PropTypes.bool,
-
-  /**
-   * The size of the radio circle. This also informs the text size and spacing.
-   */
-  size: PropTypes.oneOf([12, 16]),
-
-  /**
-   * When true, the radio get the required attribute.
-   */
-  isRequired: PropTypes.bool,
-
-  /**
-   * When true, the aria-invalid attribute is true.
-   * Used for accessibility.
-   */
-  isInvalid: PropTypes.bool,
-
-  /**
-   * The appearance of the checkbox.
-   * The default theme only comes with a default style.
-   */
-  appearance: PropTypes.string
-}
 
 export default Radio

@@ -10,25 +10,21 @@ describe('Avatar', () => {
   })
 
   it('should render question mark when name is empty and no image src', () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
     render(<Avatar name="" />)
     expect(screen.getByText('?')).toBeVisible()
   })
 
   it('should render one char when name is one word and no image src', () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
     render(<Avatar name="Alan" />)
     expect(screen.getByText('A')).toBeVisible()
   })
 
   it('should render first and last initial when name is more than one word and no image src', () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
     render(<Avatar name="Alan Turing Batman" />)
     expect(screen.getByText('AT')).toBeVisible()
   })
 
   it('should render an image when pass in src', () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
     render(<Avatar src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg" />)
     expect(screen.getByRole('img').getAttribute('src')).toEqual(
       'https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg'
@@ -36,19 +32,16 @@ describe('Avatar', () => {
   })
 
   it('should render the according size', () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
     render(<Avatar name="Alan Turing" size={80} />)
     expect(screen.getByTitle('Alan Turing')).toHaveStyle('height: 80px')
   })
 
   it('should render a square if the shape is square', () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
     render(<Avatar name="Alan Turing" shape="square" />)
     expect(screen.getByTitle('Alan Turing')).toHaveStyle('border-top-right-radius: 4px')
   })
 
   it('should render the color when specified', () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
     render(<Avatar name="Alan Turing" color="green" />)
     expect(screen.getByTitle('Alan Turing')).toHaveStyle('background-color: #DCF2EA')
   })

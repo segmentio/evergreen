@@ -1,8 +1,60 @@
 import React, { memo, forwardRef } from 'react'
 import { css } from 'glamor'
-import PropTypes from 'prop-types'
-import Box, { spacing, position, layout } from 'ui-box'
+// @ts-expect-error ts-migrate(6133) FIXME: 'spacing' is declared but its value is never read.
+import Box, { spacing, position, layout, PolymorphicBoxProps } from 'ui-box'
+import { DefaultAppearance } from '../../..'
 import { useStyleConfig } from '../../hooks'
+
+export interface SwitchOwnProps {
+  /**
+   * The id attribute of the radio.
+   */
+  id?: string
+  /**
+   * The name attribute of the radio.
+   */
+  name?: string
+  /**
+   * The value attribute of the radio.
+   */
+  value?: string
+  /**
+   * The height of the switch.
+   */
+  height?: number
+  /**
+   * When true, the switch is checked (on).
+   */
+  checked?: boolean
+  /**
+   * When true, the switch is disabled.
+   */
+  disabled?: boolean
+  /**
+   * When true, the switch is invalid.
+   */
+  isInvalid?: boolean
+  /**
+   * The appearance of the checkbox.
+   * The default theme only comes with a default style.
+   */
+  appearance?: DefaultAppearance
+  /**
+   * When true, the switch has a check icon.
+   */
+  hasCheckIcon?: boolean
+  /**
+   * When true, the switch is true by default.
+   * This is for uncontrolled usage.
+   */
+  defaultChecked?: boolean
+  /**
+   * Function called when state changes.
+   */
+  onChange?(event: React.ChangeEvent<HTMLInputElement>): void
+}
+
+export type SwitchProps = PolymorphicBoxProps<'label', SwitchOwnProps>
 
 const animationEasing = {
   spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
@@ -55,12 +107,6 @@ const CheckIcon = memo(function CheckIcon({ fill = 'currentColor', size, ...prop
   )
 })
 
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
-CheckIcon.propTypes = {
-  fill: PropTypes.string,
-  size: PropTypes.number
-}
-
 const noop = () => {}
 
 const pseudoSelectors = {
@@ -92,7 +138,7 @@ const internalStyles = {
   }
 }
 
-const Switch = memo(
+const Switch: React.FC<SwitchProps> = memo(
   forwardRef(function Switch(props, ref) {
     const {
       id,
@@ -104,7 +150,6 @@ const Switch = memo(
       appearance = 'default',
       hasCheckIcon = false,
       defaultChecked,
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
@@ -145,72 +190,5 @@ const Switch = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-Switch.propTypes = {
-  /**
-   * Composes some Box APIs.
-   */
-  ...spacing.propTypes,
-  ...position.propTypes,
-  ...layout.propTypes,
-
-  /**
-   * The id attribute of the radio.
-   */
-  id: PropTypes.string,
-
-  /**
-   * The name attribute of the radio.
-   */
-  name: PropTypes.string,
-
-  /**
-   * The value attribute of the radio.
-   */
-  value: PropTypes.string,
-
-  /**
-   * The height of the switch.
-   */
-  height: PropTypes.number,
-
-  /**
-   * When true, the switch is checked (on).
-   */
-  checked: PropTypes.bool,
-
-  /**
-   * Function called when state changes.
-   */
-  onChange: PropTypes.func,
-
-  /**
-   * When true, the switch is disabled.
-   */
-  disabled: PropTypes.bool,
-
-  /**
-   * When true, the switch is invalid.
-   */
-  isInvalid: PropTypes.bool,
-
-  /**
-   * The appearance of the checkbox.
-   * The default theme only comes with a default style.
-   */
-  appearance: PropTypes.string,
-
-  /**
-   * When true, the switch has a check icon.
-   */
-  hasCheckIcon: PropTypes.bool,
-
-  /**
-   * When true, the switch is true by default.
-   * This is for uncontrolled usage.
-   */
-  defaultChecked: PropTypes.bool
-}
 
 export default Switch

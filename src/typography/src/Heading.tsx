@@ -1,15 +1,20 @@
 import React, { forwardRef, memo } from 'react'
 import cx from 'classnames'
-import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
+import { Size } from "../../.."
 import { useStyleConfig } from '../../hooks'
+
+export interface HeadingOwnProps {
+    size?: Size;
+}
+
+export type HeadingProps = PolymorphicBoxProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6', HeadingOwnProps>;
 
 const pseudoSelectors = {}
 const internalStyles = {}
 
-const Heading = memo(
+const Heading: React.FC<HeadingProps> = memo(
   forwardRef(function Heading(props, ref) {
-    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { className, size = 500, ...restProps } = props
     const { className: themedClassName, ...styleProps } = useStyleConfig(
       'Heading',
@@ -31,19 +36,5 @@ const Heading = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-Heading.propTypes = {
-  /**
-   * Heading composes Box as the base.
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type '<E ex... Remove this comment to see the full error message
-  ...Box.propTypes,
-
-  /**
-   * The size of the heading.
-   */
-  size: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900])
-}
 
 export default Heading

@@ -1,4 +1,5 @@
 import React, { memo, forwardRef } from 'react'
+import { IconComponent } from "../../types";
 import Icon from '../src/Icon'
 
 const svgPaths16 = [
@@ -10,7 +11,7 @@ const svgPaths20 = [
   'M10-.08V10h10C20 4 15.52-.08 10-.08z'
 ]
 
-export const PieChartIcon = memo(
+export const PieChartIcon: IconComponent = memo(
   forwardRef(function PieChartIcon(props, ref) {
     return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="pie-chart" {...props} />
   })

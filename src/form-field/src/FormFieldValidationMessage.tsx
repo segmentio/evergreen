@@ -1,10 +1,16 @@
 import React, { memo, forwardRef } from 'react'
+import { PolymorphicBoxProps } from "ui-box";
 import { ErrorIcon } from '../../icons'
 import { Pane } from '../../layers'
+import { PaneOwnProps } from "../../layers/src/Pane";
 import { Paragraph } from '../../typography'
 
-const FormFieldValidationMessage = memo(
-  // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
+export interface FormFieldValidationMessageOwnProps extends PaneOwnProps {
+}
+
+export type FormFieldValidationMessageProps = PolymorphicBoxProps<'div', FormFieldValidationMessageOwnProps>;
+
+const FormFieldValidationMessage: React.FC<FormFieldValidationMessageProps> = memo(
   forwardRef(function FormFieldValidationMessage({ children, ...props }, ref) {
     return (
       <Pane ref={ref} display="flex" {...props}>
@@ -22,14 +28,5 @@ const FormFieldValidationMessage = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-FormFieldValidationMessage.propTypes = {
-  /**
-   * Composes the Pane component as the base.
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  ...Pane.propTypes
-}
 
 export default FormFieldValidationMessage

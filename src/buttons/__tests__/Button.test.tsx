@@ -25,7 +25,6 @@ describe.each([
 
 function makeButtonFixture(props = {}) {
   return (
-    // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
     <Button data-testid="button" {...props}>
       Test
     </Button>
@@ -98,7 +97,6 @@ describe('IconButton', () => {
     expect(container.querySelector('svg')).toHaveAttribute('data-icon', 'lock')
   })
   it('Passes through an instantiated component as `icon`', () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
     const { getByTestId } = render(makeIconButtonFixture({ icon: <LockIcon size={24} /> }))
     const container = getByTestId('button')
     const svg = container.querySelector('svg')

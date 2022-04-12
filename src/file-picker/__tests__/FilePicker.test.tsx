@@ -11,7 +11,6 @@ describe('<FilePicker />', () => {
   })
 
   it('sets name', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
     const { container } = render(<FilePicker name="hi" />)
 
     const fileInput = container.querySelector('input[type=file]')
@@ -22,7 +21,6 @@ describe('<FilePicker />', () => {
   })
 
   it('sets accept', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
     const { container } = render(<FilePicker accept="application/json" />)
 
     const fileInput = container.querySelector('input[type=file]')
@@ -31,7 +29,6 @@ describe('<FilePicker />', () => {
   })
 
   it('sets required', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.
     const { container } = render(<FilePicker required />)
 
     const fileInput = container.querySelector('input[type=file]')
@@ -40,7 +37,6 @@ describe('<FilePicker />', () => {
   })
 
   it('sets multiple', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.
     const { container } = render(<FilePicker multiple />)
 
     const fileInput = container.querySelector('input[type=file]')
@@ -49,7 +45,6 @@ describe('<FilePicker />', () => {
   })
 
   it('sets disabled', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.
     const { container } = render(<FilePicker disabled />)
 
     const fileInput = container.querySelector('input[type=file]')
@@ -62,7 +57,6 @@ describe('<FilePicker />', () => {
   })
 
   it('sets capture', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.
     const { container } = render(<FilePicker capture />)
 
     const fileInput = container.querySelector('input[type=file]')
@@ -71,7 +65,6 @@ describe('<FilePicker />', () => {
   })
 
   it('passes through height', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
     const { container } = render(<FilePicker height={20} />)
 
     const input = container.querySelector('input[type=text]')
@@ -84,7 +77,6 @@ describe('<FilePicker />', () => {
   })
 
   it('passes through props', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
     const { container } = render(<FilePicker width={20} />)
 
     const root = container.querySelector(`.${CLASS_PREFIX}-root`)
@@ -94,7 +86,6 @@ describe('<FilePicker />', () => {
 
   it('calls onChange', async () => {
     const onChange = jest.fn()
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Mock<any, any>' is not assignable to type 'n... Remove this comment to see the full error message
     const { container } = render(<FilePicker onChange={onChange} />)
 
     const fileInput = container.querySelector('input[type=file]')
@@ -115,7 +106,6 @@ describe('<FilePicker />', () => {
    */
   it.skip('calls onBlur', async () => {
     const onBlur = jest.fn()
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Mock<any, any>' is not assignable to type 'n... Remove this comment to see the full error message
     const { container } = render(<FilePicker onBlur={onBlur} />)
 
     const fileInput = container.querySelector('input[type=file]')
@@ -135,7 +125,6 @@ describe('<FilePicker />', () => {
   })
 
   it('sets placeholder', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
     render(<FilePicker placeholder="placeholder here!" />)
 
     const input = await screen.findByPlaceholderText('placeholder here!')

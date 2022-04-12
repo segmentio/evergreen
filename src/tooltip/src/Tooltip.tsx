@@ -2,30 +2,63 @@ import React, { memo, useState, useEffect, useRef } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
 import debounce from 'lodash.debounce'
-import PropTypes from 'prop-types'
+import { PolymorphicBoxProps } from 'ui-box'
+import { TooltipAppearance, PositionTypes } from '../../..'
 import { Position } from '../../constants'
 import { useId } from '../../hooks'
 import { Positioner } from '../../positioner'
-import TooltipStateless from './TooltipStateless'
+import TooltipStateless, { TooltipStatelessProps } from './TooltipStateless'
 
-const emptyProps = {}
+export interface TooltipProps {
+  /**
+   * The appearance of the Tooltip.
+   */
+  appearance?: TooltipAppearance
+  /**
+   * The position the Tooltip is on.
+   */
+  position?: PositionTypes
+  /**
+   * The content of the Tooltip.
+   */
+  content: React.ReactNode
+  /**
+   * Time in ms before hiding the Tooltip.
+   */
+  hideDelay?: number
+  /**
+   * Time in ms before showing the Tooltip.
+   */
+  showDelay?: number
+  /**
+   * When true, manually show the Tooltip.
+   */
+  isShown?: boolean
+  /**
+   * Properties passed through to the Tooltip.
+   */
+  statelessProps?: PolymorphicBoxProps<'div', TooltipStatelessProps>
+}
 
-const Tooltip = memo(function Tooltip(props) {
+const emptyProps: PolymorphicBoxProps<'div', TooltipStatelessProps> = {}
+
+const maybeClearTimeout = (timeout: NodeJS.Timeout | undefined) => {
+  if (timeout == null) {
+    return
+  }
+
+  clearTimeout(timeout)
+}
+
+const Tooltip: React.FC<TooltipProps> = memo(function Tooltip(props) {
   const {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'appearance' does not exist on type '{ ch... Remove this comment to see the full error message
     appearance = 'default',
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'position' does not exist on type '{ chil... Remove this comment to see the full error message
     position = Position.BOTTOM,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'content' does not exist on type '{ child... Remove this comment to see the full error message
     content,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hideDelay' does not exist on type '{ chi... Remove this comment to see the full error message
     hideDelay = 120,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'showDelay' does not exist on type '{ chi... Remove this comment to see the full error message
     showDelay = 0,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isShown' does not exist on type '{ child... Remove this comment to see the full error message
     isShown: propIsShown,
     children,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'statelessProps' does not exist on type '... Remove this comment to see the full error message
     statelessProps = emptyProps
   } = props
 
@@ -33,7 +66,7 @@ const Tooltip = memo(function Tooltip(props) {
   const id = useId('evergreen-tooltip')
   const [isShown, setIsShown] = useState(propIsShown || false)
   const [isShownByTarget, setIsShownByTarget] = useState(false)
-  const closeTimer = useRef(undefined)
+  const closeTimer = useRef<NodeJS.Timeout | undefined>(undefined)
 
   const mouseLeftTarget = () => {
     setIsShownByTarget(false)
@@ -44,7 +77,7 @@ const Tooltip = memo(function Tooltip(props) {
   const hide = () => {
     setIsShown(false)
     // Clean up any timeouts that may have been triggered from `showDelay`
-    clearTimeout(closeTimer.current)
+    maybeClearTimeout(closeTimer.current)
   }
 
   const handleHide = debounce(hide, hideDelay)
@@ -52,7 +85,7 @@ const Tooltip = memo(function Tooltip(props) {
   // Component will unmount
   useEffect(
     () => () => {
-      clearTimeout(closeTimer.current)
+      maybeClearTimeout(closeTimer.current)
     },
     []
   )
@@ -65,16 +98,13 @@ const Tooltip = memo(function Tooltip(props) {
       return
     }
 
-    clearTimeout(closeTimer.current)
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Timeout' is not assignable to type 'undefine... Remove this comment to see the full error message
+    maybeClearTimeout(closeTimer.current)
     closeTimer.current = setTimeout(() => {
       setIsShown(true)
     }, showDelay)
   }
 
-  const renderTarget = ({
-    getRef
-  }: any) => {
+  const renderTarget = ({ getRef }: any) => {
     const tooltipTargetProps = {
       onMouseEnter: show,
       onMouseLeave: handleHide,
@@ -92,7 +122,7 @@ const Tooltip = memo(function Tooltip(props) {
       const {
         // eslint-disable-next-line react/prop-types
         getTargetRef,
-        // eslint-disable-next-line react/prop-types
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         isShown,
         ...popoverTargetProps
         // @ts-expect-error ts-migrate(2339) FIXME: Property 'popoverProps' does not exist on type 'Pr... Remove this comment to see the full error message
@@ -112,7 +142,7 @@ const Tooltip = memo(function Tooltip(props) {
           // Pass the ref to the Popover.
           getTargetRef(ref)
         }
-      });
+      })
     }
 
     /**
@@ -124,7 +154,7 @@ const Tooltip = memo(function Tooltip(props) {
       ref: (ref: any) => {
         getRef(ref)
       }
-    });
+    })
   }
 
   // @ts-expect-error ts-migrate(2339) FIXME: Property 'popoverProps' does not exist on type 'Pr... Remove this comment to see the full error message
@@ -143,14 +173,8 @@ const Tooltip = memo(function Tooltip(props) {
   }
 
   return (
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: ({ css, getRef, state, style }: ... Remove this comment to see the full error message
     <Positioner target={renderTarget} isShown={shown} position={position} animationDuration={160}>
-      {({
-        css,
-        getRef,
-        state,
-        style
-      }: any) => (
+      {({ css, getRef, state, style }: any) => (
         <TooltipStateless
           id={id}
           appearance={appearance}
@@ -166,59 +190,7 @@ const Tooltip = memo(function Tooltip(props) {
         </TooltipStateless>
       )}
     </Positioner>
-  );
+  )
 })
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
-Tooltip.propTypes = {
-  /**
-   * The appearance of the tooltip.
-   */
-  appearance: PropTypes.oneOf(['default', 'card']),
-
-  /**
-   * The position the Popover is on.
-   */
-  position: PropTypes.oneOf([
-    Position.TOP,
-    Position.TOP_LEFT,
-    Position.TOP_RIGHT,
-    Position.BOTTOM,
-    Position.BOTTOM_LEFT,
-    Position.BOTTOM_RIGHT,
-    Position.LEFT,
-    Position.RIGHT
-  ]),
-
-  /**
-   * The content of the Popover.
-   */
-  content: PropTypes.node,
-
-  /**
-   * Time in ms before hiding the Tooltip.
-   */
-  hideDelay: PropTypes.number,
-
-  /**
-   * Time in ms before showing the Tooltip.
-   */
-  showDelay: PropTypes.number,
-
-  /**
-   * When True, manually show the Tooltip.
-   */
-  isShown: PropTypes.bool,
-
-  /**
-   * The target button of the Tooltip.
-   */
-  children: PropTypes.node,
-
-  /**
-   * Properties passed through to the Tooltip.
-   */
-  statelessProps: PropTypes.object
-}
 
 export default Tooltip

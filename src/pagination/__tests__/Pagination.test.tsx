@@ -5,7 +5,6 @@ import BasePaginationFixture from '../fixtures/BasePaginationFixture'
 
 describe('Pagination', () => {
   it('Shows the number of items if its not overflowing', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
     const { findByRole } = render(<Pagination page={1} totalPages={5} />)
     const container = await findByRole('navigation')
     expect(container.querySelectorAll('li')).toHaveLength(7)
@@ -15,7 +14,6 @@ describe('Pagination', () => {
   })
 
   it('Shows a maximum # of items if it is overflowing', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
     const { findByRole } = render(<Pagination page={1} totalPages={10} />)
     const container = await findByRole('navigation')
     // Two handles + a max of 7 list items
@@ -23,7 +21,6 @@ describe('Pagination', () => {
   })
 
   it('Shows ellipses if the component is overflowing and page < 4', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
     const { findByRole } = render(<Pagination page={1} totalPages={10} />)
     const container = await findByRole('navigation')
     expect(container.getElementsByTagName('span')).toHaveLength(1)
@@ -31,21 +28,18 @@ describe('Pagination', () => {
   })
 
   it('Shows two ellipses if the component is overflowing and page > 4 and page < totalPages - 4', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
     const { findByRole } = render(<Pagination page={5} totalPages={10} />)
     const container = await findByRole('navigation')
     expect(container.getElementsByTagName('span')).toHaveLength(2)
   })
 
   it('Shows one ellipsis if the totalPages - page < 4', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
     const { findByRole } = render(<Pagination page={7} totalPages={10} />)
     const container = await findByRole('navigation')
     expect(container.getElementsByTagName('span')).toHaveLength(1)
   })
 
   it('Only renders handles if there are an unknown # of pages', async () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
     const { findByRole } = render(<Pagination page={5} />)
     const container = await findByRole('navigation')
     expect(container.querySelectorAll('li')).toHaveLength(2)

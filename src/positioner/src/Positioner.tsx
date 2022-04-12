@@ -1,20 +1,54 @@
-import React, { memo, useCallback, useState, useEffect, useRef } from 'react'
-import PropTypes from 'prop-types'
+import React, { memo, useCallback, useState, useEffect, useRef, CSSProperties } from 'react'
+import { StyleAttribute } from 'glamor'
 import { Transition } from 'react-transition-group'
+import { PositionTypes, PositionState } from '../../..'
 import { StackingOrder, Position } from '../../constants'
 import { useMergedRef, usePrevious } from '../../hooks'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
+import { StackProps } from '../../stack/src/Stack'
 import getPosition from './getPosition'
+
+export interface PositionerProps {
+  position?: PositionTypes
+  isShown?: boolean
+  children: (params: {
+    top: number
+    left: number
+    zIndex: NonNullable<StackProps['value']>
+    css: StyleAttribute | CSSProperties
+    style: {
+      transformOrigin: string
+      left: number
+      top: number
+      zIndex: NonNullable<StackProps['value']>
+    }
+    getRef: (ref: React.RefObject<HTMLElement>) => void
+    animationDuration: PositionerProps['animationDuration']
+    state: PositionState
+  }) => React.ReactNode
+  bodyOffset?: number
+  targetOffset?: number
+  target: (params: { getRef: () => React.RefObject<HTMLElement>; isShown: boolean }) => React.ReactNode
+  initialScale?: number
+  animationDuration?: number
+  onCloseComplete?: () => void
+  onOpenComplete?: () => void
+}
+
+interface Dimensions {
+  top: number
+  left: number
+  height: number
+  width: number
+  transformOrigin: string | null
+}
 
 const animationEasing = {
   spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
-const getCSS = ({
-  animationDuration,
-  initialScale
-}: any) => ({
+const getCSS = ({ animationDuration, initialScale }: any) => ({
   position: 'fixed',
   opacity: 0,
   transitionTimingFunction: animationEasing.spring,
@@ -33,7 +67,7 @@ const getCSS = ({
 })
 
 const noop = () => {}
-const initialDimensions = {
+const initialDimensions: Dimensions = {
   left: 0,
   top: 0,
   height: 0,
@@ -41,26 +75,17 @@ const initialDimensions = {
   transformOrigin: null
 }
 
-const Positioner = memo(function Positioner(props) {
+const Positioner: React.FC<PositionerProps> = memo(function Positioner(props) {
   const {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'target' does not exist on type '{ childr... Remove this comment to see the full error message
     target,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isShown' does not exist on type '{ child... Remove this comment to see the full error message
     isShown,
     children,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'initialScale' does not exist on type '{ ... Remove this comment to see the full error message
     initialScale = 0.9,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'animationDuration' does not exist on typ... Remove this comment to see the full error message
     animationDuration = 300,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'position' does not exist on type '{ chil... Remove this comment to see the full error message
     position = Position.BOTTOM,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'bodyOffset' does not exist on type '{ ch... Remove this comment to see the full error message
     bodyOffset = 6,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'targetOffset' does not exist on type '{ ... Remove this comment to see the full error message
     targetOffset = 6,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onOpenComplete' does not exist on type '... Remove this comment to see the full error message
     onOpenComplete = noop,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onCloseComplete' does not exist on type ... Remove this comment to see the full error message
     onCloseComplete = noop
   } = props
 
@@ -131,7 +156,6 @@ const Positioner = memo(function Positioner(props) {
         top: rect.top,
         height,
         width,
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'null'.
         transformOrigin
       })
     },
@@ -150,7 +174,6 @@ const Positioner = memo(function Positioner(props) {
 
     return () => {
       if (latestAnimationFrame.current) {
-        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'undefined' is not assignable to ... Remove this comment to see the full error message
         cancelAnimationFrame(latestAnimationFrame.current)
       }
     }
@@ -180,13 +203,12 @@ const Positioner = memo(function Positioner(props) {
   })
 
   return (
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: (zIndex: any) => Element; value:... Remove this comment to see the full error message
     <Stack value={StackingOrder.POSITIONER}>
       {(zIndex: any) => {
         return (
           <React.Fragment>
+            {/* @ts-expect-error ts-migrate(2322) FIXME: Type '((node: any) => void) | null' is not assigna... Remove this comment to see the full error message */}
             {target({ getRef: setTargetRef, isShown })}
-
             <Transition
               nodeRef={positionerRef}
               appear
@@ -199,24 +221,24 @@ const Positioner = memo(function Positioner(props) {
             >
               {state => (
                 <Portal>
-                  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
-                  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
-                  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                   {children({
                     top: dimensions.top,
                     left: dimensions.left,
+                    // @ts-expect-error ts-migrate(2322) FIXME: Type 'TransitionStatus' is not assignable to type ... Remove this comment to see the full error message
                     state,
                     zIndex,
+                    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ position: string; opacity: number; transit... Remove this comment to see the full error message
                     css: getCSS({
                       initialScale,
                       animationDuration
                     }),
                     style: {
-                      transformOrigin: dimensions.transformOrigin,
+                      transformOrigin: dimensions.transformOrigin!,
                       left: dimensions.left,
                       top: dimensions.top,
                       zIndex
                     },
+                    // @ts-expect-error
                     getRef,
                     animationDuration
                   })}
@@ -227,71 +249,7 @@ const Positioner = memo(function Positioner(props) {
         )
       }}
     </Stack>
-  );
+  )
 })
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
-Positioner.propTypes = {
-  /**
-   * The position the element that is being positioned is on.
-   * Smart positioning might override this.
-   */
-  position: PropTypes.oneOf([
-    Position.TOP,
-    Position.TOP_LEFT,
-    Position.TOP_RIGHT,
-    Position.BOTTOM,
-    Position.BOTTOM_LEFT,
-    Position.BOTTOM_RIGHT,
-    Position.LEFT,
-    Position.RIGHT
-  ]),
-
-  /**
-   * When true, show the element being positioned.
-   */
-  isShown: PropTypes.bool,
-
-  /**
-   * Function that returns the element being positioned.
-   */
-  children: PropTypes.func.isRequired,
-
-  /**
-   * The minimum distance from the body to the element being positioned.
-   */
-  bodyOffset: PropTypes.number,
-
-  /**
-   * The minimum distance from the target to the element being positioned.
-   */
-  targetOffset: PropTypes.number,
-
-  /**
-   * Function that should return a node for the target.
-   * ({ getRef: () -> Ref, isShown: Bool }) -> React Node
-   */
-  target: PropTypes.func.isRequired,
-
-  /**
-   * Initial scale of the element being positioned.
-   */
-  initialScale: PropTypes.number,
-
-  /**
-   * Duration of the animation.
-   */
-  animationDuration: PropTypes.number,
-
-  /**
-   * Function that will be called when the exit transition is complete.
-   */
-  onCloseComplete: PropTypes.func,
-
-  /**
-   * Function that will be called when the enter transition is complete.
-   */
-  onOpenComplete: PropTypes.func
-}
 
 export default Positioner

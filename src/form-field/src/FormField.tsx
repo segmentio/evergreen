@@ -1,12 +1,49 @@
 import React, { memo, forwardRef } from 'react'
-import PropTypes from 'prop-types'
-import Box, { dimensions, spacing, position, layout } from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
 import FormFieldDescription from './FormFieldDescription'
 import FormFieldHint from './FormFieldHint'
 import FormFieldLabel from './FormFieldLabel'
 import FormFieldValidationMessage from './FormFieldValidationMessage'
 
-const FormField = memo(
+export interface FormFieldOwnProps {
+    /**
+     * The label used above the input element.
+     */
+    label?: React.ReactNode;
+    /**
+     * Passed on the label as a htmlFor prop.
+     */
+    labelFor?: string;
+    /**
+     * Wether or not show a asterix after the label.
+     */
+    isRequired?: boolean;
+    /**
+     * A optional description of the field under the label, above the input element.
+     */
+    description?: React.ReactNode;
+    /**
+     * A optional hint under the input element.
+     */
+    hint?: React.ReactNode;
+    /**
+     * If a validation message is passed it is shown under the input element
+     * and above the hint.
+     */
+    validationMessage?: React.ReactNode;
+    /**
+     * The height of the input element.
+     */
+    inputHeight?: number;
+    /**
+     * The width of the input width.
+     */
+    inputWidth?: number | string;
+}
+
+export type FormFieldProps = PolymorphicBoxProps<'div', FormFieldOwnProps>;
+
+const FormField: React.FC<FormFieldProps> = memo(
   forwardRef(function FormField(props, ref) {
     const {
       hint,
@@ -14,17 +51,16 @@ const FormField = memo(
       labelFor,
       children,
       isRequired,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'labelProps' does not exist on type 'Prop... Remove this comment to see the full error message
       labelProps = { size: 400 },
       description,
       validationMessage,
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
     return (
       <Box {...rest} ref={ref}>
         <Box display="flex" flexDirection="column" marginBottom={8}>
-          {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: never; size: number; htmlFor: ne... Remove this comment to see the full error message */}
           <FormFieldLabel htmlFor={labelFor} isAstrixShown={isRequired} {...labelProps}>
             {label}
           </FormFieldLabel>
@@ -32,70 +68,14 @@ const FormField = memo(
         </Box>
         {children}
         {typeof validationMessage === 'string' ? (
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           <FormFieldValidationMessage marginTop={8}>{validationMessage}</FormFieldValidationMessage>
         ) : (
           validationMessage
         )}
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'. */}
         {typeof hint === 'string' ? <FormFieldHint marginTop={6}>{hint}</FormFieldHint> : hint}
       </Box>
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-FormField.propTypes = {
-  /**
-   * The label used above the input element.
-   */
-  label: PropTypes.node.isRequired,
-
-  /**
-   * Passed on the label as a htmlFor prop.
-   */
-  labelFor: PropTypes.string,
-
-  /**
-   * Whether or not show an asterix after the label.
-   */
-  isRequired: PropTypes.bool,
-
-  /**
-   * An optional description of the field under the label, above the input element.
-   */
-  description: PropTypes.node,
-
-  /**
-   * An optional hint under the input element.
-   */
-  hint: PropTypes.node,
-
-  /**
-   * If a validation message is passed it is shown under the input element
-   * and above the hint. This is unaffected by `isInvalid`.
-   */
-  validationMessage: PropTypes.node,
-
-  /**
-   * Composes the dimensions spec from the Box primitive.
-   */
-  ...dimensions.propTypes,
-
-  /**
-   * Composes the spacing spec from the Box primitive.
-   */
-  ...spacing.propTypes,
-
-  /**
-   * Composes the position spec from the Box primitive.
-   */
-  ...position.propTypes,
-
-  /**
-   * Composes the layout spec from the Box primitive.
-   */
-  ...layout.propTypes
-}
 
 export default FormField

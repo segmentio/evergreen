@@ -1,11 +1,46 @@
 import React, { memo, forwardRef, useRef, useCallback } from 'react'
 import cx from 'classnames'
-import PropTypes from 'prop-types'
+import { PolymorphicBoxProps } from 'ui-box'
+import { DefaultAppearance } from '../../..'
 import { useLatest, useMergedRef, useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
+import { PaneOwnProps } from '../../layers/src/Pane'
 import safeInvoke from '../../lib/safe-invoke'
 import { toaster } from '../../toaster'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
+
+export interface TableCellOwnProps extends PaneOwnProps {
+  /**
+   * Makes the TableCell focusable. Used by EditableCell.
+   * Will add tabIndex={-1 || this.props.tabIndex}.
+   */
+  isSelectable?: boolean
+  /**
+   * The appearance of the table row. Default theme only support default.
+   */
+  appearance?: DefaultAppearance
+  /**
+   * Optional node to be placed on the right side of the table cell.
+   * Useful for icons and icon buttons.
+   */
+  rightView?: React.ReactNode
+  /**
+   * Advanced arrow keys overrides for selectable cells.
+   * A string will be used as a selector.
+   */
+  arrowKeysOverrides?: {
+    up: string | JSX.Element | false | (() => React.ReactNode)
+    down: string | JSX.Element | false | (() => React.ReactNode)
+    left: string | JSX.Element | false | (() => React.ReactNode)
+    right: string | JSX.Element | false | (() => React.ReactNode)
+  }
+  /**
+   * Class name passed to the table cell.
+   */
+  className?: string
+}
+
+export type TableCellProps = PolymorphicBoxProps<'div', TableCellOwnProps>
 
 function executeArrowKeyOverride(override: any) {
   if (!override) {
@@ -40,20 +75,21 @@ const internalStyles = {
   overflow: 'hidden'
 }
 
-const TableCell = memo(
+const TableCell: React.FC<TableCellProps> = memo(
   forwardRef(function TableCell(props, forwardedRef) {
     const {
       children,
       appearance = 'default',
       onClick,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       onKeyPress,
       onKeyDown,
       isSelectable,
       tabIndex = -1,
       className,
       rightView,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       arrowKeysOverrides,
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
@@ -63,7 +99,6 @@ const TableCell = memo(
 
     const handleKeyDown = useCallback(
       e => {
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'arrowKeysOverrides' does not exist on ty... Remove this comment to see the full error message
         const arrowKeysOverrides = props.arrowKeysOverrides || {}
 
         if (isSelectable) {
@@ -72,6 +107,7 @@ const TableCell = memo(
             e.preventDefault()
             try {
               // Support arrow key overrides.
+              // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
               const override = arrowKeysOverrides[key.slice('Arrow'.length).toLowerCase()]
               if (override === false) return
               if (override) return executeArrowKeyOverride(override)
@@ -90,7 +126,6 @@ const TableCell = memo(
         safeInvoke(onKeyDownRef.current, e)
       },
       // onKeyDownRef.current is a ref
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'arrowKeysOverrides' does not exist on ty... Remove this comment to see the full error message
       // eslint-disable-next-line react-hooks/exhaustive-deps
       [isSelectable, props.arrowKeysOverrides]
     )
@@ -120,48 +155,5 @@ const TableCell = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-TableCell.propTypes = {
-  /**
-   * Composes the Pane component as the base.
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  ...Pane.propTypes,
-
-  /*
-   * Makes the TableCell focusable. Used by EditableCell.
-   * Will add tabIndex={-1 || this.props.tabIndex}.
-   */
-  isSelectable: PropTypes.bool,
-
-  /**
-   * The appearance of the table row. Default theme only support default.
-   */
-  appearance: PropTypes.string,
-
-  /**
-   * Optional node to be placed on the right side of the table cell.
-   * Useful for icons and icon buttons.
-   */
-  rightView: PropTypes.node,
-
-  /**
-   * Advanced arrow keys overrides for selectable cells.
-   * A string will be used as a selector.
-   */
-  arrowKeysOverrides: PropTypes.shape({
-    up: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element, PropTypes.oneOf([false])]),
-    down: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element, PropTypes.oneOf([false])]),
-    left: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element, PropTypes.oneOf([false])]),
-    right: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element, PropTypes.oneOf([false])])
-  }),
-
-  /**
-   * Class name passed to the table cell.
-   * Only use if you know what you are doing.
-   */
-  className: PropTypes.string
-}
 
 export default TableCell

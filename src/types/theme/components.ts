@@ -6,6 +6,8 @@ export type Components =
   | 'Card'
   | 'Checkbox'
   | 'Code'
+  | 'FileCard'
+  | 'FileUploader'
   | 'Group'
   | 'Heading'
   | 'Icon'

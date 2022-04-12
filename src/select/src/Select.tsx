@@ -1,9 +1,50 @@
 import React, { memo, forwardRef } from 'react'
-import PropTypes from 'prop-types'
-import Box, { dimensions, spacing, position, layout } from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { CaretDownIcon } from '../../icons'
 import { getTextPropsForControlHeight } from '../../lib/deprecated-theme-helpers'
+
+export interface SelectOwnProps {
+  /**
+   * The initial value of an uncontrolled select
+   */
+  defaultValue?: string | number | string[]
+  /**
+   * The value of the select.
+   */
+  value?: string | number | string[]
+  /**
+   * Whether or not the field is disabled
+   */
+  disabled?: boolean
+  /**
+   * When true, the select is required.
+   */
+  required?: boolean
+  /**
+   * When true, the select should auto focus.
+   */
+  autoFocus?: boolean
+  /**
+   * When true, the select is invalid.
+   */
+  isInvalid?: boolean
+  /**
+   * The appearance of the select. The default theme only supports default.
+   */
+  appearance?: string
+  name?: string
+  /**
+   * Size of the input
+   */
+  size?: 'small' | 'medium' | 'large'
+  /**
+   * Function called when value changes.
+   */
+  onChange?(event: React.ChangeEvent<HTMLSelectElement>): void
+}
+
+export type SelectProps = PolymorphicBoxProps<'div', SelectOwnProps>
 
 const internalStyles = {
   textTransform: 'default',
@@ -39,7 +80,7 @@ const getIconSizeForSelect = (height: any) => {
   return 20
 }
 
-const Select = memo(
+const Select: React.FC<SelectProps> = memo(
   forwardRef(function Select(props, ref) {
     const {
       appearance = 'default',
@@ -54,7 +95,6 @@ const Select = memo(
       onChange,
       required,
       value,
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...restProps
     } = props
 
@@ -66,8 +106,9 @@ const Select = memo(
       internalStyles
     )
 
-    const height = heightProp || boxProps.height
+    const height = (heightProp || boxProps.height) as number
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type '{ alignC... Remove this comment to see the full error message
     const textProps = !restProps.size && restProps.height ? getTextPropsForControlHeight(restProps.height) : {}
 
     const iconSize = getIconSizeForSelect(height)
@@ -95,8 +136,7 @@ const Select = memo(
           required={required}
           autoFocus={autoFocus}
           disabled={disabled}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'boolean |... Remove this comment to see the full error message
-          aria-invalid={String(isInvalid)}
+          aria-invalid={isInvalid}
           paddingLeft={Math.round(height / 3.2)}
           paddingRight={iconMargin * 2 + iconSize}
           {...boxProps}
@@ -105,97 +145,17 @@ const Select = memo(
           {children}
         </Box>
         <CaretDownIcon
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           color="default"
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           size={iconSize}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           position="absolute"
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           top="50%"
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           marginTop={-iconSize / 2}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           right={iconMargin}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           pointerEvents="none"
         />
       </Box>
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-Select.propTypes = {
-  /**
-   * Composes the dimensions spec from the Box primitive.
-   */
-  ...dimensions.propTypes,
-
-  /**
-   * Composes the spacing spec from the Box primitive.
-   */
-  ...spacing.propTypes,
-
-  /**
-   * Composes the position spec from the Box primitive.
-   */
-  ...position.propTypes,
-
-  /**
-   * Composes the layout spec from the Box primitive.
-   */
-  ...layout.propTypes,
-
-  /**
-   * The id attribute for the select.
-   */
-  id: PropTypes.string,
-
-  /**
-   * The name attribute for the select.
-   */
-  name: PropTypes.string,
-
-  /**
-   * The options that are passed to the select.
-   */
-  children: PropTypes.node,
-
-  /**
-   * The initial value of an uncontrolled select
-   */
-  defaultValue: PropTypes.any,
-
-  /**
-   * Function called when value changes.
-   */
-  onChange: PropTypes.func,
-
-  /**
-   * The value of the select.
-   */
-  value: PropTypes.any,
-
-  /**
-   * When true, the select is required.
-   */
-  required: PropTypes.bool,
-
-  /**
-   * When true, the select should auto focus.
-   */
-  autoFocus: PropTypes.bool,
-
-  /**
-   * When true, the select is invalid.
-   */
-  isInvalid: PropTypes.bool,
-
-  /**
-   * The appearance of the select. The default theme only supports default.
-   */
-  appearance: PropTypes.string
-}
 
 export default Select

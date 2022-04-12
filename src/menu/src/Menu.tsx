@@ -1,5 +1,4 @@
 import React, { memo, useEffect, useRef } from 'react'
-import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import MenuDivider from './MenuDivider'
 import MenuGroup from './MenuGroup'
@@ -7,7 +6,18 @@ import MenuItem from './MenuItem'
 import MenuOption from './MenuOption'
 import MenuOptionsGroup from './MenuOptionsGroup'
 
-const Menu = memo(function Menu(props) {
+export interface MenuProps {
+  children: React.ReactNode[] | React.ReactNode
+}
+type MenuComponent = React.FC<MenuProps> & {
+  Item: typeof MenuItem
+  Divider: typeof MenuDivider
+  Group: typeof MenuGroup
+  Option: typeof MenuOption
+  OptionsGroup: typeof MenuOptionsGroup
+}
+
+const Menu: MenuComponent = (memo(function Menu(props) {
   const menuRef = useRef(null)
 
   const firstItem = useRef()
@@ -108,41 +118,21 @@ const Menu = memo(function Menu(props) {
   const renderEmptyChildren = () => {
     return (
       <MenuGroup>
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <MenuItem disabled>No items...</MenuItem>
       </MenuGroup>
     )
   }
   return (
-    // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
     <Pane is="nav" ref={menuRef} role="menu" outline="none">
       {children || renderEmptyChildren()}
     </Pane>
   )
-})
+}) as any) as MenuComponent
 
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'Item' does not exist on type 'NamedExoti... Remove this comment to see the full error message
 Menu.Item = MenuItem
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'Divider' does not exist on type 'NamedEx... Remove this comment to see the full error message
 Menu.Divider = MenuDivider
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'Group' does not exist on type 'NamedExot... Remove this comment to see the full error message
 Menu.Group = MenuGroup
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'Divider' does not exist on type 'NamedEx... Remove this comment to see the full error message
-Menu.Divider = MenuDivider
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'Group' does not exist on type 'NamedExot... Remove this comment to see the full error message
-Menu.Group = MenuGroup
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'Option' does not exist on type 'NamedExo... Remove this comment to see the full error message
 Menu.Option = MenuOption
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'OptionsGroup' does not exist on type 'Na... Remove this comment to see the full error message
 Menu.OptionsGroup = MenuOptionsGroup
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
-Menu.propTypes = {
-  /**
-   * The children of the component.
-   */
-  children: PropTypes.node
-}
 
 export default Menu

@@ -1,3 +1,4 @@
+import { Theme } from '../../types/theme/theme'
 import { getValue, mergeTheme, resolveThemeTokens } from './theme-tools'
 
 describe('Theme tools', () => {
@@ -26,19 +27,22 @@ describe('Theme tools', () => {
   })
 
   describe('mergeTheme', () => {
-    it.each([undefined, null, {}])('should return unmodified destinationTheme when sourceTheme is %p', (sourceTheme: any) => {
-      const destinationTheme = {
-        colors: {
-          gray900: '#101840',
-          gray800: '#474d66',
-          gray700: '#696f8c'
+    it.each([undefined, null, {}])(
+      'should return unmodified destinationTheme when sourceTheme is %p',
+      (sourceTheme: any) => {
+        const destinationTheme = {
+          colors: {
+            gray900: '#101840',
+            gray800: '#474d66',
+            gray700: '#696f8c'
+          }
         }
+
+        const result = mergeTheme((destinationTheme as any) as Theme, sourceTheme)
+
+        expect(result).toStrictEqual(destinationTheme)
       }
-
-      const result = mergeTheme(destinationTheme, sourceTheme)
-
-      expect(result).toStrictEqual(destinationTheme)
-    })
+    )
 
     it('should override existing values', () => {
       const destinationTheme = {
@@ -55,7 +59,7 @@ describe('Theme tools', () => {
         }
       }
 
-      const result = mergeTheme(destinationTheme, sourceTheme)
+      const result = mergeTheme((destinationTheme as any) as Theme, sourceTheme)
 
       expect(result.colors.gray700).toBe(sourceTheme.colors.gray700)
     })
@@ -89,10 +93,10 @@ describe('Theme tools', () => {
         }
       }
 
-      const result = mergeTheme(destinationTheme, sourceTheme)
+      const result = mergeTheme((destinationTheme as any) as Theme, sourceTheme)
 
-      expect(result.components.Button.baseStyle).toMatchObject(destinationTheme.components.Button.baseStyle)
-      expect(result.components.Button.appearances).toMatchObject(sourceTheme.components.Button.appearances)
+      expect(result.components.Button?.baseStyle).toMatchObject(destinationTheme.components?.Button?.baseStyle)
+      expect(result.components.Button?.appearances).toMatchObject(sourceTheme.components?.Button?.appearances)
     })
 
     it('should always return a new reference', () => {
@@ -110,7 +114,7 @@ describe('Theme tools', () => {
         }
       }
 
-      const result = mergeTheme(destinationTheme, sourceTheme)
+      const result = mergeTheme((destinationTheme as any) as Theme, sourceTheme)
 
       expect(result).not.toEqual(destinationTheme)
     })

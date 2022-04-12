@@ -1,6 +1,5 @@
 import React, { memo, useState } from 'react'
 import { css } from 'glamor'
-import PropTypes from 'prop-types'
 import { StackingOrder } from '../../constants'
 import Toast from './Toast'
 import { Toast as ToastReference, ToasterSettings } from './Toaster'
@@ -131,27 +130,4 @@ const ToastManager: React.FC<ToastManagerProps> = memo(function ToastManager(pro
     </span>
   )
 })
-
-ToastManager.propTypes = {
-  /**
-   * Function called with the `this.notify` function.
-   */
-  bindNotify: PropTypes.func.isRequired,
-
-  /**
-   * Function called with the `this.remove` function.
-   */
-  bindRemove: PropTypes.func.isRequired,
-
-  /**
-   * Function called with the `this.getToasts` function.
-   */
-  bindGetToasts: PropTypes.func.isRequired,
-
-  /**
-   * Function called with the `this.closeAll` function.
-   */
-  bindCloseAll: PropTypes.func.isRequired
-}
-
 export default ToastManager

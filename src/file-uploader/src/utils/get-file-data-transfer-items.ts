@@ -12,12 +12,14 @@ import isEmpty from 'lodash.isempty'
  * @param {DataTransferItemList} dataTransferList
  * @returns {DataTransferItem[]}
  */
-const getFileDataTransferItems = dataTransferList => {
+const getFileDataTransferItems = (dataTransferList: DataTransferItemList): DataTransferItem[] => {
   if (isEmpty(dataTransferList)) {
     return []
   }
 
-  return [...dataTransferList].filter(dataTransferItem => dataTransferItem.kind === 'file')
+  return [...((dataTransferList as any) as DataTransferItem[])].filter(
+    dataTransferItem => dataTransferItem.kind === 'file'
+  )
 }
 
 export default getFileDataTransferItems

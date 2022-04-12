@@ -1,8 +1,12 @@
 import React, { memo, forwardRef } from 'react'
+import { PolymorphicBoxProps } from 'ui-box'
 import warning from '../../lib/warning'
-import Tab from './Tab'
+import Tab, { TabOwnProps } from './Tab'
 
-const SideBarTab = memo(
+/** @deprecated This component will be removed in the next major version of Evergreen */
+export type SidebarTabProps = PolymorphicBoxProps<'span', TabOwnProps>
+
+const SideBarTab: React.FC<SidebarTabProps> = memo(
   forwardRef(function Sidebartab(props, ref) {
     if (process.env.NODE_ENV !== 'production') {
       warning(

@@ -4,8 +4,7 @@
 
 import React, { memo, forwardRef, useState } from 'react'
 import cx from 'classnames'
-import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
 import { Autocomplete } from '../../autocomplete'
 import { Button } from '../../buttons'
 import { useId, useStyleConfig } from '../../hooks'
@@ -13,7 +12,31 @@ import { CaretDownIcon } from '../../icons'
 import safeInvoke from '../../lib/safe-invoke'
 import { majorScale, minorScale } from '../../scales'
 import { TextInput } from '../../text-input'
+import { TextOwnProps } from '../../typography/src/Text'
 import Tag from './Tag'
+
+export interface TagInputOwnProps {
+  addOnBlur?: boolean
+  autocompleteItems?: Array<string>
+  className?: string
+  disabled?: boolean
+  isInvalid?: boolean
+  height?: number
+  inputProps?: PolymorphicBoxProps<'input', TextOwnProps>
+  inputRef?: React.Ref<HTMLInputElement>
+  onAdd?: (values: string[]) => void | false
+  onBlur?: (event: React.FocusEvent) => void
+  onChange?: (values: string[]) => void | false
+  onFocus?: (event: React.FocusEvent) => void
+  onInputChange?: (event: React.ChangeEvent) => void
+  onRemove?: (value: string | React.ReactNode, index: number) => void
+  separator?: string
+  tagSubmitKey?: 'enter' | 'space'
+  tagProps?: any
+  values?: string[]
+}
+
+export type TagInputProps = PolymorphicBoxProps<'div', TagInputOwnProps>
 
 const GET_KEY_FOR_TAG_DELIMITER = {
   enter: 'Enter',
@@ -36,7 +59,7 @@ const pseudoSelectors = {
   _invalid: '&[aria-invalid="true"]:not(:focus)'
 }
 
-const TagInput = memo(
+const TagInput: React.FC<TagInputProps> = memo(
   forwardRef(function TagInput(props, ref) {
     const {
       addOnBlur = false,
@@ -57,7 +80,6 @@ const TagInput = memo(
       inputRef,
       isInvalid,
       autocompleteItems,
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
     const [inputValue, setInputValue] = useState('')
@@ -67,7 +89,6 @@ const TagInput = memo(
 
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type '{}'.
     const inputId = inputProps && inputProps.id ? inputProps.id : id
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'length' does not exist on type 'never'.
     const hasAutocomplete = Array.isArray(autocompleteItems) && autocompleteItems.length > 0
 
     const getValues = (inputValue = '') =>
@@ -83,7 +104,6 @@ const TagInput = memo(
       let shouldClearInput = safeInvoke(onAdd, newValues)
 
       if (typeof onChange === 'function') {
-        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         shouldClearInput = shouldClearInput || onChange(values.concat(newValues))
       }
 
@@ -92,12 +112,11 @@ const TagInput = memo(
       }
     }
 
-    const removeTagAtIndex = (index: any) => {
+    const removeTagAtIndex = (index: number) => {
       safeInvoke(onRemove, values[index], index)
 
       // Remove item at index as a new array
-      // @ts-expect-error ts-migrate(7006) FIXME: Parameter '_' implicitly has an 'any' type.
-      const newValues = values.filter((_, i) => i !== index)
+      const newValues = values.filter((_value: any, i: number) => i !== index)
       safeInvoke(onChange, newValues)
     }
 
@@ -132,8 +151,8 @@ const TagInput = memo(
       safeInvoke(onFocus, event)
     }
 
-    const handleKeyDown = (event: any) => {
-      const { selectionEnd, value } = event.target
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+      const { selectionEnd, value } = event.target as HTMLInputElement
       const key = GET_KEY_FOR_TAG_DELIMITER[tagSubmitKey]
 
       if (event.key === key) {
@@ -194,34 +213,26 @@ const TagInput = memo(
         paddingRight={hasAutocomplete ? majorScale(3) : undefined}
       >
         {values.map(maybeRenderTag)}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '"1"' is not assignable to type 'number | fal... Remove this comment to see the full error message
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '"1"' is not assignable to type 'number | fal... Remove this comment to see the full error message
-        <Box flexGrow="1" display="inline-block">
-          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-          // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
+        <Box flexGrow={1} display="inline-block">
           <Autocomplete
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '(changedItem: any) => void' is not assignabl... Remove this comment to see the full error message
             onChange={changedItem => {
               addTags(changedItem)
               setInputValue('')
             }}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'never[]' is not assignable to type 'never'.
             items={hasAutocomplete ? autocompleteItems : []}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
             id={inputId}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             selectedItem=""
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             inputValue={inputValue}
           >
-            // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'autocompleteProps' implicitly has an 'a... Remove this comment to see the full error message
-            // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'autocompleteProps' implicitly has an 'a... Remove this comment to see the full error message
             {autocompleteProps => {
               const {
+                // @ts-expect-error ts-migrate(2339) FIXME: Property 'closeMenu' does not exist on type '{ tog... Remove this comment to see the full error message
                 closeMenu,
                 getInputProps,
                 getRef: autocompleteGetRef,
+                // @ts-expect-error ts-migrate(2339) FIXME: Property 'getToggleButtonProps' does not exist on ... Remove this comment to see the full error message
                 getToggleButtonProps,
+                // @ts-expect-error ts-migrate(2339) FIXME: Property 'highlightedIndex' does not exist on type... Remove this comment to see the full error message
                 highlightedIndex
               } = autocompleteProps
 
@@ -232,17 +243,16 @@ const TagInput = memo(
                 ...autocompleteRestProps
               } = getInputProps()
 
-              // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'e' implicitly has an 'any' type.
-              const handleAutocompleteKeydown = e => {
-                autocompleteKeyDown(e)
-                if (e.key === 'Backspace' || !(highlightedIndex > -1)) {
-                  handleKeyDown(e)
-                  if (e.key === GET_KEY_FOR_TAG_DELIMITER[tagSubmitKey]) {
+              const handleAutocompleteKeydown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+                autocompleteKeyDown(event)
+                if (event.key === 'Backspace' || !(highlightedIndex > -1)) {
+                  handleKeyDown(event)
+                  if (event.key === GET_KEY_FOR_TAG_DELIMITER[tagSubmitKey]) {
                     closeMenu()
                     setInputValue('')
                   }
                 }
-                if (e.key === 'Backspace' && e.target.selectionEnd === 0) {
+                if (event.key === 'Backspace' && (event.target as HTMLInputElement).selectionEnd === 0) {
                   closeMenu()
                 }
               }
@@ -250,6 +260,7 @@ const TagInput = memo(
               return (
                 <>
                   <TextInput
+                    // @ts-expect-error ts-migrate(2322) FIXME: Type '"none"' is not assignable to type 'TextInput... Remove this comment to see the full error message
                     appearance="none"
                     disabled={disabled}
                     height={height - 4}
@@ -260,29 +271,25 @@ const TagInput = memo(
                     value={inputValue}
                     id={inputId}
                     ref={textInputRef => {
+                      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                       autocompleteGetRef(textInputRef)
-                      // @ts-expect-error ts-migrate(2358) FIXME: The left-hand side of an 'instanceof' expression m... Remove this comment to see the full error message
                       if (inputRef instanceof Function) {
-                        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                         inputRef(textInputRef)
                       } else if (inputRef) {
-                        // @ts-expect-error ts-migrate(2339) FIXME: Property 'current' does not exist on type 'never'.
+                        // @ts-expect-error ts-migrate(2540) FIXME: Cannot assign to 'current' because it is a read-on... Remove this comment to see the full error message
                         inputRef.current = textInputRef
                       }
                     }}
-                    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'e' implicitly has an 'any' type.
                     onBlur={e => {
                       autocompleteOnBlur(e)
                       // @ts-expect-error ts-migrate(2339) FIXME: Property 'onBlur' does not exist on type '{}'.
                       safeInvoke(inputProps.onBlur, e)
                     }}
-                    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'e' implicitly has an 'any' type.
                     onFocus={e => {
                       handleInputFocus(e)
                       // @ts-expect-error ts-migrate(2339) FIXME: Property 'onFocus' does not exist on type '{}'.
                       safeInvoke(inputProps.onFocus, e)
                     }}
-                    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'e' implicitly has an 'any' type.
                     onChange={e => {
                       handleInputChange(e)
                       autocompleteOnChange(e)
@@ -308,8 +315,6 @@ const TagInput = memo(
                       data-testid="TagInput-autocomplete-toggle"
                       {...getToggleButtonProps()}
                     >
-                      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
-                      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
                       <CaretDownIcon color="muted" />
                     </Button>
                   )}
@@ -322,69 +327,5 @@ const TagInput = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-TagInput.propTypes = {
-  /** Whether or not the inputValue should be added to the tags when the input blurs. */
-  addOnBlur: PropTypes.bool,
-  /** Autocomplete options to show when typing in a new value */
-  autocompleteItems: PropTypes.array,
-  /** The class name to apply to the container component. */
-  className: PropTypes.string,
-  /** Whether or not the input should be disabled. */
-  disabled: PropTypes.bool,
-  /** Whether or not the input is invalid. */
-  isInvalid: PropTypes.bool,
-  /** The vertical size of the input */
-  height: PropTypes.number,
-  /** Props to pass to the input component. Note that `ref` and `key` are not supported. See `inputRef`. */
-  inputProps: PropTypes.object,
-  /**
-   * Ref handler for the input element.
-   * (input: HTMLInputElement | null) => void
-   */
-  inputRef: PropTypes.func,
-  /**
-   * Callback invoked when new tags are added.
-   * Returning `false` will prevent clearing the input.
-   * (values: Array) => void | false
-   */
-  onAdd: PropTypes.func,
-  /**
-   * Callback invoked when focus on the input blurs.
-   * (event) => void
-   */
-  onBlur: PropTypes.func,
-  /**
-   * Callback invoked when the tag values change.
-   * Returning `false` will prevent clearing the input.
-   * (values: Array) => void | false
-   */
-  onChange: PropTypes.func,
-  /**
-   * Callback invoked when the input receives focus.
-   * (event) => void
-   */
-  onFocus: PropTypes.func,
-  /**
-   * Callback invoked when the value of the input is changed. Shorthand for `inputProps={{ onChange }}`.
-   * (event) => void
-   */
-  onInputChange: PropTypes.func,
-  /**
-   * Callback invoked when a tag is removed.
-   * Receives value and index of removed tag.
-   * (value: string | node, index: number) => void
-   */
-  onRemove: PropTypes.func,
-  /** Value or RegExp to split on pasted text or on enter keypress */
-  separator: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp), PropTypes.oneOf([false])]),
-  /** Provide props to tag component (actually `Badge`, for now). */
-  tagProps: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-  /** Key to press in order to submit a new tag while typing.  */
-  tagSubmitKey: PropTypes.oneOf(['enter', 'space']),
-  /** Controlled tag values. Each value is rendered inside a tag. */
-  values: PropTypes.arrayOf(PropTypes.node)
-}
 
 export default TagInput

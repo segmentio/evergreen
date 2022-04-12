@@ -1,13 +1,30 @@
 import React, { useState, memo, forwardRef, useCallback } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
-import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { Image } from '../../image'
 import { Text } from '../../typography'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
+
+export interface AvatarOwnProps {
+    src?: string;
+    size?: number;
+    /**
+     * When provided, the first and last initial of the name will be used.
+     * For example: Foo Bar -> FB
+     */
+    name?: string;
+    hashValue?: string;
+    color?: string;
+    shape?: 'round' | 'square';
+    getInitials?: (name: string) => string;
+    forceShowInitials?: boolean;
+    sizeLimitOneCharacter?: number;
+}
+
+export type AvatarProps = PolymorphicBoxProps<'div', AvatarOwnProps>;
 
 const imageStyles: React.CSSProperties = { objectFit: 'cover' }
 
@@ -39,7 +56,7 @@ const getAvatarInitialsFontSize = (size: any, sizeLimitOneCharacter: any) => {
   return Math.floor(size / 2.6)
 }
 
-const Avatar = memo(
+const Avatar: React.FC<AvatarProps> = memo(
   forwardRef(function Avatar(props, ref) {
     const {
       className,
@@ -52,7 +69,6 @@ const Avatar = memo(
       size = 24,
       sizeLimitOneCharacter = 20,
       src,
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...restProps
     } = props
 
@@ -87,19 +103,12 @@ const Avatar = memo(
         {...restProps}
       >
         {(imageUnavailable || forceShowInitials) && (
-          // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
           <Text
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             className={initialsStyleClass}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             fontSize={initialsFontSize}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             lineHeight={initialsFontSize}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
             width={size}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
             height={size}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             color="inherit"
           >
             {initials}
@@ -107,14 +116,10 @@ const Avatar = memo(
         )}
         {!imageUnavailable && (
           <Image
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'CSSProperties' is not assignable to type 'ne... Remove this comment to see the full error message
             style={imageStyles} // Unsupported by ui-box directly
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             width={isObjectFitSupported ? '100%' : 'auto'} // Fallback to old behaviour on IE
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
             height="100%"
             src={src}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type 'never... Remove this comment to see the full error message
             onError={onError}
           />
         )}
@@ -122,64 +127,5 @@ const Avatar = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-Avatar.propTypes = {
-  /**
-   * Class name passed to the component.
-   * Only use if you know what you are doing.
-   */
-  className: PropTypes.string,
-
-  /**
-   * The src attribute of the image.
-   * When it's not available, render initials instead.
-   */
-  src: PropTypes.string,
-
-  /**
-   * The size of the avatar.
-   */
-  size: PropTypes.number,
-
-  /**
-   * The name used for the initials and title attribute.
-   */
-  name: PropTypes.string,
-
-  /**
-   * The value used for the hash function.
-   * The name is used as the hashValue by default.
-   * When dealing with anonymous users you should use the id instead.
-   */
-  hashValue: PropTypes.string,
-
-  /**
-   * The color used for the avatar.
-   * When the value is `automatic`, use the hash function to determine the color.
-   */
-  color: PropTypes.string,
-
-  /**
-   * Function to get the initials based on the name.
-   */
-  getInitials: PropTypes.func,
-
-  /**
-   * When true, force show the initials.
-   * This is useful in some cases when using Gravatar and transparent pngs.
-   */
-  forceShowInitials: PropTypes.bool,
-
-  /**
-   * When the size is smaller than this number, use a single initial for the avatar.
-   */
-  sizeLimitOneCharacter: PropTypes.number,
-
-  /**
-   * Allows for the shape of the avatar component to either be round or square
-   */
-  shape: PropTypes.oneOf(['round', 'square'])
-}
 
 export default Avatar

@@ -5,7 +5,6 @@ import faker from 'faker'
 import { TextareaField } from '..'
 
 const makeTextareaFieldFixture = (props = {}) => (
-  // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
   <TextareaField data-testid="TextareaField" label="TextareaField" {...props} />
 )
 

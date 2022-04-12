@@ -1,11 +1,23 @@
 import React, { memo, forwardRef, useMemo, useCallback } from 'react'
 import cx from 'classnames'
-import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import { PolymorphicBoxProps } from 'ui-box'
+import { DefaultAppearance, IntentTypes } from '../../..'
 import { useClickable, useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Pane } from '../../layers'
+import { PaneOwnProps } from '../../layers/src/Pane'
 import { Text } from '../../typography'
+
+export interface MenuItemOwnProps extends PaneOwnProps {
+  onSelect?: (event: React.SyntheticEvent) => void
+  icon?: React.ElementType | JSX.Element | null | false
+  secondaryText?: JSX.Element | string
+  appearance?: DefaultAppearance
+  intent?: IntentTypes
+  disabled?: boolean
+}
+
+export type MenuItemProps = PolymorphicBoxProps<'div', MenuItemOwnProps>
 
 const noop = () => {}
 
@@ -25,7 +37,7 @@ const internalStyles = {
   alignItems: 'center'
 }
 
-const MenuItem = memo(
+const MenuItem: React.FC<MenuItemProps> = memo(
   forwardRef(function MenuItem(props, ref) {
     const {
       is = 'div',
@@ -37,14 +49,12 @@ const MenuItem = memo(
       intent = 'none',
       icon,
       onSelect = noop,
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...passthroughProps
     } = props
 
     const handleClick = useCallback(
       event => {
         if (disabled) return
-        // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
         onSelect(event)
       },
       [disabled, onSelect]
@@ -103,6 +113,7 @@ const MenuItem = memo(
         onKeyDown={onKeyDown}
       >
         <IconWrapper
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'false | Element | ElementType<any> | null | ... Remove this comment to see the full error message
           icon={icon}
           color={disabled ? 'disabled' : iconColor}
           marginLeft={16}
@@ -110,14 +121,10 @@ const MenuItem = memo(
           size={16}
           flexShrink={0}
         />
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         <Text color={textColor} marginLeft={16} marginRight={16} flex={1}>
           {children}
         </Text>
         {secondaryText && (
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           <Text marginRight={16} color={secondaryTextColor}>
             {secondaryText}
           </Text>
@@ -126,56 +133,5 @@ const MenuItem = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-MenuItem.propTypes = {
-  /**
-   * Element type to use for the menu item.
-   * For example: `<MenuItem is={ReactRouterLink}>...</MenuItem>`
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type '<E ex... Remove this comment to see the full error message
-  is: Box.propTypes.is,
-
-  /**
-   * Class name passed to the component.
-   * Only use if you know what you are doing.
-   */
-  className: PropTypes.string,
-
-  /**
-   * Function that is called on click and enter/space keypress.
-   */
-  onSelect: PropTypes.func,
-
-  /**
-   * The Evergreen or custom icon before the label.
-   */
-  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
-
-  /**
-   * The children of the component.
-   */
-  children: PropTypes.node,
-
-  /**
-   * Secondary text shown on the right.
-   */
-  secondaryText: PropTypes.node,
-
-  /**
-   * The default theme only supports one default appearance.
-   */
-  appearance: PropTypes.string,
-
-  /**
-   * The intent of the menu item.
-   */
-  intent: PropTypes.string,
-
-  /**
-   * Flag to indicate whether the menu item is disabled or not
-   */
-  disabled: PropTypes.bool
-}
 
 export default MenuItem

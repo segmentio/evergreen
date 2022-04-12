@@ -2,14 +2,18 @@
  * @overview TagInput accepts multiple values that can be individually removed
  */
 import React, { memo, forwardRef } from 'react'
-import PropTypes from 'prop-types'
 import { Badge } from '../../badges'
+import { BadgeProps } from '../../badges/src/Badge'
 import { CrossIcon } from '../../icons'
 import { minorScale } from '../../scales'
 
-const Tag = memo(
+export interface TagProps extends BadgeProps {
+  isRemovable?: boolean
+  onRemove?: () => void
+}
+
+const Tag: React.FC<TagProps> = memo(
   forwardRef(function Tag(props, ref) {
-    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { children, isRemovable, onRemove, ...restProps } = props
 
     const badgeStyles = {
@@ -30,29 +34,13 @@ const Tag = memo(
     }
 
     return (
+      // @ts-expect-error
       <Badge ref={ref} isInteractive {...badgeStyles} {...restProps}>
         {children}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
         {isRemovable && <CrossIcon marginLeft={minorScale(1)} onClick={onRemove} size={minorScale(3)} />}
       </Badge>
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-Tag.propTypes = {
-  /** The tag content */
-  children: PropTypes.node,
-
-  /**
-   * Callback invoked when the removal icon is clicked.
-   * (event) => void
-   */
-  onRemove: PropTypes.func,
-  /** Whether or not the tag can be removed. */
-  isRemovable: PropTypes.bool
-}
 
 export default Tag

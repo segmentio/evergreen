@@ -1,10 +1,26 @@
 import React, { memo } from 'react'
 import { css } from 'glamor'
-import PropTypes from 'prop-types'
 import Positions from '../../constants/src/Position'
 import { Pane } from '../../layers'
+import { PaneProps } from '../../layers/src/Pane'
 import { majorScale } from '../../scales'
 import { useTheme } from '../../theme'
+
+export type PulsarPosition = Positions.TOP_LEFT | Positions.TOP_RIGHT | Positions.BOTTOM_LEFT | Positions.BOTTOM_RIGHT
+export interface PulsarProps {
+  /**
+   * The position the Tooltip is on.
+   */
+  position?: PulsarPosition
+  /**
+   * The size of the pulsar
+   */
+  size?: number
+  /**
+   * Called when the Pulsar is clicked
+   */
+  onClick?: PaneProps['onClick']
+}
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const pulseAnimation = css.keyframes('pulseAnimation', {
@@ -26,18 +42,15 @@ const pulsarAnimationClassName = css({
   animation: `${pulseAnimation} ${animationDuration} ${animationTiming} both infinite`
 }).toString()
 
-const POSITION_KEYS = {
+const POSITION_KEYS: Record<PulsarPosition, string[]> = {
   [Positions.TOP_LEFT]: ['top', 'left'],
   [Positions.TOP_RIGHT]: ['top', 'right'],
   [Positions.BOTTOM_LEFT]: ['bottom', 'left'],
   [Positions.BOTTOM_RIGHT]: ['bottom', 'right']
 }
 
-const getPositionProps = ({
-  position,
-  size
-}: any) => {
-  const keys = POSITION_KEYS[position]
+const getPositionProps = ({ position, size }: Pick<PulsarProps, 'position' | 'size'>) => {
+  const keys = POSITION_KEYS[position!]
   const props = {}
 
   keys.forEach(key => {
@@ -55,63 +68,30 @@ const getPositionProps = ({
   return props
 }
 
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'position' does not exist on type '{ chil... Remove this comment to see the full error message
-export const Pulsar = memo(({ position = Positions.TOP_RIGHT, size = majorScale(1), onClick }) => {
-  const { colors } = useTheme()
-  const positionProps = getPositionProps({ position, size })
-  const outerPadding = size * 0.25
+export const Pulsar: React.FC<PulsarProps> = memo(
+  ({ position = Positions.TOP_RIGHT, size = majorScale(1), onClick }) => {
+    const { colors } = useTheme()
+    const positionProps = getPositionProps({ position, size })
+    const outerPadding = size * 0.25
 
-  return (
-    // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
-    <Pane
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
-      position="absolute"
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
-      borderRadius="50%"
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
-      backgroundColor={colors.blue100}
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
-      boxSizing="content-box"
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
-      opacity={0.7}
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
-      display="flex"
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
-      alignItems="center"
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
-      justifyContent="center"
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
-      padding={outerPadding}
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
-      className={pulsarAnimationClassName}
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
-      onClick={onClick}
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string | undefined' is not assignable to typ... Remove this comment to see the full error message
-      cursor={onClick ? 'pointer' : undefined}
-      {...positionProps}
-    >
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
-      <Pane width={size} height={size} backgroundColor={colors.blue200} borderRadius="50%" opacity={0.7} />
-    </Pane>
-  )
-})
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
-Pulsar.propTypes = {
-  /**
-   * The position of the pulsar
-   */
-  position: PropTypes.oneOf([Positions.TOP_LEFT, Positions.TOP_RIGHT, Positions.BOTTOM_LEFT, Positions.BOTTOM_RIGHT]),
-
-  /**
-   * The width/height of the dot
-   */
-  size: PropTypes.number,
-
-  /**
-   * Called when the Pulsar is clicked
-   */
-  onClick: PropTypes.func
-}
+    return (
+      <Pane
+        position="absolute"
+        borderRadius="50%"
+        backgroundColor={colors.blue100}
+        boxSizing="content-box"
+        opacity={0.7}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        padding={outerPadding}
+        className={pulsarAnimationClassName}
+        onClick={onClick}
+        cursor={onClick ? 'pointer' : undefined}
+        {...positionProps}
+      >
+        <Pane width={size} height={size} backgroundColor={colors.blue200} borderRadius="50%" opacity={0.7} />
+      </Pane>
+    )
+  }
+)

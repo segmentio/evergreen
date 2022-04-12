@@ -25,7 +25,6 @@ export {
   rebaseFiles,
   splitFiles,
   truncateCenter
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module './fi... Remove this comment to see the full error message
 } from './file-uploader'
 export {
   FormField,

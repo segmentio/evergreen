@@ -1,7 +1,7 @@
 import React, { memo, forwardRef } from 'react'
 import humanize from 'humanize-plus'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
 import { IconButton } from '../../buttons'
 import { useStyleConfig } from '../../hooks'
 import { InfoSignIcon, TrashIcon } from '../../icons'
@@ -16,6 +16,52 @@ import { Paragraph } from '../../typography'
 import getIconFromType from './utils/get-icon-from-type'
 import isImage from './utils/is-image'
 
+export interface FileCardOwnProps {
+  /**
+   * Description to display under the file name. If not provided, defaults to the file size
+   */
+  description?: string
+  /**
+   * Disables the button to remove the file.
+   */
+  disabled?: boolean
+  /**
+   * When true, displays the card in an error state
+   */
+  isInvalid?: boolean
+  /**
+   * Sets a loading state on the card. If the remove button is rendered, it will be disabled.
+   */
+  isLoading?: boolean
+  /**
+   * Name of the file to display
+   */
+  name?: string
+  /**
+   * Callback to be fired when the remove button is clicked. If not provided, the button will not
+   * render
+   */
+  onRemove?: () => void
+  /**
+   * Size of the file
+   */
+  sizeInBytes?: number
+  /**
+   * Url of the uploaded image
+   */
+  src?: string
+  /**
+   * MimeType of the file to display, which controls what type of icon is rendered
+   */
+  type?: string
+  /**
+   * Message to display underneath the card
+   */
+  validationMessage?: string
+}
+
+export type FileCardProps = PolymorphicBoxProps<'div', FileCardOwnProps>
+
 const imageSize = majorScale(5)
 const styleModifiers = {}
 const pseudoSelectors = {
@@ -23,7 +69,7 @@ const pseudoSelectors = {
 }
 const internalStyles = {}
 
-const FileCard = memo(
+const FileCard: React.FC<FileCardProps> = memo(
   forwardRef((props, ref) => {
     const {
       description,
@@ -74,7 +120,7 @@ const FileCard = memo(
                 {name}
               </Paragraph>
               <Paragraph color={colors.gray700} size={300}>
-                {hasValue(description) ? description : humanize.fileSize(sizeInBytes, 0)}
+                {hasValue(description) ? description : humanize.fileSize(sizeInBytes ?? 0, 0)}
               </Paragraph>
             </Box>
             {isFunction(onRemove) && (

@@ -1,19 +1,15 @@
 import getAcceptedFiles from './get-accepted-files'
 import getFileRejections from './get-file-rejections'
+import { RebaseFilesOptions, RebaseFilesResult } from './rebase-files'
 
-/**
- * @typedef {object} SplitFilesOptions
- * @property {string[] | undefined} acceptedMimeTypes
- * @property {number | undefined} currentFileCount Current count of files used for validating whether the dropped files are over the `maxFiles` limit
- * @property {number | undefined} maxFiles
- * @property {number | undefined} maxSizeInBytes
- */
+export interface SplitFilesOptions extends RebaseFilesOptions {
+  /**
+   * Current count of files used for validating whether the dropped files are over the `maxFiles` limit
+   */
+  currentFileCount?: number | null
+}
 
-/**
- * @typedef {object} SplitFilesResult
- * @property {File[]} accepted
- * @property {FileRejection[]} rejected
- */
+export type SplitFilesResult = RebaseFilesResult
 
 /**
  * Returns separate arrays for accepted and rejected files based on the provided options.
@@ -22,7 +18,7 @@ import getFileRejections from './get-file-rejections'
  * @param {SplitFilesOptions | undefined} options
  * @returns {SplitFilesResult}
  */
-const splitFiles = (files, options) => {
+const splitFiles = (files: File[], options?: SplitFilesOptions) => {
   const accepted = getAcceptedFiles(files, options)
   const rejected = getFileRejections(files, options)
   return { accepted, rejected }

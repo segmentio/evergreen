@@ -1,9 +1,15 @@
 import React, { memo, forwardRef } from 'react'
+import { PolymorphicBoxProps } from "ui-box";
 import { Pane } from '../../layers'
+import { PaneOwnProps } from "../../layers/src/Pane";
 
-const TableBody = memo(
+export interface TableBodyOwnProps extends PaneOwnProps {
+}
+
+export type TableBodyProps = PolymorphicBoxProps<'div', TableBodyOwnProps>;
+
+const TableBody: React.FC<TableBodyProps> = memo(
   forwardRef(function TableBody(props, ref) {
-    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { children, ...rest } = props
 
     return (
@@ -13,14 +19,5 @@ const TableBody = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-TableBody.propTypes = {
-  /**
-   * Composes the Pane component as the base.
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  ...Pane.propTypes
-}
 
 export default TableBody

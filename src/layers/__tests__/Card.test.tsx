@@ -9,14 +9,12 @@ const testText = 'card-test-text'
 describe('<Card />', () => {
   it('forwards ref', () => {
     const mockRef = jest.fn()
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ ref: Mock<any, any>; }' is not assignable ... Remove this comment to see the full error message
     render(<Card ref={mockRef} />)
     expect(mockRef).toHaveBeenCalled()
   })
 
   it('passes className', () => {
     const testClass = 'test-class-name'
-    // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
     render(<Card className={testClass}>{testText}</Card>)
     expect(screen.getByText(testText)).toHaveClass(testClass)
   })
@@ -59,7 +57,6 @@ describe('<Card />', () => {
     const testLabel = 'test-label'
 
     render(
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <Card id={testId} aria-label={testLabel}>
         {testText}
       </Card>

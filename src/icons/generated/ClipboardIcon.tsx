@@ -1,4 +1,5 @@
 import React, { memo, forwardRef } from 'react'
+import { IconComponent } from "../../types";
 import Icon from '../src/Icon'
 
 const svgPaths16 = [
@@ -9,7 +10,7 @@ const svgPaths20 = [
   'M16 2h-2v3H5V2H3c-.55 0-1 .45-1 1v16c0 .55.45 1 1 1h13c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1z'
 ]
 
-export const ClipboardIcon = memo(
+export const ClipboardIcon: IconComponent = memo(
   forwardRef(function ClipboardIcon(props, ref) {
     return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="clipboard" {...props} />
   })

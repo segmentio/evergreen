@@ -1,3 +1,4 @@
+import { MimeType } from '../../../constants'
 import hasValue from '../../../lib/has-value'
 import mimeTypeToExtension from './mime-type-to-extension'
 
@@ -6,14 +7,11 @@ import mimeTypeToExtension from './mime-type-to-extension'
  *
  * Unlike `mimeTypeToExtension`, this will never return `undefined` values. MimeTypes
  * that aren't found are discarded.
- *
- * @param {string[]} mimeTypes
- * @returns {string[]} Mapped file extensions each MimeType
  */
-const mimeTypesToExtensions = mimeTypes => {
+const mimeTypesToExtensions = (mimeTypes: Array<string | MimeType>): string[] => {
   const extensions = mimeTypes.map(mimeTypeToExtension)
 
-  return extensions.filter(hasValue)
+  return extensions.filter(hasValue) as string[]
 }
 
 export default mimeTypesToExtensions

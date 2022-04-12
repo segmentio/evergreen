@@ -1,5 +1,6 @@
 import React from 'react'
-import defaultTheme from '../../themes/default'
+import defaultTheme, { DefaultTheme } from '../../themes/default'
+import { Theme } from '../../types/theme/theme'
 
 /**
  * Use React 16.3+ createContext API.
@@ -8,13 +9,14 @@ import defaultTheme from '../../themes/default'
 // NOTE(allen) - switch this back once we properly refactor Toasts to render
 // them in the existing DOM tree flow, instead of mounting a new root
 // outside of whatever app root an EG consumer is using.
+
 const ThemeContext = React.createContext(defaultTheme)
 const { Consumer: ThemeConsumer, Provider: ThemeProvider } = ThemeContext
 
 /**
  * Returns a typed version of the ThemeContext when using a custom theme
  */
-const getThemeContext = () => ThemeContext
+const getThemeContext = <T extends Theme = DefaultTheme>() => (ThemeContext as any) as React.Context<T>
 
 export default ThemeContext
 export { getThemeContext, ThemeProvider, ThemeConsumer }

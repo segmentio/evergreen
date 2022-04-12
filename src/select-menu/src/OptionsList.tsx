@@ -1,15 +1,52 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import VirtualList from '@segment/react-tiny-virtual-list'
 import fuzzaldrin from 'fuzzaldrin-plus'
-import PropTypes from 'prop-types'
 import { SearchIcon } from '../../icons'
 import { Image } from '../../image'
 import { Pane } from '../../layers'
+import { PaneOwnProps } from '../../layers/src/Pane'
+import safeInvoke from '../../lib/safe-invoke'
 import SearchTableHeaderCell from '../../table/src/SearchTableHeaderCell'
 import TableHead from '../../table/src/TableHead'
 import { useTheme } from '../../theme'
-import Option from './Option'
-import OptionShapePropType from './OptionShapePropType'
+import Option, { OptionProps } from './Option'
+import { SelectMenuOption } from './SelectMenu'
+
+export interface OptionsListProps extends PaneOwnProps {
+  options?: SelectMenuOption[]
+  close?: () => void
+  closeOnSelect?: boolean
+  height?: number
+  width?: number
+  isMultiSelect?: boolean
+  selected?: string | string[]
+  onSelect?: (value: SelectMenuOption) => void
+  onDeselect?: (value: SelectMenuOption) => void
+  onFilterChange?: (value: string) => void
+  hasFilter?: boolean
+  optionSize?: number
+  renderItem?: (props: {
+    key: SelectMenuOption['value']
+    label: SelectMenuOption['label']
+    icon?: SelectMenuOption['icon']
+    item: SelectMenuOption
+    style: object
+    height: NonNullable<OptionsListProps['optionSize']>
+    onSelect: () => void
+    onDeselect: () => void
+    isSelectable: boolean
+    isSelected: boolean
+    disabled: SelectMenuOption['disabled']
+    tabIndex: number
+  }) => JSX.Element
+  filterPlaceholder?: string
+  filterIcon?: React.ElementType | JSX.Element
+  optionsFilter?: (
+    value: SelectMenuOption['label'][],
+    filter: NonNullable<OptionsListProps['defaultSearchValue']>
+  ) => void
+  defaultSearchValue?: string
+}
 
 /**
  * Fuzzaldrin-plus is the default filter, but you can use your own
@@ -17,61 +54,39 @@ import OptionShapePropType from './OptionShapePropType'
  * @param options <Array[String]> - ['label', 'label2', ...]
  * @param input <String>
  */
-const fuzzyFilter = (options: any, input: any, {
-  key
-}: any) => {
+const fuzzyFilter = (options: any, input: any, { key }: any) => {
   return fuzzaldrin.filter(options, input, { key })
 }
 
 const noop = () => {}
 
-const defaultRenderItem = (props: any) => {
+const defaultRenderItem = (props: OptionProps) => {
   return (
     <Option {...props}>
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
       {props.icon && <Image src={props.icon} width={24} marginRight={8} />}
       {props.label}
     </Option>
   )
 }
 
-const OptionsList = memo(function OptionsList(props) {
+const OptionsList: React.FC<OptionsListProps> = memo(function OptionsList(props) {
   const {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'options' does not exist on type '{ child... Remove this comment to see the full error message
     options: originalOptions = [],
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'optionSize' does not exist on type '{ ch... Remove this comment to see the full error message
     optionSize = 33,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'close' does not exist on type '{ childre... Remove this comment to see the full error message
     close,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'closeOnSelect' does not exist on type '{... Remove this comment to see the full error message
     closeOnSelect,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onSelect' does not exist on type '{ chil... Remove this comment to see the full error message
     onSelect = noop,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onDeselect' does not exist on type '{ ch... Remove this comment to see the full error message
     onDeselect = noop,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onFilterChange' does not exist on type '... Remove this comment to see the full error message
     onFilterChange = noop,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hasFilter' does not exist on type '{ chi... Remove this comment to see the full error message
     hasFilter,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'selected' does not exist on type '{ chil... Remove this comment to see the full error message
     selected = [],
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'optionsFilter' does not exist on type '{... Remove this comment to see the full error message
     optionsFilter,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isMultiSelect' does not exist on type '{... Remove this comment to see the full error message
     isMultiSelect,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type '{ childr... Remove this comment to see the full error message
     height,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'width' does not exist on type '{ childre... Remove this comment to see the full error message
     width,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'renderItem' does not exist on type '{ ch... Remove this comment to see the full error message
     renderItem = defaultRenderItem,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'filterPlaceholder' does not exist on typ... Remove this comment to see the full error message
     filterPlaceholder = 'Filter...',
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'filterIcon' does not exist on type '{ ch... Remove this comment to see the full error message
     filterIcon = SearchIcon,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'defaultSearchValue' does not exist on ty... Remove this comment to see the full error message
     defaultSearchValue = '',
     ...rest
   } = props
@@ -84,13 +99,17 @@ const OptionsList = memo(function OptionsList(props) {
 
   const isSelected = useCallback(
     item => {
-      return Boolean(selected.find((selectedItem: any) => selectedItem === item.value));
+      return Boolean(
+        Array.isArray(selected)
+          ? selected.find((selectedItem: any) => selectedItem === item.value)
+          : selected === item.value
+      )
     },
     [selected]
   )
 
   const optionLabels = useMemo(() => {
-    return originalOptions.map((item: any) => item.label);
+    return originalOptions.map((item: any) => item.label)
   }, [originalOptions])
 
   // Gets filtered options any time the filter fn, value, or options change
@@ -101,16 +120,17 @@ const OptionsList = memo(function OptionsList(props) {
 
     // Preserve backwards compatibility with allowing custom filters, which accept array of strings
     if (typeof optionsFilter === 'function') {
+      // @ts-expect-error
       return optionsFilter(optionLabels, searchValue).map((name: any) => {
-        return originalOptions.find((item: any) => item.label === name);
-      });
+        return originalOptions.find((item: any) => item.label === name)
+      })
     }
 
     return fuzzyFilter(originalOptions, searchValue, { key: 'label' })
   }, [originalOptions, optionLabels, optionsFilter, searchValue])
 
   const getCurrentIndex = useCallback(() => {
-    return options.findIndex((option: any) => option.value === selected[selected.length - 1]);
+    return options.findIndex((option: any) => option.value === selected[selected.length - 1])
   }, [selected, options])
 
   const handleArrowUp = useCallback(() => {
@@ -156,7 +176,7 @@ const OptionsList = memo(function OptionsList(props) {
       }
 
       if (!isMultiSelect && closeOnSelect) {
-        close()
+        safeInvoke(close)
       }
     },
     [onDeselect, isMultiSelect, closeOnSelect, onSelect, isSelected, close]
@@ -167,7 +187,7 @@ const OptionsList = memo(function OptionsList(props) {
 
     if (isSelected) {
       if (!isMultiSelect && closeOnSelect) {
-        close()
+        safeInvoke(close)
       }
     }
   }, [isMultiSelect, close, closeOnSelect, getCurrentIndex])
@@ -194,7 +214,7 @@ const OptionsList = memo(function OptionsList(props) {
       }
 
       if (e.key === 'Escape') {
-        close()
+        safeInvoke(close)
       }
     },
     [close, handleArrowUp, handleArrowDown, handleEnter]
@@ -220,32 +240,24 @@ const OptionsList = memo(function OptionsList(props) {
     }
   }, [hasFilter, searchRef, handleKeyDown])
 
-  const listHeight = height - (hasFilter ? 32 : 0)
+  const listHeight = height! - (hasFilter ? 32 : 0)
   const currentIndex = getCurrentIndex()
   const scrollToIndex = currentIndex === -1 ? 0 : currentIndex
 
   return (
-    // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
     <Pane height={height} width={width} display="flex" flexDirection="column" {...rest}>
       {hasFilter && (
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; height: number; backgro... Remove this comment to see the full error message
         <TableHead height={32} backgroundColor={tokens.colors.gray50}>
           <SearchTableHeaderCell
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '(searchValue: any) => void' is not assignabl... Remove this comment to see the full error message
             onChange={handleChange}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<SetStateAction<null>>' is not assig... Remove this comment to see the full error message
             ref={setSearchRef}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'null' is not assignable to type 'never'.
             borderRight={null}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
             placeholder={filterPlaceholder}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
             icon={filterIcon}
           />
         </TableHead>
       )}
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <Pane flex={1}>
         {options.length > 0 && (
           <VirtualList
@@ -276,6 +288,7 @@ const OptionsList = memo(function OptionsList(props) {
                 tabIndex: 0
               }
 
+              // @ts-expect-error
               return renderItem(itemProps)
             }}
           />
@@ -284,38 +297,5 @@ const OptionsList = memo(function OptionsList(props) {
     </Pane>
   )
 })
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
-OptionsList.propTypes = {
-  options: PropTypes.arrayOf(OptionShapePropType),
-  close: PropTypes.func,
-  height: PropTypes.number,
-  width: PropTypes.number,
-
-  /**
-   * When true, multi select is accounted for.
-   */
-  isMultiSelect: PropTypes.bool,
-
-  /**
-   * When true, menu closes on option selection.
-   */
-  closeOnSelect: PropTypes.bool,
-
-  /**
-   * This holds the values of the options
-   */
-  selected: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-  onSelect: PropTypes.func,
-  onDeselect: PropTypes.func,
-  onFilterChange: PropTypes.func,
-  hasFilter: PropTypes.bool,
-  optionSize: PropTypes.number,
-  renderItem: PropTypes.func,
-  filterPlaceholder: PropTypes.string,
-  filterIcon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
-  optionsFilter: PropTypes.func,
-  defaultSearchValue: PropTypes.string
-}
 
 export default OptionsList

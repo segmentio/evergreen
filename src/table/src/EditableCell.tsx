@@ -1,31 +1,51 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import PropTypes from 'prop-types'
 import { useLatest } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import EditableCellField from './EditableCellField'
-import TableCell from './TableCell'
-import TextTableCell from './TextTableCell'
+import TextTableCell, { TextTableCellOwnProps } from './TextTableCell'
+
+export interface TableEditableCellProps extends Omit<TextTableCellOwnProps, 'placeholder' | 'onChange'> {
+  autoFocus?: boolean
+  /**
+   * Makes the TableCell focusable.
+   * Will add tabIndex={-1 || this.props.tabIndex}.
+   */
+  isSelectable?: boolean
+  /**
+   * When true, the cell can't be edited.
+   */
+  disabled?: boolean
+  /**
+   * Optional placeholder when children is falsy.
+   */
+  placeholder?: React.ReactNode
+  /**
+   * The size used for the TextTableCell and Textarea.
+   */
+  size?: 300 | 400
+  /**
+   * This is the value of the cell.
+   */
+  children?: string | number
+  /**
+   * Function called when value changes.
+   */
+  onChange?(value: string): void
+}
 
 const emptyProps = {}
 
-const EditableCell = memo(function EditableCell(props) {
+const EditableCell: React.FC<TableEditableCellProps> = memo(function EditableCell(props) {
   const {
     children,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'size' does not exist on type '{ children... Remove this comment to see the full error message
     size = 300,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'disabled' does not exist on type '{ chil... Remove this comment to see the full error message
     disabled,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'placeholder' does not exist on type '{ c... Remove this comment to see the full error message
     placeholder,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isSelectable' does not exist on type '{ ... Remove this comment to see the full error message
     isSelectable = true,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'textProps' does not exist on type '{ chi... Remove this comment to see the full error message
     textProps = emptyProps,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'autoFocus' does not exist on type '{ chi... Remove this comment to see the full error message
     autoFocus = false,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onChange' does not exist on type '{ chil... Remove this comment to see the full error message
     onChange,
     ...rest
   } = props
@@ -114,22 +134,13 @@ const EditableCell = memo(function EditableCell(props) {
   )
   return (
     <React.Fragment>
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <TextTableCell
         ref={mainRef}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
         isSelectable={isSelectable}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type 'never... Remove this comment to see the full error message
         onClick={handleClick}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type 'never... Remove this comment to see the full error message
         onDoubleClick={handleDoubleClick}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '(e: any) => void' is not assignable to type ... Remove this comment to see the full error message
         onKeyDown={handleKeyDown}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         cursor={cursor}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
         textProps={mergedTextProps}
         {...rest}
       >
@@ -138,66 +149,23 @@ const EditableCell = memo(function EditableCell(props) {
       {isEditing && (
         <Portal>
           <Stack>
-            {(zIndex: any) => <EditableCellField
-              // @ts-expect-error ts-migrate(2322) FIXME: Type '{ zIndex: any; getTargetRef: () => null; val... Remove this comment to see the full error message
-              zIndex={zIndex}
-              getTargetRef={getTargetRef}
-              value={value}
-              onEscape={handleFieldCancel}
-              onChangeComplete={handleFieldChangeComplete}
-              onCancel={handleFieldCancel}
-              size={size}
-            />}
+            {(zIndex: any) => (
+              <EditableCellField
+                // @ts-expect-error ts-migrate(2322) FIXME: Type '{ zIndex: any; getTargetRef: () => null; val... Remove this comment to see the full error message
+                zIndex={zIndex}
+                getTargetRef={getTargetRef}
+                value={value}
+                onEscape={handleFieldCancel}
+                onChangeComplete={handleFieldChangeComplete}
+                onCancel={handleFieldCancel}
+                size={size}
+              />
+            )}
           </Stack>
         </Portal>
       )}
     </React.Fragment>
-  );
+  )
 })
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
-EditableCell.propTypes = {
-  /**
-   * Composes the TableCell component as the base.
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  ...TableCell.propTypes,
-
-  /*
-   * Makes the TableCell focusable.
-   * Will add tabIndex={-1 || this.props.tabIndex}.
-   */
-  isSelectable: PropTypes.bool,
-
-  /**
-   * When true, the cell can't be edited.
-   */
-  disabled: PropTypes.bool,
-
-  /**
-   * Optional placeholder when children is falsy.
-   */
-  placeholder: PropTypes.node,
-
-  /**
-   * The size used for the TextTableCell and Textarea.
-   */
-  size: PropTypes.oneOf([300, 400]),
-
-  /**
-   * This is the value of the cell.
-   */
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-  /**
-   * Function called when value changes. (value: string) => void.
-   */
-  onChange: PropTypes.func,
-
-  /**
-   * When true, the cell will initialize in the editing state.
-   */
-  autoFocus: PropTypes.bool
-}
 
 export default EditableCell

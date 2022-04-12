@@ -1,11 +1,49 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
-import PropTypes from 'prop-types'
-import Box, { spacing, dimensions, position, layout } from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
+import { IntentTypes, ButtonAppearance } from '../../..'
 import { useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { getTextPropsForControlHeight } from '../../lib/deprecated-theme-helpers'
 import { Spinner } from '../../spinner'
+
+export interface ButtonOwnProps {
+  intent?: IntentTypes
+  appearance?: ButtonAppearance
+  /**
+   * When true, show a loading spinner before the children.
+   * This also disables the button.
+   */
+  isLoading?: boolean
+  /**
+   * Forcefully set the active state of a button.
+   * Useful in conjuction with a Popover.
+   */
+  isActive?: boolean
+  /**
+   * Sets an icon before the text. Can be any icon from Evergreen or a custom icon library.
+   */
+  iconBefore?: React.ElementType | JSX.Element | null | false
+  /**
+   * Sets an icon after the text. Can be any icon from Evergreen or a custom icon library.
+   */
+  iconAfter?: React.ElementType | JSX.Element | null | false
+  /**
+   * When true, the button is disabled.
+   * isLoading also sets the button to disabled.
+   */
+  disabled?: boolean
+  /**
+   * Class name passed to the button.
+   */
+  className?: string
+  /**
+   * Size of the button
+   */
+  size?: 'small' | 'medium' | 'large'
+}
+
+export type ButtonProps = PolymorphicBoxProps<'button', ButtonOwnProps>
 
 /* eslint-disable react/prop-types */
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'edge' does not exist on type '{ children... Remove this comment to see the full error message
@@ -61,7 +99,7 @@ export const getIconSizeForButton = (height: any) => {
   return 20
 }
 
-const Button = memo(
+const Button: React.FC<ButtonProps> = memo(
   forwardRef(function Button(props, ref) {
     const {
       appearance = 'default',
@@ -75,15 +113,14 @@ const Button = memo(
       is = 'button',
       isActive = false,
       isLoading,
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...restProps
     } = props
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Button',
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | false | Color | null | undefined' i... Remove this comment to see the full error message
       { appearance, color, intent, size: restProps.size || 'medium' },
       pseudoSelectors,
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ position: string; fontWeight: ... Remove this comment to see the full error message
       internalStyles
     )
 
@@ -105,94 +142,22 @@ const Button = memo(
       >
         {isLoading && (
           <Spinner
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
+            // @ts-expect-error ts-migrate(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
             marginLeft={-Math.round(height / 8)}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
+            // @ts-expect-error ts-migrate(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
             marginRight={Math.round(height / 4)}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
+            // @ts-expect-error ts-migrate(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
             size={Math.round(height / 2)}
           />
         )}
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ icon: never; size: number; spacing: any; e... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ icon: false | ElementType<any> | Element |... Remove this comment to see the full error message */}
         <ButtonIcon icon={iconBefore} size={iconSize} spacing={restProps.paddingLeft} edge="start" />
         {children}
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ icon: never; size: number; spacing: any; e... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ icon: false | ElementType<any> | Element |... Remove this comment to see the full error message */}
         <ButtonIcon icon={iconAfter} size={iconSize} spacing={restProps.paddingRight} edge="end" />
       </Box>
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-Button.propTypes = {
-  /**
-   * Composes the dimensions spec from the Box primitive.
-   */
-  ...dimensions.propTypes,
-
-  /**
-   * Composes the spacing spec from the Box primitive.
-   */
-  ...spacing.propTypes,
-
-  /**
-   * Composes the position spec from the Box primitive.
-   */
-  ...position.propTypes,
-
-  /**
-   * Composes the layout spec from the Box primitive.
-   */
-  ...layout.propTypes,
-
-  /**
-   * The intent of the button.
-   */
-  intent: PropTypes.string,
-
-  /**
-   * The appearance of the button.
-   */
-  appearance: PropTypes.string,
-
-  /**
-   * The size of the button
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-
-  /**
-   * When true, show a loading spinner before the children.
-   * This also disables the button.
-   */
-  isLoading: PropTypes.bool,
-
-  /**
-   * Forcefully set the active state of a button.
-   * Useful in conjunction with a Popover.
-   */
-  isActive: PropTypes.bool,
-
-  /**
-   * Sets an icon before the text. Can be any icon from Evergreen or a custom element.
-   */
-  iconBefore: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
-
-  /**
-   * Sets an icon after the text. Can be any icon from Evergreen or a custom element.
-   */
-  iconAfter: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
-
-  /**
-   * When true, the button is disabled.
-   * isLoading also sets the button to disabled.
-   */
-  disabled: PropTypes.bool,
-
-  /**
-   * Class name passed to the button.
-   * Only use if you know what you are doing.
-   */
-  className: PropTypes.string
-}
 
 export default Button

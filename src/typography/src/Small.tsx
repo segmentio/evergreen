@@ -1,7 +1,13 @@
 import React, { memo, forwardRef } from 'react'
-import Box from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
 
-const Small = memo(
+export interface SmallOwnProps {
+}
+
+export type SmallProps = PolymorphicBoxProps<'small', SmallOwnProps>;
+export type Small = 'small';
+
+const Small: React.FC<SmallProps> = memo(
   forwardRef(function Small(props, ref) {
     return <Box ref={ref} is="small" fontSize="85%" {...props} />
   })

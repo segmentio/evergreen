@@ -1,4 +1,4 @@
-import { stripTSIgnorePlugin } from 'ts-migrate-plugins'
+import { stripTSIgnorePlugin, tsIgnorePlugin, eslintFixPlugin } from 'ts-migrate-plugins'
 import { migrate, MigrateConfig } from 'ts-migrate-server'
 import { Project } from 'ts-morph'
 import { addComponentTypes } from './add-component-types'
@@ -26,7 +26,10 @@ const main = async () => {
   log.info('💾 Saved Project!')
 
   log.info('🧼 Stripping ts-ignore and ts-expect-error comments')
-  const config = new MigrateConfig().addPlugin(stripTSIgnorePlugin, {})
+  const config = new MigrateConfig()
+    .addPlugin(stripTSIgnorePlugin, {})
+    .addPlugin(tsIgnorePlugin, {})
+    .addPlugin(eslintFixPlugin, {})
   await migrate({ rootDir: '.', config })
 }
 

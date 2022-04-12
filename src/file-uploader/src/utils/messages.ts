@@ -1,13 +1,12 @@
 import humanize from 'humanize-plus'
+import { MimeType } from '../../../constants'
 import mimeTypesToExtensions from './mime-types-to-extensions'
 
 /**
  * Returns a standard message informing the user what file extensions are accepted based
  * on the provided array of MimeTypes
- * @param {string[]} acceptedMimeTypes
- * @returns {string}
  */
-export const getAcceptedTypesMessage = acceptedMimeTypes => {
+export const getAcceptedTypesMessage = (acceptedMimeTypes: MimeType[] | string[]): string => {
   const fileExtensions = humanize.oxford(mimeTypesToExtensions(acceptedMimeTypes))
   return `You can upload ${fileExtensions} formats.`
 }
@@ -17,7 +16,7 @@ export const getAcceptedTypesMessage = acceptedMimeTypes => {
  * @param {number} maxSizeInBytes
  * @returns {string}
  */
-export const getFileSizeMessage = maxSizeInBytes =>
+export const getFileSizeMessage = (maxSizeInBytes: number): string =>
   `You can upload files up to ${humanize.fileSize(maxSizeInBytes, 0)}.`
 
 /**
@@ -25,4 +24,5 @@ export const getFileSizeMessage = maxSizeInBytes =>
  * @param {number} maxFiles
  * @returns {string}
  */
-export const getMaxFilesMessage = maxFiles => `You can upload up to ${maxFiles} ${maxFiles === 1 ? 'file' : 'files'}.`
+export const getMaxFilesMessage = (maxFiles: number): string =>
+  `You can upload up to ${maxFiles} ${maxFiles === 1 ? 'file' : 'files'}.`

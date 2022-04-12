@@ -1,10 +1,26 @@
 import React, { memo } from 'react'
 import { css } from 'glamor'
-import PropTypes from 'prop-types'
+import { BoxProps } from 'ui-box'
+import { PositionTypes } from '../../..'
 import { Position } from '../../constants'
 import { Pane } from '../../layers'
+import { PaneOwnProps } from '../../layers/src/Pane'
 import { Overlay } from '../../overlay'
-import SheetClose from './SheetClose'
+import SheetClose, { SheetPosition } from './SheetClose'
+
+export interface SideSheetProps {
+  children: React.ReactNode | (() => React.ReactNode)
+  isShown?: boolean
+  onCloseComplete?: () => void
+  onOpenComplete?: () => void
+  onBeforeClose?: () => boolean
+  shouldCloseOnOverlayClick?: boolean
+  shouldCloseOnEscapePress?: boolean
+  width?: string | number
+  containerProps?: PaneOwnProps & BoxProps<'div'>
+  position?: Extract<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
+  preventBodyScrolling?: boolean
+}
 
 const paneProps = {
   [Position.LEFT]: {
@@ -135,33 +151,22 @@ const animationStylesClass = {
 
 const noop = () => {}
 
-const SideSheet = memo(function SideSheet(props) {
+const SideSheet: React.FC<SideSheetProps> = memo(function SideSheet(props) {
   const {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'width' does not exist on type '{ childre... Remove this comment to see the full error message
     width = 620,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isShown' does not exist on type '{ child... Remove this comment to see the full error message
     isShown,
     children,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'containerProps' does not exist on type '... Remove this comment to see the full error message
     containerProps,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onOpenComplete' does not exist on type '... Remove this comment to see the full error message
     onOpenComplete = noop,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onCloseComplete' does not exist on type ... Remove this comment to see the full error message
     onCloseComplete = noop,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onBeforeClose' does not exist on type '{... Remove this comment to see the full error message
     onBeforeClose,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'shouldCloseOnOverlayClick' does not exis... Remove this comment to see the full error message
     shouldCloseOnOverlayClick = true,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'shouldCloseOnEscapePress' does not exist... Remove this comment to see the full error message
     shouldCloseOnEscapePress = true,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'position' does not exist on type '{ chil... Remove this comment to see the full error message
     position = Position.RIGHT,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'preventBodyScrolling' does not exist on ... Remove this comment to see the full error message
     preventBodyScrolling
   } = props
 
   return (
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: ({ close, state }: any) => Eleme... Remove this comment to see the full error message
     <Overlay
       isShown={isShown}
       shouldCloseOnClick={shouldCloseOnOverlayClick}
@@ -171,21 +176,14 @@ const SideSheet = memo(function SideSheet(props) {
       onEntered={onOpenComplete}
       preventBodyScrolling={preventBodyScrolling}
     >
-      {({
-        close,
-        state
-      }: any) => (
-        // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
+      {({ close, state }: any) => (
         <Pane
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
           width={width}
           {...paneProps[position]}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           className={css(animationStylesClass[position]).toString()}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
           data-state={state}
         >
-          <SheetClose position={position} data-state={state} isClosing={false} onClick={close} />
+          <SheetClose position={position as SheetPosition} data-state={state} isClosing={false} onClick={close} />
           <Pane
             elevation={4}
             backgroundColor="white"
@@ -196,72 +194,13 @@ const SideSheet = memo(function SideSheet(props) {
             {...subpaneProps[position]}
             {...containerProps}
           >
+            {/* @ts-expect-error */}
             {typeof children === 'function' ? children({ close }) : children}
           </Pane>
         </Pane>
       )}
     </Overlay>
-  );
+  )
 })
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
-SideSheet.propTypes = {
-  /**
-   * Children can be a string, node or a function accepting `({ close })`.
-   */
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
-
-  /**
-   * When true, the Side Sheet is shown.
-   */
-  isShown: PropTypes.bool,
-
-  /**
-   * Function that will be called when the exit transition is complete.
-   */
-  onCloseComplete: PropTypes.func,
-
-  /**
-   * Function that will be called when the enter transition is complete.
-   */
-  onOpenComplete: PropTypes.func,
-
-  /**
-   * Function called when overlay is about to close.
-   * Return `false` to prevent the sheet from closing.
-   * type: `Function -> Boolean`
-   */
-  onBeforeClose: PropTypes.func,
-
-  /**
-   * Boolean indicating if clicking the overlay should close the overlay.
-   */
-  shouldCloseOnOverlayClick: PropTypes.bool,
-
-  /**
-   * Boolean indicating if pressing the esc key should close the overlay.
-   */
-  shouldCloseOnEscapePress: PropTypes.bool,
-
-  /**
-   * Width of the SideSheet.
-   */
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-  /**
-   * Properties to pass through the SideSheet container Pane.
-   */
-  containerProps: PropTypes.object,
-
-  /**
-   * Positions the sheet to the top, left, right, or bottom of the screen.
-   */
-  position: PropTypes.oneOf([Position.TOP, Position.BOTTOM, Position.LEFT, Position.RIGHT]),
-
-  /**
-   * Whether or not to prevent scrolling in the outer body
-   */
-  preventBodyScrolling: PropTypes.bool
-}
 
 export default SideSheet

@@ -1,12 +1,25 @@
 import React, { forwardRef, memo } from 'react'
-import PropTypes from 'prop-types'
+import { PolymorphicBoxProps } from "ui-box"
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { minorScale } from '../../scales'
-import Text from './Text'
+import Text, { TextOwnProps } from './Text'
 
-const ListItem = memo(
+export interface ListItemOwnProps extends TextOwnProps {
+    /**
+     * When passed, adds a icon before the list item.
+     * See Evergreen `Icon` for documentation.
+     */
+    icon?: React.ElementType | JSX.Element | null | false;
+    /**
+     * The color of the icon.
+     */
+    iconColor?: string;
+}
+
+export type ListItemProps = PolymorphicBoxProps<'li', ListItemOwnProps>;
+
+const ListItem: React.FC<ListItemProps> = memo(
   forwardRef(function ListItem(props, ref) {
-    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { children, icon, iconColor, size, ...rest } = props
 
     let paddingLeft
@@ -34,6 +47,7 @@ const ListItem = memo(
 
     return (
       <Text
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '"li"' is not assignable to type '"span" | un... Remove this comment to see the full error message
         is="li"
         position="relative"
         marginY="0.5em"
@@ -58,21 +72,5 @@ const ListItem = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-ListItem.propTypes = {
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  ...Text.propTypes,
-
-  /**
-   * When provided, adds a icon before the list item.
-   */
-  icon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
-
-  /**
-   * The color of the icon.
-   */
-  iconColor: PropTypes.string
-}
 
 export default ListItem

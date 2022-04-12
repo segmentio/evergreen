@@ -1,10 +1,52 @@
 import React, { forwardRef, memo } from 'react'
 import cx from 'classnames'
-import PropTypes from 'prop-types'
-import Box, { spacing, dimensions, position, layout } from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
+import { TextInputAppearance } from "../../.."
 import { useStyleConfig } from '../../hooks'
 import { getTextPropsForControlHeight } from '../../lib/deprecated-theme-helpers'
 import { useTheme } from '../../theme'
+
+export interface TextInputOwnProps {
+    /**
+     * Makes the input element required.
+     */
+    required?: boolean;
+    /**
+     * Makes the input element disabled.
+     */
+    disabled?: boolean;
+    /**
+     * Sets visual styling of _only_ the text input to be "invalid".
+     * Note that this does not effect any `validationMessage`.
+     */
+    isInvalid?: boolean;
+    /**
+     * Use the native spell check functionality of the browser.
+     */
+    spellCheck?: boolean;
+    /**
+     * The placeholder text when there is no value present.
+     */
+    placeholder?: string;
+    /**
+     * The appearance of the TextInput.
+     */
+    appearance?: TextInputAppearance;
+    /**
+     * The width of the TextInput.
+     */
+    width?: string | number;
+    /**
+     * Class name passed to the button.
+     */
+    className?: string;
+    /**
+     * Size of the input
+     */
+    size?: 'small' | 'medium' | 'large';
+}
+
+export type TextInputProps = PolymorphicBoxProps<'input', TextInputOwnProps>;
 
 const pseudoSelectors = {
   _focus: '&:focus',
@@ -24,7 +66,7 @@ const internalStyles = {
   WebkitFontSmoothing: 'antialiased'
 }
 
-const TextInput = memo(
+const TextInput: React.FC<TextInputProps> = memo(
   forwardRef(function TextInput(props, ref) {
     const {
       appearance = 'default',
@@ -36,12 +78,12 @@ const TextInput = memo(
       required,
       spellCheck = true,
       width = 280,
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...restProps
     } = props
 
     const theme = useTheme()
     const { fontFamilies } = theme
+    // @ts-expect-error ts-migrate(2538) FIXME: Type 'false' cannot be used as an index type.
     const themedFontFamily = fontFamilies[fontFamily] || fontFamily
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Input',
@@ -54,6 +96,7 @@ const TextInput = memo(
     const textProps = !restProps.size && restProps.height ? getTextPropsForControlHeight(restProps.height) : {}
 
     return (
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ height: number | false | (string & {}) | "... Remove this comment to see the full error message
       <Box
         is="input"
         className={cx(themedClassName, className)}
@@ -74,70 +117,5 @@ const TextInput = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-TextInput.propTypes = {
-  /**
-   * Composes the dimensions spec from the Box primitive.
-   */
-  ...dimensions.propTypes,
-
-  /**
-   * Composes the spacing spec from the Box primitive.
-   */
-  ...spacing.propTypes,
-
-  /**
-   * Composes the position spec from the Box primitive.
-   */
-  ...position.propTypes,
-
-  /**
-   * Composes the layout spec from the Box primitive.
-   */
-  ...layout.propTypes,
-
-  /**
-   * Makes the input element required.
-   */
-  required: PropTypes.bool,
-
-  /**
-   * Makes the input element disabled.
-   */
-  disabled: PropTypes.bool,
-
-  /**
-   * Sets visual styling of _only_ the text input to be "invalid".
-   * Note that this does not effect any `validationMessage`.
-   */
-  isInvalid: PropTypes.bool,
-
-  /**
-   * Use the native spell check functionality of the browser.
-   */
-  spellCheck: PropTypes.bool,
-
-  /**
-   * The placeholder text when there is no value present.
-   */
-  placeholder: PropTypes.string,
-
-  /**
-   * The appearance of the TextInput.
-   */
-  appearance: PropTypes.string,
-
-  /**
-   * The width of the TextInput.
-   */
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-  /**
-   * Class name passed to the button.
-   * Only use if you know what you are doing.
-   */
-  className: PropTypes.string
-}
 
 export default TextInput

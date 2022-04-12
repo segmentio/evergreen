@@ -9,20 +9,17 @@ const testText = 'pane-test-text'
 describe('<Pane />', () => {
   it('forwards ref', () => {
     const mockRef = jest.fn()
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ ref: Mock<any, any>; }' is not assignable ... Remove this comment to see the full error message
     render(<Pane ref={mockRef} />)
     expect(mockRef).toHaveBeenCalled()
   })
 
   it('passes className', () => {
     const testClass = 'test-class-name'
-    // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
     render(<Pane className={testClass}>{testText}</Pane>)
     expect(screen.getByText(testText)).toHaveClass(testClass)
   })
 
   it('uses elevation', () => {
-    // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
     render(<Pane elevation={1}>{testText}</Pane>)
 
     expect(screen.getByText(testText)).toHaveStyle(
@@ -72,7 +69,6 @@ describe('<Pane />', () => {
     const testLabel = 'test-label'
 
     render(
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <Pane id={testId} aria-label={testLabel}>
         {testText}
       </Pane>

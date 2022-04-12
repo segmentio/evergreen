@@ -8,7 +8,6 @@ function makeTextInputFixture(props = {}) {
 }
 
 function makeTextInputFieldFixture(props = {}) {
-  // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
   return <TextInputField data-testid="input" label="Name" {...props} />
 }
 
@@ -33,13 +32,9 @@ describe('TextInput', () => {
       const [value, setValue] = useState('')
       return (
         <TextInput
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           data-testid="input"
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           placeholder="Enter text here"
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           value={value}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '(e: any) => void' is not assignable to type ... Remove this comment to see the full error message
           onChange={(e: any) => setValue(e.target.value)}
         />
       );

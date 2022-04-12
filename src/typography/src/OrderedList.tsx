@@ -1,8 +1,17 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
-import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
+import { Size } from "../../.."
 import { useStyleConfig } from '../../hooks'
+
+export interface OrderedListOwnProps {
+    /**
+     * Size of the text used in a list item.
+     */
+    size?: Size;
+}
+
+export type OrderedListProps = PolymorphicBoxProps<'ol', OrderedListOwnProps>;
 
 const emptyObject = {}
 
@@ -13,9 +22,8 @@ const internalStyles = {
   listStyle: 'decimal'
 }
 
-const OrderedList = memo(
+const OrderedList: React.FC<OrderedListProps> = memo(
   forwardRef(function OrderedList(props, ref) {
-    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { children, className, size = 400, ...rest } = props
 
     const { className: themedClassName, ...styleProps } = useStyleConfig('List', { size }, emptyObject, internalStyles)
@@ -27,7 +35,6 @@ const OrderedList = memo(
 
       return React.cloneElement(child, {
         // Prefer more granularly defined icon if present
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'never'.
         size: child.props.size || size
       })
     })
@@ -39,17 +46,5 @@ const OrderedList = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-OrderedList.propTypes = {
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type '<E ex... Remove this comment to see the full error message
-  ...Box.propTypes,
-
-  /**
-   * Size of the text used in a list item.
-   * Can be: 300, 400, 500, 600.
-   */
-  size: PropTypes.oneOf([300, 400, 500, 600])
-}
 
 export default OrderedList

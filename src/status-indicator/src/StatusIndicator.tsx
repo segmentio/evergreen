@@ -1,12 +1,21 @@
 import React, { memo, forwardRef } from 'react'
-import PropTypes from 'prop-types'
+import { PolymorphicBoxProps } from "ui-box"
+import { IntentTypes } from "../../.."
 import { SymbolCircleIcon } from '../../icons'
 import { majorScale } from '../../scales'
 import { Text } from '../../typography'
+import { TextOwnProps } from "../../typography/src/Text"
 
-const StatusIndicator = memo(
+export interface StatusIndicatorOwnProps extends TextOwnProps {
+    disabled?: boolean;
+    color?: IntentTypes | string;
+    dotSize?: number;
+}
+
+export type StatusIndicatorProps = PolymorphicBoxProps<'span', StatusIndicatorOwnProps>;
+
+const StatusIndicator: React.FC<StatusIndicatorProps> = memo(
   forwardRef(function StatusIndicator(props, ref) {
-    // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     const { children, color = 'disabled', disabled, dotSize = 10, ...rest } = props
 
     return (
@@ -20,29 +29,5 @@ const StatusIndicator = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-StatusIndicator.propTypes = {
-  /**
-   * Composes the Text component as the base.
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  ...Text.propTypes,
-
-  /**
-   * The label of the status hint.
-   */
-  children: PropTypes.node,
-
-  /**
-   * The color of the status hint. Can be an intent or hex value.
-   */
-  color: PropTypes.string,
-
-  /**
-   * The size of the dot to the left of the text
-   */
-  dotSize: PropTypes.number
-}
 
 export default StatusIndicator

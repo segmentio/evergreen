@@ -1,10 +1,31 @@
 import React, { forwardRef, memo, useCallback } from 'react'
 import cx from 'classnames'
-import PropTypes from 'prop-types'
+import { PolymorphicBoxProps } from "ui-box"
 import { useClickable, useLatest, useStyleConfig } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
 import { Text } from '../../typography'
+import { TextOwnProps } from "../../typography/src/Text"
+
+export interface TabOwnProps extends TextOwnProps {
+    /**
+     * When true, the tab is selected.
+     */
+    isSelected?: boolean;
+    disabled?: boolean;
+    /**
+     * The appearance of the tab.
+     * The default theme only comes with a default style.
+     */
+    appearance?: 'primary' | 'secondary';
+    direction?: 'vertical' | 'horizontal';
+    /**
+     * Function triggered when tab is selected.
+     */
+    onSelect?(): void;
+}
+
+export type TabProps = PolymorphicBoxProps<'span', TabOwnProps>;
 
 const noop = () => {}
 
@@ -36,7 +57,7 @@ const pseudoSelectors = {
   _hover: '&:hover'
 }
 
-const Tab = memo(
+const Tab: React.FC<TabProps> = memo(
   forwardRef(function Tab(props, ref) {
     const {
       appearance = 'secondary',
@@ -49,19 +70,17 @@ const Tab = memo(
       height = 28,
       className,
       tabIndex,
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
       'Tab',
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ appearance: string; direction:... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ appearance: "primary" | "secon... Remove this comment to see the full error message
       { appearance, direction },
       pseudoSelectors,
       getInternalStyles(direction)
     )
 
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onClick' does not exist on type 'never'.
     const onClickRef = useLatest(props.onClick)
     const handleClick = useCallback(
       event => {
@@ -78,7 +97,6 @@ const Tab = memo(
     const clickableProps = useClickable({ disabled, onKeyDown, tabIndex })
 
     if (process.env.NODE_ENV !== 'production') {
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'onClick' does not exist on type 'never'.
       warning(typeof props.onClick === 'function', '<Tab> expects `onSelect` prop, but you passed `onClick`.')
     }
 
@@ -111,6 +129,7 @@ const Tab = memo(
     }
 
     return (
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ 'aria-current': string; 'aria-disabled'?: ... Remove this comment to see the full error message
       <Text
         className={cx(className, themedClassName)}
         is={is}
@@ -128,42 +147,5 @@ const Tab = memo(
     )
   })
 )
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-Tab.propTypes = {
-  /**
-   * Composes the Text component as the base.
-   */
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
-  ...Text.propTypes,
-
-  /**
-   * Function triggered when tab is selected.
-   */
-  onSelect: PropTypes.func,
-
-  /**
-   * When true, the tab is selected.
-   */
-  isSelected: PropTypes.bool,
-
-  /**
-   * The appearance of the tab.
-   * The default theme has primary, and secondary. The default is secondary
-   */
-  appearance: PropTypes.string,
-
-  /**
-   * The directionality of the tab.
-   * If the tab is apart of a vertical or horizontal list
-   */
-  direction: PropTypes.oneOf(['horizontal', 'vertical']),
-
-  /**
-   * Class name passed to the Tab.
-   * Only use this if you know what you are doing.
-   */
-  className: PropTypes.string
-}
 
 export default Tab

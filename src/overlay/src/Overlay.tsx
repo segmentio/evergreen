@@ -1,15 +1,31 @@
 import React, { memo, useState, useEffect, useRef } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
-import PropTypes from 'prop-types'
-import { Transition } from 'react-transition-group'
-import Box from 'ui-box'
+import { Transition, TransitionStatus } from 'react-transition-group'
+import { TransitionProps } from "react-transition-group/Transition"
+import Box, { BoxProps } from 'ui-box'
 import { StackingOrder } from '../../constants'
 import preventBodyScroll from '../../lib/prevent-body-scroll'
 import safeInvoke from '../../lib/safe-invoke'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { useTheme } from '../../theme'
+
+export interface OverlayProps {
+    children: React.ReactNode | ((props: { state: TransitionStatus; close: () => void }) => JSX.Element);
+    isShown?: boolean;
+    containerProps?: BoxProps<'div'>;
+    preventBodyScrolling?: boolean;
+    shouldCloseOnClick?: boolean;
+    shouldCloseOnEscapePress?: boolean;
+    onBeforeClose?: () => boolean;
+    onExit?: TransitionProps['onExit'];
+    onExiting?: TransitionProps['onExiting'];
+    onExited?: TransitionProps['onExited'];
+    onEnter?: TransitionProps['onEnter'];
+    onEntering?: TransitionProps['onEntering'];
+    onEntered?: TransitionProps['onEntered'];
+}
 
 const noop = () => {}
 const emptyProps = {}
@@ -68,31 +84,19 @@ const animationStyles = (backgroundColor: any) => ({
 /**
  * Overlay is essentially a wrapper around react-transition-group/Transition
  */
-const Overlay = memo(function Overlay({
+const Overlay: React.FC<OverlayProps> = memo(function Overlay({
   children,
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'containerProps' does not exist on type '... Remove this comment to see the full error message
   containerProps = emptyProps,
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'preventBodyScrolling' does not exist on ... Remove this comment to see the full error message
   preventBodyScrolling = false,
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'shouldCloseOnClick' does not exist on ty... Remove this comment to see the full error message
   shouldCloseOnClick = true,
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'shouldCloseOnEscapePress' does not exist... Remove this comment to see the full error message
   shouldCloseOnEscapePress = true,
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onBeforeClose' does not exist on type '{... Remove this comment to see the full error message
   onBeforeClose,
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onExit' does not exist on type '{ childr... Remove this comment to see the full error message
   onExit = noop,
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onExiting' does not exist on type '{ chi... Remove this comment to see the full error message
   onExiting = noop,
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onExited' does not exist on type '{ chil... Remove this comment to see the full error message
   onExited = noop,
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onEnter' does not exist on type '{ child... Remove this comment to see the full error message
   onEnter = noop,
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onEntering' does not exist on type '{ ch... Remove this comment to see the full error message
   onEntering = noop,
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onEntered' does not exist on type '{ chi... Remove this comment to see the full error message
   onEntered = noop,
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'isShown' does not exist on type '{ child... Remove this comment to see the full error message
   isShown,
   // @ts-expect-error ts-migrate(6133) FIXME: 'props' is declared but its value is never read.
   ...props
@@ -261,7 +265,6 @@ const Overlay = memo(function Overlay({
   }
 
   return (
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: (zIndex: any) => Element; value:... Remove this comment to see the full error message
     <Stack value={StackingOrder.OVERLAY}>
       {(zIndex: any) => <Portal>
         <Transition
@@ -289,8 +292,11 @@ const Overlay = memo(function Overlay({
               zIndex={zIndex}
               data-state={state}
               {...containerProps}
+              // @ts-expect-error ts-migrate(2339) FIXME: Property 'className' does not exist on type '{}'.
               className={cx(containerProps.className, css(animationStyles(colors.overlay)).toString())}
             >
+              // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+              // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
               {typeof children === 'function' ? children({ state, close }) : children}
             </Box>
           )}
@@ -299,91 +305,5 @@ const Overlay = memo(function Overlay({
     </Stack>
   );
 })
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
-Overlay.propTypes = {
-  /**
-   * Children can be a node or a function accepting `close: func`
-   * and `state: ENTERING | ENTERED | EXITING | EXITED`.
-   */
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
-
-  /**
-   * Show the component; triggers the enter or exit states.
-   */
-  isShown: PropTypes.bool,
-
-  /**
-   * Props to be passed through on the inner Box.
-   */
-  containerProps: PropTypes.object,
-
-  /**
-   * Whether or not to prevent body scrolling outside the context of the overlay
-   */
-  preventBodyScrolling: PropTypes.bool,
-
-  /**
-   * Boolean indicating if clicking the overlay should close the overlay.
-   */
-  shouldCloseOnClick: PropTypes.bool,
-
-  /**
-   * Boolean indicating if pressing the esc key should close the overlay.
-   */
-  shouldCloseOnEscapePress: PropTypes.bool,
-
-  /**
-   * Function called when overlay is about to close.
-   * Return `false` to prevent the sheet from closing.
-   * type: `Function -> Boolean`
-   */
-  onBeforeClose: PropTypes.func,
-
-  /**
-   * Callback fired before the "exiting" status is applied.
-   * type: `Function(node: HtmlElement) -> void`
-   */
-  onExit: PropTypes.func,
-
-  /**
-   * Callback fired after the "exiting" status is applied.
-   * type: `Function(node: HtmlElement) -> void`
-   */
-  onExiting: PropTypes.func,
-
-  /**
-   * Callback fired after the "exited" status is applied.
-   * type: `Function(exitState: Any?, node: HtmlElement) -> void`
-   */
-  onExited: PropTypes.func,
-
-  /**
-   * Callback fired before the "entering" status is applied.
-   * An extra parameter isAppearing is supplied to indicate if the enter stage
-   * is occurring on the initial mount.
-   *
-   * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
-   */
-  onEnter: PropTypes.func,
-
-  /**
-   * Callback fired after the "entering" status is applied.
-   * An extra parameter isAppearing is supplied to indicate if the enter stage
-   * is occurring on the initial mount.
-   *
-   * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
-   */
-  onEntering: PropTypes.func,
-
-  /**
-   * Callback fired after the "entered" status is applied.
-   * An extra parameter isAppearing is supplied to indicate if the enter stage
-   * is occurring on the initial mount.
-   *
-   * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
-   */
-  onEntered: PropTypes.func
-}
 
 export default Overlay

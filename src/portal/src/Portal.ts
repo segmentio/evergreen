@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 import canUseDom from '../../lib/canUseDom'
 
@@ -35,7 +34,3 @@ export default class Portal extends Component {
   }
 }
 
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'typeo... Remove this comment to see the full error message
-Portal.propTypes = {
-  children: PropTypes.node.isRequired
-}

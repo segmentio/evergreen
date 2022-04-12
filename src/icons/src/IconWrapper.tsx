@@ -49,7 +49,7 @@ export const IconWrapper: React.FC<IconWrapperProps> = memo(
 
     let iconWithProps = null
     if (ReactIs.isValidElementType(icon)) {
-      const Component = icon
+      const Component: React.ElementType<any> = icon
       iconWithProps = <Component ref={ref} {...iconProps} />
     } else if (React.isValidElement(icon)) {
       iconWithProps = React.cloneElement(icon, { ...iconProps, ...(icon as React.ReactElement).props, ref })

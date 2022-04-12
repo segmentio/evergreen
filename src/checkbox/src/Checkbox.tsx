@@ -1,8 +1,56 @@
 import React, { memo, forwardRef, useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import Box, { spacing, position, layout, dimensions } from 'ui-box'
+import Box, { spacing, position, layout, dimensions, PolymorphicBoxProps } from 'ui-box'
+import { CheckboxAppearance } from "../../.."
 import { useMergedRef, useStyleConfig } from '../../hooks'
 import { Text } from '../../typography'
+
+export interface CheckboxOwnProps {
+    /**
+     * The id attribute of the checkbox.
+     */
+    id?: string;
+    /**
+     * The id attribute of the radio.
+     */
+    name?: string;
+    /**
+     * Label of the checkbox.
+     */
+    label?: React.ReactNode;
+    /**
+     * The value attribute of the radio.
+     */
+    value?: string;
+    /**
+     * The checked attribute of the radio.
+     */
+    checked?: boolean;
+    /**
+     * State in addition to "checked" and "unchecked".
+     * When true, the radio displays a "minus" icon.
+     */
+    indeterminate?: boolean;
+    /**
+     * When true, the radio is disabled.
+     */
+    disabled?: boolean;
+    /**
+     * When true, the aria-invalid attribute is true.
+     * Used for accessibility.
+     */
+    isInvalid?: boolean;
+    /**
+     * The appearance of the checkbox.
+     * The default theme only comes with a default style.
+     */
+    appearance?: CheckboxAppearance;
+    /**
+     * Function called when state changes.
+     */
+    onChange?(event: React.ChangeEvent<HTMLInputElement>): void;
+}
+
+export type CheckboxProps = PolymorphicBoxProps<'input', CheckboxOwnProps>;
 
 const CheckIcon = ({ fill = 'currentColor', ...props }) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...props}>
@@ -13,21 +61,11 @@ const CheckIcon = ({ fill = 'currentColor', ...props }) => (
     />
   </svg>
 )
-
-CheckIcon.propTypes = {
-  fill: PropTypes.string
-}
-
 const MinusIcon = ({ fill = 'currentColor', ...props }) => (
   <svg width={16} height={16} viewBox="0 0 16 16" {...props}>
     <path fill={fill} fillRule="evenodd" d="M11 7H5c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1z" />
   </svg>
 )
-
-MinusIcon.propTypes = {
-  fill: PropTypes.string
-}
-
 const noop = () => {}
 
 const pseudoSelectors = {
@@ -63,7 +101,7 @@ const internalStyles = {
   }
 }
 
-const Checkbox = memo(
+const Checkbox: React.FC<CheckboxProps> = memo(
   forwardRef(function Checkbox(props, forwardedRef) {
     const {
       id,
@@ -76,7 +114,6 @@ const Checkbox = memo(
       onChange = noop,
       value,
       indeterminate = false,
-      // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
       ...rest
     } = props
 
@@ -134,7 +171,6 @@ const Checkbox = memo(
           {indeterminate ? <MinusIcon /> : <CheckIcon />}
         </Box>
         {label && (
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'never'.
           <Text marginLeft={8} size={300} color={disabled ? 'muted' : 'default'}>
             {label}
           </Text>
@@ -144,7 +180,6 @@ const Checkbox = memo(
   })
 )
 
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'MemoE... Remove this comment to see the full error message
 Checkbox.propTypes = {
   /**
    * Composes some Box APIs.
@@ -157,54 +192,64 @@ Checkbox.propTypes = {
   /**
    * The id attribute of the checkbox.
    */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
   id: PropTypes.string,
 
   /**
    * The id attribute of the checkbox.
    */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
   name: PropTypes.string,
 
   /**
    * Label of the checkbox.
    */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
   label: PropTypes.node,
 
   /**
    * The value attribute of the checkbox.
    */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
   value: PropTypes.string,
 
   /**
    * The checked attribute of the checkbox.
    */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
   checked: PropTypes.bool,
 
   /**
    * State in addition to "checked" and "unchecked".
    * When true, the checkbox displays a "minus" icon.
    */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
   indeterminate: PropTypes.bool,
 
   /**
    * Function called when state changes.
    */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
   onChange: PropTypes.func,
 
   /**
    * When true, the checkbox is disabled.
    */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
   disabled: PropTypes.bool,
 
   /**
    * When true, the aria-invalid attribute is true.
    * Used for accessibility.
    */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
   isInvalid: PropTypes.bool,
 
   /**
    * The appearance of the checkbox.
    * The default theme only comes with a default style.
    */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
   appearance: PropTypes.string
 }
 
