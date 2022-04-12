@@ -90,6 +90,7 @@
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.16.7",
     "@babel/register": "^7.0.0",
     "@blueprintjs/icons": "^3.31.0",
     "@faker-js/faker": "^6.1.2",
