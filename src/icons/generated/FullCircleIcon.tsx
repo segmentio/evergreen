@@ -1,5 +1,5 @@
 import React, { memo, forwardRef } from 'react'
-import { IconComponent } from "../../types";
+import { IconComponent } from '../../types'
 import Icon from '../src/Icon'
 
 const svgPaths16 = ['M8 0a8 8 0 100 16A8 8 0 108 0z']

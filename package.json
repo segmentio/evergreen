@@ -38,7 +38,7 @@
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
-    "generate-icons": "./tools/generate-icons.js",
+    "generate-icons": "ts-node tools/generate-icons.ts",
     "build-storybook": "build-storybook",
     "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test' --source-maps inline",
     "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test' --source-maps inline",

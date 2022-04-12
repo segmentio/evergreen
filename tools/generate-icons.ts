@@ -1,29 +1,29 @@
 #!/usr/bin/env node
-'use strict'
-const path = require('path')
-const { IconSvgPaths16, IconSvgPaths20 } = require('@blueprintjs/icons')
-const camelCase = require('camelcase')
-const fs = require('fs-extra')
-const prettier = require('prettier')
+import path from 'path'
+import { IconName, IconSvgPaths16, IconSvgPaths20 } from '@blueprintjs/icons'
+import camelCase from 'camelcase'
+/* @ts-ignore */
+import fs from 'fs-extra'
+import prettier from 'prettier'
 
 const iconsPath = path.resolve(__dirname, '../src/icons/generated')
-const iconsIndexPath = path.resolve(__dirname, '../src/icons/index.js')
-const indexPath = path.resolve(__dirname, '../src/index.js')
-const typedefPath = path.resolve(__dirname, '../index.d.ts')
-const iconNamesMapperPath = path.resolve(__dirname, '../src/icons/generated/IconNameMapper.js')
+const iconsIndexPath = path.resolve(__dirname, '../src/icons/index.ts')
+const indexPath = path.resolve(__dirname, '../src/index.ts')
+// const typedefPath = path.resolve(__dirname, '../index.d.ts')
+const iconNamesMapperPath = path.resolve(__dirname, '../src/icons/generated/IconNameMapper.ts')
 const fileHeader = `// This is a generated file. DO NOT modify directly.\n\n`
 
 async function main() {
   const prettierConfig = await prettier.resolveConfig(__dirname)
   await fs.emptyDir(iconsPath)
-  const rawIconNames = Object.keys(IconSvgPaths16)
-  const iconNames = []
+  const rawIconNames = Object.keys(IconSvgPaths16) as IconName[]
+  const iconNames: string[] = []
 
   // =====================
   // create individual files for each icon as a React component
   // =====================
 
-  const promises = Object.keys(IconSvgPaths16).map(name => {
+  const promises = rawIconNames.map(name => {
     const iconName = camelCase(name, { pascalCase: true }) + 'Icon'
     const svgPaths16 = IconSvgPaths16[name]
     const svgPaths20 = IconSvgPaths20[name]
@@ -31,6 +31,7 @@ async function main() {
 
     let iconFile = `
 import React, { memo, forwardRef } from 'react'
+import { IconComponent } from '../../types'
 import Icon from '../src/Icon'
 
 const svgPaths16 = [
@@ -40,11 +41,11 @@ const svgPaths20 = [
   '${svgPaths20.join(`',\n  '`)}'
 ]
 
-export const ${iconName} = memo(forwardRef(function ${iconName}(props, ref) {
+export const ${iconName}: IconComponent = memo(forwardRef(function ${iconName}(props, ref) {
   return <Icon svgPaths16={svgPaths16} svgPaths20={svgPaths20} ref={ref} name="${name}" {...props} />
 }))
 `
-    const iconPath = path.join(iconsPath, `${iconName}.js`)
+    const iconPath = path.join(iconsPath, `${iconName}.tsx`)
     iconFile = prettier.format(iconFile, {
       ...prettierConfig,
       filepath: iconPath
@@ -59,7 +60,7 @@ export const ${iconName} = memo(forwardRef(function ${iconName}(props, ref) {
   // create the IconNameMapper file
   // =====================
 
-  const iconNamesMap = rawIconNames.reduce((agg, name) => {
+  const iconNamesMap: Record<string, string> = rawIconNames.reduce((agg: Record<string, string>, name: string) => {
     agg[name] = camelCase(name, { pascalCase: true }) + 'Icon'
     return agg
   }, {})
@@ -114,24 +115,6 @@ export const ${iconName} = memo(forwardRef(function ${iconName}(props, ref) {
   })
 
   await fs.writeFile(indexPath, indexContent)
-
-  // =====================
-  // update the typedefs to include icons
-  // =====================
-
-  const iconTypeDefs = iconNames.map(componentName => `export declare const ${componentName}: IconComponent`).join('\n')
-
-  const iconsTypeDefs = `/* Start generated icons */
-export type IconComponent = React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>
->
-${iconTypeDefs}
-/* End generated icons */`
-
-  let typedefs = await fs.readFile(typedefPath, 'utf8')
-  typedefs = typedefs.replace(/\/\* Start generated icons \*\/[\s\S]*?\/\* End generated icons \*\//i, iconsTypeDefs)
-
-  await fs.writeFile(typedefPath, typedefs)
 }
 
 main().catch(error => {
