@@ -1,6 +1,6 @@
 import React from 'react'
+import { faker } from '@faker-js/faker'
 import { render, screen } from '@testing-library/react'
-import faker from 'faker'
 import humanize from 'humanize-plus'
 import { MimeType } from '../../constants'
 import FileCard from '../src/FileCard'

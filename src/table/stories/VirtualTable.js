@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { Table } from '..'
 import { Pane } from '../../layers'
 import { minorScale } from '../../scales'

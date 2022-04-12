@@ -1,7 +1,6 @@
 import React from 'react'
+import { faker } from '@faker-js/faker'
 import { render } from '@testing-library/react'
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'fake... Remove this comment to see the full error message
-import faker from 'faker'
 import renderer from 'react-test-renderer'
 // @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '../.... Remove this comment to see the full error message
 import { UIBoxSerializer } from '../../../lib/testing'
@@ -19,9 +18,6 @@ test.each([
 ])('<Text /> %s renders as expected', (_: any, size: any) => {
   const component = (
     <ThemeProvider value={defaultTheme}>
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <Text size={size}>{`Text ${size}`}</Text>
     </ThemeProvider>
   )
@@ -33,9 +29,6 @@ describe('Colors', () => {
   test('<Text /> accepts arbitrary theme values for color', () => {
     const component = (
       <ThemeProvider value={defaultTheme}>
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Text color="muted">Testing</Text>{' '}
       </ThemeProvider>
     )
@@ -46,9 +39,6 @@ describe('Colors', () => {
   test('<Text /> does not render any color when a non-theme color is passed in ', () => {
     const component = (
       <ThemeProvider value={defaultTheme}>
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Text color="SOMETHING DOESNT EXISt">Testing</Text>{' '}
       </ThemeProvider>
     )

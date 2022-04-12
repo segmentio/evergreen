@@ -1,7 +1,6 @@
 import React from 'react'
+import { faker } from '@faker-js/faker'
 import { render, fireEvent } from '@testing-library/react'
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'fake... Remove this comment to see the full error message
-import faker from 'faker'
 import { Textarea } from '..'
 
 const makeTextareaFixture = (props = {}) => <Textarea data-testid="Textarea" {...props} />
