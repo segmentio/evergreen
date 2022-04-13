@@ -167,12 +167,12 @@
     "tslib": "^2.3.1",
     "typescript": "^4.6.2",
     "url-loader": "^1.1.2",
-    "webpack": "^4.43.0",
     "yarnhook": "^0.5.1"
   },
   "resolutions": {
+    "@types/react": "16.14.11",
     "ansi-regex": "5.0.1",
-    "@types/react": "16.14.11"
+    "webpack": "4.46.0"
   },
   "prettier": {
     "semi": false,
