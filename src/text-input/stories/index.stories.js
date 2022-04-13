@@ -1,6 +1,5 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { TextInputField, TextInput } from '..'
 import { Button } from '../../buttons'
@@ -11,10 +10,6 @@ import { Text, Label, Heading } from '../../typography'
 const Description = props => <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 
 class Manager extends React.Component {
-  static propTypes = {
-    children: PropTypes.func
-  }
-
   state = {}
 
   render() {

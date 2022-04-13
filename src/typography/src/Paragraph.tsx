@@ -1,8 +1,8 @@
 import React, { forwardRef, memo } from 'react'
 import Box, { PolymorphicBoxProps } from 'ui-box'
-import { Size, FontFamily } from '../../types'
 import { useStyleConfig } from '../../hooks'
 import { useTheme } from '../../theme'
+import { Size, FontFamily } from '../../types'
 
 export type ParagraphProps = PolymorphicBoxProps<'p', ParagraphOwnProps>
 export type ParagraphOwnProps = {

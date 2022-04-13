@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Pane } from '../../layers'
 import { Popover } from '../../popover'
 import { Heading, Text, Code } from '../../typography'
@@ -10,12 +9,6 @@ function uppercaseColor(color) {
 }
 
 export default class Swatch extends React.Component {
-  static propTypes = {
-    color: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    property: PropTypes.string.isRequired
-  }
-
   renderContent = () => {
     const { color, name, property } = this.props
 

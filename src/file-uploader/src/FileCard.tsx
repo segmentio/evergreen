@@ -1,6 +1,5 @@
 import React, { memo, forwardRef } from 'react'
 import humanize from 'humanize-plus'
-import PropTypes from 'prop-types'
 import Box, { PolymorphicBoxProps } from 'ui-box'
 import { IconButton } from '../../buttons'
 import { useStyleConfig } from '../../hooks'
@@ -145,49 +144,5 @@ const FileCard: React.FC<FileCardProps> = memo(
     )
   })
 )
-
-FileCard.propTypes = {
-  /**
-   * Description to display under the file name. If not provided, defaults to the file size
-   */
-  description: PropTypes.string,
-  /**
-   * Disables the button to remove the file
-   */
-  disabled: PropTypes.bool,
-  /**
-   * When true, displays the card in an error state
-   */
-  isInvalid: PropTypes.bool,
-  /**
-   * Sets a loading state on the card. If the remove button is rendered, it will be disabled
-   */
-  isLoading: PropTypes.bool,
-  /**
-   * Name of the file to display
-   */
-  name: PropTypes.string,
-  /**
-   * Callback to be fired when the remove button is clicked. If not provided, the button will not
-   * render
-   */
-  onRemove: PropTypes.func,
-  /**
-   * Size of the file
-   */
-  sizeInBytes: PropTypes.number,
-  /**
-   * Url of the uploaded image
-   */
-  src: PropTypes.string,
-  /**
-   * MimeType of the file to display, which controls what type of icon is rendered
-   */
-  type: PropTypes.string,
-  /**
-   * Message to display underneath the card
-   */
-  validationMessage: PropTypes.string
-}
 
 export default FileCard

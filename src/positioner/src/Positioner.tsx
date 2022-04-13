@@ -6,8 +6,8 @@ import { useMergedRef, usePrevious } from '../../hooks'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackProps } from '../../stack/src/Stack'
-import getPosition from './getPosition'
 import { PositionState, PositionTypes } from '../../types'
+import getPosition from './getPosition'
 
 export interface PositionerProps {
   position?: PositionTypes

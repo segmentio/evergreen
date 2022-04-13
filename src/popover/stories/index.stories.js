@@ -1,6 +1,5 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Popover } from '..'
 import { Button } from '../../buttons'
@@ -30,10 +29,6 @@ const ClosablePopoverContent = ({ close }) => (
     <Button onClick={close}>Close</Button>
   </Pane>
 )
-
-ClosablePopoverContent.propTypes = {
-  close: PropTypes.func
-}
 
 // Using it with a function for complete control
 const controlUsage = (

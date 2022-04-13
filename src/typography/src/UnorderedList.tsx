@@ -1,9 +1,9 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import Box, { PolymorphicBoxProps } from 'ui-box'
-import { Size } from '../../types'
 import { useStyleConfig } from '../../hooks'
 import removeUndefined from '../../lib/remove-undefined'
+import { Size } from '../../types'
 
 export interface UnorderedListOwnProps {
   /**

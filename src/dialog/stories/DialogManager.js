@@ -1,11 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 export default class DialogManager extends React.PureComponent {
-  static propTypes = {
-    children: PropTypes.func
-  }
-
   state = {
     isShown: false,
     isLoading: false

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef, PureComponent } from 'react'
 import { storiesOf } from '@storybook/react'
-import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Overlay } from '..'
 import { Button } from '../../buttons'
@@ -9,10 +8,6 @@ import { majorScale } from '../../scales'
 import { Paragraph } from '../../typography'
 
 class OverlayManager extends PureComponent {
-  static propTypes = {
-    children: PropTypes.func
-  }
-
   state = {
     isShown: false
   }

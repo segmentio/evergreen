@@ -1,6 +1,5 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { TagInput } from '..'
 import { Heading } from '../../typography'
@@ -12,11 +11,6 @@ const initialValues = ['First', 'Second', 'Third']
 const autocompleteValues = initialValues.concat('Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth')
 
 class StateManager extends React.PureComponent {
-  static propTypes = {
-    children: PropTypes.func,
-    values: PropTypes.arrayOf(PropTypes.node)
-  }
-
   state = {
     values: this.props.values || []
   }

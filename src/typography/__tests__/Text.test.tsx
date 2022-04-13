@@ -47,32 +47,6 @@ describe('Colors', () => {
   })
 })
 
-describe('Sizing', () => {
-  const originalConsoleError = console.error
-  const mockFn = jest.fn()
-  beforeEach(() => {
-    console.error = mockFn
-  })
-
-  afterEach(() => {
-    console.error = originalConsoleError
-  })
-
-  test('<Text /> has undefined behavior when trying to set arbitrary sizes', () => {
-    render(<Text size={800} />)
-    expect(mockFn.mock.calls.length).toEqual(1)
-    expect(mockFn.mock.calls[0][0]).toMatchInlineSnapshot(`
-      Extracted Styles:
-      box-sizing: border-box;
-      color: #474d66;
-      font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-
-      "Warning: Failed %s type: %s%s"
-    `)
-  })
-})
-
 describe('Props', () => {
   it('should forward `className` prop', () => {
     const expected = faker.random.word().toLowerCase()

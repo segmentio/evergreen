@@ -33,7 +33,7 @@
   "scripts": {
     "test": "yarn lint && yarn jest",
     "test:watch": "yarn run test -- --watch",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --cache --fix",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --cache",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",
@@ -200,10 +200,11 @@
       "<rootDir>/docs/",
       "<rootDir>/codemods/",
       "<rootDir>/esm/",
-      "<rootDir>/commonjs/"
+      "<rootDir>/commonjs/",
+      "<rootDir>/dist/"
     ],
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
+      "src/**/*.{ts,tsx}",
       "!**/*.stories.{js,jsx}",
       "!src/{constants,test,themes}/**",
       "!src/icons/generated/**"

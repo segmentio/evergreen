@@ -1,56 +1,56 @@
 import React, { memo, forwardRef, useEffect, useState } from 'react'
-import Box, { spacing, position, layout, dimensions, PolymorphicBoxProps } from 'ui-box'
-import { CheckboxAppearance } from "../../.."
+import Box, { PolymorphicBoxProps } from 'ui-box'
 import { useMergedRef, useStyleConfig } from '../../hooks'
+import { DefaultAppearance } from '../../types'
 import { Text } from '../../typography'
 
 export interface CheckboxOwnProps {
-    /**
-     * The id attribute of the checkbox.
-     */
-    id?: string;
-    /**
-     * The id attribute of the radio.
-     */
-    name?: string;
-    /**
-     * Label of the checkbox.
-     */
-    label?: React.ReactNode;
-    /**
-     * The value attribute of the radio.
-     */
-    value?: string;
-    /**
-     * The checked attribute of the radio.
-     */
-    checked?: boolean;
-    /**
-     * State in addition to "checked" and "unchecked".
-     * When true, the radio displays a "minus" icon.
-     */
-    indeterminate?: boolean;
-    /**
-     * When true, the radio is disabled.
-     */
-    disabled?: boolean;
-    /**
-     * When true, the aria-invalid attribute is true.
-     * Used for accessibility.
-     */
-    isInvalid?: boolean;
-    /**
-     * The appearance of the checkbox.
-     * The default theme only comes with a default style.
-     */
-    appearance?: CheckboxAppearance;
-    /**
-     * Function called when state changes.
-     */
-    onChange?(event: React.ChangeEvent<HTMLInputElement>): void;
+  /**
+   * The id attribute of the checkbox.
+   */
+  id?: string
+  /**
+   * The id attribute of the radio.
+   */
+  name?: string
+  /**
+   * Label of the checkbox.
+   */
+  label?: React.ReactNode
+  /**
+   * The value attribute of the radio.
+   */
+  value?: string
+  /**
+   * The checked attribute of the radio.
+   */
+  checked?: boolean
+  /**
+   * State in addition to "checked" and "unchecked".
+   * When true, the radio displays a "minus" icon.
+   */
+  indeterminate?: boolean
+  /**
+   * When true, the radio is disabled.
+   */
+  disabled?: boolean
+  /**
+   * When true, the aria-invalid attribute is true.
+   * Used for accessibility.
+   */
+  isInvalid?: boolean
+  /**
+   * The appearance of the checkbox.
+   * The default theme only comes with a default style.
+   */
+  appearance?: DefaultAppearance
+  /**
+   * Function called when state changes.
+   */
+  onChange?(event: React.ChangeEvent<HTMLInputElement>): void
 }
 
-export type CheckboxProps = PolymorphicBoxProps<'input', CheckboxOwnProps>;
+export type CheckboxProps = PolymorphicBoxProps<'input', CheckboxOwnProps>
 
 const CheckIcon = ({ fill = 'currentColor', ...props }) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...props}>
@@ -179,78 +179,5 @@ const Checkbox: React.FC<CheckboxProps> = memo(
     )
   })
 )
-
-Checkbox.propTypes = {
-  /**
-   * Composes some Box APIs.
-   */
-  ...spacing.propTypes,
-  ...position.propTypes,
-  ...layout.propTypes,
-  ...dimensions.propTypes,
-
-  /**
-   * The id attribute of the checkbox.
-   */
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
-  id: PropTypes.string,
-
-  /**
-   * The id attribute of the checkbox.
-   */
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
-  name: PropTypes.string,
-
-  /**
-   * Label of the checkbox.
-   */
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
-  label: PropTypes.node,
-
-  /**
-   * The value attribute of the checkbox.
-   */
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
-  value: PropTypes.string,
-
-  /**
-   * The checked attribute of the checkbox.
-   */
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
-  checked: PropTypes.bool,
-
-  /**
-   * State in addition to "checked" and "unchecked".
-   * When true, the checkbox displays a "minus" icon.
-   */
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
-  indeterminate: PropTypes.bool,
-
-  /**
-   * Function called when state changes.
-   */
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
-  onChange: PropTypes.func,
-
-  /**
-   * When true, the checkbox is disabled.
-   */
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
-  disabled: PropTypes.bool,
-
-  /**
-   * When true, the aria-invalid attribute is true.
-   * Used for accessibility.
-   */
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
-  isInvalid: PropTypes.bool,
-
-  /**
-   * The appearance of the checkbox.
-   * The default theme only comes with a default style.
-   */
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'PropTypes'.
-  appearance: PropTypes.string
-}
 
 export default Checkbox

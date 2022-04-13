@@ -1,6 +1,5 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Tab, Tablist, TabNavigation } from '..'
 import { majorScale } from '../../scales'
@@ -14,10 +13,6 @@ const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
 const StoryDescription = props => <Paragraph size={400} color="muted" {...props} />
 
 class TabManager extends React.PureComponent {
-  static propTypes = {
-    children: PropTypes.func
-  }
-
   constructor(props, context) {
     super(props, context)
     this.state = {

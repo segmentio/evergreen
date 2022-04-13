@@ -1,15 +1,10 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Textarea, TextareaField } from '..'
 import { Label, Heading } from '../../typography'
 
 class Manager extends React.Component {
-  static propTypes = {
-    children: PropTypes.func
-  }
-
   state = {}
 
   render() {

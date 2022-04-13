@@ -1,8 +1,8 @@
 import React, { forwardRef, memo } from 'react'
 import cx from 'classnames'
 import Box, { PolymorphicBoxProps } from 'ui-box'
-import { Size } from '../../types'
 import { useStyleConfig } from '../../hooks'
+import { Size } from '../../types'
 
 export interface HeadingOwnProps {
   size?: Size
