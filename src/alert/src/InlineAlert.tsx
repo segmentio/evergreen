@@ -1,12 +1,13 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import { PolymorphicBoxProps } from 'ui-box'
-import { IntentTypes, Size } from '../../..'
+import { Size } from '../../types'
 import { useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
 import { PaneOwnProps } from '../../layers/src/Pane'
 import { Text } from '../../typography'
 import { getIconForIntent } from './getIconForIntent'
+import { IntentTypes } from '../../types/theme/intent-types'
 
 export interface InlineAlertOwnProps extends PaneOwnProps {
   intent?: IntentTypes

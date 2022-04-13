@@ -1,13 +1,14 @@
 import React, { memo, forwardRef, useRef, useCallback } from 'react'
 import cx from 'classnames'
 import { PolymorphicBoxProps } from 'ui-box'
-import { IntentTypes, DefaultAppearance } from '../../..'
 import { useClickable, useLatest, useMergedRef, useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
 import { PaneOwnProps } from '../../layers/src/Pane'
 import safeInvoke from '../../lib/safe-invoke'
 import { Theme } from '../../types/theme/theme'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
+import { IntentTypes } from '../../types/theme/intent-types'
+import { DefaultAppearance } from '../../types'
 
 export interface TableRowOwnProps extends PaneOwnProps {
   /**

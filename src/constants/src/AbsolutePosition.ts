@@ -1,20 +1,24 @@
-import positions from './Position'
+import { Rect } from '../../positioner/src/getPosition'
+import { PositionTypes } from '../../types'
+import Position from './Position'
 
-export default {
-  [positions.TOP_LEFT]: {
+const AbsolutePositions: Record<Exclude<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>, Partial<Rect>> = {
+  [Position.TOP_LEFT]: {
     top: 50,
     left: 50
   },
-  [positions.TOP_RIGHT]: {
+  [Position.TOP_RIGHT]: {
     top: 50,
     right: 50
   },
-  [positions.BOTTOM_LEFT]: {
+  [Position.BOTTOM_LEFT]: {
     bottom: 50,
     left: 50
   },
-  [positions.BOTTOM_RIGHT]: {
+  [Position.BOTTOM_RIGHT]: {
     bottom: 50,
     right: 50
   }
 }
+
+export default AbsolutePositions

@@ -2,14 +2,15 @@ import React, { memo, useRef, useState, useEffect, useCallback } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
 import { Transition } from 'react-transition-group'
-import { IntentTypes, PositionTypes } from '../../..'
 import { Button, IconButton } from '../../buttons'
-import absolutePositions from '../../constants/src/AbsolutePosition'
-import positions from '../../constants/src/Position'
+import AbsolutePosition from '../../constants/src/AbsolutePosition'
+import Position from '../../constants/src/Position'
 import { CrossIcon } from '../../icons'
 import { Pane, Card } from '../../layers'
 import { Portal } from '../../portal'
 import { Paragraph, Heading } from '../../typography'
+import { PositionTypes } from '../../types'
+import { IntentTypes } from '../../types/theme/intent-types'
 
 export interface CornerDialogProps {
   /**
@@ -144,7 +145,7 @@ const CornerDialog: React.FC<CornerDialogProps> = memo(function CornerDialog(pro
     onCancel = closeHandler,
     onConfirm = closeHandler,
     containerProps = emptyProps,
-    position = positions.BOTTOM_RIGHT
+    position = Position.BOTTOM_RIGHT
   } = props
 
   const [exiting, setExiting] = useState(false)
@@ -219,9 +220,7 @@ const CornerDialog: React.FC<CornerDialogProps> = memo(function CornerDialog(pro
             data-state={state}
             padding={32}
             position="fixed"
-            {...absolutePositions[
-              Object.keys(absolutePositions).includes(position) ? position : positions.BOTTOM_RIGHT
-            ]}
+            {...AbsolutePosition[Object.keys(AbsolutePosition).includes(position) ? position : Position.BOTTOM_RIGHT]}
             {...remainingContainerProps}
           >
             <Pane display="flex" alignItems="center" marginBottom={12}>

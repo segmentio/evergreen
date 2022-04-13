@@ -1,12 +1,13 @@
 import React, { memo, forwardRef, useMemo, useCallback } from 'react'
 import cx from 'classnames'
 import { PolymorphicBoxProps } from 'ui-box'
-import { DefaultAppearance, IntentTypes } from '../../..'
 import { useClickable, useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Pane } from '../../layers'
 import { PaneOwnProps } from '../../layers/src/Pane'
 import { Text } from '../../typography'
+import { IntentTypes } from '../../types/theme/intent-types'
+import { DefaultAppearance } from '../../types'
 
 export interface MenuItemOwnProps extends PaneOwnProps {
   onSelect?: (event: React.SyntheticEvent) => void

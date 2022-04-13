@@ -1,52 +1,52 @@
 import React, { forwardRef, memo } from 'react'
 import cx from 'classnames'
 import Box, { PolymorphicBoxProps } from 'ui-box'
-import { TextInputAppearance } from "../../.."
 import { useStyleConfig } from '../../hooks'
 import { getTextPropsForControlHeight } from '../../lib/deprecated-theme-helpers'
 import { useTheme } from '../../theme'
+import { DefaultAppearance } from '../../types'
 
 export interface TextInputOwnProps {
-    /**
-     * Makes the input element required.
-     */
-    required?: boolean;
-    /**
-     * Makes the input element disabled.
-     */
-    disabled?: boolean;
-    /**
-     * Sets visual styling of _only_ the text input to be "invalid".
-     * Note that this does not effect any `validationMessage`.
-     */
-    isInvalid?: boolean;
-    /**
-     * Use the native spell check functionality of the browser.
-     */
-    spellCheck?: boolean;
-    /**
-     * The placeholder text when there is no value present.
-     */
-    placeholder?: string;
-    /**
-     * The appearance of the TextInput.
-     */
-    appearance?: TextInputAppearance;
-    /**
-     * The width of the TextInput.
-     */
-    width?: string | number;
-    /**
-     * Class name passed to the button.
-     */
-    className?: string;
-    /**
-     * Size of the input
-     */
-    size?: 'small' | 'medium' | 'large';
+  /**
+   * Makes the input element required.
+   */
+  required?: boolean
+  /**
+   * Makes the input element disabled.
+   */
+  disabled?: boolean
+  /**
+   * Sets visual styling of _only_ the text input to be "invalid".
+   * Note that this does not effect any `validationMessage`.
+   */
+  isInvalid?: boolean
+  /**
+   * Use the native spell check functionality of the browser.
+   */
+  spellCheck?: boolean
+  /**
+   * The placeholder text when there is no value present.
+   */
+  placeholder?: string
+  /**
+   * The appearance of the TextInput.
+   */
+  appearance?: DefaultAppearance | 'primary'
+  /**
+   * The width of the TextInput.
+   */
+  width?: string | number
+  /**
+   * Class name passed to the button.
+   */
+  className?: string
+  /**
+   * Size of the input
+   */
+  size?: 'small' | 'medium' | 'large'
 }
 
-export type TextInputProps = PolymorphicBoxProps<'input', TextInputOwnProps>;
+export type TextInputProps = PolymorphicBoxProps<'input', TextInputOwnProps>
 
 const pseudoSelectors = {
   _focus: '&:focus',

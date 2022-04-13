@@ -2,7 +2,7 @@ import React, { memo, forwardRef, useState, useEffect, useCallback } from 'react
 import VirtualList from '@segment/react-tiny-virtual-list'
 import Downshift, { DownshiftProps } from 'downshift'
 import fuzzaldrin from 'fuzzaldrin-plus'
-import { PositionTypes } from '../../..'
+import { PositionTypes } from '../../types'
 import { ButtonOwnProps } from '../../buttons/src/Button'
 import { Position } from '../../constants'
 import { Pane } from '../../layers'

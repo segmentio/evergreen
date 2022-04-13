@@ -2,8 +2,8 @@ import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import Box, { PolymorphicBoxProps } from 'ui-box'
 import { BoxPropValue } from 'ui-box/dist/src/types/enhancers'
-import { Elevation } from '../../..'
 import { useStyleConfig } from '../../hooks'
+import { Elevation } from '../../types'
 
 export interface PaneOwnProps {
   background?: string | BoxPropValue

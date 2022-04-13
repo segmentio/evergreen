@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react'
-import { PositionTypes } from "../../.."
+import { PositionTypes } from '../../types'
 import Positions from '../../constants/src/Position'
 import { Pane } from '../../layers'
-import { PaneProps } from "../../layers/src/Pane"
+import { PaneProps } from '../../layers/src/Pane'
 import warning from '../../lib/warning'
 import { Popover } from '../../popover'
 import { minorScale } from '../../scales'
@@ -11,26 +11,26 @@ import { Pulsar } from './Pulsar'
 
 /** @deprecated This component will be renamed to Pulsar in the next major version of Evergreen */
 export interface NudgeProps {
-    /**
-     * The position the Tooltip is on.
-     */
-    position?: Exclude<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>;
-    /**
-     * The size of the Pulsar
-     */
-    size?: number;
-    /**
-     * The content of the Tooltip.
-     */
-    tooltipContent?: React.ReactNode | ((object: { close: () => void }) => React.ReactNode);
-    /**
-     * When true, manually show the Tooltip.
-     */
-    isShown?: boolean;
-    /**
-     * Called when the Pulsar is clicked
-     */
-    onClick?: PaneProps['onClick'];
+  /**
+   * The position the Tooltip is on.
+   */
+  position?: Exclude<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
+  /**
+   * The size of the Pulsar
+   */
+  size?: number
+  /**
+   * The content of the Tooltip.
+   */
+  tooltipContent?: React.ReactNode | ((object: { close: () => void }) => React.ReactNode)
+  /**
+   * When true, manually show the Tooltip.
+   */
+  isShown?: boolean
+  /**
+   * Called when the Pulsar is clicked
+   */
+  onClick?: PaneProps['onClick']
 }
 
 export const Nudge: React.FC<NudgeProps> = ({

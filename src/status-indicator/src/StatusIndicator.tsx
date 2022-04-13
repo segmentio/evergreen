@@ -1,14 +1,14 @@
 import React, { memo, forwardRef } from 'react'
 import { PolymorphicBoxProps } from 'ui-box'
-import { IntentTypes } from '../../..'
 import { SymbolCircleIcon } from '../../icons'
 import { majorScale } from '../../scales'
+import { IntentTypes } from '../../types/theme/intent-types'
 import { Text } from '../../typography'
 import { TextOwnProps } from '../../typography/src/Text'
 
 export interface StatusIndicatorOwnProps extends TextOwnProps {
   disabled?: boolean
-  color?: IntentTypes | string
+  color?: IntentTypes
   dotSize?: number
 }
 

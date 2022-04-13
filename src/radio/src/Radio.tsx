@@ -1,6 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import Box, { PolymorphicBoxProps } from 'ui-box'
-import { DefaultAppearance } from '../../..'
+import { DefaultAppearance } from '../../types'
 import { useStyleConfig } from '../../hooks'
 import { Text } from '../../typography'
 

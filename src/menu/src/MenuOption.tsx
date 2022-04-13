@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { DefaultAppearance } from '../../..'
+import { DefaultAppearance } from '../../types'
 import { useClickable, useStyleConfig } from '../../hooks'
 import { TickIcon } from '../../icons'
 import { Pane } from '../../layers'

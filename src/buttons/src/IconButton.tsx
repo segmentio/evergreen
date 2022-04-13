@@ -1,8 +1,10 @@
 import React, { memo, forwardRef } from 'react'
 import { PolymorphicBoxProps } from 'ui-box'
-import { IntentTypes, IconButtonAppearance } from '../../..'
 import { useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
+import { DefaultAppearance } from '../../types'
+import { MinimalAppearance } from '../../types/minimal-appearance'
+import { IntentTypes } from '../../types/theme/intent-types'
 import Button, { ButtonOwnProps, getIconSizeForButton, internalStyles, pseudoSelectors } from './Button'
 
 export interface IconButtonOwnProps extends ButtonOwnProps {
@@ -21,7 +23,7 @@ export interface IconButtonOwnProps extends ButtonOwnProps {
   /**
    * The appearance of the button.
    */
-  appearance?: IconButtonAppearance
+  appearance?: DefaultAppearance | MinimalAppearance | 'primary'
   /**
    * Forcefully set the active state of a button.
    * Useful in conjuction with a Popover.

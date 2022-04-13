@@ -3,17 +3,17 @@ import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
 import debounce from 'lodash.debounce'
 import { PolymorphicBoxProps } from 'ui-box'
-import { TooltipAppearance, PositionTypes } from '../../..'
 import { Position } from '../../constants'
 import { useId } from '../../hooks'
 import { Positioner } from '../../positioner'
 import TooltipStateless, { TooltipStatelessProps } from './TooltipStateless'
+import { DefaultAppearance, PositionTypes } from '../../types'
 
 export interface TooltipProps {
   /**
    * The appearance of the Tooltip.
    */
-  appearance?: TooltipAppearance
+  appearance?: DefaultAppearance | 'card'
   /**
    * The position the Tooltip is on.
    */

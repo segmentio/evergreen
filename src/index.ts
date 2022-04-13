@@ -48,14 +48,7 @@ export { minorScale, majorScale } from './scales'
 export { SearchInput } from './search-input'
 export { SegmentedControl } from './segmented-control'
 export { Select, SelectField } from './select'
-export {
-  OptionShapePropType,
-  OptionsList,
-  Option,
-  SelectedPropType,
-  SelectMenu,
-  SelectMenuContent
-} from './select-menu'
+export { OptionsList, Option, SelectMenu, SelectMenuContent } from './select-menu'
 export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
 export { StatusIndicator } from './status-indicator'

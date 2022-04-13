@@ -1,15 +1,15 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import Box, { PolymorphicBoxProps } from 'ui-box'
-import { IntentTypes, ButtonAppearance } from '../../..'
 import { useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { getTextPropsForControlHeight } from '../../lib/deprecated-theme-helpers'
 import { Spinner } from '../../spinner'
+import { IntentTypes } from '../../types/theme/intent-types'
 
 export interface ButtonOwnProps {
   intent?: IntentTypes
-  appearance?: ButtonAppearance
+  appearance?: string
   /**
    * When true, show a loading spinner before the children.
    * This also disables the button.

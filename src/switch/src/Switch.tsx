@@ -1,7 +1,7 @@
 import React, { memo, forwardRef } from 'react'
 import { css } from 'glamor'
 import Box, { PolymorphicBoxProps } from 'ui-box'
-import { DefaultAppearance } from '../../..'
+import { DefaultAppearance } from '../../types'
 import { useStyleConfig } from '../../hooks'
 
 export interface SwitchOwnProps {

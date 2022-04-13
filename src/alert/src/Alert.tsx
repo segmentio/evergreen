@@ -1,7 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import { PolymorphicBoxProps } from 'ui-box'
-import { IntentTypes, AlertAppearance } from '../../..'
 import { IconButton } from '../../buttons'
 import { useStyleConfig } from '../../hooks'
 import { CrossIcon } from '../../icons'
@@ -9,6 +8,8 @@ import { Pane } from '../../layers'
 import { PaneOwnProps } from '../../layers/src/Pane'
 import { Heading, Paragraph } from '../../typography'
 import { getIconForIntent } from './getIconForIntent'
+import { DefaultAppearance } from '../../types'
+import { IntentTypes } from '../../types/theme/intent-types'
 
 export interface AlertOwnProps extends PaneOwnProps {
   intent?: IntentTypes
@@ -28,7 +29,7 @@ export interface AlertOwnProps extends PaneOwnProps {
   /**
    * The appearance of the alert.
    */
-  appearance?: AlertAppearance
+  appearance?: DefaultAppearance | 'card'
 }
 
 export type AlertProps = PolymorphicBoxProps<'div', AlertOwnProps>

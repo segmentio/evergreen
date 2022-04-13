@@ -1,13 +1,18 @@
 import React, { memo } from 'react'
 import { css } from 'glamor'
 import { BoxProps } from 'ui-box'
-import { PositionTypes } from '../../..'
+import { PositionTypes } from '../../types'
 import { Position } from '../../constants'
 import { Pane } from '../../layers'
-import { PaneOwnProps } from '../../layers/src/Pane'
+import { PaneOwnProps, PaneProps } from '../../layers/src/Pane'
 import { Overlay } from '../../overlay'
 import SheetClose, { SheetPosition } from './SheetClose'
 
+type BasicPositionTypes = Exclude<PositionTypes, 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'>
+type AbsolutePositionProps = Pick<
+  PaneProps,
+  'height' | 'maxWidth' | 'position' | 'left' | 'right' | 'width' | 'maxHeight' | 'top' | 'bottom'
+>
 export interface SideSheetProps {
   children: React.ReactNode | (() => React.ReactNode)
   isShown?: boolean
@@ -22,7 +27,7 @@ export interface SideSheetProps {
   preventBodyScrolling?: boolean
 }
 
-const paneProps = {
+const paneProps: Record<BasicPositionTypes, AbsolutePositionProps> = {
   [Position.LEFT]: {
     height: '100vh',
     maxWidth: '100vw',
@@ -53,7 +58,7 @@ const paneProps = {
   }
 }
 
-const subpaneProps = {
+const subpaneProps: Record<BasicPositionTypes, AbsolutePositionProps> = {
   [Position.LEFT]: {
     height: '100vh'
   },
