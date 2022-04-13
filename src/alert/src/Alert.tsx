@@ -6,10 +6,10 @@ import { useStyleConfig } from '../../hooks'
 import { CrossIcon } from '../../icons'
 import { Pane } from '../../layers'
 import { PaneOwnProps } from '../../layers/src/Pane'
-import { Heading, Paragraph } from '../../typography'
-import { getIconForIntent } from './getIconForIntent'
 import { DefaultAppearance } from '../../types'
 import { IntentTypes } from '../../types/theme/intent-types'
+import { Heading, Paragraph } from '../../typography'
+import { getIconForIntent } from './getIconForIntent'
 
 export interface AlertOwnProps extends PaneOwnProps {
   intent?: IntentTypes

@@ -1,12 +1,12 @@
 import React, { memo, forwardRef, useRef, useCallback } from 'react'
 import cx from 'classnames'
 import { PolymorphicBoxProps } from 'ui-box'
-import { DefaultAppearance } from '../../types'
 import { useLatest, useMergedRef, useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
 import { PaneOwnProps } from '../../layers/src/Pane'
 import safeInvoke from '../../lib/safe-invoke'
 import { toaster } from '../../toaster'
+import { DefaultAppearance } from '../../types'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
 
 export interface TableCellOwnProps extends PaneOwnProps {

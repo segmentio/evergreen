@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from 'react'
-import { DefaultAppearance } from '../../types'
 import { useClickable, useStyleConfig } from '../../hooks'
 import { TickIcon } from '../../icons'
 import { Pane } from '../../layers'
 import { pseudoSelectors } from '../../table/src/TableRow'
+import { DefaultAppearance } from '../../types'
 import { Text } from '../../typography'
 
 export interface MenuOptionProps {

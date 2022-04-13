@@ -5,10 +5,10 @@ import { useClickable, useLatest, useMergedRef, useStyleConfig } from '../../hoo
 import { Pane } from '../../layers'
 import { PaneOwnProps } from '../../layers/src/Pane'
 import safeInvoke from '../../lib/safe-invoke'
+import { DefaultAppearance } from '../../types'
+import { IntentTypes } from '../../types/theme/intent-types'
 import { Theme } from '../../types/theme/theme'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
-import { IntentTypes } from '../../types/theme/intent-types'
-import { DefaultAppearance } from '../../types'
 
 export interface TableRowOwnProps extends PaneOwnProps {
   /**

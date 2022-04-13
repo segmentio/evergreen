@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
 import { css } from 'glamor'
 import { BoxProps } from 'ui-box'
-import { PositionTypes } from '../../types'
 import { Position } from '../../constants'
 import { Pane } from '../../layers'
 import { PaneOwnProps, PaneProps } from '../../layers/src/Pane'
 import { Overlay } from '../../overlay'
+import { PositionTypes } from '../../types'
 import SheetClose, { SheetPosition } from './SheetClose'
 
 type BasicPositionTypes = Exclude<PositionTypes, 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'>

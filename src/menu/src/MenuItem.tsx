@@ -5,9 +5,9 @@ import { useClickable, useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Pane } from '../../layers'
 import { PaneOwnProps } from '../../layers/src/Pane'
-import { Text } from '../../typography'
-import { IntentTypes } from '../../types/theme/intent-types'
 import { DefaultAppearance } from '../../types'
+import { IntentTypes } from '../../types/theme/intent-types'
+import { Text } from '../../typography'
 
 export interface MenuItemOwnProps extends PaneOwnProps {
   onSelect?: (event: React.SyntheticEvent) => void

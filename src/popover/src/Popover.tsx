@@ -1,12 +1,12 @@
 import React, { memo, forwardRef, useRef, useState, useEffect, useImperativeHandle, useCallback, useMemo } from 'react'
 import cx from 'classnames'
 import { css as glamorCss } from 'glamor'
-import { PositionTypes } from '../../types'
 import { Position } from '../../constants'
 import { useMergedRef } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
 import { Positioner } from '../../positioner'
 import { Tooltip } from '../../tooltip'
+import { PositionTypes } from '../../types'
 import PopoverStateless, { PopoverStatelessProps } from './PopoverStateless'
 
 export interface PopoverProps {

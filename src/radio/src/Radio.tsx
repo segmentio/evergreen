@@ -1,7 +1,7 @@
 import React, { memo, forwardRef } from 'react'
 import Box, { PolymorphicBoxProps } from 'ui-box'
-import { DefaultAppearance } from '../../types'
 import { useStyleConfig } from '../../hooks'
+import { DefaultAppearance } from '../../types'
 import { Text } from '../../typography'
 
 export interface RadioOwnProps {

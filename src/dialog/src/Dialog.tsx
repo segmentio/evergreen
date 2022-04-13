@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
-import { IntentTypes } from '../../types/theme/intent-types'
 import { Button, IconButton } from '../../buttons'
 import { useStyleConfig } from '../../hooks'
 import { CrossIcon } from '../../icons'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
+import { IntentTypes } from '../../types/theme/intent-types'
 import { Paragraph, Heading } from '../../typography'
 
 export interface DialogProps {

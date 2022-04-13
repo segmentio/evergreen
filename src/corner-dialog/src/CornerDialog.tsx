@@ -8,9 +8,9 @@ import Position from '../../constants/src/Position'
 import { CrossIcon } from '../../icons'
 import { Pane, Card } from '../../layers'
 import { Portal } from '../../portal'
-import { Paragraph, Heading } from '../../typography'
 import { PositionTypes } from '../../types'
 import { IntentTypes } from '../../types/theme/intent-types'
+import { Paragraph, Heading } from '../../typography'
 
 export interface CornerDialogProps {
   /**

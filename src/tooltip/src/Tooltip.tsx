@@ -6,8 +6,8 @@ import { PolymorphicBoxProps } from 'ui-box'
 import { Position } from '../../constants'
 import { useId } from '../../hooks'
 import { Positioner } from '../../positioner'
-import TooltipStateless, { TooltipStatelessProps } from './TooltipStateless'
 import { DefaultAppearance, PositionTypes } from '../../types'
+import TooltipStateless, { TooltipStatelessProps } from './TooltipStateless'
 
 export interface TooltipProps {
   /**

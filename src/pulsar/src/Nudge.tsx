@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react'
-import { PositionTypes } from '../../types'
 import Positions from '../../constants/src/Position'
 import { Pane } from '../../layers'
 import { PaneProps } from '../../layers/src/Pane'
 import warning from '../../lib/warning'
 import { Popover } from '../../popover'
 import { minorScale } from '../../scales'
+import { PositionTypes } from '../../types'
 import { Text } from '../../typography'
 import { Pulsar } from './Pulsar'
 
