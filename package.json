@@ -33,7 +33,7 @@
   "scripts": {
     "test": "yarn lint && yarn tsd && yarn jest",
     "test:watch": "yarn run test -- --watch",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --cache",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --cache --fix",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "dev": "start-storybook -p 6006",
     "create-package": "./tools/create-package.js",

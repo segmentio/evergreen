@@ -1,52 +1,52 @@
 import React, { forwardRef, memo } from 'react'
 import { PolymorphicBoxProps, splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
-import { FormFieldOwnProps } from "../../form-field/src/FormField"
+import { FormFieldOwnProps } from '../../form-field/src/FormField'
 import { useId } from '../../hooks'
 import { majorScale } from '../../scales'
 import TextInput from './TextInput'
 
 export interface TextInputFieldOwnProps extends FormFieldOwnProps {
-    /**
-     * The label used above the input element.
-     */
-    label?: React.ReactNode;
-    /**
-     * Passed on the label as a htmlFor prop.
-     */
-    labelFor?: string;
-    /**
-     * Whether or not show a asterix after the label.
-     */
-    required?: boolean;
-    /**
-     * Whether or not the field is invalid
-     */
-    isInvalid?: boolean;
-    /**
-     * A optional description of the field under the label, above the input element.
-     */
-    description?: React.ReactNode;
-    /**
-     * A optional hint under the input element.
-     */
-    hint?: React.ReactNode;
-    /**
-     * If a validation message is passed it is shown under the input element
-     * and above the hint.
-     */
-    validationMessage?: React.ReactNode;
-    /**
-     * The height of the input element.
-     */
-    inputHeight?: number;
-    /**
-     * The width of the input width.
-     */
-    inputWidth?: number | string;
+  /**
+   * The label used above the input element.
+   */
+  label?: React.ReactNode
+  /**
+   * Passed on the label as a htmlFor prop.
+   */
+  labelFor?: string
+  /**
+   * Whether or not show a asterix after the label.
+   */
+  required?: boolean
+  /**
+   * Whether or not the field is invalid
+   */
+  isInvalid?: boolean
+  /**
+   * A optional description of the field under the label, above the input element.
+   */
+  description?: React.ReactNode
+  /**
+   * A optional hint under the input element.
+   */
+  hint?: React.ReactNode
+  /**
+   * If a validation message is passed it is shown under the input element
+   * and above the hint.
+   */
+  validationMessage?: React.ReactNode
+  /**
+   * The height of the input element.
+   */
+  inputHeight?: number
+  /**
+   * The width of the input width.
+   */
+  inputWidth?: number | string
 }
 
-export type TextInputFieldProps = PolymorphicBoxProps<'input', TextInputFieldOwnProps>;
+export type TextInputFieldProps = PolymorphicBoxProps<'input', TextInputFieldOwnProps>
 
 const TextInputField: React.FC<TextInputFieldProps> = memo(
   forwardRef(function TextInputField(props, ref) {
@@ -61,6 +61,7 @@ const TextInputField: React.FC<TextInputFieldProps> = memo(
       description,
       disabled,
       hint,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       id: unusedId,
 
       // TextInput props

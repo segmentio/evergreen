@@ -1,7 +1,5 @@
 import { Components } from '../../../types/theme/components'
 import { PseudoSelectorKeys } from '../../../types/theme/pseudo-selectors'
-// @ts-expect-error ts-migrate(6133) FIXME: 'Theme' is declared but its value is never read.
-import { Theme } from '../../../types/theme/theme'
 import Alert from './alert'
 import Avatar from './avatar'
 import Badge from './badge'
@@ -12,9 +10,7 @@ import Code from './code'
 import DialogBody from './dialog-body'
 import DialogFooter from './dialog-footer'
 import DialogHeader from './dialog-header'
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module './fi... Remove this comment to see the full error message
 import FileCard from './file-card'
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module './fi... Remove this comment to see the full error message
 import FileUploader from './file-uploader'
 import Group from './group'
 import Heading from './heading'

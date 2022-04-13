@@ -149,8 +149,6 @@ const Toast: React.FC<ToastProps> = memo(function Toast(props) {
           style={styles}
         >
           <Box ref={onRef} padding={8}>
-            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-            // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
             <Alert
               flexShrink={0}
               appearance="card"

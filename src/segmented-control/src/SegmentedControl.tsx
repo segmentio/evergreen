@@ -8,38 +8,38 @@ import warning from '../../lib/warning'
 
 /** @deprecated This component will be removed in the next major version of Evergreen */
 export interface SegmentedControlOwnProps {
-    /**
-     * The options (elements) displayed by the segmented control
-     */
-    options: Array<{
-        label: string
-        value: NonNullable<SegmentedControlOwnProps['value']>
-        }>;
-    /**
-     * The value of the segmented control
-     */
-    value?: number | string | boolean;
-    /**
-     * The initial value of an uncontrolled segmented control
-     */
-    defaultValue?: number | string | boolean;
-    /**
-     * Function called when value changes.
-     */
-    onChange: (value: NonNullable<SegmentedControlOwnProps['value']>) => void;
-    /**
-     * The name attribute of the segmented control
-     */
-    name?: string;
-    size?: 'small' | 'medium' | 'large';
-    /**
-     * Whether or not the component is disabled
-     */
-    disabled?: boolean;
+  /**
+   * The options (elements) displayed by the segmented control
+   */
+  options: Array<{
+    label: string
+    value: NonNullable<SegmentedControlOwnProps['value']>
+  }>
+  /**
+   * The value of the segmented control
+   */
+  value?: number | string | boolean
+  /**
+   * The initial value of an uncontrolled segmented control
+   */
+  defaultValue?: number | string | boolean
+  /**
+   * Function called when value changes.
+   */
+  onChange: (value: NonNullable<SegmentedControlOwnProps['value']>) => void
+  /**
+   * The name attribute of the segmented control
+   */
+  name?: string
+  size?: 'small' | 'medium' | 'large'
+  /**
+   * Whether or not the component is disabled
+   */
+  disabled?: boolean
 }
 
 /** @deprecated This component will be removed in the next major version of Evergreen */
-export type SegmentedControlProps = PolymorphicBoxProps<'div', SegmentedControlOwnProps>;
+export type SegmentedControlProps = PolymorphicBoxProps<'div', SegmentedControlOwnProps>
 
 function isControlled(value: any) {
   return typeof value !== 'undefined' && value !== null
@@ -92,9 +92,6 @@ const SegmentedControl: React.FC<SegmentedControlProps> = memo(
 
     return (
       <Group ref={ref} display="flex" {...rest}>
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type 'never'.
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type 'never'.
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type 'never'.
         {options.map((option: any, index: any) => (
           <Button
             key={option.value}
@@ -112,7 +109,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> = memo(
           </Button>
         ))}
       </Group>
-    );
+    )
   })
 )
 

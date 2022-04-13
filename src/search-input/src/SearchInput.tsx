@@ -3,13 +3,13 @@ import Box, { PolymorphicBoxProps, splitBoxProps } from 'ui-box'
 import { StackingOrder } from '../../constants'
 import { SearchIcon } from '../../icons'
 import { TextInput } from '../../text-input'
-import { TextInputOwnProps } from "../../text-input/src/TextInput"
+import { TextInputOwnProps } from '../../text-input/src/TextInput'
 
 export interface SearchInputOwnProps extends TextInputOwnProps {
-    height?: number;
+  height?: number
 }
 
-export type SearchInputProps = PolymorphicBoxProps<'input', SearchInputOwnProps>;
+export type SearchInputProps = PolymorphicBoxProps<'input', SearchInputOwnProps>
 
 const getIconSizeForInput = (height: any) => {
   if (height <= 28) return 12
@@ -38,9 +38,6 @@ const SearchInput: React.FC<SearchInputProps> = memo(
           justifyContent="center"
           alignItems="center"
         >
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
           <SearchIcon color="default" zIndex={StackingOrder.FOCUSED + 1} size={iconSize} />
         </Box>
         <TextInput

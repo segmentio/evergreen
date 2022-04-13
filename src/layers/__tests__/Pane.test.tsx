@@ -48,9 +48,6 @@ describe('<Pane />', () => {
     render(
       // @ts-expect-error ts-migrate(2322) FIXME: Type '{ components: { Pane: { baseStyle: (theme: a... Remove this comment to see the full error message
       <ThemeProvider value={testTheme}>
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Pane elevation={1}>{testText}</Pane>
       </ThemeProvider>
     )

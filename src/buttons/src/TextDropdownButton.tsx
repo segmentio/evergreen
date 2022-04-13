@@ -42,8 +42,6 @@ export type TextDropdownButtonProps = PolymorphicBoxProps<'button', TextDropdown
 const TextDropdownButton: React.FC<TextDropdownButtonProps> = memo(
   forwardRef(function TextDropdownButton(props, ref) {
     const {
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'appearance' does not exist on type 'Prop... Remove this comment to see the full error message
-      appearance,
       children,
       className,
       disabled,

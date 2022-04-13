@@ -37,9 +37,6 @@ describe('<Card />', () => {
     render(
       // @ts-expect-error ts-migrate(2322) FIXME: Type '{ components: { Card: { baseStyle: { color: ... Remove this comment to see the full error message
       <ThemeProvider value={testTheme}>
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Card>{testText}</Card>
       </ThemeProvider>
     )

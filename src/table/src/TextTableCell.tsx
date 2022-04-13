@@ -25,7 +25,7 @@ const ellipsis = {
 
 const TextTableCell: React.FC<TextTableCellProps> = memo(
   forwardRef(function TextTableCell(props, ref) {
-    const { children, isNumber = false, placeholder, textProps, ...rest } = props
+    const { children, isNumber = false, textProps, ...rest } = props
 
     return (
       <TableCell ref={ref} {...rest}>

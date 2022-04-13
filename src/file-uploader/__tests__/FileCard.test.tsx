@@ -96,7 +96,7 @@ describe('FileCard', () => {
 
           expect(icon).toBeInTheDocument()
           expect(iconButton).toBeDisabled()
-          expect(iconButton).toContainElement(icon)
+          expect(iconButton).toContainElement(icon as HTMLElement)
         })
 
         it('should render disabled <IconButton /> when disabled = true', () => {
@@ -109,7 +109,7 @@ describe('FileCard', () => {
 
           expect(icon).toBeInTheDocument()
           expect(iconButton).toBeDisabled()
-          expect(iconButton).toContainElement(icon)
+          expect(iconButton).toContainElement(icon as HTMLElement)
         })
       })
 

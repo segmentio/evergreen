@@ -1,7 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import { css } from 'glamor'
-// @ts-expect-error ts-migrate(6133) FIXME: 'spacing' is declared but its value is never read.
-import Box, { spacing, position, layout, PolymorphicBoxProps } from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
 import { DefaultAppearance } from '../../..'
 import { useStyleConfig } from '../../hooks'
 

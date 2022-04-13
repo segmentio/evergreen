@@ -6,29 +6,29 @@ import safeInvoke from '../../lib/safe-invoke'
 import { TextInput } from '../../text-input'
 
 export interface FilePickerOwnProps {
-    /** the name attribute of the input */
-    name?: string;
-    /** the accept attribute of the input */
-    accept?: string | string[];
-    /** whether or not the field is required */
-    required?: boolean;
-    /** whether or not the file input accepts multiple files */
-    multiple?: boolean;
-    /** whether or not the filepicker is disabled */
-    disabled?: boolean;
-    /** the capture attribute of the input */
-    capture?: boolean;
-    /** the height of the filepicker */
-    height?: number;
-    /** function called when onChange is fired */
-    onChange?: (files: FileList) => void;
-    /** function called when onBlur is fired */
-    onBlur?: (event: React.FocusEvent) => void;
-    /** placeholder of the text input */
-    placeholder?: string;
+  /** the name attribute of the input */
+  name?: string
+  /** the accept attribute of the input */
+  accept?: string | string[]
+  /** whether or not the field is required */
+  required?: boolean
+  /** whether or not the file input accepts multiple files */
+  multiple?: boolean
+  /** whether or not the filepicker is disabled */
+  disabled?: boolean
+  /** the capture attribute of the input */
+  capture?: boolean
+  /** the height of the filepicker */
+  height?: number
+  /** function called when onChange is fired */
+  onChange?: (files: FileList) => void
+  /** function called when onBlur is fired */
+  onBlur?: (event: React.FocusEvent) => void
+  /** placeholder of the text input */
+  placeholder?: string
 }
 
-export type FilePickerProps = PolymorphicBoxProps<'div', FilePickerOwnProps>;
+export type FilePickerProps = PolymorphicBoxProps<'div', FilePickerOwnProps>
 
 export const CLASS_PREFIX = 'evergreen-file-picker'
 
@@ -139,9 +139,6 @@ const FilePicker: React.FC<FilePickerProps> = memo(
           onBlur={handleBlur}
         />
 
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-        // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
         <Button
           className={`${CLASS_PREFIX}-button`}
           onClick={handleButtonClick}

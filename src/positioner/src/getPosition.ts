@@ -10,13 +10,7 @@ import { Position } from '../../constants'
  * @param {Number} position.top
  * @return {Object} Rect { width, height, left, top, right, bottom }
  */
-const makeRect = ({
-  height,
-  width
-}: any, {
-  left,
-  top
-}: any) => {
+const makeRect = ({ height, width }: any, { left, top }: any) => {
   const ceiledLeft = Math.ceil(left)
   const ceiledTop = Math.ceil(top)
   return {
@@ -134,12 +128,7 @@ const getFitsOnLeft = (rect: any, viewportOffset: any) => {
  * @param {Number} targetCenter - center of the target.
  * @return {String} transform origin
  */
-const getTransformOrigin = ({
-  dimensions,
-  position,
-  rect,
-  targetCenter
-}: any) => {
+const getTransformOrigin = ({ dimensions, position, rect, targetCenter }: any) => {
   const centerY = Math.round(targetCenter - rect.top)
 
   if (position === Position.LEFT) {
@@ -181,6 +170,7 @@ export default function getFittedPosition({
   viewport,
   viewportOffset = 8
 }: any) {
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   const { position: finalPosition, rect } = getPosition({
     position,
     dimensions,
@@ -244,18 +234,12 @@ export default function getFittedPosition({
  * @param {Object} viewportOffset - offset from the viewport.
  * @return {Object} - { rect: Rect, position: Position }
  */
-function getPosition({
-  dimensions,
-  position,
-  targetOffset,
-  targetRect,
-  viewport,
-  viewportOffset = 8
-}: any) {
+function getPosition({ dimensions, position, targetOffset, targetRect, viewport, viewportOffset = 8 }: any) {
   const isHorizontal = isAlignedHorizontal(position)
 
   // Handle left and right positions
   if (isHorizontal) {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     const leftRect = getRect({
       position: Position.LEFT,
       dimensions,
@@ -263,6 +247,7 @@ function getPosition({
       targetOffset
     })
 
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     const rightRect = getRect({
       position: Position.RIGHT,
       dimensions,
@@ -327,12 +312,14 @@ function getPosition({
   let bottomRect
 
   if (positionIsAlignedOnTop) {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     topRect = getRect({
       position,
       dimensions,
       targetRect,
       targetOffset
     })
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     bottomRect = getRect({
       position: flipHorizontal(position),
       dimensions,
@@ -340,12 +327,14 @@ function getPosition({
       targetOffset
     })
   } else {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     topRect = getRect({
       position: flipHorizontal(position),
       dimensions,
       targetRect,
       targetOffset
     })
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     bottomRect = getRect({
       position,
       dimensions,
@@ -416,12 +405,7 @@ function getPosition({
  * @param {Rect} targetRect — the rect of the target.
  * @return {Rect} - Rect { width, height, left, top, right, bottom }
  */
-function getRect({
-  dimensions,
-  position,
-  targetOffset,
-  targetRect
-}: any) {
+function getRect({ dimensions, position, targetOffset, targetRect }: any) {
   const leftRect = targetRect.left + targetRect.width / 2 - dimensions.width / 2
   const alignedTopY = targetRect.top - dimensions.height - targetOffset
   const alignedBottomY = targetRect.bottom + targetOffset

@@ -57,6 +57,7 @@ const SearchTableHeaderCell: React.FC<SearchTableHeaderCellProps> = memo(
   forwardRef(function SearchTableHeaderCell(props, ref) {
     const {
       value,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       children,
       onChange = noop,
       autoFocus,

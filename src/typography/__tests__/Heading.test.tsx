@@ -22,9 +22,6 @@ test.each([
 ])('<Heading /> %s renders as expected', (_: any, size: any) => {
   const component = (
     <ThemeProvider value={defaultTheme}>
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <Heading size={size}>{`Heading ${size}`}</Heading>
     </ThemeProvider>
   )
@@ -35,9 +32,6 @@ test.each([
 test('Heading lets you override the underlying DOM element', async () => {
   render(
     <ThemeProvider value={defaultTheme}>
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
-      // @ts-expect-error ts-migrate(2745) FIXME: This JSX tag's 'children' prop expects type 'never... Remove this comment to see the full error message
       <Heading is="h1">Testing h1</Heading>
     </ThemeProvider>
   )

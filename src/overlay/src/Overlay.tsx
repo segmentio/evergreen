@@ -2,7 +2,7 @@ import React, { memo, useState, useEffect, useRef } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
 import { Transition, TransitionStatus } from 'react-transition-group'
-import { TransitionProps } from "react-transition-group/Transition"
+import { TransitionProps } from 'react-transition-group/Transition'
 import Box, { BoxProps } from 'ui-box'
 import { StackingOrder } from '../../constants'
 import preventBodyScroll from '../../lib/prevent-body-scroll'
@@ -12,19 +12,19 @@ import { Stack } from '../../stack'
 import { useTheme } from '../../theme'
 
 export interface OverlayProps {
-    children: React.ReactNode | ((props: { state: TransitionStatus; close: () => void }) => JSX.Element);
-    isShown?: boolean;
-    containerProps?: BoxProps<'div'>;
-    preventBodyScrolling?: boolean;
-    shouldCloseOnClick?: boolean;
-    shouldCloseOnEscapePress?: boolean;
-    onBeforeClose?: () => boolean;
-    onExit?: TransitionProps['onExit'];
-    onExiting?: TransitionProps['onExiting'];
-    onExited?: TransitionProps['onExited'];
-    onEnter?: TransitionProps['onEnter'];
-    onEntering?: TransitionProps['onEntering'];
-    onEntered?: TransitionProps['onEntered'];
+  children: React.ReactNode | ((props: { state: TransitionStatus; close: () => void }) => JSX.Element)
+  isShown?: boolean
+  containerProps?: BoxProps<'div'>
+  preventBodyScrolling?: boolean
+  shouldCloseOnClick?: boolean
+  shouldCloseOnEscapePress?: boolean
+  onBeforeClose?: () => boolean
+  onExit?: TransitionProps['onExit']
+  onExiting?: TransitionProps['onExiting']
+  onExited?: TransitionProps['onExited']
+  onEnter?: TransitionProps['onEnter']
+  onEntering?: TransitionProps['onEntering']
+  onEntered?: TransitionProps['onEntered']
 }
 
 const noop = () => {}
@@ -97,9 +97,7 @@ const Overlay: React.FC<OverlayProps> = memo(function Overlay({
   onEnter = noop,
   onEntering = noop,
   onEntered = noop,
-  isShown,
-  // @ts-expect-error ts-migrate(6133) FIXME: 'props' is declared but its value is never read.
-  ...props
+  isShown
 }) {
   const theme = useTheme()
   const { colors } = theme
@@ -130,6 +128,7 @@ const Overlay: React.FC<OverlayProps> = memo(function Overlay({
     if (status === 'entered') {
       // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'Element | null' is not assignabl... Remove this comment to see the full error message
       setPreviousActiveElement(document.activeElement)
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       bringFocusInsideOverlay()
     }
 
@@ -139,6 +138,7 @@ const Overlay: React.FC<OverlayProps> = memo(function Overlay({
 
     if (status === 'exiting') {
       document.body.removeEventListener('keydown', onEsc, false)
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       bringFocusBackToTarget()
     }
     // These missing deps *should* be okay (adding them would require other changes)
@@ -148,6 +148,7 @@ const Overlay: React.FC<OverlayProps> = memo(function Overlay({
   // ComponentWillUnmount
   useEffect(
     () => () => {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       handleBodyScroll(false)
       document.body.removeEventListener('keydown', onEsc, false)
     },
@@ -266,44 +267,44 @@ const Overlay: React.FC<OverlayProps> = memo(function Overlay({
 
   return (
     <Stack value={StackingOrder.OVERLAY}>
-      {(zIndex: any) => <Portal>
-        <Transition
-          nodeRef={containerRef}
-          appear
-          unmountOnExit
-          timeout={ANIMATION_DURATION}
-          in={isShown && status !== 'exiting'}
-          onExit={handleExit}
-          onExiting={handleExiting}
-          onExited={handleExited}
-          onEnter={handleEnter}
-          onEntering={handleEntering}
-          onEntered={handleEntered}
-        >
-          {state => (
-            <Box
-              onClick={handleBackdropClick}
-              ref={containerRef}
-              position="fixed"
-              top={0}
-              left={0}
-              right={0}
-              bottom={0}
-              zIndex={zIndex}
-              data-state={state}
-              {...containerProps}
-              // @ts-expect-error ts-migrate(2339) FIXME: Property 'className' does not exist on type '{}'.
-              className={cx(containerProps.className, css(animationStyles(colors.overlay)).toString())}
-            >
-              // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
-              // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
-              {typeof children === 'function' ? children({ state, close }) : children}
-            </Box>
-          )}
-        </Transition>
-      </Portal>}
+      {(zIndex: any) => (
+        <Portal>
+          <Transition
+            nodeRef={containerRef}
+            appear
+            unmountOnExit
+            timeout={ANIMATION_DURATION}
+            in={isShown && status !== 'exiting'}
+            onExit={handleExit}
+            onExiting={handleExiting}
+            onExited={handleExited}
+            onEnter={handleEnter}
+            onEntering={handleEntering}
+            onEntered={handleEntered}
+          >
+            {state => (
+              <Box
+                onClick={handleBackdropClick}
+                ref={containerRef}
+                position="fixed"
+                top={0}
+                left={0}
+                right={0}
+                bottom={0}
+                zIndex={zIndex}
+                data-state={state}
+                {...containerProps}
+                // @ts-expect-error ts-migrate(2339) FIXME: Property 'className' does not exist on type '{}'.
+                className={cx(containerProps.className, css(animationStyles(colors.overlay)).toString())}
+              >
+                {typeof children === 'function' ? children({ state, close }) : children}
+              </Box>
+            )}
+          </Transition>
+        </Portal>
+      )}
     </Stack>
-  );
+  )
 })
 
 export default Overlay
