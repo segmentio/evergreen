@@ -1,14 +1,14 @@
 import React, { forwardRef, memo } from 'react'
 import Box, { PolymorphicBoxProps } from 'ui-box'
-import { Size, FontFamily } from "../../.."
+import { Size, FontFamily } from '../../types'
 import { useStyleConfig } from '../../hooks'
 import { useTheme } from '../../theme'
 
-export type TextProps = PolymorphicBoxProps<'span', TextOwnProps>;
+export type TextProps = PolymorphicBoxProps<'span', TextOwnProps>
 export type TextOwnProps = {
-      size?: Size
-      fontFamily?: FontFamily | string
-    };
+  size?: Size
+  fontFamily?: FontFamily | string
+}
 
 const emptyObject = {}
 

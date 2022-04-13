@@ -25,7 +25,6 @@ const TableWithActionExample = () => {
             icon={<SearchIcon color={colors.gray500} />}
             iconBgColor={colors.gray200}
             description="Click the button below to create a new Audience. Once done, you will see it come up in this list."
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'PrimaryButton' does not exist on type 'F... Remove this comment to see the full error message
             primaryCta={<EmptyState.PrimaryButton>Create Audience</EmptyState.PrimaryButton>}
           />
         </Table.Body>

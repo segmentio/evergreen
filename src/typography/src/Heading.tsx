@@ -1,14 +1,14 @@
 import React, { forwardRef, memo } from 'react'
 import cx from 'classnames'
 import Box, { PolymorphicBoxProps } from 'ui-box'
-import { Size } from "../../.."
+import { Size } from '../../types'
 import { useStyleConfig } from '../../hooks'
 
 export interface HeadingOwnProps {
-    size?: Size;
+  size?: Size
 }
 
-export type HeadingProps = PolymorphicBoxProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6', HeadingOwnProps>;
+export type HeadingProps = PolymorphicBoxProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6', HeadingOwnProps>
 
 const pseudoSelectors = {}
 const internalStyles = {}

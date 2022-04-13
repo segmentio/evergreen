@@ -1,27 +1,27 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import Box, { PolymorphicBoxProps } from 'ui-box'
-import { Size } from "../../.."
+import { Size } from '../../types'
 import { useStyleConfig } from '../../hooks'
 import removeUndefined from '../../lib/remove-undefined'
 
 export interface UnorderedListOwnProps {
-    /**
-     * Size of the text used in a list item.
-     */
-    size?: Size;
-    /**
-     * When passed, adds a icon before each list item in the list
-     * You can override this on a individual list item.
-     */
-    icon?: React.ElementType | JSX.Element;
-    /**
-     * The color of the icon in each list item in the list.
-     */
-    iconColor?: string;
+  /**
+   * Size of the text used in a list item.
+   */
+  size?: Size
+  /**
+   * When passed, adds a icon before each list item in the list
+   * You can override this on a individual list item.
+   */
+  icon?: React.ElementType | JSX.Element
+  /**
+   * The color of the icon in each list item in the list.
+   */
+  iconColor?: string
 }
 
-export type UnorderedListProps = PolymorphicBoxProps<'ul', UnorderedListOwnProps>;
+export type UnorderedListProps = PolymorphicBoxProps<'ul', UnorderedListOwnProps>
 
 const emptyObject = {}
 

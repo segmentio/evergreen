@@ -1,6 +1,7 @@
+export { FontFamily } from './theme/font-family'
+export { Size } from './theme/size'
 export { DefaultAppearance } from './default-appearance'
 export { Elevation } from './elevation'
-export { FontSizeSmall } from './font-size-small'
 export { IconComponent } from './icon-component'
 export { PositionState } from './position-state'
 export { PositionTypes } from './position-types'

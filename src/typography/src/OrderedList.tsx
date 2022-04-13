@@ -1,17 +1,17 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import Box, { PolymorphicBoxProps } from 'ui-box'
-import { Size } from "../../.."
+import { Size } from '../../types'
 import { useStyleConfig } from '../../hooks'
 
 export interface OrderedListOwnProps {
-    /**
-     * Size of the text used in a list item.
-     */
-    size?: Size;
+  /**
+   * Size of the text used in a list item.
+   */
+  size?: Size
 }
 
-export type OrderedListProps = PolymorphicBoxProps<'ol', OrderedListOwnProps>;
+export type OrderedListProps = PolymorphicBoxProps<'ol', OrderedListOwnProps>
 
 const emptyObject = {}
 

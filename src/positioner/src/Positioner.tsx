@@ -1,13 +1,13 @@
 import React, { memo, useCallback, useState, useEffect, useRef, CSSProperties } from 'react'
 import { StyleAttribute } from 'glamor'
 import { Transition } from 'react-transition-group'
-import { PositionTypes, PositionState } from '../../..'
-import { StackingOrder, Position } from '../../constants'
+import { Position, StackingOrder } from '../../constants'
 import { useMergedRef, usePrevious } from '../../hooks'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackProps } from '../../stack/src/Stack'
 import getPosition from './getPosition'
+import { PositionState, PositionTypes } from '../../types'
 
 export interface PositionerProps {
   position?: PositionTypes
@@ -92,7 +92,7 @@ const Positioner: React.FC<PositionerProps> = memo(function Positioner(props) {
   const [dimensions, setDimensions] = useState(initialDimensions)
   const previousDimensions = usePrevious(dimensions, initialDimensions)
   const latestAnimationFrame = useRef()
-  const transitionState = useRef()
+  const transitionState = useRef<PositionState | undefined>()
   const positionerRef = useRef()
   const targetRef = useRef()
   // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
@@ -180,13 +180,11 @@ const Positioner: React.FC<PositionerProps> = memo(function Positioner(props) {
   }, [previousDimensions.height, previousDimensions.width, update, children])
 
   const handleEnter = () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '"entered"' is not assignable to type 'undefi... Remove this comment to see the full error message
     transitionState.current = 'entered'
     update()
   }
 
   const handleExited = () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '"exited"' is not assignable to type 'undefin... Remove this comment to see the full error message
     transitionState.current = 'exited'
     setDimensions(initialDimensions)
     onCloseComplete()

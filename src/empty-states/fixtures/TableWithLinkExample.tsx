@@ -26,10 +26,8 @@ const TableWithLinkExample = () => {
             iconBgColor={colors.gray200}
             description="Click the button below to create a new Audience. Once done, you will see it come up in this list."
             anchorCta={
-              // @ts-expect-error ts-migrate(2339) FIXME: Property 'LinkButton' does not exist on type 'FC<E... Remove this comment to see the full error message
               <EmptyState.LinkButton href="https://segment.com/docs/" target="_blank">
                 Learn more about compute time.
-                {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'LinkButton' does not exist on type 'FC<E... Remove this comment to see the full error message */}
               </EmptyState.LinkButton>
             }
           />

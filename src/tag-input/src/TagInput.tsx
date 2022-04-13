@@ -260,7 +260,6 @@ const TagInput: React.FC<TagInputProps> = memo(
               return (
                 <>
                   <TextInput
-                    // @ts-expect-error ts-migrate(2322) FIXME: Type '"none"' is not assignable to type 'TextInput... Remove this comment to see the full error message
                     appearance="none"
                     disabled={disabled}
                     height={height - 4}

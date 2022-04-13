@@ -1,11 +1,10 @@
 import React, { forwardRef, memo } from 'react'
-import { PolymorphicBoxProps } from "ui-box";
-import { CodeAppearance } from "../../..";
+import { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import Text, { TextOwnProps } from './Text'
 
-export type CodeProps = PolymorphicBoxProps<'code', CodeOwnProps>;
-export type CodeOwnProps = TextOwnProps & { appearance?: CodeAppearance };
+export type CodeProps = PolymorphicBoxProps<'code', CodeOwnProps>
+export type CodeOwnProps = TextOwnProps & { appearance?: 'default' | 'minimal' }
 
 const pseudoSelectors = {}
 const internalStyles = {}
