@@ -10,7 +10,10 @@ import { Position } from '../../constants'
  * @param {Number} position.top
  * @return {Object} Rect { width, height, left, top, right, bottom }
  */
-const makeRect = ({ height, width }: any, { left, top }: any) => {
+const makeRect = (
+  { height, width }: Pick<Rect, 'height' | 'width'>,
+  { left, top }: Pick<Rect, 'left' | 'top'>
+): Rect => {
   const ceiledLeft = Math.ceil(left)
   const ceiledTop = Math.ceil(top)
   return {
@@ -224,6 +227,36 @@ export default function getFittedPosition({
   }
 }
 
+export interface GetPositionInput {
+  position: Position
+  dimensions: {
+    height: number
+    width: number
+  }
+  viewport: {
+    height: number
+    width: number
+  }
+  targetRect: DOMRect
+  targetOffset: number
+  viewportOffset?: number
+}
+
+export interface GetPositionOutput {
+  rect: Rect
+  position: Position
+  transformOrigin?: string
+}
+
+export interface Rect {
+  width: number
+  height: number
+  left: number
+  top: number
+  right: number
+  bottom: number
+}
+
 /**
  * Function that takes in numbers and position and gives the final coords.
  * @param {Position} position — the position the positioner should be on.
@@ -234,7 +267,14 @@ export default function getFittedPosition({
  * @param {Object} viewportOffset - offset from the viewport.
  * @return {Object} - { rect: Rect, position: Position }
  */
-function getPosition({ dimensions, position, targetOffset, targetRect, viewport, viewportOffset = 8 }: any) {
+function getPosition({
+  dimensions,
+  position,
+  targetOffset,
+  targetRect,
+  viewport,
+  viewportOffset = 8
+}: GetPositionInput): GetPositionOutput {
   const isHorizontal = isAlignedHorizontal(position)
 
   // Handle left and right positions
@@ -405,7 +445,7 @@ function getPosition({ dimensions, position, targetOffset, targetRect, viewport,
  * @param {Rect} targetRect — the rect of the target.
  * @return {Rect} - Rect { width, height, left, top, right, bottom }
  */
-function getRect({ dimensions, position, targetOffset, targetRect }: any) {
+function getRect({ dimensions, position, targetOffset, targetRect }: any): Rect {
   const leftRect = targetRect.left + targetRect.width / 2 - dimensions.width / 2
   const alignedTopY = targetRect.top - dimensions.height - targetOffset
   const alignedBottomY = targetRect.bottom + targetOffset

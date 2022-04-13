@@ -3,7 +3,20 @@ import React from 'react'
 import { renderStatic } from 'glamor/server'
 import { extractStyles as boxExtractStyles } from 'ui-box'
 
-export default function extractStyles(options = {}) {
+export interface ExtractStylesInput {
+  nonce?: React.ScriptHTMLAttributes<'script'>['nonce']
+}
+
+export interface ExtractStylesOutput {
+  css: string
+  cache: {
+    uiBoxCache: ReturnType<typeof boxExtractStyles>['cache']
+    glamorIds: string[]
+  }
+  hydrationScript: JSX.Element
+}
+
+export default function extractStyles(options: ExtractStylesInput = {}): ExtractStylesOutput {
   const { cache, styles } = boxExtractStyles()
   const { css, ids } = renderStatic(() => 'let glamor believe there is some html here')
 
@@ -18,7 +31,6 @@ export default function extractStyles(options = {}) {
     dangerouslySetInnerHTML: { __html: JSON.stringify(evergreenCache) }
   }
 
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'nonce' does not exist on type '{}'.
   if (options.nonce) {
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'nonce' does not exist on type '{ type: s... Remove this comment to see the full error message
     scriptProps.nonce = options.nonce

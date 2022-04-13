@@ -32,7 +32,19 @@ export interface PaginationOwnProps {
 
 export type PaginationProps = PolymorphicBoxProps<'nav', PaginationOwnProps>
 
-export const usePaginationBehavior = ({ page: inputPage = 1 } = {}) => {
+export interface UsePaginationBehaviorInput {
+  page?: number
+}
+
+export interface UsePaginationBehaviorOutput extends Required<UsePaginationBehaviorInput> {
+  onNextPage: () => void
+  onPreviousPage: () => void
+  onPageChange: (page: number) => void
+}
+
+export const usePaginationBehavior = ({
+  page: inputPage = 1
+}: UsePaginationBehaviorInput = {}): UsePaginationBehaviorOutput => {
   const [page, setPage] = useState(inputPage)
 
   const onNextPage = useCallback(() => {
@@ -43,14 +55,10 @@ export const usePaginationBehavior = ({ page: inputPage = 1 } = {}) => {
     setPage(page => page - 1)
   }, [])
 
-  const onPageChange = useCallback(index => {
-    setPage(index)
-  }, [])
-
   return {
     page,
     onNextPage,
-    onPageChange,
+    onPageChange: setPage,
     onPreviousPage
   }
 }

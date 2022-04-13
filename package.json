@@ -31,7 +31,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "test": "yarn lint && yarn tsd && yarn jest",
+    "test": "yarn lint && yarn jest",
     "test:watch": "yarn run test -- --watch",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --cache --fix",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
@@ -163,7 +163,6 @@
     "ts-migrate-server": "^0.1.27",
     "ts-morph": "14.0.0",
     "ts-node": "10.7.0",
-    "tsd": "^0.19.1",
     "tslib": "^2.3.1",
     "typescript": "^4.6.2",
     "url-loader": "^1.1.2",
