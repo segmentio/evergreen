@@ -31,7 +31,7 @@ export interface TextInputOwnProps {
   /**
    * The appearance of the TextInput.
    */
-  appearance?: DefaultAppearance | 'primary'
+  appearance?: DefaultAppearance | 'primary' | 'none'
   /**
    * The width of the TextInput.
    */

@@ -1,16 +1,11 @@
 import React, { memo, forwardRef } from 'react'
-import { TooltipAppearance } from '../../..'
 import { useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
 import { PaneProps } from '../../layers/src/Pane'
 import { Paragraph } from '../../typography'
+import { TooltipProps } from './Tooltip'
 
-export interface TooltipStatelessProps extends PaneProps {
-  /**
-   * The appearance of the tooltip.
-   */
-  appearance?: TooltipAppearance
-}
+export interface TooltipStatelessProps extends PaneProps, Pick<TooltipProps, 'appearance'> {}
 
 const pseudoSelectors = {}
 const internalStyles = {}
