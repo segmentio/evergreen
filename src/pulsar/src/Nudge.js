@@ -61,7 +61,7 @@ Nudge.propTypes = {
   size: Pulsar.propTypes.size,
 
   /**
-   * Wether or not the Pulsar/Tooltip is shown
+   * Whether or not the Pulsar/Tooltip is shown
    */
   isShown: PropTypes.bool,
 
@@ -71,7 +71,7 @@ Nudge.propTypes = {
   tooltipContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 
   /**
-   * Content for the pulsar/tooltip to be anchored too
+   * Content for the Pulsar/tooltip to be anchored to
    */
   children: PropTypes.node,
 
