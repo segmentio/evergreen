@@ -40,7 +40,7 @@
     "clean": "git clean -Xdf",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
-    "deploy-docs": "cd docs && yarn add evergreen-ui@latest && git add package.json yarn.lock && git commit -m \"Updated doc site evergreen version\" || yarn install && yarn deploy",
+    "deploy-docs": "cd docs && yarn add evergreen-ui@latest --exact && git add package.json yarn.lock && git commit -m \"Updated doc site evergreen version\" || yarn install && yarn deploy",
     "dev": "start-storybook -p 6006",
     "generate-icons": "./tools/generate-icons.js",
     "lint": "eslint \"src/**/*.js\" --cache",
