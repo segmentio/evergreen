@@ -1,5 +1,5 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
+import ReactDOM from 'react-dom'
 import canUseDom from '../../lib/canUseDom'
 import ToastManager from './ToastManager'
 
@@ -15,13 +15,14 @@ export default class Toaster {
     container.setAttribute('data-evergreen-toaster-container', '')
     document.body.appendChild(container)
 
-    createRoot(container).render(
+    ReactDOM.render(
       <ToastManager
         bindNotify={this._bindNotify}
         bindRemove={this._bindRemove}
         bindGetToasts={this._bindGetToasts}
         bindCloseAll={this._bindCloseAll}
-      />
+      />,
+      container
     )
   }
 
