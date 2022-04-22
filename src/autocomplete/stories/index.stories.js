@@ -121,7 +121,7 @@ storiesOf('autocomplete', module).add('Autocomplete', () => {
       <Box padding={40}>
         <Autocomplete onChange={handleChange} items={items}>
           {({ getInputProps, getRef, getToggleButtonProps, inputValue, toggleMenu }) => (
-            <Box ref={ref => getRef(ref)} display="inline-block">
+            <Box ref={ref => getRef(ref)} display="flex">
               <TextInput placeholder="Trigger with button" value={inputValue} {...getInputProps()} />
               <Button onClick={toggleMenu} {...getToggleButtonProps()}>
                 Trigger
