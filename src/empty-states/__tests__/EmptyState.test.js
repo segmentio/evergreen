@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import { LockIcon } from '../../icons'
 import { defaultTheme } from '../../themes'
+import { Text } from '../../typography/index'
 import SmallExample from '../fixtures/SmallExample'
 import SmallMinimalExample from '../fixtures/SmallMinimalExample'
 import EmptyState from '../src/EmptyState'
@@ -40,6 +41,18 @@ describe('Empty States', () => {
       />
     )
     expect(getByText('Some description')).toBeVisible()
+  })
+
+  it('should render react component when react component is passed as a description prop', () => {
+    const { getByText } = render(
+      <EmptyState
+        title="My Empty States"
+        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
+        iconBgColor={defaultTheme.tokens.colors.gray200}
+        description={<Text>Example Text</Text>}
+      />
+    )
+    expect(getByText('Example Text')).toBeVisible()
   })
 
   it('should render primary button when passed in', () => {
