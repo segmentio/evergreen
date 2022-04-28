@@ -2243,12 +2243,12 @@ export interface SelectOwnProps {
   size?: 'small' | 'medium' | 'large'
 }
 
-export type SelectProps = PolymorphicBoxProps<'div', SelectOwnProps>
-export declare const Select: BoxComponent<SelectOwnProps, 'div'>
+export type SelectProps = PolymorphicBoxProps<'select', SelectOwnProps>
+export declare const Select: BoxComponent<SelectOwnProps, 'select'>
 
 export type SelectFieldOwnProps = FormFieldOwnProps & SelectOwnProps
-export type SelectFieldProps = PolymorphicBoxProps<'div', SelectFieldOwnProps>
-export declare const SelectField: BoxComponent<SelectFieldOwnProps, 'div'>
+export type SelectFieldProps = PolymorphicBoxProps<'select', SelectFieldOwnProps>
+export declare const SelectField: BoxComponent<SelectFieldOwnProps, 'select'>
 
 export interface SelectMenuContentProps {
   close?: OptionsListProps['close']
