@@ -45,7 +45,7 @@
     "generate-icons": "ts-node tools/generate-icons.ts",
     "lint": "eslint \"src/**/*.js\" --cache",
     "postpublish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then yarn deploy-docs; else echo \"not on main branch, skipping docs deploy\"; fi;",
-    "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
+    "prepublishOnly": "rm -rf esm commonjs umd types && yarn build",
     "release": "np",
     "size": "size-limit",
     "storybook": "start-storybook -p 6006",
