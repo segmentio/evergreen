@@ -7,25 +7,6 @@ import { useTheme } from '../../theme'
 import { Link, Heading, Paragraph } from '../../typography'
 import { LinkProps } from '../../typography/src/Link'
 
-export interface EmptyStateOwnProps {
-  /** the title of the empty state */
-  title: string
-  /** the icon used in the empty state */
-  icon: React.ReactNode
-  /** the background used for the icon circle */
-  iconBgColor: string
-  /** specify the orientation of how the content flows */
-  orientation?: 'horizontal' | 'vertical'
-  /** the description of the empty state */
-  description?: string
-  /** the background used for the entire empty state container */
-  background?: 'light' | 'dark'
-  /** the primary cta of the empty state */
-  primaryCta?: React.ReactNode
-  /** the link cta of the empty state */
-  anchorCta?: React.ReactNode
-}
-
 export interface EmptyStateProps {
   /** the title of the empty state */
   title: string
@@ -36,7 +17,7 @@ export interface EmptyStateProps {
   /** specify the orientation of how the content flows */
   orientation?: 'horizontal' | 'vertical'
   /** the description of the empty state */
-  description?: string
+  description?: React.ReactNode
   /** the background used for the entire empty state container */
   background?: 'light' | 'dark'
   /** the primary cta of the empty state */
