@@ -49,7 +49,7 @@
     "release": "np",
     "size": "size-limit",
     "storybook": "start-storybook -p 6006",
-    "test": "yarn lint && yarn tsd && yarn jest",
+    "test": "yarn lint && yarn jest",
     "test:watch": "yarn run test -- --watch",
     "ts-migration": "ts-node tools/ts-migration/main.ts"
   },
