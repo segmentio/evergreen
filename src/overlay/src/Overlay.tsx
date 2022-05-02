@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect, useRef } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
-import { Transition, TransitionStatus } from 'react-transition-group'
+import { Transition } from 'react-transition-group'
 import { TransitionProps } from 'react-transition-group/Transition'
 import Box, { BoxProps } from 'ui-box'
 import { StackingOrder } from '../../constants'
@@ -26,6 +26,8 @@ export interface OverlayProps {
   onEntering?: TransitionProps['onEntering']
   onEntered?: TransitionProps['onEntered']
 }
+
+type TransitionStatus = 'entering' | 'entered' | 'exiting' | 'exited' | 'unmounted'
 
 const noop = () => {}
 const emptyProps = {}
