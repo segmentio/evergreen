@@ -4,7 +4,7 @@
     "target": "es6",
     "module": "commonjs",
     "lib": ["es2015", "es2016", "es2017", "es2018", "dom"],
-    "declaration": false,
+    "declaration": true,
     "sourceMap": false,
     "removeComments": true,
     "rootDirs": ["src"],
