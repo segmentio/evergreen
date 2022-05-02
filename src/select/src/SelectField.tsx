@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { forwardRef, memo } from 'react'
 import { PolymorphicBoxProps, splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
 import { FormFieldOwnProps } from '../../form-field/src/FormField'
@@ -8,7 +8,7 @@ import Select, { SelectOwnProps } from './Select'
 export type SelectFieldProps = PolymorphicBoxProps<'select', SelectFieldOwnProps>
 export type SelectFieldOwnProps = FormFieldOwnProps & SelectOwnProps
 
-const SelectField: React.FC<SelectFieldProps> = memo(function SelectField(props) {
+const SelectField: React.FC<SelectFieldProps> = memo(forwardRef(function SelectField(props, ref) {
   const id = useId('SelectField', props.id)
 
   const {
@@ -59,10 +59,11 @@ const SelectField: React.FC<SelectFieldProps> = memo(function SelectField(props)
         required={required}
         isInvalid={isInvalid}
         appearance={appearance}
+        ref={ref}
         {...remainingProps}
       />
     </FormField>
   )
-})
+}))
 
 export default SelectField
