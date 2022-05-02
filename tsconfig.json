@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "noEmit": true,
     "target": "es6",
     "module": "commonjs",
     "lib": ["es2015", "es2016", "es2017", "es2018", "dom"],
