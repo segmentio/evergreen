@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "outDir": "esm"
+  },
+  "extends": "./tsconfig.json",
+  "exclude": ["**/__tests__", "**/test", "**/stories"],
+  "include": ["src"]
+}

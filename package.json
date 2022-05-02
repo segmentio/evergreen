@@ -33,7 +33,7 @@
   "scripts": {
     "build": "yarn generate-icons && concurrently --names 'commonjs,esm,umd' 'yarn build-commonjs' 'yarn build-esm' 'yarn build-umd'",
     "build-commonjs": "tsc --project tsconfig.commonjs.json",
-    "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test' --extensions '.ts,.tsx'",
+    "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test','**/__tests__' --extensions '.ts,.tsx' && tsc --project tsconfig.esm.json",
     "build-storybook": "build-storybook",
     "build-umd": "rollup -c",
     "chromatic": "npx chromatic",
