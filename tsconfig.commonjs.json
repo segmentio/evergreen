@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "declarationDir": "types",
     "module": "commonjs",
     "noEmit": false,
     "outDir": "commonjs"

@@ -12,4 +12,4 @@ coverage
 /.idea/
 /storybook-static/
 .eslintcache
-dist
+/types
