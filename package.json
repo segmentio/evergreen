@@ -32,8 +32,8 @@
   "sideEffects": false,
   "scripts": {
     "build": "yarn generate-icons && concurrently --names 'commonjs,esm,umd' 'yarn build-commonjs' 'yarn build-esm' 'yarn build-umd'",
-    "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test' --source-maps inline",
-    "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test' --source-maps inline",
+    "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test'",
+    "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test'",
     "build-storybook": "build-storybook",
     "build-umd": "rollup -c",
     "chromatic": "npx chromatic",
@@ -75,7 +75,7 @@
     "react-fast-compare": "^3.2.0",
     "react-transition-group": "^4.4.1",
     "tinycolor2": "^1.4.1",
-    "ui-box": "^5.0.0"
+    "ui-box": "^5.0.1"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0",
