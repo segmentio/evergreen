@@ -31,8 +31,7 @@ export interface Toast {
   /**
    * The intent of this Toast. One of none, success, warning, or danger.
    */
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'IntentTypes'.
-  intent?: IntentTypes
+  intent?: 'none' | 'success' | 'warning' | 'danger'
 }
 
 /**
