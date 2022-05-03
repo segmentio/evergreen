@@ -1,5 +1,7 @@
-#!/usr/bin/env node
-'use strict'
+import path from 'path'
+import fs from 'fs-extra'
+import { titleCase } from 'humanize-plus'
+import task from './task'
 /**
  * This script scaffolds a bare bones package.
  *
@@ -11,20 +13,15 @@
  *
  * /src/package-name
  * ├── /src/
- * └── index.js
+ * └── index.ts
  *
  */
-const path = require('path')
-const fs = require('fs-extra')
-const task = require('./task')
 
 const packageName = process.argv[2]
 
-module.exports = task('create-package-js', async () => {
+module.exports = task('create-package', async () => {
   if (!packageName) {
-    throw new Error(
-      'Missing package name argument, use: `yarn run create-package [package-name]`'
-    )
+    throw new Error('Missing package name argument, use: `yarn run create-package [package-name]`')
   }
 
   const packageDir = path.join('src', packageName)
@@ -39,12 +36,13 @@ module.exports = task('create-package-js', async () => {
   // Create directory
   await fs.ensureDir(packageDir)
 
+  // eslint-disable-next-line no-console
   console.info('Package name will be:', packageName)
 
   // Create `src` dir in package
   await fs.ensureDir(path.join(packageDir, 'src'))
   await fs.writeFile(
-    path.join(packageDir, 'index.js'),
-    `export derp from './src/derp'`
+    path.join(packageDir, 'index.ts'),
+    `export { default as ${titleCase(packageName).replace(/-/g, '')} } from './src/${packageName}'`
   )
 })

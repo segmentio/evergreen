@@ -1,5 +1,9 @@
-#!/usr/bin/env node
-'use strict'
+import path from 'path'
+import fs from 'fs-extra'
+import componentStoriesTemplate from './component-stories-template'
+import componentTemplate from './component-template'
+import task from './task'
+
 /**
  * This script scaffolds React component(s) inside a package.
  *
@@ -11,18 +15,13 @@
  *
  * /src/package-name
  * ├── /src/
- * |   │── ComponentName.js
- * |   └── ComponentName2.js
+ * |   │── ComponentName.ts
+ * |   └── ComponentName2.ts
  * ├── /stories/
- * │   └── index.stories.js
- * └── index.js
+ * │   └── index.stories.ts
+ * └── index.ts
  *
  */
-const path = require('path')
-const fs = require('fs-extra')
-const componentStoriesTemplate = require('./component-stories-template')
-const componentTemplate = require('./component-template')
-const task = require('./task')
 
 const packageName = process.argv[2]
 
@@ -53,18 +52,18 @@ module.exports = task('create-package-components', async () => {
 
   // Create `src` dir in package
   await fs.ensureDir(path.join(packageDir, 'src'))
-  await fs.writeFile(path.join(packageDir, 'index.js'), getIndexFile(componentNames))
+  await fs.writeFile(path.join(packageDir, 'index.ts'), getIndexFile(componentNames))
 
-  await Promise.all(componentNames.map(componentName => createComponent({ componentName, packageDir })))
+  await Promise.all(componentNames.map(componentName => createComponent(componentName, packageDir)))
 
   await fs.ensureDir(path.join(packageDir, 'stories'))
   await fs.writeFile(
-    path.join(packageDir, 'stories', `index.stories.js`),
+    path.join(packageDir, 'stories', `index.stories.ts`),
     componentStoriesTemplate({ packageName, componentNames })
   )
 })
 
-async function createComponent({ componentName, packageDir }) {
+async function createComponent(componentName: string, packageDir: string): Promise<void> {
   if (!componentName) {
     throw new Error(
       'Missing component name argument, use: `yarn run create-package:components [package-name] [ComponentName]`'
@@ -75,15 +74,15 @@ async function createComponent({ componentName, packageDir }) {
     throw new Error(`Wrong format for '${componentName}': use CamelCase for ComponentName`)
   }
 
-  await fs.writeFile(path.join(packageDir, 'src', `${componentName}.js`), componentTemplate({ componentName }))
+  await fs.writeFile(path.join(packageDir, 'src', `${componentName}.tsx`), componentTemplate({ componentName }))
 }
 
-function getIndexFile(componentNames) {
+function getIndexFile(componentNames: string[]): string {
   return componentNames
     .map(componentName => `export { default as ${componentName} } from './src/${componentName}'`)
     .join('\n')
 }
 
-function initialIsCapital(word) {
+function initialIsCapital(word: string): boolean {
   return word[0] !== word[0].toLowerCase()
 }

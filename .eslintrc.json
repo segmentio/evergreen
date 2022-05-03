@@ -56,9 +56,8 @@
       }
     ],
     "react/prop-types": "off",
-    // Turning this off in favor of typescript-eslint version which correctly reports errors
     "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"]
+    "@typescript-eslint/no-use-before-define": ["off"]
   },
   "overrides": [
     {

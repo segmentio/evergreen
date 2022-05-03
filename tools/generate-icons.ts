@@ -1,15 +1,12 @@
-#!/usr/bin/env node
 import path from 'path'
 import { IconName, IconSvgPaths16, IconSvgPaths20 } from '@blueprintjs/icons'
 import camelCase from 'camelcase'
-/* @ts-ignore */
 import fs from 'fs-extra'
 import prettier from 'prettier'
 
 const iconsPath = path.resolve(__dirname, '../src/icons/generated')
 const iconsIndexPath = path.resolve(__dirname, '../src/icons/index.ts')
 const indexPath = path.resolve(__dirname, '../src/index.ts')
-// const typedefPath = path.resolve(__dirname, '../index.d.ts')
 const iconNamesMapperPath = path.resolve(__dirname, '../src/icons/generated/IconNameMapper.ts')
 const fileHeader = `// This is a generated file. DO NOT modify directly.\n\n`
 
@@ -78,14 +75,10 @@ export const ${iconName}: IconComponent = memo(forwardRef(function ${iconName}(p
   await fs.writeFile(iconNamesMapperPath, iconNamesMapperFile)
 
   // =====================
-  // create the icons/index.js file which exports individual icons
+  // create the icons/index.ts file which exports individual icons
   // =====================
 
-  let iconsIndexFile = iconNames
-    .map(iconName => {
-      return `export { ${iconName} } from './generated/${iconName}'`
-    })
-    .join('\n')
+  let iconsIndexFile = iconNames.map(iconName => `export { ${iconName} } from './generated/${iconName}'`).join('\n')
 
   iconsIndexFile = prettier.format(`${fileHeader}${iconsIndexFile}`, {
     ...prettierConfig,
@@ -95,7 +88,7 @@ export const ${iconName}: IconComponent = memo(forwardRef(function ${iconName}(p
   await fs.writeFile(iconsIndexPath, iconsIndexFile)
 
   // =====================
-  // update the main index.js file to include individual icon exports
+  // update the main index.ts file to include individual icon exports
   // =====================
 
   const iconsExport = `/* Start generated icons */
