@@ -50,8 +50,7 @@
     "size": "size-limit",
     "storybook": "start-storybook -p 6006",
     "test": "yarn lint && yarn jest",
-    "test:watch": "yarn run test -- --watch",
-    "ts-migration": "ts-node tools/ts-migration/main.ts"
+    "test:watch": "yarn run test -- --watch"
   },
   "engines": {
     "node": ">=14"
@@ -158,10 +157,6 @@
     "sinon": "^8.1.0",
     "size-limit": "^4.5.0",
     "starwars-names": "^1.6.0",
-    "ts-migrate": "^0.1.28",
-    "ts-migrate-plugins": "^0.1.28",
-    "ts-migrate-server": "^0.1.27",
-    "ts-morph": "14.0.0",
     "ts-node": "10.7.0",
     "tslib": "^2.3.1",
     "typescript": "^4.6.2",
