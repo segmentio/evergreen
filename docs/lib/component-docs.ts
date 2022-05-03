@@ -1,9 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-
-// For some reason, react-docgen has to be imported synchronously
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const docgen = require('react-docgen')
+import * as docgen from 'react-docgen'
 
 const getComponentDocs = async (stem: string): Promise<any[]> => {
   const componentFiles = fs.readdirSync(stem).filter((name) => {
@@ -15,7 +12,35 @@ const getComponentDocs = async (stem: string): Promise<any[]> => {
     componentFiles.map(async (name) => {
       const data = await fs.readFileSync(path.join(stem, name)).toString()
       try {
-        const propsData = docgen.parse(data)
+        const propsData = docgen.parse(data, null, null, {
+          parserOptions: {
+            plugins: [
+              'asyncGenerators',
+              'bigInt',
+              'classPrivateMethods',
+              'classPrivateProperties',
+              'classProperties',
+              'doExpressions',
+              'dynamicImport',
+              'exportDefaultFrom',
+              'exportNamespaceFrom',
+              'functionBind',
+              'functionSent',
+              'importMeta',
+              'jsx',
+              'logicalAssignment',
+              'nullishCoalescingOperator',
+              'numericSeparator',
+              'objectRestSpread',
+              'optionalCatchBinding',
+              'optionalChaining',
+              'throwExpressions',
+              'topLevelAwait',
+              'typescript',
+            ],
+          },
+        })
+
         return propsData
       } catch (e) {
         console.error('There was an error parsing component documentation', e)
