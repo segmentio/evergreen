@@ -9,7 +9,7 @@ const componentTemplate = (options: ComponentTemplateOptions): string => {
 import React, { memo, forwardRef } from 'react'
 import Box, { PolymorphicBoxProps } from 'ui-box'
 
-interface ${componentName}OwnProps {}
+export interface ${componentName}OwnProps {}
 
 export type ${componentName}Props = PolymorphicBoxProps<'div', ${componentName}OwnProps>
 

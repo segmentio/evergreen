@@ -43,7 +43,7 @@ export default [
         }
       }),
       resolve(),
-      typescript({ compilerOptions: { module: 'esnext', declarationDir: 'umd' } }),
+      typescript({ compilerOptions: { module: 'esnext', outDir: 'umd' } }),
       commonjs({
         include: 'node_modules/**'
       }),
@@ -73,7 +73,7 @@ export default [
         }
       }),
       resolve(),
-      typescript({ compilerOptions: { module: 'esnext', declarationDir: 'umd' } }),
+      typescript({ compilerOptions: { module: 'esnext', outDir: 'umd' } }),
       commonjs({
         include: 'node_modules/**'
       }),

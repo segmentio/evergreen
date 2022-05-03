@@ -117,16 +117,13 @@ const Tooltip: React.FC<TooltipProps> = memo(function Tooltip(props) {
      * its props to the Tooltip in a `popoverProps` object.
      */
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'popoverProps' does not exist on type 'Pr... Remove this comment to see the full error message
-    // eslint-disable-next-line react/prop-types
     if (props.popoverProps) {
       const {
-        // eslint-disable-next-line react/prop-types
         getTargetRef,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         isShown,
         ...popoverTargetProps
         // @ts-expect-error ts-migrate(2339) FIXME: Property 'popoverProps' does not exist on type 'Pr... Remove this comment to see the full error message
-        // eslint-disable-next-line react/prop-types
       } = props.popoverProps
 
       // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
@@ -158,7 +155,6 @@ const Tooltip: React.FC<TooltipProps> = memo(function Tooltip(props) {
   }
 
   // @ts-expect-error ts-migrate(2339) FIXME: Property 'popoverProps' does not exist on type 'Pr... Remove this comment to see the full error message
-  // eslint-disable-next-line react/prop-types
   const isPopoverShown = () => props.popoverProps && props.popoverProps.isShown
 
   const handleMouseEnterTarget = () => {

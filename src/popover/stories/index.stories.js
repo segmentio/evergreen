@@ -10,7 +10,6 @@ import { TextInputField } from '../../text-input'
 import { Tooltip } from '../../tooltip'
 import { Heading, Paragraph, Text } from '../../typography'
 
-// eslint-disable-next-line react/prop-types
 const PopoverContent = ({ height = 240 }) => (
   <Pane width={240} height={height} display="flex" alignItems="center" justifyContent="center" flexDirection="column">
     <Text>PopoverContent</Text>

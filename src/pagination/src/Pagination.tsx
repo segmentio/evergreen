@@ -65,7 +65,6 @@ export const usePaginationBehavior = ({
 
 const MAX_HANDLES_TO_SHOW = 7
 
-/* eslint-disable react/prop-types */
 const PaginationButton = ({ isSelected, onPageChange, page, ...rest }: any) => {
   const { colors } = useTheme()
   const isEllipsis = typeof page === 'string' && page === '...'
@@ -110,7 +109,6 @@ const PaginationButton = ({ isSelected, onPageChange, page, ...rest }: any) => {
     />
   )
 }
-/* eslint-enable react/prop-types */
 
 const range = (start: any, stop: any) => {
   const output = []

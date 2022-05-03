@@ -67,7 +67,6 @@ const noop = () => {}
 
 const autocompleteItemRenderer = (props: any) => <AutocompleteItem {...props} />
 
-/* eslint-disable react/prop-types */
 const AutocompleteItems = ({
   getItemProps,
   getMenuProps,
@@ -132,7 +131,6 @@ const AutocompleteItems = ({
     </Pane>
   )
 }
-/* eslint-enable react/prop-types */
 
 const containerStyle = { width: '100%' }
 

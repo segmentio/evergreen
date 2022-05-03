@@ -45,7 +45,6 @@ export interface ButtonOwnProps {
 
 export type ButtonProps = PolymorphicBoxProps<'button', ButtonOwnProps>
 
-/* eslint-disable react/prop-types */
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'edge' does not exist on type '{ children... Remove this comment to see the full error message
 const ButtonIcon = memo(function ButtonIcon({ edge, icon, size, spacing }) {
   if (!icon) return null
@@ -58,7 +57,6 @@ const ButtonIcon = memo(function ButtonIcon({ edge, icon, size, spacing }) {
 
   return <IconWrapper icon={icon} size={size} marginLeft={marginLeft} marginRight={marginRight} />
 })
-/* eslint-enable react/prop-types */
 
 export const internalStyles = {
   position: 'relative',

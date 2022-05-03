@@ -4,7 +4,6 @@ import Box from 'ui-box'
 import { InlineAlert, Alert, Button, majorScale, Paragraph } from '../..'
 import { Heading } from '../../typography'
 
-/* eslint-disable react/prop-types */
 const ErrorMessage = ({ cta, messaging, title }) => (
   <Alert appearance="card" intent="danger" title={title}>
     <Paragraph>{messaging}</Paragraph>
@@ -15,7 +14,6 @@ const ErrorMessage = ({ cta, messaging, title }) => (
     )}
   </Alert>
 )
-/* eslint-enable react/prop-types */
 
 storiesOf('alert', module)
   .add('Alert', () => (
