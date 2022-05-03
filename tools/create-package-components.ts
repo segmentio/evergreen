@@ -18,7 +18,7 @@ import task from './task'
  * |   │── ComponentName.ts
  * |   └── ComponentName2.ts
  * ├── /stories/
- * │   └── index.stories.ts
+ * │   └── index.stories.js
  * └── index.ts
  *
  */
@@ -56,9 +56,10 @@ module.exports = task('create-package-components', async () => {
 
   await Promise.all(componentNames.map(componentName => createComponent(componentName, packageDir)))
 
+  // Scaffold out component stories
   await fs.ensureDir(path.join(packageDir, 'stories'))
   await fs.writeFile(
-    path.join(packageDir, 'stories', `index.stories.ts`),
+    path.join(packageDir, 'stories', 'index.stories.js'),
     componentStoriesTemplate({ packageName, componentNames })
   )
 })
@@ -79,7 +80,7 @@ async function createComponent(componentName: string, packageDir: string): Promi
 
 function getIndexFile(componentNames: string[]): string {
   return componentNames
-    .map(componentName => `export { default as ${componentName} } from './src/${componentName}'`)
+    .map(componentName => `export { default as ${componentName}, ${componentName}Props } from './src/${componentName}'`)
     .join('\n')
 }
 

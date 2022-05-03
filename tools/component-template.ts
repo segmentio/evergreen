@@ -7,21 +7,23 @@ const componentTemplate = (options: ComponentTemplateOptions): string => {
 
   return `
 import React, { memo, forwardRef } from 'react'
-import Box from 'ui-box'
+import Box, { PolymorphicBoxProps } from 'ui-box'
 
-interface ${componentName}Props {
+interface ${componentName}OwnProps {}
 
-}
+export type ${componentName}Props = PolymorphicBoxProps<'div', ${componentName}OwnProps>
 
-const ${componentName}: React.FC<${componentName}Props> = memo(forwardRef((props, ref) => {
+const ${componentName}: React.FC<${componentName}Props> = memo(
+  forwardRef((props, ref) => {
     const { ...restProps } = props
 
     return (
-    <Box ref={ref} {...restProps}>
+      <Box ref={ref} {...restProps}>
         ${componentName}
-    </Box>
+      </Box>
     )
-}))
+  })
+)
 
 export default ${componentName}
 `.trim()

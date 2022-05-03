@@ -19,15 +19,15 @@ storiesOf('${packageName}', module)${componentNames
 
 const componentStoryTemplate = (componentName: string): string => {
   return `
-    .add('${componentName}', () => (
-      <Box padding={40}>
-        {(() => {
-          document.body.style.margin = '0'
-          document.body.style.height = '100vh'
-        })()}
-        <${componentName}>${componentName}</${componentName}>
-      </Box>
-    ))`
+  .add('${componentName}', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <${componentName}>${componentName}</${componentName}>
+    </Box>
+  ))`
 }
 
 export default componentStoriesTemplate
