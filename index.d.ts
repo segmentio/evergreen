@@ -1314,7 +1314,7 @@ export interface EmptyStateOwnProps {
   /** specify the orientation of how the content flows */
   orientation?: 'horizontal' | 'vertical'
   /** the description of the empty state */
-  description?: string
+  description?: React.ReactNode
   /** the background used for the entire empty state container */
   background?: 'light' | 'dark'
   /** the primary cta of the empty state */
