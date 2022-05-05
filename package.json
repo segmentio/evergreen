@@ -40,17 +40,18 @@
     "clean": "git clean -Xdf",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
-    "deploy-docs": "cd docs && yarn add evergreen-ui@latest --exact && git add package.json yarn.lock && git commit -m \"Updated doc site evergreen version\" || yarn install && yarn deploy",
+    "deploy-docs": "cd docs && yarn install && yarn deploy",
     "dev": "start-storybook -p 6006",
     "generate-icons": "./tools/generate-icons.js",
     "lint": "eslint \"src/**/*.js\" --cache",
-    "postpublish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then yarn deploy-docs; else echo \"not on main branch, skipping docs deploy\"; fi;",
+    "postpublish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then yarn update-docs || yarn deploy-docs; else echo \"not on main branch, skipping docs deploy\"; fi;",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "release": "np",
     "size": "size-limit",
     "storybook": "start-storybook -p 6006",
     "test": "yarn lint && yarn tsd && yarn jest",
-    "test:watch": "yarn run test -- --watch"
+    "test:watch": "yarn run test -- --watch",
+    "update-docs": "cd docs && yarn add evergreen-ui@latest --exact && git add package.json yarn.lock && git show-branch --no-name HEAD | grep -E 'v[0-9]+.[0-9]+.[0-9]+' && git commit --amend --no-edit || git commit -m \"Updated doc site evergreen version\""
   },
   "engines": {
     "node": ">=14"
