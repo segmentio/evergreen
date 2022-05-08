@@ -9,6 +9,7 @@ import MenuOptionsGroup from './MenuOptionsGroup'
 export interface MenuProps {
   children: React.ReactNode[] | React.ReactNode
 }
+
 type MenuComponent = React.FC<MenuProps> & {
   Item: typeof MenuItem
   Divider: typeof MenuDivider
@@ -17,7 +18,7 @@ type MenuComponent = React.FC<MenuProps> & {
   OptionsGroup: typeof MenuOptionsGroup
 }
 
-const Menu: MenuComponent = (memo(function Menu(props) {
+const Menu: MenuComponent = memo(function Menu(props) {
   const menuRef = useRef(null)
 
   const firstItem = useRef()
@@ -30,7 +31,7 @@ const Menu: MenuComponent = (memo(function Menu(props) {
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'any[]' is not assignable to type 'undefined'... Remove this comment to see the full error message
     menuItems.current = [
       // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
-      ...currentMenuRef.querySelectorAll('[role="menuitemradio"]:not([disabled]), [role="menuitem"]:not([disabled])')
+      ...currentMenuRef.querySelectorAll('[role="menuitemradio"]:not([disabled]), [role="menuitem"]:not([disabled])'),
     ]
 
     // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
@@ -127,7 +128,7 @@ const Menu: MenuComponent = (memo(function Menu(props) {
       {children || renderEmptyChildren()}
     </Pane>
   )
-}) as any) as MenuComponent
+}) as any as MenuComponent
 
 Menu.Item = MenuItem
 Menu.Divider = MenuDivider

@@ -546,5 +546,5 @@ export const IconNameMapper = {
   wrench: 'WrenchIcon',
   'zoom-in': 'ZoomInIcon',
   'zoom-out': 'ZoomOutIcon',
-  'zoom-to-fit': 'ZoomToFitIcon'
+  'zoom-to-fit': 'ZoomToFitIcon',
 }

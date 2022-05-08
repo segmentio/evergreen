@@ -1,6 +1,6 @@
+import { Components } from '../../themes'
 import { Color } from './color'
 import { ComponentStyles } from './component-styles'
-import { Components } from './components'
 import { Fill } from './fill'
 import { FontFamilies } from './font-families'
 import { FontWeights } from './font-weights'

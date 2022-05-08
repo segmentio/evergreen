@@ -1,12 +1,13 @@
 import { rehydrate } from 'glamor'
 import { hydrate as boxHydrate } from 'ui-box'
 import canUseDom from '../../lib/canUseDom'
+import { ExtractStylesOutput } from './extractStyles'
 
 /**
  * You shouldn't have to manually run this.
  * This is mainly an export for testing purposes.
  */
-export function hydrate(hydration: any) {
+export function hydrate(hydration: Pick<ExtractStylesOutput['cache'], 'glamorIds' | 'uiBoxCache'>) {
   if (hydration.uiBoxCache) {
     boxHydrate(hydration.uiBoxCache)
   }

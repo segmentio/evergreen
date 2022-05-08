@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, memo, forwardRef } from 'react'
+import React, { useCallback, useMemo, memo, forwardRef } from 'react'
 import { PolymorphicBoxProps } from 'ui-box'
 import { Button, IconButton } from '../../buttons'
 import { ChevronLeftIcon, ChevronRightIcon } from '../../icons'
@@ -13,7 +13,7 @@ export interface PaginationOwnProps {
    */
   page: number
   /**
-   * The total number of pages to render. If ommitted, the page numbers will not be shown to the end user.
+   * The total number of pages to render. If omitted, the page numbers will not be shown to the end user.
    */
   totalPages?: number
   /**
@@ -32,37 +32,6 @@ export interface PaginationOwnProps {
 
 export type PaginationProps = PolymorphicBoxProps<'nav', PaginationOwnProps>
 
-export interface UsePaginationBehaviorInput {
-  page?: number
-}
-
-export interface UsePaginationBehaviorOutput extends Required<UsePaginationBehaviorInput> {
-  onNextPage: () => void
-  onPreviousPage: () => void
-  onPageChange: (page: number) => void
-}
-
-export const usePaginationBehavior = ({
-  page: inputPage = 1
-}: UsePaginationBehaviorInput = {}): UsePaginationBehaviorOutput => {
-  const [page, setPage] = useState(inputPage)
-
-  const onNextPage = useCallback(() => {
-    setPage(page => page + 1)
-  }, [])
-
-  const onPreviousPage = useCallback(() => {
-    setPage(page => page - 1)
-  }, [])
-
-  return {
-    page,
-    onNextPage,
-    onPageChange: setPage,
-    onPreviousPage
-  }
-}
-
 const MAX_HANDLES_TO_SHOW = 7
 
 const PaginationButton = ({ isSelected, onPageChange, page, ...rest }: any) => {
@@ -72,7 +41,7 @@ const PaginationButton = ({ isSelected, onPageChange, page, ...rest }: any) => {
     if (isSelected) {
       return {
         backgroundColor: colors.blue50,
-        color: colors.blue400
+        color: colors.blue400,
       }
     } else {
       return {}

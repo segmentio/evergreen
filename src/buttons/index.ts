@@ -1,3 +1,6 @@
 export { default as Button } from './src/Button'
+export type { ButtonProps, ButtonOwnProps } from './src/Button'
 export { default as IconButton } from './src/IconButton'
+export type { IconButtonProps, IconButtonOwnProps } from './src/IconButton'
 export { default as TextDropdownButton } from './src/TextDropdownButton'
+export type { TextDropdownButtonProps, TextDropdownButtonOwnProps } from './src/TextDropdownButton'

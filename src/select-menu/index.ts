@@ -1,4 +1,8 @@
 export { default as OptionsList } from './src/OptionsList'
+export type { OptionsListProps } from './src/OptionsList'
 export { default as Option } from './src/Option'
+export type { OptionProps } from './src/Option'
 export { default as SelectMenu } from './src/SelectMenu'
+export type { SelectMenuProps, SelectMenuOption, SelectMenuPropsViewCallback } from './src/SelectMenu'
 export { default as SelectMenuContent } from './src/SelectMenuContent'
+export type { SelectMenuContentProps } from './src/SelectMenuContent'

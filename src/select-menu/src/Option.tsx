@@ -19,12 +19,12 @@ export const pseudoSelectors = {
   _focus: ':focus',
   _hover: ':hover',
   _isSelectable: '&[data-isselectable="true"]',
-  _selected: '&[aria-current="true"]'
+  _selected: '&[aria-current="true"]',
 }
 
 const internalStyles = {
   alignItems: 'center',
-  display: 'flex'
+  display: 'flex',
 }
 
 const emptyObject = {}
@@ -48,7 +48,6 @@ const Option: React.FC<OptionProps> = memo(
     } = props
 
     const { className: themedClassName, ...boxProps } = useStyleConfig(
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '"Option"' is not assignable to p... Remove this comment to see the full error message
       'Option',
       emptyObject,
       pseudoSelectors,

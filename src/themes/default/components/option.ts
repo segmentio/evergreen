@@ -17,47 +17,49 @@ const baseStyle = {
     backgroundColor: 'colors.blue500',
     transition: '0.25s',
     transformOrigin: 'left center',
-    transform: 'scaleX(0)'
+    transform: 'scaleX(0)',
   },
 
   _isSelectable: {
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
 
   _hover: {
-    backgroundColor: 'colors.gray75'
+    backgroundColor: 'colors.gray75',
   },
 
   _focus: {
-    backgroundColor: 'colors.gray75'
+    backgroundColor: 'colors.gray75',
   },
 
   _active: {
-    backgroundColor: 'intents.info.background'
+    backgroundColor: 'intents.info.background',
   },
 
   _selected: {
     backgroundColor: 'intents.info.background',
 
     ' span': {
-      color: 'intents.info.text'
+      color: 'intents.info.text',
     },
 
     '&:before': {
-      transform: 'scaleX(1)'
-    }
+      transform: 'scaleX(1)',
+    },
   },
 
   _disabled: {
     opacity: 0.5,
     pointerEvents: 'none',
-    cursor: 'not-allowed'
-  }
+    cursor: 'not-allowed',
+  },
 }
 
+const appearances = {}
 const sizes = {}
 
 export default {
   baseStyle,
-  sizes
+  appearances,
+  sizes,
 }

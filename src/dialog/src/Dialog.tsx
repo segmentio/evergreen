@@ -149,7 +149,7 @@ export interface DialogProps {
 
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
-  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)'
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
 }
 
 const ANIMATION_DURATION = 200
@@ -158,33 +158,33 @@ const ANIMATION_DURATION = 200
 const openAnimation = css.keyframes('openAnimation', {
   from: {
     transform: 'scale(0.8)',
-    opacity: 0
+    opacity: 0,
   },
   to: {
     transform: 'scale(1)',
-    opacity: 1
-  }
+    opacity: 1,
+  },
 })
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const closeAnimation = css.keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
-    opacity: 1
+    opacity: 1,
   },
   to: {
     transform: 'scale(0.8)',
-    opacity: 0
-  }
+    opacity: 0,
+  },
 })
 
 const animationStyles = {
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`,
   },
   '&[data-state="exiting"]': {
-    animation: `${closeAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
-  }
+    animation: `${closeAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`,
+  },
 }
 
 const closeHandler = (close: any) => close()
@@ -218,7 +218,7 @@ const Dialog: React.FC<DialogProps> = memo(function Dialog({
   sideOffset = '16px',
   title,
   topOffset = '12vmin',
-  width = 560
+  width = 560,
 }) {
   const sideOffsetWithUnit = Number.isInteger(sideOffset) ? `${sideOffset}px` : sideOffset
   const maxWidth = `calc(100% - ${sideOffsetWithUnit} * 2)`
@@ -246,11 +246,8 @@ const Dialog: React.FC<DialogProps> = memo(function Dialog({
     return node
   }
 
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '"DialogHeader"' is not assignabl... Remove this comment to see the full error message
   const themedHeaderProps = useStyleConfig('DialogHeader', emptyProps, emptyProps, emptyProps)
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '"DialogBody"' is not assignable ... Remove this comment to see the full error message
   const themedBodyProps = useStyleConfig('DialogBody', emptyProps, emptyProps, emptyProps)
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '"DialogFooter"' is not assignabl... Remove this comment to see the full error message
   const themedFooterProps = useStyleConfig('DialogFooter', emptyProps, emptyProps, emptyProps)
 
   const renderHeader = (close: any) => {
@@ -324,7 +321,7 @@ const Dialog: React.FC<DialogProps> = memo(function Dialog({
         display: 'flex',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        ...overlayProps
+        ...overlayProps,
       }}
       preventBodyScrolling={preventBodyScrolling}
     >

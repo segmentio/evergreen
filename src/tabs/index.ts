@@ -1,4 +1,8 @@
 export { default as Tab } from './src/Tab'
+export type { TabProps, TabOwnProps } from './src/Tab'
 export { default as Tablist } from './src/Tablist'
+export type { TablistProps, TablistOwnProps } from './src/Tablist'
 export { default as TabNavigation } from './src/TabNavigation'
+export type { TabNavigationProps, TabNavigationOwnProps } from './src/TabNavigation'
 export { default as SidebarTab } from './src/SidebarTab'
+export type { SidebarTabProps } from './src/SidebarTab'

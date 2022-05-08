@@ -1,5 +1,10 @@
 import { Theme } from '../../types/theme/theme'
-import components, { DefaultThemeAppearances, DefaultThemeSizes, DefaultThemePseudoSelectors } from './components'
+import components, {
+  Components,
+  DefaultThemeAppearances,
+  DefaultThemeSizes,
+  DefaultThemePseudoSelectors,
+} from './components'
 import { tokens as ogTokens } from './deprecated/foundational-styles'
 import tokens from './tokens'
 import { DefaultThemeColors } from './tokens/colors'
@@ -20,16 +25,17 @@ const defaultTheme = {
   ...tokens,
 
   // Component-specific theming
-  components
+  components,
 }
 
 export type {
+  Components,
   DefaultTheme,
   DefaultThemeAppearances,
   DefaultThemeColors,
   DefaultThemeFills,
   DefaultThemeIntents,
   DefaultThemePseudoSelectors,
-  DefaultThemeSizes
+  DefaultThemeSizes,
 }
 export default defaultTheme
