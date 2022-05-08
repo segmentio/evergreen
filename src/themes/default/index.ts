@@ -6,7 +6,7 @@ import { DefaultThemeColors } from './tokens/colors'
 import { DefaultThemeFills } from './tokens/fills'
 import { DefaultThemeIntents } from './tokens/intents'
 
-export type DefaultTheme = typeof defaultTheme & Theme
+type DefaultTheme = typeof defaultTheme & Theme
 
 const defaultTheme = {
   /**
@@ -23,7 +23,8 @@ const defaultTheme = {
   components
 }
 
-export {
+export type {
+  DefaultTheme,
   DefaultThemeAppearances,
   DefaultThemeColors,
   DefaultThemeFills,

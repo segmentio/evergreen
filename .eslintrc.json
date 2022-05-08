@@ -22,6 +22,7 @@
       "jsx": true
     },
     "ecmaVersion": 2015,
+    "project": "tsconfig.json",
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "react", "react-hooks", "sort-destructure-keys"],
@@ -57,7 +58,8 @@
     ],
     "react/prop-types": "off",
     "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["off"]
+    "@typescript-eslint/no-use-before-define": ["off"],
+    "@typescript-eslint/consistent-type-exports": "error"
   },
   "overrides": [
     {
