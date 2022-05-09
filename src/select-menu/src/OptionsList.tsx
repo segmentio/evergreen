@@ -94,11 +94,10 @@ const OptionsList: React.FC<OptionsListProps> = memo(function OptionsList(props)
   const [searchValue, setSearchValue] = useState(defaultSearchValue)
   const [searchRef, setSearchRef] = useState(null)
   const requestId = useRef()
-  const theme = useTheme()
-  const { tokens } = theme
+  const { colors } = useTheme()
 
   const isSelected = useCallback(
-    item => {
+    (item) => {
       return Boolean(
         Array.isArray(selected)
           ? selected.find((selectedItem: any) => selectedItem === item.value)
@@ -160,7 +159,7 @@ const OptionsList: React.FC<OptionsListProps> = memo(function OptionsList(props)
   }, [onSelect, options, getCurrentIndex, isSelected])
 
   const handleChange = useCallback(
-    searchValue => {
+    (searchValue) => {
       setSearchValue(searchValue)
       onFilterChange(searchValue)
     },
@@ -168,7 +167,7 @@ const OptionsList: React.FC<OptionsListProps> = memo(function OptionsList(props)
   )
 
   const handleSelect = useCallback(
-    item => {
+    (item) => {
       if (isSelected(item) && isMultiSelect) {
         onDeselect(item)
       } else {
@@ -193,14 +192,14 @@ const OptionsList: React.FC<OptionsListProps> = memo(function OptionsList(props)
   }, [isMultiSelect, close, closeOnSelect, getCurrentIndex])
 
   const handleDeselect = useCallback(
-    item => {
+    (item) => {
       onDeselect(item)
     },
     [onDeselect]
   )
 
   const handleKeyDown = useCallback(
-    e => {
+    (e) => {
       if (e.key === 'ArrowUp') {
         handleArrowUp()
       }
@@ -247,7 +246,7 @@ const OptionsList: React.FC<OptionsListProps> = memo(function OptionsList(props)
   return (
     <Pane height={height} width={width} display="flex" flexDirection="column" {...rest}>
       {hasFilter && (
-        <TableHead height={32} backgroundColor={tokens.colors.gray50}>
+        <TableHead height={32} backgroundColor={colors.gray50}>
           <SearchTableHeaderCell
             onChange={handleChange}
             // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<SetStateAction<null>>' is not assig... Remove this comment to see the full error message
@@ -285,7 +284,7 @@ const OptionsList: React.FC<OptionsListProps> = memo(function OptionsList(props)
                 isSelectable: !isItemSelected || isMultiSelect,
                 isSelected: isItemSelected,
                 disabled: item.disabled,
-                tabIndex: 0
+                tabIndex: 0,
               }
 
               // @ts-expect-error

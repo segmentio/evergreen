@@ -42,7 +42,6 @@ const Option: React.FC<OptionProps> = memo(
       item,
       onDeselect,
       onSelect,
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'style' does not exist on type 'PropsWith... Remove this comment to see the full error message
       style,
       ...rest
     } = props
@@ -65,7 +64,6 @@ const Option: React.FC<OptionProps> = memo(
         style={style}
         {...boxProps}
         {...rest}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '((instance: unknown) => void) | MutableRefOb... Remove this comment to see the full error message
         ref={ref}
       >
         <TextTableCell

@@ -1,4 +1,4 @@
-import { Theme } from '../../types/theme/theme'
+import { Theme } from '../../types'
 import components, {
   Components,
   DefaultThemeAppearances,
@@ -10,8 +10,23 @@ import tokens from './tokens'
 import { DefaultThemeColors } from './tokens/colors'
 import { DefaultThemeFills } from './tokens/fills'
 import { DefaultThemeIntents } from './tokens/intents'
+import {
+  DefaultThemeFontFamilies,
+  DefaultThemeFontSizes,
+  DefaultThemeFontWeights,
+  DefaultThemeLetterSpacings,
+  DefaultThemeLineHeights,
+} from './tokens/typography'
 
-type DefaultTheme = typeof defaultTheme & Theme
+interface DefaultTheme extends Theme {
+  colors: DefaultThemeColors
+  fills: DefaultThemeFills
+  intents: DefaultThemeIntents
+  fontSizes: DefaultThemeFontSizes
+  fontWeights: DefaultThemeFontWeights
+  letterSpacings: DefaultThemeLetterSpacings
+  lineHeights: DefaultThemeLineHeights
+}
 
 const defaultTheme = {
   /**
@@ -26,7 +41,7 @@ const defaultTheme = {
 
   // Component-specific theming
   components,
-}
+} as any as DefaultTheme
 
 export type {
   Components,
@@ -37,5 +52,10 @@ export type {
   DefaultThemeIntents,
   DefaultThemePseudoSelectors,
   DefaultThemeSizes,
+  DefaultThemeFontWeights,
+  DefaultThemeFontSizes,
+  DefaultThemeFontFamilies,
+  DefaultThemeLetterSpacings,
+  DefaultThemeLineHeights,
 }
 export default defaultTheme

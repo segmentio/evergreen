@@ -48,6 +48,7 @@ export {
 export type {
   FileCardProps,
   FileCardOwnProps,
+  FileRejection,
   FileUploaderProps,
   FileUploaderOwnProps,
   RebaseFilesOptions,
@@ -91,15 +92,22 @@ export type {
   MenuOptionProps,
   MenuOptionsGroupProps,
 } from './menu'
-export { Pulsar, Nudge } from './pulsar'
-export type { PulsarProps, PulsarPosition, NudgeProps } from './pulsar'
 export { Overlay } from './overlay'
 export type { OverlayProps } from './overlay'
+export { usePaginationBehavior, Pagination } from './pagination'
+export type {
+  PaginationProps,
+  PaginationOwnProps,
+  UsePaginationBehaviorInput,
+  UsePaginationBehaviorOutput,
+} from './pagination'
 export { Popover } from './popover'
 export type { PopoverProps } from './popover'
 export { Portal } from './portal'
 export { Positioner, getPosition } from './positioner'
 export type { PositionerProps, GetPositionInput, GetPositionOutput } from './positioner'
+export { Pulsar, Nudge } from './pulsar'
+export type { PulsarProps, PulsarPosition, NudgeProps } from './pulsar'
 export { Radio, RadioGroup } from './radio'
 export type { RadioProps, RadioOwnProps, RadioGroupProps, RadioGroupOwnProps } from './radio'
 export { minorScale, majorScale } from './scales'
@@ -176,13 +184,6 @@ export type { TagInputProps, TagInputOwnProps } from './tag-input'
 export { TextInput, TextInputField } from './text-input'
 export type { TextInputProps, TextInputOwnProps, TextInputFieldProps, TextInputFieldOwnProps } from './text-input'
 export { ThemeContext, ThemeProvider, ThemeConsumer, getThemeContext, withTheme, useTheme, mergeTheme } from './theme'
-export { usePaginationBehavior, Pagination } from './pagination'
-export type {
-  PaginationProps,
-  PaginationOwnProps,
-  UsePaginationBehaviorInput,
-  UsePaginationBehaviorOutput,
-} from './pagination'
 export { defaultTheme, classicTheme, deprecatedDefaultTheme } from './themes'
 export type {
   Components,
@@ -201,14 +202,29 @@ export type { ToasterSettings } from './toaster'
 export { Tooltip } from './tooltip'
 export type { TooltipProps } from './tooltip'
 export type {
-  FontFamily,
-  Size,
+  Appearance,
+  Color,
+  ComponentStyle,
+  ComponentStyles,
   DefaultAppearance,
   Elevation,
+  Fill,
+  FontFamilies,
+  FontFamily,
+  FontWeights,
   IconComponent,
+  IntentColors,
+  IntentTypes,
+  LetterSpacings,
   PositionState,
   PositionTypes,
+  PseudoSelectorKey,
+  PseudoSelectorKeys,
+  Size,
   StandardSizes,
+  StyleProps,
+  Theme,
+  ZIndices,
 } from './types'
 export {
   UnorderedList,

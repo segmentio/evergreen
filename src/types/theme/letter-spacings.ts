@@ -1,4 +1,4 @@
-export interface LettingSpacings {
+export interface LetterSpacings {
   tightest: string
   tighter: string
   tight: string

@@ -13,8 +13,8 @@ describe('Empty States', () => {
       render(
         <EmptyState
           title="My Empty States"
-          icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-          iconBgColor={defaultTheme.tokens.colors.gray200}
+          icon={<LockIcon color={defaultTheme.colors.gray500} />}
+          iconBgColor={defaultTheme.colors.gray200}
         />
       )
     ).not.toThrowError()
@@ -24,8 +24,8 @@ describe('Empty States', () => {
     const { getByText } = render(
       <EmptyState
         title="My Empty States"
-        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        iconBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.colors.gray500} />}
+        iconBgColor={defaultTheme.colors.gray200}
       />
     )
     expect(getByText('My Empty States')).toBeVisible()
@@ -35,8 +35,8 @@ describe('Empty States', () => {
     const { getByText } = render(
       <EmptyState
         title="My Empty States"
-        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        iconBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.colors.gray500} />}
+        iconBgColor={defaultTheme.colors.gray200}
         description="Some description"
       />
     )
@@ -47,8 +47,8 @@ describe('Empty States', () => {
     const { getByText } = render(
       <EmptyState
         title="My Empty States"
-        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        iconBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.colors.gray500} />}
+        iconBgColor={defaultTheme.colors.gray200}
         description={<Text>Example Text</Text>}
       />
     )
@@ -59,8 +59,8 @@ describe('Empty States', () => {
     const { getByRole } = render(
       <EmptyState
         title="My Empty States"
-        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        iconBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.colors.gray500} />}
+        iconBgColor={defaultTheme.colors.gray200}
         primaryCta={<EmptyState.PrimaryButton>Primary Action</EmptyState.PrimaryButton>}
       />
     )
@@ -71,8 +71,8 @@ describe('Empty States', () => {
     const { getByRole } = render(
       <EmptyState
         title="My Empty States"
-        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        iconBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.colors.gray500} />}
+        iconBgColor={defaultTheme.colors.gray200}
         anchorCta={
           <EmptyState.LinkButton href="https://segment.com/docs/" target="_blank">
             Link to Documentation
@@ -104,7 +104,7 @@ describe('Empty States', () => {
     expect(getAllByText('You need permission to access these sources')).toHaveLength(1)
     expect(
       getAllByText(
-        'If you believe you should have accesss to this page, please check with your Workspace Owner or request access below.'
+        'If you believe you should have access to this page, please check with your Workspace Owner or request access below.'
       )
     ).toHaveLength(1)
     expect(getByRole('button', { name: 'Request Access' })).toBeVisible()

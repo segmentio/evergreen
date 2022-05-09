@@ -3,18 +3,18 @@ import cx from 'classnames'
 import { PolymorphicBoxProps } from 'ui-box'
 import { useClickable, useLatest, useMergedRef, useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
-import { PaneOwnProps } from '../../layers/src/Pane'
+import { PaneProps } from '../../layers/src/Pane'
 import safeInvoke from '../../lib/safe-invoke'
 import { DefaultAppearance } from '../../types'
 import { IntentTypes } from '../../types/theme/intent-types'
 import { Theme } from '../../types/theme/theme'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 
-export interface TableRowOwnProps extends PaneOwnProps {
+export interface TableRowOwnProps extends PaneProps {
   /**
    * The height of the row. Remember to add paddings when using "auto".
    */
-  height?: number | string
+  height?: number | string | null | false
   /**
    * Makes the TableRow selectable.
    */
@@ -66,11 +66,11 @@ export const pseudoSelectors = {
   _active: '&[aria-current="true"], &[data-isselectable="true"]:active',
   _current: '&[aria-current="true"], &[aria-checked="true"]',
   _lastOfType: '&:last-of-type',
-  _isSelectable: '&[data-isselectable="true"]'
+  _isSelectable: '&[data-isselectable="true"]',
 }
 
 const internalStyles = {
-  display: 'flex'
+  display: 'flex',
 }
 
 const TableRow: React.FC<TableRowProps> = memo(
@@ -102,7 +102,7 @@ const TableRow: React.FC<TableRowProps> = memo(
     const onSelectRef = useLatest(onSelect)
 
     const handleClick = useCallback(
-      event => {
+      (event) => {
         safeInvoke(onClickRef.current, event)
 
         if (isSelectable) {
@@ -119,7 +119,7 @@ const TableRow: React.FC<TableRowProps> = memo(
     )
 
     const handleKeyDown = useCallback(
-      event => {
+      (event) => {
         safeInvoke(onKeyDownRef.current, event)
 
         if (isSelectable) {
@@ -140,12 +140,11 @@ const TableRow: React.FC<TableRowProps> = memo(
 
     const clickable = useClickable({ onKeyDown: handleKeyDown, tabIndex })
 
-    const { className: themedClassName, height: themeHeight, ...boxProps } = useStyleConfig(
-      'TableRow',
-      { appearance, intent },
-      pseudoSelectors,
-      internalStyles
-    )
+    const {
+      className: themedClassName,
+      height: themeHeight,
+      ...boxProps
+    } = useStyleConfig('TableRow', { appearance, intent }, pseudoSelectors, internalStyles)
 
     const height = rest.height || themeHeight
 

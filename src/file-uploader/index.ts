@@ -10,3 +10,4 @@ export type { RebaseFilesOptions, RebaseFilesResult } from './src/utils/rebase-f
 export { default as splitFiles } from './src/utils/split-files'
 export type { SplitFilesOptions, SplitFilesResult } from './src/utils/split-files'
 export { default as truncateCenter } from './src/utils/truncate-center'
+export type { FileRejection } from './src/types/file-rejection'

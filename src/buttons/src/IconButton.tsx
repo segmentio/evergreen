@@ -26,7 +26,7 @@ export interface IconButtonOwnProps extends ButtonOwnProps {
   appearance?: DefaultAppearance | MinimalAppearance | 'primary'
   /**
    * Forcefully set the active state of a button.
-   * Useful in conjuction with a Popover.
+   * Useful in conjunction with a Popover.
    */
   isActive?: boolean
   /**

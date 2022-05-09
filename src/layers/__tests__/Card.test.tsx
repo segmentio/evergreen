@@ -28,14 +28,13 @@ describe('<Card />', () => {
           baseStyle: {
             color: 'red',
             background: 'blue',
-            borderRadius: 25
-          }
-        }
-      }
+            borderRadius: 25,
+          },
+        },
+      },
     }
 
     render(
-      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ components: { Card: { baseStyle: { color: ... Remove this comment to see the full error message
       <ThemeProvider value={testTheme}>
         <Card>{testText}</Card>
       </ThemeProvider>
