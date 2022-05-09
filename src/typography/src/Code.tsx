@@ -17,7 +17,6 @@ const Code: React.FC<CodeProps> = memo(
 
     const styleProps = useStyleConfig('Code', { appearance }, pseudoSelectors, internalStyles)
 
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '"code"' is not assignable to type '"span" | ... Remove this comment to see the full error message
     return <Text is="code" ref={ref} {...styleProps} fontFamily="mono" className={className} {...restProps} />
   })
 )

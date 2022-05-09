@@ -30,12 +30,12 @@ const pseudoSelectors = {
   _active: '&[aria-current="true"], &[data-isselectable="true"]:active',
   _current: '&[aria-current="true"], &[aria-checked="true"]',
   _isSelectable: '&[data-isselectable="true"]',
-  _disabled: '&:disabled, &[aria-disabled="true"]'
+  _disabled: '&:disabled, &[aria-disabled="true"]',
 }
 
 const internalStyles = {
   display: 'flex',
-  alignItems: 'center'
+  alignItems: 'center',
 }
 
 const MenuItem: React.FC<MenuItemProps> = memo(
@@ -54,7 +54,7 @@ const MenuItem: React.FC<MenuItemProps> = memo(
     } = props
 
     const handleClick = useCallback(
-      event => {
+      (event) => {
         if (disabled) return
         onSelect(event)
       },
@@ -92,7 +92,7 @@ const MenuItem: React.FC<MenuItemProps> = memo(
             onKeyPress: null,
             tabIndex: -1,
             'aria-disabled': 'true',
-            'data-isselectable': 'false'
+            'data-isselectable': 'false',
           }
         : {}
     }, [disabled])
@@ -114,7 +114,6 @@ const MenuItem: React.FC<MenuItemProps> = memo(
         onKeyDown={onKeyDown}
       >
         <IconWrapper
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'false | Element | ElementType<any> | null | ... Remove this comment to see the full error message
           icon={icon}
           color={disabled ? 'disabled' : iconColor}
           marginLeft={16}

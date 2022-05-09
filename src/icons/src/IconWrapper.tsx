@@ -1,6 +1,7 @@
 import React, { forwardRef, memo } from 'react'
 import ReactIs from 'react-is'
 import Box, { BoxProps } from 'ui-box'
+import warning from '../../lib/warning'
 
 export interface IconWrapperProps extends BoxProps<'svg'> {
   /**
@@ -15,7 +16,7 @@ export interface IconWrapperProps extends BoxProps<'svg'> {
    * - If given a React element type, it will be rendered with the other icon props
    *   As a consumer, you should never use `<IconWrapper icon={<element />}` directly; simply render `<element />` instead.
    */
-  icon: React.ElementType | JSX.Element
+  icon?: React.ElementType | JSX.Element | null | false
   /**
    * Size of the icon, in pixels.
    * Blueprint contains 16px and 20px SVG icon images,
@@ -37,6 +38,8 @@ export interface IconWrapperProps extends BoxProps<'svg'> {
  */
 export const IconWrapper: React.FC<IconWrapperProps> = memo(
   forwardRef(function Icon({ color, icon, size, title, ...props }, ref) {
+    warning(typeof icon === 'string', 'Icon prop should be passed a component reference instead of a string')
+
     if (!icon || typeof icon === 'string') {
       return null
     }
@@ -44,7 +47,7 @@ export const IconWrapper: React.FC<IconWrapperProps> = memo(
     const iconProps = {
       color,
       size,
-      title
+      title,
     }
 
     let iconWithProps = null

@@ -1,8 +1,10 @@
-const shownWarnings: any = []
+const shownWarnings: string[] = []
 
-export default (condition: any, warning: any) => {
+const warning = (condition: boolean, warning: string) => {
   if (condition && !shownWarnings.includes(warning)) {
     console.error(`Warning: ${warning}`)
     shownWarnings.push(warning)
   }
 }
+
+export default warning

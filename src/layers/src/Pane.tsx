@@ -4,6 +4,7 @@ import Box, { PolymorphicBoxProps } from 'ui-box'
 import { BoxPropValue } from 'ui-box/dist/src/types/enhancers'
 import { useStyleConfig } from '../../hooks'
 import { Elevation } from '../../types'
+import { ForwardedRef } from '../../types/forwarded-ref'
 
 export interface PaneOwnProps {
   background?: string | BoxPropValue
@@ -21,15 +22,12 @@ export type PaneProps<T extends React.ElementType<any> = 'div'> = PolymorphicBox
 
 const pseudoSelectors = {
   _hover: '&:hover',
-  _active: '&:active'
+  _active: '&:active',
 }
 
 const internalStyles = {}
 
-function Pane<T extends React.ElementType<any> = 'div'>(
-  props: PaneProps<T>,
-  ref: React.Ref<JSX.LibraryManagedAttributes<T, React.ComponentPropsWithRef<T>>>
-) {
+const Pane = <T extends React.ElementType<any> = 'div'>(props: PaneProps<T>, ref: ForwardedRef<T>) => {
   const {
     activeElevation,
 
@@ -59,7 +57,7 @@ function Pane<T extends React.ElementType<any> = 'div'>(
       borderTop,
       borderRight,
       borderBottom,
-      borderLeft
+      borderLeft,
     },
     pseudoSelectors,
     internalStyles

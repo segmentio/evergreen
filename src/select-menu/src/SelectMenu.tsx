@@ -24,7 +24,7 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
   /**
    * The options to show in the menu.
    */
-  options?: SelectMenuOption[]
+  options?: SelectMenuItem[]
   /**
    * The selected value/values.
    */
@@ -81,16 +81,16 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
    * Function that is used to render custom items in the select menu
    */
   itemRenderer?: (props: {
-    key: SelectMenuOption['value']
-    label: SelectMenuOption['label']
-    item: SelectMenuOption
+    key: SelectMenuItem['value']
+    label: SelectMenuItem['label']
+    item: SelectMenuItem
     style: object
     height: NonNullable<OptionsListProps['optionSize']>
     onSelect: () => void
     onDeselect: () => void
     isSelectable: boolean
     isSelected: boolean
-    disabled: SelectMenuOption['disabled']
+    disabled: SelectMenuItem['disabled']
   }) => React.ElementType | JSX.Element
   /**
    * The height of the items in the select menu list (default is 33px)
@@ -99,18 +99,18 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
   /**
    * Function that is called when an option is selected.
    */
-  onSelect?(item: SelectMenuOption): void
+  onSelect?(item: SelectMenuItem): void
   /**
    * Function that is called when an option is deselected.
    */
-  onDeselect?(item: SelectMenuOption): void
+  onDeselect?(item: SelectMenuItem): void
   /**
    * Function that is called as the onChange() event for the filter.
    */
   onFilterChange?(searchValue: string): void
 }
 
-export interface SelectMenuOption {
+export interface SelectMenuItem {
   label?: string
   value?: string | number
   icon?: string
@@ -175,7 +175,7 @@ const SelectMenu: React.FC<SelectMenuProps> = memo(function SelectMenu(props) {
             selected: selectedArray,
             // @ts-expect-error ts-migrate(2322) FIXME: Type '((props: { key: string | number | undefined;... Remove this comment to see the full error message
             renderItem: itemRenderer,
-            optionSize: itemHeight
+            optionSize: itemHeight,
           }}
           close={close}
           detailView={typeof detailView === 'function' ? detailView({ close }) : detailView}

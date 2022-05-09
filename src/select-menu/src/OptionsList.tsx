@@ -10,39 +10,39 @@ import SearchTableHeaderCell from '../../table/src/SearchTableHeaderCell'
 import TableHead from '../../table/src/TableHead'
 import { useTheme } from '../../theme'
 import Option, { OptionProps } from './Option'
-import { SelectMenuOption } from './SelectMenu'
+import { SelectMenuItem } from './SelectMenu'
 
 export interface OptionsListProps extends PaneOwnProps {
-  options?: SelectMenuOption[]
+  options?: SelectMenuItem[]
   close?: () => void
   closeOnSelect?: boolean
   height?: number
   width?: number
   isMultiSelect?: boolean
   selected?: string | string[]
-  onSelect?: (value: SelectMenuOption) => void
-  onDeselect?: (value: SelectMenuOption) => void
+  onSelect?: (value: SelectMenuItem) => void
+  onDeselect?: (value: SelectMenuItem) => void
   onFilterChange?: (value: string) => void
   hasFilter?: boolean
   optionSize?: number
   renderItem?: (props: {
-    key: SelectMenuOption['value']
-    label: SelectMenuOption['label']
-    icon?: SelectMenuOption['icon']
-    item: SelectMenuOption
+    key: SelectMenuItem['value']
+    label: SelectMenuItem['label']
+    icon?: SelectMenuItem['icon']
+    item: SelectMenuItem
     style: object
     height: NonNullable<OptionsListProps['optionSize']>
     onSelect: () => void
     onDeselect: () => void
     isSelectable: boolean
     isSelected: boolean
-    disabled: SelectMenuOption['disabled']
+    disabled: SelectMenuItem['disabled']
     tabIndex: number
   }) => JSX.Element
   filterPlaceholder?: string
   filterIcon?: React.ElementType | JSX.Element
   optionsFilter?: (
-    value: SelectMenuOption['label'][],
+    value: SelectMenuItem['label'][],
     filter: NonNullable<OptionsListProps['defaultSearchValue']>
   ) => void
   defaultSearchValue?: string

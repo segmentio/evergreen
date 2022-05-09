@@ -43,12 +43,12 @@ const invisibleInputClass = css({
   WebkitFontSmoothing: 'antialiased',
 
   '&:focus': {
-    outline: 'none'
+    outline: 'none',
   },
 
   '&::placeholder': {
-    color: 'rgba(67, 90, 111, 0.7)'
-  }
+    color: 'rgba(67, 90, 111, 0.7)',
+  },
 }).toString()
 
 const noop = () => {}
@@ -67,14 +67,12 @@ const SearchTableHeaderCell: React.FC<SearchTableHeaderCellProps> = memo(
       ...rest
     } = props
 
-    const handleChange = useCallback(e => onChange(e.target.value), [onChange])
+    const handleChange = useCallback((e) => onChange(e.target.value), [onChange])
 
     return (
       <TableHeaderCell {...rest}>
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'false | ElementType<any> | Element | IconCom... Remove this comment to see the full error message */}
         <IconWrapper icon={icon} color="muted" marginLeft={2} marginRight={10} size={12} />
         <Text
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '"input"' is not assignable to type '"span" |... Remove this comment to see the full error message
           is="input"
           size={300}
           flex="1"

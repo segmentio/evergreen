@@ -1,22 +1,22 @@
 import React, { forwardRef, memo } from 'react'
-import { PolymorphicBoxProps } from "ui-box"
+import { PolymorphicBoxProps } from 'ui-box'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { minorScale } from '../../scales'
 import Text, { TextOwnProps } from './Text'
 
 export interface ListItemOwnProps extends TextOwnProps {
-    /**
-     * When passed, adds a icon before the list item.
-     * See Evergreen `Icon` for documentation.
-     */
-    icon?: React.ElementType | JSX.Element | null | false;
-    /**
-     * The color of the icon.
-     */
-    iconColor?: string;
+  /**
+   * When passed, adds a icon before the list item.
+   * See Evergreen `Icon` for documentation.
+   */
+  icon?: React.ElementType | JSX.Element | null | false
+  /**
+   * The color of the icon.
+   */
+  iconColor?: string
 }
 
-export type ListItemProps = PolymorphicBoxProps<'li', ListItemOwnProps>;
+export type ListItemProps = PolymorphicBoxProps<'li', ListItemOwnProps>
 
 const ListItem: React.FC<ListItemProps> = memo(
   forwardRef(function ListItem(props, ref) {
@@ -47,7 +47,6 @@ const ListItem: React.FC<ListItemProps> = memo(
 
     return (
       <Text
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '"li"' is not assignable to type '"span" | un... Remove this comment to see the full error message
         is="li"
         position="relative"
         marginY="0.5em"

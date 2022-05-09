@@ -3,13 +3,14 @@ import { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { DefaultAppearance } from '../../types'
+import { ForwardedRef } from '../../types/forwarded-ref'
 import { MinimalAppearance } from '../../types/minimal-appearance'
 import { IntentTypes } from '../../types/theme/intent-types'
 import Button, { ButtonOwnProps, getIconSizeForButton, internalStyles, pseudoSelectors } from './Button'
 
 export interface IconButtonOwnProps extends ButtonOwnProps {
   /**
-   * Name of a Blueprint UI icon, or an icon element, to render.
+   * Blueprint UI icon, or an icon element, to render.
    */
   icon?: React.ElementType | JSX.Element | null | false
   /**
@@ -40,42 +41,39 @@ export interface IconButtonOwnProps extends ButtonOwnProps {
   className?: string
 }
 
-export type IconButtonProps = PolymorphicBoxProps<'button', IconButtonOwnProps>
+export type IconButtonProps<T extends React.ElementType<any> = 'button'> = PolymorphicBoxProps<T, IconButtonOwnProps>
 
-const IconButton: React.FC<IconButtonProps> = memo(
-  forwardRef(function IconButton(props, ref) {
-    const { icon, iconSize, ...restProps } = props
+const IconButton = <T extends React.ElementType<any> = 'button'>(props: IconButtonProps, ref: ForwardedRef<T>) => {
+  const { icon, iconSize, ...restProps } = props
 
-    // modifiers
-    const { appearance, intent = 'none', size = 'medium' } = props
+  // modifiers
+  const { appearance, intent = 'none', size = 'medium' } = props
 
-    // Composes the exact same styles as button
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ position: string; fontWeight: ... Remove this comment to see the full error message
-    const styleProps = useStyleConfig('Button', { appearance, intent, size }, pseudoSelectors, internalStyles)
+  // Composes the exact same styles as button
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ position: string; fontWeight: ... Remove this comment to see the full error message
+  const styleProps = useStyleConfig('Button', { appearance, intent, size }, pseudoSelectors, internalStyles)
 
-    const height = restProps.height || styleProps.height
-    const relativeIconSize = getIconSizeForButton(height)
+  const height = restProps.height || styleProps.height
+  const relativeIconSize = getIconSizeForButton(height)
 
-    return (
-      <Button
-        ref={ref}
-        paddingLeft={0}
-        paddingRight={0}
-        flex="none"
-        height={height}
-        width={height}
-        minWidth={height}
-        {...restProps}
-      >
-        <IconWrapper
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'false | ElementType<any> | Element | null | ... Remove this comment to see the full error message
-          icon={icon}
-          color={intent === 'none' ? 'default' : 'currentColor'}
-          size={iconSize || relativeIconSize}
-        />
-      </Button>
-    )
-  })
-)
+  return (
+    <Button
+      ref={ref}
+      paddingLeft={0}
+      paddingRight={0}
+      flex="none"
+      height={height}
+      width={height}
+      minWidth={height}
+      {...restProps}
+    >
+      <IconWrapper
+        icon={icon}
+        color={intent === 'none' ? 'default' : 'currentColor'}
+        size={iconSize || relativeIconSize}
+      />
+    </Button>
+  )
+}
 
-export default IconButton
+export default memo(forwardRef(IconButton))

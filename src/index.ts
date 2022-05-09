@@ -122,7 +122,7 @@ export type {
   OptionsListProps,
   OptionProps,
   SelectMenuProps,
-  SelectMenuOption,
+  SelectMenuItem,
   SelectMenuPropsViewCallback,
   SelectMenuContentProps,
 } from './select-menu'

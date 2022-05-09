@@ -20,7 +20,7 @@ export type TextTableCellProps = PolymorphicBoxProps<'div', TextTableCellOwnProp
 const ellipsis = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap'
+  whiteSpace: 'nowrap',
 }
 
 const TextTableCell: React.FC<TextTableCellProps> = memo(
@@ -29,7 +29,6 @@ const TextTableCell: React.FC<TextTableCellProps> = memo(
 
     return (
       <TableCell ref={ref} {...rest}>
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: ReactNode; alignContent?: number... Remove this comment to see the full error message */}
         <Text
           size={300}
           flex="1"
