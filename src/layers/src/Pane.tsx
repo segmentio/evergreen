@@ -1,18 +1,19 @@
-import React, { memo, forwardRef } from 'react'
+import React from 'react'
 import cx from 'classnames'
 import Box, { PolymorphicBoxProps } from 'ui-box'
 import { BoxPropValue } from 'ui-box/dist/src/types/enhancers'
 import { useStyleConfig } from '../../hooks'
+import memoizeWithForwardedRef from '../../lib/memoize-with-forwarded-ref'
 import { Elevation } from '../../types'
 import { ForwardedRef } from '../../types/forwarded-ref'
 
 export interface PaneOwnProps {
-  background?: string | BoxPropValue
-  border?: boolean | string | BoxPropValue
-  borderTop?: boolean | string | BoxPropValue
-  borderRight?: boolean | string | BoxPropValue
-  borderBottom?: boolean | string | BoxPropValue
-  borderLeft?: boolean | string | BoxPropValue
+  background?: BoxPropValue
+  border?: boolean | BoxPropValue
+  borderTop?: boolean | BoxPropValue
+  borderRight?: boolean | BoxPropValue
+  borderBottom?: boolean | BoxPropValue
+  borderLeft?: boolean | BoxPropValue
   elevation?: Elevation
   hoverElevation?: Elevation
   activeElevation?: Elevation
@@ -27,7 +28,7 @@ const pseudoSelectors = {
 
 const internalStyles = {}
 
-const Pane = <T extends React.ElementType<any> = 'div'>(props: PaneProps<T>, ref: ForwardedRef<T>) => {
+const _Pane = <T extends React.ElementType<any> = 'div'>(props: PaneProps<T>, ref: ForwardedRef<T>) => {
   const {
     activeElevation,
 
@@ -66,4 +67,6 @@ const Pane = <T extends React.ElementType<any> = 'div'>(props: PaneProps<T>, ref
   return <Box ref={ref} className={cx(className, themedClassName)} {...styleProps} {...restProps} />
 }
 
-export default memo(forwardRef(Pane))
+const Pane = memoizeWithForwardedRef(_Pane)
+
+export default Pane

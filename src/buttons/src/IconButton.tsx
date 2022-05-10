@@ -1,7 +1,8 @@
-import React, { memo, forwardRef } from 'react'
+import React from 'react'
 import { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
+import memoizeWithForwardedRef from '../../lib/memoize-with-forwarded-ref'
 import { DefaultAppearance } from '../../types'
 import { ForwardedRef } from '../../types/forwarded-ref'
 import { MinimalAppearance } from '../../types/minimal-appearance'
@@ -43,7 +44,7 @@ export interface IconButtonOwnProps extends ButtonOwnProps {
 
 export type IconButtonProps<T extends React.ElementType<any> = 'button'> = PolymorphicBoxProps<T, IconButtonOwnProps>
 
-const IconButton = <T extends React.ElementType<any> = 'button'>(props: IconButtonProps, ref: ForwardedRef<T>) => {
+const _IconButton = <T extends React.ElementType<any> = 'button'>(props: IconButtonProps<T>, ref: ForwardedRef<T>) => {
   const { icon, iconSize, ...restProps } = props
 
   // modifiers
@@ -76,4 +77,6 @@ const IconButton = <T extends React.ElementType<any> = 'button'>(props: IconButt
   )
 }
 
-export default memo(forwardRef(IconButton))
+const IconButton = memoizeWithForwardedRef(_IconButton)
+
+export default IconButton

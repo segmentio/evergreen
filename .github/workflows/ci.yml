@@ -35,7 +35,8 @@ jobs:
       - name: Run build
         run: yarn run build
       - name: Run prettier
-        run: yarn run prettier 'src/**/*.js' --check
+        # TODO: Make sure this pattern works
+        run: yarn run prettier 'src/**/*.(t|j)s?(x)' --check
       - name: Run test
         run: yarn run test
       - name: Run docs lint

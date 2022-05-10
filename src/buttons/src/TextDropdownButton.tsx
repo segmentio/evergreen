@@ -1,9 +1,10 @@
-import React, { memo, forwardRef } from 'react'
+import React from 'react'
 import cx from 'classnames'
 import Box, { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { CaretDownIcon } from '../../icons'
 import { IconWrapper } from '../../icons/src/IconWrapper'
+import memoizeWithForwardedRef from '../../lib/memoize-with-forwarded-ref'
 import { Spinner } from '../../spinner'
 import { ForwardedRef } from '../../types/forwarded-ref'
 import { internalStyles, pseudoSelectors } from './Button'
@@ -43,7 +44,7 @@ export type TextDropdownButtonProps<T extends React.ElementType<any> = 'button'>
   TextDropdownButtonOwnProps
 >
 
-const TextDropdownButton = <T extends React.ElementType<any> = 'button'>(
+const _TextDropdownButton = <T extends React.ElementType<any> = 'button'>(
   props: TextDropdownButtonProps<T>,
   ref: ForwardedRef<T>
 ) => {
@@ -85,4 +86,6 @@ const TextDropdownButton = <T extends React.ElementType<any> = 'button'>(
   )
 }
 
-export default memo(forwardRef(TextDropdownButton))
+const TextDropdownButton = memoizeWithForwardedRef(_TextDropdownButton)
+
+export default TextDropdownButton

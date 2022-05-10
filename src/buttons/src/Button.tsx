@@ -1,9 +1,10 @@
-import React, { memo, forwardRef } from 'react'
+import React from 'react'
 import cx from 'classnames'
 import Box, { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { getTextPropsForControlHeight } from '../../lib/deprecated-theme-helpers'
+import memoizeWithForwardedRef from '../../lib/memoize-with-forwarded-ref'
 import { Spinner } from '../../spinner'
 import { ForwardedRef } from '../../types/forwarded-ref'
 import { IntentTypes } from '../../types/theme/intent-types'
@@ -46,9 +47,18 @@ export interface ButtonOwnProps {
 
 export type ButtonProps<T extends React.ElementType<any> = 'button'> = PolymorphicBoxProps<T, ButtonOwnProps>
 
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'edge' does not exist on type '{ children... Remove this comment to see the full error message
-const ButtonIcon = memo(function ButtonIcon({ edge, icon, size, spacing }) {
-  if (!icon) return null
+interface ButtonIconProps {
+  edge: 'start' | 'end'
+  icon?: React.ElementType | JSX.Element | null | false
+  size: number
+  spacing: string | number
+}
+
+const ButtonIcon = (props: ButtonIconProps) => {
+  const { edge, icon, size, spacing } = props
+  if (!icon) {
+    return null
+  }
 
   const relativeSpace = typeof spacing === 'number' ? spacing : size
   const edgeMargin = -Math.round(relativeSpace * 0.25)
@@ -57,7 +67,7 @@ const ButtonIcon = memo(function ButtonIcon({ edge, icon, size, spacing }) {
   const marginRight = edge === 'end' ? edgeMargin : innerMargin
 
   return <IconWrapper icon={icon} size={size} marginLeft={marginLeft} marginRight={marginRight} />
-})
+}
 
 export const internalStyles = {
   position: 'relative',
@@ -98,7 +108,7 @@ export const getIconSizeForButton = (height: any) => {
   return 20
 }
 
-const Button = <T extends React.ElementType<any> = 'button'>(props: ButtonProps<T>, ref: ForwardedRef<T>) => {
+const _Button = <T extends React.ElementType<any> = 'button'>(props: ButtonProps<T>, ref: ForwardedRef<T>) => {
   const {
     appearance = 'default',
     children,
@@ -148,13 +158,13 @@ const Button = <T extends React.ElementType<any> = 'button'>(props: ButtonProps<
           size={Math.round(height / 2)}
         />
       )}
-      {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ icon: false | ElementType<any> | Element |... Remove this comment to see the full error message */}
       <ButtonIcon icon={iconBefore} size={iconSize} spacing={restProps.paddingLeft} edge="start" />
       {children}
-      {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ icon: false | ElementType<any> | Element |... Remove this comment to see the full error message */}
       <ButtonIcon icon={iconAfter} size={iconSize} spacing={restProps.paddingRight} edge="end" />
     </Box>
   )
 }
 
-export default memo(forwardRef(Button))
+const Button = memoizeWithForwardedRef(_Button)
+
+export default Button
