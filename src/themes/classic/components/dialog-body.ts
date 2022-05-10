@@ -1,7 +1,7 @@
 const baseStyle = {
-  padding: '16px'
+  padding: '16px',
 }
 
 export default {
-  baseStyle
+  baseStyle,
 }

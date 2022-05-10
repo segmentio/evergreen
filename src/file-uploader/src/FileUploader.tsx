@@ -68,7 +68,7 @@ export type FileUploaderProps = PolymorphicBoxProps<'div', FileUploaderOwnProps>
 const UploaderState = {
   Initial: 'initial',
   Dragging: 'dragging',
-  Error: 'error'
+  Error: 'error',
 }
 
 const disabledPseudoSelector = `&[aria-disabled='true']`
@@ -83,7 +83,7 @@ const pseudoSelectors = {
   _hoverOrDragCopy: `${hoverPseudoSelector} span:last-of-type`,
   _dragHover: dragHoverPseudoSelector,
   _disabled: disabledPseudoSelector,
-  _invalid: invalidPseudoSelector
+  _invalid: invalidPseudoSelector,
 }
 const internalStyles = {}
 
@@ -134,21 +134,21 @@ const FileUploader: React.FC<FileUploaderProps> = memo(
 
     const handleChange = useCallback(
       (fileList: FileList) => {
-        setFileInputKey(prev => prev + 1)
+        setFileInputKey((prev) => prev + 1)
 
         if (isEmpty(fileList)) {
           safeInvoke(onChange, [])
           return
         }
 
-        const files = [...((fileList as any) as File[])]
+        const files = [...(fileList as any as File[])]
         safeInvoke(onChange, files)
 
         const { accepted, rejected } = splitFiles(files, {
           maxSizeInBytes,
           acceptedMimeTypes,
           currentFileCount: values?.length,
-          maxFiles
+          maxFiles,
         })
 
         if (!isEmpty(accepted)) {

@@ -51,7 +51,7 @@ const getLinearGradientWithStates = (startColor: any, endColor: any, intensityMu
       tinycolor(endColor)
         .darken(5 * intensityMultiplier)
         .toString()
-    )
+    ),
   }
 }
 
@@ -67,9 +67,7 @@ const getPrimaryButtonStylesForIntent = (intent: any) => {
       const endColor = '#399D6C'
       return {
         linearGradient: getLinearGradientWithStates(startColor, endColor),
-        focusColor: tinycolor(startColor)
-          .setAlpha(0.4)
-          .toString()
+        focusColor: tinycolor(startColor).setAlpha(0.4).toString(),
       }
     }
 
@@ -78,9 +76,7 @@ const getPrimaryButtonStylesForIntent = (intent: any) => {
       const endColor = '#D9822B'
       return {
         linearGradient: getLinearGradientWithStates(startColor, endColor),
-        focusColor: tinycolor(startColor)
-          .setAlpha(0.4)
-          .toString()
+        focusColor: tinycolor(startColor).setAlpha(0.4).toString(),
       }
     }
 
@@ -89,9 +85,7 @@ const getPrimaryButtonStylesForIntent = (intent: any) => {
       const endColor = '#D64540'
       return {
         linearGradient: getLinearGradientWithStates(startColor, endColor),
-        focusColor: tinycolor(startColor)
-          .setAlpha(0.4)
-          .toString()
+        focusColor: tinycolor(startColor).setAlpha(0.4).toString(),
       }
     }
 
@@ -100,9 +94,7 @@ const getPrimaryButtonStylesForIntent = (intent: any) => {
       const endColor = '#116AB8'
       return {
         linearGradient: getLinearGradientWithStates(startColor, endColor),
-        focusColor: tinycolor(startColor)
-          .setAlpha(0.4)
-          .toString()
+        focusColor: tinycolor(startColor).setAlpha(0.4).toString(),
       }
     }
   }

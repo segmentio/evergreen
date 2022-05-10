@@ -2,10 +2,10 @@ import React, { memo, forwardRef } from 'react'
 import Box, { PolymorphicBoxProps } from 'ui-box'
 
 export interface ImageOwnProps {
-    src?: string;
+  src?: string
 }
 
-export type ImageProps = PolymorphicBoxProps<'img', ImageOwnProps>;
+export type ImageProps = PolymorphicBoxProps<'img', ImageOwnProps>
 
 const Image: React.FC<ImageProps> = memo(
   forwardRef(function Image(props, ref) {

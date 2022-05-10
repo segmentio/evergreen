@@ -17,9 +17,9 @@ buttonsStory.add('Common', () => (
         options: [
           { label: 'Small (24px)', value: 'small' },
           { label: 'Medium (32px)', value: 'medium' },
-          { label: 'Large (40px)', value: 'large' }
+          { label: 'Large (40px)', value: 'large' },
         ],
-        value: 'medium'
+        value: 'medium',
       }}
     >
       {({ setState, state }) => (
@@ -28,7 +28,7 @@ buttonsStory.add('Common', () => (
             width={350}
             options={state.options}
             value={state.value}
-            onChange={value => setState({ value })}
+            onChange={(value) => setState({ value })}
           />
           <Pane marginTop={16}>
             <Button size={state.value} marginRight={16}>
@@ -270,7 +270,7 @@ buttonsStory.add('Button isLoading', () => (
   <Box padding={80}>
     <Component
       initialState={{
-        isShown: false
+        isShown: false,
       }}
     >
       {({ setState, state }) => (
@@ -279,11 +279,11 @@ buttonsStory.add('Button isLoading', () => (
           isLoading={state.isLoading}
           onClick={() => {
             setState({
-              isLoading: !state.isLoading
+              isLoading: !state.isLoading,
             })
             window.setTimeout(() => {
               setState({
-                isLoading: state.isLoading
+                isLoading: state.isLoading,
               })
             }, 2000)
           }}

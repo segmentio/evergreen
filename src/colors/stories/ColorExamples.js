@@ -11,24 +11,24 @@ function capitalize(string) {
 const colorKeys = [
   {
     key: 'palette',
-    name: 'Palette'
+    name: 'Palette',
   },
   {
     key: 'colors',
-    name: 'Functional colors'
+    name: 'Functional colors',
   },
   {
     key: 'scales',
-    name: 'Scales'
-  }
+    name: 'Scales',
+  },
 ]
 
-const ColorExamples = props => {
+const ColorExamples = (props) => {
   return (
     <ThemeConsumer>
-      {theme => (
+      {(theme) => (
         <Pane {...props}>
-          {colorKeys.map(item => {
+          {colorKeys.map((item) => {
             if (!theme[item.key]) {
               return null
             }
@@ -36,13 +36,13 @@ const ColorExamples = props => {
             return (
               <Pane clearfix key={item.key} marginTop={32}>
                 <Heading size={800}>{item.name}</Heading>
-                {Object.keys(theme[item.key]).map(key => {
+                {Object.keys(theme[item.key]).map((key) => {
                   return (
                     <ColorGroup
                       key={key}
                       title={capitalize(key)}
                       colorGroup={theme[item.key][key]}
-                      name={childKey => `theme.${item.key}.${key}.${childKey}`}
+                      name={(childKey) => `theme.${item.key}.${key}.${childKey}`}
                     />
                   )
                 })}

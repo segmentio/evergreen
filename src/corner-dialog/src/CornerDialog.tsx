@@ -88,7 +88,7 @@ export interface CornerDialogProps {
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
   acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
-  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)',
 }
 
 const ANIMATION_DURATION = 240
@@ -96,32 +96,32 @@ const ANIMATION_DURATION = 240
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const openAnimation = css.keyframes('openAnimation', {
   from: {
-    transform: 'translateY(100%)'
+    transform: 'translateY(100%)',
   },
   to: {
-    transform: 'translateY(0)'
-  }
+    transform: 'translateY(0)',
+  },
 })
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const closeAnimation = css.keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
-    opacity: 1
+    opacity: 1,
   },
   to: {
     transform: 'scale(0.9)',
-    opacity: 0
-  }
+    opacity: 0,
+  },
 })
 
 const animationStyles = {
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`,
   },
   '&[data-state="exiting"]': {
-    animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
-  }
+    animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`,
+  },
 }
 
 const closeHandler = (close: any) => close()
@@ -145,7 +145,7 @@ const CornerDialog: React.FC<CornerDialogProps> = memo(function CornerDialog(pro
     onCancel = closeHandler,
     onConfirm = closeHandler,
     containerProps = emptyProps,
-    position = Position.BOTTOM_RIGHT
+    position = Position.BOTTOM_RIGHT,
   } = props
 
   const [exiting, setExiting] = useState(false)
@@ -209,7 +209,7 @@ const CornerDialog: React.FC<CornerDialogProps> = memo(function CornerDialog(pro
         onExited={handleExited}
         onEntered={onOpenComplete}
       >
-        {state => (
+        {(state) => (
           <Card
             ref={transitionRef}
             role="dialog"

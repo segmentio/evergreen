@@ -13,7 +13,7 @@ import {
   Strong,
   UnorderedList,
   OrderedList,
-  ListItem
+  ListItem,
 } from '..'
 import { TickCircleIcon, BanCircleIcon, TickIcon } from '../../icons'
 
@@ -24,7 +24,7 @@ const dummyText = 'A red flair silhouetted the jagged edge of a wing.'
 function previewTextComponent(Comp, sizes = TextSizes, props = {}) {
   return (
     <Box>
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <Box key={size}>
           <Comp size={size} {...props}>
             {size}: {dummyText}
@@ -71,7 +71,7 @@ storiesOf('typography', module)
   .add('Strong', () => <div>{previewTextComponent(Strong)}</div>)
   .add('UnorderedList', () => (
     <Box padding={40}>
-      {[300, 400, 500].map(size => (
+      {[300, 400, 500].map((size) => (
         <Box key={size}>
           <Heading size={700} marginTop={24}>
             Size {size}
@@ -95,7 +95,7 @@ storiesOf('typography', module)
   ))
   .add('UnorderedList with icons', () => (
     <Box padding={40}>
-      {[300, 400, 500].map(size => (
+      {[300, 400, 500].map((size) => (
         <Box key={size}>
           <Heading size={700} marginTop={24}>
             Size {size}
@@ -130,7 +130,7 @@ storiesOf('typography', module)
   ))
   .add('OrderedList', () => (
     <Box padding={40}>
-      {[300, 400, 500].map(size => (
+      {[300, 400, 500].map((size) => (
         <Box key={size}>
           <Heading size={700} marginTop={24}>
             Size {size}

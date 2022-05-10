@@ -12,16 +12,16 @@ const names = [
   'Jack Phillips',
   'Julia Williamson',
   'Jonathan Martin',
-  'Kevin Niparko'
+  'Kevin Niparko',
 ]
 
 const anonymousIds = [1591, 13184, 1055, 4199, 4824, 11394, 1965, 13023]
 const colors = ['neutral', 'blue', 'red', 'orange', 'yellow', 'green', 'teal', 'purple']
 
-const StoryHeader = props => <Box marginBottom={16} {...props} />
+const StoryHeader = (props) => <Box marginBottom={16} {...props} />
 
-const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
-const StoryDescription = props => <Paragraph size={400} color="muted" {...props} />
+const StoryHeading = (props) => <Heading size={600} marginBottom={0} {...props} />
+const StoryDescription = (props) => <Paragraph size={400} color="muted" {...props} />
 
 storiesOf('avatar', module).add('Avatar', () => (
   <Box padding={40}>
@@ -34,7 +34,7 @@ storiesOf('avatar', module).add('Avatar', () => (
         <StoryHeading>Automatic default usage</StoryHeading>
         <StoryDescription>Colors are based on the name.</StoryDescription>
       </StoryHeader>
-      {names.map(name => (
+      {names.map((name) => (
         <Avatar key={name} name={name} marginRight={12} size={32} />
       ))}
       <Avatar
@@ -79,7 +79,7 @@ storiesOf('avatar', module).add('Avatar', () => (
         <StoryHeading>Square Avatars</StoryHeading>
         <StoryDescription>Colors are based on the name, shape is square.</StoryDescription>
       </StoryHeader>
-      {names.map(name => (
+      {names.map((name) => (
         <Avatar key={name} shape="square" name={name} marginRight={12} size={32} />
       ))}
     </Box>
@@ -88,7 +88,7 @@ storiesOf('avatar', module).add('Avatar', () => (
         <StoryHeading>Custom hash value for anonymous users</StoryHeading>
         <StoryDescription>Pass the id in the hashValue prop for AUs.</StoryDescription>
       </StoryHeader>
-      {anonymousIds.map(id => (
+      {anonymousIds.map((id) => (
         <Avatar key={id} hashValue={String(id)} name="Anonymous User" marginRight={12} size={32} />
       ))}
     </Box>

@@ -17,20 +17,16 @@ const baseStyle = {
     color: (_: any, { color }: any) =>
       tinycolor(`colors.${getThemeKeyForColor(color)}.base`)
         .lighten(10)
-        .toString()
+        .toString(),
   },
   _active: {
     color: (theme: any, { color }: any) =>
-      tinycolor(theme.colors[getThemeKeyForColor(color)].base)
-        .darken(10)
-        .toString()
+      tinycolor(theme.colors[getThemeKeyForColor(color)].base).darken(10).toString(),
   },
   _focus: {
     boxShadow: (theme: any, { color }: any) =>
-      `0 0 0 2px ${tinycolor(theme.colors[getThemeKeyForColor(color)].base)
-        .setAlpha(0.4)
-        .toString()}`
-  }
+      `0 0 0 2px ${tinycolor(theme.colors[getThemeKeyForColor(color)].base).setAlpha(0.4).toString()}`,
+  },
 }
 
 const appearances = {}
@@ -40,5 +36,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

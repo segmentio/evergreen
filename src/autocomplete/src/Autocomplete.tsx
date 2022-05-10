@@ -21,9 +21,7 @@ export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'>
     toggle: () => void
     getRef: React.Ref<any>
     isShown: NonNullable<PopoverProps['isShown']>
-    getInputProps: <T>(
-      options?: T
-    ) => T & {
+    getInputProps: <T>(options?: T) => T & {
       onChange: (event: React.ChangeEvent) => void
       onKeyDown: (event: React.KeyboardEvent) => void
       onBlur: (event: React.FocusEvent) => void
@@ -53,7 +51,7 @@ const fuzzyFilter = (itemToString: any) => {
     return (items: any, input: any) => {
       const wrappedItems = items.map((item: any) => ({
         key: itemToString(item),
-        item
+        item,
       }))
 
       return fuzzaldrin.filter(wrappedItems, input, { key: 'key' }).map(({ item }: any) => item)
@@ -81,7 +79,7 @@ const AutocompleteItems = ({
   renderItem,
   selectedItem,
   title,
-  width
+  width,
 }: any) => {
   itemsFilter = itemsFilter || fuzzyFilter(itemToString)
   const items = isFilterDisabled || inputValue.trim() === '' ? originalItems : itemsFilter(originalItems, inputValue)
@@ -122,7 +120,7 @@ const AutocompleteItems = ({
                 style,
                 children: itemString,
                 isSelected: itemToString(selectedItem) === itemString,
-                isHighlighted: highlightedIndex === index
+                isHighlighted: highlightedIndex === index,
               })
             )
           }}
@@ -166,7 +164,7 @@ const Autocomplete: React.FC<AutocompleteProps> = memo(
         if (Object.prototype.hasOwnProperty.call(changes, 'isOpen') && changes.isOpen) {
           return {
             ...changes,
-            highlightedIndex: props.items.indexOf(state.selectedItem)
+            highlightedIndex: props.items.indexOf(state.selectedItem),
           }
         }
 
@@ -174,7 +172,7 @@ const Autocomplete: React.FC<AutocompleteProps> = memo(
           return {
             ...changes,
             selectedItem: changes.selectedItem || state.inputValue,
-            inputValue: state.inputValue
+            inputValue: state.inputValue,
           }
         }
 
@@ -237,7 +235,7 @@ const Autocomplete: React.FC<AutocompleteProps> = memo(
                   inputValue,
                   selectedItem,
                   highlightedIndex,
-                  ...restDownshiftProps
+                  ...restDownshiftProps,
                 })
               }
             </Popover>

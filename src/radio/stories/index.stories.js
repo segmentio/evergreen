@@ -17,9 +17,9 @@ storiesOf('radio', module)
           options: [
             { label: 'Read-only', value: 'read-only' },
             { label: 'Write', value: 'write' },
-            { label: 'Restricted', value: 'restricted' }
+            { label: 'Restricted', value: 'restricted' },
           ],
-          value: 'restricted'
+          value: 'restricted',
         }}
       >
         {({ setState, state }) => (
@@ -27,7 +27,7 @@ storiesOf('radio', module)
             label="Permissions"
             value={state.value}
             options={state.options}
-            onChange={event => setState({ value: event.target.value })}
+            onChange={(event) => setState({ value: event.target.value })}
           />
         )}
       </Component>
@@ -36,9 +36,9 @@ storiesOf('radio', module)
           options: [
             { label: 'Read-only', value: 'read-only' },
             { label: 'Write', value: 'write' },
-            { label: 'Restricted', value: 'restricted' }
+            { label: 'Restricted', value: 'restricted' },
           ],
-          value: 'restricted'
+          value: 'restricted',
         }}
       >
         {({ setState, state }) => (
@@ -48,7 +48,7 @@ storiesOf('radio', module)
             label="Permissions"
             value={state.value}
             options={state.options}
-            onChange={event => setState({ value: event.target.value })}
+            onChange={(event) => setState({ value: event.target.value })}
           />
         )}
       </Component>

@@ -59,7 +59,7 @@ const Tooltip: React.FC<TooltipProps> = memo(function Tooltip(props) {
     showDelay = 0,
     isShown: propIsShown,
     children,
-    statelessProps = emptyProps
+    statelessProps = emptyProps,
   } = props
 
   // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
@@ -108,7 +108,7 @@ const Tooltip: React.FC<TooltipProps> = memo(function Tooltip(props) {
     const tooltipTargetProps = {
       onMouseEnter: show,
       onMouseLeave: handleHide,
-      'aria-describedby': id
+      'aria-describedby': id,
     }
 
     /**
@@ -138,7 +138,7 @@ const Tooltip: React.FC<TooltipProps> = memo(function Tooltip(props) {
           getRef(ref)
           // Pass the ref to the Popover.
           getTargetRef(ref)
-        }
+        },
       })
     }
 
@@ -150,7 +150,7 @@ const Tooltip: React.FC<TooltipProps> = memo(function Tooltip(props) {
       ...tooltipTargetProps,
       ref: (ref: any) => {
         getRef(ref)
-      }
+      },
     })
   }
 

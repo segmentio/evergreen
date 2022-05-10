@@ -14,7 +14,7 @@ test.each([
   ['size 300', 300],
   ['size 400', 400],
   ['size 500', 500],
-  ['size 600', 600]
+  ['size 600', 600],
 ])('<Text /> %s renders as expected', (_: any, size: any) => {
   const component = (
     <ThemeProvider value={defaultTheme}>

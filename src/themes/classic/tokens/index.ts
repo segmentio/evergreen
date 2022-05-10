@@ -13,7 +13,7 @@ const tokens = {
   radii,
   shadows,
   ...typography,
-  zIndices
+  zIndices,
 }
 
 export default tokens

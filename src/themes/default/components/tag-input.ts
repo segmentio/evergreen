@@ -1,7 +1,7 @@
 const baseStyle = {
   paddingY: '2px',
   backgroundColor: 'white',
-  borderRadius: 'radii.1'
+  borderRadius: 'radii.1',
 }
 
 const appearances = {
@@ -12,16 +12,16 @@ const appearances = {
       zIndex: 'zIndices.focused',
       border: (theme: any) => `1px solid ${theme.colors.blue200}`,
       transition: 'box-shadow 80ms ease-in-out',
-      boxShadow: 'shadows.focusRing'
+      boxShadow: 'shadows.focusRing',
     },
     _disabled: {
       cursor: 'not-allowed',
-      backgroundColor: 'colors.gray100'
+      backgroundColor: 'colors.gray100',
     },
     _invalid: {
-      borderColor: 'colors.red600'
-    }
-  }
+      borderColor: 'colors.red600',
+    },
+  },
 }
 
 const sizes = {}
@@ -29,5 +29,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

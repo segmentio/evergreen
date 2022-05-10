@@ -44,7 +44,7 @@ describe('TextInput', () => {
           value={value}
           onChange={(e: any) => setValue(e.target.value)}
         />
-      );
+      )
     }
 
     const { getByDisplayValue, getByTestId } = render(<ControlledTextInput />)

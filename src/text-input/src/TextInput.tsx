@@ -54,7 +54,7 @@ const pseudoSelectors = {
   _invalid: '&[aria-invalid="true"]:not(:focus)',
   _placeholder: '&::placeholder',
   _placeholderHover: '&:hover::placeholder',
-  _placeholderFocus: '&:focus::placeholder'
+  _placeholderFocus: '&:focus::placeholder',
 }
 
 const internalStyles = {
@@ -63,7 +63,7 @@ const internalStyles = {
   outline: 'none',
   textDecoration: 'none',
   WebkitAppearance: 'none',
-  WebkitFontSmoothing: 'antialiased'
+  WebkitFontSmoothing: 'antialiased',
 }
 
 const TextInput: React.FC<TextInputProps> = memo(

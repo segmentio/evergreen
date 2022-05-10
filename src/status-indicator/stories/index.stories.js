@@ -4,8 +4,8 @@ import Box from 'ui-box'
 import { StatusIndicator } from '..'
 import { Heading } from '../../typography'
 
-const StoryHeader = props => <Box marginBottom={16} {...props} />
-const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
+const StoryHeader = (props) => <Box marginBottom={16} {...props} />
+const StoryHeading = (props) => <Heading size={600} marginBottom={0} {...props} />
 
 storiesOf('status-indicator', module).add('Status Indicator', () => (
   <Box padding={40}>

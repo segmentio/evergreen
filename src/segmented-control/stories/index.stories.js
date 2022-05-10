@@ -15,9 +15,9 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
         options: [
           { label: 'Hourly', value: 'hourly' },
           { label: 'Daily', value: 'daily' },
-          { label: 'Monthly', value: 'monthly' }
+          { label: 'Monthly', value: 'monthly' },
         ],
-        value: 'hourly'
+        value: 'hourly',
       }}
     >
       {({ setState, state }) => (
@@ -26,7 +26,7 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
           width={240}
           options={state.options}
           value={state.value}
-          onChange={value => setState({ value })}
+          onChange={(value) => setState({ value })}
         />
       )}
     </Component>
@@ -34,9 +34,9 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
       initialState={{
         options: [
           { label: 'On', value: true },
-          { label: 'Off', value: false }
+          { label: 'Off', value: false },
         ],
-        value: true
+        value: true,
       }}
     >
       {({ setState, state }) => (
@@ -47,7 +47,7 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
           height={24}
           options={state.options}
           value={state.value}
-          onChange={value => {
+          onChange={(value) => {
             setState({ value })
           }}
         />
@@ -59,7 +59,7 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
       height={24}
       options={[
         { label: 'On', value: true },
-        { label: 'Off', value: false }
+        { label: 'Off', value: false },
       ]}
       defaultValue={false}
     />

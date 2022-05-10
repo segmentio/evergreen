@@ -17,8 +17,8 @@ const getFileDataTransferItems = (dataTransferList: DataTransferItemList): DataT
     return []
   }
 
-  return [...((dataTransferList as any) as DataTransferItem[])].filter(
-    dataTransferItem => dataTransferItem.kind === 'file'
+  return [...(dataTransferList as any as DataTransferItem[])].filter(
+    (dataTransferItem) => dataTransferItem.kind === 'file'
   )
 }
 

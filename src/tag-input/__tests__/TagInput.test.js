@@ -83,7 +83,7 @@ describe('<TagInput />', () => {
     it('prop should remove X icons', () => {
       render(<TagInput disabled values={TEST_VALUES} inputProps={{ placeholder: TEST_PLACEHOLDER }} />)
 
-      TEST_VALUES.forEach(value => {
+      TEST_VALUES.forEach((value) => {
         // Checks to make sure the "X" icon is not within each tag
         expect(screen.getByText(value).children.length).toBe(0)
       })
@@ -93,7 +93,7 @@ describe('<TagInput />', () => {
   describe('addOnBlur', () => {
     it('should allow adding new value on blur', () => {
       const mockOnAdd = jest.fn()
-      jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb())
+      jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb())
       const newTestVal = 'Testing'
 
       render(
@@ -143,11 +143,11 @@ describe('<TagInput />', () => {
         />
       )
 
-      testAutocompleteItems.forEach(item => {
+      testAutocompleteItems.forEach((item) => {
         expect(screen.queryByText(item)).not.toBeInTheDocument()
       })
       userEvent.click(screen.getByTestId('TagInput-autocomplete-toggle'))
-      testAutocompleteItems.forEach(item => {
+      testAutocompleteItems.forEach((item) => {
         expect(screen.queryByText(item)).toBeInTheDocument()
       })
     })
@@ -166,11 +166,11 @@ describe('<TagInput />', () => {
         />
       )
 
-      testAutocompleteItems.forEach(item => {
+      testAutocompleteItems.forEach((item) => {
         expect(screen.queryByText(item)).not.toBeInTheDocument()
       })
       userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), testSearch)
-      testAutocompleteItems.forEach(item => {
+      testAutocompleteItems.forEach((item) => {
         if (item.startsWith(testSearch)) {
           expect(screen.queryByText(item)).toBeInTheDocument()
         } else {

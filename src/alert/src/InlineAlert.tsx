@@ -27,7 +27,7 @@ const pseudoSelectors = {}
 
 const internalStyles = {
   display: 'flex',
-  alignItems: 'center'
+  alignItems: 'center',
 }
 
 const InlineAlert: React.FC<InlineAlertProps> = memo(

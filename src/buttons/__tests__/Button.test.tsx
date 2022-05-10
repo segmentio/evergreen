@@ -10,7 +10,7 @@ import IconButton from '../src/IconButton'
 
 describe.each([
   ['default', defaultTheme],
-  ['classic', classicTheme]
+  ['classic', classicTheme],
 ])('<Button /> % %s', (_: any, theme: any) => {
   it('snapshots with the rendered output', () => {
     const component = (

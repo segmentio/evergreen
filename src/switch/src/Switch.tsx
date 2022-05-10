@@ -56,12 +56,12 @@ export interface SwitchOwnProps {
 export type SwitchProps = PolymorphicBoxProps<'label', SwitchOwnProps>
 
 const animationEasing = {
-  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)',
 }
 
 const handleStyleClass = css({
   backgroundColor: '#fff',
-  borderRadius: 9999
+  borderRadius: 9999,
 }).toString()
 
 const iconContainerStyleClass = css({
@@ -74,23 +74,23 @@ const iconContainerStyleClass = css({
   paddingLeft: 4,
   '&[data-checked="true"]': {
     opacity: 1,
-    transform: 'scale(1)'
+    transform: 'scale(1)',
   },
   '> svg': {
     transition: `all 500ms ${animationEasing.spring}`,
-    transform: 'scale(0)'
+    transform: 'scale(0)',
   },
   '&[data-checked="true"] > svg': {
-    transform: 'scale(1)'
-  }
+    transform: 'scale(1)',
+  },
 }).toString()
 
 const handleContainerStyleClass = css({
   transition: 'transform 200ms ease-in-out',
   transform: 'translateX(0%)',
   '&[data-checked="true"]': {
-    transform: 'translateX(50%)'
-  }
+    transform: 'translateX(50%)',
+  },
 }).toString()
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'fill' does not exist on type '{ children... Remove this comment to see the full error message
@@ -117,7 +117,7 @@ const pseudoSelectors = {
   _checked: '&:checked + div',
   _checkedHover: '&:checked:hover + div',
   _checkedActive: '&:not([disabled]):checked:active + div',
-  _checkedDisabled: '&[disabled]:checked + div'
+  _checkedDisabled: '&[disabled]:checked + div',
 }
 
 const internalStyles = {
@@ -133,8 +133,8 @@ const internalStyles = {
   '& + div > svg': { display: 'none' },
 
   [pseudoSelectors._base]: {
-    transition: 'all 120ms ease-in-out'
-  }
+    transition: 'all 120ms ease-in-out',
+  },
 }
 
 const Switch: React.FC<SwitchProps> = memo(

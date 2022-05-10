@@ -3,7 +3,7 @@
  */
 enum Key {
   Enter = 'Enter',
-  Space = ' '
+  Space = ' ',
 }
 
 export default Key

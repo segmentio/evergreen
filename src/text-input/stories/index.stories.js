@@ -7,7 +7,7 @@ import { ErrorIcon } from '../../icons'
 import { Pane, Card } from '../../layers'
 import { Text, Label, Heading } from '../../typography'
 
-const Description = props => <Text is="p" marginTop={0} size={300} color="muted" {...props} />
+const Description = (props) => <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 
 class Manager extends React.Component {
   state = {}
@@ -17,7 +17,7 @@ class Manager extends React.Component {
       setState: (...args) => {
         this.setState(...args)
       },
-      state: this.state
+      state: this.state,
     })
   }
 }
@@ -25,7 +25,7 @@ class Manager extends React.Component {
 storiesOf('text-input', module)
   .add('TextInput', () => (
     <div>
-      {['default', 'none'].map(appearance => (
+      {['default', 'none'].map((appearance) => (
         <Box key={appearance} padding={40} float="left">
           <Heading marginBottom={24}>Appearance: {appearance}</Heading>
           <Box marginBottom={24} width={360}>
@@ -107,7 +107,7 @@ storiesOf('text-input', module)
               required
               description="This is a description."
               value={state.value}
-              onChange={e => setState({ value: e.target.value })}
+              onChange={(e) => setState({ value: e.target.value })}
             />
           )
         }}

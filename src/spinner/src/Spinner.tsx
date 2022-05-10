@@ -4,52 +4,53 @@ import Box, { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 
 export interface SpinnerOwnProps {
-    /**
-     * Delay after which spinner should be visible.
-     */
-    delay?: number;
-    /**
-     * The size of the spinner.
-     */
-    size?: number;
+  /**
+   * Delay after which spinner should be visible.
+   */
+  delay?: number
+  /**
+   * The size of the spinner.
+   */
+  size?: number
 }
 
-export type SpinnerProps = PolymorphicBoxProps<'div', SpinnerOwnProps>;
+export type SpinnerProps = PolymorphicBoxProps<'div', SpinnerOwnProps>
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const loadingKeyframes = css.keyframes('loading', {
   '0%': {
-    transform: 'rotate(0)'
+    transform: 'rotate(0)',
   },
   '100%': {
-    transform: 'rotate(360deg)'
-  }
+    transform: 'rotate(360deg)',
+  },
 })
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const loadingCircleKeyframes = css.keyframes('loading-circle', {
   '0%': {
-    strokeDashoffset: 600
+    strokeDashoffset: 600,
   },
   '100%': {
-    strokeDashoffset: 0
-  }
+    strokeDashoffset: 0,
+  },
 })
 
 const outerClass = css({
-  animation: `${loadingKeyframes} 2s linear infinite`
+  animation: `${loadingKeyframes} 2s linear infinite`,
 }).toString()
 
-const innerClass = (color: any) => css({
-  strokeDashoffset: 600,
-  strokeDasharray: 300,
-  strokeWidth: 12,
-  strokeMiterlimit: 10,
-  strokeLinecap: 'round',
-  animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
-  stroke: color,
-  fill: 'transparent'
-}).toString()
+const innerClass = (color: any) =>
+  css({
+    strokeDashoffset: 600,
+    strokeDasharray: 300,
+    strokeWidth: 12,
+    strokeMiterlimit: 10,
+    strokeLinecap: 'round',
+    animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
+    stroke: color,
+    fill: 'transparent',
+  }).toString()
 
 const emptyObject = {}
 
@@ -69,7 +70,7 @@ const Spinner: React.FC<SpinnerProps> = memo(
         }, delay)
       }
 
-      return function() {
+      return function () {
         clearTimeout(delayTimer)
       }
     }, [delay])

@@ -2,7 +2,7 @@ enum PositionState {
   Exited = 'exited',
   Entering = 'entering',
   Entered = 'entered',
-  Exiting = 'exiting'
+  Exiting = 'exiting',
 }
 
 export default PositionState

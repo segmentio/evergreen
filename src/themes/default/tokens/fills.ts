@@ -8,36 +8,36 @@ export type DefaultThemeFills = typeof fills
 const fills = {
   neutral: {
     color: colors.gray800,
-    backgroundColor: colors.gray200
+    backgroundColor: colors.gray200,
   },
   blue: {
     color: colors.blue600,
-    backgroundColor: colors.blue100
+    backgroundColor: colors.blue100,
   },
   red: {
     color: colors.red700,
-    backgroundColor: colors.red100
+    backgroundColor: colors.red100,
   },
   orange: {
     color: colors.orange700,
-    backgroundColor: colors.orange100
+    backgroundColor: colors.orange100,
   },
   yellow: {
     color: colors.yellow800,
-    backgroundColor: colors.yellow100
+    backgroundColor: colors.yellow100,
   },
   green: {
     color: colors.green700,
-    backgroundColor: colors.green100
+    backgroundColor: colors.green100,
   },
   teal: {
     color: colors.teal800,
-    backgroundColor: colors.teal100
+    backgroundColor: colors.teal100,
   },
   purple: {
     color: colors.purple600,
-    backgroundColor: colors.purple100
-  }
+    backgroundColor: colors.purple100,
+  },
 }
 
 export default fills

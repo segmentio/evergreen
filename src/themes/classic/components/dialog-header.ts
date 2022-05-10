@@ -1,8 +1,8 @@
 const baseStyle = {
   padding: '16px',
-  borderBottom: 'muted'
+  borderBottom: 'muted',
 }
 
 export default {
-  baseStyle
+  baseStyle,
 }

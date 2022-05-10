@@ -3,7 +3,7 @@ import { buildFiles, buildFile } from '../../../test/utils'
 import getFileRejections from '../../src/utils/get-file-rejections'
 
 describe('getFileRejections', () => {
-  it.each([undefined, null, {}])('should return empty array when options is %p', options => {
+  it.each([undefined, null, {}])('should return empty array when options is %p', (options) => {
     const files = buildFiles()
     const expected = []
 

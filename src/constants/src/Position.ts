@@ -6,7 +6,7 @@ enum Position {
   BOTTOM_LEFT = 'bottom-left',
   BOTTOM_RIGHT = 'bottom-right',
   LEFT = 'left',
-  RIGHT = 'right'
+  RIGHT = 'right',
 }
 
 export default Position

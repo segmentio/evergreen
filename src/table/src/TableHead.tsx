@@ -16,24 +16,23 @@ export type TableHeadProps = PolymorphicBoxProps<'div', TableHeadOwnProps>
 const emptyObject = {}
 
 const pseudoSelectors = {
-  _firstOfType: '&:first-of-type'
+  _firstOfType: '&:first-of-type',
 }
 
 const internalStyles = {
   display: 'flex',
-  flexShrink: 0
+  flexShrink: 0,
 }
 
 const TableHead: React.FC<TableHeadProps> = memo(function TableHead(props) {
   const { accountForScrollbar = true, children, className, ...rest } = props
   const [scrollbarWidth, setScrollBarWidth] = useState(0)
 
-  const { className: themedClassName, height: themeHeight, ...boxProps } = useStyleConfig(
-    'TableHead',
-    emptyObject,
-    pseudoSelectors,
-    internalStyles
-  )
+  const {
+    className: themedClassName,
+    height: themeHeight,
+    ...boxProps
+  } = useStyleConfig('TableHead', emptyObject, pseudoSelectors, internalStyles)
 
   const height = rest.height || themeHeight
 

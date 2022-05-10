@@ -5,7 +5,7 @@ import canUseDom from '../../lib/canUseDom'
 let portalContainer: any
 
 export default class Portal extends Component {
-  el: any;
+  el: any
   constructor() {
     // @ts-expect-error ts-migrate(2554) FIXME: Expected 1-2 arguments, but got 0.
     super()
@@ -33,4 +33,3 @@ export default class Portal extends Component {
     return ReactDOM.createPortal(this.props.children, this.el)
   }
 }
-

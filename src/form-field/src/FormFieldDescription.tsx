@@ -1,12 +1,11 @@
 import React, { memo, forwardRef } from 'react'
-import { PolymorphicBoxProps } from "ui-box";
+import { PolymorphicBoxProps } from 'ui-box'
 import { Paragraph } from '../../typography'
-import { ParagraphOwnProps } from "../../typography/src/Paragraph";
+import { ParagraphOwnProps } from '../../typography/src/Paragraph'
 
-export interface FormFieldDescriptionOwnProps extends ParagraphOwnProps {
-}
+export interface FormFieldDescriptionOwnProps extends ParagraphOwnProps {}
 
-export type FormFieldDescriptionProps = PolymorphicBoxProps<'p', FormFieldDescriptionOwnProps>;
+export type FormFieldDescriptionProps = PolymorphicBoxProps<'p', FormFieldDescriptionOwnProps>
 
 const FormFieldDescription: React.FC<FormFieldDescriptionProps> = memo(
   forwardRef(function FormFieldDescription(props, ref) {

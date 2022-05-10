@@ -58,7 +58,7 @@ describe('FileCard', () => {
         expect(fileCard.querySelector('circle')).toBeInTheDocument()
       })
 
-      it.each([undefined, null, false])('should not render <Spinner /> when %p', isLoading => {
+      it.each([undefined, null, false])('should not render <Spinner /> when %p', (isLoading) => {
         renderWithProps({ isLoading })
         const fileCard = screen.getByTestId(testId)
 
@@ -113,7 +113,7 @@ describe('FileCard', () => {
         })
       })
 
-      it.each([undefined, null])('should not render <IconButton /> with TrashIcon when onRemove is %p', onRemove => {
+      it.each([undefined, null])('should not render <IconButton /> with TrashIcon when onRemove is %p', (onRemove) => {
         renderWithProps({ onRemove })
         const fileCard = screen.getByTestId(testId)
 
@@ -135,7 +135,7 @@ describe('FileCard', () => {
       describe('when src is non-empty', () => {
         it.each([MimeType.css, MimeType.doc, MimeType.mp3, MimeType.mp4])(
           'should not render <img /> when type is %p',
-          type => {
+          (type) => {
             const src = faker.image.animals()
 
             renderWithProps({ src, type })
@@ -145,7 +145,7 @@ describe('FileCard', () => {
           }
         )
 
-        it.each([MimeType.png, MimeType.gif, MimeType.jpeg])('should render <img /> when type is %p', type => {
+        it.each([MimeType.png, MimeType.gif, MimeType.jpeg])('should render <img /> when type is %p', (type) => {
           const src = faker.image.animals()
 
           renderWithProps({ src, type })
@@ -155,7 +155,7 @@ describe('FileCard', () => {
         })
       })
 
-      it.each([undefined, null, ''])('should not render <img /> when src is %p', src => {
+      it.each([undefined, null, ''])('should not render <img /> when src is %p', (src) => {
         renderWithProps({ src })
 
         const fileCard = screen.getByTestId(testId)

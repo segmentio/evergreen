@@ -12,7 +12,7 @@ class Manager extends React.Component {
       setState: (...args) => {
         this.setState(...args)
       },
-      state: this.state
+      state: this.state,
     })
   }
 }
@@ -84,7 +84,7 @@ storiesOf('textarea', module)
               required
               description="This is a description."
               value={state.value}
-              onChange={e => setState({ value: e.target.value })}
+              onChange={(e) => setState({ value: e.target.value })}
             />
           )
         }}

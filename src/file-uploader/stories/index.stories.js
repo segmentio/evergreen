@@ -13,20 +13,23 @@ import { getAcceptedTypesMessage, getMaxFilesMessage, getFileSizeMessage } from 
 const acceptedMimeTypes = [MimeType.gif, MimeType.png, MimeType.jpeg]
 const maxSizeInBytes = 5 * 1024 * 1024
 const handleFileCardRemove = () => toaster.notify('Removed file!')
-const handleAccepted = files => toaster.notify(`Accepted: ${files.map(file => file.name).join(', ')}`)
-const handleRejected = fileRejections =>
+const handleAccepted = (files) => toaster.notify(`Accepted: ${files.map((file) => file.name).join(', ')}`)
+const handleRejected = (fileRejections) =>
   toaster.danger(
     `Rejected: ${fileRejections
-      .map(fileRejection => `${fileRejection.file.name} (${fileRejection.reason})`)
+      .map((fileRejection) => `${fileRejection.file.name} (${fileRejection.reason})`)
       .join(', ')}`
   )
 
 const noop = () => {}
 
-const FileUploaderState = props => {
+const FileUploaderState = (props) => {
   const [files, setFiles] = useState([])
   const handleReset = useCallback(() => setFiles([]), [])
-  const handleRemove = useCallback(file => setFiles(prev => prev.filter(existingFile => existingFile !== file)), [])
+  const handleRemove = useCallback(
+    (file) => setFiles((prev) => prev.filter((existingFile) => existingFile !== file)),
+    []
+  )
 
   return (
     <Box maxWidth={600} marginBottom={majorScale(2)}>
@@ -57,7 +60,7 @@ storiesOf('file-uploader', module)
       />
       <FileUploaderState
         label="Custom renderFile"
-        renderFile={file => (
+        renderFile={(file) => (
           <ListItem icon={getIconFromType(file.type)}>
             <Code marginLeft={majorScale(3)}>{file.name}</Code>
           </ListItem>

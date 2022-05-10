@@ -181,7 +181,7 @@ storiesOf('dialog', module)
               shouldCloseOnEscapePress={false}
               title="Dialog with overlay and escape key disabled"
               onCloseComplete={hide}
-              onCancel={close => {
+              onCancel={(close) => {
                 // eslint-disable-next-line no-console
                 console.log('You canceled')
                 close()
@@ -210,7 +210,7 @@ storiesOf('dialog', module)
               onCloseComplete={hide}
               contentContainerProps={{
                 padding: 0,
-                overflowY: 'auto'
+                overflowY: 'auto',
               }}
             >
               <Pane
@@ -284,7 +284,7 @@ storiesOf('dialog', module)
               contentContainerProps={{
                 padding: '4px',
                 flexDirection: 'row',
-                flexWrap: 'wrap'
+                flexWrap: 'wrap',
               }}
             >
               <Pane width="25%" height={160} backgroundColor="#F9F9FB" />
@@ -310,7 +310,7 @@ storiesOf('dialog', module)
             <Dialog isShown={isShown} title="Dialog with nested Side Sheet" onCloseComplete={hide}>
               <Component
                 initialState={{
-                  isShown: false
+                  isShown: false,
                 }}
               >
                 {({ setState, state }) => (
@@ -319,7 +319,7 @@ storiesOf('dialog', module)
                     <SideSheet isShown={state.isShown} onCloseComplete={() => setState({ isShown: false })}>
                       <Component
                         initialState={{
-                          isShown: false
+                          isShown: false,
                         }}
                       >
                         {({ setState: innerSetState, state: innerState }) => {
@@ -350,7 +350,7 @@ storiesOf('dialog', module)
                       </Component>
                       <Component
                         initialState={{
-                          isShown: false
+                          isShown: false,
                         }}
                       >
                         {({ setState: innerSetState, state: innerState }) => {

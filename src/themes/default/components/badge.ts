@@ -9,21 +9,21 @@ const baseStyle = {
   fontSize: '11.5px',
   textAlign: 'center',
   textDecoration: 'none',
-  textTransform: 'uppercase'
+  textTransform: 'uppercase',
 }
 
 const appearances = {
   subtle: (theme: any, props: any) => {
     const scheme = get(theme, `fills.${props.color}`, {
       backgroundColor: props.color,
-      color: tinycolor(props.color).isLight() ? 'colors.dark' : 'white'
+      color: tinycolor(props.color).isLight() ? 'colors.dark' : 'white',
     })
 
     return {
       color: scheme.color,
-      backgroundColor: scheme.backgroundColor
+      backgroundColor: scheme.backgroundColor,
     }
-  }
+  },
 }
 
 const sizes = {}
@@ -31,5 +31,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

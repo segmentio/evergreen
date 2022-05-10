@@ -207,7 +207,7 @@ storiesOf('popover', module)
           statelessProps={{
             paddingY: 24,
             paddingX: 24,
-            maxWidth: 280
+            maxWidth: 280,
           }}
         >
           <Button>Tooltip + Popover</Button>

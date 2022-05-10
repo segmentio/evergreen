@@ -65,7 +65,7 @@ const colorScales = {
 
   // Yellows
   yellow800: '#66460D',
-  yellow100: '#FFEFD2'
+  yellow100: '#FFEFD2',
 }
 
 const colors = {
@@ -90,21 +90,21 @@ const colors = {
 
   border: {
     default: colorScales.gray300,
-    muted: colorScales.gray200
+    muted: colorScales.gray200,
   },
 
   icon: {
     default: colorScales.gray700,
     muted: colorScales.gray600,
     disabled: colorScales.gray400,
-    selected: colorScales.blue500
+    selected: colorScales.blue500,
   },
 
   text: {
     danger: colorScales.red500,
     success: colorScales.green500,
-    info: colorScales.blue500
-  }
+    info: colorScales.blue500,
+  },
 }
 
 export default colors

@@ -5,5 +5,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

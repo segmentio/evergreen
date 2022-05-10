@@ -53,7 +53,7 @@ const FilePicker: React.FC<FilePickerProps> = memo(
     const fileInputRef = useRef()
 
     const handleFileChange = useCallback(
-      e => {
+      (e) => {
         // Firefox returns the same array instance each time for some reason
         const filesCopy = [...e.target.files]
 
@@ -73,7 +73,7 @@ const FilePicker: React.FC<FilePickerProps> = memo(
     }, [])
 
     const handleBlur = useCallback(
-      e => {
+      (e) => {
         // Setting e.target.files to an array fails. It must be a FileList
         if (e && e.target) {
           // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.

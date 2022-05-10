@@ -29,7 +29,7 @@ const internalStyles = {
   margin: 0,
   marginLeft: '1.1em',
   padding: 0,
-  listStyle: 'disc'
+  listStyle: 'disc',
 }
 
 const UnorderedList: React.FC<UnorderedListProps> = memo(
@@ -38,7 +38,7 @@ const UnorderedList: React.FC<UnorderedListProps> = memo(
 
     const { className: themedClassName, ...styleProps } = useStyleConfig('List', { size }, emptyObject, internalStyles)
 
-    const enrichedChildren = React.Children.map(children, child => {
+    const enrichedChildren = React.Children.map(children, (child) => {
       if (!React.isValidElement(child)) {
         return child
       }
@@ -50,7 +50,7 @@ const UnorderedList: React.FC<UnorderedListProps> = memo(
           size,
           iconColor,
           // Prefer more granularly defined props if present
-          ...child.props
+          ...child.props,
         })
       )
     })

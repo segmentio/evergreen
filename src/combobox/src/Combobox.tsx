@@ -1,71 +1,71 @@
 import React, { memo, useState, useCallback } from 'react'
 import { PolymorphicBoxProps } from 'ui-box'
 import { Autocomplete } from '../../autocomplete'
-import { AutocompleteProps } from "../../autocomplete/src/Autocomplete"
+import { AutocompleteProps } from '../../autocomplete/src/Autocomplete'
 import { IconButton } from '../../buttons'
-import { IconButtonOwnProps } from "../../buttons/src/IconButton"
+import { IconButtonOwnProps } from '../../buttons/src/IconButton'
 import { Group } from '../../group'
 import { CaretDownIcon } from '../../icons'
 import { TextInput } from '../../text-input'
-import { TextInputOwnProps } from "../../text-input/src/TextInput"
+import { TextInputOwnProps } from '../../text-input/src/TextInput'
 
 export interface ComboboxOwnProps {
-    /**
-     * The options to show in the menu.
-     */
-    items: AutocompleteProps['items'];
-    /**
-     * The selected item when controlled.
-     */
-    selectedItem?: AutocompleteProps['selectedItem'];
-    /**
-     * Function called when value changes.
-     */
-    onChange?: AutocompleteProps['onChange'];
-    /**
-     * Properties forwarded to the autocomplete component. Use with caution.
-     */
-    autocompleteProps?: AutocompleteProps;
-    /**
-     * When true, open the autocomplete on focus.
-     */
-    openOnFocus?: boolean;
-    /**
-     * Default selected item when uncontrolled.
-     */
-    initialSelectedItem?: any;
-    /**
-     * The placeholder text when there is no value present.
-     */
-    placeholder?: string;
-    /**
-     * In case the array of items is not an array of strings,
-     * this function is used on each item to return the string that will be shown on the filter
-     */
-    itemToString?: AutocompleteProps['itemToString'];
-    /**
-     * Properties forwarded to the input. Use with caution.
-     */
-    inputProps?: TextInputOwnProps;
-    /**
-     * Properties forwarded to the button. Use with caution.
-     */
-    buttonProps?: IconButtonOwnProps;
-    /**
-     * Makes the input element disabled.
-     */
-    disabled?: boolean;
-    /**
-     * When true, show a loading spinner. This also disables the button.
-     */
-    isLoading?: boolean;
-    /**
-     * Size of the component
-     */
-    size?: 'small' | 'medium' | 'large';
+  /**
+   * The options to show in the menu.
+   */
+  items: AutocompleteProps['items']
+  /**
+   * The selected item when controlled.
+   */
+  selectedItem?: AutocompleteProps['selectedItem']
+  /**
+   * Function called when value changes.
+   */
+  onChange?: AutocompleteProps['onChange']
+  /**
+   * Properties forwarded to the autocomplete component. Use with caution.
+   */
+  autocompleteProps?: AutocompleteProps
+  /**
+   * When true, open the autocomplete on focus.
+   */
+  openOnFocus?: boolean
+  /**
+   * Default selected item when uncontrolled.
+   */
+  initialSelectedItem?: any
+  /**
+   * The placeholder text when there is no value present.
+   */
+  placeholder?: string
+  /**
+   * In case the array of items is not an array of strings,
+   * this function is used on each item to return the string that will be shown on the filter
+   */
+  itemToString?: AutocompleteProps['itemToString']
+  /**
+   * Properties forwarded to the input. Use with caution.
+   */
+  inputProps?: TextInputOwnProps
+  /**
+   * Properties forwarded to the button. Use with caution.
+   */
+  buttonProps?: IconButtonOwnProps
+  /**
+   * Makes the input element disabled.
+   */
+  disabled?: boolean
+  /**
+   * When true, show a loading spinner. This also disables the button.
+   */
+  isLoading?: boolean
+  /**
+   * Size of the component
+   */
+  size?: 'small' | 'medium' | 'large'
 }
 
-export type ComboboxProps = PolymorphicBoxProps<'div', ComboboxOwnProps>;
+export type ComboboxProps = PolymorphicBoxProps<'div', ComboboxOwnProps>
 
 const Combobox: React.FC<ComboboxProps> = memo(function Combobox(props) {
   const {
@@ -117,15 +117,7 @@ const Combobox: React.FC<ComboboxProps> = memo(function Combobox(props) {
       {...autocompleteProps}
       onStateChange={handleStateChange}
     >
-      {({
-        clearSelection,
-        getInputProps,
-        getRef,
-        getToggleButtonProps,
-        inputValue,
-        isShown,
-        openMenu
-      }: any) => (
+      {({ clearSelection, getInputProps, getRef, getToggleButtonProps, inputValue, isShown, openMenu }: any) => (
         <Group ref={getRef} size={size} width={width} {...rest}>
           <TextInput
             width={0}
@@ -150,7 +142,7 @@ const Combobox: React.FC<ComboboxProps> = memo(function Combobox(props) {
                   // Prevent the selected item from sticking around
                   clearSelection()
                 }
-              }
+              },
             })}
           />
           <IconButton
@@ -173,13 +165,13 @@ const Combobox: React.FC<ComboboxProps> = memo(function Combobox(props) {
                 if (!isShown) {
                   setIsOpenedByButton(true)
                 }
-              }
+              },
             })}
           />
         </Group>
       )}
     </Autocomplete>
-  );
+  )
 })
 
 export default Combobox

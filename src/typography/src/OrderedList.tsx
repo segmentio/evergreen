@@ -19,7 +19,7 @@ const internalStyles = {
   margin: 0,
   marginLeft: '1.1em',
   padding: 0,
-  listStyle: 'decimal'
+  listStyle: 'decimal',
 }
 
 const OrderedList: React.FC<OrderedListProps> = memo(
@@ -28,14 +28,14 @@ const OrderedList: React.FC<OrderedListProps> = memo(
 
     const { className: themedClassName, ...styleProps } = useStyleConfig('List', { size }, emptyObject, internalStyles)
 
-    const finalChildren = React.Children.map(children, child => {
+    const finalChildren = React.Children.map(children, (child) => {
       if (!React.isValidElement(child)) {
         return child
       }
 
       return React.cloneElement(child, {
         // Prefer more granularly defined icon if present
-        size: child.props.size || size
+        size: child.props.size || size,
       })
     })
 

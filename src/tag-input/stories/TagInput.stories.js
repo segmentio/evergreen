@@ -4,36 +4,36 @@ import Box from 'ui-box'
 import { TagInput } from '..'
 import { Heading } from '../../typography'
 
-const StoryHeader = props => <Box marginBottom={16} {...props} />
-const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
-const StorySection = props => <Box marginBottom={40} {...props} />
+const StoryHeader = (props) => <Box marginBottom={16} {...props} />
+const StoryHeading = (props) => <Heading size={600} marginBottom={0} {...props} />
+const StorySection = (props) => <Box marginBottom={40} {...props} />
 const initialValues = ['First', 'Second', 'Third']
 const autocompleteValues = initialValues.concat('Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth')
 
 class StateManager extends React.PureComponent {
   state = {
-    values: this.props.values || []
+    values: this.props.values || [],
   }
 
   addValues = (values = []) => {
-    this.setState(state => ({
-      values: [...state.values, ...values]
+    this.setState((state) => ({
+      values: [...state.values, ...values],
     }))
   }
 
-  handleChange = values => {
+  handleChange = (values) => {
     if (values.length % 2 === 0) {
       return false
     }
   }
 
   removeValue = (_value, index) => {
-    this.setState(state => ({
-      values: state.values.filter((_, i) => i !== index)
+    this.setState((state) => ({
+      values: state.values.filter((_, i) => i !== index),
     }))
   }
 
-  tagProps = value => {
+  tagProps = (value) => {
     const color = value === 'invalid' ? 'red' : undefined
     return { color }
   }
@@ -44,7 +44,7 @@ class StateManager extends React.PureComponent {
       addValues: this.addValues,
       removeValue: this.removeValue,
       tagProps: this.tagProps,
-      handleChange: this.handleChange
+      handleChange: this.handleChange,
     })
   }
 }
@@ -173,7 +173,7 @@ storiesOf('tag-input', module).add('TagInput', () => (
       </StoryHeader>
       <StateManager>
         {({ addValues, handleChange, removeValue, values }) => {
-          const autocompleteItems = autocompleteValues.filter(i => !values.includes(i))
+          const autocompleteItems = autocompleteValues.filter((i) => !values.includes(i))
           return (
             <TagInput
               addOnBlur

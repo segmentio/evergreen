@@ -28,14 +28,14 @@ export default {
     /**
      * Use font family display because the font-size is 20px.
      */
-    fontFamily: fontFamilies.display
+    fontFamily: fontFamilies.display,
   },
   '500': {
     fontSize: '16px',
     fontWeight: 400,
     lineHeight: '20px',
     letterSpacing: '-0.05px',
-    marginTop: 16
+    marginTop: 16,
   },
   '400': {
     // Default
@@ -43,13 +43,13 @@ export default {
     fontWeight: 400,
     lineHeight: '20px',
     letterSpacing: '-0.05px',
-    marginTop: 12
+    marginTop: 12,
   },
   '300': {
     fontSize: '12px',
     fontWeight: 400,
     lineHeight: '16px',
     letterSpacing: '0',
-    marginTop: 12
-  }
+    marginTop: 12,
+  },
 }

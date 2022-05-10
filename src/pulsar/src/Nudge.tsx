@@ -39,7 +39,7 @@ export const Nudge: React.FC<NudgeProps> = ({
   position = Positions.TOP_RIGHT,
   size,
   tooltipContent: tooltipContentProp,
-  onClick
+  onClick,
 }: any) => {
   if (process.env.NODE_ENV !== 'production') {
     warning(true, '<Nudge> is deprecated and will be renamed to Pulsar in the next major version of Evergreen.')

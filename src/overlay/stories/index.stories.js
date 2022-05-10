@@ -9,7 +9,7 @@ import { Paragraph } from '../../typography'
 
 class OverlayManager extends PureComponent {
   state = {
-    isShown: false
+    isShown: false,
   }
 
   render() {
@@ -17,12 +17,12 @@ class OverlayManager extends PureComponent {
       isShown: this.state.isShown,
       show: () =>
         this.setState({
-          isShown: true
+          isShown: true,
         }),
       hide: () =>
         this.setState({
-          isShown: false
-        })
+          isShown: false,
+        }),
     })
   }
 }
@@ -95,7 +95,7 @@ storiesOf('overlay', module)
           containerProps={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
           }}
           onBeforeClose={beforeClose}
           onExited={hide}

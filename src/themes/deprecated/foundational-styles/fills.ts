@@ -10,72 +10,72 @@ const fills = {}
 fills.solid = {
   neutral: {
     color: 'white',
-    backgroundColor: palette.neutral.base
+    backgroundColor: palette.neutral.base,
   },
   blue: {
     color: 'white',
-    backgroundColor: palette.blue.base
+    backgroundColor: palette.blue.base,
   },
   red: {
     color: 'white',
-    backgroundColor: palette.red.base
+    backgroundColor: palette.red.base,
   },
   orange: {
     color: 'white',
-    backgroundColor: palette.orange.base
+    backgroundColor: palette.orange.base,
   },
   yellow: {
     color: palette.yellow.dark,
-    backgroundColor: palette.yellow.base
+    backgroundColor: palette.yellow.base,
   },
   green: {
     color: 'white',
-    backgroundColor: palette.green.base
+    backgroundColor: palette.green.base,
   },
   teal: {
     color: 'white',
-    backgroundColor: palette.teal.base
+    backgroundColor: palette.teal.base,
   },
   purple: {
     color: 'white',
-    backgroundColor: palette.purple.base
-  }
+    backgroundColor: palette.purple.base,
+  },
 }
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'subtle' does not exist on type '{}'.
 fills.subtle = {
   neutral: {
     color: colors.text.default,
-    backgroundColor: palette.neutral.light
+    backgroundColor: palette.neutral.light,
   },
   blue: {
     color: palette.blue.dark,
-    backgroundColor: palette.blue.light
+    backgroundColor: palette.blue.light,
   },
   red: {
     color: palette.red.dark,
-    backgroundColor: palette.red.light
+    backgroundColor: palette.red.light,
   },
   orange: {
     color: palette.orange.dark,
-    backgroundColor: palette.orange.light
+    backgroundColor: palette.orange.light,
   },
   yellow: {
     color: palette.yellow.dark,
-    backgroundColor: palette.yellow.light
+    backgroundColor: palette.yellow.light,
   },
   green: {
     color: palette.green.dark,
-    backgroundColor: palette.green.light
+    backgroundColor: palette.green.light,
   },
   teal: {
     color: palette.teal.dark,
-    backgroundColor: palette.teal.light
+    backgroundColor: palette.teal.light,
   },
   purple: {
     color: palette.purple.dark,
-    backgroundColor: palette.purple.light
-  }
+    backgroundColor: palette.purple.light,
+  },
 }
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'options' does not exist on type '{}'.

@@ -43,7 +43,7 @@ storiesOf('nudge', module)
             isShown={!isShown}
             position={Position.BOTTOM_LEFT}
             tooltipContent="Click here for more info"
-            onClick={e => {
+            onClick={(e) => {
               e.stopPropagation()
               toggle()
             }}

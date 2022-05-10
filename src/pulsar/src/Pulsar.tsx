@@ -25,35 +25,35 @@ export interface PulsarProps {
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const pulseAnimation = css.keyframes('pulseAnimation', {
   '0%': {
-    transform: 'scale(1)'
+    transform: 'scale(1)',
   },
   '50%': {
-    transform: 'scale(1.9)'
+    transform: 'scale(1.9)',
   },
   '100%': {
-    transform: 'scale(1)'
-  }
+    transform: 'scale(1)',
+  },
 })
 
 const animationTiming = 'cubic-bezier(0, 0, 0.58, 1)'
 const animationDuration = '1.8s'
 
 const pulsarAnimationClassName = css({
-  animation: `${pulseAnimation} ${animationDuration} ${animationTiming} both infinite`
+  animation: `${pulseAnimation} ${animationDuration} ${animationTiming} both infinite`,
 }).toString()
 
 const POSITION_KEYS: Record<PulsarPosition, string[]> = {
   [Positions.TOP_LEFT]: ['top', 'left'],
   [Positions.TOP_RIGHT]: ['top', 'right'],
   [Positions.BOTTOM_LEFT]: ['bottom', 'left'],
-  [Positions.BOTTOM_RIGHT]: ['bottom', 'right']
+  [Positions.BOTTOM_RIGHT]: ['bottom', 'right'],
 }
 
 const getPositionProps = ({ position, size }: Pick<PulsarProps, 'position' | 'size'>) => {
   const keys = POSITION_KEYS[position!]
   const props = {}
 
-  keys.forEach(key => {
+  keys.forEach((key) => {
     const isYAxisKey = key === 'top' || key === 'bottom'
 
     if (isYAxisKey) {

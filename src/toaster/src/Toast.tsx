@@ -15,7 +15,7 @@ export interface ToastProps extends ToasterSettings {
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
   acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
-  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)',
 }
 
 const ANIMATION_DURATION = 240
@@ -24,23 +24,23 @@ const ANIMATION_DURATION = 240
 const openAnimation = css.keyframes('openAnimation', {
   from: {
     opacity: 0,
-    transform: 'translateY(-120%)'
+    transform: 'translateY(-120%)',
   },
   to: {
-    transform: 'translateY(0)'
-  }
+    transform: 'translateY(0)',
+  },
 })
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const closeAnimation = css.keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
-    opacity: 1
+    opacity: 1,
   },
   to: {
     transform: 'scale(0.9)',
-    opacity: 0
-  }
+    opacity: 0,
+  },
 })
 
 const animationStyles = css({
@@ -50,11 +50,11 @@ const animationStyles = css({
   height: 0,
   transition: `all ${ANIMATION_DURATION}ms ${animationEasing.deceleration}`,
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`,
   },
   '&[data-state="exiting"]': {
-    animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
-  }
+    animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`,
+  },
 })
 
 const Toast: React.FC<ToastProps> = memo(function Toast(props) {
@@ -67,7 +67,7 @@ const Toast: React.FC<ToastProps> = memo(function Toast(props) {
     isShown: isShownProp,
     onRemove,
     title,
-    zIndex
+    zIndex,
   } = props
 
   const transitionRef = useRef(null)
@@ -113,7 +113,7 @@ const Toast: React.FC<ToastProps> = memo(function Toast(props) {
   const handleMouseEnter = useCallback(() => clearCloseTimer(), [clearCloseTimer])
   const handleMouseLeave = useCallback(() => startCloseTimer(), [startCloseTimer])
 
-  const onRef = useCallback(ref => {
+  const onRef = useCallback((ref) => {
     if (ref === null) return
 
     const { height: rectHeight } = ref.getBoundingClientRect()
@@ -124,7 +124,7 @@ const Toast: React.FC<ToastProps> = memo(function Toast(props) {
     () => ({
       height,
       zIndex,
-      marginBottom: isShown ? 0 : -height
+      marginBottom: isShown ? 0 : -height,
     }),
     [isShown, height, zIndex]
   )
@@ -138,7 +138,7 @@ const Toast: React.FC<ToastProps> = memo(function Toast(props) {
       in={isShown}
       onExited={onRemove}
     >
-      {state => (
+      {(state) => (
         <div
           ref={transitionRef}
           data-state={state}

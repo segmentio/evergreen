@@ -6,15 +6,11 @@ import { useLatest } from './use-latest'
  * React hook that returns bind props for a clickable component.
  * When the component has focus, Enter and space activate it
  */
-export function useClickable({
-  disabled = false,
-  onKeyDown: onKeyDownHandler,
-  tabIndex = 0
-}: any = {}) {
+export function useClickable({ disabled = false, onKeyDown: onKeyDownHandler, tabIndex = 0 }: any = {}) {
   const onKeyDownRef = useLatest(onKeyDownHandler)
 
   const onKeyDown = useCallback(
-    event => {
+    (event) => {
       safeInvoke(onKeyDownRef.current, event)
 
       if (event.defaultPrevented) return
@@ -37,6 +33,6 @@ export function useClickable({
   return {
     // TODO import useFocusable as well (needs to be focusable)
     tabIndex: disabled ? -1 : tabIndex,
-    onKeyDown
+    onKeyDown,
   }
 }

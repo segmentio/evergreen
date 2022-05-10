@@ -3,7 +3,7 @@ import React from 'react'
 export default class DialogManager extends React.PureComponent {
   state = {
     isShown: false,
-    isLoading: false
+    isLoading: false,
   }
 
   render() {
@@ -12,24 +12,24 @@ export default class DialogManager extends React.PureComponent {
       isLoading: this.state.isLoading,
       confirmLoading: () => {
         this.setState({
-          isLoading: true
+          isLoading: true,
         })
 
         window.setTimeout(() => {
           this.setState({
-            isShown: false
+            isShown: false,
           })
         }, 2000)
       },
       show: () =>
         this.setState({
-          isShown: true
+          isShown: true,
         }),
       hide: () =>
         this.setState({
           isShown: false,
-          isLoading: false
-        })
+          isLoading: false,
+        }),
     })
   }
 }

@@ -5,25 +5,25 @@ import { Tab, Tablist, TabNavigation } from '..'
 import { majorScale } from '../../scales'
 import { Heading, Paragraph } from '../../typography'
 
-const StorySection = props => <Box marginBottom={40} {...props} />
+const StorySection = (props) => <Box marginBottom={40} {...props} />
 
-const StoryHeader = props => <Box marginBottom={16} {...props} />
+const StoryHeader = (props) => <Box marginBottom={16} {...props} />
 
-const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
-const StoryDescription = props => <Paragraph size={400} color="muted" {...props} />
+const StoryHeading = (props) => <Heading size={600} marginBottom={0} {...props} />
+const StoryDescription = (props) => <Paragraph size={400} color="muted" {...props} />
 
 class TabManager extends React.PureComponent {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      selectedIndex: 0
+      selectedIndex: 0,
     }
   }
 
   render() {
     return this.props.children({
       selectedIndex: this.state.selectedIndex,
-      onSelect: index => this.setState({ selectedIndex: index })
+      onSelect: (index) => this.setState({ selectedIndex: index }),
     })
   }
 }

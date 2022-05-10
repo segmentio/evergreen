@@ -1,9 +1,7 @@
 const baseStyle = {
   borderRadius: 'radii.1',
   transition: '120ms all ease-in-out',
-  color: (_: any, {
-    color
-  }: any) => {
+  color: (_: any, { color }: any) => {
     switch (color) {
       case 'neutral':
         return 'gray700'
@@ -14,9 +12,7 @@ const baseStyle = {
   },
   textDecoration: 'none',
   _hover: {
-    color: (theme: any, {
-      color
-    }: any) => {
+    color: (theme: any, { color }: any) => {
       switch (color) {
         case 'neutral':
           return theme.colors.gray800
@@ -24,12 +20,10 @@ const baseStyle = {
         default:
           return theme.colors.blue600
       }
-    }
+    },
   },
   _active: {
-    color: (theme: any, {
-      color
-    }: any) => {
+    color: (theme: any, { color }: any) => {
       switch (color) {
         case 'neutral':
           return theme.colors.gray900
@@ -37,12 +31,10 @@ const baseStyle = {
         default:
           return theme.colors.blue700
       }
-    }
+    },
   },
   _focus: {
-    boxShadow: (theme: any, {
-      color
-    }: any) => {
+    boxShadow: (theme: any, { color }: any) => {
       switch (color) {
         case 'neutral':
           return `0 0 0 2px ${theme.colors.gray300}`
@@ -50,8 +42,8 @@ const baseStyle = {
         default:
           return `0 0 0 2px ${theme.colors.blue200}`
       }
-    }
-  }
+    },
+  },
 }
 
 const appearances = {}
@@ -61,5 +53,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

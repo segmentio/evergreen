@@ -7,12 +7,12 @@ import { SelectField } from '../../select'
 import { TextInputField } from '../../text-input'
 import { Paragraph } from '../../typography'
 
-const range = N => Array.from({ length: N }, (v, k) => k + 1)
+const range = (N) => Array.from({ length: N }, (v, k) => k + 1)
 
 const randomLengthContent = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
 ]
 
 faker.seed(1000)
@@ -22,14 +22,14 @@ const users = range(1000)
     id: index,
     name: faker.name.findName(),
     email: faker.internet.email(),
-    height: faker.random.arrayElement([32, 40, 56, 'auto'])
+    height: faker.random.arrayElement([32, 40, 56, 'auto']),
   }))
-  .map(item => {
+  .map((item) => {
     // When height is auto, use a variable length piece of content to render.
     if (item.height === 'auto') {
       return {
         ...item,
-        content: faker.random.arrayElement(randomLengthContent)
+        content: faker.random.arrayElement(randomLengthContent),
       }
     }
 
@@ -40,14 +40,14 @@ export default class VirtualTable extends React.PureComponent {
   state = {
     scrollToIndex: null,
     scrollOffset: null,
-    scrollToAlignment: null
+    scrollToAlignment: null,
   }
 
-  setValue = property => {
-    return e => {
+  setValue = (property) => {
+    return (e) => {
       const value = e.target.value ? parseInt(e.target.value, 10) : null
       this.setState({
-        [property]: value
+        [property]: value,
       })
     }
   }
@@ -65,7 +65,7 @@ export default class VirtualTable extends React.PureComponent {
           />
           <SelectField
             label="scrollToAlignment"
-            onChange={event => this.setState({ scrollToAlignment: event.target.value })}
+            onChange={(event) => this.setState({ scrollToAlignment: event.target.value })}
           >
             <option value="" checked>
               scrollToAlignment

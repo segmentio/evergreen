@@ -127,15 +127,15 @@ const VerticalOrientation: React.FC<EmptyStateOrientationProps> = memo<EmptyStat
   }
 )
 
-const PrimaryButton: React.FC<ButtonProps> = props => {
+const PrimaryButton: React.FC<ButtonProps> = (props) => {
   return <Button appearance="primary" {...props} />
 }
 
-const LinkButton: React.FC<LinkProps> = props => {
+const LinkButton: React.FC<LinkProps> = (props) => {
   return <Link {...props} size={300} lineHeight="34px" />
 }
 
-const EmptyState: EmptyStateComponent = (memo<EmptyStateProps>(function EmptyState({
+const EmptyState: EmptyStateComponent = memo<EmptyStateProps>(function EmptyState({
   anchorCta,
   background = 'light',
   description,
@@ -143,7 +143,7 @@ const EmptyState: EmptyStateComponent = (memo<EmptyStateProps>(function EmptySta
   iconBgColor,
   orientation = 'horizontal',
   primaryCta,
-  title
+  title,
 }) {
   if (orientation === 'vertical') {
     return (
@@ -169,7 +169,7 @@ const EmptyState: EmptyStateComponent = (memo<EmptyStateProps>(function EmptySta
       anchorCta={anchorCta}
     />
   )
-}) as any) as EmptyStateComponent
+}) as any as EmptyStateComponent
 
 EmptyState.PrimaryButton = PrimaryButton
 EmptyState.LinkButton = LinkButton

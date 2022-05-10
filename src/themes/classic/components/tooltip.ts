@@ -3,17 +3,17 @@ const baseStyle = {
   paddingY: 4,
   borderRadius: 'radii.1',
   maxWidth: 240,
-  elevation: 'shadows.3'
+  elevation: 'shadows.3',
 }
 
 const appearances = {
   card: {
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   default: {
     color: 'white',
-    backgroundColor: 'palette.neutral.base'
-  }
+    backgroundColor: 'palette.neutral.base',
+  },
 }
 
 const sizes = {}
@@ -21,5 +21,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

@@ -45,7 +45,7 @@ interface Dimensions {
 }
 
 const animationEasing = {
-  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)',
 }
 
 const getCSS = ({ animationDuration, initialScale }: any) => ({
@@ -58,12 +58,12 @@ const getCSS = ({ animationDuration, initialScale }: any) => ({
   '&[data-state="entering"], &[data-state="entered"]': {
     opacity: 1,
     visibility: 'visible',
-    transform: 'scale(1)'
+    transform: 'scale(1)',
   },
   '&[data-state="exiting"]': {
     opacity: 0,
-    transform: 'scale(1)'
-  }
+    transform: 'scale(1)',
+  },
 })
 
 const noop = () => {}
@@ -72,7 +72,7 @@ const initialDimensions: Dimensions = {
   top: 0,
   height: 0,
   width: 0,
-  transformOrigin: null
+  transformOrigin: null,
 }
 
 const Positioner: React.FC<PositionerProps> = memo(function Positioner(props) {
@@ -86,7 +86,7 @@ const Positioner: React.FC<PositionerProps> = memo(function Positioner(props) {
     bodyOffset = 6,
     targetOffset = 6,
     onOpenComplete = noop,
-    onCloseComplete = noop
+    onCloseComplete = noop,
   } = props
 
   const [dimensions, setDimensions] = useState(initialDimensions)
@@ -142,13 +142,13 @@ const Positioner: React.FC<PositionerProps> = memo(function Positioner(props) {
         targetOffset,
         dimensions: {
           height,
-          width
+          width,
         },
         viewport: {
           width: viewportWidth,
-          height: viewportHeight
+          height: viewportHeight,
         },
-        viewportOffset: bodyOffset
+        viewportOffset: bodyOffset,
       })
 
       setDimensions({
@@ -156,7 +156,7 @@ const Positioner: React.FC<PositionerProps> = memo(function Positioner(props) {
         top: rect.top,
         height,
         width,
-        transformOrigin
+        transformOrigin,
       })
     },
     [bodyOffset, isShown, position, targetOffset]
@@ -217,7 +217,7 @@ const Positioner: React.FC<PositionerProps> = memo(function Positioner(props) {
               onExited={handleExited}
               unmountOnExit
             >
-              {state => (
+              {(state) => (
                 <Portal>
                   {children({
                     top: dimensions.top,
@@ -228,17 +228,17 @@ const Positioner: React.FC<PositionerProps> = memo(function Positioner(props) {
                     // @ts-expect-error ts-migrate(2322) FIXME: Type '{ position: string; opacity: number; transit... Remove this comment to see the full error message
                     css: getCSS({
                       initialScale,
-                      animationDuration
+                      animationDuration,
                     }),
                     style: {
                       transformOrigin: dimensions.transformOrigin!,
                       left: dimensions.left,
                       top: dimensions.top,
-                      zIndex
+                      zIndex,
                     },
                     // @ts-expect-error
                     getRef,
-                    animationDuration
+                    animationDuration,
                   })}
                 </Portal>
               )}

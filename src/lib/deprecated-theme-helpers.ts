@@ -9,20 +9,20 @@ const text = {
     fontSize: '16px',
     fontWeight: 400,
     lineHeight: '20px',
-    letterSpacing: '-0.05px'
+    letterSpacing: '-0.05px',
   },
   400: {
     fontSize: '14px',
     fontWeight: 400,
     lineHeight: '20px',
-    letterSpacing: '-0.05px'
+    letterSpacing: '-0.05px',
   },
   300: {
     fontSize: '12px',
     fontWeight: 400,
     lineHeight: '16px',
-    letterSpacing: '0'
-  }
+    letterSpacing: '0',
+  },
 }
 
 export const getTextPropsForControlHeight = (height: any) => {

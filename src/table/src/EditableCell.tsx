@@ -68,7 +68,7 @@ const EditableCell: React.FC<TableEditableCellProps> = memo(function EditableCel
   }, [disabled, isSelectable])
 
   const handleKeyDown = useCallback(
-    e => {
+    (e) => {
       if (disabled) return
       const { key } = e
 
@@ -80,14 +80,14 @@ const EditableCell: React.FC<TableEditableCellProps> = memo(function EditableCel
         setIsEditing(true)
       } else if (key.match(/^[a-z]{0,10}$/) && !e.metaKey && !e.ctrlKey && !e.altKey) {
         setIsEditing(true)
-        setValue(prev => prev + key)
+        setValue((prev) => prev + key)
       }
     },
     [disabled]
   )
 
   const handleFieldChangeComplete = useCallback(
-    value => {
+    (value) => {
       setIsEditing(false)
       setValue(value)
 
@@ -128,7 +128,7 @@ const EditableCell: React.FC<TableEditableCellProps> = memo(function EditableCel
     () => ({
       size,
       opacity: lessOpacity ? 0.5 : 1,
-      ...textProps
+      ...textProps,
     }),
     [lessOpacity, size, textProps]
   )

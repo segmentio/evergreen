@@ -52,7 +52,7 @@ describe('FileUploader', () => {
         expect(onClick).not.toHaveBeenCalled()
       })
 
-      it.each([Key.Enter, Key.Space])('should ignore %p keyboard event when disabled', key => {
+      it.each([Key.Enter, Key.Space])('should ignore %p keyboard event when disabled', (key) => {
         const onClick = jest.fn()
         const disabled = true
 
@@ -101,13 +101,13 @@ describe('FileUploader', () => {
 
         renderWithProps({ maxFiles })
 
-        expect(screen.getByText(text => text.includes('file') && !text.includes('files'))).toBeInTheDocument()
+        expect(screen.getByText((text) => text.includes('file') && !text.includes('files'))).toBeInTheDocument()
       })
 
-      it.each([undefined, null, 0, 2, 100])("should render plural 'files' when maxFiles is %p", maxFiles => {
+      it.each([undefined, null, 0, 2, 100])("should render plural 'files' when maxFiles is %p", (maxFiles) => {
         renderWithProps({ maxFiles })
 
-        expect(screen.getByText(text => text.includes('files'))).toBeInTheDocument()
+        expect(screen.getByText((text) => text.includes('files'))).toBeInTheDocument()
       })
 
       it('should not render dropzone when maxFiles is 1 and values is not empty', () => {
@@ -260,7 +260,7 @@ describe('FileUploader', () => {
           const onRejected = jest.fn()
           const maxSizeInBytes = faker.datatype.number({ min: 1024, max: 10 * 1024 })
           const files = buildFiles(3, { size: maxSizeInBytes + 1 })
-          const expected = expect.arrayContaining(files.map(file => expect.objectContaining({ file })))
+          const expected = expect.arrayContaining(files.map((file) => expect.objectContaining({ file })))
 
           renderWithProps({ maxSizeInBytes, onRejected })
           const fileUploader = screen.getByTestId(testId)
@@ -273,7 +273,7 @@ describe('FileUploader', () => {
           const onRejected = jest.fn()
           const maxSizeInBytes = faker.datatype.number({ min: 1024, max: 10 * 1024 })
           const files = buildFiles(3, { size: maxSizeInBytes + 1 })
-          const expected = expect.arrayContaining(files.map(file => expect.objectContaining({ file })))
+          const expected = expect.arrayContaining(files.map((file) => expect.objectContaining({ file })))
 
           renderWithProps({ maxSizeInBytes, onRejected })
           const fileUploader = screen.getByTestId(testId)
@@ -313,8 +313,8 @@ describe('FileUploader', () => {
         const fileUploader = screen.getByTestId(testId)
         fireEvent.dragOver(fileUploader, {
           dataTransfer: {
-            files: buildFiles(maxFiles + 1)
-          }
+            files: buildFiles(maxFiles + 1),
+          },
         })
         /* @ts-ignore */
         rerender()
@@ -328,7 +328,7 @@ describe('FileUploader', () => {
         const values = buildFiles(2)
 
         renderWithProps({ values })
-        const fileCards = values.map(file => screen.getByText(file.name), { exact: true })
+        const fileCards = values.map((file) => screen.getByText(file.name), { exact: true })
 
         expect(fileCards).toHaveLength(values.length)
       })
@@ -351,7 +351,7 @@ describe('FileUploader', () => {
     })
 
     describe('when keyboard event is fired', () => {
-      it.each([Key.Enter, Key.Space])('should forward as click event to file input when key is %p', key => {
+      it.each([Key.Enter, Key.Space])('should forward as click event to file input when key is %p', (key) => {
         const onClick = jest.fn()
 
         renderWithProps()
@@ -363,7 +363,7 @@ describe('FileUploader', () => {
         expect(onClick).toHaveBeenCalled()
       })
 
-      it.each(['A', '[', '1'])('should ignore event when key is %p', key => {
+      it.each(['A', '[', '1'])('should ignore event when key is %p', (key) => {
         const onClick = jest.fn()
 
         renderWithProps()

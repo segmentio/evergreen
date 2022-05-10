@@ -93,8 +93,8 @@ describe('<FilePicker />', () => {
     // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'Element | null' is not assignabl... Remove this comment to see the full error message
     fireEvent.change(fileInput, {
       target: {
-        files: [{ name: 'data.json' }]
-      }
+        files: [{ name: 'data.json' }],
+      },
     })
 
     expect(onChange).toHaveBeenCalledTimes(1)
@@ -113,8 +113,8 @@ describe('<FilePicker />', () => {
     // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'Element | null' is not assignabl... Remove this comment to see the full error message
     fireEvent.change(fileInput, {
       target: {
-        files: [new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' })]
-      }
+        files: [new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' })],
+      },
     })
 
     const input = container.querySelector('input[type=text]')

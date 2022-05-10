@@ -72,7 +72,7 @@ const RadioGroup: React.FC<RadioGroupProps> = memo(
             {label}
           </Text>
         )}
-        {options.map(item => (
+        {options.map((item) => (
           <Radio
             key={item.value}
             size={size}

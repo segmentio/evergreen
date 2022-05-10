@@ -4,9 +4,9 @@ import Box from 'ui-box'
 import { SearchInput } from '..'
 import { Heading } from '../../typography'
 
-const StoryHeader = props => <Box marginBottom={16} {...props} />
-const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
-const StorySection = props => <Box marginBottom={40} {...props} />
+const StoryHeader = (props) => <Box marginBottom={16} {...props} />
+const StoryHeading = (props) => <Heading size={600} marginBottom={0} {...props} />
+const StorySection = (props) => <Box marginBottom={40} {...props} />
 
 storiesOf('search-input', module).add('SearchInput', () => (
   <Box padding={40}>

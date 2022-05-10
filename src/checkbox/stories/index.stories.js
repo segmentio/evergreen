@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
 import { Checkbox } from '..'
 
-const refCallback = el => {
+const refCallback = (el) => {
   if (el) {
     el.disabled = true
   }

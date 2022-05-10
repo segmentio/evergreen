@@ -25,7 +25,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             title="Select name"
             options={options}
             selected={state.selected}
-            onSelect={item => setState({ selected: item.value })}
+            onSelect={(item) => setState({ selected: item.value })}
           >
             <Button>{state.selected || 'Select name...'}</Button>
           </SelectMenu>
@@ -39,7 +39,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             title="Select name"
             options={options}
             selected={state.selected}
-            onSelect={item => setState({ selected: item.value })}
+            onSelect={(item) => setState({ selected: item.value })}
             closeOnSelect
           >
             <Button>Menu will close on select</Button>
@@ -54,7 +54,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             title="Select name"
             options={optionsWithIcons}
             selected={state.selected}
-            onSelect={item => setState({ selected: item.value })}
+            onSelect={(item) => setState({ selected: item.value })}
           >
             <Button>Options with icons</Button>
           </SelectMenu>
@@ -68,9 +68,9 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             title="Select name"
             options={optionsWithIcons}
             selected={state.selected}
-            onSelect={item => setState({ selected: item.value })}
+            onSelect={(item) => setState({ selected: item.value })}
             itemHeight={56}
-            itemRenderer={props => {
+            itemRenderer={(props) => {
               return (
                 <Option {...props}>
                   <Pane display="flex" flexDirection="column" width="100%">
@@ -103,8 +103,8 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
               title="Select name"
               options={options}
               selected={state.selected}
-              onFilterChange={filterText => setState({ filterText })}
-              onSelect={item => setState({ selected: item.value })}
+              onFilterChange={(filterText) => setState({ filterText })}
+              onSelect={(item) => setState({ selected: item.value })}
             >
               <Button>Select w/ onFilterChange</Button>
             </SelectMenu>
@@ -120,7 +120,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
               <Box marginBottom={12}>
                 <Text display="block">Filter Placeholder: {state.filterPlaceholder}</Text>
                 <TextInput
-                  onChange={event => setState({ placeholderText: event.target.value })}
+                  onChange={(event) => setState({ placeholderText: event.target.value })}
                   width={100}
                   height={20}
                   display="inline-block"
@@ -133,8 +133,8 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
               selected={state.selected}
               filterPlaceholder={state.placeholderText}
               filterIcon={<PeopleIcon />}
-              onFilterChange={filterText => setState({ filterText })}
-              onSelect={item => setState({ selected: item.value })}
+              onFilterChange={(filterText) => setState({ filterText })}
+              onSelect={(item) => setState({ selected: item.value })}
             >
               <Button width={300}>Select w/ custom filter placeholder and icon</Button>
             </SelectMenu>
@@ -146,7 +146,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
       <Component
         initialState={{
           options,
-          selected: []
+          selected: [],
         }}
       >
         {({ setState, state }) => (
@@ -155,7 +155,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             title="Select multiple names"
             options={state.options}
             selected={state.selected}
-            onSelect={item => {
+            onSelect={(item) => {
               const selected = [...state.selected, item.value]
               const selectedItems = selected
               const selectedItemsLength = selectedItems.length
@@ -170,10 +170,10 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
 
               setState({
                 selected,
-                selectedNames
+                selectedNames,
               })
             }}
-            onDeselect={item => {
+            onDeselect={(item) => {
               const deselectedItemIndex = state.selected.indexOf(item.value)
               const selectedItems = state.selected.filter((_item, i) => i !== deselectedItemIndex)
               const selectedItemsLength = selectedItems.length

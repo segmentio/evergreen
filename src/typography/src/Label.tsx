@@ -2,10 +2,10 @@ import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import Box, { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
-import { TextOwnProps } from "./Text"
+import { TextOwnProps } from './Text'
 
-export type LabelProps = PolymorphicBoxProps<'label', LabelOwnProps>;
-export type LabelOwnProps = TextOwnProps;
+export type LabelProps = PolymorphicBoxProps<'label', LabelOwnProps>
+export type LabelOwnProps = TextOwnProps
 
 const pseudoSelectors = {}
 const internalStyles = {}

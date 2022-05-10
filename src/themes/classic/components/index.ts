@@ -69,5 +69,5 @@ export default {
   TagInput,
   Text,
   TextDropdownButton,
-  Tooltip
+  Tooltip,
 }

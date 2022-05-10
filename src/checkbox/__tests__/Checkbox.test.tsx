@@ -60,7 +60,7 @@ describe('Checkbox', () => {
             setChecked(e.target.checked)
           }}
         />
-      );
+      )
     }
     render(<ControlledCheckbox />)
     const checkbox = screen.getByRole('checkbox')

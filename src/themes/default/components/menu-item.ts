@@ -6,13 +6,13 @@ const baseStyle = {
   paddingX: 12,
 
   _isSelectable: {
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
 
   _disabled: {
     cursor: 'not-allowed',
-    pointerEvents: 'none'
-  }
+    pointerEvents: 'none',
+  },
 }
 
 const appearances = {
@@ -30,33 +30,33 @@ const appearances = {
       backgroundColor: 'colors.blue500',
       transition: '0.25s',
       transformOrigin: 'left center',
-      transform: 'scaleX(0)'
+      transform: 'scaleX(0)',
     },
 
     _hover: {
-      backgroundColor: 'colors.gray75'
+      backgroundColor: 'colors.gray75',
     },
 
     _focus: {
-      backgroundColor: 'colors.gray75'
+      backgroundColor: 'colors.gray75',
     },
 
     _active: {
       backgroundColor: 'intents.info.background',
 
       '&:before': {
-        transform: 'scaleX(1)'
-      }
+        transform: 'scaleX(1)',
+      },
     },
 
     _current: {
       backgroundColor: 'intents.info.background',
 
       '&:before': {
-        transform: 'scaleX(1)'
-      }
-    }
-  }
+        transform: 'scaleX(1)',
+      },
+    },
+  },
 }
 
 const sizes = {}
@@ -64,5 +64,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

@@ -15,5 +15,5 @@ export default {
   ...tokens,
 
   // Component-specific theming
-  components
+  components,
 }

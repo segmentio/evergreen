@@ -34,7 +34,7 @@ storiesOf('toaster', module).add('examples', () => (
           marginRight={8}
           onClick={() =>
             toaster.notify('A simple general message', {
-              description: loremIpsum
+              description: loremIpsum,
             })
           }
         >
@@ -44,7 +44,7 @@ storiesOf('toaster', module).add('examples', () => (
           marginRight={8}
           onClick={() =>
             toaster.notify('Custom ID, Should only show once', {
-              id: 'general-message'
+              id: 'general-message',
             })
           }
         >
@@ -54,7 +54,7 @@ storiesOf('toaster', module).add('examples', () => (
           marginRight={8}
           onClick={() =>
             toaster.notify('Cannot be closed by user', {
-              hasCloseButton: false
+              hasCloseButton: false,
             })
           }
         >
@@ -69,7 +69,7 @@ storiesOf('toaster', module).add('examples', () => (
           marginRight={8}
           onClick={() =>
             toaster.success('Hooray! You did it. Your Source is now sending data.', {
-              description: loremIpsum
+              description: loremIpsum,
             })
           }
         >
@@ -85,7 +85,7 @@ storiesOf('toaster', module).add('examples', () => (
           marginRight={8}
           onClick={() =>
             toaster.warning('Changes will affect all Warehouses.', {
-              description: loremIpsum
+              description: loremIpsum,
             })
           }
         >
@@ -101,7 +101,7 @@ storiesOf('toaster', module).add('examples', () => (
           marginRight={8}
           onClick={() =>
             toaster.danger('Changes will affect all Warehouses.', {
-              description: loremIpsum
+              description: loremIpsum,
             })
           }
         >
@@ -114,7 +114,7 @@ storiesOf('toaster', module).add('examples', () => (
             toaster.danger('Changes will affect all Warehouses.', {
               description: loremIpsum,
               id: 'dangerId',
-              duration: 3600
+              duration: 3600,
             })
           }
         >

@@ -17,7 +17,7 @@ function capitalize(string) {
 const Order = {
   NONE: 'NONE',
   ASC: 'ASC',
-  DESC: 'DESC'
+  DESC: 'DESC',
 }
 
 export default class AdvancedTable extends React.Component {
@@ -28,11 +28,11 @@ export default class AdvancedTable extends React.Component {
       searchQuery: '',
       orderedColumn: 1,
       ordering: Order.NONE,
-      column2Show: 'email'
+      column2Show: 'email',
     }
   }
 
-  sort = profiles => {
+  sort = (profiles) => {
     const { orderedColumn, ordering } = this.state
     // Return if there's no ordering.
     if (ordering === Order.NONE) return profiles
@@ -71,20 +71,20 @@ export default class AdvancedTable extends React.Component {
   }
 
   // Filter the profiles based on the name property.
-  filter = profiles => {
+  filter = (profiles) => {
     const searchQuery = this.state.searchQuery.trim()
 
     // If the searchQuery is empty, return the profiles as is.
     if (searchQuery.length === 0) return profiles
 
-    return profiles.filter(profile => {
+    return profiles.filter((profile) => {
       // Use the filter from fuzzaldrin-plus to filter by name.
       const result = filter([profile.name], searchQuery)
       return result.length === 1
     })
   }
 
-  getIconForOrder = order => {
+  getIconForOrder = (order) => {
     switch (order) {
       case Order.ASC:
         return ArrowUpIcon
@@ -95,7 +95,7 @@ export default class AdvancedTable extends React.Component {
     }
   }
 
-  handleFilterChange = value => {
+  handleFilterChange = (value) => {
     this.setState({ searchQuery: value })
   }
 
@@ -110,13 +110,13 @@ export default class AdvancedTable extends React.Component {
                 title="Order"
                 options={[
                   { label: 'Ascending', value: Order.ASC },
-                  { label: 'Descending', value: Order.DESC }
+                  { label: 'Descending', value: Order.DESC },
                 ]}
                 selected={this.state.orderedColumn === 2 ? this.state.ordering : null}
-                onChange={value => {
+                onChange={(value) => {
                   this.setState({
                     orderedColumn: 2,
-                    ordering: value
+                    ordering: value,
                   })
                   // Close the popover when you select a value.
                   close()
@@ -133,12 +133,12 @@ export default class AdvancedTable extends React.Component {
                   { label: 'Address', value: 'address' },
                   { label: 'Country', value: 'country' },
                   { label: 'Company', value: 'company' },
-                  { label: 'Id', value: 'id' }
+                  { label: 'Id', value: 'id' },
                 ]}
                 selected={this.state.column2Show}
-                onChange={value => {
+                onChange={(value) => {
                   this.setState({
-                    column2Show: value
+                    column2Show: value,
                   })
                   // Close the popover when you select a value.
                   close()
@@ -168,13 +168,13 @@ export default class AdvancedTable extends React.Component {
                 title="Order"
                 options={[
                   { label: 'Ascending', value: Order.ASC },
-                  { label: 'Descending', value: Order.DESC }
+                  { label: 'Descending', value: Order.DESC },
                 ]}
                 selected={this.state.orderedColumn === 3 ? this.state.ordering : null}
-                onChange={value => {
+                onChange={(value) => {
                   this.setState({
                     orderedColumn: 3,
-                    ordering: value
+                    ordering: value,
                   })
                   // Close the popover when you select a value.
                   close()
@@ -239,7 +239,7 @@ export default class AdvancedTable extends React.Component {
           {this.renderLTVTableHeaderCell()}
           <Table.HeaderCell width={48} flex="none" />
         </Table.Head>
-        <Table.VirtualBody height={640}>{items.map(item => this.renderRow({ profile: item }))}</Table.VirtualBody>
+        <Table.VirtualBody height={640}>{items.map((item) => this.renderRow({ profile: item }))}</Table.VirtualBody>
       </Table>
     )
   }

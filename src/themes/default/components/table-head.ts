@@ -12,8 +12,8 @@ const baseStyle = {
 
   _firstOfType: {
     borderTopLeftRadius: 'radii.1',
-    borderTopRightRadius: 'radii.1'
-  }
+    borderTopRightRadius: 'radii.1',
+  },
 }
 
 const appearances = {}
@@ -23,5 +23,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

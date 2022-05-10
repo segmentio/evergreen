@@ -9,14 +9,14 @@ const baseStyle = {
   transition: 'box-shadow 80ms ease-in-out',
 
   _placeholder: {
-    color: 'colors.gray600'
+    color: 'colors.gray600',
   },
 
   _disabled: {
     cursor: 'not-allowed',
     backgroundColor: 'colors.gray100',
-    color: 'colors.muted'
-  }
+    color: 'colors.muted',
+  },
 }
 
 const appearances = {
@@ -27,33 +27,33 @@ const appearances = {
     _focus: {
       zIndex: 'zIndices.focused',
       boxShadow: 'shadows.focusRing',
-      borderColor: 'colors.blue200'
+      borderColor: 'colors.blue200',
     },
 
     _invalid: {
-      borderColor: 'colors.red500'
-    }
+      borderColor: 'colors.red500',
+    },
   },
   none: {
-    backgroundColor: 'transparent'
-  }
+    backgroundColor: 'transparent',
+  },
 }
 
 const sizes = {
   small: {
-    height: 24
+    height: 24,
   },
   medium: {
-    height: 32
+    height: 32,
   },
   large: {
     height: 40,
-    lineHeight: 'lineHeights.1'
-  }
+    lineHeight: 'lineHeights.1',
+  },
 }
 
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

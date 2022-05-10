@@ -28,7 +28,7 @@ storiesOf('side-sheet', module)
               containerProps={{
                 display: 'flex',
                 flex: '1',
-                flexDirection: 'column'
+                flexDirection: 'column',
               }}
             >
               <Pane flexShrink={0} elevation={0} backgroundColor="white">
@@ -88,7 +88,7 @@ storiesOf('side-sheet', module)
               containerProps={{
                 display: 'flex',
                 flex: '1',
-                flexDirection: 'column'
+                flexDirection: 'column',
               }}
             >
               <Pane flexShrink={0} elevation={0} backgroundColor="white">
@@ -133,7 +133,7 @@ storiesOf('side-sheet', module)
               containerProps={{
                 display: 'flex',
                 flex: '1',
-                flexDirection: 'column'
+                flexDirection: 'column',
               }}
             >
               <Pane flexShrink={0} elevation={0} backgroundColor="white">
@@ -227,7 +227,7 @@ storiesOf('side-sheet', module)
                 )
               }}
             </SideSheet>
-            {['left', 'right', 'top', 'bottom'].map(position => (
+            {['left', 'right', 'top', 'bottom'].map((position) => (
               <Button key={position} margin="10px" onClick={() => setState({ position, isShown: true })}>
                 Show {position}
               </Button>
@@ -271,7 +271,7 @@ storiesOf('side-sheet', module)
           isShown: false,
           hasChanges: false,
           isLoading: false,
-          isConfirmationShown: false
+          isConfirmationShown: false,
         }}
       >
         {({ setState, state }) => (
@@ -293,11 +293,11 @@ storiesOf('side-sheet', module)
                       intent="danger"
                       isShown={state.isConfirmationShown}
                       title="You have unsaved changes"
-                      onConfirm={closeDialog => {
+                      onConfirm={(closeDialog) => {
                         setState(
                           {
                             newValue: state.value,
-                            hasChanges: false
+                            hasChanges: false,
                           },
                           () => {
                             closeDialog()
@@ -306,7 +306,7 @@ storiesOf('side-sheet', module)
                       }}
                       onCloseComplete={() => {
                         setState({
-                          isConfirmationShown: false
+                          isConfirmationShown: false,
                         })
                         if (!state.hasChanges) {
                           close()
@@ -319,10 +319,10 @@ storiesOf('side-sheet', module)
                     <Pane>
                       <TextInput
                         value={state.newValue}
-                        onChange={e => {
+                        onChange={(e) => {
                           setState({
                             newValue: e.target.value,
-                            hasChanges: state.value !== e.target.value
+                            hasChanges: state.value !== e.target.value,
                           })
                         }}
                         marginRight={16}
@@ -338,7 +338,7 @@ storiesOf('side-sheet', module)
                               {
                                 value: state.newValue,
                                 hasChanges: false,
-                                isLoading: false
+                                isLoading: false,
                               },
                               close
                             )

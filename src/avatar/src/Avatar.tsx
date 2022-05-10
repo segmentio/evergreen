@@ -9,22 +9,22 @@ import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
 
 export interface AvatarOwnProps {
-    src?: string;
-    size?: number;
-    /**
-     * When provided, the first and last initial of the name will be used.
-     * For example: Foo Bar -> FB
-     */
-    name?: string;
-    hashValue?: string;
-    color?: string;
-    shape?: 'round' | 'square';
-    getInitials?: (name: string) => string;
-    forceShowInitials?: boolean;
-    sizeLimitOneCharacter?: number;
+  src?: string
+  size?: number
+  /**
+   * When provided, the first and last initial of the name will be used.
+   * For example: Foo Bar -> FB
+   */
+  name?: string
+  hashValue?: string
+  color?: string
+  shape?: 'round' | 'square'
+  getInitials?: (name: string) => string
+  forceShowInitials?: boolean
+  sizeLimitOneCharacter?: number
 }
 
-export type AvatarProps = PolymorphicBoxProps<'div', AvatarOwnProps>;
+export type AvatarProps = PolymorphicBoxProps<'div', AvatarOwnProps>
 
 const imageStyles: React.CSSProperties = { objectFit: 'cover' }
 
@@ -34,7 +34,7 @@ const internalStyles = {
   position: 'relative',
   display: 'inline-flex',
   flexShrink: 0,
-  justifyContent: 'center'
+  justifyContent: 'center',
 }
 
 const isObjectFitSupported = typeof document !== 'undefined' && 'objectFit' in document.documentElement.style
@@ -45,7 +45,7 @@ const initialsStyleClass = css({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  lineHeight: 1
+  lineHeight: 1,
 }).toString()
 
 const getAvatarInitialsFontSize = (size: any, sizeLimitOneCharacter: any) => {

@@ -38,11 +38,11 @@ describe('<Pane />', () => {
             color: 'red',
             background: 'blue',
             borderRadius: 25,
-            boxShadow: theme.shadows[props.elevation]
-          })
-        }
+            boxShadow: theme.shadows[props.elevation],
+          }),
+        },
       },
-      shadows: ['0px 0px 50px 0px #00000', '0px 0px 50px 20px #00000']
+      shadows: ['0px 0px 50px 0px #00000', '0px 0px 50px 20px #00000'],
     }
 
     render(

@@ -4,7 +4,7 @@ import mimeTypesToExtensions from '../../src/utils/mime-types-to-extensions'
 describe('mimeTypesToExtensions', () => {
   it('should return extensions based on mimeTypes', () => {
     const mimeTypes = Object.values(MimeType)
-    const expected = Object.keys(MimeType).map(key => `.${key}`)
+    const expected = Object.keys(MimeType).map((key) => `.${key}`)
 
     const result = mimeTypesToExtensions(mimeTypes)
 

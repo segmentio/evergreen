@@ -22,6 +22,6 @@ export function useMergedRef(refA: any, refB: any) {
     return (node: any) => {
       setRef(refA, node)
       setRef(refB, node)
-    };
-  }, [refA, refB]);
+    }
+  }, [refA, refB])
 }

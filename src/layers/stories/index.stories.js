@@ -10,13 +10,13 @@ const cardStyle = {
   height: 104,
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center'
+  alignItems: 'center',
 }
 
 storiesOf('layers', module)
   .add('Pane', () => (
     <ThemeConsumer>
-      {theme => (
+      {(theme) => (
         <div>
           <Pane overflow="auto">
             {theme.shadows.map((style, index) => (
@@ -25,8 +25,8 @@ storiesOf('layers', module)
               </Pane>
             ))}
             {Object.keys(theme.colors)
-              .filter(c => typeof theme.colors[c] === 'string')
-              .map(background => (
+              .filter((c) => typeof theme.colors[c] === 'string')
+              .map((background) => (
                 <Pane key={background} {...cardStyle} background={background}>
                   Background: {background}
                 </Pane>
@@ -37,7 +37,7 @@ storiesOf('layers', module)
               Interactive
             </Pane>
           </Pane>
-          {Object.keys(theme.colors.border).map(borderColor => (
+          {Object.keys(theme.colors.border).map((borderColor) => (
             <Pane key={borderColor} overflow="auto">
               <Pane {...cardStyle} borderTop={borderColor}>
                 borderTop: {borderColor}
@@ -59,7 +59,7 @@ storiesOf('layers', module)
   ))
   .add('Card', () => (
     <ThemeConsumer>
-      {theme => (
+      {(theme) => (
         <div>
           <Pane overflow="auto">
             {theme.shadows.map((style, index) => (
@@ -69,8 +69,8 @@ storiesOf('layers', module)
             ))}
 
             {Object.keys(theme.colors)
-              .filter(c => typeof theme.colors[c] === 'string')
-              .map(background => (
+              .filter((c) => typeof theme.colors[c] === 'string')
+              .map((background) => (
                 <Card key={background} {...cardStyle} background={background}>
                   Background: {background}
                 </Card>

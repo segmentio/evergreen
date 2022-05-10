@@ -1,5 +1,5 @@
 const baseStyle = {
-  paddingX: 12
+  paddingX: 12,
 }
 
 const appearances = {
@@ -7,9 +7,9 @@ const appearances = {
     _focus: {
       outline: 'none',
       backgroundColor: 'colors.blueAlpha.B2A',
-      boxShadow: (theme: any) => `inset 0 0 0 1px ${theme.colors.blueAlpha.B7A}`
-    }
-  }
+      boxShadow: (theme: any) => `inset 0 0 0 1px ${theme.colors.blueAlpha.B7A}`,
+    },
+  },
 }
 
 const sizes = {}
@@ -17,5 +17,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

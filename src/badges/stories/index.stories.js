@@ -6,30 +6,30 @@ import { Badge, Pill } from '..'
 import { ThemeConsumer } from '../../theme'
 
 const wrapperStyles = {
-  display: 'flex'
+  display: 'flex',
 }
 
 const baseStyles = {
   margin: 8,
-  display: 'block'
+  display: 'block',
 }
 
-const range = N => Array.from({ length: N }, (v, k) => k + 1)
+const range = (N) => Array.from({ length: N }, (v, k) => k + 1)
 
 faker.seed(7816)
 const randomNumbers = range(8).map(() => {
   return faker.datatype.number({
     min: 1,
-    max: 100
+    max: 100,
   })
 })
 
 storiesOf('badges', module)
   .add('Badge', () => (
     <ThemeConsumer>
-      {theme => (
+      {(theme) => (
         <Box style={{ ...wrapperStyles }}>
-          {Object.keys(theme.tokens.fills).map(color => (
+          {Object.keys(theme.tokens.fills).map((color) => (
             <Box key={color}>
               <Badge color={color} {...baseStyles}>
                 {color}
@@ -45,7 +45,7 @@ storiesOf('badges', module)
   ))
   .add('Pill', () => (
     <ThemeConsumer>
-      {theme => (
+      {(theme) => (
         <Box style={{ ...wrapperStyles }}>
           {Object.keys(theme.tokens.fills).map((color, index) => {
             return (

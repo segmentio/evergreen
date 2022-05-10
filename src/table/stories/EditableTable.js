@@ -5,17 +5,17 @@ import { Pane } from '../../layers'
 import { SegmentedControl } from '../../segmented-control'
 import { Stack } from '../../stack'
 
-const range = N => Array.from({ length: N }, (v, k) => k + 1)
+const range = (N) => Array.from({ length: N }, (v, k) => k + 1)
 
 // Generate a bunch of users.
 faker.seed(100)
-const users = range(100).map(index => {
-  const options = range(20).map(i => {
+const users = range(100).map((index) => {
+  const options = range(20).map((i) => {
     const item = faker.commerce.productName()
     return {
       isSelected: i === 1,
       label: item,
-      value: item
+      value: item,
     }
   })
 
@@ -25,48 +25,48 @@ const users = range(100).map(index => {
     email: faker.internet.email(),
     options,
     notes: '',
-    selected: options[0].value
+    selected: options[0].value,
   }
 })
 
 export default class EditableTable extends React.PureComponent {
   state = {
     users,
-    isSelectable: true
+    isSelectable: true,
   }
 
   handleChange = (id, key, value) => {
     // Do some update to the users.
-    this.setState(state => {
+    this.setState((state) => {
       return {
-        users: state.users.map(user => {
+        users: state.users.map((user) => {
           if (user.id === id) {
             return {
               ...user,
-              [key]: value
+              [key]: value,
             }
           }
 
           return user
-        })
+        }),
       }
     })
   }
 
   handleSelect = (id, item) => {
     // Select a different product.
-    this.setState(state => {
+    this.setState((state) => {
       return {
-        users: state.users.map(user => {
+        users: state.users.map((user) => {
           if (user.id === id) {
             return {
               ...user,
-              selected: item.value
+              selected: item.value,
             }
           }
 
           return user
-        })
+        }),
       }
     })
   }
@@ -74,7 +74,7 @@ export default class EditableTable extends React.PureComponent {
   render() {
     return (
       <Stack>
-        {zIndex => {
+        {(zIndex) => {
           // Stack used for testing only. Not neccesary for functionality.
           return (
             <React.Fragment>
@@ -84,10 +84,10 @@ export default class EditableTable extends React.PureComponent {
                 width={280}
                 options={[
                   { label: 'Selectable', value: true },
-                  { label: 'Not Selectable', value: false }
+                  { label: 'Not Selectable', value: false },
                 ]}
                 value={this.state.isSelectable}
-                onChange={value => this.setState({ isSelectable: value })}
+                onChange={(value) => this.setState({ isSelectable: value })}
               />
               <Pane height="80vh" display="flex" flexGrow={0} position="relative" zIndex={zIndex}>
                 <Table flex={1} display="flex" flexDirection="column">
@@ -101,7 +101,7 @@ export default class EditableTable extends React.PureComponent {
                     <Table.TextHeaderCell>Notes</Table.TextHeaderCell>
                   </Table.Head>
                   <Table.VirtualBody flex={1} overscanCount={15}>
-                    {this.state.users.map(user => {
+                    {this.state.users.map((user) => {
                       return (
                         <Table.Row key={user.id}>
                           <Table.EditableCell borderRight="muted" disabled flex={0} flexBasis={80}>
@@ -129,7 +129,7 @@ export default class EditableTable extends React.PureComponent {
                               title: 'Product',
                               options: user.options,
                               onSelect: this.handleSelect.bind(null, user.id),
-                              selected: user.selected
+                              selected: user.selected,
                             }}
                           >
                             {user.selected}

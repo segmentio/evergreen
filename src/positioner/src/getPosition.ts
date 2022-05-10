@@ -22,7 +22,7 @@ const makeRect = (
     left: ceiledLeft,
     top: ceiledTop,
     right: ceiledLeft + width,
-    bottom: ceiledTop + height
+    bottom: ceiledTop + height,
   }
 }
 
@@ -171,7 +171,7 @@ export default function getFittedPosition({
   targetOffset,
   targetRect,
   viewport,
-  viewportOffset = 8
+  viewportOffset = 8,
 }: any) {
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
   const { position: finalPosition, rect } = getPosition({
@@ -180,7 +180,7 @@ export default function getFittedPosition({
     targetRect,
     targetOffset,
     viewport,
-    viewportOffset
+    viewportOffset,
   })
 
   // Push rect to the right if overflowing on the left side of the viewport.
@@ -217,13 +217,13 @@ export default function getFittedPosition({
     rect,
     position: finalPosition,
     dimensions,
-    targetCenter
+    targetCenter,
   })
 
   return {
     rect,
     position: finalPosition,
-    transformOrigin
+    transformOrigin,
   }
 }
 
@@ -273,7 +273,7 @@ function getPosition({
   targetOffset,
   targetRect,
   viewport,
-  viewportOffset = 8
+  viewportOffset = 8,
 }: GetPositionInput): GetPositionOutput {
   const isHorizontal = isAlignedHorizontal(position)
 
@@ -284,7 +284,7 @@ function getPosition({
       position: Position.LEFT,
       dimensions,
       targetRect,
-      targetOffset
+      targetOffset,
     })
 
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -292,7 +292,7 @@ function getPosition({
       position: Position.RIGHT,
       dimensions,
       targetRect,
-      targetOffset
+      targetOffset,
     })
 
     const fitsOnLeft = getFitsOnLeft(leftRect, viewportOffset)
@@ -302,14 +302,14 @@ function getPosition({
       if (fitsOnLeft) {
         return {
           position,
-          rect: leftRect
+          rect: leftRect,
         }
       }
 
       if (fitsOnRight) {
         return {
           position: Position.RIGHT,
-          rect: rightRect
+          rect: rightRect,
         }
       }
     }
@@ -318,14 +318,14 @@ function getPosition({
       if (fitsOnRight) {
         return {
           position,
-          rect: rightRect
+          rect: rightRect,
         }
       }
 
       if (fitsOnLeft) {
         return {
           position: Position.LEFT,
-          rect: leftRect
+          rect: leftRect,
         }
       }
     }
@@ -337,13 +337,13 @@ function getPosition({
     if (spaceRight < spaceLeft) {
       return {
         position: Position.RIGHT,
-        rect: rightRect
+        rect: rightRect,
       }
     }
 
     return {
       position: Position.LEFT,
-      rect: leftRect
+      rect: leftRect,
     }
   }
 
@@ -357,14 +357,14 @@ function getPosition({
       position,
       dimensions,
       targetRect,
-      targetOffset
+      targetOffset,
     })
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     bottomRect = getRect({
       position: flipHorizontal(position),
       dimensions,
       targetRect,
-      targetOffset
+      targetOffset,
     })
   } else {
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -372,14 +372,14 @@ function getPosition({
       position: flipHorizontal(position),
       dimensions,
       targetRect,
-      targetOffset
+      targetOffset,
     })
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     bottomRect = getRect({
       position,
       dimensions,
       targetRect,
-      targetOffset
+      targetOffset,
     })
   }
 
@@ -391,14 +391,14 @@ function getPosition({
     if (topRectFitsOnTop) {
       return {
         position,
-        rect: topRect
+        rect: topRect,
       }
     }
 
     if (bottomRectFitsOnBottom) {
       return {
         position: flipHorizontal(position),
-        rect: bottomRect
+        rect: bottomRect,
       }
     }
   }
@@ -407,14 +407,14 @@ function getPosition({
     if (bottomRectFitsOnBottom) {
       return {
         position,
-        rect: bottomRect
+        rect: bottomRect,
       }
     }
 
     if (topRectFitsOnTop) {
       return {
         position: flipHorizontal(position),
-        rect: topRect
+        rect: topRect,
       }
     }
   }
@@ -427,13 +427,13 @@ function getPosition({
   if (spaceBottom < spaceTop) {
     return {
       position: positionIsAlignedOnTop ? flipHorizontal(position) : position,
-      rect: bottomRect
+      rect: bottomRect,
     }
   }
 
   return {
     position: positionIsAlignedOnTop ? position : flipHorizontal(position),
-    rect: topRect
+    rect: topRect,
   }
 }
 
@@ -456,43 +456,43 @@ function getRect({ dimensions, position, targetOffset, targetRect }: any): Rect 
     case Position.LEFT:
       return makeRect(dimensions, {
         left: targetRect.left - dimensions.width - targetOffset,
-        top: alignedLeftRightY
+        top: alignedLeftRightY,
       })
     case Position.RIGHT:
       return makeRect(dimensions, {
         left: targetRect.right + targetOffset,
-        top: alignedLeftRightY
+        top: alignedLeftRightY,
       })
     case Position.TOP:
       return makeRect(dimensions, {
         left: leftRect,
-        top: alignedTopY
+        top: alignedTopY,
       })
     case Position.TOP_LEFT:
       return makeRect(dimensions, {
         left: targetRect.left,
-        top: alignedTopY
+        top: alignedTopY,
       })
     case Position.TOP_RIGHT:
       return makeRect(dimensions, {
         left: alignedRightX,
-        top: alignedTopY
+        top: alignedTopY,
       })
     default:
     case Position.BOTTOM:
       return makeRect(dimensions, {
         left: leftRect,
-        top: alignedBottomY
+        top: alignedBottomY,
       })
     case Position.BOTTOM_LEFT:
       return makeRect(dimensions, {
         left: targetRect.left,
-        top: alignedBottomY
+        top: alignedBottomY,
       })
     case Position.BOTTOM_RIGHT:
       return makeRect(dimensions, {
         left: alignedRightX,
-        top: alignedBottomY
+        top: alignedBottomY,
       })
   }
 }

@@ -4,35 +4,35 @@ const appearances = {
   default: {
     _base: {
       color: 'white',
-      backgroundColor: 'scales.neutral.N5A'
+      backgroundColor: 'scales.neutral.N5A',
     },
     _disabled: {
       opacity: 0.5,
-      backgroundImage: 'none'
+      backgroundImage: 'none',
     },
     _hover: {
-      backgroundColor: 'scales.neutral.N5A'
+      backgroundColor: 'scales.neutral.N5A',
     },
     _active: {
-      backgroundColor: 'scales.neutral.N6A'
+      backgroundColor: 'scales.neutral.N6A',
     },
     _focus: {
-      boxShadow: (theme: any) => `0 0 0 3px ${theme.scales.blue.B6A}`
+      boxShadow: (theme: any) => `0 0 0 3px ${theme.scales.blue.B6A}`,
     },
     _checked: {
       backgroundColor: 'scales.blue.B8',
-      color: 'white'
+      color: 'white',
     },
     _checkedHover: {
       backgroundColor: 'scales.blue.B8',
-      color: 'white'
+      color: 'white',
     },
     _checkedActive: {
       backgroundColor: 'scales.blue.B9',
-      color: 'white'
+      color: 'white',
     },
-    _checkedDisabled: {}
-  }
+    _checkedDisabled: {},
+  },
 }
 
 const sizes = {}
@@ -40,5 +40,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

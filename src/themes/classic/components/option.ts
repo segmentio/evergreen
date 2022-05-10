@@ -16,44 +16,44 @@ const baseStyle = {
     backgroundColor: 'colors.blue.base',
     transition: '0.25s',
     transformOrigin: 'left center',
-    transform: 'scaleX(0)'
+    transform: 'scaleX(0)',
   },
 
   _isSelectable: {
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
 
   _hover: {
-    backgroundColor: 'colors.neutral.lightest'
+    backgroundColor: 'colors.neutral.lightest',
   },
 
   _focus: {
-    backgroundColor: 'colors.neutral.lightest'
+    backgroundColor: 'colors.neutral.lightest',
   },
 
   _active: {
-    backgroundColor: 'colors.blue.lightest'
+    backgroundColor: 'colors.blue.lightest',
   },
 
   _selected: {
     backgroundColor: 'colors.blue.lightest',
 
     ' span': {
-      color: 'colors.blue.base'
+      color: 'colors.blue.base',
     },
 
     '&:before': {
-      transform: 'scaleX(1)'
-    }
+      transform: 'scaleX(1)',
+    },
   },
 
   _disabled: {
     opacity: 0.5,
     pointerEvents: 'none',
-    cursor: 'not-allowed'
-  }
+    cursor: 'not-allowed',
+  },
 }
 
 export default {
-  baseStyle
+  baseStyle,
 }

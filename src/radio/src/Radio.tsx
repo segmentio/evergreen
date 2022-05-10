@@ -75,7 +75,7 @@ const pseudoSelectors = {
   _checked: '&:checked + div, &[type=checkbox]:indeterminate + div',
   _checkedHover: '&:not([disabled]):checked:hover + div, &[type=checkbox]:not([disabled]):indeterminate:hover + div',
   _checkedActive: '&:not([disabled]):checked:active + div, &[type=checkbox]:not([disabled]):indeterminate:active + div',
-  _checkedDisabled: '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div'
+  _checkedDisabled: '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div',
 }
 
 const internalStyles = {
@@ -96,8 +96,8 @@ const internalStyles = {
     MozAppearance: 'none',
     border: 'none',
     outline: 'none',
-    cursor: 'pointer'
-  }
+    cursor: 'pointer',
+  },
 }
 
 const Radio: React.FC<RadioProps> = memo(

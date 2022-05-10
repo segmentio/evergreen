@@ -10,7 +10,7 @@ const style: React.CSSProperties = {
   top: -500,
   left: -500,
   width: 100,
-  overflowY: 'scroll'
+  overflowY: 'scroll',
 }
 
 const ScrollbarSize: React.FC<ScrollbarSizeProps> = memo(function ScrollbarSize({ handleScrollbarSize = noop }) {

@@ -1,16 +1,16 @@
 import React, { memo, forwardRef } from 'react'
-import { PolymorphicBoxProps } from "ui-box";
+import { PolymorphicBoxProps } from 'ui-box'
 import { Label } from '../../typography'
-import { LabelOwnProps } from "../../typography/src/Label";
+import { LabelOwnProps } from '../../typography/src/Label'
 
 export interface FormFieldLabelOwnProps extends LabelOwnProps {
-    /**
-     * Whether or not to show an asterix after the label.
-     */
-    isAstrixShown?: boolean;
+  /**
+   * Whether or not to show an asterix after the label.
+   */
+  isAstrixShown?: boolean
 }
 
-export type FormFieldLabelProps = PolymorphicBoxProps<'label', FormFieldLabelOwnProps>;
+export type FormFieldLabelProps = PolymorphicBoxProps<'label', FormFieldLabelOwnProps>
 
 const FormFieldLabel: React.FC<FormFieldLabelProps> = memo(
   forwardRef(function FormFieldLabel(props, ref) {

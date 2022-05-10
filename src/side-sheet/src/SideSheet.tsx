@@ -33,49 +33,49 @@ const paneProps: Record<BasicPositionTypes, AbsolutePositionProps> = {
     maxWidth: '100vw',
     position: 'absolute',
     left: 0,
-    right: 'auto'
+    right: 'auto',
   },
   [Position.RIGHT]: {
     height: '100vh',
     maxWidth: '100vw',
     position: 'absolute',
     right: 0,
-    left: 'auto'
+    left: 'auto',
   },
   [Position.TOP]: {
     width: '100vw',
     position: 'absolute',
     maxHeight: '100vh',
     top: 0,
-    bottom: 'auto'
+    bottom: 'auto',
   },
   [Position.BOTTOM]: {
     width: '100vw',
     maxHeight: '100vh',
     position: 'absolute',
     bottom: 0,
-    top: 'auto'
-  }
+    top: 'auto',
+  },
 }
 
 const subpaneProps: Record<BasicPositionTypes, AbsolutePositionProps> = {
   [Position.LEFT]: {
-    height: '100vh'
+    height: '100vh',
   },
   [Position.RIGHT]: {
-    height: '100vh'
+    height: '100vh',
   },
   [Position.TOP]: {
-    width: '100vw'
+    width: '100vw',
   },
   [Position.BOTTOM]: {
-    width: '100vw'
-  }
+    width: '100vw',
+  },
 }
 
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
-  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)'
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
 }
 
 const ANIMATION_DURATION = 240
@@ -83,11 +83,11 @@ const ANIMATION_DURATION = 240
 const withAnimations = (animateIn: any, animateOut: any) => {
   return {
     '&[data-state="entering"], &[data-state="entered"]': {
-      animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
+      animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`,
     },
     '&[data-state="exiting"]': {
-      animation: `${animateOut} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
-    }
+      animation: `${animateOut} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`,
+    },
   }
 }
 
@@ -98,14 +98,14 @@ const animationStylesClass = {
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredLeftSlideInAnimation', {
         from: { transform: 'translateX(-100%)' },
-        to: { transform: 'translateX(0)' }
+        to: { transform: 'translateX(0)' },
       }),
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredLeftSlideOutAnimation', {
         from: { transform: 'translateX(0)' },
-        to: { transform: 'translateX(-100%)' }
+        to: { transform: 'translateX(-100%)' },
       })
-    )
+    ),
   },
   [Position.RIGHT]: {
     transform: 'translateX(100%)',
@@ -113,14 +113,14 @@ const animationStylesClass = {
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredRightSlideInAnimation', {
         from: { transform: 'translateX(100%)' },
-        to: { transform: 'translateX(0)' }
+        to: { transform: 'translateX(0)' },
       }),
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredRightSlideOutAnimation', {
         from: { transform: 'translateX(0)' },
-        to: { transform: 'translateX(100%)' }
+        to: { transform: 'translateX(100%)' },
       })
-    )
+    ),
   },
   [Position.TOP]: {
     transform: 'translateY(-100%)',
@@ -128,14 +128,14 @@ const animationStylesClass = {
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredTopSlideInAnimation', {
         from: { transform: 'translateY(-100%)' },
-        to: { transform: 'translateY(0)' }
+        to: { transform: 'translateY(0)' },
       }),
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredTopSlideOutAnimation', {
         from: { transform: 'translateY(0)' },
-        to: { transform: 'translateY(-100%)' }
+        to: { transform: 'translateY(-100%)' },
       })
-    )
+    ),
   },
   [Position.BOTTOM]: {
     transform: 'translateY(100%)',
@@ -143,15 +143,15 @@ const animationStylesClass = {
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredBottomSlideInAnimation', {
         from: { transform: 'translateY(100%)' },
-        to: { transform: 'translateY(0)' }
+        to: { transform: 'translateY(0)' },
       }),
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('anchoredBottomSlideOutAnimation', {
         from: { transform: 'translateY(0)' },
-        to: { transform: 'translateY(100%)' }
+        to: { transform: 'translateY(100%)' },
       })
-    )
-  }
+    ),
+  },
 }
 
 const noop = () => {}
@@ -168,7 +168,7 @@ const SideSheet: React.FC<SideSheetProps> = memo(function SideSheet(props) {
     shouldCloseOnOverlayClick = true,
     shouldCloseOnEscapePress = true,
     position = Position.RIGHT,
-    preventBodyScrolling
+    preventBodyScrolling,
   } = props
 
   return (

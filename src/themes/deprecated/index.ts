@@ -17,6 +17,6 @@ export default {
     fontFamilies,
     headings,
     text,
-    paragraph
-  }
+    paragraph,
+  },
 }

@@ -76,7 +76,7 @@ const Popover: React.FC<PopoverProps> = memo(
      * https://github.com/palantir/blueprint/blob/release/2.0.0/packages/core/src/components/overlay/overlay.tsx
      */
     const bringFocusInside = useCallback(
-      e => {
+      (e) => {
         if (isShown && e) {
           e.preventDefault()
         }
@@ -169,7 +169,7 @@ const Popover: React.FC<PopoverProps> = memo(
       forwardedRef,
       () => ({
         open,
-        close
+        close,
       }),
       [open, close]
     )
@@ -201,21 +201,21 @@ const Popover: React.FC<PopoverProps> = memo(
     }, [trigger, close])
 
     const handleKeyDown = useCallback(
-      event => {
+      (event) => {
         return event.key === 'ArrowDown' ? bringFocusInside(event) : undefined
       },
       [bringFocusInside]
     )
 
     const onEsc = useCallback(
-      event => {
+      (event) => {
         return event.key === 'Escape' && shouldCloseOnEscapePress ? close() : undefined
       },
       [shouldCloseOnEscapePress, close]
     )
 
     const handleBodyClick = useCallback(
-      event => {
+      (event) => {
         // Ignore clicks on the popover or button
         // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
         if (targetRef.current && targetRef.current.contains(event.target)) {
@@ -276,7 +276,7 @@ const Popover: React.FC<PopoverProps> = memo(
           return children({
             getRef: getTargetRef,
             isShown,
-            toggle
+            toggle,
           })
         }
 
@@ -286,7 +286,7 @@ const Popover: React.FC<PopoverProps> = memo(
           onKeyDown: handleKeyDown,
           role: 'button',
           'aria-expanded': isShown,
-          'aria-haspopup': true
+          'aria-haspopup': true,
         }
 
         /**
@@ -304,8 +304,8 @@ const Popover: React.FC<PopoverProps> = memo(
 
               // These propeties will be spread as `popoverTargetProps`
               // in the Tooltip component.
-              ...popoverTargetProps
-            }
+              ...popoverTargetProps,
+            },
           })
         }
 
@@ -315,7 +315,7 @@ const Popover: React.FC<PopoverProps> = memo(
         // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         return React.cloneElement(children, {
           ref: getTargetRef,
-          ...popoverTargetProps
+          ...popoverTargetProps,
         })
       },
       [children, setTargetRef, toggle, handleOpenHover, handleKeyDown]
@@ -339,7 +339,7 @@ const Popover: React.FC<PopoverProps> = memo(
       >
         {({ css, getRef, state, style }: any) => (
           <PopoverStateless
-            ref={ref => {
+            ref={(ref) => {
               safeInvoke(setPopoverNode, ref)
               getRef(ref)
             }}

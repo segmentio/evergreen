@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
 import { Pane } from '../../layers'
-import { PaneOwnProps } from "../../layers/src/Pane";
+import { PaneOwnProps } from '../../layers/src/Pane'
 import { Heading } from '../../typography'
 
 export interface MenuGroupProps extends Omit<PaneOwnProps, 'title'> {
-    title?: React.ReactNode;
-    children: React.ReactNode[] | React.ReactNode;
+  title?: React.ReactNode
+  children: React.ReactNode[] | React.ReactNode
 }
 
 const MenuGroup: React.FC<MenuGroupProps> = memo(function MenuGroup(props) {

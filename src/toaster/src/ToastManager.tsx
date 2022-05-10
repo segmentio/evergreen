@@ -34,7 +34,7 @@ const wrapperClass = css({
   right: 0,
   position: 'fixed',
   zIndex: StackingOrder.TOASTER,
-  pointerEvents: 'none'
+  pointerEvents: 'none',
 })
 
 const hasCustomId = (settings: ToasterSettings) => Object.hasOwnProperty.call(settings, 'id')
@@ -48,7 +48,7 @@ const ToastManager: React.FC<ToastManagerProps> = memo(function ToastManager(pro
   const getToasts = () => toasts
 
   const closeAll = () => {
-    setToasts(toasts.map(toast => ({ ...toast, isShown: false })))
+    setToasts(toasts.map((toast) => ({ ...toast, isShown: false })))
   }
 
   /**
@@ -57,11 +57,11 @@ const ToastManager: React.FC<ToastManagerProps> = memo(function ToastManager(pro
    */
   const closeToast = (id: string) => {
     setToasts(
-      toasts.map(toast => {
+      toasts.map((toast) => {
         if (toast.id === id) {
           return {
             ...toast,
-            isShown: false
+            isShown: false,
           }
         }
 
@@ -72,7 +72,7 @@ const ToastManager: React.FC<ToastManagerProps> = memo(function ToastManager(pro
 
   const safeCloseToast = (id: string | number) => {
     // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | number' is not assignab... Remove this comment to see the full error message
-    const toastToRemove = toasts.find(toast => String(toast.id).startsWith(id))
+    const toastToRemove = toasts.find((toast) => String(toast.id).startsWith(id))
 
     if (toastToRemove) {
       closeToast(toastToRemove.id)
@@ -80,7 +80,7 @@ const ToastManager: React.FC<ToastManagerProps> = memo(function ToastManager(pro
   }
 
   const removeToast = (id?: string) => {
-    const updatedToasts = toasts.filter(toast => !String(toast.id).startsWith(id ?? ''))
+    const updatedToasts = toasts.filter((toast) => !String(toast.id).startsWith(id ?? ''))
     setToasts(updatedToasts)
     return updatedToasts
   }
@@ -97,7 +97,7 @@ const ToastManager: React.FC<ToastManagerProps> = memo(function ToastManager(pro
       hasCloseButton: settings.hasCloseButton ?? true,
       duration: settings.duration || 5,
       close: () => safeCloseToast(id),
-      intent: settings.intent
+      intent: settings.intent,
     }
   }
 

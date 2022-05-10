@@ -3,23 +3,23 @@ import cx from 'classnames'
 import Box, { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { useTheme } from '../../theme'
-import { Theme } from "../../types/theme/theme"
-import { TextOwnProps } from "../../typography/src/Text"
+import { Theme } from '../../types/theme/theme'
+import { TextOwnProps } from '../../typography/src/Text'
 
 export interface TextareaOwnProps extends TextOwnProps {
-    required?: boolean;
-    disabled?: boolean;
-    isInvalid?: boolean;
-    spellCheck?: boolean;
-    grammarly?: boolean;
-    appearance?: string;
-    name?: string;
-    placeholder?: string;
-    theme?: Theme;
-    className?: string;
+  required?: boolean
+  disabled?: boolean
+  isInvalid?: boolean
+  spellCheck?: boolean
+  grammarly?: boolean
+  appearance?: string
+  name?: string
+  placeholder?: string
+  theme?: Theme
+  className?: string
 }
 
-export type TextareaProps = PolymorphicBoxProps<'textarea', TextareaOwnProps>;
+export type TextareaProps = PolymorphicBoxProps<'textarea', TextareaOwnProps>
 
 const pseudoSelectors = {
   _focus: '&:focus',
@@ -27,7 +27,7 @@ const pseudoSelectors = {
   _invalid: '&[aria-invalid="true"]:not(:focus)',
   _placeholder: '&::placeholder',
   _placeholderHover: '&:hover::placeholder',
-  _placeholderFocus: '&:focus::placeholder'
+  _placeholderFocus: '&:focus::placeholder',
 }
 
 const internalStyles = {
@@ -40,7 +40,7 @@ const internalStyles = {
   minHeight: 80,
   paddingX: 12,
   paddingY: 8,
-  borderRadius: 4
+  borderRadius: 4,
 }
 
 const Textarea: React.FC<TextareaProps> = memo(

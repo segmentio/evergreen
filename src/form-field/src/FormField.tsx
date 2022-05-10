@@ -6,42 +6,42 @@ import FormFieldLabel from './FormFieldLabel'
 import FormFieldValidationMessage from './FormFieldValidationMessage'
 
 export interface FormFieldOwnProps {
-    /**
-     * The label used above the input element.
-     */
-    label?: React.ReactNode;
-    /**
-     * Passed on the label as a htmlFor prop.
-     */
-    labelFor?: string;
-    /**
-     * Wether or not show a asterix after the label.
-     */
-    isRequired?: boolean;
-    /**
-     * A optional description of the field under the label, above the input element.
-     */
-    description?: React.ReactNode;
-    /**
-     * A optional hint under the input element.
-     */
-    hint?: React.ReactNode;
-    /**
-     * If a validation message is passed it is shown under the input element
-     * and above the hint.
-     */
-    validationMessage?: React.ReactNode;
-    /**
-     * The height of the input element.
-     */
-    inputHeight?: number;
-    /**
-     * The width of the input width.
-     */
-    inputWidth?: number | string;
+  /**
+   * The label used above the input element.
+   */
+  label?: React.ReactNode
+  /**
+   * Passed on the label as a htmlFor prop.
+   */
+  labelFor?: string
+  /**
+   * Wether or not show a asterix after the label.
+   */
+  isRequired?: boolean
+  /**
+   * A optional description of the field under the label, above the input element.
+   */
+  description?: React.ReactNode
+  /**
+   * A optional hint under the input element.
+   */
+  hint?: React.ReactNode
+  /**
+   * If a validation message is passed it is shown under the input element
+   * and above the hint.
+   */
+  validationMessage?: React.ReactNode
+  /**
+   * The height of the input element.
+   */
+  inputHeight?: number
+  /**
+   * The width of the input width.
+   */
+  inputWidth?: number | string
 }
 
-export type FormFieldProps = PolymorphicBoxProps<'div', FormFieldOwnProps>;
+export type FormFieldProps = PolymorphicBoxProps<'div', FormFieldOwnProps>
 
 const FormField: React.FC<FormFieldProps> = memo(
   forwardRef(function FormField(props, ref) {

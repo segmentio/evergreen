@@ -7,7 +7,7 @@ export default class Manager extends React.Component {
   constructor(props: any) {
     super(props)
     this.state = {
-      ...props
+      ...props,
     }
   }
 
@@ -20,7 +20,7 @@ export default class Manager extends React.Component {
     // @ts-expect-error ts-migrate(2723) FIXME: Cannot invoke an object which is possibly 'null' o... Remove this comment to see the full error message
     return this.props.children({
       setState: this._setState,
-      state: this.state
+      state: this.state,
     })
   }
 }

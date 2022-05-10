@@ -11,12 +11,12 @@ export const buildFile = (overrides: Partial<Pick<File, 'name' | 'size' | 'type'
   const {
     name = faker.system.fileName(),
     size = faker.datatype.number({ min: 1024, max: 1024 * 3 }),
-    type = MimeType.gif
+    type = MimeType.gif,
   } = overrides
 
   // Allocate an array the given size, but set a reasonable ceiling for testing
-  const file = new File((Buffer.alloc(Math.min(size, maxSizeInBytes)) as any) as BlobPart[], name, {
-    type
+  const file = new File(Buffer.alloc(Math.min(size, maxSizeInBytes)) as any as BlobPart[], name, {
+    type,
   })
   return file
 }
@@ -44,7 +44,7 @@ export const buildFiles = (
 export const buildFileRejection = (file: File): FileRejection => ({
   file,
   reason: faker.random.arrayElement(Object.values(FileRejectionReason)),
-  message: faker.random.words()
+  message: faker.random.words(),
 })
 
 /**
@@ -52,5 +52,5 @@ export const buildFileRejection = (file: File): FileRejection => ({
  */
 export const mockRef = () => ({
   // eslint-disable-next-line no-undef
-  current: jest.fn()
+  current: jest.fn(),
 })

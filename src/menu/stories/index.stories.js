@@ -102,7 +102,7 @@ storiesOf('menu', module)
           <Menu>
             <Component
               initialState={{
-                selected: 'asc'
+                selected: 'asc',
               }}
             >
               {({ setState, state }) => {
@@ -111,10 +111,10 @@ storiesOf('menu', module)
                     title="Order"
                     options={[
                       { label: 'Ascending', value: 'asc' },
-                      { label: 'Descending', value: 'desc' }
+                      { label: 'Descending', value: 'desc' },
                     ]}
                     selected={state.selected}
-                    onChange={selected => setState({ selected })}
+                    onChange={(selected) => setState({ selected })}
                   />
                 )
               }}
@@ -124,7 +124,7 @@ storiesOf('menu', module)
 
             <Component
               initialState={{
-                selected: 'email'
+                selected: 'email',
               }}
             >
               {({ setState, state }) => {
@@ -136,10 +136,10 @@ storiesOf('menu', module)
                       { label: 'Phone', value: 'phone' },
                       { label: 'State', value: 'state' },
                       { label: 'Country', value: 'country' },
-                      { label: 'Type', value: 'type' }
+                      { label: 'Type', value: 'type' },
                     ]}
                     selected={state.selected}
-                    onChange={selected => setState({ selected })}
+                    onChange={(selected) => setState({ selected })}
                   />
                 )
               }}

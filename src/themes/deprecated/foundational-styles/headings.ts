@@ -21,7 +21,7 @@ export default {
     letterSpacing: '-0.2px',
     marginTop: 52,
     fontFamily: fontFamilies.display,
-    color: colors.text.dark
+    color: colors.text.dark,
   },
   '800': {
     fontSize: '29px',
@@ -30,7 +30,7 @@ export default {
     letterSpacing: '-0.2px',
     marginTop: 40,
     fontFamily: fontFamilies.display,
-    color: colors.text.dark
+    color: colors.text.dark,
   },
   '700': {
     fontSize: '24px',
@@ -39,7 +39,7 @@ export default {
     letterSpacing: '-0.07px',
     marginTop: 40,
     fontFamily: fontFamilies.display,
-    color: colors.text.dark
+    color: colors.text.dark,
   },
   '600': {
     fontSize: '20px',
@@ -48,7 +48,7 @@ export default {
     letterSpacing: '-0.07px',
     marginTop: 28,
     fontFamily: fontFamilies.display,
-    color: colors.text.dark
+    color: colors.text.dark,
   },
   '500': {
     fontSize: '16px',
@@ -57,7 +57,7 @@ export default {
     letterSpacing: '-0.05px',
     marginTop: 24,
     fontFamily: fontFamilies.ui,
-    color: colors.text.dark
+    color: colors.text.dark,
   },
   '400': {
     fontSize: '14px',
@@ -66,7 +66,7 @@ export default {
     letterSpacing: '-0.05px',
     marginTop: 16,
     fontFamily: fontFamilies.ui,
-    color: colors.text.dark
+    color: colors.text.dark,
   },
   '300': {
     fontSize: '12px',
@@ -75,7 +75,7 @@ export default {
     letterSpacing: '0',
     marginTop: 16,
     fontFamily: fontFamilies.ui,
-    color: colors.text.dark
+    color: colors.text.dark,
   },
   '200': {
     fontSize: '12px',
@@ -84,7 +84,7 @@ export default {
     letterSpacing: '0',
     marginTop: 16,
     fontFamily: fontFamilies.ui,
-    color: colors.text.muted
+    color: colors.text.muted,
   },
   '100': {
     fontSize: '11px',
@@ -94,6 +94,6 @@ export default {
     letterSpacing: '0.6px',
     marginTop: 16,
     fontFamily: fontFamilies.ui,
-    color: colors.text.muted
-  }
+    color: colors.text.muted,
+  },
 }

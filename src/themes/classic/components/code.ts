@@ -6,8 +6,8 @@ const appearances = {
     boxShadow: (theme: any) => `inset 0 0 0 1px ${theme.colors.blueAlpha.B4A}`,
     paddingX: 6,
     paddingY: 3,
-    borderRadius: 'radii.1'
-  }
+    borderRadius: 'radii.1',
+  },
 }
 
 const sizes = {}
@@ -15,5 +15,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

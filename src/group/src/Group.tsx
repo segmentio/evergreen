@@ -4,20 +4,20 @@ import Box, { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 
 export interface GroupOwnProps {
-    size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large'
 }
 
-export type GroupProps = PolymorphicBoxProps<'div', GroupOwnProps>;
+export type GroupProps = PolymorphicBoxProps<'div', GroupOwnProps>
 
 const pseudoSelectors = {
   _child: '& > *',
   _firstChild: '& > :first-child:not(:last-child)',
   _middleChild: '& > :not(:first-child):not(:last-child)',
-  _lastChild: '& > :last-child:not(:first-child)'
+  _lastChild: '& > :last-child:not(:first-child)',
 }
 
 const internalStyles = {
-  display: 'inline-flex'
+  display: 'inline-flex',
 }
 
 /**
@@ -35,14 +35,14 @@ const Group: React.FC<GroupProps> = memo(
       internalStyles
     )
 
-    const enhancedChildren = React.Children.map(children, child => {
+    const enhancedChildren = React.Children.map(children, (child) => {
       if (!React.isValidElement(child)) {
         return child
       }
 
       return React.cloneElement(child, {
         // Prefer more granularly defined props if present
-        size: child.props.size || size
+        size: child.props.size || size,
       })
     })
 

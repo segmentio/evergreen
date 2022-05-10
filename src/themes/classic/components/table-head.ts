@@ -7,7 +7,7 @@ const baseStyle = {
   lineHeight: 'lineHeights.0',
   letterSpacing: 'letterSpacings.normal',
   fontFamily: 'fontFamilies.ui',
-  color: 'colors.default'
+  color: 'colors.default',
 }
 
 const appearances = {}
@@ -17,5 +17,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

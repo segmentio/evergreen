@@ -60,8 +60,8 @@ const internalStyles = {
   cursor: 'pointer',
   ':-moz-focusring': {
     color: 'transparent',
-    textShadow: '0 0 0 #000'
-  }
+    textShadow: '0 0 0 #000',
+  },
 }
 
 const pseudoSelectors = {
@@ -69,7 +69,7 @@ const pseudoSelectors = {
   _invalid: '&[aria-invalid="true"]',
   _hover: '&:not([disabled]):hover',
   _focus: '&:not([disabled]):focus',
-  _active: '&:not([disabled]):active'
+  _active: '&:not([disabled]):active',
 }
 
 const getIconSizeForSelect = (height: any) => {

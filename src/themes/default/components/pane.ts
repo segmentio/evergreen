@@ -1,7 +1,4 @@
-function borderProperty(theme: any, {
-  border,
-  value
-}: any) {
+function borderProperty(theme: any, { border, value }: any) {
   if (Object.prototype.hasOwnProperty.call(theme.colors.border, value)) {
     return `1px solid ${theme.colors.border[value]}`
   }
@@ -31,7 +28,7 @@ const baseStyle = (theme: any, props: any) => {
     Object.assign(transitionStyles, {
       transitionDuration: '150ms',
       transitionProperty: 'box-shadow, transform',
-      transitionTimingFunction: 'cubic-bezier(0.0, 0.0, 0.2, 1)'
+      transitionTimingFunction: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
     })
   }
 
@@ -39,7 +36,7 @@ const baseStyle = (theme: any, props: any) => {
   if (theme.shadows[props.hoverElevation]) {
     hoverStyles = {
       transform: 'translateY(-2px)',
-      boxShadow: `shadows.${props.hoverElevation}`
+      boxShadow: `shadows.${props.hoverElevation}`,
     }
   }
 
@@ -47,7 +44,7 @@ const baseStyle = (theme: any, props: any) => {
   if (theme.shadows[props.activeElevation]) {
     activeStyles = {
       transform: 'translateY(-1px)',
-      boxShadow: `shadows.${props.activeElevation}`
+      boxShadow: `shadows.${props.activeElevation}`,
     }
   }
 
@@ -56,24 +53,24 @@ const baseStyle = (theme: any, props: any) => {
     boxShadow: theme.shadows[props.elevation],
     borderTop: borderProperty(theme, {
       border: props.border,
-      value: props.borderTop
+      value: props.borderTop,
     }),
     borderRight: borderProperty(theme, {
       border: props.border,
-      value: props.borderRight
+      value: props.borderRight,
     }),
     borderBottom: borderProperty(theme, {
       border: props.border,
-      value: props.borderBottom
+      value: props.borderBottom,
     }),
     borderLeft: borderProperty(theme, {
       border: props.border,
-      value: props.borderLeft
+      value: props.borderLeft,
     }),
 
     ...transitionStyles,
     _hover: hoverStyles,
-    _active: activeStyles
+    _active: activeStyles,
   }
 }
 
@@ -83,5 +80,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

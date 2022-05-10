@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import { Select } from '..'
 import { Text, Label } from '../../typography'
 
-const Description = props => <Text is="p" marginTop={0} size={300} color="muted" {...props} />
+const Description = (props) => <Text is="p" marginTop={0} size={300} color="muted" {...props} />
 
 const appearance = 'default'
 

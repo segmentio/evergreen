@@ -130,7 +130,7 @@ const SelectMenuCell: React.FC<TableSelectMenuCellProps> = memo(function SelectM
     () => ({
       size,
       opacity: lessOpacity ? 0.5 : 1,
-      ...textProps
+      ...textProps,
     }),
     [lessOpacity, size, textProps]
   )

@@ -19,42 +19,42 @@ const baseStyle = {
     outline: 'none', // Disable default browser focus outline
     borderStyle: 'solid',
     borderColor: 'colors.blue200',
-    boxShadow: `0px 0px 0px 2px ${colors.blue100}`
+    boxShadow: `0px 0px 0px 2px ${colors.blue100}`,
   },
 
   _hover: {
     cursor: 'pointer',
     backgroundColor: 'colors.gray90',
-    borderColor: 'colors.gray600'
+    borderColor: 'colors.gray600',
   },
 
   _hoverBrowseCopy: {
     color: 'colors.blue500',
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
 
   _hoverOrDragCopy: {
     color: 'colors.gray800',
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
 
   _disabled: {
     backgroundColor: 'colors.gray50',
     borderColor: 'colors.gray50',
-    borderStyle: 'solid'
+    borderStyle: 'solid',
   },
 
   _dragHover: {
     backgroundColor: 'colors.blue50',
     borderColor: 'colors.blue500',
-    borderStyle: 'solid'
+    borderStyle: 'solid',
   },
 
   _invalid: {
     backgroundColor: 'colors.red100',
     borderColor: 'colors.red500',
-    borderStyle: 'solid'
-  }
+    borderStyle: 'solid',
+  },
 }
 
 const appearances = {}
@@ -63,5 +63,5 @@ const sizes = {}
 export default {
   appearances,
   baseStyle,
-  sizes
+  sizes,
 }

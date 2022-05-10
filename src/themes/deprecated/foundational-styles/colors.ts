@@ -24,7 +24,7 @@ export default {
     redTint: palette.red.lightest,
     blueTint: palette.blue.lightest,
     purpleTint: palette.purple.lightest,
-    tealTint: palette.teal.lightest
+    tealTint: palette.teal.lightest,
   },
 
   /**
@@ -43,7 +43,7 @@ export default {
     success: palette.green.dark,
     info: palette.blue.dark,
     danger: palette.red.dark,
-    warning: palette.orange.dark
+    warning: palette.orange.dark,
   },
 
   /**
@@ -62,7 +62,7 @@ export default {
     success: palette.green.base,
     info: palette.blue.base,
     danger: palette.red.base,
-    warning: palette.orange.base
+    warning: palette.orange.base,
   },
 
   /**
@@ -76,6 +76,6 @@ export default {
     none: palette.blue.base,
     success: palette.green.base,
     danger: palette.red.base,
-    warning: palette.orange.base
-  }
+    warning: palette.orange.base,
+  },
 }

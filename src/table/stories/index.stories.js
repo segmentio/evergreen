@@ -10,13 +10,13 @@ import AdvancedTable from './AdvancedTable'
 import EditableTable from './EditableTable'
 import VirtualTable from './VirtualTable'
 
-const range = N => Array.from({ length: N }, (v, k) => k + 1)
+const range = (N) => Array.from({ length: N }, (v, k) => k + 1)
 
 faker.seed(500)
 const dynamicHeights = range(500).map(() => {
   return faker.datatype.number({
     min: 32,
-    max: 100
+    max: 100,
   })
 })
 
@@ -109,7 +109,7 @@ storiesOf('table', module)
         document.body.style.margin = '0'
         document.body.style.height = '100vh'
       })()}
-      {['none', 'danger', 'warning', 'success'].map(intent => {
+      {['none', 'danger', 'warning', 'success'].map((intent) => {
         return (
           <Table.Row key={intent} isSelectable intent={intent}>
             <Table.TextCell>{intent}</Table.TextCell>
@@ -141,7 +141,7 @@ storiesOf('table', module)
       <Component initialState={{ selectedItem: null }}>
         {({ setState, state }) => (
           <Table.Body>
-            {range(10).map(item => {
+            {range(10).map((item) => {
               return (
                 <Table.Row
                   key={item}
@@ -240,7 +240,7 @@ storiesOf('table', module)
               isSelectable
               data-cell-1
               arrowKeysOverrides={{
-                down: '[data-cell-2]'
+                down: '[data-cell-2]',
               }}
             >
               Cell 1
@@ -253,7 +253,7 @@ storiesOf('table', module)
               isSelectable
               data-cell-2
               arrowKeysOverrides={{
-                up: '[data-cell-1]'
+                up: '[data-cell-1]',
               }}
             >
               Cell 2

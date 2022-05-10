@@ -12,8 +12,8 @@ const baseStyle = {
 
   _invalid: {
     backgroundColor: 'colors.red25',
-    borderColor: 'colors.red500'
-  }
+    borderColor: 'colors.red500',
+  },
 }
 
 const appearances = {}
@@ -22,5 +22,5 @@ const sizes = {}
 export default {
   appearances,
   baseStyle,
-  sizes
+  sizes,
 }

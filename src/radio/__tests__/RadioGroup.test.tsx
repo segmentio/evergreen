@@ -6,7 +6,7 @@ describe('Radio Group', () => {
   const options = [
     { label: 'Read-only', value: 'read-only' },
     { label: 'Write', value: 'write', isDisabled: true },
-    { label: 'Restricted', value: 'restricted' }
+    { label: 'Restricted', value: 'restricted' },
   ]
 
   it('should not crash when rendering', () => {
@@ -29,7 +29,7 @@ describe('Radio Group', () => {
 
   it('should have all options in required states when isRequired is true', () => {
     render(<RadioGroup options={options} isRequired />)
-    screen.getAllByRole('radio').forEach(element => {
+    screen.getAllByRole('radio').forEach((element) => {
       expect(element).toBeRequired()
     })
   })

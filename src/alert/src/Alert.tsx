@@ -41,7 +41,7 @@ const internalStyles = {
   overflow: 'hidden',
   display: 'flex',
   // 15 instead of 16 in order to maintain height with 1px border
-  padding: '15px'
+  padding: '15px',
 }
 
 const Alert: React.FC<AlertProps> = memo(

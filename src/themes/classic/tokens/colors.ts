@@ -12,7 +12,7 @@ const neutral = {
   N7: '#7B8B9A', // Large Text AA
   N8: '#66788A', // Normal Text AA
   N9: '#425A70', // Normal Text AAA
-  N10: '#234361' // Normal Text AAA
+  N10: '#234361', // Normal Text AAA
 }
 
 const neutralAlpha = {
@@ -24,7 +24,7 @@ const neutralAlpha = {
   N5A: 'rgba(67, 90, 111, 0.3)',
   N6A: 'rgba(67, 90, 111, 0.47)',
   N7A: 'rgba(67, 90, 111, 0.7)',
-  N8A: 'rgba(67, 90, 111, 0.81)'
+  N8A: 'rgba(67, 90, 111, 0.81)',
 }
 
 const blue = {
@@ -37,7 +37,7 @@ const blue = {
   B7: '#579ad9', // Large Text AA
   B8: '#3d8bd4', // Normal Text AA
   B9: '#1070ca', // Normal Text AAA
-  B10: '#084b8a' // Normal Text AAA
+  B10: '#084b8a', // Normal Text AAA
 }
 
 const blueAlpha = {
@@ -49,7 +49,7 @@ const blueAlpha = {
   B5A: 'rgba(16, 112, 202, 0.3)',
   B6A: 'rgba(16, 112, 202, 0.47)',
   B7A: 'rgba(16, 112, 202, 0.7)',
-  B8A: 'rgba(16, 112, 202, 0.81)'
+  B8A: 'rgba(16, 112, 202, 0.81)',
 }
 
 const palette = {
@@ -58,7 +58,7 @@ const palette = {
     lightest: neutral.N1,
     light: neutral.N4,
     base: neutral.N9,
-    dark: neutral.N10
+    dark: neutral.N10,
   },
 
   blue: {
@@ -66,50 +66,50 @@ const palette = {
     lightest: blue.B1,
     light: blue.B4,
     base: blue.B9,
-    dark: blue.B10
+    dark: blue.B10,
   },
 
   red: {
     lightest: '#fef6f6',
     light: '#fae2e2',
     base: '#ec4c47',
-    dark: '#bf0e08'
+    dark: '#bf0e08',
   },
 
   orange: {
     lightest: '#fdf8f3',
     light: '#fae3cd',
     base: '#d9822b',
-    dark: '#95591e'
+    dark: '#95591e',
   },
 
   yellow: {
     lightest: '#fef8e7',
     light: '#fbe6a2',
     base: '#f7d154',
-    dark: '#7e6514'
+    dark: '#7e6514',
   },
 
   green: {
     lightest: '#f1faf5',
     light: '#d4eee2',
     base: '#47b881',
-    dark: '#00783e'
+    dark: '#00783e',
   },
 
   teal: {
     lightest: '#f1fbfc',
     light: '#d2eef3',
     base: '#14b5d0',
-    dark: '#007489'
+    dark: '#007489',
   },
 
   purple: {
     lightest: '#f8f7fc',
     light: '#eae7f8',
     base: '#735dd0',
-    dark: '#37248f'
-  }
+    dark: '#37248f',
+  },
 }
 
 const colors = {
@@ -137,21 +137,21 @@ const colors = {
 
   border: {
     default: neutral.N4,
-    muted: neutral.N3
+    muted: neutral.N3,
   },
 
   text: {
     success: palette.green.dark,
     info: palette.blue.dark,
-    danger: palette.red.dark
+    danger: palette.red.dark,
   },
 
   icon: {
     default: palette.neutral.N8,
     muted: palette.neutral.N7,
     disabled: neutralAlpha.N5A,
-    selected: palette.blue.base
-  }
+    selected: palette.blue.base,
+  },
 }
 
 export default colors

@@ -3,7 +3,7 @@ import { Pane } from '../../layers'
 import { Heading } from '../../typography'
 import Swatch from './Swatch'
 
-const ColorGroup = props => {
+const ColorGroup = (props) => {
   if (typeof props.colorGroup === 'string') {
     return <Swatch key={props.title} color={props.colorGroup} name={props.title} property={props.name(props.title)} />
   }
@@ -14,7 +14,7 @@ const ColorGroup = props => {
         <Heading>{props.title}</Heading>
       </Pane>
       <Pane>
-        {Object.keys(props.colorGroup).map(key => {
+        {Object.keys(props.colorGroup).map((key) => {
           return <Swatch key={key} color={props.colorGroup[key]} name={key} property={props.name(key)} />
         })}
       </Pane>

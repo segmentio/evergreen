@@ -13,61 +13,61 @@ const InputAppearances = {}
 InputAppearances.default = Themer.createInputAppearance({
   base: {
     backgroundColor: 'white',
-    boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 1px 2px ${scales.neutral.N4A}`
+    boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 1px 2px ${scales.neutral.N4A}`,
   },
   invalid: {
-    boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${scales.neutral.N4A}`
+    boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${scales.neutral.N4A}`,
   },
   placeholder: {
-    color: scales.neutral.N6A
+    color: scales.neutral.N6A,
   },
   focus: {
     outline: 'none',
-    boxShadow: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${scales.blue.B7}, 0 0 0 3px ${scales.blue.B4A}`
+    boxShadow: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${scales.blue.B7}, 0 0 0 3px ${scales.blue.B4A}`,
   },
   disabled: {
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
-    backgroundColor: scales.neutral.N2
-  }
+    backgroundColor: scales.neutral.N2,
+  },
 })
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'neutral' does not exist on type '{}'.
 InputAppearances.neutral = Themer.createInputAppearance({
   base: {
-    backgroundColor: scales.neutral.N2A
+    backgroundColor: scales.neutral.N2A,
   },
   invalid: {
-    boxShadow: `inset 0 0 0 1px ${palette.red.base}`
+    boxShadow: `inset 0 0 0 1px ${palette.red.base}`,
   },
   placeholder: {
-    color: scales.neutral.N6A
+    color: scales.neutral.N6A,
   },
   focus: {
     outline: 'none',
     backgroundColor: 'white',
-    boxShadow: `0 0 0 2px ${scales.blue.B6A}`
+    boxShadow: `0 0 0 2px ${scales.blue.B6A}`,
   },
   disabled: {
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
-    backgroundColor: scales.neutral.N2
-  }
+    backgroundColor: scales.neutral.N2,
+  },
 })
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'none' does not exist on type '{}'.
 InputAppearances.none = Themer.createInputAppearance({
   base: {
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   invalid: {},
   placeholder: {
-    color: scales.neutral.N6A
+    color: scales.neutral.N6A,
   },
   focus: {
-    outline: 'none'
+    outline: 'none',
   },
   disabled: {
-    backgroundColor: scales.neutral.N2
-  }
+    backgroundColor: scales.neutral.N2,
+  },
 })
 
 /**

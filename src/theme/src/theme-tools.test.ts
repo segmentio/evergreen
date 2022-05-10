@@ -6,8 +6,8 @@ describe('Theme tools', () => {
     it('returns the value based on a path lookup', () => {
       const obj = {
         foo: {
-          bar: 'baz'
-        }
+          bar: 'baz',
+        },
       }
 
       const result = getValue(obj, 'foo.bar')
@@ -17,8 +17,8 @@ describe('Theme tools', () => {
     it('returns the value as-is if the path cannot be resolved', () => {
       const obj = {
         foo: {
-          bar: 'baz'
-        }
+          bar: 'baz',
+        },
       }
 
       const result = getValue(obj, '12px')
@@ -34,11 +34,11 @@ describe('Theme tools', () => {
           colors: {
             gray900: '#101840',
             gray800: '#474d66',
-            gray700: '#696f8c'
-          }
+            gray700: '#696f8c',
+          },
         }
 
-        const result = mergeTheme((destinationTheme as any) as Theme, sourceTheme)
+        const result = mergeTheme(destinationTheme as any as Theme, sourceTheme)
 
         expect(result).toStrictEqual(destinationTheme)
       }
@@ -49,17 +49,17 @@ describe('Theme tools', () => {
         colors: {
           gray900: '#101840',
           gray800: '#474d66',
-          gray700: '#696f8c'
-        }
+          gray700: '#696f8c',
+        },
       }
 
       const sourceTheme = {
         colors: {
-          gray700: 'updated'
-        }
+          gray700: 'updated',
+        },
       }
 
-      const result = mergeTheme((destinationTheme as any) as Theme, sourceTheme)
+      const result = mergeTheme(destinationTheme as any as Theme, sourceTheme)
 
       expect(result.colors.gray700).toBe(sourceTheme.colors.gray700)
     })
@@ -71,11 +71,11 @@ describe('Theme tools', () => {
             baseStyle: {
               _disabled: {
                 cursor: 'not-allowed',
-                pointerEvents: 'auto'
-              }
-            }
-          }
-        }
+                pointerEvents: 'auto',
+              },
+            },
+          },
+        },
       }
 
       const sourceTheme = {
@@ -84,16 +84,16 @@ describe('Theme tools', () => {
             appearances: {
               tab: {
                 _hover: {
-                  backgroundColor: '#696f8c'
+                  backgroundColor: '#696f8c',
                 },
-                backgroundColor: 'white'
-              }
-            }
-          }
-        }
+                backgroundColor: 'white',
+              },
+            },
+          },
+        },
       }
 
-      const result = mergeTheme((destinationTheme as any) as Theme, sourceTheme)
+      const result = mergeTheme(destinationTheme as any as Theme, sourceTheme)
 
       expect(result.components.Button?.baseStyle).toMatchObject(destinationTheme.components?.Button?.baseStyle)
       expect(result.components.Button?.appearances).toMatchObject(sourceTheme.components?.Button?.appearances)
@@ -104,17 +104,17 @@ describe('Theme tools', () => {
         colors: {
           gray900: '#101840',
           gray800: '#474d66',
-          gray700: '#696f8c'
-        }
+          gray700: '#696f8c',
+        },
       }
 
       const sourceTheme = {
         colors: {
-          gray700: 'updated'
-        }
+          gray700: 'updated',
+        },
       }
 
-      const result = mergeTheme((destinationTheme as any) as Theme, sourceTheme)
+      const result = mergeTheme(destinationTheme as any as Theme, sourceTheme)
 
       expect(result).not.toEqual(destinationTheme)
     })
@@ -125,13 +125,13 @@ describe('Theme tools', () => {
       const theme = {}
       const props = {
         baseStyle: {
-          color: 'blue'
+          color: 'blue',
         },
         appearances: {
           primary: {
-            backgroundColor: 'pink'
-          }
-        }
+            backgroundColor: 'pink',
+          },
+        },
       }
 
       const result = resolveThemeTokens(theme, props)
@@ -142,31 +142,31 @@ describe('Theme tools', () => {
       const theme = {
         colors: {
           muted: 'gray',
-          primary: 'pink'
-        }
+          primary: 'pink',
+        },
       }
 
       const props = {
         baseStyle: {
-          color: 'colors.muted'
+          color: 'colors.muted',
         },
         appearances: {
           primary: {
-            backgroundColor: 'colors.primary'
-          }
-        }
+            backgroundColor: 'colors.primary',
+          },
+        },
       }
 
       const result = resolveThemeTokens(theme, props)
       expect(result).toEqual({
         baseStyle: {
-          color: 'gray'
+          color: 'gray',
         },
         appearances: {
           primary: {
-            backgroundColor: 'pink'
-          }
-        }
+            backgroundColor: 'pink',
+          },
+        },
       })
     })
   })

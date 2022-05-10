@@ -10,12 +10,12 @@ const baseStyle = {
 
   _disabled: {
     cursor: 'not-allowed',
-    pointerEvents: 'none'
+    pointerEvents: 'none',
   },
 
   _focus: {
-    boxShadow: (theme: any) => `0 0 0 3px ${theme.colors.blueAlpha.B5A}`
-  }
+    boxShadow: (theme: any) => `0 0 0 3px ${theme.colors.blueAlpha.B5A}`,
+  },
 }
 
 const appearances = {}
@@ -23,20 +23,20 @@ const appearances = {}
 const sizes = {
   small: {
     fontSize: 'fontSizes.1',
-    lineHeight: 'lineHeights.0'
+    lineHeight: 'lineHeights.0',
   },
   medium: {
     fontSize: 'fontSizes.1',
-    lineHeight: 'lineHeights.0'
+    lineHeight: 'lineHeights.0',
   },
   large: {
     fontSize: 'fontSizes.2',
-    lineHeight: 'lineHeights.2'
-  }
+    lineHeight: 'lineHeights.2',
+  },
 }
 
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

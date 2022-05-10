@@ -8,20 +8,20 @@ const baseStyle = {
   marginY: (_: any, props: any) => (props.direction === 'vertical' ? '4px' : null),
 
   _hover: {
-    backgroundColor: 'colors.neutralAlpha.N2A'
+    backgroundColor: 'colors.neutralAlpha.N2A',
   },
 
   _active: {
-    backgroundColor: 'colors.neutralAlpha.N3A'
+    backgroundColor: 'colors.neutralAlpha.N3A',
   },
 
   _current: {
     color: 'colors.blue.base',
-    backgroundColor: 'colors.blueAlpha.B3A'
+    backgroundColor: 'colors.blueAlpha.B3A',
   },
 
   _focus: {
-    boxShadow: 'shadows.focusRing'
+    boxShadow: 'shadows.focusRing',
   },
 
   _disabled: {
@@ -30,11 +30,11 @@ const baseStyle = {
     color: 'colors.neutralAlpha.N7A',
 
     '&[aria-current="page"], &[aria-selected="true"]': {
-      backgroundColor: 'colors.neutralAlpha.N2A'
-    }
-  }
+      backgroundColor: 'colors.neutralAlpha.N2A',
+    },
+  },
 }
 
 export default {
-  baseStyle
+  baseStyle,
 }

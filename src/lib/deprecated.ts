@@ -7,5 +7,5 @@ export default (propType: any, explanation: any) => {
     }
 
     return propType(props, propName, componentName, ...rest)
-  };
+  }
 }

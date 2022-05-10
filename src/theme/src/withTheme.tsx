@@ -12,7 +12,7 @@ function withTheme(WrappedComponent: any) {
     static displayName = `withTheme(${displayName})`
 
     render() {
-      return <ThemeConsumer>{theme => <WrappedComponent theme={theme} {...this.props} />}</ThemeConsumer>
+      return <ThemeConsumer>{(theme) => <WrappedComponent theme={theme} {...this.props} />}</ThemeConsumer>
     }
   }
 }

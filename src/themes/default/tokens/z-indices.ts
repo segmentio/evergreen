@@ -7,7 +7,7 @@ const zIndices = {
   stack: 5,
   positioner: 10,
   overlay: 20,
-  toaster: 30
+  toaster: 30,
 }
 
 export default zIndices

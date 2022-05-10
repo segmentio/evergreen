@@ -220,7 +220,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
           const key = child.key || index
           const props = {
             key,
-            style
+            style,
           }
 
           // If some children are strings by accident, support this gracefully.
@@ -245,12 +245,12 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
             // the height of its children.
             return (
               <div
-                ref={ref => onVirtualHelperRef(index, ref)}
+                ref={(ref) => onVirtualHelperRef(index, ref)}
                 data-virtual-index={index}
                 {...props}
                 style={{
                   opacity: 0,
-                  ...props.style
+                  ...props.style,
                 }}
               >
                 {child}

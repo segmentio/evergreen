@@ -80,7 +80,7 @@ const SelectMenuContent: React.FC<SelectMenuContentProps> = memo(function Select
     detailView,
     emptyView,
     isMultiSelect,
-    closeOnSelect
+    closeOnSelect,
   } = props
 
   const headerHeight = 40

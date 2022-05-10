@@ -40,7 +40,7 @@ export type TagInputProps = PolymorphicBoxProps<'div', TagInputOwnProps>
 
 const GET_KEY_FOR_TAG_DELIMITER = {
   enter: 'Enter',
-  space: ' '
+  space: ' ',
 }
 
 const emptyProps = {}
@@ -50,13 +50,13 @@ const internalStyles = {
   alignItems: 'center',
   display: 'inline-flex',
   flexWrap: 'wrap',
-  position: 'relative'
+  position: 'relative',
 }
 
 const pseudoSelectors = {
   _focused: '&[aria-activedescendant]',
   _disabled: '&[aria-disabled="true"]',
-  _invalid: '&[aria-invalid="true"]:not(:focus)'
+  _invalid: '&[aria-invalid="true"]:not(:focus)',
 }
 
 const TagInput: React.FC<TagInputProps> = memo(
@@ -95,8 +95,8 @@ const TagInput: React.FC<TagInputProps> = memo(
       separator
         ? inputValue
             .split(separator)
-            .map(v => v.trim())
-            .filter(v => v.length > 0)
+            .map((v) => v.trim())
+            .filter((v) => v.length > 0)
         : [inputValue]
 
     const addTags = (value = '') => {
@@ -215,7 +215,7 @@ const TagInput: React.FC<TagInputProps> = memo(
         {values.map(maybeRenderTag)}
         <Box flexGrow={1} display="inline-block">
           <Autocomplete
-            onChange={changedItem => {
+            onChange={(changedItem) => {
               addTags(changedItem)
               setInputValue('')
             }}
@@ -224,7 +224,7 @@ const TagInput: React.FC<TagInputProps> = memo(
             selectedItem=""
             inputValue={inputValue}
           >
-            {autocompleteProps => {
+            {(autocompleteProps) => {
               const {
                 // @ts-expect-error ts-migrate(2339) FIXME: Property 'closeMenu' does not exist on type '{ tog... Remove this comment to see the full error message
                 closeMenu,
@@ -233,7 +233,7 @@ const TagInput: React.FC<TagInputProps> = memo(
                 // @ts-expect-error ts-migrate(2339) FIXME: Property 'getToggleButtonProps' does not exist on ... Remove this comment to see the full error message
                 getToggleButtonProps,
                 // @ts-expect-error ts-migrate(2339) FIXME: Property 'highlightedIndex' does not exist on type... Remove this comment to see the full error message
-                highlightedIndex
+                highlightedIndex,
               } = autocompleteProps
 
               const {
@@ -269,7 +269,7 @@ const TagInput: React.FC<TagInputProps> = memo(
                     {...autocompleteRestProps}
                     value={inputValue}
                     id={inputId}
-                    ref={textInputRef => {
+                    ref={(textInputRef) => {
                       // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                       autocompleteGetRef(textInputRef)
                       if (inputRef instanceof Function) {
@@ -279,17 +279,17 @@ const TagInput: React.FC<TagInputProps> = memo(
                         inputRef.current = textInputRef
                       }
                     }}
-                    onBlur={e => {
+                    onBlur={(e) => {
                       autocompleteOnBlur(e)
                       // @ts-expect-error ts-migrate(2339) FIXME: Property 'onBlur' does not exist on type '{}'.
                       safeInvoke(inputProps.onBlur, e)
                     }}
-                    onFocus={e => {
+                    onFocus={(e) => {
                       handleInputFocus(e)
                       // @ts-expect-error ts-migrate(2339) FIXME: Property 'onFocus' does not exist on type '{}'.
                       safeInvoke(inputProps.onFocus, e)
                     }}
-                    onChange={e => {
+                    onChange={(e) => {
                       handleInputChange(e)
                       autocompleteOnChange(e)
                     }}

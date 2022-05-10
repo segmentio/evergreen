@@ -22,13 +22,13 @@ export default function extractStyles(options: ExtractStylesInput = {}): Extract
 
   const evergreenCache = {
     uiBoxCache: cache,
-    glamorIds: ids
+    glamorIds: ids,
   }
 
   const scriptProps = {
     type: 'application/json',
     id: 'evergreen-hydrate',
-    dangerouslySetInnerHTML: { __html: JSON.stringify(evergreenCache) }
+    dangerouslySetInnerHTML: { __html: JSON.stringify(evergreenCache) },
   }
 
   if (options.nonce) {
@@ -39,6 +39,6 @@ export default function extractStyles(options: ExtractStylesInput = {}): Extract
   return {
     css: styles + '\n' + css,
     cache: evergreenCache,
-    hydrationScript: <script {...scriptProps} />
+    hydrationScript: <script {...scriptProps} />,
   }
 }

@@ -76,7 +76,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> = memo(
     }, [value])
 
     const handleChange = useCallback(
-      event => {
+      (event) => {
         event.preventDefault()
         const newValue = event.target.value
 

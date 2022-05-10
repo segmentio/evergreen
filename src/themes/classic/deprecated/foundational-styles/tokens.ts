@@ -63,13 +63,13 @@ const colorTokens = {
 
   // Yellows
   yellow800: '#66460D',
-  yellow100: '#FFEFD2'
+  yellow100: '#FFEFD2',
 }
 
 const colors = {
   ...colorTokens,
   muted: colorTokens.gray700,
-  default: colorTokens.gray800
+  default: colorTokens.gray800,
 }
 
 const fontFamilies = {
@@ -82,13 +82,12 @@ const fontFamilies = {
   /**
    * @property {string} ui - Used for text and UI (which includes almost anything).
    */
-  ui:
-    '"SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+  ui: '"SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 
   /**
    * @property {string} mono - Used for code and sometimes numbers in tables.
    */
-  mono: '"SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace'
+  mono: '"SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace',
 }
 
 const text = {
@@ -100,42 +99,42 @@ const text = {
     fontSize: '20px',
     fontWeight: 400,
     lineHeight: '24px',
-    letterSpacing: '-0.07px'
+    letterSpacing: '-0.07px',
   },
   500: {
     fontSize: '16px',
     fontWeight: 400,
     lineHeight: '20px',
-    letterSpacing: '-0.05px'
+    letterSpacing: '-0.05px',
   },
   400: {
     // Default
     fontSize: '14px',
     fontWeight: 400,
     lineHeight: '20px',
-    letterSpacing: '-0.05px'
+    letterSpacing: '-0.05px',
   },
   300: {
     fontSize: '12px',
     fontWeight: 400,
     lineHeight: '16px',
-    letterSpacing: '0'
-  }
+    letterSpacing: '0',
+  },
 }
 
 const paragraph = {
   500: {
     ...text['500'],
-    lineHeight: '24px'
+    lineHeight: '24px',
   },
   400: {
     ...text['400'],
-    lineHeight: '21px'
+    lineHeight: '21px',
   },
   300: {
     ...text['300'],
-    lineHeight: '18px'
-  }
+    lineHeight: '18px',
+  },
 }
 
 // Lifted from v5 scales
@@ -160,49 +159,49 @@ export default {
   primary: {
     base: colors.blue500,
     hover: colors.blue600,
-    active: colors.blue700
+    active: colors.blue700,
   },
   intents: {
     info: {
       background: colors.blue25,
       border: colors.blue500,
       text: colors.blue600,
-      icon: colors.blue500
+      icon: colors.blue500,
     },
     success: {
       background: colors.green25,
       border: colors.green500,
       text: colors.green700,
-      icon: colors.green500
+      icon: colors.green500,
     },
     warning: {
       background: colors.orange25,
       border: colors.orange500,
       text: colors.orange700,
-      icon: colors.orange500
+      icon: colors.orange500,
     },
     danger: {
       background: colors.red25,
       border: colors.red500,
       text: colors.red600,
-      icon: colors.red500
-    }
+      icon: colors.red500,
+    },
   },
   states: {
     default: {
-      icon: colors.gray800
+      icon: colors.gray800,
     },
     muted: {
-      icon: colors.gray700
+      icon: colors.gray700,
     },
     dark: {
-      icon: colors.gray900
+      icon: colors.gray900,
     },
     disabled: {
-      icon: colors.gray500
+      icon: colors.gray500,
     },
     selected: {
-      icon: colors.blue500
-    }
-  }
+      icon: colors.blue500,
+    },
+  },
 }

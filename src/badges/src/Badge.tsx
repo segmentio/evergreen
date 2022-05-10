@@ -1,37 +1,37 @@
 import React, { memo, forwardRef } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
-import { PolymorphicBoxProps } from "ui-box"
+import { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import { Strong } from '../../typography'
-import { StrongOwnProps } from "../../typography/src/Strong"
+import { StrongOwnProps } from '../../typography/src/Strong'
 
 export interface BadgeOwnProps extends StrongOwnProps {
-    /**
-     * The color used for the badge. When the value is `automatic`, use the hash function to determine the color.
-     */
-    color?: 'automatic' | 'neutral' | 'blue' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'purple';
-    /**
-     * Whether or not to apply hover/focus/active styles.
-     */
-    isInteractive?: boolean;
+  /**
+   * The color used for the badge. When the value is `automatic`, use the hash function to determine the color.
+   */
+  color?: 'automatic' | 'neutral' | 'blue' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'purple'
+  /**
+   * Whether or not to apply hover/focus/active styles.
+   */
+  isInteractive?: boolean
 }
 
-export type BadgeProps = PolymorphicBoxProps<'strong', BadgeOwnProps>;
+export type BadgeProps = PolymorphicBoxProps<'strong', BadgeOwnProps>
 
 const pseudoSelectors = {}
 
 const internalStyles = {
   display: 'inline-block',
   boxSizing: 'border-box',
-  verticalAlign: 'middle'
+  verticalAlign: 'middle',
 }
 
 const hoverClassName = css({
   '&:hover': {
-    opacity: 0.8
+    opacity: 0.8,
   },
-  cursor: 'pointer'
+  cursor: 'pointer',
 })
 
 const Badge: React.FC<BadgeProps> = memo(

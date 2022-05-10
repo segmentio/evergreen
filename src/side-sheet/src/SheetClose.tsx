@@ -8,7 +8,7 @@ export type SheetPosition = Position.TOP | Position.BOTTOM | Position.LEFT | Pos
 
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
-  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)'
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
 }
 
 const ANIMATION_DURATION = 240
@@ -21,21 +21,21 @@ const sharedStyles = {
   backgroundColor: 'rgba(255, 255, 255, 0.4)',
   transition: 'background-color 120ms',
   '&:hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.6)'
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
   },
   '&:active': {
-    backgroundColor: 'rgba(255, 255, 255, 0.4)'
-  }
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+  },
 }
 
 const withAnimations = (animateIn: any, animateOut: any) => {
   return {
     '&[data-state="entering"], &[data-state="entered"]': {
-      animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
+      animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`,
     },
     '&[data-state="exiting"]': {
-      animation: `${animateOut} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
-    }
+      animation: `${animateOut} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`,
+    },
   }
 }
 
@@ -49,14 +49,14 @@ const sheetCloseStyles: Record<SheetPosition, any> = {
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('rotate360InAnimation', {
         from: { transform: 'translateX(100%) rotate(0deg)' },
-        to: { transform: 'translateX(-100%) rotate(-360deg)' }
+        to: { transform: 'translateX(-100%) rotate(-360deg)' },
       }),
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('rotate360OutAnimation', {
         from: { transform: 'translateX(-100%) rotate(0deg)' },
-        to: { transform: 'translateX(100%) rotate(360deg)' }
+        to: { transform: 'translateX(100%) rotate(360deg)' },
       })
-    )
+    ),
   },
   [Position.LEFT]: {
     marginRight: -12,
@@ -67,14 +67,14 @@ const sheetCloseStyles: Record<SheetPosition, any> = {
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('leftRotate360InAnimation', {
         from: { transform: 'translateX(-100%) rotate(0deg)' },
-        to: { transform: 'translateX(100%), rotate(360deg)' }
+        to: { transform: 'translateX(100%), rotate(360deg)' },
       }),
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('leftRotate360OutAnimation', {
         from: { transform: 'translateX(100%) rotate(0deg)' },
-        to: { transform: 'translateX(-100%), rotate(360deg)' }
+        to: { transform: 'translateX(-100%), rotate(360deg)' },
       })
-    )
+    ),
   },
   [Position.TOP]: {
     right: 0,
@@ -86,14 +86,14 @@ const sheetCloseStyles: Record<SheetPosition, any> = {
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('topRotate360InAnimation', {
         from: { transform: 'translateY(-200%) rotate(0deg)' },
-        to: { transform: 'translateY(0%), rotate(360deg)' }
+        to: { transform: 'translateY(0%), rotate(360deg)' },
       }),
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('topRotate360OutAnimation', {
         from: { transform: 'translateY(0%) rotate(0deg)' },
-        to: { transform: 'translateY(-200%), rotate(360deg)' }
+        to: { transform: 'translateY(-200%), rotate(360deg)' },
       })
-    )
+    ),
   },
   [Position.BOTTOM]: {
     right: 0,
@@ -105,15 +105,15 @@ const sheetCloseStyles: Record<SheetPosition, any> = {
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('bottomRotate360InAnimation', {
         from: { transform: 'translateY(200%) rotate(0deg)' },
-        to: { transform: 'translateY(0%), rotate(360deg)' }
+        to: { transform: 'translateY(0%), rotate(360deg)' },
       }),
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
       css.keyframes('bottomRotate360OutAnimation', {
         from: { transform: 'translateY(0%) rotate(0deg)' },
-        to: { transform: 'translateY(200%), rotate(360deg)' }
+        to: { transform: 'translateY(200%), rotate(360deg)' },
       })
-    )
-  }
+    ),
+  },
 }
 
 const sheetCloseClassNameCache = {}
@@ -124,7 +124,7 @@ const getSheetCloseClassName = (position: SheetPosition) => {
     // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     sheetCloseClassNameCache[position] = css({
       ...sheetCloseStyles[position],
-      ...sharedStyles
+      ...sharedStyles,
     }).toString()
   }
 
@@ -138,7 +138,7 @@ export interface SheetCloseProps {
   position: SheetPosition
 }
 
-const SheetClose: React.FC<SheetCloseProps> = props => {
+const SheetClose: React.FC<SheetCloseProps> = (props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isClosing, position, ...rest } = props
   return (

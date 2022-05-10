@@ -1,7 +1,7 @@
 const baseStyle = {
   fontFamily: 'fontFamilies.ui',
   fontWeight: 500,
-  marginBottom: (_: any, props: any) => (props.direction === 'vertical' ? '8px' : null)
+  marginBottom: (_: any, props: any) => (props.direction === 'vertical' ? '8px' : null),
 }
 
 const appearances = {
@@ -14,7 +14,7 @@ const appearances = {
     position: 'relative',
 
     ':not(:last-child)': {
-      marginRight: (_: any, props: any) => (props.direction === 'horizontal' ? '20px' : null)
+      marginRight: (_: any, props: any) => (props.direction === 'horizontal' ? '20px' : null),
     },
 
     _before: {
@@ -28,28 +28,28 @@ const appearances = {
       width: '100%',
       transition: '0.25s',
       transform: 'scaleY(0)',
-      transformOrigin: 'bottom center'
+      transformOrigin: 'bottom center',
     },
 
     _hover: {
-      color: 'colors.default'
+      color: 'colors.default',
     },
 
     _current: {
       color: 'colors.blue500',
 
       '&:before': {
-        transform: 'scaleY(1)'
+        transform: 'scaleY(1)',
       },
 
       '&:focus': {
-        color: 'colors.blue600'
-      }
+        color: 'colors.blue600',
+      },
     },
 
     _focus: {
       boxShadow: 'shadows.focusRing',
-      color: 'colors.default'
+      color: 'colors.default',
     },
 
     _disabled: {
@@ -58,9 +58,9 @@ const appearances = {
       color: 'colors.gray500',
 
       '&:before': {
-        backgroundColor: 'colors.gray500'
-      }
-    }
+        backgroundColor: 'colors.gray500',
+      },
+    },
   },
 
   secondary: {
@@ -70,25 +70,25 @@ const appearances = {
     color: 'colors.default',
 
     ':not(:last-child)': {
-      marginRight: (_: any, props: any) => (props.direction === 'horizontal' ? '8px' : null)
+      marginRight: (_: any, props: any) => (props.direction === 'horizontal' ? '8px' : null),
     },
 
     _hover: {
       backgroundColor: 'colors.gray100',
-      color: 'colors.gray800'
+      color: 'colors.gray800',
     },
 
     _active: {
-      backgroundColor: 'colors.gray200'
+      backgroundColor: 'colors.gray200',
     },
 
     _current: {
       backgroundColor: 'colors.blue50',
-      color: 'colors.blue500'
+      color: 'colors.blue500',
     },
 
     _focus: {
-      boxShadow: 'shadows.focusRing'
+      boxShadow: 'shadows.focusRing',
     },
 
     _disabled: {
@@ -97,10 +97,10 @@ const appearances = {
       color: 'colors.gray500',
 
       '&[aria-current="page"], &[aria-selected="true"]': {
-        backgroundColor: 'colors.gray100'
-      }
-    }
-  }
+        backgroundColor: 'colors.gray100',
+      },
+    },
+  },
 }
 
 const sizes = {}
@@ -108,5 +108,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

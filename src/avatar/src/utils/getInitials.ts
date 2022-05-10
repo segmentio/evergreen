@@ -4,6 +4,6 @@ export default function getInitials(name: any, fallback = '?') {
     .replace(/\s+/, ' ')
     .split(' ') // Repeated spaces results in empty strings
     .slice(0, 2)
-    .map(v => v && v[0].toUpperCase()) // Watch out for empty strings
-    .join('');
+    .map((v) => v && v[0].toUpperCase()) // Watch out for empty strings
+    .join('')
 }

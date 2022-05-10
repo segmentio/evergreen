@@ -64,7 +64,7 @@ export type FileCardProps = PolymorphicBoxProps<'div', FileCardOwnProps>
 const imageSize = majorScale(5)
 const styleModifiers = {}
 const pseudoSelectors = {
-  _invalid: `&[aria-invalid='true']`
+  _invalid: `&[aria-invalid='true']`,
 }
 const internalStyles = {}
 

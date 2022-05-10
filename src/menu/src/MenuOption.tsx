@@ -19,14 +19,14 @@ const noop = () => {}
 
 const internalStyles = {
   display: 'flex',
-  alignItems: 'center'
+  alignItems: 'center',
 }
 
 const MenuOption: React.FC<MenuOptionProps> = memo(function MenuOption(props) {
   const { id, children, appearance = 'default', onSelect = noop, secondaryText, isSelected = false } = props
 
   // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
-  const handleClick = useCallback(e => onSelect(e), [onSelect])
+  const handleClick = useCallback((e) => onSelect(e), [onSelect])
 
   const { onKeyDown, tabIndex } = useClickable()
 
@@ -41,7 +41,7 @@ const MenuOption: React.FC<MenuOptionProps> = memo(function MenuOption(props) {
     ? {
         color: 'selected',
         fontWeight: 500,
-        marginLeft: 16
+        marginLeft: 16,
       }
     : { marginLeft: 44 }
 

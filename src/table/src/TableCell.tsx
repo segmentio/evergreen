@@ -63,7 +63,7 @@ function executeArrowKeyOverride(override: any) {
 }
 
 const pseudoSelectors = {
-  _focus: '&[data-isselectable="true"]:focus, &[aria-expanded="true"][aria-haspopup="true"]'
+  _focus: '&[data-isselectable="true"]:focus, &[aria-expanded="true"][aria-haspopup="true"]',
 }
 
 const internalStyles = {
@@ -72,7 +72,7 @@ const internalStyles = {
   display: 'flex',
   alignItems: 'center',
   flexShrink: 0,
-  overflow: 'hidden'
+  overflow: 'hidden',
 }
 
 const TableCell: React.FC<TableCellProps> = memo(
@@ -98,7 +98,7 @@ const TableCell: React.FC<TableCellProps> = memo(
     const onKeyDownRef = useLatest(onKeyDown)
 
     const handleKeyDown = useCallback(
-      e => {
+      (e) => {
         const arrowKeysOverrides = props.arrowKeysOverrides || {}
 
         if (isSelectable) {

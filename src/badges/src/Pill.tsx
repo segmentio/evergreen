@@ -1,9 +1,9 @@
 import React, { memo, forwardRef } from 'react'
-import { PolymorphicBoxProps } from "ui-box";
+import { PolymorphicBoxProps } from 'ui-box'
 import Badge, { BadgeOwnProps } from './Badge'
 
-export type PillProps = PolymorphicBoxProps<'strong', PillOwnProps>;
-export type PillOwnProps = BadgeOwnProps;
+export type PillProps = PolymorphicBoxProps<'strong', PillOwnProps>
+export type PillOwnProps = BadgeOwnProps
 
 const Pill: React.FC<PillProps> = memo(
   forwardRef(function Pill(props, ref) {

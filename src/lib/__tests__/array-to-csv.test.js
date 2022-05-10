@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker'
 import arrayToCsv from '../array-to-csv'
 
 describe('arrayToCsv', () => {
-  it.each([undefined, null, '', []])('should return an empty string when value is %p', value => {
+  it.each([undefined, null, '', []])('should return an empty string when value is %p', (value) => {
     const result = arrayToCsv(value)
 
     expect(result).toBe('')

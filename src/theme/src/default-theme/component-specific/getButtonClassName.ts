@@ -30,21 +30,21 @@ const getButtonAppearance = (appearance: any, intent: any) => {
           color: 'white',
           backgroundColor: 'white',
           backgroundImage: linearGradient.base,
-          boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 -1px 1px 0 ${scales.neutral.N2A}`
+          boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 -1px 1px 0 ${scales.neutral.N2A}`,
         },
         hover: {
-          backgroundImage: linearGradient.hover
+          backgroundImage: linearGradient.hover,
         },
         focus: {
-          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${scales.neutral.N5A}`
+          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${scales.neutral.N5A}`,
         },
         active: {
           backgroundImage: linearGradient.active,
-          boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 1px 1px 0 ${scales.neutral.N2A}`
+          boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 1px 1px 0 ${scales.neutral.N2A}`,
         },
         focusAndActive: {
-          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 1px 1px 0 ${scales.neutral.N2A}`
-        }
+          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 1px 1px 0 ${scales.neutral.N2A}`,
+        },
       })
     }
 
@@ -54,19 +54,19 @@ const getButtonAppearance = (appearance: any, intent: any) => {
         disabled,
         base: {
           color: intentTextColor,
-          backgroundColor: 'transparent'
+          backgroundColor: 'transparent',
         },
         hover: {
-          backgroundColor: scales.neutral.N2A
+          backgroundColor: scales.neutral.N2A,
         },
         focus: {
-          boxShadow: `0 0 0 3px ${scales.blue.B5A}`
+          boxShadow: `0 0 0 3px ${scales.blue.B5A}`,
         },
         active: {
           backgroundImage: 'none',
-          backgroundColor: scales.blue.B3A
+          backgroundColor: scales.blue.B3A,
         },
-        focusAndActive: {}
+        focusAndActive: {},
       })
     }
 
@@ -77,12 +77,12 @@ const getButtonAppearance = (appearance: any, intent: any) => {
         disabled,
         base: {
           color: intentTextColor,
-          ...defaultControlStyles.base
+          ...defaultControlStyles.base,
         },
         hover: defaultControlStyles.hover,
         focus: defaultControlStyles.focus,
         active: defaultControlStyles.active,
-        focusAndActive: defaultControlStyles.focusAndActive
+        focusAndActive: defaultControlStyles.focusAndActive,
       })
     }
   }

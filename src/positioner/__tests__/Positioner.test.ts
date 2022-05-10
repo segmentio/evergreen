@@ -4,7 +4,7 @@ import getFittedPosition from '../src/getPosition'
 const dimensions = (overrides: any) => ({
   height: 100,
   width: 100,
-  ...overrides
+  ...overrides,
 })
 
 const targetRect = (overrides: any) => ({
@@ -16,7 +16,7 @@ const targetRect = (overrides: any) => ({
   bottom: 150 - 30,
   left: 250,
   right: 200,
-  ...overrides
+  ...overrides,
 })
 
 const targetOffset = 6
@@ -24,21 +24,22 @@ const targetOffset = 6
 const viewport = (overrides: any) => ({
   height: 250,
   width: 850,
-  ...overrides
+  ...overrides,
 })
 
 describe('<Positioner />', () => {
   it('All positions work', () => {
-    const generatedPositions = Object.values(Position).map((position: any) => getFittedPosition({
-      position,
-      // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
-      dimensions: dimensions(),
-      // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
-      targetRect: targetRect(),
-      targetOffset,
-      // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
-      viewport: viewport()
-    })
+    const generatedPositions = Object.values(Position).map((position: any) =>
+      getFittedPosition({
+        position,
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
+        dimensions: dimensions(),
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
+        targetRect: targetRect(),
+        targetOffset,
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
+        viewport: viewport(),
+      })
     )
     expect(generatedPositions).toMatchSnapshot()
   })
@@ -52,7 +53,7 @@ describe('<Positioner />', () => {
         targetRect: targetRect(),
         targetOffset,
         // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
-        viewport: viewport()
+        viewport: viewport(),
       })
     )
   })
@@ -65,7 +66,7 @@ describe('<Positioner />', () => {
         targetRect: targetRect({ left: 800, x: 800, right: 850 }),
         targetOffset,
         // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
-        viewport: viewport()
+        viewport: viewport(),
       })
     ).toMatchSnapshot()
   })
@@ -77,7 +78,7 @@ describe('<Positioner />', () => {
         dimensions: dimensions({ width: 250 }),
         targetRect: targetRect({ left: 50, x: 50, right: 100 }),
         targetOffset,
-        viewport: viewport({ width: 300 })
+        viewport: viewport({ width: 300 }),
       })
     ).toMatchSnapshot()
   })
@@ -90,7 +91,7 @@ describe('<Positioner />', () => {
         targetRect: targetRect({ top: 20, y: 20 }),
         targetOffset,
         // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
-        viewport: viewport()
+        viewport: viewport(),
       })
     ).toMatchSnapshot()
   })
@@ -102,7 +103,7 @@ describe('<Positioner />', () => {
         dimensions: dimensions({ height: 250 }),
         targetRect: targetRect({ top: 290, y: 290, bottom: 295, height: 5 }),
         targetOffset,
-        viewport: viewport({ height: 300 })
+        viewport: viewport({ height: 300 }),
       })
     ).toMatchSnapshot()
   })
@@ -115,7 +116,7 @@ describe('<Positioner />', () => {
         targetRect: targetRect({ left: 10, x: 10, top: 10, y: 10, bottom: 20 }),
         targetOffset,
         // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
-        viewport: viewport()
+        viewport: viewport(),
       })
     ).toMatchSnapshot()
   })
@@ -127,7 +128,7 @@ describe('<Positioner />', () => {
         dimensions: dimensions({ width: 50, height: 100 }),
         targetRect: targetRect({ left: 100, x: 100, top: 550, y: 550 }),
         targetOffset,
-        viewport: viewport({ height: 500 })
+        viewport: viewport({ height: 500 }),
       })
     ).toMatchSnapshot()
   })

@@ -10,7 +10,7 @@ export default class Manager extends React.Component {
   render() {
     return this.props.children({
       setState: this._setState,
-      state: this.state
+      state: this.state,
     })
   }
 }

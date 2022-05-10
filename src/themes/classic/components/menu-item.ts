@@ -3,13 +3,13 @@ const baseStyle = {
   textDecoration: 'none',
 
   _isSelectable: {
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
 
   _disabled: {
     cursor: 'not-allowed',
-    pointerEvents: 'none'
-  }
+    pointerEvents: 'none',
+  },
 }
 
 const appearances = {
@@ -17,24 +17,24 @@ const appearances = {
     backgroundColor: 'white',
 
     _hover: {
-      backgroundColor: 'colors.neutral.lightest'
+      backgroundColor: 'colors.neutral.lightest',
     },
 
     _focus: {
-      backgroundColor: 'colors.neutral.lightest'
+      backgroundColor: 'colors.neutral.lightest',
     },
 
     _active: {
-      backgroundColor: 'colors.blue.lightest'
+      backgroundColor: 'colors.blue.lightest',
     },
 
     _current: {
-      backgroundColor: 'colors.blue.lightest'
-    }
-  }
+      backgroundColor: 'colors.blue.lightest',
+    },
+  },
 }
 
 export default {
   baseStyle,
-  appearances
+  appearances,
 }

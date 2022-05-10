@@ -18,7 +18,7 @@ test.each([
   ['size 600', 600],
   ['size 700', 700],
   ['size 800', 800],
-  ['size 900', 900]
+  ['size 900', 900],
 ])('<Heading /> %s renders as expected', (_: any, size: any) => {
   const component = (
     <ThemeProvider value={defaultTheme}>

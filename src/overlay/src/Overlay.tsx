@@ -37,7 +37,7 @@ const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
   acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
   sharp: 'cubic-bezier(0.4, 0.0, 0.6, 1)',
-  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)',
 }
 
 const ANIMATION_DURATION = 240
@@ -45,21 +45,21 @@ const ANIMATION_DURATION = 240
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const fadeInAnimation = css.keyframes('fadeInAnimation', {
   from: {
-    opacity: 0
+    opacity: 0,
   },
   to: {
-    opacity: 1
-  }
+    opacity: 1,
+  },
 })
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'keyframes' does not exist on type 'typeo... Remove this comment to see the full error message
 const fadeOutAnimation = css.keyframes('fadeOutAnimation', {
   from: {
-    opacity: 1
+    opacity: 1,
   },
   to: {
-    opacity: 0
-  }
+    opacity: 0,
+  },
 })
 
 const animationStyles = (backgroundColor: any) => ({
@@ -71,16 +71,16 @@ const animationStyles = (backgroundColor: any) => ({
     display: 'block',
     width: '100%',
     height: '100%',
-    content: '" "'
+    content: '" "',
   },
 
   '&[data-state="entering"]::before, &[data-state="entered"]::before': {
-    animation: `${fadeInAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
+    animation: `${fadeInAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`,
   },
 
   '&[data-state="exiting"]::before, &[data-state="exited"]::before': {
-    animation: `${fadeOutAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
-  }
+    animation: `${fadeOutAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`,
+  },
 })
 
 /**
@@ -99,7 +99,7 @@ const Overlay: React.FC<OverlayProps> = memo(function Overlay({
   onEnter = noop,
   onEntering = noop,
   onEntered = noop,
-  isShown
+  isShown,
 }) {
   const theme = useTheme()
   const { colors } = theme
@@ -284,7 +284,7 @@ const Overlay: React.FC<OverlayProps> = memo(function Overlay({
             onEntering={handleEntering}
             onEntered={handleEntered}
           >
-            {state => (
+            {(state) => (
               <Box
                 onClick={handleBackdropClick}
                 ref={containerRef}

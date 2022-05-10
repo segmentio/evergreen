@@ -51,7 +51,7 @@ const EditableCellField = memo(function EditableCellField(props) {
         height: targetHeight,
         left: targetLeft,
         top: targetTop,
-        width: targetWidth
+        width: targetWidth,
       } = targetRef.getBoundingClientRect()
 
       let calculatedTop
@@ -103,7 +103,7 @@ const EditableCellField = memo(function EditableCellField(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const handleFocus = useCallback(e => {
+  const handleFocus = useCallback((e) => {
     e.target.selectionStart = e.target.value.length
   }, [])
 
@@ -114,7 +114,7 @@ const EditableCellField = memo(function EditableCellField(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const handleKeyDown = useCallback(e => {
+  const handleKeyDown = useCallback((e) => {
     switch (e.key) {
       case 'Escape':
         onCancelRef.current()
@@ -141,7 +141,7 @@ const EditableCellField = memo(function EditableCellField(props) {
       minHeight: Math.max(height, minHeight),
       width,
       minWidth: Math.max(width, minWidth),
-      zIndex
+      zIndex,
     }),
     [left, top, height, width, minHeight, minWidth, zIndex]
   )

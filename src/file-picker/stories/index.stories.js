@@ -15,7 +15,7 @@ storiesOf('file-picker', module).add('FilePicker', () => (
       width={250}
       marginBottom={32}
       // eslint-disable-next-line no-console
-      onChange={files => console.log(files)}
+      onChange={(files) => console.log(files)}
     />
 
     <FilePicker
@@ -23,7 +23,7 @@ storiesOf('file-picker', module).add('FilePicker', () => (
       width={250}
       marginBottom={32}
       // eslint-disable-next-line no-console
-      onChange={files => console.log(files)}
+      onChange={(files) => console.log(files)}
       placeholder="Placeholder dynamic here!"
     />
 

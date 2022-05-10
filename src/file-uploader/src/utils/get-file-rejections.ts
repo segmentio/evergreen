@@ -15,19 +15,19 @@ const getFileRejections = (files: File[], options?: SplitFilesOptions): FileReje
 
   const { acceptedMimeTypes, currentFileCount: currentCount, maxFiles, maxSizeInBytes } = options
 
-  const typeRejections: Array<FileRejection | undefined> = files.map(file => {
-    if (isEmpty(acceptedMimeTypes) || acceptedMimeTypes?.some(type => file.type === type)) {
+  const typeRejections: Array<FileRejection | undefined> = files.map((file) => {
+    if (isEmpty(acceptedMimeTypes) || acceptedMimeTypes?.some((type) => file.type === type)) {
       return
     }
 
     return {
       file,
       reason: FileRejectionReason.InvalidFileType,
-      message: `This file is not an accepted format. ${getAcceptedTypesMessage(acceptedMimeTypes!)}`
+      message: `This file is not an accepted format. ${getAcceptedTypesMessage(acceptedMimeTypes!)}`,
     }
   })
 
-  const sizeRejections: Array<FileRejection | undefined> = files.map(file => {
+  const sizeRejections: Array<FileRejection | undefined> = files.map((file) => {
     if (maxSizeInBytes == null || maxSizeInBytes === 0 || file.size <= maxSizeInBytes) {
       return
     }
@@ -35,7 +35,7 @@ const getFileRejections = (files: File[], options?: SplitFilesOptions): FileReje
     return {
       file,
       reason: FileRejectionReason.FileTooLarge,
-      message: `This file is too big. ${getFileSizeMessage(maxSizeInBytes)}`
+      message: `This file is too big. ${getFileSizeMessage(maxSizeInBytes)}`,
     }
   })
 
@@ -53,16 +53,16 @@ const getFileRejections = (files: File[], options?: SplitFilesOptions): FileReje
     return {
       file,
       reason: FileRejectionReason.OverFileLimit,
-      message: getMaxFilesMessage(maxFiles)
+      message: getMaxFilesMessage(maxFiles),
     }
   })
 
   // Type rejections are arguably more important than size rejections, so those will take priority
   const fileRejections = [...typeRejections, ...sizeRejections, ...countRejections].filter(
-    fileRejection => fileRejection != null
+    (fileRejection) => fileRejection != null
   ) as FileRejection[]
 
-  return uniqBy(fileRejections, rejection => rejection.file)
+  return uniqBy(fileRejections, (rejection) => rejection.file)
 }
 
 export default getFileRejections

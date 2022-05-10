@@ -25,7 +25,7 @@ const Tag: React.FC<TagProps> = memo(
       paddingY: 6,
       marginTop: 0,
       marginBottom: 0,
-      textTransform: 'none'
+      textTransform: 'none',
     }
 
     if (isRemovable) {

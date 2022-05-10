@@ -2,19 +2,17 @@ const baseStyle = {
   fontFamily: 'fontFamilies.ui',
   border: '1px solid transparent',
   borderRadius: 'radii.1',
-  color: (theme: any, {
-    color
-  }: any) => theme.colors[color] || color || 'colors.default',
+  color: (theme: any, { color }: any) => theme.colors[color] || color || 'colors.default',
   transition: 'box-shadow 80ms ease-in-out',
 
   _focus: {
-    boxShadow: 'shadows.focusRing'
+    boxShadow: 'shadows.focusRing',
   },
 
   _disabled: {
     cursor: 'not-allowed',
-    pointerEvents: 'none'
-  }
+    pointerEvents: 'none',
+  },
 }
 
 const colorKeyForAppearanceOrIntent = (appearance: any, intent: any) => {
@@ -60,30 +58,27 @@ const getPrimaryButtonAppearance = (appearance: any, intent: any, textColor: any
     color: textColor || 'white',
     _hover: {
       backgroundColor: `colors.${color}600`,
-      borderColor: `colors.${color}600`
+      borderColor: `colors.${color}600`,
     },
     _disabled: {
       backgroundColor: `colors.${color}100`,
-      borderColor: `colors.${color}100`
+      borderColor: `colors.${color}100`,
     },
     _focus: {
       backgroundColor: `colors.${color}500`,
       boxShadow: `0 0 0 2px ${theme && theme.colors[`${color}100`]}`,
-      borderColor: `colors.${color}500`
+      borderColor: `colors.${color}500`,
     },
     _active: {
       backgroundColor: `colors.${color}700`,
-      borderColor: `colors.${color}700`
-    }
+      borderColor: `colors.${color}700`,
+    },
   }
 }
 
 const appearances = {
-  primary: (theme: any, {
-    appearance,
-    color,
-    intent
-  }: any) => getPrimaryButtonAppearance(appearance, intent, color, theme),
+  primary: (theme: any, { appearance, color, intent }: any) =>
+    getPrimaryButtonAppearance(appearance, intent, color, theme),
   default: {
     backgroundColor: 'white',
     // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
@@ -92,17 +87,17 @@ const appearances = {
 
     _disabled: {
       color: 'colors.gray500',
-      borderColor: 'colors.gray300'
+      borderColor: 'colors.gray300',
     },
 
     _hover: {
       border: (theme: any, props: any) => `1px solid ${theme.colors[borderColorForIntent(props.intent, true)]}`,
-      backgroundColor: 'colors.gray50'
+      backgroundColor: 'colors.gray50',
     },
 
     _active: {
-      backgroundColor: 'colors.gray100'
-    }
+      backgroundColor: 'colors.gray100',
+    },
   },
   minimal: {
     backgroundColor: 'transparent',
@@ -110,19 +105,19 @@ const appearances = {
 
     _disabled: {
       color: 'colors.gray500',
-      opacity: 0.6
+      opacity: 0.6,
     },
 
     _hover: {
-      backgroundColor: 'colors.gray100'
+      backgroundColor: 'colors.gray100',
     },
 
     _active: {
-      backgroundColor: 'colors.gray200'
-    }
+      backgroundColor: 'colors.gray200',
+    },
   },
   // @ts-expect-error ts-migrate(2554) FIXME: Expected 4 arguments, but got 1.
-  destructive: getPrimaryButtonAppearance('destructive')
+  destructive: getPrimaryButtonAppearance('destructive'),
 }
 
 const sizes = {
@@ -132,7 +127,7 @@ const sizes = {
     fontSize: 'fontSizes.1',
     lineHeight: '24px',
     paddingLeft: 12,
-    paddingRight: 12
+    paddingRight: 12,
   },
   medium: {
     height: 32,
@@ -140,7 +135,7 @@ const sizes = {
     fontSize: 'fontSizes.1',
     lineHeight: '32px',
     paddingLeft: 16,
-    paddingRight: 16
+    paddingRight: 16,
   },
   large: {
     height: 40,
@@ -148,12 +143,12 @@ const sizes = {
     fontSize: 'fontSizes.2',
     lineHeight: '40px',
     paddingLeft: 20,
-    paddingRight: 20
-  }
+    paddingRight: 20,
+  },
 }
 
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

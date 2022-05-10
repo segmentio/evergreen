@@ -11,15 +11,15 @@ const baseStyle = (theme, { intent = 'info' }) => ({
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: theme.intents[intent].border
-  }
+    backgroundColor: theme.intents[intent].border,
+  },
 })
 
 const appearances = {
   card: {
     boxShadow: 'shadows.1',
-    borderRadius: 'radii.1'
-  }
+    borderRadius: 'radii.1',
+  },
 }
 
 const sizes = {}
@@ -27,5 +27,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }

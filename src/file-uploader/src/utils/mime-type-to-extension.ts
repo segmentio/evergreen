@@ -6,7 +6,7 @@ import { MimeType } from '../../../constants'
  */
 const mimeTypeToExtension = (mimeType: string | MimeType): string | undefined => {
   const keys = Object.keys(MimeType) as Array<keyof typeof MimeType>
-  const key = keys.find(key => MimeType[key] === mimeType)
+  const key = keys.find((key) => MimeType[key] === mimeType)
 
   if (key == null) {
     return undefined

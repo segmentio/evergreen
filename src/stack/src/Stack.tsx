@@ -3,8 +3,8 @@ import { StackingOrder } from '../../constants'
 import StackingContext from './StackingContext'
 
 export interface StackProps {
-    children: (zIndex: number) => React.ReactNode;
-    value?: number;
+  children: (zIndex: number) => React.ReactNode
+  value?: number
 }
 
 const Stack: React.FC<StackProps> = memo(function Stack({ children, value = StackingOrder.STACKING_CONTEXT }) {

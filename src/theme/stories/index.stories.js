@@ -17,7 +17,7 @@ themeStory.add('Theming components', () => (
   <Box padding={40}>
     <Component
       initialState={{
-        themeValue: 'v5'
+        themeValue: 'v5',
       }}
     >
       {({ setState, state }) => {
@@ -26,7 +26,7 @@ themeStory.add('Theming components', () => (
             <ThemeProvider key={state.themeValue} value={state.themeValue === 'v5' ? { ...v5Theme } : { ...v6Theme }}>
               <Checkbox
                 label="Use V5?"
-                onChange={e => {
+                onChange={(e) => {
                   setState({ themeValue: e.target.checked ? 'v5' : 'v6' })
                 }}
                 checked={state.themeValue === 'v5'}

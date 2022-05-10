@@ -4,7 +4,7 @@ const colorMap = {
     hover: 'colors.gray75',
     focus: 'colors.gray75',
     active: 'intents.info.background',
-    current: 'intents.info.background'
+    current: 'intents.info.background',
   },
 
   danger: {
@@ -12,7 +12,7 @@ const colorMap = {
     hover: 'intents.danger.background',
     focus: 'colors.red100',
     active: 'colors.red100',
-    current: 'colors.red100'
+    current: 'colors.red100',
   },
 
   warning: {
@@ -20,7 +20,7 @@ const colorMap = {
     hover: 'intents.warning.background',
     focus: 'colors.orange100',
     active: 'colors.orange100',
-    current: 'colors.orange100'
+    current: 'colors.orange100',
   },
 
   success: {
@@ -28,8 +28,8 @@ const colorMap = {
     hover: 'intents.success.background',
     focus: 'colors.green100',
     active: 'colors.green100',
-    current: 'colors.green100'
-  }
+    current: 'colors.green100',
+  },
 }
 
 // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
@@ -43,12 +43,12 @@ const baseStyle = {
   _lastOfType: {
     borderBottom: 'none',
     borderBottomLeftRadius: 'radii.1',
-    borderBottomRightRadius: 'radii.1'
+    borderBottomRightRadius: 'radii.1',
   },
 
   _isSelectable: {
-    cursor: 'pointer'
-  }
+    cursor: 'pointer',
+  },
 }
 
 const appearances = {
@@ -56,21 +56,21 @@ const appearances = {
     backgroundColor: (_: any, props: any) => getBackgroundForIntentAndState(props.intent, 'base'),
 
     _hover: {
-      backgroundColor: (_: any, props: any) => getBackgroundForIntentAndState(props.intent, 'hover')
+      backgroundColor: (_: any, props: any) => getBackgroundForIntentAndState(props.intent, 'hover'),
     },
 
     _focus: {
-      backgroundColor: (_: any, props: any) => getBackgroundForIntentAndState(props.intent, 'focus')
+      backgroundColor: (_: any, props: any) => getBackgroundForIntentAndState(props.intent, 'focus'),
     },
 
     _active: {
-      backgroundColor: (_: any, props: any) => getBackgroundForIntentAndState(props.intent, 'active')
+      backgroundColor: (_: any, props: any) => getBackgroundForIntentAndState(props.intent, 'active'),
     },
 
     _current: {
-      backgroundColor: (_: any, props: any) => getBackgroundForIntentAndState(props.intent, 'current')
-    }
-  }
+      backgroundColor: (_: any, props: any) => getBackgroundForIntentAndState(props.intent, 'current'),
+    },
+  },
 }
 
 const sizes = {}
@@ -78,5 +78,5 @@ const sizes = {}
 export default {
   baseStyle,
   appearances,
-  sizes
+  sizes,
 }
