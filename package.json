@@ -43,7 +43,7 @@
     "deploy-docs": "cd docs && yarn add evergreen-ui@latest --exact && git add package.json yarn.lock && git commit -m \"Updated doc site evergreen version\" || yarn install && yarn deploy",
     "dev": "start-storybook -p 6006",
     "generate-icons": "yarn ts-node --esm --transpileOnly tools/generate-icons.ts",
-    "lint": "eslint \"src/**/*.(t|j)s?(x)\" --cache",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --cache",
     "postpublish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then yarn deploy-docs; else echo \"not on main branch, skipping docs deploy\"; fi;",
     "prepublishOnly": "rm -rf esm commonjs umd types && yarn build",
     "release": "np",

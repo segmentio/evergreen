@@ -39,7 +39,7 @@ jobs:
         run: yarn run build
 
       - name: Run prettier
-        run: yarn run prettier 'src/**/*.(t|j)s?(x)' --check
+        run: yarn run prettier 'src/**/*.{js,jsx,ts,jsx}' --check
 
       - name: Run test
         run: yarn run test
