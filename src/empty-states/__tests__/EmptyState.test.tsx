@@ -3,8 +3,6 @@ import { render } from '@testing-library/react'
 import { LockIcon } from '../../icons'
 import { defaultTheme } from '../../themes'
 import { Text } from '../../typography/index'
-import SmallExample from '../fixtures/SmallExample'
-import SmallMinimalExample from '../fixtures/SmallMinimalExample'
 import EmptyState from '../src/EmptyState'
 
 describe('Empty States', () => {
@@ -20,7 +18,7 @@ describe('Empty States', () => {
     ).not.toThrowError()
   })
 
-  it('should render an icon and a title', () => {
+  it('should render title', () => {
     const { getByText } = render(
       <EmptyState
         title="My Empty States"
@@ -31,7 +29,19 @@ describe('Empty States', () => {
     expect(getByText('My Empty States')).toBeVisible()
   })
 
-  it('should render decription when passed in', () => {
+  it('should render icon', () => {
+    const { container } = render(
+      <EmptyState
+        title="My Empty States"
+        icon={<LockIcon color={defaultTheme.colors.gray500} />}
+        iconBgColor={defaultTheme.colors.gray200}
+      />
+    )
+
+    expect(container.querySelector('svg')).toHaveAttribute('data-icon', 'lock')
+  })
+
+  it('should render description when passed in', () => {
     const { getByText } = render(
       <EmptyState
         title="My Empty States"
@@ -81,30 +91,5 @@ describe('Empty States', () => {
       />
     )
     expect(getByRole('link')).toBeVisible()
-  })
-
-  // Small Minimal Example with just icon and title
-  it('should render icon and title in minimal popup', () => {
-    const { getByTestId } = render(
-      <SmallMinimalExample
-        popoverProps={{ isShown: true, statelessProps: { 'data-testid': 'empty-state-container' } }}
-      />
-    )
-    const container = getByTestId('empty-state-container')
-    expect(container.querySelector('svg')).toBeVisible()
-    expect(container.querySelector('svg')).toHaveAttribute('data-icon', 'hand-up')
-  })
-
-  // Small Example
-  it('should render icon, title, description, CTA in popup', () => {
-    const { getAllByText, getByRole, getByTestId } = render(
-      <SmallExample popoverProps={{ isShown: true, statelessProps: { 'data-testid': 'empty-state-container' } }} />
-    )
-    const container = getByTestId('empty-state-container')
-    expect(getAllByText('You need permission to access these sources')).toHaveLength(1)
-    expect(getAllByText('Workspace Owner')).toHaveLength(1)
-    expect(getByRole('button', { name: 'Request Access' })).toBeVisible()
-    expect(container.querySelector('svg')).toBeVisible()
-    expect(container.querySelector('svg')).toHaveAttribute('data-icon', 'lock')
   })
 })

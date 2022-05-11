@@ -1,11 +1,11 @@
 import React from 'react'
-import { Button } from '../../buttons'
-import { HandUpIcon } from '../../icons'
-import { Pane } from '../../layers'
-import { Popover } from '../../popover'
-import { majorScale } from '../../scales'
-import { useTheme } from '../../theme'
-import EmptyState from '../src/EmptyState'
+import { Button } from '../../../buttons'
+import { HandUpIcon } from '../../../icons'
+import { Pane } from '../../../layers'
+import { Popover } from '../../../popover'
+import { majorScale } from '../../../scales'
+import { useTheme } from '../../../theme'
+import EmptyState from '../../src/EmptyState'
 
 const SmallMinimalExample = (props: any) => {
   const { colors } = useTheme()

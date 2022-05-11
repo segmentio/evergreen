@@ -1,10 +1,10 @@
 import React from 'react'
-import { SearchIcon } from '../../icons'
-import { Pane } from '../../layers'
-import { majorScale } from '../../scales'
-import { Table } from '../../table'
-import { useTheme } from '../../theme'
-import EmptyState from '../src/EmptyState'
+import { SearchIcon } from '../../../icons'
+import { Pane } from '../../../layers'
+import { majorScale } from '../../../scales'
+import { Table } from '../../../table'
+import { useTheme } from '../../../theme'
+import EmptyState from '../../src/EmptyState'
 
 const TableWithLinkExample = () => {
   const { colors } = useTheme()
