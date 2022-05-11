@@ -185,7 +185,6 @@ const TagInput = memo(
         {...rest}
         paddingRight={hasAutocomplete ? majorScale(3) : undefined}
       >
-        {values.map(maybeRenderTag)}
         <Box flexGrow="1" display="inline-block">
           <Autocomplete
             onChange={changedItem => {
@@ -228,7 +227,14 @@ const TagInput = memo(
               }
 
               return (
-                <>
+                <Box
+                  display="flex"
+                  ref={boxInputRef => {
+                    autocompleteGetRef(boxInputRef)
+                  }}
+                >
+                  {values.map(maybeRenderTag)}
+
                   <TextInput
                     appearance="none"
                     disabled={disabled}
@@ -240,7 +246,6 @@ const TagInput = memo(
                     value={inputValue}
                     id={inputId}
                     ref={textInputRef => {
-                      autocompleteGetRef(textInputRef)
                       if (inputRef instanceof Function) {
                         inputRef(textInputRef)
                       } else if (inputRef) {
@@ -283,7 +288,7 @@ const TagInput = memo(
                       <CaretDownIcon color="muted" />
                     </Button>
                   )}
-                </>
+                </Box>
               )
             }}
           </Autocomplete>
