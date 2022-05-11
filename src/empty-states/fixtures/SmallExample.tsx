@@ -22,7 +22,7 @@ const SmallExample = (props: any) => {
               orientation="vertical"
               icon={<LockIcon color={colors.blue300} />}
               iconBgColor={colors.blue100}
-              description="If you believe you should have accesss to this page, please check with your Workspace Owner or request access below."
+              description="If you believe you should have access to this page, please check with your Workspace Owner or request access below."
               primaryCta={<EmptyState.PrimaryButton appearance="primary">Request Access</EmptyState.PrimaryButton>}
             />
           </Pane>

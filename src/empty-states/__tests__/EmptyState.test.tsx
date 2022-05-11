@@ -102,11 +102,7 @@ describe('Empty States', () => {
     )
     const container = getByTestId('empty-state-container')
     expect(getAllByText('You need permission to access these sources')).toHaveLength(1)
-    expect(
-      getAllByText(
-        'If you believe you should have access to this page, please check with your Workspace Owner or request access below.'
-      )
-    ).toHaveLength(1)
+    expect(getAllByText('Workspace Owner')).toHaveLength(1)
     expect(getByRole('button', { name: 'Request Access' })).toBeVisible()
     expect(container.querySelector('svg')).toBeVisible()
     expect(container.querySelector('svg')).toHaveAttribute('data-icon', 'lock')

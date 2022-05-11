@@ -15,7 +15,7 @@ const BasicExample = () => {
         orientation="horizontal"
         icon={<LockIcon color={colors.orange500} />}
         iconBgColor={colors.orange100}
-        description="If you believe you should have accesss to this page, please check with your Workspace Owner or request access below."
+        description="If you believe you should have access to this page, please check with your Workspace Owner or request access below."
         primaryCta={<EmptyState.PrimaryButton>Request Access</EmptyState.PrimaryButton>}
       />
     </Pane>
