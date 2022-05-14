@@ -2,12 +2,11 @@ import React, { memo } from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import { Button, IconButton } from '../../buttons'
-import { useStyleConfig } from '../../hooks'
-import { CrossIcon } from '../../icons'
+import { DialogBody } from '../../dialog-body/index'
+import { DialogFooter } from '../../dialog-footer/index'
+import { DialogHeader } from '../../dialog-header/index'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
-import { Paragraph, Heading } from '../../typography'
 
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
@@ -47,7 +46,6 @@ const animationStyles = {
   }
 }
 
-const closeHandler = close => close()
 const emptyProps = {}
 
 const Dialog = memo(function Dialog({
@@ -56,6 +54,7 @@ const Dialog = memo(function Dialog({
   confirmLabel = 'Confirm',
   containerProps = emptyProps,
   contentContainerProps,
+  minHeightContent = 80,
   footer,
   hasCancel = true,
   hasClose = true,
@@ -66,10 +65,7 @@ const Dialog = memo(function Dialog({
   isConfirmDisabled = false,
   isConfirmLoading = false,
   isShown = false,
-  minHeightContent = 80,
-  onCancel = closeHandler,
   onCloseComplete,
-  onConfirm = closeHandler,
   onOpenComplete,
   overlayProps = emptyProps,
   preventBodyScrolling = false,
@@ -85,88 +81,6 @@ const Dialog = memo(function Dialog({
 
   const topOffsetWithUnit = Number.isInteger(topOffset) ? `${topOffset}px` : topOffset
   const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
-
-  const renderChildren = close => {
-    if (typeof children === 'function') {
-      return children({ close })
-    }
-
-    if (typeof children === 'string') {
-      return <Paragraph>{children}</Paragraph>
-    }
-
-    return children
-  }
-
-  const renderNode = (node, close) => {
-    if (typeof node === 'function') {
-      return node({ close })
-    }
-
-    return node
-  }
-
-  const themedHeaderProps = useStyleConfig('DialogHeader', emptyProps, emptyProps, emptyProps)
-  const themedBodyProps = useStyleConfig('DialogBody', emptyProps, emptyProps, emptyProps)
-  const themedFooterProps = useStyleConfig('DialogFooter', emptyProps, emptyProps, emptyProps)
-
-  const renderHeader = close => {
-    if (!header && !hasHeader) {
-      return undefined
-    }
-
-    return (
-      <Pane flexShrink={0} display="flex" alignItems="center" {...themedHeaderProps}>
-        {header ? (
-          renderNode(header, close)
-        ) : (
-          <>
-            <Heading is="h4" size={600} flex="1">
-              {title}
-            </Heading>
-            {hasClose && <IconButton appearance="minimal" icon={CrossIcon} onClick={() => onCancel(close)} />}
-          </>
-        )}
-      </Pane>
-    )
-  }
-
-  const renderFooter = close => {
-    if (!footer && !hasFooter) {
-      return undefined
-    }
-
-    return (
-      <Pane display="flex" justifyContent="flex-end" {...themedFooterProps}>
-        <Pane>
-          {footer ? (
-            renderNode(footer, close)
-          ) : (
-            <>
-              {/* Cancel should be first to make sure focus gets on it first. */}
-              {hasCancel && (
-                <Button tabIndex={0} onClick={() => onCancel(close)}>
-                  {cancelLabel}
-                </Button>
-              )}
-
-              <Button
-                tabIndex={0}
-                marginLeft={8}
-                appearance="primary"
-                intent={intent}
-                isLoading={isConfirmLoading}
-                disabled={isConfirmDisabled}
-                onClick={() => onConfirm(close)}
-              >
-                {confirmLabel}
-              </Button>
-            </>
-          )}
-        </Pane>
-      </Pane>
-    )
-  }
 
   const { className: containerClassName, ...remainingContainerProps } = containerProps
 
@@ -202,26 +116,37 @@ const Dialog = memo(function Dialog({
           data-state={state}
           {...remainingContainerProps}
         >
-          {renderHeader(close)}
+          <DialogHeader hasHeader={hasHeader} header={header} title={title} hasClose={hasClose} onCancel={close} />
 
-          <Pane
-            data-state={state}
-            display="flex"
-            overflow="auto"
-            flexDirection="column"
+          <DialogBody
+            state={state}
             minHeight={minHeightContent}
-            {...themedBodyProps}
-            {...contentContainerProps}
+            onCancel={close}
+            contentContainerProps={contentContainerProps}
           >
-            <Pane>{renderChildren(close)}</Pane>
-          </Pane>
-
-          {renderFooter(close)}
+            {children}
+          </DialogBody>
+          <DialogFooter
+            footer={footer}
+            isConfirmDisabled={isConfirmDisabled}
+            isConfirmLoading={isConfirmLoading}
+            hasCancel={hasCancel}
+            hasFooter={hasFooter}
+            intent={intent}
+            cancelLabel={cancelLabel}
+            confirmLabel={confirmLabel}
+            onCancel={close}
+            onConfirm={close}
+          />
         </Pane>
       )}
     </Overlay>
   )
 })
+
+Dialog.DialogHeader = DialogHeader
+Dialog.DialogBody = DialogBody
+Dialog.DialogFooter = DialogFooter
 
 Dialog.propTypes = {
   /**
@@ -318,14 +243,6 @@ Dialog.propTypes = {
    * When true, the confirm button is set to disabled.
    */
   isConfirmDisabled: PropTypes.bool,
-
-  /**
-   * Function that will be called when the cancel button is clicked.
-   * This closes the Dialog by default.
-   *
-   * `onCancel={(close) => close()}`
-   */
-  onCancel: PropTypes.func,
 
   /**
    * Label of the cancel button.
