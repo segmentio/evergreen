@@ -1,0 +1,1 @@
+export { default as DialogFooter } from './src/DialogFooter'
