@@ -1,10 +1,10 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import { IconButton } from '../../buttons'
+import { useStyleConfig } from '../../hooks'
+import { CrossIcon } from '../../icons'
 import { Pane } from '../../layers'
 import { Heading } from '../../typography'
-import { IconButton } from '../../buttons'
-import { CrossIcon } from '../../icons'
-import { useStyleConfig } from '../../hooks'
 
 const renderNode = (node, close) => {
   if (typeof node === 'function') {
@@ -17,7 +17,9 @@ const renderNode = (node, close) => {
 const emptyProps = {}
 
 const DialogHeader = memo(
-  forwardRef(function DialogHeader({ title, hasClose, header }) {
+  forwardRef(function DialogHeader(props, ref) {
+    const { hasClose, hasHeader, header, onCancel, title } = props
+
     const themedHeaderProps = useStyleConfig('DialogHeader', emptyProps, emptyProps, emptyProps)
 
     if (!header && !hasHeader) {
@@ -25,7 +27,7 @@ const DialogHeader = memo(
     }
 
     return (
-      <Pane flexShrink={0} display="flex" alignItems="center" {...themedHeaderProps}>
+      <Pane ref={ref} flexShrink={0} display="flex" alignItems="center" {...themedHeaderProps}>
         {header ? (
           renderNode(header, close)
         ) : (
@@ -43,10 +45,19 @@ const DialogHeader = memo(
 
 DialogHeader.propTypes = {
   /**
-   * Children can be a string, node or a function accepting `({ close })`.
-   * When passing a string, <Paragraph /> is used to wrap the string.
+   * When true, the header with the title and close icon button is shown.
    */
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+  hasHeader: PropTypes.bool,
+
+  /**
+   * You can override the default header with your own custom component.
+   *
+   * This is useful if you want to provide a custom header and footer, while
+   * also enabling your Dialog's content to scroll.
+   *
+   * Header can either be a React node or a function accepting `({ close })`.
+   */
+  header: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 
   /**
    * Title of the Dialog. Titles should use Title Case.
