@@ -7,9 +7,9 @@ import components, {
 } from './components'
 import { tokens as ogTokens } from './deprecated/foundational-styles'
 import tokens from './tokens'
-import { DefaultThemeColors } from './tokens/colors'
+import { DefaultThemeColor, DefaultThemeColors } from './tokens/colors'
 import { DefaultThemeFills } from './tokens/fills'
-import { DefaultThemeIntents } from './tokens/intents'
+import { DefaultThemeIntent, DefaultThemeIntents } from './tokens/intents'
 import {
   DefaultThemeFontFamilies,
   DefaultThemeFontSizes,
@@ -19,6 +19,11 @@ import {
 } from './tokens/typography'
 
 interface DefaultTheme extends Theme {
+  /**
+   * @deprecated This field is deprecated and will be removed in a future version. Reference
+   * the same tokens that are spread onto the root object instead.
+   */
+  tokens: unknown
   colors: DefaultThemeColors
   fills: DefaultThemeFills
   intents: DefaultThemeIntents
@@ -26,30 +31,28 @@ interface DefaultTheme extends Theme {
   fontWeights: DefaultThemeFontWeights
   letterSpacings: DefaultThemeLetterSpacings
   lineHeights: DefaultThemeLineHeights
+  components: typeof components
 }
 
-const defaultTheme = {
-  /**
-   * @deprecated This field is deprecated and will be removed in a future version. Reference
-   * the same tokens that are spread onto the root object instead.
-   */
+const defaultTheme: DefaultTheme = {
   tokens: ogTokens,
-  /* END DEPRECATED */
 
   // Once we are done using the above ^ we can switch to this:
   ...tokens,
 
   // Component-specific theming
   components,
-} as any as DefaultTheme
+}
 
 export type {
   Components,
   DefaultTheme,
   DefaultThemeAppearances,
   DefaultThemeColors,
+  DefaultThemeColor,
   DefaultThemeFills,
   DefaultThemeIntents,
+  DefaultThemeIntent,
   DefaultThemePseudoSelectors,
   DefaultThemeSizes,
   DefaultThemeFontWeights,

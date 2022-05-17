@@ -15,7 +15,7 @@ export interface AvatarOwnProps {
    * When provided, the first and last initial of the name will be used.
    * For example: Foo Bar -> FB
    */
-  name?: string
+  name?: string | null
   hashValue?: string
   color?: string
   shape?: 'round' | 'square'
@@ -48,7 +48,7 @@ const initialsStyleClass = css({
   lineHeight: 1,
 }).toString()
 
-const getAvatarInitialsFontSize = (size: any, sizeLimitOneCharacter: any) => {
+const getAvatarInitialsFontSize = (size: number, sizeLimitOneCharacter: number): number => {
   if (size <= sizeLimitOneCharacter) {
     return Math.floor(size / 2.2)
   }
@@ -96,7 +96,7 @@ const Avatar: React.FC<AvatarProps> = memo(
       <Box
         width={size}
         height={size}
-        title={name}
+        title={name ?? undefined}
         ref={ref}
         className={cx(className, themedClassName)}
         {...styleProps}

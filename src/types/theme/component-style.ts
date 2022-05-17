@@ -1,9 +1,10 @@
 import { Appearance } from './appearance'
 import { Size } from './size'
 import { StyleProps } from './style-props'
+import { ThemeCallback } from './theme-callback'
 
 export type ComponentStyle = {
-  baseStyle?: StyleProps
-  appearances?: { [appearance: Appearance]: StyleProps }
-  sizes?: { [size: Size]: StyleProps }
+  baseStyle?: StyleProps | ThemeCallback
+  appearances?: { [appearance: Appearance]: StyleProps | ThemeCallback }
+  sizes?: { [size: Size]: StyleProps | ThemeCallback }
 }

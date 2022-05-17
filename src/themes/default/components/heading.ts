@@ -1,3 +1,5 @@
+import { EnhancerProps } from 'ui-box'
+
 const baseStyle = {
   color: 'colors.dark',
   fontFamily: 'fontFamilies.display',
@@ -59,7 +61,7 @@ const sizes = {
   },
   100: {
     fontSize: 'fontSizes.0',
-    textTransform: 'uppercase',
+    textTransform: 'uppercase' as EnhancerProps['textTransform'],
     lineHeight: 'lineHeights.0',
     letterSpacing: 'letterSpacings.wide',
     fontFamily: 'fontFamilies.ui',

@@ -1,4 +1,5 @@
 import tinycolor from 'tinycolor2'
+import { EnhancerProps } from 'ui-box'
 import { get } from '../../../theme/src/theme-tools'
 
 const baseStyle = {
@@ -7,9 +8,9 @@ const baseStyle = {
   paddingX: 6,
   borderRadius: 'radii.1',
   fontSize: '11.5px',
-  textAlign: 'center',
-  textDecoration: 'none',
-  textTransform: 'uppercase',
+  textAlign: 'center' as EnhancerProps['textAlign'],
+  textDecoration: 'none' as EnhancerProps['textDecoration'],
+  textTransform: 'uppercase' as EnhancerProps['textTransform'],
 }
 
 const appearances = {

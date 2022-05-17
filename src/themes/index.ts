@@ -4,8 +4,10 @@ export type {
   DefaultTheme,
   DefaultThemeAppearances,
   DefaultThemeColors,
+  DefaultThemeColor,
   DefaultThemeFills,
   DefaultThemeIntents,
+  DefaultThemeIntent,
   DefaultThemePseudoSelectors,
   DefaultThemeSizes,
 } from './default'

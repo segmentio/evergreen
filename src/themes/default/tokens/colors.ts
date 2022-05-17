@@ -1,4 +1,5 @@
 export type DefaultThemeColors = typeof colors
+export type DefaultThemeColor = keyof DefaultThemeColors
 
 const colorScales = {
   // Grays / neutrals

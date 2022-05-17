@@ -5,21 +5,11 @@ import isEqual from 'react-fast-compare'
 import { EnhancerProps, splitBoxProps } from 'ui-box'
 import { useTheme, get, resolveThemeTokens } from '../theme'
 import { Components } from '../themes'
-import { Appearance } from '../types/theme/appearance'
-import { Color } from '../types/theme/color'
-import { ComponentStyle } from '../types/theme/component-style'
-import { IntentTypes } from '../types/theme/intent-types'
+import { StyleModifiers } from '../types'
+import { ComponentStyle } from '../types/'
 import { PseudoSelectorKey, PseudoSelectorMap } from '../types/theme/pseudo-selectors'
-import { Size } from '../types/theme/size'
 
 type GlamorAndBoxStyle = EnhancerProps & CSSProperties
-
-interface StyleModifiers {
-  appearance?: Appearance
-  color?: Color
-  intent?: IntentTypes
-  size?: Size
-}
 
 interface UseGlamorAndBoxOutput extends EnhancerProps {
   className: string

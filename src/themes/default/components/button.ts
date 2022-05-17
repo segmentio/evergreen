@@ -1,8 +1,18 @@
+import { StyleModifiers } from '../../../types'
+
 const baseStyle = {
   fontFamily: 'fontFamilies.ui',
   border: '1px solid transparent',
   borderRadius: 'radii.1',
-  color: (theme: any, { color }: any) => theme.colors[color] || color || 'colors.default',
+  // TODO: This should really be typed to `Theme`, but indexing into the colors type is not very type-safe
+  color: (theme: any, { color }: StyleModifiers): string => {
+    const fallbackColor = color || 'colors.default'
+    if (color != null) {
+      return theme.colors[color] || fallbackColor
+    }
+
+    return fallbackColor
+  },
   transition: 'box-shadow 80ms ease-in-out',
 
   _focus: {

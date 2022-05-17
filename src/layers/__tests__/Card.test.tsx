@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { defaultTheme } from '../..'
-import { ThemeProvider } from '../../theme'
+import { getThemeProvider } from '../../theme'
 import Card from '../src/Card'
 
 const testText = 'card-test-text'
@@ -33,6 +33,7 @@ describe('<Card />', () => {
         },
       },
     }
+    const ThemeProvider = getThemeProvider<typeof testTheme>()
 
     render(
       <ThemeProvider value={testTheme}>

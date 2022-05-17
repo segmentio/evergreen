@@ -1,11 +1,13 @@
-import React, { memo, forwardRef, useRef, useCallback } from 'react'
+import React, { useRef, useCallback } from 'react'
 import cx from 'classnames'
 import { PolymorphicBoxProps } from 'ui-box'
 import { useClickable, useLatest, useMergedRef, useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
 import { PaneProps } from '../../layers/src/Pane'
+import memoizeWithForwardedRef from '../../lib/memoize-with-forwarded-ref'
 import safeInvoke from '../../lib/safe-invoke'
 import { DefaultAppearance } from '../../types'
+import { ForwardedRef } from '../../types/forwarded-ref'
 import { IntentTypes } from '../../types/theme/intent-types'
 import { Theme } from '../../types/theme/theme'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
@@ -54,7 +56,7 @@ export interface TableRowOwnProps extends PaneProps {
   onDeselect?(): void
 }
 
-export type TableRowProps = PolymorphicBoxProps<'div', TableRowOwnProps>
+export type TableRowProps<T extends React.ElementType<any> = 'div'> = PolymorphicBoxProps<T, TableRowOwnProps>
 
 const noop = () => {}
 
@@ -73,100 +75,103 @@ const internalStyles = {
   display: 'flex',
 }
 
-const TableRow: React.FC<TableRowProps> = memo(
-  forwardRef(function TableRow(props, forwardedRef) {
-    const {
-      className,
-      children,
-      intent = 'none',
-      appearance = 'default',
-      tabIndex = -1,
+const _TableRow = <T extends React.ElementType<any> = 'label'>(
+  props: TableRowProps<T>,
+  forwardedRef: ForwardedRef<T>
+) => {
+  const {
+    className,
+    children,
+    intent = 'none',
+    appearance = 'default',
+    tabIndex = -1,
 
-      onClick,
-      onKeyDown = noop,
-      onSelect = noop,
-      onDeselect = noop,
+    onClick,
+    onKeyDown = noop,
+    onSelect = noop,
+    onDeselect = noop,
 
-      isHighlighted,
-      isSelectable,
-      isSelected,
-      ...rest
-    } = props
+    isHighlighted,
+    isSelectable,
+    isSelected,
+    ...rest
+  } = props
 
-    const mainRef = useRef()
-    const onRef = useMergedRef(mainRef, forwardedRef)
+  const mainRef = useRef()
+  const onRef = useMergedRef(mainRef, forwardedRef)
 
-    const onClickRef = useLatest(onClick)
-    const onKeyDownRef = useLatest(onKeyDown)
-    const onDeselectRef = useLatest(onDeselect)
-    const onSelectRef = useLatest(onSelect)
+  const onClickRef = useLatest(onClick)
+  const onKeyDownRef = useLatest(onKeyDown)
+  const onDeselectRef = useLatest(onDeselect)
+  const onSelectRef = useLatest(onSelect)
 
-    const handleClick = useCallback(
-      (event) => {
-        safeInvoke(onClickRef.current, event)
+  const handleClick = useCallback(
+    (event) => {
+      safeInvoke(onClickRef.current, event)
 
-        if (isSelectable) {
-          if (isSelected) {
-            safeInvoke(onDeselectRef.current)
-          } else {
-            safeInvoke(onSelectRef.current)
-          }
+      if (isSelectable) {
+        if (isSelected) {
+          safeInvoke(onDeselectRef.current)
+        } else {
+          safeInvoke(onSelectRef.current)
         }
-      },
-      // These "missing" deps are all refs
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      [isSelected, isSelectable]
-    )
+      }
+    },
+    // These "missing" deps are all refs
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isSelected, isSelectable]
+  )
 
-    const handleKeyDown = useCallback(
-      (event) => {
-        safeInvoke(onKeyDownRef.current, event)
+  const handleKeyDown = useCallback(
+    (event) => {
+      safeInvoke(onKeyDownRef.current, event)
 
-        if (isSelectable) {
-          if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-            try {
-              manageTableRowFocusInteraction(event.key, mainRef.current)
-            } catch (_) {}
-          } else if (event.key === 'Escape') {
-            // @ts-expect-error ts-migrate(2358) FIXME: The left-hand side of an 'instanceof' expression m... Remove this comment to see the full error message
-            if (mainRef.current && mainRef.current instanceof Node) mainRef.current.blur()
-          }
+      if (isSelectable) {
+        if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+          try {
+            manageTableRowFocusInteraction(event.key, mainRef.current)
+          } catch (_) {}
+        } else if (event.key === 'Escape') {
+          // @ts-expect-error ts-migrate(2358) FIXME: The left-hand side of an 'instanceof' expression m... Remove this comment to see the full error message
+          if (mainRef.current && mainRef.current instanceof Node) mainRef.current.blur()
         }
-      },
-      // These "missing" deps are all refs
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      [isSelectable]
-    )
+      }
+    },
+    // These "missing" deps are all refs
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isSelectable]
+  )
 
-    const clickable = useClickable({ onKeyDown: handleKeyDown, tabIndex })
+  const clickable = useClickable({ onKeyDown: handleKeyDown, tabIndex })
 
-    const {
-      className: themedClassName,
-      height: themeHeight,
-      ...boxProps
-    } = useStyleConfig('TableRow', { appearance, intent }, pseudoSelectors, internalStyles)
+  const {
+    className: themedClassName,
+    height: themeHeight,
+    ...boxProps
+  } = useStyleConfig('TableRow', { appearance, intent }, pseudoSelectors, internalStyles)
 
-    const height = rest.height || themeHeight
+  const height = rest.height || themeHeight
 
-    return (
-      <Pane
-        ref={onRef}
-        className={cx(themedClassName, className)}
-        aria-selected={isHighlighted}
-        aria-current={isSelected}
-        data-isselectable={isSelectable}
-        tabIndex={isSelectable ? clickable.tabIndex : undefined}
-        onClick={handleClick}
-        onKeyDown={clickable.onKeyDown}
-        borderBottom="muted"
-        height={height}
-        {...boxProps}
-        {...rest}
-      >
-        {children}
-      </Pane>
-    )
-  })
-)
+  return (
+    <Pane
+      ref={onRef}
+      className={cx(themedClassName, className)}
+      aria-selected={isHighlighted}
+      aria-current={isSelected}
+      data-isselectable={isSelectable}
+      tabIndex={isSelectable ? clickable.tabIndex : undefined}
+      onClick={handleClick}
+      onKeyDown={clickable.onKeyDown}
+      borderBottom="muted"
+      height={height}
+      {...boxProps}
+      {...rest}
+    >
+      {children}
+    </Pane>
+  )
+}
+
+const TableRow = memoizeWithForwardedRef(_TableRow)
 
 export default TableRow

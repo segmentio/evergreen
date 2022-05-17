@@ -1,6 +1,7 @@
 import colors from './colors'
 
 export type DefaultThemeIntents = typeof intents
+export type DefaultThemeIntent = keyof DefaultThemeIntents | 'none'
 
 const intents = {
   info: {

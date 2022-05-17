@@ -183,15 +183,27 @@ export { TagInput } from './tag-input'
 export type { TagInputProps, TagInputOwnProps } from './tag-input'
 export { TextInput, TextInputField } from './text-input'
 export type { TextInputProps, TextInputOwnProps, TextInputFieldProps, TextInputFieldOwnProps } from './text-input'
-export { ThemeContext, ThemeProvider, ThemeConsumer, getThemeContext, withTheme, useTheme, mergeTheme } from './theme'
+export {
+  ThemeContext,
+  ThemeProvider,
+  ThemeConsumer,
+  getThemeContext,
+  getThemeConsumer,
+  getThemeProvider,
+  withTheme,
+  useTheme,
+  mergeTheme,
+} from './theme'
 export { defaultTheme, classicTheme, deprecatedDefaultTheme } from './themes'
 export type {
   Components,
   DefaultTheme,
   DefaultThemeAppearances,
   DefaultThemeColors,
+  DefaultThemeColor,
   DefaultThemeFills,
   DefaultThemeIntents,
+  DefaultThemeIntent,
   DefaultThemePseudoSelectors,
   DefaultThemeSizes,
 } from './themes'

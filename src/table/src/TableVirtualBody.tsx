@@ -1,31 +1,67 @@
 import React, { memo, useState, useEffect } from 'react'
 import VirtualList from '@segment/react-tiny-virtual-list'
+import { ALIGNMENT } from '@segment/react-tiny-virtual-list/types/constants'
 import debounce from 'lodash.debounce'
 import { useForceUpdate } from '../../hooks'
-import { Pane } from '../../layers'
+import { Pane, PaneProps } from '../../layers'
 
-const TableVirtualBody = memo(function TableVirtualBody(props) {
+export interface TableVirtualBodyProps extends Omit<PaneProps, 'onScroll'> {
+  children?: React.ReactNode | React.ReactNode[]
+  /**
+   * Default height of each row.
+   * 48 is the default height of a TableRow.
+   */
+  defaultHeight?: number
+  /**
+   * When true, support `height="auto"` on children being rendered.
+   * This is somewhat of an experimental feature.
+   */
+  allowAutoHeight?: boolean
+  /**
+   * The overscanCount property passed to react-tiny-virtual-list.
+   */
+  overscanCount?: number
+  /**
+   * When passed, this is used as the `estimatedItemSize` in react-tiny-virtual-list.
+   * Only when `allowAutoHeight` and`useAverageAutoHeightEstimation` are false.
+   */
+  estimatedItemSize?: number
+  /**
+   * When allowAutoHeight is true and this prop is true, the estimated height
+   * will be computed based on the average height of auto height rows.
+   */
+  useAverageAutoHeightEstimation?: boolean
+  /**
+   * The scrollToIndex property passed to react-tiny-virtual-list
+   */
+  scrollToIndex?: number
+  /**
+   * The scrollOffset property passed to react-tiny-virtual-list
+   */
+  scrollOffset?: number
+  /**
+   * The scrollToAlignment property passed to react-tiny-virtual-list
+   */
+  scrollToAlignment?: 'start' | 'center' | 'end' | 'auto'
+
+  /**
+   * Handler for scroll events within the Table
+   */
+  onScroll?: (offset: number, event: UIEvent) => void
+}
+
+const TableVirtualBody: React.FC<TableVirtualBodyProps> = memo(function TableVirtualBody(props) {
   const {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'allowAutoHeight' does not exist on type ... Remove this comment to see the full error message
     allowAutoHeight = false,
     children: inputChildren,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'defaultHeight' does not exist on type '{... Remove this comment to see the full error message
     defaultHeight = 48,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'estimatedItemSize' does not exist on typ... Remove this comment to see the full error message
     estimatedItemSize,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type '{ childr... Remove this comment to see the full error message
     height: paneHeight,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onScroll' does not exist on type '{ chil... Remove this comment to see the full error message
     onScroll,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'overscanCount' does not exist on type '{... Remove this comment to see the full error message
     overscanCount = 5,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'scrollOffset' does not exist on type '{ ... Remove this comment to see the full error message
     scrollOffset,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'scrollToAlignment' does not exist on typ... Remove this comment to see the full error message
     scrollToAlignment,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'scrollToIndex' does not exist on type '{... Remove this comment to see the full error message
     scrollToIndex,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'useAverageAutoHeightEstimation' does not... Remove this comment to see the full error message
     useAverageAutoHeightEstimation = true,
     ...rest
   } = props
@@ -71,13 +107,10 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
   const onResize = debounce(updateOnResize, 200)
 
   useEffect(() => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type 'PropsWit... Remove this comment to see the full error message
     if (props.height !== calculatedHeight) {
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type 'PropsWit... Remove this comment to see the full error message
       setIsIntegerHeight(Number.isInteger(props.height))
     }
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'height' does not exist on type 'PropsWit... Remove this comment to see the full error message
-  }, [props.height])
+  }, [calculatedHeight, props.height])
 
   useEffect(() => {
     // @ts-expect-error ts-migrate(2358) FIXME: The left-hand side of an 'instanceof' expression m... Remove this comment to see the full error message
@@ -96,6 +129,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
     return () => {
       window.removeEventListener('resize', onResize)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   /**
@@ -202,17 +236,15 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
   return (
     <Pane data-evergreen-table-body ref={setPaneRef} height={paneHeight} flex="1" overflow="hidden" {...rest}>
       <VirtualList
-        height={isIntegerHeight ? paneHeight : calculatedHeight}
+        height={isIntegerHeight ? (paneHeight as number) : calculatedHeight}
         width="100%"
-        estimatedItemSize={
-          allowAutoHeight && useAverageAutoHeightEstimation ? averageAutoHeight : estimatedItemSize || null
-        }
+        estimatedItemSize={allowAutoHeight && useAverageAutoHeightEstimation ? averageAutoHeight : estimatedItemSize}
         itemSize={itemSize}
         overscanCount={overscanCount}
         itemCount={React.Children.count(children)}
         scrollToIndex={scrollToIndex}
         scrollOffset={scrollOffset}
-        scrollToAlignment={scrollToAlignment}
+        scrollToAlignment={scrollToAlignment as ALIGNMENT}
         onScroll={onScroll}
         renderItem={({ index, style }) => {
           const child = children[index]
