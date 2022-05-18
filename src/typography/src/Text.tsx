@@ -1,19 +1,21 @@
 import React, { forwardRef, memo } from 'react'
 import Box, { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
+import memoizeWithForwardedRef from '../../lib/memoize-with-forwarded-ref'
 import { useTheme } from '../../theme'
 import { Size, FontFamily } from '../../types'
 import { ForwardedRef } from '../../types/forwarded-ref'
 
-export type TextProps<T extends React.ElementType<any> = 'span'> = PolymorphicBoxProps<T, TextOwnProps>
 export type TextOwnProps = {
   size?: Size
   fontFamily?: FontFamily | string
 }
 
+export type TextProps<T extends React.ElementType<any> = 'span'> = PolymorphicBoxProps<T, TextOwnProps>
+
 const emptyObject = {}
 
-const Text = <T extends React.ElementType<any> = 'span'>(props: TextProps<T>, ref: ForwardedRef<T>) => {
+const _Text = <T extends React.ElementType<any> = 'span'>(props: TextProps<T>, ref: ForwardedRef<T>) => {
   const { className, color: colorProp = 'default', fontFamily = 'ui', size = 400, ...restProps } = props
 
   const theme = useTheme()
@@ -41,4 +43,6 @@ const Text = <T extends React.ElementType<any> = 'span'>(props: TextProps<T>, re
   )
 }
 
-export default memo(forwardRef(Text))
+const Text = memoizeWithForwardedRef(_Text)
+
+export default Text
