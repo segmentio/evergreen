@@ -82,7 +82,7 @@ const components = {
   TagInput,
   Text,
   TextDropdownButton,
-  Tooltip
+  Tooltip,
 }
 
 export default components
