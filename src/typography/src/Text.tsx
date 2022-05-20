@@ -1,4 +1,4 @@
-import React, { forwardRef, memo } from 'react'
+import React from 'react'
 import Box, { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 import memoizeWithForwardedRef from '../../lib/memoize-with-forwarded-ref'

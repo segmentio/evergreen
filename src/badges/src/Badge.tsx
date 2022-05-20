@@ -1,8 +1,10 @@
-import React, { memo, forwardRef } from 'react'
+import React from 'react'
 import cx from 'classnames'
 import { css } from 'glamor'
 import { PolymorphicBoxProps } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
+import memoizeWithForwardedRef from '../../lib/memoize-with-forwarded-ref'
+import { ForwardedRef } from '../../types/forwarded-ref'
 import { Strong } from '../../typography'
 import { StrongOwnProps } from '../../typography/src/Strong'
 
@@ -17,7 +19,7 @@ export interface BadgeOwnProps extends StrongOwnProps {
   isInteractive?: boolean
 }
 
-export type BadgeProps = PolymorphicBoxProps<'strong', BadgeOwnProps>
+export type BadgeProps<T extends React.ElementType<any> = 'strong'> = PolymorphicBoxProps<T, BadgeOwnProps>
 
 const pseudoSelectors = {}
 
@@ -34,9 +36,7 @@ const hoverClassName = css({
   cursor: 'pointer',
 })
 
-const Badge: React.FC<BadgeProps> = memo(
-  forwardRef(function Badge(props, ref) {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'appearance' does not exist on type 'With... Remove this comment to see the full error message
+const _Badge = <T extends React.ElementType<any> = 'button'>(props: BadgeProps<T>, ref: ForwardedRef<T>) => {
     const { appearance = 'subtle', className, color = 'neutral', isInteractive = false, ...restProps } = props
 
     const { className: themedClassName, ...styleProps } = useStyleConfig(
@@ -48,7 +48,6 @@ const Badge: React.FC<BadgeProps> = memo(
     )
 
     return (
-      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ alignContent?: number | false | AlignConte... Remove this comment to see the full error message
       <Strong
         ref={ref}
         size={300}
@@ -57,7 +56,9 @@ const Badge: React.FC<BadgeProps> = memo(
         {...restProps}
       />
     )
-  })
-)
+  }
+
+
+const Badge = memoizeWithForwardedRef(_Badge)
 
 export default Badge
