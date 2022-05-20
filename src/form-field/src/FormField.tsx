@@ -1,8 +1,9 @@
 import React, { memo, forwardRef } from 'react'
 import Box, { PolymorphicBoxProps } from 'ui-box'
+import { majorScale } from '../../scales'
 import FormFieldDescription from './FormFieldDescription'
 import FormFieldHint from './FormFieldHint'
-import FormFieldLabel from './FormFieldLabel'
+import FormFieldLabel, { FormFieldLabelProps } from './FormFieldLabel'
 import FormFieldValidationMessage from './FormFieldValidationMessage'
 
 export interface FormFieldOwnProps {
@@ -14,6 +15,10 @@ export interface FormFieldOwnProps {
    * Passed on the label as a htmlFor prop.
    */
   labelFor?: string
+  /**
+   * Additional props to pass to the label
+   */
+  labelProps?: FormFieldLabelProps
   /**
    * Wether or not show a asterix after the label.
    */
@@ -51,7 +56,6 @@ const FormField: React.FC<FormFieldProps> = memo(
       labelFor,
       children,
       isRequired,
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'labelProps' does not exist on type 'Prop... Remove this comment to see the full error message
       labelProps = { size: 400 },
       description,
       validationMessage,
@@ -60,7 +64,7 @@ const FormField: React.FC<FormFieldProps> = memo(
 
     return (
       <Box {...rest} ref={ref}>
-        <Box display="flex" flexDirection="column" marginBottom={8}>
+        <Box display="flex" flexDirection="column" marginBottom={majorScale(1)}>
           <FormFieldLabel htmlFor={labelFor} isAstrixShown={isRequired} {...labelProps}>
             {label}
           </FormFieldLabel>
@@ -68,7 +72,7 @@ const FormField: React.FC<FormFieldProps> = memo(
         </Box>
         {children}
         {typeof validationMessage === 'string' ? (
-          <FormFieldValidationMessage marginTop={8}>{validationMessage}</FormFieldValidationMessage>
+          <FormFieldValidationMessage marginTop={majorScale(1)}>{validationMessage}</FormFieldValidationMessage>
         ) : (
           validationMessage
         )}

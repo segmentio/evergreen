@@ -111,8 +111,11 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
 }
 
 export interface SelectMenuItem {
-  label?: string
-  value?: string | number
+  label: string
+  value: string | number
+  /**
+   * Image path to display next to the item in the list
+   */
   icon?: string
   disabled?: boolean
 }

@@ -6,7 +6,7 @@ import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Text } from '../../typography'
 import TableHeaderCell, { TableHeaderCellOwnProps } from './TableHeaderCell'
 
-export interface SearchTableHeaderCellOwnProps extends TableHeaderCellOwnProps {
+export interface SearchTableHeaderCellOwnProps extends Omit<TableHeaderCellOwnProps, 'onChange'> {
   /**
    * The value of the input.
    */

@@ -4,6 +4,7 @@ import components, {
   DefaultThemeAppearances,
   DefaultThemeSizes,
   DefaultThemePseudoSelectors,
+  DefaultThemeComponentStyles,
 } from './components'
 import { tokens as ogTokens } from './deprecated/foundational-styles'
 import tokens from './tokens'
@@ -31,7 +32,7 @@ interface DefaultTheme extends Theme {
   fontWeights: DefaultThemeFontWeights
   letterSpacings: DefaultThemeLetterSpacings
   lineHeights: DefaultThemeLineHeights
-  components: typeof components
+  components: DefaultThemeComponentStyles
 }
 
 const defaultTheme: DefaultTheme = {
@@ -48,17 +49,18 @@ export type {
   Components,
   DefaultTheme,
   DefaultThemeAppearances,
-  DefaultThemeColors,
   DefaultThemeColor,
+  DefaultThemeColors,
+  DefaultThemeComponentStyles,
   DefaultThemeFills,
-  DefaultThemeIntents,
-  DefaultThemeIntent,
-  DefaultThemePseudoSelectors,
-  DefaultThemeSizes,
-  DefaultThemeFontWeights,
-  DefaultThemeFontSizes,
   DefaultThemeFontFamilies,
+  DefaultThemeFontSizes,
+  DefaultThemeFontWeights,
+  DefaultThemeIntent,
+  DefaultThemeIntents,
   DefaultThemeLetterSpacings,
   DefaultThemeLineHeights,
+  DefaultThemePseudoSelectors,
+  DefaultThemeSizes,
 }
 export default defaultTheme

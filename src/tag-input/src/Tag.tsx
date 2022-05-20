@@ -16,7 +16,7 @@ const Tag: React.FC<TagProps> = memo(
   forwardRef(function Tag(props, ref) {
     const { children, isRemovable, onRemove, ...restProps } = props
 
-    const badgeStyles = {
+    const badgeStyles: BadgeProps = {
       alignItems: 'center',
       display: 'inline-flex',
       fontWeight: 400,
@@ -29,12 +29,10 @@ const Tag: React.FC<TagProps> = memo(
     }
 
     if (isRemovable) {
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'paddingRight' does not exist on type '{ ... Remove this comment to see the full error message
       badgeStyles.paddingRight = minorScale(1)
     }
 
     return (
-      // @ts-expect-error
       <Badge ref={ref} isInteractive {...badgeStyles} {...restProps}>
         {children}
         {isRemovable && <CrossIcon marginLeft={minorScale(1)} onClick={onRemove} size={minorScale(3)} />}

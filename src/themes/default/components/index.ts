@@ -38,6 +38,7 @@ import TextDropdownButton from './text-dropdown-button'
 import Tooltip from './tooltip'
 
 export type Components = keyof typeof components
+export type DefaultThemeComponentStyles = typeof components
 export type DefaultThemeAppearances<T extends Components> = keyof typeof components[T]['appearances']
 export type DefaultThemeSizes<T extends Components> = keyof typeof components[T]['sizes']
 export type DefaultThemePseudoSelectors<T extends Components> = PseudoSelectorKeys<
@@ -81,7 +82,7 @@ const components = {
   TagInput,
   Text,
   TextDropdownButton,
-  Tooltip,
+  Tooltip
 }
 
 export default components

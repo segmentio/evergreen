@@ -5,7 +5,7 @@ import { SelectMenu } from '../../select-menu'
 import { SelectMenuProps } from '../../select-menu/src/SelectMenu'
 import TextTableCell, { TextTableCellOwnProps } from './TextTableCell'
 
-export interface TableSelectMenuCellProps extends Omit<TextTableCellOwnProps, 'placeholder'> {
+export interface SelectMenuCellProps extends Omit<TextTableCellOwnProps, 'placeholder'> {
   /**
    * Makes the TableCell focusable.
    * Will add tabIndex={-1 || this.props.tabIndex}.
@@ -32,7 +32,7 @@ export interface TableSelectMenuCellProps extends Omit<TextTableCellOwnProps, 'p
 const MIN_SELECT_MENU_WIDTH = 240
 const emptyProps = {}
 
-const SelectMenuCell: React.FC<TableSelectMenuCellProps> = memo(function SelectMenuCell(props) {
+const SelectMenuCell: React.FC<SelectMenuCellProps> = memo(function SelectMenuCell(props) {
   const [targetWidth, setTargetWidth] = useState(MIN_SELECT_MENU_WIDTH)
   const [shouldClickToggle, setShouldClickToggle] = useState(false)
   const [isFocused, setIsFocused] = useState(false)

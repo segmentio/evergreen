@@ -2,9 +2,7 @@ import React, { memo, forwardRef } from 'react'
 import { Image } from '../../image'
 import Option, { OptionProps } from '../../select-menu/src/Option'
 
-export interface AutocompleteItemProps extends OptionProps {
-  children?: JSX.Element | null
-}
+export interface AutocompleteItemProps extends OptionProps {}
 
 const AutocompleteItem: React.FC<AutocompleteItemProps> = memo(
   forwardRef(function AutocompleteItem(props, ref) {

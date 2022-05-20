@@ -3,7 +3,7 @@ import cx from 'classnames'
 import { PolymorphicBoxProps } from 'ui-box'
 import { useLatest, useMergedRef, useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
-import { PaneOwnProps } from '../../layers/src/Pane'
+import { PaneProps } from '../../layers/src/Pane'
 import memoizeWithForwardedRef from '../../lib/memoize-with-forwarded-ref'
 import safeInvoke from '../../lib/safe-invoke'
 import { toaster } from '../../toaster'
@@ -11,7 +11,7 @@ import { DefaultAppearance } from '../../types'
 import { ForwardedRef } from '../../types/forwarded-ref'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
 
-export interface TableCellOwnProps extends PaneOwnProps {
+export interface TableCellOwnProps extends PaneProps {
   /**
    * Makes the TableCell focusable. Used by EditableCell.
    * Will add tabIndex={-1 || this.props.tabIndex}.
