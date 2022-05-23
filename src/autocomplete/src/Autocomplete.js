@@ -138,7 +138,7 @@ const Autocomplete = memo(
           }
         }
 
-        if (Downshift.stateChangeTypes.keyDownEscape) {
+        if (changes.type === Downshift.stateChangeTypes.keyDownEscape) {
           return {
             ...changes,
             ...state,
