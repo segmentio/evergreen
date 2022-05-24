@@ -138,15 +138,6 @@ const Autocomplete = memo(
           }
         }
 
-        if (changes.type === Downshift.stateChangeTypes.keyDownEscape) {
-          return {
-            ...changes,
-            ...state,
-            isOpen: false,
-            inputValue: state.selectedItem.label
-          }
-        }
-
         return changes
       },
       [props.items, props.allowOtherValues]
