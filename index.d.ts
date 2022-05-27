@@ -104,6 +104,7 @@ type FileUploaderPseudoSelectors =
 type InputPseudoSelectors = '_placeholder' | '_disabled' | '_focus' | '_invalid'
 type LinkPseudoSelectors = '_hover' | '_active' | '_focus'
 type MenuItemPseudoSelectors = '_isSelectable' | '_disabled' | '_hover' | '_focus' | '_active' | '_current' | '&:before'
+type OptionPseudoSelectors = '_active' | '_before' | '_disabled' | '_focus' | '_hover' | '_isSelectable' | '_selected'
 type RadioPseudoSelectors =
   | '_base'
   | '_disabled'
@@ -189,6 +190,8 @@ type ComponentPseudoSelectors<C extends Components = Components> = C extends 'Bu
   ? LinkPseudoSelectors
   : C extends 'MenuItem'
   ? MenuItemPseudoSelectors
+  : C extends 'Option'
+  ? OptionPseudoSelectors
   : C extends 'Radio'
   ? RadioPseudoSelectors
   : C extends 'Select'
