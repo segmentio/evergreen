@@ -4,6 +4,7 @@
 
 import React, { memo, forwardRef, useState } from 'react'
 import cx from 'classnames'
+import omit from 'lodash.omit'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Autocomplete } from '../../autocomplete'
@@ -232,6 +233,8 @@ const TagInput = memo(
                   ref={boxInputRef => {
                     autocompleteGetRef(boxInputRef)
                   }}
+                  flexWrap="wrap"
+                  width={inputProps.width}
                 >
                   {values.map(maybeRenderTag)}
 
@@ -239,9 +242,9 @@ const TagInput = memo(
                     appearance="none"
                     disabled={disabled}
                     height={height - 4}
-                    width="100%"
+                    flexGrow="1"
                     type="text"
-                    {...inputProps}
+                    {...omit(inputProps, ['width'])}
                     {...autocompleteRestProps}
                     value={inputValue}
                     id={inputId}
