@@ -116,9 +116,10 @@ const Autocomplete = memo(
     const [targetRef, setTargetRef] = useState()
 
     useEffect(() => {
-      const boundingWidth = targetRef?.getBoundingClientRect().width
-      setTargetWidth(boundingWidth)
-    }, [targetRef, setTargetWidth, props.items.length])
+      if (targetRef) {
+        setTargetWidth(targetRef.getBoundingClientRect().width)
+      }
+    }, [targetRef])
 
     const stateReducer = useCallback(
       (state, changes) => {
