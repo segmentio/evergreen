@@ -63,6 +63,7 @@ const TagInput = memo(
     const [inputValue, setInputValue] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const id = useId('TagInput')
+    const autocompleteId = `TagInputAutocomplete-${values.length}`
 
     const inputId = inputProps && inputProps.id ? inputProps.id : id
     const hasAutocomplete = Array.isArray(autocompleteItems) && autocompleteItems.length > 0
@@ -193,7 +194,7 @@ const TagInput = memo(
               setInputValue('')
             }}
             items={hasAutocomplete ? autocompleteItems : []}
-            id={inputId}
+            id={autocompleteId}
             selectedItem=""
             inputValue={inputValue}
           >
