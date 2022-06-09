@@ -51,11 +51,15 @@ const OptionsList = memo(function OptionsList(props) {
     filterPlaceholder = 'Filter...',
     filterIcon = SearchIcon,
     defaultSearchValue = '',
+    shouldScrollToSelectedOnRender = true,
     ...rest
   } = props
 
   const [searchValue, setSearchValue] = useState(defaultSearchValue)
   const [searchRef, setSearchRef] = useState(null)
+  const [scrollToIndex, setScrollToIndex] = useState(undefined);
+
+  const prevOptionsCountRef = useRef();
   const requestId = useRef()
   const theme = useTheme()
   const { tokens } = theme
@@ -90,6 +94,19 @@ const OptionsList = memo(function OptionsList(props) {
   const getCurrentIndex = useCallback(() => {
     return options.findIndex(option => option.value === selected[selected.length - 1])
   }, [selected, options])
+
+  useEffect(() => {
+    const currentIndex = getCurrentIndex();
+    const index = currentIndex === -1 ? 0 : currentIndex;
+    setScrollToIndex(index);
+  }, []);
+
+  useEffect(() => {
+    if (prevOptionsCountRef.current && !shouldScrollToSelectedOnRender) {
+      setScrollToIndex(undefined);
+    }
+    prevOptionsCountRef.current = originalOptions.length;
+  }, [originalOptions]);
 
   const handleArrowUp = useCallback(() => {
     let nextIndex = getCurrentIndex() - 1
@@ -195,8 +212,6 @@ const OptionsList = memo(function OptionsList(props) {
   }, [hasFilter, searchRef, handleKeyDown])
 
   const listHeight = height - (hasFilter ? 32 : 0)
-  const currentIndex = getCurrentIndex()
-  const scrollToIndex = currentIndex === -1 ? 0 : currentIndex
 
   return (
     <Pane height={height} width={width} display="flex" flexDirection="column" {...rest}>
@@ -278,7 +293,8 @@ OptionsList.propTypes = {
   filterPlaceholder: PropTypes.string,
   filterIcon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
   optionsFilter: PropTypes.func,
-  defaultSearchValue: PropTypes.string
+  defaultSearchValue: PropTypes.string,
+  shouldScrollToSelectedOnRender: PropTypes.bool
 }
 
 export default OptionsList

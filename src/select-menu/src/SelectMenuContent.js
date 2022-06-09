@@ -49,7 +49,8 @@ const SelectMenuContent = memo(function SelectMenuContent(props) {
     detailView,
     emptyView,
     isMultiSelect,
-    closeOnSelect
+    closeOnSelect,
+    shouldScrollToSelectedOnRender,
   } = props
 
   const headerHeight = 40
@@ -80,6 +81,7 @@ const SelectMenuContent = memo(function SelectMenuContent(props) {
             isMultiSelect={isMultiSelect}
             close={close}
             closeOnSelect={closeOnSelect}
+            shouldScrollToSelectedOnRender={shouldScrollToSelectedOnRender}
             {...listProps}
           />
         )}
@@ -101,6 +103,7 @@ SelectMenuContent.propTypes = {
   filterPlaceholder: PropTypes.string,
   filterIcon: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
   listProps: PropTypes.shape(OptionsList.propTypes),
+  shouldScrollToSelectedOnRender: PropTypes.bool,
 
   /**
    * When true, multi select is accounted for.
