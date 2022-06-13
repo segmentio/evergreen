@@ -68,13 +68,16 @@ const TagInput = memo(
     const inputId = inputProps && inputProps.id ? inputProps.id : id
     const hasAutocomplete = Array.isArray(autocompleteItems) && autocompleteItems.length > 0
 
-    const getValues = (inputValue = '') =>
-      separator
+    const getValues = (inputValue = '') => {
+      inputValue = inputValue || ''
+
+      return separator
         ? inputValue
             .split(separator)
             .map(v => v.trim())
             .filter(v => v.length > 0)
         : [inputValue]
+    }
 
     const addTags = (value = '') => {
       const newValues = getValues(value)
