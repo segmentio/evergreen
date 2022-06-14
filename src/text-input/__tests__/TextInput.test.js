@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import { render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { TextInput } from '../'
+import { TextInput, TextInputField } from '../'
 import { mockRef } from '../../test/utils'
 
 function makeTextInputFixture(props = {}) {
   return <TextInput data-testid="input" {...props} />
+}
+
+function makeTextInputFieldFixture(props = {}) {
+  return <TextInputField data-testid="input" label="Name" {...props} />
 }
 
 describe('TextInput', () => {
@@ -63,5 +67,44 @@ describe('TextInput', () => {
 
     expect(() => getByDisplayValue('Testing')).toThrowError()
     expect(getByDisplayValue('')).toEqual(input)
+  })
+})
+
+describe('TextInputField', () => {
+  it('Should render without crashing', () => {
+    expect(() => render(makeTextInputFieldFixture())).not.toThrow()
+  })
+
+  it('Should have expected accessible name when `label` prop', () => {
+    const { getByLabelText, getByTestId } = render(makeTextInputFieldFixture())
+    expect(getByLabelText('Name')).toBeInTheDocument()
+    expect(getByTestId('input')).toHaveAccessibleName('Name')
+  })
+
+  it('Should add hint text to accessible description when `hint` prop provided', () => {
+    const { getByTestId, getByText } = render(makeTextInputFieldFixture({ hint: 'Enter a value in the input' }))
+    expect(getByText('Enter a value in the input')).toBeInTheDocument()
+    expect(getByTestId('input')).toHaveAccessibleDescription('Enter a value in the input')
+  })
+
+  it('Should render an astrix when `required` is passed in', () => {
+    const { getByTitle } = render(makeTextInputFieldFixture({ required: true }))
+    expect(getByTitle('This field is required.')).toBeInTheDocument()
+  })
+
+  it('Should render a `validationMessage` when passed in', () => {
+    const { getByTestId, getByText } = render(makeTextInputFieldFixture({ validationMessage: 'Please enter a value.' }))
+    expect(getByText('Please enter a value.')).toBeInTheDocument()
+    expect(getByTestId('input')).toHaveAccessibleDescription('Please enter a value.')
+  })
+
+  it('Should correctly compose an accessible description from multiple hints', () => {
+    const { getByTestId, getByText } = render(
+      makeTextInputFieldFixture({ description: 'A description.', hint: 'Am hint.', validationMessage: 'Try again.' })
+    )
+    expect(getByText('A description.')).toBeInTheDocument()
+    expect(getByText('Am hint.')).toBeInTheDocument()
+    expect(getByText('Try again.')).toBeInTheDocument()
+    expect(getByTestId('input')).toHaveAccessibleDescription('A description. Try again. Am hint.')
   })
 })
