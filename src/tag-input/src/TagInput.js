@@ -4,6 +4,7 @@
 
 import React, { memo, forwardRef, useState } from 'react'
 import cx from 'classnames'
+import omit from 'lodash.omit'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Autocomplete } from '../../autocomplete'
@@ -62,6 +63,7 @@ const TagInput = memo(
     const [inputValue, setInputValue] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const id = useId('TagInput')
+    const autocompleteId = `TagInputAutocomplete-${values.length}`
 
     const inputId = inputProps && inputProps.id ? inputProps.id : id
     const hasAutocomplete = Array.isArray(autocompleteItems) && autocompleteItems.length > 0
@@ -188,7 +190,6 @@ const TagInput = memo(
         {...rest}
         paddingRight={hasAutocomplete ? majorScale(3) : undefined}
       >
-        {values.map(maybeRenderTag)}
         <Box flexGrow="1" display="inline-block">
           <Autocomplete
             onChange={changedItem => {
@@ -196,7 +197,7 @@ const TagInput = memo(
               setInputValue('')
             }}
             items={hasAutocomplete ? autocompleteItems : []}
-            id={inputId}
+            id={autocompleteId}
             selectedItem=""
             inputValue={inputValue}
           >
@@ -231,19 +232,27 @@ const TagInput = memo(
               }
 
               return (
-                <>
+                <Box
+                  display="flex"
+                  ref={boxInputRef => {
+                    autocompleteGetRef(boxInputRef)
+                  }}
+                  flexWrap="wrap"
+                  width={inputProps.width}
+                >
+                  {values.map(maybeRenderTag)}
+
                   <TextInput
                     appearance="none"
                     disabled={disabled}
                     height={height - 4}
-                    width="100%"
+                    flexGrow="1"
                     type="text"
-                    {...inputProps}
+                    {...omit(inputProps, ['width'])}
                     {...autocompleteRestProps}
                     value={inputValue}
                     id={inputId}
                     ref={textInputRef => {
-                      autocompleteGetRef(textInputRef)
                       if (inputRef instanceof Function) {
                         inputRef(textInputRef)
                       } else if (inputRef) {
@@ -286,7 +295,7 @@ const TagInput = memo(
                       <CaretDownIcon color="muted" />
                     </Button>
                   )}
-                </>
+                </Box>
               )
             }}
           </Autocomplete>
