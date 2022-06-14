@@ -19,7 +19,7 @@ function BasicTagInputExample() {
     <TagInput
       inputProps={{ placeholder: 'Add trees...' }}
       values={values}
-      onChange={values => {
+      onChange={(values) => {
         setValues(values)
       }}
     />
@@ -40,7 +40,7 @@ function SubmitKeyTagInputExample() {
       inputProps={{ placeholder: 'Add trees...' }}
       values={values}
       tagSubmitKey="space"
-      onChange={values => {
+      onChange={(values) => {
         setValues(values)
       }}
     />
@@ -60,7 +60,7 @@ function FullWidthTagInputExample() {
       inputProps={{ placeholder: 'Add trees...' }}
       values={values}
       width="100%"
-      onChange={values => {
+      onChange={(values) => {
         setValues(values)
       }}
     />
@@ -80,7 +80,7 @@ function DisabledTagInputExample() {
       inputProps={{ placeholder: 'Add trees...' }}
       values={values}
       disabled
-      onChange={values => {
+      onChange={(values) => {
         setValues(values)
       }}
     />
@@ -102,9 +102,9 @@ function TagPropTagInputExample() {
       values={values}
       disabled
       tagProps={{
-        color: 'red'
+        color: 'red',
       }}
-      onChange={values => {
+      onChange={(values) => {
         setValues(values)
       }}
     />
@@ -122,15 +122,38 @@ function TagPropCallbackTagInputExample() {
   const [values, setValues] = React.useState(['Kauri', 'Willow'])
   return (
     <TagInput
-      tagProps={value => {
+      tagProps={(value) => {
         if (!value.includes('@')) return { color: 'red' }
         return {}
       }}
       inputProps={{ placeholder: 'Add email...' }}
       values={values}
-      onChange={values => {
+      onChange={(values) => {
         setValues(values)
       }}
+    />
+  )
+}
+```
+
+## Autocomplete
+
+Provide an `autocompleteItems` prop to enable autocomplete functionality. Note that this array of items needs to be
+manually controlled. `TagInput` will not remove items from this list after they are selected.
+
+```jsx
+function AutoCompleteTagInputExample() {
+  const [values, setValues] = React.useState(['First', 'Second'])
+
+  const allValues = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth']
+  const autocompleteItems = React.useMemo(() => allValues.filter((i) => !values.includes(i)), [allValues, values])
+
+  return (
+    <TagInput
+      inputProps={{ placeholder: 'Enter something...' }}
+      values={values}
+      onChange={setValues}
+      autocompleteItems={autocompleteItems}
     />
   )
 }
@@ -152,12 +175,12 @@ function OnAddOnRemoveTagInputExample() {
     <TagInput
       inputProps={{ placeholder: 'Add email...' }}
       values={values}
-      onAdd={value => {
-        if (!value.includes('@')) {
+      onAdd={(newValues) => {
+        if (newValues.some((val) => !val.includes('@'))) {
           toaster.danger('Oops, you tried entering a invalid email. Try again.')
           return
         }
-        setValues([...values, value])
+        setValues([...values, ...newValues])
       }}
       onRemove={(_value, index) => {
         setValues(values.filter((_, i) => i !== index))

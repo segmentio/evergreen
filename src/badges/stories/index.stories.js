@@ -1,6 +1,6 @@
 import React from 'react'
+import { faker } from '@faker-js/faker'
 import { storiesOf } from '@storybook/react'
-import faker from 'faker'
 import Box from 'ui-box'
 import { Badge, Pill } from '..'
 import { ThemeConsumer } from '../../theme'
@@ -18,7 +18,7 @@ const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
 faker.seed(7816)
 const randomNumbers = range(8).map(() => {
-  return faker.random.number({
+  return faker.datatype.number({
     min: 1,
     max: 100
   })

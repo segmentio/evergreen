@@ -1,7 +1,7 @@
 import React from 'react'
+import { faker } from '@faker-js/faker'
 import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
-import faker from 'faker'
 import Box from 'ui-box'
 import { Table } from '..'
 import { Pane } from '../../layers'
@@ -14,7 +14,7 @@ const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
 faker.seed(500)
 const dynamicHeights = range(500).map(() => {
-  return faker.random.number({
+  return faker.datatype.number({
     min: 32,
     max: 100
   })

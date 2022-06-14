@@ -74,7 +74,6 @@ const Select = memo(
 
     return (
       <Box
-        ref={ref}
         display="inline-flex"
         flex={1}
         position="relative"
@@ -85,6 +84,7 @@ const Select = memo(
       >
         <Box
           is="select"
+          ref={ref}
           className={themedClassName}
           id={id}
           name={name}

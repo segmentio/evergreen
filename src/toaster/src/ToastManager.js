@@ -71,7 +71,7 @@ const ToastManager = memo(function ToastManager(props) {
       id,
       title,
       description: settings.description,
-      hasCloseButton: settings.hasCloseButton || true,
+      hasCloseButton: settings.hasCloseButton ?? true,
       duration: settings.duration || 5,
       close: () => safeCloseToast(id),
       intent: settings.intent

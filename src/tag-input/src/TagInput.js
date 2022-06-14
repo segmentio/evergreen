@@ -4,11 +4,15 @@
 
 import React, { memo, forwardRef, useState } from 'react'
 import cx from 'classnames'
+import omit from 'lodash.omit'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import { Autocomplete } from '../../autocomplete'
+import { Button } from '../../buttons'
 import { useId, useStyleConfig } from '../../hooks'
+import { CaretDownIcon } from '../../icons'
 import safeInvoke from '../../lib/safe-invoke'
-import { majorScale } from '../../scales'
+import { majorScale, minorScale } from '../../scales'
 import { TextInput } from '../../text-input'
 import Tag from './Tag'
 
@@ -23,12 +27,14 @@ const emptyArray = []
 const internalStyles = {
   alignItems: 'center',
   display: 'inline-flex',
-  flexWrap: 'wrap'
+  flexWrap: 'wrap',
+  position: 'relative'
 }
 
 const pseudoSelectors = {
   _focused: '&[aria-activedescendant]',
-  _disabled: '&[aria-disabled="true"]'
+  _disabled: '&[aria-disabled="true"]',
+  _invalid: '&[aria-invalid="true"]:not(:focus)'
 }
 
 const TagInput = memo(
@@ -50,19 +56,28 @@ const TagInput = memo(
       className,
       inputProps = emptyProps,
       inputRef,
+      isInvalid,
+      autocompleteItems,
       ...rest
     } = props
     const [inputValue, setInputValue] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const id = useId('TagInput')
+    const autocompleteId = `TagInputAutocomplete-${values.length}`
 
-    const getValues = (inputValue = '') =>
-      separator
+    const inputId = inputProps && inputProps.id ? inputProps.id : id
+    const hasAutocomplete = Array.isArray(autocompleteItems) && autocompleteItems.length > 0
+
+    const getValues = (inputValue = '') => {
+      inputValue = inputValue || ''
+
+      return separator
         ? inputValue
             .split(separator)
             .map(v => v.trim())
             .filter(v => v.length > 0)
         : [inputValue]
+    }
 
     const addTags = (value = '') => {
       const newValues = getValues(value)
@@ -96,6 +111,7 @@ const TagInput = memo(
         if (!container.contains(document.activeElement)) {
           if (addOnBlur && inputValue) {
             addTags(inputValue)
+            setInputValue('')
           }
 
           setIsFocused(false)
@@ -145,6 +161,7 @@ const TagInput = memo(
           key={`${tag}:${index}`}
           data-tag-index={index}
           marginX={majorScale(1)}
+          marginY={minorScale(1) * 1.5}
           onRemove={disabled ? null : handleRemoveTag}
           isRemovable={!disabled}
           {...propsForElement}
@@ -164,29 +181,125 @@ const TagInput = memo(
     return (
       <Box
         aria-disabled={disabled || undefined}
-        aria-activedescendant={isFocused ? id : undefined}
+        aria-activedescendant={isFocused ? inputId : undefined}
+        aria-invalid={isInvalid}
         className={cx(themedContainerClassName, className)}
         ref={ref}
         onBlur={handleBlur}
         {...boxProps}
         {...rest}
+        paddingRight={hasAutocomplete ? majorScale(3) : undefined}
       >
-        {values.map(maybeRenderTag)}
-        <TextInput
-          appearance="none"
-          id={id}
-          disabled={disabled}
-          flexGrow="1"
-          height={height - 4}
-          width="auto"
-          type="text"
-          value={inputValue}
-          {...inputProps}
-          ref={inputRef}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-          onKeyDown={handleKeyDown}
-        />
+        <Box flexGrow="1" display="inline-block">
+          <Autocomplete
+            onChange={changedItem => {
+              addTags(changedItem)
+              setInputValue('')
+            }}
+            items={hasAutocomplete ? autocompleteItems : []}
+            id={autocompleteId}
+            selectedItem=""
+            inputValue={inputValue}
+          >
+            {autocompleteProps => {
+              const {
+                closeMenu,
+                getInputProps,
+                getRef: autocompleteGetRef,
+                getToggleButtonProps,
+                highlightedIndex
+              } = autocompleteProps
+
+              const {
+                onBlur: autocompleteOnBlur,
+                onChange: autocompleteOnChange,
+                onKeyDown: autocompleteKeyDown,
+                ...autocompleteRestProps
+              } = getInputProps()
+
+              const handleAutocompleteKeydown = e => {
+                autocompleteKeyDown(e)
+                if (e.key === 'Backspace' || !(highlightedIndex > -1)) {
+                  handleKeyDown(e)
+                  if (e.key === GET_KEY_FOR_TAG_DELIMITER[tagSubmitKey]) {
+                    closeMenu()
+                    setInputValue('')
+                  }
+                }
+                if (e.key === 'Backspace' && e.target.selectionEnd === 0) {
+                  closeMenu()
+                }
+              }
+
+              return (
+                <Box
+                  display="flex"
+                  ref={boxInputRef => {
+                    autocompleteGetRef(boxInputRef)
+                  }}
+                  flexWrap="wrap"
+                  width={inputProps.width}
+                >
+                  {values.map(maybeRenderTag)}
+
+                  <TextInput
+                    appearance="none"
+                    disabled={disabled}
+                    height={height - 4}
+                    flexGrow="1"
+                    type="text"
+                    {...omit(inputProps, ['width'])}
+                    {...autocompleteRestProps}
+                    value={inputValue}
+                    id={inputId}
+                    ref={textInputRef => {
+                      if (inputRef instanceof Function) {
+                        inputRef(textInputRef)
+                      } else if (inputRef) {
+                        inputRef.current = textInputRef
+                      }
+                    }}
+                    onBlur={e => {
+                      autocompleteOnBlur(e)
+                      safeInvoke(inputProps.onBlur, e)
+                    }}
+                    onFocus={e => {
+                      handleInputFocus(e)
+                      safeInvoke(inputProps.onFocus, e)
+                    }}
+                    onChange={e => {
+                      handleInputChange(e)
+                      autocompleteOnChange(e)
+                    }}
+                    onKeyDown={handleAutocompleteKeydown}
+                  />
+                  {hasAutocomplete && (
+                    <Button
+                      appearance="none"
+                      background="gray100"
+                      position="absolute"
+                      top={minorScale(1) * 1.5}
+                      right={minorScale(1)}
+                      height={minorScale(5)}
+                      padding={0}
+                      width={minorScale(5)}
+                      minWidth={minorScale(5)}
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      borderRadius={minorScale(1)}
+                      cursor={disabled ? undefined : 'pointer'}
+                      data-testid="TagInput-autocomplete-toggle"
+                      {...getToggleButtonProps()}
+                    >
+                      <CaretDownIcon color="muted" />
+                    </Button>
+                  )}
+                </Box>
+              )
+            }}
+          </Autocomplete>
+        </Box>
       </Box>
     )
   })
@@ -195,10 +308,14 @@ const TagInput = memo(
 TagInput.propTypes = {
   /** Whether or not the inputValue should be added to the tags when the input blurs. */
   addOnBlur: PropTypes.bool,
+  /** Autocomplete options to show when typing in a new value */
+  autocompleteItems: PropTypes.array,
   /** The class name to apply to the container component. */
   className: PropTypes.string,
   /** Whether or not the input should be disabled. */
   disabled: PropTypes.bool,
+  /** Whether or not the input is invalid. */
+  isInvalid: PropTypes.bool,
   /** The vertical size of the input */
   height: PropTypes.number,
   /** Props to pass to the input component. Note that `ref` and `key` are not supported. See `inputRef`. */

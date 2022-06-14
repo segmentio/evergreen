@@ -177,7 +177,7 @@ Toast.propTypes = {
   /**
    * The type of the alert.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+  intent: PropTypes.string,
 
   /**
    * The title of the alert.

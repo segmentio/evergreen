@@ -1,5 +1,5 @@
-let previousOverflow
-let previousPaddingRight
+const previousOverflow = []
+const previousPaddingRight = []
 
 /**
  * Toggle the body scroll / overflow and additional styling
@@ -13,10 +13,10 @@ export default function preventBodyScroll(preventScroll) {
 
   /** Apply or remove overflow style */
   if (preventScroll) {
-    previousOverflow = document.body.style.overflow
+    previousOverflow.push(document.body.style.overflow)
     document.body.style.overflow = 'hidden'
   } else {
-    document.body.style.overflow = previousOverflow || ''
+    document.body.style.overflow = previousOverflow.pop() || ''
   }
 
   /** Get the _new width_ of the body (this will tell us the scrollbar width) */
@@ -25,9 +25,9 @@ export default function preventBodyScroll(preventScroll) {
 
   /** If there's a diff due to scrollbars, then account for it with padding */
   if (preventScroll) {
-    previousPaddingRight = document.body.style.paddingRight
+    previousPaddingRight.push(document.body.style.paddingRight)
     document.body.style.paddingRight = Math.max(0, scrollBarWidth || 0) + 'px'
   } else {
-    document.body.style.paddingRight = previousPaddingRight || ''
+    document.body.style.paddingRight = previousPaddingRight.pop() || ''
   }
 }

@@ -5,8 +5,7 @@ on:
     branches:
       - master
   push:
-    branches:
-      - master
+    branches: ['*']
 
 jobs:
   test:
@@ -14,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node_version: [12]
+        node_version: [14.18]
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1

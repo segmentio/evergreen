@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Select, SelectField } from '../'
+import { mockRef } from '../../test/utils'
 
 function makeSelectFixture(props = {}) {
   return (
@@ -45,6 +46,14 @@ describe('Select', () => {
 describe('SelectField', () => {
   it('Should render without crashing', () => {
     expect(() => render(makeSelectFieldFixture())).not.toThrow()
+  })
+
+  it('should forward ref to underlying <select />', () => {
+    const ref = mockRef()
+
+    render(makeSelectFieldFixture({ ref }))
+
+    expect(ref.current).toBeInstanceOf(HTMLSelectElement)
   })
 
   it('Should have expected accessible name when `label` prop passed in', () => {

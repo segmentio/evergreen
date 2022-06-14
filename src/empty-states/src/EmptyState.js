@@ -176,7 +176,7 @@ EmptyState.propTypes = {
   /** The direction in which to align the empty state elements */
   orientation: PropTypes.oneOf(['vertical', 'horizontal']),
   /** The description of the empty state */
-  description: PropTypes.string,
+  description: PropTypes.node,
   /** The background used for the entire empty state container */
   background: PropTypes.oneOf(['light', 'dark']),
   /** The primary CTA of the empty state */

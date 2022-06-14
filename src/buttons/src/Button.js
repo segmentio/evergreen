@@ -137,9 +137,14 @@ Button.propTypes = {
   ...layout.propTypes,
 
   /**
+   * The intent of the button.
+   */
+  intent: PropTypes.string,
+
+  /**
    * The appearance of the button.
    */
-  appearance: PropTypes.oneOf(['default', 'minimal', 'primary']),
+  appearance: PropTypes.string,
 
   /**
    * The size of the button

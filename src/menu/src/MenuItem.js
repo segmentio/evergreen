@@ -162,7 +162,7 @@ MenuItem.propTypes = {
   /**
    * The intent of the menu item.
    */
-  intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger']),
+  intent: PropTypes.string,
 
   /**
    * Flag to indicate whether the menu item is disabled or not

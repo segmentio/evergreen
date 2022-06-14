@@ -1,19 +1,16 @@
 #!/usr/bin/env node
 'use strict'
 const path = require('path')
-const fs = require('fs-extra')
 const { IconSvgPaths16, IconSvgPaths20 } = require('@blueprintjs/icons')
 const camelCase = require('camelcase')
+const fs = require('fs-extra')
 const prettier = require('prettier')
 
 const iconsPath = path.resolve(__dirname, '../src/icons/generated')
 const iconsIndexPath = path.resolve(__dirname, '../src/icons/index.js')
 const indexPath = path.resolve(__dirname, '../src/index.js')
 const typedefPath = path.resolve(__dirname, '../index.d.ts')
-const iconNamesMapperPath = path.resolve(
-  __dirname,
-  '../src/icons/generated/IconNameMapper.js'
-)
+const iconNamesMapperPath = path.resolve(__dirname, '../src/icons/generated/IconNameMapper.js')
 const fileHeader = `// This is a generated file. DO NOT modify directly.\n\n`
 
 async function main() {
@@ -122,22 +119,17 @@ export const ${iconName} = memo(forwardRef(function ${iconName}(props, ref) {
   // update the typedefs to include icons
   // =====================
 
-  const iconTypeDefs = iconNames
-    .map(
-      componentName => `export declare const ${componentName}: IconComponent`
-    )
-    .join('\n')
+  const iconTypeDefs = iconNames.map(componentName => `export declare const ${componentName}: IconComponent`).join('\n')
 
   const iconsTypeDefs = `/* Start generated icons */
-type IconComponent = React.ForwardRefExoticComponent<React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>>
+export type IconComponent = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<IconProps> & React.RefAttributes<SVGElement>
+>
 ${iconTypeDefs}
 /* End generated icons */`
 
   let typedefs = await fs.readFile(typedefPath, 'utf8')
-  typedefs = typedefs.replace(
-    /\/\* Start generated icons \*\/[\s\S]*?\/\* End generated icons \*\//i,
-    iconsTypeDefs
-  )
+  typedefs = typedefs.replace(/\/\* Start generated icons \*\/[\s\S]*?\/\* End generated icons \*\//i, iconsTypeDefs)
 
   await fs.writeFile(typedefPath, typedefs)
 }

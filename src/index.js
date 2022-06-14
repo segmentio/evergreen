@@ -9,11 +9,23 @@ export { Badge, Pill } from './badges'
 export { Button, IconButton, TextDropdownButton } from './buttons'
 export { Checkbox } from './checkbox'
 export { Combobox } from './combobox'
-export { StackingOrder, Intent, Position } from './constants'
+export { StackingOrder, Intent, Position, MimeType, FileRejectionReason } from './constants'
 export { CornerDialog } from './corner-dialog'
 export { Dialog } from './dialog'
 export { EmptyState } from './empty-states'
 export { FilePicker } from './file-picker'
+export {
+  FileCard,
+  FileUploader,
+  getAcceptedTypesMessage,
+  getFileSizeMessage,
+  getMaxFilesMessage,
+  mimeTypeToExtension,
+  mimeTypeToExtensions,
+  rebaseFiles,
+  splitFiles,
+  truncateCenter
+} from './file-uploader'
 export {
   FormField,
   FormFieldDescription,
@@ -26,7 +38,7 @@ export { IconWrapper as Icon } from './icons/src/IconWrapper'
 export { Image } from './image'
 export { Pane, Card } from './layers'
 export { Menu } from './menu'
-export { Pulsar, Nudge } from './nudge'
+export { Pulsar, Nudge } from './pulsar'
 export { Overlay } from './overlay'
 export { Popover } from './popover'
 export { Portal } from './portal'
@@ -64,7 +76,7 @@ export {
 export { Tab, Tablist, TabNavigation, SidebarTab } from './tabs'
 export { TagInput } from './tag-input'
 export { TextInput, TextInputField } from './text-input'
-export { ThemeContext, ThemeProvider, ThemeConsumer, withTheme, useTheme } from './theme'
+export { ThemeContext, ThemeProvider, ThemeConsumer, getThemeContext, withTheme, useTheme, mergeTheme } from './theme'
 export { usePaginationBehavior, Pagination } from './pagination'
 export { defaultTheme, classicTheme, deprecatedDefaultTheme } from './themes'
 export { Textarea, TextareaField } from './textarea'
