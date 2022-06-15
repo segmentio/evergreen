@@ -7,7 +7,13 @@ const FormFieldLabel = memo(
     const { children, isAstrixShown, ...rest } = props
     return (
       <Label display="block" marginBottom={0} {...rest} ref={ref}>
-        {children} {isAstrixShown && <span title="This field is required.">*</span>}
+        {children}
+        {isAstrixShown && (
+          <>
+            {' '}
+            <span title="This field is required.">*</span>
+          </>
+        )}
       </Label>
     )
   })
