@@ -1,6 +1,6 @@
 {
   "name": "evergreen-ui",
-  "version": "6.9.6",
+  "version": "6.9.12",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
@@ -32,25 +32,26 @@
   "sideEffects": false,
   "scripts": {
     "build": "yarn generate-icons && concurrently --names 'commonjs,esm,umd' 'yarn build-commonjs' 'yarn build-esm' 'yarn build-umd'",
-    "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test' --source-maps inline",
-    "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test' --source-maps inline",
+    "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test'",
+    "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test'",
     "build-storybook": "build-storybook",
     "build-umd": "rollup -c",
     "chromatic": "npx chromatic",
     "clean": "git clean -Xdf",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
-    "deploy-docs": "cd docs && yarn add evergreen-ui@latest --exact && git add package.json yarn.lock && git commit -m \"Updated doc site evergreen version\" || yarn install && yarn deploy",
+    "deploy-docs": "cd docs && yarn install && yarn deploy",
     "dev": "start-storybook -p 6006",
     "generate-icons": "./tools/generate-icons.js",
     "lint": "eslint \"src/**/*.js\" --cache",
-    "postpublish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then yarn deploy-docs; else echo \"not on main branch, skipping docs deploy\"; fi;",
+    "postpublish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then yarn update-docs || yarn deploy-docs; else echo \"not on main branch, skipping docs deploy\"; fi;",
     "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
     "release": "np",
     "size": "size-limit",
     "storybook": "start-storybook -p 6006",
     "test": "yarn lint && yarn tsd && yarn jest",
-    "test:watch": "yarn run test -- --watch"
+    "test:watch": "yarn run test -- --watch",
+    "update-docs": "cd docs && yarn add evergreen-ui@latest --exact && git add package.json yarn.lock && git show-branch --no-name HEAD | grep -E 'v[0-9]+.[0-9]+.[0-9]+' && git commit --amend --no-edit || git commit -m \"Updated doc site evergreen version\""
   },
   "engines": {
     "node": ">=14"
@@ -61,7 +62,7 @@
     "@types/react": "^16.9.5",
     "@types/react-transition-group": "^4.4.0",
     "arrify": "^1.0.1",
-    "classnames": "^2.2.6",
+    "classnames": "^2.3.0",
     "downshift": "^5.2.0",
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
@@ -70,12 +71,13 @@
     "lodash.differencewith": "^4.5.0",
     "lodash.isempty": "^4.4.0",
     "lodash.merge": "^4.6.2",
+    "lodash.omit": "^4.5.0",
     "lodash.uniqby": "^4.7.0",
     "prop-types": "^15.6.2",
     "react-fast-compare": "^3.2.0",
     "react-transition-group": "^4.4.1",
     "tinycolor2": "^1.4.1",
-    "ui-box": "^5.0.0"
+    "ui-box": "^5.0.1"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

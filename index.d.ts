@@ -49,6 +49,9 @@ export type Components =
   | 'Card'
   | 'Checkbox'
   | 'Code'
+  | 'DialogBody'
+  | 'DialogFooter'
+  | 'DialogHeader'
   | 'FileCard'
   | 'FileUploader'
   | 'Group'
@@ -57,9 +60,10 @@ export type Components =
   | 'InlineAlert'
   | 'Input'
   | 'Label'
-  | 'List'
   | 'Link'
+  | 'List'
   | 'MenuItem'
+  | 'Option'
   | 'Pane'
   | 'Paragraph'
   | 'Radio'
@@ -67,6 +71,7 @@ export type Components =
   | 'Spinner'
   | 'Switch'
   | 'Tab'
+  | 'Table'
   | 'TableCell'
   | 'TableHead'
   | 'TableRow'
@@ -99,6 +104,7 @@ type FileUploaderPseudoSelectors =
 type InputPseudoSelectors = '_placeholder' | '_disabled' | '_focus' | '_invalid'
 type LinkPseudoSelectors = '_hover' | '_active' | '_focus'
 type MenuItemPseudoSelectors = '_isSelectable' | '_disabled' | '_hover' | '_focus' | '_active' | '_current' | '&:before'
+type OptionPseudoSelectors = '_active' | '_before' | '_disabled' | '_focus' | '_hover' | '_isSelectable' | '_selected'
 type RadioPseudoSelectors =
   | '_base'
   | '_disabled'
@@ -184,6 +190,8 @@ type ComponentPseudoSelectors<C extends Components = Components> = C extends 'Bu
   ? LinkPseudoSelectors
   : C extends 'MenuItem'
   ? MenuItemPseudoSelectors
+  : C extends 'Option'
+  ? OptionPseudoSelectors
   : C extends 'Radio'
   ? RadioPseudoSelectors
   : C extends 'Select'
@@ -1314,7 +1322,7 @@ export interface EmptyStateOwnProps {
   /** specify the orientation of how the content flows */
   orientation?: 'horizontal' | 'vertical'
   /** the description of the empty state */
-  description?: string
+  description?: React.ReactNode
   /** the background used for the entire empty state container */
   background?: 'light' | 'dark'
   /** the primary cta of the empty state */
@@ -2243,12 +2251,12 @@ export interface SelectOwnProps {
   size?: 'small' | 'medium' | 'large'
 }
 
-export type SelectProps = PolymorphicBoxProps<'div', SelectOwnProps>
-export declare const Select: BoxComponent<SelectOwnProps, 'div'>
+export type SelectProps = PolymorphicBoxProps<'select', SelectOwnProps>
+export declare const Select: BoxComponent<SelectOwnProps, 'select'>
 
 export type SelectFieldOwnProps = FormFieldOwnProps & SelectOwnProps
-export type SelectFieldProps = PolymorphicBoxProps<'div', SelectFieldOwnProps>
-export declare const SelectField: BoxComponent<SelectFieldOwnProps, 'div'>
+export type SelectFieldProps = PolymorphicBoxProps<'select', SelectFieldOwnProps>
+export declare const SelectField: BoxComponent<SelectFieldOwnProps, 'select'>
 
 export interface SelectMenuContentProps {
   close?: OptionsListProps['close']

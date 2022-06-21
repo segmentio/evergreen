@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "evergreen-ui": "latest",
-    "next": "^11.1.3",
+    "next": "^12.1.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   },

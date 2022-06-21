@@ -31,9 +31,9 @@ Paragraph.propTypes = {
 
   /**
    * Size of the text style.
-   * Can be: 300, 400, 500.
+   * Can be: 300, 400, 500, `small`, `medium`, `large`.
    */
-  size: PropTypes.oneOf([300, 400, 500]),
+  size: PropTypes.oneOf([300, 400, 500, 'small', 'medium', 'large']),
 
   /**
    * Font family.
