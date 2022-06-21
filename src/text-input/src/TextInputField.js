@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
 import { useId } from '../../hooks'
+import { generateAriaDescribedBy } from '../../lib/generate-aria-describedby'
 import { majorScale } from '../../scales'
 import TextInput from './TextInput'
 
@@ -61,6 +62,7 @@ const TextInputField = memo(
           placeholder={placeholder}
           spellCheck={spellCheck}
           ref={ref}
+          aria-describedby={generateAriaDescribedBy(id, { description, hint, validationMessage })}
           {...remainingProps}
         />
       </FormField>
