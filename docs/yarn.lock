@@ -2371,10 +2371,10 @@ esutils@^2.0.2:
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.3.tgz#74d2eb4de0b8da1293711910d50775b9b710ef64"
   integrity sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==
 
-evergreen-ui@6.9.12:
-  version "6.9.12"
-  resolved "https://registry.yarnpkg.com/evergreen-ui/-/evergreen-ui-6.9.12.tgz#205452be3e634fb0eb6c805fe7879f388c4dc0fd"
-  integrity sha512-sJGoWN4qezk6Bcc2kcU6goHAiPiFtuNtp9I4YPdQnP6K0vwS/Hj4nXKeNFMWvAzn87TKGY6RW7Bd9SoSaXiJ/A==
+evergreen-ui@6.10.0:
+  version "6.10.0"
+  resolved "https://registry.yarnpkg.com/evergreen-ui/-/evergreen-ui-6.10.0.tgz#1b360b464d5451bedbc365c697975323cf07c9cb"
+  integrity sha512-I95sdUUv+aF18qFLkiNEcv/9aQP6X09P6SfjhO9oYj34ATHONpyuN3fOYKgquMPDAHW87iKOviX505aUPXHSjw==
   dependencies:
     "@babel/runtime" "^7.1.2"
     "@segment/react-tiny-virtual-list" "^2.2.1"
@@ -2396,7 +2396,7 @@ evergreen-ui@6.9.12:
     react-fast-compare "^3.2.0"
     react-transition-group "^4.4.1"
     tinycolor2 "^1.4.1"
-    ui-box "^5.0.1"
+    ui-box "^5.1.0"
 
 extend-shallow@^2.0.1:
   version "2.0.1"
@@ -4423,10 +4423,10 @@ ua-parser-js@^0.7.18:
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.24.tgz#8d3ecea46ed4f1f1d63ec25f17d8568105dc027c"
   integrity sha512-yo+miGzQx5gakzVK3QFfN0/L9uVhosXBBO7qmnk7c2iw1IhL212wfA3zbnI54B0obGwC/5NWub/iT9sReMx+Fw==
 
-ui-box@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-5.0.1.tgz#a2eaf230c004c06f0acab414d1fdfe922a970287"
-  integrity sha512-LhZ5pHE+QdtoAZlbSgSSrxrByHBDJfIaTQr9OPxi9cJ56f5SySJYlvIRXvFDmF4hwgs0WBcvV8v6Gp8pJPrPrQ==
+ui-box@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-5.1.0.tgz#3b62d4089f0b4c3e7c5db60cff32adba0e268605"
+  integrity sha512-3FYTKhYKu8JaZmg1+iYzrHUpZDtrAiIdhLBbaVV/u5TL6Zfg1U7OkI00eFJNASa/D+b0SwJjt5Ph6tzmcub1RQ==
   dependencies:
     "@emotion/hash" "^0.7.1"
     inline-style-prefixer "^5.0.4"
