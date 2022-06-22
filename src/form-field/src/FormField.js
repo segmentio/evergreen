@@ -56,7 +56,7 @@ FormField.propTypes = {
   /**
    * The label used above the input element.
    */
-  label: PropTypes.node.isRequired,
+  label: PropTypes.node,
 
   /**
    * Passed on the label as a htmlFor prop.
