@@ -20,7 +20,8 @@ AutocompleteItem.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
   isSelected: PropTypes.bool,
-  isHighlighted: PropTypes.bool
+  isHighlighted: PropTypes.bool,
+  item: PropTypes.any
 }
 
 export default AutocompleteItem

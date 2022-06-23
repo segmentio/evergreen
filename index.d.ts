@@ -864,7 +864,11 @@ interface OptionProps extends TableRowOwnProps {
 }
 
 export interface AutocompleteItemProps extends OptionProps {
-  children?: JSX.Element | null
+  children?: JSX.Element | null,
+  /**
+   * The item of the autocomplete items
+   */
+   item: any,
 }
 
 export declare const AutocompleteItem: ForwardRefComponent<AutocompleteItemProps>
