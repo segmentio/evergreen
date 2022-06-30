@@ -4,8 +4,8 @@ import { extractStyles } from 'evergreen-ui'
 import Document, { Head, Main, NextScript } from 'next/document'
 
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
-    const page = renderPage()
+  static async getInitialProps({ renderPage }) {
+    const page = await renderPage()
     // `css` is a string with css from both glamor and ui-box.
     // No need to get the glamor css manually if you are using it elsewhere in your app.
     //
