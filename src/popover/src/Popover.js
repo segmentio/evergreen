@@ -334,7 +334,10 @@ Popover.propTypes = {
   ]),
 
   /**
-   * When true, the Popover is manually shown.
+   * Controls whether the Popover is shown or not.
+   * - When `true`, the component is manually shown.
+   * - When `false`, the component is manually hidden.
+   * - When `undefined`, the component is uncontrolled and the isShown state is handled internally
    */
   isShown: PropTypes.bool,
   /**
