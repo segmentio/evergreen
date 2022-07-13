@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import canUseDom from '../../lib/canUseDom'
+import getMajorVersion from '../../lib/getMajorVersion'
 import ToastManager from './ToastManager'
 
 /**
@@ -15,15 +16,29 @@ export default class Toaster {
     container.setAttribute('data-evergreen-toaster-container', '')
     document.body.appendChild(container)
 
-    ReactDOM.render(
+    const toastManager = () => (
       <ToastManager
         bindNotify={this._bindNotify}
         bindRemove={this._bindRemove}
         bindGetToasts={this._bindGetToasts}
         bindCloseAll={this._bindCloseAll}
-      />,
-      container
+      />
     )
+
+    if (getMajorVersion(ReactDOM.version) >= 18) {
+      try {
+        const { createRoot } = require('react-dom/client')
+        const root = createRoot(container)
+
+        root.render(toastManager())
+      } catch (e) {
+        ReactDOM.render(toastManager(), container)
+      }
+
+      return
+    }
+
+    ReactDOM.render(toastManager(), container)
   }
 
   _bindNotify = handler => {
