@@ -29,10 +29,7 @@ Use with caution, it’s [hard to be completely accessible](https://inclusive-co
 Use with caution, it’s [hard to be completely accessible](https://inclusive-components.design/tooltips-toggletips/).
 
 ```jsx
-<Tooltip
-  content={<Paragraph margin={40}>Card appearance</Paragraph>}
-  appearance="card"
->
+<Tooltip content={<Paragraph margin={40}>Card appearance</Paragraph>} appearance="card">
   <InfoSignIcon />
 </Tooltip>
 ```
@@ -67,4 +64,38 @@ For a `Tooltip` the only really useful sides are `TOP`, `RIGHT`, `BOTTOM` and `L
     <IconButton icon={ArrowLeftIcon} />
   </Tooltip>
 </Pane>
+```
+
+## Conditionally show Tooltip
+
+In some cases you may want to only show a `Tooltip` when a certain condition is true. You can accomplish this by
+manually hiding the `Tooltip` with the `isShown` prop when it should never be shown, and leaving the component uncontrolled
+when you want it to display on hover (standard behavior).
+
+```jsx
+function ConditionalTooltipExample() {
+  const [showTooltipOnHover, setShowTooltipOnHover] = React.useState(false)
+  const handleToggle = React.useCallback(
+    () => setShowTooltipOnHover((prevShowTooltipOnHover) => !prevShowTooltipOnHover),
+    []
+  )
+  return (
+    <React.Fragment>
+      <Checkbox
+        checked={showTooltipOnHover}
+        label="Show Tooltip on hover"
+        marginBottom={majorScale(2)}
+        onChange={handleToggle}
+      />
+      <Tooltip
+        /* Setting isShown to undefined retains standard Tooltip behavior (shows on hover)
+           Setting isShown to false ensures the Tooltip is never shown on hover */
+        isShown={showTooltipOnHover ? undefined : false}
+        content="This Tooltip is showing because the Checkbox is enabled."
+      >
+        <Button>Close</Button>
+      </Tooltip>
+    </React.Fragment>
+  )
+}
 ```
