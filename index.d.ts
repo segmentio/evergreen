@@ -1874,28 +1874,89 @@ export declare const Pill: BoxComponent<PillOwnProps, 'strong'>
 export type PopoverStatelessProps = BoxProps<'div'>
 
 export interface PopoverProps {
+  /**
+   * The position the Popover is on. Smart positioning might override this.
+   */
   position?: PositionTypes
+  /**
+   * Controls whether the Popover is shown or not.
+   * - When `true`, the component is always shown, regardless of the click or hover trigger.
+   * - When `false`, the component is never shown, regardless of the click or hover trigger.
+   * - When `undefined`, the component is uncontrolled and the isShown state is handled internally
+   * (i.e. the Popover is shown based on the click or hover trigger)
+   */
   isShown?: boolean
+  /**
+   * Open the Popover based on click or hover. Default is click.
+   */
   trigger?: 'click' | 'hover'
+  /**
+   * The content of the Popover.
+   */
   content: React.ReactNode | ((object: { close: () => void }) => React.ReactNode)
+  /**
+   * The target button of the Popover.
+   * When a function the following arguments are passed:
+   * ({ toggle: Function -> Void, getRef: Function -> Ref, isShown: Bool })
+   */
   children:
     | ((props: {
         toggle: () => void
         getRef: (ref: React.RefObject<HTMLElement>) => void
-        isShown: NonNullable<PopoverProps['isShown']>
+        isShown: boolean
       }) => React.ReactNode)
     | React.ReactNode
+  /**
+   * The display property passed to the Popover card.
+   */
   display?: string
+  /**
+   * The min width of the Popover card.
+   */
   minWidth?: number | string
+  /**
+   * The min height of the Popover card.
+   */
   minHeight?: number | string
+  /**
+   * Duration of the animation.
+   */
   animationDuration?: number
+  /**
+   * Function called when the Popover opens.
+   */
   onOpen?: () => void
+  /**
+   * Function fired when Popover closes.
+   */
   onClose?: () => void
+  /**
+   * Function that will be called when the enter transition is complete.
+   */
   onOpenComplete?: () => void
+  /**
+   * Function that will be called when the exit transition is complete.
+   */
   onCloseComplete?: () => void
+  /**
+   * Function that will be called when the body is clicked.
+   */
   onBodyClick?: () => void
+  /**
+   * When true, bring focus inside of the Popover on open.
+   */
   bringFocusInside?: boolean
+  /**
+   * Boolean indicating if clicking outside the dialog should close the dialog.
+   */
   shouldCloseOnExternalClick?: boolean
+  /**
+   * Boolean indicating if pressing the esc key should close the dialog.
+   */
+  shouldCloseOnEscapePress?: boolean
+  /**
+   * Properties passed through to the Popover card.
+   */
   statelessProps?: PopoverStatelessProps
 }
 
@@ -3005,7 +3066,11 @@ export interface TooltipProps {
    */
   showDelay?: number
   /**
-   * When true, manually show the Tooltip.
+   * Controls whether the Tooltip is shown or not.
+   * - When `true`, the component is always shown, regardless of the whether the target is hovered.
+   * - When `false`, the component is never shown, regardless of the whether the target is hovered.
+   * - When `undefined`, the component is uncontrolled and the isShown state is handled internally
+   * (i.e. the Tooltip is shown when the target is hovered)
    */
   isShown?: boolean
   /**

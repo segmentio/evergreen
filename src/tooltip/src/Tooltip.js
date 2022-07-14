@@ -183,7 +183,11 @@ Tooltip.propTypes = {
   showDelay: PropTypes.number,
 
   /**
-   * When True, manually show the Tooltip.
+   * Controls whether the Tooltip is shown or not.
+   * - When `true`, the component is always shown, regardless of the whether the target is hovered.
+   * - When `false`, the component is never shown, regardless of the whether the target is hovered.
+   * - When `undefined`, the component is uncontrolled and the isShown state is handled internally
+   * (i.e. the Tooltip is shown when the target is hovered)
    */
   isShown: PropTypes.bool,
 
