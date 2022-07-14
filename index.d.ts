@@ -1880,9 +1880,10 @@ export interface PopoverProps {
   position?: PositionTypes
   /**
    * Controls whether the Popover is shown or not.
-   * - When `true`, the component is manually shown.
-   * - When `false`, the component is manually hidden.
+   * - When `true`, the component is always shown, regardless of the click or hover trigger.
+   * - When `false`, the component is never shown, regardless of the click or hover trigger.
    * - When `undefined`, the component is uncontrolled and the isShown state is handled internally
+   * (i.e. the Popover is shown based on the click or hover trigger)
    */
   isShown?: boolean
   /**
@@ -3066,9 +3067,10 @@ export interface TooltipProps {
   showDelay?: number
   /**
    * Controls whether the Tooltip is shown or not.
-   * - When `true`, the component is manually shown.
-   * - When `false`, the component is manually hidden.
+   * - When `true`, the component is always shown, regardless of the whether the target is hovered.
+   * - When `false`, the component is never shown, regardless of the whether the target is hovered.
    * - When `undefined`, the component is uncontrolled and the isShown state is handled internally
+   * (i.e. the Tooltip is shown when the target is hovered)
    */
   isShown?: boolean
   /**
