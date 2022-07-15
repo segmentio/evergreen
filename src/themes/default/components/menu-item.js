@@ -11,7 +11,7 @@ const baseStyle = {
 
   _disabled: {
     cursor: 'not-allowed',
-    pointerEvents: 'none'
+    userSelect: 'none'
   }
 }
 
