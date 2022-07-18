@@ -62,12 +62,12 @@ const MenuItem = memo(
     let iconColor = intent === 'none' ? 'default' : intent
 
     if (disabled) {
-      iconColor = 'disabled'
+      iconColor = 'muted'
     }
 
-    const textColor = disabled ? 'disabled' : intent
+    const textColor = disabled ? 'muted' : intent
 
-    const secondaryTextColor = disabled ? textColor : 'muted'
+    const secondaryTextColor = 'muted'
 
     const disabledProps = useMemo(() => {
       return disabled
@@ -100,14 +100,7 @@ const MenuItem = memo(
         tabIndex={tabIndex}
         onKeyDown={onKeyDown}
       >
-        <IconWrapper
-          icon={icon}
-          color={disabled ? 'disabled' : iconColor}
-          marginLeft={16}
-          marginRight={-4}
-          size={16}
-          flexShrink={0}
-        />
+        <IconWrapper icon={icon} color={iconColor} marginLeft={16} marginRight={-4} size={16} flexShrink={0} />
         <Text color={textColor} marginLeft={16} marginRight={16} flex={1}>
           {children}
         </Text>
