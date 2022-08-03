@@ -14,27 +14,75 @@ const makeAutocompleteFixture = (props = {}) => (
 )
 
 describe('Autocomplete', () => {
+  describe('when allowOtherValues is false', () => {
+    describe('when input field loses focus', () => {
+      it('should clear input value', async () => {
+        const items = ['Apple', 'Orange']
+
+        render(
+          makeAutocompleteFixture({
+            allowOtherValues: false,
+            items
+          })
+        )
+
+        const textInput = await screen.findByTestId('TextInput')
+        userEvent.click(textInput)
+        userEvent.type(textInput, 'A')
+
+        // Change focus by clicking off of the component
+        userEvent.click(document.body)
+
+        expect(textInput).not.toHaveValue()
+      })
+    })
+  })
+
   describe('when allowOtherValues is true', () => {
-    it('should set input value to selected item', async () => {
-      const items = ['Apple', 'Orange']
+    describe('when item from list is selected', () => {
+      it('should set input value to selected item', async () => {
+        const items = ['Apple', 'Orange']
 
-      render(
-        makeAutocompleteFixture({
-          allowOtherValues: true,
-          items
-        })
-      )
+        render(
+          makeAutocompleteFixture({
+            allowOtherValues: true,
+            items
+          })
+        )
 
-      // Type 'A' into the input to filter items down containing the string
-      const textInput = await screen.findByTestId('TextInput')
-      userEvent.click(textInput)
-      userEvent.type(textInput, 'A')
+        // Type 'A' into the input to filter items down containing the string
+        const textInput = await screen.findByTestId('TextInput')
+        userEvent.click(textInput)
+        userEvent.type(textInput, 'A')
 
-      // Click the 'Apple' option, which should also update the input element
-      const item = await screen.findByText('Apple')
-      userEvent.click(item)
+        // Click the 'Apple' option, which should also update the input element
+        const item = await screen.findByText('Apple')
+        userEvent.click(item)
 
-      expect(textInput.value).toBe('Apple')
+        expect(textInput).toHaveValue('Apple')
+      })
+    })
+
+    describe('when input field loses focus', () => {
+      it('should maintain input value', async () => {
+        const items = ['Apple', 'Orange']
+
+        render(
+          makeAutocompleteFixture({
+            allowOtherValues: true,
+            items
+          })
+        )
+
+        const textInput = await screen.findByTestId('TextInput')
+        userEvent.click(textInput)
+        userEvent.type(textInput, 'A')
+
+        // Change focus by clicking off of the component
+        userEvent.click(document.body)
+
+        expect(textInput).toHaveValue('A')
+      })
     })
   })
 })
