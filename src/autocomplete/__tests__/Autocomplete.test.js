@@ -1,32 +1,40 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { TextInput } from '../../text-input'
 import Autocomplete from '../src/Autocomplete'
 
-const makeAutocompleteFixture = (props = {}) =>
-  render(
-    <Autocomplete {...props} data-testid="Autocomplete">
-      {renderProps => {
-        const { getInputProps, getRef, inputValue } = renderProps
-        return <TextInput value={inputValue} ref={getRef} {...getInputProps()} data-testid="TextInput" />
-      }}
-    </Autocomplete>
-  )
+const makeAutocompleteFixture = (props = {}) => (
+  <Autocomplete {...props}>
+    {renderProps => {
+      const { getInputProps, getRef, inputValue } = renderProps
+      return <TextInput value={inputValue} ref={getRef} {...getInputProps()} data-testid="TextInput" />
+    }}
+  </Autocomplete>
+)
 
 describe('Autocomplete', () => {
   describe('when allowOtherValues is true', () => {
-    it("should set input value when value doesn't exist in items collection", async () => {
+    it('should set input value to selected item', async () => {
       const items = ['Apple', 'Orange']
 
-      const { findByTestId, findByText } = makeAutocompleteFixture({
-        items
-      })
-      const component = await findByTestId('Autocomplete')
-      const textInput = await findByTestId('TextInput')
-      userEvent.type(component, 'Peach')
+      render(
+        makeAutocompleteFixture({
+          allowOtherValues: true,
+          items
+        })
+      )
 
-      expect(textInput.innerText).toBe('Peach')
+      // Type 'A' into the input to filter items down containing the string
+      const textInput = await screen.findByTestId('TextInput')
+      userEvent.click(textInput)
+      userEvent.type(textInput, 'A')
+
+      // Click the 'Apple' option, which should also update the input element
+      const item = await screen.findByText('Apple')
+      userEvent.click(item)
+
+      expect(textInput.value).toBe('Apple')
     })
   })
 })
