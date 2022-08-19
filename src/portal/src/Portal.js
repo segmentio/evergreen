@@ -17,9 +17,12 @@ export default class Portal extends Component {
       portalContainer.setAttribute('evergreen-portal-container', '')
       document.body.appendChild(portalContainer)
     }
+  }
 
+  componentDidMount() {
     this.el = document.createElement('div')
     portalContainer.appendChild(this.el)
+    this.forceUpdate()
   }
 
   componentWillUnmount() {
@@ -27,8 +30,7 @@ export default class Portal extends Component {
   }
 
   render() {
-    // This fixes SSR
-    if (!canUseDom) return null
+    if (!this.el) return null
     return ReactDOM.createPortal(this.props.children, this.el)
   }
 }
