@@ -5,7 +5,7 @@ function compress(string: string) {
   return LZString.compressToBase64(string).replace(/\+/g, `-`).replace(/\//g, `_`).replace(/=+$/, ``)
 }
 
-export const getCodeSandboxLink: (source: string) => string = (source) => {
+export const getCodeSandboxLink = (source: string): string => {
   const wrappedSource = source.startsWith('function')
     ? source
     : `const Demo = () => {
@@ -22,7 +22,7 @@ export const getCodeSandboxLink: (source: string) => string = (source) => {
   const usedComponents = Array.from(
     new Set(
       (
-        source.match(/<((\w+))|minorScale|majorScale|mergeTheme|defaultTheme|(((\w+)Icon))|Position/g) || []
+        source.match(/<((\w+))|toaster|minorScale|majorScale|mergeTheme|defaultTheme|(((\w+)Icon))|Position/g) || []
       ).map((component) => component.replace('<', ''))
     )
   ).join(', ')

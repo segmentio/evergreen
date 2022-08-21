@@ -41,39 +41,25 @@ The `toaster` is an instance of the `Toaster` class.
 ## Notify
 
 ```jsx
-<Button
-  onClick={() => toaster.notify('Evergreen is a open-source design system')}
->
-  Notify
-</Button>
+<Button onClick={() => toaster.notify('Evergreen is an open-source design system')}>Notify</Button>
 ```
 
 ## Success
 
 ```jsx
-<Button onClick={() => toaster.success('Your source is now sending data')}>
-  Success
-</Button>
+<Button onClick={() => toaster.success('Your source is now sending data')}>Success</Button>
 ```
 
 ## Warning
 
 ```jsx
-<Button onClick={() => toaster.warning('Changes will affect all Warehouses')}>
-  Warning
-</Button>
+<Button onClick={() => toaster.warning('Changes will affect all Warehouses')}>Warning</Button>
 ```
 
 ## Danger
 
 ```jsx
-<Button
-  onClick={() =>
-    toaster.danger('Something went wrong trying to create your audience')
-  }
->
-  Danger
-</Button>
+<Button onClick={() => toaster.danger('Something went wrong trying to create your audience')}>Danger</Button>
 ```
 
 ## Close all
@@ -91,7 +77,7 @@ The description can be a React node.
 <Button
   onClick={() =>
     toaster.success('Your source is now sending data', {
-      description: 'Connect your source to a destination to receive data.'
+      description: 'Connect your source to a destination to receive data.',
     })
   }
 >
@@ -109,7 +95,7 @@ The `duration` property is in seconds — not milliseconds.
 <Button
   onClick={() =>
     toaster.success('Stick around for 10 seconds', {
-      duration: 10
+      duration: 10,
     })
   }
 >
@@ -126,7 +112,7 @@ Passing a unique ID via `id` property allows Evergreen to close all previous toa
 <Button
   onClick={() =>
     toaster.warning('Only one toaster will be shown', {
-      id: 'forbidden-action'
+      id: 'forbidden-action',
     })
   }
 >
