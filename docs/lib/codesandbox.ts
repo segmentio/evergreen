@@ -20,13 +20,12 @@ export const getCodeSandboxLink = (source: string): string => {
   const imports = [
     "import React from 'react'",
     "import ReactDOM from 'react-dom'",
-    `import { ${referencedComponents} } from 'evergreen-ui'`,
+    `import { ${referencedComponents} } from 'evergreen-ui'\n`,
   ]
 
   const fixtureContent = getFixtures(source)
 
-  const render = `
-ReactDOM.render(
+  const render = `ReactDOM.render(
   <${componentName} />,
   document.getElementById("root")
 )
