@@ -56,5 +56,12 @@ describe('Radio Group', () => {
     })
   })
 
+  it('should render the radio buttons with auto-generated HTML name attributes when name property is empty', () => {
+    render(<RadioGroup options={options} label="Permissions" />)
+    screen.getAllByRole('radio').forEach(element => {
+      expect(element.getAttribute('name')).toContain('RadioGroup')
+    })
+  })
+
   // untested props: defaultValue, size
 })
