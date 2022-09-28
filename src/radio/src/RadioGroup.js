@@ -8,6 +8,7 @@ import Radio from './Radio'
 
 const noop = () => {}
 const emptyArray = []
+const emptyString = ''
 
 const RadioGroup = memo(
   forwardRef(function RadioGroup(props, ref) {
@@ -19,10 +20,14 @@ const RadioGroup = memo(
       options = emptyArray,
       onChange = noop,
       isRequired = false,
+      name = emptyString,
       ...rest
     } = props
 
-    const name = useId('RadioGroup')
+    const autoNameAttribute = useId('RadioGroup')
+
+    const nameAttribute = name || autoNameAttribute
+
     const selected = value || defaultValue || props.options[0].value
 
     return (
@@ -36,7 +41,7 @@ const RadioGroup = memo(
           <Radio
             key={item.value}
             size={size}
-            name={name}
+            name={nameAttribute}
             value={item.value}
             label={item.label}
             checked={selected === item.value}
@@ -98,7 +103,12 @@ RadioGroup.propTypes = {
   /**
    * When true, the radio get the required attribute.
    */
-  isRequired: PropTypes.bool
+  isRequired: PropTypes.bool,
+
+  /**
+   * The name attribute for HTML radio button. Default to auto-generated string with 'RadioGroup' prefix
+   */
+  name: PropTypes.string
 }
 
 export default RadioGroup
