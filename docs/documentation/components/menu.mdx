@@ -181,7 +181,7 @@ function MenuOptionsGroupExample() {
           { label: 'Descending', value: 'desc' },
         ]}
         selected={selectedOrder}
-        onChange={selected => setSelectedOrder(selected)}
+        onChange={(selected) => setSelectedOrder(selected)}
       />
       <Menu.Divider />
       <Menu.OptionsGroup
@@ -194,7 +194,7 @@ function MenuOptionsGroupExample() {
           { label: 'Type', value: 'type' },
         ]}
         selected={selectedField}
-        onChange={selected => setSelectedField(selected)}
+        onChange={(selected) => setSelectedField(selected)}
       />
     </Menu>
   )
@@ -209,33 +209,33 @@ either have `[role="menuitemradio"]` or `[role="menuitem"]`.
 The focus styles are currently not working in the docs, sorry for the inconvenience!
 
 ```jsx
-<Popover
-  position={Position.BOTTOM_LEFT}
-  content={
-    <Menu>
-      <ul>
-        <li>
-          <a href="#..." role="menuitem">
-            Hey Evergreen,
-          </a>
-        </li>
-        <li>
-          <a href="#..." role="menuitem">
-            I want custom items
-          </a>
-        </li>
-        <hr />
-        <li>
-          <a href="#..." role="menuitem">
-            Oh sweet
-          </a>
-        </li>
-      </ul>
-    </Menu>
-  }
->
-  <Button>Custom Menu Items</Button>
-</Popover>
+function CustomMenuItemExample() {
+  const handleClick = React.useCallback(() => toaster.notify('Menu Item Clicked'), [])
+
+  return (
+    <Popover
+      position={Position.BOTTOM_LEFT}
+      content={
+        <Menu>
+          <Ul listStyle="square">
+            <Link cursor="pointer" role="menuitem" onClick={handleClick}>
+              <Li>Hey Evergreen,</Li>
+            </Link>
+            <Link cursor="pointer" role="menuitem" onClick={handleClick}>
+              <Li>I want custom items</Li>
+            </Link>
+            <Pane borderTop={true} marginRight={majorScale(2)} />
+            <Link cursor="pointer" role="menuitem" onClick={handleClick}>
+              <Li>Oh sweet</Li>
+            </Link>
+          </Ul>
+        </Menu>
+      }
+    >
+      <Button>Custom Menu Items</Button>
+    </Popover>
+  )
+}
 ```
 
 ## Menu without items

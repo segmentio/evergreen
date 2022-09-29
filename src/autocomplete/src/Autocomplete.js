@@ -131,7 +131,7 @@ const Autocomplete = memo(
           return {
             ...changes,
             selectedItem: changes.selectedItem || state.inputValue,
-            inputValue: state.inputValue
+            inputValue: changes.selectedItem || state.inputValue
           }
         }
 
