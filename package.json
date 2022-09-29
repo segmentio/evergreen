@@ -107,7 +107,7 @@
     "@storybook/react": "^6.0.21",
     "@storybook/theming": "^6.0.21",
     "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
+    "@testing-library/react": "13.3.0",
     "@testing-library/user-event": "^13.1.9",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",

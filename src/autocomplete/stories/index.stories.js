@@ -5,6 +5,7 @@ import Box from 'ui-box'
 import { Autocomplete } from '..'
 import { Button } from '../../buttons'
 import { TextInput } from '../../text-input'
+import { Label, Code } from '../../typography'
 
 // Generate a big list of items
 const items = [
@@ -128,6 +129,23 @@ storiesOf('autocomplete', module).add('Autocomplete', () => {
               </Button>
             </Box>
           )}
+        </Autocomplete>
+      </Box>
+      <Box padding={40}>
+        <Box marginBottom={16}>
+          <Label>
+            Uncontrolled Example w/ <Code size="small">allowOtherValues</Code>
+          </Label>
+        </Box>
+        <Autocomplete
+          allowOtherValues={true}
+          items={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber']}
+          title="Fruits"
+        >
+          {props => {
+            const { getInputProps, getRef, inputValue } = props
+            return <TextInput placeholder="Fruits" value={inputValue} ref={getRef} {...getInputProps()} />
+          }}
         </Autocomplete>
       </Box>
     </Box>
