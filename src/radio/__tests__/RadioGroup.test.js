@@ -49,5 +49,19 @@ describe('Radio Group', () => {
     expect(onChangeMock).toBeCalledTimes(1)
   })
 
+  it('should render the radio buttons with HTML name attributes specified', () => {
+    render(<RadioGroup options={options} label="Permissions" name="RadioInput" />)
+    screen.getAllByRole('radio').forEach(element => {
+      expect(element.getAttribute('name')).toEqual('RadioInput')
+    })
+  })
+
+  it('should render the radio buttons with auto-generated HTML name attributes when name property is empty', () => {
+    render(<RadioGroup options={options} label="Permissions" />)
+    screen.getAllByRole('radio').forEach(element => {
+      expect(element.getAttribute('name')).not.toBe('')
+    })
+  })
+
   // untested props: defaultValue, size
 })
