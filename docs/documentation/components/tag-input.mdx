@@ -145,7 +145,10 @@ manually controlled. `TagInput` will not remove items from this list after they 
 function AutoCompleteTagInputExample() {
   const [values, setValues] = React.useState(['First', 'Second'])
 
-  const allValues = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth']
+  const allValues = React.useMemo(
+    () => ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth'],
+    []
+  )
   const autocompleteItems = React.useMemo(() => allValues.filter((i) => !values.includes(i)), [allValues, values])
 
   return (
