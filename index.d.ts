@@ -1054,7 +1054,7 @@ export interface ComboboxOwnProps {
   /**
    * Properties forwarded to the autocomplete component. Use with caution.
    */
-  autocompleteProps?: AutocompleteProps
+  autocompleteProps?: Omit<AutocompleteProps, 'children' | 'items' | 'onChange'>
   /**
    * When true, open the autocomplete on focus.
    */
