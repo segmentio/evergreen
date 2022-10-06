@@ -32,6 +32,7 @@ const SelectMenu = memo(function SelectMenu(props) {
     closeOnSelect = false,
     itemRenderer,
     itemHeight,
+    shouldScrollToSelectedOnRender = true,
     ...rest
   } = props
 
@@ -66,6 +67,7 @@ const SelectMenu = memo(function SelectMenu(props) {
           detailView={typeof detailView === 'function' ? detailView({ close }) : detailView}
           emptyView={typeof emptyView === 'function' ? emptyView({ close }) : emptyView}
           closeOnSelect={closeOnSelect}
+          shouldScrollToSelectedOnRender={shouldScrollToSelectedOnRender}
         />
       )}
       {...rest}
@@ -186,7 +188,12 @@ SelectMenu.propTypes = {
   /**
    * The height of the items in the select menu list
    */
-  itemHeight: PropTypes.number
+  itemHeight: PropTypes.number,
+
+  /**
+   * A flag that allows you to disable scrolling to the selected element
+   */
+  shouldScrollToSelectedOnRender: PropTypes.bool
 }
 
 export default SelectMenu
