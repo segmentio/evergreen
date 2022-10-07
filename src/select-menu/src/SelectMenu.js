@@ -32,6 +32,7 @@ const SelectMenu = memo(function SelectMenu(props) {
     closeOnSelect = false,
     itemRenderer,
     itemHeight,
+    shouldAutoFocus,
     ...rest
   } = props
 
@@ -60,7 +61,8 @@ const SelectMenu = memo(function SelectMenu(props) {
             onFilterChange,
             selected: selectedArray,
             renderItem: itemRenderer,
-            optionSize: itemHeight
+            optionSize: itemHeight,
+            shouldAutoFocus: shouldAutoFocus
           }}
           close={close}
           detailView={typeof detailView === 'function' ? detailView({ close }) : detailView}

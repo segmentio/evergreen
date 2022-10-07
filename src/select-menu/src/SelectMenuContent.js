@@ -125,12 +125,7 @@ SelectMenuContent.propTypes = {
   /**
    * Node that is displayed instead of options list when there are no options.
    */
-  emptyView: PropTypes.node,
-
-  /**
-   * When true, menu auto focuses on the search/filter bar.
-   */
-  shouldAutoFocus: PropTypes.bool
+  emptyView: PropTypes.node
 }
 
 export default SelectMenuContent
