@@ -51,6 +51,7 @@ const OptionsList = memo(function OptionsList(props) {
     filterPlaceholder = 'Filter...',
     filterIcon = SearchIcon,
     defaultSearchValue = '',
+    shouldAutoFocus = true,
     ...rest
   } = props
 
@@ -181,7 +182,7 @@ const OptionsList = memo(function OptionsList(props) {
   useEffect(() => {
     if (hasFilter) {
       requestId.current = requestAnimationFrame(() => {
-        if (searchRef) {
+        if (searchRef && shouldAutoFocus) {
           searchRef.focus()
         }
       })
