@@ -2388,7 +2388,8 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
    */
   hasFilter?: boolean
   /**
-   * @default true. When true, auto focuses on the search/filter bar. 
+   * When true, auto focuses on the search/filter bar. 
+   * @default true
    */
    shouldAutoFocus?: boolean
   /**
