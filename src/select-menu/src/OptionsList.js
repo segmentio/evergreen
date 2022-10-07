@@ -193,7 +193,7 @@ const OptionsList = memo(function OptionsList(props) {
         window.removeEventListener('keydown', handleKeyDown)
       }
     }
-  }, [hasFilter, searchRef, handleKeyDown])
+  }, [hasFilter, searchRef, handleKeyDown, shouldAutoFocus])
 
   const listHeight = height - (hasFilter ? 32 : 0)
   const currentIndex = getCurrentIndex()
@@ -270,6 +270,11 @@ OptionsList.propTypes = {
    * This holds the values of the options
    */
   selected: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+
+  /**
+   * When true, menu auto focuses on the search/filter bar.
+   */
+  shouldAutoFocus: PropTypes.bool,
   onSelect: PropTypes.func,
   onDeselect: PropTypes.func,
   onFilterChange: PropTypes.func,

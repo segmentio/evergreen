@@ -186,7 +186,12 @@ SelectMenu.propTypes = {
   /**
    * The height of the items in the select menu list
    */
-  itemHeight: PropTypes.number
+  itemHeight: PropTypes.number,
+
+  /**
+   * When true, menu auto focuses on the search/filter bar.
+   */
+  shouldAutoFocus: PropTypes.bool
 }
 
 export default SelectMenu
