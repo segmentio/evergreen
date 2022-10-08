@@ -146,6 +146,8 @@ Below you can read a description of each script.
 
 - `yarn create-package`: This command scaffolds a package with no specific boilerplate. It's useful for creating utilities.
 
+- `yarn coverage`: This command creates a file with which you can view the test coverage of our components.
+
 For the following command:
 
 ```
