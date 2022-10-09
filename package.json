@@ -76,8 +76,10 @@
     "prop-types": "^15.6.2",
     "react-fast-compare": "^3.2.0",
     "react-transition-group": "^4.4.1",
+    "storybook": "^6.5.12",
     "tinycolor2": "^1.4.1",
-    "ui-box": "^5.1.0"
+    "ui-box": "^5.1.0",
+    "yarn": "^1.22.19"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
