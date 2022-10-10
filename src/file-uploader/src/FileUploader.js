@@ -11,7 +11,8 @@ import isFunction from '../../lib/is-function'
 import safeInvoke from '../../lib/safe-invoke'
 import { majorScale } from '../../scales'
 import { useTheme } from '../../theme'
-import { Text, Paragraph } from '../../typography'
+import { Text } from '../../typography'
+import BrowseOrDragCta from './BrowseOrDragCta'
 import FileCard from './FileCard'
 import getFileDataTransferItems from './utils/get-file-data-transfer-items'
 import { getMaxFilesMessage } from './utils/messages'
@@ -27,12 +28,13 @@ const disabledPseudoSelector = `&[aria-disabled='true']`
 const dragHoverPseudoSelector = `&[data-state='${UploaderState.Dragging}']`
 const invalidPseudoSelector = `&[aria-invalid='true']`
 const hoverPseudoSelector = `&:hover:not(${disabledPseudoSelector}):not(${dragHoverPseudoSelector}):not(${invalidPseudoSelector})`
+const hoverBrowseCopyPseudoSelector = `${hoverPseudoSelector} span:first-of-type`
 const styleModifiers = {}
 const pseudoSelectors = {
   _focus: '&:focus',
   _hover: hoverPseudoSelector,
-  _hoverBrowseCopy: `${hoverPseudoSelector} span:first-of-type`,
-  _hoverOrDragCopy: `${hoverPseudoSelector} span:last-of-type`,
+  _hoverBrowseCopy: hoverBrowseCopyPseudoSelector,
+  _hoverOrDragCopy: `${hoverPseudoSelector} span:last-of-type:not(${hoverBrowseCopyPseudoSelector})`,
   _dragHover: dragHoverPseudoSelector,
   _disabled: disabledPseudoSelector,
   _invalid: invalidPseudoSelector
@@ -43,6 +45,7 @@ const FileUploader = memo(
   forwardRef((props, ref) => {
     const {
       acceptedMimeTypes,
+      browseOrDragText,
       description,
       disabled = false,
       hint,
@@ -73,7 +76,6 @@ const FileUploader = memo(
      */
     const [fileInputKey, setFileInputKey] = useState(0)
     const fileInputRef = useRef(null)
-    const orDragCopy = `or drag ${maxFiles === 1 ? 'a file' : 'files'} here`
 
     // If the dropzone is meant to be a single file input and we already have a file, don't render
     // the dropzone which will always result in rejected files/errors.
@@ -264,10 +266,7 @@ const FileUploader = memo(
               >
                 <UploadIcon color={disabled ? colors.gray400 : colors.gray500} size={majorScale(3)} />
               </Box>
-              <Paragraph marginTop={majorScale(3)} pointerEvents="none">
-                <Text color={disabled ? colors.gray500 : colors.blue400}>Browse </Text>
-                <Text color={disabled ? colors.gray500 : colors.gray700}>{orDragCopy}</Text>
-              </Paragraph>
+              <BrowseOrDragCta disabled={disabled} maxFiles={maxFiles} browseOrDragText={browseOrDragText} />
             </Box>
           )}
         </FormField>
@@ -303,6 +302,11 @@ FileUploader.propTypes = {
    * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
    */
   acceptedMimeTypes: PropTypes.array,
+  /**
+   * Function to return a string or component for the 'Browse or drag' text
+   * @type {(maxFiles: number) => React.ReactNode}
+   */
+  browseOrDragText: PropTypes.func,
   /**
    * When true, displays a disabled state where drops don't fire and the native browser picker doesn't open
    */

@@ -1435,6 +1435,10 @@ export interface FileUploaderOwnProps extends FormFieldOwnProps {
    */
   acceptedMimeTypes?: MimeType[]
   /**
+   * Function to return a string or component for the 'Browse or drag' text
+   */
+  browseOrDragText?: (maxFiles: number) => React.ReactNode
+  /**
    * When true, displays a disabled state where drops don't fire and the native browser picker doesn't open
    */
   disabled?: boolean
