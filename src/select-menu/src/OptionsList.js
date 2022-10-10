@@ -51,6 +51,7 @@ const OptionsList = memo(function OptionsList(props) {
     filterPlaceholder = 'Filter...',
     filterIcon = SearchIcon,
     defaultSearchValue = '',
+    shouldAutoFocus = true,
     ...rest
   } = props
 
@@ -181,7 +182,7 @@ const OptionsList = memo(function OptionsList(props) {
   useEffect(() => {
     if (hasFilter) {
       requestId.current = requestAnimationFrame(() => {
-        if (searchRef) {
+        if (searchRef && shouldAutoFocus) {
           searchRef.focus()
         }
       })
@@ -192,7 +193,7 @@ const OptionsList = memo(function OptionsList(props) {
         window.removeEventListener('keydown', handleKeyDown)
       }
     }
-  }, [hasFilter, searchRef, handleKeyDown])
+  }, [hasFilter, searchRef, handleKeyDown, shouldAutoFocus])
 
   const listHeight = height - (hasFilter ? 32 : 0)
   const currentIndex = getCurrentIndex()
@@ -269,6 +270,11 @@ OptionsList.propTypes = {
    * This holds the values of the options
    */
   selected: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+
+  /**
+   * When true, menu auto focuses on the search/filter bar.
+   */
+  shouldAutoFocus: PropTypes.bool,
   onSelect: PropTypes.func,
   onDeselect: PropTypes.func,
   onFilterChange: PropTypes.func,
