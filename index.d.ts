@@ -1443,6 +1443,11 @@ export interface FileUploaderOwnProps extends FormFieldOwnProps {
    */
   disabled?: boolean
   /**
+   * Function to return a string when the max file limit has been hit while dragging
+   * @default You can upload up to {count} {file|files}.
+   */
+  dragMaxFilesMessage?: (maxFiles: number) => string
+  /**
    * Maximum number of files to accept
    */
   maxFiles?: number

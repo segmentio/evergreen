@@ -46,6 +46,7 @@ const FileUploader = memo(
     const {
       acceptedMimeTypes,
       browseOrDragText,
+      dragMaxFilesMessage = getMaxFilesMessage,
       description,
       disabled = false,
       hint,
@@ -154,14 +155,14 @@ const FileUploader = memo(
         }
 
         if (draggingCount > maxFiles || draggingCount + currentCount > maxFiles) {
-          setValidationMessage(getMaxFilesMessage(maxFiles))
+          setValidationMessage(dragMaxFilesMessage(maxFiles))
           setState(UploaderState.Error)
           return
         }
 
         setState(UploaderState.Dragging)
       },
-      [disabled, maxFiles, values]
+      [disabled, dragMaxFilesMessage, maxFiles, values]
     )
 
     const handleDragLeave = useCallback(() => resetState(), [resetState])
@@ -311,6 +312,12 @@ FileUploader.propTypes = {
    * When true, displays a disabled state where drops don't fire and the native browser picker doesn't open
    */
   disabled: PropTypes.bool,
+  /**
+   * Function to return a string when the max file limit has been hit while dragging
+   * @default You can upload up to {count} {file|files}.
+   * @type {(maxFiles: number) => string}
+   */
+  dragMaxFilesMessage: PropTypes.func,
   /**
    * Maximum number of files to accept
    */

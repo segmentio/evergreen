@@ -68,6 +68,11 @@ storiesOf('file-uploader', module)
         label="Custom browseOrDragText"
         browseOrDragText={maxFiles => `Browse or drag ${maxFiles === 1 ? 'a file' : 'files'}`}
       />
+      <FileUploaderState
+        label="Custom dragMaxFilesMessage"
+        dragMaxFilesMessage={maxFiles => `You can only upload ${maxFiles} files at a time.`}
+        maxFiles={2}
+      />
     </Box>
   ))
   .add('FileCard', () => (
