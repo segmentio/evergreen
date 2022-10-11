@@ -7,7 +7,6 @@ import { FileUploader, FileCard } from '../../file-uploader'
 import { majorScale } from '../../scales'
 import { toaster } from '../../toaster'
 import { Label, Code, ListItem } from '../../typography'
-
 import { getIconFromType } from '../src/utils/get-icon-from-type'
 import { getAcceptedTypesMessage, getMaxFilesMessage, getFileSizeMessage } from '../src/utils/messages'
 
