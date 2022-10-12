@@ -10,7 +10,7 @@ const internalStyles = {
   pointerEvents: 'none'
 }
 
-const BrowseOrDragCta = props => {
+const BrowseOrDragText = props => {
   const { browseOrDragText: getBrowseOrDragText, disabled, maxFiles } = props
   const defaultOrDragCopy = `or drag ${maxFiles === 1 ? 'a file' : 'files'} here`
   const { colors } = useTheme()
@@ -38,7 +38,7 @@ const BrowseOrDragCta = props => {
   return browseOrDragText
 }
 
-BrowseOrDragCta.propTypes = {
+BrowseOrDragText.propTypes = {
   /**
    * Function to return a string or component for the 'Browse or drag' text
    * @type {(maxFiles: number) => React.ReactNode}
@@ -54,4 +54,4 @@ BrowseOrDragCta.propTypes = {
   maxFiles: PropTypes.number
 }
 
-export default memo(BrowseOrDragCta)
+export default memo(BrowseOrDragText)

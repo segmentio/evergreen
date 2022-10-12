@@ -12,7 +12,7 @@ import safeInvoke from '../../lib/safe-invoke'
 import { majorScale } from '../../scales'
 import { useTheme } from '../../theme'
 import { Text } from '../../typography'
-import BrowseOrDragCta from './BrowseOrDragCta'
+import BrowseOrDragText from './BrowseOrDragText'
 import FileCard from './FileCard'
 import getFileDataTransferItems from './utils/get-file-data-transfer-items'
 import { getMaxFilesMessage } from './utils/messages'
@@ -267,7 +267,7 @@ const FileUploader = memo(
               >
                 <UploadIcon color={disabled ? colors.gray400 : colors.gray500} size={majorScale(3)} />
               </Box>
-              <BrowseOrDragCta disabled={disabled} maxFiles={maxFiles} browseOrDragText={browseOrDragText} />
+              <BrowseOrDragText disabled={disabled} maxFiles={maxFiles} browseOrDragText={browseOrDragText} />
             </Box>
           )}
         </FormField>
