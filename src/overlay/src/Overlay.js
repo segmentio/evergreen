@@ -68,6 +68,7 @@ const Overlay = memo(function Overlay({
   children,
   containerProps = emptyProps,
   preventBodyScrolling = false,
+  shouldAutoFocus = true,
   shouldCloseOnClick = true,
   shouldCloseOnEscapePress = true,
   onBeforeClose,
@@ -145,6 +146,7 @@ const Overlay = memo(function Overlay({
       // activeElement may be undefined in some rare cases in IE
 
       if (
+        !shouldAutoFocus ||
         containerRef.current == null || // eslint-disable-line eqeqeq, no-eq-null
         document.activeElement == null || // eslint-disable-line eqeqeq, no-eq-null
         !isShown
@@ -296,16 +298,25 @@ Overlay.propTypes = {
 
   /**
    * Whether or not to prevent body scrolling outside the context of the overlay
+   * @default false
    */
   preventBodyScrolling: PropTypes.bool,
 
   /**
+   * Controls whether the the overlay should automatically try to bring focus inside.
+   * @default true
+   */
+  shouldAutoFocus: PropTypes.bool,
+
+  /**
    * Boolean indicating if clicking the overlay should close the overlay.
+   * @default true
    */
   shouldCloseOnClick: PropTypes.bool,
 
   /**
    * Boolean indicating if pressing the esc key should close the overlay.
+   * @default true
    */
   shouldCloseOnEscapePress: PropTypes.bool,
 

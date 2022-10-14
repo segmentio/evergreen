@@ -2388,10 +2388,10 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
    */
   hasFilter?: boolean
   /**
-   * When true, auto focuses on the search/filter bar. 
+   * When true, auto focuses on the search/filter bar.
    * @default true
    */
-   shouldAutoFocus?: boolean
+  shouldAutoFocus?: boolean
   /**
    * The position of the Select Menu.
    */
@@ -3217,21 +3217,49 @@ export const toaster: {
   getToasts: () => Toast[]
 }
 
-export interface OverlayProps {
+export interface OverlayProps
+  extends Pick<TransitionProps, 'onExit' | 'onExiting' | 'onExited' | 'onEnter' | 'onEntering' | 'onEntered'> {
   children: React.ReactNode | ((props: { state: TransitionStatus; close: () => void }) => JSX.Element)
 
+  /**
+   * Show the component; triggers the enter or exit states.
+   */
   isShown?: boolean
+
+  /**
+   * Props to be passed through on the inner Box.
+   */
   containerProps?: BoxProps<'div'>
+
+  /**
+   * Whether or not to prevent body scrolling outside the context of the overlay
+   * @default false
+   */
   preventBodyScrolling?: boolean
+
+  /**
+   * Controls whether the the overlay should automatically try to bring focus inside.
+   * @default true
+   */
+  shouldAutoFocus?: boolean
+
+  /**
+   * Boolean indicating if clicking the overlay should close the overlay.
+   * @default true
+   */
   shouldCloseOnClick?: boolean
+
+  /**
+   * Boolean indicating if pressing the esc key should close the overlay.
+   * @default true
+   */
   shouldCloseOnEscapePress?: boolean
+
+  /**
+   * Function called when overlay is about to close.
+   * Return `false` to prevent the sheet from closing.
+   */
   onBeforeClose?: () => boolean
-  onExit?: TransitionProps['onExit']
-  onExiting?: TransitionProps['onExiting']
-  onExited?: TransitionProps['onExited']
-  onEnter?: TransitionProps['onEnter']
-  onEntering?: TransitionProps['onEntering']
-  onEntered?: TransitionProps['onEntered']
 }
 
 export declare const Overlay: React.FC<OverlayProps>
