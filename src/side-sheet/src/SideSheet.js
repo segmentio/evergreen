@@ -243,6 +243,7 @@ SideSheet.propTypes = {
 
   /**
    * Whether or not to prevent scrolling in the outer body
+   * @default false
    */
   preventBodyScrolling: PropTypes.bool
 }
