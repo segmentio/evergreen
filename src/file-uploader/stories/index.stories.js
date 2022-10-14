@@ -63,6 +63,10 @@ storiesOf('file-uploader', module)
           </ListItem>
         )}
       />
+      <FileUploaderState
+        label="Custom validation message"
+        validationMessage="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum metus elit, varius non euismod non, tempor sit amet sem. Praesent quis eros finibus, tempor diam quis, lacinia tortor."
+      />
     </Box>
   ))
   .add('FileCard', () => (
