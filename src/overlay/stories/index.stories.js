@@ -121,3 +121,21 @@ storiesOf('overlay', module)
       </Box>
     )
   })
+  .add('Autofocus disabled', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <OverlayManager>
+        {({ hide, isShown, show }) => (
+          <Box>
+            <Overlay shouldAutoFocus={false} isShown={isShown} onExited={hide}>
+              <Button onClick={hide}>Close</Button>
+            </Overlay>
+            <Button onClick={show}>Show Overlay</Button>
+          </Box>
+        )}
+      </OverlayManager>
+    </Box>
+  ))
