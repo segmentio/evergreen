@@ -303,7 +303,7 @@ Overlay.propTypes = {
   preventBodyScrolling: PropTypes.bool,
 
   /**
-   * Controls whether the the overlay should automatically try to bring focus inside.
+   * Controls whether the overlay should automatically try to bring focus inside.
    * @default true
    */
   shouldAutoFocus: PropTypes.bool,

@@ -2460,18 +2460,43 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
 
 export declare const SelectMenu: React.FC<SelectMenuProps>
 
-export interface SideSheetProps {
+export interface SideSheetProps
+  extends Pick<
+    OverlayProps,
+    'isShown' | 'onBeforeClose' | 'preventBodyScrolling' | 'shouldAutoFocus' | 'shouldCloseOnEscapePress'
+  > {
   children: React.ReactNode | (() => React.ReactNode)
-  isShown?: boolean
+
+  /**
+   * Function that will be called when the exit transition is complete.
+   */
   onCloseComplete?: () => void
+
+  /**
+   * Function that will be called when the enter transition is complete.
+   */
   onOpenComplete?: () => void
-  onBeforeClose?: () => boolean
+
+  /**
+   * Boolean indicating if clicking the overlay should close the overlay.
+   * @default true
+   */
   shouldCloseOnOverlayClick?: boolean
-  shouldCloseOnEscapePress?: boolean
+
+  /**
+   * Width of the SideSheet.
+   */
   width?: string | number
+
+  /**
+   * Properties to pass through the SideSheet container Pane.
+   */
   containerProps?: PaneOwnProps & BoxProps<'div'>
+
+  /**
+   * Positions the sheet to the top, left, right, or bottom of the screen.
+   */
   position?: Extract<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
-  preventBodyScrolling?: boolean
 }
 
 export declare const SideSheet: React.FC<SideSheetProps>
@@ -3238,7 +3263,7 @@ export interface OverlayProps
   preventBodyScrolling?: boolean
 
   /**
-   * Controls whether the the overlay should automatically try to bring focus inside.
+   * Controls whether the overlay should automatically try to bring focus inside.
    * @default true
    */
   shouldAutoFocus?: boolean
