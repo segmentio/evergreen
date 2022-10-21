@@ -38,5 +38,11 @@ storiesOf('form-field', module)
         document.body.style.height = '100vh'
       })()}
       <FormFieldValidationMessage>FormFieldValidationMessage</FormFieldValidationMessage>
+      <Box width={240}>
+        <FormFieldValidationMessage>
+          greatly nearby muscle evening picture took afraid fallen reason flight shout crew research act beneath flow
+          away cloth will pair world trip reach explain
+        </FormFieldValidationMessage>
+      </Box>
     </Box>
   ))
