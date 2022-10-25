@@ -1054,7 +1054,7 @@ export interface ComboboxOwnProps {
   /**
    * Properties forwarded to the autocomplete component. Use with caution.
    */
-  autocompleteProps?: AutocompleteProps
+  autocompleteProps?: Omit<AutocompleteProps, 'children' | 'items' | 'onChange'>
   /**
    * When true, open the autocomplete on focus.
    */
@@ -1454,9 +1454,18 @@ export interface FileUploaderOwnProps extends FormFieldOwnProps {
    */
   acceptedMimeTypes?: MimeType[]
   /**
+   * Function to return a string or component for the 'Browse or drag' text
+   */
+  browseOrDragText?: (maxFiles: number) => React.ReactNode
+  /**
    * When true, displays a disabled state where drops don't fire and the native browser picker doesn't open
    */
   disabled?: boolean
+  /**
+   * Function to return a string when the max file limit has been hit while dragging
+   * @default You can upload up to {count} {file|files}.
+   */
+  dragMaxFilesMessage?: (maxFiles: number) => string
   /**
    * Maximum number of files to accept
    */

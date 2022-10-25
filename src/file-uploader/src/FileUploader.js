@@ -11,7 +11,7 @@ import isFunction from '../../lib/is-function'
 import safeInvoke from '../../lib/safe-invoke'
 import { majorScale } from '../../scales'
 import { useTheme } from '../../theme'
-import { Text, Paragraph } from '../../typography'
+import BrowseOrDragText from './BrowseOrDragText'
 import FileCard from './FileCard'
 import getFileDataTransferItems from './utils/get-file-data-transfer-items'
 import { getMaxFilesMessage } from './utils/messages'
@@ -27,12 +27,13 @@ const disabledPseudoSelector = `&[aria-disabled='true']`
 const dragHoverPseudoSelector = `&[data-state='${UploaderState.Dragging}']`
 const invalidPseudoSelector = `&[aria-invalid='true']`
 const hoverPseudoSelector = `&:hover:not(${disabledPseudoSelector}):not(${dragHoverPseudoSelector}):not(${invalidPseudoSelector})`
+const hoverBrowseCopyPseudoSelector = `${hoverPseudoSelector} span:first-of-type`
 const styleModifiers = {}
 const pseudoSelectors = {
   _focus: '&:focus',
   _hover: hoverPseudoSelector,
-  _hoverBrowseCopy: `${hoverPseudoSelector} span:first-of-type`,
-  _hoverOrDragCopy: `${hoverPseudoSelector} span:last-of-type`,
+  _hoverBrowseCopy: hoverBrowseCopyPseudoSelector,
+  _hoverOrDragCopy: `${hoverPseudoSelector} span:last-of-type:not(${hoverBrowseCopyPseudoSelector})`,
   _dragHover: dragHoverPseudoSelector,
   _disabled: disabledPseudoSelector,
   _invalid: invalidPseudoSelector
@@ -43,6 +44,8 @@ const FileUploader = memo(
   forwardRef((props, ref) => {
     const {
       acceptedMimeTypes,
+      browseOrDragText,
+      dragMaxFilesMessage = getMaxFilesMessage,
       description,
       disabled = false,
       hint,
@@ -73,7 +76,6 @@ const FileUploader = memo(
      */
     const [fileInputKey, setFileInputKey] = useState(0)
     const fileInputRef = useRef(null)
-    const orDragCopy = `or drag ${maxFiles === 1 ? 'a file' : 'files'} here`
 
     // If the dropzone is meant to be a single file input and we already have a file, don't render
     // the dropzone which will always result in rejected files/errors.
@@ -152,14 +154,14 @@ const FileUploader = memo(
         }
 
         if (draggingCount > maxFiles || draggingCount + currentCount > maxFiles) {
-          setValidationMessage(getMaxFilesMessage(maxFiles))
+          setValidationMessage(dragMaxFilesMessage(maxFiles))
           setState(UploaderState.Error)
           return
         }
 
         setState(UploaderState.Dragging)
       },
-      [disabled, maxFiles, values]
+      [disabled, dragMaxFilesMessage, maxFiles, values]
     )
 
     const handleDragLeave = useCallback(() => resetState(), [resetState])
@@ -222,9 +224,7 @@ const FileUploader = memo(
           hint={hint}
           isRequired={isRequired}
           // Always override the validationMessage from prop if we have a message to display from dragging
-          validationMessage={
-            !isEmpty(validationMessage) ? <Text color={colors.red500}>{validationMessage}</Text> : validationMessageProp
-          }
+          validationMessage={!isEmpty(validationMessage) ? validationMessage : validationMessageProp}
         >
           {renderDropzone && (
             <Box
@@ -264,10 +264,7 @@ const FileUploader = memo(
               >
                 <UploadIcon color={disabled ? colors.gray400 : colors.gray500} size={majorScale(3)} />
               </Box>
-              <Paragraph marginTop={majorScale(3)} pointerEvents="none">
-                <Text color={disabled ? colors.gray500 : colors.blue400}>Browse </Text>
-                <Text color={disabled ? colors.gray500 : colors.gray700}>{orDragCopy}</Text>
-              </Paragraph>
+              <BrowseOrDragText disabled={disabled} maxFiles={maxFiles} browseOrDragText={browseOrDragText} />
             </Box>
           )}
         </FormField>
@@ -304,9 +301,20 @@ FileUploader.propTypes = {
    */
   acceptedMimeTypes: PropTypes.array,
   /**
+   * Function to return a string or component for the 'Browse or drag' text
+   * @type {(maxFiles: number) => React.ReactNode}
+   */
+  browseOrDragText: PropTypes.func,
+  /**
    * When true, displays a disabled state where drops don't fire and the native browser picker doesn't open
    */
   disabled: PropTypes.bool,
+  /**
+   * Function to return a string when the max file limit has been hit while dragging
+   * @default You can upload up to {count} {file|files}.
+   * @type {(maxFiles: number) => string}
+   */
+  dragMaxFilesMessage: PropTypes.func,
   /**
    * Maximum number of files to accept
    */
