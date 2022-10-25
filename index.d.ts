@@ -1172,29 +1172,31 @@ export interface CornerDialogProps {
 
 export declare const CornerDialog: React.FC<CornerDialogProps>
 
-export interface DialogProps {
+export interface DialogProps
+  extends Pick<OverlayProps, 'isShown' | 'preventBodyScrolling' | 'shouldAutoFocus' | 'shouldCloseOnEscapePress'> {
   /**
    * Children can be a string, node or a function accepting `({ close })`.
    * When passing a string, <Paragraph /> is used to wrap the string.
    */
   children?: React.ReactNode | (({ close }: { close: () => void }) => void)
+
   /**
-   * The intent of the Dialog. Used for the button. Defaults to none.
+   * The intent of the Dialog. Used for the button.
+   * @default none
    */
   intent?: IntentTypes
-  /**
-   * When true, the dialog is shown. Defaults to false.
-   */
-  isShown?: boolean
+
   /**
    * Title of the Dialog. Titles should use Title Case.
    */
   title?: React.ReactNode
+
   /**
    * When true, the header with the title and close icon button is shown.
-   * Defaults to true.
+   * @default true
    */
   hasHeader?: boolean
+
   /**
    * You can override the default header with your own custom component.
    *
@@ -1204,11 +1206,13 @@ export interface DialogProps {
    * Header can either be a React node or a function accepting `({ close })`.
    */
   header?: React.ReactNode | (({ close }: { close: () => void }) => void)
+
   /**
    * When true, the footer with the cancel and confirm button is shown.
-   * Defaults to true.
+   * @default true
    */
   hasFooter?: boolean
+
   /**
    * You can override the default footer with your own custom component.
    *
@@ -1218,92 +1222,107 @@ export interface DialogProps {
    * Footer can either be a React node or a function accepting `({ close })`.
    */
   footer?: React.ReactNode | (({ close }: { close: () => void }) => void)
+
   /**
-   * When true, the cancel button is shown. Defaults to true.
+   * When true, the cancel button is shown.
+   * @default true
    */
   hasCancel?: boolean
+
   /**
-   * When true, the close button is shown. Defaults to true.
+   * When true, the close button is shown.
+   * @default true
    */
   hasClose?: boolean
+
   /**
    * Function that will be called when the exit transition is complete.
    */
   onCloseComplete?: () => void
+
   /**
    * Function that will be called when the enter transition is complete.
    */
   onOpenComplete?: () => void
+
   /**
    * Function that will be called when the confirm button is clicked.
    * This does not close the Dialog. A close function will be passed
-   * as a paramater you can use to close the dialog.
+   * as a parameter you can use to close the dialog.
    * If unspecified, this defaults to closing the Dialog.
    */
   onConfirm?: (close: () => void) => void
+
   /**
-   * Label of the confirm button. Default to 'Confirm'.
+   * Label of the confirm button.
+   * @default Confirm
    */
   confirmLabel?: string
+
   /**
-   * When true, the confirm button is set to loading. Defaults to false.
+   * When true, the confirm button is set to loading.
+   * @default false
    */
   isConfirmLoading?: boolean
+
   /**
-   * When true, the confirm button is set to disabled. Defaults to false.
+   * When true, the confirm button is set to disabled.
+   * @default false
    */
   isConfirmDisabled?: boolean
+
   /**
    * Function that will be called when the cancel button is clicked.
    * This closes the Dialog by default.
    */
   onCancel?: (close: () => void) => void
+
   /**
-   * Label of the cancel button. Defaults to 'Cancel'.
+   * Label of the cancel button.
+   * @default Cancel
    */
   cancelLabel?: string
+
   /**
    * Boolean indicating if clicking the overlay should close the overlay.
-   * Defaults to true.
+   * @default true
    */
   shouldCloseOnOverlayClick?: boolean
-  /**
-   * Boolean indicating if pressing the esc key should close the overlay.
-   * Defaults to true.
-   */
-  shouldCloseOnEscapePress?: boolean
+
   /**
    * Width of the Dialog.
    */
   width?: string | number
+
   /**
    * The space above the dialog.
    * This offset is also used at the bottom when there is not enough vertical
    * space available on screen — and the dialog scrolls internally.
    */
   topOffset?: string | number
+
   /**
    * The space on the left/right sides of the dialog when there isn't enough
    * horizontal space available on screen.
    */
   sideOffset?: string | number
+
   /**
    * The min height of the body content.
    * Makes it less weird when only showing little content.
    */
   minHeightContent?: string | number
+
   /**
    * Props that are passed to the dialog container.
    */
   containerProps?: React.ComponentProps<typeof Pane>
+
   /**
    * Props that are passed to the content container.
    */
   contentContainerProps?: React.ComponentProps<typeof Pane>
-  /**
-   * Whether or not to prevent scrolling in the outer body. Defaults to false.
-   */
-  preventBodyScrolling?: boolean
+
   /**
    * Props that are passed to the Overlay component.
    */
@@ -2397,10 +2416,10 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
    */
   hasFilter?: boolean
   /**
-   * When true, auto focuses on the search/filter bar. 
+   * When true, auto focuses on the search/filter bar.
    * @default true
    */
-   shouldAutoFocus?: boolean
+  shouldAutoFocus?: boolean
   /**
    * The position of the Select Menu.
    */
@@ -2469,18 +2488,43 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
 
 export declare const SelectMenu: React.FC<SelectMenuProps>
 
-export interface SideSheetProps {
+export interface SideSheetProps
+  extends Pick<
+    OverlayProps,
+    'isShown' | 'onBeforeClose' | 'preventBodyScrolling' | 'shouldAutoFocus' | 'shouldCloseOnEscapePress'
+  > {
   children: React.ReactNode | (() => React.ReactNode)
-  isShown?: boolean
+
+  /**
+   * Function that will be called when the exit transition is complete.
+   */
   onCloseComplete?: () => void
+
+  /**
+   * Function that will be called when the enter transition is complete.
+   */
   onOpenComplete?: () => void
-  onBeforeClose?: () => boolean
+
+  /**
+   * Boolean indicating if clicking the overlay should close the overlay.
+   * @default true
+   */
   shouldCloseOnOverlayClick?: boolean
-  shouldCloseOnEscapePress?: boolean
+
+  /**
+   * Width of the SideSheet.
+   */
   width?: string | number
+
+  /**
+   * Properties to pass through the SideSheet container Pane.
+   */
   containerProps?: PaneOwnProps & BoxProps<'div'>
+
+  /**
+   * Positions the sheet to the top, left, right, or bottom of the screen.
+   */
   position?: Extract<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
-  preventBodyScrolling?: boolean
 }
 
 export declare const SideSheet: React.FC<SideSheetProps>
@@ -3226,21 +3270,49 @@ export const toaster: {
   getToasts: () => Toast[]
 }
 
-export interface OverlayProps {
+export interface OverlayProps
+  extends Pick<TransitionProps, 'onExit' | 'onExiting' | 'onExited' | 'onEnter' | 'onEntering' | 'onEntered'> {
   children: React.ReactNode | ((props: { state: TransitionStatus; close: () => void }) => JSX.Element)
 
+  /**
+   * Show the component; triggers the enter or exit states.
+   */
   isShown?: boolean
+
+  /**
+   * Props to be passed through on the inner Box.
+   */
   containerProps?: BoxProps<'div'>
+
+  /**
+   * Whether or not to prevent body scrolling outside the context of the overlay
+   * @default false
+   */
   preventBodyScrolling?: boolean
+
+  /**
+   * Controls whether the overlay should automatically try to bring focus inside.
+   * @default true
+   */
+  shouldAutoFocus?: boolean
+
+  /**
+   * Boolean indicating if clicking the overlay should close the overlay.
+   * @default true
+   */
   shouldCloseOnClick?: boolean
+
+  /**
+   * Boolean indicating if pressing the esc key should close the overlay.
+   * @default true
+   */
   shouldCloseOnEscapePress?: boolean
+
+  /**
+   * Function called when overlay is about to close.
+   * Return `false` to prevent the sheet from closing.
+   */
   onBeforeClose?: () => boolean
-  onExit?: TransitionProps['onExit']
-  onExiting?: TransitionProps['onExiting']
-  onExited?: TransitionProps['onExited']
-  onEnter?: TransitionProps['onEnter']
-  onEntering?: TransitionProps['onEntering']
-  onEntered?: TransitionProps['onEntered']
 }
 
 export declare const Overlay: React.FC<OverlayProps>

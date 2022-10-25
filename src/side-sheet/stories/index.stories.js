@@ -9,7 +9,7 @@ import { PeopleIcon, CircleArrowRightIcon, TrashIcon, EditIcon } from '../../ico
 import { Card, Pane } from '../../layers'
 import Menu from '../../menu/src/Menu'
 import { Tab } from '../../tabs'
-import { TextInput } from '../../text-input'
+import { TextInput, TextInputField } from '../../text-input'
 import { Heading, Paragraph } from '../../typography'
 
 storiesOf('side-sheet', module)
@@ -352,6 +352,28 @@ storiesOf('side-sheet', module)
                   </Box>
                 )
               }}
+            </SideSheet>
+            <Button onClick={() => setState({ isShown: true })}>Show Side Sheet</Button>
+          </Box>
+        )}
+      </Component>
+    </Box>
+  ))
+  .add('Autofocus disabled', () => (
+    <Box padding={40}>
+      {(() => {
+        document.body.style.margin = '0'
+        document.body.style.height = '100vh'
+      })()}
+      <Component initialState={{ isShown: false }}>
+        {({ setState, state }) => (
+          <Box>
+            <SideSheet
+              isShown={state.isShown}
+              shouldAutoFocus={false}
+              onCloseComplete={() => setState({ isShown: false })}
+            >
+              <TextInputField label="First name" />
             </SideSheet>
             <Button onClick={() => setState({ isShown: true })}>Show Side Sheet</Button>
           </Box>

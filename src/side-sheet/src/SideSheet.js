@@ -136,6 +136,7 @@ const SideSheet = memo(function SideSheet(props) {
     onOpenComplete = noop,
     onCloseComplete = noop,
     onBeforeClose,
+    shouldAutoFocus = true,
     shouldCloseOnOverlayClick = true,
     shouldCloseOnEscapePress = true,
     position = Position.RIGHT,
@@ -145,6 +146,7 @@ const SideSheet = memo(function SideSheet(props) {
   return (
     <Overlay
       isShown={isShown}
+      shouldAutoFocus={shouldAutoFocus}
       shouldCloseOnClick={shouldCloseOnOverlayClick}
       shouldCloseOnEscapePress={shouldCloseOnEscapePress}
       onBeforeClose={onBeforeClose}
@@ -207,12 +209,20 @@ SideSheet.propTypes = {
   onBeforeClose: PropTypes.func,
 
   /**
+   * Controls whether the overlay should automatically try to bring focus inside.
+   * @default true
+   */
+  shouldAutoFocus: PropTypes.bool,
+
+  /**
    * Boolean indicating if clicking the overlay should close the overlay.
+   * @default true
    */
   shouldCloseOnOverlayClick: PropTypes.bool,
 
   /**
    * Boolean indicating if pressing the esc key should close the overlay.
+   * @default true
    */
   shouldCloseOnEscapePress: PropTypes.bool,
 
@@ -233,6 +243,7 @@ SideSheet.propTypes = {
 
   /**
    * Whether or not to prevent scrolling in the outer body
+   * @default false
    */
   preventBodyScrolling: PropTypes.bool
 }

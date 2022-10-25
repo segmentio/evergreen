@@ -73,6 +73,7 @@ const Dialog = memo(function Dialog({
   onOpenComplete,
   overlayProps = emptyProps,
   preventBodyScrolling = false,
+  shouldAutoFocus = true,
   shouldCloseOnEscapePress = true,
   shouldCloseOnOverlayClick = true,
   sideOffset = '16px',
@@ -173,6 +174,7 @@ const Dialog = memo(function Dialog({
   return (
     <Overlay
       isShown={isShown}
+      shouldAutoFocus={shouldAutoFocus}
       shouldCloseOnClick={shouldCloseOnOverlayClick}
       shouldCloseOnEscapePress={shouldCloseOnEscapePress}
       onExited={onCloseComplete}
@@ -333,12 +335,20 @@ Dialog.propTypes = {
   cancelLabel: PropTypes.string,
 
   /**
+   * Controls whether the overlay should automatically try to bring focus inside.
+   * @default true
+   */
+  shouldAutoFocus: PropTypes.bool,
+
+  /**
    * Boolean indicating if clicking the overlay should close the overlay.
+   * @default true
    */
   shouldCloseOnOverlayClick: PropTypes.bool,
 
   /**
    * Boolean indicating if pressing the esc key should close the overlay.
+   * @default true
    */
   shouldCloseOnEscapePress: PropTypes.bool,
 
@@ -378,6 +388,7 @@ Dialog.propTypes = {
 
   /**
    * Whether or not to prevent scrolling in the outer body
+   * @default false
    */
   preventBodyScrolling: PropTypes.bool,
 
