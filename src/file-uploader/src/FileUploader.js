@@ -222,9 +222,7 @@ const FileUploader = memo(
           hint={hint}
           isRequired={isRequired}
           // Always override the validationMessage from prop if we have a message to display from dragging
-          validationMessage={
-            !isEmpty(validationMessage) ? <Text color={colors.red500}>{validationMessage}</Text> : validationMessageProp
-          }
+          validationMessage={!isEmpty(validationMessage) ? validationMessage : validationMessageProp}
         >
           {renderDropzone && (
             <Box
