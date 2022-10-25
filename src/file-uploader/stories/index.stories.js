@@ -7,7 +7,7 @@ import { FileUploader, FileCard } from '../../file-uploader'
 import { majorScale } from '../../scales'
 import { toaster } from '../../toaster'
 import { Label, Code, ListItem } from '../../typography'
-import { getIconFromType } from '../src/utils/get-icon-from-type'
+import getIconFromType from '../src/utils/get-icon-from-type'
 import { getAcceptedTypesMessage, getMaxFilesMessage, getFileSizeMessage } from '../src/utils/messages'
 
 const acceptedMimeTypes = [MimeType.gif, MimeType.png, MimeType.jpeg]
@@ -71,6 +71,10 @@ storiesOf('file-uploader', module)
         label="Custom dragMaxFilesMessage"
         dragMaxFilesMessage={maxFiles => `You can only upload ${maxFiles} files at a time.`}
         maxFiles={2}
+      />
+      <FileUploaderState
+        label="Custom validation message"
+        validationMessage="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum metus elit, varius non euismod non, tempor sit amet sem. Praesent quis eros finibus, tempor diam quis, lacinia tortor."
       />
     </Box>
   ))

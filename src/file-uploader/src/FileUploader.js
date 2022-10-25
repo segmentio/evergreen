@@ -11,7 +11,6 @@ import isFunction from '../../lib/is-function'
 import safeInvoke from '../../lib/safe-invoke'
 import { majorScale } from '../../scales'
 import { useTheme } from '../../theme'
-import { Text } from '../../typography'
 import BrowseOrDragText from './BrowseOrDragText'
 import FileCard from './FileCard'
 import getFileDataTransferItems from './utils/get-file-data-transfer-items'
@@ -225,9 +224,7 @@ const FileUploader = memo(
           hint={hint}
           isRequired={isRequired}
           // Always override the validationMessage from prop if we have a message to display from dragging
-          validationMessage={
-            !isEmpty(validationMessage) ? <Text color={colors.red500}>{validationMessage}</Text> : validationMessageProp
-          }
+          validationMessage={!isEmpty(validationMessage) ? validationMessage : validationMessageProp}
         >
           {renderDropzone && (
             <Box
