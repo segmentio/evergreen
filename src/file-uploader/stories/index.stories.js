@@ -7,7 +7,7 @@ import { FileUploader, FileCard } from '../../file-uploader'
 import { majorScale } from '../../scales'
 import { toaster } from '../../toaster'
 import { Label, Code, ListItem } from '../../typography'
-import { getIconFromType } from '../src/utils/get-icon-from-type'
+import getIconFromType from '../src/utils/get-icon-from-type'
 import { getAcceptedTypesMessage, getMaxFilesMessage, getFileSizeMessage } from '../src/utils/messages'
 
 const acceptedMimeTypes = [MimeType.gif, MimeType.png, MimeType.jpeg]
@@ -62,6 +62,15 @@ storiesOf('file-uploader', module)
             <Code marginLeft={majorScale(3)}>{file.name}</Code>
           </ListItem>
         )}
+      />
+      <FileUploaderState
+        label="Custom browseOrDragText"
+        browseOrDragText={maxFiles => `Browse or drag ${maxFiles === 1 ? 'a file' : 'files'}`}
+      />
+      <FileUploaderState
+        label="Custom dragMaxFilesMessage"
+        dragMaxFilesMessage={maxFiles => `You can only upload ${maxFiles} files at a time.`}
+        maxFiles={2}
       />
       <FileUploaderState
         label="Custom validation message"
