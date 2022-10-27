@@ -115,6 +115,7 @@ const FilePicker = memo(
           disabled={disabled}
           borderTopLeftRadius={0}
           borderBottomLeftRadius={0}
+          marginLeft={-1}
           height={height}
           flexShrink={0}
           type="button"

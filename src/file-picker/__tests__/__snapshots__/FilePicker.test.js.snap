@@ -20,7 +20,7 @@ exports[`<FilePicker /> snapshot - multiple files selected 1`] = `
       value="2 files"
     />
     <button
-      class="css-12b25td evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_16px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-flx-srnk_0 ub-ltr-spc_0 ub-box-szg_border-box"
+      class="css-12b25td evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_16px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-ml_-1px ub-flx-srnk_0 ub-ltr-spc_0 ub-box-szg_border-box"
       type="button"
     >
       Replace files
@@ -48,7 +48,7 @@ exports[`<FilePicker /> snapshot - no file selected 1`] = `
       value=""
     />
     <button
-      class="css-12b25td evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_16px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-flx-srnk_0 ub-ltr-spc_0 ub-box-szg_border-box"
+      class="css-12b25td evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_16px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-ml_-1px ub-flx-srnk_0 ub-ltr-spc_0 ub-box-szg_border-box"
       type="button"
     >
       Select file
@@ -76,7 +76,7 @@ exports[`<FilePicker /> snapshot - one file seleted 1`] = `
       value="chucknorris.png"
     />
     <button
-      class="css-12b25td evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_16px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-flx-srnk_0 ub-ltr-spc_0 ub-box-szg_border-box"
+      class="css-12b25td evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_16px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-ml_-1px ub-flx-srnk_0 ub-ltr-spc_0 ub-box-szg_border-box"
       type="button"
     >
       Replace file
