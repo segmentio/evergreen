@@ -24,11 +24,7 @@ padding-right: 6px;
 padding-top: 3px;
 
 
-<code
-  className="ub-fnt-sze_12px ub-f-wght_400 ub-ln-ht_16px ub-ltr-spc_0 ub-fnt-fam_tawojy ub-color_474d66 ub-bg-clr_rgba16-112-202-0-06 ub-bs_1o2cska ub-pl_6px ub-pr_6px ub-pb_3px ub-pt_3px ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-box-szg_border-box"
->
-  Text 300
-</code>
+"<code class=\\"ub-fnt-sze_12px ub-f-wght_400 ub-ln-ht_16px ub-ltr-spc_0 ub-fnt-fam_tawojy ub-color_474d66 ub-bg-clr_rgba16-112-202-0-06 ub-bs_1o2cska ub-pl_6px ub-pr_6px ub-pb_3px ub-pt_3px ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-box-szg_border-box\\">Text 300</code>"
 `;
 
 exports[`Code <Code /> size 300 with minimal appearance specified renders as expected 1`] = `
@@ -42,11 +38,7 @@ letter-spacing: 0;
 line-height: 16px;
 
 
-<code
-  className="ub-fnt-sze_12px ub-f-wght_400 ub-ln-ht_16px ub-ltr-spc_0 ub-fnt-fam_tawojy ub-color_474d66 ub-box-szg_border-box"
->
-  Text 300
-</code>
+"<code class=\\"ub-fnt-sze_12px ub-f-wght_400 ub-ln-ht_16px ub-ltr-spc_0 ub-fnt-fam_tawojy ub-color_474d66 ub-box-szg_border-box\\">Text 300</code>"
 `;
 
 exports[`Code <Code /> size 400 renders as expected 1`] = `
@@ -70,11 +62,7 @@ padding-right: 6px;
 padding-top: 3px;
 
 
-<code
-  className="ub-fnt-sze_14px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_tawojy ub-color_474d66 ub-bg-clr_rgba16-112-202-0-06 ub-bs_1o2cska ub-pl_6px ub-pr_6px ub-pb_3px ub-pt_3px ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-box-szg_border-box"
->
-  Text 400
-</code>
+"<code class=\\"ub-fnt-sze_14px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_tawojy ub-color_474d66 ub-bg-clr_rgba16-112-202-0-06 ub-bs_1o2cska ub-pl_6px ub-pr_6px ub-pb_3px ub-pt_3px ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-box-szg_border-box\\">Text 400</code>"
 `;
 
 exports[`Code <Code /> size 400 with minimal appearance specified renders as expected 1`] = `
@@ -88,11 +76,7 @@ letter-spacing: -0.05px;
 line-height: 20px;
 
 
-<code
-  className="ub-fnt-sze_14px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_tawojy ub-color_474d66 ub-box-szg_border-box"
->
-  Text 400
-</code>
+"<code class=\\"ub-fnt-sze_14px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_tawojy ub-color_474d66 ub-box-szg_border-box\\">Text 400</code>"
 `;
 
 exports[`Code <Code /> size 500 renders as expected 1`] = `
@@ -116,11 +100,7 @@ padding-right: 6px;
 padding-top: 3px;
 
 
-<code
-  className="ub-fnt-sze_16px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_tawojy ub-color_474d66 ub-bg-clr_rgba16-112-202-0-06 ub-bs_1o2cska ub-pl_6px ub-pr_6px ub-pb_3px ub-pt_3px ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-box-szg_border-box"
->
-  Text 500
-</code>
+"<code class=\\"ub-fnt-sze_16px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_tawojy ub-color_474d66 ub-bg-clr_rgba16-112-202-0-06 ub-bs_1o2cska ub-pl_6px ub-pr_6px ub-pb_3px ub-pt_3px ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-box-szg_border-box\\">Text 500</code>"
 `;
 
 exports[`Code <Code /> size 500 with minimal appearance specified renders as expected 1`] = `
@@ -134,11 +114,7 @@ letter-spacing: -0.05px;
 line-height: 20px;
 
 
-<code
-  className="ub-fnt-sze_16px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_tawojy ub-color_474d66 ub-box-szg_border-box"
->
-  Text 500
-</code>
+"<code class=\\"ub-fnt-sze_16px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_tawojy ub-color_474d66 ub-box-szg_border-box\\">Text 500</code>"
 `;
 
 exports[`Code <Code /> size 600 renders as expected 1`] = `
@@ -162,11 +138,7 @@ padding-right: 6px;
 padding-top: 3px;
 
 
-<code
-  className="ub-fnt-sze_18px ub-f-wght_400 ub-ln-ht_24px ub-ltr-spc_-0-07px ub-fnt-fam_tawojy ub-color_474d66 ub-bg-clr_rgba16-112-202-0-06 ub-bs_1o2cska ub-pl_6px ub-pr_6px ub-pb_3px ub-pt_3px ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-box-szg_border-box"
->
-  Text 600
-</code>
+"<code class=\\"ub-fnt-sze_18px ub-f-wght_400 ub-ln-ht_24px ub-ltr-spc_-0-07px ub-fnt-fam_tawojy ub-color_474d66 ub-bg-clr_rgba16-112-202-0-06 ub-bs_1o2cska ub-pl_6px ub-pr_6px ub-pb_3px ub-pt_3px ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-box-szg_border-box\\">Text 600</code>"
 `;
 
 exports[`Code <Code /> size 600 with minimal appearance specified renders as expected 1`] = `
@@ -180,9 +152,5 @@ letter-spacing: -0.07px;
 line-height: 24px;
 
 
-<code
-  className="ub-fnt-sze_18px ub-f-wght_400 ub-ln-ht_24px ub-ltr-spc_-0-07px ub-fnt-fam_tawojy ub-color_474d66 ub-box-szg_border-box"
->
-  Text 600
-</code>
+"<code class=\\"ub-fnt-sze_18px ub-f-wght_400 ub-ln-ht_24px ub-ltr-spc_-0-07px ub-fnt-fam_tawojy ub-color_474d66 ub-box-szg_border-box\\">Text 600</code>"
 `;

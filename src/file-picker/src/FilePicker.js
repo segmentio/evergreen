@@ -12,15 +12,19 @@ const FilePicker = memo(
   forwardRef(function FilePicker(props, ref) {
     const {
       accept,
+      browseText = 'Select file',
       capture,
       className,
       disabled,
       height = 32,
       multiple,
+      multipleText = 'files',
       name,
       onBlur,
       onChange,
       placeholder = 'Select a file to upload…',
+      replaceMultipleText = 'Replace files',
+      replaceText = 'Replace file',
       required,
       ...rest
     } = props
@@ -58,22 +62,18 @@ const FilePicker = memo(
       [onBlur]
     )
 
-    let inputValue
-    if (files.length === 0) {
-      inputValue = ''
-    } else if (files.length === 1) {
+    let inputValue = ''
+    if (files.length === 1) {
       inputValue = files[0].name
-    } else {
-      inputValue = `${files.length} files`
+    } else if (files.length > 1) {
+      inputValue = `${files.length}${multipleText?.trim() ? ` ${multipleText.trim()}` : ' files'}`
     }
 
-    let buttonText
-    if (files.length === 0) {
-      buttonText = 'Select file'
-    } else if (files.length === 1) {
-      buttonText = 'Replace file'
-    } else {
-      buttonText = 'Replace files'
+    let buttonText = browseText
+    if (files.length === 1) {
+      buttonText = replaceText
+    } else if (files.length > 1) {
+      buttonText = replaceMultipleText
     }
 
     const rootClassNames = cx(`${CLASS_PREFIX}-root`, className)
@@ -184,7 +184,27 @@ FilePicker.propTypes = {
    * Class name passed to the FilePicker.
    * Only use this if you know what you are doing.
    */
-  className: PropTypes.string
+  className: PropTypes.string,
+
+  /**
+   * Text of the button when no file is selected
+   */
+  browseText: PropTypes.string,
+
+  /**
+   * Text of the button when one file is selected
+   */
+  replaceText: PropTypes.string,
+
+  /**
+   * Text of the button when multiple files are selected
+   */
+  replaceMultipleText: PropTypes.string,
+
+  /**
+   * Text addition of the text input when multiple files are selected
+   */
+  multipleText: PropTypes.string
 }
 
 export default FilePicker

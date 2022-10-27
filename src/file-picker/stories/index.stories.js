@@ -30,5 +30,13 @@ storiesOf('file-picker', module).add('FilePicker', () => (
     <FilePicker multiple width={350} height={24} marginBottom={32} />
 
     <FilePicker disabled width={250} marginBottom={32} />
+
+    <FilePicker
+      browseText="Select"
+      replaceText="Replace"
+      replaceMultipleText="Replace all"
+      multipleText="files selected"
+      multiple
+    />
   </Box>
 ))
