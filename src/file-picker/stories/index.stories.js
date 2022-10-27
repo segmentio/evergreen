@@ -32,6 +32,7 @@ storiesOf('file-picker', module).add('FilePicker', () => (
     <FilePicker disabled width={250} marginBottom={32} />
 
     <FilePicker
+      width={250}
       browseText="Select"
       replaceText="Replace"
       replaceMultipleText="Replace all"
