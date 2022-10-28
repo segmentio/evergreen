@@ -30,23 +30,3 @@
 ```jsx
 <FilePicker disabled width={250} />
 ```
-
-## Localization
-
-```jsx
-<FilePicker
-  width={250}
-  multiple
-  placeholder="Select the file here!"
-  browseOrReplaceText={(fileCount) => {
-    if (!fileCount) return 'Select'
-    if (fileCount === 1) return 'Replace'
-    return 'Replace all'
-  }}
-  inputText={(files) => {
-    if (!files.length) return ''
-    if (files.length === 1) return `File: ${files[0].name}`
-    return `Files: ${files.length}`
-  }}
-/>
-```
