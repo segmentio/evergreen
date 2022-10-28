@@ -8,23 +8,40 @@ import { TextInput } from '../../text-input'
 
 export const CLASS_PREFIX = 'evergreen-file-picker'
 
+const getBrowseOrReplaceText = fileCount => {
+  const action = fileCount === 0 ? 'Select' : 'Replace'
+  const fileLabel = fileCount > 1 ? 'files' : 'file'
+
+  return `${action} ${fileLabel}`
+}
+
+const getInputValue = files => {
+  if (files.length === 1) {
+    return files[0].name
+  }
+
+  if (files.length > 1) {
+    return `${files.length} files`
+  }
+
+  return ''
+}
+
 const FilePicker = memo(
   forwardRef(function FilePicker(props, ref) {
     const {
       accept,
-      browseText = 'Select file',
+      browseOrReplaceText = getBrowseOrReplaceText,
       capture,
       className,
       disabled,
       height = 32,
+      inputText = getInputValue,
       multiple,
-      multipleText = 'files',
       name,
       onBlur,
       onChange,
       placeholder = 'Select a file to upload…',
-      replaceMultipleText = 'Replace files',
-      replaceText = 'Replace file',
       required,
       ...rest
     } = props
@@ -62,20 +79,6 @@ const FilePicker = memo(
       [onBlur]
     )
 
-    let inputValue = ''
-    if (files.length === 1) {
-      inputValue = files[0].name
-    } else if (files.length > 1) {
-      inputValue = `${files.length}${multipleText?.trim() ? ` ${multipleText.trim()}` : ' files'}`
-    }
-
-    let buttonText = browseText
-    if (files.length === 1) {
-      buttonText = replaceText
-    } else if (files.length > 1) {
-      buttonText = replaceMultipleText
-    }
-
     const rootClassNames = cx(`${CLASS_PREFIX}-root`, className)
 
     return (
@@ -98,7 +101,7 @@ const FilePicker = memo(
         <TextInput
           className={`${CLASS_PREFIX}-text-input`}
           readOnly
-          value={inputValue}
+          value={inputText(files)}
           placeholder={placeholder}
           // There's a weird specifity issue when there's two differently sized inputs on the page
           borderTopRightRadius="0 !important"
@@ -121,7 +124,7 @@ const FilePicker = memo(
           type="button"
           onBlur={handleBlur}
         >
-          {buttonText}
+          {browseOrReplaceText(files.length)}
         </Button>
       </Box>
     )
@@ -188,24 +191,17 @@ FilePicker.propTypes = {
   className: PropTypes.string,
 
   /**
-   * Text of the button when no file is selected
+   * Function that returns the call-to-action button text for selecting files.
+   * Gets the file count as number as parameter.
    */
-  browseText: PropTypes.string,
+  browseOrReplaceText: PropTypes.func,
 
   /**
-   * Text of the button when one file is selected
+   * Function that returns the text in the input field,
+   * Describing what file or files have been added.
+   * Gets the selected files as File[] as parameter.
    */
-  replaceText: PropTypes.string,
-
-  /**
-   * Text of the button when multiple files are selected
-   */
-  replaceMultipleText: PropTypes.string,
-
-  /**
-   * Text addition of the text input when multiple files are selected
-   */
-  multipleText: PropTypes.string
+  inputText: PropTypes.func
 }
 
 export default FilePicker

@@ -144,46 +144,69 @@ describe('<FilePicker />', () => {
     expect(input.placeholder).toEqual(placeholder)
   })
 
-  it('sets browseText', async () => {
-    const text = 'select file'
-    const { container } = render(<FilePicker browseText={text} />)
+  it('sets browseOrReplaceText', async () => {
+    const browseText = 'Select'
+    const replaceText = 'Replace'
+    const replaceMultipleText = 'Replace all'
 
-    expect(await getButton(container)).toHaveTextContent(text)
-  })
+    const { container } = render(
+      <FilePicker
+        multiple
+        browseOrReplaceText={fileCount => {
+          if (!fileCount) return browseText
+          if (fileCount === 1) return replaceText
+          return replaceMultipleText
+        }}
+      />
+    )
 
-  it('sets replaceText', async () => {
-    const text = 'replace files'
-    const { container } = render(<FilePicker replaceText={text} />)
+    const button = await getButton(container)
+
+    expect(button).toHaveTextContent(browseText)
 
     const fileInput = await getFileInput(container)
     userEvent.upload(fileInput, [new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' })])
 
-    expect(await getButton(container)).toHaveTextContent(text)
-  })
+    expect(button).toHaveTextContent(replaceText)
 
-  it('sets replaceMultipleText', async () => {
-    const text = 'replace files'
-    const { container } = render(<FilePicker multiple replaceMultipleText={text} />)
-
-    const fileInput = await getFileInput(container)
     userEvent.upload(fileInput, [
       new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' }),
       new File(['(□_□¬)'], 'brucelee.png', { type: 'image/png' })
     ])
 
-    expect(await getButton(container)).toHaveTextContent(text)
+    expect(button).toHaveTextContent(replaceMultipleText)
   })
 
   it('sets multipleText', async () => {
-    const text = 'files selected'
-    const { container } = render(<FilePicker multiple multipleText={text} />)
+    const noFiles = ':('
+    const oneFile = 'File: chucknorris.png'
+    const multipleFiles = 'Files: 2'
+
+    const { container } = render(
+      <FilePicker
+        multiple
+        inputText={files => {
+          if (!files.length) return noFiles
+          if (files.length === 1) return `File: ${files[0].name}`
+          return `Files: ${files.length}`
+        }}
+      />
+    )
+
+    const textInput = await getTextInput(container)
+
+    expect(textInput).toHaveValue(noFiles)
 
     const fileInput = await getFileInput(container)
+    userEvent.upload(fileInput, [new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' })])
+
+    expect(textInput).toHaveValue(oneFile)
+
     userEvent.upload(fileInput, [
       new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' }),
       new File(['(□_□¬)'], 'brucelee.png', { type: 'image/png' })
     ])
 
-    expect(await getTextInput(container)).toHaveValue(`2 ${text}`)
+    expect(textInput).toHaveValue(multipleFiles)
   })
 })
