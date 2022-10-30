@@ -177,7 +177,7 @@ describe('<FilePicker />', () => {
     expect(button).toHaveTextContent(replaceMultipleText)
   })
 
-  it('sets multipleText', async () => {
+  it('sets inputText', async () => {
     const noFiles = ':('
     const oneFile = 'File: chucknorris.png'
     const multipleFiles = 'Files: 2'

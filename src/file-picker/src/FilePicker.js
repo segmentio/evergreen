@@ -192,14 +192,13 @@ FilePicker.propTypes = {
 
   /**
    * Function that returns the call-to-action button text for selecting files.
-   * Gets the file count as number as parameter.
+   * @type {(fileCount: number) => string}
    */
   browseOrReplaceText: PropTypes.func,
 
   /**
-   * Function that returns the text in the input field,
-   * Describing what file or files have been added.
-   * Gets the selected files as File[] as parameter.
+   * Function that returns the text in the input field.
+   * @type {(files: File[]) => string}
    */
   inputText: PropTypes.func
 }
