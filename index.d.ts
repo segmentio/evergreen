@@ -1423,6 +1423,10 @@ export interface FilePickerOwnProps {
   onBlur?: (event: React.FocusEvent) => void
   /** placeholder of the text input */
   placeholder?: string
+  /** function that returns the call-to-action button text for selecting files */
+  browseOrReplaceText?: (fileCount: number) => string
+  /** function that returns the text in the input field **/
+  inputText?: (files: File[]) => string
 }
 
 export type FilePickerProps = PolymorphicBoxProps<'div', FilePickerOwnProps>

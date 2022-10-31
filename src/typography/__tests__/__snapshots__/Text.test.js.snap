@@ -11,11 +11,7 @@ letter-spacing: 0;
 line-height: 16px;
 
 
-<span
-  className="ub-fnt-sze_12px ub-f-wght_400 ub-ln-ht_16px ub-ltr-spc_0 ub-fnt-fam_b77syt ub-color_474d66 ub-box-szg_border-box"
->
-  Text 300
-</span>
+"<span class=\\"ub-fnt-sze_12px ub-f-wght_400 ub-ln-ht_16px ub-ltr-spc_0 ub-fnt-fam_b77syt ub-color_474d66 ub-box-szg_border-box\\">Text 300</span>"
 `;
 
 exports[`<Text /> size 400 renders as expected 1`] = `
@@ -29,11 +25,7 @@ letter-spacing: -0.05px;
 line-height: 20px;
 
 
-<span
-  className="ub-fnt-sze_14px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_474d66 ub-box-szg_border-box"
->
-  Text 400
-</span>
+"<span class=\\"ub-fnt-sze_14px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_474d66 ub-box-szg_border-box\\">Text 400</span>"
 `;
 
 exports[`<Text /> size 500 renders as expected 1`] = `
@@ -47,11 +39,7 @@ letter-spacing: -0.05px;
 line-height: 20px;
 
 
-<span
-  className="ub-fnt-sze_16px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_474d66 ub-box-szg_border-box"
->
-  Text 500
-</span>
+"<span class=\\"ub-fnt-sze_16px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_474d66 ub-box-szg_border-box\\">Text 500</span>"
 `;
 
 exports[`<Text /> size 600 renders as expected 1`] = `
@@ -65,11 +53,7 @@ letter-spacing: -0.07px;
 line-height: 24px;
 
 
-<span
-  className="ub-fnt-sze_18px ub-f-wght_400 ub-ln-ht_24px ub-ltr-spc_-0-07px ub-fnt-fam_b77syt ub-color_474d66 ub-box-szg_border-box"
->
-  Text 600
-</span>
+"<span class=\\"ub-fnt-sze_18px ub-f-wght_400 ub-ln-ht_24px ub-ltr-spc_-0-07px ub-fnt-fam_b77syt ub-color_474d66 ub-box-szg_border-box\\">Text 600</span>"
 `;
 
 exports[`Colors <Text /> accepts arbitrary theme values for color 1`] = `
@@ -83,14 +67,7 @@ letter-spacing: -0.05px;
 line-height: 20px;
 
 
-Array [
-  <span
-    className="ub-fnt-sze_14px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_696f8c ub-box-szg_border-box"
-  >
-    Testing
-  </span>,
-  " ",
-]
+"<span class=\\"ub-fnt-sze_14px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_696f8c ub-box-szg_border-box\\">Testing</span>"
 `;
 
 exports[`Colors <Text /> does not render any color when a non-theme color is passed in  1`] = `
@@ -104,12 +81,5 @@ letter-spacing: -0.05px;
 line-height: 20px;
 
 
-Array [
-  <span
-    className="ub-fnt-sze_14px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_SOMETHING-DOESNT-EXISt ub-box-szg_border-box"
-  >
-    Testing
-  </span>,
-  " ",
-]
+"<span class=\\"ub-fnt-sze_14px ub-f-wght_400 ub-ln-ht_20px ub-ltr-spc_-0-05px ub-fnt-fam_b77syt ub-color_SOMETHING-DOESNT-EXISt ub-box-szg_border-box\\">Testing</span>"
 `;

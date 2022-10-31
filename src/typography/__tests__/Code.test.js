@@ -1,7 +1,6 @@
 import React from 'react'
 import { faker } from '@faker-js/faker'
 import { render } from '@testing-library/react'
-import renderer from 'react-test-renderer'
 import { UIBoxSerializer } from '../../../lib/testing'
 import { ThemeProvider } from '../../theme'
 import { defaultTheme } from '../../themes'
@@ -19,14 +18,15 @@ describe('Code', () => {
     ['size 400', 400],
     ['size 500', 500],
     ['size 600', 600]
-  ])('<Code /> %s renders as expected', (_, size) => {
-    const component = (
+  ])('<Code /> %s renders as expected', async (_, size) => {
+    const text = `Text ${size}`
+    const { findByText } = render(
       <ThemeProvider value={defaultTheme}>
-        <Code size={size}>{`Text ${size}`}</Code>
+        <Code size={size}>{text}</Code>
       </ThemeProvider>
     )
-    const tree = renderer.create(component).toJSON()
-    expect(tree).toMatchSnapshot()
+
+    expect((await findByText(text)).outerHTML).toMatchSnapshot()
   })
 
   it.each([
@@ -34,14 +34,19 @@ describe('Code', () => {
     ['size 400', 400],
     ['size 500', 500],
     ['size 600', 600]
-  ])('<Code /> %s with minimal appearance specified renders as expected', (_, size) => {
-    const component = (
-      <ThemeProvider value={defaultTheme}>
-        <Code size={size} appearance="minimal">{`Text ${size}`}</Code>
-      </ThemeProvider>
+  ])('<Code /> %s with minimal appearance specified renders as expected', async (_, size) => {
+    const text = `Text ${size}`
+    const { findByText } = render(
+      <div>
+        <ThemeProvider value={defaultTheme}>
+          <Code size={size} appearance="minimal">
+            {text}
+          </Code>
+        </ThemeProvider>
+      </div>
     )
-    const tree = renderer.create(component).toJSON()
-    expect(tree).toMatchSnapshot()
+
+    expect((await findByText(text)).outerHTML).toMatchSnapshot()
   })
 
   it('should pass through `className` prop', () => {

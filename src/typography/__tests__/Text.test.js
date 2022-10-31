@@ -1,7 +1,6 @@
 import React from 'react'
 import { faker } from '@faker-js/faker'
 import { render } from '@testing-library/react'
-import renderer from 'react-test-renderer'
 import { UIBoxSerializer } from '../../../lib/testing'
 import { ThemeProvider } from '../../theme'
 import { defaultTheme } from '../../themes'
@@ -14,35 +13,36 @@ test.each([
   ['size 400', 400],
   ['size 500', 500],
   ['size 600', 600]
-])('<Text /> %s renders as expected', (_, size) => {
-  const component = (
+])('<Text /> %s renders as expected', async (_, size) => {
+  const text = `Text ${size}`
+  const { findByText } = render(
     <ThemeProvider value={defaultTheme}>
-      <Text size={size}>{`Text ${size}`}</Text>
+      <Text size={size}>{text}</Text>
     </ThemeProvider>
   )
-  const tree = renderer.create(component).toJSON()
-  expect(tree).toMatchSnapshot()
+
+  expect((await findByText(text)).outerHTML).toMatchSnapshot()
 })
 
 describe('Colors', () => {
-  test('<Text /> accepts arbitrary theme values for color', () => {
-    const component = (
+  test('<Text /> accepts arbitrary theme values for color', async () => {
+    const { findByText } = render(
       <ThemeProvider value={defaultTheme}>
         <Text color="muted">Testing</Text>{' '}
       </ThemeProvider>
     )
-    const tree = renderer.create(component).toJSON()
-    expect(tree).toMatchSnapshot()
+
+    expect((await findByText('Testing')).outerHTML).toMatchSnapshot()
   })
 
-  test('<Text /> does not render any color when a non-theme color is passed in ', () => {
-    const component = (
+  test('<Text /> does not render any color when a non-theme color is passed in ', async () => {
+    const { findByText } = render(
       <ThemeProvider value={defaultTheme}>
         <Text color="SOMETHING DOESNT EXISt">Testing</Text>{' '}
       </ThemeProvider>
     )
-    const tree = renderer.create(component).toJSON()
-    expect(tree).toMatchSnapshot()
+
+    expect((await findByText('Testing')).outerHTML).toMatchSnapshot()
   })
 })
 
