@@ -1,26 +1,9 @@
 import React, { memo, forwardRef, useCallback } from 'react'
-import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { SearchIcon } from '../../icons'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Text } from '../../typography'
 import TableHeaderCell from './TableHeaderCell'
-
-const invisibleInputClass = css({
-  border: 'none',
-  backgroundColor: 'transparent',
-  WebkitAppearance: 'none',
-  MozAppearance: 'none',
-  WebkitFontSmoothing: 'antialiased',
-
-  '&:focus': {
-    outline: 'none'
-  },
-
-  '&::placeholder': {
-    color: 'rgba(67, 90, 111, 0.7)'
-  }
-}).toString()
 
 const noop = () => {}
 
@@ -46,7 +29,17 @@ const SearchTableHeaderCell = memo(
           is="input"
           size={300}
           flex="1"
-          className={invisibleInputClass}
+          border="none"
+          backgroundColor="transparent"
+          appearance="none"
+          selectors={{
+            '&:focus': {
+              outline: 'none'
+            },
+            '&::placeholder': {
+              color: 'rgba(67, 90, 111, 0.7)'
+            }
+          }}
           value={value}
           onChange={handleChange}
           autoFocus={autoFocus}
