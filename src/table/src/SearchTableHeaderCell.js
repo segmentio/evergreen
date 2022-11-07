@@ -7,6 +7,15 @@ import TableHeaderCell from './TableHeaderCell'
 
 const noop = () => {}
 
+/**
+ * This prop is non-standard, macOS specific and unsupported by ui-box. We probably don't need it,
+ * but retaining it for backwards compatibility
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/font-smooth
+ */
+const style = {
+  '-webkit-font-smoothing': 'antialiased'
+}
+
 const SearchTableHeaderCell = memo(
   forwardRef(function SearchTableHeaderCell(props, ref) {
     const {
@@ -32,6 +41,7 @@ const SearchTableHeaderCell = memo(
           border="none"
           backgroundColor="transparent"
           appearance="none"
+          style={style}
           selectors={{
             '&:focus': {
               outline: 'none'
