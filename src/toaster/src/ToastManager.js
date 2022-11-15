@@ -1,19 +1,8 @@
 import React, { memo, useState } from 'react'
-import { css } from 'glamor'
 import PropTypes from 'prop-types'
+import Box from 'ui-box'
 import { StackingOrder } from '../../constants'
 import Toast from './Toast'
-
-const wrapperClass = css({
-  maxWidth: 560,
-  margin: '0 auto',
-  top: 0,
-  left: 0,
-  right: 0,
-  position: 'fixed',
-  zIndex: StackingOrder.TOASTER,
-  pointerEvents: 'none'
-})
 
 const hasCustomId = settings => Object.hasOwnProperty.call(settings, 'id')
 
@@ -94,7 +83,18 @@ const ToastManager = memo(function ToastManager(props) {
   bindCloseAll(closeAll)
 
   return (
-    <span className={wrapperClass}>
+    <Box
+      is="span"
+      maxWidth={560}
+      marginY={0}
+      marginX="auto"
+      top={0}
+      left={0}
+      right={0}
+      position="fixed"
+      zIndex={StackingOrder.TOASTER}
+      pointerEvents="none"
+    >
       {toasts.map(({ description, id, ...rest }) => {
         return (
           <Toast key={id} onRemove={() => removeToast(id)} {...rest}>
@@ -102,7 +102,7 @@ const ToastManager = memo(function ToastManager(props) {
           </Toast>
         )
       })}
-    </span>
+    </Box>
   )
 })
 

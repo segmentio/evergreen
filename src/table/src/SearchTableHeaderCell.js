@@ -1,28 +1,20 @@
 import React, { memo, forwardRef, useCallback } from 'react'
-import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { SearchIcon } from '../../icons'
 import { IconWrapper } from '../../icons/src/IconWrapper'
 import { Text } from '../../typography'
 import TableHeaderCell from './TableHeaderCell'
 
-const invisibleInputClass = css({
-  border: 'none',
-  backgroundColor: 'transparent',
-  WebkitAppearance: 'none',
-  MozAppearance: 'none',
-  WebkitFontSmoothing: 'antialiased',
-
-  '&:focus': {
-    outline: 'none'
-  },
-
-  '&::placeholder': {
-    color: 'rgba(67, 90, 111, 0.7)'
-  }
-}).toString()
-
 const noop = () => {}
+
+/**
+ * This prop is non-standard, macOS specific and unsupported by ui-box. We probably don't need it,
+ * but retaining it for backwards compatibility
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/font-smooth
+ */
+const style = {
+  '-webkit-font-smoothing': 'antialiased'
+}
 
 const SearchTableHeaderCell = memo(
   forwardRef(function SearchTableHeaderCell(props, ref) {
@@ -46,7 +38,18 @@ const SearchTableHeaderCell = memo(
           is="input"
           size={300}
           flex="1"
-          className={invisibleInputClass}
+          border="none"
+          backgroundColor="transparent"
+          appearance="none"
+          style={style}
+          selectors={{
+            '&:focus': {
+              outline: 'none'
+            },
+            '&::placeholder': {
+              color: 'rgba(67, 90, 111, 0.7)'
+            }
+          }}
           value={value}
           onChange={handleChange}
           autoFocus={autoFocus}
