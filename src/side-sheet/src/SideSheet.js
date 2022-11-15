@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { css } from 'glamor'
 import PropTypes from 'prop-types'
+import { keyframes } from 'ui-box'
 import { Position } from '../../constants'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
@@ -60,12 +60,17 @@ const animationEasing = {
 const ANIMATION_DURATION = 240
 
 const withAnimations = (animateIn, animateOut) => {
+  const enterAnimation = {
+    animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
+  }
+
   return {
-    '&[data-state="entering"], &[data-state="entered"]': {
-      animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
-    },
-    '&[data-state="exiting"]': {
-      animation: `${animateOut} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
+    selectors: {
+      '&[data-state="entering"]': enterAnimation,
+      '&[data-state="entered"]': enterAnimation,
+      '&[data-state="exiting"]': {
+        animation: `${animateOut} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
+      }
     }
   }
 }
@@ -74,11 +79,11 @@ const animationStylesClass = {
   [Position.LEFT]: {
     transform: 'translateX(-100%)',
     ...withAnimations(
-      css.keyframes('anchoredLeftSlideInAnimation', {
+      keyframes('anchoredLeftSlideInAnimation', {
         from: { transform: 'translateX(-100%)' },
         to: { transform: 'translateX(0)' }
       }),
-      css.keyframes('anchoredLeftSlideOutAnimation', {
+      keyframes('anchoredLeftSlideOutAnimation', {
         from: { transform: 'translateX(0)' },
         to: { transform: 'translateX(-100%)' }
       })
@@ -87,11 +92,11 @@ const animationStylesClass = {
   [Position.RIGHT]: {
     transform: 'translateX(100%)',
     ...withAnimations(
-      css.keyframes('anchoredRightSlideInAnimation', {
+      keyframes('anchoredRightSlideInAnimation', {
         from: { transform: 'translateX(100%)' },
         to: { transform: 'translateX(0)' }
       }),
-      css.keyframes('anchoredRightSlideOutAnimation', {
+      keyframes('anchoredRightSlideOutAnimation', {
         from: { transform: 'translateX(0)' },
         to: { transform: 'translateX(100%)' }
       })
@@ -100,11 +105,11 @@ const animationStylesClass = {
   [Position.TOP]: {
     transform: 'translateY(-100%)',
     ...withAnimations(
-      css.keyframes('anchoredTopSlideInAnimation', {
+      keyframes('anchoredTopSlideInAnimation', {
         from: { transform: 'translateY(-100%)' },
         to: { transform: 'translateY(0)' }
       }),
-      css.keyframes('anchoredTopSlideOutAnimation', {
+      keyframes('anchoredTopSlideOutAnimation', {
         from: { transform: 'translateY(0)' },
         to: { transform: 'translateY(-100%)' }
       })
@@ -113,11 +118,11 @@ const animationStylesClass = {
   [Position.BOTTOM]: {
     transform: 'translateY(100%)',
     ...withAnimations(
-      css.keyframes('anchoredBottomSlideInAnimation', {
+      keyframes('anchoredBottomSlideInAnimation', {
         from: { transform: 'translateY(100%)' },
         to: { transform: 'translateY(0)' }
       }),
-      css.keyframes('anchoredBottomSlideOutAnimation', {
+      keyframes('anchoredBottomSlideOutAnimation', {
         from: { transform: 'translateY(0)' },
         to: { transform: 'translateY(100%)' }
       })
@@ -155,12 +160,7 @@ const SideSheet = memo(function SideSheet(props) {
       preventBodyScrolling={preventBodyScrolling}
     >
       {({ close, state }) => (
-        <Pane
-          width={width}
-          {...paneProps[position]}
-          className={css(animationStylesClass[position]).toString()}
-          data-state={state}
-        >
+        <Pane width={width} {...paneProps[position]} {...animationStylesClass[position]} data-state={state}>
           <SheetClose position={position} data-state={state} isClosing={false} onClick={close} />
           <Pane
             elevation={4}

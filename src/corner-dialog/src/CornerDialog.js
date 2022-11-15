@@ -1,8 +1,7 @@
 import React, { memo, useRef, useState, useEffect, useCallback } from 'react'
-import cx from 'classnames'
-import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
+import { keyframes } from 'ui-box'
 import { Button, IconButton } from '../../buttons'
 import absolutePositions from '../../constants/src/AbsolutePosition'
 import positions from '../../constants/src/Position'
@@ -19,7 +18,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const openAnimation = css.keyframes('openAnimation', {
+const openAnimation = keyframes('openAnimation', {
   from: {
     transform: 'translateY(100%)'
   },
@@ -28,7 +27,7 @@ const openAnimation = css.keyframes('openAnimation', {
   }
 })
 
-const closeAnimation = css.keyframes('closeAnimation', {
+const closeAnimation = keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
     opacity: 1
@@ -39,12 +38,23 @@ const closeAnimation = css.keyframes('closeAnimation', {
   }
 })
 
+const enterAnimationProps = {
+  animationName: openAnimation,
+  animationDuration: ANIMATION_DURATION,
+  animationTimingFunction: animationEasing.spring,
+  animationFillMode: 'both'
+}
+
 const animationStyles = {
-  '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`
-  },
-  '&[data-state="exiting"]': {
-    animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
+  selectors: {
+    '&[data-state="entering"]': enterAnimationProps,
+    '&[data-state="entered"]': enterAnimationProps,
+    '&[data-state="exiting"]': {
+      animationName: closeAnimation,
+      animationDuration: 120,
+      animationTimingFunction: animationEasing.acceleration,
+      animationFillMode: 'both'
+    }
   }
 }
 
@@ -134,12 +144,13 @@ const CornerDialog = memo(function CornerDialog(props) {
       >
         {state => (
           <Card
+            {...animationStyles}
             ref={transitionRef}
             role="dialog"
             backgroundColor="white"
             elevation={4}
             width={width}
-            className={cx(css(animationStyles).toString(), containerClassName)}
+            className={containerClassName}
             data-state={state}
             padding={32}
             position="fixed"

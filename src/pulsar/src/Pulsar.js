@@ -1,19 +1,19 @@
 import React, { memo } from 'react'
-import { css } from 'glamor'
 import PropTypes from 'prop-types'
+import { keyframes } from 'ui-box'
 import Positions from '../../constants/src/Position'
 import { Pane } from '../../layers'
 import { majorScale } from '../../scales'
 import { useTheme } from '../../theme'
 
-const pulseAnimation = css.keyframes('pulseAnimation', {
-  '0%': {
+const pulseAnimation = keyframes('pulseAnimation', {
+  0: {
     transform: 'scale(1)'
   },
-  '50%': {
+  50: {
     transform: 'scale(1.9)'
   },
-  '100%': {
+  100: {
     transform: 'scale(1)'
   }
 })
@@ -21,9 +21,9 @@ const pulseAnimation = css.keyframes('pulseAnimation', {
 const animationTiming = 'cubic-bezier(0, 0, 0.58, 1)'
 const animationDuration = '1.8s'
 
-const pulsarAnimationClassName = css({
+const pularAnimationStyles = {
   animation: `${pulseAnimation} ${animationDuration} ${animationTiming} both infinite`
-}).toString()
+}
 
 const POSITION_KEYS = {
   [Positions.TOP_LEFT]: ['top', 'left'],
@@ -65,7 +65,7 @@ export const Pulsar = memo(({ position = Positions.TOP_RIGHT, size = majorScale(
       alignItems="center"
       justifyContent="center"
       padding={outerPadding}
-      className={pulsarAnimationClassName}
+      {...pularAnimationStyles}
       onClick={onClick}
       cursor={onClick ? 'pointer' : undefined}
       {...positionProps}
