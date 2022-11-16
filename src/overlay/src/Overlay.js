@@ -1,9 +1,7 @@
 import React, { memo, useState, useEffect, useRef } from 'react'
-import cx from 'classnames'
-import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
-import Box from 'ui-box'
+import Box, { keyframes } from 'ui-box'
 import { StackingOrder } from '../../constants'
 import preventBodyScroll from '../../lib/prevent-body-scroll'
 import safeInvoke from '../../lib/safe-invoke'
@@ -24,7 +22,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const fadeInAnimation = css.keyframes('fadeInAnimation', {
+const fadeInAnimation = keyframes('fadeInAnimation', {
   from: {
     opacity: 0
   },
@@ -33,7 +31,7 @@ const fadeInAnimation = css.keyframes('fadeInAnimation', {
   }
 })
 
-const fadeOutAnimation = css.keyframes('fadeOutAnimation', {
+const fadeOutAnimation = keyframes('fadeOutAnimation', {
   from: {
     opacity: 1
   },
@@ -41,23 +39,37 @@ const fadeOutAnimation = css.keyframes('fadeOutAnimation', {
     opacity: 0
   }
 })
+
+const enterAnimationProps = {
+  animationName: fadeInAnimation,
+  animationDuration: ANIMATION_DURATION,
+  animationTimingFunction: animationEasing.deceleration,
+  animationFillMode: 'both'
+}
+
+const exitAnimationProps = {
+  animationName: fadeOutAnimation,
+  animationDuration: ANIMATION_DURATION,
+  animationTimingFunction: animationEasing.acceleration,
+  animationFillMode: 'both'
+}
 
 const animationStyles = backgroundColor => ({
-  '&::before': {
-    backgroundColor,
-    left: 0,
-    top: 0,
-    position: 'fixed',
-    display: 'block',
-    width: '100%',
-    height: '100%',
-    content: '" "'
-  },
-  '&[data-state="entering"]::before, &[data-state="entered"]::before': {
-    animation: `${fadeInAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
-  },
-  '&[data-state="exiting"]::before, &[data-state="exited"]::before': {
-    animation: `${fadeOutAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
+  selectors: {
+    '&::before': {
+      backgroundColor,
+      left: 0,
+      top: 0,
+      position: 'fixed',
+      display: 'block',
+      width: '100%',
+      height: '100%',
+      content: '" "'
+    },
+    '&[data-state="entering"]::before': enterAnimationProps,
+    '&[data-state="entered"]::before': enterAnimationProps,
+    '&[data-state="exiting"]::before': exitAnimationProps,
+    '&[data-state="exited"]::before': exitAnimationProps
   }
 })
 
@@ -267,7 +279,8 @@ const Overlay = memo(function Overlay({
                 zIndex={zIndex}
                 data-state={state}
                 {...containerProps}
-                className={cx(containerProps.className, css(animationStyles(colors.overlay)).toString())}
+                className={containerProps.className}
+                {...animationStyles(colors.overlay)}
               >
                 {typeof children === 'function' ? children({ state, close }) : children}
               </Box>

@@ -28,6 +28,7 @@ const outerClass = css({
 
 const innerClass = color =>
   css({
+    // TODO: stroke* props are not yet supported in ui-box
     strokeDashoffset: 600,
     strokeDasharray: 300,
     strokeWidth: 12,
