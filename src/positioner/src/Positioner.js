@@ -134,6 +134,11 @@ const Positioner = memo(function Positioner(props) {
     }
   }, [previousDimensions.height, previousDimensions.width, update, children])
 
+  const handleEntering = () => {
+    transitionState.current = 'entering'
+    update()
+  }
+
   const handleEnter = () => {
     transitionState.current = 'entered'
     update()
@@ -168,6 +173,7 @@ const Positioner = memo(function Positioner(props) {
               in={isShown}
               timeout={animationDuration}
               onEnter={handleEnter}
+              onEntering={handleEntering}
               onEntered={onOpenComplete}
               onExited={handleExited}
               unmountOnExit
