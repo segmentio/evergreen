@@ -1,4 +1,5 @@
 import React, { memo, forwardRef } from 'react'
+import merge from 'lodash.merge'
 import PropTypes from 'prop-types'
 import { useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
@@ -34,16 +35,18 @@ const Option = memo(
       item,
       onDeselect,
       onSelect,
-      style,
+      style: styleProp,
       ...rest
     } = props
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
+    const { className: themedClassName, style: themedStyle, ...boxProps } = useStyleConfig(
       'Option',
       emptyObject,
       pseudoSelectors,
       internalStyles
     )
+
+    const style = merge({}, styleProp, themedStyle)
 
     return (
       <TableRow
