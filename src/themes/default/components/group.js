@@ -1,11 +1,13 @@
 const baseStyle = {
   selectors: {
     _child: {
-      '&:focus': {
-        zIndex: 'zIndices.focused'
-      },
-      '&:active': {
-        zIndex: 'zIndices.focused'
+      selectors: {
+        '&:focus': {
+          zIndex: 'zIndices.focused'
+        },
+        '&:active': {
+          zIndex: 'zIndices.focused'
+        }
       }
     },
 
