@@ -51,12 +51,6 @@ function maybeRunDeep(raw, ...args) {
 }
 
 /**
- * @param {string} key
- * @returns {boolean} True if the key looks like a selector, false otherwise
- */
-const isPseudoSelector = key => key.startsWith('_') || key.startsWith('&')
-
-/**
  * Combines styles from a styleConfig, with the given style modifiers (appearance, size, etc) and internal styles
  * @param {object} theme
  * @param {StyleModifiers} props
@@ -96,36 +90,26 @@ function useMergedStyles(theme, props, styleConfig, internalStyles) {
  * Split up the style props into box-ready props (selectors + spreadable props)
  */
 function useBoxProps(styleProps, pseudoSelectors) {
-  const styleObjectRef = useRef({})
-
   return useMemo(() => {
     // Split the resulting style object into ui-box-compatible props and the rest
-    const { matchedProps, remainingProps } = splitBoxProps(styleProps)
+    const {
+      matchedProps,
+      // selectors is currently being placed in the remainingProps object, so we're pulling it out specifically
+      // see https://github.com/segmentio/ui-box/pull/123
+      remainingProps: { selectors: placeholderSelectors = {}, ...remainingProps }
+    } = splitBoxProps(styleProps)
 
     /** @type {import('ui-box').EnhancerProps['selectors']} */
     const selectors = {}
 
-    /** @type {import('ui-box').EnhancerProps} */
-    const rest = {}
-
     // Swap out pseudo selector placeholders for their actual css selector strings
-    for (const k of Object.keys(remainingProps)) {
+    for (const k of Object.keys(placeholderSelectors)) {
       const key = k in pseudoSelectors ? pseudoSelectors[k] : k
-      if (isPseudoSelector(key)) {
-        selectors[key] = remainingProps[k]
-        continue
-      }
-
-      rest[key] = remainingProps[k]
-    }
-
-    // Take all the "non-compatible" props and convert them to an inline-style object
-    if (!isEqual(styleObjectRef.current, rest)) {
-      styleObjectRef.current = rest
+      selectors[key] = placeholderSelectors[k]
     }
 
     return {
-      style: styleObjectRef.current,
+      style: remainingProps,
       selectors,
       ...matchedProps
     }
