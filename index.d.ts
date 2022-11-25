@@ -1,8 +1,14 @@
 /* tslint:disable:interface-name max-classes-per-file no-empty-interface */
 
 import * as React from 'react'
-import { extractStyles as boxExtractStyles, BoxProps, BoxComponent, PolymorphicBoxProps } from 'ui-box'
-import { StyleAttribute, CSSProperties } from 'glamor'
+import {
+  extractStyles as boxExtractStyles,
+  BoxProps,
+  BoxComponent,
+  PolymorphicBoxProps,
+  BoxCssProps,
+  CssProps
+} from 'ui-box'
 import { DownshiftProps } from 'downshift'
 import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition'
 
@@ -2011,7 +2017,7 @@ export interface PositionerProps {
     top: number
     left: number
     zIndex: NonNullable<StackProps['value']>
-    css: StyleAttribute | CSSProperties
+    css: BoxCssProps<CssProps>
     style: {
       transformOrigin: string
       left: number

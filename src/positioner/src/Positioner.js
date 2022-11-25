@@ -18,14 +18,16 @@ const getCSS = ({ animationDuration, initialScale }) => ({
   transitionDuration: `${animationDuration}ms`,
   transitionProperty: 'opacity, transform',
   transform: `scale(${initialScale}) translateY(-1px)`,
-  '&[data-state="entering"], &[data-state="entered"]': {
-    opacity: 1,
-    visibility: 'visible',
-    transform: 'scale(1)'
-  },
-  '&[data-state="exiting"]': {
-    opacity: 0,
-    transform: 'scale(1)'
+  selectors: {
+    '&[data-state="entering"], &[data-state="entered"]': {
+      opacity: 1,
+      visibility: 'visible',
+      transform: 'scale(1)'
+    },
+    '&[data-state="exiting"]': {
+      opacity: 0,
+      transform: 'scale(1)'
+    }
   }
 })
 
