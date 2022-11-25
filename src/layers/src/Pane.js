@@ -1,5 +1,4 @@
 import React, { memo, forwardRef } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -30,7 +29,7 @@ const Pane = memo(
       ...restProps
     } = props
 
-    const { className: themedClassName, ...styleProps } = useStyleConfig(
+    const themedProps = useStyleConfig(
       'Pane',
       {
         elevation,
@@ -47,7 +46,7 @@ const Pane = memo(
       internalStyles
     )
 
-    return <Box ref={ref} className={cx(className, themedClassName)} {...styleProps} {...restProps} />
+    return <Box ref={ref} className={className} {...themedProps} {...restProps} />
   })
 )
 

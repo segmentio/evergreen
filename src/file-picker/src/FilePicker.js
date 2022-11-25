@@ -1,5 +1,4 @@
 import React, { memo, forwardRef, useState, useRef, useCallback } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Button } from '../../buttons'
@@ -7,6 +6,8 @@ import safeInvoke from '../../lib/safe-invoke'
 import { TextInput } from '../../text-input'
 
 export const CLASS_PREFIX = 'evergreen-file-picker'
+
+const ROOT_CLASS_NAME = `${CLASS_PREFIX}-root`
 
 const getBrowseOrReplaceText = fileCount => {
   const action = fileCount === 0 ? 'Select' : 'Replace'
@@ -79,7 +80,7 @@ const FilePicker = memo(
       [onBlur]
     )
 
-    const rootClassNames = cx(`${CLASS_PREFIX}-root`, className)
+    const rootClassNames = className ? `${ROOT_CLASS_NAME} ${className}` : ROOT_CLASS_NAME
 
     return (
       <Box display="flex" className={rootClassNames} ref={ref} {...rest}>

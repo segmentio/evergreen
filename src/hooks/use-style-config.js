@@ -55,7 +55,7 @@ function maybeRunDeep(raw, ...args) {
  * @param {object} theme
  * @param {StyleModifiers} props
  * @param {StyleConfig} styleConfig
- * @param {GlamorAndBoxStyle} [internalStyles]
+ * @param {import('ui-box').BoxCssProps<CssProps>} [internalStyles]
  * @returns {StyleConfig}
  */
 function combineStyles(theme, props, styleConfig, internalStyles = {}) {
@@ -122,7 +122,7 @@ function useBoxProps(styleProps, pseudoSelectors) {
 }
 
 /**
- * Takes a styleConfig object and outputs a `className` and `boxProps` that can be spread on a Box component
+ * Takes a styleConfig object and outputs `boxProps` that can be spread on a Box component
  * @param {string} componentKey the name of the component in the theme
  * @param {StyleModifiers} props props that modify the resulting visual style (e.g. `size` or `appearance`)
  * @param {PseudoSelectors} pseudoSelectors mapping for the component between states and actual pseudo selectors
@@ -141,6 +141,6 @@ export function useStyleConfig(componentKey, props, pseudoSelectors, internalSty
   // Resolve theme token strings found throughout the style object
   const styles = useMemo(() => resolveThemeTokens(theme, mergedStyles), [theme, mergedStyles])
 
-  // Finally, split up the styles based which ones Box supports and the rest construct a glamor className
+  // Finally, split up the styles based which ones Box supports and the rest construct an inline style object
   return useBoxProps(styles, pseudoSelectors)
 }

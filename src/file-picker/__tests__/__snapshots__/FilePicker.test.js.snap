@@ -12,7 +12,7 @@ exports[`<FilePicker /> snapshot - multiple files selected 1`] = `
     />
     <input
       aria-invalid="false"
-      class="css-12rdf6g evergreen-file-picker-text-input ub-w_280px ub-fnt-fam_b77syt ub-b-btm_1px-solid-transparent ub-b-lft_1px-solid-transparent ub-b-rgt_1px-solid-transparent ub-b-top_1px-solid-transparent ub-otln_iu2jf4 ub-txt-deco_none ub-bblr_4px ub-bbrr_0-important ub-btlr_4px ub-btrr_0-important ub-ln-ht_16px ub-fnt-sze_12px ub-color_474d66 ub-pl_12px ub-pr_12px ub-tstn_n1akt6 ub-h_32px ub-bg-clr_white ub-b-btm-clr_d8dae5 ub-b-lft-clr_d8dae5 ub-b-rgt-clr_d8dae5 ub-b-top-clr_d8dae5 ub-flx_1 ub-txt-ovrf_ellipsis ub-f-wght_400 ub-ltr-spc_0 ub-box-szg_border-box"
+      class="evergreen-file-picker-text-input ub-w_280px ub-fnt-fam_b77syt ub-b-btm_1px-solid-transparent ub-b-lft_1px-solid-transparent ub-b-rgt_1px-solid-transparent ub-b-top_1px-solid-transparent ub-otln_iu2jf4 ub-txt-deco_none ub-bblr_4px ub-bbrr_0-important ub-btlr_4px ub-btrr_0-important ub-ln-ht_16px ub-fnt-sze_12px ub-color_474d66 ub-pl_12px ub-pr_12px ub-tstn_n1akt6 ub-h_32px ub-bg-clr_white ub-b-btm-clr_d8dae5 ub-b-lft-clr_d8dae5 ub-b-rgt-clr_d8dae5 ub-b-top-clr_d8dae5 ub-color_kzml6l ub-crsr_xjbf3w ub-bg-clr_1df70es ub-color_1z0yay4 ub-z-idx_11wpgbn ub-bs_13po50p ub-b-btm-clr_1yuqfpf ub-b-lft-clr_1yuqfpf ub-b-rgt-clr_1yuqfpf ub-b-top-clr_1yuqfpf ub-b-btm-clr_12u35c8 ub-b-lft-clr_12u35c8 ub-b-rgt-clr_12u35c8 ub-b-top-clr_12u35c8 ub-flx_1 ub-txt-ovrf_ellipsis ub-f-wght_400 ub-ltr-spc_0 ub-box-szg_border-box"
       placeholder="Select a file to upload…"
       readonly=""
       spellcheck="true"
@@ -20,7 +20,7 @@ exports[`<FilePicker /> snapshot - multiple files selected 1`] = `
       value="2 files"
     />
     <button
-      class="css-12b25td evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_16px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-ml_-1px ub-flx-srnk_0 ub-ltr-spc_0 ub-box-szg_border-box"
+      class="evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_16px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-b-btm_1l7b3ar ub-b-lft_1l7b3ar ub-b-rgt_1l7b3ar ub-b-top_1l7b3ar ub-bs_13po50p ub-crsr_xjbf3w ub-ptr-evts_iu2jf4 ub-color_s22a4f ub-b-btm-clr_1wkcxda ub-b-lft-clr_1wkcxda ub-b-rgt-clr_1wkcxda ub-b-top-clr_1wkcxda ub-b-btm_jwd8q1 ub-b-lft_jwd8q1 ub-b-rgt_jwd8q1 ub-b-top_jwd8q1 ub-bg-clr_nrwqn2 ub-bg-clr_1df70es ub-ml_-1px ub-flx-srnk_0 ub-ltr-spc_0 ub-box-szg_border-box"
       type="button"
     >
       Replace files
@@ -40,7 +40,7 @@ exports[`<FilePicker /> snapshot - no file selected 1`] = `
     />
     <input
       aria-invalid="false"
-      class="css-12rdf6g evergreen-file-picker-text-input ub-w_280px ub-fnt-fam_b77syt ub-b-btm_1px-solid-transparent ub-b-lft_1px-solid-transparent ub-b-rgt_1px-solid-transparent ub-b-top_1px-solid-transparent ub-otln_iu2jf4 ub-txt-deco_none ub-bblr_4px ub-bbrr_0-important ub-btlr_4px ub-btrr_0-important ub-ln-ht_16px ub-fnt-sze_12px ub-color_474d66 ub-pl_12px ub-pr_12px ub-tstn_n1akt6 ub-h_32px ub-bg-clr_white ub-b-btm-clr_d8dae5 ub-b-lft-clr_d8dae5 ub-b-rgt-clr_d8dae5 ub-b-top-clr_d8dae5 ub-flx_1 ub-txt-ovrf_ellipsis ub-f-wght_400 ub-ltr-spc_0 ub-box-szg_border-box"
+      class="evergreen-file-picker-text-input ub-w_280px ub-fnt-fam_b77syt ub-b-btm_1px-solid-transparent ub-b-lft_1px-solid-transparent ub-b-rgt_1px-solid-transparent ub-b-top_1px-solid-transparent ub-otln_iu2jf4 ub-txt-deco_none ub-bblr_4px ub-bbrr_0-important ub-btlr_4px ub-btrr_0-important ub-ln-ht_16px ub-fnt-sze_12px ub-color_474d66 ub-pl_12px ub-pr_12px ub-tstn_n1akt6 ub-h_32px ub-bg-clr_white ub-b-btm-clr_d8dae5 ub-b-lft-clr_d8dae5 ub-b-rgt-clr_d8dae5 ub-b-top-clr_d8dae5 ub-color_kzml6l ub-crsr_xjbf3w ub-bg-clr_1df70es ub-color_1z0yay4 ub-z-idx_11wpgbn ub-bs_13po50p ub-b-btm-clr_1yuqfpf ub-b-lft-clr_1yuqfpf ub-b-rgt-clr_1yuqfpf ub-b-top-clr_1yuqfpf ub-b-btm-clr_12u35c8 ub-b-lft-clr_12u35c8 ub-b-rgt-clr_12u35c8 ub-b-top-clr_12u35c8 ub-flx_1 ub-txt-ovrf_ellipsis ub-f-wght_400 ub-ltr-spc_0 ub-box-szg_border-box"
       placeholder="Select a file to upload…"
       readonly=""
       spellcheck="true"
@@ -48,7 +48,7 @@ exports[`<FilePicker /> snapshot - no file selected 1`] = `
       value=""
     />
     <button
-      class="css-12b25td evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_16px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-ml_-1px ub-flx-srnk_0 ub-ltr-spc_0 ub-box-szg_border-box"
+      class="evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_16px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-b-btm_1l7b3ar ub-b-lft_1l7b3ar ub-b-rgt_1l7b3ar ub-b-top_1l7b3ar ub-bs_13po50p ub-crsr_xjbf3w ub-ptr-evts_iu2jf4 ub-color_s22a4f ub-b-btm-clr_1wkcxda ub-b-lft-clr_1wkcxda ub-b-rgt-clr_1wkcxda ub-b-top-clr_1wkcxda ub-b-btm_jwd8q1 ub-b-lft_jwd8q1 ub-b-rgt_jwd8q1 ub-b-top_jwd8q1 ub-bg-clr_nrwqn2 ub-bg-clr_1df70es ub-ml_-1px ub-flx-srnk_0 ub-ltr-spc_0 ub-box-szg_border-box"
       type="button"
     >
       Select file
@@ -68,7 +68,7 @@ exports[`<FilePicker /> snapshot - one file seleted 1`] = `
     />
     <input
       aria-invalid="false"
-      class="css-12rdf6g evergreen-file-picker-text-input ub-w_280px ub-fnt-fam_b77syt ub-b-btm_1px-solid-transparent ub-b-lft_1px-solid-transparent ub-b-rgt_1px-solid-transparent ub-b-top_1px-solid-transparent ub-otln_iu2jf4 ub-txt-deco_none ub-bblr_4px ub-bbrr_0-important ub-btlr_4px ub-btrr_0-important ub-ln-ht_16px ub-fnt-sze_12px ub-color_474d66 ub-pl_12px ub-pr_12px ub-tstn_n1akt6 ub-h_32px ub-bg-clr_white ub-b-btm-clr_d8dae5 ub-b-lft-clr_d8dae5 ub-b-rgt-clr_d8dae5 ub-b-top-clr_d8dae5 ub-flx_1 ub-txt-ovrf_ellipsis ub-f-wght_400 ub-ltr-spc_0 ub-box-szg_border-box"
+      class="evergreen-file-picker-text-input ub-w_280px ub-fnt-fam_b77syt ub-b-btm_1px-solid-transparent ub-b-lft_1px-solid-transparent ub-b-rgt_1px-solid-transparent ub-b-top_1px-solid-transparent ub-otln_iu2jf4 ub-txt-deco_none ub-bblr_4px ub-bbrr_0-important ub-btlr_4px ub-btrr_0-important ub-ln-ht_16px ub-fnt-sze_12px ub-color_474d66 ub-pl_12px ub-pr_12px ub-tstn_n1akt6 ub-h_32px ub-bg-clr_white ub-b-btm-clr_d8dae5 ub-b-lft-clr_d8dae5 ub-b-rgt-clr_d8dae5 ub-b-top-clr_d8dae5 ub-color_kzml6l ub-crsr_xjbf3w ub-bg-clr_1df70es ub-color_1z0yay4 ub-z-idx_11wpgbn ub-bs_13po50p ub-b-btm-clr_1yuqfpf ub-b-lft-clr_1yuqfpf ub-b-rgt-clr_1yuqfpf ub-b-top-clr_1yuqfpf ub-b-btm-clr_12u35c8 ub-b-lft-clr_12u35c8 ub-b-rgt-clr_12u35c8 ub-b-top-clr_12u35c8 ub-flx_1 ub-txt-ovrf_ellipsis ub-f-wght_400 ub-ltr-spc_0 ub-box-szg_border-box"
       placeholder="Select a file to upload…"
       readonly=""
       spellcheck="true"
@@ -76,7 +76,7 @@ exports[`<FilePicker /> snapshot - one file seleted 1`] = `
       value="chucknorris.png"
     />
     <button
-      class="css-12b25td evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_16px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-ml_-1px ub-flx-srnk_0 ub-ltr-spc_0 ub-box-szg_border-box"
+      class="evergreen-file-picker-button ub-pst_relative ub-f-wght_400 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_0px ub-bbrr_4px ub-btlr_0px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_16px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-b-btm_1l7b3ar ub-b-lft_1l7b3ar ub-b-rgt_1l7b3ar ub-b-top_1l7b3ar ub-bs_13po50p ub-crsr_xjbf3w ub-ptr-evts_iu2jf4 ub-color_s22a4f ub-b-btm-clr_1wkcxda ub-b-lft-clr_1wkcxda ub-b-rgt-clr_1wkcxda ub-b-top-clr_1wkcxda ub-b-btm_jwd8q1 ub-b-lft_jwd8q1 ub-b-rgt_jwd8q1 ub-b-top_jwd8q1 ub-bg-clr_nrwqn2 ub-bg-clr_1df70es ub-ml_-1px ub-flx-srnk_0 ub-ltr-spc_0 ub-box-szg_border-box"
       type="button"
     >
       Replace file

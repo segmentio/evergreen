@@ -3,15 +3,16 @@
 exports[`<Alert /> appearance snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
+    class="ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF  ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
     role="alert"
   >
     <div
       class="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
     >
       <svg
-        class="css-1ffn9ia ub-w_16px ub-h_16px ub-box-szg_border-box"
+        class="ub-w_16px ub-h_16px ub-box-szg_border-box"
         data-icon="info-sign"
+        style="fill: #3366FF;"
         viewBox="0 0 16 16"
       >
         <path
@@ -39,15 +40,16 @@ exports[`<Alert /> appearance snapshot 1`] = `
 exports[`<Alert /> basic snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
+    class="ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF  ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
     role="alert"
   >
     <div
       class="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
     >
       <svg
-        class="css-1ffn9ia ub-w_16px ub-h_16px ub-box-szg_border-box"
+        class="ub-w_16px ub-h_16px ub-box-szg_border-box"
         data-icon="info-sign"
+        style="fill: #3366FF;"
         viewBox="0 0 16 16"
       >
         <path
@@ -75,15 +77,16 @@ exports[`<Alert /> basic snapshot 1`] = `
 exports[`<Alert /> intent snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="ub-b-top_1px-solid-D14343 ub-b-rgt_1px-solid-D14343 ub-b-btm_1px-solid-D14343 ub-b-lft_1px-solid-D14343 ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_FDF4F4 ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_A73636 ub-box-szg_border-box"
+    class="ub-b-top_1px-solid-D14343 ub-b-rgt_1px-solid-D14343 ub-b-btm_1px-solid-D14343 ub-b-lft_1px-solid-D14343  ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_FDF4F4 ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_A73636 ub-box-szg_border-box"
     role="alert"
   >
     <div
       class="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
     >
       <svg
-        class="css-tn1wco ub-w_16px ub-h_16px ub-box-szg_border-box"
+        class="ub-w_16px ub-h_16px ub-box-szg_border-box"
         data-icon="error"
+        style="fill: #D14343;"
         viewBox="0 0 16 16"
       >
         <path

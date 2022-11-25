@@ -1,5 +1,4 @@
 import React, { memo, forwardRef } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -38,8 +37,10 @@ export const internalStyles = {
   WebkitFontSmoothing: 'antialiased',
   WebkitAppearance: 'none',
   MozAppearance: 'none',
-  '&::-moz-focus-inner ': {
-    border: 0
+  selectors: {
+    '&::-moz-focus-inner ': {
+      border: 0
+    }
   }
 }
 
@@ -77,14 +78,14 @@ const Button = memo(
       ...restProps
     } = props
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
+    const themedProps = useStyleConfig(
       'Button',
       { appearance, color, intent, size: restProps.size || 'medium' },
       pseudoSelectors,
       internalStyles
     )
 
-    const height = restProps.height || boxProps.height
+    const height = restProps.height || themedProps.height
     // Keep backwards compat font sizing if an explicit height was passed in.
     const textProps = !restProps.size && restProps.height ? getTextPropsForControlHeight(restProps.height) : {}
     const iconSize = getIconSizeForButton(height)
@@ -93,9 +94,9 @@ const Button = memo(
       <Box
         is={is}
         ref={ref}
-        className={cx(themedClassName, className)}
+        className={className}
         data-active={isActive || undefined}
-        {...boxProps}
+        {...themedProps}
         {...restProps}
         {...textProps}
         disabled={disabled || isLoading}

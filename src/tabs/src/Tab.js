@@ -1,5 +1,4 @@
 import React, { forwardRef, memo, useCallback } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { useClickable, useLatest, useStyleConfig } from '../../hooks'
 import safeInvoke from '../../lib/safe-invoke'
@@ -17,8 +16,10 @@ const getInternalStyles = direction => ({
   WebkitFontSmoothing: 'antialiased',
   WebkitAppearance: 'none',
   MozAppearance: 'none',
-  '&::-moz-focus-inner ': {
-    border: 0
+  selectors: {
+    '&::-moz-focus-inner ': {
+      border: 0
+    }
   },
   display: direction === 'horizontal' ? 'inline-flex' : 'flex',
   width: direction === 'horizontal' ? 'auto' : '100%'
@@ -50,12 +51,7 @@ const Tab = memo(
       ...rest
     } = props
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'Tab',
-      { appearance, direction },
-      pseudoSelectors,
-      getInternalStyles(direction)
-    )
+    const themedProps = useStyleConfig('Tab', { appearance, direction }, pseudoSelectors, getInternalStyles(direction))
 
     const onClickRef = useLatest(props.onClick)
     const handleClick = useCallback(
@@ -105,13 +101,13 @@ const Tab = memo(
 
     return (
       <Text
-        className={cx(className, themedClassName)}
+        className={className}
         is={is}
         size={300}
         height={height}
         ref={ref}
         tabIndex={0}
-        {...boxProps}
+        {...themedProps}
         {...rest}
         onClick={handleClick}
         {...clickableProps}

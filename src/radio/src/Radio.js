@@ -70,12 +70,7 @@ const Radio = memo(
       ...rest
     } = props
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'Radio',
-      { appearance },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Radio', { appearance }, pseudoSelectors, internalStyles)
 
     return (
       <Box
@@ -89,7 +84,6 @@ const Radio = memo(
       >
         <Box
           is="input"
-          className={themedClassName}
           id={id}
           type="radio"
           name={name}
@@ -98,7 +92,7 @@ const Radio = memo(
           onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
-          {...boxProps}
+          {...themedProps}
           required={isRequired}
         />
         <Box

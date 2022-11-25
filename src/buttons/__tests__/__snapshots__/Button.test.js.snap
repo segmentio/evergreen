@@ -3,7 +3,7 @@
 exports[`<Button /> % classic snapshots with the rendered output 1`] = `
 <DocumentFragment>
   <button
-    class="css-15cxcpy ub-pst_relative ub-f-wght_500 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_0 ub-b-lft_0 ub-b-rgt_0 ub-b-top_0 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_3px ub-bbrr_3px ub-btlr_3px ub-btrr_3px ub-color_425A70 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_32px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-bg-img_zk1eut ub-bs_ruftdn ub-box-szg_border-box"
+    class="ub-pst_relative ub-f-wght_500 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_0 ub-b-lft_0 ub-b-rgt_0 ub-b-top_0 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_3px ub-bbrr_3px ub-btlr_3px ub-btrr_3px ub-color_425A70 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_32px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-bg-img_zk1eut ub-bs_ruftdn ub-b-btm_1l7b3ar ub-b-lft_1l7b3ar ub-b-rgt_1l7b3ar ub-b-top_1l7b3ar ub-box-szg_border-box"
   />
 </DocumentFragment>
 `;
@@ -11,7 +11,7 @@ exports[`<Button /> % classic snapshots with the rendered output 1`] = `
 exports[`<Button /> % default snapshots with the rendered output 1`] = `
 <DocumentFragment>
   <button
-    class="css-12b25td ub-pst_relative ub-f-wght_500 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_32px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-box-szg_border-box"
+    class="ub-pst_relative ub-f-wght_500 ub-dspl_inline-flex ub-algn-itms_center ub-flx-wrap_nowrap ub-just-cnt_center ub-txt-deco_none ub-ver-algn_middle ub-b-btm_1px-solid-c1c4d6 ub-b-lft_1px-solid-c1c4d6 ub-b-rgt_1px-solid-c1c4d6 ub-b-top_1px-solid-c1c4d6 ub-otln_iu2jf4 ub-usr-slct_none ub-crsr_pointer ub-wht-spc_nowrap ub-fnt-fam_b77syt ub-bblr_4px ub-bbrr_4px ub-btlr_4px ub-btrr_4px ub-color_474d66 ub-tstn_n1akt6 ub-h_32px ub-min-w_32px ub-fnt-sze_12px ub-ln-ht_32px ub-pl_16px ub-pr_16px ub-bg-clr_white ub-b-btm_1l7b3ar ub-b-lft_1l7b3ar ub-b-rgt_1l7b3ar ub-b-top_1l7b3ar ub-bs_13po50p ub-crsr_xjbf3w ub-ptr-evts_iu2jf4 ub-color_s22a4f ub-b-btm-clr_1wkcxda ub-b-lft-clr_1wkcxda ub-b-rgt-clr_1wkcxda ub-b-top-clr_1wkcxda ub-b-btm_jwd8q1 ub-b-lft_jwd8q1 ub-b-rgt_jwd8q1 ub-b-top_jwd8q1 ub-bg-clr_nrwqn2 ub-bg-clr_1df70es ub-box-szg_border-box"
   />
 </DocumentFragment>
 `;

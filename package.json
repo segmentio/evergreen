@@ -62,7 +62,6 @@
     "@types/react": "^16.9.5",
     "@types/react-transition-group": "^4.4.0",
     "arrify": "^1.0.1",
-    "classnames": "^2.3.0",
     "downshift": "^5.2.0",
     "fuzzaldrin-plus": "^0.6.0",
     "humanize-plus": "^1.8.2",

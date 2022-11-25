@@ -1,5 +1,4 @@
 import React, { memo, forwardRef } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { spacing, dimensions, position, layout } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -19,15 +18,10 @@ const InlineAlert = memo(
     const { children, className, hasIcon = true, intent = 'info', size = 400, ...restProps } = props
 
     const intentToken = intent === 'none' ? 'info' : intent
-    const { className: themedClassName, ...styleProps } = useStyleConfig(
-      'InlineAlert',
-      { intent: intentToken },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('InlineAlert', { intent: intentToken }, pseudoSelectors, internalStyles)
 
     return (
-      <Pane ref={ref} className={cx(className, themedClassName)} {...styleProps} {...restProps}>
+      <Pane ref={ref} className={className} {...themedProps} {...restProps}>
         {hasIcon && (
           <Pane display="flex" marginRight={16}>
             {getIconForIntent(intent, { size: 16 })}

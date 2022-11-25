@@ -39,7 +39,7 @@ const Option = memo(
       ...rest
     } = props
 
-    const { className: themedClassName, style: themedStyle, ...boxProps } = useStyleConfig(
+    const { style: themedStyle, ...themedProps } = useStyleConfig(
       'Option',
       emptyObject,
       pseudoSelectors,
@@ -50,14 +50,13 @@ const Option = memo(
 
     return (
       <TableRow
-        className={themedClassName}
         isSelectable={isSelectable && !disabled}
         isHighlighted={isHighlighted}
         onSelect={onSelect}
         onDeselect={onDeselect}
         isSelected={isSelected}
         style={style}
-        {...boxProps}
+        {...themedProps}
         {...rest}
         ref={ref}
       >

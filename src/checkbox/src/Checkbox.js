@@ -88,12 +88,7 @@ const Checkbox = memo(
       }
     }, [ref, indeterminate])
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'Checkbox',
-      { appearance },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Checkbox', { appearance }, pseudoSelectors, internalStyles)
 
     return (
       <Box
@@ -105,7 +100,6 @@ const Checkbox = memo(
         {...rest}
       >
         <Box
-          className={themedClassName}
           is="input"
           id={id}
           type="checkbox"
@@ -115,7 +109,7 @@ const Checkbox = memo(
           onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
-          {...boxProps}
+          {...themedProps}
           ref={callbackRef}
         />
         <Box
