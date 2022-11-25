@@ -108,11 +108,16 @@ function useBoxProps(styleProps, pseudoSelectors) {
       selectors[key] = placeholderSelectors[k]
     }
 
-    return {
-      style: remainingProps,
-      selectors,
-      ...matchedProps
+    const result = { ...matchedProps }
+    if (!isEqual({}, remainingProps)) {
+      result.style = remainingProps
     }
+
+    if (!isEqual({}, selectors)) {
+      result.selectors = selectors
+    }
+
+    return result
   }, [styleProps, pseudoSelectors])
 }
 
