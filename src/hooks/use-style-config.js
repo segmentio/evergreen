@@ -89,23 +89,23 @@ function useMergedStyles(theme, props, styleConfig, internalStyles) {
 /**
  * Split up the style props into box-ready props (selectors + spreadable props)
  */
-function useBoxProps(styleProps, pseudoSelectors) {
+function useBoxProps(styleProps, placeholderSelectors) {
   return useMemo(() => {
     // Split the resulting style object into ui-box-compatible props and the rest
     const {
       matchedProps,
       // selectors is currently being placed in the remainingProps object, so we're pulling it out specifically
       // see https://github.com/segmentio/ui-box/pull/123
-      remainingProps: { selectors: placeholderSelectors = {}, ...remainingProps }
+      remainingProps: { selectors: actualSelectors = {}, ...remainingProps }
     } = splitBoxProps(styleProps)
 
     /** @type {import('ui-box').EnhancerProps['selectors']} */
     const selectors = {}
 
     // Swap out pseudo selector placeholders for their actual css selector strings
-    for (const k of Object.keys(placeholderSelectors)) {
-      const key = k in pseudoSelectors ? pseudoSelectors[k] : k
-      selectors[key] = placeholderSelectors[k]
+    for (const k of Object.keys(actualSelectors)) {
+      const key = k in placeholderSelectors ? placeholderSelectors[k] : k
+      selectors[key] = actualSelectors[k]
     }
 
     const result = { ...matchedProps }
@@ -118,18 +118,18 @@ function useBoxProps(styleProps, pseudoSelectors) {
     }
 
     return result
-  }, [styleProps, pseudoSelectors])
+  }, [styleProps, placeholderSelectors])
 }
 
 /**
  * Takes a styleConfig object and outputs `boxProps` that can be spread on a Box component
  * @param {string} componentKey the name of the component in the theme
  * @param {StyleModifiers} props props that modify the resulting visual style (e.g. `size` or `appearance`)
- * @param {PseudoSelectors} pseudoSelectors mapping for the component between states and actual pseudo selectors
- * @param {GlamorAndBoxStyle} [internalStyles] additional styles that are specified internally, separate from the visual styles
+ * @param {PseudoSelectors} placeholderSelectors mapping for the component between states and actual pseudo selectors
+ * @param {import('ui-box').BoxCssProps<CssProps>} [internalStyles] additional styles that are specified internally, separate from the visual styles
  * @returns {{ selectors: import('ui-box').EnhancerProps['selectors'], style: import('react').CSSProperties } & import('ui-box').EnhancerProps}
  */
-export function useStyleConfig(componentKey, props, pseudoSelectors, internalStyles) {
+export function useStyleConfig(componentKey, props, placeholderSelectors, internalStyles) {
   const theme = useTheme()
 
   // Get the component style object from the theme
@@ -142,5 +142,5 @@ export function useStyleConfig(componentKey, props, pseudoSelectors, internalSty
   const styles = useMemo(() => resolveThemeTokens(theme, mergedStyles), [theme, mergedStyles])
 
   // Finally, split up the styles based which ones Box supports and the rest construct an inline style object
-  return useBoxProps(styles, pseudoSelectors)
+  return useBoxProps(styles, placeholderSelectors)
 }
