@@ -14012,8 +14012,10 @@ ua-parser-js@^0.7.18:
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
   integrity sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==
 
-"ui-box@file:.yalc/ui-box":
-  version "5.3.0-dev"
+"ui-box@npm:@brandongregoryscott/ui-box@^5.4.0-0":
+  version "5.4.0-0"
+  resolved "https://registry.yarnpkg.com/@brandongregoryscott/ui-box/-/ui-box-5.4.0-0.tgz#8db58469ca083759bbdfff5d05809394d3691dcb"
+  integrity sha512-5eFV33nrUyp0EkdoF6IQXkyvvwKDV7dJD0j0ZckX57evnomWvoLG+CcAKpvHDcGDEGvKAMot7YAqUNfjUPmwJA==
   dependencies:
     "@emotion/hash" "^0.7.1"
     inline-style-prefixer "^5.0.4"
