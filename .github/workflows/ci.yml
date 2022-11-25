@@ -6,6 +6,7 @@ on:
       - master
   push:
     branches: ['*']
+  workflow_dispatch:
 
 jobs:
   test:
