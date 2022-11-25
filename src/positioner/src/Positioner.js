@@ -13,7 +13,6 @@ const animationEasing = {
 
 const getCSS = ({ animationDuration, initialScale }) => ({
   position: 'fixed',
-  opacity: 0,
   transitionTimingFunction: animationEasing.spring,
   transitionDuration: `${animationDuration}ms`,
   transitionProperty: 'opacity, transform',
@@ -24,7 +23,7 @@ const getCSS = ({ animationDuration, initialScale }) => ({
       visibility: 'visible',
       transform: 'scale(1)'
     },
-    '&[data-state="exiting"]': {
+    '&[data-state="exiting"], &[data-state="exited"]': {
       opacity: 0,
       transform: 'scale(1)'
     }
