@@ -36,12 +36,7 @@ export const internalStyles = {
   whiteSpace: 'nowrap',
   WebkitFontSmoothing: 'antialiased',
   WebkitAppearance: 'none',
-  MozAppearance: 'none',
-  selectors: {
-    '&::-moz-focus-inner ': {
-      border: 0
-    }
-  }
+  MozAppearance: 'none'
 }
 
 export const pseudoSelectors = {

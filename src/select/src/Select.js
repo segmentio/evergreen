@@ -17,9 +17,11 @@ const internalStyles = {
   textDecoration: 'none',
   outline: 'none',
   cursor: 'pointer',
-  ':-moz-focusring': {
-    color: 'transparent',
-    textShadow: '0 0 0 #000'
+  selectors: {
+    ':-moz-focusring': {
+      color: 'transparent',
+      textShadow: '0 0 0 #000'
+    }
   }
 }
 

@@ -16,11 +16,6 @@ const getInternalStyles = direction => ({
   WebkitFontSmoothing: 'antialiased',
   WebkitAppearance: 'none',
   MozAppearance: 'none',
-  selectors: {
-    '&::-moz-focus-inner ': {
-      border: 0
-    }
-  },
   display: direction === 'horizontal' ? 'inline-flex' : 'flex',
   width: direction === 'horizontal' ? 'auto' : '100%'
 })
