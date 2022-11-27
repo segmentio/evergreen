@@ -22,17 +22,14 @@ const loadingCircleKeyframes = keyframes('loading-circle', {
 })
 
 const innerStyle = color => ({
-  // stroke* props are not yet supported in ui-box, so they need to be passed as inline styles for now
-  style: {
-    strokeDashoffset: 600,
-    strokeDasharray: 300,
-    strokeWidth: 12,
-    strokeMiterlimit: 10,
-    strokeLinecap: 'round'
-  },
   animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
+  fill: 'transparent',
   stroke: color,
-  fill: 'transparent'
+  strokeDasharray: 300,
+  strokeDashoffset: 600,
+  strokeLinecap: 'round',
+  strokeMiterlimit: 10,
+  strokeWidth: 12
 })
 
 const emptyObject = {}

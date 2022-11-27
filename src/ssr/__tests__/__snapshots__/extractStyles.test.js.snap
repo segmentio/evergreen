@@ -19,10 +19,10 @@ Object {
         "keyframeloading-circle1gjkti9",
         "@keyframes loading-circle_1gjkti9 {
   0% {
-
+    stroke-dashoffset: 600;
   }
   100% {
-
+    stroke-dashoffset: 0;
   }
 }",
       ],
@@ -40,13 +40,13 @@ Object {
   0% {transform: rotate(0);} 
   100% {transform: rotate(360deg);} 
 }@keyframes loading-circle_1gjkti9 { 
-  0% {} 
-  100% {} 
+  0% {stroke-dashoffset: 600;} 
+  100% {stroke-dashoffset: 0;} 
 }.ub-h_11px {height: 11px;}.ub-box-szg_border-box {box-sizing: border-box;}",
   "hydrationScript": <script
     dangerouslySetInnerHTML={
       Object {
-        "__html": "{\\"uiBoxCache\\":[[\\"keyframeloadingeqdsen\\",\\"@keyframes loading_eqdsen {\\\\n  0% {\\\\n    transform: rotate(0);\\\\n  }\\\\n  100% {\\\\n    transform: rotate(360deg);\\\\n  }\\\\n}\\"],[\\"keyframeloading-circle1gjkti9\\",\\"@keyframes loading-circle_1gjkti9 {\\\\n  0% {\\\\n\\\\n  }\\\\n  100% {\\\\n\\\\n  }\\\\n}\\"],[\\"height11\\",\\"ub-h_11px\\"],[\\"boxSizingborder-box\\",\\"ub-box-szg_border-box\\"]]}",
+        "__html": "{\\"uiBoxCache\\":[[\\"keyframeloadingeqdsen\\",\\"@keyframes loading_eqdsen {\\\\n  0% {\\\\n    transform: rotate(0);\\\\n  }\\\\n  100% {\\\\n    transform: rotate(360deg);\\\\n  }\\\\n}\\"],[\\"keyframeloading-circle1gjkti9\\",\\"@keyframes loading-circle_1gjkti9 {\\\\n  0% {\\\\n    stroke-dashoffset: 600;\\\\n  }\\\\n  100% {\\\\n    stroke-dashoffset: 0;\\\\n  }\\\\n}\\"],[\\"height11\\",\\"ub-h_11px\\"],[\\"boxSizingborder-box\\",\\"ub-box-szg_border-box\\"]]}",
       }
     }
     id="evergreen-hydrate"
