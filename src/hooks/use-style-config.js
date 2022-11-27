@@ -93,10 +93,8 @@ function useBoxProps(styleProps, placeholderSelectors) {
   return useMemo(() => {
     // Split the resulting style object into ui-box-compatible props and the rest
     const {
-      matchedProps,
-      // selectors is currently being placed in the remainingProps object, so we're pulling it out specifically
-      // see https://github.com/segmentio/ui-box/pull/123
-      remainingProps: { selectors: actualSelectors = {}, ...remainingProps }
+      matchedProps: { selectors: actualSelectors = {}, ...matchedProps },
+      remainingProps
     } = splitBoxProps(styleProps)
 
     /** @type {import('ui-box').EnhancerProps['selectors']} */
