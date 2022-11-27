@@ -42,14 +42,16 @@ const internalStyles = {
   width: '1px',
   opacity: '0',
 
-  [pseudoSelectors._base]: {
-    WebkitFontSmoothing: 'antialiased',
-    textDecoration: 'none',
-    WebkitAppearance: 'none',
-    MozAppearance: 'none',
-    border: 'none',
-    outline: 'none',
-    cursor: 'pointer'
+  selectors: {
+    [pseudoSelectors._base]: {
+      WebkitFontSmoothing: 'antialiased',
+      textDecoration: 'none',
+      WebkitAppearance: 'none',
+      MozAppearance: 'none',
+      border: 'none',
+      outline: 'none',
+      cursor: 'pointer'
+    }
   }
 }
 

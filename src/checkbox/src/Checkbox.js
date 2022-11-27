@@ -57,9 +57,11 @@ const internalStyles = {
   width: '1px',
   opacity: '0',
 
-  [pseudoSelectors._base]: {
-    outline: 'none',
-    cursor: 'pointer'
+  selectors: {
+    [pseudoSelectors._base]: {
+      outline: 'none',
+      cursor: 'pointer'
+    }
   }
 }
 
