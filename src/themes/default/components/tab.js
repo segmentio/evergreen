@@ -102,7 +102,7 @@ const appearances = {
         cursor: 'not-allowed',
         color: 'colors.gray500',
 
-        '&[aria-current="page"], &[aria-selected="true"]': {
+        '&[aria-current="page"],&[aria-selected="true"]': {
           backgroundColor: 'colors.gray100'
         }
       }

@@ -7,7 +7,7 @@ import TableRow from '../../table/src/TableRow'
 import TextTableCell from '../../table/src/TextTableCell'
 
 export const pseudoSelectors = {
-  _active: '&[aria-current="true"]:active, &[data-isselectable="true"]:active',
+  _active: '&[aria-current="true"]:active,&[data-isselectable="true"]:active',
   _before: '&:before',
   _disabled: '&[disabled]',
   _focus: ':focus',

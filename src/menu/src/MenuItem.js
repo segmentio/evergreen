@@ -12,11 +12,11 @@ const pseudoSelectors = {
   _hover:
     '&[data-isselectable="true"]:not([aria-current="true"]):not([aria-checked="true"]):not(:focus):not(:active):hover',
   _focus:
-    '&[data-isselectable="true"]:not([aria-current="true"]):not([aria-checked="true"]):focus, &[aria-selected="true"]',
-  _active: '&[aria-current="true"], &[data-isselectable="true"]:active',
-  _current: '&[aria-current="true"], &[aria-checked="true"]',
+    '&[data-isselectable="true"]:not([aria-current="true"]):not([aria-checked="true"]):focus,&[aria-selected="true"]',
+  _active: '&[aria-current="true"],&[data-isselectable="true"]:active',
+  _current: '&[aria-current="true"],&[aria-checked="true"]',
   _isSelectable: '&[data-isselectable="true"]',
-  _disabled: '&:disabled, &[aria-disabled="true"]'
+  _disabled: '&:disabled,&[aria-disabled="true"]'
 }
 
 const internalStyles = {

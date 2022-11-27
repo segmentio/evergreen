@@ -24,7 +24,7 @@ const pseudoSelectors = {
   _active: '&:active',
   _after: '&:after',
   _before: '&:before',
-  _current: '&[aria-current="page"], &[aria-selected="true"]',
+  _current: '&[aria-current="page"],&[aria-selected="true"]',
   _disabled: '&[aria-disabled="true"]',
   _focus: '&:focus',
   _hover: '&:hover'

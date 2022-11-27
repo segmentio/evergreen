@@ -26,7 +26,7 @@ function executeArrowKeyOverride(override) {
 }
 
 const pseudoSelectors = {
-  _focus: '&[data-isselectable="true"]:focus, &[aria-expanded="true"][aria-haspopup="true"]'
+  _focus: '&[data-isselectable="true"]:focus,&[aria-expanded="true"][aria-haspopup="true"]'
 }
 
 const internalStyles = {

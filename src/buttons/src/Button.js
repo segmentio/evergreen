@@ -40,11 +40,11 @@ export const internalStyles = {
 }
 
 export const pseudoSelectors = {
-  _active: '&:not([disabled]):active, &:not([disabled])[aria-expanded="true"], &:not([disabled])[data-active]',
+  _active: '&:not([disabled]):active,&:not([disabled])[aria-expanded="true"],&:not([disabled])[data-active]',
   _disabled: '&[disabled]',
   _focus: '&:not([disabled]):focus',
   _focusAndActive:
-    '&:not([disabled]):focus:active, &:not([disabled])[aria-expanded="true"]:focus, &:not([disabled])[data-active]:focus',
+    '&:not([disabled]):focus:active,&:not([disabled])[aria-expanded="true"]:focus,&:not([disabled])[data-active]:focus',
   _hover: '&:not([disabled]):hover'
 }
 

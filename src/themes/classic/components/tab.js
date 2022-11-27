@@ -29,7 +29,7 @@ const baseStyle = {
     cursor: 'not-allowed',
     color: 'colors.neutralAlpha.N7A',
 
-    '&[aria-current="page"], &[aria-selected="true"]': {
+    '&[aria-current="page"],&[aria-selected="true"]': {
       backgroundColor: 'colors.neutralAlpha.N2A'
     }
   }
