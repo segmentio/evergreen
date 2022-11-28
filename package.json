@@ -27,11 +27,12 @@
     "esm",
     "umd",
     "index.d.ts",
-    "codemods"
+    "codemods/dist"
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "yarn generate-icons && concurrently --names 'commonjs,esm,umd' 'yarn build-commonjs' 'yarn build-esm' 'yarn build-umd'",
+    "build": "yarn generate-icons && concurrently --names 'commonjs,esm,umd,codemods' 'yarn build-commonjs' 'yarn build-esm' 'yarn build-umd' 'yarn build-codemods'",
+    "build-codemods": "cd codemods && yarn build",
     "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test'",
     "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test'",
     "build-storybook": "build-storybook",
