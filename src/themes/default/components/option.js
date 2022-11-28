@@ -44,14 +44,12 @@ const baseStyle = {
     _selected: {
       backgroundColor: 'intents.info.background',
 
-      selectors: {
-        ' span': {
-          color: 'intents.info.text'
-        },
+      ' span': {
+        color: 'intents.info.text'
+      },
 
-        '&:before': {
-          transform: 'scaleX(1)'
-        }
+      '&:before': {
+        transform: 'scaleX(1)'
       }
     },
 
