@@ -10,15 +10,12 @@ import {
   hasProp,
   isEqual
 } from './jsx-attribute-utils'
-import { safelyRegisterMethods } from './safely-register-methods'
-/* @ts-ignore */
-import once from 'jscodeshift/src/utils/once'
+import { once } from './once'
 
 const _registerJSXElementCollectionExtensions = (jscodeshift: ExtendedJSCodeshift | JSCodeshift) => {
   const j = jscodeshift as ExtendedJSCodeshift
 
-  safelyRegisterMethods<JSXElementCollectionExtensions>(
-    j,
+  j.registerMethods<JSXElementCollectionExtensions>(
     {
       addProp: function(prop: JSXAttribute | JSXSpreadAttribute) {
         const jsxElements = (this as any) as ExtendedJSXElementCollection

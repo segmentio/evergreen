@@ -3,14 +3,12 @@ import { CollectionExtensions, ExtendedCollection } from '../types/extended-coll
 import { ExtendedImportDeclarationCollection } from '../types/extended-import-declaration-collection'
 import { ExtendedJSCodeshift } from '../types/extended-jscodeshift'
 import { flatMap } from './flat-map'
-import { safelyRegisterMethods } from './safely-register-methods'
-/* @ts-ignore */
-import once from 'jscodeshift/src/utils/once'
+import { once } from './once'
 
 const _registerCollectionExtensions = (jscodeshift: ExtendedJSCodeshift | JSCodeshift): ExtendedJSCodeshift => {
   const j = jscodeshift as ExtendedJSCodeshift
 
-  safelyRegisterMethods<CollectionExtensions>(j, {
+  j.registerMethods<CollectionExtensions>({
     concat: function(rightCollection: Collection | ExtendedCollection) {
       const thisCollection = (this as any) as ExtendedCollection
       return j([...thisCollection.paths(), ...rightCollection.paths()])
@@ -62,4 +60,5 @@ const _registerCollectionExtensions = (jscodeshift: ExtendedJSCodeshift | JSCode
 }
 
 const registerCollectionExtensions = once(_registerCollectionExtensions)
+
 export { registerCollectionExtensions }

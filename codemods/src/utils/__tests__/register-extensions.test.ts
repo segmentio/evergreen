@@ -27,12 +27,12 @@ describe('registerExtensions', () => {
       'hasValues',
       'intersect',
       'isEmpty',
-      'toNodeArray',
+      'toNodeArray'
     ]
 
     const result = registerExtensions(jscodeshift)(mockSource)
 
-    expected.forEach((expectedMethod) => {
+    expected.forEach(expectedMethod => {
       expect(result).toHaveProperty(expectedMethod)
     })
   })
@@ -42,17 +42,17 @@ describe('registerExtensions', () => {
 
     const result = registerExtensions(jscodeshift)(mockSource)
 
-    expected.forEach((expectedMethod) => {
+    expected.forEach(expectedMethod => {
       expect(result).toHaveProperty(expectedMethod)
     })
   })
 
   it('should register ImportSpecifierCollectionExtensions', () => {
-    const expected: Array<keyof ImportSpecifierCollectionExtensions> = ['add', 'remove', 'renameTo']
+    const expected: Array<keyof ImportSpecifierCollectionExtensions> = ['add', 'renameTo']
 
     const result = registerExtensions(jscodeshift)(mockSource)
 
-    expected.forEach((expectedMethod) => {
+    expected.forEach(expectedMethod => {
       expect(result).toHaveProperty(expectedMethod)
     })
   })
@@ -65,12 +65,12 @@ describe('registerExtensions', () => {
       'findWithPropName',
       'findWithSpreadProps',
       'renameTo',
-      'removeProp',
+      'removeProp'
     ]
 
     const result = registerExtensions(jscodeshift)(mockSource)
 
-    expected.forEach((expectedMethod) => {
+    expected.forEach(expectedMethod => {
       expect(result).toHaveProperty(expectedMethod)
     })
   })

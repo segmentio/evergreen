@@ -7,7 +7,7 @@ import { ExtendedCollection } from './extended-collection'
  */
 interface ExtendedImportSpecifierCollection
   extends ImportSpecifierCollectionExtensions,
-    Omit<ExtendedCollection<ImportSpecifier>, 'renameTo' | 'remove'> {}
+    Omit<ExtendedCollection<ImportSpecifier>, 'renameTo'> {}
 
 /**
  * Extension methods that are unique to `ImportSpecifier` collections
@@ -21,10 +21,6 @@ interface ImportSpecifierCollectionExtensions {
    * Renames the `ImportSpecifier` to the provided value
    */
   renameTo: (name: string) => ExtendedImportSpecifierCollection
-  /**
-   * Removes an `ImportSpecifier` with the provided name (if present)
-   */
-  remove: (name: string) => ExtendedImportSpecifierCollection
 }
 
 export type { ImportSpecifierCollectionExtensions, ExtendedImportSpecifierCollection }

@@ -36,7 +36,7 @@ const transformer: Transform = (file, api) => {
   const transformableNudges = nudges.difference(ignoredNudges)
 
   if (ignoredNudges.hasValues()) {
-    ignoredNudges.forEach((nudge) =>
+    ignoredNudges.forEach(nudge =>
       log(
         `Found <${NUDGE}> with either deprecated props or spread props that can't be statically analyzed and can't safely be swapped with <${PULSAR}>, you will need to port this over manually.`,
         nudge.node
@@ -54,7 +54,7 @@ const transformer: Transform = (file, api) => {
 
   // If all Nudge components were renamed, we can safely remove the import
   if (ignoredNudges.isEmpty()) {
-    importSpecifiers.remove(NUDGE)
+    importDeclarations.findImportSpecifiersByName(NUDGE).remove()
   }
 
   return root.toSource()
