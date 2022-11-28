@@ -17,6 +17,7 @@ interface ImportSpecifierCollectionExtensions {
    * Adds a new `ImportSpecifier` with the provided name
    */
   add: (name: string) => ExtendedImportSpecifierCollection
+
   /**
    * Renames the `ImportSpecifier` to the provided value
    */

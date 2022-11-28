@@ -17,26 +17,32 @@ interface JSXElementCollectionExtensions {
    * Adds the given prop to the `JSXOpeningElement`
    */
   addProp: (prop: JSXAttribute | JSXSpreadAttribute) => ExtendedJSXElementCollection
+
   /**
    * Returns a collection of the `JSXAttribute` nodes for the current `JSXElement` collection
    */
   findProps: () => ExtendedCollection<JSXAttribute>
+
   /**
    * Returns a collection of the `JSXAttribute` nodes with the provided name for the current `JSXElement` collection
    */
   findPropWithName: (name: string) => ExtendedCollection<JSXAttribute>
+
   /**
    * Returns a collection of `JSXElement` nodes that have of the provided prop name
    */
   findWithPropName: (name: string) => ExtendedJSXElementCollection
+
   /**
    * Returns a collection of `JSXElement` nodes that have spread props
    */
   findWithSpreadProps: () => ExtendedJSXElementCollection
+
   /**
    * Renames the `JSXOpeningElement` and `JSXClosingElement` (if present) to the provided value
    */
   renameTo: (name: string) => ExtendedJSXElementCollection
+
   /**
    * Removes the prop from the `JSXOpeningElement` (if present)
    */
