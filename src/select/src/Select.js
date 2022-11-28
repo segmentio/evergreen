@@ -16,13 +16,7 @@ const internalStyles = {
   WebkitFontSmoothing: 'antialiased',
   textDecoration: 'none',
   outline: 'none',
-  cursor: 'pointer',
-  selectors: {
-    ':-moz-focusring': {
-      color: 'transparent',
-      textShadow: '0 0 0 #000'
-    }
-  }
+  cursor: 'pointer'
 }
 
 const pseudoSelectors = {
