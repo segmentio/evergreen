@@ -73,7 +73,7 @@ export {
   TableCell,
   TextTableCell
 } from './table'
-export { Tab, Tablist, TabNavigation, SidebarTab } from './tabs'
+export { Tab, Tablist, TabNavigation } from './tabs'
 export { TagInput } from './tag-input'
 export { TextInput, TextInputField } from './text-input'
 export { ThemeContext, ThemeProvider, ThemeConsumer, getThemeContext, withTheme, useTheme, mergeTheme } from './theme'
