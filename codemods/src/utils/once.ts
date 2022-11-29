@@ -1,6 +1,22 @@
-/* @ts-ignore This is a plain-js module, but the types below should be accurate */
-import _once from 'jscodeshift/src/utils/once'
+type Function<TThis, TArgs extends any[], TReturnType> = (this: TThis, ...args: TArgs) => TReturnType
 
-const once = <TFunction extends Function>(fn: TFunction): TFunction => _once(fn)
+/**
+ * Ensures a function is only called once. Subsequent calls will return the initial result.
+ */
+const once = <TThis, TArgs extends any[], TReturnType>(
+  fn: Function<TThis, TArgs, TReturnType>
+): Function<TThis, TArgs, TReturnType> => {
+  let called = false
+  let result: TReturnType
+  return function(this: TThis, ...args: TArgs) {
+    if (called) {
+      return result
+    }
+
+    result = fn.apply(this, args)
+    called = true
+    return result
+  }
+}
 
 export { once }
