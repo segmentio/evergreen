@@ -1820,32 +1820,6 @@ export declare const Menu: React.FC<MenuProps> & {
   OptionsGroup: typeof MenuOptionsGroup
 }
 
-/** @deprecated This component will be renamed to Pulsar in the next major version of Evergreen */
-export interface NudgeProps {
-  /**
-   * The position the Tooltip is on.
-   */
-  position?: Exclude<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
-  /**
-   * The size of the Pulsar
-   */
-  size?: number
-  /**
-   * The content of the Tooltip.
-   */
-  tooltipContent?: React.ReactNode | ((object: { close: () => void }) => React.ReactNode)
-  /**
-   * When true, manually show the Tooltip.
-   */
-  isShown?: boolean
-  /**
-   * Called when the Pulsar is clicked
-   */
-  onClick?: PaneProps['onClick']
-}
-
-export declare const Nudge: React.FC<NudgeProps>
-
 export interface PaneOwnProps {
   background?: string
   border?: boolean | string
@@ -1867,7 +1841,7 @@ export interface PaginationOwnProps {
    */
   page: number
   /**
-   * The total number of pages to render. If ommitted, the page numbers will not be shown to the end user.
+   * The total number of pages to render. If omitted, the page numbers will not be shown to the end user.
    */
   totalPages?: number
   /**
