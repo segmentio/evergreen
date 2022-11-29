@@ -43,7 +43,7 @@ interface CollectionExtensions<T = any> {
   first: (predicate?: (node: ASTPath<T>) => boolean) => ExtendedCollection<T>
 
   /**
-   * Returns a collection containing only the first node, optionally matching the given predicate
+   * Returns the first node of a collection, optionally matching the given predicate
    */
   firstNode: (predicate?: (node: ASTPath<T>) => boolean) => T | undefined
 
