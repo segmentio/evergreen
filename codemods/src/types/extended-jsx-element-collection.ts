@@ -19,11 +19,6 @@ interface JSXElementCollectionExtensions {
   addProp: (prop: JSXAttribute | JSXSpreadAttribute) => ExtendedJSXElementCollection
 
   /**
-   * Returns a collection of the `JSXAttribute` nodes for the current `JSXElement` collection
-   */
-  findProps: () => ExtendedCollection<JSXAttribute>
-
-  /**
    * Returns a collection of the `JSXAttribute` nodes with the provided name for the current `JSXElement` collection
    */
   findPropWithName: (name: string) => ExtendedCollection<JSXAttribute>

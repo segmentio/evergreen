@@ -38,29 +38,14 @@ interface CollectionExtensions<T = any> {
   findEvergreenImportDeclaration: () => ExtendedImportDeclarationCollection
 
   /**
-   * Returns a collection containing only the first node, optionally matching the given predicate
-   */
-  first: (predicate?: (node: ASTPath<T>) => boolean) => ExtendedCollection<T>
-
-  /**
    * Returns the first node of a collection, optionally matching the given predicate
    */
   firstNode: (predicate?: (node: ASTPath<T>) => boolean) => T | undefined
 
   /**
-   * Returns a flattened array of the collection's iterator on the provided collection
-   */
-  flatMap: <TOutput = T>(iterator: (node: ASTPath<T>) => TOutput[]) => TOutput[]
-
-  /**
    * Returns whether the collection contains nodes
    */
   hasValues: () => boolean
-
-  /**
-   * Returns a collection of nodes in `this` collection that also exist in `rightCollection`
-   */
-  intersect: (rightCollection: Collection<T> | ExtendedCollection<T>) => ExtendedCollection<T>
 
   /**
    * Returns whether the collection is empty

@@ -7,7 +7,7 @@ describe('registerJSXElementCollectionExtensions', () => {
   it('should not throw after multiple calls', () => {
     expect(() => {
       for (let i = 0; i < 10; i++) {
-        registerJSXElementCollectionExtensions(jscodeshift as any as ExtendedJSCodeshift)
+        registerJSXElementCollectionExtensions((jscodeshift as any) as ExtendedJSCodeshift)
       }
     }).not.toThrow()
   })
@@ -76,37 +76,14 @@ describe('registerJSXElementCollectionExtensions', () => {
     })
   })
 
-  describe('findProps', () => {
-    it('returns collection of JSXAttributes', () => {
-      const source = stripIndent`<Button onClick={noop}>Hello world</Button>`
-
-      const j = registerJSXElementCollectionExtensions(jscodeshift)
-      const result = j(source).findJSXElements().findProps()
-
-      expect(result).toHaveLength(1)
-    })
-
-    it('should return props of all nodes in collection', () => {
-      const source = stripIndent`
-            <React.Fragment>
-                <Button onClick={noop}>Cancel</Button>
-                <Button onClick={noop}>Confirm</Button>
-            </React.Fragment>
-        `
-
-      const j = registerJSXElementCollectionExtensions(jscodeshift)
-      const result = j(source).findJSXElements().findProps()
-
-      expect(result).toHaveLength(2)
-    })
-  })
-
   describe('findPropWithName', () => {
     it('should return empty collection when no matching props found', () => {
       const source = stripIndent`<Button onClick={noop}>Hello world</Button>`
 
       const j = registerJSXElementCollectionExtensions(jscodeshift)
-      const result = j(source).findJSXElements().findPropWithName('doesNotExist')
+      const result = j(source)
+        .findJSXElements()
+        .findPropWithName('doesNotExist')
 
       expect(result).toHaveLength(0)
     })
@@ -115,7 +92,9 @@ describe('registerJSXElementCollectionExtensions', () => {
       const source = stripIndent`<Button onClick={noop}>Hello world</Button>`
 
       const j = registerJSXElementCollectionExtensions(jscodeshift)
-      const result = j(source).findJSXElements().findPropWithName('onClick')
+      const result = j(source)
+        .findJSXElements()
+        .findPropWithName('onClick')
 
       expect(result).toHaveLength(1)
     })
@@ -129,7 +108,9 @@ describe('registerJSXElementCollectionExtensions', () => {
         `
 
       const j = registerJSXElementCollectionExtensions(jscodeshift)
-      const result = j(source).findJSXElements().findPropWithName('onClick')
+      const result = j(source)
+        .findJSXElements()
+        .findPropWithName('onClick')
 
       expect(result).toHaveLength(2)
     })
@@ -140,7 +121,9 @@ describe('registerJSXElementCollectionExtensions', () => {
       const source = stripIndent`<Button onClick={noop}>Hello world</Button>`
 
       const j = registerJSXElementCollectionExtensions(jscodeshift)
-      const result = j(source).findJSXElements().findWithPropName('doesNotExist')
+      const result = j(source)
+        .findJSXElements()
+        .findWithPropName('doesNotExist')
 
       expect(result).toHaveLength(0)
     })
@@ -149,7 +132,9 @@ describe('registerJSXElementCollectionExtensions', () => {
       const source = stripIndent`<Button onClick={noop}>Hello world</Button>`
 
       const j = registerJSXElementCollectionExtensions(jscodeshift)
-      const result = j(source).findJSXElements().findWithPropName('onClick')
+      const result = j(source)
+        .findJSXElements()
+        .findWithPropName('onClick')
 
       expect(result).toHaveLength(1)
     })
@@ -163,7 +148,9 @@ describe('registerJSXElementCollectionExtensions', () => {
         `
 
       const j = registerJSXElementCollectionExtensions(jscodeshift)
-      const result = j(source).findJSXElements().findWithPropName('onClick')
+      const result = j(source)
+        .findJSXElements()
+        .findWithPropName('onClick')
 
       expect(result).toHaveLength(2)
     })
@@ -174,7 +161,9 @@ describe('registerJSXElementCollectionExtensions', () => {
       const source = stripIndent`<Button>Hello world</Button>`
 
       const j = registerJSXElementCollectionExtensions(jscodeshift)
-      const result = j(source).findJSXElements().findWithSpreadProps()
+      const result = j(source)
+        .findJSXElements()
+        .findWithSpreadProps()
 
       expect(result).toHaveLength(0)
     })
@@ -183,7 +172,9 @@ describe('registerJSXElementCollectionExtensions', () => {
       const source = stripIndent`<Button {...props}>Hello world</Button>`
 
       const j = registerJSXElementCollectionExtensions(jscodeshift)
-      const result = j(source).findJSXElements().findWithSpreadProps()
+      const result = j(source)
+        .findJSXElements()
+        .findWithSpreadProps()
 
       expect(result).toHaveLength(1)
     })
@@ -197,7 +188,9 @@ describe('registerJSXElementCollectionExtensions', () => {
           `
 
       const j = registerJSXElementCollectionExtensions(jscodeshift)
-      const result = j(source).findJSXElements().findWithSpreadProps()
+      const result = j(source)
+        .findJSXElements()
+        .findWithSpreadProps()
 
       expect(result).toHaveLength(2)
     })
@@ -259,7 +252,10 @@ describe('registerJSXElementCollectionExtensions', () => {
       const expected = stripIndent`<CoolButton onClick={noop}>Hello world</CoolButton>`
 
       const j = registerJSXElementCollectionExtensions(jscodeshift)
-      const result = j(source).findJSXElements().renameTo('CoolButton').toSource()
+      const result = j(source)
+        .findJSXElements()
+        .renameTo('CoolButton')
+        .toSource()
 
       expect(result).toEqual(expected)
     })
@@ -279,7 +275,10 @@ describe('registerJSXElementCollectionExtensions', () => {
         `
 
       const j = registerJSXElementCollectionExtensions(jscodeshift)
-      const result = j(source).findJSXElements('Button').renameTo('CoolButton').toSource()
+      const result = j(source)
+        .findJSXElements('Button')
+        .renameTo('CoolButton')
+        .toSource()
 
       expect(result).toEqual(expected)
     })

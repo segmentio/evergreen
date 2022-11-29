@@ -1,4 +1,4 @@
-import jscodeshift, { ASTPath } from 'jscodeshift'
+import jscodeshift, { ASTPath, JSXElement, JSXIdentifier } from 'jscodeshift'
 import { registerCollectionExtensions } from '../register-collection-extensions'
 import { stripIndent } from 'common-tags'
 
@@ -29,53 +29,53 @@ describe('registerCollectionExtensions', () => {
 
   describe('findEvergreenImportDeclaration', () => {})
 
-  describe('first', () => {
-    it('should return collection with single node', () => {
+  describe('firstNode', () => {
+    it('should node from single node collection', () => {
+      const source = stripIndent`
+          <Pane>
+              <Button />
+          </Pane>
+      `
+
+      const j = registerCollectionExtensions(jscodeshift)
+      const result = j(source)
+        .findJSXElements()
+        .firstNode()
+
+      expect((result?.openingElement.name as JSXIdentifier).name).toBe('Pane')
+    })
+
+    it('should first node matching given predicate', () => {
       const source = stripIndent`
             <React.Fragment>
-                <Button />
+                <FirstButton />
+                <SecondButton />
             </React.Fragment>
         `
 
       const j = registerCollectionExtensions(jscodeshift)
-      const result = j(source).first()
+      const result = j(source)
+        .findJSXElements()
+        .firstNode(path => path.value.closingElement == null)
 
-      expect(result).toHaveLength(1)
+      expect((result?.openingElement.name as JSXIdentifier).name).toBe('FirstButton')
     })
 
-    it('should return collection with single node matching given predicate', () => {
+    it('should return undefined when no nodes match given predicate', () => {
       const source = stripIndent`
               <React.Fragment>
-                  <FirstButton />
-                  <SecondButton />
+                  <Button>Hello world</Button>
               </React.Fragment>
           `
 
       const j = registerCollectionExtensions(jscodeshift)
       const result = j(source)
         .findJSXElements()
-        .first((path) => path.value.closingElement == null)
+        .firstNode(path => path.value.closingElement == null)
 
-      expect(result).toHaveLength(1)
-    })
-
-    it('should return empty collection when no nodes match given predicate', () => {
-      const source = stripIndent`
-                <React.Fragment>
-                    <Button>Hello world</Button>
-                </React.Fragment>
-            `
-
-      const j = registerCollectionExtensions(jscodeshift)
-      const result = j(source)
-        .findJSXElements()
-        .first((path) => path.value.closingElement == null)
-
-      expect(result).toHaveLength(0)
+      expect(result).toBeUndefined()
     })
   })
-
-  describe('firstNode', () => {})
 
   describe('flatMap', () => {})
 

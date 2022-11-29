@@ -30,11 +30,6 @@ const _registerJSXElementCollectionExtensions = (jscodeshift: ExtendedJSCodeshif
         return jsxElements
       },
 
-      findProps: function() {
-        const jsxElements = (this as any) as ExtendedJSXElementCollection
-        return j<ExtendedCollection<JSXAttribute>>(flatMap(jsxElements, getJsxAttributes))
-      },
-
       findPropWithName: function(name: string) {
         const jsxElements = (this as any) as ExtendedJSXElementCollection
         return j<ExtendedCollection<JSXAttribute>>(flatMap(jsxElements.findWithPropName(name), getJsxAttributes))

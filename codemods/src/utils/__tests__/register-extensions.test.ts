@@ -21,11 +21,8 @@ describe('registerExtensions', () => {
       'concat',
       'difference',
       'findEvergreenImportDeclaration',
-      'first',
       'firstNode',
-      'flatMap',
       'hasValues',
-      'intersect',
       'isEmpty',
       'toNodeArray'
     ]
@@ -60,7 +57,6 @@ describe('registerExtensions', () => {
   it('should register JSXElementCollectionExtensions', () => {
     const expected: Array<keyof JSXElementCollectionExtensions> = [
       'addProp',
-      'findProps',
       'findPropWithName',
       'findWithPropName',
       'findWithSpreadProps',

@@ -2,7 +2,6 @@ import { Collection, ASTPath, JSCodeshift } from 'jscodeshift'
 import { CollectionExtensions, ExtendedCollection } from '../types/extended-collection'
 import { ExtendedImportDeclarationCollection } from '../types/extended-import-declaration-collection'
 import { ExtendedJSCodeshift } from '../types/extended-jscodeshift'
-import { flatMap } from './flat-map'
 import { once } from './once'
 
 const _registerCollectionExtensions = (jscodeshift: ExtendedJSCodeshift | JSCodeshift): ExtendedJSCodeshift => {
@@ -26,32 +25,15 @@ const _registerCollectionExtensions = (jscodeshift: ExtendedJSCodeshift | JSCode
       }) as any) as ExtendedImportDeclarationCollection
     },
 
-    first: function<T>(predicate?: (node: ASTPath<T>) => boolean) {
-      const thisCollection = (this as any) as ExtendedCollection
-      if (predicate != null) {
-        return thisCollection.filter(predicate).at(0)
-      }
-      return thisCollection.at(0)
-    },
-
     firstNode: function<T>(predicate?: (node: ASTPath<T>) => boolean) {
       const thisCollection = (this as any) as ExtendedCollection
-      return thisCollection.first(predicate).toNodeArray()[0]
-    },
-
-    flatMap: function<TInput, TOutput = TInput>(iterator: (node: ASTPath<TInput>) => TOutput[]) {
-      const thisCollection = (this as any) as Collection
-      return flatMap(thisCollection, iterator)
+      const filteredCollection = predicate != null ? thisCollection.filter(predicate).at(0) : thisCollection.at(0)
+      return filteredCollection.nodes()[0]
     },
 
     hasValues: function() {
       const thisCollection = (this as any) as Collection
       return thisCollection.length > 0
-    },
-
-    intersect: function(rightCollection: Collection | ExtendedCollection) {
-      const thisCollection = (this as any) as ExtendedCollection
-      return thisCollection.filter(leftNode => rightCollection.some(rightNode => leftNode === rightNode))
     },
 
     isEmpty: function() {
