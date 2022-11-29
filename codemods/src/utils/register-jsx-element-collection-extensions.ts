@@ -29,26 +29,31 @@ const _registerJSXElementCollectionExtensions = (jscodeshift: ExtendedJSCodeshif
         })
         return jsxElements
       },
+
       findProps: function() {
         const jsxElements = (this as any) as ExtendedJSXElementCollection
         return j<ExtendedCollection<JSXAttribute>>(flatMap(jsxElements, getJsxAttributes))
       },
+
       findPropWithName: function(name: string) {
         const jsxElements = (this as any) as ExtendedJSXElementCollection
         return j<ExtendedCollection<JSXAttribute>>(flatMap(jsxElements.findWithPropName(name), getJsxAttributes))
       },
+
       findWithPropName: function(name: string) {
         const jsxElements = (this as any) as ExtendedJSXElementCollection
         return jsxElements.filter(jsxElement =>
           getNamedJsxAttributes(jsxElement).some(jsxAttribute => jsxAttribute.name.name.toString() === name)
         ) as ExtendedJSXElementCollection
       },
+
       findWithSpreadProps: function() {
         const jsxElements = (this as any) as ExtendedJSXElementCollection
         return jsxElements.filter(
           jsxElement => getSpreadJsxAttributes(jsxElement).length > 0
         ) as ExtendedJSXElementCollection
       },
+
       removeProp: function(prop: JSXAttribute | JSXSpreadAttribute) {
         const jsxElements = (this as any) as ExtendedJSXElementCollection
         jsxElements.forEach(jsxElement => {
@@ -58,6 +63,7 @@ const _registerJSXElementCollectionExtensions = (jscodeshift: ExtendedJSCodeshif
         })
         return jsxElements
       },
+
       renameTo: function(name: string) {
         const jsxElements = (this as any) as ExtendedJSXElementCollection
 

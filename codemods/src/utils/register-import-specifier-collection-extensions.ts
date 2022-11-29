@@ -18,6 +18,7 @@ const _registerImportSpecifierCollectionExtensions = (
         importSpecifiers.insertAfter(j.importSpecifier(j.identifier(name)))
         return importSpecifiers
       },
+
       renameTo: function(name: string) {
         const importSpecifiers = (this as any) as ExtendedImportSpecifierCollection
         importSpecifiers.forEach(importSpecifier => {

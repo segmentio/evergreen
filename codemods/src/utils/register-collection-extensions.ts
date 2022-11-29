@@ -13,16 +13,19 @@ const _registerCollectionExtensions = (jscodeshift: ExtendedJSCodeshift | JSCode
       const thisCollection = (this as any) as ExtendedCollection
       return j([...thisCollection.paths(), ...rightCollection.paths()])
     },
+
     difference: function(rightCollection: Collection | ExtendedCollection) {
       const thisCollection = (this as any) as ExtendedCollection
       return thisCollection.filter(leftNode => rightCollection.every(rightNode => leftNode !== rightNode))
     },
+
     findEvergreenImportDeclaration: function() {
       const thisCollection = (this as any) as Collection
       return (thisCollection.find(j.ImportDeclaration, {
         source: { value: 'evergreen-ui' }
       }) as any) as ExtendedImportDeclarationCollection
     },
+
     first: function<T>(predicate?: (node: ASTPath<T>) => boolean) {
       const thisCollection = (this as any) as ExtendedCollection
       if (predicate != null) {
@@ -30,26 +33,32 @@ const _registerCollectionExtensions = (jscodeshift: ExtendedJSCodeshift | JSCode
       }
       return thisCollection.at(0)
     },
+
     firstNode: function<T>(predicate?: (node: ASTPath<T>) => boolean) {
       const thisCollection = (this as any) as ExtendedCollection
       return thisCollection.first(predicate).toNodeArray()[0]
     },
+
     flatMap: function<TInput, TOutput = TInput>(iterator: (node: ASTPath<TInput>) => TOutput[]) {
       const thisCollection = (this as any) as Collection
       return flatMap(thisCollection, iterator)
     },
+
     hasValues: function() {
       const thisCollection = (this as any) as Collection
       return thisCollection.length > 0
     },
+
     intersect: function(rightCollection: Collection | ExtendedCollection) {
       const thisCollection = (this as any) as ExtendedCollection
       return thisCollection.filter(leftNode => rightCollection.some(rightNode => leftNode === rightNode))
     },
+
     isEmpty: function() {
       const thisCollection = (this as any) as Collection
       return thisCollection.length === 0
     },
+
     toNodeArray: function() {
       const thisCollection = (this as any) as Collection
       return thisCollection.nodes()
