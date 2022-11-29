@@ -1,8 +1,10 @@
 import React from 'react'
 import { faker } from '@faker-js/faker'
 import { Table } from '..'
+import { Button } from '../../buttons'
+import { Group } from '../../group'
 import { Pane } from '../../layers'
-import { SegmentedControl } from '../../segmented-control'
+import { majorScale } from '../../scales'
 import { Stack } from '../../stack'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
@@ -28,6 +30,11 @@ const users = range(100).map(index => {
     selected: options[0].value
   }
 })
+
+const OPTIONS = [
+  { label: 'Selectable', value: true },
+  { label: 'Not Selectable', value: false }
+]
 
 export default class EditableTable extends React.PureComponent {
   state = {
@@ -75,20 +82,21 @@ export default class EditableTable extends React.PureComponent {
     return (
       <Stack>
         {zIndex => {
-          // Stack used for testing only. Not neccesary for functionality.
+          // Stack used for testing only. Not necessary for functionality.
           return (
             <React.Fragment>
-              <SegmentedControl
-                marginBottom={16}
-                name="selectable"
-                width={280}
-                options={[
-                  { label: 'Selectable', value: true },
-                  { label: 'Not Selectable', value: false }
-                ]}
-                value={this.state.isSelectable}
-                onChange={value => this.setState({ isSelectable: value })}
-              />
+              <Group marginBottom={majorScale(2)}>
+                {OPTIONS.map(({ label, value }) => (
+                  <Button
+                    isActive={value === this.state.isSelectable}
+                    key={label}
+                    onClick={() => this.setState({ isSelectable: value })}
+                  >
+                    {label}
+                  </Button>
+                ))}
+              </Group>
+
               <Pane height="80vh" display="flex" flexGrow={0} position="relative" zIndex={zIndex}>
                 <Table flex={1} display="flex" flexDirection="column">
                   <Table.Head>

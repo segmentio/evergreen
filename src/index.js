@@ -46,7 +46,6 @@ export { Positioner, getPosition } from './positioner'
 export { Radio, RadioGroup } from './radio'
 export { minorScale, majorScale } from './scales'
 export { SearchInput } from './search-input'
-export { SegmentedControl } from './segmented-control'
 export { Select, SelectField } from './select'
 export {
   OptionShapePropType,
