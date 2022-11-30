@@ -1,8 +1,8 @@
 import { ASTPath, Collection } from 'jscodeshift'
+import { ExtendedImportDeclarationCollection } from '../utils/register-import-declaration-collection-extensions'
+import { ExtendedJSXElementCollection } from '../utils/register-jsx-element-collection-extensions'
 import { CollectionReturningFunctions } from './collection-returning-functions'
 import { ExtendedCollectionReturningFunctions } from './extended-collection-returning-functions'
-import { ExtendedImportDeclarationCollection } from './extended-import-declaration-collection'
-import { ExtendedJSXElementCollection } from './extended-jsx-element-collection'
 
 /**
  * Represents a node collection returned from jscodeshift that has access to extension methods via

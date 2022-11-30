@@ -5,6 +5,7 @@
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
     "outDir": "dist",
+    "removeComments": false,
     "strict": true,
     "target": "es2016",
     "types": ["jest", "node"]

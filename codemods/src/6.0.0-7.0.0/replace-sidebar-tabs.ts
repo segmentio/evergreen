@@ -1,7 +1,7 @@
 import { Transform } from 'jscodeshift'
-import { ExtendedJSXElementCollection } from '../types/extended-jsx-element-collection'
 import { getLogger } from '../utils/get-logger'
 import { registerExtensions } from '../utils/register-extensions'
+import { ExtendedJSXElementCollection } from '../utils/register-jsx-element-collection-extensions'
 
 /**
  * Codemod to replace references to the <SidebarTab /> component removed in v7
@@ -38,7 +38,7 @@ const transformer: Transform = (file, api) => {
   specifiers.renameTo(TAB)
 
   const sidebarTabs = root.findJSXElements(SIDEBAR_TAB)
-  sidebarTabs.renameTo(TAB).forEach((sidebarTab) => {
+  sidebarTabs.renameTo(TAB).forEach(sidebarTab => {
     const jsxElement = j<ExtendedJSXElementCollection>(sidebarTab)
     const existingDirectionProp = jsxElement.findPropWithName(DIRECTION).firstNode()
 

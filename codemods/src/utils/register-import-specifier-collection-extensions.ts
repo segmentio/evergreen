@@ -1,10 +1,30 @@
-import { JSCodeshift } from 'jscodeshift'
-import {
-  ImportSpecifierCollectionExtensions,
-  ExtendedImportSpecifierCollection
-} from '../types/extended-import-specifier-collection'
+import { ImportSpecifier, JSCodeshift } from 'jscodeshift'
+import { ExtendedCollection } from '../types/extended-collection'
 import { ExtendedJSCodeshift } from '../types/extended-jscodeshift'
 import { once } from './once'
+
+/**
+ * Represents an `ImportSpecifier` node collection that has access to type-specific extension methods
+ * via `utils/register-extensions.ts`
+ */
+export interface ExtendedImportSpecifierCollection
+  extends ImportSpecifierCollectionExtensions,
+    Omit<ExtendedCollection<ImportSpecifier>, 'renameTo'> {}
+
+/**
+ * Extension methods that are unique to `ImportSpecifier` collections
+ */
+export interface ImportSpecifierCollectionExtensions {
+  /**
+   * Adds a new `ImportSpecifier` with the provided name
+   */
+  add: (name: string) => ExtendedImportSpecifierCollection
+
+  /**
+   * Renames the `ImportSpecifier` to the provided value
+   */
+  renameTo: (name: string) => ExtendedImportSpecifierCollection
+}
 
 const _registerImportSpecifierCollectionExtensions = (
   jscodeshift: ExtendedJSCodeshift | JSCodeshift

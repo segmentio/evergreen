@@ -1,9 +1,9 @@
 import { registerExtensions } from '../register-extensions'
 import jscodeshift from 'jscodeshift'
 import { CollectionExtensions } from '../../types/extended-collection'
-import { ImportDeclarationCollectionExtensions } from '../../types/extended-import-declaration-collection'
-import { ImportSpecifierCollectionExtensions } from '../../types/extended-import-specifier-collection'
-import { JSXElementCollectionExtensions } from '../../types/extended-jsx-element-collection'
+import { ImportDeclarationCollectionExtensions } from '../register-import-declaration-collection-extensions'
+import { ImportSpecifierCollectionExtensions } from '../register-import-specifier-collection-extensions'
+import { JSXElementCollectionExtensions } from '../register-jsx-element-collection-extensions'
 
 describe('registerExtensions', () => {
   const mockSource = ''

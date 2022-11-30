@@ -2,6 +2,16 @@ import { Transform } from 'jscodeshift'
 import { getLogger } from '../utils/get-logger'
 import { registerExtensions } from '../utils/register-extensions'
 
+/**
+ * Codemod to replace references to the <Nudge /> component removed in v7
+ * ```
+ * npx jscodeshift -t node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/replace-nudge.js --parser=tsx --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
+ * ```
+ *
+ * Converts:
+ * <Nudge /> to <Pulsar />
+ */
+
 const NUDGE = 'Nudge'
 const PULSAR = 'Pulsar'
 

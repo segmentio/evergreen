@@ -1,8 +1,8 @@
 import { Collection, ASTPath, JSCodeshift } from 'jscodeshift'
 import { CollectionExtensions, ExtendedCollection } from '../types/extended-collection'
-import { ExtendedImportDeclarationCollection } from '../types/extended-import-declaration-collection'
 import { ExtendedJSCodeshift } from '../types/extended-jscodeshift'
 import { once } from './once'
+import { ExtendedImportDeclarationCollection } from './register-import-declaration-collection-extensions'
 
 const _registerCollectionExtensions = (jscodeshift: ExtendedJSCodeshift | JSCodeshift): ExtendedJSCodeshift => {
   const j = jscodeshift as ExtendedJSCodeshift

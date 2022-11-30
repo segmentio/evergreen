@@ -1,4 +1,4 @@
-import jscodeshift, { ASTPath, JSXElement, JSXIdentifier } from 'jscodeshift'
+import jscodeshift, { ASTPath, JSXIdentifier } from 'jscodeshift'
 import { registerCollectionExtensions } from '../register-collection-extensions'
 import { stripIndent } from 'common-tags'
 
