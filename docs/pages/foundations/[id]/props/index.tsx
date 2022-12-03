@@ -3,7 +3,7 @@ import fs from 'fs'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import path from 'path'
-import IA from '../../../../utils/IA'
+import InformationArchitecture from '../../../../utils/information-architecture'
 import PageHeader from '../../../../components/PageHeader'
 import PropsTable from '../../../../components/PropsTable'
 import { Pane, majorScale } from 'evergreen-ui'
@@ -95,7 +95,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
     props = []
   }
 
-  const foundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const foundations = InformationArchitecture.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
   const foundation = foundations.find((item) => item.id === id)
 
   return {

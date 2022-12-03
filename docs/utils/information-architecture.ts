@@ -32,9 +32,9 @@ interface Parent {
 }
 
 type ParentKeys = 'introduction' | 'foundations' | 'components' | 'patterns'
-type IA = Record<ParentKeys, Parent>
+type InformationArchitecture = Record<ParentKeys, Parent>
 
-const IA: IA = {
+const InformationArchitecture: InformationArchitecture = {
   introduction: {
     title: 'Introduction',
     description:
@@ -46,9 +46,14 @@ const IA: IA = {
         description: 'About Evergreen, and getting set up with the package locally.',
       },
       {
+        id: 'v7-migration-guide',
+        name: 'Migrating from v6 to v7',
+        description: 'Guide about migrating from previous version of Evergreen into the current one.',
+      },
+      {
         id: 'v6-migration-guide',
         name: 'Migrating from v5 to v6',
-        description: 'Guide about migrating from previous version of Evergreen into the current one.',
+        description: 'Guide about migrating from version 5 of Evergreen to version 6.',
       },
       {
         id: 'theming',
@@ -448,4 +453,4 @@ const IA: IA = {
   },
 }
 
-export default IA
+export default InformationArchitecture

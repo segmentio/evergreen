@@ -3,7 +3,7 @@ import { Heading, majorScale, Pane, Tab, Tablist } from 'evergreen-ui'
 import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 import scrollIntoView from 'scroll-into-view-if-needed'
 import Link from 'next/link'
-import { Item } from '../utils/IA'
+import { Item } from '../utils/information-architecture'
 // import router from 'next/router'
 
 interface Props {

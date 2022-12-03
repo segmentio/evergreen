@@ -15,7 +15,7 @@ Then, navigate to your browser and go to: `localhost:3000`.
 
 # Adding a new documentation page
 
-Add an entry under the corresponding header in `IA.ts` - you can think of this as the "database" for all status relating to Evergreen components and documentation.
+Add an entry under the corresponding header in `InformationArchitecture.ts` - you can think of this as the "database" for all status relating to Evergreen components and documentation.
 
 From there, the directory structure in `docs/documentation/` contains the `.mdx` files which mirror the route structure for the docs site.
 

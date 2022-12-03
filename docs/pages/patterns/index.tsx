@@ -5,14 +5,14 @@ import SearchBar from '../../components/SearchBar'
 import PageHeader from '../../components/PageHeader'
 import Thumbnail from '../../components/Thumbnail'
 import SideNav from '../../components/SideNav'
-import IA from '../../utils/IA'
+import InformationArchitecture from '../../utils/information-architecture'
 
 interface Props {}
 
 const PatternsPage: React.FC<Props> = () => {
   const [query, setQuery] = useState<string>('')
 
-  const evergreenPatterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const evergreenPatterns = InformationArchitecture.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
 
   const filteredItems = evergreenPatterns.filter((item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1)
 
@@ -28,7 +28,7 @@ const PatternsPage: React.FC<Props> = () => {
           padding={majorScale(5)}
           maxWidth={1024}
         >
-          <PageHeader title="Patterns" description={IA.patterns.description} />
+          <PageHeader title="Patterns" description={InformationArchitecture.patterns.description} />
           <Pane marginBottom={majorScale(4)}>
             <SearchBar query={query} onQueryChange={setQuery} placeholder="Search patterns by name" />
           </Pane>
