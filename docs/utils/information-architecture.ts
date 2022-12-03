@@ -46,14 +46,9 @@ const InformationArchitecture: InformationArchitecture = {
         description: 'About Evergreen, and getting set up with the package locally.',
       },
       {
-        id: 'v7-migration-guide',
-        name: 'Migrating from v6 to v7',
-        description: 'Guide about migrating from previous version of Evergreen into the current one.',
-      },
-      {
-        id: 'v6-migration-guide',
-        name: 'Migrating from v5 to v6',
-        description: 'Guide about migrating from version 5 of Evergreen to version 6.',
+        id: 'migrations',
+        name: 'Migrations',
+        description: 'Guides for migrating between major versions of Evergreen.',
       },
       {
         id: 'theming',
