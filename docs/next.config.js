@@ -9,4 +9,14 @@ module.exports = {
   },
 
   assetPrefix: !debug ? 'https://cdn.statically.io/gh/segmentio/evergreen/gh-pages/' : '',
+
+  async redirects() {
+    return [
+      {
+        source: '/introduction/v6-migration-guide',
+        destination: '/introduction/migrations/v6',
+        permanent: true,
+      },
+    ]
+  },
 }
