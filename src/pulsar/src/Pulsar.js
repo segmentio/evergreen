@@ -1,6 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import { keyframes } from 'ui-box'
+import Box, { keyframes } from 'ui-box'
 import Positions from '../../constants/src/Position'
 import { Pane } from '../../layers'
 import { majorScale } from '../../scales'
@@ -81,6 +81,11 @@ export const Pulsar = memo(
 
 Pulsar.propTypes = {
   /**
+   * Composes the Box component as the base.
+   */
+  ...Box.propTypes,
+
+  /**
    * The position of the pulsar
    */
   position: PropTypes.oneOf([Positions.TOP_LEFT, Positions.TOP_RIGHT, Positions.BOTTOM_LEFT, Positions.BOTTOM_RIGHT]),
@@ -88,10 +93,5 @@ Pulsar.propTypes = {
   /**
    * The width/height of the dot
    */
-  size: PropTypes.number,
-
-  /**
-   * Called when the Pulsar is clicked
-   */
-  onClick: PropTypes.func
+  size: PropTypes.number
 }
