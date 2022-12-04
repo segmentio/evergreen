@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { keyframes } from 'ui-box'
 import Positions from '../../constants/src/Position'
@@ -21,7 +21,7 @@ const pulseAnimation = keyframes('pulseAnimation', {
 const animationTiming = 'cubic-bezier(0, 0, 0.58, 1)'
 const animationDuration = '1.8s'
 
-const pularAnimationStyles = {
+const pulsarAnimationStyles = {
   animation: `${pulseAnimation} ${animationDuration} ${animationTiming} both infinite`
 }
 
@@ -49,31 +49,35 @@ const getPositionProps = ({ position, size }) => {
   return props
 }
 
-export const Pulsar = memo(({ position = Positions.TOP_RIGHT, size = majorScale(1), onClick }) => {
-  const { colors } = useTheme()
-  const positionProps = getPositionProps({ position, size })
-  const outerPadding = size * 0.25
+export const Pulsar = memo(
+  forwardRef(({ position = Positions.TOP_RIGHT, size = majorScale(1), onClick, ...rest }, ref) => {
+    const { colors } = useTheme()
+    const positionProps = getPositionProps({ position, size })
+    const outerPadding = size * 0.25
 
-  return (
-    <Pane
-      position="absolute"
-      borderRadius="50%"
-      backgroundColor={colors.blue100}
-      boxSizing="content-box"
-      opacity={0.7}
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      padding={outerPadding}
-      {...pularAnimationStyles}
-      onClick={onClick}
-      cursor={onClick ? 'pointer' : undefined}
-      {...positionProps}
-    >
-      <Pane width={size} height={size} backgroundColor={colors.blue200} borderRadius="50%" opacity={0.7} />
-    </Pane>
-  )
-})
+    return (
+      <Pane
+        ref={ref}
+        position="absolute"
+        borderRadius="50%"
+        backgroundColor={colors.blue100}
+        boxSizing="content-box"
+        opacity={0.7}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        padding={outerPadding}
+        {...pulsarAnimationStyles}
+        onClick={onClick}
+        cursor={onClick ? 'pointer' : undefined}
+        {...positionProps}
+        {...rest}
+      >
+        <Pane width={size} height={size} backgroundColor={colors.blue200} borderRadius="50%" opacity={0.7} />
+      </Pane>
+    )
+  })
+)
 
 Pulsar.propTypes = {
   /**
