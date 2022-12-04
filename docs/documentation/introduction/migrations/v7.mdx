@@ -6,7 +6,12 @@ While there should be no significant visual changes introduced with this change,
 
 # Component themes now define pseudoselectors under selectors key {#selectors}
 
-[`ui-box@5.2.0`](https://github.com/segmentio/ui-box/releases/tag/v5.2.0) introduced the ability to define selectors for a `Box` component. Since a `Box` component can be polymorphic and accept arbitrary props, we needed a way to determine what props were meant to define hover, active, etc. states through selectors. If you were using Evergreen v6 without a custom theme, or you weren't overriding any of the pseudoselectors, you shouldn't need to make any changes.
+[`ui-box@5.2.0`](https://github.com/segmentio/ui-box/releases/tag/v5.2.0) introduced the ability to define selectors for a `Box` component. Since a `Box` component can be polymorphic and accept arbitrary props, we needed a way to determine what props were meant to define hover, active, focus, etc. states. See the [`selectors`](https://github.com/segmentio/ui-box#selectors) section in the `ui-box` readme for more information.
+
+<InlineAlert>
+  If you were using Evergreen v6 without a custom theme, or you weren't overriding any pseudoselectors, you shouldn't
+  need to make any changes here.
+</InlineAlert>
 
 Any pseudoselectors defined in a custom theme will need to be moved under a `selectors` object, for example:
 
@@ -28,5 +33,23 @@ const baseStyle = {
       userSelect: 'none'
     }
 +  }
+}
+```
+
+# No more classic theme {#classic-theme}
+
+The classic theme was maintained in v6 to allow consumers to upgrade without forcing an entirely new look-and-feel. However, there were some missed components ([#1511](https://github.com/segmentio/evergreen/issues/1511)), and new components like the [`FileUploader`](/components/file-uploader) were not retrofitted for the old visual style.
+
+Taking into account the refactoring effort for the `selectors` object and v6 being out for close to 2 years now, we think it's time to sunset the classic theme in favor of our modern design.
+
+```diff readonly
+import React from 'react'
+-import { classicTheme, ThemeProvider } from 'evergreen-ui'
++import { defaultTheme, ThemeProvider } from 'evergreen-ui'
+
+const App: React.FC = (props) => {
+  const { children } = props
+-  return <ThemeProvider value={classicTheme}>{children}</ThemeProvider>
++  return <ThemeProvider value={defaultTheme}>{children}</ThemeProvider>
 }
 ```
