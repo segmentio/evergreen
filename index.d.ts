@@ -2058,22 +2058,19 @@ export type PreOwnProps = TextOwnProps
 export type PreProps = PolymorphicBoxProps<'pre', PreOwnProps>
 export declare const Pre: BoxComponent<PreOwnProps, 'pre'>
 
-export interface PulsarProps {
+export interface PulsarOwnProps {
   /**
-   * The position the Tooltip is on.
+   * The position the pulsar is displayed
    */
   position?: Exclude<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
   /**
    * The size of the pulsar
    */
   size?: number
-  /**
-   * Called when the Pulsar is clicked
-   */
-  onClick?: PaneProps['onClick']
 }
 
-export declare const Pulsar: React.FC<PulsarProps>
+export type PulsarProps = PolymorphicBoxProps<'div', PulsarOwnProps>
+export declare const Pulsar: BoxComponent<PulsarOwnProps, 'div'>
 
 export interface RadioOwnProps {
   /**

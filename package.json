@@ -50,7 +50,7 @@
     "size": "size-limit",
     "storybook": "start-storybook -p 6006",
     "test": "yarn lint && yarn tsd && yarn jest",
-    "test:watch": "yarn run test -- --watch",
+    "test:watch": "yarn jest --watch",
     "update-docs": "cd docs && yarn add evergreen-ui@latest --exact && git add package.json yarn.lock && git show-branch --no-name HEAD | grep -E 'v[0-9]+.[0-9]+.[0-9]+' && git commit --amend --no-edit || git commit -m \"Updated doc site evergreen version\""
   },
   "engines": {
