@@ -53,3 +53,30 @@ const App: React.FC = (props) => {
 +  return <ThemeProvider value={defaultTheme}>{children}</ThemeProvider>
 }
 ```
+
+# Nudge has been replaced with Pulsar {#nudge}
+
+The `Nudge` component has been replaced with a simpler component named [`Pulsar`](/components/pulsar). This component has a similar look, but does not wrap children or include the tooltip functionality that was previously available.
+
+```diff readonly
+import React from 'react'
+-import { Nudge, Paragraph } from 'evergreen-ui'
++import { Pulsar, Pane, Paragraph } from 'evergreen-ui'
+
+-<Nudge position={Position.TOP_LEFT} isShown={true}>
++<Pane position="relative">
++ <Pulsar position={Position.TOP_LEFT} />
+  <Paragraph>Hello world</Paragraph>
+-</Nudge>
++</Pane>
+```
+
+<InlineAlert marginTop={24}>
+  We have provided a codemod that should be able to programmatically update instances of the Nudge component where props
+  can be easily identified.
+</InlineAlert>
+
+```sh readonly
+npm i -g jscodeshift
+npx jscodeshift -t node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/replace-nudge.js --parser=tsx --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
+```
