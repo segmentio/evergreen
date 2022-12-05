@@ -3,7 +3,7 @@ import { Pane, Icon, Menu, Button, SelectMenu } from 'evergreen-ui';
 
 function MyComponent(_props) {
   return (
-    <Pane>
+    (<Pane>
       <Icon cursor="pointer" icon="cog" />
       <Icon icon="add" />
       <Icon icon="airplane" />
@@ -12,7 +12,7 @@ function MyComponent(_props) {
       <Menu.Item icon="notifications" />
       <Button iconAfter="notifications" />
       <SelectMenu filterIcon="search" />
-    </Pane>
+    </Pane>)
   );
 }
 

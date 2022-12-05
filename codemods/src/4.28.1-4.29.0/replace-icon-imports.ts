@@ -1,7 +1,10 @@
+import { JSXAttribute, Transform } from 'jscodeshift'
+import startCase from 'lodash.startcase'
+
 /**
- * Codemode to update icon imports
+ * Codemod to update icon imports
  * ```
- * npx jscodeshift -t node_modules/evergreen-ui/codemods/4.28.1-4.29.0/replace-icon-imports.js --parser=tsx --extensions=js,ts,tsx <your file target> --dry --print
+ * npx jscodeshift -t node_modules/evergreen-ui/codemods/dist/4.28.1-4.29.0/replace-icon-imports.js --parser=tsx --extensions=js,ts,tsx <your file target> --dry --print
  * ```
  *
  * Converts:
@@ -11,11 +14,9 @@
  * ... and more
  */
 
-import startCase from 'lodash.startcase'
-
-function matchStringLiteralIconProps(attribute, prop = 'icon') {
+function matchStringLiteralIconProps(attribute: JSXAttribute, prop: string = 'icon'): boolean {
   return (
-    attribute.type === 'JSXAttribute' && attribute.name.name === prop && attribute.value && attribute.value.type === 'StringLiteral'
+    (attribute.type === 'JSXAttribute' && attribute.name.name === prop && attribute.value?.type === 'Literal') ?? false
   )
 }
 
@@ -34,10 +35,10 @@ const ElementProps = {
   UnorderedList: { props: ['icon'], componentName: 'UnorderedList' },
   Ul: { props: ['icon'], componentName: 'Ul' },
   OrderedList: { props: ['icon'], componentName: 'OrderedList' },
-  Ol: { props: ['icon'], componentName: 'Ol' }
+  Ol: { props: ['icon'], componentName: 'Ol' },
 }
 
-export default function transform(file, api) {
+const transform: Transform = (file, api) => {
   // Alias the jscodeshift API for ease of use.
   const j = api.jscodeshift
 
@@ -47,8 +48,8 @@ export default function transform(file, api) {
   const evergreenImports = root
     .find(j.ImportDeclaration, {
       source: {
-        value: 'evergreen-ui'
-      }
+        value: 'evergreen-ui',
+      },
     })
     .nodes()
 
@@ -60,16 +61,20 @@ export default function transform(file, api) {
   const evergreenImport = evergreenImports[0]
 
   // Find Icon components
-  root.findJSXElements('Icon')
-    .filter(path => path.node.openingElement.attributes.some(a => matchStringLiteralIconProps(a, 'icon')))
+  root
+    .findJSXElements('Icon')
+    /* @ts-ignore */
+    .filter((path) => path.node.openingElement.attributes.some((a) => matchStringLiteralIconProps(a, 'icon')))
     .forEach(({ value: Node }) => {
       // Swap the component name
-      const iconProp = Node.openingElement.attributes.find(a => matchStringLiteralIconProps(a, 'icon'))
+      /* @ts-ignore */
+      const iconProp = Node.openingElement.attributes.find((a) => matchStringLiteralIconProps(a, 'icon'))
 
       if (!iconProp) {
         return
       }
 
+      /* @ts-ignore */
       const icon = iconProp.value.value
       if (!icon) {
         return
@@ -80,10 +85,10 @@ export default function transform(file, api) {
       Node.openingElement.name = j.jsxIdentifier(componentName)
 
       // Replace the import path too
-      const hasImportAlready = evergreenImport.specifiers.some(
-        s => s.imported.name === componentName
-      )
+      /* @ts-ignore */
+      const hasImportAlready = evergreenImport.specifiers.some((s) => s.imported.name === componentName)
       if (!hasImportAlready) {
+        /* @ts-ignore */
         evergreenImport.specifiers.push(j.importSpecifier(j.identifier(componentName)))
       }
     })
@@ -91,11 +96,11 @@ export default function transform(file, api) {
     .find(j.JSXAttribute, {
       name: {
         type: 'JSXIdentifier',
-        name: 'icon'
+        name: 'icon',
       },
       value: {
-        type: 'StringLiteral'
-      }
+        type: 'Literal',
+      },
     })
     .remove()
 
@@ -110,10 +115,10 @@ export default function transform(file, api) {
           name: {
             property: {
               type: 'JSXIdentifier',
-              name: identifier
-            }
-          }
-        }
+              name: identifier,
+            },
+          },
+        },
       })
     }
 
@@ -122,29 +127,29 @@ export default function transform(file, api) {
         .find(j.JSXAttribute, {
           name: {
             type: 'JSXIdentifier',
-            name: prop
+            name: prop,
           },
           value: {
-            type: 'StringLiteral'
-          }
+            type: 'Literal',
+          },
         })
-        .find(j.StringLiteral)
-        .replaceWith(nodePath => {
+        .find(j.Literal)
+        .replaceWith((nodePath) => {
           const { node } = nodePath
 
           // e.g. "add" -> "AddIcon"
-          const iconName = `${startCase(node.value).replace(/ /g, '')}Icon`
+          const iconName = `${startCase(node.value as string).replace(/ /g, '')}Icon`
 
           // Replace the import path too
-          const hasImportAlready = evergreenImport.specifiers.some(
-            s => s.imported.name === iconName
-          )
+          /* @ts-ignore */
+          const hasImportAlready = evergreenImport.specifiers.some((s) => s.imported.name === iconName)
           if (!hasImportAlready) {
+            /* @ts-ignore */
             evergreenImport.specifiers.push(j.importSpecifier(j.identifier(iconName)))
           }
 
           // with a new JSX expression with the icon definition.
-          return j.jsxExpressionContainer(j.identifier(iconName));
+          return j.jsxExpressionContainer(j.identifier(iconName))
         })
     }
   }
@@ -155,16 +160,18 @@ export default function transform(file, api) {
     root
       .find(j.ImportDeclaration, {
         source: {
-          value: 'evergreen-ui'
-        }
+          value: 'evergreen-ui',
+        },
       })
       .find(j.ImportSpecifier, {
         imported: {
-          name: 'Icon'
-        }
+          name: 'Icon',
+        },
       })
       .remove()
   }
 
   return root.toSource()
 }
+
+export default transform

@@ -3,7 +3,7 @@ import { Pane, Heading, Paragraph } from 'evergreen-ui';
 
 function MyComponent(_props) {
   return (
-    <Pane>
+    (<Pane>
       <Heading marginTop={52} size={900}>Test Heading 900</Heading>
       <Heading marginTop={40} size={800}>Test Heading 800</Heading>
       <Heading marginTop={40} size={700}>Test Heading 700</Heading>
@@ -17,7 +17,7 @@ function MyComponent(_props) {
       <Paragraph marginTop={16} size={500}>Test Paragraph 500</Paragraph>
       <Paragraph marginTop={12} size={400}>Test Paragraph 400</Paragraph>
       <Paragraph marginTop={12} size={300}>Test Paragraph 300</Paragraph>
-    </Pane>
+    </Pane>)
   );
 }
 
