@@ -3112,6 +3112,10 @@ export interface TooltipProps {
    */
   appearance?: TooltipAppearance
   /**
+   * The id of the tooltip.
+   */
+  id: string,
+  /**
    * The position the Tooltip is on.
    */
   position?: PositionTypes
