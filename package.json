@@ -62,10 +62,8 @@
     "@types/react": "^16.9.5",
     "@types/react-transition-group": "^4.4.0",
     "arrify": "^1.0.1",
-    "classnames": "^2.3.0",
     "downshift": "^5.2.0",
     "fuzzaldrin-plus": "^0.6.0",
-    "glamor": "^2.20.40",
     "humanize-plus": "^1.8.2",
     "lodash.debounce": "^4.0.8",
     "lodash.differencewith": "^4.5.0",
@@ -77,7 +75,7 @@
     "react-fast-compare": "^3.2.0",
     "react-transition-group": "^4.4.1",
     "tinycolor2": "^1.4.1",
-    "ui-box": "^5.3.0"
+    "ui-box": "^5.4.0"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

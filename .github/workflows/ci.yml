@@ -2,10 +2,10 @@ name: CI
 
 on:
   pull_request:
-    branches:
-      - master
+    branches: ['master', 'v7']
   push:
     branches: ['*']
+  workflow_dispatch:
 
 jobs:
   test:

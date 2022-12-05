@@ -1,6 +1,4 @@
 import React, { memo, useState, useEffect, useRef } from 'react'
-import cx from 'classnames'
-import { css as glamorCss } from 'glamor'
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import { Position } from '../../constants'
@@ -138,7 +136,8 @@ const Tooltip = memo(function Tooltip(props) {
           onMouseEnter={handleMouseEnterTarget}
           onMouseLeave={handleMouseLeaveTarget}
           {...statelessProps}
-          className={cx(statelessProps.className, css ? glamorCss(css).toString() : undefined)}
+          {...css}
+          className={statelessProps.className}
         >
           {content}
         </TooltipStateless>
