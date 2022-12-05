@@ -58,8 +58,7 @@ const OptionsList = memo(function OptionsList(props) {
   const [searchValue, setSearchValue] = useState(defaultSearchValue)
   const [searchRef, setSearchRef] = useState(null)
   const requestId = useRef()
-  const theme = useTheme()
-  const { tokens } = theme
+  const { colors } = useTheme()
 
   const isSelected = useCallback(
     item => {
@@ -202,7 +201,7 @@ const OptionsList = memo(function OptionsList(props) {
   return (
     <Pane height={height} width={width} display="flex" flexDirection="column" {...rest}>
       {hasFilter && (
-        <TableHead height={32} backgroundColor={tokens.colors.gray50}>
+        <TableHead height={32} backgroundColor={colors.gray50}>
           <SearchTableHeaderCell
             onChange={handleChange}
             ref={setSearchRef}
