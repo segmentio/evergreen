@@ -89,11 +89,34 @@ import React from 'react'
 ```
 
 <InlineAlert marginTop={24}>
-  We have provided a codemod that should be able to programmatically update instances of the Nudge component where props
+  We have provided a codemod that should be able to programmatically update instances of the Nudge component when props
   can be easily identified.
 </InlineAlert>
 
 <inlineCode>
   npm i -g jscodeshift && npx jscodeshift -t node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/replace-nudge.js
+  --parser=tsx --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
+</inlineCode>
+
+# No more SidebarTab {#sidebar-tab}
+
+The `SidebarTab` component has been removed. The same visual style can be achieved by rendering a `Tab` with the `direction="vertical"` prop.
+
+```diff readonly
+import React from 'react'
+-import { SidebarTab } from 'evergreen-ui'
++import { Tab } from 'evergreen-ui'
+
+-<SidebarTab>Settings</SidebarTab>
++<Tab direction="vertical">Settings</Tab>
+```
+
+<InlineAlert marginTop={24}>
+  We have provided a codemod that should be able to programmatically update instances of the SidebarTab component when
+  props can be easily identified.
+</InlineAlert>
+
+<inlineCode>
+  npm i -g jscodeshift && npx jscodeshift -t node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/replace-sidebar-tab.js
   --parser=tsx --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
 </inlineCode>
