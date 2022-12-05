@@ -13923,10 +13923,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-"ui-box@npm:@brandongregoryscott/ui-box@^5.4.0-2":
-  version "5.4.0-2"
-  resolved "https://registry.yarnpkg.com/@brandongregoryscott/ui-box/-/ui-box-5.4.0-2.tgz#8deda115d4660e2f673d627ceec906547e1fba80"
-  integrity sha512-D9/IZg72VV26AFEiCfNhrsJ1FEKbOb2PfmQxi0zXQtSuXQ4eAARCMVYYBuw1490Yd0WAVcFiX0Qyci2Hq63oEg==
+ui-box@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-5.4.0.tgz#707c764fdf4be79cf2f50f356ca9583a491164ee"
+  integrity sha512-HuiJKUIOGW/I1VF7EgHl5/3OwywPdV5fwzsDOWfCGS/PORmXOyGetL3gJo9EQJZZZCkui9xf3a/UQhawA88yeQ==
   dependencies:
     "@emotion/hash" "^0.7.1"
     inline-style-prefixer "^5.0.4"
