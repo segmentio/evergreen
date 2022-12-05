@@ -7,14 +7,14 @@ const props = {
 
 const Component = () => {
   return (
-    <React.Fragment>
+    (<React.Fragment>
       <SidebarTab disabled={false} isSelected={true} />
       <SidebarTab onSelect={() => {}} />
       <SidebarTab direction="vertical" />
       <SidebarTab direction="horizontal" />
       <SidebarTab {...props} disabled={false} isSelected={true} />
       <SidebarTab>Tab</SidebarTab>
-    </React.Fragment>
+    </React.Fragment>)
   )
 }
 

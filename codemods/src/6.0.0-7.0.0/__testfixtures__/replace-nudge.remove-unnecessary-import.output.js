@@ -1,11 +1,11 @@
 import React from 'react';
-import { Pulsar } from 'evergreen-ui';
+import { Pane, Pulsar } from 'evergreen-ui';
 
 const Component = () => {
   return (
-    <React.Fragment>
-      <Pulsar />
-    </React.Fragment>
+    (<React.Fragment>
+      <Pane position="relative"><Pulsar /></Pane>
+    </React.Fragment>)
   );
 }
 

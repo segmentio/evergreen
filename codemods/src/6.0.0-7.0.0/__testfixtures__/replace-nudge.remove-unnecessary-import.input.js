@@ -3,9 +3,9 @@ import { Nudge } from 'evergreen-ui';
 
 const Component = () => {
   return (
-    <React.Fragment>
+    (<React.Fragment>
       <Nudge />
-    </React.Fragment>
+    </React.Fragment>)
   );
 }
 

@@ -57,7 +57,7 @@ describe('registerExtensions', () => {
   it('should register JSXElementCollectionExtensions', () => {
     const expected: Array<keyof JSXElementCollectionExtensions> = [
       'addProp',
-      'findPropWithName',
+      'findPropByName',
       'findWithPropName',
       'findWithSpreadProps',
       'renameTo',

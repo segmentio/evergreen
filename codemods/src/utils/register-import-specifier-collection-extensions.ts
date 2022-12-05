@@ -35,6 +35,10 @@ const _registerImportSpecifierCollectionExtensions = (
     {
       add: function(name: string) {
         const importSpecifiers = (this as any) as ExtendedImportSpecifierCollection
+        if (importSpecifiers.some(importSpecifier => importSpecifier.name === name)) {
+          return importSpecifiers
+        }
+
         importSpecifiers.insertAfter(j.importSpecifier(j.identifier(name)))
         return importSpecifiers
       },

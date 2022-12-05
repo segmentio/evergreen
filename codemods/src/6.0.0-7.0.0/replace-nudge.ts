@@ -1,6 +1,6 @@
 import { Transform } from 'jscodeshift'
-import { getLogger } from '../utils/get-logger'
 import { registerExtensions } from '../utils/register-extensions'
+import { ExtendedJSXElementCollection } from '../utils/register-jsx-element-collection-extensions'
 
 /**
  * Codemod to replace references to the <Nudge /> component removed in v7
@@ -13,10 +13,12 @@ import { registerExtensions } from '../utils/register-extensions'
  */
 
 const NUDGE = 'Nudge'
+const PANE = 'Pane'
 const PULSAR = 'Pulsar'
+const TOOLTIP = 'Tooltip'
+const TOOLTIP_CONTENT_PROP = 'tooltipContent'
 
 const transformer: Transform = (file, api) => {
-  const log = getLogger(file)
   const j = registerExtensions(api.jscodeshift)
 
   const root = j(file.source)
@@ -39,33 +41,26 @@ const transformer: Transform = (file, api) => {
     return file.source
   }
 
-  const ignoredNudges = nudges
-    .findWithPropName('isShown')
-    .concat(nudges.findWithPropName('tooltipContent'))
-    .concat(nudges.findWithSpreadProps())
-  const transformableNudges = nudges.difference(ignoredNudges)
+  nudges
+    // The isShown prop isn't present/required anymore since we aren't bundling a Popover acting as a Tooltip
+    .removeProp('isShown')
+    .renameTo(PULSAR)
+    .wrap(PANE, [{ name: 'position', value: 'relative' }])
 
-  if (ignoredNudges.hasValues()) {
-    ignoredNudges.forEach(nudge =>
-      log(
-        `Found <${NUDGE}> with either deprecated props or spread props that can't be statically analyzed and can't safely be swapped with <${PULSAR}>, you will need to port this over manually.`,
-        nudge.node
-      )
-    )
+  const tooltipNudges = nudges.findWithPropName(TOOLTIP_CONTENT_PROP)
+  if (tooltipNudges.hasValues()) {
+    importSpecifiers.add(TOOLTIP)
+
+    tooltipNudges.forEach(_tooltipNudge => {
+      const tooltipNudge = j<ExtendedJSXElementCollection>(_tooltipNudge)
+      const value = tooltipNudge.findPropByName(TOOLTIP_CONTENT_PROP).firstNode()?.value
+      tooltipNudge.removeProp(TOOLTIP_CONTENT_PROP).wrap(TOOLTIP, [{ name: 'content', value }])
+    })
   }
 
-  if (transformableNudges.isEmpty()) {
-    return file.source
-  }
+  importSpecifiers.add(PULSAR).add(PANE)
 
-  transformableNudges.renameTo(PULSAR)
-
-  importSpecifiers.add(PULSAR)
-
-  // If all Nudge components were renamed, we can safely remove the import
-  if (ignoredNudges.isEmpty()) {
-    importDeclarations.findImportSpecifiersByName(NUDGE).remove()
-  }
+  importDeclarations.findImportSpecifiersByName(NUDGE).remove()
 
   return root.toSource()
 }

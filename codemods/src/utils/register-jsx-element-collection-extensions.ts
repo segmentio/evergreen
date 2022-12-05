@@ -1,8 +1,17 @@
-import { JSCodeshift, JSXAttribute, JSXElement, JSXSpreadAttribute } from 'jscodeshift'
+import {
+  JSCodeshift,
+  JSXAttribute,
+  JSXElement,
+  JSXExpressionContainer,
+  JSXFragment,
+  JSXSpreadAttribute,
+  Literal
+} from 'jscodeshift'
 import { ExtendedCollection } from '../types/extended-collection'
 import { ExtendedJSCodeshift } from '../types/extended-jscodeshift'
 import { flatMap } from './flat-map'
 import {
+  getJsxAttributeName,
   getJsxAttributes,
   getNamedJsxAttributes,
   getSpreadJsxAttributes,
@@ -31,7 +40,7 @@ export interface JSXElementCollectionExtensions {
   /**
    * Returns a collection of the `JSXAttribute` nodes with the provided name for the current `JSXElement` collection
    */
-  findPropWithName: (name: string) => ExtendedCollection<JSXAttribute>
+  findPropByName: (name: string) => ExtendedCollection<JSXAttribute>
 
   /**
    * Returns a collection of `JSXElement` nodes that have of the provided prop name
@@ -51,7 +60,19 @@ export interface JSXElementCollectionExtensions {
   /**
    * Removes the prop from the `JSXOpeningElement` (if present)
    */
-  removeProp: (prop: JSXAttribute | JSXSpreadAttribute) => ExtendedJSXElementCollection
+  removeProp: (prop: JSXAttribute | JSXSpreadAttribute | string) => ExtendedJSXElementCollection
+
+  /**
+   * Wraps the `JSXElement` with another `JSXElement` and provided props
+   */
+  wrap: (name: string, props?: Prop[]) => ExtendedJSXElementCollection
+}
+
+type JSXAttributeValue = JSXAttribute['value']
+
+interface Prop {
+  name: string
+  value: string | JSXAttributeValue
 }
 
 const _registerJSXElementCollectionExtensions = (jscodeshift: ExtendedJSCodeshift | JSCodeshift) => {
@@ -72,7 +93,7 @@ const _registerJSXElementCollectionExtensions = (jscodeshift: ExtendedJSCodeshif
         return jsxElements
       },
 
-      findPropWithName: function(name: string) {
+      findPropByName: function(name: string) {
         const jsxElements = (this as any) as ExtendedJSXElementCollection
         return j<ExtendedCollection<JSXAttribute>>(flatMap(jsxElements.findWithPropName(name), getJsxAttributes))
       },
@@ -80,7 +101,7 @@ const _registerJSXElementCollectionExtensions = (jscodeshift: ExtendedJSCodeshif
       findWithPropName: function(name: string) {
         const jsxElements = (this as any) as ExtendedJSXElementCollection
         return jsxElements.filter(jsxElement =>
-          getNamedJsxAttributes(jsxElement).some(jsxAttribute => jsxAttribute.name.name.toString() === name)
+          getNamedJsxAttributes(jsxElement).some(jsxAttribute => getJsxAttributeName(jsxAttribute) === name)
         ) as ExtendedJSXElementCollection
       },
 
@@ -91,12 +112,16 @@ const _registerJSXElementCollectionExtensions = (jscodeshift: ExtendedJSCodeshif
         ) as ExtendedJSXElementCollection
       },
 
-      removeProp: function(prop: JSXAttribute | JSXSpreadAttribute) {
+      removeProp: function(prop: JSXAttribute | JSXSpreadAttribute | string) {
         const jsxElements = (this as any) as ExtendedJSXElementCollection
         jsxElements.forEach(jsxElement => {
           const jsxAttributes = getJsxAttributes(jsxElement)
 
-          jsxElement.node.openingElement.attributes = jsxAttributes.filter(jsxAttribute => !isEqual(jsxAttribute, prop))
+          const isStringProp = typeof prop === 'string'
+
+          jsxElement.node.openingElement.attributes = jsxAttributes.filter(jsxAttribute =>
+            isStringProp ? getJsxAttributeName(jsxAttribute) !== prop : !isEqual(jsxAttribute, prop)
+          )
         })
         return jsxElements
       },
@@ -113,8 +138,27 @@ const _registerJSXElementCollectionExtensions = (jscodeshift: ExtendedJSCodeshif
         })
 
         return jsxElements
+      },
+
+      wrap: function(name: string, props?: Prop[]) {
+        const jsxElements = (this as any) as ExtendedJSXElementCollection
+        const elementName = j.jsxIdentifier(name)
+
+        jsxElements.forEach(jsxElement => {
+          const attributes = (props ?? []).map(prop => {
+            const { name: propName, value } = prop
+            const isStringValue = typeof value === 'string'
+            return j.jsxAttribute(j.jsxIdentifier(propName), isStringValue ? j.literal(value) : value)
+          })
+
+          jsxElement.insertBefore(j.jsxOpeningElement(elementName, attributes))
+          jsxElement.insertAfter(j.jsxClosingElement(elementName))
+        })
+
+        return jsxElements
       }
     },
+
     j.JSXElement
   )
 

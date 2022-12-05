@@ -3,13 +3,14 @@ import { ASTPath, JSXAttribute, JSXElement, JSXSpreadAttribute } from 'jscodeshi
 const getJsxAttributes = (jsxElement: ASTPath<JSXElement>): Array<JSXAttribute | JSXSpreadAttribute> =>
   jsxElement.node.openingElement.attributes ?? []
 
+const getJsxAttributeName = (jsxAttribute: JSXAttribute | JSXSpreadAttribute): string | undefined =>
+  isJsxSpreadAttribute(jsxAttribute) ? undefined : jsxAttribute.name.name.toString()
+
 const getNamedJsxAttributes = (jsxElement: ASTPath<JSXElement>): JSXAttribute[] =>
-  getJsxAttributes(jsxElement).filter((jsxAttribute) => jsxAttribute.type === 'JSXAttribute') as JSXAttribute[]
+  getJsxAttributes(jsxElement).filter(isNamedJsxAttribute)
 
 const getSpreadJsxAttributes = (jsxElement: ASTPath<JSXElement>): JSXSpreadAttribute[] =>
-  getJsxAttributes(jsxElement).filter(
-    (jsxAttribute) => jsxAttribute.type === 'JSXSpreadAttribute'
-  ) as JSXSpreadAttribute[]
+  getJsxAttributes(jsxElement).filter(isJsxSpreadAttribute)
 
 /**
  * Returns true if the JSXElement contains the JSXAttribute by name
@@ -20,7 +21,7 @@ const hasProp = (jsxElement: ASTPath<JSXElement>, prop: JSXAttribute | JSXSpread
   }
 
   const existingNamedProps = getNamedJsxAttributes(jsxElement)
-  return existingNamedProps.some((existingProp) => isEqual(existingProp, prop))
+  return existingNamedProps.some(existingProp => isEqual(existingProp, prop))
 }
 
 const isEqual = (left: JSXAttribute | JSXSpreadAttribute, right: JSXAttribute | JSXSpreadAttribute): boolean => {
@@ -29,10 +30,25 @@ const isEqual = (left: JSXAttribute | JSXSpreadAttribute, right: JSXAttribute | 
   }
 
   if (left.type === 'JSXAttribute' && right.type === 'JSXAttribute') {
-    return left === right || left.name.name.toString() === right.name.name.toString()
+    return left === right || getJsxAttributeName(left) === getJsxAttributeName(right)
   }
 
   return false
 }
 
-export { getJsxAttributes, getNamedJsxAttributes, getSpreadJsxAttributes, hasProp, isEqual }
+const isNamedJsxAttribute = (jsxAttribute: JSXAttribute | JSXSpreadAttribute): jsxAttribute is JSXAttribute =>
+  jsxAttribute.type === 'JSXAttribute'
+
+const isJsxSpreadAttribute = (jsxAttribute: JSXAttribute | JSXSpreadAttribute): jsxAttribute is JSXSpreadAttribute =>
+  jsxAttribute.type === 'JSXSpreadAttribute'
+
+export {
+  isNamedJsxAttribute,
+  isJsxSpreadAttribute,
+  getJsxAttributes,
+  getJsxAttributeName,
+  getNamedJsxAttributes,
+  getSpreadJsxAttributes,
+  hasProp,
+  isEqual
+}

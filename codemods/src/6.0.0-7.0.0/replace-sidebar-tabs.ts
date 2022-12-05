@@ -40,7 +40,7 @@ const transformer: Transform = (file, api) => {
   const sidebarTabs = root.findJSXElements(SIDEBAR_TAB)
   sidebarTabs.renameTo(TAB).forEach(sidebarTab => {
     const jsxElement = j<ExtendedJSXElementCollection>(sidebarTab)
-    const existingDirectionProp = jsxElement.findPropWithName(DIRECTION).firstNode()
+    const existingDirectionProp = jsxElement.findPropByName(DIRECTION).firstNode()
 
     // If an existing `direction` prop exists, don't bother adding a duplicate one.
     const directionProp = existingDirectionProp ?? j.jsxAttribute(j.jsxIdentifier(DIRECTION), j.stringLiteral(VERTICAL))

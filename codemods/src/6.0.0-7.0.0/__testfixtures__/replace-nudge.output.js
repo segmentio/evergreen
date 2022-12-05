@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nudge, Pulsar } from 'evergreen-ui';
+import { Pane, Pulsar, Tooltip } from 'evergreen-ui';
 
 const props = {
     isShown: true,
@@ -8,15 +8,16 @@ const props = {
 
 const Component = () => {
   return (
-    <React.Fragment>
-      <Pulsar></Pulsar>
-      <Pulsar />
-      <Pulsar position='top-left' />
-      <Pulsar onClick={() => {}} />
-      <Nudge {...props} />
-      <Nudge isShown={true} />
-      <Nudge tooltipContent={<Pane>Hello world</Pane>} />
-    </React.Fragment>
+    (<React.Fragment>
+      <Pane position="relative"><Pulsar></Pulsar></Pane>
+      <Pane position="relative"><Pulsar /></Pane>
+      <Pane position="relative"><Pulsar position='top-left' /></Pane>
+      <Pane position="relative"><Pulsar onClick={() => {}} /></Pane>
+      <Pane position="relative"><Pulsar {...props} /></Pane>
+      <Pane position="relative"><Pulsar /></Pane>
+      <Pane position="relative"><Tooltip content={<Pane>Hello world</Pane>}><Pulsar /></Tooltip></Pane>
+      <Pane position="relative"><Tooltip content="Hello world"><Pulsar /></Tooltip></Pane>
+    </React.Fragment>)
   );
 }
 

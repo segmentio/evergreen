@@ -15,7 +15,7 @@ import {
 
 function MyComponent(_props) {
   return (
-    <Pane>
+    (<Pane>
       <CogIcon cursor="pointer" />
       <AddIcon />
       <AirplaneIcon />
@@ -24,7 +24,7 @@ function MyComponent(_props) {
       <Menu.Item icon={NotificationsIcon} />
       <Button iconAfter={NotificationsIcon} />
       <SelectMenu filterIcon={SearchIcon} />
-    </Pane>
+    </Pane>)
   );
 }
 

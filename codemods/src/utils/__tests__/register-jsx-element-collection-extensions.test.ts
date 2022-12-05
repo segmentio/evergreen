@@ -76,14 +76,14 @@ describe('registerJSXElementCollectionExtensions', () => {
     })
   })
 
-  describe('findPropWithName', () => {
+  describe('findPropByName', () => {
     it('should return empty collection when no matching props found', () => {
       const source = stripIndent`<Button onClick={noop}>Hello world</Button>`
 
       const j = registerJSXElementCollectionExtensions(jscodeshift)
       const result = j(source)
         .findJSXElements()
-        .findPropWithName('doesNotExist')
+        .findPropByName('doesNotExist')
 
       expect(result).toHaveLength(0)
     })
@@ -94,7 +94,7 @@ describe('registerJSXElementCollectionExtensions', () => {
       const j = registerJSXElementCollectionExtensions(jscodeshift)
       const result = j(source)
         .findJSXElements()
-        .findPropWithName('onClick')
+        .findPropByName('onClick')
 
       expect(result).toHaveLength(1)
     })
@@ -110,7 +110,7 @@ describe('registerJSXElementCollectionExtensions', () => {
       const j = registerJSXElementCollectionExtensions(jscodeshift)
       const result = j(source)
         .findJSXElements()
-        .findPropWithName('onClick')
+        .findPropByName('onClick')
 
       expect(result).toHaveLength(2)
     })

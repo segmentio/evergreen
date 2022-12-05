@@ -8,7 +8,7 @@ const props = {
 
 const Component = () => {
   return (
-    <React.Fragment>
+    (<React.Fragment>
       <Nudge></Nudge>
       <Nudge />
       <Nudge position='top-left' />
@@ -16,7 +16,8 @@ const Component = () => {
       <Nudge {...props} />
       <Nudge isShown={true} />
       <Nudge tooltipContent={<Pane>Hello world</Pane>} />
-    </React.Fragment>
+      <Nudge tooltipContent="Hello world" />
+    </React.Fragment>)
   );
 }
 

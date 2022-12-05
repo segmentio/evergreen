@@ -7,7 +7,7 @@ const props = {
 
 const Component = () => {
   return (
-    <SidebarTab>Tab</SidebarTab>
+    (<SidebarTab>Tab</SidebarTab>)
   )
 }
 
