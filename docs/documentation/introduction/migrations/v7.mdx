@@ -40,7 +40,7 @@ const baseStyle = {
 
 The classic theme was maintained in v6 to allow consumers to upgrade without forcing an entirely new look-and-feel. However, there were some missed components ([#1511](https://github.com/segmentio/evergreen/issues/1511)), and new components like the [`FileUploader`](/components/file-uploader) were not retrofitted for the old visual style.
 
-Taking into account the refactoring effort for the `selectors` object and v6 being out for close to 2 years now, we think it's time to sunset the classic theme in favor of our modern design.
+Taking into account the refactoring effort for the `selectors` object and v6 being out for close to 2 years now, we think it's time to sunset the classic theme in favor of our modern visual design.
 
 ```diff readonly
 import React from 'react'
@@ -71,12 +71,29 @@ import React from 'react'
 +</Pane>
 ```
 
+`Nudge` components leveraging the `tooltipContent` prop will need to be updated to render a [`Tooltip`](/components/tooltip) or [`Popover`](/components/popver) similar to this:
+
+```diff readonly
+import React from 'react'
+-import { Nudge, Paragraph } from 'evergreen-ui'
++import { Tooltip, Pulsar, Pane, Paragraph } from 'evergreen-ui'
+
+-<Nudge isShown={true} tooltipContent="Hello world">
++<Pane position="relative">
++ <Tooltip content="Hello world">
++   <Pulsar />
+    <Paragraph>Hello world</Paragraph>
++ </Tooltip>
+-</Nudge>
++</Pane>
+```
+
 <InlineAlert marginTop={24}>
   We have provided a codemod that should be able to programmatically update instances of the Nudge component where props
   can be easily identified.
 </InlineAlert>
 
-```sh readonly
-npm i -g jscodeshift
-npx jscodeshift -t node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/replace-nudge.js --parser=tsx --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
-```
+<inlineCode>
+  npm i -g jscodeshift && npx jscodeshift -t node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/replace-nudge.js
+  --parser=tsx --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
+</inlineCode>
