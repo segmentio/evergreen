@@ -3,14 +3,11 @@ import { render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { LockIcon } from '../../icons/generated/LockIcon'
 import { ThemeProvider } from '../../theme'
-import { classicTheme, defaultTheme } from '../../themes'
+import { defaultTheme } from '../../themes'
 import Button from '../src/Button'
 import IconButton from '../src/IconButton'
 
-describe.each([
-  ['default', defaultTheme],
-  ['classic', classicTheme]
-])('<Button /> % %s', (_, theme) => {
+describe.each([['default', defaultTheme]])('<Button /> % %s', (_, theme) => {
   it('snapshots with the rendered output', () => {
     const { asFragment } = render(
       <ThemeProvider value={theme}>
