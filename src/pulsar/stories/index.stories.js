@@ -5,6 +5,7 @@ import { Button } from '../../buttons'
 import Position from '../../constants/src/Position'
 import { Popover } from '../../popover'
 import { minorScale } from '../../scales'
+import { Tooltip } from '../../tooltip'
 import { Link, Text } from '../../typography'
 import { Nudge } from '../src/Nudge'
 import { Pulsar } from '../src/Pulsar'
@@ -81,6 +82,12 @@ storiesOf('nudge', module)
       <Box position="relative" display="inline-block">
         <Box>Pulsar Custom Size</Box>
         <Pulsar size={4} />
+      </Box>
+      <Box position="relative">
+        <Box>Pulsar with Tooltip</Box>
+        <Tooltip content="Hello world">
+          <Pulsar />
+        </Tooltip>
       </Box>
     </Box>
   ))
