@@ -1820,32 +1820,6 @@ export declare const Menu: React.FC<MenuProps> & {
   OptionsGroup: typeof MenuOptionsGroup
 }
 
-/** @deprecated This component will be renamed to Pulsar in the next major version of Evergreen */
-export interface NudgeProps {
-  /**
-   * The position the Tooltip is on.
-   */
-  position?: Exclude<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
-  /**
-   * The size of the Pulsar
-   */
-  size?: number
-  /**
-   * The content of the Tooltip.
-   */
-  tooltipContent?: React.ReactNode | ((object: { close: () => void }) => React.ReactNode)
-  /**
-   * When true, manually show the Tooltip.
-   */
-  isShown?: boolean
-  /**
-   * Called when the Pulsar is clicked
-   */
-  onClick?: PaneProps['onClick']
-}
-
-export declare const Nudge: React.FC<NudgeProps>
-
 export interface PaneOwnProps {
   background?: string
   border?: boolean | string
@@ -1867,7 +1841,7 @@ export interface PaginationOwnProps {
    */
   page: number
   /**
-   * The total number of pages to render. If ommitted, the page numbers will not be shown to the end user.
+   * The total number of pages to render. If omitted, the page numbers will not be shown to the end user.
    */
   totalPages?: number
   /**
@@ -2248,53 +2222,6 @@ export interface SearchTableHeaderCellOwnProps extends TableHeaderCellOwnProps {
 
 export type SearchTableHeaderCellProps = PolymorphicBoxProps<'div', SearchTableHeaderCellOwnProps>
 export declare const SearchTableHeaderCell: BoxComponent<SearchTableHeaderCellOwnProps, 'div'>
-
-/** @deprecated This component will be removed in the next major version of Evergreen */
-export interface SegmentedControlOwnProps {
-  /**
-   * The options (elements) displayed by the segmented control
-   */
-  options: Array<{
-    label: string
-    value: NonNullable<SegmentedControlOwnProps['value']>
-  }>
-  /**
-   * The value of the segmented control
-   */
-  value?: number | string | boolean
-  /**
-   * The initial value of an uncontrolled segmented control
-   */
-  defaultValue?: number | string | boolean
-  /**
-   * Function called when value changes.
-   */
-  onChange: (value: NonNullable<SegmentedControlOwnProps['value']>) => void
-
-  /**
-   * The name attribute of the segmented control
-   */
-  name?: string
-
-  size?: 'small' | 'medium' | 'large'
-
-  /**
-   * Whether or not the component is disabled
-   */
-  disabled?: boolean
-}
-
-/** @deprecated This component will be removed in the next major version of Evergreen */
-export type SegmentedControlProps = PolymorphicBoxProps<'div', SegmentedControlOwnProps>
-
-/** @deprecated This component will be removed in the next major version of Evergreen */
-export declare const SegmentedControl: BoxComponent<SegmentedControlOwnProps, 'div'>
-
-/** @deprecated This component will be removed in the next major version of Evergreen */
-export type SidebarTabProps = PolymorphicBoxProps<'span', TabOwnProps>
-
-/** @deprecated This component will be removed in the next major version of Evergreen */
-export declare const SidebarTab: BoxComponent<TabOwnProps, 'span'>
 
 export interface SelectOwnProps {
   /**

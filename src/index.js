@@ -38,7 +38,7 @@ export { IconWrapper as Icon } from './icons/src/IconWrapper'
 export { Image } from './image'
 export { Pane, Card } from './layers'
 export { Menu } from './menu'
-export { Pulsar, Nudge } from './pulsar'
+export { Pulsar } from './pulsar'
 export { Overlay } from './overlay'
 export { Popover } from './popover'
 export { Portal } from './portal'
@@ -46,7 +46,6 @@ export { Positioner, getPosition } from './positioner'
 export { Radio, RadioGroup } from './radio'
 export { minorScale, majorScale } from './scales'
 export { SearchInput } from './search-input'
-export { SegmentedControl } from './segmented-control'
 export { Select, SelectField } from './select'
 export {
   OptionShapePropType,
@@ -73,7 +72,7 @@ export {
   TableCell,
   TextTableCell
 } from './table'
-export { Tab, Tablist, TabNavigation, SidebarTab } from './tabs'
+export { Tab, Tablist, TabNavigation } from './tabs'
 export { TagInput } from './tag-input'
 export { TextInput, TextInputField } from './text-input'
 export { ThemeContext, ThemeProvider, ThemeConsumer, getThemeContext, withTheme, useTheme, mergeTheme } from './theme'
