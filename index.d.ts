@@ -3114,7 +3114,7 @@ export interface TooltipProps {
   /**
    * The id of the tooltip.
    */
-  id: string,
+  id?: string
   /**
    * The position the Tooltip is on.
    */
