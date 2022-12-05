@@ -120,3 +120,33 @@ import React from 'react'
   npm i -g jscodeshift && npx jscodeshift -t node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/replace-sidebar-tab.js
   --parser=tsx --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
 </inlineCode>
+
+# No more SegmentedControl {#segmented-control}
+
+The `SegmentedControl` component has been removed. The same visual style can be achieved by rendering a group of components ([`Button`](/components/buttons), [`TextInput`](/components/text-input), etc) in a [`Group`](/components/group).
+
+Click event and active state management now needs to be handled manually - the `Group` component only manages the border/size styling as well as the `role="group"` attribute.
+
+```diff readonly
+import React from 'react'
+-import { SegmentedControl } from 'evergreen-ui'
++import { Group, Button } from 'evergreen-ui'
+
+const OPTIONS = [
+  { label: 'Small (24px)', value: 'small' },
+  { label: 'Medium (32px)', value: 'medium' },
+  { label: 'Large (40px)', value: 'large' }
+]
+
+const App: React.FC = () => {
+  const [size, setSize] = useState<string>('small')
+
+  return (
+    <SegmentedControl
+      onChange={setSize}
+      options={OPTIONS}
+      value={size}
+    />
+  )
+}
+```
