@@ -2,6 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
 import Position from '../../constants/src/Position'
+import Tooltip from '../../tooltip/src/Tooltip'
 import { Pulsar } from '../src/Pulsar'
 
 storiesOf('pulsar', module).add('Pulsar', () => (
@@ -29,6 +30,12 @@ storiesOf('pulsar', module).add('Pulsar', () => (
     <Box position="relative" display="inline-block">
       <Box>Pulsar Custom Size</Box>
       <Pulsar size={4} />
+    </Box>
+    <Box position="relative">
+      <Box>Pulsar with Tooltip</Box>
+      <Tooltip content="Hello world">
+        <Pulsar />
+      </Tooltip>
     </Box>
   </Box>
 ))

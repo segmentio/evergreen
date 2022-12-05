@@ -20,7 +20,7 @@ const Tooltip = memo(function Tooltip(props) {
     statelessProps = emptyProps
   } = props
 
-  const id = useId('evergreen-tooltip')
+  const id = useId('evergreen-tooltip', props.id)
   const [isShown, setIsShown] = useState(propIsShown || false)
   const [isShownByTarget, setIsShownByTarget] = useState(false)
   const closeTimer = useRef(undefined)
@@ -151,6 +151,11 @@ Tooltip.propTypes = {
    * The appearance of the tooltip.
    */
   appearance: PropTypes.oneOf(['default', 'card']),
+
+  /**
+   * The id of the tooltip.
+   */
+  id: PropTypes.string,
 
   /**
    * The position the Popover is on.
