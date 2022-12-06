@@ -51,12 +51,30 @@ function SmallGroupExample() {
   const [selectedValue, setSelectedValue] = React.useState('daily')
 
   return (
-    <Group>
+    <Group size="small">
       {options.map(({ label, value }) => (
-        <Button key={label} isActive={selectedValue === value} onClick={() => setSelectedValue(value)} size="small">
+        <Button key={label} isActive={selectedValue === value} onClick={() => setSelectedValue(value)}>
           {label}
         </Button>
       ))}
+    </Group>
+  )
+}
+```
+
+# TextInput and Button example
+
+```jsx
+function TextInputAndButtonExample() {
+  const [isLoading, setIsLoading] = React.useState(false)
+  const handleClick = React.useCallback(() => {
+    setIsLoading(true)
+    setTimeout(() => setIsLoading(false), 1000)
+  }, [])
+  return (
+    <Group>
+      <TextInput disabled={isLoading} placeholder="Search by name, email, id..." />
+      <IconButton disabled={isLoading} icon={isLoading ? Spinner : SearchIcon} onClick={handleClick} />
     </Group>
   )
 }
