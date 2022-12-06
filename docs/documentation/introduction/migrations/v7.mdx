@@ -64,10 +64,11 @@ import React from 'react'
 +import { Pulsar, Pane, Paragraph } from 'evergreen-ui'
 
 -<Nudge position={Position.TOP_LEFT} isShown={true}>
-+<Pane position="relative">
-+ <Pulsar position={Position.TOP_LEFT} />
-  <Paragraph>Hello world</Paragraph>
+-  <Paragraph>Hello world</Paragraph>
 -</Nudge>
++<Pane position="relative">
++  <Pulsar position={Position.TOP_LEFT} />
++  <Paragraph>Hello world</Paragraph>
 +</Pane>
 ```
 
@@ -79,12 +80,13 @@ import React from 'react'
 +import { Tooltip, Pulsar, Pane, Paragraph } from 'evergreen-ui'
 
 -<Nudge isShown={true} tooltipContent="Hello world">
-+<Pane position="relative">
-+ <Tooltip content="Hello world">
-+   <Pulsar />
-    <Paragraph>Hello world</Paragraph>
-+ </Tooltip>
+-  <Paragraph>Hello world</Paragraph>
 -</Nudge>
++<Pane position="relative">
++  <Tooltip content="Hello world">
++    <Pulsar />
++  </Tooltip>
++  <Paragraph>Hello world</Paragraph>
 +</Pane>
 ```
 
@@ -128,7 +130,7 @@ The `SegmentedControl` component has been removed. The same visual style can be 
 Click event and active state management now needs to be handled manually - the `Group` component only manages the border/size styling as well as the `role="group"` attribute.
 
 ```diff readonly
-import React from 'react'
+import React, { useState } from 'react'
 -import { SegmentedControl } from 'evergreen-ui'
 +import { Group, Button } from 'evergreen-ui'
 
@@ -142,11 +144,23 @@ const App: React.FC = () => {
   const [size, setSize] = useState<string>('small')
 
   return (
-    <SegmentedControl
-      onChange={setSize}
-      options={OPTIONS}
-      value={size}
-    />
+-    <SegmentedControl
+-      onChange={setSize}
+-      options={OPTIONS}
+-      value={size}
+-    />
++    <Group>
++      {OPTIONS.map(({ value, label }) => (
++        <Button
++          isActive={value === size}
++          key={label}
++          onClick={() => setSize(value)}
++        >
++          {label}
++        </Button>
++      ))}
++    </Group>
++  )
   )
 }
 ```
