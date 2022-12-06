@@ -17,6 +17,16 @@ module.exports = {
         destination: '/introduction/migrations/v6',
         permanent: true,
       },
+      {
+        source: '/components/nudge',
+        destination: '/components/pulsar',
+        permanent: true,
+      },
+      {
+        source: '/components/segmented-control',
+        destination: '/components/group',
+        permanent: true,
+      },
     ]
   },
 }

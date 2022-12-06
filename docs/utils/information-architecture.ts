@@ -285,13 +285,14 @@ const InformationArchitecture: InformationArchitecture = {
           'The Pulsar component is a user education UI used to indicate to a user where they should take a particular action.',
       },
       {
-        id: 'segmented-control',
-        github: githubLink('segmented-control'),
-        image: '/Segmented Control.png',
-        imageHighlight: '/Segmented Control-highlight.png',
-        name: 'Segmented Control',
+        id: 'group',
+        github: githubLink('group'),
+        image: '/Group.png',
+        imageHighlight: '/Group-highlight.png',
+        name: 'Group',
         tags: ['button group'],
-        description: 'The Segmented Control is a component that lets users toggle between up-to-4 options in a row. ',
+        description:
+          'The Group component identifies a group of inputs/elements and implements the group WAI-ARIA role.',
       },
       {
         id: 'switch',
