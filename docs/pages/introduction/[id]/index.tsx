@@ -4,7 +4,7 @@ import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
-import InformationArchitecture, { Item } from '../../../utils/information-architecture'
+import IA, { Item } from '../../../utils/IA'
 import PageHeader from '../../../components/PageHeader'
 import EntityOverviewTemplate, {
   Props as EntityOverviewTemplateProps,
@@ -63,7 +63,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
-  const introductions = InformationArchitecture.introduction.items
+  const introductions = IA.introduction.items
   const introduction = introductions.find((introduction) => introduction.id === id)
 
   const mdxPath = isMigrationsPage(introduction)

@@ -3,7 +3,7 @@ import fs from 'fs'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import path from 'path'
-import InformationArchitecture from '../../../../utils/information-architecture'
+import IA from '../../../../utils/IA'
 import PageHeader from '../../../../components/PageHeader'
 import PropsTable from '../../../../components/PropsTable'
 import getComponentDocs from '../../../../lib/component-docs'
@@ -84,7 +84,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
-  const components = InformationArchitecture.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const components = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
   const component = components.find((component) => component.id === id)
 
   if (component?.inProgress) {

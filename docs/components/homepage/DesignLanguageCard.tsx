@@ -1,7 +1,7 @@
 import React from 'react'
 import { Heading, majorScale, Pane, Paragraph } from 'evergreen-ui'
 import Thumbnail from '../Thumbnail'
-import { Item } from '../../utils/information-architecture'
+import { Item } from '../../utils/IA'
 
 interface Props {
   img: JSX.Element

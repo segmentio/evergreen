@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
-import InformationArchitecture from '../../../utils/information-architecture'
+import IA from '../../../utils/IA'
 import { Link } from 'evergreen-ui'
 import PageHeader from '../../../components/PageHeader'
 import ComingSoon from '../../../components/ComingSoon'
@@ -75,7 +75,7 @@ const PatternPage: React.FC<Props> = ({ mdxSource, patterns, pattern }) => {
 }
 
 export async function getStaticPaths() {
-  const paths = InformationArchitecture.patterns.items.map((item) => `/patterns/${item.id}`)
+  const paths = IA.patterns.items.map((item) => `/patterns/${item.id}`)
 
   return {
     paths,
@@ -91,7 +91,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
-  const patterns = InformationArchitecture.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const patterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
   const pattern = patterns.find((pattern) => pattern.id === id)
 
   if (pattern?.inProgress) {

@@ -1,15 +1,15 @@
 import React from 'react'
 import { Pane, majorScale, Heading, Link as EvergreenLink } from 'evergreen-ui'
 import DesignLanguageCard from './DesignLanguageCard'
-import InformationArchitecture from '../../utils/information-architecture'
+import IA from '../../utils/IA'
 import FoundationHomeImage from '../icons/FoundationHomeImage'
 import ComponentHomeImage from '../icons/ComponentHomeImage'
 import PatternHomeImage from '../icons/PatternHomeImage'
 
 const DesignLanguage = () => {
-  const foundations = InformationArchitecture.foundations.items.slice(0, 3)
-  const components = InformationArchitecture.components.items.slice(0, 3)
-  const patterns = InformationArchitecture.patterns.items.slice(0, 3)
+  const foundations = IA.foundations.items.slice(0, 3)
+  const components = IA.components.items.slice(0, 3)
+  const patterns = IA.patterns.items.slice(0, 3)
 
   return (
     <Pane paddingY={majorScale(5)} marginX="auto" maxWidth={majorScale(150)} paddingX={majorScale(3)}>

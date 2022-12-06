@@ -3,7 +3,7 @@ import fs from 'fs'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import path from 'path'
-import InformationArchitecture from '../../../../utils/information-architecture'
+import IA from '../../../../utils/IA'
 import PageHeader from '../../../../components/PageHeader'
 import EntityOverviewTemplate, {
   Props as EntityOverviewTemplateProps,
@@ -66,7 +66,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
     .toString()
 
   const source = await renderToString(fileContents, { components: componentMapping })
-  const navItems = InformationArchitecture.introduction.items
+  const navItems = IA.introduction.items
   const selectedNavItem = navItems.find((introduction) => introduction.id === 'migrations')
 
   return {

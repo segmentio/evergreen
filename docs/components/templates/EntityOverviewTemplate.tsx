@@ -4,7 +4,7 @@ import Layout from '../document/Layout'
 import { MdxRemote } from 'next-mdx-remote/types'
 import MDX from '../MDX'
 import SideNav from '../SideNav'
-import { Item } from '../../utils/information-architecture'
+import { Item } from '../../utils/IA'
 
 export interface Props {
   pageTitle: string

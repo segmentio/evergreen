@@ -5,7 +5,7 @@ import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
-import InformationArchitecture from '../../../utils/information-architecture'
+import IA from '../../../utils/IA'
 import { Link } from 'evergreen-ui'
 import PageHeader from '../../../components/PageHeader'
 import componentMapping from '../../../components/MDX/componentMapping'
@@ -90,7 +90,7 @@ interface Query {
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
-  const components = InformationArchitecture.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const components = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
   const component = components.find((component) => component.id === id)
 
   if (component?.inProgress) {

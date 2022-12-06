@@ -32,9 +32,9 @@ interface Parent {
 }
 
 type ParentKeys = 'introduction' | 'foundations' | 'components' | 'patterns'
-type InformationArchitecture = Record<ParentKeys, Parent>
+type IA = Record<ParentKeys, Parent>
 
-const InformationArchitecture: InformationArchitecture = {
+const IA: IA = {
   introduction: {
     title: 'Introduction',
     description:
@@ -449,4 +449,4 @@ const InformationArchitecture: InformationArchitecture = {
   },
 }
 
-export default InformationArchitecture
+export default IA

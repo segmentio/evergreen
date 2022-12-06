@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import path from 'path'
-import InformationArchitecture from '../../../../utils/information-architecture'
+import IA from '../../../../utils/IA'
 import PageHeader from '../../../../components/PageHeader'
 import PropsTable from '../../../../components/PropsTable'
 import { Pane, majorScale } from 'evergreen-ui'
@@ -65,9 +65,7 @@ const PatternPropsPage: React.FC<Props> = ({ componentProps, pattern, patterns }
 }
 
 export async function getStaticPaths() {
-  const paths = InformationArchitecture.patterns.items
-    .filter((item) => !item.inProgress)
-    .map((item) => `/patterns/${item.id}/props`)
+  const paths = IA.patterns.items.filter((item) => !item.inProgress).map((item) => `/patterns/${item.id}/props`)
 
   return {
     paths,
@@ -94,7 +92,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
     props = []
   }
 
-  const patterns = InformationArchitecture.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const patterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
   const pattern = patterns.find((item) => item.id === id)
 
   return {

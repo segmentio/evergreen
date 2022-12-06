@@ -8,7 +8,7 @@ import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
-import InformationArchitecture from '../../../utils/information-architecture'
+import IA from '../../../utils/IA'
 import PageHeader from '../../../components/PageHeader'
 
 interface Props {
@@ -59,7 +59,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const fileContents = fs.readFileSync(path.join(process.cwd(), 'documentation', 'foundations', `${id}.mdx`)).toString()
 
   const mdxSource = await renderToString(fileContents, { components })
-  const foundations = InformationArchitecture.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const foundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
   const foundation = foundations.find((foundation) => foundation.id === id)
 
   return {

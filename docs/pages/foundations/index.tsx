@@ -5,14 +5,14 @@ import SearchBar from '../../components/SearchBar'
 import PageHeader from '../../components/PageHeader'
 import Thumbnail from '../../components/Thumbnail'
 import SideNav from '../../components/SideNav'
-import InformationArchitecture from '../../utils/information-architecture'
+import IA from '../../utils/IA'
 
 interface Props {}
 
 const FoundationsPage: React.FC<Props> = () => {
   const [query, setQuery] = useState<string>('')
 
-  const evergreenFoundations = InformationArchitecture.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const evergreenFoundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
 
   const filteredItems = evergreenFoundations.filter(
     (item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
@@ -30,7 +30,7 @@ const FoundationsPage: React.FC<Props> = () => {
           padding={majorScale(5)}
           maxWidth={1024}
         >
-          <PageHeader title="Foundations" description={InformationArchitecture.foundations.description} />
+          <PageHeader title="Foundations" description={IA.foundations.description} />
           <Pane marginBottom={majorScale(4)}>
             <SearchBar query={query} onQueryChange={setQuery} placeholder="Search components by name" />
           </Pane>
