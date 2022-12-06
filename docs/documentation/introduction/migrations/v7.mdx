@@ -1,6 +1,6 @@
 # Evergreen v7 Migration Guide
 
-Evergreen v7 is primarily a maintenance release focusing on stability and simplicity. The most notable change in this release in the removal of `glamor` as a fallback css-in-js solution to `ui-box`. Glamor has not been maintained in a number of years, and we're finally able to close out some long-standing security vulnerability issues reported through this dependency - [#1304](https://github.com/segmentio/evergreen/issues/1304), [#1552](https://github.com/segmentio/evergreen/issues/1552), [#1146](https://github.com/segmentio/evergreen/issues/1146), [#1519](https://github.com/segmentio/evergreen/issues/1519), [#1533](https://github.com/segmentio/evergreen/issues/1533), and so on.
+Evergreen v7 is primarily a maintenance release focusing on stability and simplicity. The most notable change in this release in the removal of [`glamor`](https://github.com/threepointone/glamor) as a fallback css-in-js solution to [`ui-box`](https://github.com/segmentio/ui-box). Glamor has not been maintained in a number of years, and we're finally able to close out some long-standing security vulnerability issues reported through this dependency - [#1304](https://github.com/segmentio/evergreen/issues/1304), [#1552](https://github.com/segmentio/evergreen/issues/1552), [#1146](https://github.com/segmentio/evergreen/issues/1146), [#1519](https://github.com/segmentio/evergreen/issues/1519), [#1533](https://github.com/segmentio/evergreen/issues/1533), and so on.
 
 While there should be no significant visual changes introduced with this change, there was a large internal refactoring ([#1554](https://github.com/segmentio/evergreen/issues/1554)) to swap component themes and internal styles to use the updated `ui-box` functionality to replace `glamor`.
 
@@ -164,3 +164,9 @@ const App: React.FC = () => {
   )
 }
 ```
+
+# Positioner component returns BoxProps now {#positioner}
+
+The `css` object that the `Positioner` component returns is now in a slightly different shape - it now returns `BoxProps` which are meant to be spread onto a `Box` component (primarily to support the `selectors` object). Previously, you could pass this object to `glamor` and return a serialized class name reprsenting the styles.
+
+Any consumers leveraging the `Positioner` component will need to be updated to use a wrapping `Box` for the `css` render prop. Take a look at the changes to the [`Popover`](https://github.com/segmentio/evergreen/pull/1554/files#diff-8e4d3e568177c7ba701bae764ab949cbbcbf743d669884df8c07017cd0834385L308-R309) or [`Tooltip`](https://github.com/segmentio/evergreen/pull/1554/files#diff-a8268ca272c1914c830701ac604a7a967ab2578a44769fb60047c5f881b5a587L141-R140) components in [#1554](https://github.com/segmentio/evergreen/pull/1554) for an example.
