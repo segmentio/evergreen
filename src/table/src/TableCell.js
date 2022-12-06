@@ -1,5 +1,4 @@
 import React, { memo, forwardRef, useRef, useCallback } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { useLatest, useMergedRef, useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
@@ -27,7 +26,7 @@ function executeArrowKeyOverride(override) {
 }
 
 const pseudoSelectors = {
-  _focus: '&[data-isselectable="true"]:focus, &[aria-expanded="true"][aria-haspopup="true"]'
+  _focus: '&[data-isselectable="true"]:focus,&[aria-expanded="true"][aria-haspopup="true"]'
 }
 
 const internalStyles = {
@@ -90,22 +89,17 @@ const TableCell = memo(
       [isSelectable, props.arrowKeysOverrides]
     )
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'TableCell',
-      { appearance },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('TableCell', { appearance }, pseudoSelectors, internalStyles)
 
     return (
       <Pane
         ref={handleRef}
-        className={cx(themedClassName, className)}
+        className={className}
         tabIndex={isSelectable ? tabIndex : undefined}
         data-isselectable={isSelectable}
         onClick={onClick}
         onKeyDown={handleKeyDown}
-        {...boxProps}
+        {...themedProps}
         {...rest}
       >
         {children}

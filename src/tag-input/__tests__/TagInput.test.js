@@ -1,5 +1,5 @@
 import React from 'react'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import TagInput from '../src/TagInput'
 
@@ -13,7 +13,10 @@ describe('<TagInput />', () => {
       const newTestVal = 'Testing'
 
       render(<TagInput values={TEST_VALUES} onAdd={mockOnAdd} inputProps={{ placeholder: TEST_PLACEHOLDER }} />)
-      userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), `${newTestVal}{enter}`)
+
+      act(() => {
+        userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), `${newTestVal}{enter}`)
+      })
 
       expect(screen.queryByTestId('TagInput-autocomplete-toggle')).not.toBeInTheDocument()
       expect(mockOnAdd).toHaveBeenCalledWith([newTestVal])
@@ -25,9 +28,11 @@ describe('<TagInput />', () => {
       const mockOnRemove = jest.fn()
 
       render(<TagInput values={TEST_VALUES} onRemove={mockOnRemove} inputProps={{ placeholder: TEST_PLACEHOLDER }} />)
-      userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), '{backspace}')
-      const lastValueIndex = TEST_VALUES.length - 1
+      act(() => {
+        userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), '{backspace}')
+      })
 
+      const lastValueIndex = TEST_VALUES.length - 1
       expect(mockOnRemove).toHaveBeenCalledWith(TEST_VALUES[lastValueIndex], lastValueIndex)
     })
   })
@@ -38,7 +43,9 @@ describe('<TagInput />', () => {
       const newTestVal = 'Testing'
 
       render(<TagInput values={TEST_VALUES} onChange={mockOnChange} inputProps={{ placeholder: TEST_PLACEHOLDER }} />)
-      userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), `${newTestVal}{enter}`)
+      act(() => {
+        userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), `${newTestVal}{enter}`)
+      })
 
       expect(mockOnChange).toHaveBeenLastCalledWith(TEST_VALUES.concat([newTestVal]))
     })
@@ -47,9 +54,11 @@ describe('<TagInput />', () => {
       const mockOnChange = jest.fn()
 
       render(<TagInput values={TEST_VALUES} onChange={mockOnChange} inputProps={{ placeholder: TEST_PLACEHOLDER }} />)
-      userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), '{backspace}')
-      const valuesLastRemoved = TEST_VALUES.slice(0, -1)
+      act(() => {
+        userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), '{backspace}')
+      })
 
+      const valuesLastRemoved = TEST_VALUES.slice(0, -1)
       expect(mockOnChange).toHaveBeenLastCalledWith(valuesLastRemoved)
     })
   })
@@ -67,7 +76,10 @@ describe('<TagInput />', () => {
           inputProps={{ placeholder: TEST_PLACEHOLDER }}
         />
       )
-      userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), `${newTestVal}{space}`)
+
+      act(() => {
+        userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), `${newTestVal}{space}`)
+      })
 
       expect(mockOnAdd).toHaveBeenCalledWith([newTestVal])
     })
@@ -105,9 +117,18 @@ describe('<TagInput />', () => {
           inputProps={{ placeholder: TEST_PLACEHOLDER }}
         />
       )
-      userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), newTestVal)
-      screen.getByPlaceholderText(TEST_PLACEHOLDER).blur()
-      fireEvent.blur(screen.getByPlaceholderText(TEST_PLACEHOLDER))
+
+      act(() => {
+        userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), newTestVal)
+      })
+
+      act(() => {
+        screen.getByPlaceholderText(TEST_PLACEHOLDER).blur()
+      })
+
+      act(() => {
+        fireEvent.blur(screen.getByPlaceholderText(TEST_PLACEHOLDER))
+      })
 
       expect(mockOnAdd).toHaveBeenCalledWith([newTestVal])
 
@@ -123,7 +144,9 @@ describe('<TagInput />', () => {
       render(
         <TagInput separator="|" values={TEST_VALUES} onAdd={mockOnAdd} inputProps={{ placeholder: TEST_PLACEHOLDER }} />
       )
-      userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), `${newTestVal}{enter}`)
+      act(() => {
+        userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), `${newTestVal}{enter}`)
+      })
 
       expect(mockOnAdd).toHaveBeenCalledWith(['Testing', '123'])
     })
@@ -146,7 +169,11 @@ describe('<TagInput />', () => {
       testAutocompleteItems.forEach(item => {
         expect(screen.queryByText(item)).not.toBeInTheDocument()
       })
-      userEvent.click(screen.getByTestId('TagInput-autocomplete-toggle'))
+
+      act(() => {
+        userEvent.click(screen.getByTestId('TagInput-autocomplete-toggle'))
+      })
+
       testAutocompleteItems.forEach(item => {
         expect(screen.queryByText(item)).toBeInTheDocument()
       })
@@ -169,7 +196,11 @@ describe('<TagInput />', () => {
       testAutocompleteItems.forEach(item => {
         expect(screen.queryByText(item)).not.toBeInTheDocument()
       })
-      userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), testSearch)
+
+      act(() => {
+        userEvent.type(screen.getByPlaceholderText(TEST_PLACEHOLDER), testSearch)
+      })
+
       testAutocompleteItems.forEach(item => {
         if (item.startsWith(testSearch)) {
           expect(screen.queryByText(item)).toBeInTheDocument()
@@ -191,8 +222,13 @@ describe('<TagInput />', () => {
           inputProps={{ placeholder: TEST_PLACEHOLDER }}
         />
       )
-      userEvent.click(screen.getByTestId('TagInput-autocomplete-toggle'))
-      userEvent.click(screen.getByText(testAutocompleteItems[0]))
+      act(() => {
+        userEvent.click(screen.getByTestId('TagInput-autocomplete-toggle'))
+      })
+
+      act(() => {
+        userEvent.click(screen.getByText(testAutocompleteItems[0]))
+      })
 
       expect(mockOnAdd).toHaveBeenCalledWith([testAutocompleteItems[0]])
     })

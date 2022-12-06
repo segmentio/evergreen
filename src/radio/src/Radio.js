@@ -25,10 +25,10 @@ const pseudoSelectors = {
   _hover: '&:not([disabled]):hover + div',
   _focus: '&:not([disabled]):focus + div',
   _active: '&:not([disabled]):active + div',
-  _checked: '&:checked + div, &[type=checkbox]:indeterminate + div',
-  _checkedHover: '&:not([disabled]):checked:hover + div, &[type=checkbox]:not([disabled]):indeterminate:hover + div',
-  _checkedActive: '&:not([disabled]):checked:active + div, &[type=checkbox]:not([disabled]):indeterminate:active + div',
-  _checkedDisabled: '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div'
+  _checked: '&:checked + div,&[type=checkbox]:indeterminate + div',
+  _checkedHover: '&:not([disabled]):checked:hover + div,&[type=checkbox]:not([disabled]):indeterminate:hover + div',
+  _checkedActive: '&:not([disabled]):checked:active + div,&[type=checkbox]:not([disabled]):indeterminate:active + div',
+  _checkedDisabled: '&[disabled]:checked + div,&[type=checkbox][disabled]:indeterminate + div'
 }
 
 const internalStyles = {
@@ -42,14 +42,16 @@ const internalStyles = {
   width: '1px',
   opacity: '0',
 
-  [pseudoSelectors._base]: {
-    WebkitFontSmoothing: 'antialiased',
-    textDecoration: 'none',
-    WebkitAppearance: 'none',
-    MozAppearance: 'none',
-    border: 'none',
-    outline: 'none',
-    cursor: 'pointer'
+  selectors: {
+    [pseudoSelectors._base]: {
+      WebkitFontSmoothing: 'antialiased',
+      textDecoration: 'none',
+      WebkitAppearance: 'none',
+      MozAppearance: 'none',
+      border: 'none',
+      outline: 'none',
+      cursor: 'pointer'
+    }
   }
 }
 
@@ -70,12 +72,7 @@ const Radio = memo(
       ...rest
     } = props
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'Radio',
-      { appearance },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Radio', { appearance }, pseudoSelectors, internalStyles)
 
     return (
       <Box
@@ -89,7 +86,6 @@ const Radio = memo(
       >
         <Box
           is="input"
-          className={themedClassName}
           id={id}
           type="radio"
           name={name}
@@ -98,7 +94,7 @@ const Radio = memo(
           onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
-          {...boxProps}
+          {...themedProps}
           required={isRequired}
         />
         <Box

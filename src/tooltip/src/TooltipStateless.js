@@ -10,9 +10,7 @@ const internalStyles = {}
 const TooltipStateless = memo(
   forwardRef(function TooltipStateless(props, ref) {
     const { appearance, children, ...restProps } = props
-    const { ...boxProps } = useStyleConfig('Tooltip', { appearance }, pseudoSelectors, internalStyles)
-
-    const { color, ...themedProps } = boxProps
+    const { color, ...themedProps } = useStyleConfig('Tooltip', { appearance }, pseudoSelectors, internalStyles)
 
     let child
     if (typeof children === 'string') {

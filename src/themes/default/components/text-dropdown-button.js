@@ -8,13 +8,15 @@ const baseStyle = {
   marginY: -2,
   color: 'colors.default',
 
-  _disabled: {
-    cursor: 'not-allowed',
-    pointerEvents: 'none'
-  },
+  selectors: {
+    _disabled: {
+      cursor: 'not-allowed',
+      pointerEvents: 'none'
+    },
 
-  _focus: {
-    boxShadow: 'shadows.focusRing'
+    _focus: {
+      boxShadow: 'shadows.focusRing'
+    }
   }
 }
 

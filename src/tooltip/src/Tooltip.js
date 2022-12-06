@@ -1,6 +1,4 @@
 import React, { memo, useState, useEffect, useRef } from 'react'
-import cx from 'classnames'
-import { css as glamorCss } from 'glamor'
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import { Position } from '../../constants'
@@ -22,7 +20,7 @@ const Tooltip = memo(function Tooltip(props) {
     statelessProps = emptyProps
   } = props
 
-  const id = useId('evergreen-tooltip')
+  const id = useId('evergreen-tooltip', props.id)
   const [isShown, setIsShown] = useState(propIsShown || false)
   const [isShownByTarget, setIsShownByTarget] = useState(false)
   const closeTimer = useRef(undefined)
@@ -138,7 +136,8 @@ const Tooltip = memo(function Tooltip(props) {
           onMouseEnter={handleMouseEnterTarget}
           onMouseLeave={handleMouseLeaveTarget}
           {...statelessProps}
-          className={cx(statelessProps.className, css ? glamorCss(css).toString() : undefined)}
+          {...css}
+          className={statelessProps.className}
         >
           {content}
         </TooltipStateless>
@@ -152,6 +151,11 @@ Tooltip.propTypes = {
    * The appearance of the tooltip.
    */
   appearance: PropTypes.oneOf(['default', 'card']),
+
+  /**
+   * The id of the tooltip.
+   */
+  id: PropTypes.string,
 
   /**
    * The position the Popover is on.

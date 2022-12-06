@@ -3,33 +3,35 @@ import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
 import { IconButton, Button, TextDropdownButton } from '..'
+import { Group } from '../../group'
 import * as Icons from '../../icons'
 import { Pane } from '../../layers'
 import { majorScale } from '../../scales'
-import { SegmentedControl } from '../../segmented-control'
 import { Heading } from '../../typography'
+
+const OPTIONS = [
+  { label: 'Small (24px)', value: 'small' },
+  { label: 'Medium (32px)', value: 'medium' },
+  { label: 'Large (40px)', value: 'large' }
+]
 
 const buttonsStory = storiesOf('buttons', module)
 buttonsStory.add('Common', () => (
   <Box padding={40}>
     <Component
       initialState={{
-        options: [
-          { label: 'Small (24px)', value: 'small' },
-          { label: 'Medium (32px)', value: 'medium' },
-          { label: 'Large (40px)', value: 'large' }
-        ],
         value: 'medium'
       }}
     >
       {({ setState, state }) => (
         <React.Fragment>
-          <SegmentedControl
-            width={350}
-            options={state.options}
-            value={state.value}
-            onChange={value => setState({ value })}
-          />
+          <Group marginBottom={majorScale(2)}>
+            {OPTIONS.map(({ label, value }) => (
+              <Button isActive={value === state.value} key={value} onClick={() => setState({ value })}>
+                {label}
+              </Button>
+            ))}
+          </Group>
           <Pane marginTop={16}>
             <Button size={state.value} marginRight={16}>
               Close

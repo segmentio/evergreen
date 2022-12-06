@@ -65,7 +65,7 @@ const FileUploader = memo(
     } = props
 
     const { colors } = useTheme()
-    const { className, ...boxProps } = useStyleConfig('FileUploader', styleModifiers, pseudoSelectors, internalStyles)
+    const themedProps = useStyleConfig('FileUploader', styleModifiers, pseudoSelectors, internalStyles)
     const [state, setState] = useState(UploaderState.Initial)
     const [validationMessage, setValidationMessage] = useState('')
     /**
@@ -230,7 +230,6 @@ const FileUploader = memo(
             <Box
               aria-disabled={disabled}
               aria-invalid={state === UploaderState.Error}
-              className={className}
               data-state={state}
               onClick={handleClick}
               onDragLeave={handleDragLeave}
@@ -238,7 +237,7 @@ const FileUploader = memo(
               onDrop={handleDrop}
               onKeyDown={handleKeyDown}
               tabIndex={disabled ? undefined : 0}
-              {...boxProps}
+              {...themedProps}
               {...rest}
             >
               <Box

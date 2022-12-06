@@ -105,12 +105,7 @@ const Switch = memo(
       ...rest
     } = props
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'Switch',
-      { appearance },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Switch', { appearance }, pseudoSelectors, internalStyles)
 
     return (
       <Box is="label" display="block" width={height * 2} position="relative" ref={ref} {...rest}>
@@ -118,8 +113,7 @@ const Switch = memo(
           is="input"
           id={id}
           name={name}
-          {...boxProps}
-          className={themedClassName}
+          {...themedProps}
           type="checkbox"
           checked={checked}
           disabled={disabled}

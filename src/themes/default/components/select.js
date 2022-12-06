@@ -10,27 +10,29 @@ const appearances = {
     border: theme => `1px solid ${theme.colors.gray500}`,
     color: 'colors.gray800',
 
-    _disabled: {
-      cursor: 'not-allowed',
-      color: 'colors.gray500',
-      borderColor: 'colors.gray300'
-    },
+    selectors: {
+      _disabled: {
+        cursor: 'not-allowed',
+        color: 'colors.gray500',
+        borderColor: 'colors.gray300'
+      },
 
-    _hover: {
-      borderColor: 'colors.gray600',
-      backgroundColor: 'colors.gray50'
-    },
+      _hover: {
+        borderColor: 'colors.gray600',
+        backgroundColor: 'colors.gray50'
+      },
 
-    _invalid: {
-      borderColor: 'colors.red500'
-    },
+      _invalid: {
+        borderColor: 'colors.red500'
+      },
 
-    _focus: {
-      boxShadow: 'shadows.focusRing'
-    },
+      _focus: {
+        boxShadow: 'shadows.focusRing'
+      },
 
-    _active: {
-      backgroundColor: 'colors.gray100'
+      _active: {
+        backgroundColor: 'colors.gray100'
+      }
     }
   }
 }

@@ -69,8 +69,10 @@ const baseStyle = (theme, props) => {
     }),
 
     ...transitionStyles,
-    _hover: hoverStyles,
-    _active: activeStyles
+    selectors: {
+      _hover: hoverStyles,
+      _active: activeStyles
+    }
   }
 }
 
