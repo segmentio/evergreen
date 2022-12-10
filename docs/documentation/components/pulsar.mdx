@@ -13,7 +13,20 @@ In order to render the pulsar in-line over your text or other component, we reco
 ```jsx
 <Pane position="relative" display="inline-block">
   <Text>Pulsar Example</Text>
-  <Pulsar position={Position.TOP_LEFT} />
+  <Pulsar />
+</Pane>
+```
+
+## Use with a Tooltip
+
+A Tooltip can be used to provide additional context for the user.
+
+```jsx
+<Pane position="relative" display="inline-block">
+  <Text>Pulsar Example</Text>
+  <Tooltip content="This feature is available in beta and is subject to change.">
+    <Pulsar />
+  </Tooltip>
 </Pane>
 ```
 
@@ -22,10 +35,33 @@ In order to render the pulsar in-line over your text or other component, we reco
 Pulsars can be positioned just like a [`Tooltip`](/components/tooltip) or [`Popover`](/components/popover).
 
 ```jsx
-<React.Fragment>
+<Pane padding={40} display="flex" flexDirection="column" gap={32} alignItems="flex-start">
+  <Pane position="relative" display="inline-block">
+    <Text>Pulsar Top Left</Text>
+    <Pulsar position={Position.TOP_LEFT} />
+  </Pane>
+  <Pane position="relative" display="inline-block">
+    <Text>Pulsar Top Right</Text>
+    <Pulsar position={Position.TOP_RIGHT} />
+  </Pane>
   <Pane position="relative" display="inline-block">
     <Text>Pulsar Bottom Right</Text>
     <Pulsar position={Position.BOTTOM_RIGHT} />
   </Pane>
-</React.Fragment>
+  <Pane position="relative" display="inline-block">
+    <Text>Pulsar Bottom Left</Text>
+    <Pulsar position={Position.BOTTOM_LEFT} />
+  </Pane>
+</Pane>
+```
+
+## Sizing
+
+Use the `size` prop to control how large the Pulsar is.
+
+```jsx
+<Pane position="relative" display="inline-block">
+  <Text>Pulsar Example</Text>
+  <Pulsar size={16} />
+</Pane>
 ```
