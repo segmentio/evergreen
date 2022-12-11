@@ -1,4 +1,5 @@
-import React, { memo, useState, useCallback, useEffect } from 'react'
+import React, { memo, useState, useCallback } from 'react'
+import FocusTrap from 'focus-trap-react'
 import PropTypes from 'prop-types'
 import { keyframes } from 'ui-box'
 import { Button, IconButton } from '../../buttons'
@@ -7,7 +8,6 @@ import { CrossIcon } from '../../icons'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
 import { Paragraph, Heading } from '../../typography'
-import FocusTrap from 'focus-trap-react'
 
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
@@ -98,7 +98,7 @@ const Dialog = memo(function Dialog({
   const topOffsetWithUnit = Number.isInteger(topOffset) ? `${topOffset}px` : topOffset
   const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
 
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
 
   const measuredRef = useCallback(node => {
     if (node === null) {
@@ -106,13 +106,7 @@ const Dialog = memo(function Dialog({
     } else if (node.offsetHeight > 0) {
       setIsVisible(true)
     }
-
-  }, []);
-
-  useEffect(() => {
-    console.log(isVisible)
-  },[isVisible])
-
+  }, [])
 
   const renderChildren = close => {
     if (typeof children === 'function') {
@@ -216,40 +210,40 @@ const Dialog = memo(function Dialog({
     >
       {({ close, state }) => (
         <FocusTrap active={isVisible}>
-        <Pane
-          ref={measuredRef}
-          {...animationStyles}
-          role="dialog"
-          backgroundColor="white"
-          elevation={4}
-          borderRadius={8}
-          width={width}
-          maxWidth={maxWidth}
-          maxHeight={maxHeight}
-          marginX={sideOffsetWithUnit}
-          marginY={topOffsetWithUnit}
-          display="flex"
-          flexDirection="column"
-          className={containerClassName}
-          data-state={state}
-          {...remainingContainerProps}
-        >
-          {renderHeader(close)}
-
           <Pane
-            data-state={state}
+            ref={measuredRef}
+            {...animationStyles}
+            role="dialog"
+            backgroundColor="white"
+            elevation={4}
+            borderRadius={8}
+            width={width}
+            maxWidth={maxWidth}
+            maxHeight={maxHeight}
+            marginX={sideOffsetWithUnit}
+            marginY={topOffsetWithUnit}
             display="flex"
-            overflow="auto"
             flexDirection="column"
-            minHeight={minHeightContent}
-            {...themedBodyProps}
-            {...contentContainerProps}
+            className={containerClassName}
+            data-state={state}
+            {...remainingContainerProps}
           >
-            <Pane>{renderChildren(close)}</Pane>
-          </Pane>
+            {renderHeader(close)}
 
-          {renderFooter(close)}
-        </Pane>
+            <Pane
+              data-state={state}
+              display="flex"
+              overflow="auto"
+              flexDirection="column"
+              minHeight={minHeightContent}
+              {...themedBodyProps}
+              {...contentContainerProps}
+            >
+              <Pane>{renderChildren(close)}</Pane>
+            </Pane>
+
+            {renderFooter(close)}
+          </Pane>
         </FocusTrap>
       )}
     </Overlay>
