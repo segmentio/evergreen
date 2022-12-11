@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useState, useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { keyframes } from 'ui-box'
 import { Button, IconButton } from '../../buttons'
@@ -7,6 +7,7 @@ import { CrossIcon } from '../../icons'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
 import { Paragraph, Heading } from '../../typography'
+import FocusTrap from 'focus-trap-react'
 
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
@@ -96,6 +97,22 @@ const Dialog = memo(function Dialog({
 
   const topOffsetWithUnit = Number.isInteger(topOffset) ? `${topOffset}px` : topOffset
   const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const measuredRef = useCallback(node => {
+    if (node === null) {
+      setIsVisible(false)
+    } else if (node.offsetHeight > 0) {
+      setIsVisible(true)
+    }
+
+  }, []);
+
+  useEffect(() => {
+    console.log(isVisible)
+  },[isVisible])
+
 
   const renderChildren = close => {
     if (typeof children === 'function') {
@@ -198,7 +215,9 @@ const Dialog = memo(function Dialog({
       preventBodyScrolling={preventBodyScrolling}
     >
       {({ close, state }) => (
+        <FocusTrap active={isVisible}>
         <Pane
+          ref={measuredRef}
           {...animationStyles}
           role="dialog"
           backgroundColor="white"
@@ -231,6 +250,7 @@ const Dialog = memo(function Dialog({
 
           {renderFooter(close)}
         </Pane>
+        </FocusTrap>
       )}
     </Overlay>
   )
