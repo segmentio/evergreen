@@ -64,6 +64,7 @@
     "arrify": "^1.0.1",
     "classnames": "^2.3.0",
     "downshift": "^5.2.0",
+    "focus-trap-react": "^10.0.2",
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
     "humanize-plus": "^1.8.2",
