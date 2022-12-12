@@ -9,14 +9,14 @@ const props = {
 const Component = () => {
   return (
     (<React.Fragment>
-      <Pane position="relative"><Pulsar></Pulsar></Pane>
-      <Pane position="relative"><Pulsar /></Pane>
-      <Pane position="relative"><Pulsar position='top-left' /></Pane>
-      <Pane position="relative"><Pulsar onClick={() => {}} /></Pane>
-      <Pane position="relative"><Pulsar {...props} /></Pane>
-      <Pane position="relative"><Pulsar /></Pane>
-      <Pane position="relative"><Tooltip content={<Pane>Hello world</Pane>}><Pulsar /></Tooltip></Pane>
-      <Pane position="relative"><Tooltip content="Hello world"><Pulsar /></Tooltip></Pane>
+      <Pane position="relative" display="inline-block"><Pulsar></Pulsar></Pane>
+      <Pane position="relative" display="inline-block"><Pulsar /></Pane>
+      <Pane position="relative" display="inline-block"><Pulsar position='top-left' /></Pane>
+      <Pane position="relative" display="inline-block"><Pulsar onClick={() => {}} /></Pane>
+      <Pane position="relative" display="inline-block"><Pulsar {...props} /></Pane>
+      <Pane position="relative" display="inline-block"><Pulsar /></Pane>
+      <Pane position="relative" display="inline-block"><Tooltip content={<Pane>Hello world</Pane>}><Pulsar /></Tooltip></Pane>
+      <Pane position="relative" display="inline-block"><Tooltip content="Hello world"><Pulsar /></Tooltip></Pane>
     </React.Fragment>)
   );
 }
