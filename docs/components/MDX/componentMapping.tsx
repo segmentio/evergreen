@@ -7,6 +7,7 @@ import RuleLayout from './renderers/RuleLayout'
 import ColorSwatch from '../ColorSwatch'
 import IconSearch from '../IconSearch'
 import {
+  InlineAlert,
   Table,
   Pane,
   Paragraph,
@@ -23,6 +24,7 @@ import {
   TableRowProps,
   AlertProps,
   Alert,
+  InlineAlertProps,
 } from 'evergreen-ui'
 
 const componentMapping = {
@@ -41,6 +43,7 @@ const componentMapping = {
   li: (props: any) => <Li {...props} />,
   inlineCode: (props: any) => <InlineCode {...props} />,
   Alert: (props: AlertProps) => <Alert {...props} />,
+  InlineAlert: (props: InlineAlertProps) => <InlineAlert marginBottom={majorScale(3)} {...props} />,
   Pane: (props: PaneProps) => <Pane {...props} />,
   Table: (props: TableProps) => <Table {...props} />,
   TableHead: (props: TableHeadProps) => <Table.Head {...props} />,

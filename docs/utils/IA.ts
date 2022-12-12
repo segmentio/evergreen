@@ -46,9 +46,9 @@ const IA: IA = {
         description: 'About Evergreen, and getting set up with the package locally.',
       },
       {
-        id: 'v6-migration-guide',
-        name: 'Migrating from v5 to v6',
-        description: 'Guide about migrating from previous version of Evergreen into the current one.',
+        id: 'migrations',
+        name: 'Migrations',
+        description: 'Guides for migrating between major versions of Evergreen.',
       },
       {
         id: 'theming',
@@ -285,13 +285,14 @@ const IA: IA = {
           'The Pulsar component is a user education UI used to indicate to a user where they should take a particular action.',
       },
       {
-        id: 'segmented-control',
-        github: githubLink('segmented-control'),
-        image: '/Segmented Control.png',
-        imageHighlight: '/Segmented Control-highlight.png',
-        name: 'Segmented Control',
+        id: 'group',
+        github: githubLink('group'),
+        image: '/Group.png',
+        imageHighlight: '/Group-highlight.png',
+        name: 'Group',
         tags: ['button group'],
-        description: 'The Segmented Control is a component that lets users toggle between up-to-4 options in a row. ',
+        description:
+          'The Group component identifies a group of inputs/elements and implements the group WAI-ARIA role.',
       },
       {
         id: 'switch',
