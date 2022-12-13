@@ -2,7 +2,7 @@
 import { defineTest } from 'jscodeshift/dist/testUtils'
 
 describe('replace-deprecated-default-theme-imports', () => {
-  ;['replace-deprecated-default-theme-imports'].forEach(test => {
+  ;['replace-deprecated-default-theme-imports', 'replace-deprecated-default-theme-imports.alias'].forEach(test => {
     defineTest(
       __dirname,
       'replace-deprecated-default-theme-imports',

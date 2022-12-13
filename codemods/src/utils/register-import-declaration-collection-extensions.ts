@@ -33,7 +33,7 @@ const _registerImportDeclarationCollectionExtensions = (
         const importDeclarations = (this as any) as Collection<ImportDeclaration>
         return (importDeclarations.find(
           j.ImportSpecifier,
-          importSpecifier => importSpecifier.local?.name === name
+          importSpecifier => importSpecifier.local?.name === name || importSpecifier.imported.name === name
         ) as any) as ExtendedImportSpecifierCollection
       }
     },

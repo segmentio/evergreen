@@ -38,11 +38,14 @@ const transformer: Transform = (file, api, options) => {
     return file.source
   }
 
+  // Save reference to original importSpecifier to swap it with the local path (i.e. any alias that might be used)
+  const importSpecifier = importSpecifiers.firstNode()!
+
+  // Remove the original evergreen import
   importSpecifiers.remove()
 
-  importDeclarations.insertAfter(
-    j.importDeclaration([j.importSpecifier(j.identifier(CLASSIC_THEME))], j.literal(localPath))
-  )
+  // Add an import to the local path using the saved import specifier
+  importDeclarations.insertAfter(j.importDeclaration([j.importSpecifier.from(importSpecifier)], j.literal(localPath)))
 
   return root.toSource()
 }
