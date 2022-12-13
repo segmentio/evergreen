@@ -18,11 +18,16 @@ const _registerCollectionExtensions = (jscodeshift: ExtendedJSCodeshift | JSCode
       return thisCollection.filter(leftNode => rightCollection.every(rightNode => leftNode !== rightNode))
     },
 
-    findEvergreenImportDeclaration: function() {
+    findImportDeclarationByModuleName: function(moduleName: string) {
       const thisCollection = (this as any) as Collection
       return (thisCollection.find(j.ImportDeclaration, {
-        source: { value: 'evergreen-ui' }
+        source: { value: moduleName }
       }) as any) as ExtendedImportDeclarationCollection
+    },
+
+    findEvergreenImportDeclaration: function() {
+      const thisCollection = (this as any) as ExtendedCollection
+      return thisCollection.findImportDeclarationByModuleName('evergreen-ui')
     },
 
     firstNode: function<T>(predicate?: (node: ASTPath<T>) => boolean) {

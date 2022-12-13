@@ -44,8 +44,15 @@ const transformer: Transform = (file, api, options) => {
   // Remove the original evergreen import
   importSpecifiers.remove()
 
-  // Add an import to the local path using the saved import specifier
-  importDeclarations.insertAfter(j.importDeclaration([j.importSpecifier.from(importSpecifier)], j.literal(localPath)))
+  const hasLocalThemeImport = root
+    .findImportDeclarationByModuleName(localPath)
+    .findImportSpecifiersByName(CLASSIC_THEME)
+    .hasValues()
+
+  if (!hasLocalThemeImport) {
+    // Add an import to the local path using the saved import specifier
+    importDeclarations.insertAfter(j.importDeclaration([j.importSpecifier.from(importSpecifier)], j.literal(localPath)))
+  }
 
   return root.toSource()
 }
