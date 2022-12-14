@@ -554,8 +554,8 @@ export const classicTheme = {
         "Alert": {
             "appearances": {
                 "card": {
-                    "boxShadow": "shadows.1",
-                    "borderRadius": "radii.1"
+                    "boxShadow": "0 0 1px rgba(67, 90, 111, 0.3), 0 2px 4px -2px rgba(67, 90, 111, 0.47)",
+                    "borderRadius": "3px"
                 }
             },
             "sizes": {}
@@ -569,7 +569,7 @@ export const classicTheme = {
                 "height": 16,
                 "paddingY": 0,
                 "paddingX": 6,
-                "borderRadius": "radii.1",
+                "borderRadius": "3px",
                 "fontSize": "11.5px",
                 "textAlign": "center",
                 "textDecoration": "none",
@@ -580,8 +580,8 @@ export const classicTheme = {
         },
         "Button": {
             "baseStyle": {
-                "fontFamily": "fontFamilies.ui",
-                "borderRadius": "radii.1",
+                "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+                "borderRadius": "3px",
                 "fontWeight": 500,
                 "border": "0",
                 "_disabled": {
@@ -629,11 +629,11 @@ export const classicTheme = {
                 "minimal": {
                     "background": "transparent",
                     "_hover": {
-                        "background": "scales.neutral.N2A"
+                        "background": "rgba(67, 90, 111, 0.06)"
                     },
                     "_focus": {},
                     "_active": {
-                        "background": "scales.blue.B3A"
+                        "background": "rgba(16, 112, 202, 0.09)"
                     }
                 }
             },
@@ -641,7 +641,7 @@ export const classicTheme = {
                 "small": {
                     "height": 24,
                     "minWidth": 24,
-                    "fontSize": "fontSizes.1",
+                    "fontSize": "12px",
                     "lineHeight": "24px",
                     "paddingLeft": 12,
                     "paddingRight": 12
@@ -649,7 +649,7 @@ export const classicTheme = {
                 "medium": {
                     "height": 32,
                     "minWidth": 32,
-                    "fontSize": "fontSizes.1",
+                    "fontSize": "12px",
                     "lineHeight": "32px",
                     "paddingLeft": 16,
                     "paddingRight": 16
@@ -657,7 +657,7 @@ export const classicTheme = {
                 "large": {
                     "height": 40,
                     "minWidth": 40,
-                    "fontSize": "fontSizes.2",
+                    "fontSize": "14px",
                     "lineHeight": "40px",
                     "paddingLeft": 20,
                     "paddingRight": 20
@@ -666,7 +666,7 @@ export const classicTheme = {
         },
         "Card": {
             "baseStyle": {
-                "borderRadius": "radii.1"
+                "borderRadius": "3px"
             },
             "appearances": {},
             "sizes": {}
@@ -680,12 +680,12 @@ export const classicTheme = {
                     },
                     "_disabled": {
                         "cursor": "not-allowed",
-                        "background": "scales.neutral.N2A"
+                        "background": "rgba(67, 90, 111, 0.06)"
                     },
                     "_hover": {},
                     "_focus": {},
                     "_active": {
-                        "background": "scales.blue.B3A"
+                        "background": "rgba(16, 112, 202, 0.09)"
                     },
                     "_checked": {
                         "color": "white",
@@ -696,7 +696,7 @@ export const classicTheme = {
                         "background": "linear-gradient(to bottom, #0679c5, #0f5da1)"
                     },
                     "_checkedDisabled": {
-                        "color": "scales.neutral.N6A"
+                        "color": "rgba(67, 90, 111, 0.47)"
                     },
                     "_checkedActive": {
                         "color": "white",
@@ -710,10 +710,10 @@ export const classicTheme = {
             "baseStyle": {},
             "appearances": {
                 "default": {
-                    "backgroundColor": "colors.blueAlpha.B2A",
+                    "backgroundColor": "rgba(16, 112, 202, 0.06)",
                     "paddingX": 6,
                     "paddingY": 3,
-                    "borderRadius": "radii.1"
+                    "borderRadius": "3px"
                 }
             },
             "sizes": {}
@@ -739,10 +739,10 @@ export const classicTheme = {
             "baseStyle": {
                 "_child": {
                     "&:focus": {
-                        "zIndex": "zIndices.focused"
+                        "zIndex": 2
                     },
                     "&:active": {
-                        "zIndex": "zIndices.focused"
+                        "zIndex": 2
                     }
                 },
                 "_firstChild": {
@@ -764,68 +764,68 @@ export const classicTheme = {
         },
         "Heading": {
             "baseStyle": {
-                "color": "colors.dark",
-                "fontFamily": "fontFamilies.display",
-                "fontWeight": "fontWeights.semibold"
+                "color": "#234361",
+                "fontFamily": "\"SF UI Display\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+                "fontWeight": 500
             },
             "appearances": {},
             "sizes": {
                 "100": {
-                    "fontSize": "fontSizes.0",
-                    "fontWeight": "fontWeights.normal",
+                    "fontSize": "11px",
+                    "fontWeight": 400,
                     "textTransform": "uppercase",
-                    "lineHeight": "lineHeights.0",
-                    "letterSpacing": "letterSpacings.wide",
-                    "fontFamily": "fontFamilies.ui",
-                    "color": "colors.muted"
+                    "lineHeight": "16px",
+                    "letterSpacing": "0.6px",
+                    "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+                    "color": "#66788A"
                 },
                 "200": {
-                    "fontSize": "fontSizes.1",
-                    "fontWeight": "fontWeights.bold",
-                    "lineHeight": "lineHeights.0",
-                    "letterSpacing": "letterSpacings.normal",
-                    "fontFamily": "fontFamilies.ui",
-                    "color": "colors.muted"
+                    "fontSize": "12px",
+                    "fontWeight": 600,
+                    "lineHeight": "16px",
+                    "letterSpacing": "0",
+                    "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+                    "color": "#66788A"
                 },
                 "300": {
-                    "fontSize": "fontSizes.1",
-                    "fontWeight": "fontWeights.bold",
-                    "lineHeight": "lineHeights.0",
-                    "letterSpacing": "letterSpacings.normal",
-                    "fontFamily": "fontFamilies.ui"
+                    "fontSize": "12px",
+                    "fontWeight": 600,
+                    "lineHeight": "16px",
+                    "letterSpacing": "0",
+                    "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\""
                 },
                 "400": {
-                    "fontSize": "fontSizes.2",
-                    "fontWeight": "fontWeights.bold",
-                    "lineHeight": "lineHeights.1",
-                    "letterSpacing": "letterSpacings.tight",
-                    "fontFamily": "fontFamilies.ui"
+                    "fontSize": "14px",
+                    "fontWeight": 600,
+                    "lineHeight": "18px",
+                    "letterSpacing": "-0.05px",
+                    "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\""
                 },
                 "500": {
-                    "fontFamily": "fontFamilies.ui",
-                    "fontSize": "fontSizes.3",
-                    "letterSpacing": "letterSpacings.tight",
-                    "lineHeight": "lineHeights.2"
+                    "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+                    "fontSize": "16px",
+                    "letterSpacing": "-0.05px",
+                    "lineHeight": "20px"
                 },
                 "600": {
-                    "fontSize": "fontSizes.4",
-                    "lineHeight": "lineHeights.3",
-                    "letterSpacing": "letterSpacings.tighter"
+                    "fontSize": "20px",
+                    "lineHeight": "24px",
+                    "letterSpacing": "-0.07px"
                 },
                 "700": {
-                    "fontSize": "fontSizes.5",
-                    "lineHeight": "lineHeights.3",
-                    "letterSpacing": "letterSpacings.tighter"
+                    "fontSize": "24px",
+                    "lineHeight": "24px",
+                    "letterSpacing": "-0.07px"
                 },
                 "800": {
-                    "fontSize": "fontSizes.6",
-                    "lineHeight": "lineHeights.5",
-                    "letterSpacing": "letterSpacings.tightest"
+                    "fontSize": "29px",
+                    "lineHeight": "32px",
+                    "letterSpacing": "-0.2px"
                 },
                 "900": {
-                    "fontSize": "fontSizes.7",
-                    "lineHeight": "lineHeights.6",
-                    "letterSpacing": "letterSpacings.tightest"
+                    "fontSize": "35px",
+                    "lineHeight": "40px",
+                    "letterSpacing": "-0.2px"
                 }
             }
         },
@@ -835,26 +835,26 @@ export const classicTheme = {
         },
         "InlineAlert": {
             "baseStyle": {
-                "color": "colors.default"
+                "color": "#425A70"
             },
             "appearances": {},
             "sizes": {}
         },
         "Input": {
             "baseStyle": {
-                "borderRadius": "radii.1",
-                "lineHeight": "lineHeights.1",
-                "color": "colors.default",
-                "fontSize": "fontSizes.1",
+                "borderRadius": "3px",
+                "lineHeight": "18px",
+                "color": "#425A70",
+                "fontSize": "12px",
                 "paddingX": 10,
                 "_placeholder": {
-                    "color": "colors.neutralAlpha.N6A"
+                    "color": "rgba(67, 90, 111, 0.47)"
                 },
                 "_disabled": {
                     "cursor": "not-allowed"
                 },
                 "_focus": {
-                    "zIndex": "zIndices.focused"
+                    "zIndex": 2
                 }
             },
             "appearances": {
@@ -863,11 +863,11 @@ export const classicTheme = {
                     "_invalid": {},
                     "_focus": {},
                     "_disabled": {
-                        "backgroundColor": "colors.neutralAlpha.N2A"
+                        "backgroundColor": "rgba(67, 90, 111, 0.06)"
                     }
                 },
                 "neutral": {
-                    "backgroundColor": "colors.neutralAlpha.N2A",
+                    "backgroundColor": "rgba(67, 90, 111, 0.06)",
                     "_invalid": {},
                     "_focus": {
                         "backgroundColor": "white"
@@ -877,7 +877,7 @@ export const classicTheme = {
                 "none": {
                     "backgroundColor": "white",
                     "_disabled": {
-                        "backgroundColor": "colors.neutral.N2"
+                        "backgroundColor": "#F5F6F7"
                     }
                 }
             },
@@ -890,74 +890,74 @@ export const classicTheme = {
                 },
                 "large": {
                     "height": 40,
-                    "lineHeight": "lineHeights.2"
+                    "lineHeight": "20px"
                 }
             }
         },
         "Label": {
             "baseStyle": {
-                "color": "colors.dark",
-                "fontFamily": "fontFamilies.display",
-                "fontWeight": "fontWeights.semibold"
+                "color": "#234361",
+                "fontFamily": "\"SF UI Display\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+                "fontWeight": 500
             },
             "appearances": {},
             "sizes": {
                 "100": {
-                    "fontSize": "fontSizes.0",
-                    "fontWeight": "fontWeights.normal",
+                    "fontSize": "11px",
+                    "fontWeight": 400,
                     "textTransform": "uppercase",
-                    "lineHeight": "lineHeights.0",
-                    "letterSpacing": "letterSpacings.wide",
-                    "fontFamily": "fontFamilies.ui",
-                    "color": "colors.muted"
+                    "lineHeight": "16px",
+                    "letterSpacing": "0.6px",
+                    "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+                    "color": "#66788A"
                 },
                 "200": {
-                    "fontSize": "fontSizes.1",
-                    "fontWeight": "fontWeights.bold",
-                    "lineHeight": "lineHeights.0",
-                    "letterSpacing": "letterSpacings.normal",
-                    "fontFamily": "fontFamilies.ui",
-                    "color": "colors.muted"
+                    "fontSize": "12px",
+                    "fontWeight": 600,
+                    "lineHeight": "16px",
+                    "letterSpacing": "0",
+                    "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+                    "color": "#66788A"
                 },
                 "300": {
-                    "fontSize": "fontSizes.1",
-                    "fontWeight": "fontWeights.bold",
-                    "lineHeight": "lineHeights.0",
-                    "letterSpacing": "letterSpacings.normal",
-                    "fontFamily": "fontFamilies.ui"
+                    "fontSize": "12px",
+                    "fontWeight": 600,
+                    "lineHeight": "16px",
+                    "letterSpacing": "0",
+                    "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\""
                 },
                 "400": {
-                    "fontSize": "fontSizes.2",
-                    "fontWeight": "fontWeights.bold",
-                    "lineHeight": "lineHeights.1",
-                    "letterSpacing": "letterSpacings.tight",
-                    "fontFamily": "fontFamilies.ui"
+                    "fontSize": "14px",
+                    "fontWeight": 600,
+                    "lineHeight": "18px",
+                    "letterSpacing": "-0.05px",
+                    "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\""
                 },
                 "500": {
-                    "fontFamily": "fontFamilies.ui",
-                    "fontSize": "fontSizes.3",
-                    "letterSpacing": "letterSpacings.tight",
-                    "lineHeight": "lineHeights.2"
+                    "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+                    "fontSize": "16px",
+                    "letterSpacing": "-0.05px",
+                    "lineHeight": "20px"
                 },
                 "600": {
-                    "fontSize": "fontSizes.4",
-                    "lineHeight": "lineHeights.3",
-                    "letterSpacing": "letterSpacings.tighter"
+                    "fontSize": "20px",
+                    "lineHeight": "24px",
+                    "letterSpacing": "-0.07px"
                 },
                 "700": {
-                    "fontSize": "fontSizes.5",
-                    "lineHeight": "lineHeights.3",
-                    "letterSpacing": "letterSpacings.tighter"
+                    "fontSize": "24px",
+                    "lineHeight": "24px",
+                    "letterSpacing": "-0.07px"
                 },
                 "800": {
-                    "fontSize": "fontSizes.6",
-                    "lineHeight": "lineHeights.5",
-                    "letterSpacing": "letterSpacings.tightest"
+                    "fontSize": "29px",
+                    "lineHeight": "32px",
+                    "letterSpacing": "-0.2px"
                 },
                 "900": {
-                    "fontSize": "fontSizes.7",
-                    "lineHeight": "lineHeights.6",
-                    "letterSpacing": "letterSpacings.tightest"
+                    "fontSize": "35px",
+                    "lineHeight": "40px",
+                    "letterSpacing": "-0.2px"
                 }
             }
         },
@@ -991,16 +991,16 @@ export const classicTheme = {
                 "default": {
                     "backgroundColor": "white",
                     "_hover": {
-                        "backgroundColor": "colors.neutral.lightest"
+                        "backgroundColor": "#F9F9FB"
                     },
                     "_focus": {
-                        "backgroundColor": "colors.neutral.lightest"
+                        "backgroundColor": "#F9F9FB"
                     },
                     "_active": {
-                        "backgroundColor": "colors.blue.lightest"
+                        "backgroundColor": "#f7f9fd"
                     },
                     "_current": {
-                        "backgroundColor": "colors.blue.lightest"
+                        "backgroundColor": "#f7f9fd"
                     }
                 }
             }
@@ -1019,7 +1019,7 @@ export const classicTheme = {
                     "top": 0,
                     "bottom": 0,
                     "width": 2,
-                    "backgroundColor": "colors.blue.base",
+                    "backgroundColor": "#1070ca",
                     "transition": "0.25s",
                     "transformOrigin": "left center",
                     "transform": "scaleX(0)"
@@ -1028,18 +1028,18 @@ export const classicTheme = {
                     "cursor": "pointer"
                 },
                 "_hover": {
-                    "backgroundColor": "colors.neutral.lightest"
+                    "backgroundColor": "#F9F9FB"
                 },
                 "_focus": {
-                    "backgroundColor": "colors.neutral.lightest"
+                    "backgroundColor": "#F9F9FB"
                 },
                 "_active": {
-                    "backgroundColor": "colors.blue.lightest"
+                    "backgroundColor": "#f7f9fd"
                 },
                 "_selected": {
-                    "backgroundColor": "colors.blue.lightest",
+                    "backgroundColor": "#f7f9fd",
                     " span": {
-                        "color": "colors.blue.base"
+                        "color": "#1070ca"
                     },
                     "&:before": {
                         "transform": "scaleX(1)"
@@ -1064,46 +1064,46 @@ export const classicTheme = {
             "appearances": {},
             "sizes": {
                 "300": {
-                    "fontSize": "fontSizes.1",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.1",
-                    "letterSpacing": "letterSpacings.normal"
+                    "fontSize": "12px",
+                    "fontWeight": 400,
+                    "lineHeight": "18px",
+                    "letterSpacing": "0"
                 },
                 "400": {
-                    "fontSize": "fontSizes.2",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.2",
-                    "letterSpacing": "letterSpacings.tight"
+                    "fontSize": "14px",
+                    "fontWeight": 400,
+                    "lineHeight": "20px",
+                    "letterSpacing": "-0.05px"
                 },
                 "500": {
-                    "fontSize": "fontSizes.3",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.3",
-                    "letterSpacing": "letterSpacings.tight"
+                    "fontSize": "16px",
+                    "fontWeight": 400,
+                    "lineHeight": "24px",
+                    "letterSpacing": "-0.05px"
                 },
                 "600": {
-                    "fontSize": "fontSizes.4",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.3",
-                    "letterSpacing": "letterSpacings.tighter"
+                    "fontSize": "20px",
+                    "fontWeight": 400,
+                    "lineHeight": "24px",
+                    "letterSpacing": "-0.07px"
                 },
                 "small": {
-                    "fontSize": "fontSizes.1",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.1",
-                    "letterSpacing": "letterSpacings.normal"
+                    "fontSize": "12px",
+                    "fontWeight": 400,
+                    "lineHeight": "18px",
+                    "letterSpacing": "0"
                 },
                 "medium": {
-                    "fontSize": "fontSizes.2",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.2",
-                    "letterSpacing": "letterSpacings.tight"
+                    "fontSize": "14px",
+                    "fontWeight": 400,
+                    "lineHeight": "20px",
+                    "letterSpacing": "-0.05px"
                 },
                 "large": {
-                    "fontSize": "fontSizes.3",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.3",
-                    "letterSpacing": "letterSpacings.tight"
+                    "fontSize": "16px",
+                    "fontWeight": 400,
+                    "lineHeight": "24px",
+                    "letterSpacing": "-0.05px"
                 }
             }
         },
@@ -1116,12 +1116,12 @@ export const classicTheme = {
                     },
                     "_disabled": {
                         "cursor": "not-allowed",
-                        "background": "scales.neutral.N2A"
+                        "background": "rgba(67, 90, 111, 0.06)"
                     },
                     "_hover": {},
                     "_focus": {},
                     "_active": {
-                        "background": "scales.blue.B3A"
+                        "background": "rgba(16, 112, 202, 0.09)"
                     },
                     "_checked": {
                         "color": "white",
@@ -1132,7 +1132,7 @@ export const classicTheme = {
                         "background": "linear-gradient(to bottom, #0679c5, #0f5da1)"
                     },
                     "_checkedDisabled": {
-                        "color": "scales.neutral.N6A"
+                        "color": "rgba(67, 90, 111, 0.47)"
                     },
                     "_checkedActive": {
                         "color": "white",
@@ -1144,13 +1144,13 @@ export const classicTheme = {
         },
         "Select": {
             "baseStyle": {
-                "fontFamily": "fontFamilies.ui",
+                "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
                 "border": "none",
-                "borderRadius": "radii.1"
+                "borderRadius": "3px"
             },
             "appearances": {
                 "default": {
-                    "color": "colors.neutralAlpha.N8A",
+                    "color": "rgba(67, 90, 111, 0.81)",
                     "backgroundColor": "white",
                     "backgroundImage": "linear-gradient(to bottom, #FFFFFF, #F4F5F7)",
                     "boxShadow": "inset 0 0 0 1px rgba(67, 90, 111, 0.14), inset 0 -1px 1px 0 rgba(67, 90, 111, 0.06)",
@@ -1179,20 +1179,20 @@ export const classicTheme = {
                 "small": {
                     "height": 24,
                     "minWidth": 24,
-                    "fontSize": "fontSizes.1",
-                    "lineHeight": "lineHeights.0"
+                    "fontSize": "12px",
+                    "lineHeight": "16px"
                 },
                 "medium": {
                     "height": 32,
                     "minWidth": 32,
-                    "fontSize": "fontSizes.1",
-                    "lineHeight": "lineHeights.0"
+                    "fontSize": "12px",
+                    "lineHeight": "16px"
                 },
                 "large": {
                     "height": 40,
                     "minWidth": 40,
-                    "fontSize": "fontSizes.2",
-                    "lineHeight": "lineHeights.2"
+                    "fontSize": "14px",
+                    "lineHeight": "20px"
                 }
             }
         },
@@ -1222,29 +1222,29 @@ export const classicTheme = {
                 "default": {
                     "_base": {
                         "color": "white",
-                        "backgroundColor": "scales.neutral.N5A"
+                        "backgroundColor": "rgba(67, 90, 111, 0.3)"
                     },
                     "_disabled": {
                         "opacity": 0.5,
                         "backgroundImage": "none"
                     },
                     "_hover": {
-                        "backgroundColor": "scales.neutral.N5A"
+                        "backgroundColor": "rgba(67, 90, 111, 0.3)"
                     },
                     "_active": {
-                        "backgroundColor": "scales.neutral.N6A"
+                        "backgroundColor": "rgba(67, 90, 111, 0.47)"
                     },
                     "_focus": {},
                     "_checked": {
-                        "backgroundColor": "scales.blue.B8",
+                        "backgroundColor": "#3d8bd4",
                         "color": "white"
                     },
                     "_checkedHover": {
-                        "backgroundColor": "scales.blue.B8",
+                        "backgroundColor": "#3d8bd4",
                         "color": "white"
                     },
                     "_checkedActive": {
-                        "backgroundColor": "scales.blue.B9",
+                        "backgroundColor": "#1070ca",
                         "color": "white"
                     },
                     "_checkedDisabled": {}
@@ -1254,30 +1254,30 @@ export const classicTheme = {
         },
         "Tab": {
             "baseStyle": {
-                "fontFamily": "fontFamilies.ui",
+                "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
                 "fontWeight": 500,
                 "padding": "8px",
-                "borderRadius": "radii.1",
-                "color": "colors.default",
+                "borderRadius": "3px",
+                "color": "#425A70",
                 "_hover": {
-                    "backgroundColor": "colors.neutralAlpha.N2A"
+                    "backgroundColor": "rgba(67, 90, 111, 0.06)"
                 },
                 "_active": {
-                    "backgroundColor": "colors.neutralAlpha.N3A"
+                    "backgroundColor": "rgba(67, 90, 111, 0.09)"
                 },
                 "_current": {
-                    "color": "colors.blue.base",
-                    "backgroundColor": "colors.blueAlpha.B3A"
+                    "color": "#1070ca",
+                    "backgroundColor": "rgba(16, 112, 202, 0.09)"
                 },
                 "_focus": {
-                    "boxShadow": "shadows.focusRing"
+                    "boxShadow": "0 0 0 3px rgba(16, 112, 202, 0.14)"
                 },
                 "_disabled": {
                     "pointerEvents": "none",
                     "cursor": "not-allowed",
-                    "color": "colors.neutralAlpha.N7A",
+                    "color": "rgba(67, 90, 111, 0.7)",
                     "&[aria-current=\"page\"], &[aria-selected=\"true\"]": {
-                        "backgroundColor": "colors.neutralAlpha.N2A"
+                        "backgroundColor": "rgba(67, 90, 111, 0.06)"
                     }
                 }
             }
@@ -1295,7 +1295,7 @@ export const classicTheme = {
                 "default": {
                     "_focus": {
                         "outline": "none",
-                        "backgroundColor": "colors.blueAlpha.B2A"
+                        "backgroundColor": "rgba(16, 112, 202, 0.06)"
                     }
                 }
             },
@@ -1304,14 +1304,14 @@ export const classicTheme = {
         "TableHead": {
             "baseStyle": {
                 "borderBottom": "default",
-                "background": "colors.tint2",
+                "background": "#F5F6F7",
                 "height": "32px",
-                "fontSize": "fontSizes.1",
-                "fontWeight": "fontWeights.semibold",
-                "lineHeight": "lineHeights.0",
-                "letterSpacing": "letterSpacings.normal",
-                "fontFamily": "fontFamilies.ui",
-                "color": "colors.default"
+                "fontSize": "12px",
+                "fontWeight": 500,
+                "lineHeight": "16px",
+                "letterSpacing": "0",
+                "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+                "color": "#425A70"
             },
             "appearances": {},
             "sizes": {}
@@ -1339,17 +1339,17 @@ export const classicTheme = {
                 "paddingY": "2px",
                 "paddingX": "4px",
                 "backgroundColor": "white",
-                "borderRadius": "radii.1"
+                "borderRadius": "3px"
             },
             "appearances": {
                 "default": {
                     "backgroundColor": "white",
                     "_focused": {
-                        "zIndex": "zIndices.focused"
+                        "zIndex": 2
                     },
                     "_invalid": {},
                     "_disabled": {
-                        "backgroundColor": "scales.neutral.N2"
+                        "backgroundColor": "#F5F6F7"
                     }
                 }
             },
@@ -1360,59 +1360,59 @@ export const classicTheme = {
             "appearances": {},
             "sizes": {
                 "300": {
-                    "fontSize": "fontSizes.1",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.0",
-                    "letterSpacing": "letterSpacings.normal"
+                    "fontSize": "12px",
+                    "fontWeight": 400,
+                    "lineHeight": "16px",
+                    "letterSpacing": "0"
                 },
                 "400": {
-                    "fontSize": "fontSizes.2",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.2",
-                    "letterSpacing": "letterSpacings.tight"
+                    "fontSize": "14px",
+                    "fontWeight": 400,
+                    "lineHeight": "20px",
+                    "letterSpacing": "-0.05px"
                 },
                 "500": {
-                    "fontSize": "fontSizes.3",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.2",
-                    "letterSpacing": "letterSpacings.tight"
+                    "fontSize": "16px",
+                    "fontWeight": 400,
+                    "lineHeight": "20px",
+                    "letterSpacing": "-0.05px"
                 },
                 "600": {
-                    "fontSize": "fontSizes.4",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.3",
-                    "letterSpacing": "letterSpacings.tighter"
+                    "fontSize": "20px",
+                    "fontWeight": 400,
+                    "lineHeight": "24px",
+                    "letterSpacing": "-0.07px"
                 },
                 "small": {
-                    "fontSize": "fontSizes.1",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.0",
-                    "letterSpacing": "letterSpacings.normal"
+                    "fontSize": "12px",
+                    "fontWeight": 400,
+                    "lineHeight": "16px",
+                    "letterSpacing": "0"
                 },
                 "medium": {
-                    "fontSize": "fontSizes.2",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.2",
-                    "letterSpacing": "letterSpacings.tight"
+                    "fontSize": "14px",
+                    "fontWeight": 400,
+                    "lineHeight": "20px",
+                    "letterSpacing": "-0.05px"
                 },
                 "large": {
-                    "fontSize": "fontSizes.3",
-                    "fontWeight": "fontWeights.normal",
-                    "lineHeight": "lineHeights.2",
-                    "letterSpacing": "letterSpacings.tight"
+                    "fontSize": "16px",
+                    "fontWeight": 400,
+                    "lineHeight": "20px",
+                    "letterSpacing": "-0.05px"
                 }
             }
         },
         "TextDropdownButton": {
             "baseStyle": {
-                "fontFamily": "fontFamilies.ui",
+                "fontFamily": "\"SF UI Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
                 "backgroundColor": "transparent",
-                "borderRadius": "radii.1",
+                "borderRadius": "3px",
                 "paddingX": 4,
                 "marginX": -4,
                 "paddingY": 2,
                 "marginY": -2,
-                "color": "colors.default",
+                "color": "#425A70",
                 "_disabled": {
                     "cursor": "not-allowed",
                     "pointerEvents": "none"
@@ -1422,16 +1422,16 @@ export const classicTheme = {
             "appearances": {},
             "sizes": {
                 "small": {
-                    "fontSize": "fontSizes.1",
-                    "lineHeight": "lineHeights.0"
+                    "fontSize": "12px",
+                    "lineHeight": "16px"
                 },
                 "medium": {
-                    "fontSize": "fontSizes.1",
-                    "lineHeight": "lineHeights.0"
+                    "fontSize": "12px",
+                    "lineHeight": "16px"
                 },
                 "large": {
-                    "fontSize": "fontSizes.2",
-                    "lineHeight": "lineHeights.2"
+                    "fontSize": "14px",
+                    "lineHeight": "20px"
                 }
             }
         },
@@ -1439,9 +1439,9 @@ export const classicTheme = {
             "baseStyle": {
                 "paddingX": 8,
                 "paddingY": 4,
-                "borderRadius": "radii.1",
+                "borderRadius": "3px",
                 "maxWidth": 240,
-                "elevation": "shadows.3"
+                "elevation": "0 0 1px rgba(67, 90, 111, 0.3), 0 8px 10px -4px rgba(67, 90, 111, 0.47)"
             },
             "appearances": {
                 "card": {
@@ -1449,7 +1449,7 @@ export const classicTheme = {
                 },
                 "default": {
                     "color": "white",
-                    "backgroundColor": "palette.neutral.base"
+                    "backgroundColor": "#425A70"
                 }
             },
             "sizes": {}
