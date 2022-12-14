@@ -34,13 +34,13 @@ const replaceEvergreenImportWithLocalPath = (options: ReplaceEvergreenImportWith
 
   const root = j(file.source)
 
-  const importDeclarations = root.findEvergreenImportDeclaration()
+  const evergreenImportDeclaration = root.findEvergreenImportDeclaration()
 
-  if (importDeclarations.isEmpty()) {
+  if (evergreenImportDeclaration.isEmpty()) {
     return file.source
   }
 
-  const importSpecifiers = importDeclarations.findImportSpecifiersByName(importName)
+  const importSpecifiers = evergreenImportDeclaration.findImportSpecifiersByName(importName)
 
   if (importSpecifiers.isEmpty()) {
     return file.source
@@ -52,6 +52,11 @@ const replaceEvergreenImportWithLocalPath = (options: ReplaceEvergreenImportWith
   // Remove the original evergreen import
   importSpecifiers.remove()
 
+  // Remove the evergreen-ui import if the local component/module was the only thing imported
+  if (evergreenImportDeclaration.find(j.ImportSpecifier).isEmpty()) {
+    evergreenImportDeclaration.remove()
+  }
+
   const hasLocalImport = root
     .findImportDeclarationByModuleName(localPath)
     .findImportSpecifiersByName(importName)
@@ -59,7 +64,9 @@ const replaceEvergreenImportWithLocalPath = (options: ReplaceEvergreenImportWith
 
   if (!hasLocalImport) {
     // Add an import to the local path using the saved import specifier
-    importDeclarations.insertAfter(j.importDeclaration([j.importSpecifier.from(importSpecifier)], j.literal(localPath)))
+    evergreenImportDeclaration.insertAfter(
+      j.importDeclaration([j.importSpecifier.from(importSpecifier)], j.literal(localPath))
+    )
   }
 
   return root.toSource()
