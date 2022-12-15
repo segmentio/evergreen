@@ -1,1 +1,0 @@
-import { classicTheme } from 'evergreen-ui';

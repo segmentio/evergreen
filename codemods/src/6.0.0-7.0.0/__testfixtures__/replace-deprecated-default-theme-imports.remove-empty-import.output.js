@@ -1,1 +1,0 @@
-import { deprecatedDefaultTheme } from 'themes/deprecated-default-theme';

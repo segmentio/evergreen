@@ -1,1 +1,0 @@
-import { Pane, deprecatedDefaultTheme } from 'evergreen-ui';

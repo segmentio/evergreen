@@ -23,6 +23,13 @@ const replaceEvergreenImportWithLocalPath = (options: ReplaceEvergreenImportWith
   const { file, api, localPath, importName } = options
   const log = getLogger(file)
 
+  if (importName == null || importName.length < 1) {
+    log(
+      'Import name is required for replacement. Specify what import should be replaced, i.e. --importName=classicTheme'
+    )
+    return file.source
+  }
+
   if (localPath == null || localPath.length < 1) {
     log(
       `Local path is required for replacement. Specify where the ${importName} object should be imported from, i.e. --localPath=client/${importName}`
