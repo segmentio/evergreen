@@ -45,7 +45,10 @@ const transformer: Transform = (file, api) => {
     // The isShown prop isn't present/required anymore since we aren't bundling a Popover acting as a Tooltip
     .removeProp('isShown')
     .renameTo(PULSAR)
-    .wrap(PANE, [{ name: 'position', value: 'relative' }])
+    .wrap(PANE, [
+      { name: 'position', value: 'relative' },
+      { name: 'display', value: 'inline-block' }
+    ])
 
   const tooltipNudges = nudges.findWithPropName(TOOLTIP_CONTENT_PROP)
   if (tooltipNudges.hasValues()) {
