@@ -20,7 +20,7 @@ const Resources = () => {
           </Paragraph>
         </Pane>
         <Pane display="flex">
-          <ResourceCard title="Evergreen Figma Library" logo={<FigmaIcon />} url="https://www.figma.com/@segment" />
+          <ResourceCard title="Evergreen Figma Library" logo={<FigmaIcon />} url="https://www.figma.com/@twilio" />
           <ResourceCard title="Segment Brand Hub" logo={<SegmentIcon />} url="https://brand.segment.com/" />
         </Pane>
       </Pane>
