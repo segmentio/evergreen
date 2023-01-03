@@ -33,6 +33,11 @@ interface CollectionExtensions<T = any> {
   difference: (rightCollection: Collection<T> | ExtendedCollection<T>) => ExtendedCollection<T>
 
   /**
+   * Returns a collection of `ImportDeclaration` nodes from the provided module
+   */
+  findImportDeclarationByModuleName: (moduleName: string) => ExtendedImportDeclarationCollection
+
+  /**
    * Returns a collection of `ImportDeclaration` nodes from the `evergreen-ui` module
    */
   findEvergreenImportDeclaration: () => ExtendedImportDeclarationCollection
