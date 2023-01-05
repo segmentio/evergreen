@@ -10,7 +10,7 @@ exports[`<Alert /> appearance snapshot 1`] = `
       class="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
     >
       <svg
-        class="css-1ffn9ia ub-w_16px ub-h_16px ub-box-szg_border-box"
+        class="ub-fill_3366FF ub-w_16px ub-h_16px ub-box-szg_border-box"
         data-icon="info-sign"
         viewBox="0 0 16 16"
       >
@@ -46,7 +46,7 @@ exports[`<Alert /> basic snapshot 1`] = `
       class="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
     >
       <svg
-        class="css-1ffn9ia ub-w_16px ub-h_16px ub-box-szg_border-box"
+        class="ub-fill_3366FF ub-w_16px ub-h_16px ub-box-szg_border-box"
         data-icon="info-sign"
         viewBox="0 0 16 16"
       >
@@ -82,7 +82,7 @@ exports[`<Alert /> intent snapshot 1`] = `
       class="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
     >
       <svg
-        class="css-tn1wco ub-w_16px ub-h_16px ub-box-szg_border-box"
+        class="ub-fill_D14343 ub-w_16px ub-h_16px ub-box-szg_border-box"
         data-icon="error"
         viewBox="0 0 16 16"
       >
