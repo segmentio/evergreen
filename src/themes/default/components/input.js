@@ -1,10 +1,12 @@
 const baseStyle = {
+  borderColor: 'colors.gray400',
   borderRadius: 'radii.1',
-  fontFamily: 'fontFamilies.ui',
-  lineHeight: 'lineHeights.0',
-  fontSize: 'fontSizes.1',
-  border: '1px solid transparent',
+  borderStyle: 'solid',
+  borderWidth: 1,
   color: 'colors.default',
+  fontFamily: 'fontFamilies.ui',
+  fontSize: 'fontSizes.1',
+  lineHeight: 'lineHeights.0',
   paddingX: 12,
   transition: 'box-shadow 80ms ease-in-out',
 
@@ -35,6 +37,7 @@ const appearances = {
     }
   },
   none: {
+    borderColor: 'transparent',
     backgroundColor: 'transparent'
   }
 }
