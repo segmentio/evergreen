@@ -5,6 +5,7 @@ import { Button } from '../../buttons'
 import { MimeType } from '../../constants'
 import { FileUploader, FileCard } from '../../file-uploader'
 import { majorScale } from '../../scales'
+import { TextInput } from '../../text-input'
 import { toaster } from '../../toaster'
 import { Label, Code, ListItem } from '../../typography'
 import getIconFromType from '../src/utils/get-icon-from-type'
@@ -76,6 +77,10 @@ storiesOf('file-uploader', module)
         label="Custom validation message"
         validationMessage="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum metus elit, varius non euismod non, tempor sit amet sem. Praesent quis eros finibus, tempor diam quis, lacinia tortor."
       />
+
+      {/* https://github.com/segmentio/evergreen/issues/1581 */}
+      <FileUploaderState label="#1581 With TextInput rendered on same page" />
+      <TextInput />
     </Box>
   ))
   .add('FileCard', () => (
