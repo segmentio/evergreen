@@ -36,9 +36,9 @@ const baseStyle = {
 }
 ```
 
-# No more classic theme {#classic-theme}
+# No more classicTheme {#classic-theme}
 
-The classic theme was maintained in v6 to allow consumers to upgrade without forcing an entirely new look-and-feel. However, there were some missed components ([#1511](https://github.com/segmentio/evergreen/issues/1511)), and new components like the [`FileUploader`](/components/file-uploader) were not retrofitted for the old visual style.
+The `classicTheme` was maintained in v6 to allow consumers to upgrade without forcing an entirely new look-and-feel. However, there were some missed components ([#1511](https://github.com/segmentio/evergreen/issues/1511)), and new components like the [`FileUploader`](/components/file-uploader) were not retrofitted for the old visual style.
 
 Taking into account the refactoring effort for the `selectors` object and v6 being out for close to 2 years now, we think it's time to sunset the classic theme in favor of our modern visual design.
 
@@ -53,6 +53,56 @@ const App: React.FC = (props) => {
 +  return <ThemeProvider value={defaultTheme}>{children}</ThemeProvider>
 }
 ```
+
+<InlineAlert marginTop={24}>
+  While we strongly encourage migrating to the defaultTheme, we have provided a codemod that ejects the classicTheme
+  object into your local codebase. It has not been updated to use the new 'selectors' key syntax, so use at your own
+  discretion.
+</InlineAlert>
+
+<inlineCode>
+  npm i -g jscodeshift && npx jscodeshift -t node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/eject-classic-theme.js
+  --parser=tsx --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
+</inlineCode>
+
+<p marginTop={24}>
+  To easily change imports from <inlineCode>evergreen-ui</inlineCode> to the local <inlineCode>classicTheme</inlineCode>{' '}
+  object you've ejected, you can use this codemod:
+</p>
+
+<inlineCode>
+  npm i -g jscodeshift && npx jscodeshift -t
+  node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/replace-imports-with-local-path.js
+  --localPath=themes/classic-theme --importName=classicTheme --parser=tsx --extensions=js,jsx,ts,tsx fileOrDirectory
+  --dry --print
+</inlineCode>
+
+# No more deprecatedDefaultTheme {#deprecated-default-theme}
+
+Similar to the `classicTheme`, we are no longer exporting the `deprecatedDefaultTheme` object which contained color palette and typography tokens.
+
+<InlineAlert>
+  While we strongly encourage migrating to the defaultTheme, we have provided a codemod that ejects the
+  deprecatedDefaultTheme object into your local codebase.
+</InlineAlert>
+
+<inlineCode>
+  npm i -g jscodeshift && npx jscodeshift -t
+  node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/eject-deprecated-default-theme.js --parser=tsx
+  --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
+</inlineCode>
+
+<p marginTop={24}>
+  To easily change imports from <inlineCode>evergreen-ui</inlineCode> to the local{' '}
+  <inlineCode>deprecatedDefaultTheme</inlineCode> object you've ejected, you can use this codemod:
+</p>
+
+<inlineCode>
+  npm i -g jscodeshift && npx jscodeshift -t
+  node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/replace-imports-with-local-path.js
+  --localPath=themes/deprecated-default-theme --importName=deprecatedDefaultTheme --parser=tsx
+  --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
+</inlineCode>
 
 # Nudge has been replaced with Pulsar {#nudge}
 
@@ -92,7 +142,7 @@ import React from 'react'
 
 <InlineAlert marginTop={24}>
   We have provided a codemod that should be able to programmatically update instances of the Nudge component when props
-  can be easily identified.
+  can be easily identified. You should double check that the styling and functionality is correct for your use-case.
 </InlineAlert>
 
 <inlineCode>
