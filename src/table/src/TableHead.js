@@ -20,12 +20,11 @@ const TableHead = memo(function TableHead(props) {
   const { accountForScrollbar = true, children, className, ...rest } = props
   const [scrollbarWidth, setScrollBarWidth] = useState(0)
 
-  const { className: themedClassName, height: themeHeight, ...boxProps } = useStyleConfig(
-    'TableHead',
-    emptyObject,
-    pseudoSelectors,
-    internalStyles
-  )
+  const {
+    className: themedClassName,
+    height: themeHeight,
+    ...boxProps
+  } = useStyleConfig('TableHead', emptyObject, pseudoSelectors, internalStyles)
 
   const height = rest.height || themeHeight
 

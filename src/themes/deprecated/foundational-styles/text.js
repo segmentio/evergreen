@@ -19,7 +19,7 @@ export default {
    * It's useful to have 600 because `Link` uses the `Text` component.
    * A `Link` could be used as 600 in the context of a breadcrumb.
    */
-  '600': {
+  600: {
     fontSize: '20px',
     fontWeight: 400,
     lineHeight: '24px',
@@ -30,14 +30,14 @@ export default {
      */
     fontFamily: fontFamilies.display
   },
-  '500': {
+  500: {
     fontSize: '16px',
     fontWeight: 400,
     lineHeight: '20px',
     letterSpacing: '-0.05px',
     marginTop: 16
   },
-  '400': {
+  400: {
     // Default
     fontSize: '14px',
     fontWeight: 400,
@@ -45,7 +45,7 @@ export default {
     letterSpacing: '-0.05px',
     marginTop: 12
   },
-  '300': {
+  300: {
     fontSize: '12px',
     fontWeight: 400,
     lineHeight: '16px',

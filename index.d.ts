@@ -1,12 +1,23 @@
-/* tslint:disable:interface-name max-classes-per-file no-empty-interface */
+// @ts-nocheck Disabling TS checking on this file while definitions are being ported over to src files
 
 import * as React from 'react'
-import { extractStyles as boxExtractStyles, BoxProps, BoxComponent, PolymorphicBoxProps } from 'ui-box'
-import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
+import { StyleAttribute, CSSProperties } from 'glamor'
 import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition'
+import { extractStyles as boxExtractStyles, BoxProps, BoxComponent, PolymorphicBoxProps } from 'ui-box'
 
-export { configureSafeHref, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps, EnhancerProps } from 'ui-box'
+export type { BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps, EnhancerProps } from 'ui-box'
+export { configureSafeHref } from 'ui-box'
+
+/**
+ * Re-export generated types through this manually written typedef file until we can point to the generated index.d.ts file
+ */
+export type { PaneProps, PaneOwnProps } from './types'
+
+/**
+ * Re-export generated types through this manually written typedef file until we can point to the generated index.d.ts file
+ */
+export { Pane } from './types'
 
 // Re-exporting these utility types for testing + consumer usage if needed
 export type Pick<T, Properties extends keyof T> = { [Key in Properties]: T[Key] }
@@ -313,13 +324,11 @@ type TokenizableProps = 'elevation' | 'fontWeight' | 'zIndex'
 type PolymorphicBoxPropsOrTokens<T extends Components = Components> = Omit<
   PolymorphicBoxProps<BaseHTMLElement<T>>,
   TokenizableProps
-> &
-  { [key in TokenizableProps]?: string }
+> & { [key in TokenizableProps]?: string }
 
 export type StyleProps<T extends Components = Components> = {
   [key in ComponentPseudoSelectors<T>]: PolymorphicBoxPropsOrTokens<T>
-} &
-  PolymorphicBoxPropsOrTokens<T>
+} & PolymorphicBoxPropsOrTokens<T>
 
 export type ComponentStyle<T extends Components = Components> = {
   baseStyle?: Partial<StyleProps<T>>
@@ -880,9 +889,7 @@ export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'>
     toggle: () => void
     getRef: React.Ref<any>
     isShown: NonNullable<PopoverProps['isShown']>
-    getInputProps: <T>(
-      options?: T
-    ) => T & {
+    getInputProps: <T>(options?: T) => T & {
       onChange: (event: React.ChangeEvent) => void
       onKeyDown: (event: React.KeyboardEvent) => void
       onBlur: (event: React.FocusEvent) => void
@@ -1845,21 +1852,6 @@ export interface NudgeProps {
 }
 
 export declare const Nudge: React.FC<NudgeProps>
-
-export interface PaneOwnProps {
-  background?: string
-  border?: boolean | string
-  borderTop?: boolean | string
-  borderRight?: boolean | string
-  borderBottom?: boolean | string
-  borderLeft?: boolean | string
-  elevation?: Elevation
-  hoverElevation?: Elevation
-  activeElevation?: Elevation
-}
-
-export type PaneProps = PolymorphicBoxProps<'div', PaneOwnProps>
-export declare const Pane: BoxComponent<PaneOwnProps, 'div'>
 
 export interface PaginationOwnProps {
   /**
@@ -3179,9 +3171,7 @@ export function majorScale(x: number): number
 
 export function minorScale(x: number): number
 
-export function extractStyles(options?: {
-  nonce?: React.ScriptHTMLAttributes<'script'>['nonce']
-}): {
+export function extractStyles(options?: { nonce?: React.ScriptHTMLAttributes<'script'>['nonce'] }): {
   css: string
   cache: {
     uiBoxCache: ReturnType<typeof boxExtractStyles>['cache']

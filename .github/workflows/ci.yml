@@ -36,7 +36,7 @@ jobs:
       - name: Run build
         run: yarn run build
       - name: Run prettier
-        run: yarn run prettier 'src/**/*.js' --check
+        run: yarn run prettier 'src/**/*.{js,ts,tsx}' --check
       - name: Run test
         run: yarn run test
       - name: Run docs lint

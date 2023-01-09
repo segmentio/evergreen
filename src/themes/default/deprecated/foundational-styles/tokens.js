@@ -80,8 +80,7 @@ const fontFamilies = {
   /**
    * @property {string} ui - Used for text and UI (which includes almost anything).
    */
-  ui:
-    '"SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+  ui: '"SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 
   /**
    * @property {string} mono - Used for code and sometimes numbers in tables.

@@ -89,12 +89,11 @@ const TableRow = memo(
 
     const clickable = useClickable({ onKeyDown: handleKeyDown, tabIndex })
 
-    const { className: themedClassName, height: themeHeight, ...boxProps } = useStyleConfig(
-      'TableRow',
-      { appearance, intent },
-      pseudoSelectors,
-      internalStyles
-    )
+    const {
+      className: themedClassName,
+      height: themeHeight,
+      ...boxProps
+    } = useStyleConfig('TableRow', { appearance, intent }, pseudoSelectors, internalStyles)
 
     const height = rest.height || themeHeight
 

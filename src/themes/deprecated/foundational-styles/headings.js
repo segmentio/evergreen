@@ -14,7 +14,7 @@ import fontFamilies from './fontFamilies'
  * @property {Object} headings.100
  */
 export default {
-  '900': {
+  900: {
     fontSize: '35px',
     fontWeight: 500,
     lineHeight: '40px',
@@ -23,7 +23,7 @@ export default {
     fontFamily: fontFamilies.display,
     color: colors.text.dark
   },
-  '800': {
+  800: {
     fontSize: '29px',
     fontWeight: 500,
     lineHeight: '32px',
@@ -32,7 +32,7 @@ export default {
     fontFamily: fontFamilies.display,
     color: colors.text.dark
   },
-  '700': {
+  700: {
     fontSize: '24px',
     fontWeight: 500,
     lineHeight: '28px',
@@ -41,7 +41,7 @@ export default {
     fontFamily: fontFamilies.display,
     color: colors.text.dark
   },
-  '600': {
+  600: {
     fontSize: '20px',
     fontWeight: 500,
     lineHeight: '24px',
@@ -50,7 +50,7 @@ export default {
     fontFamily: fontFamilies.display,
     color: colors.text.dark
   },
-  '500': {
+  500: {
     fontSize: '16px',
     fontWeight: 500,
     lineHeight: '20px',
@@ -59,7 +59,7 @@ export default {
     fontFamily: fontFamilies.ui,
     color: colors.text.dark
   },
-  '400': {
+  400: {
     fontSize: '14px',
     fontWeight: 600,
     lineHeight: '20px',
@@ -68,7 +68,7 @@ export default {
     fontFamily: fontFamilies.ui,
     color: colors.text.dark
   },
-  '300': {
+  300: {
     fontSize: '12px',
     fontWeight: 600,
     lineHeight: '16px',
@@ -77,7 +77,7 @@ export default {
     fontFamily: fontFamilies.ui,
     color: colors.text.dark
   },
-  '200': {
+  200: {
     fontSize: '12px',
     fontWeight: 600,
     lineHeight: '16px',
@@ -86,7 +86,7 @@ export default {
     fontFamily: fontFamilies.ui,
     color: colors.text.muted
   },
-  '100': {
+  100: {
     fontSize: '11px',
     fontWeight: 400,
     textTransform: 'uppercase',
