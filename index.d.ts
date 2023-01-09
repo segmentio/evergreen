@@ -7,7 +7,7 @@ import { extractStyles as boxExtractStyles, BoxProps, BoxComponent, PolymorphicB
 /**
  * Generated types that are used for composition in manually written types need to be imported to be resolved
  */
-import type { PaneProps, PaneOwnProps } from './types'
+import type { PaneOwnProps } from './types'
 
 export type {
   BoxProps,
