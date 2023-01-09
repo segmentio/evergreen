@@ -50,7 +50,7 @@ const Spinner = memo(
         }, delay)
       }
 
-      return function() {
+      return function () {
         clearTimeout(delayTimer)
       }
     }, [delay])

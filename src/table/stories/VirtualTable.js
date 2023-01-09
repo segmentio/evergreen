@@ -67,9 +67,7 @@ export default class VirtualTable extends React.PureComponent {
             label="scrollToAlignment"
             onChange={event => this.setState({ scrollToAlignment: event.target.value })}
           >
-            <option value="" checked>
-              scrollToAlignment
-            </option>
+            <option value="">scrollToAlignment</option>
             <option value="auto">Auto</option>
             <option value="start">Start</option>
             <option value="center">Center</option>
