@@ -102,9 +102,10 @@ const _Pane = <T extends React.ElementType = 'div'>(props: PaneProps<T>, ref: Fo
   return <Box ref={ref} className={className} {...themedProps} {...restProps} />
 }
 
-const Pane = memo(forwardRef(_Pane)) as typeof _Pane
+const Pane = memo(forwardRef(_Pane)) as <T extends React.ElementType = 'div'>(props: PaneProps<T>) => JSX.Element
 
-;(Pane as any).propTypes = {
+// @ts-expect-error TS(2339): Property 'propTypes' does not exist on type '<E ex... Remove this comment to see the full error message
+Pane.propTypes = {
   /**
    * Composes the Box component as the base.
    */

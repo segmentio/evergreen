@@ -4,6 +4,10 @@ import * as React from 'react'
 import { DownshiftProps } from 'downshift'
 import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition'
 import { extractStyles as boxExtractStyles, BoxProps, BoxComponent, PolymorphicBoxProps } from 'ui-box'
+/**
+ * Generated types that are used for composition in manually written types need to be imported to be resolved
+ */
+import type { PaneProps, PaneOwnProps } from './types'
 
 export type {
   BoxProps,
