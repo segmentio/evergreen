@@ -28,9 +28,7 @@
     "esm",
     "umd",
     "index.d.ts",
-    "codemods/dist",
-    "!**/*.test.js",
-    "!**/*.stories.js"
+    "codemods/dist"
   ],
   "sideEffects": false,
   "scripts": {
