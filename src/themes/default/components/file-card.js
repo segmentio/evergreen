@@ -10,9 +10,11 @@ const baseStyle = {
   alignItems: 'center',
   justifyContent: 'space-between',
 
-  _invalid: {
-    backgroundColor: 'colors.red25',
-    borderColor: 'colors.red500'
+  selectors: {
+    _invalid: {
+      backgroundColor: 'colors.red25',
+      borderColor: 'colors.red500'
+    }
   }
 }
 

@@ -1,5 +1,4 @@
 import React, { memo, forwardRef } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box, { dimensions, spacing, position, layout } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -23,21 +22,16 @@ const TextDropdownButton = memo(
       ...restProps
     } = props
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'TextDropdownButton',
-      { size },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('TextDropdownButton', { size }, pseudoSelectors, internalStyles)
 
     return (
       <Box
         is={is}
         ref={ref}
         type={is === 'button' ? 'button' : undefined}
-        className={cx(themedClassName, className)}
+        className={className}
         data-active={isActive || undefined}
-        {...boxProps}
+        {...themedProps}
         {...restProps}
         disabled={disabled || isLoading}
       >

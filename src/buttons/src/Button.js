@@ -1,5 +1,4 @@
 import React, { memo, forwardRef } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -37,18 +36,15 @@ export const internalStyles = {
   whiteSpace: 'nowrap',
   WebkitFontSmoothing: 'antialiased',
   WebkitAppearance: 'none',
-  MozAppearance: 'none',
-  '&::-moz-focus-inner ': {
-    border: 0
-  }
+  MozAppearance: 'none'
 }
 
 export const pseudoSelectors = {
-  _active: '&:not([disabled]):active, &:not([disabled])[aria-expanded="true"], &:not([disabled])[data-active]',
+  _active: '&:not([disabled]):active,&:not([disabled])[aria-expanded="true"],&:not([disabled])[data-active]',
   _disabled: '&[disabled]',
   _focus: '&:not([disabled]):focus',
   _focusAndActive:
-    '&:not([disabled]):focus:active, &:not([disabled])[aria-expanded="true"]:focus, &:not([disabled])[data-active]:focus',
+    '&:not([disabled]):focus:active,&:not([disabled])[aria-expanded="true"]:focus,&:not([disabled])[data-active]:focus',
   _hover: '&:not([disabled]):hover'
 }
 
@@ -77,14 +73,14 @@ const Button = memo(
       ...restProps
     } = props
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
+    const themedProps = useStyleConfig(
       'Button',
       { appearance, color, intent, size: restProps.size || 'medium' },
       pseudoSelectors,
       internalStyles
     )
 
-    const height = restProps.height || boxProps.height
+    const height = restProps.height || themedProps.height
     // Keep backwards compat font sizing if an explicit height was passed in.
     const textProps = !restProps.size && restProps.height ? getTextPropsForControlHeight(restProps.height) : {}
     const iconSize = getIconSizeForButton(height)
@@ -93,9 +89,9 @@ const Button = memo(
       <Box
         is={is}
         ref={ref}
-        className={cx(themedClassName, className)}
+        className={className}
         data-active={isActive || undefined}
-        {...boxProps}
+        {...themedProps}
         {...restProps}
         {...textProps}
         disabled={disabled || isLoading}

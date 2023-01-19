@@ -1,5 +1,4 @@
 import React, { memo, useState } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
@@ -20,7 +19,7 @@ const TableHead = memo(function TableHead(props) {
   const { accountForScrollbar = true, children, className, ...rest } = props
   const [scrollbarWidth, setScrollBarWidth] = useState(0)
 
-  const { className: themedClassName, height: themeHeight, ...boxProps } = useStyleConfig(
+  const { height: themeHeight, ...themedProps } = useStyleConfig(
     'TableHead',
     emptyObject,
     pseudoSelectors,
@@ -30,13 +29,7 @@ const TableHead = memo(function TableHead(props) {
   const height = rest.height || themeHeight
 
   return (
-    <Pane
-      paddingRight={scrollbarWidth}
-      className={cx(themedClassName, className)}
-      height={height}
-      {...boxProps}
-      {...rest}
-    >
+    <Pane paddingRight={scrollbarWidth} className={className} height={height} {...themedProps} {...rest}>
       {children} {accountForScrollbar && <ScrollbarSize handleScrollbarSize={setScrollBarWidth} />}
     </Pane>
   )

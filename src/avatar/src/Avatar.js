@@ -1,5 +1,4 @@
 import React, { useState, memo, forwardRef, useCallback } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -46,12 +45,7 @@ const Avatar = memo(
     } = props
 
     const hashValue = globalHash(propsHashValue || name)
-    const { className: themedClassName, ...styleProps } = useStyleConfig(
-      'Avatar',
-      { color, hashValue, shape },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Avatar', { color, hashValue, shape }, pseudoSelectors, internalStyles)
 
     const [imageHasFailedLoading, setImageHasFailedLoading] = useState(false)
     const onError = useCallback(() => setImageHasFailedLoading(true), [])
@@ -65,15 +59,7 @@ const Avatar = memo(
     }
 
     return (
-      <Box
-        width={size}
-        height={size}
-        title={name}
-        ref={ref}
-        className={cx(className, themedClassName)}
-        {...styleProps}
-        {...restProps}
-      >
+      <Box width={size} height={size} title={name} ref={ref} className={className} {...themedProps} {...restProps}>
         {(imageUnavailable || forceShowInitials) && (
           <Text
             top={0}

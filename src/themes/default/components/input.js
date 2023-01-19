@@ -10,14 +10,16 @@ const baseStyle = {
   paddingX: 12,
   transition: 'box-shadow 80ms ease-in-out',
 
-  _placeholder: {
-    color: 'colors.gray600'
-  },
+  selectors: {
+    _placeholder: {
+      color: 'colors.gray600'
+    },
 
-  _disabled: {
-    cursor: 'not-allowed',
-    backgroundColor: 'colors.gray100',
-    color: 'colors.muted'
+    _disabled: {
+      cursor: 'not-allowed',
+      backgroundColor: 'colors.gray100',
+      color: 'colors.muted'
+    }
   }
 }
 
@@ -26,14 +28,16 @@ const appearances = {
     backgroundColor: 'white',
     borderColor: 'colors.gray400',
 
-    _focus: {
-      zIndex: 'zIndices.focused',
-      boxShadow: 'shadows.focusRing',
-      borderColor: 'colors.blue200'
-    },
+    selectors: {
+      _focus: {
+        zIndex: 'zIndices.focused',
+        boxShadow: 'shadows.focusRing',
+        borderColor: 'colors.blue200'
+      },
 
-    _invalid: {
-      borderColor: 'colors.red500'
+      _invalid: {
+        borderColor: 'colors.red500'
+      }
     }
   },
   none: {

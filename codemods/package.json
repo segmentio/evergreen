@@ -1,15 +1,27 @@
 {
   "name": "evergreen-ui-codemods",
+  "private": true,
   "version": "5.0.0",
   "description": "Codemods for evergreen-ui",
   "repository": "segmentio/evergreen",
   "license": "MIT",
   "scripts": {
-    "test": "jest --bail"
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "yarn clean",
+    "test": "jest"
   },
   "devDependencies": {
-    "jest": "^26.0.1",
-    "jscodeshift": "^0.9.0"
+    "@types/common-tags": "^1.8.1",
+    "@types/jest": "27.5.0",
+    "@types/jscodeshift": "0.11.5",
+    "@types/lodash.startcase": "4.4.7",
+    "@types/node": "18.11.9",
+    "common-tags": "1.8.2",
+    "jest": "28.0.1",
+    "jscodeshift": "0.14.0",
+    "ts-jest": "28.0.1",
+    "typescript": "4.9.3"
   },
   "dependencies": {
     "lodash.startcase": "^4.4.0"

@@ -13,9 +13,9 @@ const IconButton = memo(
     const { appearance, intent = 'none', size = 'medium' } = props
 
     // Composes the exact same styles as button
-    const styleProps = useStyleConfig('Button', { appearance, intent, size }, pseudoSelectors, internalStyles)
+    const themedProps = useStyleConfig('Button', { appearance, intent, size }, pseudoSelectors, internalStyles)
 
-    const height = restProps.height || styleProps.height
+    const height = restProps.height || themedProps.height
     const relativeIconSize = getIconSizeForButton(height)
 
     return (

@@ -1,0 +1,222 @@
+# Evergreen v7 Migration Guide
+
+Evergreen v7 is primarily a maintenance release focusing on stability and simplicity. The most notable change in this release is the removal of [`glamor`](https://github.com/threepointone/glamor) as a fallback css-in-js solution to [`ui-box`](https://github.com/segmentio/ui-box). Glamor has not been maintained in a number of years, and we're finally able to close out some long-standing security vulnerability issues reported through this dependency - [#1304](https://github.com/segmentio/evergreen/issues/1304), [#1552](https://github.com/segmentio/evergreen/issues/1552), [#1146](https://github.com/segmentio/evergreen/issues/1146), [#1519](https://github.com/segmentio/evergreen/issues/1519), [#1533](https://github.com/segmentio/evergreen/issues/1533), and so on.
+
+While there should be no significant visual changes introduced with this change, there was a large internal refactoring ([#1554](https://github.com/segmentio/evergreen/issues/1554)) to swap component themes and internal styles to use the updated `ui-box` functionality to replace `glamor`.
+
+# Component themes now define pseudoselectors under selectors key {#selectors}
+
+[`ui-box@5.2.0`](https://github.com/segmentio/ui-box/releases/tag/v5.2.0) introduced the ability to define selectors for a `Box` component. Since a `Box` component can be polymorphic and accept arbitrary props, we needed a way to determine what props were meant to define hover, active, focus, etc. states. See the [`selectors`](https://github.com/segmentio/ui-box#selectors) section in the `ui-box` readme for more information.
+
+<InlineAlert>
+  If you were using Evergreen v6 without a custom theme, or you weren't overriding any pseudoselectors, you shouldn't
+  need to make any changes here.
+</InlineAlert>
+
+Any pseudoselectors defined in a custom theme will need to be moved under a `selectors` object, for example:
+
+```diff readonly
+const baseStyle = {
+  outline: 'none',
+  textDecoration: 'none',
+  display: 'flex',
+  position: 'relative',
+  paddingX: 12,
+
++  selectors: {
+    _isSelectable: {
+      cursor: 'pointer'
+    },
+
+    _disabled: {
+      cursor: 'not-allowed',
+      userSelect: 'none'
+    }
++  }
+}
+```
+
+# No more classicTheme {#classic-theme}
+
+The `classicTheme` was maintained in v6 to allow consumers to upgrade without forcing an entirely new look-and-feel. However, there were some missed components ([#1511](https://github.com/segmentio/evergreen/issues/1511)), and new components like the [`FileUploader`](/components/file-uploader) were not retrofitted for the old visual style.
+
+Taking into account the refactoring effort for the `selectors` object and v6 being out for close to 2 years now, we think it's time to sunset the classic theme in favor of our modern visual design.
+
+```diff readonly
+import React from 'react'
+-import { classicTheme, ThemeProvider } from 'evergreen-ui'
++import { defaultTheme, ThemeProvider } from 'evergreen-ui'
+
+const App: React.FC = (props) => {
+  const { children } = props
+-  return <ThemeProvider value={classicTheme}>{children}</ThemeProvider>
++  return <ThemeProvider value={defaultTheme}>{children}</ThemeProvider>
+}
+```
+
+<InlineAlert marginTop={24}>
+  While we strongly encourage migrating to the defaultTheme, we have provided a codemod that ejects the classicTheme
+  object into your local codebase. It has not been updated to use the new 'selectors' key syntax, so use at your own
+  discretion.
+</InlineAlert>
+
+<inlineCode>
+  npm i -g jscodeshift && npx jscodeshift -t node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/eject-classic-theme.js
+  --parser=tsx --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
+</inlineCode>
+
+<p marginTop={24}>
+  To easily change imports from <inlineCode>evergreen-ui</inlineCode> to the local <inlineCode>classicTheme</inlineCode>{' '}
+  object you've ejected, you can use this codemod:
+</p>
+
+<inlineCode>
+  npm i -g jscodeshift && npx jscodeshift -t
+  node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/replace-imports-with-local-path.js
+  --localPath=themes/classic-theme --importName=classicTheme --parser=tsx --extensions=js,jsx,ts,tsx fileOrDirectory
+  --dry --print
+</inlineCode>
+
+# No more deprecatedDefaultTheme {#deprecated-default-theme}
+
+Similar to the `classicTheme`, we are no longer exporting the `deprecatedDefaultTheme` object which contained color palette and typography tokens.
+
+<InlineAlert>
+  While we strongly encourage migrating to the defaultTheme, we have provided a codemod that ejects the
+  deprecatedDefaultTheme object into your local codebase.
+</InlineAlert>
+
+<inlineCode>
+  npm i -g jscodeshift && npx jscodeshift -t
+  node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/eject-deprecated-default-theme.js --parser=tsx
+  --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
+</inlineCode>
+
+<p marginTop={24}>
+  To easily change imports from <inlineCode>evergreen-ui</inlineCode> to the local{' '}
+  <inlineCode>deprecatedDefaultTheme</inlineCode> object you've ejected, you can use this codemod:
+</p>
+
+<inlineCode>
+  npm i -g jscodeshift && npx jscodeshift -t
+  node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/replace-imports-with-local-path.js
+  --localPath=themes/deprecated-default-theme --importName=deprecatedDefaultTheme --parser=tsx
+  --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
+</inlineCode>
+
+# Nudge has been replaced with Pulsar {#nudge}
+
+The `Nudge` component has been replaced with a simpler component named [`Pulsar`](/components/pulsar). This component has a similar look, but does not wrap children or include the tooltip functionality that was previously available.
+
+```diff readonly
+import React from 'react'
+-import { Nudge, Paragraph } from 'evergreen-ui'
++import { Pulsar, Pane, Paragraph } from 'evergreen-ui'
+
+-<Nudge position={Position.TOP_LEFT} isShown={true}>
+-  <Paragraph>Hello world</Paragraph>
+-</Nudge>
++<Pane position="relative" display="inline-block">
++  <Pulsar position={Position.TOP_LEFT} />
++  <Paragraph>Hello world</Paragraph>
++</Pane>
+```
+
+`Nudge` components leveraging the `tooltipContent` prop will need to be updated to render a [`Tooltip`](/components/tooltip) or [`Popover`](/components/popver) similar to this:
+
+```diff readonly
+import React from 'react'
+-import { Nudge, Paragraph } from 'evergreen-ui'
++import { Tooltip, Pulsar, Pane, Paragraph } from 'evergreen-ui'
+
+-<Nudge isShown={true} tooltipContent="Hello world">
+-  <Paragraph>Hello world</Paragraph>
+-</Nudge>
++<Pane position="relative" display="inline-block">
++  <Tooltip content="Hello world">
++    <Pulsar />
++  </Tooltip>
++  <Paragraph>Hello world</Paragraph>
++</Pane>
+```
+
+<InlineAlert marginTop={24}>
+  We have provided a codemod that should be able to programmatically update instances of the Nudge component when props
+  can be easily identified. You should double check that the styling and functionality is correct for your use-case.
+</InlineAlert>
+
+<inlineCode>
+  npm i -g jscodeshift && npx jscodeshift -t node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/replace-nudge.js
+  --parser=tsx --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
+</inlineCode>
+
+# No more SidebarTab {#sidebar-tab}
+
+The `SidebarTab` component has been removed. The same visual style can be achieved by rendering a `Tab` with the `direction="vertical"` prop.
+
+```diff readonly
+import React from 'react'
+-import { SidebarTab } from 'evergreen-ui'
++import { Tab } from 'evergreen-ui'
+
+-<SidebarTab>Settings</SidebarTab>
++<Tab direction="vertical">Settings</Tab>
+```
+
+<InlineAlert marginTop={24}>
+  We have provided a codemod that should be able to programmatically update instances of the SidebarTab component when
+  props can be easily identified.
+</InlineAlert>
+
+<inlineCode>
+  npm i -g jscodeshift && npx jscodeshift -t node_modules/evergreen-ui/codemods/dist/6.0.0-7.0.0/replace-sidebar-tab.js
+  --parser=tsx --extensions=js,jsx,ts,tsx fileOrDirectory --dry --print
+</inlineCode>
+
+# No more SegmentedControl {#segmented-control}
+
+The `SegmentedControl` component has been removed. The same visual style can be achieved by rendering a group of components ([`Button`](/components/buttons), [`TextInput`](/components/text-input), etc) in a [`Group`](/components/group).
+
+Click event and active state management now needs to be handled manually - the `Group` component only manages the border/size styling as well as the `role="group"` attribute.
+
+```diff readonly
+import React, { useState } from 'react'
+-import { SegmentedControl } from 'evergreen-ui'
++import { Group, Button } from 'evergreen-ui'
+
+const OPTIONS = [
+  { label: 'Small (24px)', value: 'small' },
+  { label: 'Medium (32px)', value: 'medium' },
+  { label: 'Large (40px)', value: 'large' }
+]
+
+const App: React.FC = () => {
+  const [size, setSize] = useState<string>('small')
+
+  return (
+-    <SegmentedControl
+-      onChange={setSize}
+-      options={OPTIONS}
+-      value={size}
+-    />
++    <Group>
++      {OPTIONS.map(({ value, label }) => (
++        <Button
++          isActive={value === size}
++          key={label}
++          onClick={() => setSize(value)}
++        >
++          {label}
++        </Button>
++      ))}
++    </Group>
++  )
+  )
+}
+```
+
+# Positioner component returns BoxProps now {#positioner}
+
+The `css` object that the `Positioner` component returns is now in a slightly different shape - it now returns `BoxProps` which are meant to be spread onto a `Box` component (primarily to support the `selectors` object). Previously, you could pass this object to `glamor` and return a serialized class name reprsenting the styles.
+
+Any consumers leveraging the `Positioner` component will need to be updated to use a wrapping `Box` for the `css` render prop. Take a look at the changes to the [`Popover`](https://github.com/segmentio/evergreen/pull/1554/files#diff-8e4d3e568177c7ba701bae764ab949cbbcbf743d669884df8c07017cd0834385L308-R309) or [`Tooltip`](https://github.com/segmentio/evergreen/pull/1554/files#diff-a8268ca272c1914c830701ac604a7a967ab2578a44769fb60047c5f881b5a587L141-R140) components in [#1554](https://github.com/segmentio/evergreen/pull/1554) for an example.

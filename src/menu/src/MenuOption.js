@@ -20,12 +20,7 @@ const MenuOption = memo(function MenuOption(props) {
 
   const { onKeyDown, tabIndex } = useClickable()
 
-  const { className: themedClassName, ...boxProps } = useStyleConfig(
-    'MenuItem',
-    { appearance },
-    pseudoSelectors,
-    internalStyles
-  )
+  const themedProps = useStyleConfig('MenuItem', { appearance }, pseudoSelectors, internalStyles)
 
   const textProps = isSelected
     ? {
@@ -40,13 +35,12 @@ const MenuOption = memo(function MenuOption(props) {
       id={id}
       role="menuitemradio"
       tabIndex={tabIndex}
-      className={themedClassName}
       onClick={handleClick}
       onKeyDown={onKeyDown}
       data-isselectable="true"
       aria-checked={isSelected}
       height={40}
-      {...boxProps}
+      {...themedProps}
     >
       {isSelected && (
         <TickIcon aria-hidden color="selected" marginLeft={16} marginRight={-4} size={16} flexShrink={0} />
