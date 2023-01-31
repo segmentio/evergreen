@@ -7,7 +7,7 @@ const baseStyle = {
 const appearances = {
   default: {
     backgroundColor: 'white',
-    border: theme => `1px solid ${theme.colors.gray500}`,
+    border: theme => `1px solid ${theme.colors.gray400}`,
     color: 'colors.gray800',
 
     selectors: {
@@ -27,6 +27,7 @@ const appearances = {
       },
 
       _focus: {
+        borderColor: 'colors.blue200',
         boxShadow: 'shadows.focusRing'
       },
 
