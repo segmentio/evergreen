@@ -12,7 +12,7 @@ import getFileRejections from './get-file-rejections'
 /**
  * @typedef {object} SplitFilesResult
  * @property {File[]} accepted
- * @property {FileRejection[]} rejected
+ * @property {import('./get-file-rejections').FileRejection[]} rejected
  */
 
 /**

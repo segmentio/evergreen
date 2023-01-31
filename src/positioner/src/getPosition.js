@@ -154,12 +154,13 @@ const getTransformOrigin = ({ dimensions, position, rect, targetCenter }) => {
 
 /**
  * Function that takes in numbers and position and gives the final coords.
- * @param {Position} position — the position the positioner should be on.
- * @param {Object} dimensions — the dimensions of the positioner.
- * @param {Rect} targetRect — the rect of the target.
- * @param {Number} targetOffset - offset from the target.
- * @param {Object} viewport - the width and height of the viewport.
- * @param {Number} viewportOffset - offset from the viewport.
+ * @param {Object} input
+ * @param {Position} input.position — the position the positioner should be on.
+ * @param {Object} input.dimensions — the dimensions of the positioner.
+ * @param {Object} input.targetRect — the rect of the target.
+ * @param {Number} input.targetOffset - offset from the target.
+ * @param {Object} input.viewport - the width and height of the viewport.
+ * @param {Number} input.viewportOffset - offset from the viewport.
  * @return {Object} - { rect: Rect, position: Position, transformOrigin: string }
  */
 export default function getFittedPosition({

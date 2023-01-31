@@ -1,9 +1,17 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "env": {
-    "browser": true
+    "browser": true,
+    "jest": true
   },
-  "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended", "standard", "prettier", "prettier/react"],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "standard",
+    "prettier",
+    "prettier/react",
+    "plugin:@typescript-eslint/eslint-recommended"
+  ],
   "settings": {
     "react": {
       "version": "detect"
@@ -14,12 +22,14 @@
       "jsx": true
     },
     "ecmaVersion": 2015,
+    "project": "tsconfig.json",
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "sort-destructure-keys"],
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "sort-destructure-keys"],
   "rules": {
     "space-before-function-paren": "off",
-    "no-unused-vars": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
     "react/display-name": "off",
     "sort-destructure-keys/sort-destructure-keys": "error",
     "no-console": [
@@ -45,11 +55,15 @@
           "caseInsensitive": true
         }
       }
-    ]
+    ],
+    "react/prop-types": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["off"],
+    "@typescript-eslint/consistent-type-exports": "error"
   },
   "overrides": [
     {
-      "files": ["*.test.js"],
+      "files": ["*.test.js", "*.test.ts", "*.test.tsx"],
       "env": {
         "jest": true
       }

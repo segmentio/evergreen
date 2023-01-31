@@ -8,7 +8,7 @@ const prettier = require('prettier')
 
 const iconsPath = path.resolve(__dirname, '../src/icons/generated')
 const iconsIndexPath = path.resolve(__dirname, '../src/icons/index.js')
-const indexPath = path.resolve(__dirname, '../src/index.js')
+const indexPath = path.resolve(__dirname, '../src/index.ts')
 const typedefPath = path.resolve(__dirname, '../index.d.ts')
 const iconNamesMapperPath = path.resolve(__dirname, '../src/icons/generated/IconNameMapper.js')
 const fileHeader = `// This is a generated file. DO NOT modify directly.\n\n`

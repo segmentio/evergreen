@@ -13,3 +13,4 @@ coverage
 /storybook-static/
 .eslintcache
 /codemods/dist
+/types/
