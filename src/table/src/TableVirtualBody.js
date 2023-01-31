@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState, useEffect, useRef } from 'react'
 import VirtualList from '@segment/react-tiny-virtual-list'
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
@@ -29,6 +29,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
   const [paneRef, setPaneRef] = useState()
   const [isIntegerHeight, setIsIntegerHeight] = useState(false)
   const [calculatedHeight, setCalculatedHeight] = useState(0)
+  const requestId = useRef(null)
 
   const updateOnResize = () => {
     autoHeights = []
@@ -52,7 +53,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
     }
 
     // When height is still 0 (or paneRef is not valid) try recursively until success.
-    requestAnimationFrame(() => {
+    requestId.current = requestAnimationFrame(() => {
       updateOnResize()
     })
   }
@@ -80,6 +81,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
 
     return () => {
       window.removeEventListener('resize', onResize)
+      cancelAnimationFrame(requestId.current)
     }
   }, [])
 
