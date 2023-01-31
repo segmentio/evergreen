@@ -2,7 +2,6 @@ import { useMemo, useRef } from 'react'
 import merge from 'lodash.merge'
 import isEqual from 'react-fast-compare'
 import { splitBoxProps } from 'ui-box'
-import warning from '../lib/warning'
 import { useTheme, get, resolveThemeTokens } from '../theme'
 
 /**
@@ -109,10 +108,6 @@ function useBoxProps(styleProps, placeholderSelectors) {
 
     const result = { ...matchedProps }
     if (!isEqual({}, remainingProps)) {
-      warning(
-        process.env.NODE_ENV === 'development',
-        `Assigning unhandled ui-box props to 'style':\n${JSON.stringify(remainingProps, undefined, 4)}`
-      )
       result.style = remainingProps
     }
 
