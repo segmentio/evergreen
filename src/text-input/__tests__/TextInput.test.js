@@ -90,13 +90,11 @@ describe('TextInput', () => {
   it('should render with transparent border when appearance is none', () => {
     render(makeTextInputFixture({ appearance: 'none' }))
 
-    // For some reason we were applying a border: 1px solid transparent style and then overriding it with
-    // the individual borderColor style, see https://github.com/segmentio/evergreen/issues/1581
     expect(screen.getByTestId('input')).toHaveStyle({
-      borderTop: '1px solid transparent',
-      borderBottom: '1px solid transparent',
-      borderLeft: '1px solid transparent',
-      borderRight: '1px solid transparent'
+      borderTopColor: 'transparent',
+      borderBottomColor: 'transparent',
+      borderLeftColor: 'transparent',
+      borderRightColor: 'transparent'
     })
   })
 })
