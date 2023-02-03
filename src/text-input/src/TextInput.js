@@ -15,7 +15,6 @@ const pseudoSelectors = {
 }
 
 const internalStyles = {
-  border: 'none',
   MozAppearance: 'none',
   outline: 'none',
   textDecoration: 'none',
