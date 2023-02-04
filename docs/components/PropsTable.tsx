@@ -26,7 +26,7 @@ type PropType =
       value: PropType[]
     }
   | {
-      name: 'custom'
+      name: 'custom' | 'signature'
       raw: string
     }
 
@@ -87,6 +87,7 @@ const resolveReadableType = (type: PropType | undefined): string => {
     case 'union':
       return type.value.map((subType: PropType) => resolveReadableType(subType)).join(' | ')
     case 'custom':
+    case 'signature':
       return type.raw
     default:
       return (type as { name: string }).name
