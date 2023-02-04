@@ -3,7 +3,7 @@ import SearchBar from './SearchBar'
 import { useTheme, majorScale, minorScale, Text, Pane } from 'evergreen-ui'
 
 const Sample: React.FC<{ hex: string; name: string; description?: string }> = ({ hex, name, description }) => {
-  const { colors } = useTheme() as any
+  const { colors } = useTheme()
   return (
     <Pane display="flex" alignItems="center">
       <Pane width={majorScale(10)} height={majorScale(10)} backgroundColor={hex} borderRadius={5} />
@@ -28,7 +28,7 @@ interface Props {}
 
 const ColorSwatch: React.FC<Props> = () => {
   const [query, setQuery] = useState<string>('')
-  const { colors } = useTheme() as any
+  const { colors } = useTheme()
   return (
     <Pane>
       <Pane marginBottom={majorScale(5)}>

@@ -8,7 +8,7 @@ interface Props {
 }
 
 const ResourceCard = ({ title, logo, url }: Props) => {
-  const { colors } = useTheme() as any
+  const { colors } = useTheme()
 
   return (
     <Pane width="100%">
