@@ -34,11 +34,13 @@ const themeOverridesOrAdditions: ThemeOverrides = {
         primary: {
           color: 'white',
           backgroundColor: '#fc7ef8',
-          _hover: {
-            backgroundColor: '#fc03f0'
-          },
-          _focus: {
-            boxShadow: '0 0 0 2px #fccafa'
+          selectors: {
+            _hover: {
+              backgroundColor: '#fc03f0'
+            },
+            _focus: {
+              boxShadow: '0 0 0 2px #fccafa'
+            }
           }
         },
         warning: {
