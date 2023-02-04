@@ -59,7 +59,7 @@ const PropsTable: React.FC<Props> = ({ data }) => {
                     </Pane>
                   </Table.Cell>
                   <Table.Cell>
-                    <Text>{resolveReadableType(tsType ?? type)}</Text>
+                    <InlineCode>{resolveReadableType(tsType ?? type)}</InlineCode>
                   </Table.Cell>
                   <Table.Cell>
                     <Paragraph>{description}</Paragraph>
