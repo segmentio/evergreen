@@ -337,9 +337,11 @@ type PolymorphicBoxPropsOrTokens<T extends Components = Components> = Omit<
   TokenizableProps
 > & { [key in TokenizableProps]?: string }
 
-export type StyleProps<T extends Components = Components> = {
-  [key in ComponentPseudoSelectors<T>]: PolymorphicBoxPropsOrTokens<T>
-} & PolymorphicBoxPropsOrTokens<T>
+export type StyleProps<T extends Components = Components> = Omit<PolymorphicBoxPropsOrTokens<T>, 'selectors'> & {
+  selectors: {
+    [key in ComponentPseudoSelectors<T>]: PolymorphicBoxPropsOrTokens<T>
+  }
+}
 
 export type ComponentStyle<T extends Components = Components> = {
   baseStyle?: Partial<StyleProps<T>>
