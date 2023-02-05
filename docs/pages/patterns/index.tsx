@@ -7,9 +7,7 @@ import Thumbnail from '../../components/Thumbnail'
 import SideNav from '../../components/SideNav'
 import IA from '../../utils/IA'
 
-interface Props {}
-
-const PatternsPage: React.FC<Props> = () => {
+const PatternsPage: React.FC = () => {
   const [query, setQuery] = useState<string>('')
 
   const evergreenPatterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))

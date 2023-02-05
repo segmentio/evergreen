@@ -3,10 +3,7 @@ import SearchBar from './SearchBar'
 import { css } from 'otion'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import * as evergreen from 'evergreen-ui'
-
-const { Pane, majorScale, Text, toaster } = evergreen
-
-interface Props {}
+import { Pane, majorScale, Text, toaster } from 'evergreen-ui'
 
 const Item: React.FC<{ name: string }> = ({ name }) => {
   const readableName = name.slice(0, name.indexOf('Icon'))
@@ -39,7 +36,7 @@ const Item: React.FC<{ name: string }> = ({ name }) => {
         >
           {/* eslint-disable-next-line */}
           {/*  @ts-ignore */}
-          {React.createElement(evergreen[name] as any, {
+          {React.createElement(evergreen[name] as React.ReactElement, {
             size: majorScale(3),
             color: 'default',
             marginBottom: majorScale(3),
@@ -54,7 +51,7 @@ const Item: React.FC<{ name: string }> = ({ name }) => {
     return null
   }
 }
-const IconSearch: React.FC<Props> = () => {
+const IconSearch: React.FC = () => {
   const [query, setQuery] = useState<string>('')
 
   const iconComponentNames = Object.keys(evergreen)

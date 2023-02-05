@@ -4,7 +4,6 @@ import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 import scrollIntoView from 'scroll-into-view-if-needed'
 import Link from 'next/link'
 import { Item } from '../utils/IA'
-// import router from 'next/router'
 
 interface Props {
   title?: string

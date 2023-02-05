@@ -1,9 +1,7 @@
 import React from 'react'
 import { Code, useTheme } from 'evergreen-ui'
 
-interface Props {}
-
-const InlineCode: React.FC<Props> = ({ children }) => {
+const InlineCode: React.FC = ({ children }) => {
   const { colors } = useTheme()
 
   return (

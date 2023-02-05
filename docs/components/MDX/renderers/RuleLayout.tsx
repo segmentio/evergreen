@@ -1,9 +1,7 @@
 import { majorScale, Pane } from 'evergreen-ui'
 import React from 'react'
 
-interface Props {}
-
-const RuleLayout: React.FC<Props> = ({ children }) => {
+const RuleLayout: React.FC = ({ children }) => {
   return (
     <Pane display="flex" marginBottom={majorScale(4)}>
       {children}
