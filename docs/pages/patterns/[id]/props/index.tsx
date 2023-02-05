@@ -37,7 +37,7 @@ const PatternPropsPage: React.FC<Props> = ({ componentProps, pattern, patterns }
       pageTitle={`${name} Documentation`}
       pageHeader={
         <PageHeader
-          title={name!}
+          title={name}
           description={description}
           githubLink={github}
           tabs={[
@@ -92,7 +92,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
     props = []
   }
 
-  const patterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const patterns = IA.patterns.items.sort((a, b) => (a.name > b.name ? 1 : -1))
   const pattern = patterns.find((item) => item.id === id)
 
   return {

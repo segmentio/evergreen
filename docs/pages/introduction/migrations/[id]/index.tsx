@@ -36,7 +36,7 @@ const MigrationsPage: React.FC<Props> = ({ source, navItems, selectedNavItem }) 
       navTitle="Introduction"
       pageTitle={`${id} Migration Guide`}
       selectedNavItem={selectedNavItem}
-      pageHeader={<PageHeader title={name!} description={description} tabs={MIGRATION_TABS} />}
+      pageHeader={<PageHeader title={name} description={description} tabs={MIGRATION_TABS} />}
       source={source}
     />
   )

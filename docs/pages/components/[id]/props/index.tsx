@@ -38,7 +38,7 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps, components, compo
       pageTitle={`${name} Documentation`}
       pageHeader={
         <PageHeader
-          title={name!}
+          title={name}
           description={description}
           githubLink={github}
           tabs={[
@@ -84,7 +84,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
-  const components = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const components = IA.components.items.sort((a, b) => (a.name > b.name ? 1 : -1))
   const component = components.find((component) => component.id === id)
 
   if (component?.inProgress) {

@@ -31,7 +31,7 @@ const FoundationPage: React.FC<Props> = ({ mdxSource, foundations, foundation })
       selectedNavItem={foundation}
       navPrefix="foundations"
       navTitle="Foundations"
-      pageHeader={<PageHeader title={name!} description={description} githubLink={github} />}
+      pageHeader={<PageHeader title={name} description={description} githubLink={github} />}
       source={mdxSource}
     />
   )
@@ -59,7 +59,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const fileContents = fs.readFileSync(path.join(process.cwd(), 'documentation', 'foundations', `${id}.mdx`)).toString()
 
   const mdxSource = await renderToString(fileContents, { components })
-  const foundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const foundations = IA.foundations.items.sort((a, b) => (a.name > b.name ? 1 : -1))
   const foundation = foundations.find((foundation) => foundation.id === id)
 
   return {

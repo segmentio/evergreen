@@ -10,7 +10,7 @@ import IA from '../../utils/IA'
 const PatternsPage: React.FC = () => {
   const [query, setQuery] = useState<string>('')
 
-  const evergreenPatterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const evergreenPatterns = IA.patterns.items.sort((a, b) => (a.name > b.name ? 1 : -1))
 
   const filteredItems = evergreenPatterns.filter((item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1)
 

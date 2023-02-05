@@ -32,12 +32,12 @@ const IntroductionPage: React.FC<Props> = ({ mdxSource, introduction, introducti
       navTitle="Introduction"
       pageHeader={
         <PageHeader
-          title={name!}
+          title={name}
           description={description}
           tabs={isMigrationsPage(introduction) ? MIGRATION_TABS : undefined}
         />
       }
-      pageTitle={name!}
+      pageTitle={name}
       selectedNavItem={introduction}
       source={mdxSource}
     />

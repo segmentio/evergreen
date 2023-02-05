@@ -43,7 +43,7 @@ const PatternPage: React.FC<Props> = ({ mdxSource, patterns, pattern }) => {
       pageHeader={
         !pattern.inProgress ? (
           <PageHeader
-            title={name!}
+            title={name}
             description={description}
             githubLink={github}
             tabs={[
@@ -59,7 +59,7 @@ const PatternPage: React.FC<Props> = ({ mdxSource, patterns, pattern }) => {
           />
         ) : null
       }
-      source={mdxSource!}
+      source={mdxSource}
     >
       {pattern.inProgress && (
         <ComingSoon>
@@ -91,7 +91,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
-  const patterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const patterns = IA.patterns.items.sort((a, b) => (a.name > b.name ? 1 : -1))
   const pattern = patterns.find((pattern) => pattern.id === id)
 
   if (pattern?.inProgress) {

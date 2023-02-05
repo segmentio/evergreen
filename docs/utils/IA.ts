@@ -13,9 +13,9 @@ const githubLink = (str: string) => {
  */
 
 export interface Item {
-  id?: string
+  id: string
   github?: string
-  name?: string
+  name: string
   title?: string
   description?: string
   image?: string

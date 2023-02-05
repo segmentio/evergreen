@@ -42,7 +42,7 @@ const ComponentPage: React.FC<Props> = ({ mdxSource, component, components }) =>
       pageHeader={
         !component.inProgress ? (
           <PageHeader
-            title={name!}
+            title={name}
             description={description}
             githubLink={github}
             tabs={[
@@ -90,7 +90,7 @@ interface Query {
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
-  const components = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const components = IA.components.items.sort((a, b) => (a.name > b.name ? 1 : -1))
   const component = components.find((component) => component.id === id)
 
   if (component?.inProgress) {

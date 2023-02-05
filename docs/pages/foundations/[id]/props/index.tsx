@@ -38,7 +38,7 @@ const FoundationPropsPage: React.FC<Props> = ({ componentProps, foundation, foun
       pageTitle={`${name} Documentation`}
       pageHeader={
         <PageHeader
-          title={name!}
+          title={name}
           description={description}
           githubLink={github}
           tabs={[
@@ -95,7 +95,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
     props = []
   }
 
-  const foundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const foundations = IA.foundations.items.sort((a, b) => (a.name > b.name ? 1 : -1))
   const foundation = foundations.find((item) => item.id === id)
 
   return {

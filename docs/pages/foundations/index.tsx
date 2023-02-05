@@ -12,7 +12,7 @@ interface Props {}
 const FoundationsPage: React.FC<Props> = () => {
   const [query, setQuery] = useState<string>('')
 
-  const evergreenFoundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const evergreenFoundations = IA.foundations.items.sort((a, b) => (a.name > b.name ? 1 : -1))
 
   const filteredItems = evergreenFoundations.filter(
     (item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
