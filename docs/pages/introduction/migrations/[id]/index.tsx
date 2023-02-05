@@ -43,7 +43,7 @@ const MigrationsPage: React.FC<Props> = ({ source, navItems, selectedNavItem }) 
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'introduction', 'migrations'))
+  const files = fs.readdirSync(path.join(process.cwd(), 'documentation', 'introduction', 'migrations'))
 
   const paths = files.map((file) => `/introduction/migrations/${file.split('.')[0]}`)
 

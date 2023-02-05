@@ -38,7 +38,7 @@ const FoundationPage: React.FC<Props> = ({ mdxSource, foundations, foundation })
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'foundations'))
+  const files = fs.readdirSync(path.join(process.cwd(), 'documentation', 'foundations'))
 
   const paths = files.map((file) => `/foundations/${file.split('.')[0]}`)
 

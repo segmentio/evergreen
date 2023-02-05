@@ -45,7 +45,7 @@ const IntroductionPage: React.FC<Props> = ({ mdxSource, introduction, introducti
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'introduction'))
+  const files = fs.readdirSync(path.join(process.cwd(), 'documentation', 'introduction'))
 
   const paths = files.map((file) => `/introduction/${file.split('.')[0]}`)
 

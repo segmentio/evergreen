@@ -66,7 +66,7 @@ const FoundationPropsPage: React.FC<Props> = ({ componentProps, foundation, foun
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'foundations'))
+  const files = fs.readdirSync(path.join(process.cwd(), 'documentation', 'foundations'))
 
   const paths = files.map((file) => `/foundations/${file.split('.')[0]}/props`)
 
