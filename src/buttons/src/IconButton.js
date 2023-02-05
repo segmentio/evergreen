@@ -23,6 +23,7 @@ const IconButton = memo(
         ref={ref}
         paddingLeft={0}
         paddingRight={0}
+        intent={intent}
         flex="none"
         height={height}
         width={height}
