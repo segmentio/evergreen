@@ -1,7 +1,7 @@
 import React from 'react'
 import fs from 'fs'
 import EntityOverviewTemplate, {
-  Props as EntityOverviewTemplateProps,
+  EntityOverviewTemplateProps,
 } from '../../../components/templates/EntityOverviewTemplate'
 import components from '../../../components/MDX/componentMapping'
 import { GetStaticPropsContext } from 'next'

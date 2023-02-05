@@ -5,9 +5,7 @@ import PageHeader from '../../components/PageHeader'
 import SideNav from '../../components/SideNav'
 import IA from '../../constants/IA'
 
-interface Props {}
-
-const IntroductionPage: React.FC<Props> = () => {
+const IntroductionPage: React.FC = () => {
   return (
     <Layout title="Introduction">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">

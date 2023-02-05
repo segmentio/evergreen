@@ -8,9 +8,7 @@ import SideNav from '../../components/SideNav'
 import IA from '../../constants/IA'
 import { sortItems } from '../../utils/sort-items'
 
-interface Props {}
-
-const ComponentsPage: React.FC<Props> = () => {
+const ComponentsPage: React.FC = () => {
   const [query, setQuery] = useState<string>('')
 
   const components = sortItems(IA.components.items)

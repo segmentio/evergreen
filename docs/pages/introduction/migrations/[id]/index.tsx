@@ -6,7 +6,7 @@ import path from 'path'
 import IA from '../../../../constants/IA'
 import PageHeader from '../../../../components/PageHeader'
 import EntityOverviewTemplate, {
-  Props as EntityOverviewTemplateProps,
+  EntityOverviewTemplateProps,
 } from '../../../../components/templates/EntityOverviewTemplate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import componentMapping from '../../../../components/MDX/componentMapping'

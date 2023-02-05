@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 
 import EntityOverviewTemplate, {
-  Props as EntityOverviewTemplateProps,
+  EntityOverviewTemplateProps,
 } from '../../../components/templates/EntityOverviewTemplate'
 import components from '../../../components/MDX/componentMapping'
 import { useRouter } from 'next/router'

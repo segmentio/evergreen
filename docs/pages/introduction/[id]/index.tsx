@@ -7,7 +7,7 @@ import path from 'path'
 import IA, { Item } from '../../../constants/IA'
 import PageHeader from '../../../components/PageHeader'
 import EntityOverviewTemplate, {
-  Props as EntityOverviewTemplateProps,
+  EntityOverviewTemplateProps,
 } from '../../../components/templates/EntityOverviewTemplate'
 import componentMapping from '../../../components/MDX/componentMapping'
 import { MIGRATION_TABS } from '../migrations/[id]'

@@ -10,7 +10,7 @@ import { Link } from 'evergreen-ui'
 import PageHeader from '../../../components/PageHeader'
 import componentMapping from '../../../components/MDX/componentMapping'
 import EntityOverviewTemplate, {
-  Props as EntityOverviewTemplateProps,
+  EntityOverviewTemplateProps,
 } from '../../../components/templates/EntityOverviewTemplate'
 import ComingSoon from '../../../components/ComingSoon'
 import { sortItems } from '../../../utils/sort-items'

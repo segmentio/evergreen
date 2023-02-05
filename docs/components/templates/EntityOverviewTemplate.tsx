@@ -6,7 +6,7 @@ import MDX from '../MDX'
 import SideNav from '../SideNav'
 import { Item } from '../../constants/IA'
 
-export interface Props {
+export interface EntityOverviewTemplateProps {
   pageTitle: string
   navTitle: string
   navItems: Item[]
@@ -16,7 +16,7 @@ export interface Props {
   source?: MdxRemote.Source | null
 }
 
-const EntityOverviewTemplate: React.FC<Props> = ({
+const EntityOverviewTemplate: React.FC<EntityOverviewTemplateProps> = ({
   pageTitle,
   navTitle,
   navItems,

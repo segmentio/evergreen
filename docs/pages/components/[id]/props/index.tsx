@@ -8,7 +8,7 @@ import PageHeader from '../../../../components/PageHeader'
 import PropsTable from '../../../../components/PropsTable'
 import getComponentDocs from '../../../../lib/component-docs'
 import EntityOverviewTemplate, {
-  Props as EntityOverviewTemplateProps,
+  EntityOverviewTemplateProps,
 } from '../../../../components/templates/EntityOverviewTemplate'
 import { Pane, majorScale } from 'evergreen-ui'
 import { sortItems } from '../../../../utils/sort-items'
