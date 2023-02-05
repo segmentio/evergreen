@@ -11,7 +11,7 @@ import EntityOverviewTemplate, {
   EntityOverviewTemplateProps,
 } from '../../../../components/templates/EntityOverviewTemplate'
 import getComponentDocs from '../../../../lib/component-docs'
-import { sortItems } from '../../../../utils/sort-items'
+import { findById, sortItems } from '../../../../utils/item-utils'
 import { Query } from '../../../../types/query'
 
 interface Props {
@@ -94,7 +94,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   }
 
   const foundations = sortItems(IA.foundations.items)
-  const foundation = foundations.find((item) => item.id === id)
+  const foundation = findById(foundations, id)
 
   return {
     props: {

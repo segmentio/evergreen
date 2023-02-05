@@ -12,6 +12,7 @@ import EntityOverviewTemplate, {
 import componentMapping from '../../../components/MDX/componentMapping'
 import { MIGRATION_TABS } from '../migrations/[id]'
 import { Query } from '../../../types/query'
+import { findById } from '../../../utils/item-utils'
 
 interface Props {
   mdxSource: MdxRemote.Source
@@ -61,7 +62,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { id } = params || {}
 
   const introductions = IA.introduction.items
-  const introduction = introductions.find((introduction) => introduction.id === id)
+  const introduction = findById(introductions, id)
 
   const mdxPath = isMigrationsPage(introduction)
     ? path.join(process.cwd(), 'documentation', 'introduction', 'migrations', 'v7.mdx')

@@ -14,7 +14,7 @@ import IA from '../../../constants/IA'
 import { Link } from 'evergreen-ui'
 import PageHeader from '../../../components/PageHeader'
 import ComingSoon from '../../../components/ComingSoon'
-import { sortItems } from '../../../utils/sort-items'
+import { findById, sortItems } from '../../../utils/item-utils'
 import { Query } from '../../../types/query'
 
 interface Props {
@@ -90,7 +90,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { id } = params || {}
 
   const patterns = sortItems(IA.patterns.items)
-  const pattern = patterns.find((pattern) => pattern.id === id)
+  const pattern = findById(patterns, id)
 
   if (pattern?.inProgress) {
     return {

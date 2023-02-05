@@ -11,6 +11,7 @@ import EntityOverviewTemplate, {
 import renderToString from 'next-mdx-remote/render-to-string'
 import componentMapping from '../../../../components/MDX/componentMapping'
 import { Query } from '../../../../types/query'
+import { findById } from '../../../../utils/item-utils'
 
 type Props = Pick<EntityOverviewTemplateProps, 'navItems' | 'selectedNavItem' | 'source'>
 
@@ -64,7 +65,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
 
   const source = await renderToString(fileContents, { components: componentMapping })
   const navItems = IA.introduction.items
-  const selectedNavItem = navItems.find((introduction) => introduction.id === 'migrations')
+  const selectedNavItem = findById(navItems, 'migrations')
 
   return {
     props: {

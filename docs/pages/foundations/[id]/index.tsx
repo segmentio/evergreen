@@ -10,7 +10,7 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
 import IA from '../../../constants/IA'
 import PageHeader from '../../../components/PageHeader'
-import { sortItems } from '../../../utils/sort-items'
+import { findById, sortItems } from '../../../utils/item-utils'
 import { Query } from '../../../types/query'
 
 interface Props {
@@ -58,7 +58,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
 
   const mdxSource = await renderToString(fileContents, { components })
   const foundations = sortItems(IA.foundations.items)
-  const foundation = foundations.find((foundation) => foundation.id === id)
+  const foundation = findById(foundations, id)
 
   return {
     props: {

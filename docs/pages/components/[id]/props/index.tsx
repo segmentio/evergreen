@@ -11,7 +11,7 @@ import EntityOverviewTemplate, {
   EntityOverviewTemplateProps,
 } from '../../../../components/templates/EntityOverviewTemplate'
 import { Pane, majorScale } from 'evergreen-ui'
-import { sortItems } from '../../../../utils/sort-items'
+import { findById, sortItems } from '../../../../utils/item-utils'
 import { Query } from '../../../../types/query'
 
 interface Props {
@@ -83,7 +83,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { id } = params || {}
 
   const components = sortItems(IA.components.items)
-  const component = components.find((component) => component.id === id)
+  const component = findById(components, id)
 
   if (component?.inProgress) {
     return {

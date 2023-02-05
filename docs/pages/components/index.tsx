@@ -6,7 +6,7 @@ import PageHeader from '../../components/PageHeader'
 import Thumbnail from '../../components/Thumbnail'
 import SideNav from '../../components/SideNav'
 import IA from '../../constants/IA'
-import { sortItems } from '../../utils/sort-items'
+import { sortItems } from '../../utils/item-utils'
 
 const ComponentsPage: React.FC = () => {
   const [query, setQuery] = useState<string>('')
