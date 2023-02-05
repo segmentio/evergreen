@@ -42,11 +42,13 @@ const colorKeyForIntent = intent => {
   }
 }
 
-const borderColorForIntent = (intent, isHover) => {
+const borderColorForIntent = (intent, isHover, ) => {
   if (intent === 'danger') {
     return `red${isHover ? 500 : 300}`
   } else if (intent === 'success') {
     return `green${isHover ? 400 : 300}`
+  } else if(intent === 'input') {
+    return `gray${isHover ? 600 : 400}`
   } else {
     return `gray${isHover ? 600 : 500}`
   }
@@ -91,7 +93,7 @@ const appearances = {
     selectors: {
       _disabled: {
         color: 'colors.gray500',
-        borderColor: 'colors.gray300'
+        borderColor: (_, props) => props.intent === 'input' ? 'colors.gray400' : 'colors.gray300'
       },
 
       _hover: {
