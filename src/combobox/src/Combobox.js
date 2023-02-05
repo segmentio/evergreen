@@ -186,7 +186,7 @@ Combobox.propTypes = {
   isLoading: PropTypes.bool,
 
   /**
-   * intent parent means it will take dafult border color from input.
+   * Default intent is 'input' means it will take dafault border color from input.
    */
   intent: PropTypes.string,
 
