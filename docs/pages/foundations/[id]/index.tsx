@@ -8,8 +8,10 @@ import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
-import IA from '../../../utils/IA'
+import IA from '../../../constants/IA'
 import PageHeader from '../../../components/PageHeader'
+import { sortItems } from '../../../utils/sort-items'
+import { Query } from '../../../types/query'
 
 interface Props {
   foundations: EntityOverviewTemplateProps['navItems']
@@ -48,10 +50,6 @@ export async function getStaticPaths() {
   }
 }
 
-interface Query {
-  [k: string]: string
-}
-
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
@@ -59,7 +57,7 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const fileContents = fs.readFileSync(path.join(process.cwd(), 'documentation', 'foundations', `${id}.mdx`)).toString()
 
   const mdxSource = await renderToString(fileContents, { components })
-  const foundations = IA.foundations.items.sort((a, b) => (a.name > b.name ? 1 : -1))
+  const foundations = sortItems(IA.foundations.items)
   const foundation = foundations.find((foundation) => foundation.id === id)
 
   return {

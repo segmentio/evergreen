@@ -3,13 +3,14 @@ import fs from 'fs'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import path from 'path'
-import IA from '../../../../utils/IA'
+import IA from '../../../../constants/IA'
 import PageHeader from '../../../../components/PageHeader'
 import EntityOverviewTemplate, {
   Props as EntityOverviewTemplateProps,
 } from '../../../../components/templates/EntityOverviewTemplate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import componentMapping from '../../../../components/MDX/componentMapping'
+import { Query } from '../../../../types/query'
 
 type Props = Pick<EntityOverviewTemplateProps, 'navItems' | 'selectedNavItem' | 'source'>
 
@@ -51,10 +52,6 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   }
-}
-
-interface Query {
-  [k: string]: string
 }
 
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {

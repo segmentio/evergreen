@@ -4,13 +4,14 @@ import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
-import IA, { Item } from '../../../utils/IA'
+import IA, { Item } from '../../../constants/IA'
 import PageHeader from '../../../components/PageHeader'
 import EntityOverviewTemplate, {
   Props as EntityOverviewTemplateProps,
 } from '../../../components/templates/EntityOverviewTemplate'
 import componentMapping from '../../../components/MDX/componentMapping'
 import { MIGRATION_TABS } from '../migrations/[id]'
+import { Query } from '../../../types/query'
 
 interface Props {
   mdxSource: MdxRemote.Source
@@ -53,10 +54,6 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   }
-}
-
-interface Query {
-  [k: string]: string
 }
 
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {

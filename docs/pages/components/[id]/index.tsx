@@ -5,7 +5,7 @@ import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
-import IA from '../../../utils/IA'
+import IA from '../../../constants/IA'
 import { Link } from 'evergreen-ui'
 import PageHeader from '../../../components/PageHeader'
 import componentMapping from '../../../components/MDX/componentMapping'
@@ -13,6 +13,8 @@ import EntityOverviewTemplate, {
   Props as EntityOverviewTemplateProps,
 } from '../../../components/templates/EntityOverviewTemplate'
 import ComingSoon from '../../../components/ComingSoon'
+import { sortItems } from '../../../utils/sort-items'
+import { Query } from '../../../types/query'
 
 interface Props {
   components: EntityOverviewTemplateProps['navItems']
@@ -83,14 +85,10 @@ export async function getStaticPaths() {
   }
 }
 
-interface Query {
-  [k: string]: string
-}
-
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
-  const components = IA.components.items.sort((a, b) => (a.name > b.name ? 1 : -1))
+  const components = sortItems(IA.components.items)
   const component = components.find((component) => component.id === id)
 
   if (component?.inProgress) {

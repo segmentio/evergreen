@@ -3,7 +3,7 @@ import { Pane, majorScale } from 'evergreen-ui'
 import Layout from '../../components/document/Layout'
 import PageHeader from '../../components/PageHeader'
 import SideNav from '../../components/SideNav'
-import IA from '../../utils/IA'
+import IA from '../../constants/IA'
 
 interface Props {}
 

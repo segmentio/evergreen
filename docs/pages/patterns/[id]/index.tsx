@@ -10,10 +10,12 @@ import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
-import IA from '../../../utils/IA'
+import IA from '../../../constants/IA'
 import { Link } from 'evergreen-ui'
 import PageHeader from '../../../components/PageHeader'
 import ComingSoon from '../../../components/ComingSoon'
+import { sortItems } from '../../../utils/sort-items'
+import { Query } from '../../../types/query'
 
 interface Props {
   patterns: EntityOverviewTemplateProps['navItems']
@@ -83,15 +85,11 @@ export async function getStaticPaths() {
   }
 }
 
-interface Query {
-  [k: string]: string
-}
-
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
-  const patterns = IA.patterns.items.sort((a, b) => (a.name > b.name ? 1 : -1))
+  const patterns = sortItems(IA.patterns.items)
   const pattern = patterns.find((pattern) => pattern.id === id)
 
   if (pattern?.inProgress) {
