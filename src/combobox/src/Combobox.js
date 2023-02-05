@@ -14,6 +14,7 @@ const Combobox = memo(function Combobox(props) {
     height,
     initialSelectedItem,
     inputProps,
+    intent = 'input',
     isLoading = false,
     itemToString,
     items,
@@ -87,6 +88,7 @@ const Combobox = memo(function Combobox(props) {
           <IconButton
             color="muted"
             icon={isLoading ? undefined : CaretDownIcon}
+            intent={intent}
             appearance="default"
             height={height}
             marginTop={0}
@@ -182,6 +184,11 @@ Combobox.propTypes = {
    * When true, show a loading spinner. This also disables the button.
    */
   isLoading: PropTypes.bool,
+
+  /**
+   * intent parent means it will take dafult border color from input.
+   */
+  intent: PropTypes.string,
 
   size: PropTypes.oneOf(['small', 'medium', 'large'])
 }
