@@ -3,17 +3,19 @@ import fs from 'fs'
 import path from 'path'
 
 import EntityOverviewTemplate, {
-  Props as EntityOverviewTemplateProps,
+  EntityOverviewTemplateProps,
 } from '../../../components/templates/EntityOverviewTemplate'
 import components from '../../../components/MDX/componentMapping'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
-import IA from '../../../utils/IA'
+import IA from '../../../constants/IA'
 import { Link } from 'evergreen-ui'
 import PageHeader from '../../../components/PageHeader'
 import ComingSoon from '../../../components/ComingSoon'
+import { findById, sortItems } from '../../../utils/item-utils'
+import { Query } from '../../../types/query'
 
 interface Props {
   patterns: EntityOverviewTemplateProps['navItems']
@@ -43,7 +45,7 @@ const PatternPage: React.FC<Props> = ({ mdxSource, patterns, pattern }) => {
       pageHeader={
         !pattern.inProgress ? (
           <PageHeader
-            title={name!}
+            title={name}
             description={description}
             githubLink={github}
             tabs={[
@@ -59,7 +61,7 @@ const PatternPage: React.FC<Props> = ({ mdxSource, patterns, pattern }) => {
           />
         ) : null
       }
-      source={mdxSource!}
+      source={mdxSource}
     >
       {pattern.inProgress && (
         <ComingSoon>
@@ -83,16 +85,12 @@ export async function getStaticPaths() {
   }
 }
 
-interface Query {
-  [k: string]: string
-}
-
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
-  const patterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-  const pattern = patterns.find((pattern) => pattern.id === id)
+  const patterns = sortItems(IA.patterns.items)
+  const pattern = findById(patterns, id)
 
   if (pattern?.inProgress) {
     return {

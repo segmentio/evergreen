@@ -3,12 +3,9 @@ import { Pane, majorScale, Link as EvergreenLink } from 'evergreen-ui'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import GitHubButton from 'react-github-button'
-
 import 'react-github-button/assets/style.css'
 
-interface Props {}
-
-const TopNav: React.FC<Props> = () => {
+const TopNav: React.FC = () => {
   const router = useRouter()
   const { pathname } = router
   const parentPath = pathname.split('/')[1]

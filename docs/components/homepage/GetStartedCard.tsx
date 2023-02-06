@@ -10,7 +10,7 @@ interface Props {
 }
 
 const GetStartedCard = ({ title, description, linkText, link, img }: Props) => {
-  const { colors } = useTheme() as any
+  const { colors } = useTheme()
 
   return (
     <Pane

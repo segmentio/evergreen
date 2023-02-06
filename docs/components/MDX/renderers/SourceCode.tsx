@@ -2,13 +2,13 @@ import React from 'react'
 import SyntaxHighlighter from '../../SyntaxHighlighter'
 import Playground from '../../Playground'
 
-interface Props {
+export interface SourceCodeProps {
   className: string
   metastring: string
-  children: any
+  children: string
 }
 
-const Code: React.FC<Props> = ({ className, metastring, children }) => {
+const SourceCode: React.FC<SourceCodeProps> = ({ className, metastring, children }) => {
   if (metastring !== 'readonly') {
     return <Playground source={children} />
   } else {
@@ -17,4 +17,4 @@ const Code: React.FC<Props> = ({ className, metastring, children }) => {
   }
 }
 
-export default Code
+export default SourceCode
