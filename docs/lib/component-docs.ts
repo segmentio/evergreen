@@ -12,13 +12,14 @@ const getComponentDocs = async (stem: string): Promise<any[]> => {
   })
 
   const props = await Promise.all(
-    componentFiles.map(async (name) => {
-      const data = await fs.readFileSync(path.join(stem, name)).toString()
+    componentFiles.map((name) => {
+      const filename = path.join(stem, name)
+      const data = fs.readFileSync(filename).toString()
       try {
-        const propsData = docgen.parse(data)
+        const propsData = docgen.parse(data, undefined, undefined, { filename })
         return propsData
-      } catch (e) {
-        console.error('There was an error parsing component documentation', e)
+      } catch (error) {
+        console.error(`Error parsing component documentation for ${filename}\n`, error)
         return []
       }
     })
