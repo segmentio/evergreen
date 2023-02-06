@@ -4,13 +4,15 @@ import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
-import IA, { Item } from '../../../utils/IA'
+import IA, { Item } from '../../../constants/IA'
 import PageHeader from '../../../components/PageHeader'
 import EntityOverviewTemplate, {
-  Props as EntityOverviewTemplateProps,
+  EntityOverviewTemplateProps,
 } from '../../../components/templates/EntityOverviewTemplate'
 import componentMapping from '../../../components/MDX/componentMapping'
 import { MIGRATION_TABS } from '../migrations/[id]'
+import { Query } from '../../../types/query'
+import { findById } from '../../../utils/item-utils'
 
 interface Props {
   mdxSource: MdxRemote.Source
@@ -32,12 +34,12 @@ const IntroductionPage: React.FC<Props> = ({ mdxSource, introduction, introducti
       navTitle="Introduction"
       pageHeader={
         <PageHeader
-          title={name!}
+          title={name}
           description={description}
           tabs={isMigrationsPage(introduction) ? MIGRATION_TABS : undefined}
         />
       }
-      pageTitle={name!}
+      pageTitle={name}
       selectedNavItem={introduction}
       source={mdxSource}
     />
@@ -45,7 +47,7 @@ const IntroductionPage: React.FC<Props> = ({ mdxSource, introduction, introducti
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'introduction'))
+  const files = fs.readdirSync(path.join(process.cwd(), 'documentation', 'introduction'))
 
   const paths = files.map((file) => `/introduction/${file.split('.')[0]}`)
 
@@ -55,16 +57,12 @@ export async function getStaticPaths() {
   }
 }
 
-interface Query {
-  [k: string]: string
-}
-
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
   const introductions = IA.introduction.items
-  const introduction = introductions.find((introduction) => introduction.id === id)
+  const introduction = findById(introductions, id)
 
   const mdxPath = isMigrationsPage(introduction)
     ? path.join(process.cwd(), 'documentation', 'introduction', 'migrations', 'v7.mdx')

@@ -2,14 +2,16 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import path from 'path'
-import IA from '../../../../utils/IA'
+import IA from '../../../../constants/IA'
 import PageHeader from '../../../../components/PageHeader'
 import PropsTable from '../../../../components/PropsTable'
 import { Pane, majorScale } from 'evergreen-ui'
 import EntityOverviewTemplate, {
-  Props as EntityOverviewTemplateProps,
+  EntityOverviewTemplateProps,
 } from '../../../../components/templates/EntityOverviewTemplate'
 import getComponentDocs from '../../../../lib/component-docs'
+import { findById, sortItems } from '../../../../utils/item-utils'
+import { Query } from '../../../../types/query'
 
 interface Props {
   componentProps: any[]
@@ -37,7 +39,7 @@ const PatternPropsPage: React.FC<Props> = ({ componentProps, pattern, patterns }
       pageTitle={`${name} Documentation`}
       pageHeader={
         <PageHeader
-          title={name!}
+          title={name}
           description={description}
           githubLink={github}
           tabs={[
@@ -73,10 +75,6 @@ export async function getStaticPaths() {
   }
 }
 
-interface Query {
-  [k: string]: string
-}
-
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
@@ -92,8 +90,8 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
     props = []
   }
 
-  const patterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-  const pattern = patterns.find((item) => item.id === id)
+  const patterns = sortItems(IA.patterns.items)
+  const pattern = findById(patterns, id)
 
   return {
     props: {

@@ -5,7 +5,7 @@ import FigmaIcon from '../icons/FigmaIcon'
 import SegmentIcon from '../icons/SegmentIcon'
 
 const Resources = () => {
-  const { colors } = useTheme() as any
+  const { colors } = useTheme()
 
   return (
     <Pane background={colors.gray50} paddingX={majorScale(5)}>

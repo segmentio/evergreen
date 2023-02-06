@@ -2,9 +2,7 @@ import React from 'react'
 import { Heading, majorScale, Pane, Paragraph } from 'evergreen-ui'
 import ComingSoonImage from './icons/ComingSoonImage'
 
-interface Props {}
-
-const ComingSoon: React.FC<Props> = ({ children }) => {
+const ComingSoon: React.FC = ({ children }) => {
   return (
     <Pane width="100%" display="flex" flexFlow="column" alignItems="center" padding={majorScale(5)} maxWidth={1200}>
       <ComingSoonImage />

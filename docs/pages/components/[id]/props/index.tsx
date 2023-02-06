@@ -3,14 +3,16 @@ import fs from 'fs'
 import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from 'next'
 import path from 'path'
-import IA from '../../../../utils/IA'
+import IA from '../../../../constants/IA'
 import PageHeader from '../../../../components/PageHeader'
 import PropsTable from '../../../../components/PropsTable'
 import getComponentDocs from '../../../../lib/component-docs'
 import EntityOverviewTemplate, {
-  Props as EntityOverviewTemplateProps,
+  EntityOverviewTemplateProps,
 } from '../../../../components/templates/EntityOverviewTemplate'
 import { Pane, majorScale } from 'evergreen-ui'
+import { findById, sortItems } from '../../../../utils/item-utils'
+import { Query } from '../../../../types/query'
 
 interface Props {
   componentProps: any[]
@@ -38,7 +40,7 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps, components, compo
       pageTitle={`${name} Documentation`}
       pageHeader={
         <PageHeader
-          title={name!}
+          title={name}
           description={description}
           githubLink={github}
           tabs={[
@@ -66,7 +68,7 @@ const ComponentPropsPage: React.FC<Props> = ({ componentProps, components, compo
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'components'))
+  const files = fs.readdirSync(path.join(process.cwd(), 'documentation', 'components'))
 
   const paths = files.map((file) => `/components/${file.split('.')[0]}/props`)
 
@@ -76,16 +78,12 @@ export async function getStaticPaths() {
   }
 }
 
-interface Query {
-  [k: string]: string
-}
-
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
 
-  const components = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-  const component = components.find((component) => component.id === id)
+  const components = sortItems(IA.components.items)
+  const component = findById(components, id)
 
   if (component?.inProgress) {
     return {

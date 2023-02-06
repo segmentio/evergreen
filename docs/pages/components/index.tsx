@@ -5,23 +5,20 @@ import SearchBar from '../../components/SearchBar'
 import PageHeader from '../../components/PageHeader'
 import Thumbnail from '../../components/Thumbnail'
 import SideNav from '../../components/SideNav'
-import IA from '../../utils/IA'
+import IA from '../../constants/IA'
+import { sortItems } from '../../utils/item-utils'
 
-interface Props {}
-
-const ComponentsPage: React.FC<Props> = () => {
+const ComponentsPage: React.FC = () => {
   const [query, setQuery] = useState<string>('')
 
-  const evergreenComponents = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const components = sortItems(IA.components.items)
 
-  const filteredItems = evergreenComponents.filter(
-    (item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
-  )
+  const filteredItems = components.filter((item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1)
 
   return (
     <Layout title="Components">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav title="Components" items={evergreenComponents} routePrefix="components" />
+        <SideNav title="Components" items={components} routePrefix="components" />
         <Pane
           width="100%"
           display="flex"

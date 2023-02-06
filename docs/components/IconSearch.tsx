@@ -1,65 +1,18 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState } from 'react'
 import SearchBar from './SearchBar'
-import { css } from 'otion'
-import CopyToClipboard from 'react-copy-to-clipboard'
 import * as evergreen from 'evergreen-ui'
+import { Pane, majorScale, Text } from 'evergreen-ui'
+import CopyableIcon from './CopyableIcon'
+import { EvergreenExport } from '../types/evergreen-export'
 
-const { Pane, majorScale, Text, toaster } = evergreen
-
-interface Props {}
-
-const Item: React.FC<{ name: string }> = ({ name }) => {
-  const readableName = name.slice(0, name.indexOf('Icon'))
-
-  const handleCopy = useCallback(() => {
-    toaster.success('Successfully copied icon name to clipboard!')
-  }, [])
-
-  // eslint-disable-next-line
-  // @ts-ignore
-  if (evergreen[name]) {
-    return (
-      <CopyToClipboard text={name} onCopy={handleCopy}>
-        <Pane
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="column"
-          cursor="pointer"
-          borderRadius={5}
-          paddingY={majorScale(3)}
-          className={css({
-            ':hover': {
-              background: '#efefef60',
-            },
-            ':active': {
-              background: '#efefef90',
-            },
-          })}
-        >
-          {/* eslint-disable-next-line */}
-          {/*  @ts-ignore */}
-          {React.createElement(evergreen[name] as any, {
-            size: majorScale(3),
-            color: 'default',
-            marginBottom: majorScale(3),
-          })}
-          <Text color="muted" size={300} maxWidth="100%">
-            {readableName}
-          </Text>
-        </Pane>
-      </CopyToClipboard>
-    )
-  } else {
-    return null
-  }
-}
-const IconSearch: React.FC<Props> = () => {
+const IconSearch: React.FC = () => {
   const [query, setQuery] = useState<string>('')
 
   const iconComponentNames = Object.keys(evergreen)
     .filter((componentName) => componentName.endsWith('Icon') && componentName !== 'Icon')
-    .filter((componentName) => componentName.toLowerCase().indexOf(query.toLowerCase()) !== -1)
+    .filter(
+      (componentName) => componentName.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    ) as Array<EvergreenExport>
 
   return (
     <Pane width="100%" minHeight={250}>
@@ -72,9 +25,9 @@ const IconSearch: React.FC<Props> = () => {
           columnGap={majorScale(8)}
           gridTemplateColumns="repeat(auto-fill, 168px)"
         >
-          {iconComponentNames.map((componentName) => {
-            return <Item key={componentName} name={componentName} />
-          })}
+          {iconComponentNames.map((componentName) => (
+            <CopyableIcon key={componentName} name={componentName} />
+          ))}
         </Pane>
       ) : (
         <Pane display="flex" alignItems="center" justifyContent="center" width="100%" marginTop={majorScale(5)}>
