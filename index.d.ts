@@ -2822,19 +2822,19 @@ export const toaster: {
   /**
    * Opens a Toast with an intent of none.
    */
-  notify: (title: string, settings?: ToasterSettings) => void
+  notify: (title: React.ReactNode, settings?: ToasterSettings) => void
   /**
    * Opens a Toast with an intent of success.
    */
-  success: (title: string, settings?: ToasterSettings) => void
+  success: (title: React.ReactNode, settings?: ToasterSettings) => void
   /**
    * Opens a Toast with an intent of warning.
    */
-  warning: (title: string, settings?: ToasterSettings) => void
+  warning: (title: React.ReactNode, settings?: ToasterSettings) => void
   /**
    * Opens a Toast with an intent of danger.
    */
-  danger: (title: string, settings?: ToasterSettings) => void
+  danger: (title: React.ReactNode, settings?: ToasterSettings) => void
   /**
    * Closes all visible Toasts.
    */
@@ -2843,6 +2843,10 @@ export const toaster: {
    * Returns all visible Toasts.
    */
   getToasts: () => Toast[]
+  /**
+   * Removes toast with specific id
+   */
+  remove: (id: string) => void
 }
 
 export interface OverlayProps
