@@ -2843,6 +2843,10 @@ export const toaster: {
    * Returns all visible Toasts.
    */
   getToasts: () => Toast[]
+  /**
+   * Removes toast with specific id
+   */
+  remove: (id: string) => void
 }
 
 export interface OverlayProps
