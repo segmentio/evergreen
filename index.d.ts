@@ -2714,7 +2714,7 @@ export interface TooltipProps {
   statelessProps?: PolymorphicBoxProps<'div', TooltipStatelessProps>
 }
 
-export declare const Tooltip: React.FC<TooltipProps>
+export declare const Tooltip: React.FC<React.PropsWithChildren<TooltipProps>>
 
 export interface OrderedListOwnProps {
   /**
