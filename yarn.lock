@@ -14424,10 +14424,10 @@ typescript@4.9.4:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.4.tgz#a2a3d2756c079abda241d75f149df9d561091e78"
   integrity sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==
 
-ui-box@^5.4.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-5.4.0.tgz#707c764fdf4be79cf2f50f356ca9583a491164ee"
-  integrity sha512-HuiJKUIOGW/I1VF7EgHl5/3OwywPdV5fwzsDOWfCGS/PORmXOyGetL3gJo9EQJZZZCkui9xf3a/UQhawA88yeQ==
+ui-box@^5.4.1:
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/ui-box/-/ui-box-5.4.1.tgz#34f497a143783a3513e850bd58379ac583e3f2fb"
+  integrity sha512-5p+b6kSh1q/bptvLANuAusyB/3fGIvnw8w6rSZNPHckQ8UdPfjIK4DvinmMXRKgdniOba22h8ypVqtkJ9zK/iQ==
   dependencies:
     "@emotion/hash" "^0.7.1"
     inline-style-prefixer "^5.0.4"
