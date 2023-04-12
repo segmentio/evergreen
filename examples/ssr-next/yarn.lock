@@ -224,7 +224,6 @@ evergreen-ui@latest:
     react-scrollbar-size "^2.0.2"
     react-tiny-virtual-list "^2.1.4"
     react-transition-group "^4.4.1"
-    tinycolor2 "^1.4.1"
     ui-box "^4.0.0"
 
 fbjs@^0.8.12, fbjs@^0.8.16:
@@ -507,11 +506,6 @@ through@^2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
   integrity sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
-
-tinycolor2@^1.4.1:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.2.tgz#3f6a4d1071ad07676d7fa472e1fac40a719d8803"
-  integrity sha512-vJhccZPs965sV/L2sU4oRQVAos0pQXwsvTLkWYdqJ+a8Q5kPFzJTuOFwy7UniPli44NKQGAglksjvOcpo95aZA==
 
 ua-parser-js@^0.7.18:
   version "0.7.28"
