@@ -15,7 +15,7 @@ const appearances = {
   subtle: (theme, props) => {
     const scheme = get(theme, `fills.${props.color}`, {
       backgroundColor: props.color,
-      color: props.color,
+      color: props.color
     })
 
     return {
