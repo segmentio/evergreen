@@ -1,4 +1,3 @@
-import tinycolor from 'tinycolor2'
 import { get } from '../../../theme/src/theme-tools'
 
 const baseStyle = {
@@ -16,7 +15,7 @@ const appearances = {
   subtle: (theme, props) => {
     const scheme = get(theme, `fills.${props.color}`, {
       backgroundColor: props.color,
-      color: tinycolor(props.color).isLight() ? 'colors.dark' : 'white'
+      color: props.color
     })
 
     return {
