@@ -1398,9 +1398,9 @@ export interface LinkOwnProps extends TextOwnProps {
    */
   href?: string
   /**
-   * Target atrribute, common use case is target="_blank."
+   * Target attribute, common use case is target="_blank."
    */
-  target?: string
+  target?: '_self' | '_blank' | '_parent' | '_top'
   /**
    * The color (and styling) of the Link. Can be default, blue, green or neutral.
    */
