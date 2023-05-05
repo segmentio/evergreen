@@ -183,9 +183,9 @@ buttonsStory.add('Button types', () => (
       </Button>
       <Button appearance="minimal" marginRight={16} intent="warning">
         Minimal
-     </Button>
-     <IconButton  marginRight={16} icon={<Icons.PlusIcon/>}/>
-      <IconButton marginRight={16} intent="danger" icon={<Icons.PlusIcon/>}/>
+      </Button>
+      <IconButton marginRight={16} icon={<Icons.PlusIcon />} />
+      <IconButton marginRight={16} intent="danger" icon={<Icons.PlusIcon />} />
     </Box>
     <Heading marginTop={24}>Disabled Appearance</Heading>
     <Box marginTop={12}>
@@ -201,8 +201,8 @@ buttonsStory.add('Button types', () => (
       <Button disabled appearance="minimal" marginRight={16} intent="warning">
         Minimal
       </Button>
-      <IconButton disabled icon={<Icons.PlusIcon/>} marginRight={16}/>
-      <IconButton disabled marginRight={16} intent="danger" icon={<Icons.PlusIcon/>}/>
+      <IconButton disabled icon={<Icons.PlusIcon />} marginRight={16} />
+      <IconButton disabled marginRight={16} intent="danger" icon={<Icons.PlusIcon />} />
     </Box>
   </Box>
 ))
