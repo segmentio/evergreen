@@ -120,7 +120,7 @@ const Pagination = memo(
               icon={ChevronLeftIcon}
               disabled={page === 1}
               onClick={onPreviousPage}
-              aria-label="Prev"
+              aria-label="Previous page"
             />
           </Pane>
           {totalPages
@@ -148,7 +148,7 @@ const Pagination = memo(
               icon={ChevronRightIcon}
               disabled={totalPages ? page === totalPages : undefined}
               onClick={onNextPage}
-              aria-label="Next"
+              aria-label="Next page"
             />
           </Pane>
         </Pane>
