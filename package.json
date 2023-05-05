@@ -1,6 +1,6 @@
 {
   "name": "evergreen-ui",
-  "version": "7.1.6",
+  "version": "7.1.7",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
@@ -79,7 +79,7 @@
     "prop-types": "^15.6.2",
     "react-fast-compare": "^3.2.0",
     "react-transition-group": "^4.4.1",
-    "ui-box": "^5.4.0"
+    "ui-box": "^5.4.1"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
