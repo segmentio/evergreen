@@ -33,6 +33,7 @@ class TabManager extends React.PureComponent {
   }
 }
 
+const appearances = ['primary', 'secondary']
 const tabs = ['Traits', 'Event History', 'Identities']
 
 storiesOf('tabs', module).add('Tab', () => (
@@ -99,13 +100,15 @@ storiesOf('tabs', module).add('Tab', () => (
       </StoryHeader>
 
       <Box>
-        <TabNavigation marginX={-4} marginBottom={16}>
-          {tabs.map((tab, index) => (
-            <Tab key={tab} is="a" href="#" id={tab} isSelected={index === 0}>
-              {tab}
-            </Tab>
-          ))}
-        </TabNavigation>
+        {appearances.map(appearance => (
+          <TabNavigation key={appearance} marginX={-4} marginBottom={16}>
+            {tabs.map((tab, index) => (
+              <Tab key={tab} appearance={appearance} is="a" href="#" id={tab} isSelected={index === 0}>
+                {tab}
+              </Tab>
+            ))}
+          </TabNavigation>
+        ))}
       </Box>
     </StorySection>
     <StorySection>
