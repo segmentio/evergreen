@@ -36,10 +36,10 @@ const pseudoSelectors = {
   _hover: '&:not([disabled]):hover + div',
   _focus: '&:not([disabled]):focus + div',
   _active: '&:not([disabled]):active + div',
-  _checked: '&:checked + div, &[type=checkbox]:indeterminate + div',
-  _checkedHover: '&:not([disabled]):checked:hover + div, &[type=checkbox]:not([disabled]):indeterminate:hover + div',
-  _checkedActive: '&:not([disabled]):checked:active + div, &[type=checkbox]:not([disabled]):indeterminate:active + div',
-  _checkedDisabled: '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div'
+  _checked: '&:checked + div,&[type=checkbox]:indeterminate + div',
+  _checkedHover: '&:not([disabled]):checked:hover + div,&[type=checkbox]:not([disabled]):indeterminate:hover + div',
+  _checkedActive: '&:not([disabled]):checked:active + div,&[type=checkbox]:not([disabled]):indeterminate:active + div',
+  _checkedDisabled: '&[disabled]:checked + div,&[type=checkbox][disabled]:indeterminate + div'
 }
 
 const internalStyles = {
@@ -57,9 +57,11 @@ const internalStyles = {
   width: '1px',
   opacity: '0',
 
-  [pseudoSelectors._base]: {
-    outline: 'none',
-    cursor: 'pointer'
+  selectors: {
+    [pseudoSelectors._base]: {
+      outline: 'none',
+      cursor: 'pointer'
+    }
   }
 }
 
@@ -88,12 +90,7 @@ const Checkbox = memo(
       }
     }, [ref, indeterminate])
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'Checkbox',
-      { appearance },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Checkbox', { appearance }, pseudoSelectors, internalStyles)
 
     return (
       <Box
@@ -105,7 +102,6 @@ const Checkbox = memo(
         {...rest}
       >
         <Box
-          className={themedClassName}
           is="input"
           id={id}
           type="checkbox"
@@ -115,7 +111,7 @@ const Checkbox = memo(
           onChange={onChange}
           disabled={disabled}
           aria-invalid={isInvalid}
-          {...boxProps}
+          {...themedProps}
           ref={callbackRef}
         />
         <Box

@@ -4,9 +4,9 @@ import Layout from '../document/Layout'
 import { MdxRemote } from 'next-mdx-remote/types'
 import MDX from '../MDX'
 import SideNav from '../SideNav'
-import { Item } from '../../utils/IA'
+import { Item } from '../../constants/IA'
 
-export interface Props {
+export interface EntityOverviewTemplateProps {
   pageTitle: string
   navTitle: string
   navItems: Item[]
@@ -16,7 +16,7 @@ export interface Props {
   source?: MdxRemote.Source | null
 }
 
-const EntityOverviewTemplate: React.FC<Props> = ({
+const EntityOverviewTemplate: React.FC<EntityOverviewTemplateProps> = ({
   pageTitle,
   navTitle,
   navItems,

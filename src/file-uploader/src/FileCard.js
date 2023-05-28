@@ -40,7 +40,7 @@ const FileCard = memo(
     } = props
 
     const { colors } = useTheme()
-    const { className, ...boxProps } = useStyleConfig('FileCard', styleModifiers, pseudoSelectors, internalStyles)
+    const themedProps = useStyleConfig('FileCard', styleModifiers, pseudoSelectors, internalStyles)
 
     const FileTypeIcon = getIconFromType(type)
     const renderImage = hasValue(src) && isImage(type)
@@ -49,7 +49,7 @@ const FileCard = memo(
 
     return (
       <Box ref={ref} display="flex" flexDirection="column" marginBottom={isInvalid ? majorScale(1) : majorScale(2)}>
-        <Box aria-invalid={isInvalid} className={className} {...boxProps} {...rest}>
+        <Box aria-invalid={isInvalid} {...themedProps} {...rest}>
           <Box alignItems="center" display="flex" flexDirection="row" width="100%">
             <Box marginLeft={majorScale(2)} marginRight={majorScale(1)}>
               {renderImage ? (

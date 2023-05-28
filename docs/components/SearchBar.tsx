@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { ChangeEvent, useCallback } from 'react'
 import { SearchInput } from 'evergreen-ui'
 
 interface Props {
@@ -9,8 +9,8 @@ interface Props {
 
 const SearchBar: React.FC<Props> = ({ query, onQueryChange, placeholder }) => {
   const handleQueryChange = useCallback(
-    (e) => {
-      onQueryChange(e.target.value)
+    (event: ChangeEvent<HTMLInputElement>) => {
+      onQueryChange(event.target.value)
     },
     [onQueryChange]
   )

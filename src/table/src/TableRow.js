@@ -1,5 +1,4 @@
 import React, { memo, forwardRef, useRef, useCallback } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { useClickable, useLatest, useMergedRef, useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
@@ -12,9 +11,9 @@ export const pseudoSelectors = {
   _hover:
     '&[data-isselectable="true"]:not([aria-current="true"]):not([aria-checked="true"]):not(:focus):not(:active):hover',
   _focus:
-    '&[data-isselectable="true"]:not([aria-checked="true"]):not([aria-current="true"]):focus, &[aria-selected="true"]',
-  _active: '&[aria-current="true"], &[data-isselectable="true"]:active',
-  _current: '&[aria-current="true"], &[aria-checked="true"]',
+    '&[data-isselectable="true"]:not([aria-checked="true"]):not([aria-current="true"]):focus,&[aria-selected="true"]',
+  _active: '&[aria-current="true"],&[data-isselectable="true"]:active',
+  _current: '&[aria-current="true"],&[aria-checked="true"]',
   _lastOfType: '&:last-of-type',
   _isSelectable: '&[data-isselectable="true"]'
 }
@@ -89,7 +88,7 @@ const TableRow = memo(
 
     const clickable = useClickable({ onKeyDown: handleKeyDown, tabIndex })
 
-    const { className: themedClassName, height: themeHeight, ...boxProps } = useStyleConfig(
+    const { height: themeHeight, ...themedProps } = useStyleConfig(
       'TableRow',
       { appearance, intent },
       pseudoSelectors,
@@ -101,7 +100,7 @@ const TableRow = memo(
     return (
       <Pane
         ref={onRef}
-        className={cx(themedClassName, className)}
+        className={className}
         aria-selected={isHighlighted}
         aria-current={isSelected}
         data-isselectable={isSelectable}
@@ -110,7 +109,7 @@ const TableRow = memo(
         onKeyDown={clickable.onKeyDown}
         borderBottom="muted"
         height={height}
-        {...boxProps}
+        {...themedProps}
         {...rest}
       >
         {children}

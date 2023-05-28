@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "outDir": "dist",
+    "removeComments": false,
+    "strict": true,
+    "target": "es2016",
+    "types": ["jest", "node"]
+  },
+  "include": ["src"],
+  "exclude": ["**/__tests__", "**/__testfixtures__"]
+}

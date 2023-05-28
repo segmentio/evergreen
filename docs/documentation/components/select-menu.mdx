@@ -39,9 +39,9 @@ function NoFilterAndTitleSelectedMenuExample() {
     <SelectMenu
       title="Select name"
       options={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({ label, value: label }))}
-      selected={selected}
       hasFilter={false}
       hasTitle={false}
+      selected={selected}
       onSelect={(item) => setSelected(item.value)}
     >
       <Button>{selected || 'Select name...'}</Button>
@@ -50,7 +50,7 @@ function NoFilterAndTitleSelectedMenuExample() {
 }
 ```
 
-# Change the height and width
+# Change the width and height
 
 You can make the size of a **SelectMenu** custom via the **width** and **height** properties.
 
@@ -61,9 +61,9 @@ function CustomSizeSelectedMenuExample() {
     <SelectMenu
       title="Select name"
       options={['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'].map((label) => ({ label, value: label }))}
+      width={280}
+      height={200}
       selected={selected}
-      hasFilter={false}
-      hasTitle={false}
       onSelect={(item) => setSelected(item.value)}
     >
       <Button>{selected || 'Select name...'}</Button>

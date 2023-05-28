@@ -1,5 +1,4 @@
 import React, { memo, forwardRef, useMemo, useCallback } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useClickable, useStyleConfig } from '../../hooks'
@@ -13,11 +12,11 @@ const pseudoSelectors = {
   _hover:
     '&[data-isselectable="true"]:not([aria-current="true"]):not([aria-checked="true"]):not(:focus):not(:active):hover',
   _focus:
-    '&[data-isselectable="true"]:not([aria-current="true"]):not([aria-checked="true"]):focus, &[aria-selected="true"]',
-  _active: '&[aria-current="true"], &[data-isselectable="true"]:active',
-  _current: '&[aria-current="true"], &[aria-checked="true"]',
+    '&[data-isselectable="true"]:not([aria-current="true"]):not([aria-checked="true"]):focus,&[aria-selected="true"]',
+  _active: '&[aria-current="true"],&[data-isselectable="true"]:active',
+  _current: '&[aria-current="true"],&[aria-checked="true"]',
   _isSelectable: '&[data-isselectable="true"]',
-  _disabled: '&:disabled, &[aria-disabled="true"]'
+  _disabled: '&:disabled,&[aria-disabled="true"]'
 }
 
 const internalStyles = {
@@ -52,12 +51,7 @@ const MenuItem = memo(
     // and any other explicit props that are passed through to the underlying component
     const { onKeyDown, tabIndex } = useClickable(props)
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'MenuItem',
-      { appearance },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('MenuItem', { appearance }, pseudoSelectors, internalStyles)
 
     let iconColor = intent === 'none' ? 'default' : intent
 
@@ -88,13 +82,13 @@ const MenuItem = memo(
       <Pane
         is={is}
         role="menuitem"
-        className={cx(themedClassName, className)}
+        className={className}
         onClick={handleClick}
         data-isselectable={!disabled || undefined}
         aria-disabled={disabled}
         ref={ref}
         height={icon ? 40 : 32}
-        {...boxProps}
+        {...themedProps}
         {...passthroughProps}
         {...disabledProps}
         tabIndex={tabIndex}

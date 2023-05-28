@@ -2,10 +2,10 @@ name: CI
 
 on:
   pull_request:
-    branches:
-      - master
+    branches: ['master', 'v7']
   push:
     branches: ['*']
+  workflow_dispatch:
 
 jobs:
   test:
@@ -28,19 +28,34 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+
+      - name: Install codemods dependencies
+        working-directory: './codemods'
+        run: 'yarn install --frozen-lockfile'
+
       - name: Install docs dependencies
         working-directory: './docs'
         run: 'yarn install --frozen-lockfile'
+
       - name: Run build
         run: yarn run build
+
       - name: Run prettier
-        run: yarn run prettier 'src/**/*.js' --check
+        run: yarn run prettier 'src/**/*.{js,ts,tsx}' --check
+
       - name: Run test
         run: yarn run test
+
+      - name: Run codemods tests
+        working-directory: './codemods'
+        run: yarn test
+
       - name: Run docs lint
         working-directory: './docs'
         run: yarn run lint
+
       - name: Run size-limit
         run: yarn run size-limit

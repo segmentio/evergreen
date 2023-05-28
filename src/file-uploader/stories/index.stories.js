@@ -5,9 +5,10 @@ import { Button } from '../../buttons'
 import { MimeType } from '../../constants'
 import { FileUploader, FileCard } from '../../file-uploader'
 import { majorScale } from '../../scales'
+import { TextInput } from '../../text-input'
 import { toaster } from '../../toaster'
 import { Label, Code, ListItem } from '../../typography'
-import { getIconFromType } from '../src/utils/get-icon-from-type'
+import getIconFromType from '../src/utils/get-icon-from-type'
 import { getAcceptedTypesMessage, getMaxFilesMessage, getFileSizeMessage } from '../src/utils/messages'
 
 const acceptedMimeTypes = [MimeType.gif, MimeType.png, MimeType.jpeg]
@@ -63,6 +64,23 @@ storiesOf('file-uploader', module)
           </ListItem>
         )}
       />
+      <FileUploaderState
+        label="Custom browseOrDragText"
+        browseOrDragText={maxFiles => `Browse or drag ${maxFiles === 1 ? 'a file' : 'files'}`}
+      />
+      <FileUploaderState
+        label="Custom dragMaxFilesMessage"
+        dragMaxFilesMessage={maxFiles => `You can only upload ${maxFiles} files at a time.`}
+        maxFiles={2}
+      />
+      <FileUploaderState
+        label="Custom validation message"
+        validationMessage="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum metus elit, varius non euismod non, tempor sit amet sem. Praesent quis eros finibus, tempor diam quis, lacinia tortor."
+      />
+
+      {/* https://github.com/segmentio/evergreen/issues/1581 */}
+      <FileUploaderState label="#1581 With TextInput rendered on same page" />
+      <TextInput />
     </Box>
   ))
   .add('FileCard', () => (

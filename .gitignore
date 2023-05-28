@@ -12,3 +12,5 @@ coverage
 /.idea/
 /storybook-static/
 .eslintcache
+/codemods/dist
+/types/

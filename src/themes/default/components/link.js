@@ -11,36 +11,38 @@ const baseStyle = {
     }
   },
   textDecoration: 'none',
-  _hover: {
-    color: (theme, { color }) => {
-      switch (color) {
-        case 'neutral':
-          return theme.colors.gray800
-        case 'default':
-        default:
-          return theme.colors.blue600
+  selectors: {
+    _hover: {
+      color: (theme, { color }) => {
+        switch (color) {
+          case 'neutral':
+            return theme.colors.gray800
+          case 'default':
+          default:
+            return theme.colors.blue600
+        }
       }
-    }
-  },
-  _active: {
-    color: (theme, { color }) => {
-      switch (color) {
-        case 'neutral':
-          return theme.colors.gray900
-        case 'default':
-        default:
-          return theme.colors.blue700
+    },
+    _active: {
+      color: (theme, { color }) => {
+        switch (color) {
+          case 'neutral':
+            return theme.colors.gray900
+          case 'default':
+          default:
+            return theme.colors.blue700
+        }
       }
-    }
-  },
-  _focus: {
-    boxShadow: (theme, { color }) => {
-      switch (color) {
-        case 'neutral':
-          return `0 0 0 2px ${theme.colors.gray300}`
-        case 'default':
-        default:
-          return `0 0 0 2px ${theme.colors.blue200}`
+    },
+    _focus: {
+      boxShadow: (theme, { color }) => {
+        switch (color) {
+          case 'neutral':
+            return `0 0 0 2px ${theme.colors.gray300}`
+          case 'default':
+          default:
+            return `0 0 0 2px ${theme.colors.blue200}`
+        }
       }
     }
   }

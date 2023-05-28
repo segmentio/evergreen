@@ -1,5 +1,4 @@
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -11,12 +10,7 @@ const Icon = forwardRef(function Icon(
   { className, color = 'currentColor', name, size = 16, svgPaths16, svgPaths20, title, ...svgProps },
   ref
 ) {
-  const { className: themedClassName, ...styleProps } = useStyleConfig(
-    'Icon',
-    { color },
-    pseudoSelectors,
-    internalStyles
-  )
+  const themedProps = useStyleConfig('Icon', { color }, pseudoSelectors, internalStyles)
   const SIZE_STANDARD = 16
   const SIZE_LARGE = 20
 
@@ -34,8 +28,8 @@ const Icon = forwardRef(function Icon(
     <Box
       is="svg"
       ref={ref}
-      className={cx(className, themedClassName)}
-      {...styleProps}
+      className={className}
+      {...themedProps}
       {...svgProps}
       data-icon={name}
       width={size}

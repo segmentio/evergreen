@@ -17,10 +17,10 @@ const emptyObject = {}
 
 const Table = memo(function Table(props) {
   const { children, ...rest } = props
-  const { className, ...boxProps } = useStyleConfig('Table', emptyObject, emptyObject, emptyObject)
+  const themedProps = useStyleConfig('Table', emptyObject, emptyObject, emptyObject)
 
   return (
-    <Pane className={className} {...boxProps} {...rest}>
+    <Pane {...themedProps} {...rest}>
       {children}
     </Pane>
   )

@@ -5,21 +5,20 @@ import SearchBar from '../../components/SearchBar'
 import PageHeader from '../../components/PageHeader'
 import Thumbnail from '../../components/Thumbnail'
 import SideNav from '../../components/SideNav'
-import IA from '../../utils/IA'
+import IA from '../../constants/IA'
+import { sortItems } from '../../utils/item-utils'
 
-interface Props {}
-
-const PatternsPage: React.FC<Props> = () => {
+const PatternsPage: React.FC = () => {
   const [query, setQuery] = useState<string>('')
 
-  const evergreenPatterns = IA.patterns.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const patterns = sortItems(IA.patterns.items)
 
-  const filteredItems = evergreenPatterns.filter((item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1)
+  const filteredItems = patterns.filter((item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1)
 
   return (
     <Layout title="Patterns">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav title="Patterns" items={evergreenPatterns} routePrefix="patterns" />
+        <SideNav title="Patterns" items={patterns} routePrefix="patterns" />
         <Pane
           width="100%"
           display="flex"
@@ -40,7 +39,7 @@ const PatternsPage: React.FC<Props> = () => {
               gridRowGap="32px"
               gridTemplateColumns="1fr 1fr 1fr 1fr"
             >
-              {evergreenPatterns.map((item) => {
+              {patterns.map((item) => {
                 return (
                   <Thumbnail
                     key={item.id}

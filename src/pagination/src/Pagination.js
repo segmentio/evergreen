@@ -115,7 +115,13 @@ const Pagination = memo(
       <Pane is="nav" role="navigation" aria-label="Pagination" {...rest} ref={ref}>
         <Pane is="ul" display="flex" alignItems="center" padding={0}>
           <Pane is="li" listStyle="none">
-            <IconButton appearance="minimal" icon={ChevronLeftIcon} disabled={page === 1} onClick={onPreviousPage} />
+            <IconButton
+              appearance="minimal"
+              icon={ChevronLeftIcon}
+              disabled={page === 1}
+              onClick={onPreviousPage}
+              aria-label="Previous page"
+            />
           </Pane>
           {totalPages
             ? getPaginationButtonContent({ totalPages, page }).map((val, i) => {
@@ -142,6 +148,7 @@ const Pagination = memo(
               icon={ChevronRightIcon}
               disabled={totalPages ? page === totalPages : undefined}
               onClick={onNextPage}
+              aria-label="Next page"
             />
           </Pane>
         </Pane>

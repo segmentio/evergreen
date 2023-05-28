@@ -1,4 +1,5 @@
 import React, { memo, forwardRef } from 'react'
+import merge from 'lodash.merge'
 import PropTypes from 'prop-types'
 import { useStyleConfig } from '../../hooks'
 import { Pane } from '../../layers'
@@ -6,7 +7,7 @@ import TableRow from '../../table/src/TableRow'
 import TextTableCell from '../../table/src/TextTableCell'
 
 export const pseudoSelectors = {
-  _active: '&[aria-current="true"]:active, &[data-isselectable="true"]:active',
+  _active: '&[aria-current="true"]:active,&[data-isselectable="true"]:active',
   _before: '&:before',
   _disabled: '&[disabled]',
   _focus: ':focus',
@@ -34,27 +35,28 @@ const Option = memo(
       item,
       onDeselect,
       onSelect,
-      style,
+      style: styleProp,
       ...rest
     } = props
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
+    const { style: themedStyle, ...themedProps } = useStyleConfig(
       'Option',
       emptyObject,
       pseudoSelectors,
       internalStyles
     )
 
+    const style = merge({}, styleProp, themedStyle)
+
     return (
       <TableRow
-        className={themedClassName}
         isSelectable={isSelectable && !disabled}
         isHighlighted={isHighlighted}
         onSelect={onSelect}
         onDeselect={onDeselect}
         isSelected={isSelected}
         style={style}
-        {...boxProps}
+        {...themedProps}
         {...rest}
         ref={ref}
       >

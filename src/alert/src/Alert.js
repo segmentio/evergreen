@@ -1,5 +1,4 @@
 import React, { memo, forwardRef } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { spacing, dimensions, position, layout } from 'ui-box'
 import { IconButton } from '../../buttons'
@@ -34,15 +33,10 @@ const Alert = memo(
     } = props
 
     const intentToken = intent === 'none' ? 'info' : intent
-    const { className: themedClassName, ...styleProps } = useStyleConfig(
-      'Alert',
-      { appearance, intent: intentToken },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Alert', { appearance, intent: intentToken }, pseudoSelectors, internalStyles)
 
     return (
-      <Pane ref={ref} className={cx(className, themedClassName)} role="alert" {...styleProps} {...restProps}>
+      <Pane ref={ref} className={className} role="alert" {...themedProps} {...restProps}>
         {hasIcon && (
           <Pane marginRight={16} marginLeft={2} marginTop={-1} display="flex" alignItems="flex-start">
             {getIconForIntent(intentToken, { size: 16 })}
@@ -72,7 +66,7 @@ const Alert = memo(
           )}
         </Pane>
         {isRemoveable && (
-          <Pane marginLeft={24} flexShrink={0} marginBottom={-2} marginTop={-4} marginRight={-4}>
+          <Pane marginLeft={24} flexShrink={0} marginBottom={-4} marginTop={-5} marginRight={-4}>
             <IconButton icon={CrossIcon} appearance="minimal" height={24} onClick={onRemove} intent={intentToken} />
           </Pane>
         )}

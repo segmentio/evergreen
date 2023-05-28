@@ -5,7 +5,7 @@ import FigmaIcon from '../icons/FigmaIcon'
 import SegmentIcon from '../icons/SegmentIcon'
 
 const Resources = () => {
-  const { colors } = useTheme() as any
+  const { colors } = useTheme()
 
   return (
     <Pane background={colors.gray50} paddingX={majorScale(5)}>
@@ -20,7 +20,7 @@ const Resources = () => {
           </Paragraph>
         </Pane>
         <Pane display="flex">
-          <ResourceCard title="Evergreen Figma Library" logo={<FigmaIcon />} url="https://www.figma.com/@segment" />
+          <ResourceCard title="Evergreen Figma Library" logo={<FigmaIcon />} url="https://www.figma.com/@twilio" />
           <ResourceCard title="Segment Brand Hub" logo={<SegmentIcon />} url="https://brand.segment.com/" />
         </Pane>
       </Pane>

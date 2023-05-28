@@ -30,5 +30,20 @@ storiesOf('file-picker', module).add('FilePicker', () => (
     <FilePicker multiple width={350} height={24} marginBottom={32} />
 
     <FilePicker disabled width={250} marginBottom={32} />
+
+    <FilePicker
+      width={250}
+      browseOrReplaceText={fileCount => {
+        if (!fileCount) return 'Select'
+        if (fileCount === 1) return 'Replace'
+        return 'Replace all'
+      }}
+      inputText={files => {
+        if (!files.length) return ''
+        if (files.length === 1) return `File: ${files[0].name}`
+        return `Files: ${files.length}`
+      }}
+      multiple
+    />
   </Box>
 ))

@@ -1,5 +1,4 @@
 import React, { memo, forwardRef } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -15,7 +14,6 @@ const pseudoSelectors = {
 }
 
 const internalStyles = {
-  border: 'none',
   MozAppearance: 'none',
   outline: 'none',
   textDecoration: 'none',
@@ -47,18 +45,13 @@ const Textarea = memo(
     const { fontFamilies } = theme
     const themedFontFamily = fontFamilies[fontFamily] || fontFamily
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'Input',
-      { appearance: 'default' },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Input', { appearance: 'default' }, pseudoSelectors, internalStyles)
 
     return (
       <Box
         is="textarea"
         ref={ref}
-        className={cx(themedClassName, className)}
+        className={className}
         width={width}
         height={height}
         required={required}
@@ -68,7 +61,7 @@ const Textarea = memo(
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
         fontFamily={themedFontFamily}
-        {...boxProps}
+        {...themedProps}
         {...restProps}
       />
     )

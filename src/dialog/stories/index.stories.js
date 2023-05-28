@@ -9,6 +9,7 @@ import { Combobox } from '../../combobox'
 import { Pane } from '../../layers'
 import { Popover } from '../../popover'
 import { SideSheet } from '../../side-sheet'
+import { TextInputField } from '../../text-input'
 import { Strong, Paragraph } from '../../typography'
 import DialogManager from './DialogManager'
 
@@ -192,6 +193,16 @@ storiesOf('dialog', module)
               </Paragraph>
             </Dialog>
             <Button onClick={show}>Show Dialog with overlay and escape key disabled</Button>
+          </Box>
+        )}
+      </DialogManager>
+      <DialogManager>
+        {({ hide, isShown, show }) => (
+          <Box marginBottom={16}>
+            <Dialog shouldAutoFocus={false} isShown={isShown} title="Dialog Title" onCloseComplete={hide}>
+              <TextInputField label="First name" />
+            </Dialog>
+            <Button onClick={show}>Show Dialog with autofocus disabled</Button>
           </Box>
         )}
       </DialogManager>

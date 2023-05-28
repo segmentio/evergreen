@@ -3,33 +3,35 @@ import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
 import Box from 'ui-box'
 import { IconButton, Button, TextDropdownButton } from '..'
+import { Group } from '../../group'
 import * as Icons from '../../icons'
 import { Pane } from '../../layers'
 import { majorScale } from '../../scales'
-import { SegmentedControl } from '../../segmented-control'
 import { Heading } from '../../typography'
+
+const OPTIONS = [
+  { label: 'Small (24px)', value: 'small' },
+  { label: 'Medium (32px)', value: 'medium' },
+  { label: 'Large (40px)', value: 'large' }
+]
 
 const buttonsStory = storiesOf('buttons', module)
 buttonsStory.add('Common', () => (
   <Box padding={40}>
     <Component
       initialState={{
-        options: [
-          { label: 'Small (24px)', value: 'small' },
-          { label: 'Medium (32px)', value: 'medium' },
-          { label: 'Large (40px)', value: 'large' }
-        ],
         value: 'medium'
       }}
     >
       {({ setState, state }) => (
         <React.Fragment>
-          <SegmentedControl
-            width={350}
-            options={state.options}
-            value={state.value}
-            onChange={value => setState({ value })}
-          />
+          <Group marginBottom={majorScale(2)}>
+            {OPTIONS.map(({ label, value }) => (
+              <Button isActive={value === state.value} key={value} onClick={() => setState({ value })}>
+                {label}
+              </Button>
+            ))}
+          </Group>
           <Pane marginTop={16}>
             <Button size={state.value} marginRight={16}>
               Close
@@ -182,6 +184,8 @@ buttonsStory.add('Button types', () => (
       <Button appearance="minimal" marginRight={16} intent="warning">
         Minimal
       </Button>
+      <IconButton marginRight={16} icon={<Icons.PlusIcon />} />
+      <IconButton marginRight={16} intent="danger" icon={<Icons.PlusIcon />} />
     </Box>
     <Heading marginTop={24}>Disabled Appearance</Heading>
     <Box marginTop={12}>
@@ -197,6 +201,8 @@ buttonsStory.add('Button types', () => (
       <Button disabled appearance="minimal" marginRight={16} intent="warning">
         Minimal
       </Button>
+      <IconButton disabled icon={<Icons.PlusIcon />} marginRight={16} />
+      <IconButton disabled marginRight={16} intent="danger" icon={<Icons.PlusIcon />} />
     </Box>
   </Box>
 ))

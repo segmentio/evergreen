@@ -10,9 +10,11 @@ const baseStyle = {
   color: 'colors.muted',
   textTransform: 'uppercase',
 
-  _firstOfType: {
-    borderTopLeftRadius: 'radii.1',
-    borderTopRightRadius: 'radii.1'
+  selectors: {
+    _firstOfType: {
+      borderTopLeftRadius: 'radii.1',
+      borderTopRightRadius: 'radii.1'
+    }
   }
 }
 

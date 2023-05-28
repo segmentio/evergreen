@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import * as evergreen from 'evergreen-ui'
+import { Pane, toaster, MaximizeIcon, MinimizeIcon, DocumentIcon, Link, majorScale } from 'evergreen-ui'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import CodeSandboxIcon from './icons/CodeSandboxIcon'
 import profiles from '../fixtures/profiles.json'
@@ -11,8 +12,6 @@ import theme from './playground-theme'
 interface Props {
   source: string
 }
-
-const { Pane, toaster, MaximizeIcon, MinimizeIcon, DocumentIcon, Link, majorScale } = evergreen
 
 const Playground: React.FC<Props> = ({ source }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false)

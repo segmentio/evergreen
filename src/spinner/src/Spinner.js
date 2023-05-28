@@ -1,42 +1,36 @@
 import React, { useState, useEffect, forwardRef, memo } from 'react'
-import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box, { keyframes } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
 
-const loadingKeyframes = css.keyframes('loading', {
-  '0%': {
+const loadingKeyframes = keyframes('loading', {
+  0: {
     transform: 'rotate(0)'
   },
-  '100%': {
+  100: {
     transform: 'rotate(360deg)'
   }
 })
 
-const loadingCircleKeyframes = css.keyframes('loading-circle', {
-  '0%': {
+const loadingCircleKeyframes = keyframes('loading-circle', {
+  0: {
     strokeDashoffset: 600
   },
-  '100%': {
+  100: {
     strokeDashoffset: 0
   }
 })
 
-const outerClass = css({
-  animation: `${loadingKeyframes} 2s linear infinite`
-}).toString()
-
-const innerClass = color =>
-  css({
-    strokeDashoffset: 600,
-    strokeDasharray: 300,
-    strokeWidth: 12,
-    strokeMiterlimit: 10,
-    strokeLinecap: 'round',
-    animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
-    stroke: color,
-    fill: 'transparent'
-  }).toString()
+const innerStyle = color => ({
+  animation: `${loadingCircleKeyframes} 1.6s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite`,
+  fill: 'transparent',
+  stroke: color,
+  strokeDasharray: 300,
+  strokeDashoffset: 600,
+  strokeLinecap: 'round',
+  strokeMiterlimit: 10,
+  strokeWidth: 12
+})
 
 const emptyObject = {}
 
@@ -44,9 +38,9 @@ const Spinner = memo(
   forwardRef(function Spinner({ delay = 0, size = 'medium', ...props }, ref) {
     const [isVisible, setIsVisible] = useState(delay === 0)
 
-    const boxProps = useStyleConfig('Spinner', { size }, emptyObject, emptyObject)
+    const themedProps = useStyleConfig('Spinner', { size }, emptyObject, emptyObject)
 
-    const { height, width, ...rest } = typeof size === 'string' ? boxProps : { width: size, height: size }
+    const { height, width, ...rest } = typeof size === 'string' ? themedProps : { width: size, height: size }
 
     useEffect(() => {
       let delayTimer = null
@@ -56,7 +50,7 @@ const Spinner = memo(
         }, delay)
       }
 
-      return function() {
+      return function () {
         clearTimeout(delayTimer)
       }
     }, [delay])
@@ -67,8 +61,8 @@ const Spinner = memo(
 
     return (
       <Box width={width} height={height} lineHeight={0} {...props} {...rest} ref={ref}>
-        <Box is="svg" className={outerClass} x="0px" y="0px" viewBox="0 0 150 150">
-          <Box is="circle" className={innerClass(boxProps.color)} cx="75" cy="75" r="60" />
+        <Box is="svg" animation={`${loadingKeyframes} 2s linear infinite`} x="0px" y="0px" viewBox="0 0 150 150">
+          <Box is="circle" {...innerStyle(themedProps.color)} cx="75" cy="75" r="60" />
         </Box>
       </Box>
     )

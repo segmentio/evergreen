@@ -4,10 +4,12 @@ const baseStyle = {
 
 const appearances = {
   default: {
-    _focus: {
-      outline: 'none',
-      background: 'colors.blue50',
-      boxShadow: theme => `inset 0 0 0 1px ${theme.colors.blue500}`
+    selectors: {
+      _focus: {
+        outline: 'none',
+        background: 'colors.blue50',
+        boxShadow: theme => `inset 0 0 0 1px ${theme.colors.blue500}`
+      }
     }
   }
 }

@@ -51,14 +51,14 @@ const OptionsList = memo(function OptionsList(props) {
     filterPlaceholder = 'Filter...',
     filterIcon = SearchIcon,
     defaultSearchValue = '',
+    shouldAutoFocus = true,
     ...rest
   } = props
 
   const [searchValue, setSearchValue] = useState(defaultSearchValue)
   const [searchRef, setSearchRef] = useState(null)
   const requestId = useRef()
-  const theme = useTheme()
-  const { tokens } = theme
+  const { colors } = useTheme()
 
   const isSelected = useCallback(
     item => {
@@ -181,7 +181,7 @@ const OptionsList = memo(function OptionsList(props) {
   useEffect(() => {
     if (hasFilter) {
       requestId.current = requestAnimationFrame(() => {
-        if (searchRef) {
+        if (searchRef && shouldAutoFocus) {
           searchRef.focus()
         }
       })
@@ -192,7 +192,7 @@ const OptionsList = memo(function OptionsList(props) {
         window.removeEventListener('keydown', handleKeyDown)
       }
     }
-  }, [hasFilter, searchRef, handleKeyDown])
+  }, [hasFilter, searchRef, handleKeyDown, shouldAutoFocus])
 
   const listHeight = height - (hasFilter ? 32 : 0)
   const currentIndex = getCurrentIndex()
@@ -201,7 +201,7 @@ const OptionsList = memo(function OptionsList(props) {
   return (
     <Pane height={height} width={width} display="flex" flexDirection="column" {...rest}>
       {hasFilter && (
-        <TableHead height={32} backgroundColor={tokens.colors.gray50}>
+        <TableHead height={32} backgroundColor={colors.gray50}>
           <SearchTableHeaderCell
             onChange={handleChange}
             ref={setSearchRef}
@@ -269,6 +269,11 @@ OptionsList.propTypes = {
    * This holds the values of the options
    */
   selected: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+
+  /**
+   * When true, menu auto focuses on the search/filter bar.
+   */
+  shouldAutoFocus: PropTypes.bool,
   onSelect: PropTypes.func,
   onDeselect: PropTypes.func,
   onFilterChange: PropTypes.func,

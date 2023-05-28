@@ -1,6 +1,5 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import renderer from 'react-test-renderer'
 import { UIBoxSerializer } from '../../../lib/testing'
 import { ThemeProvider } from '../../theme'
 import { defaultTheme } from '../../themes'
@@ -18,14 +17,15 @@ test.each([
   ['size 700', 700],
   ['size 800', 800],
   ['size 900', 900]
-])('<Heading /> %s renders as expected', (_, size) => {
-  const component = (
+])('<Heading /> %s renders as expected', async (_, size) => {
+  const text = `Heading ${size}`
+  const { findByText } = render(
     <ThemeProvider value={defaultTheme}>
-      <Heading size={size}>{`Heading ${size}`}</Heading>
+      <Heading size={size}>{text}</Heading>
     </ThemeProvider>
   )
-  const tree = renderer.create(component).toJSON()
-  expect(tree).toMatchSnapshot()
+
+  expect((await findByText(text)).outerHTML).toMatchSnapshot()
 })
 
 test('Heading lets you override the underlying DOM element', async () => {

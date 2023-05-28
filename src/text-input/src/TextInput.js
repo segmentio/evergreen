@@ -1,5 +1,4 @@
 import React, { forwardRef, memo } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box, { spacing, dimensions, position, layout } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -16,7 +15,6 @@ const pseudoSelectors = {
 }
 
 const internalStyles = {
-  border: 'none',
   MozAppearance: 'none',
   outline: 'none',
   textDecoration: 'none',
@@ -42,20 +40,20 @@ const TextInput = memo(
     const theme = useTheme()
     const { fontFamilies } = theme
     const themedFontFamily = fontFamilies[fontFamily] || fontFamily
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
+    const themedProps = useStyleConfig(
       'Input',
       { appearance, size: restProps.size || 'medium' },
       pseudoSelectors,
       internalStyles
     )
 
-    const height = restProps.height || boxProps.height
+    const height = restProps.height || themedProps.height
     const textProps = !restProps.size && restProps.height ? getTextPropsForControlHeight(restProps.height) : {}
 
     return (
       <Box
         is="input"
-        className={cx(themedClassName, className)}
+        className={className}
         type="text"
         width={width}
         required={required}
@@ -65,7 +63,7 @@ const TextInput = memo(
         aria-invalid={isInvalid}
         ref={ref}
         fontFamily={themedFontFamily}
-        {...boxProps}
+        {...themedProps}
         {...restProps}
         {...textProps}
         height={height}

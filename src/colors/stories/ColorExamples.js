@@ -42,7 +42,13 @@ const ColorExamples = props => {
                       key={key}
                       title={capitalize(key)}
                       colorGroup={theme[item.key][key]}
-                      name={childKey => `theme.${item.key}.${key}.${childKey}`}
+                      name={childKey => {
+                        if (childKey.toLowerCase() === key.toLowerCase()) {
+                          return `theme.${item.key}.${key}`
+                        }
+
+                        return `theme.${item.key}.${key}.${childKey}`
+                      }}
                     />
                   )
                 })}

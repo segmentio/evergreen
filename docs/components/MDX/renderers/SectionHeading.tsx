@@ -1,12 +1,11 @@
 import React from 'react'
 import { HeadingOwnProps, Heading, Pane, majorScale, Link, LinkIcon } from 'evergreen-ui'
 
-interface Props {
-  size: HeadingOwnProps['size']
+export interface SectionHeadingProps extends Pick<HeadingOwnProps, 'size'> {
   children: string
 }
 
-const SectionHeading: React.FC<Props> = ({ size, children }) => {
+const SectionHeading: React.FC<SectionHeadingProps> = ({ size, children }) => {
   const idIndex = children.indexOf('{#')
   const text = idIndex !== -1 ? children.substring(0, idIndex) : children
 

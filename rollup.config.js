@@ -2,6 +2,7 @@ import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
+import typescript from '@rollup/plugin-typescript'
 import { terser } from 'rollup-plugin-terser'
 import pkg from './package.json'
 
@@ -24,7 +25,7 @@ const globals = {
 export default [
   // UMD Development
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     external,
     output: {
       file: 'umd/evergreen.js',
@@ -42,6 +43,7 @@ export default [
         }
       }),
       resolve(),
+      typescript({ compilerOptions: { module: 'esnext', outDir: 'umd' } }),
       commonjs({
         include: 'node_modules/**'
       }),
@@ -53,7 +55,7 @@ export default [
   },
   // UMD Production
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     external,
     output: {
       file: 'umd/evergreen.min.js',
@@ -71,6 +73,7 @@ export default [
         }
       }),
       resolve(),
+      typescript({ compilerOptions: { module: 'esnext', outDir: 'umd' } }),
       commonjs({
         include: 'node_modules/**'
       }),

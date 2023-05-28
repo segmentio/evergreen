@@ -3,7 +3,6 @@
  */
 
 import React, { memo, forwardRef, useState } from 'react'
-import cx from 'classnames'
 import omit from 'lodash.omit'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
@@ -171,22 +170,17 @@ const TagInput = memo(
       )
     }
 
-    const { className: themedContainerClassName, ...boxProps } = useStyleConfig(
-      'TagInput',
-      { appearance: 'default', height },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('TagInput', { appearance: 'default', height }, pseudoSelectors, internalStyles)
 
     return (
       <Box
         aria-disabled={disabled || undefined}
         aria-activedescendant={isFocused ? inputId : undefined}
         aria-invalid={isInvalid}
-        className={cx(themedContainerClassName, className)}
+        className={className}
         ref={ref}
         onBlur={handleBlur}
-        {...boxProps}
+        {...themedProps}
         {...rest}
         paddingRight={hasAutocomplete ? majorScale(3) : undefined}
       >

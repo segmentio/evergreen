@@ -1,13 +1,12 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import renderer from 'react-test-renderer'
 import Alert from '../src/Alert'
 
 describe('<Alert />', () => {
   it('basic snapshot', () => {
-    const component = <Alert title="A simple general message" />
-    const tree = renderer.create(component).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { asFragment } = render(<Alert title="A simple general message" />)
+
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('outputs title', () => {
@@ -21,14 +20,14 @@ describe('<Alert />', () => {
   })
 
   it('intent snapshot', () => {
-    const component = <Alert title="Test title" intent="danger" />
-    const tree = renderer.create(component).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { asFragment } = render(<Alert title="Test title" intent="danger" />)
+
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('appearance snapshot', () => {
-    const component = <Alert title="Test title" appearance="card" />
-    const tree = renderer.create(component).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { asFragment } = render(<Alert title="Test title" appearance="card" />)
+
+    expect(asFragment()).toMatchSnapshot()
   })
 })

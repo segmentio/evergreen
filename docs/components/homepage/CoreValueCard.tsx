@@ -7,7 +7,7 @@ interface Props {
 }
 
 const ValueCard = ({ icon, title, description }: Props) => {
-  const { colors } = useTheme() as any
+  const { colors } = useTheme()
 
   return (
     <Pane marginX={majorScale(2)}>

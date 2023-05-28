@@ -14,11 +14,7 @@ margin-top: 0px;
 text-transform: uppercase;
 
 
-<h2
-  className="ub-mt_0px ub-mb_0px ub-color_696f8c ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_10px ub-txt-trns_uppercase ub-ln-ht_16px ub-ltr-spc_0-6px ub-box-szg_border-box"
->
-  Heading 100
-</h2>
+"<h2 class=\\"ub-mt_0px ub-mb_0px ub-color_696f8c ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_10px ub-txt-trns_uppercase ub-ln-ht_16px ub-ltr-spc_0-6px ub-box-szg_border-box\\">Heading 100</h2>"
 `;
 
 exports[`<Heading /> size 200 renders as expected 1`] = `
@@ -34,11 +30,7 @@ margin-bottom: 0px;
 margin-top: 0px;
 
 
-<h2
-  className="ub-mt_0px ub-mb_0px ub-color_696f8c ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_12px ub-ln-ht_16px ub-ltr-spc_0 ub-box-szg_border-box"
->
-  Heading 200
-</h2>
+"<h2 class=\\"ub-mt_0px ub-mb_0px ub-color_696f8c ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_12px ub-ln-ht_16px ub-ltr-spc_0 ub-box-szg_border-box\\">Heading 200</h2>"
 `;
 
 exports[`<Heading /> size 300 renders as expected 1`] = `
@@ -54,11 +46,7 @@ margin-bottom: 0px;
 margin-top: 0px;
 
 
-<h2
-  className="ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_12px ub-ln-ht_16px ub-ltr-spc_0 ub-box-szg_border-box"
->
-  Heading 300
-</h2>
+"<h2 class=\\"ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_12px ub-ln-ht_16px ub-ltr-spc_0 ub-box-szg_border-box\\">Heading 300</h2>"
 `;
 
 exports[`<Heading /> size 400 renders as expected 1`] = `
@@ -74,11 +62,7 @@ margin-bottom: 0px;
 margin-top: 0px;
 
 
-<h2
-  className="ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_18px ub-ltr-spc_-0-05px ub-box-szg_border-box"
->
-  Heading 400
-</h2>
+"<h2 class=\\"ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_18px ub-ltr-spc_-0-05px ub-box-szg_border-box\\">Heading 400</h2>"
 `;
 
 exports[`<Heading /> size 500 renders as expected 1`] = `
@@ -94,11 +78,7 @@ margin-bottom: 0px;
 margin-top: 0px;
 
 
-<h2
-  className="ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_b77syt ub-f-wght_600 ub-fnt-sze_16px ub-ltr-spc_-0-05px ub-ln-ht_20px ub-box-szg_border-box"
->
-  Heading 500
-</h2>
+"<h2 class=\\"ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_b77syt ub-f-wght_600 ub-fnt-sze_16px ub-ltr-spc_-0-05px ub-ln-ht_20px ub-box-szg_border-box\\">Heading 500</h2>"
 `;
 
 exports[`<Heading /> size 600 renders as expected 1`] = `
@@ -114,11 +94,7 @@ margin-bottom: 0px;
 margin-top: 0px;
 
 
-<h2
-  className="ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_wm9v6k ub-f-wght_600 ub-fnt-sze_18px ub-ln-ht_24px ub-ltr-spc_-0-07px ub-box-szg_border-box"
->
-  Heading 600
-</h2>
+"<h2 class=\\"ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_wm9v6k ub-f-wght_600 ub-fnt-sze_18px ub-ln-ht_24px ub-ltr-spc_-0-07px ub-box-szg_border-box\\">Heading 600</h2>"
 `;
 
 exports[`<Heading /> size 700 renders as expected 1`] = `
@@ -134,11 +110,7 @@ margin-bottom: 0px;
 margin-top: 0px;
 
 
-<h2
-  className="ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_wm9v6k ub-f-wght_600 ub-fnt-sze_20px ub-ln-ht_24px ub-ltr-spc_-0-07px ub-box-szg_border-box"
->
-  Heading 700
-</h2>
+"<h2 class=\\"ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_wm9v6k ub-f-wght_600 ub-fnt-sze_20px ub-ln-ht_24px ub-ltr-spc_-0-07px ub-box-szg_border-box\\">Heading 700</h2>"
 `;
 
 exports[`<Heading /> size 800 renders as expected 1`] = `
@@ -154,11 +126,7 @@ margin-bottom: 0px;
 margin-top: 0px;
 
 
-<h2
-  className="ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_wm9v6k ub-f-wght_600 ub-fnt-sze_24px ub-ln-ht_32px ub-ltr-spc_-0-2px ub-box-szg_border-box"
->
-  Heading 800
-</h2>
+"<h2 class=\\"ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_wm9v6k ub-f-wght_600 ub-fnt-sze_24px ub-ln-ht_32px ub-ltr-spc_-0-2px ub-box-szg_border-box\\">Heading 800</h2>"
 `;
 
 exports[`<Heading /> size 900 renders as expected 1`] = `
@@ -174,9 +142,5 @@ margin-bottom: 0px;
 margin-top: 0px;
 
 
-<h2
-  className="ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_wm9v6k ub-f-wght_600 ub-fnt-sze_32px ub-ln-ht_40px ub-ltr-spc_-0-2px ub-box-szg_border-box"
->
-  Heading 900
-</h2>
+"<h2 class=\\"ub-mt_0px ub-mb_0px ub-color_101840 ub-fnt-fam_wm9v6k ub-f-wght_600 ub-fnt-sze_32px ub-ln-ht_40px ub-ltr-spc_-0-2px ub-box-szg_border-box\\">Heading 900</h2>"
 `;

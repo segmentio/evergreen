@@ -11,7 +11,7 @@ import splitFiles from './split-files'
 /**
  * @typedef {object} RebaseFilesResult
  * @property {File[]} accepted
- * @property {FileRejection[]} rejected
+ * @property {import('./get-file-rejections').FileRejection[]} rejected
  */
 
 /**

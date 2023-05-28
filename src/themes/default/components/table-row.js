@@ -39,14 +39,16 @@ const baseStyle = {
   textDecoration: 'none',
   height: 64,
 
-  _lastOfType: {
-    borderBottom: 'none',
-    borderBottomLeftRadius: 'radii.1',
-    borderBottomRightRadius: 'radii.1'
-  },
+  selectors: {
+    _lastOfType: {
+      borderBottom: 'none',
+      borderBottomLeftRadius: 'radii.1',
+      borderBottomRightRadius: 'radii.1'
+    },
 
-  _isSelectable: {
-    cursor: 'pointer'
+    _isSelectable: {
+      cursor: 'pointer'
+    }
   }
 }
 
@@ -54,20 +56,22 @@ const appearances = {
   default: {
     backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'base'),
 
-    _hover: {
-      backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'hover')
-    },
+    selectors: {
+      _hover: {
+        backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'hover')
+      },
 
-    _focus: {
-      backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'focus')
-    },
+      _focus: {
+        backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'focus')
+      },
 
-    _active: {
-      backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'active')
-    },
+      _active: {
+        backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'active')
+      },
 
-    _current: {
-      backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'current')
+      _current: {
+        backgroundColor: (_, props) => getBackgroundForIntentAndState(props.intent, 'current')
+      }
     }
   }
 }

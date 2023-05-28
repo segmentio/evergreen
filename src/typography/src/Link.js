@@ -1,5 +1,4 @@
 import React, { forwardRef, memo } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { useStyleConfig } from '../../hooks'
 import Text from './Text'
@@ -17,14 +16,9 @@ const pseudoSelectors = {
 const Link = memo(
   forwardRef(function Link(props, ref) {
     const { className, color = 'default', ...restProps } = props
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'Link',
-      { color },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Link', { color }, pseudoSelectors, internalStyles)
 
-    return <Text is="a" ref={ref} className={cx(className, themedClassName)} {...boxProps} {...restProps} />
+    return <Text is="a" ref={ref} className={className} {...themedProps} {...restProps} />
   })
 )
 
@@ -43,9 +37,9 @@ Link.propTypes = {
   href: PropTypes.string,
 
   /**
-   * Target atrribute, common use case is target="_blank."
+   * Target attribute, common use case is target="_blank."
    */
-  target: PropTypes.string,
+  target: PropTypes.oneOf(['_self', '_blank', '_parent', '_top']),
 
   /**
    * The color (and styling) of the Link. Can be default, blue, green or neutral.

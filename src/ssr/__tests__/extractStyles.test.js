@@ -11,7 +11,6 @@ describe('extractStyles', () => {
     expect(result).toMatchSnapshot()
     expect(result.css).toBeTruthy()
     expect(result.cache.uiBoxCache).toBeTruthy()
-    expect(result.cache.glamorIds).toBeTruthy()
     expect(result.hydrationScript).toBeTruthy()
   })
 

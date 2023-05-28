@@ -1,103 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Alert /> appearance snapshot 1`] = `
-<div
-  className="ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
+    class="ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF  ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
+    role="alert"
   >
-    <svg
-      className="css-1ffn9ia ub-w_16px ub-h_16px ub-box-szg_border-box"
-      data-icon="info-sign"
-      viewBox="0 0 16 16"
-    >
-      <path
-        d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
-        fillRule="evenodd"
-      />
-    </svg>
-  </div>
-  <div
-    className="ub-flx_1 ub-box-szg_border-box"
-  >
-    <h4
-      className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
-    >
-      Test title
-    </h4>
     <div
-      className="ub-box-szg_border-box"
-    />
+      class="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
+    >
+      <svg
+        class="ub-fill_3366FF ub-w_16px ub-h_16px ub-box-szg_border-box"
+        data-icon="info-sign"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div
+      class="ub-flx_1 ub-box-szg_border-box"
+    >
+      <h4
+        class="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
+      >
+        Test title
+      </h4>
+      <div
+        class="ub-box-szg_border-box"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`<Alert /> basic snapshot 1`] = `
-<div
-  className="ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
+    class="ub-b-top_1px-solid-3366FF ub-b-rgt_1px-solid-3366FF ub-b-btm_1px-solid-3366FF ub-b-lft_1px-solid-3366FF  ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_F3F6FF ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_2952CC ub-box-szg_border-box"
+    role="alert"
   >
-    <svg
-      className="css-1ffn9ia ub-w_16px ub-h_16px ub-box-szg_border-box"
-      data-icon="info-sign"
-      viewBox="0 0 16 16"
-    >
-      <path
-        d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
-        fillRule="evenodd"
-      />
-    </svg>
-  </div>
-  <div
-    className="ub-flx_1 ub-box-szg_border-box"
-  >
-    <h4
-      className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
-    >
-      A simple general message
-    </h4>
     <div
-      className="ub-box-szg_border-box"
-    />
+      class="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
+    >
+      <svg
+        class="ub-fill_3366FF ub-w_16px ub-h_16px ub-box-szg_border-box"
+        data-icon="info-sign"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM7 3h2v2H7V3zm3 10H6v-1h1V7H6V6h3v6h1v1z"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div
+      class="ub-flx_1 ub-box-szg_border-box"
+    >
+      <h4
+        class="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
+      >
+        A simple general message
+      </h4>
+      <div
+        class="ub-box-szg_border-box"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`<Alert /> intent snapshot 1`] = `
-<div
-  className="ub-b-top_1px-solid-D14343 ub-b-rgt_1px-solid-D14343 ub-b-btm_1px-solid-D14343 ub-b-lft_1px-solid-D14343 ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_FDF4F4 ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_A73636 ub-box-szg_border-box"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
+    class="ub-b-top_1px-solid-D14343 ub-b-rgt_1px-solid-D14343 ub-b-btm_1px-solid-D14343 ub-b-lft_1px-solid-D14343  ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_FDF4F4 ub-bblr_8px ub-bbrr_8px ub-btlr_8px ub-btrr_8px ub-color_A73636 ub-box-szg_border-box"
+    role="alert"
   >
-    <svg
-      className="css-tn1wco ub-w_16px ub-h_16px ub-box-szg_border-box"
-      data-icon="error"
-      viewBox="0 0 16 16"
-    >
-      <path
-        d="M7.99-.01c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm1 13h-2v-2h2v2zm0-3h-2v-7h2v7z"
-        fillRule="evenodd"
-      />
-    </svg>
-  </div>
-  <div
-    className="ub-flx_1 ub-box-szg_border-box"
-  >
-    <h4
-      className="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
-    >
-      Test title
-    </h4>
     <div
-      className="ub-box-szg_border-box"
-    />
+      class="ub-mr_16px ub-ml_2px ub-mt_-1px ub-dspl_flex ub-algn-itms_flex-start ub-box-szg_border-box"
+    >
+      <svg
+        class="ub-fill_D14343 ub-w_16px ub-h_16px ub-box-szg_border-box"
+        data-icon="error"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M7.99-.01c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm1 13h-2v-2h2v2zm0-3h-2v-7h2v7z"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div
+      class="ub-flx_1 ub-box-szg_border-box"
+    >
+      <h4
+        class="ub-mt_0px ub-mb_0px ub-color_inherit ub-fnt-fam_b77syt ub-f-wght_500 ub-fnt-sze_14px ub-ln-ht_1 ub-ltr-spc_-0-05px ub-box-szg_border-box"
+      >
+        Test title
+      </h4>
+      <div
+        class="ub-box-szg_border-box"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

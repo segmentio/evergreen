@@ -5,13 +5,15 @@ const baseStyle = {
   color: (theme, { color }) => theme.colors[color] || color || 'colors.default',
   transition: 'box-shadow 80ms ease-in-out',
 
-  _focus: {
-    boxShadow: 'shadows.focusRing'
-  },
+  selectors: {
+    _focus: {
+      boxShadow: 'shadows.focusRing'
+    },
 
-  _disabled: {
-    cursor: 'not-allowed',
-    pointerEvents: 'none'
+    _disabled: {
+      cursor: 'not-allowed',
+      pointerEvents: 'none'
+    }
   }
 }
 
@@ -56,22 +58,25 @@ const getPrimaryButtonAppearance = (appearance, intent, textColor, theme) => {
     backgroundColor: `colors.${color}500`,
     borderColor: `colors.${color}500`,
     color: textColor || 'white',
-    _hover: {
-      backgroundColor: `colors.${color}600`,
-      borderColor: `colors.${color}600`
-    },
-    _disabled: {
-      backgroundColor: `colors.${color}100`,
-      borderColor: `colors.${color}100`
-    },
-    _focus: {
-      backgroundColor: `colors.${color}500`,
-      boxShadow: `0 0 0 2px ${theme && theme.colors[`${color}100`]}`,
-      borderColor: `colors.${color}500`
-    },
-    _active: {
-      backgroundColor: `colors.${color}700`,
-      borderColor: `colors.${color}700`
+
+    selectors: {
+      _hover: {
+        backgroundColor: `colors.${color}600`,
+        borderColor: `colors.${color}600`
+      },
+      _disabled: {
+        backgroundColor: `colors.${color}100`,
+        borderColor: `colors.${color}100`
+      },
+      _focus: {
+        backgroundColor: `colors.${color}500`,
+        boxShadow: `0 0 0 2px ${theme && theme.colors[`${color}100`]}`,
+        borderColor: `colors.${color}500`
+      },
+      _active: {
+        backgroundColor: `colors.${color}700`,
+        borderColor: `colors.${color}700`
+      }
     }
   }
 }
@@ -83,35 +88,39 @@ const appearances = {
     border: (theme, props) => `1px solid ${theme.colors[borderColorForIntent(props.intent)]}`,
     color: (theme, props) => props.color || theme.colors[colorKeyForIntent(props.intent)],
 
-    _disabled: {
-      color: 'colors.gray500',
-      borderColor: 'colors.gray300'
-    },
+    selectors: {
+      _disabled: {
+        color: 'colors.gray500',
+        borderColor: 'colors.gray300'
+      },
 
-    _hover: {
-      border: (theme, props) => `1px solid ${theme.colors[borderColorForIntent(props.intent, true)]}`,
-      backgroundColor: 'colors.gray50'
-    },
+      _hover: {
+        border: (theme, props) => `1px solid ${theme.colors[borderColorForIntent(props.intent, true)]}`,
+        backgroundColor: 'colors.gray50'
+      },
 
-    _active: {
-      backgroundColor: 'colors.gray100'
+      _active: {
+        backgroundColor: 'colors.gray100'
+      }
     }
   },
   minimal: {
     backgroundColor: 'transparent',
     color: (theme, props) => props.color || theme.colors[colorKeyForIntent(props.intent)],
 
-    _disabled: {
-      color: 'colors.gray500',
-      opacity: 0.6
-    },
+    selectors: {
+      _disabled: {
+        color: 'colors.gray500',
+        opacity: 0.6
+      },
 
-    _hover: {
-      backgroundColor: 'colors.gray100'
-    },
+      _hover: {
+        backgroundColor: 'colors.gray100'
+      },
 
-    _active: {
-      backgroundColor: 'colors.gray200'
+      _active: {
+        backgroundColor: 'colors.gray200'
+      }
     }
   },
   destructive: getPrimaryButtonAppearance('destructive')

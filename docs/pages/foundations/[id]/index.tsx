@@ -1,15 +1,17 @@
 import React from 'react'
 import fs from 'fs'
 import EntityOverviewTemplate, {
-  Props as EntityOverviewTemplateProps,
+  EntityOverviewTemplateProps,
 } from '../../../components/templates/EntityOverviewTemplate'
 import components from '../../../components/MDX/componentMapping'
 import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
-import IA from '../../../utils/IA'
+import IA from '../../../constants/IA'
 import PageHeader from '../../../components/PageHeader'
+import { findById, sortItems } from '../../../utils/item-utils'
+import { Query } from '../../../types/query'
 
 interface Props {
   foundations: EntityOverviewTemplateProps['navItems']
@@ -31,14 +33,14 @@ const FoundationPage: React.FC<Props> = ({ mdxSource, foundations, foundation })
       selectedNavItem={foundation}
       navPrefix="foundations"
       navTitle="Foundations"
-      pageHeader={<PageHeader title={name!} description={description} githubLink={github} />}
+      pageHeader={<PageHeader title={name} description={description} githubLink={github} />}
       source={mdxSource}
     />
   )
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'foundations'))
+  const files = fs.readdirSync(path.join(process.cwd(), 'documentation', 'foundations'))
 
   const paths = files.map((file) => `/foundations/${file.split('.')[0]}`)
 
@@ -48,10 +50,6 @@ export async function getStaticPaths() {
   }
 }
 
-interface Query {
-  [k: string]: string
-}
-
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
@@ -59,8 +57,8 @@ export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const fileContents = fs.readFileSync(path.join(process.cwd(), 'documentation', 'foundations', `${id}.mdx`)).toString()
 
   const mdxSource = await renderToString(fileContents, { components })
-  const foundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-  const foundation = foundations.find((foundation) => foundation.id === id)
+  const foundations = sortItems(IA.foundations.items)
+  const foundation = findById(foundations, id)
 
   return {
     props: {

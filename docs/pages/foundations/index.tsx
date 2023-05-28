@@ -5,23 +5,20 @@ import SearchBar from '../../components/SearchBar'
 import PageHeader from '../../components/PageHeader'
 import Thumbnail from '../../components/Thumbnail'
 import SideNav from '../../components/SideNav'
-import IA from '../../utils/IA'
+import IA from '../../constants/IA'
+import { sortItems } from '../../utils/item-utils'
 
-interface Props {}
-
-const FoundationsPage: React.FC<Props> = () => {
+const FoundationsPage: React.FC = () => {
   const [query, setQuery] = useState<string>('')
 
-  const evergreenFoundations = IA.foundations.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
+  const foundations = sortItems(IA.foundations.items)
 
-  const filteredItems = evergreenFoundations.filter(
-    (item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1
-  )
+  const filteredItems = foundations.filter((item) => item.name?.toLowerCase().indexOf(query.toLowerCase()) !== -1)
 
   return (
     <Layout title="Foundations">
       <Pane width="100%" display="grid" gridTemplateColumns="236px 1fr">
-        <SideNav title="Foundations" items={evergreenFoundations} routePrefix="foundations" />
+        <SideNav title="Foundations" items={foundations} routePrefix="foundations" />
         <Pane
           width="100%"
           display="flex"

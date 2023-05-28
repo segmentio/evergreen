@@ -16,11 +16,7 @@ const internalStyles = {
   WebkitFontSmoothing: 'antialiased',
   textDecoration: 'none',
   outline: 'none',
-  cursor: 'pointer',
-  ':-moz-focusring': {
-    color: 'transparent',
-    textShadow: '0 0 0 #000'
-  }
+  cursor: 'pointer'
 }
 
 const pseudoSelectors = {
@@ -58,14 +54,14 @@ const Select = memo(
       ...restProps
     } = props
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
+    const themedProps = useStyleConfig(
       'Select',
       { appearance, size: restProps.size || 'medium' },
       pseudoSelectors,
       internalStyles
     )
 
-    const height = heightProp || boxProps.height
+    const height = heightProp || themedProps.height
 
     const textProps = !restProps.size && restProps.height ? getTextPropsForControlHeight(restProps.height) : {}
 
@@ -85,7 +81,6 @@ const Select = memo(
         <Box
           is="select"
           ref={ref}
-          className={themedClassName}
           id={id}
           name={name}
           onChange={onChange}
@@ -97,7 +92,7 @@ const Select = memo(
           aria-invalid={String(isInvalid)}
           paddingLeft={Math.round(height / 3.2)}
           paddingRight={iconMargin * 2 + iconSize}
-          {...boxProps}
+          {...themedProps}
           height="100%"
           aria-describedby={ariaDescribedby}
         >

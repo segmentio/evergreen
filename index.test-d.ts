@@ -1,5 +1,17 @@
 import { expectAssignable, expectType, expectError } from 'tsd'
-import { defaultTheme, mergeTheme, StyleProps, Intent, Theme, Fill, Partial, Pick, Color } from '.'
+import {
+  defaultTheme,
+  mergeTheme,
+  StyleProps,
+  Intent,
+  Theme,
+  Fill,
+  Partial,
+  Pick,
+  Color,
+  ComboboxProps,
+  LinkProps
+} from '.'
 
 interface ThemeOverrides extends Partial<Pick<Theme, 'colors' | 'fills' | 'components'>> {
   colors: {
@@ -34,11 +46,13 @@ const themeOverridesOrAdditions: ThemeOverrides = {
         primary: {
           color: 'white',
           backgroundColor: '#fc7ef8',
-          _hover: {
-            backgroundColor: '#fc03f0'
-          },
-          _focus: {
-            boxShadow: '0 0 0 2px #fccafa'
+          selectors: {
+            _hover: {
+              backgroundColor: '#fc03f0'
+            },
+            _focus: {
+              boxShadow: '0 0 0 2px #fccafa'
+            }
           }
         },
         warning: {
@@ -125,3 +139,9 @@ const themeWithTopLevelColorsArray = {
   colors: ['#0f4880', '#1d781d', '#db0a5b', '#8d6708', '#d43900']
 }
 expectError(mergeTheme(defaultTheme, themeWithTopLevelColorsArray))
+
+expectError<ComboboxProps>({ autocompleteProps: { children: 'error' } })
+expectError<ComboboxProps>({ autocompleteProps: { onChange: () => {} } })
+expectError<ComboboxProps>({ autocompleteProps: { items: [] } })
+
+expectError<LinkProps>({ target: 'blank' })

@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "types"
+  },
+  "extends": "./tsconfig.commonjs.json"
+}

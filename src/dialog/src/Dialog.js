@@ -1,7 +1,6 @@
 import React, { memo } from 'react'
-import cx from 'classnames'
-import { css } from 'glamor'
 import PropTypes from 'prop-types'
+import { keyframes } from 'ui-box'
 import { Button, IconButton } from '../../buttons'
 import { useStyleConfig } from '../../hooks'
 import { CrossIcon } from '../../icons'
@@ -16,7 +15,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 200
 
-const openAnimation = css.keyframes('openAnimation', {
+const openAnimation = keyframes('openAnimation', {
   from: {
     transform: 'scale(0.8)',
     opacity: 0
@@ -27,7 +26,7 @@ const openAnimation = css.keyframes('openAnimation', {
   }
 })
 
-const closeAnimation = css.keyframes('closeAnimation', {
+const closeAnimation = keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
     opacity: 1
@@ -37,13 +36,24 @@ const closeAnimation = css.keyframes('closeAnimation', {
     opacity: 0
   }
 })
+
+const enterAnimationProps = {
+  animationName: openAnimation,
+  animationDuration: ANIMATION_DURATION,
+  animationTimingFunction: animationEasing.deceleration,
+  animationFillMode: 'both'
+}
 
 const animationStyles = {
-  '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
-  },
-  '&[data-state="exiting"]': {
-    animation: `${closeAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
+  selectors: {
+    '&[data-state="entering"]': enterAnimationProps,
+    '&[data-state="entered"]': enterAnimationProps,
+    '&[data-state="exiting"]': {
+      animationName: closeAnimation,
+      animationDuration: ANIMATION_DURATION,
+      animationTimingFunction: animationEasing.acceleration,
+      animationFillMode: 'both'
+    }
   }
 }
 
@@ -73,6 +83,7 @@ const Dialog = memo(function Dialog({
   onOpenComplete,
   overlayProps = emptyProps,
   preventBodyScrolling = false,
+  shouldAutoFocus = true,
   shouldCloseOnEscapePress = true,
   shouldCloseOnOverlayClick = true,
   sideOffset = '16px',
@@ -173,6 +184,7 @@ const Dialog = memo(function Dialog({
   return (
     <Overlay
       isShown={isShown}
+      shouldAutoFocus={shouldAutoFocus}
       shouldCloseOnClick={shouldCloseOnOverlayClick}
       shouldCloseOnEscapePress={shouldCloseOnEscapePress}
       onExited={onCloseComplete}
@@ -187,6 +199,7 @@ const Dialog = memo(function Dialog({
     >
       {({ close, state }) => (
         <Pane
+          {...animationStyles}
           role="dialog"
           backgroundColor="white"
           elevation={4}
@@ -198,7 +211,7 @@ const Dialog = memo(function Dialog({
           marginY={topOffsetWithUnit}
           display="flex"
           flexDirection="column"
-          className={cx(css(animationStyles).toString(), containerClassName)}
+          className={containerClassName}
           data-state={state}
           {...remainingContainerProps}
         >
@@ -333,12 +346,20 @@ Dialog.propTypes = {
   cancelLabel: PropTypes.string,
 
   /**
+   * Controls whether the overlay should automatically try to bring focus inside.
+   * @default true
+   */
+  shouldAutoFocus: PropTypes.bool,
+
+  /**
    * Boolean indicating if clicking the overlay should close the overlay.
+   * @default true
    */
   shouldCloseOnOverlayClick: PropTypes.bool,
 
   /**
    * Boolean indicating if pressing the esc key should close the overlay.
+   * @default true
    */
   shouldCloseOnEscapePress: PropTypes.bool,
 
@@ -378,6 +399,7 @@ Dialog.propTypes = {
 
   /**
    * Whether or not to prevent scrolling in the outer body
+   * @default false
    */
   preventBodyScrolling: PropTypes.bool,
 

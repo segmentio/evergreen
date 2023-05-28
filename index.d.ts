@@ -1,12 +1,34 @@
-/* tslint:disable:interface-name max-classes-per-file no-empty-interface */
+// @ts-nocheck Disabling TS checking on this file while definitions are being ported over to src files
 
 import * as React from 'react'
-import { extractStyles as boxExtractStyles, BoxProps, BoxComponent, PolymorphicBoxProps } from 'ui-box'
-import { StyleAttribute, CSSProperties } from 'glamor'
 import { DownshiftProps } from 'downshift'
 import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition'
+import { extractStyles as boxExtractStyles, BoxProps, BoxComponent, PolymorphicBoxProps } from 'ui-box'
+/**
+ * Generated types that are used for composition in manually written types need to be imported to be resolved
+ */
+import type { PaneOwnProps } from './types'
 
-export { configureSafeHref, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps, EnhancerProps } from 'ui-box'
+export type {
+  BoxProps,
+  BoxOwnProps,
+  BoxComponent,
+  PolymorphicBoxProps,
+  EnhancerProps,
+  BoxCssProps,
+  CssProps
+} from 'ui-box'
+export { configureSafeHref } from 'ui-box'
+
+/**
+ * Re-export generated types through this manually written typedef file until we can point to the generated index.d.ts file
+ */
+export type { PaneProps, PaneOwnProps } from './types'
+
+/**
+ * Re-export generated types through this manually written typedef file until we can point to the generated index.d.ts file
+ */
+export { Pane } from './types'
 
 // Re-exporting these utility types for testing + consumer usage if needed
 export type Pick<T, Properties extends keyof T> = { [Key in Properties]: T[Key] }
@@ -313,13 +335,13 @@ type TokenizableProps = 'elevation' | 'fontWeight' | 'zIndex'
 type PolymorphicBoxPropsOrTokens<T extends Components = Components> = Omit<
   PolymorphicBoxProps<BaseHTMLElement<T>>,
   TokenizableProps
-> &
-  { [key in TokenizableProps]?: string }
+> & { [key in TokenizableProps]?: string }
 
-export type StyleProps<T extends Components = Components> = {
-  [key in ComponentPseudoSelectors<T>]: PolymorphicBoxPropsOrTokens<T>
-} &
-  PolymorphicBoxPropsOrTokens<T>
+export type StyleProps<T extends Components = Components> = Omit<PolymorphicBoxPropsOrTokens<T>, 'selectors'> & {
+  selectors: Partial<{
+    [key in ComponentPseudoSelectors<T>]: PolymorphicBoxPropsOrTokens<T>
+  }>
+}
 
 export type ComponentStyle<T extends Components = Components> = {
   baseStyle?: Partial<StyleProps<T>>
@@ -411,366 +433,6 @@ export interface DefaultTheme extends Theme {
 }
 
 export const defaultTheme: DefaultTheme
-
-export const classicTheme: Theme
-
-/** START DEPRECATED THEME */
-interface DeprecatedColors {
-  background: {
-    blueTint: string
-    greenTint: string
-    orangeTint: string
-    overlay: string
-    purpleTint: string
-    redTint: string
-    tealTint: string
-    tint1: string
-    tint2: string
-    yellowTint: string
-  }
-  border: {
-    default: string
-    muted: string
-  }
-  icon: {
-    danger: string
-    default: string
-    disabled: string
-    info: string
-    muted: string
-    selected: string
-    success: string
-    warning: string
-  }
-  intent: {
-    danger: string
-    none: string
-    success: string
-    warning: string
-  }
-  text: {
-    danger: string
-    dark: string
-    default: string
-    info: string
-    muted: string
-    selected: string
-    success: string
-    warning: string
-  }
-}
-
-interface DeprecatedSolidFills {
-  blue: {
-    backgroundColor: string
-    color: string
-  }
-  green: {
-    backgroundColor: string
-    color: string
-  }
-  neutral: {
-    backgroundColor: string
-    color: string
-  }
-  orange: {
-    backgroundColor: string
-    color: string
-  }
-  purple: {
-    backgroundColor: string
-    color: string
-  }
-  red: {
-    backgroundColor: string
-    color: string
-  }
-  teal: {
-    backgroundColor: string
-    color: string
-  }
-  yellow: {
-    backgroundColor: string
-    color: string
-  }
-}
-
-interface DeprecatedSubtleFills {
-  blue: {
-    backgroundColor: string
-    color: string
-  }
-  green: {
-    backgroundColor: string
-    color: string
-  }
-  neutral: {
-    backgroundColor: string
-    color: string
-  }
-  orange: {
-    backgroundColor: string
-    color: string
-  }
-  purple: {
-    backgroundColor: string
-    color: string
-  }
-  red: {
-    backgroundColor: string
-    color: string
-  }
-  teal: {
-    backgroundColor: string
-    color: string
-  }
-  yellow: {
-    backgroundColor: string
-    color: string
-  }
-}
-
-interface DeprecatedFills {
-  options: string[]
-  solid: DeprecatedSolidFills
-  subtle: DeprecatedSubtleFills
-}
-
-interface DeprecatedPalette {
-  blue: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  green: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  neutral: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  orange: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  purple: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  red: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  teal: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-  yellow: {
-    base: string
-    dark: string
-    light: string
-    lightest: string
-  }
-}
-
-interface DeprecatedColorScales {
-  blue: {
-    B1: string
-    B10: string
-    B1A: string
-    B2: string
-    B2A: string
-    B3: string
-    B3A: string
-    B4: string
-    B4A: string
-    B5: string
-    B5A: string
-    B6: string
-    B6A: string
-    B7: string
-    B7A: string
-    B8: string
-    B8A: string
-    B9: string
-  }
-  neutral: {
-    N1: string
-    N10: string
-    N1A: string
-    N2: string
-    N2A: string
-    N3: string
-    N3A: string
-    N4: string
-    N4A: string
-    N5: string
-    N5A: string
-    N6: string
-    N6A: string
-    N7: string
-    N7A: string
-    N8: string
-    N8A: string
-    N9: string
-  }
-}
-
-interface DeprecatedTypography {
-  fontFamilies: {
-    display: string
-    mono: string
-    ui: string
-  }
-  paragraph: {
-    300: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    400: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    500: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-  }
-  headings: {
-    100: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    200: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    300: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    400: {
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    500: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    600: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    700: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    800: {
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    900: {
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-  }
-  text: {
-    300: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    400: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    500: {
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-    600: {
-      fontFamily: string
-      fontSize: string
-      fontWeight: number
-      letterSpacing: string
-      lineHeight: string
-      marginTop: number
-    }
-  }
-}
-
-interface DeprecatedDefaultTheme {
-  colors: DeprecatedColors
-  scales: DeprecatedColorScales
-  typography: DeprecatedTypography
-  fills: DeprecatedFills
-  palette: DeprecatedPalette
-}
-
-export const deprecatedDefaultTheme: DeprecatedDefaultTheme
-
-/** END DEPRECATED THEME  */
 
 /**
  * Basic error codes for why a file is rejected or in an errored state
@@ -880,9 +542,7 @@ export interface AutocompleteProps extends Omit<DownshiftProps<any>, 'children'>
     toggle: () => void
     getRef: React.Ref<any>
     isShown: NonNullable<PopoverProps['isShown']>
-    getInputProps: <T>(
-      options?: T
-    ) => T & {
+    getInputProps: <T>(options?: T) => T & {
       onChange: (event: React.ChangeEvent) => void
       onKeyDown: (event: React.KeyboardEvent) => void
       onBlur: (event: React.FocusEvent) => void
@@ -932,7 +592,7 @@ export interface BadgeOwnProps extends StrongOwnProps {
   /**
    * The color used for the badge. When the value is `automatic`, use the hash function to determine the color.
    */
-  color?: 'automatic' | 'neutral' | 'blue' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'purple'
+  color?: 'neutral' | 'blue' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'purple'
   /**
    * Whether or not to apply hover/focus/active styles.
    */
@@ -1054,7 +714,7 @@ export interface ComboboxOwnProps {
   /**
    * Properties forwarded to the autocomplete component. Use with caution.
    */
-  autocompleteProps?: AutocompleteProps
+  autocompleteProps?: Omit<AutocompleteProps, 'children' | 'items' | 'onChange'>
   /**
    * When true, open the autocomplete on focus.
    */
@@ -1172,29 +832,31 @@ export interface CornerDialogProps {
 
 export declare const CornerDialog: React.FC<CornerDialogProps>
 
-export interface DialogProps {
+export interface DialogProps
+  extends Pick<OverlayProps, 'isShown' | 'preventBodyScrolling' | 'shouldAutoFocus' | 'shouldCloseOnEscapePress'> {
   /**
    * Children can be a string, node or a function accepting `({ close })`.
    * When passing a string, <Paragraph /> is used to wrap the string.
    */
   children?: React.ReactNode | (({ close }: { close: () => void }) => void)
+
   /**
-   * The intent of the Dialog. Used for the button. Defaults to none.
+   * The intent of the Dialog. Used for the button.
+   * @default none
    */
   intent?: IntentTypes
-  /**
-   * When true, the dialog is shown. Defaults to false.
-   */
-  isShown?: boolean
+
   /**
    * Title of the Dialog. Titles should use Title Case.
    */
   title?: React.ReactNode
+
   /**
    * When true, the header with the title and close icon button is shown.
-   * Defaults to true.
+   * @default true
    */
   hasHeader?: boolean
+
   /**
    * You can override the default header with your own custom component.
    *
@@ -1204,11 +866,13 @@ export interface DialogProps {
    * Header can either be a React node or a function accepting `({ close })`.
    */
   header?: React.ReactNode | (({ close }: { close: () => void }) => void)
+
   /**
    * When true, the footer with the cancel and confirm button is shown.
-   * Defaults to true.
+   * @default true
    */
   hasFooter?: boolean
+
   /**
    * You can override the default footer with your own custom component.
    *
@@ -1218,92 +882,107 @@ export interface DialogProps {
    * Footer can either be a React node or a function accepting `({ close })`.
    */
   footer?: React.ReactNode | (({ close }: { close: () => void }) => void)
+
   /**
-   * When true, the cancel button is shown. Defaults to true.
+   * When true, the cancel button is shown.
+   * @default true
    */
   hasCancel?: boolean
+
   /**
-   * When true, the close button is shown. Defaults to true.
+   * When true, the close button is shown.
+   * @default true
    */
   hasClose?: boolean
+
   /**
    * Function that will be called when the exit transition is complete.
    */
   onCloseComplete?: () => void
+
   /**
    * Function that will be called when the enter transition is complete.
    */
   onOpenComplete?: () => void
+
   /**
    * Function that will be called when the confirm button is clicked.
    * This does not close the Dialog. A close function will be passed
-   * as a paramater you can use to close the dialog.
+   * as a parameter you can use to close the dialog.
    * If unspecified, this defaults to closing the Dialog.
    */
   onConfirm?: (close: () => void) => void
+
   /**
-   * Label of the confirm button. Default to 'Confirm'.
+   * Label of the confirm button.
+   * @default Confirm
    */
   confirmLabel?: string
+
   /**
-   * When true, the confirm button is set to loading. Defaults to false.
+   * When true, the confirm button is set to loading.
+   * @default false
    */
   isConfirmLoading?: boolean
+
   /**
-   * When true, the confirm button is set to disabled. Defaults to false.
+   * When true, the confirm button is set to disabled.
+   * @default false
    */
   isConfirmDisabled?: boolean
+
   /**
    * Function that will be called when the cancel button is clicked.
    * This closes the Dialog by default.
    */
   onCancel?: (close: () => void) => void
+
   /**
-   * Label of the cancel button. Defaults to 'Cancel'.
+   * Label of the cancel button.
+   * @default Cancel
    */
   cancelLabel?: string
+
   /**
    * Boolean indicating if clicking the overlay should close the overlay.
-   * Defaults to true.
+   * @default true
    */
   shouldCloseOnOverlayClick?: boolean
-  /**
-   * Boolean indicating if pressing the esc key should close the overlay.
-   * Defaults to true.
-   */
-  shouldCloseOnEscapePress?: boolean
+
   /**
    * Width of the Dialog.
    */
   width?: string | number
+
   /**
    * The space above the dialog.
    * This offset is also used at the bottom when there is not enough vertical
    * space available on screen — and the dialog scrolls internally.
    */
   topOffset?: string | number
+
   /**
    * The space on the left/right sides of the dialog when there isn't enough
    * horizontal space available on screen.
    */
   sideOffset?: string | number
+
   /**
    * The min height of the body content.
    * Makes it less weird when only showing little content.
    */
   minHeightContent?: string | number
+
   /**
    * Props that are passed to the dialog container.
    */
   containerProps?: React.ComponentProps<typeof Pane>
+
   /**
    * Props that are passed to the content container.
    */
   contentContainerProps?: React.ComponentProps<typeof Pane>
-  /**
-   * Whether or not to prevent scrolling in the outer body. Defaults to false.
-   */
-  preventBodyScrolling?: boolean
+
   /**
    * Props that are passed to the Overlay component.
    */
@@ -1404,6 +1083,10 @@ export interface FilePickerOwnProps {
   onBlur?: (event: React.FocusEvent) => void
   /** placeholder of the text input */
   placeholder?: string
+  /** function that returns the call-to-action button text for selecting files */
+  browseOrReplaceText?: (fileCount: number) => string
+  /** function that returns the text in the input field **/
+  inputText?: (files: File[]) => string
 }
 
 export type FilePickerProps = PolymorphicBoxProps<'div', FilePickerOwnProps>
@@ -1435,9 +1118,18 @@ export interface FileUploaderOwnProps extends FormFieldOwnProps {
    */
   acceptedMimeTypes?: MimeType[]
   /**
+   * Function to return a string or component for the 'Browse or drag' text
+   */
+  browseOrDragText?: (maxFiles: number) => React.ReactNode
+  /**
    * When true, displays a disabled state where drops don't fire and the native browser picker doesn't open
    */
   disabled?: boolean
+  /**
+   * Function to return a string when the max file limit has been hit while dragging
+   * @default You can upload up to {count} {file|files}.
+   */
+  dragMaxFilesMessage?: (maxFiles: number) => string
   /**
    * Maximum number of files to accept
    */
@@ -1706,9 +1398,9 @@ export interface LinkOwnProps extends TextOwnProps {
    */
   href?: string
   /**
-   * Target atrribute, common use case is target="_blank."
+   * Target attribute, common use case is target="_blank."
    */
-  target?: string
+  target?: '_self' | '_blank' | '_parent' | '_top'
   /**
    * The color (and styling) of the Link. Can be default, blue, green or neutral.
    */
@@ -1788,54 +1480,13 @@ export declare const Menu: React.FC<MenuProps> & {
   OptionsGroup: typeof MenuOptionsGroup
 }
 
-/** @deprecated This component will be renamed to Pulsar in the next major version of Evergreen */
-export interface NudgeProps {
-  /**
-   * The position the Tooltip is on.
-   */
-  position?: Exclude<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
-  /**
-   * The size of the Pulsar
-   */
-  size?: number
-  /**
-   * The content of the Tooltip.
-   */
-  tooltipContent?: React.ReactNode | ((object: { close: () => void }) => React.ReactNode)
-  /**
-   * When true, manually show the Tooltip.
-   */
-  isShown?: boolean
-  /**
-   * Called when the Pulsar is clicked
-   */
-  onClick?: PaneProps['onClick']
-}
-
-export declare const Nudge: React.FC<NudgeProps>
-
-export interface PaneOwnProps {
-  background?: string
-  border?: boolean | string
-  borderTop?: boolean | string
-  borderRight?: boolean | string
-  borderBottom?: boolean | string
-  borderLeft?: boolean | string
-  elevation?: Elevation
-  hoverElevation?: Elevation
-  activeElevation?: Elevation
-}
-
-export type PaneProps = PolymorphicBoxProps<'div', PaneOwnProps>
-export declare const Pane: BoxComponent<PaneOwnProps, 'div'>
-
 export interface PaginationOwnProps {
   /**
    * The current page that a user is on - defaults to 1.
    */
   page: number
   /**
-   * The total number of pages to render. If ommitted, the page numbers will not be shown to the end user.
+   * The total number of pages to render. If omitted, the page numbers will not be shown to the end user.
    */
   totalPages?: number
   /**
@@ -1979,7 +1630,7 @@ export interface PositionerProps {
     top: number
     left: number
     zIndex: NonNullable<StackProps['value']>
-    css: StyleAttribute | CSSProperties
+    css: BoxCssProps<CssProps>
     style: {
       transformOrigin: string
       left: number
@@ -2026,22 +1677,19 @@ export type PreOwnProps = TextOwnProps
 export type PreProps = PolymorphicBoxProps<'pre', PreOwnProps>
 export declare const Pre: BoxComponent<PreOwnProps, 'pre'>
 
-export interface PulsarProps {
+export interface PulsarOwnProps {
   /**
-   * The position the Tooltip is on.
+   * The position the pulsar is displayed
    */
   position?: Exclude<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
   /**
    * The size of the pulsar
    */
   size?: number
-  /**
-   * Called when the Pulsar is clicked
-   */
-  onClick?: PaneProps['onClick']
 }
 
-export declare const Pulsar: React.FC<PulsarProps>
+export type PulsarProps = PolymorphicBoxProps<'div', PulsarOwnProps>
+export declare const Pulsar: BoxComponent<PulsarOwnProps, 'div'>
 
 export interface RadioOwnProps {
   /**
@@ -2217,53 +1865,6 @@ export interface SearchTableHeaderCellOwnProps extends TableHeaderCellOwnProps {
 export type SearchTableHeaderCellProps = PolymorphicBoxProps<'div', SearchTableHeaderCellOwnProps>
 export declare const SearchTableHeaderCell: BoxComponent<SearchTableHeaderCellOwnProps, 'div'>
 
-/** @deprecated This component will be removed in the next major version of Evergreen */
-export interface SegmentedControlOwnProps {
-  /**
-   * The options (elements) displayed by the segmented control
-   */
-  options: Array<{
-    label: string
-    value: NonNullable<SegmentedControlOwnProps['value']>
-  }>
-  /**
-   * The value of the segmented control
-   */
-  value?: number | string | boolean
-  /**
-   * The initial value of an uncontrolled segmented control
-   */
-  defaultValue?: number | string | boolean
-  /**
-   * Function called when value changes.
-   */
-  onChange: (value: NonNullable<SegmentedControlOwnProps['value']>) => void
-
-  /**
-   * The name attribute of the segmented control
-   */
-  name?: string
-
-  size?: 'small' | 'medium' | 'large'
-
-  /**
-   * Whether or not the component is disabled
-   */
-  disabled?: boolean
-}
-
-/** @deprecated This component will be removed in the next major version of Evergreen */
-export type SegmentedControlProps = PolymorphicBoxProps<'div', SegmentedControlOwnProps>
-
-/** @deprecated This component will be removed in the next major version of Evergreen */
-export declare const SegmentedControl: BoxComponent<SegmentedControlOwnProps, 'div'>
-
-/** @deprecated This component will be removed in the next major version of Evergreen */
-export type SidebarTabProps = PolymorphicBoxProps<'span', TabOwnProps>
-
-/** @deprecated This component will be removed in the next major version of Evergreen */
-export declare const SidebarTab: BoxComponent<TabOwnProps, 'span'>
-
 export interface SelectOwnProps {
   /**
    * The initial value of an uncontrolled select
@@ -2388,6 +1989,11 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
    */
   hasFilter?: boolean
   /**
+   * When true, auto focuses on the search/filter bar.
+   * @default true
+   */
+  shouldAutoFocus?: boolean
+  /**
    * The position of the Select Menu.
    */
   position?: Omit<PositionTypes, 'left' | 'right'>
@@ -2455,18 +2061,43 @@ export interface SelectMenuProps extends Omit<PopoverProps, 'position' | 'conten
 
 export declare const SelectMenu: React.FC<SelectMenuProps>
 
-export interface SideSheetProps {
+export interface SideSheetProps
+  extends Pick<
+    OverlayProps,
+    'isShown' | 'onBeforeClose' | 'preventBodyScrolling' | 'shouldAutoFocus' | 'shouldCloseOnEscapePress'
+  > {
   children: React.ReactNode | (() => React.ReactNode)
-  isShown?: boolean
+
+  /**
+   * Function that will be called when the exit transition is complete.
+   */
   onCloseComplete?: () => void
+
+  /**
+   * Function that will be called when the enter transition is complete.
+   */
   onOpenComplete?: () => void
-  onBeforeClose?: () => boolean
+
+  /**
+   * Boolean indicating if clicking the overlay should close the overlay.
+   * @default true
+   */
   shouldCloseOnOverlayClick?: boolean
-  shouldCloseOnEscapePress?: boolean
+
+  /**
+   * Width of the SideSheet.
+   */
   width?: string | number
+
+  /**
+   * Properties to pass through the SideSheet container Pane.
+   */
   containerProps?: PaneOwnProps & BoxProps<'div'>
+
+  /**
+   * Positions the sheet to the top, left, right, or bottom of the screen.
+   */
   position?: Extract<PositionTypes, 'top' | 'bottom' | 'left' | 'right'>
-  preventBodyScrolling?: boolean
 }
 
 export declare const SideSheet: React.FC<SideSheetProps>
@@ -3050,6 +2681,10 @@ export interface TooltipProps {
    */
   appearance?: TooltipAppearance
   /**
+   * The id of the tooltip.
+   */
+  id?: string
+  /**
    * The position the Tooltip is on.
    */
   position?: PositionTypes
@@ -3079,7 +2714,7 @@ export interface TooltipProps {
   statelessProps?: PolymorphicBoxProps<'div', TooltipStatelessProps>
 }
 
-export declare const Tooltip: React.FC<TooltipProps>
+export declare const Tooltip: React.FC<React.PropsWithChildren<TooltipProps>>
 
 export interface OrderedListOwnProps {
   /**
@@ -3116,9 +2751,7 @@ export function majorScale(x: number): number
 
 export function minorScale(x: number): number
 
-export function extractStyles(options?: {
-  nonce?: React.ScriptHTMLAttributes<'script'>['nonce']
-}): {
+export function extractStyles(options?: { nonce?: React.ScriptHTMLAttributes<'script'>['nonce'] }): {
   css: string
   cache: {
     uiBoxCache: ReturnType<typeof boxExtractStyles>['cache']
@@ -3189,19 +2822,19 @@ export const toaster: {
   /**
    * Opens a Toast with an intent of none.
    */
-  notify: (title: string, settings?: ToasterSettings) => void
+  notify: (title: React.ReactNode, settings?: ToasterSettings) => void
   /**
    * Opens a Toast with an intent of success.
    */
-  success: (title: string, settings?: ToasterSettings) => void
+  success: (title: React.ReactNode, settings?: ToasterSettings) => void
   /**
    * Opens a Toast with an intent of warning.
    */
-  warning: (title: string, settings?: ToasterSettings) => void
+  warning: (title: React.ReactNode, settings?: ToasterSettings) => void
   /**
    * Opens a Toast with an intent of danger.
    */
-  danger: (title: string, settings?: ToasterSettings) => void
+  danger: (title: React.ReactNode, settings?: ToasterSettings) => void
   /**
    * Closes all visible Toasts.
    */
@@ -3210,23 +2843,55 @@ export const toaster: {
    * Returns all visible Toasts.
    */
   getToasts: () => Toast[]
+  /**
+   * Removes toast with specific id
+   */
+  remove: (id: string) => void
 }
 
-export interface OverlayProps {
+export interface OverlayProps
+  extends Pick<TransitionProps, 'onExit' | 'onExiting' | 'onExited' | 'onEnter' | 'onEntering' | 'onEntered'> {
   children: React.ReactNode | ((props: { state: TransitionStatus; close: () => void }) => JSX.Element)
 
+  /**
+   * Show the component; triggers the enter or exit states.
+   */
   isShown?: boolean
+
+  /**
+   * Props to be passed through on the inner Box.
+   */
   containerProps?: BoxProps<'div'>
+
+  /**
+   * Whether or not to prevent body scrolling outside the context of the overlay
+   * @default false
+   */
   preventBodyScrolling?: boolean
+
+  /**
+   * Controls whether the overlay should automatically try to bring focus inside.
+   * @default true
+   */
+  shouldAutoFocus?: boolean
+
+  /**
+   * Boolean indicating if clicking the overlay should close the overlay.
+   * @default true
+   */
   shouldCloseOnClick?: boolean
+
+  /**
+   * Boolean indicating if pressing the esc key should close the overlay.
+   * @default true
+   */
   shouldCloseOnEscapePress?: boolean
+
+  /**
+   * Function called when overlay is about to close.
+   * Return `false` to prevent the sheet from closing.
+   */
   onBeforeClose?: () => boolean
-  onExit?: TransitionProps['onExit']
-  onExiting?: TransitionProps['onExiting']
-  onExited?: TransitionProps['onExited']
-  onEnter?: TransitionProps['onEnter']
-  onEntering?: TransitionProps['onEntering']
-  onEntered?: TransitionProps['onEntered']
 }
 
 export declare const Overlay: React.FC<OverlayProps>

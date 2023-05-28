@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pane, majorScale, Heading, Link as EvergreenLink } from 'evergreen-ui'
 import DesignLanguageCard from './DesignLanguageCard'
-import IA from '../../utils/IA'
+import IA from '../../constants/IA'
 import FoundationHomeImage from '../icons/FoundationHomeImage'
 import ComponentHomeImage from '../icons/ComponentHomeImage'
 import PatternHomeImage from '../icons/PatternHomeImage'

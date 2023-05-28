@@ -1,0 +1,81 @@
+# Introduction
+
+The `Group` component identifies a group of inputs/elements and implements the [`group` WAI-ARIA role](https://www.w3.org/TR/wai-aria-1.1/#group).
+
+A group is commonly used to switch between predefined options (usually up to 4) such as views of data, or to combine inputs and buttons for composing more complex searching or filtering components.
+
+# Design guidelines
+
+While the `Group` component does not set a default size, we recommend maintaining a consistent height between each of the inputs or elements rendered beneath.
+
+# Basic
+
+```jsx
+function BasicGroupExample() {
+  const options = React.useMemo(
+    () => [
+      { label: 'Hourly', value: 'hourly' },
+      { label: 'Daily', value: 'daily' },
+      { label: 'Monthly', value: 'monthly' },
+    ],
+    []
+  )
+  const [selectedValue, setSelectedValue] = React.useState('daily')
+
+  return (
+    <Group>
+      {options.map(({ label, value }) => (
+        <Button key={label} isActive={selectedValue === value} onClick={() => setSelectedValue(value)}>
+          {label}
+        </Button>
+      ))}
+    </Group>
+  )
+}
+```
+
+# Small Group example
+
+The `Group` component will clone the provided `size` onto child components for a consistent visual style.
+
+```jsx
+function SmallGroupExample() {
+  const options = React.useMemo(
+    () => [
+      { label: 'Hourly', value: 'hourly' },
+      { label: 'Daily', value: 'daily' },
+      { label: 'Monthly', value: 'monthly' },
+    ],
+    []
+  )
+  const [selectedValue, setSelectedValue] = React.useState('daily')
+
+  return (
+    <Group size="small">
+      {options.map(({ label, value }) => (
+        <Button key={label} isActive={selectedValue === value} onClick={() => setSelectedValue(value)}>
+          {label}
+        </Button>
+      ))}
+    </Group>
+  )
+}
+```
+
+# TextInput and Button example
+
+```jsx
+function TextInputAndButtonExample() {
+  const [isLoading, setIsLoading] = React.useState(false)
+  const handleClick = React.useCallback(() => {
+    setIsLoading(true)
+    setTimeout(() => setIsLoading(false), 1000)
+  }, [])
+  return (
+    <Group>
+      <TextInput disabled={isLoading} placeholder="Search by name, email, id..." />
+      <IconButton disabled={isLoading} icon={isLoading ? Spinner : SearchIcon} onClick={handleClick} />
+    </Group>
+  )
+}
+```

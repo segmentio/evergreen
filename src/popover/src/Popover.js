@@ -1,6 +1,5 @@
 import React, { memo, forwardRef, useRef, useState, useEffect, useImperativeHandle, useCallback, useMemo } from 'react'
-import cx from 'classnames'
-import { css as glamorCss } from 'glamor'
+import merge from 'lodash.merge'
 import PropTypes from 'prop-types'
 import { Position } from '../../constants'
 import { useMergedRef } from '../../hooks'
@@ -305,9 +304,9 @@ const Popover = memo(
             minWidth={minWidth}
             minHeight={minHeight}
             {...statelessProps}
-            className={cx(statelessProps.className, glamorCss(css, style, statelessProps.style).toString())}
-            // Overwrite `statelessProps.style` since we are including it via className
-            style={undefined}
+            {...css}
+            style={merge({}, style, statelessProps.style)}
+            className={statelessProps.className}
             onMouseLeave={handleCloseHover}
           >
             {contentToRender}

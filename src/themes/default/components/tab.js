@@ -13,52 +13,57 @@ const appearances = {
     paddingRight: '2px',
     position: 'relative',
 
-    ':not(:last-child)': {
-      marginRight: (_, props) => (props.direction === 'horizontal' ? '20px' : null)
-    },
-
-    _before: {
-      content: '""',
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      height: '2px',
-      borderRadius: '2px 2px 0px 0px',
-      backgroundColor: 'colors.blue500',
-      width: '100%',
-      transition: '0.25s',
-      transform: 'scaleY(0)',
-      transformOrigin: 'bottom center'
-    },
-
-    _hover: {
-      color: 'colors.default'
-    },
-
-    _current: {
-      color: 'colors.blue500',
-
-      '&:before': {
-        transform: 'scaleY(1)'
+    selectors: {
+      ':not(:last-child)': {
+        marginRight: (_, props) => (props.direction === 'horizontal' ? '20px' : null)
       },
 
-      '&:focus': {
-        color: 'colors.blue600'
-      }
-    },
+      _before: {
+        content: '""',
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        height: '2px',
+        borderTopLeftRadius: 2,
+        borderTopRightRadius: 2,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+        backgroundColor: 'colors.blue500',
+        width: '100%',
+        transition: '0.25s',
+        transform: 'scaleY(0)',
+        transformOrigin: 'bottom center'
+      },
 
-    _focus: {
-      boxShadow: 'shadows.focusRing',
-      color: 'colors.default'
-    },
+      _hover: {
+        color: 'colors.default'
+      },
 
-    _disabled: {
-      pointerEvents: 'none',
-      cursor: 'not-allowed',
-      color: 'colors.gray500',
+      _current: {
+        color: 'colors.blue500',
 
-      '&:before': {
-        backgroundColor: 'colors.gray500'
+        '&:before': {
+          transform: 'scaleY(1)'
+        },
+
+        '&:focus': {
+          color: 'colors.blue600'
+        }
+      },
+
+      _focus: {
+        boxShadow: 'shadows.focusRing',
+        color: 'colors.default'
+      },
+
+      _disabled: {
+        pointerEvents: 'none',
+        cursor: 'not-allowed',
+        color: 'colors.gray500',
+
+        '&:before': {
+          backgroundColor: 'colors.gray500'
+        }
       }
     }
   },
@@ -69,35 +74,37 @@ const appearances = {
     borderRadius: 'radii.1',
     color: 'colors.default',
 
-    ':not(:last-child)': {
-      marginRight: (_, props) => (props.direction === 'horizontal' ? '8px' : null)
-    },
+    selectors: {
+      ':not(:last-child)': {
+        marginRight: (_, props) => (props.direction === 'horizontal' ? '8px' : null)
+      },
 
-    _hover: {
-      backgroundColor: 'colors.gray100',
-      color: 'colors.gray800'
-    },
+      _hover: {
+        backgroundColor: 'colors.gray100',
+        color: 'colors.gray800'
+      },
 
-    _active: {
-      backgroundColor: 'colors.gray200'
-    },
+      _active: {
+        backgroundColor: 'colors.gray200'
+      },
 
-    _current: {
-      backgroundColor: 'colors.blue50',
-      color: 'colors.blue500'
-    },
+      _current: {
+        backgroundColor: 'colors.blue50',
+        color: 'colors.blue500'
+      },
 
-    _focus: {
-      boxShadow: 'shadows.focusRing'
-    },
+      _focus: {
+        boxShadow: 'shadows.focusRing'
+      },
 
-    _disabled: {
-      pointerEvents: 'none',
-      cursor: 'not-allowed',
-      color: 'colors.gray500',
+      _disabled: {
+        pointerEvents: 'none',
+        cursor: 'not-allowed',
+        color: 'colors.gray500',
 
-      '&[aria-current="page"], &[aria-selected="true"]': {
-        backgroundColor: 'colors.gray100'
+        '&[aria-current="page"],&[aria-selected="true"]': {
+          backgroundColor: 'colors.gray100'
+        }
       }
     }
   }

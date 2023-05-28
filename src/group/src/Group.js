@@ -1,5 +1,4 @@
 import React, { memo, forwardRef } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -23,12 +22,7 @@ const Group = memo(
   forwardRef(function Group(props, ref) {
     const { children, className, size, ...restProps } = props
 
-    const { className: themedClassName, ...styleProps } = useStyleConfig(
-      'Group',
-      { size },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Group', { size }, pseudoSelectors, internalStyles)
 
     const enhancedChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {
@@ -42,7 +36,7 @@ const Group = memo(
     })
 
     return (
-      <Box className={cx(className, themedClassName)} role="group" ref={ref} {...styleProps} {...restProps}>
+      <Box className={className} role="group" ref={ref} {...themedProps} {...restProps}>
         {enhancedChildren}
       </Box>
     )

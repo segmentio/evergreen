@@ -1,5 +1,4 @@
 import { useMemo, useRef } from 'react'
-import { css } from 'glamor'
 import merge from 'lodash.merge'
 import isEqual from 'react-fast-compare'
 import { splitBoxProps } from 'ui-box'
@@ -25,7 +24,6 @@ import { useTheme, get, resolveThemeTokens } from '../theme'
  */
 
 /** @typedef {import('ui-box').EnhancerProps & StateStyles} Style */
-/** @typedef {import('ui-box').EnhancerProps & import('glamor').CSSProperties} GlamorAndBoxStyle */
 
 /**
  * @typedef {object} StyleConfig
@@ -57,7 +55,7 @@ function maybeRunDeep(raw, ...args) {
  * @param {object} theme
  * @param {StyleModifiers} props
  * @param {StyleConfig} styleConfig
- * @param {GlamorAndBoxStyle} [internalStyles]
+ * @param {import('ui-box').BoxCssProps<CssProps>} [internalStyles]
  * @returns {StyleConfig}
  */
 function combineStyles(theme, props, styleConfig, internalStyles = {}) {
@@ -89,48 +87,47 @@ function useMergedStyles(theme, props, styleConfig, internalStyles) {
 }
 
 /**
- * Split up the style props into glamor-ready and box-ready props (className + spreadable props)
+ * Split up the style props into box-ready props (selectors + spreadable props)
  */
-function useGlamorAndBox(styles, pseudoSelectors) {
-  const glamorStylesRef = useRef({})
-  const classNameRef = useRef()
-
+function useBoxProps(styleProps, placeholderSelectors) {
   return useMemo(() => {
     // Split the resulting style object into ui-box-compatible props and the rest
-    const { matchedProps, remainingProps } = splitBoxProps(styles)
+    const {
+      matchedProps: { selectors: actualSelectors = {}, ...matchedProps },
+      remainingProps
+    } = splitBoxProps(styleProps)
 
-    /** @type {GlamorAndBoxStyle} */
-    const glamorStyles = {}
+    /** @type {import('ui-box').EnhancerProps['selectors']} */
+    const selectors = {}
 
     // Swap out pseudo selector placeholders for their actual css selector strings
-    for (const k of Object.keys(remainingProps)) {
-      const key = k in pseudoSelectors ? pseudoSelectors[k] : k
-      glamorStyles[key] = remainingProps[k]
+    for (const k of Object.keys(actualSelectors)) {
+      const key = k in placeholderSelectors ? placeholderSelectors[k] : k
+      selectors[key] = actualSelectors[k]
     }
 
-    // Take all the "non-compatible" props and give those to glamor (since ui-box doesn't know how to handle them yet)
-    if (!isEqual(glamorStylesRef.current, glamorStyles)) {
-      const className = css(glamorStyles).toString()
-      glamorStylesRef.current = glamorStyles
-      classNameRef.current = className === 'css-nil' ? undefined : className
+    const result = { ...matchedProps }
+    if (!isEqual({}, remainingProps)) {
+      result.style = remainingProps
     }
 
-    return {
-      className: classNameRef.current,
-      ...matchedProps
+    if (!isEqual({}, selectors)) {
+      result.selectors = selectors
     }
-  }, [styles, pseudoSelectors])
+
+    return result
+  }, [styleProps, placeholderSelectors])
 }
 
 /**
- * Takes a styleConfig object and outputs a `className` and `boxProps` that can be spread on a Box component
+ * Takes a styleConfig object and outputs `boxProps` that can be spread on a Box component
  * @param {string} componentKey the name of the component in the theme
  * @param {StyleModifiers} props props that modify the resulting visual style (e.g. `size` or `appearance`)
- * @param {PseudoSelectors} pseudoSelectors mapping for the component between states and actual pseudo selectors
- * @param {GlamorAndBoxStyle} [internalStyles] additional styles that are specified internally, separate from the visual styles
- * @returns {{ className: string; boxProps: import('ui-box').EnhancerProps }}
+ * @param {PseudoSelectors} placeholderSelectors mapping for the component between states and actual pseudo selectors
+ * @param {import('ui-box').BoxCssProps<CssProps>} [internalStyles] additional styles that are specified internally, separate from the visual styles
+ * @returns {{ selectors: import('ui-box').EnhancerProps['selectors'], style: import('react').CSSProperties } & import('ui-box').EnhancerProps}
  */
-export function useStyleConfig(componentKey, props, pseudoSelectors, internalStyles) {
+export function useStyleConfig(componentKey, props, placeholderSelectors, internalStyles) {
   const theme = useTheme()
 
   // Get the component style object from the theme
@@ -142,6 +139,6 @@ export function useStyleConfig(componentKey, props, pseudoSelectors, internalSty
   // Resolve theme token strings found throughout the style object
   const styles = useMemo(() => resolveThemeTokens(theme, mergedStyles), [theme, mergedStyles])
 
-  // Finally, split up the styles based which ones Box supports and the rest construct a glamor className
-  return useGlamorAndBox(styles, pseudoSelectors)
+  // Finally, split up the styles based which ones Box supports and the rest construct an inline style object
+  return useBoxProps(styles, placeholderSelectors)
 }

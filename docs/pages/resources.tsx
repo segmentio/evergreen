@@ -14,8 +14,8 @@ const ResourcesPage = () => (
         <Heading size={700}>Figma Library</Heading>
         <Paragraph marginTop={majorScale(2)} marginBottom={majorScale(4)} size={400}>
           Evergreen Figma library is available on Figma Community:{' '}
-          <Link href="https://www.figma.com/@segment" color="blue" target="_blank">
-            https://www.figma.com/@segment
+          <Link href="https://www.figma.com/@twilio" color="blue" target="_blank">
+            https://www.figma.com/@twilio
           </Link>
         </Paragraph>
         <Pane is="img" src="/resource-img-figma.png" display="flex" width="100%" maxWidth={majorScale(116)} />

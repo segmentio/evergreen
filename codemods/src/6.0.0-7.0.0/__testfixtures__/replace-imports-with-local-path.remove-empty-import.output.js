@@ -1,0 +1,1 @@
+import { classicTheme } from 'themes/classic-theme';

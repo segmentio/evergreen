@@ -2,7 +2,9 @@ import React from 'react'
 import { faker } from '@faker-js/faker'
 import { render, screen, fireEvent, cleanup } from '@testing-library/react'
 import { Key, MimeType } from '../../constants'
+import { majorScale } from '../../scales'
 import { buildFiles } from '../../test/utils'
+import { Paragraph } from '../../typography'
 import FileUploader from '../src/FileUploader'
 
 const testId = 'test-file-uploader'
@@ -25,6 +27,37 @@ describe('FileUploader', () => {
         const fileInput = fileUploader.querySelector('input')
 
         expect(fileInput).toHaveAttribute('accept', acceptedMimeTypes.join(','))
+      })
+    })
+
+    describe('browseOrDragText', () => {
+      it.each([undefined, null])('when %p, should render default text', browseOrDragText => {
+        renderWithProps({ browseOrDragText })
+
+        const defaultElements = screen.getAllByText(
+          content => content.includes('Browse') || content.includes('or drag files here')
+        )
+
+        expect(defaultElements).toHaveLength(2)
+      })
+
+      it('when function returns string, should render text wrapped in Paragraph', () => {
+        const browseOrDragText = () => 'Custom browse text'
+
+        renderWithProps({ browseOrDragText })
+
+        const container = screen.getByText(browseOrDragText())
+        expect(container).toBeInTheDocument()
+        expect(container).toHaveStyle({ marginTop: majorScale(3) })
+      })
+
+      it('when function returns non-string, should render returned content', () => {
+        const browseOrDragTestId = 'custom-browse-text'
+        const browseOrDragText = () => <Paragraph data-testid={browseOrDragTestId}>Custom</Paragraph>
+
+        renderWithProps({ browseOrDragText })
+
+        expect(screen.getByTestId(browseOrDragTestId)).toBeInTheDocument()
       })
     })
 

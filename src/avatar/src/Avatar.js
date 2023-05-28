@@ -1,6 +1,4 @@
 import React, { useState, memo, forwardRef, useCallback } from 'react'
-import cx from 'classnames'
-import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -21,15 +19,6 @@ const internalStyles = {
 }
 
 const isObjectFitSupported = typeof document !== 'undefined' && 'objectFit' in document.documentElement.style
-
-const initialsStyleClass = css({
-  top: 0,
-  position: 'absolute',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  lineHeight: 1
-}).toString()
 
 const getAvatarInitialsFontSize = (size, sizeLimitOneCharacter) => {
   if (size <= sizeLimitOneCharacter) {
@@ -56,12 +45,7 @@ const Avatar = memo(
     } = props
 
     const hashValue = globalHash(propsHashValue || name)
-    const { className: themedClassName, ...styleProps } = useStyleConfig(
-      'Avatar',
-      { color, hashValue, shape },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Avatar', { color, hashValue, shape }, pseudoSelectors, internalStyles)
 
     const [imageHasFailedLoading, setImageHasFailedLoading] = useState(false)
     const onError = useCallback(() => setImageHasFailedLoading(true), [])
@@ -75,18 +59,14 @@ const Avatar = memo(
     }
 
     return (
-      <Box
-        width={size}
-        height={size}
-        title={name}
-        ref={ref}
-        className={cx(className, themedClassName)}
-        {...styleProps}
-        {...restProps}
-      >
+      <Box width={size} height={size} title={name} ref={ref} className={className} {...themedProps} {...restProps}>
         {(imageUnavailable || forceShowInitials) && (
           <Text
-            className={initialsStyleClass}
+            top={0}
+            position="absolute"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
             fontSize={initialsFontSize}
             lineHeight={initialsFontSize}
             width={size}

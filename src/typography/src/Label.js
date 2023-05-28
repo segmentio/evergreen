@@ -1,5 +1,4 @@
 import React, { memo, forwardRef } from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -11,14 +10,9 @@ const Label = memo(
   forwardRef(function Label(props, ref) {
     const { className, size = 400, ...restProps } = props
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'Label',
-      { size },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Label', { size }, pseudoSelectors, internalStyles)
 
-    return <Box is="label" ref={ref} className={cx(themedClassName, className)} {...boxProps} {...restProps} />
+    return <Box is="label" ref={ref} className={className} {...themedProps} {...restProps} />
   })
 )
 

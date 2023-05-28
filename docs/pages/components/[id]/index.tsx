@@ -5,14 +5,16 @@ import { GetStaticPropsContext } from 'next'
 import { MdxRemote } from 'next-mdx-remote/types'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
-import IA from '../../../utils/IA'
+import IA from '../../../constants/IA'
 import { Link } from 'evergreen-ui'
 import PageHeader from '../../../components/PageHeader'
 import componentMapping from '../../../components/MDX/componentMapping'
 import EntityOverviewTemplate, {
-  Props as EntityOverviewTemplateProps,
+  EntityOverviewTemplateProps,
 } from '../../../components/templates/EntityOverviewTemplate'
 import ComingSoon from '../../../components/ComingSoon'
+import { findById, sortItems } from '../../../utils/item-utils'
+import { Query } from '../../../types/query'
 
 interface Props {
   components: EntityOverviewTemplateProps['navItems']
@@ -42,7 +44,7 @@ const ComponentPage: React.FC<Props> = ({ mdxSource, component, components }) =>
       pageHeader={
         !component.inProgress ? (
           <PageHeader
-            title={name!}
+            title={name}
             description={description}
             githubLink={github}
             tabs={[
@@ -73,7 +75,7 @@ const ComponentPage: React.FC<Props> = ({ mdxSource, component, components }) =>
 }
 
 export async function getStaticPaths() {
-  const files = await fs.readdirSync(path.join(process.cwd(), 'documentation', 'components'))
+  const files = fs.readdirSync(path.join(process.cwd(), 'documentation', 'components'))
 
   const paths = files.map((file) => `/components/${file.split('.')[0]}`)
 
@@ -83,15 +85,11 @@ export async function getStaticPaths() {
   }
 }
 
-interface Query {
-  [k: string]: string
-}
-
 export async function getStaticProps(context: GetStaticPropsContext<Query>) {
   const { params } = context
   const { id } = params || {}
-  const components = IA.components.items.sort((a, b) => (a.name! > b.name! ? 1 : -1))
-  const component = components.find((component) => component.id === id)
+  const components = sortItems(IA.components.items)
+  const component = findById(components, id)
 
   if (component?.inProgress) {
     return {

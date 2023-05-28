@@ -1,6 +1,4 @@
 import React, { memo, forwardRef } from 'react'
-import cx from 'classnames'
-import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import { useStyleConfig } from '../../hooks'
 import { Strong } from '../../typography'
@@ -13,30 +11,28 @@ const internalStyles = {
   verticalAlign: 'middle'
 }
 
-const hoverClassName = css({
-  '&:hover': {
-    opacity: 0.8
+const interactiveStyles = {
+  selectors: {
+    '&:hover': {
+      opacity: 0.8
+    }
   },
   cursor: 'pointer'
-})
+}
 
 const Badge = memo(
   forwardRef(function Badge(props, ref) {
     const { appearance = 'subtle', className, color = 'neutral', isInteractive = false, ...restProps } = props
 
-    const { className: themedClassName, ...styleProps } = useStyleConfig(
-      'Badge',
-      { appearance, color },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Badge', { appearance, color }, pseudoSelectors, internalStyles)
 
     return (
       <Strong
         ref={ref}
         size={300}
-        className={cx(className, themedClassName, isInteractive && hoverClassName)}
-        {...styleProps}
+        className={className}
+        {...(isInteractive ? interactiveStyles : {})}
+        {...themedProps}
         {...restProps}
       />
     )

@@ -13,19 +13,20 @@ const animationEasing = {
 
 const getCSS = ({ animationDuration, initialScale }) => ({
   position: 'fixed',
-  opacity: 0,
   transitionTimingFunction: animationEasing.spring,
   transitionDuration: `${animationDuration}ms`,
   transitionProperty: 'opacity, transform',
   transform: `scale(${initialScale}) translateY(-1px)`,
-  '&[data-state="entering"], &[data-state="entered"]': {
-    opacity: 1,
-    visibility: 'visible',
-    transform: 'scale(1)'
-  },
-  '&[data-state="exiting"]': {
-    opacity: 0,
-    transform: 'scale(1)'
+  selectors: {
+    '&[data-state="entering"],&[data-state="entered"]': {
+      opacity: 1,
+      visibility: 'visible',
+      transform: 'scale(1)'
+    },
+    '&[data-state="exiting"],&[data-state="exited"]': {
+      opacity: 0,
+      transform: 'scale(1)'
+    }
   }
 })
 
@@ -134,6 +135,11 @@ const Positioner = memo(function Positioner(props) {
     }
   }, [previousDimensions.height, previousDimensions.width, update, children])
 
+  const handleEntering = () => {
+    transitionState.current = 'entering'
+    update()
+  }
+
   const handleEnter = () => {
     transitionState.current = 'entered'
     update()
@@ -146,12 +152,13 @@ const Positioner = memo(function Positioner(props) {
   }
 
   useEffect(() => {
-    window.addEventListener('resize', update)
-    window.addEventListener('scroll', update)
+    const handleResizeOrScroll = () => update()
+    window.addEventListener('resize', handleResizeOrScroll)
+    window.addEventListener('scroll', handleResizeOrScroll)
 
     return () => {
-      window.removeEventListener('resize', update)
-      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', handleResizeOrScroll)
+      window.removeEventListener('scroll', handleResizeOrScroll)
     }
   })
 
@@ -168,6 +175,7 @@ const Positioner = memo(function Positioner(props) {
               in={isShown}
               timeout={animationDuration}
               onEnter={handleEnter}
+              onEntering={handleEntering}
               onEntered={onOpenComplete}
               onExited={handleExited}
               unmountOnExit

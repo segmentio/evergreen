@@ -2,35 +2,21 @@
 
 Evergreen ships with an all-new, extensible theming architecture that lets end-users customize the look and feel of the components in Evergreen as you want. You can target arbitrary styles and states of each component to achieve maximum flexibility and alignment with your brand. This page goes over some of the options and background of the theming architecture, and how you can leverage it in your apps.
 
-# Classic and Default Theme
+# Default Theme
 
-For starters, Evergreen ships with two themes. The `defaultTheme` is the current brand (and the one we use internally at Segment!), and the `classicTheme` is the same look and feel from the previous iterations of Evergreen (v4 and v5).
-
-> If you are using a previous version of Evergreen, you'll want to explicitly set your theme to the classicTheme
+Evergreen currently ships with one theme representing our current brand. You can extend it with your own styles or create your own theme from scratch by taking a look at how the `defaultTheme` object is constructed.
 
 ```jsx
-<Pane display="grid" gridTemplateColumns="repeat(auto-fill, minmax(100px, 1fr))" gridColumnGap="300px">
-  <ThemeProvider value={defaultTheme}>
-    <Pane display="flex" flexDirection="column" alignItems="flex-start">
-      <Heading marginBottom={majorScale(2)}>Using Default Theme</Heading>
-      <Button marginBottom={majorScale(2)} appearance="primary" onClick={() => {}}>
-        Confirm
-      </Button>
-      <Alert marginBottom={majorScale(2)} title="There was an issue processing your data!" intent="warning" />
-      <Checkbox checked marginBottom={majorScale(2)} label="I agree" />
-    </Pane>
-  </ThemeProvider>
-  <ThemeProvider value={classicTheme}>
-    <Pane display="flex" flexDirection="column" alignItems="flex-start">
-      <Heading marginBottom={majorScale(2)}>Using Classic Theme</Heading>
-      <Button marginBottom={majorScale(2)} appearance="primary" onClick={() => {}}>
-        Confirm
-      </Button>
-      <Alert marginBottom={majorScale(2)} title="There was an issue processing your data!" intent="warning" />
-      <Checkbox checked marginBottom={majorScale(2)} label="I agree" />
-    </Pane>
-  </ThemeProvider>
-</Pane>
+<ThemeProvider value={defaultTheme}>
+  <Pane display="flex" flexDirection="column" alignItems="flex-start">
+    <Heading marginBottom={majorScale(2)}>Using Default Theme</Heading>
+    <Button marginBottom={majorScale(2)} appearance="primary">
+      Confirm
+    </Button>
+    <Alert marginBottom={majorScale(2)} title="There was an issue processing your data!" intent="warning" />
+    <Checkbox checked={true} marginBottom={majorScale(2)} label="I agree" />
+  </Pane>
+</ThemeProvider>
 ```
 
 # Theme API Overview
@@ -40,6 +26,10 @@ Most components go by the following API, which takes inspiration from the `useSt
 - `baseStyle`: These are the default "base" styles applied to a component. This includes targeting pseudo-states that some components offer, including `_hover`, and `_active`.
 - `appearances`: These are the custom styles that you can apply to a component based on the `appearance` prop. Note that **some** components don't have this.
 - `sizes`: These are additional props that you can alias via a `size` property. Again, note that **some** components don't have this, and you can only configure `baseStyle`.
+
+> While these guidelines are generally accurate for most components, there are some edge cases that might not follow
+> this exact shape. If you're trying to theme a component and it isn't quite working correctly, try taking a look at how we implement the theme internally.
+> Component theme files can be found at <a href="https://github.com/segmentio/evergreen/tree/master/src/themes/default/components"><inlineCode>src/themes/default/components/[component].js</inlineCode></a>.
 
 An example implementation that leverages some of these props to create a custom button is below:
 
@@ -54,15 +44,17 @@ function CustomButtonExample() {
           paddingY: 8,
           borderRadius: 5,
           backgroundColor: 'indianred',
-          _hover: {
-            backgroundColor: 'firebrick',
-          },
-          _active: {
-            backgroundColor: 'darkred',
-          },
-          _focus: {
-            boxShadow: '0 0 0 2px lightcoral',
-          },
+          selectors: {
+            _hover: {
+              backgroundColor: 'firebrick',
+            },
+            _active: {
+              backgroundColor: 'darkred',
+            },
+            _focus: {
+              boxShadow: '0 0 0 2px lightcoral',
+            },
+          }
         },
       },
     },
@@ -92,15 +84,17 @@ function CustomAppearancesExample() {
             paddingY: 8,
             borderRadius: 5,
             backgroundColor: 'indianred',
-            _hover: {
-              backgroundColor: 'firebrick',
-            },
-            _active: {
-              backgroundColor: 'darkred',
-            },
-            _focus: {
-              boxShadow: '0 0 0 2px lightcoral',
-            },
+            selectors: {
+              _hover: {
+                backgroundColor: 'firebrick',
+              },
+              _active: {
+                backgroundColor: 'darkred',
+              },
+              _focus: {
+                boxShadow: '0 0 0 2px lightcoral',
+              },
+            }
           },
         },
       },

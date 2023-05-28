@@ -1,2 +1,2 @@
 package.json
-/codemods/
+/codemods/**/__testfixtures__/*

@@ -1,5 +1,5 @@
-import SectionHeading from './renderers/SectionHeading'
-import Code from './renderers/Code'
+import SectionHeading, { SectionHeadingProps } from './renderers/SectionHeading'
+import SourceCode, { SourceCodeProps } from './renderers/SourceCode'
 import InlineCode from './renderers/InlineCode'
 import Blockquote from './renderers/Blockquote'
 import RuleCard from './renderers/RuleCard'
@@ -7,6 +7,7 @@ import RuleLayout from './renderers/RuleLayout'
 import ColorSwatch from '../ColorSwatch'
 import IconSearch from '../IconSearch'
 import {
+  InlineAlert,
   Table,
   Pane,
   Paragraph,
@@ -23,24 +24,33 @@ import {
   TableRowProps,
   AlertProps,
   Alert,
+  InlineAlertProps,
+  ParagraphProps,
+  LinkProps,
+  StrongProps,
+  OrderedListProps,
+  UnorderedListProps,
+  ListItemProps,
+  CodeProps,
 } from 'evergreen-ui'
 
 const componentMapping = {
-  h1: (props: any) => <SectionHeading size={800} {...props} />,
-  h2: (props: any) => <SectionHeading size={700} {...props} />,
-  h3: (props: any) => <SectionHeading size={600} {...props} />,
-  h4: (props: any) => <SectionHeading size={500} {...props} />,
-  h5: (props: any) => <SectionHeading size={300} {...props} />,
-  h6: (props: any) => <SectionHeading size={200} {...props} />,
-  code: (props: { className: string; metastring: string; children: any }) => <Code {...props} />,
-  p: (props: any) => <Paragraph marginBottom={majorScale(3)} {...props} />,
-  a: (props: any) => <EvergreenLink {...props} />,
-  strong: (props: any) => <Strong {...props} />,
-  ol: (props: any) => <Ol {...props} />,
-  ul: (props: any) => <Ul {...props} marginTop="-16px" />,
-  li: (props: any) => <Li {...props} />,
-  inlineCode: (props: any) => <InlineCode {...props} />,
+  h1: (props: SectionHeadingProps) => <SectionHeading size={800} {...props} />,
+  h2: (props: SectionHeadingProps) => <SectionHeading size={700} {...props} />,
+  h3: (props: SectionHeadingProps) => <SectionHeading size={600} {...props} />,
+  h4: (props: SectionHeadingProps) => <SectionHeading size={500} {...props} />,
+  h5: (props: SectionHeadingProps) => <SectionHeading size={300} {...props} />,
+  h6: (props: SectionHeadingProps) => <SectionHeading size={200} {...props} />,
+  code: (props: SourceCodeProps) => <SourceCode {...props} />,
+  p: (props: ParagraphProps) => <Paragraph marginBottom={majorScale(3)} {...props} />,
+  a: (props: LinkProps) => <EvergreenLink {...props} />,
+  strong: (props: StrongProps) => <Strong {...props} />,
+  ol: (props: OrderedListProps) => <Ol {...props} />,
+  ul: (props: UnorderedListProps) => <Ul {...props} marginTop="-16px" />,
+  li: (props: ListItemProps) => <Li {...props} />,
+  inlineCode: (props: CodeProps) => <InlineCode {...props} />,
   Alert: (props: AlertProps) => <Alert {...props} />,
+  InlineAlert: (props: InlineAlertProps) => <InlineAlert marginBottom={majorScale(3)} {...props} />,
   Pane: (props: PaneProps) => <Pane {...props} />,
   Table: (props: TableProps) => <Table {...props} />,
   TableHead: (props: TableHeadProps) => <Table.Head {...props} />,

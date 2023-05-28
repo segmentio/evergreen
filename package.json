@@ -1,6 +1,6 @@
 {
   "name": "evergreen-ui",
-  "version": "6.10.4",
+  "version": "7.1.8",
   "description": "🌲 React UI Kit by Segment 🌲",
   "contributors": [
     "Jeroen Ransijn (https://jssr.design/)",
@@ -8,7 +8,8 @@
     "Matt Shwery (https://mattshwery.com)",
     "Colin Lohner (https://www.colinlohner.com)",
     "Allen Kleiner (http://allenk.me/)",
-    "Chris Chuck (https://github.com/Chrischuck)"
+    "Chris Chuck (https://github.com/Chrischuck)",
+    "Brandon Scott (https://brandonscott.me)"
   ],
   "keywords": [
     "evergreen",
@@ -27,14 +28,17 @@
     "esm",
     "umd",
     "index.d.ts",
-    "codemods"
+    "codemods/dist",
+    "types"
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "yarn generate-icons && concurrently --names 'commonjs,esm,umd' 'yarn build-commonjs' 'yarn build-esm' 'yarn build-umd'",
-    "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test'",
-    "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test'",
+    "build": "yarn generate-icons && concurrently --names 'commonjs,esm,umd,codemods,types' 'yarn build-commonjs' 'yarn build-esm' 'yarn build-umd' 'yarn build-codemods' 'yarn build-types'",
+    "build-codemods": "cd codemods && yarn build",
+    "build-commonjs": "tsc --project tsconfig.commonjs.json",
+    "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test','**/__tests__','**/types' --extensions '.js,.ts,.tsx'",
     "build-storybook": "build-storybook",
+    "build-types": "tsc --project tsconfig.types.json",
     "build-umd": "rollup -c",
     "chromatic": "npx chromatic",
     "clean": "git clean -Xdf",
@@ -43,15 +47,16 @@
     "deploy-docs": "cd docs && yarn install && yarn deploy",
     "dev": "start-storybook -p 6006",
     "generate-icons": "./tools/generate-icons.js",
-    "lint": "eslint \"src/**/*.js\" --cache",
+    "lint": "eslint \"src/**/*.{js,ts,tsx}\" --cache",
     "postpublish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then yarn update-docs || yarn deploy-docs; else echo \"not on main branch, skipping docs deploy\"; fi;",
-    "prepublishOnly": "rm -rf esm commonjs umd && yarn build",
+    "prebuild": "yarn typecheck",
+    "prepublishOnly": "rm -rf esm commonjs umd types && yarn build",
     "release": "np",
     "size": "size-limit",
     "storybook": "start-storybook -p 6006",
     "test": "yarn lint && yarn tsd && yarn jest",
-    "test:watch": "yarn run test -- --watch",
-    "coverage": "yarn run test --coverage --silent",
+    "test:watch": "yarn jest --watch",
+    "typecheck": "tsc --noEmit",
     "update-docs": "cd docs && yarn add evergreen-ui@latest --exact && git add package.json yarn.lock && git show-branch --no-name HEAD | grep -E 'v[0-9]+.[0-9]+.[0-9]+' && git commit --amend --no-edit || git commit -m \"Updated doc site evergreen version\""
   },
   "engines": {
@@ -60,13 +65,10 @@
   "dependencies": {
     "@babel/runtime": "^7.1.2",
     "@segment/react-tiny-virtual-list": "^2.2.1",
-    "@types/react": "^16.9.5",
     "@types/react-transition-group": "^4.4.0",
     "arrify": "^1.0.1",
-    "classnames": "^2.3.0",
     "downshift": "^5.2.0",
     "fuzzaldrin-plus": "^0.6.0",
-    "glamor": "^2.20.40",
     "humanize-plus": "^1.8.2",
     "lodash.debounce": "^4.0.8",
     "lodash.differencewith": "^4.5.0",
@@ -77,8 +79,7 @@
     "prop-types": "^15.6.2",
     "react-fast-compare": "^3.2.0",
     "react-transition-group": "^4.4.1",
-    "tinycolor2": "^1.4.1",
-    "ui-box": "^5.1.0"
+    "ui-box": "^5.4.1"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
@@ -93,6 +94,7 @@
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.18.6",
     "@babel/register": "^7.0.0",
     "@blueprintjs/icons": "^3.31.0",
     "@faker-js/faker": "^6.1.2",
@@ -101,6 +103,7 @@
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-replace": "^2.3.3",
+    "@rollup/plugin-typescript": "^10.0.1",
     "@size-limit/preset-big-lib": "^4.5.4",
     "@storybook/addon-essentials": "^6.0.21",
     "@storybook/addon-options": "^5.3.21",
@@ -110,8 +113,21 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "13.3.0",
     "@testing-library/user-event": "^13.1.9",
+    "@types/fs-extra": "^9.0.13",
+    "@types/fuzzaldrin-plus": "^0.6.2",
+    "@types/humanize-plus": "1.8.0",
+    "@types/jest": "27.4.0",
+    "@types/lodash.debounce": "^4.0.6",
+    "@types/lodash.differencewith": "^4.5.6",
+    "@types/lodash.isempty": "^4.4.6",
+    "@types/lodash.merge": "^4.6.6",
+    "@types/lodash.uniqby": "^4.7.6",
+    "@types/node": "^17.0.21",
+    "@types/react-is": "17.0.3",
+    "@types/testing-library__jest-dom": "5.14.3",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.1.0",
     "babel-plugin-add-react-displayname": "^0.0.5",
     "camelcase": "^5.0.0",
@@ -133,17 +149,17 @@
     "jest": "^26.4.2",
     "lint-staged": "^10.0.1",
     "np": "^6.3.2",
-    "prettier": "^1.14.3",
+    "prettier": "2.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
-    "react-test-renderer": "^18.2.0",
     "rollup": "^2.28.2",
     "rollup-plugin-terser": "^5.2.0",
     "sinon": "^8.1.0",
     "size-limit": "^4.5.0",
     "starwars-names": "^1.6.0",
     "tsd": "^0.19.1",
+    "typescript": "4.9.4",
     "url-loader": "^1.1.2",
     "webpack": "^4.43.0",
     "yarnhook": "^0.5.1"
@@ -156,14 +172,16 @@
     "singleQuote": true,
     "printWidth": 120,
     "tabWidth": 2,
-    "useTabs": false
+    "useTabs": false,
+    "trailingComma": "none",
+    "arrowParens": "avoid"
   },
   "lint-staged": {
-    "!(codemods|docs)/**/*.js": [
+    "!(codemods|docs)/**/.{js,ts,tsx}": [
       "yarn lint --fix",
       "prettier --write"
     ],
-    "docs/**/*.{ts,tsx,js,jsx}": [
+    "docs/**/*.{js,ts,tsx}": [
       "yarn --cwd ./docs run lint"
     ],
     "*.{json,md}": [
@@ -181,7 +199,7 @@
       "<rootDir>/commonjs/"
     ],
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
+      "src/**/*.{js,ts,tsx}",
       "!**/*.stories.{js,jsx}",
       "!src/{constants,test,themes}/**",
       "!src/icons/generated/**"
@@ -190,7 +208,7 @@
   "size-limit": [
     {
       "path": "commonjs/index.js",
-      "limit": "303 KB",
+      "limit": "305 KB",
       "running": false
     },
     {

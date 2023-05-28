@@ -4,7 +4,7 @@ import { Pane, useTheme, majorScale, Heading, Paragraph, Button, minorScale } fr
 import Link from 'next/link'
 
 const HomeHero = () => {
-  const { colors } = useTheme() as any
+  const { colors } = useTheme()
   const ref = useRef(null)
 
   useEffect(() => {

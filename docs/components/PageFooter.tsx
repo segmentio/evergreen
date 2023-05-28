@@ -2,9 +2,7 @@ import React, { useCallback } from 'react'
 import { openConsentManager } from '@segment/consent-manager'
 import { majorScale, Pane, Text, Link } from 'evergreen-ui'
 
-interface Props {}
-
-const PageFooter: React.FC<Props> = () => {
+const PageFooter: React.FC = () => {
   const dataCollectionHandler = useCallback((e) => {
     e.preventDefault()
     openConsentManager()

@@ -1,5 +1,4 @@
 import React, { memo, forwardRef } from 'react'
-import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
 import { useStyleConfig } from '../../hooks'
@@ -8,12 +7,7 @@ const animationEasing = {
   spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
-const handleStyleClass = css({
-  backgroundColor: '#fff',
-  borderRadius: 9999
-}).toString()
-
-const iconContainerStyleClass = css({
+const iconContainerStyles = {
   transition: `all 500ms ${animationEasing.spring}`,
   opacity: 0,
   display: 'flex',
@@ -21,26 +15,30 @@ const iconContainerStyleClass = css({
   alignItems: 'center',
   justifyContent: 'center',
   paddingLeft: 4,
-  '&[data-checked="true"]': {
-    opacity: 1,
-    transform: 'scale(1)'
-  },
-  '> svg': {
-    transition: `all 500ms ${animationEasing.spring}`,
-    transform: 'scale(0)'
-  },
-  '&[data-checked="true"] > svg': {
-    transform: 'scale(1)'
+  selectors: {
+    '&[data-checked="true"]': {
+      opacity: 1,
+      transform: 'scale(1)'
+    },
+    '> svg': {
+      transition: `all 500ms ${animationEasing.spring}`,
+      transform: 'scale(0)'
+    },
+    '&[data-checked="true"] > svg': {
+      transform: 'scale(1)'
+    }
   }
-}).toString()
+}
 
-const handleContainerStyleClass = css({
+const handleContainerStyles = {
   transition: 'transform 200ms ease-in-out',
   transform: 'translateX(0%)',
-  '&[data-checked="true"]': {
-    transform: 'translateX(50%)'
+  selectors: {
+    '&[data-checked="true"]': {
+      transform: 'translateX(50%)'
+    }
   }
-}).toString()
+}
 
 const CheckIcon = memo(function CheckIcon({ fill = 'currentColor', size, ...props }) {
   return (
@@ -83,10 +81,12 @@ const internalStyles = {
   whiteSpace: 'nowrap',
   width: '1px',
   opacity: '0',
-  '& + div > svg': { display: 'none' },
+  selectors: {
+    '& + div > svg': { display: 'none' },
 
-  [pseudoSelectors._base]: {
-    transition: 'all 120ms ease-in-out'
+    [pseudoSelectors._base]: {
+      transition: 'all 120ms ease-in-out'
+    }
   }
 }
 
@@ -105,12 +105,7 @@ const Switch = memo(
       ...rest
     } = props
 
-    const { className: themedClassName, ...boxProps } = useStyleConfig(
-      'Switch',
-      { appearance },
-      pseudoSelectors,
-      internalStyles
-    )
+    const themedProps = useStyleConfig('Switch', { appearance }, pseudoSelectors, internalStyles)
 
     return (
       <Box is="label" display="block" width={height * 2} position="relative" ref={ref} {...rest}>
@@ -118,8 +113,7 @@ const Switch = memo(
           is="input"
           id={id}
           name={name}
-          {...boxProps}
-          className={themedClassName}
+          {...themedProps}
           type="checkbox"
           checked={checked}
           disabled={disabled}
@@ -127,12 +121,12 @@ const Switch = memo(
           onChange={onChange}
         />
         <Box height={height} width={height * 2} borderRadius={9999} cursor="pointer">
-          <Box height={height} width={height} data-checked={checked} className={iconContainerStyleClass}>
+          <Box height={height} width={height} data-checked={checked} {...iconContainerStyles}>
             {hasCheckIcon && <CheckIcon display={checked ? 'block' : undefined} size={height / 2 - 3} />}
           </Box>
-          <Box width={height * 2} display="flex" data-checked={checked} className={handleContainerStyleClass}>
+          <Box width={height * 2} display="flex" data-checked={checked} {...handleContainerStyles}>
             <Box flex={1} padding={2}>
-              <Box width={height - 4} height={height - 4} className={handleStyleClass} />
+              <Box width={height - 4} height={height - 4} backgroundColor="#fff" borderRadius={9999} />
             </Box>
           </Box>
         </Box>
