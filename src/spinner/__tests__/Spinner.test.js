@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import Spinner from '../src/Spinner'
 
 describe('Spinner', () => {
@@ -12,18 +12,19 @@ describe('Spinner', () => {
   })
 
   it('should render', () => {
-    expect(() => {
-      render(<Spinner />)
-    }).not.toBeNull()
+    render(<Spinner data-testid="Spinner" />);
+    expect(screen.getByTestId('Spinner')).not.toBeNull();
   })
 
-  it('should render Spinner with delay time', () => {
-    const spinnerDelay = render(<Spinner delay={300} />)
+  it('should render after delay time', () => {
+    render(<Spinner delay={300} data-testid="Spinner-delay" />)
 
-    jest.advanceTimersByTime(300)
+    act(() => {
+      jest.advanceTimersByTime(300)
+    })
 
     expect(setTimeout).toHaveBeenCalledTimes(1)
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 300)
-    expect(spinnerDelay).not.toBeNull()
+    expect(screen.getByTestId('Spinner-delay')).not.toBeNull()
   })
 })
