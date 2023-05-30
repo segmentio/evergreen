@@ -53,8 +53,8 @@
     "prepublishOnly": "rm -rf esm commonjs umd types && yarn build",
     "release": "np",
     "size": "size-limit",
-    "storybook": "start-storybook -p 6006",
     "test": "yarn lint && yarn tsd && yarn jest",
+    "test:coverage": "yarn jest --coverage",
     "test:watch": "yarn jest --watch",
     "typecheck": "tsc --noEmit",
     "update-docs": "cd docs && yarn add evergreen-ui@latest --exact && git add package.json yarn.lock && git show-branch --no-name HEAD | grep -E 'v[0-9]+.[0-9]+.[0-9]+' && git commit --amend --no-edit || git commit -m \"Updated doc site evergreen version\""
