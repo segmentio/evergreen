@@ -5,6 +5,7 @@ import Spinner from '../src/Spinner'
 describe('Spinner', () => {
   jest.useFakeTimers()
   jest.spyOn(global, 'setTimeout')
+
   it('should not crash when rendering', () => {
     expect(() => {
       render(<Spinner />)
@@ -12,8 +13,8 @@ describe('Spinner', () => {
   })
 
   it('should render', () => {
-    render(<Spinner data-testid="Spinner" />);
-    expect(screen.getByTestId('Spinner')).not.toBeNull();
+    render(<Spinner data-testid="Spinner" />)
+    expect(screen.getByTestId('Spinner')).not.toBeNull()
   })
 
   it('should render after delay time', () => {
