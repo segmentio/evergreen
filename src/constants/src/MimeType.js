@@ -15,6 +15,7 @@ const MimeType = {
   mp3: 'audio/mpeg',
   mp4: 'video/mp4',
   mpeg: 'video/mpeg',
+  ogg: 'audio/ogg',
   pdf: 'application/pdf',
   png: 'image/png',
   ppt: 'application/vnd.ms-powerpoint',
