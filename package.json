@@ -68,6 +68,7 @@
     "@types/react-transition-group": "^4.4.0",
     "arrify": "^1.0.1",
     "downshift": "^5.2.0",
+    "focus-trap-react": "^10.0.2",
     "fuzzaldrin-plus": "^0.6.0",
     "humanize-plus": "^1.8.2",
     "lodash.debounce": "^4.0.8",
