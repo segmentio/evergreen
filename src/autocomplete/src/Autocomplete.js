@@ -2,7 +2,7 @@ import React, { memo, forwardRef, useState, useEffect, useCallback } from 'react
 import VirtualList from '@segment/react-tiny-virtual-list'
 import Downshift from 'downshift'
 import fuzzaldrin from 'fuzzaldrin-plus'
-import PropTypes, { string } from 'prop-types'
+import PropTypes from 'prop-types'
 import { Position } from '../../constants'
 import { Pane } from '../../layers'
 import { Popover } from '../../popover'
