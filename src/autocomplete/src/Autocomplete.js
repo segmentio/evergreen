@@ -2,7 +2,7 @@ import React, { memo, forwardRef, useState, useEffect, useCallback } from 'react
 import VirtualList from '@segment/react-tiny-virtual-list'
 import Downshift from 'downshift'
 import fuzzaldrin from 'fuzzaldrin-plus'
-import PropTypes from 'prop-types'
+import PropTypes, { string } from 'prop-types'
 import { Position } from '../../constants'
 import { Pane } from '../../layers'
 import { Popover } from '../../popover'
@@ -46,7 +46,7 @@ const AutocompleteItems = ({
   width
 }) => {
   itemsFilter = itemsFilter || fuzzyFilter(itemToString)
-  const items = isFilterDisabled || inputValue.trim() === '' ? originalItems : itemsFilter(originalItems, inputValue)
+  const items = isFilterDisabled || (typeof inputValue === 'string' && inputValue.trim() === '') ? originalItems : itemsFilter(originalItems, inputValue)
 
   if (items.length <= 0) return null
 
@@ -128,11 +128,8 @@ const Autocomplete = memo(
         }
 
         if (props.allowOtherValues && state.isOpen && !changes.isOpen) {
-          return {
-            ...changes,
-            selectedItem: changes.selectedItem || state.inputValue,
-            inputValue: changes.selectedItem || state.inputValue
-          }
+          const valueItem = changes.selectedItem || state.inputValue;
+          return typeof valueItem === 'object' ? {...changes, selectedItem: valueItem} : {...changes, selectedItem: valueItem, inputValue: valueItem} 
         }
 
         return changes
