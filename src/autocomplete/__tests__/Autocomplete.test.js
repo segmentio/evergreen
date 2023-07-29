@@ -86,14 +86,17 @@ describe('Autocomplete', () => {
     })
 
     describe('when inputvalues is object', () => {
-      it.only('should read data autocomplete', async () => {
-        const items = [{name: 'Apple', id: 1}, {name: 'Orange', id: 2}]
+      it('should read data autocomplete', async () => {
+        const items = [
+          { name: 'Apple', id: 1 },
+          { name: 'Orange', id: 2 }
+        ]
 
         render(
           makeAutocompleteFixture({
             allowOtherValues: true,
             items,
-            itemToString: (item) => (item ? item.name : ""),
+            itemToString: item => (item ? item.name : '')
           })
         )
 
@@ -106,10 +109,9 @@ describe('Autocomplete', () => {
         const item = await screen.findByText('Apple')
         userEvent.click(item)
 
-
         // an object will be returned in the input without error
         expect(textInput).toHaveValue('Apple')
       })
-    });
+    })
   })
 })
