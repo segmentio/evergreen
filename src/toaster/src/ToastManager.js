@@ -8,7 +8,7 @@ const hasCustomId = settings => Object.hasOwnProperty.call(settings, 'id')
 
 const ToastManager = memo(function ToastManager(props) {
   const { bindCloseAll, bindGetToasts, bindNotify, bindRemove } = props
-
+  const [zindex, setZindex] = useState(100)
   const [toasts, setToasts] = useState([])
   const [idCounter, setIdCounter] = useState(0)
 
@@ -63,11 +63,19 @@ const ToastManager = memo(function ToastManager(props) {
       hasCloseButton: settings.hasCloseButton ?? true,
       duration: settings.duration || 5,
       close: () => safeCloseToast(id),
-      intent: settings.intent
+      intent: settings.intent,
+      zIndex: settings.zIndex
     }
   }
 
   const notify = (title, settings) => {
+    setZindex(settings.zIndex)
+    if (settings.zIndex != undefined) {
+      setZindex(settings.zIndex)
+    } else {
+      setZindex(100)
+    }
+
     let tempToasts = toasts
     if (hasCustomId(settings)) {
       tempToasts = removeToast(settings.id)
@@ -92,7 +100,7 @@ const ToastManager = memo(function ToastManager(props) {
       left={0}
       right={0}
       position="fixed"
-      zIndex={StackingOrder.TOASTER}
+      zIndex={zindex}
       pointerEvents="none"
     >
       {toasts.map(({ description, id, ...rest }) => {
