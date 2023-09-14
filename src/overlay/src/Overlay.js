@@ -98,6 +98,7 @@ const Overlay = memo(function Overlay({
   const [previousActiveElement, setPreviousActiveElement] = useState(null)
   const [status, setStatus] = useState(isShown ? 'entering' : 'exited')
   const containerRef = useRef(null)
+  const mouseDownTargetRef = useRef(null)
 
   useEffect(() => {
     if (isShown) {
@@ -238,12 +239,22 @@ const Overlay = memo(function Overlay({
     safeInvoke(onExited, node)
   }
 
+  const handleMouseDown = event => {
+    mouseDownTargetRef.current = event.target
+  }
+
+  const handleMouseUp = (event) => {
+    if (mouseDownTargetRef.current === event.target) {
+      close()
+    }
+  }
+
   const handleBackdropClick = event => {
     if (event.target !== event.currentTarget || !shouldCloseOnClick) {
       return
     }
 
-    close()
+    handleMouseUp(event)
   }
 
   if (status === 'exited') {
@@ -270,6 +281,7 @@ const Overlay = memo(function Overlay({
             {state => (
               <Box
                 onClick={handleBackdropClick}
+                onMouseDown={handleMouseDown}
                 ref={containerRef}
                 position="fixed"
                 top={0}
