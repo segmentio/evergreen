@@ -1759,6 +1759,10 @@ export interface RadioGroupOwnProps extends PaneOwnProps {
    */
   options?: RadioGroupOption[]
   /**
+   * The name attribute for HTML radio button. Default to auto-generated string with 'RadioGroup' prefix.
+   */
+  name?: string
+  /**
    * The selected item value when controlled.
    */
   value?: string
