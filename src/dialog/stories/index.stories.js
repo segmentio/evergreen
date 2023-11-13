@@ -403,11 +403,11 @@ storiesOf('dialog', module)
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
-              title="Dialog with Combobox"
+              title="Dialog with onBeforeClose callback"
               onBeforeClose={() => confirm('Are you sure you want to close?')}
               onCloseComplete={hide}
             >
-              <Paragraph>onBeforeClose >> are you sure you want to close?</Paragraph>
+              <Paragraph>onBeforeClose: are you sure you want to close?</Paragraph>
             </Dialog>
             <Button onClick={show}>Show Dialog with onBeforeClose</Button>
           </Box>
