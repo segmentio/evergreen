@@ -396,3 +396,22 @@ storiesOf('dialog', module)
       </DialogManager>
     </Box>
   ))
+  .add('Dialog with onBeforeClose', () => (
+    <Box padding={40}>
+      <DialogManager>
+        {({ hide, isShown, show }) => (
+          <Box marginBottom={16}>
+            <Dialog
+              isShown={isShown}
+              title="Dialog with onBeforeClose callback"
+              onBeforeClose={() => confirm('Are you sure you want to close?')}
+              onCloseComplete={hide}
+            >
+              <Paragraph>onBeforeClose: are you sure you want to close?</Paragraph>
+            </Dialog>
+            <Button onClick={show}>Show Dialog with onBeforeClose</Button>
+          </Box>
+        )}
+      </DialogManager>
+    </Box>
+  ))

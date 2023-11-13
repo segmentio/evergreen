@@ -833,7 +833,10 @@ export interface CornerDialogProps {
 export declare const CornerDialog: React.FC<CornerDialogProps>
 
 export interface DialogProps
-  extends Pick<OverlayProps, 'isShown' | 'preventBodyScrolling' | 'shouldAutoFocus' | 'shouldCloseOnEscapePress'> {
+  extends Pick<
+    OverlayProps,
+    'isShown' | 'preventBodyScrolling' | 'shouldAutoFocus' | 'shouldCloseOnEscapePress' | 'onBeforeClose'
+  > {
   /**
    * Children can be a string, node or a function accepting `({ close })`.
    * When passing a string, <Paragraph /> is used to wrap the string.

@@ -77,6 +77,7 @@ const Dialog = memo(function Dialog({
   isConfirmLoading = false,
   isShown = false,
   minHeightContent = 80,
+  onBeforeClose,
   onCancel = closeHandler,
   onCloseComplete,
   onConfirm = closeHandler,
@@ -195,6 +196,7 @@ const Dialog = memo(function Dialog({
         justifyContent: 'center',
         ...overlayProps
       }}
+      onBeforeClose={onBeforeClose}
       preventBodyScrolling={preventBodyScrolling}
     >
       {({ close, state }) => (
@@ -402,6 +404,13 @@ Dialog.propTypes = {
    * @default false
    */
   preventBodyScrolling: PropTypes.bool,
+
+  /**
+   * Function called when dialog is about to close.
+   * Return `false` to prevent the sheet from closing.
+   * type: `Function -> Boolean`
+   */
+  onBeforeClose: PropTypes.func,
 
   /**
    * Props that are passed to the Overlay component.
