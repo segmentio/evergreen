@@ -53,7 +53,6 @@ function DefaultDialogExample() {
 }
 ```
 
-
 ## Default with a danger intent
 
 The `intent` prop determines the appearance of the confirm button, `danger` is red.
@@ -92,11 +91,7 @@ function InternalScrollingDialogExample() {
 
   return (
     <Pane>
-      <Dialog
-        isShown={isShown}
-        title="Internal scrolling"
-        onCloseComplete={() => setIsShown(false)}
-      >
+      <Dialog isShown={isShown} title="Internal scrolling" onCloseComplete={() => setIsShown(false)}>
         <Pane height={1800} width="100%" backgroundColor="#ddd" />
       </Dialog>
 
@@ -113,11 +108,7 @@ function SelfManagedCloseDialogExample() {
   const [isShown, setIsShown] = React.useState(false)
   return (
     <Pane>
-      <Dialog
-        isShown={isShown}
-        title="Self managed close"
-        onCloseComplete={() => setIsShown(false)}
-      >
+      <Dialog isShown={isShown} title="Self managed close" onCloseComplete={() => setIsShown(false)}>
         {({ close }) => (
           <Pane>
             <Paragraph>Manage your own buttons and close interaction</Paragraph>
@@ -144,12 +135,7 @@ function NoFooterDialogExample() {
   const [isShown, setIsShown] = React.useState(false)
   return (
     <Pane>
-      <Dialog
-        isShown={isShown}
-        title="No footer"
-        onCloseComplete={() => setIsShown(false)}
-        hasFooter={false}
-      >
+      <Dialog isShown={isShown} title="No footer" onCloseComplete={() => setIsShown(false)} hasFooter={false}>
         No footer
       </Dialog>
 
@@ -169,12 +155,7 @@ function NoHeaderDialogExample() {
   const [isShown, setIsShown] = React.useState(false)
   return (
     <Pane>
-      <Dialog
-        isShown={isShown}
-        title="No footer"
-        onCloseComplete={() => setIsShown(false)}
-        hasHeader={false}
-      >
+      <Dialog isShown={isShown} title="No footer" onCloseComplete={() => setIsShown(false)} hasHeader={false}>
         No header
       </Dialog>
 
@@ -200,6 +181,32 @@ function PreserveBodyScrollingDialogExample() {
         onCloseComplete={() => setIsShown(false)}
         preventBodyScrolling
         confirmLabel="Custom Label"
+      >
+        Dialog content
+      </Dialog>
+
+      <Button onClick={() => setIsShown(true)}>Show Dialog</Button>
+    </Pane>
+  )
+}
+```
+
+## Handle overlay/close clicks
+
+Use the `onBeforeClose` prop to handle overlay/close clicks. It is executed
+when dialog is about to close. Return `false` to prevent the sheet from closing.
+
+```jsx
+function PreserveBodyScrollingDialogExample() {
+  const [isShown, setIsShown] = React.useState(false)
+
+  return (
+    <Pane>
+      <Dialog
+        isShown={isShown}
+        title="Dialog with onBeforeClose callback
+        onBeforeClose={() => confirm('Are you sure you want to close?')}
+        onCloseComplete={() => setIsShown(false)}
       >
         Dialog content
       </Dialog>
