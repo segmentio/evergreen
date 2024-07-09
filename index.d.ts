@@ -2574,8 +2574,9 @@ export type TextTableHeaderCellOwnProps = TableCellOwnProps & {
 export type TextTableHeaderCellProps = PolymorphicBoxProps<'div', TextTableHeaderCellOwnProps>
 export declare const TextTableHeaderCell: BoxComponent<TextTableHeaderCellOwnProps, 'div'>
 
+type TextPropsSize = 300 | 400 | 500 | 600 | 'small' | 'medium' | 'large'
 export type TextOwnProps = {
-  size?: Size
+  size?: TextPropsSize
   fontFamily?: FontFamily | string
 }
 
