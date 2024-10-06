@@ -63,7 +63,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@babel/runtime": "^7.1.2",
+    "@babel/runtime": "^7.21.0",
     "@segment/react-tiny-virtual-list": "^2.2.1",
     "@types/react-transition-group": "^4.4.0",
     "arrify": "^1.0.1",
