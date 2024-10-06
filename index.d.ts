@@ -1775,6 +1775,10 @@ export interface RadioGroupOwnProps extends PaneOwnProps {
    */
   isRequired?: boolean
   /**
+   * The name attribute for HTML radio button. Default to auto-generated string with 'RadioGroup' prefix.
+   */
+  name?: string
+  /**
    * Function called when state changes.
    */
   onChange?(event: React.ChangeEvent<HTMLInputElement>): void
