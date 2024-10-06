@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { spacing, position, layout, dimensions } from 'ui-box'
 import { useId } from '../../hooks'
 import { Pane } from '../../layers'
-import { Text } from '../../typography'
+import { Label } from '../../typography'
 import Radio from './Radio'
 
 const noop = () => {}
@@ -32,11 +32,7 @@ const RadioGroup = memo(
 
     return (
       <Pane role="group" aria-label={label} {...rest} ref={ref}>
-        {label && (
-          <Text color="muted" fontWeight={500}>
-            {label}
-          </Text>
-        )}
+        {label && <Label fontWeight={500}>{label}</Label>}
         {options.map(item => (
           <Radio
             key={item.value}
