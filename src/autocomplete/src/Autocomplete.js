@@ -46,7 +46,10 @@ const AutocompleteItems = ({
   width
 }) => {
   itemsFilter = itemsFilter || fuzzyFilter(itemToString)
-  const items = isFilterDisabled || inputValue.trim() === '' ? originalItems : itemsFilter(originalItems, inputValue)
+  const items =
+    isFilterDisabled || (typeof inputValue === 'string' && inputValue.trim() === '')
+      ? originalItems
+      : itemsFilter(originalItems, inputValue)
 
   if (items.length <= 0) return null
 
@@ -128,11 +131,10 @@ const Autocomplete = memo(
         }
 
         if (props.allowOtherValues && state.isOpen && !changes.isOpen) {
-          return {
-            ...changes,
-            selectedItem: changes.selectedItem || state.inputValue,
-            inputValue: changes.selectedItem || state.inputValue
-          }
+          const valueItem = changes.selectedItem || state.inputValue
+          return typeof valueItem === 'object'
+            ? { ...changes, selectedItem: valueItem }
+            : { ...changes, selectedItem: valueItem, inputValue: valueItem }
         }
 
         return changes

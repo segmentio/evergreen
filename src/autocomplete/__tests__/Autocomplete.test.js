@@ -84,5 +84,34 @@ describe('Autocomplete', () => {
         expect(textInput).toHaveValue('A')
       })
     })
+
+    describe('when inputvalues is object', () => {
+      it('should read data autocomplete', async () => {
+        const items = [
+          { name: 'Apple', id: 1 },
+          { name: 'Orange', id: 2 }
+        ]
+
+        render(
+          makeAutocompleteFixture({
+            allowOtherValues: true,
+            items,
+            itemToString: item => (item ? item.name : '')
+          })
+        )
+
+        // Type 'A' into the input to filter items down containing the string
+        const textInput = await screen.findByTestId('TextInput')
+        userEvent.click(textInput)
+        userEvent.type(textInput, 'A')
+
+        // Click the 'Apple' option, which should also update the input element
+        const item = await screen.findByText('Apple')
+        userEvent.click(item)
+
+        // an object will be returned in the input without error
+        expect(textInput).toHaveValue('Apple')
+      })
+    })
   })
 })
