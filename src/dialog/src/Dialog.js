@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import React, { memo, useState, useCallback } from 'react'
+import FocusTrap from 'focus-trap-react'
 import PropTypes from 'prop-types'
 import { keyframes } from 'ui-box'
 import { Button, IconButton } from '../../buttons'
@@ -96,6 +97,16 @@ const Dialog = memo(function Dialog({
 
   const topOffsetWithUnit = Number.isInteger(topOffset) ? `${topOffset}px` : topOffset
   const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
+
+  const [isVisible, setIsVisible] = useState(false)
+
+  const measuredRef = useCallback(node => {
+    if (node === null) {
+      setIsVisible(false)
+    } else if (node.offsetHeight > 0) {
+      setIsVisible(true)
+    }
+  }, [])
 
   const renderChildren = close => {
     if (typeof children === 'function') {
@@ -198,39 +209,42 @@ const Dialog = memo(function Dialog({
       preventBodyScrolling={preventBodyScrolling}
     >
       {({ close, state }) => (
-        <Pane
-          {...animationStyles}
-          role="dialog"
-          backgroundColor="white"
-          elevation={4}
-          borderRadius={8}
-          width={width}
-          maxWidth={maxWidth}
-          maxHeight={maxHeight}
-          marginX={sideOffsetWithUnit}
-          marginY={topOffsetWithUnit}
-          display="flex"
-          flexDirection="column"
-          className={containerClassName}
-          data-state={state}
-          {...remainingContainerProps}
-        >
-          {renderHeader(close)}
-
+        <FocusTrap active={isVisible}>
           <Pane
-            data-state={state}
+            ref={measuredRef}
+            {...animationStyles}
+            role="dialog"
+            backgroundColor="white"
+            elevation={4}
+            borderRadius={8}
+            width={width}
+            maxWidth={maxWidth}
+            maxHeight={maxHeight}
+            marginX={sideOffsetWithUnit}
+            marginY={topOffsetWithUnit}
             display="flex"
-            overflow="auto"
             flexDirection="column"
-            minHeight={minHeightContent}
-            {...themedBodyProps}
-            {...contentContainerProps}
+            className={containerClassName}
+            data-state={state}
+            {...remainingContainerProps}
           >
-            <Pane>{renderChildren(close)}</Pane>
-          </Pane>
+            {renderHeader(close)}
 
-          {renderFooter(close)}
-        </Pane>
+            <Pane
+              data-state={state}
+              display="flex"
+              overflow="auto"
+              flexDirection="column"
+              minHeight={minHeightContent}
+              {...themedBodyProps}
+              {...contentContainerProps}
+            >
+              <Pane>{renderChildren(close)}</Pane>
+            </Pane>
+
+            {renderFooter(close)}
+          </Pane>
+        </FocusTrap>
       )}
     </Overlay>
   )

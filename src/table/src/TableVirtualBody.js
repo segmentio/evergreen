@@ -64,13 +64,13 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
     if (props.height !== calculatedHeight) {
       setIsIntegerHeight(Number.isInteger(props.height))
     }
-  }, [props.height])
+  }, [props.heightm, calculatedHeight])
 
   useEffect(() => {
     if (paneRef && paneRef instanceof Node) {
       updateOnResize()
     }
-  }, [paneRef])
+  }, [paneRef, updateOnResize])
 
   // Mirrors functionality of componentDidMount and componentWillUnmount.
   // By passing an empty array, will only run on first render, the function returned
@@ -83,7 +83,7 @@ const TableVirtualBody = memo(function TableVirtualBody(props) {
       window.removeEventListener('resize', onResize)
       cancelAnimationFrame(requestId.current)
     }
-  }, [])
+  }, [onResize, updateOnResize])
 
   /**
    * This function will process all items that have height="auto" set.
