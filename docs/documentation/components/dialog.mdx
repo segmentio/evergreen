@@ -209,3 +209,30 @@ function PreserveBodyScrollingDialogExample() {
   )
 }
 ```
+
+## Handle overlay/close clicks
+
+Use the `onBeforeClose` prop to handle overlay/close clicks. It is executed
+when dialog is about to close. Return `false` to prevent the sheet from closing.
+
+```jsx
+function OnBeforeCloseExample() {
+  const [isShown, setIsShown] = React.useState(false)
+
+  return (
+    <Pane>
+      <Dialog
+        isShown={isShown}
+        title="Dialog with onBeforeClose callback
+        onBeforeClose={() => confirm('Are you sure you want to close?')}
+        onCloseComplete={() => setIsShown(false)}
+      >
+        Dialog content
+      </Dialog>
+
+      <Button onClick={() => setIsShown(true)}>Show Dialog</Button>
+    </Pane>
+  )
+}
+```
+
