@@ -16,8 +16,8 @@ const Layout = ({ children, title = '' }: Props) => (
       <TopNav />
       <Pane flex={1} height="100%">
         {children}
-        <PageFooter />
       </Pane>
+      <PageFooter />
     </Pane>
   </div>
 )
